@@ -62,12 +62,15 @@ export type CommunityPackCardPayload = {
 
 /** Ключ палитры карточек UGC — см. `ugcCardThemePresets.ts` / `getCommunityUgcPackPaywallTheme`. */
 export type CommunityPackCardThemeKey = string;
+/** Ключ рубашки карточек UGC — см. `flashcards/cardBackCatalog.ts`. */
+export type CommunityPackCardBackKey = string;
 
 export type CommunityPackSubmissionPayload = {
   /** Одна мова: заголовок і опис (дублюються в titleRu/titleUk на бекенді). */
   title: string;
   description: string;
   cardThemeKey?: CommunityPackCardThemeKey;
+  cardBackKey?: CommunityPackCardBackKey;
   priceShards: number;
   cards: CommunityPackCardPayload[];
   sourceLang?: 'ru' | 'uk' | 'es';
@@ -121,6 +124,7 @@ export function buildCommunityPackPayloadForCloud(p: CommunityPackSubmissionPayl
     priceShards: COMMUNITY_PACK_PRICE_SHARDS,
     cards: p.cards,
     cardThemeKey: String(p.cardThemeKey ?? '').trim() || undefined,
+    cardBackKey: String(p.cardBackKey ?? '').trim() || undefined,
   };
 }
 

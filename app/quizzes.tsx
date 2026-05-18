@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Image as ExpoImage } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { usePremium } from '../components/PremiumContext';
@@ -10,7 +11,7 @@ import {
     KeyboardAvoidingView,
     ScrollView,
     Share,
-    Image,
+    StyleSheet,
     Text,
     TextInput,
     TouchableOpacity,
@@ -48,6 +49,7 @@ import { isQuizChoiceCorrect, quizPrimaryCorrectIndex, type QuizPhrase } from '.
 import { getQuizPhrasesLoaded } from './quiz_phrases_loader';
 import { DEFAULT_SETTINGS, loadSettings, saveSettings, UserSettings as Settings } from './settings_edu';
 import { useTabNav } from './TabContext';
+import { playAppSound } from './audio/sound_manager';
 import { calculateRewardWithBonus } from './variable_reward_system';
 import { registerXP } from './xp_manager';
 import { recordMistake } from './active_recall';
@@ -59,7 +61,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import { emitAppEvent } from './events';
 import { trackActivity, trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { useEffectivePlatformOS } from './platform_ui_preview';
-import { LEVEL_CONFIG, LEVEL_IMAGES, Level, THEME_PALETTES, THEME_TEXT } from './quizzes/constants';
+import { LEVEL_CONFIG, Level, QUIZ_LEVEL_CARD_BACKGROUNDS, QUIZ_LEVEL_LOGOS, THEME_PALETTES, THEME_TEXT } from './quizzes/constants';
 import { diffWords } from './quizzes/diff';
 import { computeNextQuizProgression, getQuizTimerSeconds } from './quizzes/progression';
 import {
@@ -185,7 +187,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
   };
 
   return (
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="quizzes">
     <View style={{ flex:1 }}>
       <ContentWrap>
       <View style={{ flexDirection:'row', alignItems:'center', padding:16, paddingTop: 16 + insets.top, borderBottomWidth:0.5, borderBottomColor:t.border }}>
@@ -245,6 +247,8 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
           const textCol  = locked ? t.textSecond : txt.primary;
           const textCol2 = locked ? t.textMuted  : txt.secondary;
           const isSelected = selected === lv;
+          const cardBackground = (QUIZ_LEVEL_CARD_BACKGROUNDS[themeMode] ?? QUIZ_LEVEL_CARD_BACKGROUNDS.dark)[lv];
+          const levelLogo = (QUIZ_LEVEL_LOGOS[themeMode] ?? QUIZ_LEVEL_LOGOS.dark)[lv];
 
           return (
             <View key={lv} style={{ borderRadius: 20, overflow: 'hidden' }}>
@@ -281,6 +285,17 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                     overflow: 'hidden',
                   }}
                 >
+                  <ExpoImage
+                    pointerEvents="none"
+                    source={cardBackground}
+                    style={[
+                      StyleSheet.absoluteFillObject,
+                      { opacity: locked ? 0.16 : themeMode === 'minimalLight' ? 0.86 : 0.92 },
+                    ]}
+                    contentFit="cover"
+                    cachePolicy="memory-disk"
+                    transition={120}
+                  />
                   {/* Контент */}
                   <View style={{ flex: 1, paddingVertical: 14, paddingHorizontal: 16 }}>
                     <View style={{ flexDirection:'row', alignItems:'center', gap:8, marginBottom:4 }}>
@@ -320,8 +335,14 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                   </View>
 
                   {/* Иконка справа */}
-                  <Animated.View style={{ transform: [{ scale: locked ? 1 : pulseAnims[lv] }], paddingRight: 16 }}>
-                    <Image source={LEVEL_IMAGES[lv]} style={{ width: 56, height: 56, opacity: locked ? 0.3 : 1 }} resizeMode="contain" />
+                  <Animated.View style={{ transform: [{ scale: locked ? 1 : pulseAnims[lv] }], width: 104, paddingRight: 10, alignItems: 'center' }}>
+                    <ExpoImage
+                      source={levelLogo}
+                      style={{ width: 94, height: 94, opacity: locked ? 0.28 : 1 }}
+                      contentFit="contain"
+                      cachePolicy="memory-disk"
+                      transition={120}
+                    />
                   </Animated.View>
                 </LinearGradient>
               </TouchableOpacity>
@@ -699,7 +720,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
 
   if (phrases.length === 0) {
     return (
-      <ScreenGradient>
+      <ScreenGradient artBackdrop="quizzes">
       <View style={{ flex:1, justifyContent:'center', alignItems:'center', paddingHorizontal: 24 }}>
         <ContentWrap>
         <Text style={{ fontSize: 42, marginBottom: 10 }}>📭</Text>
@@ -770,7 +791,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   // Guard: текущий вопрос undefined
   if (!current) {
     return (
-      <ScreenGradient>
+      <ScreenGradient artBackdrop="quizzes">
       <View style={{ flex:1, justifyContent:'center', alignItems:'center' }}>
         <ContentWrap>
         <Text style={{ color:t.textMuted, fontSize: f.body }} />
@@ -801,6 +822,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     if (!isRight && settings.haptics) {
       void hapticError();
     }
+    void playAppSound(isRight ? 'answer.correct' : 'answer.wrong');
 
     if (settings.voiceOut && current?.answer) {
       speakAudio(current.answer, settings.speechRate, { language: 'en-US' });
@@ -1084,7 +1106,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
 
   return (
     <Animated.View style={{ flex:1, opacity: mountOpacity, transform: [{ scale: mountScale }] }}>
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="quizzes">
     <View style={{ flex:1 }}>
       <ContentWrap>
       <KeyboardAvoidingView style={{ flex:1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>

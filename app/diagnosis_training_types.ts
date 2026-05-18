@@ -1,8 +1,8 @@
-import type { Lang } from '../constants/i18n';
+import type { Lang, PlannedInterfaceLang, PlannedTriLangCopy } from '../constants/i18n';
 import type { WordCategory } from './pos_taxonomy';
 import type { PosMicroDiagnosisId } from './pos_micro_diagnosis';
 
-export type TriText = Record<Lang, string>;
+export type TriText = Record<Lang, string> & PlannedTriLangCopy;
 
 export type DiagnosisTrainingDifficulty = 'easy' | 'contrast' | 'mixed' | 'mixed_review';
 
@@ -82,14 +82,14 @@ export interface DiagnosisTraining {
   mentalModel: TriText;
   contrastSet: string[];
   coreRule?: TriText;
-  whatUserMustLearn?: Record<Lang, string[]>;
+  whatUserMustLearn?: Record<Lang, string[]> & Partial<Record<PlannedInterfaceLang, string[]>>;
   examples?: Array<{
     en: string;
     ru: string;
     uk: string;
     es: string;
     why: TriText;
-  }>;
+  } & Partial<Record<PlannedInterfaceLang, string>>>;
   introBlocks: Array<TriText | { id: string; type: string; text: TriText }>;
   steps: DiagnosisTrainingStep[];
   masteryRules: DiagnosisTrainingMasteryRules;

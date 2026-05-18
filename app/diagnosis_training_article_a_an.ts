@@ -3,7 +3,23 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const ARTICLE_OPTIONS = [
   { id: 'a', text: 'a' },
@@ -145,6 +161,41 @@ export const ARTICLE_A_AN_TRAINING: DiagnosisTraining = {
       'La letra u puede sonar como /ju/, es decir, empezar con sonido consonántico /j/, por eso a university.',
       'Si hay un adjetivo antes del sustantivo, elegimos por el primer sonido del adjetivo: an old car, a red apple.',
     ],
+    'pt-BR': [
+      'A/an é usado antes de uma coisa ou pessoa contável no singular.',
+      'A escolha entre a e an depende do primeiro som da palavra seguinte.',
+      'A letra pode enganar: hour começa com som de vogal, por isso an hour.',
+      'A letra u pode soar como /ju/, ou seja, começar com som consonantal /j/, por isso a university.',
+      'Se há um adjetivo antes do substantivo, escolhemos pelo primeiro som do adjetivo: an old car, a red apple.',
+    ],
+    vi: [
+      'A/an dùng trước một vật hoặc người đếm được ở số ít.',
+      'Việc chọn a hay an phụ thuộc vào âm đầu tiên của từ tiếp theo.',
+      'Chữ cái có thể đánh lừa: hour bắt đầu bằng âm nguyên âm, nên dùng an hour.',
+      'Chữ u có thể phát âm như /ju/, tức là bắt đầu bằng âm phụ âm /j/, nên dùng a university.',
+      'Nếu có tính từ trước danh từ, hãy chọn theo âm đầu tiên của tính từ: an old car, a red apple.',
+    ],
+    id: [
+      'A/an dipakai sebelum satu benda atau orang yang dapat dihitung.',
+      'Pilihan antara a dan an bergantung pada bunyi pertama kata berikutnya.',
+      'Huruf bisa menipu: hour dimulai dengan bunyi vokal, jadi an hour.',
+      'Huruf u bisa berbunyi /ju/, yaitu dimulai dengan bunyi konsonan /j/, jadi a university.',
+      'Jika ada kata sifat sebelum kata benda, pilih berdasarkan bunyi pertama kata sifat itu: an old car, a red apple.',
+    ],
+    tr: [
+      'A/an, tekil sayılabilir bir nesne veya kişiden önce kullanılır.',
+      'a ile an seçimi, sonraki kelimenin ilk sesine bağlıdır.',
+      'Harf yanıltabilir: hour ünlü sesle başlar, bu yüzden an hour.',
+      'u harfi /ju/ gibi duyulabilir, yani /j/ ünsüz sesiyle başlar; bu yüzden a university.',
+      'İsimden önce sıfat varsa, seçimi sıfatın ilk sesine göre yaparız: an old car, a red apple.',
+    ],
+    pl: [
+      'A/an używamy przed jedną policzalną rzeczą albo osobą.',
+      'Wybór między a i an zależy od pierwszego dźwięku następnego słowa.',
+      'Litera może mylić: hour zaczyna się od dźwięku samogłoski, dlatego an hour.',
+      'Litera u może brzmieć jak /ju/, czyli zaczynać się od spółgłoski /j/, dlatego a university.',
+      'Jeśli przed rzeczownikiem stoi przymiotnik, wybieramy według pierwszego dźwięku przymiotnika: an old car, a red apple.',
+    ],
   },
   examples: [
     {
@@ -152,6 +203,11 @@ export const ARTICLE_A_AN_TRAINING: DiagnosisTraining = {
       ru: 'Я увидел собаку.',
       uk: 'Я побачив собаку.',
       es: 'Vi un perro.',
+            'pt-BR': 'Eu vi um cachorro.',
+      vi: 'Tôi đã thấy một con chó.',
+      id: 'Saya melihat seekor anjing.',
+      tr: 'Bir köpek gördüm.',
+      pl: 'Zobaczyłem psa.',
       why: tri(
         'dog начинается со звука /d/. Это согласный звук, поэтому a dog.',
         'dog починається зі звуку /d/. Це приголосний звук, тому a dog.',
@@ -163,6 +219,11 @@ export const ARTICLE_A_AN_TRAINING: DiagnosisTraining = {
       ru: 'У неё есть идея.',
       uk: 'У неї є ідея.',
       es: 'Ella tiene una idea.',
+            'pt-BR': 'Ela tem uma ideia.',
+      vi: 'Cô ấy có một ý tưởng.',
+      id: 'Dia punya sebuah ide.',
+      tr: 'Onun bir fikri var.',
+      pl: 'Ona ma pomysł.',
       why: tri(
         'idea начинается со звука /ai/. Это гласный звук, поэтому an idea.',
         'idea починається зі звуку /ai/. Це голосний звук, тому an idea.',
@@ -174,6 +235,11 @@ export const ARTICLE_A_AN_TRAINING: DiagnosisTraining = {
       ru: 'Я ждал час.',
       uk: 'Я чекав годину.',
       es: 'Esperé una hora.',
+            'pt-BR': 'Eu esperei por uma hora.',
+      vi: 'Tôi đã đợi một giờ.',
+      id: 'Saya menunggu selama satu jam.',
+      tr: 'Bir saat bekledim.',
+      pl: 'Czekałem godzinę.',
       why: tri(
         'В hour буква h не звучит. Слово начинается со звука /au/, поэтому an hour.',
         'У hour літера h не звучить. Слово починається зі звуку /au/, тому an hour.',
@@ -185,6 +251,11 @@ export const ARTICLE_A_AN_TRAINING: DiagnosisTraining = {
       ru: 'Он учится в университете.',
       uk: 'Він навчається в університеті.',
       es: 'Él estudia en una universidad.',
+            'pt-BR': 'Ele estuda em uma universidade.',
+      vi: 'Anh ấy học ở một trường đại học.',
+      id: 'Dia belajar di sebuah universitas.',
+      tr: 'O bir üniversitede okuyor.',
+      pl: 'On studiuje na uniwersytecie.',
       why: tri(
         'university начинается не со звука /u/, а со звука /j/ как в yes. Это согласный звук, поэтому a university.',
         'university починається не зі звуку /u/, а зі звуку /j/ як у yes. Це приголосний звук, тому a university.',
@@ -196,6 +267,11 @@ export const ARTICLE_A_AN_TRAINING: DiagnosisTraining = {
       ru: 'Она честный человек.',
       uk: 'Вона чесна людина.',
       es: 'Ella es una persona honesta.',
+            'pt-BR': 'Ela é uma pessoa honesta.',
+      vi: 'Cô ấy là một người trung thực.',
+      id: 'Dia adalah orang yang jujur.',
+      tr: 'O dürüst bir insan.',
+      pl: 'Ona jest uczciwą osobą.',
       why: tri(
         'В honest буква h не звучит. Первый звук гласный, поэтому an honest person.',
         'У honest літера h не звучить. Перший звук голосний, тому an honest person.',
@@ -207,6 +283,11 @@ export const ARTICLE_A_AN_TRAINING: DiagnosisTraining = {
       ru: 'Это был полезный урок.',
       uk: 'Це був корисний урок.',
       es: 'Fue una lección útil.',
+            'pt-BR': 'Foi uma aula útil.',
+      vi: 'Đó là một bài học hữu ích.',
+      id: 'Itu adalah pelajaran yang berguna.',
+      tr: 'Bu faydalı bir dersti.',
+      pl: 'To była przydatna lekcja.',
       why: tri(
         'useful начинается со звука /j/ как в yes. Это согласный звук, поэтому a useful lesson.',
         'useful починається зі звуку /j/ як у yes. Це приголосний звук, тому a useful lesson.',
@@ -218,6 +299,11 @@ export const ARTICLE_A_AN_TRAINING: DiagnosisTraining = {
       ru: 'Я купил старую машину.',
       uk: 'Я купив стару машину.',
       es: 'Compré un coche viejo.',
+            'pt-BR': 'Eu comprei um carro velho.',
+      vi: 'Tôi đã mua một chiếc xe cũ.',
+      id: 'Saya membeli mobil tua.',
+      tr: 'Eski bir araba aldım.',
+      pl: 'Kupiłem stary samochód.',
       why: tri(
         'Перед car стоит old. Мы выбираем артикль по слову old, а old начинается с гласного звука. Поэтому an old car.',
         'Перед car стоїть old. Ми обираємо артикль за словом old, а old починається з голосного звуку. Тому an old car.',
@@ -229,6 +315,11 @@ export const ARTICLE_A_AN_TRAINING: DiagnosisTraining = {
       ru: 'Это европейская страна.',
       uk: 'Це європейська країна.',
       es: 'Es un país europeo.',
+            'pt-BR': 'Este é um país europeu.',
+      vi: 'Đây là một quốc gia châu Âu.',
+      id: 'Ini adalah negara Eropa.',
+      tr: 'Bu bir Avrupa ülkesi.',
+      pl: 'To jest kraj europejski.',
       why: tri(
         'European начинается со звука /j/ как в yes. Это согласный звук, поэтому a European country.',
         'European починається зі звуку /j/ як у yes. Це приголосний звук, тому a European country.',

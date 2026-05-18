@@ -26,6 +26,7 @@ import {
   checkLeagueOnAppOpen,
   clearPendingResult,
   getWeekId,
+  getLeagueResultZoneSize,
   loadLeagueState,
   loadPendingResult,
   invalidateLeagueGroupCache,
@@ -33,7 +34,7 @@ import {
 import LeagueResultModal from './LeagueResultModal';
 import { logLeaguePromoted } from './firebase';
 import { getBestAvatarForLevel } from '../constants/avatars';
-import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
+import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { getTitleString } from '../constants/titles';
 
 import { getMyWeekPoints } from './hall_of_fame_utils';
@@ -41,6 +42,7 @@ import { ensureAnonUser } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
 import { getXPProgress, getLevelFromXP, screenTextOnGradient } from '../constants/theme';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
+import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
 import {
   loadPrevRank, savePrevRank, computeRankDelta,
   KEY_CLUB_PREV_RANK, RankDelta,
@@ -118,8 +120,8 @@ function leagueTag(lang: Lang, tagRU: string, tagUK: string): string {
     ru: `Бонус к опыту: ${formattedPct}`,
     uk: `Бонус до досвіду: ${formattedPct}`,
     es: `Bono de XP: ${formattedPct}`,
-    'pt-BR': `B?nus de XP: ${formattedPct}`,
-    vi: `Th??ng XP: ${formattedPct}`,
+    'pt-BR': `Bônus de XP: ${formattedPct}`,
+    vi: `Thưởng XP: ${formattedPct}`,
     id: `Bonus XP: ${formattedPct}`,
     tr: `XP bonusu: ${formattedPct}`,
     pl: `Bonus XP: ${formattedPct}`,
@@ -145,22 +147,22 @@ function leaguePromotionHintText(lang: Lang, promotionCutoff: number): string {
       ru: 'Повышение станет доступно, когда в лиге будет хотя бы 2 участника.',
       uk: 'Підвищення стане доступним, коли в лізі буде хоча б 2 учасники.',
       es: 'El ascenso estará disponible cuando haya al menos 2 participantes en la liga.',
-      'pt-BR': "A promo??o ficar? dispon?vel quando houver pelo menos 2 participantes na liga.",
-      vi: "T?nh n?ng th?ng h?ng s? kh? d?ng khi gi?i ??u c? ?t nh?t 2 ng??i tham gia.",
+      'pt-BR': "A promoção ficará disponível quando houver pelo menos 2 participantes na liga.",
+      vi: "Tính năng thăng hạng sẽ khả dụng khi giải đấu có ít nhất 2 người tham gia.",
       id: "Promosi akan tersedia saat liga memiliki setidaknya 2 peserta.",
-      tr: "Lig i?inde en az 2 kat?l?mc? oldu?unda y?kselme kullan?labilir olacak.",
-      pl: "Awans b?dzie dost?pny, gdy w lidze b?d? co najmniej 2 uczestnicy.",
+      tr: "Lig içinde en az 2 katılımcı olduğunda yükselme kullanılabilir olacak.",
+      pl: "Awans będzie dostępny, gdy w lidze będą co najmniej 2 uczestnicy.",
     });
   }
   return triLang(lang, {
     ru: `Чтобы перейти в следующую лигу, к концу недели нужно войти в топ-${promotionCutoff} по опыту, набранному за эту неделю.`,
     uk: `Щоб перейти в наступну лігу, до кінця тижня потрібно потрапити в топ-${promotionCutoff} за досвідом, зібраним за цей тиждень.`,
     es: `Para subir de liga, al final de la semana debes estar entre los ${promotionCutoff} primeros por experiencia ganada esta semana.`,
-    'pt-BR': `Para subir para a pr?xima liga, voc? precisa terminar a semana no top-${promotionCutoff} por XP ganho nesta semana.`,
-    vi: `?? l?n gi?i ti?p theo, ??n cu?i tu?n b?n c?n n?m trong top-${promotionCutoff} theo XP ki?m ???c trong tu?n n?y.`,
+    'pt-BR': `Para subir para a próxima liga, você precisa terminar a semana no top-${promotionCutoff} por XP ganho nesta semana.`,
+    vi: `Để lên giải tiếp theo, đến cuối tuần bạn cần nằm trong top-${promotionCutoff} theo XP kiếm được trong tuần này.`,
     id: `Untuk naik ke liga berikutnya, pada akhir minggu kamu harus masuk top-${promotionCutoff} berdasarkan XP yang didapat minggu ini.`,
-    tr: `Bir sonraki lige ge?mek i?in hafta sonunda bu hafta kazand???n XP ile ilk ${promotionCutoff} i?inde olman gerekir.`,
-    pl: `Aby przej?? do nast?pnej ligi, na koniec tygodnia musisz by? w top-${promotionCutoff} wed?ug XP zdobytego w tym tygodniu.`,
+    tr: `Bir sonraki lige geçmek için hafta sonunda bu hafta kazandığın XP ile ilk ${promotionCutoff} içinde olman gerekir.`,
+    pl: `Aby przejść do następnej ligi, na koniec tygodnia musisz być w top-${promotionCutoff} według XP zdobytego w tym tygodniu.`,
   });
 }
 
@@ -231,6 +233,7 @@ export default function ClubScreen() {
     ? GOLD_RICH.metalGold
       : '#A78BFA';
   const leagueBonusPalette = getLeagueBonusPalette(t, themeMode);
+  const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
   const { lang } = useLang();
 
   const [myLeagueId, setMyLeagueId]     = useState(0);
@@ -263,6 +266,8 @@ export default function ClubScreen() {
   const LEAGUE_ITEM_SIZE = 104;
   const LEAGUE_ITEM_GAP = 14;
   const LEAGUE_ITEM_FULL = LEAGUE_ITEM_SIZE + LEAGUE_ITEM_GAP;
+  const LEAGUE_RAIL_ICON_SIZE = 78;
+  const LEAGUE_RAIL_ICON_BOX_SIZE = 108;
   const leagueRailRef = useRef<ScrollView | null>(null);
   const contentScrollRef = useRef<ScrollView | null>(null);
   const didAutoScrollToMyRowRef = useRef<string | null>(null);
@@ -271,7 +276,8 @@ export default function ClubScreen() {
   const lastSnapLeagueRef = useRef<number | null>(null);
   const [railSideInset, setRailSideInset] = useState(12);
   /** Совпадает с RankChangeTestModal / тестовым превью — не менять без синхронизации. */
-  const ROW_HEIGHT_CLUB = 60;
+  const CLUB_LEADERBOARD_AVATAR_SIZE = 56;
+  const ROW_HEIGHT_CLUB = 84;
   const myRowAnim = useRef(new Animated.Value(0)).current;
   const leagueChestRewardCheckKeyRef = useRef<string | null>(null);
   const chatMetaRefreshAtRef = useRef(0);
@@ -617,9 +623,9 @@ export default function ClubScreen() {
   const myLeague = LEAGUES[myLeagueId];
 
   const sortedGroup = [...group].sort((a, b) => b.points - a.points);
-  const zoneSize = Math.max(1, Math.ceil(sortedGroup.length * 0.15));
+  const zoneSize = getLeagueResultZoneSize(sortedGroup.length);
   const promotionCutoff = sortedGroup.length >= 2 && myLeagueId < LEAGUES.length - 1 ? zoneSize : 0;
-  const relegationStartIndex = Math.max(0, sortedGroup.length - zoneSize);
+  const relegationStartIndex = sortedGroup.length >= 2 ? Math.max(0, sortedGroup.length - zoneSize) : sortedGroup.length;
   const myRank      = sortedGroup.findIndex(m => m.isMe) + 1;
   const total       = sortedGroup.length;
   const myRowIndex = myRank > 0 ? myRank - 1 : -1;
@@ -788,7 +794,7 @@ export default function ClubScreen() {
       uk: '30 хвилин',
       es: '30 minutos',
       'pt-BR': "30 minutos",
-      vi: "30 ph?t",
+      vi: "30 phút",
       id: "30 menit",
       tr: "30 dakika",
       pl: "30 minut",
@@ -798,7 +804,7 @@ export default function ClubScreen() {
       uk: '1 година',
       es: '1 hora',
       'pt-BR': "1 hora",
-      vi: "1 gi?",
+      vi: "1 giờ",
       id: "1 jam",
       tr: "1 saat",
       pl: "1 godzina",
@@ -808,7 +814,7 @@ export default function ClubScreen() {
       uk: '2 години',
       es: '2 horas',
       'pt-BR': "2 horas",
-      vi: "2 gi?",
+      vi: "2 giờ",
       id: "2 jam",
       tr: "2 saat",
       pl: "2 godziny",
@@ -818,7 +824,7 @@ export default function ClubScreen() {
       uk: '15 хвилин',
       es: '15 minutos',
       'pt-BR': "15 minutos",
-      vi: "15 ph?t",
+      vi: "15 phút",
       id: "15 menit",
       tr: "15 dakika",
       pl: "15 minut",
@@ -832,21 +838,21 @@ export default function ClubScreen() {
           ru: 'Буст уже активен',
           uk: 'Буст вже активний',
           es: 'Ya tienes un impulso activo',
-          'pt-BR': "Impulso j? ativo",
-          vi: "T?ng t?c ?ang ho?t ??ng",
+          'pt-BR': "Impulso já ativo",
+          vi: "Tăng tốc đang hoạt động",
           id: "Boost sudah aktif",
           tr: "Takviye zaten aktif",
-          pl: "Wzmocnienie jest ju? aktywne",
+          pl: "Wzmocnienie jest już aktywne",
         }),
         message: triLang(lang, {
           ru: 'Дождись окончания текущего буста.',
           uk: 'Дочекайся завершення поточного буста.',
           es: 'Espera a que termine el impulso actual antes de activar otro.',
           'pt-BR': "Aguarde o impulso atual terminar antes de ativar outro.",
-          vi: "H?y ch? t?ng t?c hi?n t?i k?t th?c tr??c khi b?t c?i kh?c.",
+          vi: "Hãy chờ tăng tốc hiện tại kết thúc trước khi bật cái khác.",
           id: "Tunggu boost saat ini selesai sebelum mengaktifkan yang lain.",
-          tr: "Ba?ka bir takviye a?madan ?nce mevcut takviyenin bitmesini bekle.",
-          pl: "Poczekaj, a? obecne wzmocnienie si? sko?czy, zanim w??czysz kolejne.",
+          tr: "Başka bir takviye açmadan önce mevcut takviyenin bitmesini bekle.",
+          pl: "Poczekaj, aż obecne wzmocnienie się skończy, zanim włączysz kolejne.",
         }),
         actions: [{ label: 'OK', style: 'default' }],
       });
@@ -861,20 +867,20 @@ export default function ClubScreen() {
             uk: 'Недостатньо осколків',
             es: 'No tienes suficientes fragmentos de conocimiento',
             'pt-BR': "Fragmentos insuficientes",
-            vi: "Kh?ng ?? m?nh ki?n th?c",
+            vi: "Không đủ mảnh kiến thức",
             id: "Pecahan belum cukup",
-            tr: "Yeterli par?a yok",
-            pl: "Za ma?o od?amk?w",
+            tr: "Yeterli parça yok",
+            pl: "Za mało odłamków",
           }),
           message: triLang(lang, {
             ru: 'Пополни баланс, чтобы активировать буст.',
             uk: 'Поповни баланс, щоб активувати буст.',
             es: 'Consigue más fragmentos para poder activar el impulso.',
             'pt-BR': "Aumente seu saldo para ativar o impulso.",
-            vi: "H?y n?p th?m s? d? ?? b?t t?ng t?c.",
+            vi: "Hãy nạp thêm số dư để bật tăng tốc.",
             id: "Tambah saldo agar bisa mengaktifkan boost.",
-            tr: "Takviyeyi etkinle?tirmek i?in bakiyeni art?r.",
-            pl: "Uzupe?nij saldo, aby aktywowa? wzmocnienie.",
+            tr: "Takviyeyi etkinleştirmek için bakiyeni artır.",
+            pl: "Uzupełnij saldo, aby aktywować wzmocnienie.",
           }),
           actions: [{ label: 'OK', style: 'default' }],
         });
@@ -884,21 +890,21 @@ export default function ClubScreen() {
             ru: 'Не удалось активировать',
             uk: 'Не вдалося активувати',
             es: 'No se pudo activar el impulso',
-            'pt-BR': "N?o foi poss?vel ativar",
-            vi: "Kh?ng th? k?ch ho?t",
+            'pt-BR': "Não foi possível ativar",
+            vi: "Không thể kích hoạt",
             id: "Tidak dapat mengaktifkan",
-            tr: "Etkinle?tirilemedi",
-            pl: "Nie uda?o si? aktywowa?",
+            tr: "Etkinleştirilemedi",
+            pl: "Nie udało się aktywować",
           }),
           message: triLang(lang, {
             ru: 'Попробуй ещё раз чуть позже.',
             uk: 'Спробуй ще раз трохи пізніше.',
             es: 'Inténtalo de nuevo un poco más tarde.',
             'pt-BR': "Tente novamente um pouco mais tarde.",
-            vi: "H?y th? l?i sau m?t ch?t.",
+            vi: "Hãy thử lại sau một chút.",
             id: "Coba lagi beberapa saat lagi.",
             tr: "Biraz sonra tekrar dene.",
-            pl: "Spr?buj ponownie za chwil?.",
+            pl: "Spróbuj ponownie za chwilę.",
           }),
           actions: [{ label: 'OK', style: 'default' }],
         });
@@ -915,20 +921,20 @@ export default function ClubScreen() {
         uk: 'Буст активовано',
         es: 'Impulso activado',
         'pt-BR': "Impulso ativado",
-        vi: "?? b?t t?ng t?c",
+        vi: "Đã bật tăng tốc",
         id: "Boost diaktifkan",
-        tr: "Takviye etkinle?tirildi",
+        tr: "Takviye etkinleştirildi",
         pl: "Wzmocnienie aktywowane",
       }),
       message: triLang(lang, {
         ru: 'Время действия уже запущено.',
         uk: 'Час дії вже запущено.',
         es: 'El periodo del impulso ya ha empezado.',
-        'pt-BR': "O tempo de dura??o j? come?ou.",
-        vi: "Th?i gian hi?u l?c ?? b?t ??u.",
+        'pt-BR': "O tempo de duração já começou.",
+        vi: "Thời gian hiệu lực đã bắt đầu.",
         id: "Masa aktifnya sudah dimulai.",
-        tr: "Etki s?resi ba?lad?.",
-        pl: "Czas dzia?ania ju? si? rozpocz??.",
+        tr: "Etki süresi başladı.",
+        pl: "Czas działania już się rozpoczął.",
       }),
       actions: [{ label: 'OK', style: 'default' }],
     });
@@ -944,7 +950,7 @@ export default function ClubScreen() {
       'pt-BR': "Comprar",
       vi: "Mua",
       id: "Beli",
-      tr: "Sat?n al",
+      tr: "Satın al",
       pl: "Kup",
     });
     const forPrep = triLang(lang, {
@@ -952,9 +958,9 @@ export default function ClubScreen() {
       uk: 'за',
       es: 'por',
       'pt-BR': "por",
-      vi: "v?i gi?",
+      vi: "với giá",
       id: "seharga",
-      tr: "kar??l???nda",
+      tr: "karşılığında",
       pl: "za",
     });
     setGameAlert({
@@ -963,10 +969,10 @@ export default function ClubScreen() {
         uk: 'Підтвердити покупку',
         es: 'Confirmar la compra',
         'pt-BR': "Confirmar compra",
-        vi: "X?c nh?n mua",
+        vi: "Xác nhận mua",
         id: "Konfirmasi pembelian",
-        tr: "Sat?n almay? onayla",
-        pl: "Potwierd? zakup",
+        tr: "Satın almayı onayla",
+        pl: "Potwierdź zakup",
       }),
       message: `${buyVerb} x${def.multiplier} • ${boostLabel(def)} ${forPrep} ${def.costShards}?`,
       actions: [
@@ -975,9 +981,9 @@ export default function ClubScreen() {
           uk: 'Скасувати',
           es: 'Cancelar',
           'pt-BR': "Cancelar",
-          vi: "H?y",
+          vi: "Hủy",
           id: "Batal",
-          tr: "?ptal",
+          tr: "İptal",
           pl: "Anuluj",
         }), style: 'cancel' },
         {
@@ -1012,7 +1018,7 @@ export default function ClubScreen() {
             uk: 'Назад',
             es: 'Volver',
             'pt-BR': "Voltar",
-            vi: "Quay l?i",
+            vi: "Quay lại",
             id: "Kembali",
             tr: "Geri",
             pl: "Wstecz",
@@ -1034,9 +1040,9 @@ export default function ClubScreen() {
             uk: 'Ліга тижня',
             es: 'Liga de la semana',
             'pt-BR': "Liga da semana",
-            vi: "Gi?i ??u tu?n n?y",
+            vi: "Giải đấu tuần này",
             id: "Liga minggu ini",
-            tr: "Haftan?n ligi",
+            tr: "Haftanın ligi",
             pl: "Liga tygodnia",
           })}
         </Text>
@@ -1065,7 +1071,7 @@ export default function ClubScreen() {
                 uk: 'Буст',
                 es: 'Impulso',
                 'pt-BR': "Impulso",
-                vi: "T?ng t?c",
+                vi: "Tăng tốc",
                 id: "Boost",
                 tr: "Takviye",
                 pl: "Wzmocnienie",
@@ -1106,9 +1112,9 @@ export default function ClubScreen() {
               uk: 'Рейтинг',
               es: 'Ranking',
               'pt-BR': "Ranking",
-              vi: "X?p h?ng",
+              vi: "Xếp hạng",
               id: "Peringkat",
-              tr: "S?ralama",
+              tr: "Sıralama",
               pl: "Ranking",
             }), 'podium-outline'],
             ['chat', triLang(lang, {
@@ -1116,7 +1122,7 @@ export default function ClubScreen() {
               uk: 'Чат',
               es: 'Chat',
               'pt-BR': "Chat",
-              vi: "Tr? chuy?n",
+              vi: "Trò chuyện",
               id: "Chat",
               tr: "Sohbet",
               pl: "Czat",
@@ -1238,15 +1244,15 @@ export default function ClubScreen() {
                   <Animated.View style={{
                     transform: [{ scale: iconScale }, { translateY: iconTranslateY }],
                     opacity: iconOpacity,
-                    width: 72,
-                    height: 72,
+                    width: LEAGUE_RAIL_ICON_BOX_SIZE,
+                    height: LEAGUE_RAIL_ICON_BOX_SIZE,
                     alignItems: 'center',
                     justifyContent: 'center',
                     overflow: 'visible',
                   }}>
                     <LeagueIcon
                       league={league}
-                      size={52}
+                      size={LEAGUE_RAIL_ICON_SIZE}
                       pulse={false}
                       active={isSelectedLeague && !isLockedLeague}
                       locked={isLockedLeague}
@@ -1315,18 +1321,21 @@ export default function ClubScreen() {
 
         {leagueRaceVisible && (
         <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x:0, y:0 }} end={{ x:1, y:1 }} style={{ borderRadius:16, borderWidth:0.5, borderColor:leagueBonusPalette.border, padding:14, gap:12, overflow:'hidden' }}>
+          <View pointerEvents="none" style={{ position:'absolute', right:-24, top:-22, width:136, height:136, transform:[{ rotate:'-8deg' }] }}>
+            <Image source={leagueBonusGiftImage} resizeMode="contain" style={{ width:'100%', height:'100%', opacity:leagueChestReady ? 0.20 : 0.12 }} />
+          </View>
           <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:12 }}>
             <View style={{ flexDirection:'row', alignItems:'center', gap:8, flex:1, minWidth:0 }}>
-              <View style={{ width:34, height:34, borderRadius:17, backgroundColor:leagueBonusPalette.iconBg, borderWidth:0.5, borderColor:leagueBonusPalette.iconBorder, alignItems:'center', justifyContent:'center' }}>
-                <Ionicons name="gift-outline" size={19} color={leagueChestVisualAccent} />
+              <View style={{ width:56, height:56, borderRadius:28, backgroundColor:leagueBonusPalette.iconBg, borderWidth:0.5, borderColor:leagueBonusPalette.iconBorder, alignItems:'center', justifyContent:'center', shadowColor:leagueChestVisualAccent, shadowOpacity:leagueChestReady ? 0.42 : 0.24, shadowRadius:14, shadowOffset:{ width:0, height:6 }, elevation:7 }}>
+                <Image source={leagueBonusGiftImage} resizeMode="contain" style={{ width:66, height:66, opacity:leagueChestReady ? 1 : 0.94 }} />
               </View>
               <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900', flex:1 }} numberOfLines={1}>
                 {triLang(lang, {
                   ru: 'Бонус лиги',
                   uk: 'Бонус ліги',
                   es: 'Bono de liga',
-                  'pt-BR': "B?nus da liga",
-                  vi: "Th??ng gi?i ??u",
+                  'pt-BR': "Bônus da liga",
+                  vi: "Thưởng giải đấu",
                   id: "Bonus liga",
                   tr: "Lig bonusu",
                   pl: "Bonus ligi",
@@ -1354,9 +1363,9 @@ export default function ClubScreen() {
                   uk: `Корона тижня: ${leagueCrownWinnerName}`,
                   es: `Corona semanal: ${leagueCrownWinnerName}`,
                   'pt-BR': `Coroa da semana: ${leagueCrownWinnerName}`,
-                  vi: `V??ng mi?n tu?n: ${leagueCrownWinnerName}`,
+                  vi: `Vương miện tuần: ${leagueCrownWinnerName}`,
                   id: `Mahkota mingguan: ${leagueCrownWinnerName}`,
-                  tr: `Haftan?n tac?: ${leagueCrownWinnerName}`,
+                  tr: `Haftanın tacı: ${leagueCrownWinnerName}`,
                   pl: `Korona tygodnia: ${leagueCrownWinnerName}`,
                 })}
               </Text>
@@ -1373,10 +1382,10 @@ export default function ClubScreen() {
                       uk: 'Гонка за корону',
                       es: 'Carrera por la corona',
                       'pt-BR': "Corrida pela coroa",
-                      vi: "Cu?c ?ua gi?nh v??ng mi?n",
+                      vi: "Cuộc đua giành vương miện",
                       id: "Perebutan mahkota",
-                      tr: "Ta? yar???",
-                      pl: "Wy?cig po koron?",
+                      tr: "Taç yarışı",
+                      pl: "Wyścig po koronę",
                     })}
                   </Text>
                 </View>
@@ -1432,10 +1441,10 @@ export default function ClubScreen() {
                     ru: 'Бонус получен',
                     uk: 'Бонус отримано',
                     es: 'Bono recibido',
-                    'pt-BR': "B?nus recebido",
-                    vi: "?? nh?n th??ng",
+                    'pt-BR': "Bônus recebido",
+                    vi: "Đã nhận thưởng",
                     id: "Bonus diterima",
-                    tr: "Bonus al?nd?",
+                    tr: "Bonus alındı",
                     pl: "Bonus odebrany",
                   })
                   : leagueChestClaiming
@@ -1444,9 +1453,9 @@ export default function ClubScreen() {
                       uk: 'Відкриваємо...',
                       es: 'Abriendo...',
                       'pt-BR': "Abrindo...",
-                      vi: "?ang m?...",
+                      vi: "Đang mở...",
                       id: "Membuka...",
-                      tr: "A??l?yor...",
+                      tr: "Açılıyor...",
                       pl: "Otwieranie...",
                     })
                     : leagueCrownWinnerUid === arenaClubStableUid
@@ -1455,17 +1464,17 @@ export default function ClubScreen() {
                         uk: 'Забрати корону',
                         es: 'Recoger la corona',
                         'pt-BR': "Pegar coroa",
-                        vi: "Nh?n v??ng mi?n",
+                        vi: "Nhận vương miện",
                         id: "Ambil mahkota",
-                        tr: "Tac? al",
+                        tr: "Tacı al",
                         pl: "Odbierz koron?",
                       })
                       : triLang(lang, {
                         ru: 'Забрать бонус лиги',
                         uk: 'Забрати бонус ліги',
                         es: 'Recoger bono de liga',
-                        'pt-BR': "Pegar b?nus da liga",
-                        vi: "Nh?n th??ng gi?i ??u",
+                        'pt-BR': "Pegar bônus da liga",
+                        vi: "Nhận thưởng giải đấu",
                         id: "Ambil bonus liga",
                         tr: "Lig bonusunu al",
                         pl: "Odbierz bonus ligi",
@@ -1486,11 +1495,11 @@ export default function ClubScreen() {
                 uk: 'Ще немає учасників',
                 ru: 'Пока нет участников',
                 es: 'Aún no hay participantes',
-                'pt-BR': "Ainda n?o h? participantes",
-                vi: "Ch?a c? ng??i tham gia",
+                'pt-BR': "Ainda não há participantes",
+                vi: "Chưa có người tham gia",
                 id: "Belum ada peserta",
-                tr: "Hen?z kat?l?mc? yok",
-                pl: "Nie ma jeszcze uczestnik?w",
+                tr: "Henüz katılımcı yok",
+                pl: "Nie ma jeszcze uczestników",
               })}
             </Text>
           ) : (
@@ -1509,6 +1518,8 @@ export default function ClubScreen() {
               const isMyRow = !!p.isMe;
               const rowFinalBg = isMyRow ? t.accentBg : rowBg;
               const rowMask = rowFinalBg === 'transparent' ? t.bgCard : rowFinalBg;
+              const rowEffectiveAura = getEffectiveAvatarAuraId(p.isMe ? myAuraId : p.aura, p.isPremium);
+              const rowUsesPremiumAura = rowEffectiveAura === PREMIUM_AVATAR_AURA_ID;
               const boostMult = p.leagueBoostMultiplier;
               const boostUntil = p.leagueBoostExpiresAt ?? 0;
               const showLeagueBoost =
@@ -1549,7 +1560,7 @@ export default function ClubScreen() {
                   borderBottomWidth: i < sortedGroup.length - 1 ? 0.5 : 0,
                   borderBottomColor: t.border,
                   backgroundColor: rowFinalBg,
-                  borderLeftWidth: isMyRow ? 4 : 0,
+                  borderLeftWidth: 4,
                   borderLeftColor: isMyRow ? t.accent : 'transparent',
                 }}
               >
@@ -1567,15 +1578,15 @@ export default function ClubScreen() {
                   shadowOffset: { width: 0, height: 0 },
                 }}>
                   <PremiumAvatarHalo
-                    enabled={!!p.isPremium}
-                    avatarSize={36}
+                    enabled={rowUsesPremiumAura}
+                    avatarSize={CLUB_LEADERBOARD_AVATAR_SIZE}
                     maskColor={rowMask}
                   >
                     <AvatarView
                       avatar={rowAvatar}
                       totalXP={rowXp}
-                      size={36}
-                      auraId={getEffectiveAvatarAuraId(p.isMe ? myAuraId : p.aura, p.isPremium)}
+                      size={CLUB_LEADERBOARD_AVATAR_SIZE}
+                      auraId={rowUsesPremiumAura ? undefined : rowEffectiveAura}
                     />
                   </PremiumAvatarHalo>
                 </View>
@@ -1597,8 +1608,8 @@ export default function ClubScreen() {
                         ru: 'Вы',
                         uk: 'Ви',
                         es: 'Tú',
-                        'pt-BR': "Voc?",
-                        vi: "B?n",
+                        'pt-BR': "Você",
+                        vi: "Bạn",
                         id: "Kamu",
                         tr: "Sen",
                         pl: "Ty",

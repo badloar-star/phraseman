@@ -64,7 +64,7 @@ const USER_AVATAR_AURA_KEY = 'user_avatar_aura';
 const CUSTOM_AVATAR_OWNED_KEY = 'custom_avatar_owned_v1';
 const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
 const AVATAR_AURA_IDS = ['aura-aurora', 'aura-ember', 'aura-mint', 'aura-violet', 'aura-gold', 'aura-coral'];
-const CUSTOM_AVATAR_DROP_IDS = Array.from({ length: 10 }, (_, index) => `custom-gen-${String(index + 1).padStart(2, '0')}`);
+const CUSTOM_AVATAR_DROP_IDS = Array.from({ length: 30 }, (_, index) => `custom-gen-${String(index + 1).padStart(2, '0')}`);
 const CUSTOM_AVATAR_GRADIENT_IDS = ['aurora', 'ember', 'cosmic', 'forest', 'citrine', 'royal', 'ruby', 'magma', 'noirgold', 'sakura'];
 function sanitizeString(value, max) {
     return String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, max);

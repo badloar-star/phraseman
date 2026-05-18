@@ -1,0 +1,8 @@
+{
+  "dark": "qa-artifacts/dalle-card-sources/dark.png",
+  "neon": "qa-artifacts/dalle-card-sources/neon.png",
+  "gold": "qa-artifacts/dalle-card-sources/gold.png",
+  "coral": "qa-artifacts/dalle-card-sources/coral.png",
+  "minimalLight": "qa-artifacts/dalle-card-sources/minimal-light.png",
+  "minimalDark": "qa-artifacts/dalle-card-sources/minimal-dark.png"
+}

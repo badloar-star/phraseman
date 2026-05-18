@@ -14,7 +14,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { Modal, View, Text, Pressable, StyleSheet, Platform, Linking } from 'react-native';
+import { Modal, View, Text, Pressable, StyleSheet, Platform, Linking, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -35,6 +35,8 @@ import { logEvent } from '../app/firebase';
 import { emitAppEvent } from '../app/events';
 import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
 import { triLang } from '../constants/i18n';
+
+const AUTH_QUICK_START_ICON = require('../assets/images/onboarding/auth-quick-start-icon.png');
 
 interface Props {
   visible: boolean;
@@ -77,7 +79,7 @@ export default function RegistrationPromptModal({
     setInlineError(`${title}\n${message}`);
   }, []);
 
-  const headerEmoji = context === 'lesson1' ? '🛡️' : context === 'onboarding' ? '🚀' : '🔐';
+  const headerEmoji = context === 'lesson1' ? '🛡️' : '🔐';
 
   const defaultTitle = triLang(lang, {
     ru:
@@ -362,7 +364,16 @@ export default function RegistrationPromptModal({
             { backgroundColor: t.bgCard, borderColor: t.border },
           ]}
         >
-          <Text style={[styles.emoji]}>{headerEmoji}</Text>
+          {context === 'onboarding' ? (
+            <Image
+              source={AUTH_QUICK_START_ICON}
+              style={styles.authIcon}
+              resizeMode="contain"
+              accessible={false}
+            />
+          ) : (
+            <Text style={[styles.emoji]}>{headerEmoji}</Text>
+          )}
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>{finalTitle}</Text>
           <Text style={[styles.subtitle, { color: t.textSecond, fontSize: f.body }]}>{finalSubtitle}</Text>
 
@@ -470,6 +481,11 @@ const styles = StyleSheet.create({
     fontSize: 56,
     marginBottom: 12,
     textAlign: 'center',
+  },
+  authIcon: {
+    width: 86,
+    height: 86,
+    marginBottom: 12,
   },
   title: {
     fontWeight: '800',

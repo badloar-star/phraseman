@@ -526,9 +526,9 @@ function callable<TReq, TRes>(name: string) {
   return typedHttpsCallable<TReq, TRes>(getFunctions(getApp(), 'us-central1'), name);
 }
 
-export async function ensureStableAuthLink(): Promise<boolean> {
+export async function ensureStableAuthLinkForStableId(stableIdRaw: string): Promise<boolean> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return true;
-  const stableId = await ensureAnonUser();
+  const stableId = String(stableIdRaw || '').trim();
   const authUid = await waitForFirebaseAuthUid();
   if (!stableId || !authUid) return false;
 
@@ -561,6 +561,13 @@ export async function ensureStableAuthLink(): Promise<boolean> {
   })();
 
   return stableAuthLinkPromise;
+}
+
+export async function ensureStableAuthLink(): Promise<boolean> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return true;
+  const stableId = await ensureAnonUser();
+  if (!stableId) return false;
+  return ensureStableAuthLinkForStableId(stableId);
 }
 
 /**

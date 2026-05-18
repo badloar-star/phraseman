@@ -1,6 +1,7 @@
 import type { Lang } from '../constants/i18n';
 import { LESSON_WORD_ES_BY_EN } from './lesson_words_es_by_en';
 import { LESSON_WORD_ES } from './lesson_words_es_map';
+import { getLessonWordSourceLocaleGloss } from './lesson_words_source_locales';
 
 /** Часть речи словаря (`lesson_words`) — для эвристики мн. числа в скобках. */
 export type LessonWordGlossPos =
@@ -21,6 +22,11 @@ export type LessonWordGlossInput = {
   ru: string;
   uk: string;
   es?: string;
+  'pt-BR'?: string;
+  vi?: string;
+  id?: string;
+  tr?: string;
+  pl?: string;
   /** Если задано, для `nouns` снимаем и `(folders)` при лемме `folder`. */
   pos?: LessonWordGlossPos;
 };
@@ -125,6 +131,13 @@ const VERB_PROMPT_OVERRIDES: Record<string, { ru: string; uk: string; es: string
  * Текст подсказки для раунда «узнай перевод» (RU / UK / ES).
  */
 export function lessonWordRecognitionPrompt(word: LessonWordGlossInput, lang: Lang): string {
+  if (lang !== 'ru' && lang !== 'uk' && lang !== 'es') {
+    const plannedPrompt = (word as Record<string, unknown>)[lang as string];
+    if (typeof plannedPrompt === 'string' && plannedPrompt.trim()) return plannedPrompt;
+    const centralPrompt = getLessonWordSourceLocaleGloss(word.en, lang as never, word.pos);
+    if (centralPrompt) return centralPrompt;
+  }
+
   const enLower = word.en.trim().toLowerCase();
   const verbPrompt = word.pos === 'verbs' ? VERB_PROMPT_OVERRIDES[enLower] : undefined;
   if (verbPrompt) {

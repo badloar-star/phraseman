@@ -3,7 +3,23 @@
 
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const CONTRAST = ['before main verb', 'after be', 'between auxiliary and main verb', 'sometimes flexible'];
 
@@ -142,6 +158,51 @@ export const ADVERB_FREQUENCY_POSITION_TRAINING: DiagnosisTraining = {
       'Sometimes can go at the start: Sometimes I work late.',
       'In questions: Do you often travel?',
     ],
+    'pt-BR': [
+      'Ação simples: I always drink, They usually work, He often calls.',
+      'Com is/are/am: She is always late, They are usually busy.',
+      'Com have: I have never seen this film.',
+      'Com should: You should always check the details.',
+      'Never já deixa a frase negativa, então não use doesn\'t never.',
+      'Sometimes pode ir no começo: Sometimes I work late.',
+      'Em perguntas: Do you often travel?',
+    ],
+    vi: [
+      'Hành động đơn giản: I always drink, They usually work, He often calls.',
+      'Với is/are/am: She is always late, They are usually busy.',
+      'Với have: I have never seen this film.',
+      'Với should: You should always check the details.',
+      'Never đã mang nghĩa phủ định, nên không dùng doesn\'t never.',
+      'Sometimes có thể đứng đầu câu: Sometimes I work late.',
+      'Trong câu hỏi: Do you often travel?',
+    ],
+    id: [
+      'Aksi sederhana: I always drink, They usually work, He often calls.',
+      'Dengan is/are/am: She is always late, They are usually busy.',
+      'Dengan have: I have never seen this film.',
+      'Dengan should: You should always check the details.',
+      'Never sudah bermakna negatif, jadi jangan pakai doesn\'t never.',
+      'Sometimes bisa berada di awal: Sometimes I work late.',
+      'Dalam pertanyaan: Do you often travel?',
+    ],
+    tr: [
+      'Basit eylem: I always drink, They usually work, He often calls.',
+      'is/are/am ile: She is always late, They are usually busy.',
+      'have ile: I have never seen this film.',
+      'should ile: You should always check the details.',
+      'Never zaten olumsuz anlam verir, bu yüzden doesn\'t never kullanma.',
+      'Sometimes başa gelebilir: Sometimes I work late.',
+      'Sorularda: Do you often travel?',
+    ],
+    pl: [
+      'Prosta czynność: I always drink, They usually work, He often calls.',
+      'Z is/are/am: She is always late, They are usually busy.',
+      'Z have: I have never seen this film.',
+      'Z should: You should always check the details.',
+      'Never już daje znaczenie przeczące, więc nie używaj doesn\'t never.',
+      'Sometimes może stać na początku: Sometimes I work late.',
+      'W pytaniach: Do you often travel?',
+    ],
   },
   examples: [
     {
@@ -149,6 +210,11 @@ export const ADVERB_FREQUENCY_POSITION_TRAINING: DiagnosisTraining = {
       ru: 'Я всегда пью кофе утром.',
       uk: 'Я завжди пʼю каву вранці.',
       es: 'Siempre tomo café por la mañana.',
+            'pt-BR': 'Eu sempre tomo café de manhã.',
+      vi: 'Tôi luôn uống cà phê vào buổi sáng.',
+      id: 'Saya selalu minum kopi di pagi hari.',
+      tr: 'Sabahları her zaman kahve içerim.',
+      pl: 'Zawsze piję kawę rano.',
       why: tri('Блок: always drink.', 'Блок: always drink.', 'Chunk: always drink.'),
     },
     {
@@ -156,6 +222,11 @@ export const ADVERB_FREQUENCY_POSITION_TRAINING: DiagnosisTraining = {
       ru: 'Она всегда опаздывает.',
       uk: 'Вона завжди запізнюється.',
       es: 'Ella siempre llega tarde.',
+            'pt-BR': 'Ela está sempre atrasada.',
+      vi: 'Cô ấy luôn đến muộn.',
+      id: 'Dia selalu terlambat.',
+      tr: 'O her zaman geç kalır.',
+      pl: 'Ona zawsze się spóźnia.',
       why: tri('С is порядок: is always.', 'З is порядок: is always.', 'With is: is always.'),
     },
     {
@@ -163,6 +234,11 @@ export const ADVERB_FREQUENCY_POSITION_TRAINING: DiagnosisTraining = {
       ru: 'Они обычно работают из дома.',
       uk: 'Вони зазвичай працюють з дому.',
       es: 'Normalmente trabajan desde casa.',
+            'pt-BR': 'Eles geralmente trabalham de casa.',
+      vi: 'Họ thường làm việc ở nhà.',
+      id: 'Mereka biasanya bekerja dari rumah.',
+      tr: 'Onlar genellikle evden çalışır.',
+      pl: 'Oni zwykle pracują z domu.',
       why: tri('Блок: usually work.', 'Блок: usually work.', 'Chunk: usually work.'),
     },
     {
@@ -170,6 +246,11 @@ export const ADVERB_FREQUENCY_POSITION_TRAINING: DiagnosisTraining = {
       ru: 'Он никогда не злится.',
       uk: 'Він ніколи не злиться.',
       es: 'Él nunca se enfada.',
+            'pt-BR': 'Ele nunca fica bravo.',
+      vi: 'Anh ấy không bao giờ tức giận.',
+      id: 'Dia tidak pernah marah.',
+      tr: 'O asla sinirli değildir.',
+      pl: 'On nigdy się nie złości.',
       why: tri('С is порядок: is never.', 'З is порядок: is never.', 'With is: is never.'),
     },
     {
@@ -177,6 +258,11 @@ export const ADVERB_FREQUENCY_POSITION_TRAINING: DiagnosisTraining = {
       ru: 'Я никогда не видел этот фильм.',
       uk: 'Я ніколи не бачив цей фільм.',
       es: 'Nunca he visto esta película.',
+            'pt-BR': 'Eu nunca vi este filme.',
+      vi: 'Tôi chưa bao giờ xem bộ phim này.',
+      id: 'Saya belum pernah melihat film ini.',
+      tr: 'Bu filmi hiç görmedim.',
+      pl: 'Nigdy nie widziałem tego filmu.',
       why: tri('Never стоит между have и seen.', 'Never стоїть між have і seen.', 'Never goes between have and seen.'),
     },
     {
@@ -184,6 +270,11 @@ export const ADVERB_FREQUENCY_POSITION_TRAINING: DiagnosisTraining = {
       ru: 'Тебе всегда следует проверять детали.',
       uk: 'Тобі завжди слід перевіряти деталі.',
       es: 'Siempre deberías revisar los detalles.',
+            'pt-BR': 'Você deve sempre verificar os detalhes.',
+      vi: 'Bạn nên luôn kiểm tra các chi tiết.',
+      id: 'Kamu harus selalu memeriksa detailnya.',
+      tr: 'Ayrıntıları her zaman kontrol etmelisin.',
+      pl: 'Zawsze powinieneś sprawdzać szczegóły.',
       why: tri('Блок: should always check.', 'Блок: should always check.', 'Chunk: should always check.'),
     },
     {
@@ -191,6 +282,11 @@ export const ADVERB_FREQUENCY_POSITION_TRAINING: DiagnosisTraining = {
       ru: 'Ты часто путешествуешь?',
       uk: 'Ти часто подорожуєш?',
       es: '¿Viajas a menudo?',
+            'pt-BR': 'Você viaja com frequência?',
+      vi: 'Bạn có thường đi du lịch không?',
+      id: 'Apakah kamu sering bepergian?',
+      tr: 'Sık sık seyahat eder misin?',
+      pl: 'Czy często podróżujesz?',
       why: tri('В вопросе звучит: Do you often travel?', 'У питанні звучить: Do you often travel?', 'Question chunk: Do you often travel?'),
     },
     {
@@ -198,6 +294,11 @@ export const ADVERB_FREQUENCY_POSITION_TRAINING: DiagnosisTraining = {
       ru: 'Иногда я работаю допоздна.',
       uk: 'Іноді я працюю допізна.',
       es: 'A veces trabajo hasta tarde.',
+            'pt-BR': 'Às vezes eu trabalho até tarde.',
+      vi: 'Thỉnh thoảng tôi làm việc muộn.',
+      id: 'Kadang-kadang saya bekerja sampai larut.',
+      tr: 'Bazen geç saatlere kadar çalışırım.',
+      pl: 'Czasami pracuję do późna.',
       why: tri('Sometimes может спокойно стоять в начале.', 'Sometimes може спокійно стояти на початку.', 'Sometimes can start the sentence.'),
     },
   ],

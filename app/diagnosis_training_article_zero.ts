@@ -3,7 +3,23 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const ARTICLE_OPTIONS = [
   { id: 'a', text: 'a' },
@@ -152,16 +168,66 @@ export const ARTICLE_ZERO_TRAINING: DiagnosisTraining = {
       'No article se usa mucho con meals en sentido general: I had breakfast.',
       'Si la palabra se vuelve específica, el artículo puede volver: the music in this film, the breakfast you made.',
     ],
+    'pt-BR': [
+      'A/an só é usado antes de uma coisa contável no singular: a book, an apple.',
+      'The é usado quando o objeto é específico ou já está claro: the book on the table.',
+      'No article muitas vezes aparece com plural nouns em sentido geral: Dogs are friendly.',
+      'No article muitas vezes aparece com uncountable nouns em sentido geral: I like music, Water is important.',
+      'No article normalmente é usado com idiomas: She speaks English.',
+      'No article normalmente é usado com esportes e jogos: We play football.',
+      'No article muitas vezes é usado com meals em sentido geral: I had breakfast.',
+      'Se a palavra fica específica, o artigo pode voltar: the music in this film, the breakfast you made.',
+    ],
+    vi: [
+      'A/an chỉ dùng trước một vật đếm được ở số ít: a book, an apple.',
+      'The dùng khi vật cụ thể hoặc đã rõ: the book on the table.',
+      'No article thường dùng với plural nouns mang nghĩa chung: Dogs are friendly.',
+      'No article thường dùng với uncountable nouns mang nghĩa chung: I like music, Water is important.',
+      'No article thường dùng với tên ngôn ngữ: She speaks English.',
+      'No article thường dùng với thể thao và trò chơi: We play football.',
+      'No article thường dùng với meals theo nghĩa chung: I had breakfast.',
+      'Nếu từ trở nên cụ thể, article có thể quay lại: the music in this film, the breakfast you made.',
+    ],
+    id: [
+      'A/an hanya dipakai sebelum satu benda yang dapat dihitung: a book, an apple.',
+      'The dipakai ketika benda itu spesifik atau sudah jelas: the book on the table.',
+      'No article sering dipakai dengan plural nouns bermakna umum: Dogs are friendly.',
+      'No article sering dipakai dengan uncountable nouns bermakna umum: I like music, Water is important.',
+      'No article biasanya dipakai dengan bahasa: She speaks English.',
+      'No article biasanya dipakai dengan olahraga dan permainan: We play football.',
+      'No article sering dipakai dengan meals dalam arti umum: I had breakfast.',
+      'Jika kata menjadi spesifik, article bisa kembali: the music in this film, the breakfast you made.',
+    ],
+    tr: [
+      'A/an yalnızca tekil sayılabilir bir nesneden önce kullanılır: a book, an apple.',
+      'The, nesne belirli veya zaten açıksa kullanılır: the book on the table.',
+      'No article genel anlamdaki plural nouns ile sık görülür: Dogs are friendly.',
+      'No article genel anlamdaki uncountable nouns ile sık görülür: I like music, Water is important.',
+      'No article genelde dillerle kullanılır: She speaks English.',
+      'No article genelde sporlar ve oyunlarla kullanılır: We play football.',
+      'No article genel anlamdaki meals ile sık kullanılır: I had breakfast.',
+      'Kelime belirli hale gelirse article geri dönebilir: the music in this film, the breakfast you made.',
+    ],
+    pl: [
+      'A/an używamy tylko przed jedną policzalną rzeczą: a book, an apple.',
+      'The używamy, gdy obiekt jest konkretny albo już jasny: the book on the table.',
+      'No article często występuje z plural nouns w znaczeniu ogólnym: Dogs are friendly.',
+      'No article często występuje z uncountable nouns w znaczeniu ogólnym: I like music, Water is important.',
+      'No article zwykle używamy z językami: She speaks English.',
+      'No article zwykle używamy ze sportami i grami: We play football.',
+      'No article często używamy z meals w znaczeniu ogólnym: I had breakfast.',
+      'Jeśli słowo staje się konkretne, article może wrócić: the music in this film, the breakfast you made.',
+    ],
   },
   examples: [
-    { en: 'Dogs are friendly.', ru: 'Собаки дружелюбные.', uk: 'Собаки дружелюбні.', es: 'Los perros son amigables.', why: tri('Dogs во множественном числе говорит о собаках вообще. Это категория, не конкретная группа собак. Поэтому без артикля.', 'Dogs у множині говорить про собак загалом. Це категорія, не конкретна група собак. Тому без артикля.', 'Dogs en plural habla de perros en general. Es una categoría, no un grupo específico de perros. Por eso va sin artículo.') },
-    { en: 'I like music.', ru: 'Мне нравится музыка.', uk: 'Мені подобається музика.', es: 'Me gusta la música.', why: tri('Music здесь общая идея и неисчисляемое слово. Это не конкретная музыка, поэтому без the.', 'Music тут загальна ідея і незлічуване слово. Це не конкретна музика, тому без the.', 'Music aquí es una idea general y una palabra incontable. No es música específica, por eso va sin the.') },
-    { en: 'She speaks English.', ru: 'Она говорит по-английски.', uk: 'Вона говорить англійською.', es: 'Ella habla inglés.', why: tri('Названия языков обычно идут без артикля: English, Spanish, Ukrainian.', 'Назви мов зазвичай ідуть без артикля: English, Spanish, Ukrainian.', 'Los nombres de idiomas normalmente van sin artículo: English, Spanish, Ukrainian.') },
-    { en: 'We play football on Sundays.', ru: 'Мы играем в футбол по воскресеньям.', uk: 'Ми граємо у футбол по неділях.', es: 'Jugamos al fútbol los domingos.', why: tri('Названия спорта и игр обычно идут без артикля: play football, play tennis, play chess.', 'Назви спорту та ігор зазвичай ідуть без артикля: play football, play tennis, play chess.', 'Los deportes y juegos normalmente van sin artículo: play football, play tennis, play chess.') },
-    { en: 'I had breakfast at seven.', ru: 'Я позавтракал в семь.', uk: 'Я поснідав о сьомій.', es: 'Desayuné a las siete.', why: tri('Meals в обычном общем смысле часто идут без артикля: have breakfast, have lunch, have dinner.', 'Meals у звичайному загальному сенсі часто йдуть без артикля: have breakfast, have lunch, have dinner.', 'Las comidas en sentido general muchas veces van sin artículo: have breakfast, have lunch, have dinner.') },
-    { en: 'Water is important.', ru: 'Вода важна.', uk: 'Вода важлива.', es: 'El agua es importante.', why: tri('Water здесь вещество в общем смысле. Это не конкретная вода в стакане, поэтому без артикля.', 'Water тут речовина в загальному сенсі. Це не конкретна вода у склянці, тому без артикля.', 'Water aquí es una sustancia en sentido general. No es agua específica en un vaso, por eso va sin artículo.') },
-    { en: 'The water in this bottle is cold.', ru: 'Вода в этой бутылке холодная.', uk: 'Вода в цій пляшці холодна.', es: 'El agua de esta botella está fría.', why: tri('Здесь water уже конкретная: вода в этой бутылке. Поэтому the water.', 'Тут water уже конкретна: вода в цій пляшці. Тому the water.', 'Aquí water ya es específica: el agua de esta botella. Por eso the water.') },
-    { en: 'Children need attention.', ru: 'Детям нужно внимание.', uk: 'Дітям потрібна увага.', es: 'Los niños necesitan atención.', why: tri('Children здесь означает детей вообще. Это plural general meaning, поэтому без артикля.', 'Children тут означає дітей загалом. Це plural general meaning, тому без артикля.', 'Children aquí significa niños en general. Es plural general meaning, por eso va sin artículo.') },
+    { en: 'Dogs are friendly.', ru: 'Собаки дружелюбные.', uk: 'Собаки дружелюбні.', es: 'Los perros son amigables.', 'pt-BR': 'Cachorros são amigáveis.', vi: 'Chó rất thân thiện.', id: 'Anjing itu ramah.', tr: 'Köpekler dost canlısıdır.', pl: 'Psy są przyjazne.', why: tri('Dogs во множественном числе говорит о собаках вообще. Это категория, не конкретная группа собак. Поэтому без артикля.', 'Dogs у множині говорить про собак загалом. Це категорія, не конкретна група собак. Тому без артикля.', 'Dogs en plural habla de perros en general. Es una categoría, no un grupo específico de perros. Por eso va sin artículo.') },
+    { en: 'I like music.', ru: 'Мне нравится музыка.', uk: 'Мені подобається музика.', es: 'Me gusta la música.', 'pt-BR': 'Eu gosto de música.', vi: 'Tôi thích âm nhạc.', id: 'Saya suka musik.', tr: 'Müziği severim.', pl: 'Lubię muzykę.', why: tri('Music здесь общая идея и неисчисляемое слово. Это не конкретная музыка, поэтому без the.', 'Music тут загальна ідея і незлічуване слово. Це не конкретна музика, тому без the.', 'Music aquí es una idea general y una palabra incontable. No es música específica, por eso va sin the.') },
+    { en: 'She speaks English.', ru: 'Она говорит по-английски.', uk: 'Вона говорить англійською.', es: 'Ella habla inglés.', 'pt-BR': 'Ela fala inglês.', vi: 'Cô ấy nói tiếng Anh.', id: 'Dia berbicara bahasa Inggris.', tr: 'O İngilizce konuşur.', pl: 'Ona mówi po angielsku.', why: tri('Названия языков обычно идут без артикля: English, Spanish, Ukrainian.', 'Назви мов зазвичай ідуть без артикля: English, Spanish, Ukrainian.', 'Los nombres de idiomas normalmente van sin artículo: English, Spanish, Ukrainian.') },
+    { en: 'We play football on Sundays.', ru: 'Мы играем в футбол по воскресеньям.', uk: 'Ми граємо у футбол по неділях.', es: 'Jugamos al fútbol los domingos.', 'pt-BR': 'Nós jogamos futebol aos domingos.', vi: 'Chúng tôi chơi bóng đá vào Chủ nhật.', id: 'Kami bermain sepak bola pada hari Minggu.', tr: 'Pazar günleri futbol oynarız.', pl: 'Gramy w piłkę nożną w niedziele.', why: tri('Названия спорта и игр обычно идут без артикля: play football, play tennis, play chess.', 'Назви спорту та ігор зазвичай ідуть без артикля: play football, play tennis, play chess.', 'Los deportes y juegos normalmente van sin artículo: play football, play tennis, play chess.') },
+    { en: 'I had breakfast at seven.', ru: 'Я позавтракал в семь.', uk: 'Я поснідав о сьомій.', es: 'Desayuné a las siete.', 'pt-BR': 'Eu tomei café da manhã às sete.', vi: 'Tôi đã ăn sáng lúc bảy giờ.', id: 'Saya sarapan pukul tujuh.', tr: 'Saat yedide kahvaltı yaptım.', pl: 'Zjadłem śniadanie o siódmej.', why: tri('Meals в обычном общем смысле часто идут без артикля: have breakfast, have lunch, have dinner.', 'Meals у звичайному загальному сенсі часто йдуть без артикля: have breakfast, have lunch, have dinner.', 'Las comidas en sentido general muchas veces van sin artículo: have breakfast, have lunch, have dinner.') },
+    { en: 'Water is important.', ru: 'Вода важна.', uk: 'Вода важлива.', es: 'El agua es importante.', 'pt-BR': 'Água é importante.', vi: 'Nước rất quan trọng.', id: 'Air itu penting.', tr: 'Su önemlidir.', pl: 'Woda jest ważna.', why: tri('Water здесь вещество в общем смысле. Это не конкретная вода в стакане, поэтому без артикля.', 'Water тут речовина в загальному сенсі. Це не конкретна вода у склянці, тому без артикля.', 'Water aquí es una sustancia en sentido general. No es agua específica en un vaso, por eso va sin artículo.') },
+    { en: 'The water in this bottle is cold.', ru: 'Вода в этой бутылке холодная.', uk: 'Вода в цій пляшці холодна.', es: 'El agua de esta botella está fría.', 'pt-BR': 'A água nesta garrafa está fria.', vi: 'Nước trong chai này lạnh.', id: 'Air di botol ini dingin.', tr: 'Bu şişedeki su soğuk.', pl: 'Woda w tej butelce jest zimna.', why: tri('Здесь water уже конкретная: вода в этой бутылке. Поэтому the water.', 'Тут water уже конкретна: вода в цій пляшці. Тому the water.', 'Aquí water ya es específica: el agua de esta botella. Por eso the water.') },
+    { en: 'Children need attention.', ru: 'Детям нужно внимание.', uk: 'Дітям потрібна увага.', es: 'Los niños necesitan atención.', 'pt-BR': 'Crianças precisam de atenção.', vi: 'Trẻ em cần sự chú ý.', id: 'Anak-anak membutuhkan perhatian.', tr: 'Çocukların ilgiye ihtiyacı vardır.', pl: 'Dzieci potrzebują uwagi.', why: tri('Children здесь означает детей вообще. Это plural general meaning, поэтому без артикля.', 'Children тут означає дітей загалом. Це plural general meaning, тому без артикля.', 'Children aquí significa niños en general. Es plural general meaning, por eso va sin artículo.') },
   ],
   introBlocks: [
     { id: 'intro_problem', type: 'diagnosis', text: tri('Похоже, ты иногда ставишь артикль там, где английский оставляет слово голым. Это не хаос. У zero article есть логика: часто мы не ставим артикль, когда говорим о вещи вообще, а не о конкретном экземпляре.', 'Схоже, ти іноді ставиш артикль там, де англійська залишає слово без нього. Це не хаос. У zero article є логіка: часто ми не ставимо артикль, коли говоримо про річ загалом, а не про конкретний екземпляр.', 'Parece que a veces pones artículo donde el inglés deja la palabra sin artículo. No es caos. Zero article tiene lógica: muchas veces no usamos artículo cuando hablamos de algo en general, no de un ejemplo específico.') },

@@ -1,9 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import ts from 'typescript';
 
 import { SYSTEM_CARDS } from '../app/flashcards/system-cards';
 import { IDIOMS } from '../app/idioms_data';
 import { IRREGULAR_VERBS_BY_LESSON } from '../app/irregular_verbs_data';
+import { LESSON_WORD_SOURCE_LOCALES_BY_EN } from '../app/lesson_words_source_locales';
 import {
   getQuizPhrases,
   getQuizPoolAuditEntries,
@@ -36,7 +38,7 @@ const {
 } = require('./lib/heisenberg_semantic_core.cjs') as typeof import('./lib/heisenberg_semantic_core.cjs');
 
 type Severity = 'blocker' | 'warning';
-type Surface = 'quiz' | 'daily_phrase' | 'flashcards' | 'irregular_verbs' | 'runtime';
+type Surface = 'quiz' | 'daily_phrase' | 'flashcards' | 'irregular_verbs' | 'lesson_words' | 'runtime';
 
 type SemanticFinding = {
   severity: Severity;
@@ -137,7 +139,7 @@ function auditQuizPayload(
   findings: SemanticFinding[],
   difficulty: QuizDifficulty,
   entry: QuizPoolAuditEntry,
-  locale: Exclude<HeisenbergSourceLocale, 'es'>,
+  locale: HeisenbergSourceLocale,
   payload: QuizSourceLocalePayload | null,
 ): void {
   if (!payload) {
@@ -159,7 +161,12 @@ function auditQuizPayload(
     payload.prompt,
   );
 
-  if (exactStringInList(payload.prompt, [entry.ru, entry.uk, entry.es].filter(Boolean) as string[])) {
+  const sourceLocaleFallbackCandidates = [
+    entry.ru,
+    entry.uk,
+    ...(locale === 'es' ? [] : [entry.es].filter(Boolean) as string[]),
+  ];
+  if (exactStringInList(payload.prompt, sourceLocaleFallbackCandidates)) {
     pushFinding(findings, {
       severity: 'blocker',
       code: 'source-locale-fallback',
@@ -234,7 +241,66 @@ function auditQuizPayload(
   });
 }
 
+function inlineSpanishQuizPayload(entry: QuizPoolAuditEntry): QuizSourceLocalePayload | null {
+  if (!entry.es?.trim()) return null;
+  if (!entry.explanationsES || entry.explanationsES.length !== 4) return null;
+  return {
+    prompt: entry.es,
+    explanations: entry.explanationsES as [string, string, string, string],
+  };
+}
+
+function completeStructuredQuizPayload(
+  difficulty: QuizDifficulty,
+  ordinal: number,
+  locale: Exclude<HeisenbergSourceLocale, 'es'>,
+): QuizSourceLocalePayload | null {
+  const payload = getStructuredQuizSourceLocalePayload(difficulty, ordinal, locale);
+  if (!payload?.prompt?.trim()) return null;
+  if (!payload.explanations || payload.explanations.length !== 4) return null;
+  return payload;
+}
+
+function auditQuizSourceLocaleCoverage(findings: SemanticFinding[]): void {
+  for (const difficulty of DIFFICULTIES) {
+    const entries = getQuizPoolAuditEntries(difficulty);
+    for (const entry of entries) {
+      for (const locale of HEISENBERG_BATCH_SOURCE_LOCALES) {
+        const payload = locale === 'es'
+          ? inlineSpanishQuizPayload(entry)
+          : completeStructuredQuizPayload(difficulty, entry.ordinal, locale);
+        if (payload) continue;
+
+        pushFinding(findings, {
+          severity: 'warning',
+          code: 'quiz-source-locale-coverage-gap',
+          surface: 'quiz',
+          difficulty,
+          ordinal: entry.ordinal,
+          locale,
+          message: 'Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.',
+          sample: entry.ru,
+        });
+      }
+    }
+  }
+}
+
+function auditInlineSpanishQuizPayloads(findings: SemanticFinding[]): void {
+  for (const difficulty of DIFFICULTIES) {
+    const entries = getQuizPoolAuditEntries(difficulty);
+    for (const entry of entries) {
+      const payload = inlineSpanishQuizPayload(entry);
+      if (!payload) continue;
+      auditQuizPayload(findings, difficulty, entry, 'es', payload);
+    }
+  }
+}
+
 function auditStructuredQuizPayloads(findings: SemanticFinding[]): void {
+  auditQuizSourceLocaleCoverage(findings);
+  auditInlineSpanishQuizPayloads(findings);
+
   for (const difficulty of DIFFICULTIES) {
     const entries = getQuizPoolAuditEntries(difficulty);
     const payloadOrdinals = Object.keys(QUIZ_SOURCE_LOCALE_PAYLOADS[difficulty] ?? {})
@@ -671,6 +737,119 @@ function auditFlashcards(findings: SemanticFinding[]): void {
   }
 }
 
+type LessonWordAuditRow = {
+  en: string;
+  pos: string;
+  line: number;
+};
+
+function propName(name: ts.PropertyName): string | null {
+  if (ts.isIdentifier(name) || ts.isStringLiteral(name) || ts.isNoSubstitutionTemplateLiteral(name) || ts.isNumericLiteral(name)) {
+    return name.text;
+  }
+  return null;
+}
+
+function objectLiteralStringValue(node: ts.ObjectLiteralExpression, key: string): string | null {
+  for (const property of node.properties) {
+    if (!ts.isPropertyAssignment(property)) continue;
+    if (propName(property.name) !== key) continue;
+    const initializer = property.initializer;
+    return ts.isStringLiteral(initializer) || ts.isNoSubstitutionTemplateLiteral(initializer)
+      ? initializer.text
+      : null;
+  }
+  return null;
+}
+
+function loadLessonWordAuditRows(findings: SemanticFinding[]): LessonWordAuditRow[] {
+  const filePath = path.join(process.cwd(), 'app', 'lesson_words.tsx');
+  let text = '';
+  try {
+    text = fs.readFileSync(filePath, 'utf8');
+  } catch (error) {
+    pushFinding(findings, {
+      severity: 'blocker',
+      code: 'lesson-word-source-load-error',
+      surface: 'lesson_words',
+      message: `Could not load lesson_words.tsx: ${error instanceof Error ? error.message : String(error)}`,
+    });
+    return [];
+  }
+
+  const source = ts.createSourceFile(filePath, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  const rows: LessonWordAuditRow[] = [];
+  const visit = (node: ts.Node): void => {
+    if (ts.isObjectLiteralExpression(node)) {
+      const en = objectLiteralStringValue(node, 'en');
+      const pos = objectLiteralStringValue(node, 'pos');
+      if (en && pos) {
+        rows.push({
+          en,
+          pos,
+          line: source.getLineAndCharacterOfPosition(node.getStart(source)).line + 1,
+        });
+      }
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return rows;
+}
+
+function auditLessonWordSourceLocaleMap(findings: SemanticFinding[]): void {
+  const sourceKeys = new Set(Object.keys(LESSON_WORD_SOURCE_LOCALES_BY_EN).map((key) => key.trim().toLowerCase()));
+
+  for (const [key, copy] of Object.entries(LESSON_WORD_SOURCE_LOCALES_BY_EN)) {
+    for (const locale of HEISENBERG_BATCH_SOURCE_LOCALES) {
+      const value = copy[locale]?.trim() ?? '';
+      if (!value) {
+        pushFinding(findings, {
+          severity: 'blocker',
+          code: 'lesson-word-source-locale-copy-missing',
+          surface: 'lesson_words',
+          id: key,
+          locale,
+          field: 'sourceLocales',
+          message: 'Lesson word central source-locale gloss is missing for this locale.',
+        });
+        continue;
+      }
+      auditTextEncoding(findings, { surface: 'lesson_words', id: key, locale, field: 'sourceLocales' }, value);
+    }
+  }
+
+  const rows = loadLessonWordAuditRows(findings);
+  const posesByWord = new Map<string, Set<string>>();
+  for (const row of rows) {
+    const word = row.en.trim().toLowerCase();
+    const poses = posesByWord.get(word) ?? new Set<string>();
+    poses.add(row.pos);
+    posesByWord.set(word, poses);
+  }
+
+  const emitted = new Set<string>();
+  for (const row of rows) {
+    const word = row.en.trim().toLowerCase();
+    const poses = posesByWord.get(word);
+    if (!poses || poses.size < 2 || !sourceKeys.has(word)) continue;
+    const posKey = `${word}::${row.pos}`;
+    if (sourceKeys.has(posKey)) continue;
+    const findingKey = `${word}|${row.pos}`;
+    if (emitted.has(findingKey)) continue;
+    emitted.add(findingKey);
+    pushFinding(findings, {
+      severity: 'warning',
+      code: 'lesson-word-ambiguous-direct-source-map',
+      surface: 'lesson_words',
+      id: word,
+      field: posKey,
+      message: 'English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.',
+      sample: `line ${row.line}: ${row.en} (${row.pos})`,
+    });
+  }
+}
+
 function buildSummary(findings: SemanticFinding[]): SemanticReport['summary'] {
   const byCode: Record<string, number> = {};
   const bySurface: Record<string, number> = {};
@@ -795,6 +974,7 @@ export function runSemanticAudit(strict = false): { report: SemanticReport; outD
   auditDailyPhrase(findings);
   auditFlashcards(findings);
   auditIrregularVerbs(findings);
+  auditLessonWordSourceLocaleMap(findings);
   const reviewGroups = buildReviewGroups(findings);
 
   const report: SemanticReport = {

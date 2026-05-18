@@ -51,14 +51,19 @@ const DIAGNOSTIC_BUILD_HEADER = {
   ru: '🧩 Собери фразу из слов',
   uk: '🧩 Збери фразу зі слів',
   es: '🧩 Arma la frase con las palabras',
+  'pt-BR': '🧩 Monte a frase com as palavras',
+  vi: '🧩 Sắp xếp từ thành câu',
+  id: '🧩 Susun frasa dari kata-kata',
+  tr: '🧩 Kelimelerden ifadeyi kur',
+  pl: '🧩 Ułóż frazę ze słów',
 } as const;
 
 /** Подписи без эмодзи — для VoiceOver / TalkBack. */
 const DIAGNOSTIC_SKILL_A11Y = {
-  build: { ru: 'Задание: собрать фразу из слов', uk: 'Завдання: зібрати фразу зі слів', es: 'Tarea: formar la frase con las palabras' },
-  choice4: { ru: 'Задание: выбрать верный вариант', uk: 'Завдання: обрати правильний варіант', es: 'Tarea: elegir la opción correcta' },
-  match: { ru: 'Задание: сопоставить слово и значение', uk: 'Завдання: зіставити слово й значення', es: 'Tarea: relacionar palabra y significado' },
-  type: { ru: 'Задание: ввести пропущенное слово', uk: 'Завдання: ввести пропущене слово', es: 'Tarea: escribir la palabra que falta' },
+  build: { ru: 'Задание: собрать фразу из слов', uk: 'Завдання: зібрати фразу зі слів', es: 'Tarea: formar la frase con las palabras', 'pt-BR': 'Tarefa: montar a frase com as palavras', vi: 'Nhiệm vụ: sắp xếp từ thành câu', id: 'Tugas: susun frasa dari kata-kata', tr: 'Görev: kelimelerden ifadeyi kur', pl: 'Zadanie: ułóż frazę ze słów' },
+  choice4: { ru: 'Задание: выбрать верный вариант', uk: 'Завдання: обрати правильний варіант', es: 'Tarea: elegir la opción correcta', 'pt-BR': 'Tarefa: escolher a opção correta', vi: 'Nhiệm vụ: chọn đáp án đúng', id: 'Tugas: pilih jawaban yang benar', tr: 'Görev: doğru seçeneği seç', pl: 'Zadanie: wybierz poprawną odpowiedź' },
+  match: { ru: 'Задание: сопоставить слово и значение', uk: 'Завдання: зіставити слово й значення', es: 'Tarea: relacionar palabra y significado', 'pt-BR': 'Tarefa: relacionar palavra e significado', vi: 'Nhiệm vụ: nối từ với nghĩa', id: 'Tugas: cocokkan kata dan arti', tr: 'Görev: kelimeyle anlamı eşleştir', pl: 'Zadanie: połącz słowo ze znaczeniem' },
+  type: { ru: 'Задание: ввести пропущенное слово', uk: 'Завдання: ввести пропущене слово', es: 'Tarea: escribir la palabra que falta', 'pt-BR': 'Tarefa: digitar a palavra que falta', vi: 'Nhiệm vụ: nhập từ còn thiếu', id: 'Tugas: ketik kata yang hilang', tr: 'Görev: eksik kelimeyi yaz', pl: 'Zadanie: wpisz brakujące słowo' },
 } as const;
 
 function diagnosticBuildHeader(lang: Lang): string {
@@ -432,27 +437,27 @@ const POOL: Question[] = [
 
 // Result thresholds (based on 20 questions)
 const LEVEL_RESULTS = [
-  {min:0,  level:'A1', ru:'Начальный ориентир',    uk:'Початковий орієнтир',    es:'Nivel inicial (orientativo)',
+  {min:0,  level:'A1', ru:'Начальный ориентир',    uk:'Початковий орієнтир',    es:'Nivel inicial (orientativo)', 'pt-BR':'Nível inicial (orientativo)', vi:'Mức khởi đầu (tham khảo)', id:'Level awal (orientatif)', tr:'Başlangıç seviyesi (tahmini)', pl:'Poziom początkowy (orientacyjnie)',
     msgRU:'База ещё формируется — это нормально. Двигайся по урокам: словарь, грамматика и теория дадут опору.',
     msgUK:'База ще формується — це нормально. Рухайся за уроками: словник, граматика й теорія дадуть опору.',
     msgES:'Estás cimentando bases: es habitual. Sigue el hilo de lecciones (léxico, gramática y teoría) para afianzar.'},
-  {min:4,  level:'A2', ru:'Базовый ориентир',  uk:'Базовий орієнтир',   es:'Nivel básico (orientativo)',
+  {min:4,  level:'A2', ru:'Базовый ориентир',  uk:'Базовий орієнтир',   es:'Nivel básico (orientativo)', 'pt-BR':'Nível básico (orientativo)', vi:'Mức cơ bản (tham khảo)', id:'Level dasar (orientatif)', tr:'Temel seviye (tahmini)', pl:'Poziom podstawowy (orientacyjnie)',
     msgRU:'Структуры узнаваемы — углуби лексику и грамматику в упражнениях уроков; скорость придёт с привычкой.',
     msgUK:'Структури впізнавані — поглиб лексику й граматику в вправках уроків; швидкість з\'явиться з практикою.',
     msgES:'Reconoces patrones: refuerza léxico y gramática en las lecciones; la rapidez mejora con la práctica habitual.'},
-  {min:8,  level:'B1', ru:'Средний ориентир',       uk:'Середній орієнтир',       es:'Intermedio (orientativo)',
+  {min:8,  level:'B1', ru:'Средний ориентир',       uk:'Середній орієнтир',       es:'Intermedio (orientativo)', 'pt-BR':'Intermediário (orientativo)', vi:'Trung cấp (tham khảo)', id:'Menengah (orientatif)', tr:'Orta seviye (tahmini)', pl:'Średnio zaawansowany (orientacyjnie)',
     msgRU:'Увереннее держишь материал курса. Отмечай пробелы в темах и возвращайся к блокам «Теория» и «Словарь».',
     msgUK:'Впевненіше тримаєш матеріал курсу. Познач прогалини в темах і повертайся до «Теорії» та «Словника».',
     msgES:'Manejas mejor el contenido del curso. Marca lagunas y repasa «Teoría» y «Vocabulario» donde haga falta.'},
-  {min:12, level:'B2', ru:'Выше среднего', uk:'Вище середнього', es:'Intermedio alto (orientativo)',
+  {min:12, level:'B2', ru:'Выше среднего', uk:'Вище середнього', es:'Intermedio alto (orientativo)', 'pt-BR':'Intermediário alto (orientativo)', vi:'Trung cấp cao (tham khảo)', id:'Menengah atas (orientatif)', tr:'Üst orta seviye (tahmini)', pl:'Wyższy średni (orientacyjnie)',
     msgRU:'Сильный результат в формате теста — не про «талант», а про накопленную практику. Закрепляй слабые темы.',
     msgUK:'Сильний результат у форматі тесту — це про практику, не про «здібності». Закріплюй слабкі теми.',
     msgES:'Muy buen resultado en este formato: refleja práctica acumulada, no «capacidad». Refuerza temas flojos.'},
-  {min:16, level:'C1', ru:'Продвинутый ориентир',   uk:'Просунутий орієнтир',     es:'Avanzado (orientativo)',
+  {min:16, level:'C1', ru:'Продвинутый ориентир',   uk:'Просунутий орієнтир',     es:'Avanzado (orientativo)', 'pt-BR':'Avançado (orientativo)', vi:'Nâng cao (tham khảo)', id:'Mahir (orientatif)', tr:'İleri seviye (tahmini)', pl:'Zaawansowany (orientacyjnie)',
     msgRU:'Высокий балл по заданиям приложения — продолжай полировать детали через уроки и повторение.',
     msgUK:'Високий бал за завдання застосунку — продовжуй шліфувати деталі через уроки й повторення.',
     msgES:'Puntuación alta en el formato de la app: sigue puliendo matices con lecciones y repaso.'},
-  {min:20, level:'C2', ru:'Максимум в тесте', uk:'Максимум у тесті', es:'Tope en este test',
+  {min:20, level:'C2', ru:'Максимум в тесте', uk:'Максимум у тесті', es:'Tope en este test', 'pt-BR':'Máximo neste teste', vi:'Tối đa trong bài kiểm tra này', id:'Maksimum di tes ini', tr:'Bu testte maksimum', pl:'Maksimum w tym teście',
     msgRU:'Все задания верны — отличный ориентир. Закрепи результат регулярными повторениями уроков.',
     msgUK:'Усі завдання вірні — чудовий орієнтир. Закріпи результат регулярним повторенням уроків.',
     msgES:'Pleno en este formato: mantén el nivel con repaso habitual en las lecciones.'},
@@ -808,7 +813,7 @@ export default function DiagnosticTest() {
 
   if (phase === 'quiz' && (!q || questions.length === 0)) {
     return (
-      <ScreenGradient>
+      <ScreenGradient artBackdrop="diagnosticTest">
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
@@ -837,7 +842,7 @@ export default function DiagnosticTest() {
   // ── ИНТРО ────────────────────────────────────────────────────────────────
   if (phase === 'intro') return (
     <>
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="diagnosticTest">
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
       <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
@@ -1012,7 +1017,7 @@ export default function DiagnosticTest() {
   // ── РЕЗУЛЬТАТ ────────────────────────────────────────────────────────────
   if (phase === 'result') return (
     <>
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="diagnosticTest">
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
       <ScrollView contentContainerStyle={{ padding: 24, alignItems: 'center' }}>
@@ -1070,7 +1075,7 @@ export default function DiagnosticTest() {
   const correctAnswer = isTyping ? (q?.answer || q?.opts?.[q.correct] || '') : '';
 
   return (
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="diagnosticTest">
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={effectiveOs === 'ios' ? 'padding' : undefined}>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>

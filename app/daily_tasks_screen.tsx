@@ -1640,8 +1640,6 @@ export default function DailyTasksScreen() {
     // карточки не совпадают с AsyncStorage и «Забрать» не срабатывает, пока не перезагрузишь экран.
     const [tasks, setTasks] = useState<DailyTask[]>([]);
     const [progress, setProgress] = useState<TaskProgress[]>([]);
-    /** Первый успешный refresh завершён — можно рисовать список и клеймить тем же набором id, что на экране. */
-    const [screenReady, setScreenReady] = useState(false);
     const [userName, setUserName] = useState('');
     const [claimedXP, setClaimedXP] = useState<number | null>(null);
     const [xpMultiplier, setXpMultiplier] = useState(1);
@@ -1721,10 +1719,6 @@ export default function DailyTasksScreen() {
                 setTasks(fallback);
                 setProgress(fallback.map((x) => ({ taskId: x.id, current: 0, completed: false, claimed: false })));
                 setRerollsLeft(0);
-            }
-            finally {
-                if (gen === refreshGen.current)
-                    setScreenReady(true);
             }
         })();
     }, []);
@@ -2062,7 +2056,7 @@ export default function DailyTasksScreen() {
         </SafeAreaView>
       </ScreenGradient>);
     }
-    return (<ScreenGradient>
+    return (<ScreenGradient artBackdrop="dailyTasks">
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
       <View style={{ flex: 1 }}>

@@ -6,7 +6,12 @@ describe('heisenberg semantic audit helpers', () => {
   it('detects common mojibake patterns', () => {
     expect(semantic.hasMojibake('aÃ§Ã£o')).toBe(true);
     expect(semantic.hasMojibake('Äá»c sÃ¡ch')).toBe(true);
+    expect(semantic.hasMojibake('Termo-chave em ingl?s')).toBe(true);
+    expect(semantic.hasMojibake('Thu?t ng? ti?ng Anh c?n gi?')).toBe(true);
+    expect(semantic.hasMojibake('Korunmas? gereken ?ngilizce terim')).toBe(true);
     expect(semantic.hasMojibake('acción correcta')).toBe(false);
+    expect(semantic.hasMojibake('Did you use to live here?')).toBe(false);
+    expect(semantic.hasMojibake('Did you use to live here? pergunta sobre uma situação habitual')).toBe(false);
   });
 
   it('extracts protected English terms from answer choices and base explanations', () => {

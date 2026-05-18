@@ -1,0 +1,77 @@
+{
+  "pipeline": "heisenberg",
+  "mode": "new-locale-preflight",
+  "runId": "2026-05-18T11-09-32-969Z",
+  "generatedAt": "2026-05-18T11:09:35.761Z",
+  "targetLocale": "vi",
+  "targetSlug": "vi",
+  "auditOnly": true,
+  "repositoryRoot": "C:\\appsprojects\\phraseman",
+  "outputDir": "docs/heisenberg/vi/2026-05-18T11-09-32-969Z",
+  "filesScanned": 1765,
+  "localizedItems": 115483,
+  "surfaces": {
+    "app-other": 888,
+    "daily-phrase": 2,
+    "admin-site": 5,
+    "personal-training": 182,
+    "arena": 22,
+    "progression-daily-rewards": 9,
+    "lessons": 39,
+    "quizzes": 18,
+    "ui-locale": 4,
+    "docs": 183,
+    "public-web": 13,
+    "legal": 5,
+    "scripts-tools": 274,
+    "tests": 121
+  },
+  "sourceLocales": {
+    "es": 19689,
+    "uk": 34921,
+    "pt-BR": 5489,
+    "vi": 5483,
+    "id": 5464,
+    "tr": 5498,
+    "pl": 5495,
+    "ru": 33444
+  },
+  "localizedItemsAll": 115483,
+  "localizedItemsForBlocks": 77386,
+  "includeSupporting": false,
+  "blockSize": 40,
+  "translationBlocks": 0,
+  "guard": {
+    "knownLocaleConflict": false,
+    "targetInterfaceStatus": "planned",
+    "targetRegisteredAsAppLocale": true,
+    "pathCollisions": 0,
+    "integrationBlockers": 0
+  },
+  "batchLocaleCoverage": {
+    "localizedItemsChecked": 44667,
+    "expectedUnits": 2212,
+    "completeUnits": 18193,
+    "partialUnits": 0,
+    "missingAllLocaleUnits": 0,
+    "partialFiles": 0,
+    "missingByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 0,
+      "tr": 0,
+      "pl": 0,
+      "es": 0
+    },
+    "missingAllByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 0,
+      "tr": 0,
+      "pl": 0,
+      "es": 0
+    }
+  },
+  "existingLocaleAudit": null,
+  "checks": []
+}

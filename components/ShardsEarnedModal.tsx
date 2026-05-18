@@ -12,6 +12,13 @@ import { SHARD_MODAL_ACCENT_GLOW, SHARD_MODAL_FRAME_COLORS } from '../constants/
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import {
+  RewardModalBackdrop,
+  rewardModalAccentColor,
+  rewardModalPanelBorder,
+  rewardModalPanelColors,
+  rewardModalSoftSurface,
+} from './RewardModalBackdrop';
 
 interface Props {
   visible: boolean;
@@ -115,6 +122,7 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
   const dim = themeMode === 'minimalLight'
     ? (USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(8,12,20,0.68)' : 'rgba(8,12,20,0.55)')
     : (USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(3,5,10,0.82)' : 'rgba(0,0,0,0.68)');
+  const modalAccent = rewardModalAccentColor(themeMode, t);
 
   const shardLabel = isES
     ? amount === 1
@@ -127,6 +135,7 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
   return (
     <Modal transparent animationType="none" visible={visible} onRequestClose={onClose}>
       <View style={styles.root}>
+        <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
         <Pressable
           style={[StyleSheet.absoluteFill, { backgroundColor: dim, zIndex: 0 }]}
           onPress={() => {
@@ -145,12 +154,18 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
             pointerEvents="auto"
           >
             <LinearGradient
-              colors={USE_ELITE_SHARDS_EARNED_MODAL ? ['rgba(255,255,255,0.10)', t.gold, 'rgba(255,255,255,0.08)'] : [...SHARD_MODAL_FRAME_COLORS]}
+              colors={USE_ELITE_SHARDS_EARNED_MODAL ? ['rgba(255,255,255,0.10)', modalAccent, 'rgba(255,255,255,0.08)'] : [...SHARD_MODAL_FRAME_COLORS]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={[styles.frameOuter, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteFrameOuter]}
             >
-              <View style={[styles.innerCard, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteInnerCard, { backgroundColor: USE_ELITE_SHARDS_EARNED_MODAL ? t.bgSurface : t.bgCard, borderColor: USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.08)' }]}>
+              <View style={[styles.innerCard, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteInnerCard, { backgroundColor: 'transparent', borderColor: rewardModalPanelBorder(themeMode, t) }]}>
+                <LinearGradient
+                  colors={rewardModalPanelColors(themeMode, t)}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={StyleSheet.absoluteFill}
+                />
                 <LinearGradient
                   colors={[...SHARD_MODAL_ACCENT_GLOW]}
                   start={{ x: 0.5, y: 0 }}
@@ -163,7 +178,7 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
                     style={[
                       styles.eliteTopLine,
                       {
-                        backgroundColor: t.gold,
+                        backgroundColor: modalAccent,
                         opacity: topLineGlow.interpolate({ inputRange: [0, 1], outputRange: [0.16, 0.46] }),
                       },
                     ]}
@@ -185,7 +200,7 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
                 />
 
                 <Text
-                  style={[styles.eyebrow, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteEyebrow, { color: t.gold }]}
+                  style={[styles.eyebrow, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteEyebrow, { color: modalAccent }]}
                   numberOfLines={1}
                 >
                   ✦ {headline(lang)} ✦
@@ -197,7 +212,7 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
                       opacity: glowAnim.interpolate({ inputRange: [0, 1], outputRange: [0.75, 1] }),
                     }}
                   >
-                    <View style={[styles.gemHalo, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteGemHalo, { borderColor: t.gold + (USE_ELITE_SHARDS_EARNED_MODAL ? '44' : '55'), backgroundColor: USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(255,255,255,0.045)' : t.goldBg }]}>
+                    <View style={[styles.gemHalo, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteGemHalo, { borderColor: modalAccent + (USE_ELITE_SHARDS_EARNED_MODAL ? '44' : '55'), backgroundColor: rewardModalSoftSurface(themeMode, t) }]}>
                       <Image
                         source={oskolokImageForPackShards(amount)}
                         style={{ width: USE_ELITE_SHARDS_EARNED_MODAL ? 88 : 84, height: USE_ELITE_SHARDS_EARNED_MODAL ? 88 : 84 }}
@@ -207,7 +222,7 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
                   </Animated.View>
                 </Animated.View>
 
-                <Text style={[styles.amount, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteAmount, { color: t.gold }]}>+{amount}</Text>
+                <Text style={[styles.amount, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteAmount, { color: modalAccent }]}>+{amount}</Text>
                 <Text
                   style={[styles.shardKind, { color: t.textSecond }]}
                   numberOfLines={2}
@@ -215,8 +230,8 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
                   {shardLabel}
                 </Text>
 
-                <View style={[styles.reasonBox, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteReasonBox, { backgroundColor: USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(255,255,255,0.045)' : t.bgSurface, borderColor: USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(255,255,255,0.12)' : t.gold + '33' }]}>
-                  <Text style={[styles.reasonLabel, { color: t.gold }]}>{triLang(lang, {
+                <View style={[styles.reasonBox, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteReasonBox, { backgroundColor: rewardModalSoftSurface(themeMode, t), borderColor: rewardModalPanelBorder(themeMode, t) }]}>
+                  <Text style={[styles.reasonLabel, { color: modalAccent }]}>{triLang(lang, {
                     ru: 'За что',
                     uk: 'За що',
                     es: 'Motivo',

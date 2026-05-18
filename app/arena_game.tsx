@@ -18,6 +18,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import ArenaMatchBackdrop from '../components/ArenaMatchBackdrop';
 import AvatarView from '../components/AvatarView';
 import ArenaDuelEmojiReact from '../components/ArenaDuelEmojiReact';
 import { ArenaDuelFlyingEmojiOverlay, type ArenaDuelFlyEmoji } from '../components/ArenaDuelFlyingEmoji';
@@ -31,6 +32,7 @@ import { SCORE_CONFIG, QUESTIONS_PER_MATCH, type SessionPlayer } from './types/a
 import { hapticMediumImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { IS_EXPO_GO } from './config';
 import { emitAppEvent } from './events';
+import { playAppSound } from './audio/sound_manager';
 import { logArenaDirectGateBlocked, logEvent } from './firebase';
 import { consumeArenaGameEntry } from './arena_access_gate';
 import { recordMistakeFromArena } from './active_recall';
@@ -514,6 +516,7 @@ export default function DuelGameScreen() {
     if (hasAnswered || !currentQuestion) return;
     await hapticMediumImpact();
     const isCorrect = option === currentQuestion.correct;
+    void playAppSound(isCorrect ? 'answer.correct' : 'answer.wrong');
     const to = session.questionTimeoutMs ?? 40_000;
     const st = session.questionStartedAt;
     const elapsed = st != null
@@ -651,6 +654,7 @@ export default function DuelGameScreen() {
   if (!entryAllowed || phase === 'loading') {
     return (
       <ScreenGradient>
+        <ArenaMatchBackdrop variant="ready" />
         <View style={styles.centered}>
           <Text style={[styles.countdownHint, { color: t.textMuted, fontSize: f.body }]} />
         </View>
@@ -676,6 +680,7 @@ export default function DuelGameScreen() {
     if (fromLobbyFlow && myLobbyChoice === 'accept') {
       return (
         <ScreenGradient>
+          <ArenaMatchBackdrop variant="ready" />
           <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
             <View style={styles.arenaAcceptRoot}>
               <Text style={[{ color: t.textSecond, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }]}>
@@ -699,6 +704,7 @@ export default function DuelGameScreen() {
     if (fromLobbyFlow && !lobbyDone) {
       return (
         <ScreenGradient>
+          <ArenaMatchBackdrop variant="ready" />
           <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
             <View style={styles.arenaAcceptRoot}>
               <Text style={[{ color: t.accent, fontWeight: '900', fontSize: 16, letterSpacing: 1.2, textAlign: 'center' }]}>
@@ -713,6 +719,7 @@ export default function DuelGameScreen() {
     if (!fromLobbyFlow && !lobbyDone) {
       return (
         <ScreenGradient>
+          <ArenaMatchBackdrop variant="ready" />
           <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
             <View style={styles.arenaAcceptRoot}>
               <Text style={[{ color: t.accent, fontWeight: '900', fontSize: 16, letterSpacing: 1.2, marginBottom: 8 }]}>
@@ -770,6 +777,7 @@ export default function DuelGameScreen() {
     if (fromLobbyFlow) {
       return (
         <ScreenGradient>
+          <ArenaMatchBackdrop variant="ready" />
           <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
             <View style={styles.arenaAcceptRoot}>
               <Text style={[{ color: t.accent, fontWeight: '900', fontSize: 16, letterSpacing: 1.2, textAlign: 'center' }]}>
@@ -786,6 +794,7 @@ export default function DuelGameScreen() {
   if (phase === 'premeet' && !useMock && !isDirectDuel) {
     return (
       <ScreenGradient>
+        <ArenaMatchBackdrop variant="ready" />
         <View style={styles.premeetFull}>
           <Reanimated.View style={premeetTextStyle}>
             <Text
@@ -808,6 +817,7 @@ export default function DuelGameScreen() {
   if (phase === 'countdown') {
     return (
       <ScreenGradient>
+        <ArenaMatchBackdrop variant="ready" />
         <View style={styles.countdownStage}>
           <Text style={[styles.getReady, { color: t.textMuted, fontSize: f.sub }]}>
             {arenaGameStr(lang, 'letsGo')}
@@ -828,6 +838,7 @@ export default function DuelGameScreen() {
 
   return (
     <ScreenGradient>
+      <ArenaMatchBackdrop variant="match" />
       <View style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
       {/* Таймер-полоска */}

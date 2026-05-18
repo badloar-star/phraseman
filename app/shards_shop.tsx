@@ -57,7 +57,7 @@ import {
   peekWarmMarketplacePacks,
   type FlashcardMarketPack,
 } from './flashcards/marketplace';
-import { bundledPackTilePng } from './flashcards/packMarketplaceIcons';
+import { packTileImageForPack } from './flashcards/packMarketplaceIcons';
 import { getPackGiftTrial, getPackTrialHoursLeft } from './flashcards/pack_trial_gift';
 import { useCardPackShardPaywall } from './flashcards/useCardPackShardPaywall';
 import { DEV_IAP_BYPASS, IS_EXPO_GO } from './config';
@@ -1198,7 +1198,7 @@ export default function ShardsShopScreen() {
                     const busy = buyingShardPackId === pack.id;
                     const title = packTitleForInterface(pack, lang);
                     const desc = packDescriptionForInterface(pack, lang);
-                    const packArt = bundledPackTilePng(pack.id);
+                    const packArt = packTileImageForPack(pack);
                     const packIon = packCategoryIonIcon(pack.category) as keyof typeof Ionicons.glyphMap;
                     /** Цей пак можна забрати безкоштовно за активним 48-год подарунком (лише офіційні, не community). */
                     const voucherEligible = hasActiveVoucher && !pack.isCommunityUgc && !owned;

@@ -1,0 +1,118 @@
+{
+  "pipeline": "heisenberg",
+  "mode": "batch",
+  "runId": "2026-05-17T20-46-00-241Z",
+  "generatedAt": "2026-05-17T20:46:44.125Z",
+  "locales": [
+    "es",
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "auditOnly": true,
+  "outputDir": "docs/heisenberg/batch/2026-05-17T20-46-00-241Z",
+  "runs": [
+    {
+      "locale": "es",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang es --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=es\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1675\n[heisenberg] localized items (all): 99118\n[heisenberg] localized items (blocks): 2052\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/es/2026-05-17T20-46-00-400Z\n[heisenberg] warning: es already maps to an existing app locale.\n[heisenberg] existing-locale mode: existing-locale-production-audit\n[heisenberg] existing-locale blockers: 0\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "pt-BR",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang pt-BR --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=pt-BR\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1675\n[heisenberg] localized items (all): 99118\n[heisenberg] localized items (blocks): 61043\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/pt-br/2026-05-17T20-46-03-321Z\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "vi",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang vi --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=vi\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1675\n[heisenberg] localized items (all): 99118\n[heisenberg] localized items (blocks): 61043\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/vi/2026-05-17T20-46-06-099Z\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "id",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang id --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=id\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1675\n[heisenberg] localized items (all): 99118\n[heisenberg] localized items (blocks): 61043\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/id/2026-05-17T20-46-08-975Z\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "tr",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang tr --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=tr\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1675\n[heisenberg] localized items (all): 99118\n[heisenberg] localized items (blocks): 61043\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/tr/2026-05-17T20-46-11-891Z\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "pl",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang pl --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=pl\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1675\n[heisenberg] localized items (all): 99118\n[heisenberg] localized items (blocks): 61043\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/pl/2026-05-17T20-46-14-766Z\n",
+      "stderrTail": ""
+    }
+  ],
+  "checks": [
+    {
+      "command": "npm run audit:translations",
+      "startedAt": "2026-05-17T20:46:17.625Z",
+      "finishedAt": "2026-05-17T20:46:18.954Z",
+      "status": 0,
+      "ok": true,
+      "error": null,
+      "stdoutTail": "\n> phraseman@1.5.33 audit:translations\n> node ./scripts/audit_translations_1_32.mjs\n\nГотово. Фраз: 1600, пометок: 0\nСводка по типам: {}\n→ docs/reports/lessons_translations_audit.md\n→ docs/reports/lessons_translations_audit.json\n→ docs/reports/lessons_translations_flat.json\n",
+      "stderrTail": ""
+    },
+    {
+      "command": "npm test -- --runTestsByPath tests/heisenberg_pipeline.test.ts tests/locale_ru_uk_es.test.ts tests/quiz_source_locale.test.ts tests/quiz_spanish_locale.test.ts tests/daily_phrase_locale.test.ts --runInBand",
+      "startedAt": "2026-05-17T20:46:18.955Z",
+      "finishedAt": "2026-05-17T20:46:27.091Z",
+      "status": 0,
+      "ok": true,
+      "error": null,
+      "stdoutTail": "\n> phraseman@1.5.33 test\n> jest --testPathPattern=tests/ --no-cache --runTestsByPath tests/heisenberg_pipeline.test.ts tests/locale_ru_uk_es.test.ts tests/quiz_source_locale.test.ts tests/quiz_spanish_locale.test.ts tests/daily_phrase_locale.test.ts --runInBand\n\n",
+      "stderrTail": "PASS tests/quiz_spanish_locale.test.ts (5.436 s)\nPASS tests/heisenberg_pipeline.test.ts\nPASS tests/daily_phrase_locale.test.ts\nPASS tests/quiz_source_locale.test.ts\nPASS tests/locale_ru_uk_es.test.ts\n\nTest Suites: 5 passed, 5 total\nTests:       61 passed, 61 total\nSnapshots:   0 total\nTime:        7.322 s\nRan all test suites within paths \"tests/heisenberg_pipeline.test.ts\", \"tests/locale_ru_uk_es.test.ts\", \"tests/quiz_source_locale.test.ts\", \"tests/quiz_spanish_locale.test.ts\", \"tests/daily_phrase_locale.test.ts\".\nForce exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?\n"
+    },
+    {
+      "command": "npx tsc --noEmit --pretty false",
+      "startedAt": "2026-05-17T20:46:27.091Z",
+      "finishedAt": "2026-05-17T20:46:39.974Z",
+      "status": 0,
+      "ok": true,
+      "error": null,
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "command": "npm run heisenberg:semantic-audit:strict",
+      "startedAt": "2026-05-17T20:46:39.974Z",
+      "finishedAt": "2026-05-17T20:46:41.647Z",
+      "status": 0,
+      "ok": true,
+      "error": null,
+      "stdoutTail": "\n> phraseman@1.5.33 heisenberg:semantic-audit:strict\n> npx tsx ./scripts/heisenberg_semantic_audit.ts --strict\n\nHeisenberg semantic audit: 0 blockers, 0 warnings\nReview groups: 0\nNo findings\nReport: docs/heisenberg/semantic/2026-05-17T20-46-41-600Z\n",
+      "stderrTail": ""
+    },
+    {
+      "command": "npm run heisenberg:ui-audit",
+      "startedAt": "2026-05-17T20:46:41.647Z",
+      "finishedAt": "2026-05-17T20:46:44.125Z",
+      "status": 0,
+      "ok": true,
+      "error": null,
+      "stdoutTail": "\n> phraseman@1.5.33 heisenberg:ui-audit\n> npx tsx ./scripts/heisenberg_ui_locale_audit.ts\n\nHeisenberg UI locale audit: activationReady=no, 3846 findings, 0 missing triLang locale units\nReport: docs/heisenberg/ui/2026-05-17T20-46-44-064Z\n",
+      "stderrTail": ""
+    }
+  ]
+}

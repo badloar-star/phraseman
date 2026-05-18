@@ -248,7 +248,7 @@ const EXPECTED_EASY_ES_PROMPTS = [
   'Vivíamos en un pueblo pequeño',
   'Él trabaja en un banco',
   'Volé a Londres',
-  '¿Escuchas música?',
+  '¿Estás escuchando música?',
   'Por la mañana',
   'No veo televisión',
   'Ella compró un vestido',

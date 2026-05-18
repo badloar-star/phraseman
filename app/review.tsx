@@ -102,11 +102,11 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
     ru: 'Повторение',
     uk: 'Повторення',
     es: 'Repaso',
-    'pt-BR': "Revis?o",
-    vi: "?n t?p",
+    'pt-BR': "Revisão",
+    vi: "Ôn tập",
     id: "Ulangan",
     tr: "Tekrar",
-    pl: "Powt?rka",
+    pl: "Powtórka",
   });
   const s = item.source;
   // lessonId 99 — служебный (admin test bench), не показываем его пользователю
@@ -114,11 +114,11 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
     ru: 'Повторение',
     uk: 'Повторення',
     es: 'Repaso',
-    'pt-BR': "Revis?o",
-    vi: "?n t?p",
+    'pt-BR': "Revisão",
+    vi: "Ôn tập",
     id: "Ulangan",
     tr: "Tekrar",
-    pl: "Powt?rka",
+    pl: "Powtórka",
   });
   if (s === 'quiz') {
     return item.lessonId > 0
@@ -126,11 +126,11 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
         ru: `Квиз · урок ${item.lessonId}`,
         uk: `Квіз · урок ${item.lessonId}`,
         es: `Cuestionario · lección ${item.lessonId}`,
-        'pt-BR': `Quiz ? aula ${item.lessonId}`,
-        vi: `Quiz ? b?i ${item.lessonId}`,
-        id: `Kuis ? pelajaran ${item.lessonId}`,
-        tr: `Quiz ? ders ${item.lessonId}`,
-        pl: `Quiz ? lekcja ${item.lessonId}`,
+        'pt-BR': `Quiz · aula ${item.lessonId}`,
+        vi: `Quiz · bài ${item.lessonId}`,
+        id: `Kuis · pelajaran ${item.lessonId}`,
+        tr: `Quiz · ders ${item.lessonId}`,
+        pl: `Quiz · lekcja ${item.lessonId}`,
       })
       : triLang(lang, {
         ru: 'Квиз',
@@ -148,7 +148,7 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
     uk: 'Арена',
     es: 'Arena',
     'pt-BR': "Arena",
-    vi: "??u tr??ng",
+    vi: "Đấu trường",
     id: "Arena",
     tr: "Arena",
     pl: "Arena",
@@ -157,8 +157,8 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
     ru: 'Диагностика',
     uk: 'Діагностика',
     es: 'Test de nivel',
-    'pt-BR': "Teste de n?vel",
-    vi: "Ki?m tra tr?nh ??",
+    'pt-BR': "Teste de nível",
+    vi: "Kiểm tra trình độ",
     id: "Tes level",
     tr: "Seviye testi",
     pl: "Test poziomu",
@@ -168,11 +168,11 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
       ru: `Зачёт · урок ${item.lessonId}`,
       uk: `Залік · урок ${item.lessonId}`,
       es: `Examen · lección ${item.lessonId}`,
-      'pt-BR': `Teste ? aula ${item.lessonId}`,
-      vi: `B?i ki?m tra ? b?i ${item.lessonId}`,
-      id: `Ujian ? pelajaran ${item.lessonId}`,
-      tr: `S?nav ? ders ${item.lessonId}`,
-      pl: `Test ? lekcja ${item.lessonId}`,
+      'pt-BR': `Teste · aula ${item.lessonId}`,
+      vi: `Bài kiểm tra · bài ${item.lessonId}`,
+      id: `Ujian · pelajaran ${item.lessonId}`,
+      tr: `Sınav · ders ${item.lessonId}`,
+      pl: `Test · lekcja ${item.lessonId}`,
     });
   }
   return triLang(lang, {
@@ -180,7 +180,7 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
     uk: `Урок ${item.lessonId}`,
     es: `Lección ${item.lessonId}`,
     'pt-BR': `Aula ${item.lessonId}`,
-    vi: `B?i ${item.lessonId}`,
+    vi: `Bài ${item.lessonId}`,
     id: `Pelajaran ${item.lessonId}`,
     tr: `Ders ${item.lessonId}`,
     pl: `Lekcja ${item.lessonId}`,
@@ -194,10 +194,10 @@ function recallCueInstruction(mode: ReviewMode, lang: Lang): string {
       uk: 'Зберіть фразу: натискайте слова по порядку',
       es: 'Forma la frase: toca las palabras en orden',
       'pt-BR': "Monte a frase: toque nas palavras em ordem",
-      vi: "Gh?p c?u: ch?m c?c t? theo ??ng th? t?",
+      vi: "Ghép câu: chạm các từ theo đúng thứ tự",
       id: "Susun frasa: ketuk kata sesuai urutan",
-      tr: "?fadeyi kur: kelimelere s?rayla dokun",
-      pl: "U??? fraz?: stukaj s?owa po kolei",
+      tr: "İfadeyi kur: kelimelere sırayla dokun",
+      pl: "Ułóż frazę: stukaj słowa po kolei",
     });
   }
   if (mode === 'meaning_match') {
@@ -205,21 +205,21 @@ function recallCueInstruction(mode: ReviewMode, lang: Lang): string {
       ru: 'Что это значит? Выберите перевод',
       uk: 'Що це значить? Оберіть переклад',
       es: '¿Qué significa? Elige la traducción',
-      'pt-BR': "O que significa? Escolha a tradu??o",
-      vi: "N? ngh?a l? g?? Ch?n b?n d?ch",
+      'pt-BR': "O que significa? Escolha a tradução",
+      vi: "Nó nghĩa là gì? Chọn bản dịch",
       id: "Apa artinya? Pilih terjemahan",
-      tr: "Ne anlama geliyor? ?eviriyi se?",
-      pl: "Co to znaczy? Wybierz t?umaczenie",
+      tr: "Ne anlama geliyor? Çeviriyi seç",
+      pl: "Co to znaczy? Wybierz tłumaczenie",
     });
   }
   return triLang(lang, {
     ru: 'Вспомните и напишите по-английски',
     uk: 'Згадайте і напишіть англійською',
     es: 'Recuerda y escribe en inglés',
-    'pt-BR': "Lembre e escreva em ingl?s",
-    vi: "Nh? l?i v? vi?t b?ng ti?ng Anh",
+    'pt-BR': "Lembre e escreva em inglês",
+    vi: "Nhớ lại và viết bằng tiếng Anh",
     id: "Ingat dan tulis dalam bahasa Inggris",
-    tr: "Hat?rla ve ?ngilizce yaz",
+    tr: "Hatırla ve İngilizce yaz",
     pl: "Przypomnij sobie i napisz po angielsku",
   });
 }
@@ -962,11 +962,11 @@ export default function ReviewScreen() {
               ru: 'Повторение',
               uk: 'Повторення',
               es: 'Repaso',
-              'pt-BR': "Revis?o",
-              vi: "?n t?p",
+              'pt-BR': "Revisão",
+              vi: "Ôn tập",
               id: "Ulangan",
               tr: "Tekrar",
-              pl: "Powt?rka",
+              pl: "Powtórka",
             })}
           </Text>
         </View>
@@ -978,10 +978,10 @@ export default function ReviewScreen() {
               uk: 'Нічого повторювати!',
               es: '¡Nada que repasar por ahora!',
               'pt-BR': "Nada para revisar!",
-              vi: "Ch?a c? g? ?? ?n!",
+              vi: "Chưa có gì để ôn!",
               id: "Belum ada yang perlu diulas!",
-              tr: "Tekrar edecek bir ?ey yok!",
-              pl: "Nie ma teraz nic do powt?rki!",
+              tr: "Tekrar edecek bir şey yok!",
+              pl: "Nie ma teraz nic do powtórki!",
             })}
           </Text>
           <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 8, lineHeight: 22 }}>
@@ -989,11 +989,11 @@ export default function ReviewScreen() {
               ru: 'Допускай ошибки в уроках — они появятся здесь для повторения',
               uk: 'Допускай помилки в уроках — вони з\'являться тут для повторення',
               es: 'Si te equivocas en las lecciones, aquí aparecerán frases para repasar.',
-              'pt-BR': "Cometa erros nas aulas: eles aparecer?o aqui para revis?o.",
-              vi: "N?u b?n m?c l?i trong b?i h?c, c?c l?i ?? s? xu?t hi?n ? ??y ?? ?n l?i.",
+              'pt-BR': "Cometa erros nas aulas: eles aparecerão aqui para revisão.",
+              vi: "Nếu bạn mắc lỗi trong bài học, các lỗi đó sẽ xuất hiện ở đây để ôn lại.",
               id: "Jika kamu membuat kesalahan di pelajaran, kesalahan itu akan muncul di sini untuk diulas.",
-              tr: "Derslerde hata yapt???nda, tekrar i?in burada g?r?necekler.",
-              pl: "Gdy pope?nisz b??dy w lekcjach, pojawi? si? tutaj do powt?rki.",
+              tr: "Derslerde hata yaptığında, tekrar için burada görünecekler.",
+              pl: "Gdy popełnisz błędy w lekcjach, pojawią się tutaj do powtórki.",
             })}
           </Text>
           <TouchableOpacity
@@ -1006,7 +1006,7 @@ export default function ReviewScreen() {
                 uk: 'Назад',
                 es: 'Volver',
                 'pt-BR': "Voltar",
-                vi: "Quay l?i",
+                vi: "Quay lại",
                 id: "Kembali",
                 tr: "Geri",
                 pl: "Wstecz",
@@ -1065,7 +1065,7 @@ export default function ReviewScreen() {
                   'pt-BR': "Corretas",
                   vi: "??ng",
                   id: "Benar",
-                  tr: "Do?ru",
+                  tr: "Doğru",
                   pl: "Poprawne",
                 })}
               </Text>
@@ -1078,7 +1078,7 @@ export default function ReviewScreen() {
                   uk: 'Помилки',
                   es: 'Errores',
                   'pt-BR': "Erros",
-                  vi: "L?i sai",
+                  vi: "Lỗi sai",
                   id: "Kesalahan",
                   tr: "Hatalar",
                   pl: "B??dy",
@@ -1094,11 +1094,11 @@ export default function ReviewScreen() {
                   ru: 'заработано за повторение',
                   uk: 'зароблено за повторення',
                   es: 'XP obtenidas en Repaso',
-                  'pt-BR': "XP ganho na revis?o",
-                  vi: "XP nh?n ???c khi ?n t?p",
+                  'pt-BR': "XP ganho na revisão",
+                  vi: "XP nhận được khi ôn tập",
                   id: "XP yang didapat dari ulangan",
-                  tr: "Tekrardan kazan?lan XP",
-                  pl: "XP zdobyte za powt?rk?",
+                  tr: "Tekrardan kazanılan XP",
+                  pl: "XP zdobyte za powtórkę",
                 })}
               </Text>
             </View>
@@ -1108,11 +1108,11 @@ export default function ReviewScreen() {
               ru: 'Фразы с ошибками вернутся завтра',
               uk: 'Фрази з помилками повернуться завтра',
               es: 'Las frases con errores volverán mañana',
-              'pt-BR': "Frases com erro voltar?o amanh?",
-              vi: "C?c c?m c?u sai s? quay l?i v?o ng?y mai",
+              'pt-BR': "Frases com erro voltarão amanhã",
+              vi: "Các cụm câu sai sẽ quay lại vào ngày mai",
               id: "Frasa yang salah akan kembali besok",
-              tr: "Hatal? ifadeler yar?n geri d?necek",
-              pl: "Frazy z b??dami wr?c? jutro",
+              tr: "Hatalı ifadeler yarın geri dönecek",
+              pl: "Frazy z błędami wrócą jutro",
             })}
           </Text>
           {/* router.back() → home.tsx обновит dueCount через focusTick → бейдж исчезнет */}
@@ -1180,11 +1180,11 @@ export default function ReviewScreen() {
               ru: 'Не удалось загрузить карточку. Нажми «Назад» и попробуй снова.',
               uk: 'Не вдалося завантажити картку. Натисни «Назад» і спробуй ще раз.',
               es: 'No se pudo cargar la tarjeta. Pulsa «Atrás» e inténtalo de nuevo.',
-              'pt-BR': "N?o foi poss?vel carregar o cart?o. Toque em ?Voltar? e tente novamente.",
-              vi: "Kh?ng th? t?i th?. Nh?n ?Quay l?i? r?i th? l?i.",
-              id: "Kartu tidak dapat dimuat. Ketuk ?Kembali? lalu coba lagi.",
-              tr: "Kart y?klenemedi. ?Geri? d??mesine dokunup tekrar dene.",
-              pl: "Nie uda?o si? wczyta? karty. Stuknij ?Wstecz? i spr?buj ponownie.",
+              'pt-BR': "Não foi possível carregar o cartão. Toque em \"Voltar\" e tente novamente.",
+              vi: "Không thể tải thẻ. Nhấn \"Quay lại\" rồi thử lại.",
+              id: "Kartu tidak dapat dimuat. Ketuk \"Kembali\" lalu coba lagi.",
+              tr: "Kart yüklenemedi. \"Geri\" düğmesine dokunup tekrar dene.",
+              pl: "Nie udało się wczytać karty. Stuknij \"Wstecz\" i spróbuj ponownie.",
             })}
           </Text>
           <TouchableOpacity onPress={() => router.back()} style={{ marginTop: 24, padding: 14 }}>
@@ -1194,7 +1194,7 @@ export default function ReviewScreen() {
                 uk: 'Назад',
                 es: 'Volver',
                 'pt-BR': "Voltar",
-                vi: "Quay l?i",
+                vi: "Quay lại",
                 id: "Kembali",
                 tr: "Geri",
                 pl: "Wstecz",
@@ -1239,11 +1239,11 @@ export default function ReviewScreen() {
               ru: 'Повторение',
               uk: 'Повторення',
               es: 'Repaso',
-              'pt-BR': "Revis?o",
-              vi: "?n t?p",
+              'pt-BR': "Revisão",
+              vi: "Ôn tập",
               id: "Ulangan",
               tr: "Tekrar",
-              pl: "Powt?rka",
+              pl: "Powtórka",
             })}
           </Text>
         </View>
@@ -1341,11 +1341,11 @@ export default function ReviewScreen() {
                   ru: 'Свайпните карточку влево или вправо, чтобы выбрать другую фразу',
                   uk: 'Свайніть картку вліво або вправо, щоб обрати іншу фразу',
                   es: 'Desliza la tarjeta para elegir otra frase',
-                  'pt-BR': "Deslize o cart?o para a esquerda ou direita para escolher outra frase",
-                  vi: "Vu?t th? sang tr?i ho?c ph?i ?? ch?n c?m c?u kh?c",
+                  'pt-BR': "Deslize o cartão para a esquerda ou direita para escolher outra frase",
+                  vi: "Vuốt thẻ sang trái hoặc phải để chọn cụm câu khác",
                   id: "Geser kartu ke kiri atau kanan untuk memilih frasa lain",
-                  tr: "Ba?ka bir ifade se?mek i?in kart? sola ya da sa?a kayd?r",
-                  pl: "Przesu? kart? w lewo albo w prawo, aby wybra? inn? fraz?",
+                  tr: "Başka bir ifade seçmek için kartı sola ya da sağa kaydır",
+                  pl: "Przesuń kartę w lewo albo w prawo, aby wybrać inną frazę",
                 })}
               </Text>
             )}
@@ -1417,11 +1417,11 @@ export default function ReviewScreen() {
                   ru: 'Введите ответ…',
                   uk: 'Введіть відповідь…',
                   es: 'Escribe la respuesta…',
-                  'pt-BR': "Digite a resposta?",
-                  vi: "Nh?p c?u tr? l?i?",
-                  id: "Masukkan jawaban?",
-                  tr: "Cevab? yaz?",
-                  pl: "Wpisz odpowied??",
+                  'pt-BR': "Digite a resposta…",
+                  vi: "Nhập câu trả lời…",
+                  id: "Masukkan jawaban…",
+                  tr: "Cevabı yaz…",
+                  pl: "Wpisz odpowiedź…",
                 })}
                 placeholderTextColor={t.textGhost}
                 autoCapitalize="sentences"
@@ -1457,10 +1457,10 @@ export default function ReviewScreen() {
                       uk: 'Перевірити',
                       es: 'Comprobar',
                       'pt-BR': "Verificar",
-                      vi: "Ki?m tra",
+                      vi: "Kiểm tra",
                       id: "Periksa",
                       tr: "Kontrol et",
-                      pl: "Sprawd?",
+                      pl: "Sprawdź",
                     })}
                   </Text>
                 </TouchableOpacity>
@@ -1502,10 +1502,10 @@ export default function ReviewScreen() {
                   uk: 'Правильна відповідь:',
                   es: 'Respuesta correcta:',
                   'pt-BR': "Resposta correta:",
-                  vi: "??p ?n ??ng:",
+                  vi: "Đáp án đúng:",
                   id: "Jawaban benar:",
-                  tr: "Do?ru cevap:",
-                  pl: "Poprawna odpowied?:",
+                  tr: "Doğru cevap:",
+                  pl: "Poprawna odpowiedź:",
                 })}
               </Text>
               <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '600' }}>
@@ -1544,11 +1544,11 @@ export default function ReviewScreen() {
                     ru: 'Если сжечь карточку — она больше не появится в повторении',
                     uk: 'Якщо спалити картку — вона більше не з\'явиться у повторенні',
                     es: 'Si quemas la tarjeta, no volverá a aparecer en el repaso',
-                    'pt-BR': "Se queimar o cart?o, ele n?o aparecer? mais na revis?o",
-                    vi: "N?u ??t th?, th? n?y s? kh?ng xu?t hi?n l?i trong ?n t?p",
+                    'pt-BR': "Se queimar o cartão, ele não aparecerá mais na revisão",
+                    vi: "Nếu đốt thẻ, thẻ này sẽ không xuất hiện lại trong ôn tập",
                     id: "Jika kartu dibakar, kartu ini tidak akan muncul lagi di ulasan",
-                    tr: "Kart? yakarsan, tekrarda bir daha g?r?nmez",
-                    pl: "Je?li spalisz kart?, nie pojawi si? ju? w powt?rce",
+                    tr: "Kartı yakarsan, tekrarda bir daha görünmez",
+                    pl: "Jeśli spalisz kartę, nie pojawi się już w powtórce",
                   })}
                 </Animated.Text>
               )}
@@ -1573,11 +1573,11 @@ export default function ReviewScreen() {
                     ru: 'Сжечь карточку',
                     uk: 'Спалити картку',
                     es: 'Quemar tarjeta',
-                    'pt-BR': "Queimar cart?o",
-                    vi: "??t th?",
+                    'pt-BR': "Queimar cartão",
+                    vi: "Đốt thẻ",
                     id: "Bakar kartu",
-                    tr: "Kart? yak",
-                    pl: "Spal kart?",
+                    tr: "Kartı yak",
+                    pl: "Spal kartę",
                   })}
                 </Text>
               </TouchableOpacity>
@@ -1598,11 +1598,11 @@ export default function ReviewScreen() {
                 ru: 'Далее →',
                 uk: 'Далі →',
                 es: 'Siguiente →',
-                'pt-BR': "Pr?ximo ?",
-                vi: "Ti?p theo ?",
-                id: "Berikutnya ?",
-                tr: "?leri ?",
-                pl: "Dalej ?",
+                'pt-BR': "Próximo →",
+                vi: "Tiếp theo →",
+                id: "Berikutnya →",
+                tr: "İleri →",
+                pl: "Dalej →",
               })}
             </Text>
           </TouchableOpacity>

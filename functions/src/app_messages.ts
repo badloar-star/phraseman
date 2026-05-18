@@ -33,6 +33,13 @@ async function deleteMessageWithReactions(
     await batch.commit();
   }
   while (true) {
+    const votes = await doc.ref.collection('poll_votes').limit(400).get();
+    if (votes.empty) break;
+    const batch = db.batch();
+    votes.docs.forEach((vote) => batch.delete(vote.ref));
+    await batch.commit();
+  }
+  while (true) {
     const states = await db.collectionGroup('app_message_states').where('messageId', '==', doc.id).limit(400).get();
     if (states.empty) break;
     const batch = db.batch();
@@ -68,6 +75,11 @@ function reactionDelta(reaction: unknown): { like: number; dislike: number } {
   return { like: 0, dislike: 0 };
 }
 
+function cleanPollOptionId(value: unknown): string {
+  const raw = String(value || '').trim();
+  return /^[A-Za-z0-9_-]{1,40}$/.test(raw) ? raw : '';
+}
+
 export const onAppMessageReactionWritten = functions.firestore.onDocumentWritten(
   'app_messages/{messageId}/reactions/{userId}',
   async (event) => {
@@ -89,6 +101,50 @@ export const onAppMessageReactionWritten = functions.firestore.onDocumentWritten
       const code = (e as { code?: number | string } | null)?.code;
       if (code !== 5 && code !== 'not-found') {
         console.error('onAppMessageReactionWritten failed', { messageId, likeDelta, dislikeDelta, e });
+      }
+    }
+  },
+);
+
+export const onAppMessagePollVoteWritten = functions.firestore.onDocumentWritten(
+  'app_messages/{messageId}/poll_votes/{userId}',
+  async (event) => {
+    const beforeOptionId = cleanPollOptionId(event.data?.before.exists ? event.data.before.data()?.optionId : '');
+    const afterOptionId = cleanPollOptionId(event.data?.after.exists ? event.data.after.data()?.optionId : '');
+    const beforeUpdatedAtMs = toMs(event.data?.before.exists ? event.data.before.data()?.updatedAtMs : 0);
+
+    const messageId = String(event.params.messageId || '');
+    if (!messageId) return;
+    const messageRef = admin.firestore().collection('app_messages').doc(messageId);
+    let countedBeforeOptionId = beforeOptionId;
+
+    if (beforeOptionId && beforeUpdatedAtMs > 0) {
+      const messageSnap = await messageRef.get().catch(() => null);
+      const pollResetAtMs = toMs(messageSnap?.exists ? messageSnap.data()?.pollResetAtMs : 0);
+      if (pollResetAtMs >= beforeUpdatedAtMs) {
+        countedBeforeOptionId = '';
+      }
+    }
+
+    if (countedBeforeOptionId === afterOptionId) return;
+
+    const update: Record<string, unknown> = {
+      pollVoteCount: admin.firestore.FieldValue.increment((afterOptionId ? 1 : 0) - (countedBeforeOptionId ? 1 : 0)),
+      pollCountUpdatedAtMs: Date.now(),
+    };
+    if (countedBeforeOptionId) {
+      update[`pollCounts.${countedBeforeOptionId}`] = admin.firestore.FieldValue.increment(-1);
+    }
+    if (afterOptionId) {
+      update[`pollCounts.${afterOptionId}`] = admin.firestore.FieldValue.increment(1);
+    }
+
+    try {
+      await messageRef.update(update);
+    } catch (e) {
+      const code = (e as { code?: number | string } | null)?.code;
+      if (code !== 5 && code !== 'not-found') {
+        console.error('onAppMessagePollVoteWritten failed', { messageId, beforeOptionId, afterOptionId, e });
       }
     }
   },

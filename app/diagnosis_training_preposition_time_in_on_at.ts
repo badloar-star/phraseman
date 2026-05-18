@@ -3,7 +3,23 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 function timeStep(input: {
   id: string;
@@ -125,16 +141,66 @@ export const PREPOSITION_TIME_IN_ON_AT_TRAINING: DiagnosisTraining = {
       'In se usa para futuro después de un período: in two days, in three weeks.',
       'No traduzcas la preposición directamente. Primero identifica el tipo de tiempo.',
     ],
+    'pt-BR': [
+      "At é usado para hora exata: at 7 o'clock, at 6:30, at noon, at midnight.",
+      'On é usado com dias e datas: on Monday, on Friday, on 12 May.',
+      'On também é usado quando há dia + parte do dia: on Monday morning, on Friday night.',
+      'In é usado com meses, anos, estações e períodos longos: in May, in 2026, in summer.',
+      'In é usado com partes do dia: in the morning, in the afternoon, in the evening.',
+      'At night é uma exceção que vale memorizar como bloco.',
+      'In é usado para futuro depois de um período: in two days, in three weeks.',
+      'Não traduza a preposição diretamente. Primeiro identifique o tipo de tempo.',
+    ],
+    vi: [
+      "At dùng cho thời điểm chính xác: at 7 o'clock, at 6:30, at noon, at midnight.",
+      'On dùng với ngày và ngày tháng: on Monday, on Friday, on 12 May.',
+      'On cũng dùng khi có ngày + phần trong ngày: on Monday morning, on Friday night.',
+      'In dùng với tháng, năm, mùa và khoảng thời gian dài: in May, in 2026, in summer.',
+      'In dùng với các phần trong ngày: in the morning, in the afternoon, in the evening.',
+      'At night là ngoại lệ nên học như một cụm cố định.',
+      'In dùng cho tương lai sau một khoảng thời gian: in two days, in three weeks.',
+      'Đừng dịch giới từ trực tiếp. Trước tiên hãy xác định loại thời gian.',
+    ],
+    id: [
+      "At digunakan untuk waktu yang tepat: at 7 o'clock, at 6:30, at noon, at midnight.",
+      'On digunakan dengan hari dan tanggal: on Monday, on Friday, on 12 May.',
+      'On juga digunakan jika ada hari + bagian hari: on Monday morning, on Friday night.',
+      'In digunakan dengan bulan, tahun, musim, dan periode panjang: in May, in 2026, in summer.',
+      'In digunakan dengan bagian hari: in the morning, in the afternoon, in the evening.',
+      'At night adalah pengecualian yang sebaiknya dihafal sebagai blok.',
+      'In digunakan untuk masa depan setelah suatu periode: in two days, in three weeks.',
+      'Jangan menerjemahkan preposisi secara langsung. Tentukan dulu jenis waktunya.',
+    ],
+    tr: [
+      "At kesin saat için kullanılır: at 7 o'clock, at 6:30, at noon, at midnight.",
+      'On günler ve tarihlerle kullanılır: on Monday, on Friday, on 12 May.',
+      'On gün + günün bölümü varsa da kullanılır: on Monday morning, on Friday night.',
+      'In aylar, yıllar, mevsimler ve uzun dönemlerle kullanılır: in May, in 2026, in summer.',
+      'In günün bölümleriyle kullanılır: in the morning, in the afternoon, in the evening.',
+      'At night kalıp olarak ezberlenmesi iyi olan bir istisnadır.',
+      'In gelecekte bir süre sonra anlamında kullanılır: in two days, in three weeks.',
+      'Edatı doğrudan çevirme. Önce zaman türünü belirle.',
+    ],
+    pl: [
+      "At używa się z dokładną godziną: at 7 o'clock, at 6:30, at noon, at midnight.",
+      'On używa się z dniami i datami: on Monday, on Friday, on 12 May.',
+      'On używa się też, gdy jest dzień + część dnia: on Monday morning, on Friday night.',
+      'In używa się z miesiącami, latami, porami roku i długimi okresami: in May, in 2026, in summer.',
+      'In używa się z częściami dnia: in the morning, in the afternoon, in the evening.',
+      'At night to wyjątek, który warto zapamiętać jako gotowy blok.',
+      'In używa się dla przyszłości po pewnym okresie: in two days, in three weeks.',
+      'Nie tłumacz przyimka bezpośrednio. Najpierw określ typ czasu.',
+    ],
   },
   examples: [
-    { en: "The meeting starts at 9 o'clock.", ru: 'Встреча начинается в девять часов.', uk: 'Зустріч починається о дев’ятій годині.', es: 'La reunión empieza a las nueve.', why: tri("9 o'clock - точная точка времени. Для точного времени используется at.", "9 o'clock - точна точка часу. Для точного часу використовується at.", "9 o'clock es un punto exacto de tiempo. Para hora exacta usamos at.") },
-    { en: 'I will call you on Monday.', ru: 'Я позвоню тебе в понедельник.', uk: 'Я подзвоню тобі в понеділок.', es: 'Te llamaré el lunes.', why: tri('Monday - день недели. С днями недели используется on.', 'Monday - день тижня. З днями тижня використовується on.', 'Monday es un día de la semana. Con días usamos on.') },
-    { en: 'She was born in 1998.', ru: 'Она родилась в 1998 году.', uk: 'Вона народилася у 1998 році.', es: 'Ella nació en 1998.', why: tri('1998 - год, широкий период. С годами используется in.', '1998 - рік, широкий період. З роками використовується in.', '1998 es un año, un período amplio. Con años usamos in.') },
-    { en: 'We usually work in the morning.', ru: 'Мы обычно работаем утром.', uk: 'Ми зазвичай працюємо вранці.', es: 'Normalmente trabajamos por la mañana.', why: tri('The morning - часть дня. Обычно с частями дня используется in.', 'The morning - частина дня. Зазвичай із частинами дня використовується in.', 'The morning es una parte del día. Normalmente con partes del día usamos in.') },
-    { en: 'I saw him on Friday morning.', ru: 'Я видел его в пятницу утром.', uk: 'Я бачив його в п’ятницю вранці.', es: 'Lo vi el viernes por la mañana.', why: tri('Friday morning = конкретный день + часть дня. Когда есть день, используется on.', 'Friday morning = конкретний день + частина дня. Коли є день, використовується on.', 'Friday morning = día concreto + parte del día. Cuando hay día, usamos on.') },
-    { en: "I don't like driving at night.", ru: 'Я не люблю водить ночью.', uk: 'Я не люблю водити вночі.', es: 'No me gusta conducir de noche.', why: tri('At night - устойчивый блок. Хотя morning/evening обычно идут с in, night часто идет с at.', 'At night - сталий блок. Хоча morning/evening зазвичай ідуть з in, night часто йде з at.', 'At night es un bloque fijo. Aunque morning/evening suelen ir con in, night muchas veces va con at.') },
-    { en: 'The course starts in May.', ru: 'Курс начинается в мае.', uk: 'Курс починається у травні.', es: 'El curso empieza en mayo.', why: tri('May - месяц, широкий период. С месяцами используется in.', 'May - місяць, широкий період. З місяцями використовується in.', 'May es un mes, un período amplio. Con meses usamos in.') },
-    { en: "I'll be back in two weeks.", ru: 'Я вернусь через две недели.', uk: 'Я повернуся через два тижні.', es: 'Volveré en dos semanas.', why: tri('In two weeks означает через две недели от текущего момента. Для будущего через период используется in.', 'In two weeks означає через два тижні від поточного моменту. Для майбутнього через період використовується in.', 'In two weeks significa dentro de dos semanas desde ahora. Para futuro después de un período usamos in.') },
+    { en: "The meeting starts at 9 o'clock.", ru: 'Встреча начинается в девять часов.', uk: 'Зустріч починається о дев’ятій годині.', es: 'La reunión empieza a las nueve.', 'pt-BR': 'A reunião começa às nove.', vi: 'Cuộc họp bắt đầu lúc chín giờ.', id: 'Rapat dimulai pukul sembilan.', tr: 'Toplantı saat dokuzda başlıyor.', pl: 'Spotkanie zaczyna się o dziewiątej.', why: tri("9 o'clock - точная точка времени. Для точного времени используется at.", "9 o'clock - точна точка часу. Для точного часу використовується at.", "9 o'clock es un punto exacto de tiempo. Para hora exacta usamos at.") },
+    { en: 'I will call you on Monday.', ru: 'Я позвоню тебе в понедельник.', uk: 'Я подзвоню тобі в понеділок.', es: 'Te llamaré el lunes.', 'pt-BR': 'Vou ligar para você na segunda-feira.', vi: 'Tôi sẽ gọi cho bạn vào thứ Hai.', id: 'Saya akan meneleponmu pada hari Senin.', tr: 'Seni pazartesi arayacağım.', pl: 'Zadzwonię do ciebie w poniedziałek.', why: tri('Monday - день недели. С днями недели используется on.', 'Monday - день тижня. З днями тижня використовується on.', 'Monday es un día de la semana. Con días usamos on.') },
+    { en: 'She was born in 1998.', ru: 'Она родилась в 1998 году.', uk: 'Вона народилася у 1998 році.', es: 'Ella nació en 1998.', 'pt-BR': 'Ela nasceu em 1998.', vi: 'Cô ấy sinh năm 1998.', id: 'Dia lahir pada tahun 1998.', tr: "1998'de doğdu.", pl: 'Urodziła się w 1998 roku.', why: tri('1998 - год, широкий период. С годами используется in.', '1998 - рік, широкий період. З роками використовується in.', '1998 es un año, un período amplio. Con años usamos in.') },
+    { en: 'We usually work in the morning.', ru: 'Мы обычно работаем утром.', uk: 'Ми зазвичай працюємо вранці.', es: 'Normalmente trabajamos por la mañana.', 'pt-BR': 'Normalmente trabalhamos de manhã.', vi: 'Chúng tôi thường làm việc vào buổi sáng.', id: 'Kami biasanya bekerja pada pagi hari.', tr: 'Genellikle sabah çalışırız.', pl: 'Zwykle pracujemy rano.', why: tri('The morning - часть дня. Обычно с частями дня используется in.', 'The morning - частина дня. Зазвичай із частинами дня використовується in.', 'The morning es una parte del día. Normalmente con partes del día usamos in.') },
+    { en: 'I saw him on Friday morning.', ru: 'Я видел его в пятницу утром.', uk: 'Я бачив його в п’ятницю вранці.', es: 'Lo vi el viernes por la mañana.', 'pt-BR': 'Eu o vi na sexta-feira de manhã.', vi: 'Tôi đã gặp anh ấy vào sáng thứ Sáu.', id: 'Saya melihatnya pada Jumat pagi.', tr: 'Onu cuma sabahı gördüm.', pl: 'Widziałem go w piątek rano.', why: tri('Friday morning = конкретный день + часть дня. Когда есть день, используется on.', 'Friday morning = конкретний день + частина дня. Коли є день, використовується on.', 'Friday morning = día concreto + parte del día. Cuando hay día, usamos on.') },
+    { en: "I don't like driving at night.", ru: 'Я не люблю водить ночью.', uk: 'Я не люблю водити вночі.', es: 'No me gusta conducir de noche.', 'pt-BR': 'Não gosto de dirigir à noite.', vi: 'Tôi không thích lái xe vào ban đêm.', id: 'Saya tidak suka mengemudi pada malam hari.', tr: 'Gece araba kullanmayı sevmem.', pl: 'Nie lubię prowadzić nocą.', why: tri('At night - устойчивый блок. Хотя morning/evening обычно идут с in, night часто идет с at.', 'At night - сталий блок. Хоча morning/evening зазвичай ідуть з in, night часто йде з at.', 'At night es un bloque fijo. Aunque morning/evening suelen ir con in, night muchas veces va con at.') },
+    { en: 'The course starts in May.', ru: 'Курс начинается в мае.', uk: 'Курс починається у травні.', es: 'El curso empieza en mayo.', 'pt-BR': 'O curso começa em maio.', vi: 'Khóa học bắt đầu vào tháng Năm.', id: 'Kursus dimulai pada bulan Mei.', tr: 'Kurs mayısta başlıyor.', pl: 'Kurs zaczyna się w maju.', why: tri('May - месяц, широкий период. С месяцами используется in.', 'May - місяць, широкий період. З місяцями використовується in.', 'May es un mes, un período amplio. Con meses usamos in.') },
+    { en: "I'll be back in two weeks.", ru: 'Я вернусь через две недели.', uk: 'Я повернуся через два тижні.', es: 'Volveré en dos semanas.', 'pt-BR': 'Voltarei em duas semanas.', vi: 'Tôi sẽ quay lại sau hai tuần.', id: 'Saya akan kembali dalam dua minggu.', tr: 'İki hafta içinde döneceğim.', pl: 'Wrócę za dwa tygodnie.', why: tri('In two weeks означает через две недели от текущего момента. Для будущего через период используется in.', 'In two weeks означає через два тижні від поточного моменту. Для майбутнього через період використовується in.', 'In two weeks significa dentro de dos semanas desde ahora. Para futuro después de un período usamos in.') },
   ],
   introBlocks: [
     { id: 'intro_problem', type: 'diagnosis', text: tri('Похоже, ты путаешь in, on и at во времени. Это нормально: в русском часто всё переводится одним словом “в”, но английский разделяет время на разные размеры.', 'Схоже, ти плутаєш in, on і at у часі. Це нормально: українською часто все передається одним прийменником, але англійська ділить час на різні розміри.', 'Parece que confundes in, on y at con tiempo. Es normal: en español muchas veces se traduce parecido, pero el inglés divide el tiempo por tamaño.') },

@@ -38,7 +38,7 @@ export const GOLD_RICH = {
 } as const;
 
 export const GOLD_GRADIENTS = {
-  appBackground: ['#11100D', '#050505', GOLD_RICH.blackVoid] as GoldGradient3,
+  appBackground: ['#080706', '#030303', '#010101'] as GoldGradient3,
   quietPanel: ['#191710', '#0C0B09', '#040403'] as GoldGradient3,
   premiumPanel: ['#1D1A12', '#0D0C0A', '#040403'] as GoldGradient3,
   raisedTile: ['#201C12', '#0D0C0A', '#141008'] as GoldGradient3,

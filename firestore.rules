@@ -195,6 +195,25 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    function appMessagePollVoteOk(messageId, userId) {
+      let message = get(/databases/$(database)/documents/app_messages/$(messageId)).data;
+      return userDocOwnerMatchesAuth(userId)
+        && message.active == true
+        && (!message.keys().hasAny(['expiresAtMs']) || message.expiresAtMs > request.time.toMillis())
+        && message.keys().hasAny(['poll'])
+        && message.poll is map
+        && message.poll.keys().hasAny(['optionIds'])
+        && message.poll.optionIds is list
+        && request.resource.data.keys().hasOnly(['messageId', 'userId', 'optionId', 'updatedAtMs'])
+        && request.resource.data.messageId == messageId
+        && request.resource.data.userId == userId
+        && request.resource.data.optionId is string
+        && request.resource.data.optionId in message.poll.optionIds
+        && (request.resource.data.updatedAtMs is int || request.resource.data.updatedAtMs is float)
+        && request.resource.data.updatedAtMs > 0
+        && request.resource.data.updatedAtMs < 10000000000000;
+    }
+
     match /app_messages/{messageId} {
       allow read: if request.auth != null;
       allow create, update, delete: if isAdmin();
@@ -206,6 +225,12 @@ service cloud.firestore {
           && request.resource.data.messageId == messageId
           && request.resource.data.userId == userId
           && request.resource.data.reaction in ['like', 'dislike'];
+        allow delete: if isAdmin() || userDocOwnerMatchesAuth(userId);
+      }
+
+      match /poll_votes/{userId} {
+        allow read: if isAdmin();
+        allow create, update: if appMessagePollVoteOk(messageId, userId);
         allow delete: if isAdmin() || userDocOwnerMatchesAuth(userId);
       }
     }

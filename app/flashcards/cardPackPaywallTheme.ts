@@ -163,19 +163,19 @@ function shellGold(): CardPackPaywallTheme {
   };
 }
 
-/** CORAL: navy + coral accent shell matching the standalone Coral theme. */
+/** CORAL: warm cocoa shell matching the standalone Coral theme surfaces. */
 function shellCoral(): CardPackPaywallTheme {
   return {
-    backdropBase: 'rgba(8,5,30,0.9)',
+    backdropBase: 'rgba(20,12,14,0.9)',
     outerGlow: [
       'rgba(255,100,100,0.3)',
-      'rgba(74,144,255,0.2)',
-      'rgba(20,18,50,0.5)',
+      'rgba(216,140,130,0.16)',
+      'rgba(31,24,26,0.5)',
     ],
     borderAccent: 'rgba(255,100,100,0.2)',
     handleColorLight: 'rgba(80,40,40,0.3)',
     handleColorDark: 'rgba(255,100,100,0.4)',
-    iconBg: ['#2E2E58', '#1E1E3C'],
+    iconBg: ['#3A2A2E', '#21181B'],
     iconBorder: 'rgba(255,100,100,0.2)',
     priceBorder: 'rgba(255,100,100,0.15)',
     priceGradient: ['rgba(74,144,255,0.1)', 'rgba(0,0,0,0)'],

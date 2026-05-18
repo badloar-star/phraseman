@@ -18,6 +18,8 @@ import type {
 let mockDocs: Map<string, Record<string, unknown>>;
 let canonicalUidOverride: string | null = 'my-uid-111';
 let authUidOverride: string | null = 'auth-uid-999';
+let stableAuthLinkCalls: number;
+let stableAuthLinkResult: boolean;
 
 // Simulate a batch that collects operations and commits them atomically.
 const createFakeBatch = () => {
@@ -123,6 +125,13 @@ jest.mock('../app/user_id_policy', () => ({
   getCanonicalUserId: jest.fn(async () => canonicalUidOverride),
   getAuthUserId: jest.fn(() => authUidOverride),
 }));
+jest.mock('../app/cloud_sync', () => ({
+  ensureAnonUser: jest.fn(async () => canonicalUidOverride),
+  ensureStableAuthLink: jest.fn(async () => {
+    stableAuthLinkCalls += 1;
+    return stableAuthLinkResult;
+  }),
+}));
 jest.mock('@react-native-firebase/firestore', () => ({
   default: jest.fn(() => buildFakeDb()),
 }));
@@ -132,11 +141,20 @@ beforeEach(() => {
   mockDocs = new Map();
   canonicalUidOverride = 'my-uid-111';
   authUidOverride = 'auth-uid-999';
+  stableAuthLinkCalls = 0;
+  stableAuthLinkResult = true;
 
   jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
   jest.mock('../app/user_id_policy', () => ({
     getCanonicalUserId: jest.fn(async () => canonicalUidOverride),
     getAuthUserId: jest.fn(() => authUidOverride),
+  }));
+  jest.mock('../app/cloud_sync', () => ({
+    ensureAnonUser: jest.fn(async () => canonicalUidOverride),
+    ensureStableAuthLink: jest.fn(async () => {
+      stableAuthLinkCalls += 1;
+      return stableAuthLinkResult;
+    }),
   }));
   jest.mock('@react-native-firebase/firestore', () => ({
     default: jest.fn(() => buildFakeDb()),
@@ -178,6 +196,15 @@ test('R04: sendFriendRequest happy path creates pending request and returns sent
   expect(typeof doc?.createdAt).toBe('number');
 });
 
+test('R04b: sendFriendRequest links stable auth through callable, not direct user doc write', async () => {
+  const { sendFriendRequest } = require('../app/firestore_friend_requests');
+  const result: SendRequestResult = await sendFriendRequest('target-uid-222');
+
+  expect(result).toBe('sent');
+  expect(stableAuthLinkCalls).toBe(1);
+  expect(mockDocs.has('users/my-uid-111')).toBe(false);
+});
+
 test('R05: sendFriendRequest returns error when getCanonicalUserId returns null', async () => {
   canonicalUidOverride = null;
   jest.mock('../app/user_id_policy', () => ({
@@ -217,6 +244,15 @@ test('A03: acceptFriendRequest creates reverse users/fromUid/friends/myUid entry
   expect(typeof reverseDoc?.createdAt).toBe('number');
 });
 
+test('A04: acceptFriendRequest links stable auth through callable before batch writes', async () => {
+  mockDocs.set('users/my-uid-111/friend_requests/from-uid-333', { status: 'pending', createdAt: 500 });
+  const { acceptFriendRequest } = require('../app/firestore_friend_requests');
+  await acceptFriendRequest('from-uid-333');
+
+  expect(stableAuthLinkCalls).toBe(1);
+  expect(mockDocs.has('users/my-uid-111')).toBe(false);
+});
+
 // ── declineFriendRequest tests ─────────────────────────────────────────────
 
 test('D01: declineFriendRequest DELETES users/myUid/friend_requests/fromUid doc', async () => {
@@ -242,6 +278,14 @@ test('X02: deleteFriend also deletes reverse users/friendUid/friends/myUid', asy
   const { deleteFriend } = require('../app/firestore_friend_requests');
   await deleteFriend('friend-uid-444');
   expect(mockDocs.has('users/friend-uid-444/friends/my-uid-111')).toBe(false);
+});
+
+test('V01: ensureFriendRequestViewerAuthLink uses the stable auth callable helper', async () => {
+  const { ensureFriendRequestViewerAuthLink } = require('../app/firestore_friend_requests');
+  await ensureFriendRequestViewerAuthLink();
+
+  expect(stableAuthLinkCalls).toBe(1);
+  expect(mockDocs.has('users/my-uid-111')).toBe(false);
 });
 
 // ── subscriptions tests ────────────────────────────────────────────────────

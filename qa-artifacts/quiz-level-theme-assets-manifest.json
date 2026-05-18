@@ -1,0 +1,200 @@
+[
+  {
+    "theme": "dark",
+    "level": "easy",
+    "card": "assets/images/quizzes/level_cards/quiz-card-easy-dark.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-easy-dark.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/dark.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/dark.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b14dd1124819186f073b27b173c21.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "dark",
+    "level": "medium",
+    "card": "assets/images/quizzes/level_cards/quiz-card-medium-dark.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-medium-dark.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/dark.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/dark.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b14dd1124819186f073b27b173c21.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "dark",
+    "level": "hard",
+    "card": "assets/images/quizzes/level_cards/quiz-card-hard-dark.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-hard-dark.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/dark.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/dark.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b14dd1124819186f073b27b173c21.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "neon",
+    "level": "easy",
+    "card": "assets/images/quizzes/level_cards/quiz-card-easy-neon.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-easy-neon.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/neon.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/neon.png",
+    "logoDalleSource": "qa-artifacts/dalle-logo-sources/neon-green.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "neon",
+    "level": "medium",
+    "card": "assets/images/quizzes/level_cards/quiz-card-medium-neon.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-medium-neon.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/neon.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/neon.png",
+    "logoDalleSource": "qa-artifacts/dalle-logo-sources/neon-green.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "neon",
+    "level": "hard",
+    "card": "assets/images/quizzes/level_cards/quiz-card-hard-neon.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-hard-neon.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/neon.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/neon.png",
+    "logoDalleSource": "qa-artifacts/dalle-logo-sources/neon-green.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "gold",
+    "level": "easy",
+    "card": "assets/images/quizzes/level_cards/quiz-card-easy-gold.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-easy-gold.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/gold.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/gold.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b153f1474819185e125e85fe80758.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "gold",
+    "level": "medium",
+    "card": "assets/images/quizzes/level_cards/quiz-card-medium-gold.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-medium-gold.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/gold.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/gold.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b153f1474819185e125e85fe80758.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "gold",
+    "level": "hard",
+    "card": "assets/images/quizzes/level_cards/quiz-card-hard-gold.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-hard-gold.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/gold.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/gold.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b153f1474819185e125e85fe80758.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "coral",
+    "level": "easy",
+    "card": "assets/images/quizzes/level_cards/quiz-card-easy-coral.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-easy-coral.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/coral.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/coral.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b15a2063c819189f38d26561051ae.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "coral",
+    "level": "medium",
+    "card": "assets/images/quizzes/level_cards/quiz-card-medium-coral.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-medium-coral.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/coral.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/coral.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b15a2063c819189f38d26561051ae.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "coral",
+    "level": "hard",
+    "card": "assets/images/quizzes/level_cards/quiz-card-hard-coral.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-hard-coral.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/coral.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/coral.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b15a2063c819189f38d26561051ae.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "minimalLight",
+    "level": "easy",
+    "card": "assets/images/quizzes/level_cards/quiz-card-easy-minimal-light.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-easy-minimal-light.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/minimal-light.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/minimal-light.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b1645eec081918ccc63f4bd232519.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "minimalLight",
+    "level": "medium",
+    "card": "assets/images/quizzes/level_cards/quiz-card-medium-minimal-light.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-medium-minimal-light.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/minimal-light.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/minimal-light.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b1645eec081918ccc63f4bd232519.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "minimalLight",
+    "level": "hard",
+    "card": "assets/images/quizzes/level_cards/quiz-card-hard-minimal-light.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-hard-minimal-light.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/minimal-light.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/minimal-light.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b1645eec081918ccc63f4bd232519.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "minimalDark",
+    "level": "easy",
+    "card": "assets/images/quizzes/level_cards/quiz-card-easy-minimal-dark.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-easy-minimal-dark.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/minimal-dark.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/minimal-dark.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b167cb2208191b176bc7de500475a.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "minimalDark",
+    "level": "medium",
+    "card": "assets/images/quizzes/level_cards/quiz-card-medium-minimal-dark.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-medium-minimal-dark.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/minimal-dark.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/minimal-dark.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b167cb2208191b176bc7de500475a.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  },
+  {
+    "theme": "minimalDark",
+    "level": "hard",
+    "card": "assets/images/quizzes/level_cards/quiz-card-hard-minimal-dark.webp",
+    "logo": "assets/images/quizzes/level_logos/quiz-logo-hard-minimal-dark.webp",
+    "dalleSource": "qa-artifacts/dalle-card-sources/minimal-dark.png",
+    "cardDalleSource": "qa-artifacts/dalle-card-sources/minimal-dark.png",
+    "logoDalleSource": "C:\\Users\\badlo\\.codex\\generated_images\\019e3b03-6b78-73e0-bd3f-fbe14509e5c3\\ig_081f1ba4c223868e016a0b167cb2208191b176bc7de500475a.png",
+    "cardSize": "640x236",
+    "logoSize": "260x260"
+  }
+]

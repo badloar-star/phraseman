@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.onAppMessageReactionWritten = void 0;
+exports.onAppMessagePollVoteWritten = exports.onAppMessageReactionWritten = void 0;
 exports.cleanupExpiredAppMessages = cleanupExpiredAppMessages;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
@@ -64,6 +64,14 @@ async function deleteMessageWithReactions(db, doc) {
             break;
         const batch = db.batch();
         reactions.docs.forEach((reaction) => batch.delete(reaction.ref));
+        await batch.commit();
+    }
+    while (true) {
+        const votes = await doc.ref.collection('poll_votes').limit(400).get();
+        if (votes.empty)
+            break;
+        const batch = db.batch();
+        votes.docs.forEach((vote) => batch.delete(vote.ref));
         await batch.commit();
     }
     while (true) {
@@ -101,6 +109,10 @@ function reactionDelta(reaction) {
         return { like: 0, dislike: 1 };
     return { like: 0, dislike: 0 };
 }
+function cleanPollOptionId(value) {
+    const raw = String(value || '').trim();
+    return /^[A-Za-z0-9_-]{1,40}$/.test(raw) ? raw : '';
+}
 exports.onAppMessageReactionWritten = functions.firestore.onDocumentWritten('app_messages/{messageId}/reactions/{userId}', async (event) => {
     const before = reactionDelta(event.data?.before.exists ? event.data.before.data()?.reaction : null);
     const after = reactionDelta(event.data?.after.exists ? event.data.after.data()?.reaction : null);
@@ -122,6 +134,44 @@ exports.onAppMessageReactionWritten = functions.firestore.onDocumentWritten('app
         const code = e?.code;
         if (code !== 5 && code !== 'not-found') {
             console.error('onAppMessageReactionWritten failed', { messageId, likeDelta, dislikeDelta, e });
+        }
+    }
+});
+exports.onAppMessagePollVoteWritten = functions.firestore.onDocumentWritten('app_messages/{messageId}/poll_votes/{userId}', async (event) => {
+    const beforeOptionId = cleanPollOptionId(event.data?.before.exists ? event.data.before.data()?.optionId : '');
+    const afterOptionId = cleanPollOptionId(event.data?.after.exists ? event.data.after.data()?.optionId : '');
+    const beforeUpdatedAtMs = toMs(event.data?.before.exists ? event.data.before.data()?.updatedAtMs : 0);
+    const messageId = String(event.params.messageId || '');
+    if (!messageId)
+        return;
+    const messageRef = admin.firestore().collection('app_messages').doc(messageId);
+    let countedBeforeOptionId = beforeOptionId;
+    if (beforeOptionId && beforeUpdatedAtMs > 0) {
+        const messageSnap = await messageRef.get().catch(() => null);
+        const pollResetAtMs = toMs(messageSnap?.exists ? messageSnap.data()?.pollResetAtMs : 0);
+        if (pollResetAtMs >= beforeUpdatedAtMs) {
+            countedBeforeOptionId = '';
+        }
+    }
+    if (countedBeforeOptionId === afterOptionId)
+        return;
+    const update = {
+        pollVoteCount: admin.firestore.FieldValue.increment((afterOptionId ? 1 : 0) - (countedBeforeOptionId ? 1 : 0)),
+        pollCountUpdatedAtMs: Date.now(),
+    };
+    if (countedBeforeOptionId) {
+        update[`pollCounts.${countedBeforeOptionId}`] = admin.firestore.FieldValue.increment(-1);
+    }
+    if (afterOptionId) {
+        update[`pollCounts.${afterOptionId}`] = admin.firestore.FieldValue.increment(1);
+    }
+    try {
+        await messageRef.update(update);
+    }
+    catch (e) {
+        const code = e?.code;
+        if (code !== 5 && code !== 'not-found') {
+            console.error('onAppMessagePollVoteWritten failed', { messageId, beforeOptionId, afterOptionId, e });
         }
     }
 });

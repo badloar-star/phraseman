@@ -5,6 +5,9 @@ import {
   isAppMessageVisible,
   mergeAppMessagesWithStates,
   normalizeAppMessage,
+  normalizeAppMessageState,
+  pickAppMessagePollOptionText,
+  pickAppMessagePollQuestion,
   pickAppMessageText,
 } from '../app/app_messages';
 
@@ -68,5 +71,34 @@ describe('app_messages', () => {
     expect(filterAppMessagesSnapshotForAudience(snapshot, false).unreadCount).toBe(2);
     expect(filterAppMessagesSnapshotForAudience(snapshot, true).messages.map((m) => m.id)).toEqual(['all', 'premium']);
     expect(filterAppMessagesSnapshotForAudience(snapshot, true).unreadCount).toBe(2);
+  });
+
+  it('normalizes polls and carries the selected option from user state', () => {
+    const message = normalizeAppMessage('poll1', {
+      active: true,
+      kind: 'poll',
+      titleRu: 'Feedback',
+      messageRu: 'Help us choose.',
+      createdAtMs: now,
+      poll: {
+        questionRu: 'Что добавить следующим?',
+        questionUk: 'Що додати далі?',
+        options: [
+          { id: 'opt_1', textRu: 'Квизы', textUk: 'Квізи' },
+          { id: 'opt_2', textRu: 'Карточки', textUk: 'Картки' },
+        ],
+      },
+      pollCounts: { opt_1: 3, opt_2: 1 },
+      pollVoteCount: 4,
+    }, now);
+    const state = normalizeAppMessageState('poll1', { pollOptionId: 'opt_2', updatedAtMs: now });
+    const snapshot = mergeAppMessagesWithStates([message], [state], now);
+
+    expect(message.kind).toBe('poll');
+    expect(message.poll?.optionIds).toEqual(['opt_1', 'opt_2']);
+    expect(message.poll?.voteCount).toBe(4);
+    expect(pickAppMessagePollQuestion(message.poll!, 'uk')).toBe('Що додати далі?');
+    expect(pickAppMessagePollOptionText(message.poll!.options[1], 'uk')).toBe('Картки');
+    expect(snapshot.messages[0].pollOptionId).toBe('opt_2');
   });
 });

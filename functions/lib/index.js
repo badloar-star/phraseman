@@ -78,7 +78,7 @@ const { arenaRoomCreate, arenaRoomRecordRun, arenaPulsePublish } = require('./ar
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { arenaGhostCreateChallenge, arenaGhostRecordPlay } = require('./arena_ghosts');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { cleanupExpiredAppMessages, onAppMessageReactionWritten } = require('./app_messages');
+const { cleanupExpiredAppMessages, onAppMessageReactionWritten, onAppMessagePollVoteWritten } = require('./app_messages');
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
 exports.leagueChatSendMessage = leagueChatSendMessage;
 exports.leagueChatReportMessage = leagueChatReportMessage;
@@ -105,6 +105,7 @@ exports.arenaPulsePublish = arenaPulsePublish;
 exports.arenaGhostCreateChallenge = arenaGhostCreateChallenge;
 exports.arenaGhostRecordPlay = arenaGhostRecordPlay;
 exports.onAppMessageReactionWritten = onAppMessageReactionWritten;
+exports.onAppMessagePollVoteWritten = onAppMessagePollVoteWritten;
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 // Must match constants/theme.ts getLevelFromXP formula
 const _XP_BASE = 250;

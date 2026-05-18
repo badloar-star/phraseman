@@ -174,7 +174,7 @@ export default function FlashcardsHubScreen() {
   }, [leaveFlashcardsHub]);
 
   return (
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="flashcards">
       <SafeAreaView
         style={[styles.safe, { backgroundColor: 'transparent' }]}
         edges={['top', 'left', 'right']}

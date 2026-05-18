@@ -2,7 +2,23 @@
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const CONTRAST = ['base verb imperative', "don't + base verb", 'please', "let's", 'negative imperative', 'instructions', 'commands', 'requests'];
 const SMART_CONTRAST = ['base verb imperative', "don't + base verb", 'please', "let's", 'negative imperative', 'instructions', 'commands'];
@@ -158,16 +174,76 @@ export const IMPERATIVE_BASIC_TRAINING: DiagnosisTraining = {
       'Be careful is a command.',
       "Let's + action means doing it together.",
     ],
+    'pt-BR': [
+      'Commands começam com a ação: Open the door.',
+      'You normalmente não é necessário: Open the door, não You open the door.',
+      'Não coloque to antes de uma command: Wait here, não To wait here.',
+      'Please não muda a gramática: Please wait here.',
+      "Negative commands usam don't + ação: Don't touch it.",
+      "No touch it é erro. O natural é: Don't touch it.",
+      "Depois de don't, não use to: Don't open, não Don't to open.",
+      "Com be, don't também funciona: Don't be late.",
+      'Be careful é uma command normal com be.',
+      "Let's + ação significa fazer algo juntos: Let's go.",
+    ],
+    vi: [
+      'Commands bắt đầu bằng hành động: Open the door.',
+      'You thường không cần thiết: Open the door, không phải You open the door.',
+      'Không đặt to trước command: Wait here, không phải To wait here.',
+      'Please không đổi ngữ pháp: Please wait here.',
+      "Negative commands dùng don't + hành động: Don't touch it.",
+      "No touch it là lỗi. Câu tự nhiên là: Don't touch it.",
+      "Sau don't, không dùng to: Don't open, không phải Don't to open.",
+      "Với be, don't cũng dùng được: Don't be late.",
+      'Be careful là một command bình thường với be.',
+      "Let's + hành động nghĩa là làm cùng nhau: Let's go.",
+    ],
+    id: [
+      'Commands dimulai dengan tindakan: Open the door.',
+      'You biasanya tidak diperlukan: Open the door, bukan You open the door.',
+      'Jangan taruh to sebelum command: Wait here, bukan To wait here.',
+      'Please tidak mengubah tata bahasa: Please wait here.',
+      "Negative commands memakai don't + tindakan: Don't touch it.",
+      "No touch it itu salah. Bentuk yang alami: Don't touch it.",
+      "Setelah don't, jangan pakai to: Don't open, bukan Don't to open.",
+      "Dengan be, don't juga dipakai: Don't be late.",
+      'Be careful adalah command normal dengan be.',
+      "Let's + tindakan berarti melakukan sesuatu bersama: Let's go.",
+    ],
+    tr: [
+      'Commands eylemle başlar: Open the door.',
+      'You genellikle gerekmez: Open the door, You open the door değil.',
+      'Command öncesinde to kullanma: Wait here, To wait here değil.',
+      'Please grameri değiştirmez: Please wait here.',
+      "Negative commands don't + eylem ile kurulur: Don't touch it.",
+      "No touch it hatalıdır. Doğal olan: Don't touch it.",
+      "Don't sonrasında to kullanma: Don't open, Don't to open değil.",
+      "Be ile de don't kullanılır: Don't be late.",
+      'Be careful, be ile normal bir command örneğidir.',
+      "Let's + eylem, bir şeyi birlikte yapalım demektir: Let's go.",
+    ],
+    pl: [
+      'Commands zaczynają się od czynności: Open the door.',
+      'You zwykle nie jest potrzebne: Open the door, nie You open the door.',
+      'Nie stawiaj to przed command: Wait here, nie To wait here.',
+      'Please nie zmienia gramatyki: Please wait here.',
+      "Negative commands używają don't + czynność: Don't touch it.",
+      "No touch it to błąd. Naturalnie: Don't touch it.",
+      "Po don't nie używaj to: Don't open, nie Don't to open.",
+      "Z be także działa don't: Don't be late.",
+      'Be careful to normalna command z be.',
+      "Let's + czynność znaczy, że robimy coś razem: Let's go.",
+    ],
   },
   examples: [
-    { en: 'Open the door.', ru: 'Открой дверь.', uk: 'Відчини двері.', es: 'Open the door.', why: tri('Команда начинается с open. You не нужен.', 'Команда починається з open. You не потрібне.', 'The command starts with open; you is not needed.') },
-    { en: 'Please wait here.', ru: 'Пожалуйста, подожди здесь.', uk: 'Будь ласка, зачекай тут.', es: 'Please wait here.', why: tri('Please делает просьбу мягче, но wait остается обычным действием.', 'Please робить прохання м’якшим, але wait лишається звичайною дією.', 'Please makes the request polite, but wait stays simple.') },
-    { en: "Don't touch it.", ru: 'Не трогай это.', uk: 'Не чіпай це.', es: "Don't touch it.", why: tri('Запрет строится через don’t + действие.', 'Заборона будується через don’t + дія.', "Negative command = don't + action.") },
-    { en: "Don't be late.", ru: 'Не опаздывай.', uk: 'Не запізнюйся.', es: "Don't be late.", why: tri('С be в запрете говорим don’t be.', 'З be у забороні кажемо don’t be.', "With be in a negative command, use don't be.") },
-    { en: 'Be careful.', ru: 'Будь осторожен.', uk: 'Будь обережний.', es: 'Be careful.', why: tri('Положительная команда с be начинается с Be.', 'Позитивна команда з be починається з Be.', 'Positive command with be starts with Be.') },
-    { en: "Let's start.", ru: 'Давай начнем.', uk: 'Давай почнемо.', es: "Let's start.", why: tri('Let’s значит, что мы делаем это вместе.', 'Let’s означає, що ми робимо це разом.', "Let's suggests doing something together.") },
-    { en: "Don't forget your keys.", ru: 'Не забудь ключи.', uk: 'Не забудь ключі.', es: "Don't forget your keys.", why: tri('Don’t forget - нормальная короткая инструкция.', 'Don’t forget - нормальна коротка інструкція.', "Don't + forget is a negative instruction.") },
-    { en: 'Turn left and go straight.', ru: 'Поверни налево и иди прямо.', uk: 'Поверни ліворуч і йди прямо.', es: 'Turn left and go straight.', why: tri('В инструкции может быть несколько действий подряд: turn и go.', 'В інструкції може бути кілька дій поспіль: turn і go.', 'Instructions can have several actions: turn and go.') },
+    { en: 'Open the door.', ru: 'Открой дверь.', uk: 'Відчини двері.', es: 'Open the door.', 'pt-BR': 'Abra a porta.', vi: 'Mở cửa ra.', id: 'Buka pintunya.', tr: 'Kapıyı aç.', pl: 'Otwórz drzwi.', why: tri('Команда начинается с open. You не нужен.', 'Команда починається з open. You не потрібне.', 'The command starts with open; you is not needed.') },
+    { en: 'Please wait here.', ru: 'Пожалуйста, подожди здесь.', uk: 'Будь ласка, зачекай тут.', es: 'Please wait here.', 'pt-BR': 'Por favor, espere aqui.', vi: 'Vui lòng đợi ở đây.', id: 'Tolong tunggu di sini.', tr: 'Lütfen burada bekle.', pl: 'Proszę, zaczekaj tutaj.', why: tri('Please делает просьбу мягче, но wait остается обычным действием.', 'Please робить прохання м’якшим, але wait лишається звичайною дією.', 'Please makes the request polite, but wait stays simple.') },
+    { en: "Don't touch it.", ru: 'Не трогай это.', uk: 'Не чіпай це.', es: "Don't touch it.", 'pt-BR': 'Não toque nisso.', vi: 'Đừng chạm vào nó.', id: 'Jangan sentuh itu.', tr: 'Ona dokunma.', pl: 'Nie dotykaj tego.', why: tri('Запрет строится через don’t + действие.', 'Заборона будується через don’t + дія.', "Negative command = don't + action.") },
+    { en: "Don't be late.", ru: 'Не опаздывай.', uk: 'Не запізнюйся.', es: "Don't be late.", 'pt-BR': 'Não se atrase.', vi: 'Đừng đến muộn.', id: 'Jangan terlambat.', tr: 'Geç kalma.', pl: 'Nie spóźnij się.', why: tri('С be в запрете говорим don’t be.', 'З be у забороні кажемо don’t be.', "With be in a negative command, use don't be.") },
+    { en: 'Be careful.', ru: 'Будь осторожен.', uk: 'Будь обережний.', es: 'Be careful.', 'pt-BR': 'Tenha cuidado.', vi: 'Hãy cẩn thận.', id: 'Hati-hati.', tr: 'Dikkatli ol.', pl: 'Bądź ostrożny.', why: tri('Положительная команда с be начинается с Be.', 'Позитивна команда з be починається з Be.', 'Positive command with be starts with Be.') },
+    { en: "Let's start.", ru: 'Давай начнем.', uk: 'Давай почнемо.', es: "Let's start.", 'pt-BR': 'Vamos começar.', vi: 'Chúng ta bắt đầu nào.', id: 'Ayo mulai.', tr: 'Hadi başlayalım.', pl: 'Zacznijmy.', why: tri('Let’s значит, что мы делаем это вместе.', 'Let’s означає, що ми робимо це разом.', "Let's suggests doing something together.") },
+    { en: "Don't forget your keys.", ru: 'Не забудь ключи.', uk: 'Не забудь ключі.', es: "Don't forget your keys.", 'pt-BR': 'Não esqueça suas chaves.', vi: 'Đừng quên chìa khóa của bạn.', id: 'Jangan lupa kuncimu.', tr: 'Anahtarlarını unutma.', pl: 'Nie zapomnij kluczy.', why: tri('Don’t forget - нормальная короткая инструкция.', 'Don’t forget - нормальна коротка інструкція.', "Don't + forget is a negative instruction.") },
+    { en: 'Turn left and go straight.', ru: 'Поверни налево и иди прямо.', uk: 'Поверни ліворуч і йди прямо.', es: 'Turn left and go straight.', 'pt-BR': 'Vire à esquerda e siga em frente.', vi: 'Rẽ trái rồi đi thẳng.', id: 'Belok kiri dan jalan lurus.', tr: 'Sola dön ve düz git.', pl: 'Skręć w lewo i idź prosto.', why: tri('В инструкции может быть несколько действий подряд: turn и go.', 'В інструкції може бути кілька дій поспіль: turn і go.', 'Instructions can have several actions: turn and go.') },
   ],
   introBlocks: [
     {

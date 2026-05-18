@@ -1,0 +1,101 @@
+{
+  "generatedAt": "2026-05-17T21:32:37.194Z",
+  "mode": "semantic-audit",
+  "strict": true,
+  "summary": {
+    "findings": 4,
+    "blockers": 0,
+    "warnings": 4,
+    "reviewGroups": 4,
+    "byCode": {
+      "lesson-word-ambiguous-direct-source-map": 4
+    },
+    "bySurface": {
+      "lesson_words": 4
+    }
+  },
+  "reviewGroups": [
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "better",
+      "field": "better::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1117: better (adjectives)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "faster",
+      "field": "faster::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1127: faster (adjectives)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "faster",
+      "field": "faster::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1557: faster (adverbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "better",
+      "field": "better::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1833: better (adverbs)",
+      "count": 1,
+      "locales": []
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "better",
+      "field": "better::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1117: better (adjectives)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "faster",
+      "field": "faster::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1127: faster (adjectives)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "faster",
+      "field": "faster::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1557: faster (adverbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "better",
+      "field": "better::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1833: better (adverbs)"
+    }
+  ]
+}

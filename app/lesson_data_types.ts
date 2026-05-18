@@ -133,6 +133,11 @@ export type IntroExample = {
   ru: string;
   uk: string;
   es: string;
+  'pt-BR'?: string;
+  vi?: string;
+  id?: string;
+  tr?: string;
+  pl?: string;
   noteRU?: string;
   noteUK?: string;
   noteES?: string;

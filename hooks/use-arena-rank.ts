@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ArenaProfile, RANK_EMOJIS, RankTier } from '../app/types/arena';
+import { RANK_EMOJIS, RANK_LEVELS, rankToIndex, type ArenaProfile, type RankLevel, type RankTier } from '../app/types/arena';
 import { ensureArenaAuthUid } from '../app/user_id_policy';
 import {
   ARENA_RATING_SCREEN_CACHE_KEY,
@@ -9,15 +9,9 @@ import {
   sanitizeArenaProfileForRating,
 } from '../app/arena_rating_cache';
 
-const RANK_TIER_ORDER: RankTier[] = [
-  'bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'grandmaster', 'legend',
-];
-
-const rankIndexFromTierLevel = (tier: RankTier, level: string): number => {
-  const ti = RANK_TIER_ORDER.indexOf(tier);
-  const li = ['I', 'II', 'III'].indexOf(level);
-  return Math.max(0, ti) * 3 + Math.max(0, li);
-};
+function isRankLevel(level: string): level is RankLevel {
+  return (RANK_LEVELS as readonly string[]).includes(level);
+}
 
 const RANK_NAMES: Record<RankTier, string> = {
   bronze: 'Бронза', silver: 'Серебро', gold: 'Золото',
@@ -25,33 +19,29 @@ const RANK_NAMES: Record<RankTier, string> = {
   grandmaster: 'Грандмастер', legend: 'Легенда',
 };
 
-const RANK_IMAGES: Record<RankTier, Record<string, number>> = {
-  bronze:      { I: require('../assets/images/levels/ARENA BRONZ 1.webp'),  II: require('../assets/images/levels/ARENA BRONZ 2.webp'),  III: require('../assets/images/levels/ARENA BRONZ 3.webp') },
-  silver:      { I: require('../assets/images/levels/ARENA SILVER 1.webp'), II: require('../assets/images/levels/ARENA SILVER 2.webp'), III: require('../assets/images/levels/ARENA SILVER 3.webp') },
-  gold:        { I: require('../assets/images/levels/ARENA GOLD 1.webp'),   II: require('../assets/images/levels/ARENA GOLD 2.webp'),   III: require('../assets/images/levels/ARENA GOLD 3.webp') },
-  platinum:    { I: require('../assets/images/levels/ARENA PLATINUM 1.webp'),II: require('../assets/images/levels/ARENA PLATINUM 2.webp'),III: require('../assets/images/levels/ARENA PLATINUM 3.webp') },
-  diamond:     { I: require('../assets/images/levels/ARENA ALMAZ 1.webp'),  II: require('../assets/images/levels/ARENA ALMAZ 2.webp'),  III: require('../assets/images/levels/ARENA ALMAZ 3.webp') },
-  master:      { I: require('../assets/images/levels/ARENA MASTER 1.webp'), II: require('../assets/images/levels/ARENA MASTER 2.webp'), III: require('../assets/images/levels/ARENA MASTER 3.webp') },
-  grandmaster: { I: require('../assets/images/levels/ARENA GRAND 1.webp'),  II: require('../assets/images/levels/ARENA GRAN 2.webp'),   III: require('../assets/images/levels/ARENA GRAND 3.webp') },
-  legend:      { I: require('../assets/images/levels/ARENA LEGEND 1.webp'), II: require('../assets/images/levels/ARENA LEGEND 2.webp'), III: require('../assets/images/levels/ARENA LEGEND 3.webp') },
+// Arena ranks have exactly three gameplay levels. The old "base" art variants
+// are not bundled here because they are not a fourth rank level.
+const RANK_IMAGES: Record<RankTier, Record<RankLevel, number>> = {
+  bronze:      { I: require('../assets/images/arena_ranks/v2/arena-rank-bronze-i.webp'),      II: require('../assets/images/arena_ranks/v2/arena-rank-bronze-ii.webp'),      III: require('../assets/images/arena_ranks/v2/arena-rank-bronze-iii.webp') },
+  silver:      { I: require('../assets/images/arena_ranks/v2/arena-rank-silver-i.webp'),      II: require('../assets/images/arena_ranks/v2/arena-rank-silver-ii.webp'),      III: require('../assets/images/arena_ranks/v2/arena-rank-silver-iii.webp') },
+  gold:        { I: require('../assets/images/arena_ranks/v2/arena-rank-gold-i.webp'),        II: require('../assets/images/arena_ranks/v2/arena-rank-gold-ii.webp'),        III: require('../assets/images/arena_ranks/v2/arena-rank-gold-iii.webp') },
+  platinum:    { I: require('../assets/images/arena_ranks/v2/arena-rank-platinum-i.webp'),    II: require('../assets/images/arena_ranks/v2/arena-rank-platinum-ii.webp'),    III: require('../assets/images/arena_ranks/v2/arena-rank-platinum-iii.webp') },
+  diamond:     { I: require('../assets/images/arena_ranks/v2/arena-rank-diamond-i.webp'),     II: require('../assets/images/arena_ranks/v2/arena-rank-diamond-ii.webp'),     III: require('../assets/images/arena_ranks/v2/arena-rank-diamond-iii.webp') },
+  master:      { I: require('../assets/images/arena_ranks/v2/arena-rank-master-i.webp'),      II: require('../assets/images/arena_ranks/v2/arena-rank-master-ii.webp'),      III: require('../assets/images/arena_ranks/v2/arena-rank-master-iii.webp') },
+  grandmaster: { I: require('../assets/images/arena_ranks/v2/arena-rank-grandmaster-i.webp'), II: require('../assets/images/arena_ranks/v2/arena-rank-grandmaster-ii.webp'), III: require('../assets/images/arena_ranks/v2/arena-rank-grandmaster-iii.webp') },
+  legend:      { I: require('../assets/images/arena_ranks/v2/arena-rank-legend-i.webp'),      II: require('../assets/images/arena_ranks/v2/arena-rank-legend-ii.webp'),      III: require('../assets/images/arena_ranks/v2/arena-rank-legend-iii.webp') },
 };
 
 const FALLBACK_RANK_IMAGE = RANK_IMAGES.bronze['I'];
 
 export function getRankImage(tier: RankTier, level: string): number {
   const t = typeof tier === 'string' && tier in RANK_IMAGES ? tier : 'bronze';
-  const lev = level === 'I' || level === 'II' || level === 'III' ? level : 'I';
+  const lev = isRankLevel(level) ? level : 'I';
   const row = RANK_IMAGES[t as RankTier];
-  return row?.[lev] ?? row?.['I'] ?? FALLBACK_RANK_IMAGE;
+  return row?.[lev] ?? row?.I ?? FALLBACK_RANK_IMAGE;
 }
 
-/**
- * ARENA GOLD 3.webp — узкий высокий холст (309×414); при contain в квадрате значок получается
- * заметно меньше соседних рангов. Остальные ассеты ≈ 35–40 px по «короткой» стороне в боксе 40.
- */
-export function getRankImageDisplayScale(tier: RankTier, level: string): number {
-  const lev = level === 'I' || level === 'II' || level === 'III' ? level : 'I';
-  if (tier === 'gold' && lev === 'III') return 1.28;
+export function getRankImageDisplayScale(_tier: RankTier, _level: string): number {
   return 1;
 }
 
@@ -78,7 +68,7 @@ const TIER_LABELS_EN: Record<RankTier, string> = {
 const DEFAULT: DuelRankInfo = {
   tier: 'bronze', level: 'I', stars: 0, xp: 0, games: 0, rankIndex: 0,
   label: 'Бронза I', emoji: '🥉', labelShort: 'Bronze I',
-  image: require('../assets/images/levels/ARENA BRONZ 1.webp'),
+  image: require('../assets/images/arena_ranks/v2/arena-rank-bronze-i.webp'),
 };
 
 function duelRankInfoFromArenaProfile(data: ArenaProfile): DuelRankInfo {
@@ -89,7 +79,7 @@ function duelRankInfoFromArenaProfile(data: ArenaProfile): DuelRankInfo {
     tier, level, stars,
     xp: data.xp ?? 0,
     games: data.stats?.matchesPlayed ?? 0,
-    rankIndex: rankIndexFromTierLevel(tier, level),
+    rankIndex: rankToIndex(tier, level),
     label: `${RANK_NAMES[tier]} ${level}`,
     emoji: RANK_EMOJIS[tier],
     labelShort: `${TIER_LABELS_EN[tier]} ${level}`,

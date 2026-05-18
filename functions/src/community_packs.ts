@@ -32,6 +32,41 @@ const UGC_CARD_THEME_KEYS = new Set([
   'ember_coal',
 ]);
 
+const UGC_CARD_BACK_DEFAULT_KEY = 'community_01_aqua_circuit';
+
+const UGC_CARD_BACK_KEYS = new Set([
+  'community_01_aqua_circuit',
+  'community_02_coral_sunset',
+  'community_03_violet_nebula',
+  'community_04_ivory_marble',
+  'community_05_neon_grid',
+  'community_06_forest_rune',
+  'community_07_glacier_blue',
+  'community_08_ruby_velvet',
+  'community_09_brass_clockwork',
+  'community_10_paper_manuscript',
+  'community_11_obsidian_star',
+  'community_12_mint_enamel',
+  'community_13_royal_purple',
+  'community_14_desert_sand',
+  'community_15_sakura_ink',
+  'community_16_steel_blueprint',
+  'community_17_cyber_lime',
+  'community_18_aurora',
+  'community_19_coffee_leather',
+  'community_20_crystal_prism',
+  'community_21_midnight_moon',
+  'community_22_teal_mosaic',
+  'community_23_amber_glass',
+  'community_24_ink_noir',
+  'community_25_garden_botanical',
+  'community_26_ocean_pearl',
+  'community_27_crimson_chess',
+  'community_28_cloud_silver',
+  'community_29_rainbow_foil',
+  'community_30_slate_minimal',
+]);
+
 type SubmissionPayload = {
   title?: string;
   description?: string;
@@ -43,6 +78,7 @@ type SubmissionPayload = {
   descriptionUk?: string;
   descriptionEs?: string;
   cardThemeKey?: string;
+  cardBackKey?: string;
   priceShards: number;
   cards: Array<{ id: string; en: string; ru?: string; uk?: string; es?: string }>;
 };
@@ -99,6 +135,10 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
   if (!UGC_CARD_THEME_KEYS.has(cardThemeKey)) {
     cardThemeKey = 'neon_lime';
   }
+  let cardBackKey = String(raw.cardBackKey ?? UGC_CARD_BACK_DEFAULT_KEY).trim();
+  if (!UGC_CARD_BACK_KEYS.has(cardBackKey)) {
+    cardBackKey = UGC_CARD_BACK_DEFAULT_KEY;
+  }
   return {
     sourceLang,
     titleRu,
@@ -110,12 +150,18 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
     priceShards: UGC_PACK_PRICE_SHARDS,
     cards,
     cardThemeKey,
+    cardBackKey,
   };
 }
 
 function safeCardThemeKey(p: SubmissionPayload): string {
   const k = String(p.cardThemeKey ?? 'neon_lime').trim();
   return UGC_CARD_THEME_KEYS.has(k) ? k : 'neon_lime';
+}
+
+function safeCardBackKey(p: SubmissionPayload): string {
+  const k = String(p.cardBackKey ?? UGC_CARD_BACK_DEFAULT_KEY).trim();
+  return UGC_CARD_BACK_KEYS.has(k) ? k : UGC_CARD_BACK_DEFAULT_KEY;
 }
 
 function parseShards(data: admin.firestore.DocumentData | undefined): number {
@@ -198,6 +244,7 @@ export const communitySubmitPackForReview = onCall(async (request) => {
         priceShards: pd.priceShards ?? 0,
         cards: pd.cards ?? [],
         cardThemeKey: pd.cardThemeKey ?? null,
+        cardBackKey: pd.cardBackKey ?? null,
       };
       tx.set(subRef, {
         status: 'pending',
@@ -322,6 +369,7 @@ export const communityModerateSubmission = onCall(async (request) => {
     }
     const payload = normalizeSubmissionPayload(rawPayload);
     const themeKey = safeCardThemeKey(payload);
+    const cardBackKey = safeCardBackKey(payload);
     const editTarget = String(d.editTargetPackId ?? '').trim();
 
     if (editTarget) {
@@ -346,6 +394,7 @@ export const communityModerateSubmission = onCall(async (request) => {
         cards: payload.cards,
         cardCount: payload.cards.length,
         cardThemeKey: themeKey,
+        cardBackKey,
         updatedAt: now,
       });
       tx.update(subRef, {
@@ -379,6 +428,7 @@ export const communityModerateSubmission = onCall(async (request) => {
       cards: payload.cards,
       cardCount: payload.cards.length,
       cardThemeKey: themeKey,
+      cardBackKey,
       salesCount: 0,
       publishedAt: now,
       updatedAt: now,

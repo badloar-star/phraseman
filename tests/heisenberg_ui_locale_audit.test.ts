@@ -47,6 +47,46 @@ describe('heisenberg UI locale audit', () => {
     expect(result.findings).toEqual([]);
   });
 
+  it('detects corrupted planned-locale strings inside locale maps', () => {
+    const result = analyzeUiLocaleSource(
+      'app/Sample.tsx',
+      `
+        const title = triLang(lang, {
+          ru: 'Арена',
+          uk: 'Арена',
+          es: 'Arena',
+          'pt-BR': 'Revis?o',
+          vi: 'Ng??i ch?i',
+          id: 'Pemain',
+          tr: 'S?ralamal?',
+          pl: 'Powtórka',
+        });
+      `,
+    );
+
+    expect(result.findings.filter((finding) => finding.code === 'locale-string-mojibake')).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ keyPath: 'pt-BR' }),
+        expect.objectContaining({ keyPath: 'vi' }),
+        expect.objectContaining({ keyPath: 'tr' }),
+      ]),
+    );
+  });
+
+  it('does not treat Indonesian id fields as locale text outside locale maps', () => {
+    const result = analyzeUiLocaleSource(
+      'app/Sample.tsx',
+      `
+        const row = {
+          id: 'broken?id',
+          title: 'Plain object',
+        };
+      `,
+    );
+
+    expect(result.findings).toEqual([]);
+  });
+
   it('flags dynamic triLang copy objects for manual review', () => {
     const result = analyzeUiLocaleSource(
       'components/Sample.tsx',
@@ -129,6 +169,87 @@ describe('heisenberg UI locale audit', () => {
     );
 
     expect(result.findings).toEqual([]);
+  });
+
+  it('does not flag lesson word rows covered by the central source-locale gloss map', () => {
+    const result = analyzeUiLocaleSource(
+      'app/lesson_words.tsx',
+      `
+        const WORDS_BY_LESSON = {
+          1: [
+            { en: 'ready', ru: 'Готовый', uk: 'Готовий', es: 'listo', pos: 'adjectives' },
+          ],
+        };
+      `,
+    );
+
+    expect(result.findings).toEqual([]);
+  });
+
+  it('does not flag lesson word rows covered by a pos-specific source-locale gloss map key', () => {
+    const result = analyzeUiLocaleSource(
+      'app/lesson_words.tsx',
+      `
+        const WORDS_BY_LESSON = {
+          1: [
+            { en: 'like', ru: 'Нравиться / Любить', uk: 'Подобатися / Любити', es: 'gustar / querer', pos: 'verbs' },
+          ],
+        };
+      `,
+    );
+
+    expect(result.findings).toEqual([]);
+  });
+
+  it('still flags lesson word rows that are not covered inline or by the source-locale gloss map', () => {
+    const result = analyzeUiLocaleSource(
+      'app/lesson_words.tsx',
+      `
+        const WORDS_BY_LESSON = {
+          1: [
+            { en: 'uncovered-test-word', ru: 'Тест', uk: 'Тест', es: 'prueba', pos: 'nouns' },
+          ],
+        };
+      `,
+    );
+
+    expect(result.findings.some((finding) => finding.code === 'locale-object-missing-all-planned-locales')).toBe(true);
+  });
+
+  it('does not flag quiz rows covered by structured source-locale payloads', () => {
+    const result = analyzeUiLocaleSource(
+      'app/quiz_data.ts',
+      `
+        const EASY_POOL = [
+          {
+            ru: 'Я хочу пить',
+            uk: 'Я хочу пити',
+            es: 'Quiero beber',
+            choices: ['I want to drink.', 'I want drink.', 'I want to drunk.', 'I want drinking.'],
+          },
+        ];
+      `,
+    );
+
+    expect(result.findings).toEqual([]);
+  });
+
+  it('still flags quiz rows that are not covered by structured source-locale payloads', () => {
+    const result = analyzeUiLocaleSource(
+      'app/quiz_data.ts',
+      `
+        const EASY_POOL = [
+          {
+            ru: 'Тестовая строка без покрытия',
+            uk: 'Тестовий рядок без покриття',
+            es: 'Línea de prueba sin cobertura',
+            choices: ['A', 'B', 'C', 'D'],
+          },
+        ];
+      `,
+    );
+
+    expect(result.findings.some((finding) => finding.code === 'locale-object-missing-all-planned-locales')).toBe(true);
   });
 
   it('detects missing top-level constants/i18n bundles', () => {

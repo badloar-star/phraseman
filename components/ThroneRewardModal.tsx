@@ -16,6 +16,14 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
+import {
+  RewardModalBackdrop,
+  rewardModalAccentColor,
+  rewardModalPanelBorder,
+  rewardModalPanelColors,
+  rewardModalPrimaryButtonColors,
+  rewardModalPrimaryButtonText,
+} from './RewardModalBackdrop';
 
 interface ThroneRewardModalProps {
   visible: boolean;
@@ -87,8 +95,10 @@ function StarBurst({ size = 18, color = '#FFE566', opacity = 0.7 }: { size?: num
 }
 
 export default function ThroneRewardModal({ visible, shards, wins, onClose }: ThroneRewardModalProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const modalAccent = rewardModalAccentColor(themeMode, t);
+  const primaryButtonColors = rewardModalPrimaryButtonColors(themeMode);
 
   const overlayAnim = useRef(new Animated.Value(0)).current;
   const cardAnim = useRef(new Animated.Value(0)).current;
@@ -196,6 +206,7 @@ export default function ThroneRewardModal({ visible, shards, wins, onClose }: Th
   return (
     <Modal visible={visible} transparent animationType="none" onRequestClose={handleClose}>
       <Animated.View style={[styles.overlay, { opacity: overlayOpacity }]}>
+        <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
         {/* Плавающие частицы */}
         {PARTICLES.map((p, i) => (
           <Particle key={i} {...p} />
@@ -204,18 +215,20 @@ export default function ThroneRewardModal({ visible, shards, wins, onClose }: Th
         <Animated.View style={[
           styles.card,
           {
+            borderColor: rewardModalPanelBorder(themeMode, t),
+            shadowColor: modalAccent,
             transform: [{ scale: cardScale }, { translateY: cardTranslateY }],
             opacity: cardAnim,
           },
         ]}>
           <LinearGradient
-            colors={['#1C1508', '#251B0A', '#1C1508']}
+            colors={rewardModalPanelColors(themeMode, t)}
             style={styles.cardInner}
             start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }}
           >
             {/* Верхний золотой блик-полоса */}
             <LinearGradient
-              colors={['rgba(201,168,76,0)', 'rgba(201,168,76,0.18)', 'rgba(201,168,76,0)']}
+              colors={['transparent', `${modalAccent}44`, 'transparent']}
               style={styles.topShine}
               start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
             />
@@ -360,7 +373,7 @@ export default function ThroneRewardModal({ visible, shards, wins, onClose }: Th
 
             {/* Разделитель */}
             <LinearGradient
-              colors={['transparent', 'rgba(201,168,76,0.3)', 'transparent']}
+              colors={['transparent', `${modalAccent}55`, 'transparent']}
               style={styles.divider}
               start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
             />
@@ -372,8 +385,7 @@ export default function ThroneRewardModal({ visible, shards, wins, onClose }: Th
             ]}>
               <TouchableOpacity onPress={handleClose} activeOpacity={0.8}>
                 <LinearGradient
-                  colors={['#4A3510', '#7A5A1E', '#C9A84C', '#E8C96A', '#C9A84C', '#7A5A1E', '#4A3510']}
-                  locations={[0, 0.15, 0.35, 0.5, 0.65, 0.85, 1]}
+                  colors={primaryButtonColors}
                   start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }}
                   style={styles.btnInner}
                 >
@@ -383,7 +395,7 @@ export default function ThroneRewardModal({ visible, shards, wins, onClose }: Th
                     style={styles.btnTopShine}
                     start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }}
                   />
-                  <Text style={[styles.btnText, { fontSize: f.body ?? 15 }]}>
+                  <Text style={[styles.btnText, { fontSize: f.body ?? 15, color: rewardModalPrimaryButtonText(themeMode) }]}>
                     {triLang(lang, {
                       ru: 'Забрать награду',
                       uk: 'Забрати нагороду',

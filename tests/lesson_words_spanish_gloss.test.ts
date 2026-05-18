@@ -111,6 +111,57 @@ describe('lessonWordRecognitionPrompt', () => {
     ).toBe('Yo');
   });
 
+  it('planned source languages use isolated word fields when present', () => {
+    expect(
+      lessonWordRecognitionPrompt(
+        {
+          en: 'the',
+          ru: 'определённый артикль',
+          uk: 'означений артикль',
+          es: 'el / la',
+          'pt-BR': 'artigo definido',
+          vi: 'mạo từ xác định',
+          id: 'artikel tertentu',
+          tr: 'belirli artikel',
+          pl: 'przedimek określony',
+        },
+        'pt-BR' as never,
+      ),
+    ).toBe('artigo definido');
+  });
+
+  it('planned source languages fall back to the central English-headword source map', () => {
+    expect(
+      lessonWordRecognitionPrompt(
+        { en: 'ready', ru: 'Готовый', uk: 'Готовий', es: 'listo', pos: 'adjectives' },
+        'vi' as never,
+      ),
+    ).toBe('sẵn sàng');
+  });
+
+  it('planned source languages use pos-specific central glosses for ambiguous English headwords', () => {
+    expect(
+      lessonWordRecognitionPrompt(
+        { en: 'May', ru: 'Май', uk: 'Травень', es: 'mayo', pos: 'nouns' },
+        'pt-BR' as never,
+      ),
+    ).toBe('maio');
+
+    expect(
+      lessonWordRecognitionPrompt(
+        { en: 'may', ru: 'Можно', uk: 'Можна', es: 'poder', pos: 'verbs' },
+        'pt-BR' as never,
+      ),
+    ).toBe('poder / permissão');
+
+    expect(
+      lessonWordRecognitionPrompt(
+        { en: 'park', ru: 'Парковаться', uk: 'Паркуватися', es: 'estacionar', pos: 'verbs' },
+        'tr' as never,
+      ),
+    ).toBe('park etmek');
+  });
+
   it('ES: uses ES_PLURAL_WEEKDAY_GLOSS for Mondays…Sundays', () => {
     expect(
       lessonWordRecognitionPrompt(

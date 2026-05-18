@@ -15,6 +15,7 @@ import {
   clearPendingResult,
   getLeagueResultSignature,
   getWeekId,
+  loadPendingResult,
   type GroupMember,
   type LeagueState,
 } from '../app/league_engine';
@@ -32,6 +33,22 @@ const makeGroup = (myPoints: number): GroupMember[] => [
   { uid: 'me', name: 'QA Monday', points: myPoints, isMe: true },
 ].sort((a, b) => b.points - a.points);
 
+const makeGroupWithMyRank = (total: number, myRank: number): { group: GroupMember[]; myPoints: number } => {
+  const myPoints = 1000;
+  const group = Array.from({ length: total }, (_, index): GroupMember => {
+    const place = index + 1;
+    if (place === myRank) {
+      return { uid: 'me', name: 'QA Monday', points: myPoints, isMe: true };
+    }
+    const distance = Math.abs(place - myRank);
+    const points = place < myRank
+      ? myPoints + (distance + 1) * 100
+      : myPoints - distance * 100;
+    return { uid: `u${place}`, name: `Bot ${place}`, points, isMe: false };
+  });
+  return { group: group.sort((a, b) => b.points - a.points), myPoints };
+};
+
 const saveState = async (state: LeagueState) => {
   await AsyncStorage.setItem('league_state_v3', JSON.stringify(state));
 };
@@ -42,7 +59,7 @@ describe('league weekly rollover', () => {
     jest.clearAllMocks();
   });
 
-  it('promotes top 15 percent with a real group size', () => {
+  it('promotes the top result zone with a real group size', () => {
     const result = calculateResult({
       leagueId: 0,
       weekId: '2026-W19',
@@ -59,7 +76,108 @@ describe('league weekly rollover', () => {
     });
   });
 
-  it('demotes bottom 15 percent and uses stored weekly points from league state', async () => {
+  it('keeps fifth place in a sixteen-person group because top zone is three', () => {
+    const { group, myPoints } = makeGroupWithMyRank(16, 5);
+    const result = calculateResult({
+      leagueId: 0,
+      weekId: '2026-W19',
+      group,
+    }, myPoints);
+
+    expect(result).toMatchObject({
+      prevLeagueId: 0,
+      newLeagueId: 0,
+      myRank: 5,
+      totalInGroup: 16,
+      promoted: false,
+      demoted: false,
+    });
+  });
+
+  it('repairs a cached group where the current row lost isMe before rollover', async () => {
+    const corrupted = makeGroup(1200).map(m => (
+      m.name === 'QA Monday' ? { ...m, isMe: false } : m
+    ));
+    await saveState({
+      leagueId: 0,
+      weekId: '2026-W19',
+      group: corrupted,
+    });
+
+    const opened = await checkLeagueOnAppOpen('QA Monday', 0);
+
+    expect(opened.needShowResult).toBe(true);
+    expect(opened.result).toMatchObject({
+      prevLeagueId: 0,
+      newLeagueId: 1,
+      myRank: 1,
+      totalInGroup: 10,
+      promoted: true,
+    });
+    expect(opened.result?.group.some(m => m.name === 'QA Monday' && m.isMe)).toBe(true);
+  });
+
+  it('repairs an already saved pending result with rank 0', async () => {
+    await AsyncStorage.setItem('user_name', 'QA Monday');
+    const pending = {
+      prevLeagueId: 0,
+      newLeagueId: 0,
+      myRank: 0,
+      totalInGroup: 10,
+      promoted: false,
+      demoted: false,
+      group: makeGroup(1200).map(m => (
+        m.name === 'QA Monday' ? { ...m, isMe: false } : m
+      )),
+    };
+    await AsyncStorage.setItem('league_result_pending', JSON.stringify(pending));
+
+    const repaired = await loadPendingResult();
+    const savedPending = JSON.parse(await AsyncStorage.getItem('league_result_pending') || '{}');
+
+    expect(repaired).toMatchObject({
+      prevLeagueId: 0,
+      newLeagueId: 1,
+      myRank: 1,
+      totalInGroup: 10,
+      promoted: true,
+    });
+    expect(savedPending.myRank).toBe(1);
+    expect(savedPending.group.some((m: GroupMember) => m.name === 'QA Monday' && m.isMe)).toBe(true);
+  });
+
+  it('recalculates an already saved pending result with the current top-three zone', async () => {
+    const { group } = makeGroupWithMyRank(16, 5);
+    const stalePending = {
+      prevLeagueId: 0,
+      newLeagueId: 1,
+      myRank: 5,
+      totalInGroup: 16,
+      promoted: true,
+      demoted: false,
+      group,
+    };
+    await AsyncStorage.setItem('league_result_pending', JSON.stringify(stalePending));
+    await AsyncStorage.setItem('league_state_v3', JSON.stringify({ leagueId: 0, weekId: '2026-W20', group }));
+
+    const repaired = await loadPendingResult();
+    const savedPending = JSON.parse(await AsyncStorage.getItem('league_result_pending') || '{}');
+    const savedState = JSON.parse(await AsyncStorage.getItem('league_state_v3') || '{}');
+
+    expect(repaired).toMatchObject({
+      prevLeagueId: 0,
+      newLeagueId: 0,
+      myRank: 5,
+      totalInGroup: 16,
+      promoted: false,
+      demoted: false,
+    });
+    expect(savedPending.promoted).toBe(false);
+    expect(savedPending.newLeagueId).toBe(0);
+    expect(savedState.leagueId).toBe(0);
+  });
+
+  it('demotes the bottom result zone and uses stored weekly points from league state', async () => {
     await saveState({
       leagueId: 2,
       weekId: '2026-W19',

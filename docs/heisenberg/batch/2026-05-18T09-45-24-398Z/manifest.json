@@ -1,0 +1,118 @@
+{
+  "pipeline": "heisenberg",
+  "mode": "batch",
+  "runId": "2026-05-18T09-45-24-398Z",
+  "generatedAt": "2026-05-18T09:46:20.812Z",
+  "locales": [
+    "es",
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "auditOnly": true,
+  "outputDir": "docs/heisenberg/batch/2026-05-18T09-45-24-398Z",
+  "runs": [
+    {
+      "locale": "es",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang es --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=es\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1744\n[heisenberg] localized items (all): 115472\n[heisenberg] localized items (blocks): 2052\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/es/2026-05-18T09-45-24-600Z\n[heisenberg] warning: es already maps to an existing app locale.\n[heisenberg] existing-locale mode: existing-locale-production-audit\n[heisenberg] existing-locale blockers: 0\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "pt-BR",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang pt-BR --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=pt-BR\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1744\n[heisenberg] localized items (all): 115472\n[heisenberg] localized items (blocks): 77375\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/pt-br/2026-05-18T09-45-28-261Z\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "vi",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang vi --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=vi\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1744\n[heisenberg] localized items (all): 115472\n[heisenberg] localized items (blocks): 77375\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/vi/2026-05-18T09-45-32-198Z\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "id",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang id --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=id\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1745\n[heisenberg] localized items (all): 115472\n[heisenberg] localized items (blocks): 77375\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/id/2026-05-18T09-45-36-049Z\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "tr",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang tr --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=tr\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1745\n[heisenberg] localized items (all): 115472\n[heisenberg] localized items (blocks): 77375\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/tr/2026-05-18T09-45-39-405Z\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "pl",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang pl --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=pl\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1745\n[heisenberg] localized items (all): 115472\n[heisenberg] localized items (blocks): 77375\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/pl/2026-05-18T09-45-42-835Z\n",
+      "stderrTail": ""
+    }
+  ],
+  "checks": [
+    {
+      "command": "npm run audit:translations",
+      "startedAt": "2026-05-18T09:45:45.802Z",
+      "finishedAt": "2026-05-18T09:45:47.262Z",
+      "status": 0,
+      "ok": true,
+      "error": null,
+      "stdoutTail": "\n> phraseman@1.5.33 audit:translations\n> node ./scripts/audit_translations_1_32.mjs\n\nГотово. Фраз: 1600, пометок: 0\nСводка по типам: {}\n→ docs/reports/lessons_translations_audit.md\n→ docs/reports/lessons_translations_audit.json\n→ docs/reports/lessons_translations_flat.json\n",
+      "stderrTail": ""
+    },
+    {
+      "command": "npm test -- --runTestsByPath tests/heisenberg_pipeline.test.ts tests/locale_ru_uk_es.test.ts tests/quiz_source_locale.test.ts tests/quiz_spanish_locale.test.ts tests/daily_phrase_locale.test.ts --runInBand",
+      "startedAt": "2026-05-18T09:45:47.262Z",
+      "finishedAt": "2026-05-18T09:45:57.152Z",
+      "status": 0,
+      "ok": true,
+      "error": null,
+      "stdoutTail": "\n> phraseman@1.5.33 test\n> jest --testPathPattern=tests/ --no-cache --runTestsByPath tests/heisenberg_pipeline.test.ts tests/locale_ru_uk_es.test.ts tests/quiz_source_locale.test.ts tests/quiz_spanish_locale.test.ts tests/daily_phrase_locale.test.ts --runInBand\n\n",
+      "stderrTail": "PASS tests/quiz_spanish_locale.test.ts (6.32 s)\nPASS tests/heisenberg_pipeline.test.ts\nPASS tests/daily_phrase_locale.test.ts\nPASS tests/quiz_source_locale.test.ts\nPASS tests/locale_ru_uk_es.test.ts\n\nTest Suites: 5 passed, 5 total\nTests:       61 passed, 61 total\nSnapshots:   0 total\nTime:        8.953 s\nRan all test suites within paths \"tests/heisenberg_pipeline.test.ts\", \"tests/locale_ru_uk_es.test.ts\", \"tests/quiz_source_locale.test.ts\", \"tests/quiz_spanish_locale.test.ts\", \"tests/daily_phrase_locale.test.ts\".\nForce exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?\n"
+    },
+    {
+      "command": "npx tsc --noEmit --pretty false",
+      "startedAt": "2026-05-18T09:45:57.152Z",
+      "finishedAt": "2026-05-18T09:46:13.355Z",
+      "status": 2,
+      "ok": false,
+      "error": null,
+      "stdoutTail": "components/LevelGiftDualModal.tsx(579,23): error TS2322: Type '{ gift: GiftDef; lang: Lang; theme: { bgPrimary: string; bgCard: string; bgSurface: string; bgSurface2: string; textPrimary: string; textOnCard: string; textSecond: string; textMuted: string; ... 24 more ...; bgGradient: [...]; }; fonts: { ...; }; burstTier: GiftAnimTier; premVisual: false; premiumChestSource: Image...' is not assignable to type 'IntrinsicAttributes & { gift: GiftDef; lang: Lang; theme: { bgPrimary: string; bgCard: string; bgSurface: string; bgSurface2: string; textPrimary: string; ... 27 more ...; bgGradient: [...]; }; fonts: { ...; }; burstTier: GiftAnimTier; premVisual: boolean; }'.\n  Property 'premiumChestSource' does not exist on type 'IntrinsicAttributes & { gift: GiftDef; lang: Lang; theme: { bgPrimary: string; bgCard: string; bgSurface: string; bgSurface2: string; textPrimary: string; ... 27 more ...; bgGradient: [...]; }; fonts: { ...; }; burstTier: GiftAnimTier; premVisual: boolean; }'.\ncomponents/LevelGiftDualModal.tsx(618,23): error TS2322: Type '{ gift: GiftDef; lang: Lang; theme: { bgPrimary: string; bgCard: string; bgSurface: string; bgSurface2: string; textPrimary: string; textOnCard: string; textSecond: string; textMuted: string; ... 24 more ...; bgGradient: [...]; }; fonts: { ...; }; burstTier: GiftAnimTier; premVisual: true; premiumChestSource: ImageS...' is not assignable to type 'IntrinsicAttributes & { gift: GiftDef; lang: Lang; theme: { bgPrimary: string; bgCard: string; bgSurface: string; bgSurface2: string; textPrimary: string; ... 27 more ...; bgGradient: [...]; }; fonts: { ...; }; burstTier: GiftAnimTier; premVisual: boolean; }'.\n  Property 'premiumChestSource' does not exist on type 'IntrinsicAttributes & { gift: GiftDef; lang: Lang; theme: { bgPrimary: string; bgCard: string; bgSurface: string; bgSurface2: string; textPrimary: string; ... 27 more ...; bgGradient: [...]; }; fonts: { ...; }; burstTier: GiftAnimTier; premVisual: boolean; }'.\ncomponents/LevelGiftDualModal.tsx(853,21): error TS2304: Cannot find name 'PREMIUM_CHEST'.\ncomponents/LevelGiftDualModal.tsx(943,28): error TS2304: Cannot find name 'PREMIUM_CHEST'.\n",
+      "stderrTail": ""
+    },
+    {
+      "command": "npm run heisenberg:semantic-audit:strict",
+      "startedAt": "2026-05-18T09:46:13.355Z",
+      "finishedAt": "2026-05-18T09:46:17.875Z",
+      "status": 0,
+      "ok": true,
+      "error": null,
+      "stdoutTail": "\n> phraseman@1.5.33 heisenberg:semantic-audit:strict\n> npx tsx ./scripts/heisenberg_semantic_audit.ts --strict\n\nHeisenberg semantic audit: 0 blockers, 259 warnings\nReview groups: 74\nquiz-source-locale-coverage-gap: 147 | protected-english-term-missing: 97 | possible-distractor-index-drift: 15\nReport: docs/heisenberg/semantic/2026-05-18T09-46-17-817Z\n",
+      "stderrTail": ""
+    },
+    {
+      "command": "npm run heisenberg:ui-audit",
+      "startedAt": "2026-05-18T09:46:17.875Z",
+      "finishedAt": "2026-05-18T09:46:20.812Z",
+      "status": 0,
+      "ok": true,
+      "error": null,
+      "stdoutTail": "\n> phraseman@1.5.33 heisenberg:ui-audit\n> npx tsx ./scripts/heisenberg_ui_locale_audit.ts\n\nHeisenberg UI locale audit: activationReady=no, 1874 findings, 0 missing triLang locale units\nReport: docs/heisenberg/ui/2026-05-18T09-46-20-739Z\n",
+      "stderrTail": ""
+    }
+  ]
+}

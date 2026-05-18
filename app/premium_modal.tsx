@@ -4,6 +4,9 @@ import {
   ScrollView, Animated, Linking, Modal, Easing, StyleSheet,
   Platform,
   TextInput,
+  Image,
+  ImageBackground,
+  type ImageSourcePropType,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
@@ -14,9 +17,11 @@ import Purchases, { PurchasesPackage } from 'react-native-purchases';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useEnergy } from '../components/EnergyContext';
+import EnergyIcon from '../components/EnergyIcon';
 import ContentWrap from '../components/ContentWrap';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import { paywallGlassColor } from '../components/paywallGlass';
 import MatchFoundToast from '../components/MatchFoundToast';
 import { DEV_IAP_BYPASS, IS_EXPO_GO, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from './config';
 import { initRevenueCat, resolvePremiumPackages } from './revenuecat_init';
@@ -59,6 +64,8 @@ import { hapticTap } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
 import { triLang, type Lang } from '../constants/i18n';
 import { getPremiumCourseLevel } from './lesson_lock_system';
+import type { ThemeMode } from '../constants/theme';
+import { oskolokImageForPackShards } from './oskolok';
 
 type PremiumPlannedCopy = {
   'pt-BR': string;
@@ -86,6 +93,8 @@ function storePriceTrim(raw: string | undefined | null): string {
   if (typeof raw !== 'string') return '';
   return raw.trim();
 }
+
+const isEnergyGlyph = (value: string) => value.codePointAt(0) === 0x26A1;
 
 type Plan = 'monthly' | 'yearly';
 type PremiumContext =
@@ -115,6 +124,85 @@ type PremiumContext =
   | 'patterns'
   | 'percentiles'
   | 'generic';
+
+const PREMIUM_CONTEXT_VALUES = [
+  'arena',
+  'no_energy',
+  'course_after_lesson3',
+  'lesson_b1',
+  'quiz_limit',
+  'quiz_level',
+  'quiz_medium',
+  'quiz_hard',
+  'flashcard_limit',
+  'streak',
+  'theme',
+  'club',
+  'trainer',
+  'trainer_limit',
+  'diagnosis_training',
+  'mastery',
+  'stats',
+  'heatmap',
+  'patterns',
+  'percentiles',
+  'generic',
+] as const satisfies readonly PremiumContext[];
+const PREMIUM_CONTEXT_SET = new Set<string>(PREMIUM_CONTEXT_VALUES);
+
+const PREMIUM_HERO_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
+  dark: require('../assets/images/paywalls/premium_hero/premium-hero-dark.webp'),
+  neon: require('../assets/images/paywalls/premium_hero/premium-hero-neon.webp'),
+  gold: require('../assets/images/paywalls/premium_hero/premium-hero-gold.webp'),
+  coral: require('../assets/images/paywalls/premium_hero/premium-hero-coral.webp'),
+  minimalLight: require('../assets/images/paywalls/premium_hero/premium-hero-minimal-light.webp'),
+  minimalDark: require('../assets/images/paywalls/premium_hero/premium-hero-minimal-dark.webp'),
+};
+
+type PremiumHeroArt = {
+  accent: string;
+  accent2: string;
+  shardAmount: number;
+};
+
+const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
+  arena: { accent: '#58D6FF', accent2: '#A7FF4F', shardAmount: 180 },
+  no_energy: { accent: '#FFE86A', accent2: '#64B4FF', shardAmount: 80 },
+  course_after_lesson3: { accent: '#63E6BE', accent2: '#FFD86B', shardAmount: 180 },
+  lesson_b1: { accent: '#63E6BE', accent2: '#FFD86B', shardAmount: 180 },
+  quiz_limit: { accent: '#C8FF00', accent2: '#66E6FF', shardAmount: 80 },
+  quiz_level: { accent: '#7DD3FC', accent2: '#A78BFA', shardAmount: 180 },
+  quiz_medium: { accent: '#FDBA74', accent2: '#C8FF00', shardAmount: 180 },
+  quiz_hard: { accent: '#C084FC', accent2: '#FF6BB5', shardAmount: 420 },
+  flashcard_limit: { accent: '#8BD3FF', accent2: '#FDE68A', shardAmount: 80 },
+  streak: { accent: '#FFB020', accent2: '#FF5C5C', shardAmount: 180 },
+  theme: { accent: '#F0ABFC', accent2: '#67E8F9', shardAmount: 180 },
+  club: { accent: '#FACC15', accent2: '#22C55E', shardAmount: 420 },
+  trainer: { accent: '#A78BFA', accent2: '#5EEAD4', shardAmount: 180 },
+  trainer_limit: { accent: '#A78BFA', accent2: '#5EEAD4', shardAmount: 180 },
+  diagnosis_training: { accent: '#5EEAD4', accent2: '#60A5FA', shardAmount: 180 },
+  mastery: { accent: '#86EFAC', accent2: '#FDE68A', shardAmount: 420 },
+  stats: { accent: '#60A5FA', accent2: '#FDE68A', shardAmount: 180 },
+  heatmap: { accent: '#34D399', accent2: '#A3E635', shardAmount: 180 },
+  patterns: { accent: '#F87171', accent2: '#C084FC', shardAmount: 180 },
+  percentiles: { accent: '#FACC15', accent2: '#38BDF8', shardAmount: 420 },
+  generic: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
+};
+
+function premiumHeroScrim(themeMode: ThemeMode): string[] {
+  if (themeMode === 'minimalLight') {
+    return ['rgba(255,255,255,0.72)', 'rgba(255,255,255,0.50)', 'rgba(255,255,255,0.78)'];
+  }
+  if (themeMode === 'gold') {
+    return ['rgba(0,0,0,0.28)', 'rgba(0,0,0,0.18)', 'rgba(0,0,0,0.54)'];
+  }
+  return ['rgba(0,0,0,0.36)', 'rgba(0,0,0,0.16)', 'rgba(0,0,0,0.58)'];
+}
+
+function useShardHeroIcon(ctx: PremiumContext): boolean {
+  return ctx === 'generic';
+}
+
 type PaywallCopy = {
   titleRu: string;
   titleUk: string;
@@ -158,10 +246,12 @@ const COURSE_AFTER_LESSON3_PLANNED_COPY: PremiumPlannedHeroCopy = {
 
 function normalizePremiumContext(raw: string | string[] | undefined): PremiumContext {
   const value = Array.isArray(raw) ? raw[0] : raw;
+  if (!value) return 'generic';
   if (value === 'hall_of_fame') return 'generic';
   if (value === 'lesson_b1') return 'course_after_lesson3';
-  if (value === 'trainer_smart_mix') return 'trainer';
-  return (value ?? 'generic') as PremiumContext;
+  if (value === 'trainer_smart_mix' || value === 'smart_trainer') return 'trainer';
+  if (value === 'avatar_aura') return 'theme';
+  return PREMIUM_CONTEXT_SET.has(value) ? (value as PremiumContext) : 'generic';
 }
 
 const PAYWALL_COPY: Record<PremiumContext, PaywallCopy> = {
@@ -745,7 +835,7 @@ function getHero(
       };
     default:
       return {
-        emoji: '💎',
+        emoji: '✨',
         titleRu: copy.titleRu,
         titleUk: copy.titleUk,
         titleEs: copy.titleEs,
@@ -757,112 +847,112 @@ function getHero(
   }
 }
 
-const CONTEXT_BENEFITS: Record<PremiumContext, { ru: string; uk: string; es: string }[]> = {
+const CONTEXT_BENEFITS: Record<PremiumContext, ({ ru: string; uk: string; es: string } & PremiumPlannedCopy)[]> = {
   arena: [
-    { ru: 'Дневной потолок матчей снимается', uk: 'Денну межу матчів знято', es: 'Se quita el techo diario de partidas' },
-    { ru: 'Дуэли без ощущения «на сегодня всё»', uk: 'Дуелі без «на сьогодні вже досить»', es: 'Duelos sin el «ya basta por hoy»' },
-    { ru: 'Темп и мотивация в тренировках сильнее', uk: 'Темп і мотивація в тренуваннях сильніші', es: 'Ritmo y motivación en el entrenamiento' },
+    { ru: 'Дневной потолок матчей снимается', uk: 'Денну межу матчів знято', es: 'Se quita el techo diario de partidas', 'pt-BR': 'O teto diário de partidas é removido', vi: 'Gỡ giới hạn trận hằng ngày', id: 'Batas pertandingan harian dihapus', tr: 'Günlük maç tavanı kalkar', pl: 'Dzienny limit meczów znika' },
+    { ru: 'Дуэли без ощущения «на сегодня всё»', uk: 'Дуелі без «на сьогодні вже досить»', es: 'Duelos sin el «ya basta por hoy»', 'pt-BR': 'Duelos sem “por hoje chega”', vi: 'Đấu mà không bị “hôm nay đủ rồi”', id: 'Duel tanpa rasa “cukup hari ini”', tr: '“Bugünlük yeter” hissi olmadan düello', pl: 'Pojedynki bez “na dziś wystarczy”' },
+    { ru: 'Темп и мотивация в тренировках сильнее', uk: 'Темп і мотивація в тренуваннях сильніші', es: 'Ritmo y motivación en el entrenamiento', 'pt-BR': 'Mais ritmo e motivação nos treinos', vi: 'Nhịp và động lực luyện tập mạnh hơn', id: 'Ritme dan motivasi latihan lebih kuat', tr: 'Antrenmanda daha güçlü tempo ve motivasyon', pl: 'Silniejsze tempo i motywacja w treningu' },
   ],
   no_energy: [
-    { ru: 'Свободные занятия без таймера', uk: 'Вільні заняття без таймера', es: 'Sesiones sin temporizador de espera' },
-    { ru: 'Урок, квиз и финальный экзамен без вынужденных пауз', uk: 'Урок, квіз і фінальний іспит без вимушених пауз', es: 'Lección, quiz y examen sin pausas forzadas' },
-    { ru: 'Стабильный дневной ритм без срывов', uk: 'Стабільний щоденний ритм без зривів', es: 'Ritmo diario estable sin frenos' },
+    { ru: 'Свободные занятия без таймера', uk: 'Вільні заняття без таймера', es: 'Sesiones sin temporizador de espera', 'pt-BR': 'Estudo livre sem temporizador', vi: 'Học tự do không cần chờ timer', id: 'Sesi bebas tanpa timer tunggu', tr: 'Bekleme sayacı olmadan serbest çalışma', pl: 'Swobodna nauka bez timera' },
+    { ru: 'Урок, квиз и финальный экзамен без вынужденных пауз', uk: 'Урок, квіз і фінальний іспит без вимушених пауз', es: 'Lección, quiz y examen sin pausas forzadas', 'pt-BR': 'Lição, quiz e exame final sem pausas forçadas', vi: 'Bài học, quiz và bài cuối không bị dừng ép buộc', id: 'Pelajaran, kuis, dan ujian akhir tanpa jeda paksa', tr: 'Ders, quiz ve final sınavı zorunlu ara olmadan', pl: 'Lekcja, quiz i egzamin bez wymuszonych przerw' },
+    { ru: 'Стабильный дневной ритм без срывов', uk: 'Стабільний щоденний ритм без зривів', es: 'Ritmo diario estable sin frenos', 'pt-BR': 'Ritmo diário estável sem travar', vi: 'Nhịp học hằng ngày ổn định hơn', id: 'Ritme harian stabil tanpa terhenti', tr: 'Aksamadan istikrarlı günlük ritim', pl: 'Stabilny rytm dnia bez zrywów' },
   ],
   course_after_lesson3: [
-    { ru: 'Текущий уровень открывается целиком сразу', uk: 'Поточний рівень відкривається повністю одразу', es: 'Tu nivel actual se abre completo al instante' },
-    { ru: 'Никаких барьеров — просто учись дальше в своё удовольствие', uk: 'Жодних бар\'єрів — просто навчайся далі із задоволенням', es: 'Sin barreras — sigue aprendiendo a tu gusto' },
-    { ru: 'Следующие уровни открываются через экзамены', uk: 'Наступні рівні відкриваються через екзамени', es: 'Los siguientes niveles se abren con exámenes' },
+    { ru: 'Текущий уровень открывается целиком сразу', uk: 'Поточний рівень відкривається повністю одразу', es: 'Tu nivel actual se abre completo al instante', 'pt-BR': 'O nível atual abre completo na hora', vi: 'Cấp hiện tại mở toàn bộ ngay', id: 'Level saat ini langsung terbuka penuh', tr: 'Mevcut seviye hemen tamamen açılır', pl: 'Obecny poziom od razu otwiera się w całości' },
+    { ru: 'Никаких барьеров — просто учись дальше в своё удовольствие', uk: 'Жодних бар\'єрів — просто навчайся далі із задоволенням', es: 'Sin barreras — sigue aprendiendo a tu gusto', 'pt-BR': 'Sem barreiras — continue estudando no seu ritmo', vi: 'Không rào cản — cứ học tiếp theo nhịp của bạn', id: 'Tanpa hambatan — lanjut belajar dengan nyaman', tr: 'Engel yok — keyifle devam et', pl: 'Bez barier — ucz się dalej swoim tempem' },
+    { ru: 'Следующие уровни открываются через экзамены', uk: 'Наступні рівні відкриваються через екзамени', es: 'Los siguientes niveles se abren con exámenes', 'pt-BR': 'Os próximos níveis abrem com exames', vi: 'Cấp tiếp theo mở qua bài kiểm tra', id: 'Level berikutnya terbuka lewat ujian', tr: 'Sonraki seviyeler sınavlarla açılır', pl: 'Kolejne poziomy otwierają się przez egzaminy' },
   ],
   lesson_b1: [
-    { ru: 'Текущий уровень открывается целиком сразу', uk: 'Поточний рівень відкривається повністю одразу', es: 'Tu nivel actual se abre completo al instante' },
-    { ru: 'Никаких барьеров — просто учись дальше в своё удовольствие', uk: 'Жодних бар\'єрів — просто навчайся далі із задоволенням', es: 'Sin barreras — sigue aprendiendo a tu gusto' },
-    { ru: 'Следующие уровни открываются через экзамены', uk: 'Наступні рівні відкриваються через екзамени', es: 'Los siguientes niveles se abren con exámenes' },
+    { ru: 'Текущий уровень открывается целиком сразу', uk: 'Поточний рівень відкривається повністю одразу', es: 'Tu nivel actual se abre completo al instante', 'pt-BR': 'O nível atual abre completo na hora', vi: 'Cấp hiện tại mở toàn bộ ngay', id: 'Level saat ini langsung terbuka penuh', tr: 'Mevcut seviye hemen tamamen açılır', pl: 'Obecny poziom od razu otwiera się w całości' },
+    { ru: 'Никаких барьеров — просто учись дальше в своё удовольствие', uk: 'Жодних бар\'єрів — просто навчайся далі із задоволенням', es: 'Sin barreras — sigue aprendiendo a tu gusto', 'pt-BR': 'Sem barreiras — continue estudando no seu ritmo', vi: 'Không rào cản — cứ học tiếp theo nhịp của bạn', id: 'Tanpa hambatan — lanjut belajar dengan nyaman', tr: 'Engel yok — keyifle devam et', pl: 'Bez barier — ucz się dalej swoim tempem' },
+    { ru: 'Следующие уровни открываются через экзамены', uk: 'Наступні рівні відкриваються через екзамени', es: 'Los siguientes niveles se abren con exámenes', 'pt-BR': 'Os próximos níveis abrem com exames', vi: 'Cấp tiếp theo mở qua bài kiểm tra', id: 'Level berikutnya terbuka lewat ujian', tr: 'Sonraki seviyeler sınavlarla açılır', pl: 'Kolejne poziomy otwierają się przez egzaminy' },
   ],
   quiz_limit: [
-    { ru: 'Без лимита попыток и остановок', uk: 'Без ліміту спроб і зупинок', es: 'Sin límite de intentos ni frenos' },
-    { ru: 'Регулярный учебный ритм каждый день', uk: 'Регулярний навчальний ритм щодня', es: 'Ritmo de estudio estable cada día' },
-    { ru: 'Больше XP и пользы сессий', uk: 'Більше XP і користі від сесій', es: 'Más XP y valor en cada sesión' },
+    { ru: 'Без лимита попыток и остановок', uk: 'Без ліміту спроб і зупинок', es: 'Sin límite de intentos ni frenos', 'pt-BR': 'Sem limite de tentativas nem pausas', vi: 'Không giới hạn lượt thử và không bị dừng', id: 'Tanpa batas percobaan dan hambatan', tr: 'Deneme ve duraklama sınırı yok', pl: 'Bez limitu prób i zatrzymań' },
+    { ru: 'Регулярный учебный ритм каждый день', uk: 'Регулярний навчальний ритм щодня', es: 'Ritmo de estudio estable cada día', 'pt-BR': 'Ritmo de estudo regular todos os dias', vi: 'Nhịp học đều đặn mỗi ngày', id: 'Ritme belajar teratur setiap hari', tr: 'Her gün düzenli öğrenme ritmi', pl: 'Regularny rytm nauki każdego dnia' },
+    { ru: 'Больше XP и пользы сессий', uk: 'Більше XP і користі від сесій', es: 'Más XP y valor en cada sesión', 'pt-BR': 'Mais XP e mais valor por sessão', vi: 'Thêm XP và giá trị từ mỗi phiên', id: 'Lebih banyak XP dan manfaat sesi', tr: 'Oturumlardan daha fazla XP ve fayda', pl: 'Więcej XP i korzyści z sesji' },
   ],
   quiz_level: [
-    { ru: 'Доступ к более сильной практике', uk: 'Доступ до сильнішої практики', es: 'Acceso a una práctica más exigente' },
-    { ru: 'Быстрее рост языкового навыка', uk: 'Швидше зростання мовної навички', es: 'Progreso del idioma más rápido' },
-    { ru: 'Меньше ощущения плато', uk: 'Менше відчуття плато', es: 'Menos sensación de estancamiento' },
+    { ru: 'Доступ к более сильной практике', uk: 'Доступ до сильнішої практики', es: 'Acceso a una práctica más exigente', 'pt-BR': 'Acesso a uma prática mais forte', vi: 'Mở luyện tập mạnh hơn', id: 'Akses ke latihan yang lebih kuat', tr: 'Daha güçlü pratiğe erişim', pl: 'Dostęp do mocniejszej praktyki' },
+    { ru: 'Быстрее рост языкового навыка', uk: 'Швидше зростання мовної навички', es: 'Progreso del idioma más rápido', 'pt-BR': 'Crescimento mais rápido da habilidade', vi: 'Kỹ năng ngôn ngữ tăng nhanh hơn', id: 'Kemampuan bahasa tumbuh lebih cepat', tr: 'Dil becerisi daha hızlı gelişir', pl: 'Szybszy wzrost umiejętności językowej' },
+    { ru: 'Меньше ощущения плато', uk: 'Менше відчуття плато', es: 'Menos sensación de estancamiento', 'pt-BR': 'Menos sensação de platô', vi: 'Ít cảm giác chững lại hơn', id: 'Lebih sedikit rasa plateau', tr: 'Daha az plato hissi', pl: 'Mniej poczucia plateau' },
   ],
   quiz_medium: [
-    { ru: 'Сложнее задания и богаче контексты', uk: 'Складніші завдання і багатші контексти', es: 'Ejercicios más ricos en contexto' },
-    { ru: 'Глубже закрепление материала', uk: 'Глибше закріплення матеріалу', es: 'Consolidación más profunda' },
-    { ru: 'Сильнее прогресс каждую неделю', uk: 'Сильніший прогрес щотижня', es: 'Progreso más marcado cada semana' },
+    { ru: 'Сложнее задания и богаче контексты', uk: 'Складніші завдання і багатші контексти', es: 'Ejercicios más ricos en contexto', 'pt-BR': 'Tarefas mais ricas em contexto', vi: 'Bài tập khó hơn và nhiều ngữ cảnh hơn', id: 'Tugas lebih sulit dan konteks lebih kaya', tr: 'Daha zor görevler ve daha zengin bağlamlar', pl: 'Trudniejsze zadania i bogatsze konteksty' },
+    { ru: 'Глубже закрепление материала', uk: 'Глибше закріплення матеріалу', es: 'Consolidación más profunda', 'pt-BR': 'Fixação mais profunda do conteúdo', vi: 'Củng cố kiến thức sâu hơn', id: 'Materi lebih melekat', tr: 'Konuyu daha derin pekiştirme', pl: 'Głębsze utrwalenie materiału' },
+    { ru: 'Сильнее прогресс каждую неделю', uk: 'Сильніший прогрес щотижня', es: 'Progreso más marcado cada semana', 'pt-BR': 'Progresso mais forte a cada semana', vi: 'Tiến bộ rõ hơn mỗi tuần', id: 'Progres lebih kuat tiap minggu', tr: 'Her hafta daha güçlü ilerleme', pl: 'Silniejszy postęp co tydzień' },
   ],
   quiz_hard: [
-    { ru: 'Hard-уровень для максимального роста', uk: 'Hard-рівень для максимального росту', es: 'Nivel difícil para el máximo rendimiento' },
-    { ru: 'Выход из языкового плато', uk: 'Вихід з мовного плато', es: 'Sales del plató del idioma' },
-    { ru: 'Быстрее уверенное владение языком', uk: 'Швидше впевнене володіння мовою', es: 'Dominio del idioma con más soltura' },
+    { ru: 'Hard-уровень для максимального роста', uk: 'Hard-рівень для максимального росту', es: 'Nivel difícil para el máximo rendimiento', 'pt-BR': 'Nível Hard para máximo crescimento', vi: 'Mức Hard để tăng trưởng tối đa', id: 'Level Hard untuk pertumbuhan maksimal', tr: 'Maksimum gelişim için Hard seviye', pl: 'Poziom Hard dla maksymalnego wzrostu' },
+    { ru: 'Выход из языкового плато', uk: 'Вихід з мовного плато', es: 'Sales del plató del idioma', 'pt-BR': 'Saída do platô do idioma', vi: 'Thoát khỏi giai đoạn chững của ngôn ngữ', id: 'Keluar dari plateau bahasa', tr: 'Dil platosundan çıkış', pl: 'Wyjście z językowego plateau' },
+    { ru: 'Быстрее уверенное владение языком', uk: 'Швидше впевнене володіння мовою', es: 'Dominio del idioma con más soltura', 'pt-BR': 'Domínio mais confiante mais rápido', vi: 'Tự tin dùng ngôn ngữ nhanh hơn', id: 'Penguasaan bahasa lebih percaya diri', tr: 'Daha hızlı ve güvenli dil kullanımı', pl: 'Szybsze, pewniejsze użycie języka' },
   ],
   flashcard_limit: [
-    { ru: 'Безлимит на личную базу карточек', uk: 'Безліміт на особисту базу карток', es: 'Tu colección de tarjetas sin límite' },
-    { ru: 'Храни все важные фразы', uk: 'Зберігай всі важливі фрази', es: 'Guarda todas tus frases clave' },
-    { ru: 'Лучше долгосрочное запоминание', uk: 'Краще довгострокове запам\'ятовування', es: 'Memoria a largo plazo más sólida' },
+    { ru: 'Безлимит на личную базу карточек', uk: 'Безліміт на особисту базу карток', es: 'Tu colección de tarjetas sin límite', 'pt-BR': 'Sem limite para sua base de cartões', vi: 'Không giới hạn kho thẻ cá nhân', id: 'Tanpa batas untuk koleksi kartu pribadi', tr: 'Kişisel kart arşivinde sınır yok', pl: 'Bez limitu własnej bazy fiszek' },
+    { ru: 'Храни все важные фразы', uk: 'Зберігай всі важливі фрази', es: 'Guarda todas tus frases clave', 'pt-BR': 'Guarde todas as frases importantes', vi: 'Lưu mọi cụm từ quan trọng', id: 'Simpan semua frasa penting', tr: 'Tüm önemli ifadeleri sakla', pl: 'Przechowuj wszystkie ważne frazy' },
+    { ru: 'Лучше долгосрочное запоминание', uk: 'Краще довгострокове запам\'ятовування', es: 'Memoria a largo plazo más sólida', 'pt-BR': 'Memória de longo prazo mais sólida', vi: 'Ghi nhớ dài hạn chắc hơn', id: 'Ingatan jangka panjang lebih kuat', tr: 'Daha sağlam uzun vadeli hafıza', pl: 'Lepsze zapamiętywanie długoterminowe' },
   ],
   streak: [
-    { ru: 'Защита серии даже при пропуске', uk: 'Захист серії навіть при пропуску', es: 'Protege tu racha aunque faltes un día' },
-    { ru: 'Без пауз из-за энергии', uk: 'Без пауз через енергію', es: 'Sin pausas por energía' },
-    { ru: 'Стабильный ежедневный прогресс', uk: 'Стабільний щоденний прогрес', es: 'Avance estable cada día' },
+    { ru: 'Защита серии даже при пропуске', uk: 'Захист серії навіть при пропуску', es: 'Protege tu racha aunque faltes un día', 'pt-BR': 'Proteção de sequência mesmo se faltar um dia', vi: 'Bảo vệ chuỗi kể cả khi bỏ lỡ một ngày', id: 'Perlindungan streak meski terlewat sehari', tr: 'Bir gün kaçsa bile seri koruması', pl: 'Ochrona serii nawet przy pominięciu dnia' },
+    { ru: 'Без пауз из-за энергии', uk: 'Без пауз через енергію', es: 'Sin pausas por energía', 'pt-BR': 'Sem pausas por falta de energia', vi: 'Không bị nghỉ vì hết năng lượng', id: 'Tanpa jeda karena energi', tr: 'Enerji yüzünden ara yok', pl: 'Bez przerw przez energię' },
+    { ru: 'Стабильный ежедневный прогресс', uk: 'Стабільний щоденний прогрес', es: 'Avance estable cada día', 'pt-BR': 'Progresso diário estável', vi: 'Tiến bộ hằng ngày ổn định', id: 'Progres harian stabil', tr: 'İstikrarlı günlük ilerleme', pl: 'Stabilny codzienny postęp' },
   ],
   theme: [
-    { ru: 'Персональный стиль приложения', uk: 'Персональний стиль застосунку', es: 'Estilo visual a tu medida' },
-    { ru: 'Выше вовлеченность в обучение', uk: 'Вища залученість у навчання', es: 'Mayor compromiso al estudiar' },
-    { ru: 'Комфортнее заниматься регулярно', uk: 'Комфортніше займатися регулярно', es: 'Sesiones más cómodas y rutinarias' },
+    { ru: 'Персональный стиль приложения', uk: 'Персональний стиль застосунку', es: 'Estilo visual a tu medida', 'pt-BR': 'Estilo visual do seu jeito', vi: 'Phong cách giao diện theo bạn', id: 'Gaya visual sesuai seleramu', tr: 'Kişisel uygulama stili', pl: 'Osobisty styl aplikacji' },
+    { ru: 'Выше вовлеченность в обучение', uk: 'Вища залученість у навчання', es: 'Mayor compromiso al estudiar', 'pt-BR': 'Mais envolvimento no estudo', vi: 'Gắn bó hơn với việc học', id: 'Lebih terlibat saat belajar', tr: 'Öğrenmeye daha fazla bağlılık', pl: 'Większe zaangażowanie w naukę' },
+    { ru: 'Комфортнее заниматься регулярно', uk: 'Комфортніше займатися регулярно', es: 'Sesiones más cómodas y rutinarias', 'pt-BR': 'Mais conforto para estudar sempre', vi: 'Thoải mái hơn để học đều', id: 'Lebih nyaman untuk belajar rutin', tr: 'Düzenli çalışmak daha rahat', pl: 'Wygodniej uczyć się regularnie' },
   ],
   club: [
-    { ru: 'Клубы и XP-бусты для ускорения', uk: 'Клуби та XP-бусти для прискорення', es: 'Clubs y bonus de XP para acelerar' },
-    { ru: 'Больше пользы с каждой сессии', uk: 'Більше користі з кожної сесії', es: 'Sacas más de cada sesión' },
-    { ru: 'Сильнее мотивация возвращаться', uk: 'Сильніша мотивація повертатися', es: 'Más ganas de volver mañana' },
+    { ru: 'Клубы и XP-бусты для ускорения', uk: 'Клуби та XP-бусти для прискорення', es: 'Clubs y bonus de XP para acelerar', 'pt-BR': 'Clubes e boosts de XP para acelerar', vi: 'Câu lạc bộ và boost XP để tăng tốc', id: 'Klub dan boost XP untuk mempercepat', tr: 'Hızlanmak için kulüpler ve XP boostları', pl: 'Kluby i boosty XP do przyspieszenia' },
+    { ru: 'Больше пользы с каждой сессии', uk: 'Більше користі з кожної сесії', es: 'Sacas más de cada sesión', 'pt-BR': 'Mais valor em cada sessão', vi: 'Mỗi phiên học có ích hơn', id: 'Manfaat lebih besar di tiap sesi', tr: 'Her seanstan daha fazla fayda', pl: 'Więcej wartości z każdej sesji' },
+    { ru: 'Сильнее мотивация возвращаться', uk: 'Сильніша мотивація повертатися', es: 'Más ganas de volver mañana', 'pt-BR': 'Mais motivação para voltar amanhã', vi: 'Thêm động lực quay lại ngày mai', id: 'Lebih termotivasi untuk kembali besok', tr: 'Yarın dönmek için daha güçlü motivasyon', pl: 'Silniejsza motywacja, żeby wrócić jutro' },
   ],
   generic: [
-    { ru: 'Больше практики без ограничений', uk: 'Більше практики без обмежень', es: 'Más práctica sin límites' },
-    { ru: 'Стабильный темп и результат', uk: 'Стабільний темп і результат', es: 'Ritmo estable y resultado' },
-    { ru: 'Премиум-опции сразу после активации', uk: 'Преміум-опції одразу після активації', es: 'Funciones Premium al instante' },
+    { ru: 'Больше практики без ограничений', uk: 'Більше практики без обмежень', es: 'Más práctica sin límites', 'pt-BR': 'Mais prática sem limites', vi: 'Nhiều luyện tập hơn, không giới hạn', id: 'Lebih banyak latihan tanpa batas', tr: 'Sınırsız daha fazla pratik', pl: 'Więcej praktyki bez ograniczeń' },
+    { ru: 'Стабильный темп и результат', uk: 'Стабільний темп і результат', es: 'Ritmo estable y resultado', 'pt-BR': 'Ritmo e resultado estáveis', vi: 'Nhịp và kết quả ổn định', id: 'Ritme dan hasil stabil', tr: 'İstikrarlı tempo ve sonuç', pl: 'Stabilne tempo i wynik' },
+    { ru: 'Премиум-опции сразу после активации', uk: 'Преміум-опції одразу після активації', es: 'Funciones Premium al instante', 'pt-BR': 'Funções Premium logo após ativar', vi: 'Tính năng Premium có ngay sau khi kích hoạt', id: 'Fitur Premium langsung setelah aktif', tr: 'Aktivasyondan hemen sonra Premium özellikler', pl: 'Opcje Premium od razu po aktywacji' },
   ],
   trainer: [
-    { ru: 'Слабые места: фразы с наибольшим числом ошибок', uk: 'Слабкі місця: фрази з найбільшою кількістю помилок', es: 'Puntos débiles: frases con más errores' },
-    { ru: 'Smart Mix: алгоритм строит идеальный набор', uk: 'Smart Mix: алгоритм будує ідеальний набір', es: 'Smart Mix: el algoritmo crea el conjunto ideal' },
-    { ru: 'Без лимита сессий в день', uk: 'Без ліміту сесій на день', es: 'Sin límite diario de sesiones' },
-    { ru: 'По теме: повтор конкретного урока', uk: 'За темою: повтор конкретного уроку', es: 'Por tema: repaso de una lección específica' },
+    { ru: 'Слабые места: фразы с наибольшим числом ошибок', uk: 'Слабкі місця: фрази з найбільшою кількістю помилок', es: 'Puntos débiles: frases con más errores', 'pt-BR': 'Pontos fracos: frases com mais erros', vi: 'Điểm yếu: cụm từ bạn sai nhiều nhất', id: 'Titik lemah: frasa dengan kesalahan terbanyak', tr: 'Zayıf noktalar: en çok hata yapılan ifadeler', pl: 'Słabe punkty: frazy z największą liczbą błędów' },
+    { ru: 'Smart Mix: алгоритм строит идеальный набор', uk: 'Smart Mix: алгоритм будує ідеальний набір', es: 'Smart Mix: el algoritmo crea el conjunto ideal', 'pt-BR': 'Smart Mix: o algoritmo monta o conjunto ideal', vi: 'Smart Mix: thuật toán tạo bộ luyện phù hợp', id: 'Smart Mix: algoritme menyusun set ideal', tr: 'Smart Mix: algoritma ideal seti kurar', pl: 'Smart Mix: algorytm buduje idealny zestaw' },
+    { ru: 'Без лимита сессий в день', uk: 'Без ліміту сесій на день', es: 'Sin límite diario de sesiones', 'pt-BR': 'Sem limite diário de sessões', vi: 'Không giới hạn phiên mỗi ngày', id: 'Tanpa batas sesi harian', tr: 'Günlük seans sınırı yok', pl: 'Bez dziennego limitu sesji' },
+    { ru: 'По теме: повтор конкретного урока', uk: 'За темою: повтор конкретного уроку', es: 'Por tema: repaso de una lección específica', 'pt-BR': 'Por tema: revisão de uma lição específica', vi: 'Theo chủ đề: ôn một bài cụ thể', id: 'Per topik: ulang pelajaran tertentu', tr: 'Konuya göre: belirli ders tekrarı', pl: 'Według tematu: powtórka konkretnej lekcji' },
   ],
   trainer_limit: [
-    { ru: 'Безлимит сессий Тренера', uk: 'Безліміт сесій Тренера', es: 'Sesiones ilimitadas del Entrenador' },
-    { ru: 'Все 6 режимов без ограничений', uk: 'Всі 6 режимів без обмежень', es: 'Los 6 modos sin restricciones' },
-    { ru: 'Смарт-повтор когда хочешь', uk: 'Смарт-повтор коли хочеш', es: 'Repaso inteligente cuando quieras' },
+    { ru: 'Безлимит сессий Тренера', uk: 'Безліміт сесій Тренера', es: 'Sesiones ilimitadas del Entrenador', 'pt-BR': 'Sessões ilimitadas do Treinador', vi: 'Phiên Huấn luyện viên không giới hạn', id: 'Sesi Trainer tanpa batas', tr: 'Sınırsız Antrenör seansı', pl: 'Sesje Trenera bez limitu' },
+    { ru: 'Все 6 режимов без ограничений', uk: 'Всі 6 режимів без обмежень', es: 'Los 6 modos sin restricciones', 'pt-BR': 'Todos os 6 modos sem restrições', vi: 'Cả 6 chế độ không giới hạn', id: 'Semua 6 mode tanpa batasan', tr: '6 modun tamamı sınırsız', pl: 'Wszystkie 6 trybów bez ograniczeń' },
+    { ru: 'Смарт-повтор когда хочешь', uk: 'Смарт-повтор коли хочеш', es: 'Repaso inteligente cuando quieras', 'pt-BR': 'Revisão inteligente quando quiser', vi: 'Ôn thông minh bất cứ lúc nào', id: 'Pengulangan pintar kapan saja', tr: 'İstediğin zaman akıllı tekrar', pl: 'Inteligentna powtórka, kiedy chcesz' },
   ],
   diagnosis_training: [
-    { ru: 'Новые ошибки превращаются в точные персональные разборы', uk: 'Нові помилки перетворюються на точні персональні розбори', es: 'Cada error nuevo se convierte en un análisis personal preciso' },
-    { ru: 'Понятное объяснение: где сбилась фраза и как сказать правильно', uk: 'Зрозуміле пояснення: де збилась фраза і як сказати правильно', es: 'Explicación clara: dónde falla la frase y cómo decirla bien' },
-    { ru: 'Тренировка на похожих фразах без лимита', uk: 'Тренування на схожих фразах без ліміту', es: 'Práctica con frases parecidas sin límite' },
+    { ru: 'Новые ошибки превращаются в точные персональные разборы', uk: 'Нові помилки перетворюються на точні персональні розбори', es: 'Cada error nuevo se convierte en un análisis personal preciso', 'pt-BR': 'Novos erros viram análises pessoais precisas', vi: 'Lỗi mới biến thành phân tích cá nhân chính xác', id: 'Kesalahan baru jadi analisis personal yang tepat', tr: 'Yeni hatalar net kişisel analizlere dönüşür', pl: 'Nowe błędy zmieniają się w dokładne analizy osobiste' },
+    { ru: 'Понятное объяснение: где сбилась фраза и как сказать правильно', uk: 'Зрозуміле пояснення: де збилась фраза і як сказати правильно', es: 'Explicación clara: dónde falla la frase y cómo decirla bien', 'pt-BR': 'Explicação clara: onde a frase falhou e como corrigir', vi: 'Giải thích rõ: câu sai ở đâu và nói đúng thế nào', id: 'Penjelasan jelas: bagian frasa yang salah dan cara benarnya', tr: 'Net açıklama: ifade nerede bozuldu ve doğrusu ne', pl: 'Jasne wyjaśnienie: gdzie fraza się sypie i jak powiedzieć poprawnie' },
+    { ru: 'Тренировка на похожих фразах без лимита', uk: 'Тренування на схожих фразах без ліміту', es: 'Práctica con frases parecidas sin límite', 'pt-BR': 'Prática com frases parecidas sem limite', vi: 'Luyện câu tương tự không giới hạn', id: 'Latihan frasa mirip tanpa batas', tr: 'Benzer ifadelerle sınırsız pratik', pl: 'Ćwiczenia na podobnych frazach bez limitu' },
   ],
   mastery: [
-    { ru: 'Безлимит повторов любого урока', uk: 'Безліміт повторів будь-якого уроку', es: 'Repeticiones ilimitadas de lecciones' },
-    { ru: 'Не тратишь осколки на перепрохождения уроков', uk: 'Не витрачаєш осколки на перепроходження уроків', es: 'No gastas fragmentos al repetir lecciones' },
-    { ru: 'Тренируй до идеального результата без давления', uk: 'Тренуй до ідеального результату без тиску', es: 'Entrena hasta perfeccionar sin presión' },
+    { ru: 'Безлимит повторов любого урока', uk: 'Безліміт повторів будь-якого уроку', es: 'Repeticiones ilimitadas de lecciones', 'pt-BR': 'Repetições ilimitadas de qualquer lição', vi: 'Ôn lại bất kỳ bài nào không giới hạn', id: 'Pengulangan pelajaran apa pun tanpa batas', tr: 'Her ders için sınırsız tekrar', pl: 'Powtórki dowolnej lekcji bez limitu' },
+    { ru: 'Не тратишь осколки на перепрохождения уроков', uk: 'Не витрачаєш осколки на перепроходження уроків', es: 'No gastas fragmentos al repetir lecciones', 'pt-BR': 'Você não gasta fragmentos ao repetir lições', vi: 'Không tốn mảnh khi học lại bài', id: 'Tidak memakai fragmen saat mengulang pelajaran', tr: 'Ders tekrarında parça harcamazsın', pl: 'Nie wydajesz odłamków na powtórki lekcji' },
+    { ru: 'Тренируй до идеального результата без давления', uk: 'Тренуй до ідеального результату без тиску', es: 'Entrena hasta perfeccionar sin presión', 'pt-BR': 'Treine até o resultado ideal sem pressão', vi: 'Luyện đến kết quả tốt nhất không áp lực', id: 'Latih sampai hasil ideal tanpa tekanan', tr: 'Baskı olmadan ideal sonuca kadar çalış', pl: 'Trenuj do idealnego wyniku bez presji' },
   ],
   stats: [
-    { ru: 'Карта активности: все 365 дней', uk: 'Карта активності: всі 365 днів', es: 'Mapa de actividad: los 365 días' },
-    { ru: 'Паттерны ошибок и слабые темы', uk: 'Патерни помилок і слабкі теми', es: 'Patrones de errores y temas débiles' },
-    { ru: 'Сравнение с другими — где ты в топе', uk: 'Порівняння з іншими — де ти в топі', es: 'Comparación con otros: tu top' },
+    { ru: 'Карта активности: все 365 дней', uk: 'Карта активності: всі 365 днів', es: 'Mapa de actividad: los 365 días', 'pt-BR': 'Mapa de atividade: todos os 365 dias', vi: 'Bản đồ hoạt động: đủ 365 ngày', id: 'Peta aktivitas: semua 365 hari', tr: 'Etkinlik haritası: 365 günün tamamı', pl: 'Mapa aktywności: wszystkie 365 dni' },
+    { ru: 'Паттерны ошибок и слабые темы', uk: 'Патерни помилок і слабкі теми', es: 'Patrones de errores y temas débiles', 'pt-BR': 'Padrões de erro e temas fracos', vi: 'Mẫu lỗi và chủ đề yếu', id: 'Pola kesalahan dan topik lemah', tr: 'Hata kalıpları ve zayıf konular', pl: 'Wzorce błędów i słabe tematy' },
+    { ru: 'Сравнение с другими — где ты в топе', uk: 'Порівняння з іншими — де ти в топі', es: 'Comparación con otros: tu top', 'pt-BR': 'Comparação com outros: onde você se destaca', vi: 'So sánh với người khác: điểm bạn nổi bật', id: 'Perbandingan dengan siswa lain: keunggulanmu', tr: 'Diğerleriyle karşılaştırma: öne çıktığın yer', pl: 'Porównanie z innymi: gdzie jesteś wysoko' },
   ],
   heatmap: [
-    { ru: '365 дней активности — увидишь своё постоянство', uk: '365 днів активності — побач свою сталість', es: '365 días: ve tu constancia' },
-    { ru: 'Лучшие и худшие периоды на одном экране', uk: 'Кращі та гірші періоди на одному екрані', es: 'Mejores y peores semanas a la vista' },
-    { ru: 'Понимаешь свой ритм обучения', uk: 'Розумієш свій ритм навчання', es: 'Entiendes tu ritmo real' },
+    { ru: '365 дней активности — увидишь своё постоянство', uk: '365 днів активності — побач свою сталість', es: '365 días: ve tu constancia', 'pt-BR': '365 dias de atividade — veja sua constância', vi: '365 ngày hoạt động — thấy sự đều đặn của bạn', id: '365 hari aktivitas — lihat konsistensimu', tr: '365 gün etkinlik — istikrarını gör', pl: '365 dni aktywności — zobacz swoją regularność' },
+    { ru: 'Лучшие и худшие периоды на одном экране', uk: 'Кращі та гірші періоди на одному екрані', es: 'Mejores y peores semanas a la vista', 'pt-BR': 'Melhores e piores períodos em uma tela', vi: 'Giai đoạn tốt và yếu trên một màn hình', id: 'Periode terbaik dan terburuk dalam satu layar', tr: 'En iyi ve en kötü dönemler tek ekranda', pl: 'Najlepsze i słabsze okresy na jednym ekranie' },
+    { ru: 'Понимаешь свой ритм обучения', uk: 'Розумієш свій ритм навчання', es: 'Entiendes tu ritmo real', 'pt-BR': 'Você entende seu ritmo real de estudo', vi: 'Hiểu nhịp học thật của bạn', id: 'Kamu memahami ritme belajar yang sebenarnya', tr: 'Gerçek öğrenme ritmini anlarsın', pl: 'Rozumiesz swój prawdziwy rytm nauki' },
   ],
   patterns: [
-    { ru: 'Точки роста: где ошибаешься чаще всего', uk: 'Точки росту: де помиляєшся найчастіше', es: 'Puntos de crecimiento concretos' },
-    { ru: 'Конкретные темы и фразы для отработки', uk: 'Конкретні теми та фрази для відпрацювання', es: 'Temas y frases específicos a entrenar' },
-    { ru: 'Тренируй именно слабое — без распыления', uk: 'Тренуй саме слабке — без розпорошення', es: 'Entrena lo importante, no todo a la vez' },
+    { ru: 'Точки роста: где ошибаешься чаще всего', uk: 'Точки росту: де помиляєшся найчастіше', es: 'Puntos de crecimiento concretos', 'pt-BR': 'Pontos de crescimento: onde você mais erra', vi: 'Điểm cần phát triển: nơi bạn sai nhiều nhất', id: 'Titik berkembang: bagian yang paling sering salah', tr: 'Gelişim noktaları: en çok nerede hata var', pl: 'Punkty wzrostu: gdzie mylisz się najczęściej' },
+    { ru: 'Конкретные темы и фразы для отработки', uk: 'Конкретні теми та фрази для відпрацювання', es: 'Temas y frases específicos a entrenar', 'pt-BR': 'Temas e frases específicos para treinar', vi: 'Chủ đề và cụm từ cụ thể để luyện', id: 'Topik dan frasa spesifik untuk dilatih', tr: 'Çalışılacak somut konular ve ifadeler', pl: 'Konkretne tematy i frazy do przećwiczenia' },
+    { ru: 'Тренируй именно слабое — без распыления', uk: 'Тренуй саме слабке — без розпорошення', es: 'Entrena lo importante, no todo a la vez', 'pt-BR': 'Treine o ponto fraco sem dispersar', vi: 'Luyện đúng điểm yếu, không bị phân tán', id: 'Latih bagian lemah tanpa menyebar fokus', tr: 'Dağılmadan zayıf noktayı çalış', pl: 'Trenuj dokładnie słabe miejsce, bez rozproszenia' },
   ],
   percentiles: [
-    { ru: 'Увидишь свой ранг среди всех учеников', uk: 'Бач свій ранг серед усіх учнів', es: 'Mira tu rango entre estudiantes' },
-    { ru: 'Только позитивные сравнения — мотивация', uk: 'Лише позитивні порівняння — мотивація', es: 'Solo comparaciones positivas: motivación' },
-    { ru: 'Вижу когда я в топе и где расти дальше', uk: 'Бачу коли я в топі та де рости далі', es: 'Sabes en qué destacas y dónde crecer' },
+    { ru: 'Увидишь свой ранг среди всех учеников', uk: 'Бач свій ранг серед усіх учнів', es: 'Mira tu rango entre estudiantes', 'pt-BR': 'Veja seu ranking entre todos os alunos', vi: 'Xem thứ hạng của bạn trong số học viên', id: 'Lihat peringkatmu di antara semua siswa', tr: 'Tüm öğrenciler arasındaki sıralamanı gör', pl: 'Zobacz swoją pozycję wśród wszystkich uczniów' },
+    { ru: 'Только позитивные сравнения — мотивация', uk: 'Лише позитивні порівняння — мотивація', es: 'Solo comparaciones positivas: motivación', 'pt-BR': 'Só comparações positivas para motivar', vi: 'Chỉ so sánh tích cực để tạo động lực', id: 'Hanya perbandingan positif untuk motivasi', tr: 'Motivasyon için yalnızca pozitif karşılaştırmalar', pl: 'Tylko pozytywne porównania dla motywacji' },
+    { ru: 'Вижу когда я в топе и где расти дальше', uk: 'Бачу коли я в топі та де рости далі', es: 'Sabes en qué destacas y dónde crecer', 'pt-BR': 'Você sabe onde se destaca e onde crescer', vi: 'Biết bạn mạnh ở đâu và nên phát triển gì', id: 'Tahu di mana kamu unggul dan perlu berkembang', tr: 'Nerede güçlü olduğunu ve nereye büyüyeceğini bilirsin', pl: 'Wiesz, gdzie jesteś mocny i gdzie rosnąć dalej' },
   ],
 };
 
@@ -1118,9 +1208,9 @@ const MANAGE_VIEW_PREMIUM_BENEFITS: ({ ru: string; uk: string; es: string } & Pr
 ];
 
 CONTEXT_BENEFITS.quiz_limit = [
-  { ru: 'Без дневного лимита на легкие квизы', uk: 'Без денного ліміту на легкі квізи', es: 'Sin límite diario en cuestionarios fáciles' },
-  { ru: 'Средний и сложный уровни открыты', uk: 'Середній і складний рівні відкриті', es: 'Niveles medio y difícil desbloqueados' },
-  { ru: 'Больше практики и XP каждый день', uk: 'Більше практики та XP щодня', es: 'Más práctica y XP cada día' },
+  { ru: 'Без дневного лимита на легкие квизы', uk: 'Без денного ліміту на легкі квізи', es: 'Sin límite diario en cuestionarios fáciles', 'pt-BR': 'Sem limite diário para quizzes fáceis', vi: 'Không giới hạn quiz dễ mỗi ngày', id: 'Tanpa batas harian untuk kuis mudah', tr: 'Kolay quizlerde günlük sınır yok', pl: 'Bez dziennego limitu łatwych quizów' },
+  { ru: 'Средний и сложный уровни открыты', uk: 'Середній і складний рівні відкриті', es: 'Niveles medio y difícil desbloqueados', 'pt-BR': 'Níveis médio e difícil desbloqueados', vi: 'Mở mức trung bình và khó', id: 'Level sedang dan sulit terbuka', tr: 'Orta ve zor seviyeler açılır', pl: 'Poziom średni i trudny odblokowane' },
+  { ru: 'Больше практики и XP каждый день', uk: 'Більше практики та XP щодня', es: 'Más práctica y XP cada día', 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
 ];
 
 const CONTEXT_BENEFITS_PLANNED: Record<PremiumContext, PremiumPlannedCopy[]> = {
@@ -1371,7 +1461,12 @@ export default function PremiumModal() {
       logCoursePaywallAfterLesson3(lessonsDone);
     }
   }, [ctx, lessonsDone]);
-  const { theme: t, f } = useTheme();
+  const { theme: t, themeMode, f } = useTheme();
+  const paywallCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
+  const paywallSurfaceBg = paywallGlassColor(t.bgSurface, themeMode, 'surface');
+  const paywallSurface2Bg = paywallGlassColor(t.bgSurface2, themeMode, 'soft');
+  const paywallPrimaryBg = paywallGlassColor(t.bgPrimary, themeMode, 'primary');
+  const paywallChromeBg = paywallGlassColor(t.bgCard, themeMode, 'chrome');
   const { lang } = useLang();
   const { reload: reloadEnergy } = useEnergy();
   const LP = (ru: string, uk: string, es: string, planned: PremiumPlannedCopy) => triLang(lang as Lang, {
@@ -1384,6 +1479,28 @@ export default function PremiumModal() {
     tr: planned.tr,
     pl: planned.pl,
   });
+  const renderPremiumEnergyGlyph = (size: number, width = size) => (
+    <View style={{ width, height: size, alignItems: 'center', justifyContent: 'center' }}>
+      <EnergyIcon
+        filled
+        themeColor={t.gold}
+        size={size}
+        animateChange={false}
+        shouldShake={false}
+        themeMode={themeMode}
+        isPremium
+      />
+    </View>
+  );
+  const renderPremiumShardGlyph = (size: number, width = size, amount = 0) => (
+    <View style={{ width, height: size, alignItems: 'center', justifyContent: 'center' }}>
+      <Image
+        source={oskolokImageForPackShards(amount, themeMode)}
+        style={{ width: size, height: size }}
+        resizeMode="contain"
+      />
+    </View>
+  );
 
   const [selected,   setSelected]   = useState<Plan>('yearly');
   const [restoring,  setRestoring]  = useState(false);
@@ -1671,6 +1788,9 @@ export default function PremiumModal() {
   const hero = getHero(ctx, streakDays, lessonsDone, savedCards);
   const heroPlanned = getHeroPlannedCopy(ctx, savedCards);
   const benefits = CONTEXT_BENEFITS[ctx] ?? CONTEXT_BENEFITS.generic;
+  const heroBackdrop = PREMIUM_HERO_BACKDROPS[themeMode] ?? PREMIUM_HERO_BACKDROPS.minimalDark;
+  const heroArt = PREMIUM_HERO_ART[ctx] ?? PREMIUM_HERO_ART.generic;
+  const heroScrim = premiumHeroScrim(themeMode);
   const personalValueLine = getPersonalValueLine(ctx, streakDays, lessonsDone, savedCards, lang as Lang);
   const yearlyStoreHasTrial = !trialReofferBlocked && storeProductHasTrialIntro(packages.yearly?.product);
   const monthlyStoreHasTrial = !trialReofferBlocked && storeProductHasTrialIntro(packages.monthly?.product);
@@ -1744,9 +1864,10 @@ export default function PremiumModal() {
 
     resolveCurrentPremiumState()
       .then(({ isPremium, plan, expiry, isAdmin }) => {
-        if (isPremium && plan) {
+        if (isPremium) {
+          const effectivePlan = plan ?? 'yearly';
           setIsAdminGrantedPremium(isAdmin);
-          setActivePlan(plan);
+          setActivePlan(effectivePlan);
           setExpiryTs(prev => (expiry > 0 ? expiry : prev));
           setViewMode('manage');
         }
@@ -1799,6 +1920,25 @@ export default function PremiumModal() {
   const handlePurchase = async (plan: Plan) => {
     // Defensive guard: if premium is already active locally, don\'t start a second flow.
     if (activePlan) {
+      setViewMode('manage');
+      return;
+    }
+    let latestPremiumState = await resolveCurrentPremiumState().catch(() => null);
+    if (!latestPremiumState?.isPremium && !IS_EXPO_GO) {
+      try {
+        const { restoreFromCloud } = await import('./cloud_sync');
+        await restoreFromCloud();
+        invalidatePremiumCache();
+        latestPremiumState = await resolveCurrentPremiumState().catch(() => latestPremiumState);
+      } catch {
+        // Cloud refresh is best-effort; if it fails, the store flow still handles normal purchases.
+      }
+    }
+    if (latestPremiumState?.isPremium) {
+      const effectivePlan = latestPremiumState.plan ?? 'yearly';
+      setIsAdminGrantedPremium(latestPremiumState.isAdmin);
+      setActivePlan(effectivePlan);
+      setExpiryTs(prev => (latestPremiumState?.expiry && latestPremiumState.expiry > 0 ? latestPremiumState.expiry : prev));
       setViewMode('manage');
       return;
     }
@@ -1995,7 +2135,7 @@ export default function PremiumModal() {
                 emitAppEvent('premium_activated');
                 goBack();
               }}
-              style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard + 'cc', justifyContent: 'center', alignItems: 'center' }}
+              style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: paywallChromeBg, justifyContent: 'center', alignItems: 'center' }}
             >
               <Ionicons name="close" size={20} color={t.textMuted} />
             </TouchableOpacity>
@@ -2005,7 +2145,7 @@ export default function PremiumModal() {
             {/* Header badge */}
             <Animated.View style={{ alignItems: 'center', transform: [{ scale: successScale }], opacity: successOpacity, marginBottom: 28 }}>
               <View style={{ width: 90, height: 90, borderRadius: 45, backgroundColor: t.correct + '22', borderWidth: 2, borderColor: t.correct, justifyContent: 'center', alignItems: 'center', marginBottom: 14 }}>
-                <Ionicons name="diamond" size={42} color={t.correct} />
+                {renderPremiumShardGlyph(62)}
               </View>
               <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '800', textAlign: 'center' }}>
                 {LP('Premium активирован! 🎉', 'Premium активовано! 🎉', '¡Premium activado! 🎉', {
@@ -2051,7 +2191,7 @@ export default function PremiumModal() {
                       <View style={{
                         flexDirection: 'row',
                         alignItems: 'center',
-                        backgroundColor: t.bgCard,
+                        backgroundColor: paywallCardBg,
                         borderRadius: 14,
                         padding: 16,
                         borderWidth: 1,
@@ -2059,7 +2199,9 @@ export default function PremiumModal() {
                         gap: 12,
                         minHeight: 62,
                       }}>
-                        <Text style={{ fontSize: 26 }}>{item.icon}</Text>
+                        {isEnergyGlyph(item.icon)
+                          ? renderPremiumEnergyGlyph(30)
+                          : <Text style={{ fontSize: 26 }}>{item.icon}</Text>}
                         <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
                           {LP(item.textRu, item.textUk, item.textEs, item)}
                         </Text>
@@ -2071,7 +2213,7 @@ export default function PremiumModal() {
                         style={{
                           position: 'absolute',
                           top: 0, left: 0, right: 0, bottom: 0,
-                          backgroundColor: t.bgCard,
+                          backgroundColor: paywallCardBg,
                           opacity: anim.grayOverlay,
                           borderRadius: 14,
                           borderWidth: 1,
@@ -2147,7 +2289,7 @@ export default function PremiumModal() {
             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 18, paddingTop: 12, paddingBottom: 14 }}>
               <TouchableOpacity
                 onPress={() => { hapticTap(); goBack(); }}
-                style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard + 'AA', borderWidth: 1, borderColor: t.border }}
+                style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: paywallChromeBg, borderWidth: 1, borderColor: t.border }}
                 activeOpacity={0.82}
               >
                 <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
@@ -2166,7 +2308,7 @@ export default function PremiumModal() {
               </View>
             </View>
             <View style={{ paddingHorizontal: 20, paddingTop: 6 }}>
-              <View style={{ backgroundColor: t.bgCard, borderRadius: 22, borderWidth: 1, borderColor: t.border, padding: 20 }}>
+              <View style={{ backgroundColor: paywallCardBg, borderRadius: 22, borderWidth: 1, borderColor: t.border, padding: 20 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>
                   {LP('Проверяем подписку', 'Перевіряємо підписку', 'Comprobando suscripción', {
                     'pt-BR': 'Verificando assinatura',
@@ -2212,7 +2354,22 @@ export default function PremiumModal() {
           tr: 'ay',
           pl: 'miesiąc',
         });
-    const amountLabel = amount === ''
+    const noExpiryLabel = LP('без срока', 'без строку', 'sin fecha de fin', {
+      'pt-BR': 'sem data final',
+      vi: 'khong co ngay het han',
+      id: 'tanpa tanggal akhir',
+      tr: 'bitis tarihi yok',
+      pl: 'bez daty koncowej',
+    });
+    const amountLabel = isAdminGrantedPremium
+      ? LP('Выдано администратором', 'Видано адміністратором', 'Concedido por admin', {
+          'pt-BR': 'Concedido por admin',
+          vi: 'Duoc cap boi quan tri vien',
+          id: 'Diberikan oleh admin',
+          tr: 'Yonetici tarafindan verildi',
+          pl: 'Przyznane przez admina',
+        })
+      : amount === ''
       ? (effectiveOs === 'ios'
           ? LP('Цена в App Store', 'Ціна в App Store', 'Precio en App Store', {
               'pt-BR': 'Preço na App Store',
@@ -2265,7 +2422,7 @@ export default function PremiumModal() {
             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 18, paddingTop: 12, paddingBottom: 14 }}>
               <TouchableOpacity
                 onPress={() => { hapticTap(); goBack(); }}
-                style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard + 'AA', borderWidth: 1, borderColor: t.border }}
+                style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: paywallChromeBg, borderWidth: 1, borderColor: t.border }}
                 activeOpacity={0.82}
               >
                 <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
@@ -2286,7 +2443,7 @@ export default function PremiumModal() {
             <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 28, gap: 16 }}>
               <View style={refinedCard}>
                 <LinearGradient
-                  colors={[t.bgSurface, t.bgCard, t.bgSurface2]}
+                  colors={[paywallSurfaceBg, paywallCardBg, paywallSurface2Bg]}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={[refinedCardInner, { padding: 20, gap: 16 }]}
@@ -2306,7 +2463,7 @@ export default function PremiumModal() {
                       end={{ x: 1, y: 1 }}
                       style={{ width: 52, height: 52, borderRadius: 18, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#FFF7C8' }}
                     >
-                      <Ionicons name="diamond" size={27} color={t.textOnGold} />
+                      {renderPremiumShardGlyph(36)}
                     </LinearGradient>
                     <View style={{ flex: 1, minWidth: 0 }}>
                       <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', lineHeight: Math.round(f.h2 * 1.18) }} numberOfLines={2} adjustsFontSizeToFit>
@@ -2319,21 +2476,29 @@ export default function PremiumModal() {
                         })}
                       </Text>
                       <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 4 }} numberOfLines={2}>
-                        {activePlan === 'yearly'
-                          ? LP('Годовая подписка', 'Річна підписка', 'Suscripción anual', {
-                              'pt-BR': 'Assinatura anual',
-                              vi: 'Gói đăng ký hằng năm',
-                              id: 'Langganan tahunan',
-                              tr: 'Yıllık abonelik',
-                              pl: 'Subskrypcja roczna',
+                        {isAdminGrantedPremium
+                          ? LP('Премиум выдан администратором', 'Преміум видано адміністратором', 'Premium concedido por admin', {
+                              'pt-BR': 'Premium concedido por admin',
+                              vi: 'Premium do quan tri vien cap',
+                              id: 'Premium diberikan oleh admin',
+                              tr: 'Premium yonetici tarafindan verildi',
+                              pl: 'Premium przyznane przez admina',
                             })
-                          : LP('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual', {
-                              'pt-BR': 'Assinatura mensal',
-                              vi: 'Gói đăng ký hằng tháng',
-                              id: 'Langganan bulanan',
-                              tr: 'Aylık abonelik',
-                              pl: 'Subskrypcja miesięczna',
-                            })}
+                          : activePlan === 'yearly'
+                            ? LP('Годовая подписка', 'Річна підписка', 'Suscripción anual', {
+                                'pt-BR': 'Assinatura anual',
+                                vi: 'Gói đăng ký hằng năm',
+                                id: 'Langganan tahunan',
+                                tr: 'Yıllık abonelik',
+                                pl: 'Subskrypcja roczna',
+                              })
+                            : LP('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual', {
+                                'pt-BR': 'Assinatura mensal',
+                                vi: 'Gói đăng ký hằng tháng',
+                                id: 'Langganan bulanan',
+                                tr: 'Aylık abonelik',
+                                pl: 'Subskrypcja miesięczna',
+                              })}
                       </Text>
                     </View>
                   </View>
@@ -2342,16 +2507,24 @@ export default function PremiumModal() {
                       <View style={{ flexDirection: 'row', gap: 14 }}>
                         <View style={{ flex: 1 }}>
                           <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700' }}>
-                            {LP('Следующий платёж', 'Наступний платіж', 'Próximo pago', {
-                              'pt-BR': 'Próximo pagamento',
-                              vi: 'Thanh toán tiếp theo',
-                              id: 'Pembayaran berikutnya',
-                              tr: 'Sonraki ödeme',
-                              pl: 'Następna płatność',
-                            })}
+                            {isAdminGrantedPremium
+                              ? LP('Доступ до', 'Доступ до', 'Acceso hasta', {
+                                  'pt-BR': 'Acesso ate',
+                                  vi: 'Truy cap den',
+                                  id: 'Akses sampai',
+                                  tr: 'Erisim tarihi',
+                                  pl: 'Dostep do',
+                                })
+                              : LP('Следующий платёж', 'Наступний платіж', 'Próximo pago', {
+                                  'pt-BR': 'Próximo pagamento',
+                                  vi: 'Thanh toán tiếp theo',
+                                  id: 'Pembayaran berikutnya',
+                                  tr: 'Sonraki ödeme',
+                                  pl: 'Następna płatność',
+                                })}
                           </Text>
                           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', marginTop: 5 }} numberOfLines={2}>
-                            {expiryTs > 0 ? formatDate(expiryTs, lang) : '—'}
+                            {expiryTs > 0 ? formatDate(expiryTs, lang) : (isAdminGrantedPremium ? noExpiryLabel : '—')}
                           </Text>
                         </View>
                         <View style={{ flex: 1.25 }}>
@@ -2370,8 +2543,16 @@ export default function PremiumModal() {
                         </View>
                       </View>
                       <Text style={{ color: t.textMuted, fontSize: 12, lineHeight: 17 }}>
-                        {effectiveOs === 'ios'
-                          ? LP('Точную дату списания смотри в App Store', 'Точну дату списання дивись в App Store', 'La fecha exacta del cargo está en App Store', {
+                        {isAdminGrantedPremium
+                          ? LP('Это админский доступ, не новая покупка в магазине.', 'Це адмінський доступ, не нова покупка в магазині.', 'This is admin access, not a new store purchase.', {
+                              'pt-BR': 'Este e acesso de admin, nao uma nova compra na loja.',
+                              vi: 'Day la quyen truy cap admin, khong phai giao dich moi trong cua hang.',
+                              id: 'Ini akses admin, bukan pembelian toko baru.',
+                              tr: 'Bu admin erisimi, magazada yeni satin alma degil.',
+                              pl: 'To dostep admina, nie nowy zakup w sklepie.',
+                            })
+                          : effectiveOs === 'ios'
+                            ? LP('Точную дату списания смотри в App Store', 'Точну дату списання дивись в App Store', 'La fecha exacta del cargo está en App Store', {
                               'pt-BR': 'Veja a data exata da cobrança na App Store',
                               vi: 'Xem ngày tính phí chính xác trong App Store',
                               id: 'Lihat tanggal penagihan tepatnya di App Store',
@@ -2417,7 +2598,7 @@ export default function PremiumModal() {
 
               <View style={refinedCard}>
                 <LinearGradient
-                  colors={[t.bgCard, t.bgSurface, t.bgCard]}
+                  colors={[paywallCardBg, paywallSurfaceBg, paywallCardBg]}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={[refinedCardInner, { padding: 20, gap: 16 }]}
@@ -2465,7 +2646,7 @@ export default function PremiumModal() {
                   style={{ borderRadius: 18, ...premiumShadow }}
                 >
                   <LinearGradient
-                    colors={[t.bgSurface, t.bgCard]}
+                    colors={[paywallSurfaceBg, paywallCardBg]}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
                     style={{ padding: 18, borderWidth: 1, borderColor: premiumHairline, borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
@@ -2494,7 +2675,7 @@ export default function PremiumModal() {
                   style={{ borderRadius: 18 }}
                 >
                   <LinearGradient
-                    colors={[t.bgCard, t.bgSurface]}
+                    colors={[paywallCardBg, paywallSurfaceBg]}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
                     style={{ padding: 18, borderWidth: 1, borderColor: t.wrong + '55', borderRadius: 18, flexDirection: 'row', alignItems: 'center', gap: 12 }}
@@ -2513,9 +2694,54 @@ export default function PremiumModal() {
                 </TouchableOpacity>
               )}
 
+              {isAdminGrantedPremium && (
+                <TouchableOpacity
+                  onPress={() => { hapticTap(); openManageWithToast(); }}
+                  activeOpacity={0.86}
+                  style={{ borderRadius: 18 }}
+                >
+                  <LinearGradient
+                    colors={[paywallCardBg, paywallSurfaceBg]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={{ padding: 18, borderWidth: 1, borderColor: premiumHairline, borderRadius: 18, flexDirection: 'row', alignItems: 'center', gap: 12 }}
+                  >
+                    <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: premiumGoldSoft, alignItems: 'center', justifyContent: 'center' }}>
+                      <Ionicons name="open-outline" size={20} color={premiumGold} />
+                    </View>
+                    <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
+                      {effectiveOs === 'ios'
+                        ? LP('Проверить подписки в App Store', 'Перевірити підписки в App Store', 'Revisar suscripciones en App Store', {
+                            'pt-BR': 'Ver assinaturas na App Store',
+                            vi: 'Kiem tra dang ky trong App Store',
+                            id: 'Periksa langganan di App Store',
+                            tr: 'App Store aboneliklerini kontrol et',
+                            pl: 'Sprawdz subskrypcje w App Store',
+                          })
+                        : LP('Проверить подписки в Google Play', 'Перевірити підписки в Google Play', 'Revisar suscripciones en Google Play', {
+                            'pt-BR': 'Ver assinaturas no Google Play',
+                            vi: 'Kiem tra dang ky trong Google Play',
+                            id: 'Periksa langganan di Google Play',
+                            tr: 'Google Play aboneliklerini kontrol et',
+                            pl: 'Sprawdz subskrypcje w Google Play',
+                          })}
+                    </Text>
+                    <Ionicons name="chevron-forward" size={18} color={premiumGold} />
+                  </LinearGradient>
+                </TouchableOpacity>
+              )}
+
               <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', marginTop: 4, lineHeight: 17 }}>
-                {effectiveOs === 'ios'
-                  ? LP('Подписка управляется через App Store', 'Підписка управляється через App Store', 'La suscripción se gestiona en App Store', {
+                {isAdminGrantedPremium
+                  ? LP('Админский Premium не отменяет отдельную подписку в магазине. Если там был активный триал или план, отмените его в App Store / Google Play.', 'Адмінський Premium не скасовує окрему підписку в магазині. Якщо там був активний trial або план, скасуйте його в App Store / Google Play.', 'Admin Premium does not cancel a separate store subscription. If a trial or plan is active there, cancel it in App Store / Google Play.', {
+                      'pt-BR': 'Premium de admin nao cancela uma assinatura separada da loja. Se houver teste ou plano ativo, cancele na App Store / Google Play.',
+                      vi: 'Premium admin khong huy goi dang ky rieng trong cua hang. Neu co goi hoac dung thu dang hoat dong, hay huy trong App Store / Google Play.',
+                      id: 'Premium admin tidak membatalkan langganan toko terpisah. Jika ada trial atau paket aktif, batalkan di App Store / Google Play.',
+                      tr: 'Admin Premium ayri magazadaki aboneligi iptal etmez. Aktif deneme veya plan varsa App Store / Google Play icinde iptal edin.',
+                      pl: 'Premium admina nie anuluje osobnej subskrypcji w sklepie. Jesli trial lub plan jest aktywny, anuluj go w App Store / Google Play.',
+                    })
+                  : effectiveOs === 'ios'
+                    ? LP('Подписка управляется через App Store', 'Підписка управляється через App Store', 'La suscripción se gestiona en App Store', {
                       'pt-BR': 'A assinatura é gerenciada pela App Store',
                       vi: 'Gói đăng ký được quản lý qua App Store',
                       id: 'Langganan dikelola melalui App Store',
@@ -2556,7 +2782,7 @@ export default function PremiumModal() {
         {/* Опрос при отмене подписки */}
         <Modal visible={cancelSurveyVisible} transparent animationType="slide">
           <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'flex-end' }}>
-            <View style={{ backgroundColor: t.bgCard, borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: 24, paddingBottom: Math.max(40, insets.bottom + 16) }}>
+            <View style={{ backgroundColor: paywallCardBg, borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: 24, paddingBottom: Math.max(40, insets.bottom + 16) }}>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 6 }}>
                 {LP('Почему хочешь отменить?', 'Чому хочеш скасувати?', '¿Por qué quieres cancelar?', {
                   'pt-BR': 'Por que você quer cancelar?',
@@ -2593,7 +2819,7 @@ export default function PremiumModal() {
                   maxHeight: 140,
                   textAlignVertical: 'top',
                   color: t.textPrimary,
-                  backgroundColor: t.bgPrimary,
+                  backgroundColor: paywallPrimaryBg,
                   borderColor: t.border,
                   borderWidth: 0.5,
                   borderRadius: 14,
@@ -2604,13 +2830,13 @@ export default function PremiumModal() {
                 }}
               />
               {([
-                { key: 'too_expensive',    ru: 'Слишком дорого', uk: 'Надто дорого', es: 'Demasiado caro', planned: { 'pt-BR': 'Muito caro', vi: 'Quá đắt', id: 'Terlalu mahal', tr: 'Çok pahalı', pl: 'Za drogo' } },
-                { key: 'not_enough_value', ru: 'Не хватает контента', uk: 'Не вистачає контенту', es: 'Falta contenido', planned: { 'pt-BR': 'Falta conteúdo', vi: 'Chưa đủ nội dung', id: 'Kontennya kurang', tr: 'Yeterli içerik yok', pl: 'Za mało treści' } },
-                { key: 'technical_issues', ru: 'Технические проблемы', uk: 'Технічні проблеми', es: 'Problemas técnicos', planned: { 'pt-BR': 'Problemas técnicos', vi: 'Sự cố kỹ thuật', id: 'Masalah teknis', tr: 'Teknik sorunlar', pl: 'Problemy techniczne' } },
-                { key: 'found_better_app', ru: 'Нашёл лучше приложение', uk: 'Знайшов краще застосунок', es: 'Encontré una app mejor', planned: { 'pt-BR': 'Encontrei um app melhor', vi: 'Tôi tìm thấy ứng dụng tốt hơn', id: 'Menemukan aplikasi yang lebih baik', tr: 'Daha iyi bir uygulama buldum', pl: 'Znalazłem lepszą aplikację' } },
-                { key: 'not_using_enough', ru: 'Пользуюсь редко', uk: 'Користуюсь рідко', es: 'Casi no la uso', planned: { 'pt-BR': 'Quase não uso', vi: 'Tôi ít dùng ứng dụng', id: 'Jarang saya gunakan', tr: 'Neredeyse kullanmıyorum', pl: 'Rzadko używam' } },
-                { key: 'other',            ru: 'Другое', uk: 'Інше', es: 'Otro motivo', planned: { 'pt-BR': 'Outro motivo', vi: 'Lý do khác', id: 'Alasan lain', tr: 'Başka bir neden', pl: 'Inny powód' } },
-              ] as { key: string; ru: string; uk: string; es: string; planned: PremiumPlannedCopy }[]).map(item => (
+                { key: 'too_expensive',    ru: 'Слишком дорого', uk: 'Надто дорого', es: 'Demasiado caro', 'pt-BR': 'Muito caro', vi: 'Quá đắt', id: 'Terlalu mahal', tr: 'Çok pahalı', pl: 'Za drogo', planned: { 'pt-BR': 'Muito caro', vi: 'Quá đắt', id: 'Terlalu mahal', tr: 'Çok pahalı', pl: 'Za drogo' } },
+                { key: 'not_enough_value', ru: 'Не хватает контента', uk: 'Не вистачає контенту', es: 'Falta contenido', 'pt-BR': 'Falta conteúdo', vi: 'Chưa đủ nội dung', id: 'Kontennya kurang', tr: 'Yeterli içerik yok', pl: 'Za mało treści', planned: { 'pt-BR': 'Falta conteúdo', vi: 'Chưa đủ nội dung', id: 'Kontennya kurang', tr: 'Yeterli içerik yok', pl: 'Za mało treści' } },
+                { key: 'technical_issues', ru: 'Технические проблемы', uk: 'Технічні проблеми', es: 'Problemas técnicos', 'pt-BR': 'Problemas técnicos', vi: 'Sự cố kỹ thuật', id: 'Masalah teknis', tr: 'Teknik sorunlar', pl: 'Problemy techniczne', planned: { 'pt-BR': 'Problemas técnicos', vi: 'Sự cố kỹ thuật', id: 'Masalah teknis', tr: 'Teknik sorunlar', pl: 'Problemy techniczne' } },
+                { key: 'found_better_app', ru: 'Нашёл лучше приложение', uk: 'Знайшов краще застосунок', es: 'Encontré una app mejor', 'pt-BR': 'Encontrei um app melhor', vi: 'Tôi tìm thấy ứng dụng tốt hơn', id: 'Menemukan aplikasi yang lebih baik', tr: 'Daha iyi bir uygulama buldum', pl: 'Znalazłem lepszą aplikację', planned: { 'pt-BR': 'Encontrei um app melhor', vi: 'Tôi tìm thấy ứng dụng tốt hơn', id: 'Menemukan aplikasi yang lebih baik', tr: 'Daha iyi bir uygulama buldum', pl: 'Znalazłem lepszą aplikację' } },
+                { key: 'not_using_enough', ru: 'Пользуюсь редко', uk: 'Користуюсь рідко', es: 'Casi no la uso', 'pt-BR': 'Quase não uso', vi: 'Tôi ít dùng ứng dụng', id: 'Jarang saya gunakan', tr: 'Neredeyse kullanmıyorum', pl: 'Rzadko używam', planned: { 'pt-BR': 'Quase não uso', vi: 'Tôi ít dùng ứng dụng', id: 'Jarang saya gunakan', tr: 'Neredeyse kullanmıyorum', pl: 'Rzadko używam' } },
+                { key: 'other',            ru: 'Другое', uk: 'Інше', es: 'Otro motivo', 'pt-BR': 'Outro motivo', vi: 'Lý do khác', id: 'Alasan lain', tr: 'Başka bir neden', pl: 'Inny powód', planned: { 'pt-BR': 'Outro motivo', vi: 'Lý do khác', id: 'Alasan lain', tr: 'Başka bir neden', pl: 'Inny powód' } },
+              ] as ({ key: string; ru: string; uk: string; es: string; planned: PremiumPlannedCopy } & PremiumPlannedCopy)[]).map(item => (
                 <TouchableOpacity
                   key={item.key}
                   style={{ paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border, flexDirection: 'row', alignItems: 'center' }}
@@ -2630,7 +2856,7 @@ export default function PremiumModal() {
                 </TouchableOpacity>
               ))}
               <TouchableOpacity
-                style={{ marginTop: 20, paddingVertical: 14, alignItems: 'center', backgroundColor: t.bgPrimary, borderRadius: 14 }}
+                style={{ marginTop: 20, paddingVertical: 14, alignItems: 'center', backgroundColor: paywallPrimaryBg, borderRadius: 14 }}
                 onPress={() => { hapticTap(); setCancelSurveyVisible(false); }}
                 activeOpacity={0.7}
               >
@@ -2665,7 +2891,7 @@ export default function PremiumModal() {
             <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.58)', justifyContent: 'flex-end' }}>
               <View
                 style={{
-                  backgroundColor: t.bgCard,
+                  backgroundColor: paywallCardBg,
                   borderTopLeftRadius: 24,
                   borderTopRightRadius: 24,
                   padding: 22,
@@ -2872,7 +3098,7 @@ export default function PremiumModal() {
                       flexDirection: 'row',
                       alignItems: 'center',
                       gap: 10,
-                      backgroundColor: t.bgCard,
+                      backgroundColor: paywallCardBg,
                       borderRadius: 14,
                       borderWidth: 1,
                       borderColor: t.border,
@@ -2880,7 +3106,9 @@ export default function PremiumModal() {
                       paddingHorizontal: 14,
                     }}
                   >
-                    <Text style={{ fontSize: 22, width: 30, textAlign: 'center' }}>{tag.emoji}</Text>
+                    {isEnergyGlyph(tag.emoji)
+                      ? renderPremiumEnergyGlyph(28, 30)
+                      : <Text style={{ fontSize: 22, width: 30, textAlign: 'center' }}>{tag.emoji}</Text>}
                     <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '600', lineHeight: f.body * 1.45 }}>
                       {LP(tag.ru, tag.uk, tag.es, tag)}
                     </Text>
@@ -2891,7 +3119,19 @@ export default function PremiumModal() {
 
             {/* БЛОК 1: Герой */}
             <Animated.View style={{ alignItems: 'center', marginBottom: 24, transform: [{ translateY: heroFloat }] }}>
-              <View style={{ width: '100%', borderRadius: 22, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.textSecond + '35', paddingVertical: 20, paddingHorizontal: 16, alignItems: 'center', overflow: 'hidden' }}>
+              <ImageBackground
+                source={heroBackdrop}
+                resizeMode="cover"
+                imageStyle={{ borderRadius: 22 }}
+                style={{ width: '100%', borderRadius: 22, backgroundColor: paywallCardBg, borderWidth: 1, borderColor: heroArt.accent + '66', paddingVertical: 20, paddingHorizontal: 16, alignItems: 'center', overflow: 'hidden' }}
+              >
+                <LinearGradient
+                  pointerEvents="none"
+                  colors={heroScrim as any}
+                  start={{ x: 0.5, y: 0 }}
+                  end={{ x: 0.5, y: 1 }}
+                  style={StyleSheet.absoluteFill}
+                />
                 <Animated.View
                   pointerEvents="none"
                   style={{
@@ -2899,7 +3139,7 @@ export default function PremiumModal() {
                     width: 180,
                     height: 180,
                     borderRadius: 90,
-                    backgroundColor: t.textSecond,
+                    backgroundColor: heroArt.accent,
                     opacity: heroGlow,
                     top: -60,
                   }}
@@ -2911,13 +3151,17 @@ export default function PremiumModal() {
                     width: 240,
                     height: 120,
                     borderRadius: 120,
-                    backgroundColor: t.correct,
+                    backgroundColor: heroArt.accent2,
                     opacity: heroGlow.interpolate({ inputRange: [0.35, 0.62], outputRange: [0.08, 0.16] }),
                     bottom: -70,
                   }}
                 />
-                <View style={{ backgroundColor: t.bgSurface + 'cc', borderRadius: 24, paddingHorizontal: 14, paddingVertical: 8, marginBottom: 12 }}>
-                  <Text style={{ fontSize: 44 }}>{hero.emoji}</Text>
+                <View style={{ backgroundColor: paywallSurfaceBg, borderRadius: 24, paddingHorizontal: 14, paddingVertical: 8, marginBottom: 12, borderWidth: 1, borderColor: heroArt.accent + '33' }}>
+                  {useShardHeroIcon(ctx)
+                    ? renderPremiumShardGlyph(56, 56, heroArt.shardAmount)
+                    : isEnergyGlyph(hero.emoji)
+                    ? renderPremiumEnergyGlyph(54)
+                    : <Text style={{ fontSize: 44 }}>{hero.emoji}</Text>}
                 </View>
                 <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '800', textAlign: 'center', marginBottom: 8 }} adjustsFontSizeToFit minimumFontScale={0.75} numberOfLines={2}>
                   {LP(hero.titleRu, hero.titleUk, hero.titleEs, heroPlanned.title)}
@@ -2925,7 +3169,7 @@ export default function PremiumModal() {
                 <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: f.body * 1.55 }}>
                   {LP(hero.subtitleRu, hero.subtitleUk, hero.subtitleEs, heroPlanned.subtitle)}
                 </Text>
-              </View>
+              </ImageBackground>
             </Animated.View>
 
             {/* БЛОК 2: Что ты получишь */}
@@ -2943,7 +3187,7 @@ export default function PremiumModal() {
                 <View
                   key={i}
                   style={{
-                    backgroundColor: t.bgCard,
+                    backgroundColor: paywallCardBg,
                     borderRadius: 12,
                     borderWidth: 1,
                     borderColor: i === 0 ? t.correct + '66' : t.border,
@@ -2968,7 +3212,7 @@ export default function PremiumModal() {
             </View>
 
             {/* БЛОК 3: Персональная ценность */}
-            <View style={{ marginBottom: 16, backgroundColor: t.bgCard, borderRadius: 14, borderWidth: 1, borderColor: t.textSecond + '55', padding: 14 }}>
+            <View style={{ marginBottom: 16, backgroundColor: paywallCardBg, borderRadius: 14, borderWidth: 1, borderColor: t.textSecond + '55', padding: 14 }}>
               <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
                 {LP('Для тебя сейчас', 'Для тебе зараз', 'Para ti ahora', {
                   'pt-BR': 'Para você agora',
@@ -2987,7 +3231,7 @@ export default function PremiumModal() {
             <View
               style={{
                 marginBottom: 18,
-                backgroundColor: t.bgSurface,
+                backgroundColor: paywallSurfaceBg,
                 borderRadius: 16,
                 borderWidth: 1,
                 borderColor: t.textSecond + '2a',
@@ -3037,7 +3281,9 @@ export default function PremiumModal() {
                       borderBottomColor: t.border,
                     }}
                   >
-                    <Text style={{ width: 28, fontSize: 17, textAlign: 'center' }}>{row.emoji}</Text>
+                    {isEnergyGlyph(row.emoji)
+                      ? renderPremiumEnergyGlyph(22, 28)
+                      : <Text style={{ width: 28, fontSize: 17, textAlign: 'center' }}>{row.emoji}</Text>}
                     <View style={{ flex: 1, minWidth: 0, paddingRight: 6 }}>
                       <Text numberOfLines={1} style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>{title}</Text>
                       <Text numberOfLines={2} style={{ color: t.textGhost, fontSize: 10, lineHeight: 13, marginTop: 2 }}>{freeL}</Text>
@@ -3099,7 +3345,7 @@ export default function PremiumModal() {
                 borderRadius: 16, padding: 18, marginBottom: 10,
                 borderWidth: selected === 'yearly' ? 2 : 1,
                 borderColor: selected === 'yearly' ? t.textSecond : t.border,
-                backgroundColor: selected === 'yearly' ? t.bgSurface : t.bgCard,
+                backgroundColor: selected === 'yearly' ? paywallSurfaceBg : paywallCardBg,
                 opacity: purchasing && selected !== 'yearly' ? 0.5 : 1,
                 shadowColor: selected === 'yearly' ? t.textSecond : '#000',
                 shadowOffset: { width: 0, height: 4 },
@@ -3231,7 +3477,7 @@ export default function PremiumModal() {
                 borderRadius: 16, padding: 18, marginBottom: 20,
                 borderWidth: selected === 'monthly' ? 2 : 1,
                 borderColor: selected === 'monthly' ? t.textSecond : t.border,
-                backgroundColor: selected === 'monthly' ? t.bgSurface : t.bgCard,
+                backgroundColor: selected === 'monthly' ? paywallSurfaceBg : paywallCardBg,
                 opacity: purchasing && selected !== 'monthly' ? 0.5 : 1,
                 shadowColor: selected === 'monthly' ? t.textSecond : '#000',
                 shadowOffset: { width: 0, height: 4 },

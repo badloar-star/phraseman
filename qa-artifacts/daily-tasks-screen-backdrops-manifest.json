@@ -1,0 +1,50 @@
+[
+  {
+    "theme": "dark",
+    "output": "assets/images/screen_backdrops/daily_tasks/daily-tasks-dark.webp",
+    "source": "C:/Users/badlo/.codex/generated_images/019e3a72-eeed-75d3-887a-8c87c6af7f46/ig_05773b24ee0806e2016a0af5486b0c8191b74731008ffd4b16.png",
+    "width": 1080,
+    "height": 1920,
+    "bytes": 289228
+  },
+  {
+    "theme": "neon",
+    "output": "assets/images/screen_backdrops/daily_tasks/daily-tasks-neon.webp",
+    "source": "C:/Users/badlo/.codex/generated_images/019e3a72-eeed-75d3-887a-8c87c6af7f46/ig_05773b24ee0806e2016a0af59e06a081919fc15cb0b6e26c44.png",
+    "width": 1080,
+    "height": 1920,
+    "bytes": 393644
+  },
+  {
+    "theme": "gold",
+    "output": "assets/images/screen_backdrops/daily_tasks/daily-tasks-gold.webp",
+    "source": "C:/Users/badlo/.codex/generated_images/019e3a72-eeed-75d3-887a-8c87c6af7f46/ig_05773b24ee0806e2016a0af5f239e481918adc46f233d083c7.png",
+    "width": 1080,
+    "height": 1920,
+    "bytes": 541530
+  },
+  {
+    "theme": "coral",
+    "output": "assets/images/screen_backdrops/daily_tasks/daily-tasks-coral.webp",
+    "source": "C:/Users/badlo/.codex/generated_images/019e3a72-eeed-75d3-887a-8c87c6af7f46/ig_05773b24ee0806e2016a0af650dcb881918135e862e8c9dcc0.png",
+    "width": 1080,
+    "height": 1920,
+    "bytes": 351392
+  },
+  {
+    "theme": "minimalLight",
+    "output": "assets/images/screen_backdrops/daily_tasks/daily-tasks-minimal-light.webp",
+    "source": "C:/Users/badlo/.codex/generated_images/019e3a72-eeed-75d3-887a-8c87c6af7f46/ig_05773b24ee0806e2016a0af69fbbfc8191b69756ce032ad7cb.png",
+    "width": 1080,
+    "height": 1920,
+    "bytes": 359172
+  },
+  {
+    "theme": "minimalDark",
+    "output": "assets/images/screen_backdrops/daily_tasks/daily-tasks-minimal-dark.webp",
+    "source": "C:/Users/badlo/.codex/generated_images/019e3a72-eeed-75d3-887a-8c87c6af7f46/ig_05773b24ee0806e2016a0af6f92568819184827832623d93e3.png",
+    "width": 1080,
+    "height": 1920,
+    "bytes": 232692
+  }
+]

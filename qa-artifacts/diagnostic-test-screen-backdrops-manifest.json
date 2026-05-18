@@ -1,0 +1,62 @@
+[
+  {
+    "theme": "dark",
+    "selectedIndex": 2,
+    "source": "C:\\Users\\badlo\\.codex\\generated_images\\019e3a72-eeed-75d3-887a-8c87c6af7f46\\ig_06f898aa7425a5f2016a0b05aed9048191bdeff26426c60769.png",
+    "target": "assets/images/screen_backdrops/diagnostic_test/diagnostic-test-dark.webp",
+    "width": 1080,
+    "height": 1920,
+    "format": "webp",
+    "size": 325484
+  },
+  {
+    "theme": "neon",
+    "selectedIndex": 4,
+    "source": "C:\\Users\\badlo\\.codex\\generated_images\\019e3a72-eeed-75d3-887a-8c87c6af7f46\\ig_06f898aa7425a5f2016a0b05feeeac81918fa11b2455470be8.png",
+    "target": "assets/images/screen_backdrops/diagnostic_test/diagnostic-test-neon.webp",
+    "width": 1080,
+    "height": 1920,
+    "format": "webp",
+    "size": 410508
+  },
+  {
+    "theme": "gold",
+    "selectedIndex": 5,
+    "source": "C:\\Users\\badlo\\.codex\\generated_images\\019e3a72-eeed-75d3-887a-8c87c6af7f46\\ig_06f898aa7425a5f2016a0b064a88b8819191980e22445ec77e.png",
+    "target": "assets/images/screen_backdrops/diagnostic_test/diagnostic-test-gold.webp",
+    "width": 1080,
+    "height": 1920,
+    "format": "webp",
+    "size": 454328
+  },
+  {
+    "theme": "coral",
+    "selectedIndex": 6,
+    "source": "C:\\Users\\badlo\\.codex\\generated_images\\019e3a72-eeed-75d3-887a-8c87c6af7f46\\ig_06f898aa7425a5f2016a0b069ffd6c819187638a5b65c47814.png",
+    "target": "assets/images/screen_backdrops/diagnostic_test/diagnostic-test-coral.webp",
+    "width": 1080,
+    "height": 1920,
+    "format": "webp",
+    "size": 345424
+  },
+  {
+    "theme": "minimalLight",
+    "selectedIndex": 7,
+    "source": "C:\\Users\\badlo\\.codex\\generated_images\\019e3a72-eeed-75d3-887a-8c87c6af7f46\\ig_06f898aa7425a5f2016a0b06f34db88191a1c9935774a11313.png",
+    "target": "assets/images/screen_backdrops/diagnostic_test/diagnostic-test-minimal-light.webp",
+    "width": 1080,
+    "height": 1920,
+    "format": "webp",
+    "size": 314524
+  },
+  {
+    "theme": "minimalDark",
+    "selectedIndex": 8,
+    "source": "C:\\Users\\badlo\\.codex\\generated_images\\019e3a72-eeed-75d3-887a-8c87c6af7f46\\ig_06f898aa7425a5f2016a0b073f0f4c8191ba9e2ce7e3ecb294.png",
+    "target": "assets/images/screen_backdrops/diagnostic_test/diagnostic-test-minimal-dark.webp",
+    "width": 1080,
+    "height": 1920,
+    "format": "webp",
+    "size": 270758
+  }
+]

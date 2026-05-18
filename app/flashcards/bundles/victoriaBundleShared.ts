@@ -52,6 +52,11 @@ export type VictoriaRow = {
   uk: string;
   /** ES (інтерфейс `es`); можна задати тут або в `flashcardMarketplaceEsOverlay`. */
   es?: string;
+  /** Planned interface locales for phrase text; `id` is already the row identifier. */
+  'pt-BR'?: string;
+  vi?: string;
+  tr?: string;
+  pl?: string;
   literalRu?: string;
   literalUk?: string;
   literalEs?: string;

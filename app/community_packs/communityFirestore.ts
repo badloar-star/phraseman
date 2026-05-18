@@ -7,6 +7,7 @@ import { COMMUNITY_PACKS_COLLECTION, COMMUNITY_PACK_PRICE_SHARDS } from './schem
 import { callCommunityFetchPackCardsIfAccessible, isCommunityPacksCloudEnabled } from './functionsClient';
 import { getCanonicalUserId } from '../user_id_policy';
 import { UGC_CARD_THEME_DEFAULT_ID } from './ugcCardThemePresets';
+import { normalizeUgcCardBackKey } from '../flashcards/cardBackCatalog';
 
 function num(v: unknown, d = 0): number {
   const n = typeof v === 'number' ? v : Number(v);
@@ -61,6 +62,7 @@ export function mapCommunityPackDocToMarket(
     listingStatus: st,
     isPendingUpdateReview: st === 'update_pending' || st === 'admin_revision_required',
     ugcCardThemeKey: String(data.cardThemeKey ?? '').trim() || undefined,
+    ugcCardBackKey: normalizeUgcCardBackKey(String(data.cardBackKey ?? '').trim()),
     isOfficial: false,
     isCommunityUgc: true,
     updatedAt: typeof data.updatedAt === 'number' ? new Date(data.updatedAt).toISOString() : new Date().toISOString(),
@@ -116,6 +118,7 @@ export type CommunityPackEditorSnapshot = {
   description: string;
   priceShards: number;
   cardThemeKey: string;
+  cardBackKey: string;
   cards: Array<{ id: string; en: string; ru: string; uk: string; es?: string }>;
 };
 
@@ -147,6 +150,7 @@ export async function fetchCommunityPackForAuthorEdit(
       description: String(d.descriptionRu ?? d.descriptionUk ?? d.descriptionEs ?? '').trim(),
       priceShards: COMMUNITY_PACK_PRICE_SHARDS,
       cardThemeKey: String(d.cardThemeKey ?? UGC_CARD_THEME_DEFAULT_ID).trim() || UGC_CARD_THEME_DEFAULT_ID,
+      cardBackKey: normalizeUgcCardBackKey(String(d.cardBackKey ?? '').trim()),
       cards,
     };
   } catch {

@@ -2350,7 +2350,7 @@ export default function FlashcardsSwipeScreen() {
   };
 
   return (
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="flashcards">
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
       <SafeAreaView style={styles.safe}>
         <ContentWrap>

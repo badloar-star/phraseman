@@ -39,6 +39,7 @@ import {
   wipeLocalAccountData,
   deleteCloudData,
   resetAnonAuthCacheForSignOut,
+  ensureStableAuthLinkForStableId,
   SYNC_KEYS,
 } from './cloud_sync';
 import { reserveName } from './firestore_leaderboard';
@@ -646,6 +647,9 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     const detail = code ? `${code}:${msg}` : msg;
     logAuthEvent('auth_signin_error', { provider, stage: 'native', error: detail.slice(0, 80) });
     const errStr = `native_${detail}`.slice(0, 120);
+    if (errStr.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {
+      return { result: 'error', error: errStr };
+    }
     captureAuthSignInFailure(provider, 'native', errStr);
     return { result: 'error', error: errStr };
   }
@@ -690,6 +694,31 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
 
   const linkRef = db.collection('auth_links').doc(firebaseProviderUid);
   const usersRef = db.collection('users');
+
+  const localAuthLinked = await ensureStableAuthLinkForStableId(localStableId);
+  if (!localAuthLinked) {
+    captureAuthSignInFailure(provider, 'auth_link', 'local_stable_link_failed');
+    return { result: 'error', error: 'auth_link_failed' };
+  }
+
+  let remoteStableId: string | null = null;
+  try {
+    const linkSnap = await linkRef.get();
+    const linkedStableId = linkSnap.exists ? linkSnap.data()?.stable_id : null;
+    if (typeof linkedStableId === 'string' && linkedStableId.trim() && linkedStableId !== localStableId) {
+      remoteStableId = linkedStableId.trim();
+    }
+  } catch {
+    remoteStableId = null;
+  }
+
+  if (remoteStableId) {
+    const remoteAuthLinked = await ensureStableAuthLinkForStableId(remoteStableId);
+    if (!remoteAuthLinked) {
+      captureAuthSignInFailure(provider, 'auth_link', 'remote_stable_link_failed');
+      return { result: 'error', error: 'auth_link_failed' };
+    }
+  }
 
   type Outcome =
     | { kind: 'linked_existing' }
@@ -743,7 +772,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
             };
             tx.set(
               usersRef.doc(localStableId),
-              { linkedAuth, updatedAt: now, created_at: now },
+              { linkedAuth, firebaseAuthUid: firebaseProviderUid, updatedAt: now, created_at: now },
               { merge: true },
             );
             return { kind: 'created_new' as const };
@@ -789,7 +818,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
           };
           tx.set(
             usersRef.doc(localStableId),
-            { linkedAuth, updatedAt: now, created_at: now },
+            { linkedAuth, firebaseAuthUid: firebaseProviderUid, updatedAt: now, created_at: now },
             { merge: true },
           );
           return { kind: 'created_new' as const };
@@ -824,7 +853,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
           // вечно показывает "Не прив\'язано" хотя юзер реально залогинен.
           tx.set(
             usersRef.doc(remoteStableId),
-            { linkedAuth: mergedLinkedAuth, updatedAt: now },
+            { linkedAuth: mergedLinkedAuth, firebaseAuthUid: firebaseProviderUid, updatedAt: now },
             { merge: true },
           );
           return {
@@ -847,7 +876,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
         // что мы залогинены.
         tx.set(
           usersRef.doc(localStableId),
-          { linkedAuth: mergedLinkedAuth, updatedAt: now },
+          { linkedAuth: mergedLinkedAuth, firebaseAuthUid: firebaseProviderUid, updatedAt: now },
           { merge: true },
         );
         return { kind: 'merged_keep_local' as const, mergedFromStableId: remoteStableId };
@@ -878,7 +907,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       };
       tx.set(
         usersRef.doc(localStableId),
-        { linkedAuth, updatedAt: now },
+        { linkedAuth, firebaseAuthUid: firebaseProviderUid, updatedAt: now },
         { merge: true },
       );
       return { kind: 'created_new' as const };

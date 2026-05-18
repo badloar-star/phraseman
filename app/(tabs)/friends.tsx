@@ -17,8 +17,8 @@ import LeagueCrownName from '../../components/LeagueCrownName';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
-import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
-import { getLevelFromXP, getXPProgress } from '../../constants/theme';
+import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
+import { getLevelFromXP, getXPProgress, type ThemeMode } from '../../constants/theme';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import {
@@ -104,6 +104,46 @@ interface FriendProfile {
 const PROFILE_TTL_MS = 30 * 1000;
 
 type ProfileCacheEntry = FriendsProfileCacheEntry;
+
+type FriendsChrome = {
+  card: string;
+  cardSoft: string;
+  surface: string;
+  button: string;
+  border: string;
+  mask: string;
+};
+
+function makeFriendsChrome(themeMode: ThemeMode, t: any): FriendsChrome {
+  if (themeMode === 'neon') {
+    return {
+      card: 'rgba(32,32,32,0.76)',
+      cardSoft: 'rgba(32,32,32,0.70)',
+      surface: 'rgba(42,42,42,0.62)',
+      button: 'rgba(42,42,42,0.58)',
+      border: 'rgba(200,255,0,0.11)',
+      mask: '#202020',
+    };
+  }
+  if (themeMode === 'minimalDark') {
+    return {
+      card: 'rgba(35,36,40,0.76)',
+      cardSoft: 'rgba(35,36,40,0.70)',
+      surface: 'rgba(45,47,52,0.62)',
+      button: 'rgba(45,47,52,0.58)',
+      border: 'rgba(255,255,255,0.12)',
+      mask: '#232428',
+    };
+  }
+  return {
+    card: t.bgCard,
+    cardSoft: t.bgCard,
+    surface: t.bgSurface,
+    button: t.bgSurface,
+    border: t.border,
+    mask: t.bgCard,
+  };
+}
 
 async function writeProfilesCache(cache: Record<string, ProfileCacheEntry>): Promise<void> {
   try { await AsyncStorage.setItem(FRIEND_PROFILES_CACHE_KEY, JSON.stringify(cache)); } catch { /* ignore */ }
@@ -373,15 +413,20 @@ function MiniXpBar({ xp, color }: { xp: number; color: string }) {
 
 // ── Friend row ────────────────────────────────────────────────────────────────
 
+const FRIEND_ROW_AVATAR_SIZE = 60;
+
 function FriendRow({
-  profile, rank, onPress, onDelete, onGift, lang, t, f,
+  profile, rank, onPress, onDelete, onGift, lang, t, f, chrome,
 }: {
   profile: FriendProfile; rank: number;
   onPress: () => void; onDelete: () => void; onGift: () => void;
   lang: string; t: any; f: any;
+  chrome: FriendsChrome;
 }) {
   const rankColor = rank === 1 ? '#FFD700' : rank === 2 ? '#C0C0C0' : rank === 3 ? '#CD7F32' : t.textMuted;
   const hasLeagueCrown = Number(profile.leagueCrownExpiresAt) > Date.now();
+  const effectiveAura = getEffectiveAvatarAuraId(profile.aura, profile.isPremium);
+  const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   return (
     <TouchableOpacity
       testID={`friend-row-${profile.uid}`}
@@ -389,17 +434,17 @@ function FriendRow({
       onPress={onPress}
       style={{
         flexDirection: 'row', alignItems: 'center',
-        backgroundColor: t.bgCard,
+        backgroundColor: chrome.card,
         borderRadius: 16, padding: 14, marginBottom: 10,
-        borderWidth: 0.5, borderColor: t.border,
+        borderWidth: 0.5, borderColor: chrome.border,
         gap: 12,
       }}
     >
       <Text style={{ width: 20, fontSize: f.body, fontWeight: '800', color: rankColor, textAlign: 'center' }}>
         {rank}
       </Text>
-      <PremiumAvatarHalo enabled={profile.isPremium} avatarSize={44} maskColor={t.bgCard}>
-        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={44} auraId={getEffectiveAvatarAuraId(profile.aura, profile.isPremium)} />
+      <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={FRIEND_ROW_AVATAR_SIZE} maskColor={chrome.mask}>
+        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={FRIEND_ROW_AVATAR_SIZE} auraId={usesPremiumAura ? undefined : effectiveAura} />
       </PremiumAvatarHalo>
       <View style={{ flex: 1, minWidth: 0 }}>
         {hasLeagueCrown
@@ -450,23 +495,26 @@ function FriendRow({
 
 // ── Request row ───────────────────────────────────────────────────────────────
 
-function RequestRow({ profile, onAccept, onDecline, lang, t, f }: {
+function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
   profile: FriendProfile;
   onAccept: () => void;
   onDecline: () => void;
   lang: string;
   t: any;
   f: any;
+  chrome: FriendsChrome;
 }) {
   const hasLeagueCrown = Number(profile.leagueCrownExpiresAt) > Date.now();
+  const effectiveAura = getEffectiveAvatarAuraId(profile.aura, profile.isPremium);
+  const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   return (
     <View testID={`friend-request-row-${profile.uid}`} style={{
       flexDirection: 'row', alignItems: 'center',
-      backgroundColor: t.bgCard, borderRadius: 16, padding: 14, marginBottom: 10,
-      borderWidth: 0.5, borderColor: t.border, gap: 12,
+      backgroundColor: chrome.card, borderRadius: 16, padding: 14, marginBottom: 10,
+      borderWidth: 0.5, borderColor: chrome.border, gap: 12,
     }}>
-      <PremiumAvatarHalo enabled={profile.isPremium} avatarSize={44} maskColor={t.bgCard}>
-        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={44} auraId={getEffectiveAvatarAuraId(profile.aura, profile.isPremium)} />
+      <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={44} maskColor={chrome.mask}>
+        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={44} auraId={usesPremiumAura ? undefined : effectiveAura} />
       </PremiumAvatarHalo>
       <View style={{ flex: 1, minWidth: 0 }}>
         {hasLeagueCrown
@@ -506,14 +554,14 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f }: {
           testID={`friend-request-decline-${profile.uid}`}
           onPress={onDecline}
           style={{
-            backgroundColor: t.bgSurface,
+            backgroundColor: chrome.button,
             borderRadius: 10,
             paddingVertical: 8,
             paddingHorizontal: 12,
             minWidth: 96,
             alignItems: 'center',
             borderWidth: 0.5,
-            borderColor: t.border,
+            borderColor: chrome.border,
           }}
         >
           <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700' }}>
@@ -536,21 +584,24 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f }: {
 
 // ── Found user card ───────────────────────────────────────────────────────────
 
-function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f }: {
+function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome }: {
   profile: FriendProfile; onAdd: () => void; onClose: () => void;
   isAdding: boolean; lang: string; t: any; f: any;
+  chrome: FriendsChrome;
 }) {
   const level = getLevelFromXP(profile.totalXp);
   const hasLeagueCrown = Number(profile.leagueCrownExpiresAt) > Date.now();
+  const effectiveAura = getEffectiveAvatarAuraId(profile.aura, profile.isPremium);
+  const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   return (
     <View testID="friends-found-user-card" style={{
-      backgroundColor: t.bgCard, borderRadius: 20, padding: 20, marginTop: 12,
+      backgroundColor: chrome.card, borderRadius: 20, padding: 20, marginTop: 12,
       borderWidth: 1, borderColor: t.accent + '55', gap: 16,
       shadowColor: t.accent, shadowOpacity: 0.15, shadowRadius: 12, shadowOffset: { width: 0, height: 4 },
     }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-        <PremiumAvatarHalo enabled={profile.isPremium} avatarSize={56} maskColor={t.bgCard}>
-          <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={56} auraId={getEffectiveAvatarAuraId(profile.aura, profile.isPremium)} />
+        <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={56} maskColor={chrome.mask}>
+          <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={56} auraId={usesPremiumAura ? undefined : effectiveAura} />
         </PremiumAvatarHalo>
         <View style={{ flex: 1 }}>
           {hasLeagueCrown
@@ -611,9 +662,10 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f }: {
 
 // ── Code card ─────────────────────────────────────────────────────────────────
 
-function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standalone', loadError, onRetryLoad }: {
+function CodeCard({ code, onCopy, onShare, copied, lang, t, f, chrome, layout = 'standalone', loadError, onRetryLoad }: {
   code: string | null; onCopy: () => void; onShare: () => void;
   copied: boolean; lang: string; t: any; f: any;
+  chrome: FriendsChrome;
   /** standalone — отдельная карточка; underButton — примыкает снизу к кнопке; inSheet — внутри выпадающей панели (плоские низ/верх для стыковки). */
   layout?: 'standalone' | 'underButton' | 'inSheet';
   loadError?: boolean;
@@ -627,7 +679,7 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
 
   return (
     <View testID="friends-my-code-card" style={{
-      backgroundColor: t.bgCard,
+      backgroundColor: chrome.card,
       borderRadius: 20,
       borderTopLeftRadius: topFlat ? 0 : 20,
       borderTopRightRadius: topFlat ? 0 : 20,
@@ -637,7 +689,7 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
       alignItems: 'center', gap: 14,
       borderWidth: inSheet ? 0 : 0.5,
       borderBottomWidth: inSheet ? StyleSheet.hairlineWidth : 0.5,
-      borderColor: t.border,
+      borderColor: chrome.border,
       marginBottom,
     }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
@@ -675,9 +727,9 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
               onPress={onCopy}
               style={{
                 flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                backgroundColor: copied ? '#34C759' : t.bgSurface,
+                backgroundColor: copied ? '#34C759' : chrome.button,
                 borderRadius: 12, paddingVertical: 12, gap: 6,
-                borderWidth: 0.5, borderColor: copied ? '#34C759' : t.border,
+                borderWidth: 0.5, borderColor: copied ? '#34C759' : chrome.border,
               }}
             >
               <Ionicons name={copied ? 'checkmark' : 'copy-outline'} size={16} color={copied ? '#fff' : t.textPrimary} />
@@ -710,8 +762,8 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
               onPress={onShare}
               style={{
                 flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                backgroundColor: t.bgSurface, borderRadius: 12, paddingVertical: 12, gap: 6,
-                borderWidth: 0.5, borderColor: t.border,
+                backgroundColor: chrome.button, borderRadius: 12, paddingVertical: 12, gap: 6,
+                borderWidth: 0.5, borderColor: chrome.border,
               }}
             >
               <Ionicons name="share-outline" size={16} color={t.textPrimary} />
@@ -929,13 +981,13 @@ function eventIconColor(type: FriendEvent['type'], accent: string): string {
 // ── Activity tab ──────────────────────────────────────────────────────────────
 
 function ActivityTab({
-  friendUids, profiles, lang, t, f,
+  friendUids, profiles, lang, t, f, chrome,
 }: {
   friendUids: string[];
   profiles: Record<string, FriendProfile>;
   lang: string; t: any; f: any;
+  chrome: FriendsChrome;
 }) {
-  const { themeMode } = useTheme();
   const [events, setEvents] = useState<FriendEvent[]>([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
@@ -1075,8 +1127,8 @@ function ActivityTab({
             testID={`friends-activity-row-${event.uid}-${event.id}`}
             style={{
               flexDirection: 'row', alignItems: 'flex-start', gap: 12,
-              backgroundColor: t.bgCard, borderRadius: 16, padding: 14, marginBottom: 10,
-              borderWidth: 0.5, borderColor: t.border,
+              backgroundColor: chrome.card, borderRadius: 16, padding: 14, marginBottom: 10,
+              borderWidth: 0.5, borderColor: chrome.border,
             }}
           >
             <View style={{
@@ -1108,9 +1160,9 @@ function ActivityTab({
                 paddingVertical: 5,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: likedToday ? 'rgba(255,45,85,0.16)' : t.bgSurface,
+                backgroundColor: likedToday ? 'rgba(255,45,85,0.16)' : chrome.button,
                 borderWidth: 0.5,
-                borderColor: likedToday ? 'rgba(255,45,85,0.55)' : t.border,
+                borderColor: likedToday ? 'rgba(255,45,85,0.55)' : chrome.border,
                 opacity: busy ? 0.55 : 1,
               }}
             >
@@ -1132,7 +1184,7 @@ function AddFriendModal({
   visible, onClose, myCode, onCopy, onShare, copied,
   codeInput, setCodeInput, isSearching, foundUser, searchError,
   isAdding, addFeedback, onSearch, onAddFound, onCloseFoundUser,
-  loadError, onRetryLoad, lang, t, f,
+  loadError, onRetryLoad, lang, t, f, chrome,
 }: {
   visible: boolean; onClose: () => void;
   myCode: string | null; onCopy: () => void; onShare: () => void; copied: boolean;
@@ -1142,6 +1194,7 @@ function AddFriendModal({
   onSearch: () => void; onAddFound: () => void; onCloseFoundUser: () => void;
   loadError: boolean; onRetryLoad: () => void;
   lang: string; t: any; f: any;
+  chrome: FriendsChrome;
 }) {
   const L = (
     ru: string,
@@ -1173,7 +1226,7 @@ function AddFriendModal({
           >
             <CodeCard
               code={myCode} onCopy={onCopy} onShare={onShare}
-              copied={copied} lang={lang} t={t} f={f}
+              copied={copied} lang={lang} t={t} f={f} chrome={chrome}
               layout="standalone"
               loadError={loadError}
               onRetryLoad={onRetryLoad}
@@ -1185,10 +1238,10 @@ function AddFriendModal({
             <TextInput
                 testID="friends-code-input"
                 style={{
-                  flex: 1, backgroundColor: t.bgSurface, borderRadius: 12,
+                  flex: 1, backgroundColor: chrome.surface, borderRadius: 12,
                   paddingHorizontal: 16, paddingVertical: 13,
                   fontSize: 20, fontWeight: '800', color: t.textPrimary,
-                  letterSpacing: 4, borderWidth: 0.5, borderColor: t.border,
+                  letterSpacing: 4, borderWidth: 0.5, borderColor: chrome.border,
                 }}
                 placeholder=""
                 placeholderTextColor={t.textMuted}
@@ -1207,9 +1260,9 @@ function AddFriendModal({
                 onPress={onSearch}
                 disabled={codeInput.length !== 6 || isSearching}
                 style={{
-                  backgroundColor: codeInput.length === 6 ? t.accent : t.bgSurface,
+                  backgroundColor: codeInput.length === 6 ? t.accent : chrome.button,
                   borderRadius: 12, paddingHorizontal: 18, justifyContent: 'center', alignItems: 'center',
-                  borderWidth: 0.5, borderColor: codeInput.length === 6 ? t.accent : t.border,
+                  borderWidth: 0.5, borderColor: codeInput.length === 6 ? t.accent : chrome.border,
                   opacity: isSearching ? 0.6 : 1,
                 }}
               >
@@ -1227,7 +1280,7 @@ function AddFriendModal({
             {foundUser && (
               <FoundUserCard
                 profile={foundUser} onAdd={onAddFound} onClose={onCloseFoundUser}
-                isAdding={isAdding} lang={lang} t={t} f={f}
+                isAdding={isAdding} lang={lang} t={t} f={f} chrome={chrome}
               />
             )}
 
@@ -1248,11 +1301,12 @@ function AddFriendModal({
 // ── Main screen ───────────────────────────────────────────────────────────────
 
 export default function FriendsTabScreen() {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { isPremium } = usePremium();
   const router = useRouter();
   const { goHome } = useTabNav();
+  const chrome = useMemo(() => makeFriendsChrome(themeMode, t), [themeMode, t]);
   const L = (
     ru: string,
     uk: string,
@@ -1898,7 +1952,7 @@ export default function FriendsTabScreen() {
             accessibilityLabel={L('На главную', 'На головну', 'Inicio', 'Início', 'Trang chủ', 'Beranda', 'Ana sayfa', 'Strona główna')}
             style={{
               width: 36, height: 36, borderRadius: 18,
-              backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border,
+              backgroundColor: chrome.button, borderWidth: 0.5, borderColor: chrome.border,
               justifyContent: 'center', alignItems: 'center', marginRight: 10, flexShrink: 0,
             }}
             onPress={() => { hapticTap(); goHome(); }}
@@ -1930,9 +1984,9 @@ export default function FriendsTabScreen() {
           </TouchableOpacity>
         </View>
         <View style={{
-          flexDirection: 'row', backgroundColor: t.bgCard,
+          flexDirection: 'row', backgroundColor: chrome.card,
           borderRadius: 14, padding: 3, marginBottom: 20,
-          borderWidth: 0.5, borderColor: t.border,
+          borderWidth: 0.5, borderColor: chrome.border,
         }}>
           {(['friends', 'activity'] as const).map(tab => {
             const active = activeTab === tab;
@@ -1991,7 +2045,7 @@ export default function FriendsTabScreen() {
                         });
                     }}
                     onDecline={() => { hapticTap(); void declineFriendRequest(req.fromUid); }}
-                    lang={lang} t={t} f={f}
+                    lang={lang} t={t} f={f} chrome={chrome}
                   />
                 ))}
               </>
@@ -2010,10 +2064,10 @@ export default function FriendsTabScreen() {
             {sortedFriends.length === 0 ? (
               !showFriendsEmpty ? null : (
               <View testID="friends-empty-state" style={{
-                backgroundColor: t.bgCard, borderRadius: 20, padding: 32,
-                alignItems: 'center', gap: 12, borderWidth: 0.5, borderColor: t.border,
+                backgroundColor: chrome.cardSoft, borderRadius: 20, padding: 32,
+                alignItems: 'center', gap: 12, borderWidth: 0.5, borderColor: chrome.border,
               }}>
-                <View style={{ width: 60, height: 60, borderRadius: 30, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ width: 60, height: 60, borderRadius: 30, backgroundColor: chrome.surface, justifyContent: 'center', alignItems: 'center' }}>
                   <Ionicons name="people-outline" size={28} color={t.textMuted} />
                 </View>
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
@@ -2033,7 +2087,7 @@ export default function FriendsTabScreen() {
                   onPress={() => openProfile(profile)}
                   onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
                   onGift={() => openGiftPicker(profile)}
-                  lang={lang} t={t} f={f}
+                  lang={lang} t={t} f={f} chrome={chrome}
                 />
               ))
             )}
@@ -2044,6 +2098,7 @@ export default function FriendsTabScreen() {
             friendUids={friendUids}
             profiles={profiles}
             lang={lang} t={t} f={f}
+            chrome={chrome}
           />
         )}
 
@@ -2075,7 +2130,7 @@ export default function FriendsTabScreen() {
         onCloseFoundUser={() => setFoundUser(null)}
         loadError={friendCodeLoadError}
         onRetryLoad={retryFriendCode}
-        lang={lang} t={t} f={f}
+        lang={lang} t={t} f={f} chrome={chrome}
       />
 
       <Modal
@@ -2091,21 +2146,25 @@ export default function FriendsTabScreen() {
             onPress={() => setGiftTarget(null)}
           />
           <View style={{
-            backgroundColor: t.bgCard,
+            backgroundColor: chrome.card,
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
             padding: 18,
             paddingBottom: 28,
             gap: 12,
             borderWidth: 0.5,
-            borderColor: t.border,
+            borderColor: chrome.border,
           }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-              {giftTarget ? (
-                <PremiumAvatarHalo enabled={giftTarget.isPremium} avatarSize={44} maskColor={t.bgCard}>
-                  <AvatarView avatar={giftTarget.avatar} totalXP={giftTarget.totalXp} size={44} auraId={getEffectiveAvatarAuraId(giftTarget.aura, giftTarget.isPremium)} />
-                </PremiumAvatarHalo>
-              ) : null}
+              {giftTarget ? (() => {
+                const effectiveAura = getEffectiveAvatarAuraId(giftTarget.aura, giftTarget.isPremium);
+                const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
+                return (
+                  <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={44} maskColor={chrome.mask}>
+                    <AvatarView avatar={giftTarget.avatar} totalXP={giftTarget.totalXp} size={44} auraId={usesPremiumAura ? undefined : effectiveAura} />
+                  </PremiumAvatarHalo>
+                );
+              })() : null}
               <View style={{ flex: 1 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900' }}>
                   {L('Подарок другу', 'Подарунок другу', 'Regalo para amigo', 'Presente para amigo', 'Quà cho bạn bè', 'Hadiah untuk teman', 'Arkadaşına hediye', 'Prezent dla znajomego')}
@@ -2121,7 +2180,7 @@ export default function FriendsTabScreen() {
                   width: 36,
                   height: 36,
                   borderRadius: 18,
-                  backgroundColor: t.bgSurface,
+                  backgroundColor: chrome.button,
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
@@ -2138,7 +2197,7 @@ export default function FriendsTabScreen() {
               paddingHorizontal: 10,
               paddingVertical: 6,
               borderRadius: 999,
-              backgroundColor: t.bgSurface,
+              backgroundColor: chrome.surface,
             }}>
               <Image
                 source={oskolokImageForPackShards(giftBalance)}
@@ -2166,10 +2225,10 @@ export default function FriendsTabScreen() {
                     gap: 12,
                     padding: 13,
                     borderRadius: 14,
-                    backgroundColor: t.bgSurface,
+                    backgroundColor: chrome.surface,
                     opacity: disabled ? 0.45 : cannotAfford ? 0.72 : 1,
                     borderWidth: 0.5,
-                    borderColor: t.border,
+                    borderColor: chrome.border,
                   }}
                 >
                   <View style={{
@@ -2178,7 +2237,7 @@ export default function FriendsTabScreen() {
                     borderRadius: 12,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: t.bgCard,
+                    backgroundColor: chrome.card,
                   }}>
                     <Ionicons name={gift.icon as any} size={21} color={t.accent} />
                   </View>

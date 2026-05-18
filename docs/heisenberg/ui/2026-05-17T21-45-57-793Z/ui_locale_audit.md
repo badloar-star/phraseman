@@ -1,0 +1,133 @@
+# Heisenberg UI Locale Audit
+
+Generated: 2026-05-17T21:45:57.793Z
+Activation ready: no
+Planned locales: pt-BR, vi, id, tr, pl
+
+## Summary
+- Files scanned: 585
+- triLang calls: 1505
+- Static triLang calls: 1505
+- Dynamic triLang calls: 0
+- Legacy/local ru/uk/es helper calls: 0
+- Locale object findings: 2493
+- triLang missing locale units: 0
+- triLang calls missing all planned locales: 0
+- Helper missing locale units: 0
+- Locale object missing locale units: 12187
+- Locale objects missing all planned locales: 2359
+- Bundle missing locale units: 0
+
+## Finding Codes
+- locale-object-missing-all-planned-locales: 2359
+- locale-string-mojibake: 435
+- locale-object-missing-planned-locales: 134
+
+## Top Files
+- app/quiz_data.ts: 635 findings, 3175 missing locale units
+- app/lesson_words.tsx: 200 findings, 1000 missing locale units
+- app/pos_micro_diagnosis.ts: 124 findings, 620 missing locale units
+- app/pos_workout_engine.ts: 100 findings, 500 missing locale units
+- app/preposition_explanations.ts: 79 findings, 395 missing locale units
+- app/premium_modal.tsx: 73 findings, 365 missing locale units
+- app/lesson_intro_screens_en_17_32.ts: 71 findings, 355 missing locale units
+- constants/custom_avatars.ts: 55 findings, 275 missing locale units
+- app/irregular_verbs_data.ts: 51 findings, 255 missing locale units
+- app/_admin_settings_testers.tsx: 43 findings, 215 missing locale units
+- app/shard_earn_ui.ts: 26 findings, 130 missing locale units
+- app/review_utils.ts: 21 findings, 105 missing locale units
+- app/diagnosis_training_word_order_basic_question.ts: 17 findings, 85 missing locale units
+- constants/arena_i18n.ts: 16 findings, 80 missing locale units
+- app/lesson_intro_screens_lesson10_v2.ts: 15 findings, 75 missing locale units
+- app/lesson_intro_screens_lesson14_v2.ts: 13 findings, 65 missing locale units
+- app/flashcards/bundles/prep_at/prep_at_cards.ts: 15 findings, 60 missing locale units
+- app/flashcards/bundles/prep_by/prep_by_cards.ts: 15 findings, 60 missing locale units
+- app/flashcards/bundles/prep_in/prep_in_cards.ts: 15 findings, 60 missing locale units
+- app/flashcards/bundles/prep_on/prep_on_cards.ts: 15 findings, 60 missing locale units
+- app/flashcards/bundles/prep_to/prep_to_cards.ts: 15 findings, 60 missing locale units
+- app/lesson_intro_screens_lesson8_v2.ts: 12 findings, 60 missing locale units
+- app/diagnostic_test.tsx: 11 findings, 55 missing locale units
+- app/lesson_intro_screens_lesson11_v2.ts: 11 findings, 55 missing locale units
+- app/lesson_intro_screens_lesson12_v2.ts: 11 findings, 55 missing locale units
+
+## First Findings
+- [warning] locale-object-missing-all-planned-locales app/(tabs)/_layout.tsx:127 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { key: 'home', ru: 'Главная', uk: 'Головна', es: 'Inicio', icon: 'home-outline', active: 'home' }
+- [warning] locale-object-missing-all-planned-locales app/(tabs)/_layout.tsx:128 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { key: 'index', ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', icon: 'book-outline', active: 'book' }
+- [warning] locale-object-missing-all-planned-locales app/(tabs)/_layout.tsx:129 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { key: 'arena', ru: 'Арена', uk: 'Арена', es: 'Arena', icon: 'flash-outline', active: 'flash' }
+- [warning] locale-object-missing-all-planned-locales app/(tabs)/_layout.tsx:130 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { key: 'friends', ru: 'Друзья', uk: 'Друзі', es: 'Amigos', icon: 'people-outline', active: 'people' }
+- [warning] locale-object-missing-all-planned-locales app/(tabs)/_layout.tsx:131 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { key: 'settings', ru: 'Настройки', uk: 'Налаштування', es: 'Ajustes', icon: 'settings-outline', active: 'settings' }
+- [warning] locale-object-missing-all-planned-locales app/(tabs)/settings.tsx:120 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Русский', uk: 'Українська', es: 'Español', }
+- [warning] locale-object-missing-all-planned-locales app/(tabs)/settings.tsx:180 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Форест', uk: 'Форест', es: 'Bosque' }
+- [warning] locale-object-missing-all-planned-locales app/(tabs)/settings.tsx:181 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Неон', uk: 'Неон', es: 'Neón' }
+- [warning] locale-object-missing-all-planned-locales app/(tabs)/settings.tsx:182 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Золото', uk: 'Золото', es: 'Oro' }
+- [warning] locale-object-missing-all-planned-locales app/(tabs)/settings.tsx:183 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Корал', uk: 'Корал', es: 'Coral' }
+- [warning] locale-object-missing-all-planned-locales app/(tabs)/settings.tsx:184 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Скетч', uk: 'Скетч', es: 'Boceto' }
+- [warning] locale-object-missing-all-planned-locales app/(tabs)/settings.tsx:185 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Графит', uk: 'Графіт', es: 'Grafito' }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:688 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: crownWinner ? 'QA: экран лиги откроется с кнопкой «Забрать корону»' : 'QA: экран лиги откроется с кнопкой «Забрать бонус лиги»', uk: crownWinner ? 'QA: екран ліги відкриється
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:872 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Проверка ActionToast: SUCCESS', uk: 'Перевірка ActionToast: SUCCESS', es: 'Prueba ActionToast: SUCCESS', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:881 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Проверка ActionToast: ERROR', uk: 'Перевірка ActionToast: ERROR', es: 'Prueba ActionToast: ERROR', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:891 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Проверка ActionToast: INFO', uk: 'Перевірка ActionToast: INFO', es: 'Prueba ActionToast: INFO', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1000 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Всем урокам даны золотые медали. Всем экзаменам даны золотые медали.', uk: 'Усім урокам дані золоті медалі. Усім екзаменам дані золоті медалі.', es: 'Medalla de oro en todas
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1009 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Не удалось активировать.', uk: 'Не вдалося активувати.', es: 'No se pudo activar.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1035 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: '5000 XP добавлено', uk: '5000 XP додано', es: 'Se han añadido 5000 XP.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1044 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Не удалось добавить XP', uk: 'Не вдалося додати XP', es: 'No se pudieron añadir XP.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1067 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Все достижения и рамки разблокированы', uk: 'Усі досягнення та рамки розблоковано', es: 'Todos los logros y marcos desbloqueados.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1076 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Ошибка разблокировки', uk: 'Помилка розблокування', es: 'Error al desbloquear.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1098 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Лига не инициализирована', uk: 'Ліга не ініціалізована', es: 'La liga no está inicializada.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1163 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Не удалось выполнить конец недели', uk: 'Не вдалося виконати кінець тижня', es: 'No se pudo simular el fin de semana.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1177 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: seeded.length ? `Daily tasks QA: pack ${pack.label}, mode ${dailyTaskSeedMode}` : 'Daily tasks QA: seed failed', uk: seeded.length ? `Daily tasks QA: pack ${pack.label}, mode
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1197 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Daily tasks QA override cleared', uk: 'Daily tasks QA override cleared', es: 'Daily tasks QA override cleared', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1279 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: `Firestore weekly rollover seeded: ${previousWeekId} -> ${currentWeekId}`, uk: `Firestore weekly rollover seeded: ${previousWeekId} -> ${currentWeekId}`, es: `Firestore weekl
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1288 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Firestore weekly rollover seed failed', uk: 'Firestore weekly rollover seed failed', es: 'Firestore weekly rollover seed failed', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1309 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Премиум снят', uk: 'Преміум знято', es: 'Premium desactivado.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1318 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Не удалось снять премиум', uk: 'Не вдалося зняти преміум', es: 'No se pudo quitar Premium.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1402 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Все данные сброшены на уровень 0', uk: 'Усі дані скинуто на рівень 0', es: 'Todos los datos restablecidos al nivel 0.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1411 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Не удалось сбросить данные', uk: 'Не вдалося скинути дані', es: 'No se pudieron restablecer los datos.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1425 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Статистика сброшена', uk: 'Статистику скинуто', es: 'Estadísticas restablecidas.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1434 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Не удалось сбросить статистику', uk: 'Не вдалося скинути статистику', es: 'No se pudieron restablecer las estadísticas.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1450 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Не удалось подготовить тестовое повторение', uk: 'Не вдалося підготувати тестове повторення', es: 'No se pudo preparar la repetición de prueba.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1889 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Лига выполнила цель недели. Бонус уже ждёт!', uk: 'Ліга виконала ціль тижня. Бонус уже чекає!', es: 'La liga completó la meta semanal. Tu bono te espera.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1945 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Редкая тема разблокирована локально', uk: 'Рідкісну тему розблоковано локально', es: 'Tema raro desbloqueado localmente', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1960 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Редкая тема сброшена локально и снова скрыта до награды лиги', uk: 'Рідкісну тему скинуто локально й знову сховано до нагороди ліги', es: 'Tema raro restablecido localmente 
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:1986 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Флаг сброшен', uk: 'Прапор скинуто', es: 'Marcador reiniciado.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:2061 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Кулдаун сброшен. Открой пейволл снизу.', uk: 'Кулдаун скинуто. Відкрий пейволл знизу.', es: 'Enfriamiento reiniciado. Abre el paywall abajo.', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:2156 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'pending выставлен — открой главный экран', uk: 'pending виставлено — відкрий головний екран', es: 'pending activado — abre la pantalla principal', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:2256 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Счётчики пейволла сброшены', uk: 'Лічильники пейволу скинуті', es: 'Contadores del paywall restablecidos', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:2340 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'TrainerStore засеян: открой /trainer или текущие сессии ниже', uk: 'TrainerStore засіяно: відкрий /trainer або поточні сесії нижче', es: 'TrainerStore sembrado: abre /traine
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:2357 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'TrainerStore очищен', uk: 'TrainerStore очищено', es: 'TrainerStore limpiado', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:2447 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: '15 записей добавлено в лог ошибок', uk: '15 записів додано в лог помилок', es: '15 entradas añadidas al log de errores', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:2464 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Лог ошибок очищен', uk: 'Лог помилок очищено', es: 'Log de errores limpiado', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:2480 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Лимит сессий сброшен — 1 сессия доступна', uk: 'Ліміт сесій скинуто — 1 сесія доступна', es: 'Límite de sesiones restablecido — 1 sesión disponible', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:2562 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Mock-данные установлены — открой streak_stats или home', uk: 'Mock-дані встановлено — відкрий streak_stats або home', es: 'Mock inyectado — abre streak_stats o home', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:2577 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Mock сброшен — перцентили снова из Firestore', uk: 'Mock скинуто', es: 'Mock borrado', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:2865 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: '15 exact POS записей добавлено → проверь CoachToast и аналитику', uk: '15 exact POS записів додано → перевір CoachToast і аналітику', es: '15 eventos POS exactos añadidos → 
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:2881 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Лог очищен — аналитика пустая', uk: 'Лог очищено', es: 'Log limpiado', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:3074 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Проверка ActionToast: SUCCESS', uk: 'Перевірка ActionToast: SUCCESS', es: 'Prueba ActionToast: SUCCESS', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:3088 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Проверка ActionToast: ERROR', uk: 'Перевірка ActionToast: ERROR', es: 'Prueba ActionToast: ERROR', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:3102 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: 'Проверка ActionToast: INFO', uk: 'Перевірка ActionToast: INFO', es: 'Prueba ActionToast: INFO', }
+- [warning] locale-object-missing-all-planned-locales app/_admin_settings_testers.tsx:3447 missing: pt-BR, vi, id, tr, pl: Object literal has ru/uk/es locale keys, but planned interface locales are not present yet. | { ru: ok ? 'Разрешение на уведомления получено.' : perm.openedSettings ? 'Открыл настройки приложения: включи уведомления там.' : 'Системное разрешение не выдано.', uk: ok ? 'Дозві
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:157 vi: Locale string looks corrupted by mojibake or replacement question marks. | Ng??i ch?i
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:800 vi: Locale string looks corrupted by mojibake or replacement question marks. | Ng??i ch?i
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:935 vi: Locale string looks corrupted by mojibake or replacement question marks. | N?u th?ng, +
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:935 vi: Locale string looks corrupted by mojibake or replacement question marks. | m?nh.
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:937 tr: Locale string looks corrupted by mojibake or replacement question marks. | Kazan?rsan +
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:937 tr: Locale string looks corrupted by mojibake or replacement question marks. | par?a.
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:938 pl: Locale string looks corrupted by mojibake or replacement question marks. | Je?li wygrasz, +
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:938 pl: Locale string looks corrupted by mojibake or replacement question marks. | od?amk?w.
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:957 vi: Locale string looks corrupted by mojibake or replacement question marks. | C??c tr?n ??u
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1153 vi: Locale string looks corrupted by mojibake or replacement question marks. | ?ang t?m tr?n:
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1155 tr: Locale string looks corrupted by mojibake or replacement question marks. | ?u an ma? arayanlar:
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1165 vi: Locale string looks corrupted by mojibake or replacement question marks. | ?ang t?m tr?n:
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1315 vi: Locale string looks corrupted by mojibake or replacement question marks. | x?p h?ng
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1317 tr: Locale string looks corrupted by mojibake or replacement question marks. | s?ralamal?
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1421 vi: Locale string looks corrupted by mojibake or replacement question marks. | ?ang t?m ??i th?
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1423 tr: Locale string looks corrupted by mojibake or replacement question marks. | Rakip aran?yor
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1436 vi: Locale string looks corrupted by mojibake or replacement question marks. | Trong h?ng ch?:
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1438 tr: Locale string looks corrupted by mojibake or replacement question marks. | S?rada:
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1450 vi: Locale string looks corrupted by mojibake or replacement question marks. | ?? t?m th?y ??i th?!
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1485 vi: Locale string looks corrupted by mojibake or replacement question marks. | CH?P NH?N
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1502 vi: Locale string looks corrupted by mojibake or replacement question marks. | T? ch?i
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1512 vi: Locale string looks corrupted by mojibake or replacement question marks. | H?y
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1514 tr: Locale string looks corrupted by mojibake or replacement question marks. | ?ptal
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1533 vi: Locale string looks corrupted by mojibake or replacement question marks. | T? ch?i
+- [blocker] locale-string-mojibake app/arena_lobby.tsx:1543 vi: Locale string looks corrupted by mojibake or replacement question marks. | H?y

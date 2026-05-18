@@ -80,7 +80,7 @@ describe('level gift milestone rewards', () => {
     const result = await applyGift(gift, 'TestUser', 3, 5, jest.fn());
 
     const unlocked = result.cosmeticUnlocked;
-    expect(CUSTOM_AVATAR_SHOP).toHaveLength(10);
+    expect(CUSTOM_AVATAR_SHOP).toHaveLength(30);
     expect(unlocked).toMatchObject({ kind: 'avatar' });
     expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === unlocked?.id)).toBe(true);
     expect(unlocked?.gradientId).toBeTruthy();

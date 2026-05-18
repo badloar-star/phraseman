@@ -59,6 +59,8 @@ export type FlashcardMarketPack = {
   isPendingUpdateReview?: boolean;
   /** Ключ палитри карточек UGC. */
   ugcCardThemeKey?: string;
+  /** Ключ рубашки карточек UGC. */
+  ugcCardBackKey?: string;
   updatedAt: string;
 };
 

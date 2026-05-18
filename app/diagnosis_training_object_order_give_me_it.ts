@@ -3,7 +3,23 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk: string,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const CONTRAST = [
   'verb + person + thing',
@@ -141,6 +157,56 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       'Buy/make/get often use for.',
       'Do not mix the two paths.',
     ],
+    'pt-BR': [
+      'Coisa completa: Give me the book.',
+      'Também é possível: Give the book to me.',
+      'Com it/them, use Give it to me.',
+      'Send her the file, mas Send it to her.',
+      'Show me your phone, mas Show it to me.',
+      'Give/send/show/tell muitas vezes usam to.',
+      'Buy/make/get muitas vezes usam for.',
+      'Não misture os dois caminhos.',
+    ],
+    vi: [
+      'Đồ vật được nói đầy đủ: Give me the book.',
+      'Cũng có thể nói: Give the book to me.',
+      'Với it/them, dùng Give it to me.',
+      'Send her the file, nhưng Send it to her.',
+      'Show me your phone, nhưng Show it to me.',
+      'Give/send/show/tell thường dùng to.',
+      'Buy/make/get thường dùng for.',
+      'Đừng trộn hai cách.',
+    ],
+    id: [
+      'Benda lengkap: Give me the book.',
+      'Juga bisa: Give the book to me.',
+      'Dengan it/them, gunakan Give it to me.',
+      'Send her the file, tetapi Send it to her.',
+      'Show me your phone, tetapi Show it to me.',
+      'Give/send/show/tell sering memakai to.',
+      'Buy/make/get sering memakai for.',
+      'Jangan campur dua pola itu.',
+    ],
+    tr: [
+      'Tam adlandırılmış şey: Give me the book.',
+      'Şu da mümkün: Give the book to me.',
+      'It/them ile Give it to me kullan.',
+      'Send her the file, ama Send it to her.',
+      'Show me your phone, ama Show it to me.',
+      'Give/send/show/tell çoğu zaman to kullanır.',
+      'Buy/make/get çoğu zaman for kullanır.',
+      'İki yolu karıştırma.',
+    ],
+    pl: [
+      'Pełna nazwa rzeczy: Give me the book.',
+      'Możliwe też: Give the book to me.',
+      'Z it/them używaj Give it to me.',
+      'Send her the file, ale Send it to her.',
+      'Show me your phone, ale Show it to me.',
+      'Give/send/show/tell często używają to.',
+      'Buy/make/get często używają for.',
+      'Nie mieszaj tych dwóch ścieżek.',
+    ],
   },
   examples: [
     {
@@ -148,6 +214,11 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       ru: 'Дай мне книгу.',
       uk: 'Дай мені книжку.',
       es: 'Give me the book.',
+      'pt-BR': 'Me dê o livro.',
+      vi: 'Đưa cho tôi quyển sách.',
+      id: 'Berikan buku itu kepada saya.',
+      tr: 'Kitabı bana ver.',
+      pl: 'Daj mi książkę.',
       why: tri('Книга названа полностью, поэтому человек может идти сразу после give.', 'Книжка названа повністю, тому людина може йти одразу після give.', 'The book is named fully, so the person can come right after give.'),
     },
     {
@@ -155,6 +226,11 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       ru: 'Дай книгу мне.',
       uk: 'Дай книжку мені.',
       es: 'Give the book to me.',
+      'pt-BR': 'Dê o livro para mim.',
+      vi: 'Đưa quyển sách cho tôi.',
+      id: 'Berikan buku itu kepada saya.',
+      tr: 'Kitabı bana ver.',
+      pl: 'Daj mi książkę.',
       why: tri('Это вторая нормальная дорога: сначала вещь, потом to me.', 'Це друга нормальна дорога: спочатку річ, потім to me.', 'Second normal path: thing first, then to me.'),
     },
     {
@@ -162,6 +238,11 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       ru: 'Дай это мне.',
       uk: 'Дай це мені.',
       es: 'Give it to me.',
+      'pt-BR': 'Dê isso para mim.',
+      vi: 'Đưa nó cho tôi.',
+      id: 'Berikan itu kepada saya.',
+      tr: 'Onu bana ver.',
+      pl: 'Daj mi to.',
       why: tri('С it безопасный порядок: it to me, не me it.', 'З it безпечний порядок: it to me, не me it.', 'With it, use it to me, not me it.'),
     },
     {
@@ -169,6 +250,11 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       ru: 'Отправь ей файл.',
       uk: 'Надішли їй файл.',
       es: 'Send her the file.',
+      'pt-BR': 'Envie o arquivo para ela.',
+      vi: 'Gửi cho cô ấy tệp đó.',
+      id: 'Kirimkan file itu kepadanya.',
+      tr: 'Dosyayı ona gönder.',
+      pl: 'Wyślij jej plik.',
       why: tri('Файл назван полностью, поэтому send her the file звучит нормально.', 'Файл названо повністю, тому send her the file звучить нормально.', 'The file is named fully, so send her the file is natural.'),
     },
     {
@@ -176,6 +262,11 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       ru: 'Отправь это ей.',
       uk: 'Надішли це їй.',
       es: 'Send it to her.',
+      'pt-BR': 'Envie isso para ela.',
+      vi: 'Gửi nó cho cô ấy.',
+      id: 'Kirimkan itu kepadanya.',
+      tr: 'Onu ona gönder.',
+      pl: 'Wyślij jej to.',
       why: tri('С it лучше send it to her, не send her it.', 'З it краще send it to her, не send her it.', 'With it, use send it to her, not send her it.'),
     },
     {
@@ -183,6 +274,11 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       ru: 'Покажи мне свой телефон.',
       uk: 'Покажи мені свій телефон.',
       es: 'Show me your phone.',
+      'pt-BR': 'Mostre-me seu telefone.',
+      vi: 'Cho tôi xem điện thoại của bạn.',
+      id: 'Tunjukkan ponselmu kepada saya.',
+      tr: 'Telefonunu bana göster.',
+      pl: 'Pokaż mi swój telefon.',
       why: tri('Your phone названо полностью: show me your phone.', 'Your phone названо повністю: show me your phone.', 'Your phone is named fully: show me your phone.'),
     },
     {
@@ -190,6 +286,11 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       ru: 'Покажи это мне.',
       uk: 'Покажи це мені.',
       es: 'Show it to me.',
+      'pt-BR': 'Mostre isso para mim.',
+      vi: 'Cho tôi xem nó.',
+      id: 'Tunjukkan itu kepada saya.',
+      tr: 'Onu bana göster.',
+      pl: 'Pokaż mi to.',
       why: tri('С it безопаснее show it to me.', 'З it безпечніше show it to me.', 'With it, use show it to me.'),
     },
     {
@@ -197,6 +298,11 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       ru: 'Купи это для меня.',
       uk: 'Купи це для мене.',
       es: 'Buy it for me.',
+      'pt-BR': 'Compre isso para mim.',
+      vi: 'Mua nó cho tôi.',
+      id: 'Belikan itu untuk saya.',
+      tr: 'Onu benim için satın al.',
+      pl: 'Kup mi to.',
       why: tri('Buy часто показывает "для кого" через for: buy it for me.', 'Buy часто показує "для кого" через for: buy it for me.', 'Buy often uses for: buy it for me.'),
     },
   ],

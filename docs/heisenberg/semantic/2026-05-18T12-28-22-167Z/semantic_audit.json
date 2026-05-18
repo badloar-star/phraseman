@@ -1,0 +1,3921 @@
+{
+  "generatedAt": "2026-05-18T12:28:22.165Z",
+  "mode": "semantic-audit",
+  "strict": true,
+  "summary": {
+    "findings": 259,
+    "blockers": 0,
+    "warnings": 259,
+    "reviewGroups": 74,
+    "byCode": {
+      "quiz-source-locale-coverage-gap": 147,
+      "protected-english-term-missing": 97,
+      "possible-distractor-index-drift": 15
+    },
+    "bySurface": {
+      "quiz": 259
+    }
+  },
+  "reviewGroups": [
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): I have, money.",
+      "sample": "Have find no funciona. En present perfect sería have found.",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, Do you drink coffee, drink coffee in the, you drink coffee in.",
+      "sample": "Correcto. Do you drink...? pregunta por un hábito.",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): a new shirt, I have.",
+      "sample": "Have buy no funciona. En present perfect sería have bought.",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 276,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если ты будешь халтурить (срезать углы), качество пострадает",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 277,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я тогда больше учился, я бы сейчас был экспертом",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 278,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 279,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Что мне нужно, так это хороший отдых",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 280,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно подстричься (чтобы кто-то это сделал)",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 281,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Хватит ходить вокруг да около",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 282,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Важно, чтобы он присутствовал на встрече",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 283,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он и не подозревал, что его ждет сюрприз",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты попал в самую точку (сказал совершенно верно)",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 285,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я уговорил его починить мой компьютер",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 286,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Нет худа без добра (скрытое благословение)",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 287,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, совершил это преступление",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 288,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Не успел я выйти, как пошел дождь",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 289,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты не туда обратился (ищешь не там/ошибаешься адресом)",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 290,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я предлагаю ей пойти туда завтра",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 291,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я редко видел такую изысканную красоту",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 292,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мы отправились в путь на рассвете",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 293,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мені неприємно (я обурююсь), коли мені кажуть, що робити",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 294,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я был умнее (вообще), я бы не купил ту машину (в прошлом)",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 295,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, украл эти документы",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 296,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я настаиваю на том, чтобы он присутствовал на встрече",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 297,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского перед поездкой",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 268,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): few.",
+      "sample": "Only then did I realized the gravity of the situation usa did e realized juntos. Depois de did, o verbo deve voltar para realize.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 269,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): leaf.",
+      "sample": "Rarely have I witnessed such blanket injustice troca blatant por blanket. Blanket significa cobertor; aqui você precisa de blatant.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): exquisite, Arguably.",
+      "sample": "No sooner we set off than it started to rain perde a inversão. Depois de No sooner no início, precisamos de had we set off.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): excruciating.",
+      "sample": "No sooner had we sat off than it started to rain troca set por sat. Sat significa sentado; aqui você precisa de set off.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): Only then.",
+      "sample": "Correto. I resent being told what to do usa resent e a forma passiva being told para dizer que você se incomoda quando outros dão ordens.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): gravity.",
+      "sample": "I resent telling what to do inverte o sentido. Soa como se você se incomodasse em dizer aos outros o que fazer. Precisa de being told.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): did.",
+      "sample": "I hate when people say me what to do soa simples e say me não é natural aqui. A forma-alvo é I resent being told what to do.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): gravy.",
+      "sample": "I resent being tolled what to do troca told por tolled. Tolled se relaciona a pedágio ou sino; aqui você precisa de told.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): blatant.",
+      "sample": "Correto. Seemingly suaviza a opinião, e quite dubious soa mais preciso do que simplesmente very bad.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): Rarely, have.",
+      "sample": "Seems, this decision is quite dubious não funciona como palavra introdutória. Você precisa do advérbio seemingly.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): rarely.",
+      "sample": "I think that this decision is very bad é compreensível, mas simples demais. Seemingly e dubious deixam a frase mais profissional e matizada.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): blanket.",
+      "sample": "Seemingly, this decision is quite doobious escreve dubious errado. Depois de d vem u, não oo.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 273,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Как только мы вышли, пошел дождь",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 274,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Терпеть не могу, когда мне говорят, что делать",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 275,
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне кажется, что это решение весьма сомнительное",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 112,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): asked.",
+      "sample": "Where I live puede ser posible si sigue siendo actual, pero este item busca reported speech con lived.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 160,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): had.",
+      "sample": "Will mezcla una condición imaginaria con un resultado real futuro. Aquí necesitamos would.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 165,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): told.",
+      "sample": "En esta tarea usamos el cambio típico del reported speech: is pasa a was.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 167,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): asked.",
+      "sample": "Where I live puede aparecer si el lugar sigue siendo actual, pero aquí practicamos el backshift estándar: lived.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 175,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): am used to.",
+      "sample": "Después de be used to usamos un sustantivo o -ing. Por eso necesitamos getting.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 199,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): had.",
+      "sample": "Will no encaja con la condición imaginaria. Aquí necesitamos would.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 11,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): sign.",
+      "sample": "Después de get him falta to. La estructura es get someone to do something.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 17,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): vital.",
+      "sample": "Correcto. En subjuntivo mandativo usamos la forma base: she arrive.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 19,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): also.",
+      "sample": "Falta but y también falta inversión después de Not only.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 46,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): back out.",
+      "sample": "La expresión necesita of antes de aquello de lo que te retiras.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 59,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): imperative.",
+      "sample": "For him arrive mezcla estructuras; con for haría falta to arrive, pero aquí el patrón es that he arrive.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 80,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): rather.",
+      "sample": "Esta opción puede aparecer en inglés americano, pero aquí buscamos el patrón con pasado: didn't disclose.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 84,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): essential.",
+      "sample": "Correcto. En el mandative subjunctive usamos he arrive, sin s.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 84,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): essential.",
+      "sample": "For him arriving no es la estructura correcta para esta idea.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 92,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): back.",
+      "sample": "Esta opción traduce la idea demasiado literal y no usa el phrasal verb correcto.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): I found money.",
+      "sample": "Correcto. Found es el past simple de find.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 283,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): am faster than you, I am faster than.",
+      "sample": "Correcto. Faster than es la forma comparativa de fast.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 285,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): These are our friends.",
+      "sample": "Correcto. These es plural y va con are; our va antes de friends.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): bought a new shirt, I bought a new.",
+      "sample": "Correcto. Bought es el past simple de buy.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 289,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): speaking on the phone, is speaking on the, He is speaking on.",
+      "sample": "Correcto. He is speaking usa is + speaking para una acción en curso.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 290,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): reads books every day, She reads books every.",
+      "sample": "Correcto. Con she en present simple usamos reads.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 113,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): will be.",
+      "sample": "En first conditional no ponemos will en la parte con if. Decimos if the weather is good.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 115,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): wasn't.",
+      "sample": "En inglés estándar evitamos doble negación: wasn\\'t nobody.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 144,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): the shelves.",
+      "sample": "Shelves significa estantes. Aquí necesitas themselves.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 157,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): none him since childhood, have none him since, I have none him.",
+      "sample": "None significa ninguno o nada. Aquí necesitas known, participio de know.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 160,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): would have.",
+      "sample": "En second conditional no ponemos would en la parte con if. Decimos If I had.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 171,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): when.",
+      "sample": "Seen necesita have. En past simple usamos saw.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 172,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): hotel which we stayed, The hotel which we.",
+      "sample": "Which solo no completa la idea. Tendrías que decir which we stayed in, o usar where.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 186,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): when.",
+      "sample": "Rung necesita have. En past simple usamos rang.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 224,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): our shelves.",
+      "sample": "Shelves significa estantes. Aquí necesitas ourselves.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 230,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): Some bone.",
+      "sample": "Bone significa hueso. Aquí necesitas someone.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 30,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): to be.",
+      "sample": "Después de resent usamos -ing, no infinitivo con to.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 43,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): scrap.",
+      "sample": "Correcto. To cut a long story short significa en resumen o para abreviar.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 48,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): offend.",
+      "sample": "Esta opción deja el resultado en presente o futuro, pero la ofensa ya ocurrió en el pasado.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 273,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Как только мы вышли, пошел дождь"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 273,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Как только мы вышли, пошел дождь"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 273,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Как только мы вышли, пошел дождь"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 273,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Как только мы вышли, пошел дождь"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 273,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Как только мы вышли, пошел дождь"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 274,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Терпеть не могу, когда мне говорят, что делать"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 274,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Терпеть не могу, когда мне говорят, что делать"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 274,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Терпеть не могу, когда мне говорят, что делать"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 274,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Терпеть не могу, когда мне говорят, что делать"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 274,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Терпеть не могу, когда мне говорят, что делать"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 275,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне кажется, что это решение весьма сомнительное"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 275,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне кажется, что это решение весьма сомнительное"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 275,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне кажется, что это решение весьма сомнительное"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 275,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне кажется, что это решение весьма сомнительное"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 275,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне кажется, что это решение весьма сомнительное"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 276,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если ты будешь халтурить (срезать углы), качество пострадает"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 276,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если ты будешь халтурить (срезать углы), качество пострадает"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 276,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если ты будешь халтурить (срезать углы), качество пострадает"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 276,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если ты будешь халтурить (срезать углы), качество пострадает"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 276,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если ты будешь халтурить (срезать углы), качество пострадает"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 276,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если ты будешь халтурить (срезать углы), качество пострадает"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 277,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я тогда больше учился, я бы сейчас был экспертом"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 277,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я тогда больше учился, я бы сейчас был экспертом"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 277,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я тогда больше учился, я бы сейчас был экспертом"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 277,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я тогда больше учился, я бы сейчас был экспертом"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 277,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я тогда больше учился, я бы сейчас был экспертом"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 277,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я тогда больше учился, я бы сейчас был экспертом"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 278,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 278,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 278,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 278,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 278,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 278,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 279,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Что мне нужно, так это хороший отдых"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 279,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Что мне нужно, так это хороший отдых"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 279,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Что мне нужно, так это хороший отдых"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 279,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Что мне нужно, так это хороший отдых"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 279,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Что мне нужно, так это хороший отдых"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 279,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Что мне нужно, так это хороший отдых"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 280,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно подстричься (чтобы кто-то это сделал)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 280,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно подстричься (чтобы кто-то это сделал)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 280,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно подстричься (чтобы кто-то это сделал)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 280,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно подстричься (чтобы кто-то это сделал)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 280,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно подстричься (чтобы кто-то это сделал)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 280,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно подстричься (чтобы кто-то это сделал)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 281,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Хватит ходить вокруг да около"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 281,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Хватит ходить вокруг да около"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 281,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Хватит ходить вокруг да около"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 281,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Хватит ходить вокруг да около"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 281,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Хватит ходить вокруг да около"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 281,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Хватит ходить вокруг да около"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 282,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Важно, чтобы он присутствовал на встрече"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 282,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Важно, чтобы он присутствовал на встрече"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 282,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Важно, чтобы он присутствовал на встрече"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 282,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Важно, чтобы он присутствовал на встрече"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 282,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Важно, чтобы он присутствовал на встрече"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 282,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Важно, чтобы он присутствовал на встрече"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 283,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он и не подозревал, что его ждет сюрприз"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 283,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он и не подозревал, что его ждет сюрприз"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 283,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он и не подозревал, что его ждет сюрприз"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 283,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он и не подозревал, что его ждет сюрприз"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 283,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он и не подозревал, что его ждет сюрприз"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 283,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он и не подозревал, что его ждет сюрприз"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты попал в самую точку (сказал совершенно верно)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты попал в самую точку (сказал совершенно верно)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты попал в самую точку (сказал совершенно верно)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты попал в самую точку (сказал совершенно верно)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты попал в самую точку (сказал совершенно верно)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты попал в самую точку (сказал совершенно верно)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 285,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я уговорил его починить мой компьютер"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 285,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я уговорил его починить мой компьютер"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 285,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я уговорил его починить мой компьютер"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 285,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я уговорил его починить мой компьютер"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 285,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я уговорил его починить мой компьютер"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 285,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я уговорил его починить мой компьютер"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 286,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Нет худа без добра (скрытое благословение)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 286,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Нет худа без добра (скрытое благословение)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 286,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Нет худа без добра (скрытое благословение)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 286,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Нет худа без добра (скрытое благословение)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 286,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Нет худа без добра (скрытое благословение)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 286,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Нет худа без добра (скрытое благословение)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 287,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, совершил это преступление"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 287,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, совершил это преступление"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 287,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, совершил это преступление"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 287,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, совершил это преступление"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 287,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, совершил это преступление"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 287,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, совершил это преступление"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 288,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Не успел я выйти, как пошел дождь"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 288,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Не успел я выйти, как пошел дождь"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 288,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Не успел я выйти, как пошел дождь"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 288,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Не успел я выйти, как пошел дождь"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 288,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Не успел я выйти, как пошел дождь"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 288,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Не успел я выйти, как пошел дождь"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 289,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты не туда обратился (ищешь не там/ошибаешься адресом)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 289,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты не туда обратился (ищешь не там/ошибаешься адресом)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 289,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты не туда обратился (ищешь не там/ошибаешься адресом)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 289,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты не туда обратился (ищешь не там/ошибаешься адресом)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 289,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты не туда обратился (ищешь не там/ошибаешься адресом)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 289,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Ты не туда обратился (ищешь не там/ошибаешься адресом)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 290,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я предлагаю ей пойти туда завтра"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 290,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я предлагаю ей пойти туда завтра"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 290,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я предлагаю ей пойти туда завтра"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 290,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я предлагаю ей пойти туда завтра"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 290,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я предлагаю ей пойти туда завтра"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 290,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я предлагаю ей пойти туда завтра"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 291,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я редко видел такую изысканную красоту"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 291,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я редко видел такую изысканную красоту"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 291,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я редко видел такую изысканную красоту"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 291,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я редко видел такую изысканную красоту"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 291,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я редко видел такую изысканную красоту"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 291,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я редко видел такую изысканную красоту"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 292,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мы отправились в путь на рассвете"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 292,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мы отправились в путь на рассвете"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 292,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мы отправились в путь на рассвете"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 292,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мы отправились в путь на рассвете"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 292,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мы отправились в путь на рассвете"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 292,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мы отправились в путь на рассвете"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 293,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мені неприємно (я обурююсь), коли мені кажуть, що робити"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 293,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мені неприємно (я обурююсь), коли мені кажуть, що робити"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 293,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мені неприємно (я обурююсь), коли мені кажуть, що робити"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 293,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мені неприємно (я обурююсь), коли мені кажуть, що робити"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 293,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мені неприємно (я обурююсь), коли мені кажуть, що робити"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 293,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мені неприємно (я обурююсь), коли мені кажуть, що робити"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 294,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я был умнее (вообще), я бы не купил ту машину (в прошлом)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 294,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я был умнее (вообще), я бы не купил ту машину (в прошлом)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 294,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я был умнее (вообще), я бы не купил ту машину (в прошлом)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 294,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я был умнее (вообще), я бы не купил ту машину (в прошлом)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 294,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я был умнее (вообще), я бы не купил ту машину (в прошлом)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 294,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Если бы я был умнее (вообще), я бы не купил ту машину (в прошлом)"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 295,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, украл эти документы"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 295,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, украл эти документы"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 295,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, украл эти документы"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 295,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, украл эти документы"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 295,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, украл эти документы"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 295,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Он, как утверждают, украл эти документы"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 296,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я настаиваю на том, чтобы он присутствовал на встрече"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 296,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я настаиваю на том, чтобы он присутствовал на встрече"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 296,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я настаиваю на том, чтобы он присутствовал на встрече"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 296,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я настаиваю на том, чтобы он присутствовал на встрече"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 296,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я настаиваю на том, чтобы он присутствовал на встрече"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 296,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Я настаиваю на том, чтобы он присутствовал на встрече"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 297,
+      "locale": "es",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского перед поездкой"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 297,
+      "locale": "pt-BR",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского перед поездкой"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 297,
+      "locale": "vi",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского перед поездкой"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 297,
+      "locale": "id",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского перед поездкой"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 297,
+      "locale": "tr",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского перед поездкой"
+    },
+    {
+      "severity": "warning",
+      "code": "quiz-source-locale-coverage-gap",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 297,
+      "locale": "pl",
+      "message": "Quiz source-locale copy is missing for this entry; English choices remain the study target, but prompt/explanations need localized source copy.",
+      "sample": "Мне нужно освежить свои знания английского перед поездкой"
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): I found money.",
+      "sample": "Correcto. Found es el past simple de find."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "es",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): I have, money.",
+      "sample": "Have find no funciona. En present perfect sería have found."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 283,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): am faster than you, I am faster than.",
+      "sample": "Correcto. Faster than es la forma comparativa de fast."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 285,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): These are our friends.",
+      "sample": "Correcto. These es plural y va con are; our va antes de friends."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, Do you drink coffee, drink coffee in the, you drink coffee in.",
+      "sample": "Correcto. Do you drink...? pregunta por un hábito."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): bought a new shirt, I bought a new.",
+      "sample": "Correcto. Bought es el past simple de buy."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "es",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): a new shirt, I have.",
+      "sample": "Have buy no funciona. En present perfect sería have bought."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 289,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): speaking on the phone, is speaking on the, He is speaking on.",
+      "sample": "Correcto. He is speaking usa is + speaking para una acción en curso."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 290,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): reads books every day, She reads books every.",
+      "sample": "Correcto. Con she en present simple usamos reads."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 112,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): asked.",
+      "sample": "Where I live puede ser posible si sigue siendo actual, pero este item busca reported speech con lived."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 113,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): will be.",
+      "sample": "En first conditional no ponemos will en la parte con if. Decimos if the weather is good."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 115,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): wasn't.",
+      "sample": "En inglés estándar evitamos doble negación: wasn\\'t nobody."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 144,
+      "locale": "es",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): the shelves.",
+      "sample": "Shelves significa estantes. Aquí necesitas themselves."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 157,
+      "locale": "es",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): none him since childhood, have none him since, I have none him.",
+      "sample": "None significa ninguno o nada. Aquí necesitas known, participio de know."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 160,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): would have.",
+      "sample": "En second conditional no ponemos would en la parte con if. Decimos If I had."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 160,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): had.",
+      "sample": "Will mezcla una condición imaginaria con un resultado real futuro. Aquí necesitamos would."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 165,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): told.",
+      "sample": "En esta tarea usamos el cambio típico del reported speech: is pasa a was."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 167,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): asked.",
+      "sample": "Where I live puede aparecer si el lugar sigue siendo actual, pero aquí practicamos el backshift estándar: lived."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 171,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): when.",
+      "sample": "Seen necesita have. En past simple usamos saw."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 172,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): hotel which we stayed, The hotel which we.",
+      "sample": "Which solo no completa la idea. Tendrías que decir which we stayed in, o usar where."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 175,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): am used to.",
+      "sample": "Después de be used to usamos un sustantivo o -ing. Por eso necesitamos getting."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 186,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): when.",
+      "sample": "Rung necesita have. En past simple usamos rang."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 199,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): had.",
+      "sample": "Will no encaja con la condición imaginaria. Aquí necesitamos would."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 224,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): our shelves.",
+      "sample": "Shelves significa estantes. Aquí necesitas ourselves."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 230,
+      "locale": "es",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): Some bone.",
+      "sample": "Bone significa hueso. Aquí necesitas someone."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 11,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): sign.",
+      "sample": "Después de get him falta to. La estructura es get someone to do something."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 17,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): vital.",
+      "sample": "Correcto. En subjuntivo mandativo usamos la forma base: she arrive."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 19,
+      "locale": "es",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): also.",
+      "sample": "Falta but y también falta inversión después de Not only."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 30,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): to be.",
+      "sample": "Después de resent usamos -ing, no infinitivo con to."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 43,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): scrap.",
+      "sample": "Correcto. To cut a long story short significa en resumen o para abreviar."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 46,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): back out.",
+      "sample": "La expresión necesita of antes de aquello de lo que te retiras."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 48,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): offend.",
+      "sample": "Esta opción deja el resultado en presente o futuro, pero la ofensa ya ocurrió en el pasado."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 59,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): imperative.",
+      "sample": "For him arrive mezcla estructuras; con for haría falta to arrive, pero aquí el patrón es that he arrive."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 80,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): rather.",
+      "sample": "Esta opción puede aparecer en inglés americano, pero aquí buscamos el patrón con pasado: didn't disclose."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 84,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): essential.",
+      "sample": "Correcto. En el mandative subjunctive usamos he arrive, sin s."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 84,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): essential.",
+      "sample": "For him arriving no es la estructura correcta para esta idea."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 92,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): back.",
+      "sample": "Esta opción traduce la idea demasiado literal y no usa el phrasal verb correcto."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): I have, money.",
+      "sample": "Have find não funciona. No present perfect seria have found."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): I have, money.",
+      "sample": "Have find không đúng. Trong present perfect sẽ là have found."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): I have, money.",
+      "sample": "Have find tidak berfungsi. Dalam present perfect bentuknya have found."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): I have, money.",
+      "sample": "Have find çalışmaz. Present perfect olsaydı have found olurdu."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): I have, money.",
+      "sample": "Have find nie działa. W present perfect byłoby have found."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "pt-BR",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, Do you drink coffee, drink coffee in the, you drink coffee in.",
+      "sample": "Correto. Do you drink...? pergunta por um hábito."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "vi",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, Do you drink coffee, drink coffee in the, you drink coffee in.",
+      "sample": "Đúng. Do you drink...? hỏi về thói quen."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "id",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, Do you drink coffee, drink coffee in the, you drink coffee in.",
+      "sample": "Benar. Do you drink...? bertanya tentang kebiasaan."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "tr",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, Do you drink coffee, drink coffee in the, you drink coffee in.",
+      "sample": "Doğru. Do you drink...? bir alışkanlığı sorar."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "pl",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, Do you drink coffee, drink coffee in the, you drink coffee in.",
+      "sample": "Dobrze. Do you drink...? pyta o nawyk."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): a new shirt, I have.",
+      "sample": "Have buy não funciona. No present perfect seria have bought."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): a new shirt, I have.",
+      "sample": "Have buy không đúng. Trong present perfect sẽ là have bought."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): a new shirt, I have.",
+      "sample": "Have buy tidak berfungsi. Dalam present perfect bentuknya have bought."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): a new shirt, I have.",
+      "sample": "Have buy çalışmaz. Present perfect olsaydı have bought olurdu."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): a new shirt, I have.",
+      "sample": "Have buy nie działa. W present perfect byłoby have bought."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 268,
+      "locale": "pt-BR",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): few.",
+      "sample": "Only then did I realized the gravity of the situation usa did e realized juntos. Depois de did, o verbo deve voltar para realize."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 268,
+      "locale": "vi",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): few.",
+      "sample": "Only then did I realized the gravity of the situation dùng did và realized cùng lúc. Sau did, động từ phải trở về realize."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 268,
+      "locale": "id",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): few.",
+      "sample": "Only then did I realized the gravity of the situation memakai did dan realized sekaligus. Setelah did, verb harus kembali ke realize."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 268,
+      "locale": "tr",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): few.",
+      "sample": "Only then did I realized the gravity of the situation did ve realized yapısını birlikte kullanıyor. Did sonrasında fiil realize olmalıdır."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 268,
+      "locale": "pl",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): few.",
+      "sample": "Only then did I realized the gravity of the situation używa did i realized jednocześnie. Po did czasownik wraca do realize."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 269,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): leaf.",
+      "sample": "Rarely have I witnessed such blanket injustice troca blatant por blanket. Blanket significa cobertor; aqui você precisa de blatant."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 269,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): leaf.",
+      "sample": "Rarely have I witnessed such blanket injustice đổi blatant thành blanket. Blanket là chăn; ở đây cần blatant."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 269,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): leaf.",
+      "sample": "Rarely have I witnessed such blanket injustice mengganti blatant dengan blanket. Blanket berarti selimut; di sini perlu blatant."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 269,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): leaf.",
+      "sample": "Rarely have I witnessed such blanket injustice blatant yerine blanket kullanıyor. Blanket battaniye demektir; burada blatant gerekir."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 269,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): leaf.",
+      "sample": "Rarely have I witnessed such blanket injustice zamienia blatant na blanket. Blanket to koc; tutaj potrzebujesz blatant."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "pt-BR",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): exquisite, Arguably.",
+      "sample": "No sooner we set off than it started to rain perde a inversão. Depois de No sooner no início, precisamos de had we set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): excruciating.",
+      "sample": "No sooner had we sat off than it started to rain troca set por sat. Sat significa sentado; aqui você precisa de set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "vi",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): exquisite, Arguably.",
+      "sample": "No sooner we set off than it started to rain mất inversion. Sau No sooner ở đầu câu, cần had we set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): excruciating.",
+      "sample": "No sooner had we sat off than it started to rain đổi set thành sat. Sat nghĩa là đã ngồi; ở đây cần set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "id",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): exquisite, Arguably.",
+      "sample": "No sooner we set off than it started to rain kehilangan inversion. Setelah No sooner di awal, perlu had we set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): excruciating.",
+      "sample": "No sooner had we sat off than it started to rain mengganti set dengan sat. Sat berarti duduk; di sini perlu set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "tr",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): exquisite, Arguably.",
+      "sample": "No sooner we set off than it started to rain inversion kullanmıyor. Başta No sooner varsa had we set off gerekir."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): excruciating.",
+      "sample": "No sooner had we sat off than it started to rain set yerine sat kullanıyor. Sat oturdu demektir; burada set off gerekir."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "pl",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): exquisite, Arguably.",
+      "sample": "No sooner we set off than it started to rain gubi inwersję. Po No sooner na początku potrzebujesz had we set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): excruciating.",
+      "sample": "No sooner had we sat off than it started to rain zamienia set na sat. Sat znaczy siedział; tutaj potrzebujesz set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pt-BR",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): Only then.",
+      "sample": "Correto. I resent being told what to do usa resent e a forma passiva being told para dizer que você se incomoda quando outros dão ordens."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pt-BR",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): gravity.",
+      "sample": "I resent telling what to do inverte o sentido. Soa como se você se incomodasse em dizer aos outros o que fazer. Precisa de being told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pt-BR",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): did.",
+      "sample": "I hate when people say me what to do soa simples e say me não é natural aqui. A forma-alvo é I resent being told what to do."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): gravy.",
+      "sample": "I resent being tolled what to do troca told por tolled. Tolled se relaciona a pedágio ou sino; aqui você precisa de told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "vi",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): Only then.",
+      "sample": "Đúng. I resent being told what to do dùng resent và dạng bị động being told để nói bạn khó chịu khi người khác ra lệnh cho mình."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "vi",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): gravity.",
+      "sample": "I resent telling what to do đảo ngược nghĩa. Nghe như bạn khó chịu khi bảo người khác phải làm gì. Cần being told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "vi",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): did.",
+      "sample": "I hate when people say me what to do nghe đơn giản và say me không tự nhiên ở đây. Cấu trúc mục tiêu là I resent being told what to do."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): gravy.",
+      "sample": "I resent being tolled what to do đổi told thành tolled. Tolled liên quan đến thu phí hoặc tiếng chuông; ở đây cần told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "id",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): Only then.",
+      "sample": "Benar. I resent being told what to do memakai resent dan bentuk pasif being told untuk mengatakan kamu kesal saat orang lain memberi perintah."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "id",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): gravity.",
+      "sample": "I resent telling what to do membalik makna. Terdengar seperti kamu kesal saat menyuruh orang lain melakukan sesuatu. Perlu being told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "id",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): did.",
+      "sample": "I hate when people say me what to do terdengar sederhana dan say me tidak natural di sini. Bentuk targetnya adalah I resent being told what to do."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): gravy.",
+      "sample": "I resent being tolled what to do mengganti told dengan tolled. Tolled berkaitan dengan biaya tol atau bunyi lonceng; di sini perlu told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "tr",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): Only then.",
+      "sample": "Doğru. I resent being told what to do başkaları sana emir verdiğinde rahatsız olduğunu anlatmak için resent ve edilgen being told kullanır."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "tr",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): gravity.",
+      "sample": "I resent telling what to do anlamı tersine çevirir. Başkalarına ne yapacağını söylemekten rahatsız oluyormuşsun gibi duyulur. Being told gerekir."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "tr",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): did.",
+      "sample": "I hate when people say me what to do basit duyulur ve say me burada doğal değildir. Hedef yapı I resent being told what to do olur."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): gravy.",
+      "sample": "I resent being tolled what to do told yerine tolled kullanıyor. Tolled ücret alınması veya çan çalmasıyla ilgilidir; burada told gerekir."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pl",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): Only then.",
+      "sample": "Dobrze. I resent being told what to do używa resent i strony biernej being told, żeby powiedzieć, że drażni cię, gdy inni wydają ci polecenia."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pl",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): gravity.",
+      "sample": "I resent telling what to do odwraca sens. Brzmi, jakby przeszkadzało ci mówienie innym, co mają robić. Potrzebujesz being told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pl",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): did.",
+      "sample": "I hate when people say me what to do brzmi prosto, a say me nie jest tu naturalne. Forma docelowa to I resent being told what to do."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): gravy.",
+      "sample": "I resent being tolled what to do zamienia told na tolled. Tolled wiąże się z opłatą albo biciem dzwonu; tutaj potrzebujesz told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "pt-BR",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): blatant.",
+      "sample": "Correto. Seemingly suaviza a opinião, e quite dubious soa mais preciso do que simplesmente very bad."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "pt-BR",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): Rarely, have.",
+      "sample": "Seems, this decision is quite dubious não funciona como palavra introdutória. Você precisa do advérbio seemingly."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "pt-BR",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): rarely.",
+      "sample": "I think that this decision is very bad é compreensível, mas simples demais. Seemingly e dubious deixam a frase mais profissional e matizada."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): blanket.",
+      "sample": "Seemingly, this decision is quite doobious escreve dubious errado. Depois de d vem u, não oo."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "vi",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): blatant.",
+      "sample": "Đúng. Seemingly làm ý kiến mềm hơn, và quite dubious chính xác hơn nhiều so với simply very bad."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "vi",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): Rarely, have.",
+      "sample": "Seems, this decision is quite dubious không hoạt động như từ mở đầu. Cần trạng từ seemingly."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "vi",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): rarely.",
+      "sample": "I think that this decision is very bad có thể hiểu được, nhưng quá đơn giản. Seemingly và dubious làm câu chuyên nghiệp và có sắc thái hơn."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): blanket.",
+      "sample": "Seemingly, this decision is quite doobious viết sai dubious. Sau d là u, không phải oo."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "id",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): blatant.",
+      "sample": "Benar. Seemingly melembutkan opini, dan quite dubious terdengar lebih tepat daripada sekadar very bad."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "id",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): Rarely, have.",
+      "sample": "Seems, this decision is quite dubious tidak berfungsi sebagai kata pembuka. Kamu perlu adverb seemingly."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "id",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): rarely.",
+      "sample": "I think that this decision is very bad bisa dipahami, tetapi terlalu sederhana. Seemingly dan dubious membuatnya lebih profesional dan bernuansa."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): blanket.",
+      "sample": "Seemingly, this decision is quite doobious salah mengeja dubious. Setelah d ada u, bukan oo."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "tr",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): blatant.",
+      "sample": "Doğru. Seemingly görüşü yumuşatır; quite dubious ise sadece very bad demekten daha kesin ve profesyonel duyulur."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "tr",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): Rarely, have.",
+      "sample": "Seems, this decision is quite dubious giriş sözü gibi çalışmaz. Zarf olan seemingly gerekir."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "tr",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): rarely.",
+      "sample": "I think that this decision is very bad anlaşılır, ama fazla basittir. Seemingly ve dubious cümleyi daha profesyonel ve nüanslı yapar."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): blanket.",
+      "sample": "Seemingly, this decision is quite doobious dubious kelimesini yanlış yazar. d sonrasında u gelir, çift o değil."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "pl",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): blatant.",
+      "sample": "Dobrze. Seemingly łagodzi opinię, a quite dubious brzmi precyzyjniej niż zwykłe very bad."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "pl",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): Rarely, have.",
+      "sample": "Seems, this decision is quite dubious nie działa jako wyraz wprowadzający. Potrzebujesz przysłówka seemingly."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "pl",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): rarely.",
+      "sample": "I think that this decision is very bad jest zrozumiałe, ale zbyt proste. Seemingly i dubious brzmią bardziej profesjonalnie i z niuansem."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): blanket.",
+      "sample": "Seemingly, this decision is quite doobious błędnie zapisuje dubious. Po d jest u, nie oo."
+    }
+  ]
+}

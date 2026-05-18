@@ -3,7 +3,23 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const CONTRAST = ['to + base verb', 'verb-ing', 'want to', 'need to', 'decide to', 'enjoy doing', 'finish doing', 'avoid doing'];
 
@@ -153,16 +169,76 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       'Mind usually takes -ing: Do you mind waiting?',
       'Do not say to learning.',
     ],
+    'pt-BR': [
+      'Depois de want, normalmente vem to: I want to learn.',
+      'Depois de need, normalmente vem to: She needs to go.',
+      'Depois de decide, normalmente vem to: They decided to start.',
+      'Depois de plan, normalmente vem to: We plan to study.',
+      'Depois de agree, normalmente vem to: He agreed to help.',
+      'Depois de enjoy, normalmente vem -ing: I enjoy learning.',
+      'Depois de finish, normalmente vem -ing: He finished working.',
+      'Depois de avoid, normalmente vem -ing: Avoid making mistakes.',
+      'Depois de mind, normalmente vem -ing: Do you mind waiting?',
+      'Não diga to learning.',
+    ],
+    vi: [
+      'Sau want thường dùng to: I want to learn.',
+      'Sau need thường dùng to: She needs to go.',
+      'Sau decide thường dùng to: They decided to start.',
+      'Sau plan thường dùng to: We plan to study.',
+      'Sau agree thường dùng to: He agreed to help.',
+      'Sau enjoy thường dùng -ing: I enjoy learning.',
+      'Sau finish thường dùng -ing: He finished working.',
+      'Sau avoid thường dùng -ing: Avoid making mistakes.',
+      'Sau mind thường dùng -ing: Do you mind waiting?',
+      'Đừng nói to learning.',
+    ],
+    id: [
+      'Setelah want biasanya memakai to: I want to learn.',
+      'Setelah need biasanya memakai to: She needs to go.',
+      'Setelah decide biasanya memakai to: They decided to start.',
+      'Setelah plan biasanya memakai to: We plan to study.',
+      'Setelah agree biasanya memakai to: He agreed to help.',
+      'Setelah enjoy biasanya memakai -ing: I enjoy learning.',
+      'Setelah finish biasanya memakai -ing: He finished working.',
+      'Setelah avoid biasanya memakai -ing: Avoid making mistakes.',
+      'Setelah mind biasanya memakai -ing: Do you mind waiting?',
+      'Jangan ucapkan to learning.',
+    ],
+    tr: [
+      'Want fiilinden sonra genelde to gelir: I want to learn.',
+      'Need fiilinden sonra genelde to gelir: She needs to go.',
+      'Decide fiilinden sonra genelde to gelir: They decided to start.',
+      'Plan fiilinden sonra genelde to gelir: We plan to study.',
+      'Agree fiilinden sonra genelde to gelir: He agreed to help.',
+      'Enjoy fiilinden sonra genelde -ing gelir: I enjoy learning.',
+      'Finish fiilinden sonra genelde -ing gelir: He finished working.',
+      'Avoid fiilinden sonra genelde -ing gelir: Avoid making mistakes.',
+      'Mind fiilinden sonra genelde -ing gelir: Do you mind waiting?',
+      'To learning demeyin.',
+    ],
+    pl: [
+      'Po want zwykle jest to: I want to learn.',
+      'Po need zwykle jest to: She needs to go.',
+      'Po decide zwykle jest to: They decided to start.',
+      'Po plan zwykle jest to: We plan to study.',
+      'Po agree zwykle jest to: He agreed to help.',
+      'Po enjoy zwykle jest -ing: I enjoy learning.',
+      'Po finish zwykle jest -ing: He finished working.',
+      'Po avoid zwykle jest -ing: Avoid making mistakes.',
+      'Po mind zwykle jest -ing: Do you mind waiting?',
+      'Nie używaj to learning.',
+    ],
   },
   examples: [
-    { en: 'I want to learn English.', ru: 'Я хочу выучить английский.', uk: 'Я хочу вивчити англійську.', es: 'I want to learn English.', why: tri('Готовая связка: want to learn.', 'Готова звʼязка: want to learn.', 'Chunk: want to learn.') },
-    { en: 'She needs to go home.', ru: 'Ей нужно идти домой.', uk: 'Їй потрібно йти додому.', es: 'She needs to go home.', why: tri('После need идет to go.', 'Після need іде to go.', 'Need to go.') },
-    { en: 'They decided to start again.', ru: 'Они решили начать снова.', uk: 'Вони вирішили почати знову.', es: 'They decided to start again.', why: tri('После decide идет to start.', 'Після decide іде to start.', 'Decided to start.') },
-    { en: 'We plan to study tonight.', ru: 'Мы планируем учиться сегодня вечером.', uk: 'Ми плануємо вчитися сьогодні ввечері.', es: 'We plan to study tonight.', why: tri('После plan идет to study.', 'Після plan іде to study.', 'Plan to study.') },
-    { en: 'I enjoy learning new words.', ru: 'Мне нравится учить новые слова.', uk: 'Мені подобається вчити нові слова.', es: 'I enjoy learning new words.', why: tri('После enjoy идет learning.', 'Після enjoy іде learning.', 'Enjoy learning.') },
-    { en: 'He finished working late.', ru: 'Он закончил работать поздно.', uk: 'Він закінчив працювати пізно.', es: 'He finished working late.', why: tri('После finish идет working.', 'Після finish іде working.', 'Finished working.') },
-    { en: 'Avoid making the same mistake.', ru: 'Избегай делать ту же ошибку.', uk: 'Уникай робити ту саму помилку.', es: 'Avoid making the same mistake.', why: tri('После avoid идет making.', 'Після avoid іде making.', 'Avoid making.') },
-    { en: 'Do you mind waiting here?', ru: 'Ты не против подождать здесь?', uk: 'Ти не проти почекати тут?', es: 'Do you mind waiting here?', why: tri('После mind идет waiting.', 'Після mind іде waiting.', 'Mind waiting.') },
+    { en: 'I want to learn English.', ru: 'Я хочу выучить английский.', uk: 'Я хочу вивчити англійську.', es: 'I want to learn English.', 'pt-BR': 'Quero aprender inglês.', vi: 'Tôi muốn học tiếng Anh.', id: 'Saya ingin belajar bahasa Inggris.', tr: 'İngilizce öğrenmek istiyorum.', pl: 'Chcę nauczyć się angielskiego.', why: tri('Готовая связка: want to learn.', 'Готова звʼязка: want to learn.', 'Chunk: want to learn.') },
+    { en: 'She needs to go home.', ru: 'Ей нужно идти домой.', uk: 'Їй потрібно йти додому.', es: 'She needs to go home.', 'pt-BR': 'Ela precisa ir para casa.', vi: 'Cô ấy cần về nhà.', id: 'Dia perlu pulang.', tr: 'Eve gitmesi gerekiyor.', pl: 'Ona musi iść do domu.', why: tri('После need идет to go.', 'Після need іде to go.', 'Need to go.') },
+    { en: 'They decided to start again.', ru: 'Они решили начать снова.', uk: 'Вони вирішили почати знову.', es: 'They decided to start again.', 'pt-BR': 'Eles decidiram começar de novo.', vi: 'Họ quyết định bắt đầu lại.', id: 'Mereka memutuskan untuk mulai lagi.', tr: 'Tekrar başlamaya karar verdiler.', pl: 'Postanowili zacząć od nowa.', why: tri('После decide идет to start.', 'Після decide іде to start.', 'Decided to start.') },
+    { en: 'We plan to study tonight.', ru: 'Мы планируем учиться сегодня вечером.', uk: 'Ми плануємо вчитися сьогодні ввечері.', es: 'We plan to study tonight.', 'pt-BR': 'Planejamos estudar hoje à noite.', vi: 'Chúng tôi dự định học tối nay.', id: 'Kami berencana belajar malam ini.', tr: 'Bu gece ders çalışmayı planlıyoruz.', pl: 'Planujemy uczyć się dziś wieczorem.', why: tri('После plan идет to study.', 'Після plan іде to study.', 'Plan to study.') },
+    { en: 'I enjoy learning new words.', ru: 'Мне нравится учить новые слова.', uk: 'Мені подобається вчити нові слова.', es: 'I enjoy learning new words.', 'pt-BR': 'Gosto de aprender palavras novas.', vi: 'Tôi thích học từ mới.', id: 'Saya menikmati belajar kata-kata baru.', tr: 'Yeni kelimeler öğrenmekten keyif alıyorum.', pl: 'Lubię uczyć się nowych słów.', why: tri('После enjoy идет learning.', 'Після enjoy іде learning.', 'Enjoy learning.') },
+    { en: 'He finished working late.', ru: 'Он закончил работать поздно.', uk: 'Він закінчив працювати пізно.', es: 'He finished working late.', 'pt-BR': 'Ele terminou de trabalhar tarde.', vi: 'Anh ấy kết thúc công việc muộn.', id: 'Dia selesai bekerja larut malam.', tr: 'Çalışmayı geç bitirdi.', pl: 'Skończył pracować późno.', why: tri('После finish идет working.', 'Після finish іде working.', 'Finished working.') },
+    { en: 'Avoid making the same mistake.', ru: 'Избегай делать ту же ошибку.', uk: 'Уникай робити ту саму помилку.', es: 'Avoid making the same mistake.', 'pt-BR': 'Evite cometer o mesmo erro.', vi: 'Hãy tránh mắc cùng một lỗi.', id: 'Hindari membuat kesalahan yang sama.', tr: 'Aynı hatayı yapmaktan kaçın.', pl: 'Unikaj popełniania tego samego błędu.', why: tri('После avoid идет making.', 'Після avoid іде making.', 'Avoid making.') },
+    { en: 'Do you mind waiting here?', ru: 'Ты не против подождать здесь?', uk: 'Ти не проти почекати тут?', es: 'Do you mind waiting here?', 'pt-BR': 'Você se importa de esperar aqui?', vi: 'Bạn có phiền chờ ở đây không?', id: 'Apakah kamu keberatan menunggu di sini?', tr: 'Burada beklemek senin için sorun olur mu?', pl: 'Czy masz coś przeciwko poczekaniu tutaj?', why: tri('После mind идет waiting.', 'Після mind іде waiting.', 'Mind waiting.') },
   ],
   introBlocks: [
     {

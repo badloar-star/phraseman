@@ -1,0 +1,40 @@
+{
+  "mode": "batch-locale-coverage",
+  "requiredLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl",
+    "es"
+  ],
+  "productOnly": true,
+  "summary": {
+    "localizedItemsChecked": 44931,
+    "expectedUnits": 2212,
+    "completeUnits": 18195,
+    "partialUnits": 0,
+    "missingAllLocaleUnits": 0,
+    "partialFiles": 0,
+    "missingByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 0,
+      "tr": 0,
+      "pl": 0,
+      "es": 0
+    },
+    "missingAllByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 0,
+      "tr": 0,
+      "pl": 0,
+      "es": 0
+    }
+  },
+  "partialFiles": [],
+  "partialUnits": [],
+  "missingAllLocaleUnits": [],
+  "truncated": false
+}

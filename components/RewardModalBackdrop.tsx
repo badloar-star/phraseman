@@ -1,0 +1,162 @@
+import { LinearGradient } from 'expo-linear-gradient';
+import React from 'react';
+import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
+import type { Theme, ThemeMode } from '../constants/theme';
+
+const REWARD_MODAL_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
+  dark: require('../assets/images/reward_modals/reward-modal-forest.webp'),
+  neon: require('../assets/images/reward_modals/reward-modal-neon.webp'),
+  gold: require('../assets/images/reward_modals/reward-modal-gold.webp'),
+  coral: require('../assets/images/reward_modals/reward-modal-coral.webp'),
+  minimalLight: require('../assets/images/reward_modals/reward-modal-sketch.webp'),
+  minimalDark: require('../assets/images/reward_modals/reward-modal-graphite.webp'),
+};
+
+type RewardModalBackdropProps = {
+  themeMode: ThemeMode;
+  intensity?: 'regular' | 'strong';
+};
+
+export function RewardModalBackdrop({ themeMode, intensity = 'regular' }: RewardModalBackdropProps) {
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      <Image
+        source={REWARD_MODAL_BACKDROPS[themeMode] ?? REWARD_MODAL_BACKDROPS.dark}
+        resizeMode="cover"
+        style={[
+          StyleSheet.absoluteFill,
+          { opacity: rewardModalImageOpacity(themeMode) },
+        ]}
+      />
+      <LinearGradient
+        pointerEvents="none"
+        colors={rewardModalScrimColors(themeMode, intensity)}
+        locations={[0, 0.52, 1]}
+        style={StyleSheet.absoluteFill}
+      />
+    </View>
+  );
+}
+
+export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string, string, string] {
+  switch (themeMode) {
+    case 'gold':
+      return ['rgba(22,16,8,0.94)', 'rgba(34,25,13,0.93)', 'rgba(6,5,3,0.97)'];
+    case 'neon':
+      return ['rgba(16,22,17,0.94)', 'rgba(6,12,9,0.95)', 'rgba(1,2,2,0.98)'];
+    case 'coral':
+      return ['rgba(54,30,34,0.94)', 'rgba(36,22,25,0.95)', 'rgba(15,8,10,0.97)'];
+    case 'minimalLight':
+      return ['rgba(255,253,246,0.96)', 'rgba(246,238,222,0.95)', 'rgba(232,219,198,0.94)'];
+    case 'minimalDark':
+      return ['rgba(35,39,46,0.94)', 'rgba(20,23,29,0.96)', 'rgba(8,10,14,0.98)'];
+    case 'dark':
+    default:
+      return ['rgba(21,35,26,0.94)', 'rgba(10,18,14,0.96)', 'rgba(4,9,6,0.98)'];
+  }
+}
+
+export function rewardModalAccentColor(themeMode: ThemeMode, t: Theme): string {
+  switch (themeMode) {
+    case 'gold':
+      return '#E8C36C';
+    case 'neon':
+      return '#D8FF3E';
+    case 'coral':
+      return '#FF8A78';
+    case 'minimalLight':
+      return '#7A5520';
+    case 'minimalDark':
+      return '#88B8FF';
+    case 'dark':
+    default:
+      return t.gold;
+  }
+}
+
+export function rewardModalPanelBorder(themeMode: ThemeMode, _t: Theme, priorityColor?: string): string {
+  if (priorityColor && themeMode !== 'minimalLight') return priorityColor;
+  switch (themeMode) {
+    case 'gold':
+      return 'rgba(232,195,108,0.48)';
+    case 'neon':
+      return 'rgba(216,255,62,0.36)';
+    case 'coral':
+      return 'rgba(255,138,120,0.36)';
+    case 'minimalLight':
+      return 'rgba(45,39,30,0.26)';
+    case 'minimalDark':
+      return 'rgba(136,184,255,0.28)';
+    case 'dark':
+    default:
+      return 'rgba(88,204,137,0.30)';
+  }
+}
+
+export function rewardModalSoftSurface(themeMode: ThemeMode, _t: Theme): string {
+  switch (themeMode) {
+    case 'minimalLight':
+      return 'rgba(255,253,246,0.72)';
+    case 'gold':
+      return 'rgba(232,195,108,0.10)';
+    case 'neon':
+      return 'rgba(216,255,62,0.08)';
+    case 'coral':
+      return 'rgba(255,138,120,0.09)';
+    case 'minimalDark':
+      return 'rgba(136,184,255,0.08)';
+    case 'dark':
+    default:
+      return 'rgba(255,255,255,0.055)';
+  }
+}
+
+export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, string] {
+  switch (themeMode) {
+    case 'gold':
+      return ['#F4D889', '#B9852E'];
+    case 'neon':
+      return ['#E5FF5C', '#93C900'];
+    case 'coral':
+      return ['#FFE1D7', '#FF8A78'];
+    case 'minimalLight':
+      return ['#343842', '#171615'];
+    case 'minimalDark':
+      return ['#FFFFFF', '#BFD6FF'];
+    case 'dark':
+    default:
+      return ['#F0F7F2', '#8FE5AD'];
+  }
+}
+
+export function rewardModalPrimaryButtonText(themeMode: ThemeMode): string {
+  return themeMode === 'minimalLight' ? '#FFFDF6' : '#101214';
+}
+
+function rewardModalImageOpacity(themeMode: ThemeMode): number {
+  if (themeMode === 'minimalLight') return 0.94;
+  if (themeMode === 'gold') return 0.96;
+  return 1;
+}
+
+function rewardModalScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'strong'): [string, string, string] {
+  const strong = intensity === 'strong';
+  switch (themeMode) {
+    case 'minimalLight':
+      return strong
+        ? ['rgba(248,241,229,0.34)', 'rgba(255,253,246,0.50)', 'rgba(52,43,31,0.18)']
+        : ['rgba(248,241,229,0.18)', 'rgba(255,253,246,0.34)', 'rgba(52,43,31,0.10)'];
+    case 'gold':
+      return strong
+        ? ['rgba(0,0,0,0.42)', 'rgba(0,0,0,0.50)', 'rgba(0,0,0,0.70)']
+        : ['rgba(0,0,0,0.28)', 'rgba(0,0,0,0.40)', 'rgba(0,0,0,0.62)'];
+    case 'neon':
+      return strong
+        ? ['rgba(0,0,0,0.48)', 'rgba(0,0,0,0.56)', 'rgba(0,0,0,0.76)']
+        : ['rgba(0,0,0,0.34)', 'rgba(0,0,0,0.46)', 'rgba(0,0,0,0.68)'];
+    default:
+      return strong
+        ? ['rgba(2,4,8,0.42)', 'rgba(2,4,8,0.54)', 'rgba(0,0,0,0.74)']
+        : ['rgba(2,4,8,0.28)', 'rgba(2,4,8,0.42)', 'rgba(0,0,0,0.62)'];
+  }
+}

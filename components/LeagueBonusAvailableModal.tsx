@@ -3,6 +3,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect, useRef } from 'react';
 import { Animated, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { triLang } from '../constants/i18n';
+import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
+import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { hapticTap } from '../hooks/use-haptics';
 import type { LeagueBonusAvailability } from '../app/services/league_chest_rewards';
 import { useLang } from './LangContext';
@@ -23,11 +25,13 @@ export default function LeagueBonusAvailableModal({
   onClose,
   onOpenLeague,
 }: Props) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const scale = useRef(new Animated.Value(0.9)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const glow = useRef(new Animated.Value(0)).current;
+  const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
+  const modalTheme = getLeagueBonusPalette(t, themeMode).modal;
 
   useEffect(() => {
     if (!visible) return;
@@ -59,7 +63,7 @@ export default function LeagueBonusAvailableModal({
     <Modal transparent animationType="none" visible={visible} onRequestClose={onClose}>
       <View style={styles.root}>
         <Pressable
-          style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.72)' }]}
+          style={[StyleSheet.absoluteFill, { backgroundColor: modalTheme.overlay }]}
           onPress={() => {
             hapticTap();
             onClose();
@@ -68,36 +72,48 @@ export default function LeagueBonusAvailableModal({
         <View style={styles.center} pointerEvents="box-none">
           <Animated.View style={[styles.shell, { opacity, transform: [{ scale }] }]}>
             <LinearGradient
-              colors={['#F7E3A0', '#B88A2B', '#2B1A05']}
+              colors={modalTheme.frame}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
-              style={styles.frame}
+              style={[styles.frame, { shadowColor: modalTheme.eyebrow }]}
             >
-              <View style={[styles.card, { backgroundColor: t.bgCard }]}>
+              <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: modalTheme.rewardBorder }]}>
                 <LinearGradient
-                  colors={['rgba(247,227,160,0.18)', 'rgba(0,0,0,0)', 'rgba(184,138,43,0.12)']}
+                  colors={modalTheme.card}
+                  locations={modalTheme.cardLocations}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={StyleSheet.absoluteFill}
                 />
+                <LinearGradient
+                  colors={modalTheme.wash}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={StyleSheet.absoluteFill}
+                />
+                <View pointerEvents="none" style={[styles.topRail, { backgroundColor: modalTheme.rail }]} />
+                <View pointerEvents="none" style={[styles.ribbon, { backgroundColor: modalTheme.ribbon }]} />
+                <View pointerEvents="none" style={[styles.ribbonAlt, { backgroundColor: modalTheme.ribbonAlt }]} />
                 <Animated.View
                   pointerEvents="none"
                   style={[
                     styles.halo,
                     {
+                      backgroundColor: modalTheme.halo,
+                      borderColor: modalTheme.haloBorder,
                       opacity: glow.interpolate({ inputRange: [0, 1], outputRange: [0.22, 0.46] }),
                       transform: [{ scale: glow.interpolate({ inputRange: [0, 1], outputRange: [0.96, 1.05] }) }],
                     },
                   ]}
                 />
-                <View style={styles.iconWrap}>
+                <View style={[styles.iconWrap, { backgroundColor: modalTheme.crestBg, borderColor: modalTheme.crestBorder }]}>
                   {availability.isCrownWinner ? (
                     <Image source={LEAGUE_CROWN_ICON} resizeMode="contain" style={styles.crownImage} />
                   ) : (
-                    <Ionicons name="gift" size={42} color="#FFE7A2" />
+                    <Image source={leagueBonusGiftImage} resizeMode="contain" style={styles.leagueGiftImage} />
                   )}
                 </View>
-                <Text style={[styles.eyebrow, { color: '#D7AD56' }]}>
+                <Text style={[styles.eyebrow, { color: modalTheme.eyebrow }]}>
                   {triLang(lang, { ru: 'Цель лиги выполнена', uk: 'Ціль ліги виконано', es: 'Meta de liga completada', 'pt-BR': 'Meta da liga concluída', vi: 'Đã hoàn thành mục tiêu giải đấu', id: 'Target liga selesai', tr: 'Lig hedefi tamamlandı', pl: 'Cel ligi ukończony' })}
                 </Text>
                 <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(24, f.h1 + 2) }]}>
@@ -128,8 +144,8 @@ export default function LeagueBonusAvailableModal({
                       pl: `Liga ukończyła cel tygodnia. Bonus jest gotowy: odłamki, boosty i rzadkie nagrody dla każdego gracza.`,
                     })}
                 </Text>
-                <View style={[styles.meta, { borderColor: 'rgba(215,173,86,0.34)', backgroundColor: 'rgba(215,173,86,0.10)' }]}>
-                  <Ionicons name="podium-outline" size={18} color="#D7AD56" />
+                <View style={[styles.meta, { borderColor: modalTheme.metaBorder, backgroundColor: modalTheme.metaBg }]}>
+                  <Ionicons name="podium-outline" size={18} color={modalTheme.eyebrow} />
                   <Text style={[styles.metaText, { color: t.textSecond }]} numberOfLines={1}>
                     {triLang(lang, { ru: `Корона недели: ${crownName}`, uk: `Корона тижня: ${crownName}`, es: `Corona semanal: ${crownName}`, 'pt-BR': `Coroa da semana: ${crownName}`, vi: `Vương miện tuần: ${crownName}`, id: `Mahkota minggu ini: ${crownName}`, tr: `Haftanın tacı: ${crownName}`, pl: `Korona tygodnia: ${crownName}` })}
                   </Text>
@@ -142,8 +158,8 @@ export default function LeagueBonusAvailableModal({
                   }}
                   style={styles.primaryBtn}
                 >
-                  <LinearGradient colors={['#FFF1B8', '#D7AD56', '#8D6826']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
-                  <Text style={styles.primaryText}>{buttonLabel}</Text>
+                  <LinearGradient colors={modalTheme.primary} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
+                  <Text style={[styles.primaryText, { color: modalTheme.primaryText }]}>{buttonLabel}</Text>
                 </TouchableOpacity>
               </View>
             </LinearGradient>
@@ -174,32 +190,58 @@ const styles = StyleSheet.create({
   },
   card: {
     borderRadius: 24,
+    borderWidth: 0.5,
     overflow: 'hidden',
     padding: 20,
     alignItems: 'center',
   },
+  topRail: {
+    position: 'absolute',
+    top: 0,
+    left: 24,
+    right: 24,
+    height: 1,
+  },
+  ribbon: {
+    position: 'absolute',
+    top: 28,
+    right: -72,
+    width: 230,
+    height: 42,
+    transform: [{ rotate: '-22deg' }],
+  },
+  ribbonAlt: {
+    position: 'absolute',
+    bottom: -18,
+    left: -58,
+    width: 230,
+    height: 46,
+    transform: [{ rotate: '-18deg' }],
+  },
   halo: {
     position: 'absolute',
-    top: -42,
-    width: 168,
-    height: 168,
-    borderRadius: 84,
-    backgroundColor: '#D7AD56',
+    top: -54,
+    width: 208,
+    height: 208,
+    borderRadius: 104,
+    borderWidth: 1,
   },
   iconWrap: {
-    width: 86,
-    height: 86,
-    borderRadius: 43,
+    width: 136,
+    height: 136,
+    borderRadius: 68,
     borderWidth: 1,
-    borderColor: 'rgba(255,231,162,0.54)',
-    backgroundColor: 'rgba(215,173,86,0.18)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 14,
+    marginBottom: 16,
   },
   crownImage: {
-    width: 62,
-    height: 62,
+    width: 78,
+    height: 78,
+  },
+  leagueGiftImage: {
+    width: 154,
+    height: 154,
   },
   eyebrow: {
     fontSize: 12,
@@ -244,7 +286,6 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   primaryText: {
-    color: '#120D04',
     fontSize: 15,
     fontWeight: '900',
   },

@@ -1,6 +1,7 @@
 // Модалка разового бонуса осколков за волну релиза (см. config RELEASE_WAVE_BONUS_VERSION).
 // Без анимации opacity на оверлее; у осколка — только transform (useNativeDriver), без сбоев на Fabric.
 import React, { useEffect, useRef, useState } from 'react';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Animated, Easing, Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
@@ -13,6 +14,15 @@ import {
   persistNativeBuildIdAfterReleaseWaveFlow,
 } from '../app/release_wave_bonus';
 import { oskolokImageForPackShards } from '../app/oskolok';
+import {
+  RewardModalBackdrop,
+  rewardModalAccentColor,
+  rewardModalPanelBorder,
+  rewardModalPanelColors,
+  rewardModalPrimaryButtonColors,
+  rewardModalPrimaryButtonText,
+  rewardModalSoftSurface,
+} from './RewardModalBackdrop';
 
 const TEXTS = {
   ru: {
@@ -68,6 +78,8 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
   const amount = getReleaseWaveBonusLabelAmount();
   const oskolokImage = oskolokImageForPackShards(amount);
   const dimColor = 'rgba(0,0,0,0.62)';
+  const modalAccent = rewardModalAccentColor(themeMode, t);
+  const primaryButtonColors = rewardModalPrimaryButtonColors(themeMode);
 
   const shardFloatY = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -138,6 +150,7 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
       }}
     >
       <View style={[styles.root, { backgroundColor: dimColor, paddingBottom: insets.bottom }]}>
+        <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
         <Pressable
           style={StyleSheet.absoluteFill}
           onPress={() => {
@@ -151,11 +164,18 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
           style={[
             styles.card,
             {
-              backgroundColor: t.bgCard,
-              borderColor: t.accent,
+              backgroundColor: 'transparent',
+              borderColor: rewardModalPanelBorder(themeMode, t),
+              shadowColor: modalAccent,
             },
           ]}
         >
+          <LinearGradient
+            colors={rewardModalPanelColors(themeMode, t)}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={StyleSheet.absoluteFill}
+          />
           <Text style={styles.emoji}>{'🙏'}</Text>
           <Text style={[styles.title, { color: t.textPrimary }]}>
             {tx.title}
@@ -166,7 +186,13 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
             {tx.body}
           </Text>
           <View
-            style={styles.rewardBlock}
+            style={[
+              styles.rewardBlock,
+              {
+                backgroundColor: rewardModalSoftSurface(themeMode, t),
+                borderColor: rewardModalPanelBorder(themeMode, t),
+              },
+            ]}
             accessibilityLabel={triLang(lang, {
               ru: `Награда ${amount} осколков`,
               uk: `Нагорода ${amount} осколків`,
@@ -199,7 +225,7 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
             <Text
               style={[
                 styles.rewardLine,
-                { color: t.accent, fontSize: f.bodyLg, fontWeight: '800', marginTop: 10 },
+                { color: modalAccent, fontSize: f.bodyLg, fontWeight: '800', marginTop: 10 },
               ]}
             >
               {tx.sub(amount)}
@@ -228,7 +254,6 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
             style={({ pressed }) => [
               styles.btn,
               {
-                backgroundColor: t.accent,
                 opacity: pressed || busy ? 0.86 : 1,
                 marginTop: 24,
               },
@@ -237,9 +262,16 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
             {false && busy && !previewMode ? (
               <View />
             ) : (
-              <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
-                {previewMode ? tx.ctaPreview : tx.cta}
-              </Text>
+              <LinearGradient
+                colors={primaryButtonColors}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.btnGradient}
+              >
+                <Text style={{ color: rewardModalPrimaryButtonText(themeMode), fontSize: f.bodyLg, fontWeight: '800' }}>
+                  {previewMode ? tx.ctaPreview : tx.cta}
+                </Text>
+              </LinearGradient>
             )}
           </Pressable>
         </View>
@@ -265,6 +297,11 @@ const styles = StyleSheet.create({
     paddingBottom: 22,
     alignItems: 'center',
     zIndex: 1,
+    overflow: 'hidden',
+    shadowOffset: { width: 0, height: 18 },
+    shadowOpacity: 0.24,
+    shadowRadius: 26,
+    elevation: 18,
   },
   emoji: {
     fontSize: 48,
@@ -281,6 +318,11 @@ const styles = StyleSheet.create({
   rewardBlock: {
     alignItems: 'center',
     marginTop: 4,
+    alignSelf: 'stretch',
+    borderRadius: 18,
+    borderWidth: 1,
+    paddingVertical: 14,
+    paddingHorizontal: 12,
   },
   oskolokImg: {
     width: 120,
@@ -294,9 +336,16 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: '100%',
-    paddingVertical: 16,
     borderRadius: 14,
+    overflow: 'hidden',
     alignItems: 'center',
     minHeight: 52,
+  },
+  btnGradient: {
+    width: '100%',
+    minHeight: 52,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 16,
   },
 });

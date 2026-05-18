@@ -157,14 +157,14 @@ export default function FlashcardsMarketDevScreen() {
 
   if (!isDevMarketEnabled) {
     return (
-      <ScreenGradient>
+      <ScreenGradient artBackdrop="flashcards">
         <SafeAreaView style={{ flex: 1 }} />
       </ScreenGradient>
     );
   }
 
   return (
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="flashcards">
       <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
 

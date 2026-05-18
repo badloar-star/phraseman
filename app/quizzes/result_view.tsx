@@ -87,7 +87,7 @@ export default function QuizResultView({
   const { level: lv, xpNeeded } = getXPProgress(totalXP + score);
 
   return (
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="quizzes">
       <View style={{ flex: 1 }}>
         <ContentWrap>
           <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>

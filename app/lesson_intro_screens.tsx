@@ -5,19 +5,22 @@ import {
   TouchableOpacity,
   Pressable,
   Animated,
+  ImageBackground,
   StyleSheet,
   Dimensions,
   ScrollView,
   Easing,
+  type ImageSourcePropType,
   type LayoutChangeEvent,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
+import type { ThemeMode } from '../constants/theme';
 import ScreenGradient from '../components/ScreenGradient';
+import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import { hapticTap } from '../hooks/use-haptics';
 import { MOTION_SCALE } from '../constants/motion';
 import type { IntroLine, IntroTextPart, IntroTextTone, LessonIntroExample, LessonIntroScreen, LessonIntroBlockKind } from './lesson_data_types';
@@ -280,6 +283,42 @@ const INTRO_CTA_ZONE_PX = 88;
 /** Звёзды показываем только после всех карточек — и сразу над полосой кнопки. */
 const INTRO_STARS_ABOVE_CTA_PX = INTRO_CTA_BOTTOM_OFFSET + INTRO_CTA_ZONE_PX;
 const KIND_BY_INDEX: LessonIntroBlockKind[] = ['why', 'how', 'tip'];
+
+const INTRO_CTA_IMAGES: Record<ThemeMode, ImageSourcePropType> = {
+  dark: require('../assets/images/lesson_intro/intro-cta-dark.webp'),
+  neon: require('../assets/images/lesson_intro/intro-cta-neon.webp'),
+  gold: require('../assets/images/lesson_intro/intro-cta-gold.webp'),
+  coral: require('../assets/images/lesson_intro/intro-cta-coral.webp'),
+  minimalLight: require('../assets/images/lesson_intro/intro-cta-minimal-light.webp'),
+  minimalDark: require('../assets/images/lesson_intro/intro-cta-minimal-dark.webp'),
+};
+
+const INTRO_CTA_TEXT_COLORS: Record<ThemeMode, string> = {
+  dark: '#F3FFF5',
+  neon: '#172100',
+  gold: '#FFF6DD',
+  coral: '#FFFFFF',
+  minimalLight: '#242424',
+  minimalDark: '#F5F7FA',
+};
+
+const INTRO_CTA_ICON_BACKGROUNDS: Record<ThemeMode, string> = {
+  dark: 'rgba(255,255,255,0.16)',
+  neon: 'rgba(0,0,0,0.12)',
+  gold: 'rgba(255,246,221,0.16)',
+  coral: 'rgba(255,255,255,0.18)',
+  minimalLight: 'rgba(0,0,0,0.08)',
+  minimalDark: 'rgba(255,255,255,0.14)',
+};
+
+const INTRO_CTA_SCRIMS: Record<ThemeMode, string> = {
+  dark: 'rgba(0,0,0,0.10)',
+  neon: 'rgba(255,255,255,0.05)',
+  gold: 'rgba(0,0,0,0.12)',
+  coral: 'rgba(0,0,0,0.03)',
+  minimalLight: 'rgba(255,255,255,0.14)',
+  minimalDark: 'rgba(0,0,0,0.12)',
+};
 
 /**
  * Очень мягкая «expo-out» кривая (a-la Material expressive / iOS spring без bounce).
@@ -916,8 +955,14 @@ export default function LessonIntroScreens({
     pl: 'Dotknij, aby kontynuować',
   });
 
+  const ctaImage = INTRO_CTA_IMAGES[themeMode] ?? INTRO_CTA_IMAGES.minimalDark;
+  const ctaTextColor = INTRO_CTA_TEXT_COLORS[themeMode] ?? t.correctText;
+  const ctaIconBackground = INTRO_CTA_ICON_BACKGROUNDS[themeMode] ?? 'rgba(255,255,255,0.16)';
+  const ctaScrim = INTRO_CTA_SCRIMS[themeMode] ?? 'transparent';
+
   return (
     <ScreenGradient>
+      <LessonArtBackdrop variant="intro" />
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
         {/* Шапка: pill «Урок N · A1» + Skip */}
         <Animated.View
@@ -1074,26 +1119,38 @@ export default function LessonIntroScreens({
           ]}
         >
           <Animated.View style={{ transform: [{ scale: btnPulse }] }}>
-            <TouchableOpacity testID="lesson-intro-start" activeOpacity={0.88} onPress={handleStart}>
-              <LinearGradient
-                colors={[`${t.accent}`, `${t.correct}`]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
+            <TouchableOpacity
+              testID="lesson-intro-start"
+              accessibilityRole="button"
+              accessibilityLabel={startLabel}
+              activeOpacity={0.88}
+              onPress={handleStart}
+              style={[styles.ctaTouchable, { shadowColor: t.accent }]}
+            >
+              <ImageBackground
+                source={ctaImage}
+                resizeMode="stretch"
+                imageStyle={styles.ctaImage}
                 style={[
                   styles.ctaBtn,
                   {
                     borderColor: t.borderHighlight,
-                    shadowColor: t.accent,
                   },
                 ]}
               >
-                <Text style={[styles.ctaText, { color: t.correctText, fontSize: f.bodyLg }]}>
+                <View pointerEvents="none" style={[styles.ctaScrim, { backgroundColor: ctaScrim }]} />
+                <Text
+                  numberOfLines={1}
+                  adjustsFontSizeToFit
+                  minimumFontScale={0.78}
+                  style={[styles.ctaText, { color: ctaTextColor, fontSize: f.bodyLg }]}
+                >
                   {startLabel}
                 </Text>
-                <View style={styles.ctaIconWrap}>
-                  <Ionicons name="arrow-forward" size={18} color={t.correctText} />
+                <View style={[styles.ctaIconWrap, { backgroundColor: ctaIconBackground }]}>
+                  <Ionicons name="arrow-forward" size={18} color={ctaTextColor} />
                 </View>
-              </LinearGradient>
+              </ImageBackground>
             </TouchableOpacity>
           </Animated.View>
         </Animated.View>
@@ -1241,6 +1298,13 @@ const styles = StyleSheet.create({
     right: 18,
     // bottom выставляется инлайн с учётом safe-area inset
   },
+  ctaTouchable: {
+    borderRadius: 999,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.42,
+    shadowRadius: 16,
+    elevation: 10,
+  },
   ctaBtn: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1248,16 +1312,22 @@ const styles = StyleSheet.create({
     gap: 12,
     paddingVertical: 16,
     paddingHorizontal: 22,
-    borderRadius: 18,
+    minHeight: 60,
+    borderRadius: 999,
     borderWidth: 0.5,
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.45,
-    shadowRadius: 16,
-    elevation: 10,
+    overflow: 'hidden',
+  },
+  ctaImage: {
+    borderRadius: 999,
+  },
+  ctaScrim: {
+    ...StyleSheet.absoluteFillObject,
   },
   ctaText: {
     fontWeight: '800',
     letterSpacing: 0.4,
+    flexShrink: 1,
+    textAlign: 'center',
   },
   ctaIconWrap: {
     width: 26,
@@ -1265,6 +1335,5 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(255,255,255,0.18)',
   },
 });

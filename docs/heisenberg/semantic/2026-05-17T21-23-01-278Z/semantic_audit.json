@@ -1,0 +1,1081 @@
+{
+  "generatedAt": "2026-05-17T21:23:01.277Z",
+  "mode": "semantic-audit",
+  "strict": true,
+  "summary": {
+    "findings": 53,
+    "blockers": 0,
+    "warnings": 53,
+    "reviewGroups": 53,
+    "byCode": {
+      "lesson-word-ambiguous-direct-source-map": 53
+    },
+    "bySurface": {
+      "lesson_words": 53
+    }
+  },
+  "reviewGroups": [
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "about",
+      "field": "about::prepositions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 126: about (prepositions)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "for",
+      "field": "for::prepositions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 143: for (prepositions)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "inside",
+      "field": "inside::prepositions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 146: inside (prepositions)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "near",
+      "field": "near::prepositions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 149: near (prepositions)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "outside",
+      "field": "outside::prepositions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 155: outside (prepositions)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "with",
+      "field": "with::prepositions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 162: with (prepositions)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "and",
+      "field": "and::conjunctions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 164: and (conjunctions)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "when",
+      "field": "when::conjunctions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 168: when (conjunctions)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "have to",
+      "field": "have to::phrases",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 278: have to (phrases)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "i",
+      "field": "i::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 317: I (pronouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "he",
+      "field": "he::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 319: he (pronouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "she",
+      "field": "she::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 320: she (pronouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "we",
+      "field": "we::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 321: we (pronouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "they",
+      "field": "they::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 322: they (pronouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "outside",
+      "field": "outside::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 325: outside (adverbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "inside",
+      "field": "inside::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 326: inside (adverbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "near",
+      "field": "near::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 328: near (adjectives)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "okay",
+      "field": "okay::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 334: okay (adjectives)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "late",
+      "field": "late::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 340: late (adjectives)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "not",
+      "field": "not::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 365: not (adverbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "break",
+      "field": "break::verbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 486: break (verbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "when",
+      "field": "when::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 560: when (adverbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "who",
+      "field": "who::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 561: who (adverbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "which",
+      "field": "which::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 564: which (adverbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "i",
+      "field": "i::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 603: i (nouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "he",
+      "field": "he::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 604: he (nouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "she",
+      "field": "she::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 605: she (nouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "we",
+      "field": "we::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 606: we (nouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "they",
+      "field": "they::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 607: they (nouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "my",
+      "field": "my::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 608: my (adjectives)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "his",
+      "field": "his::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 609: his (adjectives)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "this",
+      "field": "this::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 610: this (adjectives)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "not",
+      "field": "not::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 611: not (nouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "about",
+      "field": "about::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 616: about (nouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "for",
+      "field": "for::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 617: for (nouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "with",
+      "field": "with::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 618: with (nouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "and",
+      "field": "and::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 619: and (nouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "break",
+      "field": "break::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 646: break (nouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "new",
+      "field": "new::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 808: new (nouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "old",
+      "field": "old::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 810: old (nouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "have to",
+      "field": "have to::verbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 836: have to (verbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "will",
+      "field": "will::verbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 842: will (verbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "new",
+      "field": "new::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1019: new (adjectives)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "old",
+      "field": "old::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1020: old (adjectives)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "will",
+      "field": "will::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1094: will (adverbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "my",
+      "field": "my::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1171: my (pronouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "his",
+      "field": "his::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1175: his (pronouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "this",
+      "field": "this::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1182: this (pronouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "late",
+      "field": "late::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1225: late (adverbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "near",
+      "field": "near::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1308: near (adverbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "okay",
+      "field": "okay::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1596: okay (adverbs)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "who",
+      "field": "who::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1658: who (pronouns)",
+      "count": 1,
+      "locales": []
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "which",
+      "field": "which::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1659: which (pronouns)",
+      "count": 1,
+      "locales": []
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "about",
+      "field": "about::prepositions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 126: about (prepositions)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "for",
+      "field": "for::prepositions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 143: for (prepositions)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "inside",
+      "field": "inside::prepositions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 146: inside (prepositions)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "near",
+      "field": "near::prepositions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 149: near (prepositions)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "outside",
+      "field": "outside::prepositions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 155: outside (prepositions)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "with",
+      "field": "with::prepositions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 162: with (prepositions)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "and",
+      "field": "and::conjunctions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 164: and (conjunctions)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "when",
+      "field": "when::conjunctions",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 168: when (conjunctions)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "have to",
+      "field": "have to::phrases",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 278: have to (phrases)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "i",
+      "field": "i::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 317: I (pronouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "he",
+      "field": "he::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 319: he (pronouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "she",
+      "field": "she::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 320: she (pronouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "we",
+      "field": "we::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 321: we (pronouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "they",
+      "field": "they::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 322: they (pronouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "outside",
+      "field": "outside::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 325: outside (adverbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "inside",
+      "field": "inside::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 326: inside (adverbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "near",
+      "field": "near::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 328: near (adjectives)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "okay",
+      "field": "okay::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 334: okay (adjectives)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "late",
+      "field": "late::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 340: late (adjectives)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "not",
+      "field": "not::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 365: not (adverbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "break",
+      "field": "break::verbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 486: break (verbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "when",
+      "field": "when::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 560: when (adverbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "who",
+      "field": "who::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 561: who (adverbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "which",
+      "field": "which::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 564: which (adverbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "i",
+      "field": "i::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 603: i (nouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "he",
+      "field": "he::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 604: he (nouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "she",
+      "field": "she::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 605: she (nouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "we",
+      "field": "we::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 606: we (nouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "they",
+      "field": "they::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 607: they (nouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "my",
+      "field": "my::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 608: my (adjectives)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "his",
+      "field": "his::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 609: his (adjectives)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "this",
+      "field": "this::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 610: this (adjectives)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "not",
+      "field": "not::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 611: not (nouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "about",
+      "field": "about::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 616: about (nouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "for",
+      "field": "for::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 617: for (nouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "with",
+      "field": "with::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 618: with (nouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "and",
+      "field": "and::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 619: and (nouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "break",
+      "field": "break::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 646: break (nouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "new",
+      "field": "new::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 808: new (nouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "old",
+      "field": "old::nouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 810: old (nouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "have to",
+      "field": "have to::verbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 836: have to (verbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "will",
+      "field": "will::verbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 842: will (verbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "new",
+      "field": "new::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1019: new (adjectives)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "old",
+      "field": "old::adjectives",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1020: old (adjectives)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "will",
+      "field": "will::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1094: will (adverbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "my",
+      "field": "my::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1171: my (pronouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "his",
+      "field": "his::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1175: his (pronouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "this",
+      "field": "this::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1182: this (pronouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "late",
+      "field": "late::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1225: late (adverbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "near",
+      "field": "near::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1308: near (adverbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "okay",
+      "field": "okay::adverbs",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1596: okay (adverbs)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "who",
+      "field": "who::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1658: who (pronouns)"
+    },
+    {
+      "severity": "warning",
+      "code": "lesson-word-ambiguous-direct-source-map",
+      "surface": "lesson_words",
+      "id": "which",
+      "field": "which::pronouns",
+      "message": "English headword appears with multiple POS values, but the central source-locale map only has a direct key for this POS. Add a pos-specific key to avoid semantic drift.",
+      "sample": "line 1659: which (pronouns)"
+    }
+  ]
+}

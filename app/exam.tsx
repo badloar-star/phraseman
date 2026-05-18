@@ -660,7 +660,7 @@ export default function ExamScreen() {
   // ── LOCKED ────────────────────────────────────────────────────────────────
   if(phase==='locked') return(
     <>
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="exam">
     <SafeAreaView style={{flex:1}}>
       <View style={{flexDirection:'row',alignItems:'center',padding:15,borderBottomWidth:0.5,borderBottomColor:t.border}}>
         <TouchableOpacity onPress={()=>router.back()}>
@@ -710,7 +710,7 @@ export default function ExamScreen() {
   // ── INTRO ─────────────────────────────────────────────────────────────────
   if(phase==='intro') return(
     <>
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="exam">
     <SafeAreaView style={{flex:1}}>
       <View style={{flexDirection:'row',alignItems:'center',padding:15,borderBottomWidth:0.5,borderBottomColor:t.border}}>
         <TouchableOpacity onPress={() => certificate ? setPhase('cert') : router.back()}>
@@ -858,7 +858,7 @@ export default function ExamScreen() {
   // ── REVIEW ────────────────────────────────────────────────────────────────
   if(phase==='review') return(
     <>
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="exam">
     <SafeAreaView style={{flex:1}}>
       <View style={{flexDirection:'row',alignItems:'center',padding:15,borderBottomWidth:0.5,borderBottomColor:t.border}}>
         <TouchableOpacity
@@ -973,7 +973,7 @@ export default function ExamScreen() {
   // ── COUNTDOWN ─────────────────────────────────────────────────────────────
   if (phase === 'countdown') return (
     <>
-      <ScreenGradient>
+      <ScreenGradient artBackdrop="exam">
         <SafeAreaView style={{ flex: 1 }}>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24 }}>
             <Text style={{ color: sx.muted, fontSize: f.bodyLg, fontWeight: '600', marginBottom: 18 }}>
@@ -1003,7 +1003,7 @@ export default function ExamScreen() {
   if (phase === 'result') {
     return (
     <>
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="exam">
     <SafeAreaView style={{flex:1}}>
       {mountExportCert && certificate && (
         <View
@@ -1201,7 +1201,7 @@ export default function ExamScreen() {
   if (phase === 'cert' && certificate) {
     return (
     <>
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="exam">
     <SafeAreaView style={{flex:1}}>
       {mountExportCert && (
         <View
@@ -1398,7 +1398,7 @@ export default function ExamScreen() {
   // ── QUIZ ──────────────────────────────────────────────────────────────────
   return(
     <>
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="exam">
     <SafeAreaView style={{flex:1}}>
       {/* Header */}
       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:15,paddingBottom:10}}>

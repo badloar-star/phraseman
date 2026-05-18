@@ -1,0 +1,56 @@
+[
+  {
+    "theme": "dark",
+    "source": "C:\\Users\\badlo\\.codex\\generated_images\\019e3a72-eeed-75d3-887a-8c87c6af7f46\\ig_06f898aa7425a5f2016a0afefdad608191b7d29b454ecdf9ab.png",
+    "target": "assets/images/screen_backdrops/quizzes/quizzes-dark.webp",
+    "width": 1080,
+    "height": 1920,
+    "format": "webp",
+    "size": 293696
+  },
+  {
+    "theme": "neon",
+    "source": "C:\\Users\\badlo\\.codex\\generated_images\\019e3a72-eeed-75d3-887a-8c87c6af7f46\\ig_06f898aa7425a5f2016a0aff5f127c8191bff228434bfe25c6.png",
+    "target": "assets/images/screen_backdrops/quizzes/quizzes-neon.webp",
+    "width": 1080,
+    "height": 1920,
+    "format": "webp",
+    "size": 353238
+  },
+  {
+    "theme": "gold",
+    "source": "C:\\Users\\badlo\\.codex\\generated_images\\019e3a72-eeed-75d3-887a-8c87c6af7f46\\ig_06f898aa7425a5f2016a0affb3a3c88191b59a4c23f0a2e01f.png",
+    "target": "assets/images/screen_backdrops/quizzes/quizzes-gold.webp",
+    "width": 1080,
+    "height": 1920,
+    "format": "webp",
+    "size": 391090
+  },
+  {
+    "theme": "coral",
+    "source": "C:\\Users\\badlo\\.codex\\generated_images\\019e3a72-eeed-75d3-887a-8c87c6af7f46\\ig_06f898aa7425a5f2016a0afff8bfb88191a8d3ee2f3c565071.png",
+    "target": "assets/images/screen_backdrops/quizzes/quizzes-coral.webp",
+    "width": 1080,
+    "height": 1920,
+    "format": "webp",
+    "size": 343926
+  },
+  {
+    "theme": "minimalLight",
+    "source": "C:\\Users\\badlo\\.codex\\generated_images\\019e3a72-eeed-75d3-887a-8c87c6af7f46\\ig_06f898aa7425a5f2016a0b009f89c88191bf2226a5f33e25e7.png",
+    "target": "assets/images/screen_backdrops/quizzes/quizzes-minimal-light.webp",
+    "width": 1080,
+    "height": 1920,
+    "format": "webp",
+    "size": 319552
+  },
+  {
+    "theme": "minimalDark",
+    "source": "C:\\Users\\badlo\\.codex\\generated_images\\019e3a72-eeed-75d3-887a-8c87c6af7f46\\ig_06f898aa7425a5f2016a0b00f0a41c8191b9ab581ff74df0cc.png",
+    "target": "assets/images/screen_backdrops/quizzes/quizzes-minimal-dark.webp",
+    "width": 1080,
+    "height": 1920,
+    "format": "webp",
+    "size": 261730
+  }
+]

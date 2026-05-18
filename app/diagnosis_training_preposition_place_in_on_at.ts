@@ -3,7 +3,23 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 function placeStep(input: {
   id: string;
@@ -125,16 +141,66 @@ export const PREPOSITION_PLACE_IN_ON_AT_TRAINING: DiagnosisTraining = {
       'No traduzcas “en” automáticamente como in. Primero decide: dentro, sobre superficie o en punto.',
       'La misma palabra puede cambiar de preposición según el sentido: in the school = dentro del edificio, at school = actividad escolar.',
     ],
+    'pt-BR': [
+      'In é usado quando o objeto está dentro de um espaço: in the room, in the box, in the car.',
+      'In também é usado com cidades, países e áreas: in Dublin, in Ireland, in the city centre.',
+      'On é usado quando o objeto está sobre uma superfície: on the table, on the wall, on the floor.',
+      'On também é usado com ruas e linhas: on Main Street, on the road, on the coast.',
+      'At é usado quando o lugar é visto como ponto ou local de atividade: at home, at school, at work, at the station.',
+      'At é usado com endereço exato: at 25 King Street.',
+      'Não traduza "em" automaticamente como in. Primeiro decida: dentro, na superfície ou em um ponto.',
+      'A mesma palavra pode mudar de preposição conforme o sentido: in the school = dentro do prédio, at school = na atividade escolar.',
+    ],
+    vi: [
+      'In dùng khi vật ở bên trong một không gian: in the room, in the box, in the car.',
+      'In cũng dùng với thành phố, quốc gia và khu vực: in Dublin, in Ireland, in the city centre.',
+      'On dùng khi vật ở trên bề mặt: on the table, on the wall, on the floor.',
+      'On cũng dùng với đường phố và đường tuyến: on Main Street, on the road, on the coast.',
+      'At dùng khi nơi được xem như một điểm hoặc nơi diễn ra hoạt động: at home, at school, at work, at the station.',
+      'At dùng với địa chỉ chính xác: at 25 King Street.',
+      'Đừng tự động dịch "ở/trong" thành in. Trước tiên hãy quyết định: bên trong, trên bề mặt hay tại một điểm.',
+      'Cùng một từ có thể đổi giới từ theo nghĩa: in the school = bên trong tòa nhà, at school = ở trường như hoạt động học.',
+    ],
+    id: [
+      'In digunakan ketika objek berada di dalam suatu ruang: in the room, in the box, in the car.',
+      'In juga digunakan dengan kota, negara, dan area: in Dublin, in Ireland, in the city centre.',
+      'On digunakan ketika objek berada di atas permukaan: on the table, on the wall, on the floor.',
+      'On juga digunakan dengan jalan dan garis: on Main Street, on the road, on the coast.',
+      'At digunakan ketika tempat dipandang sebagai titik atau lokasi kegiatan: at home, at school, at work, at the station.',
+      'At digunakan dengan alamat yang tepat: at 25 King Street.',
+      'Jangan otomatis menerjemahkan "di" sebagai in. Tentukan dulu: di dalam, di permukaan, atau di titik.',
+      'Kata yang sama bisa berganti preposisi sesuai makna: in the school = di dalam gedung, at school = kegiatan sekolah.',
+    ],
+    tr: [
+      'In, nesne bir alanın içindeyse kullanılır: in the room, in the box, in the car.',
+      'In şehirler, ülkeler ve bölgelerle de kullanılır: in Dublin, in Ireland, in the city centre.',
+      'On, nesne bir yüzeyin üzerindeyse kullanılır: on the table, on the wall, on the floor.',
+      'On sokaklar ve çizgilerle de kullanılır: on Main Street, on the road, on the coast.',
+      'At, yer bir nokta veya etkinlik yeri gibi görülüyorsa kullanılır: at home, at school, at work, at the station.',
+      'At kesin adresle kullanılır: at 25 King Street.',
+      '"-de/-da" anlamını otomatik olarak in yapma. Önce karar ver: içeride mi, yüzeyde mi, noktada mı?',
+      'Aynı kelime anlama göre edat değiştirebilir: in the school = binanın içinde, at school = okul etkinliği/öğrenim yeri.',
+    ],
+    pl: [
+      'In używa się, gdy obiekt jest wewnątrz przestrzeni: in the room, in the box, in the car.',
+      'In używa się też z miastami, krajami i obszarami: in Dublin, in Ireland, in the city centre.',
+      'On używa się, gdy obiekt jest na powierzchni: on the table, on the wall, on the floor.',
+      'On używa się też z ulicami i liniami: on Main Street, on the road, on the coast.',
+      'At używa się, gdy miejsce jest punktem albo miejscem aktywności: at home, at school, at work, at the station.',
+      'At używa się z dokładnym adresem: at 25 King Street.',
+      'Nie tłumacz automatycznie "w/na" jako in. Najpierw zdecyduj: w środku, na powierzchni czy w punkcie.',
+      'To samo słowo może zmienić przyimek zależnie od sensu: in the school = w budynku, at school = w szkole jako aktywności.',
+    ],
   },
   examples: [
-    { en: 'She is in the room.', ru: 'Она в комнате.', uk: 'Вона в кімнаті.', es: 'Ella está en la habitación.', why: tri('Room - пространство с границами. Она внутри комнаты, поэтому in.', 'Room - простір із межами. Вона всередині кімнати, тому in.', 'Room es un espacio con límites. Ella está dentro, por eso in.') },
-    { en: 'The keys are on the table.', ru: 'Ключи на столе.', uk: 'Ключі на столі.', es: 'Las llaves están sobre la mesa.', why: tri('Table - поверхность. Ключи лежат на поверхности, поэтому on.', 'Table - поверхня. Ключі лежать на поверхні, тому on.', 'Table es una superficie. Las llaves están sobre la superficie, por eso on.') },
-    { en: "I'll meet you at the station.", ru: 'Я встречу тебя на станции.', uk: 'Я зустріну тебе на станції.', es: 'Te veré en la estación.', why: tri('Station здесь воспринимается как точка встречи/локация, поэтому at.', 'Station тут сприймається як точка зустрічі/локація, тому at.', 'Station aquí se percibe como punto de encuentro, por eso at.') },
-    { en: 'He lives in Dublin.', ru: 'Он живет в Дублине.', uk: 'Він живе в Дубліні.', es: 'Él vive en Dublín.', why: tri('Dublin - город, большое пространство. С городами используется in.', 'Dublin - місто, великий простір. З містами використовується in.', 'Dublin es una ciudad, un espacio grande. Con ciudades usamos in.') },
-    { en: 'The shop is on Main Street.', ru: 'Магазин находится на Мэйн-стрит.', uk: 'Магазин знаходиться на Мейн-стріт.', es: 'La tienda está en Main Street.', why: tri('Street часто воспринимается как линия. Для улицы без номера обычно используется on.', 'Street часто сприймається як лінія. Для вулиці без номера зазвичай використовується on.', 'Street muchas veces se percibe como una línea. Sin número exacto normalmente usamos on.') },
-    { en: 'The office is at 25 King Street.', ru: 'Офис находится по адресу 25 King Street.', uk: 'Офіс знаходиться за адресою 25 King Street.', es: 'La oficina está en 25 King Street.', why: tri('25 King Street - точный адрес. С точным адресом обычно используется at.', '25 King Street - точна адреса. З точною адресою зазвичай використовується at.', '25 King Street es una dirección exacta. Con dirección exacta usamos at.') },
-    { en: 'She is at school.', ru: 'Она в школе.', uk: 'Вона в школі.', es: 'Ella está en la escuela.', why: tri('At school часто означает школу как место учебы/деятельности.', 'At school часто означає школу як місце навчання/діяльності.', 'At school muchas veces significa escuela como lugar funcional.') },
-    { en: 'The picture is on the wall.', ru: 'Картина на стене.', uk: 'Картина на стіні.', es: 'El cuadro está en la pared.', why: tri('Wall - поверхность. Картина находится на поверхности стены, поэтому on.', 'Wall - поверхня. Картина знаходиться на поверхні стіни, тому on.', 'Wall es una superficie. El cuadro está sobre la superficie, por eso on.') },
+    { en: 'She is in the room.', ru: 'Она в комнате.', uk: 'Вона в кімнаті.', es: 'Ella está en la habitación.', 'pt-BR': 'Ela está no quarto.', vi: 'Cô ấy ở trong phòng.', id: 'Dia ada di dalam ruangan.', tr: 'O odada.', pl: 'Ona jest w pokoju.', why: tri('Room - пространство с границами. Она внутри комнаты, поэтому in.', 'Room - простір із межами. Вона всередині кімнати, тому in.', 'Room es un espacio con límites. Ella está dentro, por eso in.') },
+    { en: 'The keys are on the table.', ru: 'Ключи на столе.', uk: 'Ключі на столі.', es: 'Las llaves están sobre la mesa.', 'pt-BR': 'As chaves estão sobre a mesa.', vi: 'Chìa khóa ở trên bàn.', id: 'Kunci-kunci ada di atas meja.', tr: 'Anahtarlar masanın üzerinde.', pl: 'Klucze są na stole.', why: tri('Table - поверхность. Ключи лежат на поверхности, поэтому on.', 'Table - поверхня. Ключі лежать на поверхні, тому on.', 'Table es una superficie. Las llaves están sobre la superficie, por eso on.') },
+    { en: "I'll meet you at the station.", ru: 'Я встречу тебя на станции.', uk: 'Я зустріну тебе на станції.', es: 'Te veré en la estación.', 'pt-BR': 'Vou encontrar você na estação.', vi: 'Tôi sẽ gặp bạn ở nhà ga.', id: 'Saya akan bertemu denganmu di stasiun.', tr: 'Seninle istasyonda buluşacağım.', pl: 'Spotkam się z tobą na stacji.', why: tri('Station здесь воспринимается как точка встречи/локация, поэтому at.', 'Station тут сприймається як точка зустрічі/локація, тому at.', 'Station aquí se percibe como punto de encuentro, por eso at.') },
+    { en: 'He lives in Dublin.', ru: 'Он живет в Дублине.', uk: 'Він живе в Дубліні.', es: 'Él vive en Dublín.', 'pt-BR': 'Ele mora em Dublin.', vi: 'Anh ấy sống ở Dublin.', id: 'Dia tinggal di Dublin.', tr: "Dublin'de yaşıyor.", pl: 'On mieszka w Dublinie.', why: tri('Dublin - город, большое пространство. С городами используется in.', 'Dublin - місто, великий простір. З містами використовується in.', 'Dublin es una ciudad, un espacio grande. Con ciudades usamos in.') },
+    { en: 'The shop is on Main Street.', ru: 'Магазин находится на Мэйн-стрит.', uk: 'Магазин знаходиться на Мейн-стріт.', es: 'La tienda está en Main Street.', 'pt-BR': 'A loja fica na Main Street.', vi: 'Cửa hàng nằm trên phố Main.', id: 'Toko itu berada di Main Street.', tr: 'Dükkan Main Street üzerinde.', pl: 'Sklep jest przy Main Street.', why: tri('Street часто воспринимается как линия. Для улицы без номера обычно используется on.', 'Street часто сприймається як лінія. Для вулиці без номера зазвичай використовується on.', 'Street muchas veces se percibe como una línea. Sin número exacto normalmente usamos on.') },
+    { en: 'The office is at 25 King Street.', ru: 'Офис находится по адресу 25 King Street.', uk: 'Офіс знаходиться за адресою 25 King Street.', es: 'La oficina está en 25 King Street.', 'pt-BR': 'O escritório fica no endereço 25 King Street.', vi: 'Văn phòng ở địa chỉ 25 King Street.', id: 'Kantornya berada di 25 King Street.', tr: 'Ofis 25 King Street adresinde.', pl: 'Biuro jest pod adresem 25 King Street.', why: tri('25 King Street - точный адрес. С точным адресом обычно используется at.', '25 King Street - точна адреса. З точною адресою зазвичай використовується at.', '25 King Street es una dirección exacta. Con dirección exacta usamos at.') },
+    { en: 'She is at school.', ru: 'Она в школе.', uk: 'Вона в школі.', es: 'Ella está en la escuela.', 'pt-BR': 'Ela está na escola.', vi: 'Cô ấy đang ở trường.', id: 'Dia sedang di sekolah.', tr: 'O okulda.', pl: 'Ona jest w szkole.', why: tri('At school часто означает школу как место учебы/деятельности.', 'At school часто означає школу як місце навчання/діяльності.', 'At school muchas veces significa escuela como lugar funcional.') },
+    { en: 'The picture is on the wall.', ru: 'Картина на стене.', uk: 'Картина на стіні.', es: 'El cuadro está en la pared.', 'pt-BR': 'O quadro está na parede.', vi: 'Bức tranh ở trên tường.', id: 'Gambar itu ada di dinding.', tr: 'Resim duvarda.', pl: 'Obraz jest na ścianie.', why: tri('Wall - поверхность. Картина находится на поверхности стены, поэтому on.', 'Wall - поверхня. Картина знаходиться на поверхні стіни, тому on.', 'Wall es una superficie. El cuadro está sobre la superficie, por eso on.') },
   ],
   introBlocks: [
     { id: 'intro_problem', type: 'diagnosis', text: tri('Похоже, ты путаешь in, on и at для места. Русское “в/на” не совпадает один в один с английской логикой.', 'Схоже, ти плутаєш in, on і at для місця. Українські “в/на” не збігаються один в один з англійською логікою.', 'Parece que confundes in, on y at para lugar. El español “en” no coincide exactamente con la lógica inglesa.') },

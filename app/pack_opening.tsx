@@ -19,6 +19,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { getVolumetricShadow, useTheme } from '../components/ThemeContext';
 import { hapticSoftImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { playAppSound } from './audio/sound_manager';
 import { triLang, type Lang } from '../constants/i18n';
 import {
   buildMarketplaceOwnedCards,
@@ -34,7 +35,7 @@ import {
   markPackCeremoniallyOpened,
 } from './flashcards/openedPacksTracker';
 import { fetchCommunityPackCards, fetchCommunityPackMeta } from './community_packs/communityFirestore';
-import { bundledPackTilePng } from './flashcards/packMarketplaceIcons';
+import { packTileImageForPack } from './flashcards/packMarketplaceIcons';
 import type { CardItem } from './flashcards/types';
 import { resolveFlashcardBackText, type FlashcardContentLang } from './flashcards/types';
 import { flashcardContentLang } from './spanish_content_gate';
@@ -426,6 +427,7 @@ export default function PackOpeningScreen() {
   const onFlipOne = useCallback((idx: number) => {
     setFlippedSet((prev) => {
       if (prev.has(idx)) return prev;
+      void playAppSound('pack.card.reveal');
       const next = new Set(prev);
       next.add(idx);
       return next;
@@ -456,7 +458,7 @@ export default function PackOpeningScreen() {
   const cardHeight = Math.round(cardWidth * 1.35);
 
   const accent = t.accent ?? '#5CC8FF';
-  const tile = pack ? bundledPackTilePng(pack.id) : undefined;
+  const tile = pack ? packTileImageForPack(pack) : undefined;
 
   const opened = flippedSet.size;
   const total = cards.length;

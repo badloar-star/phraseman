@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticError, hapticTap } from '../../hooks/use-haptics';
+import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
@@ -13,7 +14,7 @@ import {
   Pressable,
   ScrollView,
   Share,
-  Image,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -60,7 +61,11 @@ import { useEffectivePlatformOS } from '../platform_ui_preview';
 import { recordMistake } from '../active_recall';
 import { logMistake } from '../mistake_log';
 import { resolvePhraseMistakeToken } from '../mistake_token_resolver';
-import { QUIZ_E2E_OPEN_RESULTS_KEY } from '../quizzes/constants';
+import {
+  QUIZ_E2E_OPEN_RESULTS_KEY,
+  QUIZ_LEVEL_CARD_BACKGROUNDS,
+  QUIZ_LEVEL_LOGOS,
+} from '../quizzes/constants';
 import { incrementHardPaywallBlock } from '../paywall_personalization';
 import {
   FREE_DAILY_QUIZ_LIMIT,
@@ -74,12 +79,6 @@ import {
   getQuizShareRank,
   quizShareMessageLang,
 } from '../quizzes/results';
-
-const LEVEL_IMAGES: Record<string, number> = {
-  easy:   require('../../assets/images/levels/easy.webp'),
-  medium: require('../../assets/images/levels/medium.webp'),
-  hard:   require('../../assets/images/levels/hard.webp'),
-};
 
 const stripPunct = (w: string) => w.replace(/[^a-zA-Z0-9']/g, '').toLowerCase();
 function diffWords(wrong: string, correct: string): { word: string; isWrong: boolean }[] {
@@ -151,9 +150,19 @@ const THEME_PALETTES: Record<string, Record<Level, { gradA: string; gradB: strin
     hard:   { gradA: '#191108', gradB: '#040403', accent: '#FFE3A0' },
   },
   coral: {
-    easy:   { gradA: '#14142A', gradB: '#25254A', accent: '#4A90FF' },
-    medium: { gradA: '#1E1E3C', gradB: '#3A1630', accent: '#FF6464' },
-    hard:   { gradA: '#0A0A18', gradB: '#2E2E58', accent: '#FFD060' },
+    easy:   { gradA: '#2A2024', gradB: '#3A2A2E', accent: '#4A90FF' },
+    medium: { gradA: '#2B1E22', gradB: '#463036', accent: '#FF6464' },
+    hard:   { gradA: '#140D0F', gradB: '#3A2A2E', accent: '#FFD060' },
+  },
+  minimalLight: {
+    easy:   { gradA: '#F7EFDF', gradB: '#E6D4B6', accent: '#2F8C66' },
+    medium: { gradA: '#F3E8D9', gradB: '#E4C8A8', accent: '#B65E3A' },
+    hard:   { gradA: '#EFEAF7', gradB: '#D5C6EA', accent: '#6D5EBA' },
+  },
+  minimalDark: {
+    easy:   { gradA: '#182624', gradB: '#090F12', accent: '#6EA8FF' },
+    medium: { gradA: '#281C1D', gradB: '#10090A', accent: '#F26D6D' },
+    hard:   { gradA: '#1F1B2E', gradB: '#0B0914', accent: '#A78BFA' },
   },
   ocean: {
     easy:   { gradA: '#0C2840', gradB: '#1A6FA0', accent: '#30C0FF' },
@@ -174,7 +183,9 @@ const THEME_TEXT: Record<string, { primary: string; secondary: string }> = {
   light:  { primary: '#0F172A', secondary: 'rgba(15,23,42,0.6)'   },
   neon:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   gold:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
-  coral:  { primary: '#FFFFFF', secondary: 'rgba(220,220,245,0.72)' },
+  coral:  { primary: '#FFFFFF', secondary: '#D8C2C5' },
+  minimalLight: { primary: '#2E261B', secondary: 'rgba(46,38,27,0.66)' },
+  minimalDark: { primary: '#F5F5F5', secondary: 'rgba(245,245,245,0.64)' },
   ocean:  { primary: 'rgba(240,252,255,0.96)', secondary: 'rgba(200,230,255,0.78)'  },
   sakura: { primary: 'rgba(255,248,252,0.96)', secondary: 'rgba(255,210,230,0.78)'  },
 };
@@ -367,7 +378,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
   };
 
   return (
-    <ScreenGradient>
+    <ScreenGradient forceFullBleed artBackdrop="quizzes">
     <View style={{ flex:1 }}>
       <ContentWrap>
       <View style={{ flexDirection:'row', alignItems:'center', padding:16, paddingTop: 16 + insets.top, borderBottomWidth:0.5, borderBottomColor: t.border }}>
@@ -430,6 +441,8 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
           const textCol  = locked ? t.textSecond : txt.primary;
           const textCol2 = locked ? t.textMuted  : txt.secondary;
           const isSelected = selected === lv;
+          const cardBackground = (QUIZ_LEVEL_CARD_BACKGROUNDS[themeMode] ?? QUIZ_LEVEL_CARD_BACKGROUNDS.dark)[lv];
+          const levelLogo = (QUIZ_LEVEL_LOGOS[themeMode] ?? QUIZ_LEVEL_LOGOS.dark)[lv];
 
           return (
             <View key={lv} style={{ borderRadius: 20, overflow: 'hidden' }}>
@@ -469,6 +482,17 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                   }}
                 >
                   {/* Контент */}
+                  <Image
+                    pointerEvents="none"
+                    source={cardBackground}
+                    style={[
+                      StyleSheet.absoluteFillObject,
+                      { opacity: locked ? 0.16 : themeMode === 'minimalLight' ? 0.86 : 0.92 },
+                    ]}
+                    contentFit="cover"
+                    cachePolicy="memory-disk"
+                    transition={120}
+                  />
                   <View style={{ flex: 1, paddingVertical: 14, paddingHorizontal: 16 }}>
                     <View style={{ flexDirection:'row', alignItems:'center', gap:8, marginBottom:4 }}>
                       <View style={{
@@ -507,8 +531,14 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                   </View>
 
                   {/* Иконка справа */}
-                  <Animated.View style={{ transform: [{ scale: locked ? 1 : pulseAnims[lv] }], paddingRight: 16 }}>
-                    <Image source={LEVEL_IMAGES[lv]} style={{ width: 100, height: 100, opacity: locked ? 0.3 : 1 }} resizeMode="contain" />
+                  <Animated.View style={{ transform: [{ scale: locked ? 1 : pulseAnims[lv] }], width: 104, paddingRight: 10, alignItems: 'center' }}>
+                    <Image
+                      source={levelLogo}
+                      style={{ width: 94, height: 94, opacity: locked ? 0.28 : 1 }}
+                      contentFit="contain"
+                      cachePolicy="memory-disk"
+                      transition={120}
+                    />
                   </Animated.View>
                 </LinearGradient>
               </TouchableOpacity>
@@ -907,7 +937,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
 
   if (phrases.length === 0) {
     return (
-      <ScreenGradient>
+      <ScreenGradient forceFullBleed artBackdrop="quizzes">
       <View style={{ flex:1, justifyContent:'center', alignItems:'center' }}>
         <ContentWrap>
         <Text style={{ color:onGradMuted, fontSize: f.body }}>
@@ -930,7 +960,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
 
   if (!current) {
     return (
-      <ScreenGradient>
+      <ScreenGradient forceFullBleed artBackdrop="quizzes">
       <View style={{ flex:1, justifyContent:'center', alignItems:'center' }}>
         <ContentWrap>
         <Text style={{ color:onGradMuted, fontSize: f.body }}>
@@ -1131,7 +1161,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
   pl: rankInfo.labelPL,
 });
     return (
-      <ScreenGradient>
+      <ScreenGradient forceFullBleed artBackdrop="quizzes">
       <View style={{ flex:1 }}>
         <ContentWrap>
         <ScrollView contentContainerStyle={{ flexGrow:1, justifyContent:'center', alignItems:'center', padding:30 }} showsVerticalScrollIndicator={false}>
@@ -1372,7 +1402,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
 
   return (
     <Animated.View style={{ flex:1, opacity: mountOpacity, transform: [{ scale: mountScale }] }}>
-    <ScreenGradient>
+    <ScreenGradient forceFullBleed artBackdrop="quizzes">
     <View style={{ flex:1 }}>
       <ContentWrap>
       <KeyboardAvoidingView style={{ flex:1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>

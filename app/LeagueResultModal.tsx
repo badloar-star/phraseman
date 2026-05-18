@@ -13,16 +13,18 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import {
-  LeagueResult, LEAGUES, CLUBS, clearPendingResult, GroupMember, clubDescPlanned, clubNamePlanned,
+  LeagueResult, LEAGUES, CLUBS, clearPendingResult, GroupMember,
+  clubDescPlanned, clubNamePlanned, getLeagueResultZoneSize,
 } from './league_engine';
 import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import { premiumMemberNameStyle } from '../components/premiumMemberStyles';
 import { getBestAvatarForLevel } from '../constants/avatars';
-import { getEffectiveAvatarAuraId } from '../constants/avatar_auras';
+import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticSuccess, hapticWarning, hapticTap, hapticSoftImpact } from '../hooks/use-haptics';
@@ -180,6 +182,7 @@ interface Props {
 export default function LeagueResultModal({ visible, result, onClose }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const insets = useSafeAreaInsets();
 
   const prevLeague = LEAGUES[result.prevLeagueId] ?? LEAGUES[0];
   const newLeague  = LEAGUES[result.newLeagueId]  ?? LEAGUES[0];
@@ -437,13 +440,15 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
   pl: 'Dobry wynik, trzymaj tempo!',
 });
 
-  // Процентиль
-  const percentile = result.totalInGroup > 0
-    ? Math.max(1, Math.round(100 - (result.myRank - 1) / result.totalInGroup * 100))
-    : 100;
-
   const top3 = result.group.slice(0, 3);
-  const restList = result.group.slice(0, 10);
+  const groupRows = result.group.map((member, index) => ({ member, place: index + 1 }));
+  const zoneSize = getLeagueResultZoneSize(result.totalInGroup);
+  const relegationStartRank = result.totalInGroup >= 2 && zoneSize > 0
+    ? result.totalInGroup - zoneSize + 1
+    : result.totalInGroup + 1;
+  const modalPadTop = Math.max(12, insets.top + 8);
+  const modalPadBottom = Math.max(12, insets.bottom + 8);
+  const modalMaxHeight = Math.min(H - 24, Math.max(280, H - modalPadTop - modalPadBottom));
 
   const leagueName = (row: (typeof LEAGUES)[number]) =>
     triLang(lang, {
@@ -484,12 +489,19 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose} statusBarTranslucent>
-      <Pressable
+      <View
         testID="league-result-modal"
-        onPress={handleClose}
         accessible={false}
-        style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 12 }}
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingHorizontal: 12,
+          paddingTop: modalPadTop,
+          paddingBottom: modalPadBottom,
+        }}
       >
+        <Pressable onPress={handleClose} style={StyleSheet.absoluteFill} />
         {/* ─── Фон-затемнение + цветной радиальный отблеск ──────────────── */}
         <View pointerEvents="none" style={StyleSheet.absoluteFill}>
           <View style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.86)' }]} />
@@ -540,7 +552,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
         )}
 
         {/* ─── Карточка с градиентной обводкой ───────────────────────────── */}
-        <Pressable onPress={() => { /* swallow tap */ }}>
+        <View>
           <Animated.View
             style={{
               opacity: cardOpacity,
@@ -560,7 +572,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
             >
               <View style={{
                 width: CARD_W,
-                maxHeight: H * 0.92,
+                height: modalMaxHeight,
                 borderRadius: 26,
                 overflow: 'hidden',
                 backgroundColor: t.bgPrimary,
@@ -714,7 +726,13 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                   )}
                 </View>
 
-                {/* ── RANK + PERCENTILE ──────────────────────────── */}
+                {/* ── RANK + RESULT ZONE ─────────────────────────── */}
+                <ScrollView
+                  style={{ flex: 1 }}
+                  contentContainerStyle={{ paddingBottom: 4 }}
+                  showsVerticalScrollIndicator={false}
+                  nestedScrollEnabled
+                >
                 <Animated.View
                   style={{
                     paddingHorizontal: 18, paddingTop: 14, paddingBottom: 8,
@@ -765,8 +783,8 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                     </Text>
                   </View>
 
-                  {/* Процентиль */}
-                  {result.totalInGroup >= 3 && (
+                  {/* Зона результата */}
+                  {zoneSize > 0 && (
                     <View style={{
                       marginTop: 8,
                       paddingHorizontal: 10, paddingVertical: 5,
@@ -774,17 +792,43 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       backgroundColor: t.bgSurface,
                       flexDirection: 'row', alignItems: 'center', gap: 6,
                     }}>
-                      <Ionicons name="flame" size={12} color={t.gold} />
+                      <Ionicons
+                        name={(isPromo ? 'trending-up' : isDemo ? 'trending-down' : 'flag') as any}
+                        size={12}
+                        color={isDemo ? '#FF6B6B' : isPromo ? '#34C759' : t.gold}
+                      />
                       <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '700' }}>
-                        {triLang(lang, {
-  ru: `Топ ${100 - percentile + 1}% группы`,
-  uk: `Топ ${100 - percentile + 1}% групи`,
-  es: `Top ${100 - percentile + 1} % del grupo`,
-  "pt-BR": `Top ${100 - percentile + 1}% do grupo`,
-  vi: `Top ${100 - percentile + 1}% của nhóm`,
-  id: `Top ${100 - percentile + 1}% grup`,
-  tr: `Grubun ilk %${100 - percentile + 1}`,
-  pl: `Top ${100 - percentile + 1}% grupy`,
+                        {isPromo
+                          ? triLang(lang, {
+  ru: `Повышение: топ-${zoneSize}`,
+  uk: `Підвищення: топ-${zoneSize}`,
+  es: `Ascenso: top ${zoneSize}`,
+  "pt-BR": `Promoção: top ${zoneSize}`,
+  vi: `Thăng hạng: top ${zoneSize}`,
+  id: `Naik: top ${zoneSize}`,
+  tr: `Yükselme: ilk ${zoneSize}`,
+  pl: `Awans: top ${zoneSize}`,
+})
+                          : isDemo
+                            ? triLang(lang, {
+  ru: `Зона понижения: ${relegationStartRank}-${result.totalInGroup}`,
+  uk: `Зона пониження: ${relegationStartRank}-${result.totalInGroup}`,
+  es: `Descenso: ${relegationStartRank}-${result.totalInGroup}`,
+  "pt-BR": `Rebaixamento: ${relegationStartRank}-${result.totalInGroup}`,
+  vi: `Xuống hạng: ${relegationStartRank}-${result.totalInGroup}`,
+  id: `Turun: ${relegationStartRank}-${result.totalInGroup}`,
+  tr: `Düşme: ${relegationStartRank}-${result.totalInGroup}`,
+  pl: `Spadek: ${relegationStartRank}-${result.totalInGroup}`,
+})
+                            : triLang(lang, {
+  ru: `Повышение с топ-${zoneSize}`,
+  uk: `Підвищення з топ-${zoneSize}`,
+  es: `Ascenso desde top ${zoneSize}`,
+  "pt-BR": `Promoção no top ${zoneSize}`,
+  vi: `Thăng hạng từ top ${zoneSize}`,
+  id: `Naik dari top ${zoneSize}`,
+  tr: `İlk ${zoneSize} yükselir`,
+  pl: `Awans od top ${zoneSize}`,
 })}
                       </Text>
                     </View>
@@ -848,16 +892,12 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
 })}
                     </Text>
                   </View>
-                  <ScrollView
-                    style={{ maxHeight: H * 0.32 }}
-                    contentContainerStyle={{ paddingHorizontal: 10, paddingBottom: 4 }}
-                    showsVerticalScrollIndicator={false}
-                  >
-                    {restList.map((member, i) => (
+                  <View style={{ paddingHorizontal: 10, paddingBottom: 4 }}>
+                    {groupRows.map(({ member, place }, i) => (
                       <GroupRow
                         key={`${member.uid ?? member.botId ?? member.name}-${i}`}
                         member={member}
-                        place={i + 1}
+                        place={place}
                         palette={palette}
                         myRowGlow={myRowGlow}
                         themeMode={themeMode}
@@ -866,23 +906,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                         lang={lang}
                       />
                     ))}
-                    {result.group.length > 10 && (
-                      <Text style={{
-                        color: t.textGhost, fontSize: f.caption, textAlign: 'center', padding: 8,
-                      }}>
-                        +{result.group.length - 10} {triLang(lang, {
-  ru: 'участников',
-  uk: 'учасників',
-  es: 'participantes',
-  "pt-BR": 'participantes',
-  vi: 'người tham gia',
-  id: 'peserta',
-  tr: 'katılımcı',
-  pl: 'uczestników',
-})}
-                      </Text>
-                    )}
-                  </ScrollView>
+                  </View>
                 </Animated.View>
 
                 {/* ── REWARD STRIP (бонус новой лиги) ─────────────── */}
@@ -974,6 +998,8 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                 )}
 
                 {/* ── CTA ─────────────────────────────────────────── */}
+                </ScrollView>
+
                 <Animated.View style={{ opacity: btnOp, paddingHorizontal: 18, paddingTop: 14, paddingBottom: 20 }}>
                   <TouchableOpacity
                     testID="league-result-continue-button"
@@ -1035,8 +1061,8 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
               </View>
             </LinearGradient>
           </Animated.View>
-        </Pressable>
-      </Pressable>
+        </View>
+      </View>
     </Modal>
   );
 }
@@ -1066,6 +1092,8 @@ const PodiumColumn = memo(function PodiumColumn({
   const height = PODIUM_HEIGHTS[place];
   const xp     = member?.totalXp ?? 0;
   const avatar = member?.avatar ?? String(getBestAvatarForLevel(getLevelFromXP(xp)));
+  const effectiveAura = getEffectiveAvatarAuraId(member?.aura, member?.isPremium);
+  const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   const name   = (member?.name ?? '—').slice(0, 10);
 
   return (
@@ -1073,7 +1101,7 @@ const PodiumColumn = memo(function PodiumColumn({
       {/* Аватар + медаль */}
       <View style={{ alignItems: 'center', marginBottom: 6 }}>
         <PremiumAvatarHalo
-          enabled={!!member?.isPremium}
+          enabled={usesPremiumAura}
           avatarSize={place === 1 ? 44 : 36}
           maskColor={t.bgCard}
         >
@@ -1081,7 +1109,7 @@ const PodiumColumn = memo(function PodiumColumn({
             avatar={avatar}
             totalXP={xp}
             size={place === 1 ? 44 : 36}
-            auraId={getEffectiveAvatarAuraId(member?.aura, member?.isPremium)}
+            auraId={usesPremiumAura ? undefined : effectiveAura}
           />
         </PremiumAvatarHalo>
         <Text style={{ position: 'absolute', top: -8, right: -8, fontSize: 18 }}>
@@ -1160,6 +1188,8 @@ const GroupRow = memo(function GroupRow({
 }) {
   const xp     = member.totalXp ?? 0;
   const avatar = member.avatar ?? String(getBestAvatarForLevel(getLevelFromXP(xp)));
+  const effectiveAura = getEffectiveAvatarAuraId(member.aura, member.isPremium);
+  const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   const isTop3 = place <= 3;
   const rowBg  = member.isMe
     ? palette.primary + '22'
@@ -1212,12 +1242,12 @@ const GroupRow = memo(function GroupRow({
 
       {/* Аватар */}
       <PremiumAvatarHalo
-        enabled={!!member.isPremium}
+        enabled={usesPremiumAura}
         avatarSize={32}
         maskColor={member.isMe ? t.bgCard : t.bgPrimary}
         style={{ marginRight: 10 }}
       >
-        <AvatarView avatar={avatar} totalXP={xp} size={32} auraId={getEffectiveAvatarAuraId(member.aura, member.isPremium)} />
+        <AvatarView avatar={avatar} totalXP={xp} size={32} auraId={usesPremiumAura ? undefined : effectiveAura} />
       </PremiumAvatarHalo>
 
       {/* Имя */}

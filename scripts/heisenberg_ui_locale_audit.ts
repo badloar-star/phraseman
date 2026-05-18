@@ -4,7 +4,10 @@ import ts from 'typescript';
 
 import { HEISENBERG_BATCH_SOURCE_LOCALES, type HeisenbergSourceLocale } from '../app/source_locales';
 
+const { hasMojibake } = require('./lib/heisenberg_semantic_core.cjs') as typeof import('./lib/heisenberg_semantic_core.cjs');
+
 type PlannedUiLocale = Exclude<HeisenbergSourceLocale, 'es'>;
+type EncodingScanLocale = HeisenbergSourceLocale;
 type Severity = 'warning' | 'blocker';
 
 type UiLocaleFinding = {
@@ -51,6 +54,7 @@ type UiLocaleAuditReport = {
 export const PLANNED_UI_LOCALES = HEISENBERG_BATCH_SOURCE_LOCALES.filter(
   (locale): locale is PlannedUiLocale => locale !== 'es',
 );
+const ENCODING_SCAN_LOCALES = HEISENBERG_BATCH_SOURCE_LOCALES as readonly EncodingScanLocale[];
 
 const SCAN_ROOTS = ['app', 'components', 'constants', 'admin'];
 const SKIP_DIRS = new Set([
@@ -131,6 +135,63 @@ function compactSample(text: string): string {
   return text.replace(/\s+/g, ' ').trim().slice(0, 180);
 }
 
+function objectLiteralStringValue(node: ts.ObjectLiteralExpression, key: string): string | null {
+  for (const property of node.properties) {
+    if (!ts.isPropertyAssignment(property)) continue;
+    if (propName(property.name) !== key) continue;
+    const initializer = unwrapExpression(property.initializer as ts.Expression);
+    return ts.isStringLiteral(initializer) || ts.isNoSubstitutionTemplateLiteral(initializer)
+      ? initializer.text
+      : null;
+  }
+  return null;
+}
+
+function expressionTextFragments(node: ts.Expression): string[] {
+  const initializer = unwrapExpression(node);
+  if (ts.isStringLiteral(initializer) || ts.isNoSubstitutionTemplateLiteral(initializer)) {
+    return [initializer.text];
+  }
+  if (ts.isTemplateExpression(initializer)) {
+    return [
+      initializer.head.text,
+      ...initializer.templateSpans.map((span) => span.literal.text),
+    ];
+  }
+  return [];
+}
+
+function collectLocaleEncodingFindings(
+  file: string,
+  source: ts.SourceFile,
+  node: ts.ObjectLiteralExpression,
+): UiLocaleFinding[] {
+  const keys = objectLiteralKeys(node);
+  const localeKeys = ENCODING_SCAN_LOCALES.filter((locale) => keys.has(locale));
+  if (localeKeys.length < 2) return [];
+
+  const findings: UiLocaleFinding[] = [];
+  for (const property of node.properties) {
+    if (!ts.isPropertyAssignment(property)) continue;
+    const name = propName(property.name);
+    if (!name || !ENCODING_SCAN_LOCALES.includes(name as EncodingScanLocale)) continue;
+
+    for (const fragment of expressionTextFragments(property.initializer as ts.Expression)) {
+      if (!fragment.trim() || !hasMojibake(fragment)) continue;
+      findings.push({
+        severity: 'blocker',
+        code: 'locale-string-mojibake',
+        file,
+        ...location(source, property),
+        keyPath: name,
+        message: 'Locale string looks corrupted by mojibake or replacement question marks.',
+        sample: compactSample(fragment),
+      });
+    }
+  }
+  return findings;
+}
+
 function isTriLangCopyObject(node: ts.ObjectLiteralExpression): boolean {
   const parent = node.parent;
   return (
@@ -166,7 +227,101 @@ function isPrepositionExplanationCoveredByPlannedFallback(file: string, node: ts
   ));
 }
 
+let lessonWordSourceLocaleCoverageCache: Set<string> | null = null;
+let quizSourceLocaleCoverageCache: Set<string> | null = null;
+
+function lessonWordSourceLocaleCoverage(): Set<string> {
+  if (lessonWordSourceLocaleCoverageCache) return lessonWordSourceLocaleCoverageCache;
+  const covered = new Set<string>();
+  const sourceLocalePath = path.join(process.cwd(), 'app', 'lesson_words_source_locales.ts');
+  if (!fs.existsSync(sourceLocalePath)) {
+    lessonWordSourceLocaleCoverageCache = covered;
+    return covered;
+  }
+
+  const text = fs.readFileSync(sourceLocalePath, 'utf8');
+  const source = ts.createSourceFile(sourceLocalePath, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  const visit = (node: ts.Node): void => {
+    if (
+      ts.isVariableDeclaration(node) &&
+      ts.isIdentifier(node.name) &&
+      node.name.text === 'LESSON_WORD_SOURCE_LOCALES_BY_EN' &&
+      node.initializer &&
+      ts.isObjectLiteralExpression(node.initializer)
+    ) {
+      for (const property of node.initializer.properties) {
+        if (!ts.isPropertyAssignment(property) || !ts.isObjectLiteralExpression(property.initializer)) continue;
+        const key = propName(property.name);
+        if (!key) continue;
+        const keys = objectLiteralKeys(property.initializer);
+        if (PLANNED_UI_LOCALES.every((locale) => keys.has(locale))) covered.add(key.trim().toLowerCase());
+      }
+      return;
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  lessonWordSourceLocaleCoverageCache = covered;
+  return covered;
+}
+
+function isLessonWordCoveredBySourceLocaleMap(file: string, node: ts.ObjectLiteralExpression): boolean {
+  if (!normalizePath(file).endsWith('app/lesson_words.tsx')) return false;
+  const english = objectLiteralStringValue(node, 'en');
+  if (!english) return false;
+  const lowerEnglish = english.trim().toLowerCase();
+  const coverage = lessonWordSourceLocaleCoverage();
+  if (coverage.has(lowerEnglish)) return true;
+  const pos = objectLiteralStringValue(node, 'pos');
+  return Boolean(pos && coverage.has(`${lowerEnglish}::${pos}`));
+}
+
+function quizSourceLocaleCoverage(): Set<string> {
+  if (quizSourceLocaleCoverageCache) return quizSourceLocaleCoverageCache;
+  const status = new Map<string, boolean>();
+  try {
+    const {
+      getQuizPoolAuditEntries,
+    } = require('../app/quiz_data') as typeof import('../app/quiz_data');
+    const {
+      getStructuredQuizSourceLocalePayload,
+    } = require('../app/quiz_source_locale_payloads') as typeof import('../app/quiz_source_locale_payloads');
+
+    for (const difficulty of ['easy', 'medium', 'hard'] as const) {
+      for (const entry of getQuizPoolAuditEntries(difficulty)) {
+        const key = entry.ru.trim();
+        if (!key) continue;
+        const covered = PLANNED_UI_LOCALES.every((locale) => {
+          const payload = getStructuredQuizSourceLocalePayload(difficulty, entry.ordinal, locale);
+          return Boolean(payload?.prompt?.trim() && payload.explanations?.length === 4);
+        });
+        status.set(key, (status.get(key) ?? true) && covered);
+      }
+    }
+  } catch {
+    quizSourceLocaleCoverageCache = new Set();
+    return quizSourceLocaleCoverageCache;
+  }
+
+  quizSourceLocaleCoverageCache = new Set(
+    [...status.entries()]
+      .filter(([, covered]) => covered)
+      .map(([key]) => key),
+  );
+  return quizSourceLocaleCoverageCache;
+}
+
+function isQuizEntryCoveredBySourceLocalePayloads(file: string, node: ts.ObjectLiteralExpression): boolean {
+  if (!normalizePath(file).endsWith('app/quiz_data.ts')) return false;
+  const ru = objectLiteralStringValue(node, 'ru');
+  if (!ru) return false;
+  if (!objectLiteralKeys(node).has('choices')) return false;
+  return quizSourceLocaleCoverage().has(ru.trim());
+}
+
 function isLocaleObjectCoveredElsewhere(file: string, node: ts.ObjectLiteralExpression): boolean {
+  if (isQuizEntryCoveredBySourceLocalePayloads(file, node)) return true;
+  if (isLessonWordCoveredBySourceLocaleMap(file, node)) return true;
   return isPrepositionExplanationCoveredByPlannedFallback(file, node);
 }
 
@@ -273,21 +428,24 @@ export function analyzeUiLocaleSource(file: string, text: string): {
   const localTriLangHelpersMissingPlanned = collectLocalTriLangHelpersMissingPlanned(source);
 
   const visit = (node: ts.Node): void => {
-    if (ts.isObjectLiteralExpression(node) && !isTriLangCopyObject(node)) {
-      const { hasAllBase, missing } = isLocaleObjectMissingPlanned(node);
-      if (hasAllBase && missing.length > 0 && !isLocaleObjectCoveredElsewhere(file, node)) {
-        localeObjectFindings += 1;
-        findings.push({
-          severity: 'warning',
-          code: missing.length === PLANNED_UI_LOCALES.length
-            ? 'locale-object-missing-all-planned-locales'
-            : 'locale-object-missing-planned-locales',
-          file,
-          ...location(source, node),
-          missing,
-          message: 'Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.',
-          sample: compactSample(node.getText(source)),
-        });
+    if (ts.isObjectLiteralExpression(node)) {
+      findings.push(...collectLocaleEncodingFindings(file, source, node));
+      if (!isTriLangCopyObject(node)) {
+        const { hasAllBase, missing } = isLocaleObjectMissingPlanned(node);
+        if (hasAllBase && missing.length > 0 && !isLocaleObjectCoveredElsewhere(file, node)) {
+          localeObjectFindings += 1;
+          findings.push({
+            severity: 'warning',
+            code: missing.length === PLANNED_UI_LOCALES.length
+              ? 'locale-object-missing-all-planned-locales'
+              : 'locale-object-missing-planned-locales',
+            file,
+            ...location(source, node),
+            missing,
+            message: 'Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.',
+            sample: compactSample(node.getText(source)),
+          });
+        }
       }
     }
     if (ts.isCallExpression(node) && ts.isIdentifier(node.expression) && node.expression.text === 'triLang') {

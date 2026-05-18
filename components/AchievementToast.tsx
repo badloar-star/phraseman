@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import {
   View, Text, Animated, TouchableOpacity, StyleSheet, Modal, Pressable, Dimensions, Image, PanResponder, Share,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
 import { Ionicons } from '@expo/vector-icons';
 import { useAchievement } from './AchievementContext';
@@ -16,6 +17,18 @@ import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
 import { triLang } from '../constants/i18n';
 import { useOverlayVisible } from './OverlayArbiter';
+import {
+  cancelScheduledAnimatedStateUpdates,
+  scheduleTrackedAnimatedStateUpdate,
+  type ScheduledAnimatedStateUpdate,
+} from './animationScheduling';
+import {
+  RewardModalBackdrop,
+  rewardModalAccentColor,
+  rewardModalPanelBorder,
+  rewardModalPanelColors,
+  rewardModalSoftSurface,
+} from './RewardModalBackdrop';
 
 const AUTO_DISMISS_MS = 3800;
 const { width: SW } = Dimensions.get('window');
@@ -27,7 +40,7 @@ const { width: SW } = Dimensions.get('window');
  */
 export default function AchievementToast() {
   const { currentToast, dismissCurrent } = useAchievement();
-  const { theme: t, f, isDark } = useTheme();
+  const { theme: t, f, isDark, themeMode } = useTheme();
   const { lang } = useLang();
   const bottomOffset = useGlobalBottomOverlayOffset();
   const toastOverlayVisible = useOverlayVisible('achievementToast', currentToast != null);
@@ -45,10 +58,15 @@ export default function AchievementToast() {
    *  native ещё не закоммитил view-тег, connectAnimatedNodeToView кидает
    *  JSApplicationIllegalArgumentException. */
   const rafInRef      = useRef<number | null>(null);
+  const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [displayedToast, setDisplayedToast] = useState<typeof currentToast>(null);
 
   const SWIPE_THRESHOLD = 30;
+
+  useEffect(() => () => {
+    cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
+  }, []);
 
   const panResponder = useRef(
     PanResponder.create({
@@ -75,9 +93,11 @@ export default function AchievementToast() {
             Animated.timing(swipeDy, { toValue: toY, duration: 180, useNativeDriver: true }),
             Animated.timing(opacity, { toValue: 0,   duration: 180, useNativeDriver: true }),
           ]).start(() => {
-            swipeDy.setValue(0);
-            swipeDx.setValue(0);
-            dismissCurrent();
+            scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
+              swipeDy.setValue(0);
+              swipeDx.setValue(0);
+              dismissCurrent();
+            });
           });
         } else {
           // Возвращаем
@@ -112,13 +132,16 @@ export default function AchievementToast() {
       Animated.parallel([
         Animated.timing(translateY, { toValue: 160, duration: MOTION_DURATION.normal, useNativeDriver: true }),
         Animated.timing(opacity,    { toValue: 0,   duration: MOTION_DURATION.fast, useNativeDriver: true }),
-      ]).start(() => setDisplayedToast(null));
+      ]).start(() => {
+        scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => setDisplayedToast(null));
+      });
       return;
     }
     if (currentToast) {
       // Сбросить таймер предыдущего
       if (timerRef.current) clearTimeout(timerRef.current);
       if (rafInRef.current != null) cancelAnimationFrame(rafInRef.current);
+      cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
       setModalVisible(false);
 
       // Обновить отображаемый тост (без прохода через null — нет мигания)
@@ -169,6 +192,7 @@ export default function AchievementToast() {
         cancelAnimationFrame(rafInRef.current);
         rafInRef.current = null;
       }
+      cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
     };
   }, [currentToast, toastOverlayVisible, translateY, opacity, scale, swipeDx, swipeDy, dismissCurrent]);
 
@@ -177,7 +201,7 @@ export default function AchievementToast() {
       Animated.timing(translateY, { toValue: 160, duration: MOTION_DURATION.slow, useNativeDriver: true }),
       Animated.timing(opacity,    { toValue: 0,   duration: MOTION_DURATION.normal, useNativeDriver: true }),
     ]).start(() => {
-      dismissCurrent();
+      scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, dismissCurrent);
     });
   };
   // Держим ref актуальным чтобы panResponder мог вызвать animateOut без stale closure
@@ -229,6 +253,8 @@ export default function AchievementToast() {
   });
   const iconName = ACHIEVEMENT_ICON[displayedToast.id] ?? 'star';
   const color = CAT_COLOR[displayedToast.category] ?? '#888';
+  const modalAccent = rewardModalAccentColor(themeMode, t);
+  const achievementBorderColor = color.startsWith('#') && color.length === 7 ? `${color}88` : color;
 
   return (
     <>
@@ -290,8 +316,24 @@ export default function AchievementToast() {
             style={s.modalOverlay}
             onPress={handleModalClose}
           >
+            <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
             <Pressable onPress={e => e.stopPropagation()}>
-              <View style={[s.modalCard, { backgroundColor: t.bgCard }]}>
+              <View
+                style={[
+                  s.modalCard,
+                  {
+                    backgroundColor: 'transparent',
+                    borderColor: rewardModalPanelBorder(themeMode, t, achievementBorderColor),
+                    shadowColor: color,
+                  },
+                ]}
+              >
+                <LinearGradient
+                  colors={rewardModalPanelColors(themeMode, t)}
+                  style={StyleSheet.absoluteFill}
+                  pointerEvents="none"
+                />
+                <View pointerEvents="none" style={[s.modalTopRail, { backgroundColor: color || modalAccent }]} />
                 <BadgeShield
                   unlocked={true}
                   inProgress={false}
@@ -318,15 +360,21 @@ export default function AchievementToast() {
                     await Share.share({ message: msg }).catch(() => {});
                   }}
                 >
-                  <Ionicons name="share-outline" size={16} color={t.textSecond} />
-                  <Text style={{ color: t.textSecond, fontSize: f.sub }}>
+                  <Ionicons name="share-outline" size={16} color={modalAccent} />
+                  <Text style={{ color: modalAccent, fontSize: f.sub, fontWeight: '700' }}>
                     {lang === 'uk' ? 'Поділитися' : lang === 'es' ? 'Compartir' : 'Поделиться'}
                   </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                   onPress={handleModalClose}
-                  style={[s.closeBtn, { backgroundColor: t.bgSurface2 }]}
+                  style={[
+                    s.closeBtn,
+                    {
+                      backgroundColor: rewardModalSoftSurface(themeMode, t),
+                      borderColor: rewardModalPanelBorder(themeMode, t),
+                    },
+                  ]}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                     {lang === 'uk' ? 'Закрити' : lang === 'es' ? 'Cerrar' : 'Закрыть'}
@@ -400,10 +448,24 @@ const s = StyleSheet.create({
   },
   modalCard: {
     borderRadius: 24,
+    borderWidth: 1,
     padding: 24,
     alignItems: 'center',
     width: SW - 48,
     gap: 12,
+    overflow: 'hidden',
+    shadowOffset: { width: 0, height: 18 },
+    shadowOpacity: 0.28,
+    shadowRadius: 26,
+    elevation: 18,
+  },
+  modalTopRail: {
+    position: 'absolute',
+    top: 0,
+    left: 38,
+    right: 38,
+    height: 1,
+    opacity: 0.78,
   },
   modalName: {
     fontWeight: '800',
@@ -421,6 +483,7 @@ const s = StyleSheet.create({
   },
   closeBtn: {
     borderRadius: 14,
+    borderWidth: 1,
     paddingVertical: 12,
     paddingHorizontal: 32,
     marginTop: 4,

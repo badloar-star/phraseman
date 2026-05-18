@@ -3,7 +3,23 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const CONTRAST = ['will', 'going to', 'instant decision', 'promise', 'prediction', 'plan', 'intention', 'evidence'];
 
@@ -153,16 +169,76 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       'Use will call and going to study.',
       'Will and going to can both be possible, but the meaning changes.',
     ],
+    'pt-BR': [
+      'Will muitas vezes é usado quando a decisão aparece agora mesmo: The phone is ringing. I will answer it.',
+      'Will muitas vezes é usado para promessa: I will help you.',
+      'Will muitas vezes aparece com opinião ou previsão: I think it will be fine.',
+      'Going to muitas vezes é usado quando o plano já existe: I am going to study tonight.',
+      'Going to muitas vezes marca intenção: She is going to start a new course.',
+      'Going to muitas vezes aparece quando há sinais visíveis: Look at the clouds. It is going to rain.',
+      'Depois de will não use to: I will call, não I will to call.',
+      'Com going to não esqueça am/is/are: I am going to study, she is going to start.',
+      'Depois de will e going to, o verbo principal fica na forma base: will call, going to study.',
+      'Will e going to às vezes são ambos possíveis, mas o sentido muda: decisão agora contra plano já pronto.',
+    ],
+    vi: [
+      'Will thường dùng khi quyết định xuất hiện ngay lúc nói: The phone is ringing. I will answer it.',
+      'Will thường dùng cho lời hứa: I will help you.',
+      'Will thường dùng với ý kiến hoặc dự đoán: I think it will be fine.',
+      'Going to thường dùng khi kế hoạch đã có sẵn: I am going to study tonight.',
+      'Going to thường diễn tả ý định: She is going to start a new course.',
+      'Going to thường dùng khi có dấu hiệu nhìn thấy được: Look at the clouds. It is going to rain.',
+      'Sau will không dùng to: I will call, không phải I will to call.',
+      'Với going to, đừng bỏ am/is/are: I am going to study, she is going to start.',
+      'Sau will và going to, động từ chính giữ dạng gốc: will call, going to study.',
+      'Will và going to đôi khi đều có thể dùng, nhưng sắc thái đổi: quyết định ngay lúc nói so với kế hoạch đã có.',
+    ],
+    id: [
+      'Will sering dipakai ketika keputusan muncul saat ini juga: The phone is ringing. I will answer it.',
+      'Will sering dipakai untuk janji: I will help you.',
+      'Will sering dipakai dengan opini atau prediksi: I think it will be fine.',
+      'Going to sering dipakai ketika rencana sudah ada: I am going to study tonight.',
+      'Going to sering menunjukkan niat: She is going to start a new course.',
+      'Going to sering dipakai ketika ada tanda yang terlihat: Look at the clouds. It is going to rain.',
+      'Setelah will jangan pakai to: I will call, bukan I will to call.',
+      'Dengan going to jangan hilangkan am/is/are: I am going to study, she is going to start.',
+      'Setelah will dan going to, kata kerja utama tetap bentuk dasar: will call, going to study.',
+      'Will dan going to kadang sama-sama mungkin, tetapi nuansanya berubah: keputusan sekarang versus rencana yang sudah siap.',
+    ],
+    tr: [
+      'Will çoğu zaman karar tam o anda ortaya çıktığında kullanılır: The phone is ringing. I will answer it.',
+      'Will çoğu zaman söz verirken kullanılır: I will help you.',
+      'Will çoğu zaman görüş veya tahminle kullanılır: I think it will be fine.',
+      'Going to çoğu zaman plan zaten hazır olduğunda kullanılır: I am going to study tonight.',
+      'Going to çoğu zaman niyet gösterir: She is going to start a new course.',
+      'Going to çoğu zaman görünür işaretler olduğunda kullanılır: Look at the clouds. It is going to rain.',
+      'Will sonrasında to kullanma: I will call, I will to call değil.',
+      'Going to ile am/is/are sözcüklerini atlama: I am going to study, she is going to start.',
+      'Will ve going to sonrasında ana fiil yalın halde kalır: will call, going to study.',
+      'Will ve going to bazen ikisi de mümkün olabilir, ama anlam değişir: o anki karar ile hazır plan ayrılır.',
+    ],
+    pl: [
+      'Will często używamy, gdy decyzja pojawia się właśnie teraz: The phone is ringing. I will answer it.',
+      'Will często używamy przy obietnicy: I will help you.',
+      'Will często występuje z opinią lub przewidywaniem: I think it will be fine.',
+      'Going to często używamy, gdy plan już istnieje: I am going to study tonight.',
+      'Going to często pokazuje zamiar: She is going to start a new course.',
+      'Going to często używamy, gdy są widoczne oznaki: Look at the clouds. It is going to rain.',
+      'Po will nie używaj to: I will call, nie I will to call.',
+      'Przy going to nie pomijaj am/is/are: I am going to study, she is going to start.',
+      'Po will i going to główny czasownik zostaje w formie podstawowej: will call, going to study.',
+      'Will i going to czasem oba są możliwe, ale zmienia się sens: decyzja teraz kontra gotowy plan.',
+    ],
   },
   examples: [
-    { en: 'I will help you.', ru: 'Я помогу тебе.', uk: 'Я допоможу тобі.', es: 'I will help you.', why: tri('Звучит как обещание или решение помочь.', 'Звучить як обіцянка або рішення допомогти.', 'A promise or decision to help.') },
-    { en: 'The phone is ringing. I will answer it.', ru: 'Телефон звонит. Я отвечу.', uk: 'Телефон дзвонить. Я відповім.', es: 'The phone is ringing. I will answer it.', why: tri('Решение появляется в момент речи.', 'Рішення зʼявляється в момент мовлення.', 'The decision happens now.') },
-    { en: 'I think it will be fine.', ru: 'Думаю, всё будет нормально.', uk: 'Думаю, усе буде нормально.', es: 'I think it will be fine.', why: tri('I think показывает мнение о будущем.', 'I think показує думку про майбутнє.', 'I think introduces a prediction.') },
-    { en: 'I am going to study tonight.', ru: 'Я собираюсь учиться сегодня вечером.', uk: 'Я збираюся вчитися сьогодні ввечері.', es: 'I am going to study tonight.', why: tri('Это звучит как уже готовый план.', 'Це звучить як уже готовий план.', 'This sounds like an existing plan.') },
-    { en: 'She is going to start a new course.', ru: 'Она собирается начать новый курс.', uk: 'Вона збирається почати новий курс.', es: 'She is going to start a new course.', why: tri('Это намерение, которое уже есть.', 'Це намір, який уже є.', 'This is an intention.') },
-    { en: 'Look at the clouds. It is going to rain.', ru: 'Посмотри на облака. Сейчас будет дождь.', uk: 'Подивися на хмари. Зараз буде дощ.', es: 'Look at the clouds. It is going to rain.', why: tri('Есть видимые признаки: облака.', 'Є видимі ознаки: хмари.', 'There is visible evidence.') },
-    { en: 'I will call you later.', ru: 'Я позвоню тебе позже.', uk: 'Я подзвоню тобі пізніше.', es: 'I will call you later.', why: tri('Это может звучать как обещание.', 'Це може звучати як обіцянка.', 'This can sound like a promise.') },
-    { en: 'They are going to move next month.', ru: 'Они собираются переехать в следующем месяце.', uk: 'Вони збираються переїхати наступного місяця.', es: 'They are going to move next month.', why: tri('Это похоже на заранее готовый план.', 'Це схоже на заздалегідь готовий план.', 'This sounds planned.') },
+    { en: 'I will help you.', ru: 'Я помогу тебе.', uk: 'Я допоможу тобі.', es: 'I will help you.', 'pt-BR': 'Eu vou te ajudar.', vi: 'Tôi sẽ giúp bạn.', id: 'Saya akan membantumu.', tr: 'Sana yardım edeceğim.', pl: 'Pomogę ci.', why: tri('Звучит как обещание или решение помочь.', 'Звучить як обіцянка або рішення допомогти.', 'A promise or decision to help.') },
+    { en: 'The phone is ringing. I will answer it.', ru: 'Телефон звонит. Я отвечу.', uk: 'Телефон дзвонить. Я відповім.', es: 'The phone is ringing. I will answer it.', 'pt-BR': 'O telefone está tocando. Eu vou atender.', vi: 'Điện thoại đang reo. Tôi sẽ nghe máy.', id: 'Teleponnya berdering. Saya akan menjawabnya.', tr: 'Telefon çalıyor. Ben cevap vereceğim.', pl: 'Telefon dzwoni. Odbiorę.', why: tri('Решение появляется в момент речи.', 'Рішення зʼявляється в момент мовлення.', 'The decision happens now.') },
+    { en: 'I think it will be fine.', ru: 'Думаю, всё будет нормально.', uk: 'Думаю, усе буде нормально.', es: 'I think it will be fine.', 'pt-BR': 'Acho que vai ficar tudo bem.', vi: 'Tôi nghĩ mọi chuyện sẽ ổn.', id: 'Saya pikir itu akan baik-baik saja.', tr: 'Bence iyi olacak.', pl: 'Myślę, że będzie dobrze.', why: tri('I think показывает мнение о будущем.', 'I think показує думку про майбутнє.', 'I think introduces a prediction.') },
+    { en: 'I am going to study tonight.', ru: 'Я собираюсь учиться сегодня вечером.', uk: 'Я збираюся вчитися сьогодні ввечері.', es: 'I am going to study tonight.', 'pt-BR': 'Vou estudar hoje à noite.', vi: 'Tối nay tôi sẽ học.', id: 'Saya akan belajar malam ini.', tr: 'Bu gece ders çalışacağım.', pl: 'Zamierzam się uczyć dziś wieczorem.', why: tri('Это звучит как уже готовый план.', 'Це звучить як уже готовий план.', 'This sounds like an existing plan.') },
+    { en: 'She is going to start a new course.', ru: 'Она собирается начать новый курс.', uk: 'Вона збирається почати новий курс.', es: 'She is going to start a new course.', 'pt-BR': 'Ela vai começar um curso novo.', vi: 'Cô ấy sẽ bắt đầu một khóa học mới.', id: 'Dia akan memulai kursus baru.', tr: 'Yeni bir kursa başlayacak.', pl: 'Ona zamierza zacząć nowy kurs.', why: tri('Это намерение, которое уже есть.', 'Це намір, який уже є.', 'This is an intention.') },
+    { en: 'Look at the clouds. It is going to rain.', ru: 'Посмотри на облака. Сейчас будет дождь.', uk: 'Подивися на хмари. Зараз буде дощ.', es: 'Look at the clouds. It is going to rain.', 'pt-BR': 'Olhe as nuvens. Vai chover.', vi: 'Nhìn những đám mây kìa. Trời sắp mưa.', id: 'Lihat awan itu. Sebentar lagi akan hujan.', tr: 'Bulutlara bak. Yağmur yağacak.', pl: 'Spójrz na chmury. Będzie padać.', why: tri('Есть видимые признаки: облака.', 'Є видимі ознаки: хмари.', 'There is visible evidence.') },
+    { en: 'I will call you later.', ru: 'Я позвоню тебе позже.', uk: 'Я подзвоню тобі пізніше.', es: 'I will call you later.', 'pt-BR': 'Eu vou te ligar mais tarde.', vi: 'Tôi sẽ gọi cho bạn sau.', id: 'Saya akan meneleponmu nanti.', tr: 'Seni daha sonra arayacağım.', pl: 'Zadzwonię do ciebie później.', why: tri('Это может звучать как обещание.', 'Це може звучати як обіцянка.', 'This can sound like a promise.') },
+    { en: 'They are going to move next month.', ru: 'Они собираются переехать в следующем месяце.', uk: 'Вони збираються переїхати наступного місяця.', es: 'They are going to move next month.', 'pt-BR': 'Eles vão se mudar no mês que vem.', vi: 'Họ sẽ chuyển nhà vào tháng tới.', id: 'Mereka akan pindah bulan depan.', tr: 'Gelecek ay taşınacaklar.', pl: 'Oni zamierzają się przeprowadzić w przyszłym miesiącu.', why: tri('Это похоже на заранее готовый план.', 'Це схоже на заздалегідь готовий план.', 'This sounds planned.') },
   ],
   introBlocks: [
     {

@@ -11,7 +11,13 @@ import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
 import { ARENA_LOBBY_ACCEPT_MS, CLOUD_SYNC_ENABLED } from '../app/config';
 import { setSessionLobbyChoice } from '../app/services/arena_db';
 import { reserveArenaGameEntry } from '../app/arena_access_gate';
+import { playAppSound } from '../app/audio/sound_manager';
 import { useOverlayVisible } from './OverlayArbiter';
+import {
+  cancelScheduledAnimatedStateUpdates,
+  scheduleTrackedAnimatedStateUpdate,
+  type ScheduledAnimatedStateUpdate,
+} from './animationScheduling';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 
@@ -70,6 +76,7 @@ export default function MatchFoundToast({ host = 'root' }: { host?: MatchFoundTo
   const toastAcceptBarAnim = useRef(new Animated.Value(1)).current;
   const toastAcceptBarAnimRunRef = useRef<Animated.CompositeAnimation | null>(null);
   const loopsRef   = useRef<{ stop: () => void }[]>([]);
+  const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
   /** Тост реально в «показан»-состоянии (не вызываем slideOut из else на каждом тике эффекта — это давало sync-колбэки анимации → setState во время useInsertionEffect). */
   const toastActiveRef = useRef(false);
   /** rAF-id отложенного старта slideIn-анимаций под Fabric:
@@ -84,9 +91,11 @@ export default function MatchFoundToast({ host = 'root' }: { host?: MatchFoundTo
   const overlayVisible = useOverlayVisible(overlayKey, wantsToast);
 
   const slideIn = () => {
+    cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
     toastActiveRef.current = true;
     setVisible(true);
     hapticSoftImpact();
+    void playAppSound('arena.match.found');
 
     if (slideInRafRef.current != null) cancelAnimationFrame(slideInRafRef.current);
     /** Откладываем привязку анимированных нод на следующий кадр —
@@ -171,7 +180,7 @@ export default function MatchFoundToast({ host = 'root' }: { host?: MatchFoundTo
     stopLoops();
     const done = () => {
       toastActiveRef.current = false;
-      queueMicrotask(() => {
+      scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
         setVisible(false);
         cb?.();
       });
@@ -184,6 +193,10 @@ export default function MatchFoundToast({ host = 'root' }: { host?: MatchFoundTo
       toValue: -160, duration: MOTION_DURATION.slow, useNativeDriver: true,
     }).start(() => done());
   };
+
+  useEffect(() => () => {
+    cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
+  }, []);
 
   useEffect(() => {
     // Show toast whenever a match is found and not yet handled

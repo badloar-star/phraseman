@@ -17,6 +17,7 @@ import {
   applyUserSettingsNow,
   getUserSettingsSnapshot,
   loadSettings,
+  normalizeAppSoundVolume,
   normalizeSpeechRate,
   type UserSettings,
 } from './user_settings_store';
@@ -27,12 +28,13 @@ export {
   getUserSettingsSnapshot,
   hydrateUserSettingsFromStorage,
   loadSettings,
+  normalizeAppSoundVolume,
   normalizeSpeechRate,
   saveSettings,
   type UserSettings,
 } from './user_settings_store';
 
-type RowKey = Exclude<keyof UserSettings, 'speechRate' | 'speechVoiceId'>;
+type RowKey = Exclude<keyof UserSettings, 'speechRate' | 'speechVoiceId' | 'appSoundsVolume'>;
 
 const ACCENT_LABELS: Record<string, string> = {
   'en-au': 'Australian',
@@ -114,6 +116,16 @@ export default function SettingsEdu() {
       key: 'voiceOut',
       label: L('Озвучить ответ', 'Озвучити відповідь', 'Leer la respuesta'),
       sub: L('Произносить фразу после ответа', 'Вимовляти фразу після відповіді', 'Leer la frase después de responder'),
+    },
+    {
+      key: 'appSoundsEnabled',
+      label: L('Звуки приложения', 'Звуки застосунку', 'Sonidos de la app'),
+      sub: L('Короткие музыкальные сигналы наград, арены и прогресса', 'Короткі музичні сигнали нагород, арени й прогресу', 'Señales musicales cortas para recompensas, arena y progreso'),
+    },
+    {
+      key: 'ceremonySoundsEnabled',
+      label: L('Большие музыкальные моменты', 'Великі музичні моменти', 'Momentos musicales grandes'),
+      sub: L('Level up, Premium, лига и редкие открытия', 'Level up, Premium, ліга й рідкісні відкриття', 'Level up, Premium, liga y desbloqueos raros'),
     },
     {
       key: 'autoAdvance',
@@ -198,6 +210,34 @@ export default function SettingsEdu() {
                 </View>
               );
             })}
+
+            {s.appSoundsEnabled ? (
+              <View style={{ paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
+                    {L('Громкость звуков', 'Гучність звуків', 'Volumen de sonidos')}
+                  </Text>
+                  <Text style={{ color: t.textSecond, fontSize: 16, fontWeight: '600' }}>
+                    {Math.round(normalizeAppSoundVolume(s.appSoundsVolume) * 100)}%
+                  </Text>
+                </View>
+                <Text style={{ color: t.textMuted, fontSize: 12, marginBottom: 6 }}>
+                  {L('Не влияет на произношение фраз', 'Не впливає на вимову фраз', 'No afecta a la pronunciación de frases')}
+                </Text>
+                <Slider
+                  style={{ width: '100%', height: 44 }}
+                  minimumValue={0}
+                  maximumValue={1}
+                  step={0.05}
+                  value={normalizeAppSoundVolume(s.appSoundsVolume)}
+                  onValueChange={v => setS(prev => ({ ...prev, appSoundsVolume: normalizeAppSoundVolume(v) }))}
+                  onSlidingComplete={v => update('appSoundsVolume', normalizeAppSoundVolume(v))}
+                  minimumTrackTintColor={t.textSecond}
+                  maximumTrackTintColor={t.border}
+                  thumbTintColor={t.textSecond}
+                />
+              </View>
+            ) : null}
 
             {s.voiceOut ? (
               <View style={{ paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>

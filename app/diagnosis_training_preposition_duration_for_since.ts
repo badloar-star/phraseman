@@ -3,7 +3,23 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 function durationStep(input: {
   id: string;
@@ -122,16 +138,61 @@ export const PREPOSITION_DURATION_FOR_SINCE_TRAINING: DiagnosisTraining = {
       'For no significa fecha límite. For two hours = durante dos horas, no dentro de dos horas.',
       'Since no significa duración. Since three years es incorrecto si quieres decir “tres años”.',
     ],
+    'pt-BR': [
+      'For responde a "por quanto tempo?": for two hours, for five years.',
+      'Since responde a "desde quando?": since Monday, since 2020.',
+      'For normalmente vem com duração: two days, three weeks, a long time.',
+      'Since normalmente vem com ponto de início: Monday, 2020, yesterday, I moved here.',
+      'Com Present Perfect, os dois aparecem muito: I have lived here for three years / since 2021.',
+      'For não significa prazo final. For two hours = durante duas horas, não daqui a duas horas.',
+      'Since não significa duração. Since three years está errado se você quer dizer "três anos".',
+    ],
+    vi: [
+      'For trả lời câu hỏi "bao lâu?": for two hours, for five years.',
+      'Since trả lời câu hỏi "từ thời điểm nào?": since Monday, since 2020.',
+      'For thường đi với khoảng thời gian: two days, three weeks, a long time.',
+      'Since thường đi với điểm bắt đầu: Monday, 2020, yesterday, I moved here.',
+      'Với Present Perfect, cả hai đều rất hay dùng: I have lived here for three years / since 2021.',
+      'For không có nghĩa là hạn chót. For two hours = trong hai giờ, không phải sau hai giờ nữa.',
+      'Since không có nghĩa là độ dài thời gian. Since three years sai nếu bạn muốn nói "ba năm".',
+    ],
+    id: [
+      'For menjawab "berapa lama?": for two hours, for five years.',
+      'Since menjawab "sejak kapan?": since Monday, since 2020.',
+      'For biasanya dipakai dengan durasi: two days, three weeks, a long time.',
+      'Since biasanya dipakai dengan titik awal: Monday, 2020, yesterday, I moved here.',
+      'Dengan Present Perfect, keduanya sering dipakai: I have lived here for three years / since 2021.',
+      'For bukan berarti batas waktu. For two hours = selama dua jam, bukan dalam dua jam lagi.',
+      'Since bukan berarti durasi. Since three years salah jika maksudmu "tiga tahun".',
+    ],
+    tr: [
+      'For "ne kadar süre?" sorusuna cevap verir: for two hours, for five years.',
+      'Since "hangi zamandan beri?" sorusuna cevap verir: since Monday, since 2020.',
+      'For genellikle süreyle gelir: two days, three weeks, a long time.',
+      'Since genellikle başlangıç noktasıyla gelir: Monday, 2020, yesterday, I moved here.',
+      'Present Perfect ile ikisi de sık kullanılır: I have lived here for three years / since 2021.',
+      'For son tarih demek değildir. For two hours = iki saat boyunca, iki saat sonra değil.',
+      'Since süre demek değildir. "Üç yıl" demek istiyorsan since three years yanlıştır.',
+    ],
+    pl: [
+      'For odpowiada na pytanie "jak długo?": for two hours, for five years.',
+      'Since odpowiada na pytanie "od jakiego momentu?": since Monday, since 2020.',
+      'For zwykle łączy się z długością czasu: two days, three weeks, a long time.',
+      'Since zwykle łączy się z punktem startu: Monday, 2020, yesterday, I moved here.',
+      'W Present Perfect często używa się obu: I have lived here for three years / since 2021.',
+      'For nie oznacza terminu. For two hours = przez dwie godziny, nie za dwie godziny.',
+      'Since nie oznacza długości czasu. Since three years jest błędne, jeśli chcesz powiedzieć "trzy lata".',
+    ],
   },
   examples: [
-    { en: 'I have lived here for three years.', ru: 'Я живу здесь три года.', uk: 'Я живу тут три роки.', es: 'He vivido aquí durante tres años.', why: tri('Three years отвечает на “как долго?”. Это длительность, поэтому for.', 'Three years відповідає на “як довго?”. Це тривалість, тому for.', 'Three years responde a “cuánto tiempo?”. Es duración, por eso for.') },
-    { en: 'I have lived here since 2021.', ru: 'Я живу здесь с 2021 года.', uk: 'Я живу тут з 2021 року.', es: 'He vivido aquí desde 2021.', why: tri('2021 - точка старта. Поэтому since.', '2021 - точка старту. Тому since.', '2021 es punto de inicio. Por eso since.') },
-    { en: 'She has worked here for six months.', ru: 'Она работает здесь шесть месяцев.', uk: 'Вона працює тут шість місяців.', es: 'Ella ha trabajado aquí durante seis meses.', why: tri('Six months - длительность. Поэтому for six months.', 'Six months - тривалість. Тому for six months.', 'Six months es duración. Por eso for six months.') },
-    { en: 'She has worked here since March.', ru: 'Она работает здесь с марта.', uk: 'Вона працює тут з березня.', es: 'Ella trabaja aquí desde marzo.', why: tri('March - момент начала. Поэтому since March.', 'March - момент початку. Тому since March.', 'March es momento de inicio. Por eso since March.') },
-    { en: 'We waited for two hours.', ru: 'Мы ждали два часа.', uk: 'Ми чекали дві години.', es: 'Esperamos durante dos horas.', why: tri('Two hours - сколько длилось ожидание. Это длительность, поэтому for.', 'Two hours - скільки тривало очікування. Це тривалість, тому for.', 'Two hours indica cuánto duró la espera. Es duración, por eso for.') },
-    { en: "I haven't seen him since Monday.", ru: 'Я не видел его с понедельника.', uk: 'Я не бачив його з понеділка.', es: 'No lo he visto desde el lunes.', why: tri('Monday - точка старта периода без встречи. Поэтому since Monday.', 'Monday - точка старту періоду без зустрічі. Тому since Monday.', 'Monday es el punto de inicio del período sin verlo. Por eso since Monday.') },
-    { en: 'They stayed there for a week.', ru: 'Они пробыли там неделю.', uk: 'Вони пробули там тиждень.', es: 'Se quedaron allí durante una semana.', why: tri('A week - длительность пребывания. Поэтому for a week.', 'A week - тривалість перебування. Тому for a week.', 'A week es duración de la estancia. Por eso for a week.') },
-    { en: 'I have known her since we were children.', ru: 'Я знаю её с тех пор, как мы были детьми.', uk: 'Я знаю її з тих часів, коли ми були дітьми.', es: 'La conozco desde que éramos niños.', why: tri('Since может стоять перед целым предложением, если оно показывает момент начала.', 'Since може стояти перед цілим реченням, якщо воно показує момент початку.', 'Since puede ir antes de una oración completa si muestra el momento de inicio.') },
+    { en: 'I have lived here for three years.', ru: 'Я живу здесь три года.', uk: 'Я живу тут три роки.', es: 'He vivido aquí durante tres años.', 'pt-BR': 'Moro aqui há três anos.', vi: 'Tôi đã sống ở đây được ba năm.', id: 'Saya sudah tinggal di sini selama tiga tahun.', tr: 'Üç yıldır burada yaşıyorum.', pl: 'Mieszkam tu od trzech lat.', why: tri('Three years отвечает на “как долго?”. Это длительность, поэтому for.', 'Three years відповідає на “як довго?”. Це тривалість, тому for.', 'Three years responde a “cuánto tiempo?”. Es duración, por eso for.') },
+    { en: 'I have lived here since 2021.', ru: 'Я живу здесь с 2021 года.', uk: 'Я живу тут з 2021 року.', es: 'He vivido aquí desde 2021.', 'pt-BR': 'Moro aqui desde 2021.', vi: 'Tôi đã sống ở đây từ năm 2021.', id: 'Saya sudah tinggal di sini sejak 2021.', tr: "2021'den beri burada yaşıyorum.", pl: 'Mieszkam tu od 2021 roku.', why: tri('2021 - точка старта. Поэтому since.', '2021 - точка старту. Тому since.', '2021 es punto de inicio. Por eso since.') },
+    { en: 'She has worked here for six months.', ru: 'Она работает здесь шесть месяцев.', uk: 'Вона працює тут шість місяців.', es: 'Ella ha trabajado aquí durante seis meses.', 'pt-BR': 'Ela trabalha aqui há seis meses.', vi: 'Cô ấy đã làm việc ở đây được sáu tháng.', id: 'Dia sudah bekerja di sini selama enam bulan.', tr: 'Altı aydır burada çalışıyor.', pl: 'Pracuje tu od sześciu miesięcy.', why: tri('Six months - длительность. Поэтому for six months.', 'Six months - тривалість. Тому for six months.', 'Six months es duración. Por eso for six months.') },
+    { en: 'She has worked here since March.', ru: 'Она работает здесь с марта.', uk: 'Вона працює тут з березня.', es: 'Ella trabaja aquí desde marzo.', 'pt-BR': 'Ela trabalha aqui desde março.', vi: 'Cô ấy đã làm việc ở đây từ tháng Ba.', id: 'Dia bekerja di sini sejak Maret.', tr: 'Marttan beri burada çalışıyor.', pl: 'Pracuje tu od marca.', why: tri('March - момент начала. Поэтому since March.', 'March - момент початку. Тому since March.', 'March es momento de inicio. Por eso since March.') },
+    { en: 'We waited for two hours.', ru: 'Мы ждали два часа.', uk: 'Ми чекали дві години.', es: 'Esperamos durante dos horas.', 'pt-BR': 'Esperamos por duas horas.', vi: 'Chúng tôi đã chờ trong hai giờ.', id: 'Kami menunggu selama dua jam.', tr: 'İki saat bekledik.', pl: 'Czekaliśmy dwie godziny.', why: tri('Two hours - сколько длилось ожидание. Это длительность, поэтому for.', 'Two hours - скільки тривало очікування. Це тривалість, тому for.', 'Two hours indica cuánto duró la espera. Es duración, por eso for.') },
+    { en: "I haven't seen him since Monday.", ru: 'Я не видел его с понедельника.', uk: 'Я не бачив його з понеділка.', es: 'No lo he visto desde el lunes.', 'pt-BR': 'Não o vejo desde segunda-feira.', vi: 'Tôi chưa gặp anh ấy từ thứ Hai.', id: 'Saya belum melihatnya sejak hari Senin.', tr: 'Pazartesiden beri onu görmedim.', pl: 'Nie widziałem go od poniedziałku.', why: tri('Monday - точка старта периода без встречи. Поэтому since Monday.', 'Monday - точка старту періоду без зустрічі. Тому since Monday.', 'Monday es el punto de inicio del período sin verlo. Por eso since Monday.') },
+    { en: 'They stayed there for a week.', ru: 'Они пробыли там неделю.', uk: 'Вони пробули там тиждень.', es: 'Se quedaron allí durante una semana.', 'pt-BR': 'Eles ficaram lá por uma semana.', vi: 'Họ đã ở đó một tuần.', id: 'Mereka tinggal di sana selama seminggu.', tr: 'Orada bir hafta kaldılar.', pl: 'Zostali tam przez tydzień.', why: tri('A week - длительность пребывания. Поэтому for a week.', 'A week - тривалість перебування. Тому for a week.', 'A week es duración de la estancia. Por eso for a week.') },
+    { en: 'I have known her since we were children.', ru: 'Я знаю её с тех пор, как мы были детьми.', uk: 'Я знаю її з тих часів, коли ми були дітьми.', es: 'La conozco desde que éramos niños.', 'pt-BR': 'Eu a conheço desde que éramos crianças.', vi: 'Tôi đã biết cô ấy từ khi chúng tôi còn nhỏ.', id: 'Saya sudah mengenalnya sejak kami masih anak-anak.', tr: 'Onu çocukluğumuzdan beri tanıyorum.', pl: 'Znam ją od czasu, gdy byliśmy dziećmi.', why: tri('Since может стоять перед целым предложением, если оно показывает момент начала.', 'Since може стояти перед цілим реченням, якщо воно показує момент початку.', 'Since puede ir antes de una oración completa si muestra el momento de inicio.') },
   ],
   introBlocks: [
     { id: 'intro_problem', type: 'diagnosis', text: tri('Похоже, ты путаешь for и since. В переводе они часто звучат похоже, но в английском это два разных вопроса.', 'Схоже, ти плутаєш for і since. У перекладі вони часто звучать схоже, але в англійській це два різні питання.', 'Parece que confundes for y since. En traducción a veces suenan parecido, pero en inglés son dos preguntas diferentes.') },

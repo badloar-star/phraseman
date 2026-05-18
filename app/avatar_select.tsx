@@ -92,6 +92,9 @@ const GRID_GAP = 8;
 const GRID_PAD = 16;
 const GRID_COLS = 4;
 const CELL_W = Math.floor((SCREEN_W - GRID_PAD * 2 - GRID_GAP * (GRID_COLS - 1)) / GRID_COLS);
+const CUSTOM_AVATAR_CELL_H = Math.max(104, Math.round(CELL_W * 1.34));
+const CUSTOM_AVATAR_SLOT_SIZE = Math.min(70, Math.round(CELL_W * 0.82));
+const CUSTOM_AVATAR_BADGE_SIZE = Math.min(60, Math.round(CELL_W * 0.68));
 
 type ProfileCardPreviewVisual = {
   theme: ProfileCardTheme;
@@ -190,6 +193,19 @@ const decodeOwnedStyle = (value?: string | null): { gradientId: string; logoColo
     logoColor: parts[1] === 'white' ? 'white' : 'black',
   };
 };
+
+const HEX_COLOR_RE = /^#[0-9a-f]{6}$/i;
+const withGradientAlpha = (color: string, alpha: string): string =>
+  HEX_COLOR_RE.test(color) ? `${color}${alpha}` : color;
+
+const customGradientOptionColors = (
+  colors: readonly [string, string, string],
+  selected: boolean,
+): [string, string, string] => [
+  withGradientAlpha(colors[0], selected ? '66' : '2E'),
+  withGradientAlpha(colors[1], selected ? '4D' : '24'),
+  withGradientAlpha(colors[2], selected ? '3D' : '18'),
+];
 
 const normalizeProfileCardSnapshotForPreview = (snapshot?: Partial<ProfileCardSnapshot> | null): ProfileCardSnapshot => {
   const level = Math.max(0, Math.min(5, Math.floor(Number(snapshot?.level) || 0))) as ProfileCardLevel;
@@ -933,18 +949,22 @@ export default function AvatarSelect() {
                 onPress={() => openAvatar(avatar)}
                 style={{
                   width: CELL_W,
-                  minHeight: Math.round(CELL_W * 1.34),
+                  height: CUSTOM_AVATAR_CELL_H,
                   borderRadius: 16,
                   borderWidth: isActive ? 2 : 1,
                   borderColor: isActive ? t.accent : t.border,
                   backgroundColor: t.bgCard,
                   alignItems: 'center',
                   justifyContent: 'center',
+                  overflow: 'hidden',
+                  paddingHorizontal: 6,
                   paddingVertical: 8,
                 }}
               >
-                <CustomAvatarBadge avatarId={avatar.id} gradientId={gradientId} logoColor={logoColor} size={Math.min(64, Math.round(CELL_W * 0.76))} />
-                <View style={{ marginTop: 7, minHeight: 16, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ width: '100%', height: CUSTOM_AVATAR_SLOT_SIZE, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                  <CustomAvatarBadge avatarId={avatar.id} gradientId={gradientId} logoColor={logoColor} size={CUSTOM_AVATAR_BADGE_SIZE} />
+                </View>
+                <View style={{ marginTop: 6, minHeight: 17, alignItems: 'center', justifyContent: 'center' }}>
                   {isOwned
                     ? <Text style={{ color: isGifted ? t.accent : t.textPrimary, fontSize: 10, fontWeight: '900' }}>{isGifted ? 'Подарок' : 'Куплен'}</Text>
                     : <ShardCost amount={CUSTOM_AVATAR_BUY_COST} color={t.textMuted} />}
@@ -1116,24 +1136,54 @@ export default function AvatarSelect() {
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 10, paddingBottom: 4 }}>
                   {CUSTOM_AVATAR_GRADIENTS.map((gradient) => {
                     const selected = gradient.id === draftGradientId;
+                    const optionColors = customGradientOptionColors(gradient.colors, selected);
                     return (
                       <TouchableOpacity
                         key={gradient.id}
                         activeOpacity={0.78}
                         onPress={() => { hapticTap(); setDraftGradientId(gradient.id); }}
                         style={{
-                          width: 72,
-                          alignItems: 'center',
+                          width: 78,
                           borderRadius: 14,
                           borderWidth: selected ? 2 : 1,
-                          borderColor: selected ? t.accent : t.border,
-                          padding: 7,
+                          borderColor: selected ? gradient.colors[2] : withGradientAlpha(gradient.colors[2], '66'),
+                          backgroundColor: t.bgCard,
+                          shadowColor: selected ? gradient.colors[2] : '#000000',
+                          shadowOffset: { width: 0, height: selected ? 5 : 2 },
+                          shadowOpacity: selected ? 0.22 : 0.08,
+                          shadowRadius: selected ? 9 : 3,
+                          elevation: selected ? 4 : 1,
                         }}
                       >
-                        <CustomAvatarBadge avatarId={draftAvatar.id} gradientId={gradient.id} logoColor={draftLogoColor} size={52} />
-                        <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '800', marginTop: 5 }} numberOfLines={1}>
-                          {customAvatarGradientNameForLang(gradient, lang)}
-                        </Text>
+                        <LinearGradient
+                          colors={optionColors}
+                          start={{ x: 0, y: 0 }}
+                          end={{ x: 1, y: 1 }}
+                          style={{
+                            minHeight: 94,
+                            borderRadius: selected ? 12 : 13,
+                            overflow: 'hidden',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            padding: 7,
+                          }}
+                        >
+                          <CustomAvatarBadge avatarId={draftAvatar.id} gradientId={gradient.id} logoColor={draftLogoColor} size={52} />
+                          <Text
+                            style={{
+                              color: selected ? t.textPrimary : t.textMuted,
+                              fontSize: 10,
+                              fontWeight: '900',
+                              marginTop: 6,
+                              textAlign: 'center',
+                            }}
+                            numberOfLines={1}
+                            adjustsFontSizeToFit
+                            minimumFontScale={0.72}
+                          >
+                            {customAvatarGradientNameForLang(gradient, lang)}
+                          </Text>
+                        </LinearGradient>
                       </TouchableOpacity>
                     );
                   })}

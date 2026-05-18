@@ -26,6 +26,7 @@ import { getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tas
 import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
 import { getLeagueBonusPalette } from '../../constants/leagueBonusPalette';
+import { getLeagueBonusGiftImage } from '../../constants/leagueBonusGiftImages';
 import { getTitleString } from '../../constants/titles';
 import { lessonNamesForLang } from '../../constants/lessons';
 import { GREETINGS_ES } from '../../constants/greetings_es';
@@ -156,8 +157,8 @@ async function resolveDailyGreeting(pool: readonly string[], lang: Lang): Promis
     catch { }
     return pool[idx]!;
 }
-/** Тема «Скетч» (minimalLight): лёгкое смягчение теней grafit без «заблокированного» вида (сильная альфа = плоский серый). */
-const SKETCH_MENU_ICON_LIGHTEN_OVERLAY = 'rgba(255, 252, 247, 0.2)';
+/** Sketch keeps the hand-drawn art, but adds a faint ink wash so pale assets stay readable. */
+const SKETCH_MENU_ICON_INK_WASH = 'rgba(54, 48, 40, 0.045)';
 type LightSketchMenuImageProps = Omit<React.ComponentProps<typeof Image>, 'style'> & {
     width: number;
     height: number;
@@ -170,7 +171,7 @@ function LightSketchMenuImage({ width, height, lighten, ...props }: LightSketchM
     }
     return (<View style={boxStyle}>
       <Image {...props} style={boxStyle}/>
-      <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { backgroundColor: SKETCH_MENU_ICON_LIGHTEN_OVERLAY }]}/>
+      <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { backgroundColor: SKETCH_MENU_ICON_INK_WASH }]}/>
     </View>);
 }
 function buildHomeLeagueChest(group: GroupMember[], leagueName: string, leagueId: number): {
@@ -310,18 +311,22 @@ export default function HomeScreen() {
         string
     ];
     const leagueBonusPalette = getLeagueBonusPalette(t, themeMode);
+    const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
     const BONUS_ENERGY_COLOR = isGoldTheme ? goldBright : '#FFD700';
     const PREMIUM_BLUE = isGoldTheme ? goldMetal : '#4FC3F7';
-    const lightPanelBg = isSketchLightTheme ? 'rgba(255,253,248,0.82)' : 'rgba(255,255,255,0.50)';
-    const lightPanelBorder = isSketchLightTheme ? 'rgba(40,37,32,0.16)' : 'rgba(255,255,255,0.48)';
-    const lightPanelIconBg = isSketchLightTheme ? 'rgba(63,63,70,0.08)' : 'rgba(255,255,255,0.28)';
-    const lightPanelChevronBg = isSketchLightTheme ? 'rgba(63,63,70,0.08)' : 'rgba(255,255,255,0.58)';
+    const lightPanelBg = isSketchLightTheme ? 'rgba(255,252,246,0.94)' : 'rgba(255,255,255,0.50)';
+    const lightPanelBorder = isSketchLightTheme ? 'rgba(52,45,35,0.28)' : 'rgba(255,255,255,0.48)';
+    const lightPanelIconBg = isSketchLightTheme ? 'rgba(63,55,44,0.13)' : 'rgba(255,255,255,0.28)';
+    const lightPanelChevronBg = isSketchLightTheme ? 'rgba(63,55,44,0.14)' : 'rgba(255,255,255,0.58)';
     const energyEmptyTint = isSketchLightTheme
-        ? 'rgba(63,63,70,0.22)'
+        ? 'rgba(47,49,59,0.42)'
         : 'rgba(255,245,252,0.38)';
     const premiumEnergyTint = energyUnlimited ? (isLightTheme ? '#004F8C' : PREMIUM_BLUE) : undefined;
     const energyFilledTint = premiumEnergyTint;
     const energyFilledColor = energyUnlimited ? (isLightTheme ? '#004F8C' : PREMIUM_BLUE) : t.gold;
+    const sketchShardAccent = isSketchLightTheme ? '#6245B2' : '#A78BFA';
+    const sketchFreezeAccent = isSketchLightTheme ? '#1F6EA5' : '#64B4FF';
+    const sketchFlameAccent = isSketchLightTheme ? '#A24F18' : '#FF8A3D';
     /** Последний валидный measureInWindow — если очередное измерение вернёт 0 (Android/Fabric). */
     const energyAnchorCacheRef = useRef<EnergyTooltipAnchor | null>(null);
     const [energyTooltip, setEnergyTooltip] = useState<{
@@ -1243,7 +1248,7 @@ export default function HomeScreen() {
               {/* Анимация начисления осколков */}
               <Animated.Text style={{
                 position: 'absolute', top: -18, right: 0,
-                color: isGoldTheme ? GOLD_RICH.paleGold : '#A78BFA', fontSize: 13, fontWeight: '700',
+                color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 13, fontWeight: '700',
                 opacity: shardsBonusAnim,
                 transform: [{ translateY: shardsBonusAnim.interpolate({ inputRange: [0, 1], outputRange: [0, -14] }) }],
             }}>{shardsBonusText}</Animated.Text>
@@ -1283,7 +1288,7 @@ export default function HomeScreen() {
             }} style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                     <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 5 }}>
                       <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconSize, height: homeHeaderShardIconSize }} resizeMode="contain"/>
-                      <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : '#A78BFA', fontSize: 15, fontWeight: '900' }}>{shardsBalance}</Text>
+                      <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900' }}>{shardsBalance}</Text>
                     </Animated.View>
                   </TouchableOpacity>
                   <AppMessagesInbox />
@@ -1373,7 +1378,7 @@ export default function HomeScreen() {
                         ? (isGoldTheme ? goldHairline : 'rgba(100,180,255,0.52)')
                         : (isGoldTheme ? goldHairline : 'rgba(255,138,61,0.46)'),
                 }}>
-                          <Ionicons name={freezeActive ? 'snow-outline' : 'flame'} size={eliteStatsCompact ? 20 : 23} color={freezeActive ? (isGoldTheme ? GOLD_RICH.champagne : '#64B4FF') : (streak > 0 ? (isGoldTheme ? GOLD_RICH.metalGold : '#FF8A3D') : t.textGhost)}/>
+                          <Ionicons name={freezeActive ? 'snow-outline' : 'flame'} size={eliteStatsCompact ? 20 : 23} color={freezeActive ? (isGoldTheme ? GOLD_RICH.champagne : sketchFreezeAccent) : (streak > 0 ? (isGoldTheme ? GOLD_RICH.metalGold : sketchFlameAccent) : t.textGhost)}/>
                         </View>
                       </View>
                       <Text allowFontScaling={false} style={{ color: t.textSecond, fontSize: eliteMetaFontSize, fontWeight: '700', textAlign: 'right', width: '100%', lineHeight: eliteMetaFontSize + 4 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
@@ -1396,11 +1401,11 @@ export default function HomeScreen() {
                     height: 12,
                     borderRadius: 8,
                     overflow: 'hidden',
-                    backgroundColor: isLightTheme ? 'rgba(255,255,255,0.35)' : isGoldTheme ? 'rgba(0,0,0,0.36)' : 'rgba(255,255,255,0.08)',
+                    backgroundColor: isSketchLightTheme ? 'rgba(56,52,44,0.56)' : isLightTheme ? 'rgba(255,255,255,0.35)' : isGoldTheme ? 'rgba(0,0,0,0.36)' : 'rgba(255,255,255,0.08)',
                     borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0,
                     borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : 'transparent',
                 }}>
-                      <LinearGradient colors={isLightTheme ? [t.accent, '#FFFFFFAA'] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${xpPct}%` as any, height: '100%', borderRadius: 8, overflow: 'hidden' }}>
+                      <LinearGradient colors={isSketchLightTheme ? [t.accent, t.correct] : isLightTheme ? [t.accent, '#FFFFFFAA'] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${xpPct}%` as any, height: '100%', borderRadius: 8, overflow: 'hidden' }}>
                         {(isGoldTheme) && (<>
                             <LinearGradient colors={['rgba(255,255,255,0.34)', 'rgba(255,255,255,0.055)', 'rgba(0,0,0,0.14)']} locations={[0, 0.46, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill}/>
                             <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 1, backgroundColor: 'rgba(0,0,0,0.26)' }}/>
@@ -1438,18 +1443,18 @@ export default function HomeScreen() {
                         justifyContent: 'center',
                         overflow: 'hidden',
                         backgroundColor: isGoldTheme ? 'transparent' : weekDone[i] ? t.correct : (isLightTheme
-                            ? (i === todayIdx ? 'rgba(255,255,255,0.82)' : 'rgba(255,255,255,0.34)')
+                            ? (i === todayIdx ? 'rgba(52,56,66,0.14)' : 'rgba(60,54,44,0.10)')
                             : (i === todayIdx ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.07)')),
                         borderWidth: weekDone[i] ? 0 : 1,
                         borderColor: isGoldTheme
                             ? (i === todayIdx ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet)
-                            : i === todayIdx ? (isLightTheme ? t.textSecond : t.gold) : (isLightTheme ? 'rgba(255,255,255,0.42)' : 'rgba(255,255,255,0.10)'),
+                            : i === todayIdx ? (isLightTheme ? t.textSecond : t.gold) : (isLightTheme ? 'rgba(60,54,44,0.30)' : 'rgba(255,255,255,0.10)'),
                     }}>
                           {isGoldTheme && (<>
                               <LinearGradient colors={weekDone[i] ? GOLD_GRADIENTS.metallicFill : ['rgba(23,23,23,0.66)', 'rgba(10,10,10,0.58)', 'rgba(7,7,7,0.50)']} locations={[0, 0.48, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill}/>
                               <GoldBevel radius={eliteWeekDotSize / 2} intensity={weekDone[i] ? 'normal' : 'quiet'}/>
                             </>)}
-                          {weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 15 : 16} color={isGoldTheme ? t.textOnGold : t.textPrimary}/>}
+                          {weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 15 : 16} color={isGoldTheme ? t.textOnGold : isSketchLightTheme ? t.correctText : t.textPrimary}/>}
                         </View>
                         <Text style={{ color: weekDone[i] || i === todayIdx ? t.textPrimary : t.textMuted, fontSize: eliteWeekDayFontSize, fontWeight: '800' }}>{d}</Text>
                       </View>))}
@@ -1510,7 +1515,7 @@ export default function HomeScreen() {
                   <Text style={{ color: t.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>{s.home.streakLabel}</Text>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                     <Animated.Text style={{ color: t.textPrimary, fontSize: 34, fontWeight: '800', lineHeight: 38, transform: [{ scale: streakScaleAnim }] }}>{displayStreak}</Animated.Text>
-                    <Ionicons name={freezeActive ? 'snow-outline' : 'flame'} size={30} color={freezeActive ? (isGoldTheme ? GOLD_RICH.champagne : '#64B4FF') : (streak > 0 ? (isGoldTheme ? GOLD_RICH.metalGold : '#FF6B35') : t.textGhost)}/>
+                    <Ionicons name={freezeActive ? 'snow-outline' : 'flame'} size={30} color={freezeActive ? (isGoldTheme ? GOLD_RICH.champagne : sketchFreezeAccent) : (streak > 0 ? (isGoldTheme ? GOLD_RICH.metalGold : isSketchLightTheme ? '#A24F18' : '#FF6B35') : t.textGhost)}/>
                   </View>
                   <Text style={{ color: t.textSecond, fontSize: 13 }} numberOfLines={1}>{s.home.streakDays}</Text>
                 </View>
@@ -1554,7 +1559,7 @@ export default function HomeScreen() {
                     <View style={{
                         width: 22, height: 22, borderRadius: 11,
                         backgroundColor: weekDone[i] ? t.correct : (isLightTheme
-                            ? (i === todayIdx ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0.38)')
+                            ? (i === todayIdx ? 'rgba(52,56,66,0.14)' : 'rgba(60,54,44,0.10)')
                             : (i === todayIdx ? t.textPrimary + '66' : t.bgSurface2)),
                         borderWidth: weekDone[i] ? 0 : (isLightTheme ? (i === todayIdx && !weekDone[i] ? 2 : 1) : (i === todayIdx && !weekDone[i] ? 2 : 0)),
                         borderColor: isGoldTheme ? goldHairline : isLightTheme ? t.textMuted : t.textPrimary,
@@ -1680,7 +1685,7 @@ export default function HomeScreen() {
                     }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
                     <View style={{ width: 52, height: 52, alignItems: 'center', justifyContent: 'center' }}>
-                      <CircularProgress pct={Math.round(lastLesson.progress / 50 * 100)} size={52} sw={5} color={isGoldTheme ? GOLD_RICH.champagne : t.accent} bg={t.bgSurface} textColor={t.textPrimary} fontSize={10}/>
+                      <CircularProgress pct={Math.round(lastLesson.progress / 50 * 100)} size={52} sw={5} color={isGoldTheme ? GOLD_RICH.champagne : t.accent} bg={isSketchLightTheme ? 'rgba(56,52,44,0.56)' : t.bgSurface} textColor={t.textPrimary} fontSize={10}/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
                       <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.7 }}>
@@ -1712,7 +1717,7 @@ export default function HomeScreen() {
                     </View>
                   </View>
               </TouchableOpacity>) : (<PremiumCard testID="home-continue-lesson" level={3} onPress={() => router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } })} style={{ marginHorizontal: 16, marginBottom: 12 }} innerStyle={{ padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                <CircularProgress pct={Math.round(lastLesson.progress / 50 * 100)} size={52} sw={5} color={isGoldTheme ? GOLD_RICH.champagne : t.accent} bg={t.bgSurface} textColor={t.textPrimary} fontSize={10}/>
+                <CircularProgress pct={Math.round(lastLesson.progress / 50 * 100)} size={52} sw={5} color={isGoldTheme ? GOLD_RICH.champagne : t.accent} bg={isSketchLightTheme ? 'rgba(56,52,44,0.56)' : t.bgSurface} textColor={t.textPrimary} fontSize={10}/>
                 <View style={{ flex: 1 }}>
                   <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.6 }}>
                     {s.home.continueBtn}
@@ -1992,10 +1997,24 @@ export default function HomeScreen() {
                     pl: "Bonus ligi",
                 })}>
               <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 14 : 18, borderWidth: isGoldTheme ? 1 : 0.5, borderColor: leagueBonusPalette.border, padding: 14, overflow: 'hidden', ...({}) }}>
+                <Image
+                  pointerEvents="none"
+                  source={leagueBonusGiftImage}
+                  style={{
+                    position: 'absolute',
+                    right: -24,
+                    top: -22,
+                    width: 136,
+                    height: 136,
+                    opacity: homeLeagueChestReady ? 0.20 : 0.12,
+                    transform: [{ rotate: '-8deg' }],
+                  }}
+                  contentFit="contain"
+                />
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 10 }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 9, flex: 1, minWidth: 0 }}>
-                    <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: leagueBonusPalette.iconBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: leagueBonusPalette.iconBorder }}>
-                      <Ionicons name="gift-outline" size={19} color={homeLeagueChestAccent}/>
+                    <View style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: leagueBonusPalette.iconBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: leagueBonusPalette.iconBorder, shadowColor: homeLeagueChestAccent, shadowOpacity: homeLeagueChestReady ? 0.42 : 0.24, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 7 }}>
+                      <Image source={leagueBonusGiftImage} style={{ width: 66, height: 66, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain"/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
                       <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>

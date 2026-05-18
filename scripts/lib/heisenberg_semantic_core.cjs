@@ -3,6 +3,8 @@
 const CYRILLIC_RE = /[\u0400-\u04FF]/u;
 const MOJIBAKE_RE =
   /(?:Ã[\u0080-\u00BF]|Â[\u0080-\u00BF]|Ä[\u0080-\u00BF]|Å[\u0080-\u00BF]|Æ[\u0080-\u00BF]|áº|á»|ï¿½|�)/u;
+const REPLACEMENT_QUESTION_MARK_RE =
+  /(?:[\p{L}]\?[\p{L}]|(?:^|\s)\?[\p{L}]|(?:ingl|Korunmas)\?)/u;
 
 const STOP_WORDS = new Set([
   'a',
@@ -249,7 +251,8 @@ function compactSample(value, limit = 180) {
 }
 
 function hasMojibake(value) {
-  return MOJIBAKE_RE.test(String(value || ''));
+  const text = String(value || '');
+  return MOJIBAKE_RE.test(text) || REPLACEMENT_QUESTION_MARK_RE.test(text);
 }
 
 function hasCyrillic(value) {
@@ -390,6 +393,7 @@ function exactStringInList(value, list) {
 module.exports = {
   CYRILLIC_RE,
   MOJIBAKE_RE,
+  REPLACEMENT_QUESTION_MARK_RE,
   choiceNgrams,
   compactSample,
   containsTerm,

@@ -2,7 +2,23 @@
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const CONTRAST = [
   'turn on',
@@ -156,16 +172,61 @@ export const PHRASAL_PARTICLE_PAIR_TRAINING: DiagnosisTraining = {
       'Find out = discover information.',
       'Run out of = have none left.',
     ],
+    'pt-BR': [
+      'Pegue o sentido do par inteiro.',
+      'Turn on = ligar, turn off = desligar.',
+      'Look up = consultar informação, look for = procurar alguém ou algo.',
+      'Pick up = levantar algo ou buscar uma pessoa.',
+      'Give up = desistir ou parar de tentar.',
+      'Find out = descobrir informação.',
+      'Run out of = ficar sem algo.',
+    ],
+    vi: [
+      'Lấy nghĩa từ cả cụm, không chỉ từ đầu tiên.',
+      'Turn on = bật, turn off = tắt.',
+      'Look up = tra cứu thông tin, look for = tìm ai đó hoặc thứ gì đó.',
+      'Pick up = nhặt lên hoặc đón một người.',
+      'Give up = bỏ cuộc hoặc ngừng cố gắng.',
+      'Find out = tìm ra thông tin.',
+      'Run out of = hết thứ gì đó.',
+    ],
+    id: [
+      'Ambil makna dari seluruh pasangan kata.',
+      'Turn on = menyalakan, turn off = mematikan.',
+      'Look up = mencari informasi, look for = mencari seseorang atau sesuatu.',
+      'Pick up = mengangkat atau menjemput seseorang.',
+      'Give up = menyerah atau berhenti mencoba.',
+      'Find out = mengetahui informasi.',
+      'Run out of = kehabisan sesuatu.',
+    ],
+    tr: [
+      'Anlamı bütün ikiliden çıkar.',
+      'Turn on = açmak, turn off = kapatmak.',
+      'Look up = bilgiye bakmak, look for = birini veya bir şeyi aramak.',
+      'Pick up = kaldırmak ya da birini almaya gitmek.',
+      'Give up = vazgeçmek veya denemeyi bırakmak.',
+      'Find out = bilgi öğrenmek.',
+      'Run out of = bir şeyin bitmesi.',
+    ],
+    pl: [
+      'Sens bierz z całej pary.',
+      'Turn on = włączyć, turn off = wyłączyć.',
+      'Look up = sprawdzić informację, look for = szukać kogoś lub czegoś.',
+      'Pick up = podnieść albo odebrać kogoś.',
+      'Give up = poddać się albo przestać próbować.',
+      'Find out = dowiedzieć się informacji.',
+      'Run out of = coś się skończyło.',
+    ],
   },
   examples: [
-    { en: 'Please turn on the light.', ru: 'Пожалуйста, включи свет.', uk: 'Будь ласка, увімкни світло.', es: 'Please turn on the light.', why: tri('Turn on = включить.', 'Turn on = увімкнути.', 'Turn on = switch on.') },
-    { en: 'Please turn off the TV.', ru: 'Пожалуйста, выключи телевизор.', uk: 'Будь ласка, вимкни телевізор.', es: 'Please turn off the TV.', why: tri('Turn off = выключить.', 'Turn off = вимкнути.', 'Turn off = switch off.') },
-    { en: 'I looked up the word.', ru: 'Я нашел слово в словаре.', uk: 'Я знайшов слово у словнику.', es: 'I looked up the word.', why: tri('Look up = найти информацию.', 'Look up = знайти інформацію.', 'Look up = find information.') },
-    { en: 'I am looking for my keys.', ru: 'Я ищу ключи.', uk: 'Я шукаю ключі.', es: 'I am looking for my keys.', why: tri('Look for = искать.', 'Look for = шукати.', 'Look for = search.') },
-    { en: 'Can you pick me up at six?', ru: 'Можешь забрать меня в шесть?', uk: 'Можеш забрати мене о шостій?', es: 'Can you pick me up at six?', why: tri('Pick up здесь = забрать человека.', 'Pick up тут = забрати людину.', 'Pick up here = collect a person.') },
-    { en: 'Do not give up.', ru: 'Не сдавайся.', uk: 'Не здавайся.', es: 'Do not give up.', why: tri('Give up = перестать пытаться.', 'Give up = перестати намагатися.', 'Give up = stop trying.') },
-    { en: 'We ran out of coffee.', ru: 'У нас закончился кофе.', uk: 'У нас закінчилася кава.', es: 'We ran out of coffee.', why: tri('Run out of = запас закончился.', 'Run out of = запас закінчився.', 'Run out of = have none left.') },
-    { en: 'I found out the answer.', ru: 'Я узнал ответ.', uk: 'Я дізнався відповідь.', es: 'I found out the answer.', why: tri('Find out = узнать информацию.', 'Find out = дізнатися інформацію.', 'Find out = discover information.') },
+    { en: 'Please turn on the light.', ru: 'Пожалуйста, включи свет.', uk: 'Будь ласка, увімкни світло.', es: 'Please turn on the light.', 'pt-BR': 'Por favor, acenda a luz.', vi: 'Làm ơn bật đèn.', id: 'Tolong nyalakan lampunya.', tr: 'Lütfen ışığı aç.', pl: 'Proszę, włącz światło.', why: tri('Turn on = включить.', 'Turn on = увімкнути.', 'Turn on = switch on.') },
+    { en: 'Please turn off the TV.', ru: 'Пожалуйста, выключи телевизор.', uk: 'Будь ласка, вимкни телевізор.', es: 'Please turn off the TV.', 'pt-BR': 'Por favor, desligue a TV.', vi: 'Làm ơn tắt TV.', id: 'Tolong matikan TV.', tr: 'Lütfen televizyonu kapat.', pl: 'Proszę, wyłącz telewizor.', why: tri('Turn off = выключить.', 'Turn off = вимкнути.', 'Turn off = switch off.') },
+    { en: 'I looked up the word.', ru: 'Я нашел слово в словаре.', uk: 'Я знайшов слово у словнику.', es: 'I looked up the word.', 'pt-BR': 'Consultei a palavra no dicionário.', vi: 'Tôi đã tra từ đó trong từ điển.', id: 'Saya mencari kata itu di kamus.', tr: 'Kelimeyi sözlükte aradım.', pl: 'Sprawdziłem słowo w słowniku.', why: tri('Look up = найти информацию.', 'Look up = знайти інформацію.', 'Look up = find information.') },
+    { en: 'I am looking for my keys.', ru: 'Я ищу ключи.', uk: 'Я шукаю ключі.', es: 'I am looking for my keys.', 'pt-BR': 'Estou procurando minhas chaves.', vi: 'Tôi đang tìm chìa khóa của mình.', id: 'Saya sedang mencari kunci saya.', tr: 'Anahtarlarımı arıyorum.', pl: 'Szukam swoich kluczy.', why: tri('Look for = искать.', 'Look for = шукати.', 'Look for = search.') },
+    { en: 'Can you pick me up at six?', ru: 'Можешь забрать меня в шесть?', uk: 'Можеш забрати мене о шостій?', es: 'Can you pick me up at six?', 'pt-BR': 'Você pode me buscar às seis?', vi: 'Bạn có thể đón tôi lúc sáu giờ không?', id: 'Bisakah kamu menjemput saya jam enam?', tr: 'Beni saat altıda alabilir misin?', pl: 'Możesz mnie odebrać o szóstej?', why: tri('Pick up здесь = забрать человека.', 'Pick up тут = забрати людину.', 'Pick up here = collect a person.') },
+    { en: 'Do not give up.', ru: 'Не сдавайся.', uk: 'Не здавайся.', es: 'Do not give up.', 'pt-BR': 'Não desista.', vi: 'Đừng bỏ cuộc.', id: 'Jangan menyerah.', tr: 'Vazgeçme.', pl: 'Nie poddawaj się.', why: tri('Give up = перестать пытаться.', 'Give up = перестати намагатися.', 'Give up = stop trying.') },
+    { en: 'We ran out of coffee.', ru: 'У нас закончился кофе.', uk: 'У нас закінчилася кава.', es: 'We ran out of coffee.', 'pt-BR': 'Ficamos sem café.', vi: 'Chúng ta hết cà phê rồi.', id: 'Kopi kita habis.', tr: 'Kahvemiz bitti.', pl: 'Skończyła nam się kawa.', why: tri('Run out of = запас закончился.', 'Run out of = запас закінчився.', 'Run out of = have none left.') },
+    { en: 'I found out the answer.', ru: 'Я узнал ответ.', uk: 'Я дізнався відповідь.', es: 'I found out the answer.', 'pt-BR': 'Descobri a resposta.', vi: 'Tôi đã tìm ra câu trả lời.', id: 'Saya mengetahui jawabannya.', tr: 'Cevabı öğrendim.', pl: 'Dowiedziałem się, jaka jest odpowiedź.', why: tri('Find out = узнать информацию.', 'Find out = дізнатися інформацію.', 'Find out = discover information.') },
   ],
   introBlocks: [
     {

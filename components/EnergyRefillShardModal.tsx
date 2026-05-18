@@ -24,6 +24,7 @@ import { oskolokImageForPackShards } from '../app/oskolok';
 import { emitAppEvent } from '../app/events';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { SHARD_MODAL_FRAME_COLORS } from '../constants/shard_modal_chrome';
+import { paywallGlassColor } from './paywallGlass';
 
 type Props = {
   visible: boolean;
@@ -40,6 +41,7 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
   const isUK = lang === 'uk';
   const isES = lang === 'es';
   const { theme: t, themeMode, f } = useTheme();
+  const shardModalCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
   const { energy, maxEnergy, isUnlimited, reload } = useEnergy();
   const [busy, setBusy] = useState(false);
 
@@ -127,7 +129,7 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
             end={{ x: 1, y: 1 }}
             style={styles.cardFrame}
           >
-            <View style={[styles.card, { backgroundColor: t.bgCard }]}>
+            <View style={[styles.card, { backgroundColor: shardModalCardBg }]}>
               <Text style={[styles.kicker, { color: t.gold }]}>
                 {isUK ? 'ЕНЕРГІЯ' : isES ? 'ENERGÍA' : 'ЭНЕРГИЯ'}
               </Text>
@@ -169,7 +171,7 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                   <Image source={oskolokImageForPackShards(cost)} style={{ width: 22, height: 22 }} resizeMode="contain" />
                   <Text style={[styles.btnPrimaryText, { fontSize: f.body, color: t.correctText }]}>
-                    {isUK ? 'Відновити' : isES ? 'Recuperar' : 'Восстановить'} · {cost} 💎
+                    {isUK ? 'Відновити' : isES ? 'Recuperar' : 'Восстановить'} · {cost}
                   </Text>
                 </View>
               </TouchableOpacity>

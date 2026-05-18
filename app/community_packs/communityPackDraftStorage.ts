@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COMMUNITY_PACK_CARD_COUNT_MAX, COMMUNITY_PACK_PRICE_SHARDS } from './schema';
 import { UGC_CARD_THEME_IDS } from './ugcCardThemePresets';
+import { UGC_CARD_BACK_IDS } from '../flashcards/cardBackCatalog';
 
 const STORAGE_KEY = 'community_pack_create_draft_v1';
 
@@ -13,6 +14,7 @@ export type CommunityPackCreateDraftV1 = {
   /** Всегда `COMMUNITY_PACK_PRICE_SHARDS`; поле сохраняется для совместимости черновиков. */
   priceShards: number;
   themeIdx: number;
+  cardBackIdx: number;
   rows: CommunityPackCreateDraftRow[];
   addCardFormOpen: boolean;
   draftEn: string;
@@ -39,12 +41,19 @@ function isRow(x: unknown): x is CommunityPackCreateDraftRow {
   );
 }
 
+function clampCardBackIdx(i: number): number {
+  const n = UGC_CARD_BACK_IDS.length;
+  if (n <= 0) return 0;
+  return ((Math.floor(i) % n) + n) % n;
+}
+
 export function communityPackCreateDraftIsMeaningful(d: CommunityPackCreateDraftV1): boolean {
   return (
     d.rows.length > 0 ||
     d.title.trim().length > 0 ||
     d.description.trim().length > 0 ||
     d.themeIdx !== 0 ||
+    d.cardBackIdx !== 0 ||
     d.addCardFormOpen ||
     d.draftEn.trim().length > 0 ||
     d.draftRu.trim().length > 0 ||
@@ -71,6 +80,7 @@ function parseDraft(raw: string | null): CommunityPackCreateDraftV1 | null {
       description: typeof o.description === 'string' ? o.description : '',
       priceShards: COMMUNITY_PACK_PRICE_SHARDS,
       themeIdx: clampThemeIdx(typeof o.themeIdx === 'number' ? o.themeIdx : 0),
+      cardBackIdx: clampCardBackIdx(typeof o.cardBackIdx === 'number' ? o.cardBackIdx : 0),
       rows,
       addCardFormOpen: o.addCardFormOpen === true,
       draftEn: typeof o.draftEn === 'string' ? o.draftEn : '',
@@ -104,6 +114,7 @@ export async function saveCommunityPackCreateDraft(d: Omit<CommunityPackCreateDr
     description: d.description,
     priceShards: COMMUNITY_PACK_PRICE_SHARDS,
     themeIdx: clampThemeIdx(d.themeIdx),
+    cardBackIdx: clampCardBackIdx(d.cardBackIdx),
     rows: d.rows.slice(0, COMMUNITY_PACK_CARD_COUNT_MAX).map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })),
     addCardFormOpen: d.addCardFormOpen,
     draftEn: d.draftEn,

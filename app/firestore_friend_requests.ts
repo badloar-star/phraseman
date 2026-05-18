@@ -1,6 +1,5 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { getAuthUserId } from './user_id_policy';
-import { ensureAnonUser } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -52,6 +51,17 @@ function logFriendsHealth(
     .catch(() => {});
 }
 
+async function ensureFriendsStableAuthLink(
+  action: string,
+  tags: Record<string, string | number | boolean | null | undefined> = {},
+): Promise<boolean> {
+  const ok = await ensureStableAuthLink();
+  if (!ok) {
+    logFriendsHealth('friends:auth_link_failed', new Error('stable auth link unavailable'), { action, ...tags });
+  }
+  return ok;
+}
+
 // ── sendFriendRequest ──────────────────────────────────────────────────────
 
 /**
@@ -86,24 +96,8 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
 
   try {
     // Auth must be linked before Firestore writes — security rules check firebaseAuthUid.
-    let firebaseAuthUid = getAuthUserId();
-    if (!firebaseAuthUid) {
-      for (let i = 0; i < 3; i++) {
-        await new Promise(r => setTimeout(r, 800));
-        firebaseAuthUid = getAuthUserId();
-        if (firebaseAuthUid) break;
-      }
-    }
-    if (!firebaseAuthUid) {
-      logFriendsHealth('friends:send_request_auth_uid_missing', new Error('Firebase auth uid unavailable after retry'), {
-        action: 'send_friend_request',
-        myUid,
-        targetUid: toUid,
-      });
-    }
-    if (firebaseAuthUid) {
-      await db.collection('users').doc(myUid).set({ firebaseAuthUid }, { merge: true });
-    }
+    const authLinked = await ensureFriendsStableAuthLink('send_friend_request', { myUid, targetUid: toUid });
+    if (!authLinked) return 'error';
     // Читаем friends и request параллельно — быстрее.
     const [friendsSnap, reqSnap] = await Promise.all([
       db.collection('users').doc(myUid).collection('friends').doc(toUid).get(),
@@ -192,15 +186,10 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
     throw err;
   }
 
-  const firebaseAuthUid = getAuthUserId();
-  if (!firebaseAuthUid) {
-    const err = new Error('acceptFriendRequest: Firebase auth uid unavailable');
-    logFriendsHealth('friends:accept_request_auth_uid_missing', err, { action: 'accept_friend_request', myUid, fromUid });
-    throw err;
+  const authLinked = await ensureFriendsStableAuthLink('accept_friend_request', { myUid, fromUid });
+  if (!authLinked) {
+    throw new Error('acceptFriendRequest: stable auth link unavailable');
   }
-
-  // Ensure firebaseAuthUid is written so canonicalUserMatchesAuth passes for the mirror write.
-  await db.collection('users').doc(myUid).set({ firebaseAuthUid }, { merge: true });
 
   // Batch: create both friend entries + delete the request doc.
   const batch = db.batch();
@@ -325,23 +314,7 @@ export async function deleteFriend(friendUid: string): Promise<void> {
 export async function ensureFriendRequestViewerAuthLink(): Promise<void> {
   const myUid = await ensureAnonUser();
   if (!myUid) return;
-  // Auth может ещё не быть готов — ретраим до 3 раз с интервалом 800мс.
-  let firebaseAuthUid = getAuthUserId();
-  if (!firebaseAuthUid) {
-    for (let i = 0; i < 3; i++) {
-      await new Promise(r => setTimeout(r, 800));
-      firebaseAuthUid = getAuthUserId();
-      if (firebaseAuthUid) break;
-    }
-  }
-  if (!firebaseAuthUid) return;
-  const db = getFirestore();
-  if (!db) return;
-  try {
-    await db.collection('users').doc(myUid).set({ firebaseAuthUid }, { merge: true });
-  } catch (e) {
-    logFriendsHealth('friends:auth_link_failed', e, { action: 'ensure_friend_auth_link' });
-  }
+  await ensureFriendsStableAuthLink('ensure_friend_auth_link', { myUid });
 }
 
 // ── subscribeToFriends ─────────────────────────────────────────────────────

@@ -51,7 +51,7 @@ import InGameToast from './InGameToast';
 import ThemedConfirmModal from './ThemedConfirmModal';
 import ProfileCardUpgradeModal from './ProfileCardUpgradeModal';
 import { fetchActiveLeagueCrowns } from '../app/services/league_chest_rewards';
-import { PREMIUM_AVATAR_AURA_ID } from '../constants/avatar_auras';
+import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import {
   getProfileCardLevelDef,
   getProfileCardSnapshot,
@@ -255,7 +255,8 @@ function PlayerProfileModalBody({
   const club = CLUBS[Math.max(0, Math.min(leagueIdx, CLUBS.length - 1))];
   const showPremium = isMe ? myIsPremium : (player.isPremium ?? false);
   const storedAuraId = isMe ? myInfo.aura : player.aura;
-  const effectiveAuraId = storedAuraId || (showPremium ? PREMIUM_AVATAR_AURA_ID : undefined);
+  const effectiveAuraId = getEffectiveAvatarAuraId(storedAuraId, showPremium);
+  const usesPremiumAura = effectiveAuraId === PREMIUM_AVATAR_AURA_ID;
   const cardDef = getProfileCardLevelDef(profileCardLevel);
   const cardVisual = getProfileCardVisual(profileCardSnapshot);
   const crownUid = player.friendUid || player.uid || '';
@@ -815,12 +816,12 @@ function PlayerProfileModalBody({
           <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
             <View style={{ width: 44 }} />
             <View style={{ flex: 1, alignItems: 'center', minWidth: 0 }}>
-              <PremiumAvatarHalo enabled={showPremium} avatarSize={76} maskColor={prestigeActive ? cardVisual.gradient[1] : t.bgCard}>
+              <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={76} maskColor={prestigeActive ? cardVisual.gradient[1] : t.bgCard}>
                 <AvatarView
                   avatar={avatarStr}
                   totalXP={safeTotalXp}
                   size={76}
-                  auraId={effectiveAuraId}
+                  auraId={usesPremiumAura ? undefined : effectiveAuraId}
                 />
               </PremiumAvatarHalo>
               {hasLeagueCrown && (

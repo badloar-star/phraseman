@@ -13,6 +13,15 @@ import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useModalBackdropFade } from '../hooks/useModalBackdropFade';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import {
+  RewardModalBackdrop,
+  rewardModalAccentColor,
+  rewardModalPanelBorder,
+  rewardModalPanelColors,
+  rewardModalPrimaryButtonColors,
+  rewardModalPrimaryButtonText,
+  rewardModalSoftSurface,
+} from './RewardModalBackdrop';
 
 export interface ShardReward {
   id: string;
@@ -137,7 +146,8 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
   const hasTypedRewards = typedRewardLabels.length > 0;
   const showShardBadge = totalShards > 0;
 
-  const ctaGold = [t.gold, '#E8C547', '#C9A227'] as const;
+  const modalAccent = rewardModalAccentColor(themeMode, t);
+  const ctaGold = rewardModalPrimaryButtonColors(themeMode);
 
   return (
     <Modal
@@ -148,6 +158,7 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
       onRequestClose={onClose}
     >
       <View style={styles.overlayRoot}>
+        <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
         <Animated.View
           pointerEvents="none"
           style={[StyleSheet.absoluteFill, { backgroundColor: dimColor, opacity: backdropOpacity }]}
@@ -170,12 +181,18 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
           ]}
         >
           <LinearGradient
-            colors={USE_ELITE_SHARD_REWARD_MODAL ? ['rgba(255,255,255,0.10)', t.gold, 'rgba(255,255,255,0.08)'] : [...SHARD_MODAL_FRAME_COLORS]}
+            colors={USE_ELITE_SHARD_REWARD_MODAL ? ['rgba(255,255,255,0.10)', modalAccent, 'rgba(255,255,255,0.08)'] : [...SHARD_MODAL_FRAME_COLORS]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0.5 }}
             style={[styles.sheetFrame, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteSheetFrame]}
           >
-            <View style={[styles.sheetInner, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteSheetInner, { backgroundColor: USE_ELITE_SHARD_REWARD_MODAL ? t.bgSurface : t.bgCard }]}>
+            <View style={[styles.sheetInner, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteSheetInner, { backgroundColor: 'transparent' }]}>
+              <LinearGradient
+                colors={rewardModalPanelColors(themeMode, t)}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
               <LinearGradient
                 colors={[...SHARD_MODAL_ACCENT_GLOW]}
                 start={{ x: 0.5, y: 0 }}
@@ -186,20 +203,20 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
                 <Animated.View
                   pointerEvents="none"
                   style={[
-                    styles.eliteTopLine,
-                    {
-                      backgroundColor: t.gold,
+                      styles.eliteTopLine,
+                      {
+                      backgroundColor: modalAccent,
                       opacity: topLineGlow.interpolate({ inputRange: [0, 1], outputRange: [0.16, 0.46] }),
                     },
                   ]}
                 />
               )}
               <View>
-                <Text style={[styles.kicker, { color: t.gold }]}>{tx.kicker}</Text>
+                <Text style={[styles.kicker, { color: modalAccent }]}>{tx.kicker}</Text>
 
                 <View style={styles.gemWrap}>
                   <Animated.View style={{ transform: [{ scale: gemAnim }] }}>
-                    <View style={[styles.gemRing, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteGemRing, { borderColor: t.gold + (USE_ELITE_SHARD_REWARD_MODAL ? '44' : '66'), backgroundColor: USE_ELITE_SHARD_REWARD_MODAL ? 'rgba(255,255,255,0.045)' : t.goldBg }]}>
+                    <View style={[styles.gemRing, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteGemRing, { borderColor: modalAccent + (USE_ELITE_SHARD_REWARD_MODAL ? '44' : '66'), backgroundColor: rewardModalSoftSurface(themeMode, t) }]}>
                       <Image
                         source={oskolokImageForPackShards(Math.max(1, totalShards))}
                         style={styles.gemIcon}
@@ -209,12 +226,12 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
                   </Animated.View>
                   {showShardBadge && (
                     <LinearGradient
-                      colors={USE_ELITE_SHARD_REWARD_MODAL ? [t.gold, '#C9A227'] : ['#16A34A', '#059669']}
+                      colors={USE_ELITE_SHARD_REWARD_MODAL ? ctaGold : ['#16A34A', '#059669']}
                       start={{ x: 0, y: 0 }}
                       end={{ x: 1, y: 1 }}
                       style={styles.badge}
                     >
-                      <Text style={[styles.badgeText, USE_ELITE_SHARD_REWARD_MODAL && { color: t.textOnGold }]}>+{totalShards}</Text>
+                      <Text style={[styles.badgeText, USE_ELITE_SHARD_REWARD_MODAL && { color: rewardModalPrimaryButtonText(themeMode) }]}>+{totalShards}</Text>
                     </LinearGradient>
                   )}
                 </View>
@@ -232,7 +249,7 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
                     {typedRewardLabels.map((lbl, i) => (
                       <Text
                         key={`tr-${i}`}
-                        style={[styles.typedLbl, { color: t.gold, fontSize: f.bodyLg }]}
+                        style={[styles.typedLbl, { color: modalAccent, fontSize: f.bodyLg }]}
                       >
                         {lbl}
                       </Text>
@@ -245,8 +262,8 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
                 </Text>
 
                 {(isAdminGrant && !firstDataText) ? null : (
-                  <View style={[styles.detailBox, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteDetailBox, { backgroundColor: USE_ELITE_SHARD_REWARD_MODAL ? 'rgba(255,255,255,0.045)' : t.bgSurface, borderColor: USE_ELITE_SHARD_REWARD_MODAL ? 'rgba(255,255,255,0.12)' : t.gold + '2A' }]}>
-                    <Text style={[styles.detailLabel, { color: t.gold, fontSize: f.label }]}>
+                  <View style={[styles.detailBox, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteDetailBox, { backgroundColor: rewardModalSoftSurface(themeMode, t), borderColor: rewardModalPanelBorder(themeMode, t) }]}>
+                    <Text style={[styles.detailLabel, { color: modalAccent, fontSize: f.label }]}>
                       {multipleReports
                         ? (isAdminGrant ? tx.multipleAdmin(rewards.length) : isSuggestion ? tx.multipleSuggestion(rewards.length) : tx.multiple(rewards.length))
                         : (isAdminGrant ? tx.labelAdmin : isSuggestion ? tx.labelSuggestion : tx.label)}
@@ -271,7 +288,7 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
                     end={{ x: 1, y: 1 }}
                     style={styles.btnGradient}
                   >
-                    <Text style={[styles.btnText, { fontSize: f.bodyLg, color: t.textOnGold }]}>{tx.btn}</Text>
+                    <Text style={[styles.btnText, { fontSize: f.bodyLg, color: rewardModalPrimaryButtonText(themeMode) }]}>{tx.btn}</Text>
                   </LinearGradient>
                 </TouchableOpacity>
               </View>

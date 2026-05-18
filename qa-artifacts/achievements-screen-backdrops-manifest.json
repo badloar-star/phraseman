@@ -1,0 +1,50 @@
+[
+  {
+    "theme": "dark",
+    "output": "assets/images/screen_backdrops/achievements/achievements-dark.webp",
+    "source": "C:/Users/badlo/.codex/generated_images/019e3a72-eeed-75d3-887a-8c87c6af7f46/ig_0d1fbe7739e86918016a0aeb69b1808191b267b9abeff65bac.png",
+    "width": 1080,
+    "height": 1920,
+    "bytes": 396382
+  },
+  {
+    "theme": "neon",
+    "output": "assets/images/screen_backdrops/achievements/achievements-neon.webp",
+    "source": "C:/Users/badlo/.codex/generated_images/019e3a72-eeed-75d3-887a-8c87c6af7f46/ig_0d1fbe7739e86918016a0aee35297c81919929f99f0a28b4b3.png",
+    "width": 1080,
+    "height": 1920,
+    "bytes": 513376
+  },
+  {
+    "theme": "gold",
+    "output": "assets/images/screen_backdrops/achievements/achievements-gold.webp",
+    "source": "C:/Users/badlo/.codex/generated_images/019e3a72-eeed-75d3-887a-8c87c6af7f46/ig_0d1fbe7739e86918016a0aee8fa0388191b10aaaf33990fd7f.png",
+    "width": 1080,
+    "height": 1920,
+    "bytes": 595462
+  },
+  {
+    "theme": "coral",
+    "output": "assets/images/screen_backdrops/achievements/achievements-coral.webp",
+    "source": "C:/Users/badlo/.codex/generated_images/019e3a72-eeed-75d3-887a-8c87c6af7f46/ig_0d1fbe7739e86918016a0aeed73d008191bec3a85ef3f159d1.png",
+    "width": 1080,
+    "height": 1920,
+    "bytes": 504968
+  },
+  {
+    "theme": "minimalLight",
+    "output": "assets/images/screen_backdrops/achievements/achievements-minimal-light.webp",
+    "source": "C:/Users/badlo/.codex/generated_images/019e3a72-eeed-75d3-887a-8c87c6af7f46/ig_0d1fbe7739e86918016a0aef232b74819183a9cbcb5a16c42c.png",
+    "width": 1080,
+    "height": 1920,
+    "bytes": 407560
+  },
+  {
+    "theme": "minimalDark",
+    "output": "assets/images/screen_backdrops/achievements/achievements-minimal-dark.webp",
+    "source": "C:/Users/badlo/.codex/generated_images/019e3a72-eeed-75d3-887a-8c87c6af7f46/ig_0d1fbe7739e86918016a0aef7885b481918e06e94ff3cd9c77.png",
+    "width": 1080,
+    "height": 1920,
+    "bytes": 238818
+  }
+]

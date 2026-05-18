@@ -2,7 +2,23 @@
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = 'This training is available for this interface language.'): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk = ru,
+  es = 'This training is available for this interface language.',
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const CONTRAST_SET = [
   'can',
@@ -152,16 +168,61 @@ export const MODAL_FORCE_TRAINING: DiagnosisTraining = {
       "Don't have to means not required.",
       'May and might often mean possibility.',
     ],
+    'pt-BR': [
+      'Can muitas vezes significa permitido ou capaz.',
+      'Could pode ser um pedido educado ou habilidade no passado.',
+      'Should soa como conselho.',
+      'Must e have to soam como obrigação.',
+      "Mustn't significa proibido.",
+      "Don't have to significa que não é obrigatório.",
+      'May e might muitas vezes indicam possibilidade.',
+    ],
+    vi: [
+      'Can thường nghĩa là được phép hoặc có khả năng.',
+      'Could có thể là lời yêu cầu lịch sự hoặc khả năng trong quá khứ.',
+      'Should nghe như lời khuyên.',
+      'Must và have to nghe như yêu cầu bắt buộc.',
+      "Mustn't nghĩa là bị cấm.",
+      "Don't have to nghĩa là không bắt buộc.",
+      'May và might thường nói về khả năng có thể xảy ra.',
+    ],
+    id: [
+      'Can sering berarti boleh atau mampu.',
+      'Could bisa menjadi permintaan sopan atau kemampuan masa lalu.',
+      'Should terdengar seperti saran.',
+      'Must dan have to terdengar seperti kewajiban.',
+      "Mustn't berarti dilarang.",
+      "Don't have to berarti tidak wajib.",
+      'May dan might sering berarti kemungkinan.',
+    ],
+    tr: [
+      'Can çoğu zaman izinli olmak veya yapabilmek demektir.',
+      'Could kibar rica veya geçmişteki beceri olabilir.',
+      'Should tavsiye gibi duyulur.',
+      'Must ve have to zorunluluk gibi duyulur.',
+      "Mustn't yasak demektir.",
+      "Don't have to zorunlu değil demektir.",
+      'May ve might çoğu zaman olasılık anlatır.',
+    ],
+    pl: [
+      'Can często znaczy, że coś jest dozwolone albo możliwe.',
+      'Could może być uprzejmą prośbą albo umiejętnością z przeszłości.',
+      'Should brzmi jak rada.',
+      'Must i have to brzmią jak obowiązek.',
+      "Mustn't znaczy zakazane.",
+      "Don't have to znaczy, że coś nie jest obowiązkowe.",
+      'May i might często oznaczają możliwość.',
+    ],
   },
   examples: [
-    { en: 'You can sit here.', ru: 'You can sit here.', uk: 'You can sit here.', es: 'You can sit here.', why: tri('Can дает разрешение.', 'Can дає дозвіл.', 'Can gives permission.') },
-    { en: 'Could you help me?', ru: 'Could you help me?', uk: 'Could you help me?', es: 'Could you help me?', why: tri('Could делает просьбу мягче.', 'Could робить прохання мʼякшим.', 'Could makes the request softer.') },
-    { en: 'You should rest.', ru: 'You should rest.', uk: 'You should rest.', es: 'You should rest.', why: tri('Should звучит как совет.', 'Should звучить як порада.', 'Should sounds like advice.') },
-    { en: 'You must wear a helmet.', ru: 'You must wear a helmet.', uk: 'You must wear a helmet.', es: 'You must wear a helmet.', why: tri('Must звучит как строгое правило.', 'Must звучить як суворе правило.', 'Must sounds like a strong rule.') },
-    { en: 'You must not smoke here.', ru: 'You must not smoke here.', uk: 'You must not smoke here.', es: 'You must not smoke here.', why: tri('Must not значит запрещено.', 'Must not означає заборонено.', 'Must not means forbidden.') },
-    { en: "You don't have to come early.", ru: "You don't have to come early.", uk: "You don't have to come early.", es: "You don't have to come early.", why: tri('Do not have to значит не обязательно.', 'Do not have to означає не обовʼязково.', 'Do not have to means not required.') },
-    { en: 'She might be at home.', ru: 'She might be at home.', uk: 'She might be at home.', es: 'She might be at home.', why: tri('Might дает неполную уверенность.', 'Might дає неповну впевненість.', 'Might gives uncertainty.') },
-    { en: 'When I was five, I could swim.', ru: 'When I was five, I could swim.', uk: 'When I was five, I could swim.', es: 'When I was five, I could swim.', why: tri('Could здесь про то, что умел раньше.', 'Could тут про те, що вмів раніше.', 'Could here means was able before.') },
+    { en: 'You can sit here.', ru: 'Ты можешь сесть здесь.', uk: 'Ти можеш сісти тут.', es: 'Puedes sentarte aquí.', 'pt-BR': 'Você pode sentar aqui.', vi: 'Bạn có thể ngồi ở đây.', id: 'Kamu boleh duduk di sini.', tr: 'Buraya oturabilirsin.', pl: 'Możesz tu usiąść.', why: tri('Can дает разрешение.', 'Can дає дозвіл.', 'Can gives permission.') },
+    { en: 'Could you help me?', ru: 'Не могли бы вы мне помочь?', uk: 'Не могли б ви мені допомогти?', es: '¿Podría ayudarme?', 'pt-BR': 'Você poderia me ajudar?', vi: 'Bạn có thể giúp tôi được không?', id: 'Bisakah Anda membantu saya?', tr: 'Bana yardım edebilir misiniz?', pl: 'Czy mógłbyś mi pomóc?', why: tri('Could делает просьбу мягче.', 'Could робить прохання мʼякшим.', 'Could makes the request softer.') },
+    { en: 'You should rest.', ru: 'Тебе стоит отдохнуть.', uk: 'Тобі варто відпочити.', es: 'Deberías descansar.', 'pt-BR': 'Você deveria descansar.', vi: 'Bạn nên nghỉ ngơi.', id: 'Kamu sebaiknya beristirahat.', tr: 'Dinlenmelisin.', pl: 'Powinieneś odpocząć.', why: tri('Should звучит как совет.', 'Should звучить як порада.', 'Should sounds like advice.') },
+    { en: 'You must wear a helmet.', ru: 'Ты должен надеть шлем.', uk: 'Ти повинен одягнути шолом.', es: 'Debes usar casco.', 'pt-BR': 'Você deve usar capacete.', vi: 'Bạn phải đội mũ bảo hiểm.', id: 'Kamu harus memakai helm.', tr: 'Kask takmalısın.', pl: 'Musisz nosić kask.', why: tri('Must звучит как строгое правило.', 'Must звучить як суворе правило.', 'Must sounds like a strong rule.') },
+    { en: 'You must not smoke here.', ru: 'Здесь нельзя курить.', uk: 'Тут не можна курити.', es: 'No debes fumar aquí.', 'pt-BR': 'Você não deve fumar aqui.', vi: 'Bạn không được hút thuốc ở đây.', id: 'Kamu tidak boleh merokok di sini.', tr: 'Burada sigara içmemelisin.', pl: 'Nie wolno ci tu palić.', why: tri('Must not значит запрещено.', 'Must not означає заборонено.', 'Must not means forbidden.') },
+    { en: "You don't have to come early.", ru: 'Тебе не обязательно приходить рано.', uk: 'Тобі не обовʼязково приходити рано.', es: 'No tienes que venir temprano.', 'pt-BR': 'Você não precisa chegar cedo.', vi: 'Bạn không cần đến sớm.', id: 'Kamu tidak harus datang lebih awal.', tr: 'Erken gelmek zorunda değilsin.', pl: 'Nie musisz przychodzić wcześnie.', why: tri('Do not have to значит не обязательно.', 'Do not have to означає не обовʼязково.', 'Do not have to means not required.') },
+    { en: 'She might be at home.', ru: 'Возможно, она дома.', uk: 'Можливо, вона вдома.', es: 'Puede que ella esté en casa.', 'pt-BR': 'Ela talvez esteja em casa.', vi: 'Có lẽ cô ấy đang ở nhà.', id: 'Dia mungkin ada di rumah.', tr: 'Evde olabilir.', pl: 'Ona może być w domu.', why: tri('Might дает неполную уверенность.', 'Might дає неповну впевненість.', 'Might gives uncertainty.') },
+    { en: 'When I was five, I could swim.', ru: 'Когда мне было пять, я умел плавать.', uk: 'Коли мені було пʼять, я вмів плавати.', es: 'Cuando tenía cinco años, sabía nadar.', 'pt-BR': 'Quando eu tinha cinco anos, eu sabia nadar.', vi: 'Khi tôi năm tuổi, tôi biết bơi.', id: 'Saat saya berumur lima tahun, saya bisa berenang.', tr: 'Beş yaşındayken yüzebiliyordum.', pl: 'Kiedy miałem pięć lat, umiałem pływać.', why: tri('Could здесь про то, что умел раньше.', 'Could тут про те, що вмів раніше.', 'Could here means was able before.') },
   ],
   introBlocks: [
     { id: 'intro_problem', type: 'diagnosis', text: tri('Слова похожи, но сила разная. You should rest не равно You must rest.', 'Слова схожі, але сила різна. You should rest не дорівнює You must rest.', 'The words are similar, but the force is different. You should rest is not You must rest.') },

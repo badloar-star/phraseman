@@ -7,6 +7,11 @@ import { hapticError, hapticSoftImpact, hapticSuccess } from '../hooks/use-hapti
 import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
 import { useOverlayVisible } from './OverlayArbiter';
+import {
+  cancelScheduledAnimatedStateUpdates,
+  scheduleTrackedAnimatedStateUpdate,
+  type ScheduledAnimatedStateUpdate,
+} from './animationScheduling';
 
 type ToastPayload = {
   type: 'success' | 'error' | 'info';
@@ -43,6 +48,7 @@ export default function ActionToast() {
   const queueRef = useRef<ToastPayload[]>([]);
   const pendingStartRef = useRef<ToastPayload | null>(null);
   const busyRef = useRef(false);
+  const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
   /** Ключ текущего показа — глушим повторы того же текста, пока он на экране или уже в очереди. */
   const showingKeyRef = useRef<string | null>(null);
   const lastDismissedKeyRef = useRef<string | null>(null);
@@ -62,6 +68,7 @@ export default function ActionToast() {
   };
 
   const startCycle = useCallback((payload: ToastPayload) => {
+    cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
     if (timer.current) clearTimeout(timer.current);
     if (rafIn.current != null) cancelAnimationFrame(rafIn.current);
     if (rafOut.current != null) cancelAnimationFrame(rafOut.current);
@@ -89,29 +96,31 @@ export default function ActionToast() {
         Animated.timing(y, { toValue: 120, duration: MOTION_DURATION.normal, useNativeDriver: true }),
         Animated.timing(opacity, { toValue: 0, duration: MOTION_DURATION.fast, useNativeDriver: true }),
       ]).start(() => {
-        setToast(null);
-        const dismissedKey = showingKeyRef.current;
-        const next = queueRef.current.shift();
+        scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
+          setToast(null);
+          const dismissedKey = showingKeyRef.current;
+          const next = queueRef.current.shift();
 
-        if (dismissedKey) {
-          lastDismissedKeyRef.current = dismissedKey;
-          lastDismissedAtRef.current = Date.now();
-          queueRef.current = queueRef.current.filter((p) => toastKey(p) !== dismissedKey);
-        }
+          if (dismissedKey) {
+            lastDismissedKeyRef.current = dismissedKey;
+            lastDismissedAtRef.current = Date.now();
+            queueRef.current = queueRef.current.filter((p) => toastKey(p) !== dismissedKey);
+          }
 
-        if (next) {
-          showingKeyRef.current = toastKey(next);
-          /** Следующий маунт тоже на новом кадре — иначе пара unmount→mount
-           *  в одном кадре снова ловит Fabric race. */
-          rafOut.current = requestAnimationFrame(() => {
-            rafOut.current = null;
-            startCycle(next);
-          });
-        } else {
-          busyRef.current = false;
-          showingKeyRef.current = null;
-          setOverlayWanted(false);
-        }
+          if (next) {
+            showingKeyRef.current = toastKey(next);
+            /** Следующий маунт тоже на новом кадре — иначе пара unmount→mount
+             *  в одном кадре снова ловит Fabric race. */
+            rafOut.current = requestAnimationFrame(() => {
+              rafOut.current = null;
+              startCycle(next);
+            });
+          } else {
+            busyRef.current = false;
+            showingKeyRef.current = null;
+            setOverlayWanted(false);
+          }
+        });
       });
     }, AUTO_DISMISS_MS);
   }, [opacity, y]);
@@ -154,6 +163,7 @@ export default function ActionToast() {
       if (timer.current) clearTimeout(timer.current);
       if (rafIn.current != null) cancelAnimationFrame(rafIn.current);
       if (rafOut.current != null) cancelAnimationFrame(rafOut.current);
+      cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
     };
   }, [enqueue]);
 

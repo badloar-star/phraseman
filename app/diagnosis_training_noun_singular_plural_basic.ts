@@ -2,7 +2,23 @@
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const CONTRAST_SET = ['singular noun', 'plural noun', '-s plural', '-es plural', '-ies plural', 'irregular plural', 'uncountable noun'];
 
@@ -150,16 +166,71 @@ export const NOUN_SINGULAR_PLURAL_BASIC_TRAINING: DiagnosisTraining = {
       'Child cambia a children, person muchas veces cambia a people.',
       'Information normalmente no recibe -s.',
     ],
+    'pt-BR': [
+      'A/an normalmente indica uma coisa: a book.',
+      'Two, many, few normalmente indicam várias: two books, many questions.',
+      'This indica uma coisa: this lesson.',
+      'These/those indicam várias: these lessons.',
+      'Muitas vezes só acrescentamos -s: book -> books.',
+      'Depois de -x, -ch, -sh, muitas vezes acrescentamos -es: box -> boxes, watch -> watches.',
+      'Story vira stories.',
+      'Child vira children, person muitas vezes vira people.',
+      'Information normalmente não recebe -s.',
+    ],
+    vi: [
+      'A/an thường nói về một thứ: a book.',
+      'Two, many, few thường nói về nhiều thứ: two books, many questions.',
+      'This nói về một thứ: this lesson.',
+      'These/those nói về nhiều thứ: these lessons.',
+      'Thường chỉ thêm -s: book -> books.',
+      'Sau -x, -ch, -sh thường thêm -es: box -> boxes, watch -> watches.',
+      'Story đổi thành stories.',
+      'Child đổi thành children, person thường đổi thành people.',
+      'Information thường không nhận -s.',
+    ],
+    id: [
+      'A/an biasanya menunjukkan satu benda: a book.',
+      'Two, many, few biasanya menunjukkan beberapa benda: two books, many questions.',
+      'This menunjukkan satu benda: this lesson.',
+      'These/those menunjukkan beberapa benda: these lessons.',
+      'Seringnya cukup tambahkan -s: book -> books.',
+      'Setelah -x, -ch, -sh sering tambahkan -es: box -> boxes, watch -> watches.',
+      'Story berubah menjadi stories.',
+      'Child berubah menjadi children, person sering berubah menjadi people.',
+      'Information biasanya tidak mendapat -s.',
+    ],
+    tr: [
+      'A/an genellikle tek bir şeyi gösterir: a book.',
+      'Two, many, few genellikle birden fazla şeyi gösterir: two books, many questions.',
+      'This tek bir şeyi gösterir: this lesson.',
+      'These/those birden fazla şeyi gösterir: these lessons.',
+      'Çoğu zaman sadece -s ekleriz: book -> books.',
+      '-x, -ch, -sh sonrasında çoğu zaman -es ekleriz: box -> boxes, watch -> watches.',
+      'Story, stories olur.',
+      'Child, children olur; person çoğu zaman people olur.',
+      'Information genellikle -s almaz.',
+    ],
+    pl: [
+      'A/an zwykle mówi o jednej rzeczy: a book.',
+      'Two, many, few zwykle mówią o kilku rzeczach: two books, many questions.',
+      'This mówi o jednej rzeczy: this lesson.',
+      'These/those mówią o kilku rzeczach: these lessons.',
+      'Często po prostu dodajemy -s: book -> books.',
+      'Po -x, -ch, -sh często dodajemy -es: box -> boxes, watch -> watches.',
+      'Story zmienia się w stories.',
+      'Child zmienia się w children, person często w people.',
+      'Information zwykle nie dostaje -s.',
+    ],
   },
   examples: [
-    { en: 'I have a book.', ru: 'У меня есть книга.', uk: 'У мене є книжка.', es: 'Tengo un libro.', why: tri('A подсказывает: одна книга, a book.', 'A підказує: одна книжка, a book.', 'A indica una cosa: a book.') },
-    { en: 'I have two books.', ru: 'У меня две книги.', uk: 'У мене дві книжки.', es: 'Tengo dos libros.', why: tri('Two подсказывает: книг несколько, books.', 'Two підказує: книжок кілька, books.', 'Two indica varias: books.') },
-    { en: 'This lesson is useful.', ru: 'Этот урок полезный.', uk: 'Цей урок корисний.', es: 'Esta lección es útil.', why: tri('This идет с одной вещью: this lesson.', 'This іде з однією річчю: this lesson.', 'This va con una cosa: this lesson.') },
-    { en: 'These lessons are useful.', ru: 'Эти уроки полезные.', uk: 'Ці уроки корисні.', es: 'Estas lecciones son útiles.', why: tri('These идет с несколькими: these lessons.', 'These іде з кількома: these lessons.', 'These va con varias: these lessons.') },
-    { en: 'There are three boxes on the table.', ru: 'На столе три коробки.', uk: 'На столі три коробки.', es: 'Hay tres cajas en la mesa.', why: tri('Box после -x получает -es: boxes.', 'Box після -x отримує -es: boxes.', 'Box después de -x recibe -es: boxes.') },
-    { en: 'She told me two stories.', ru: 'Она рассказала мне две истории.', uk: 'Вона розповіла мені дві історії.', es: 'Me contó dos historias.', why: tri('Story превращается в stories.', 'Story стає stories.', 'Story cambia a stories.') },
-    { en: 'There are many children in the park.', ru: 'В парке много детей.', uk: 'У парку багато дітей.', es: 'Hay muchos niños en el parque.', why: tri('Child не превращается в childs. Нормально: children.', 'Child не стає childs. Нормально: children.', 'Child no cambia a childs. Natural: children.') },
-    { en: 'I need more information.', ru: 'Мне нужно больше информации.', uk: 'Мені потрібно більше інформації.', es: 'Necesito más información.', why: tri('Information остается без -s.', 'Information залишається без -s.', 'Information se queda sin -s.') },
+    { en: 'I have a book.', ru: 'У меня есть книга.', uk: 'У мене є книжка.', es: 'Tengo un libro.', 'pt-BR': 'Tenho um livro.', vi: 'Tôi có một quyển sách.', id: 'Saya punya sebuah buku.', tr: 'Bir kitabım var.', pl: 'Mam książkę.', why: tri('A подсказывает: одна книга, a book.', 'A підказує: одна книжка, a book.', 'A indica una cosa: a book.') },
+    { en: 'I have two books.', ru: 'У меня две книги.', uk: 'У мене дві книжки.', es: 'Tengo dos libros.', 'pt-BR': 'Tenho dois livros.', vi: 'Tôi có hai quyển sách.', id: 'Saya punya dua buku.', tr: 'İki kitabım var.', pl: 'Mam dwie książki.', why: tri('Two подсказывает: книг несколько, books.', 'Two підказує: книжок кілька, books.', 'Two indica varias: books.') },
+    { en: 'This lesson is useful.', ru: 'Этот урок полезный.', uk: 'Цей урок корисний.', es: 'Esta lección es útil.', 'pt-BR': 'Esta lição é útil.', vi: 'Bài học này hữu ích.', id: 'Pelajaran ini berguna.', tr: 'Bu ders faydalı.', pl: 'Ta lekcja jest przydatna.', why: tri('This идет с одной вещью: this lesson.', 'This іде з однією річчю: this lesson.', 'This va con una cosa: this lesson.') },
+    { en: 'These lessons are useful.', ru: 'Эти уроки полезные.', uk: 'Ці уроки корисні.', es: 'Estas lecciones son útiles.', 'pt-BR': 'Estas lições são úteis.', vi: 'Những bài học này hữu ích.', id: 'Pelajaran-pelajaran ini berguna.', tr: 'Bu dersler faydalı.', pl: 'Te lekcje są przydatne.', why: tri('These идет с несколькими: these lessons.', 'These іде з кількома: these lessons.', 'These va con varias: these lessons.') },
+    { en: 'There are three boxes on the table.', ru: 'На столе три коробки.', uk: 'На столі три коробки.', es: 'Hay tres cajas en la mesa.', 'pt-BR': 'Há três caixas na mesa.', vi: 'Có ba cái hộp trên bàn.', id: 'Ada tiga kotak di atas meja.', tr: 'Masanın üzerinde üç kutu var.', pl: 'Na stole są trzy pudełka.', why: tri('Box после -x получает -es: boxes.', 'Box після -x отримує -es: boxes.', 'Box después de -x recibe -es: boxes.') },
+    { en: 'She told me two stories.', ru: 'Она рассказала мне две истории.', uk: 'Вона розповіла мені дві історії.', es: 'Me contó dos historias.', 'pt-BR': 'Ela me contou duas histórias.', vi: 'Cô ấy kể cho tôi hai câu chuyện.', id: 'Dia menceritakan dua cerita kepada saya.', tr: 'Bana iki hikaye anlattı.', pl: 'Opowiedziała mi dwie historie.', why: tri('Story превращается в stories.', 'Story стає stories.', 'Story cambia a stories.') },
+    { en: 'There are many children in the park.', ru: 'В парке много детей.', uk: 'У парку багато дітей.', es: 'Hay muchos niños en el parque.', 'pt-BR': 'Há muitas crianças no parque.', vi: 'Có nhiều trẻ em trong công viên.', id: 'Ada banyak anak di taman.', tr: 'Parkta birçok çocuk var.', pl: 'W parku jest dużo dzieci.', why: tri('Child не превращается в childs. Нормально: children.', 'Child не стає childs. Нормально: children.', 'Child no cambia a childs. Natural: children.') },
+    { en: 'I need more information.', ru: 'Мне нужно больше информации.', uk: 'Мені потрібно більше інформації.', es: 'Necesito más información.', 'pt-BR': 'Preciso de mais informação.', vi: 'Tôi cần thêm thông tin.', id: 'Saya butuh lebih banyak informasi.', tr: 'Daha fazla bilgiye ihtiyacım var.', pl: 'Potrzebuję więcej informacji.', why: tri('Information остается без -s.', 'Information залишається без -s.', 'Information se queda sin -s.') },
   ],
   introBlocks: [
     { id: 'intro_problem', type: 'diagnosis', text: tri('В русском такая ошибка может проскочить незаметно. В английском book и books - это две разные команды.', 'В українській така помилка може проскочити непомітно. В англійській book і books - це дві різні команди.', 'En inglés book y books son dos señales distintas.') },

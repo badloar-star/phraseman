@@ -3,7 +3,23 @@
 
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const CONTRAST = ['adjective', 'adverb', 'good/well', '-ly adverbs', 'linking verbs'];
 
@@ -136,6 +152,41 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       'After is/seems/sounds/feels, we often describe a state: It sounds strange.',
       'Look can describe a state, but looked at me describes an action.',
     ],
+    'pt-BR': [
+      'Antes de teacher, answer ou driver, use a forma simples: good teacher, quick answer, careful driver.',
+      'Para dizer como a ação acontece, use well, quickly ou carefully.',
+      'Good não vira goodly. Para ações, quase sempre use well.',
+      'Depois de is, seems, sounds ou feels, muitas vezes descrevemos um estado: It sounds strange.',
+      'Look pode descrever um estado: You look tired. Mas looked at me descreve uma ação: looked at me strangely.',
+    ],
+    vi: [
+      'Trước teacher, answer hoặc driver, dùng dạng đơn giản: good teacher, quick answer, careful driver.',
+      'Khi nói hành động diễn ra như thế nào, dùng well, quickly hoặc carefully.',
+      'Good không đổi thành goodly. Với hành động, gần như luôn dùng well.',
+      'Sau is, seems, sounds, feels, ta thường mô tả trạng thái: It sounds strange.',
+      'Look có thể mô tả trạng thái: You look tired. Nhưng looked at me mô tả hành động: looked at me strangely.',
+    ],
+    id: [
+      'Sebelum teacher, answer, atau driver, pakai bentuk biasa: good teacher, quick answer, careful driver.',
+      'Untuk cara sebuah aksi terjadi, pakai well, quickly, atau carefully.',
+      'Good tidak menjadi goodly. Untuk aksi, hampir selalu pakai well.',
+      'Setelah is, seems, sounds, feels, kita sering menjelaskan keadaan: It sounds strange.',
+      'Look bisa menjelaskan keadaan: You look tired. Tetapi looked at me menjelaskan aksi: looked at me strangely.',
+    ],
+    tr: [
+      'Teacher, answer veya driver öncesinde yalın biçimi kullan: good teacher, quick answer, careful driver.',
+      'Bir eylemin nasıl yapıldığını anlatmak için well, quickly veya carefully kullan.',
+      'Good, goodly olmaz. Eylemler için neredeyse her zaman well gerekir.',
+      'is, seems, sounds, feels sonrası çoğu zaman durumu anlatırız: It sounds strange.',
+      'Look bir durumu anlatabilir: You look tired. Ama looked at me eylemi anlatır: looked at me strangely.',
+    ],
+    pl: [
+      'Przed teacher, answer albo driver użyj zwykłej formy: good teacher, quick answer, careful driver.',
+      'Gdy mówisz, jak dzieje się czynność, użyj well, quickly albo carefully.',
+      'Good nie zmienia się w goodly. Dla czynności prawie zawsze używamy well.',
+      'Po is, seems, sounds, feels często opisujemy stan: It sounds strange.',
+      'Look może opisywać stan: You look tired. Ale looked at me opisuje czynność: looked at me strangely.',
+    ],
   },
   examples: [
     {
@@ -143,6 +194,11 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       ru: 'Она хороший учитель.',
       uk: 'Вона хороша вчителька.',
       es: 'Ella es una buena profesora.',
+            'pt-BR': 'Ela é uma boa professora.',
+      vi: 'Cô ấy là một giáo viên giỏi.',
+      id: 'Dia adalah guru yang baik.',
+      tr: 'O iyi bir öğretmen.',
+      pl: 'Ona jest dobrą nauczycielką.',
       why: tri('Good стоит рядом с teacher: описываем человека.', 'Good стоїть поруч із teacher: описуємо людину.', 'Good describes teacher.'),
     },
     {
@@ -150,6 +206,11 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       ru: 'Она хорошо преподает.',
       uk: 'Вона добре викладає.',
       es: 'Ella enseña bien.',
+            'pt-BR': 'Ela ensina bem.',
+      vi: 'Cô ấy dạy tốt.',
+      id: 'Dia mengajar dengan baik.',
+      tr: 'O iyi öğretir.',
+      pl: 'Ona dobrze uczy.',
       why: tri('Well говорит, как она teaches.', 'Well каже, як вона teaches.', 'Well describes how she teaches.'),
     },
     {
@@ -157,6 +218,11 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       ru: 'Он дал быстрый ответ.',
       uk: 'Він дав швидку відповідь.',
       es: 'Dio una respuesta rápida.',
+            'pt-BR': 'Ele deu uma resposta rápida.',
+      vi: 'Anh ấy đưa ra một câu trả lời nhanh.',
+      id: 'Dia memberikan jawaban yang cepat.',
+      tr: 'O hızlı bir cevap verdi.',
+      pl: 'On dał szybką odpowiedź.',
       why: tri('Quick стоит рядом с answer: описываем вещь.', 'Quick стоїть поруч із answer: описуємо річ.', 'Quick describes answer.'),
     },
     {
@@ -164,6 +230,11 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       ru: 'Он ответил быстро.',
       uk: 'Він відповів швидко.',
       es: 'Respondió rápidamente.',
+            'pt-BR': 'Ele respondeu rapidamente.',
+      vi: 'Anh ấy trả lời nhanh chóng.',
+      id: 'Dia menjawab dengan cepat.',
+      tr: 'O hızlıca cevap verdi.',
+      pl: 'On szybko odpowiedział.',
       why: tri('Quickly говорит, как он answered.', 'Quickly каже, як він answered.', 'Quickly describes how he answered.'),
     },
     {
@@ -171,6 +242,11 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       ru: 'Будь осторожен.',
       uk: 'Будь обережним.',
       es: 'Ten cuidado.',
+            'pt-BR': 'Tenha cuidado.',
+      vi: 'Hãy cẩn thận.',
+      id: 'Berhati-hatilah.',
+      tr: 'Dikkatli ol.',
+      pl: 'Bądź ostrożny.',
       why: tri('После be описываем состояние человека: careful.', 'Після be описуємо стан людини: careful.', 'After be, use careful.'),
     },
     {
@@ -178,6 +254,11 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       ru: 'Води осторожно.',
       uk: 'Води обережно.',
       es: 'Conduce con cuidado.',
+            'pt-BR': 'Dirija com cuidado.',
+      vi: 'Hãy lái xe cẩn thận.',
+      id: 'Mengemudilah dengan hati-hati.',
+      tr: 'Dikkatli sür.',
+      pl: 'Jedź ostrożnie.',
       why: tri('Carefully говорит, как drive.', 'Carefully каже, як drive.', 'Carefully describes how you drive.'),
     },
     {
@@ -185,6 +266,11 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       ru: 'Это звучит странно.',
       uk: 'Це звучить дивно.',
       es: 'Suena raro.',
+            'pt-BR': 'Isso soa estranho.',
+      vi: 'Điều đó nghe có vẻ lạ.',
+      id: 'Itu terdengar aneh.',
+      tr: 'Bu kulağa garip geliyor.',
+      pl: 'To brzmi dziwnie.',
       why: tri('Sounds здесь описывает состояние: strange.', 'Sounds тут описує стан: strange.', 'Sounds takes strange here.'),
     },
     {
@@ -192,6 +278,11 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       ru: 'Он странно посмотрел на меня.',
       uk: 'Він дивно подивився на мене.',
       es: 'Me miró de forma extraña.',
+            'pt-BR': 'Ele olhou para mim de forma estranha.',
+      vi: 'Anh ấy nhìn tôi một cách kỳ lạ.',
+      id: 'Dia menatap saya dengan aneh.',
+      tr: 'Bana tuhaf bir şekilde baktı.',
+      pl: 'On spojrzał na mnie dziwnie.',
       why: tri('Looked at me — действие, поэтому strangely.', 'Looked at me — дія, тому strangely.', 'Looked at me describes an action.'),
     },
   ],

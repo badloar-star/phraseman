@@ -6,6 +6,7 @@ type Explanation = {
   ru: string;
   uk: string;
   es: string;
+  'pt-BR'?: string;
   ptBr?: string;
   vi?: string;
   id?: string;
@@ -49,11 +50,13 @@ function phraseAfter(sentence: string, preposition: string): string {
   return phrase ? `${preposition} ${phrase}` : preposition;
 }
 
-function plannedExplanationFallback(preposition: string, sentence: string): Pick<Explanation, 'ptBr' | 'vi' | 'id' | 'tr' | 'pl'> {
+function plannedExplanationFallback(preposition: string, sentence: string): Pick<Explanation, 'pt-BR' | 'ptBr' | 'vi' | 'id' | 'tr' | 'pl'> {
   const answer = preposition.trim().toLowerCase();
   const chunk = phraseAfter(sentence, answer) || answer;
+  const ptBr = `Aqui a preposição correta é "${answer}" na combinação "${chunk}". Ela mostra a relação entre as palavras da frase; olhe para o sentido completo, não só para uma tradução palavra por palavra.`;
   return {
-    ptBr: `Aqui a preposição correta é "${answer}" na combinação "${chunk}". Ela mostra a relação entre as palavras da frase; olhe para o sentido completo, não só para uma tradução palavra por palavra.`,
+    'pt-BR': ptBr,
+    ptBr,
     vi: `Ở đây cần dùng giới từ "${answer}" trong cụm "${chunk}". Giới từ này thể hiện quan hệ giữa các từ trong câu; hãy nhìn vào ý nghĩa cả cụm, không chỉ dịch từng từ.`,
     id: `Di sini preposisi yang tepat adalah "${answer}" dalam frasa "${chunk}". Preposisi ini menunjukkan hubungan antar kata; lihat makna seluruh frasa, bukan hanya terjemahan kata demi kata.`,
     tr: `Burada "${chunk}" ifadesinde doğru edat "${answer}". Bu edat kelimeler arasındaki ilişkiyi gösterir; tek tek çeviriye değil, tüm yapının anlamına bak.`,
@@ -65,7 +68,8 @@ function withPlannedFallback(preposition: string, sentence: string, explanation:
   const planned = plannedExplanationFallback(preposition, sentence);
   return {
     ...explanation,
-    ptBr: explanation.ptBr ?? planned.ptBr,
+    'pt-BR': explanation['pt-BR'] ?? explanation.ptBr ?? planned['pt-BR'],
+    ptBr: explanation.ptBr ?? explanation['pt-BR'] ?? planned.ptBr,
     vi: explanation.vi ?? planned.vi,
     id: explanation.id ?? planned.id,
     tr: explanation.tr ?? planned.tr,
@@ -465,6 +469,7 @@ const inAbstract = /(danger|trouble|love|peace|silence|hurry|secret|debt|need|ri
 
 function ruleFor(preposition: string, sentence: string): Explanation | null {
   const normalized = normalizeSentence(sentence);
+  const planned = plannedExplanationFallback(preposition, sentence);
 
   for (const rule of phraseRules) {
     if (rule.preposition !== preposition) continue;
@@ -478,6 +483,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `С общественным транспортом используем "on": "${onChunk}" - речь не о поверхности, а о том, что человек находится внутри транспорта во время поездки. Сравните: on the bus, on the train, on the plane.`,
         uk: `З громадським транспортом використовуємо "on": "${onChunk}" - ідеться не про поверхню, а про те, що людина знаходиться всередині транспорту під час поїздки. Порівняйте: on the bus, on the train, on the plane.`,
         es: `En transporte público se usa «on» («${onChunk}»): no es contacto con la «cubierta» de un avión, sino viajar montado en ese vehículo (on the bus, on the plane).`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -486,6 +497,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `Когда садимся или сидим на мебели для сидения, используем "on": "${onChunk}". Тело опирается на поверхность сиденья - отсюда "on".`,
         uk: `Коли сідаємо або сидимо на меблях для сидіння, використовуємо "on": "${onChunk}". Тіло спирається на поверхню сидіння - звідси "on".`,
         es: `En asientos o mobiliario para sentarse («${onChunk}») corresponde «on»: el peso apoya sobre el asiento.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -494,6 +511,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `С носителями информации используем "on": "${onChunk}". Имя, дата или объект находится "на" странице, экране, в списке или на карте.`,
         uk: `З носіями інформації використовуємо "on": "${onChunk}". Ім\'я, дата або об\'єкт знаходиться "на" сторінці, екрані, у списку чи на карті.`,
         es: `Con soportes digitales o impresos («${onChunk}») aparece «on»: el dato está "sobre" página, pantalla, lista o mapa.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -502,6 +525,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `С линиями и протяжёнными объектами говорим "on": "${onChunk}". Дорога, улица или граница - это линия, на которой что-то находится или движется.`,
         uk: `З лініями та протяжними об\'єктами кажемо "on": "${onChunk}". Дорога, вулиця або межа - це лінія, на якій щось знаходиться або рухається.`,
         es: `Para trayectos lineales (calle, ribera, frontera…) se usa «on» («${onChunk}»): actúa como eje sobre el que hay posición o movimiento.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -510,6 +539,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `Когда предмет лежит или закреплён на ровной поверхности, ставим "on": "${onChunk}". Контакт сверху или соприкосновение с плоскостью - типичный случай для "on".`,
         uk: `Коли предмет лежить або закріплений на рівній поверхні, ставимо "on": "${onChunk}". Контакт зверху або дотик з площиною - типовий випадок для "on".`,
         es: `Si el objeto descansa o se fija en una superficie plana («${onChunk}»), «on» marca contacto superior habitual con el plano.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -522,6 +557,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"In" с абстрактными состояниями работает как русское "в": "${inChunk}". Человек находится внутри ситуации, настроения или положения.`,
         uk: `"In" з абстрактними станами працює як українське "в": "${inChunk}". Людина знаходиться всередині ситуації, настрою або стану.`,
         es: `«In» con estados abstractos («${inChunk}») sitúa dentro de un marco figurado: peligro, deuda, duda, etc.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -530,6 +571,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `С личным транспортом, куда садятся, говорим "in": "${inChunk}". В машину, такси, грузовик нужно "залезть внутрь" - отсюда "in", в отличие от автобуса/поезда (on).`,
         uk: `З особистим транспортом, у який сідають, кажемо "in": "${inChunk}". У машину, таксі, вантажівку потрібно "залізти всередину" - звідси "in", на відміну від автобуса/потяга (on).`,
         es: `En coches o taxis privados («${inChunk}») suele irse «in» (entrar al habitáculo pequeño); distinto de «on the bus/train» abiertos.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -538,6 +585,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `Когда что-то лежит внутри ёмкости, всегда "in": "${inChunk}". Сумка, коробка, ящик, карман - закрытое пространство с границами.`,
         uk: `Коли щось лежить усередині ємності, завжди "in": "${inChunk}". Сумка, коробка, шухляда, кишеня - закритий простір з межами.`,
         es: `Interior de recipiente con bordes claros («${inChunk}») → «in»: bolsa, caja, maletero.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -546,6 +599,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `Со стихиями и большими "массами" говорим "in": "${inChunk}". Вода, небо, воздух воспринимаются как объём, в который что-то погружено.`,
         uk: `Зі стихіями та великими "масами" кажемо "in": "${inChunk}". Вода, небо, повітря сприймаються як об\'єм, у який щось занурено.`,
         es: `Masas fluidas o amplias («${inChunk}»): agua, niebla, espacio se entienden como volumen tridimensional donde «in» encaja mejor.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -554,6 +613,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `С городами, странами и большими территориями используем "in": "${inChunk}". Это крупные географические зоны, и мы находимся внутри их границ.`,
         uk: `З містами, країнами та великими територіями використовуємо "in": "${inChunk}". Це великі географічні зони, і ми знаходимося всередині їхніх меж.`,
         es: `Grandes entidades geográficas («${inChunk}») combinan con «in»: la idea es «dentro» de la ciudad, región o país.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -562,6 +627,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `С помещениями и закрытыми пространствами всегда "in": "${inChunk}". У комнаты, здания или зала есть стены - человек находится внутри них.`,
         uk: `З приміщеннями та закритими просторами завжди "in": "${inChunk}". У кімнати, будівлі або зали є стіни - людина знаходиться всередині них.`,
         es: `Estancias o recintos acotados («${inChunk}») llevan habitualmente «in»: interior delimitado por muros.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -584,6 +655,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: '"In line" - устойчивое выражение: стоять или быть в очереди. Здесь "in" показывает нахождение внутри порядка/ряда людей.',
       uk: '"In line" - сталий вираз: стояти або бути в черзі. Тут "in" показує перебування всередині порядку/ряду людей.',
       es: '«In line» es colocación fija para «estar en la fila / cola»; «in» marca pertenencia a la hilera esperando.',
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'specific',
     };
   }
@@ -594,6 +671,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"At" после таких глаголов показывает цель действия: "${trimmed}" = на кого направлен взгляд, крик или реакция. Поэтому здесь нужен "at".`,
       uk: `"At" після таких дієслів показує ціль дії: "${trimmed}" = на кого спрямований погляд, крик або реакція. Тому тут потрібен "at".`,
       es: `Tras «look», «shout», «laugh», etc., «${trimmed}» marca el blanco («at someone» «hacia», «contra», «mirando» a alguien).`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -604,6 +687,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"At" используется для события или места как точки: "${trimmed}" = на встрече/в кино/на лекции. Здесь важен сам пункт события, а не внутреннее пространство.`,
       uk: `"At" використовується для події або місця як точки: "${trimmed}" = на зустрічі/у кіно/на лекції. Тут важливий сам пункт події, а не внутрішній простір.`,
       es: `«${trimmed}» marca el punto de encuentro («at the cinema», «at the station» «en ese lugar‑evento»), no sólo estar «dentro del volumen».`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -613,6 +702,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"In" с периодом времени означает "через / спустя": "${chunk}" показывает, через сколько действие произойдёт. Поэтому здесь нужен "in", а не "for".`,
       uk: `"In" з періодом часу означає "через / за": "${chunk}" показує, через скільки дія відбудеться. Тому тут потрібен "in", а не "for".`,
       es: `"${chunk}" con «in» expresa posterioridad («en tres días»: pasado ese lapso ocurre algo). Para duración estable usa «for».`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -622,6 +717,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"In" используется с месяцами, сезонами и большими периодами: "${chunk}". Это не точная дата, а промежуток времени.`,
       uk: `"In" використовується з місяцями, сезонами та великими періодами: "${chunk}". Це не точна дата, а проміжок часу.`,
       es: `"${chunk}" marca marco temporal amplio («in spring», «in 2026»): no es día concreto (para eso «on Monday»).`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -632,6 +733,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"In" нужен в устойчивой конструкции с глаголом/прилагательным: "${trimmed}". Например: believe in, interested in, succeed in.`,
       uk: `"In" потрібен у сталій конструкції з дієсловом або прикметником: "${trimmed}". Наприклад: believe in, interested in, succeed in.`,
       es: `"${trimmed}" entra en colocaciones fijas («believe in», «interested in»): «in» marca foco objeto de creencia / interés.`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'specific',
     };
   }
@@ -642,6 +749,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"On" используется с экраном, страницей или медиа: "${trimmed}" = "на экране/странице/ТВ". Здесь информация находится на носителе.`,
       uk: `"On" використовується з екраном, сторінкою або медіа: "${trimmed}" = "на екрані/сторінці/ТБ". Тут інформація знаходиться на носії.`,
       es: `"${trimmed}" (pantalla, página, medio) combina «on»: el contenido se muestra sobre ese nivel superficial visible.`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -652,6 +765,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"On" часто используется при контакте с поверхностью: "${trimmed}". Мы стучим, нажимаем или кликаем именно "on" объект.`,
       uk: `"On" часто використовується при контакті з поверхнею: "${trimmed}". Ми стукаємо, натискаємо або клікаємо саме "on" об\'єкт.`,
       es: `Tras golpear, clicar… «${trimmed}» usa «on» sobre la superficie o control de contacto inmediato.`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -661,6 +780,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"For" используется с длительностью: "${chunk}" отвечает на вопрос "как долго?". Поэтому здесь нужен "for", а не предлог места или направления.`,
       uk: `"For" використовується з тривалістю: "${chunk}" відповідає на питання "як довго?". Тому тут потрібен "for", а не прийменник місця чи напряму.`,
       es: `"${chunk}" con «for» marca duración («cuánto tiempo dura»: «for three days» «durante tres días» como extensión).`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -670,6 +795,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"For" показывает адресата или пользу: "${chunk}" значит "для кого-то". В этой фразе действие делается для этого человека или группы.`,
       uk: `"For" показує адресата або користь: "${chunk}" означає "для когось". У цій фразі дія робиться для цієї людини або групи.`,
       es: `"${chunk}" marca destinatario o beneficio («for you»: «para ti» dentro de ese marco léxico).`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -679,6 +810,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"With" здесь показывает инструмент: "${chunk}" значит "с помощью чего-то". Поэтому выбираем "with", когда предмет помогает выполнить действие.`,
       uk: `"With" тут показує інструмент: "${chunk}" означає "за допомогою чогось". Тому обираємо "with", коли предмет допомагає виконати дію.`,
       es: `En «${chunk}», «with» marca el instrumento o medio («with a knife» «con ese objeto/medio»).`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -688,6 +825,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"With" означает совместность: "${chunk}" = "с кем-то". Здесь действие происходит вместе с человеком или группой.`,
       uk: `"With" означає спільність: "${chunk}" = "з кимось". Тут дія відбувається разом із людиною або групою.`,
       es: `"${chunk}" indica co‑participación («with friends» «junto con»: compañía durante la acción).`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -701,6 +844,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"By" в пассивных конструкциях вводит исполнителя действия: "${trimmed}" отвечает на вопрос "кем сделано?". Поэтому здесь нужен "by", а не другой предлог.`,
         uk: `"By" у пасивних конструкціях вводить виконавця дії: "${trimmed}" відповідає на питання "ким зроблено?". Тому тут потрібен "by", а не інший прийменник.`,
         es: `En pasiva inglés («${trimmed}») «by» introduce el agente («por/quien ejecuta» tras verbo predicativo pasivo).`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -710,6 +859,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"By" указывает крайний срок: "${trimmed}" значит "к этому моменту / не позже". Здесь важно завершить действие до указанного времени.`,
         uk: `"By" указує крайній строк: "${trimmed}" означає "до цього моменту / не пізніше". Тут важливо завершити дію до вказаного часу.`,
         es: `«${trimmed}» con «by» limita plazo límite («para el lunes», «antes de medianoche»): la acción debe cerrarse no después de ese hito.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -721,6 +876,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"At" ставится с точным временем: "${trimmed}" - точный момент на часах. Поэтому здесь не "in" и не "on".`,
       uk: `"At" ставиться з точним часом: "${trimmed}" - точний момент на годиннику. Тому тут не "in" і не "on".`,
       es: `«${trimmed}» con «at» fija hora exacta (reloj). No emplees «in» ni «on» para números puntuales de tiempo.`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -731,6 +892,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"At" ставится с точным временем: "${trimmed}" - точный момент. Во фразах с конкретным часом всегда "at".`,
       uk: `"At" ставиться з точним часом: "${trimmed}" - точний момент. У фразах з конкретною годиною завжди "at".`,
       es: `«${trimmed}» con «at» representa instante horario concreto (como «at six»).`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -740,6 +907,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"At the end" - устойчивое сочетание: "в конце". Здесь "end" понимается как конкретная точка, поэтому нужен "at".`,
       uk: `"At the end" - сталий вираз: "у кінці". Тут "end" сприймається як конкретна точка, тому потрібен "at".`,
       es: '«At the end» es colocación fija («al final»); «at» ancla el cierre como punto en la línea temporal o secuencia.',
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'specific',
     };
   }
@@ -753,6 +926,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"To" перед глаголом "${candidate}" - инфинитивная частица, а не предлог места. Конструкция "${chunkUntil(sentence, 'to', new RegExp(`^${candidate}$`))}" означает цель или соединяет два действия.`,
         uk: `"To" перед дієсловом "${candidate}" - інфінітивна частка, а не прийменник місця. Конструкція "${chunkUntil(sentence, 'to', new RegExp(`^${candidate}$`))}" означає мету або з\'єднує дві дії.`,
         es: `Ante «${candidate}», «to» introduce infinitivo (partícula de objetivo/enlace verbal), no preposición de lugar: véase «${chunkUntil(sentence, 'to', new RegExp(`^${candidate}$`))}».`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'specific',
       };
     }
@@ -764,6 +943,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"Before + V-ing" - устойчивая модель: "${trimmed}" значит "перед тем как / до того, как". После before действие идёт в форме герундия (-ing).`,
       uk: `"Before + V-ing" - стала модель: "${trimmed}" означає "перед тим як / до того, як". Після before дія йде у формі герундія (-ing).`,
       es: `Patrón «before + gerundio» («${trimmed}»): antecede la acción en -ing al evento principal sin infinitivo directo aquí.`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'specific',
     };
   }
@@ -774,6 +959,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"After + V-ing" - устойчивая модель: "${trimmed}" значит "после того, как сделали". После after действие идёт в форме герундия (-ing).`,
       uk: `"After + V-ing" - стала модель: "${trimmed}" означає "після того, як зробили". Після after дія йде у формі герундія (-ing).`,
       es: `«After + -ing» («${trimmed}») sitúa la acción en gerundio tras completar el primer hecho.`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'specific',
     };
   }
@@ -784,6 +975,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"Without + V-ing" - устойчивая модель: "${trimmed}" значит "без того, чтобы / не делая". После without глагол всегда идёт в форме герундия (-ing).`,
       uk: `"Without + V-ing" - стала модель: "${trimmed}" означає "без того, щоб / не роблячи". Після without дієслово завжди йде у формі герундія (-ing).`,
       es: `Tras «without» va gerundio («${trimmed}»): significa «sin hacer X» en contraste con infinitivo preposicional raro aquí.`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'specific',
     };
   }
@@ -793,6 +990,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"From" во фразе "${chunk}" указывает на причину или источник изменения: что-то происходит "из-за / от" этого фактора.`,
       uk: `"From" у фразі "${chunk}" вказує на причину або джерело зміни: щось відбувається "через / від" цього чинника.`,
       es: `«${chunk}»: «from» introduce causa o origen del cambio («por culpa de», «como resultado de»).`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -803,6 +1006,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"To" показывает достижение состояния или уровня: "${trimmed}" отвечает на вопрос "до чего?". Здесь действие доводит объект до конкретной точки.`,
       uk: `"To" показує досягнення стану або рівня: "${trimmed}" відповідає на питання "до чого?". Тут дія доводить об\'єкт до конкретної точки.`,
       es: `«${trimmed}» con «to» marca meta numérica o de estado al que se eleva o baja (temperatura, nivel).`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -813,6 +1022,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"To" показывает адресата передачи: "${trimmed}" - тот, кому что-то передают, отправляют или говорят. Это конструкция глагола передачи + "to".`,
       uk: `"To" показує адресата передачі: "${trimmed}" - той, кому щось передають, надсилають або говорять. Це конструкція дієслова передачі + "to".`,
       es: `«${trimmed}»: «to» señala destinatario de entrega o mensaje (patrón verbo de transferencia + «to»).`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -822,6 +1037,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"To" показывает направление к цели: "${chunk}" отвечает на вопрос "куда?". Во фразе есть движение или отправка к месту/человеку.`,
       uk: `"To" показує напрям до цілі: "${chunk}" відповідає на питання "куди?". У фразі є рух або надсилання до місця/людини.`,
       es: `«${chunk}» con «to» orienta el movimiento o envío hacia meta espacial o interlocutor («adónde»).`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -831,6 +1052,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"From" показывает начальную точку движения: "${chunk}" отвечает на вопрос "откуда?". Здесь важно место или источник, от которого начинается действие.`,
       uk: `"From" показує початкову точку руху: "${chunk}" відповідає на питання "звідки?". Тут важливе місце або джерело, від якого починається дія.`,
       es: `«${chunk}»: «from» indica arranque del trayecto o procedencia («de dónde» sale el movimiento).`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -843,6 +1070,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"During" указывает на событие или промежуток, во время которого происходит действие: "${trimmed}" отвечает на вопрос "во время чего?". Поэтому здесь нужен "during", а не "in" или "for".`,
         uk: `"During" вказує на подію або проміжок, під час якого відбувається дія: "${trimmed}" відповідає на питання "під час чого?". Тому тут потрібен "during", а не "in" чи "for".`,
         es: `«${trimmed}» con «during» encaja la acción dentro de un evento o periodo nombrado (no confundir con duración pura «for»).`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -856,6 +1089,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Of" связывает два существительных в значении принадлежности: "${trimmed}" - кто-то/что-то относится к другому объекту. По-русски часто переводится родительным падежом.`,
         uk: `"Of" пов\'язує два іменники у значенні належності: "${trimmed}" - хтось/щось належить до іншого об\'єкта. Українською часто перекладається родовим відмінком.`,
         es: `«${trimmed}» con «of» articula posesión o parte respecto de un conjunto (equivalente a «de» posesivo en español).`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     }
@@ -866,6 +1105,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: '"Before" в конце предложения значит "когда-либо раньше / прежде": здесь говорящий вспоминает о прошлом опыте. Часто используется с perfect tense.',
       uk: '"Before" наприкінці речення означає "колись раніше / перш": тут мовець згадує про минулий досвід. Часто використовується з perfect tense.',
       es: '«Before» al final de la oración remite a «alguna vez antes»; combina a menudo con tiempos perfectos en inglés.',
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -876,6 +1121,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       ru: `"After" указывает событие, после которого происходит действие: "${trimmed}" отвечает на вопрос "после чего?". Здесь важна последовательность во времени.`,
       uk: `"After" вказує подію, після якої відбувається дія: "${trimmed}" відповідає на питання "після чого?". Тут важлива послідовність у часі.`,
       es: `«${trimmed}» encadena dos hitos («después del almuerzo», etc.) señalando orden temporal explícito.`,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
       level: 'context',
     };
   }
@@ -891,6 +1142,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Next to" ${phraseRu} означает "рядом с / вплотную рядом": один предмет находится у другого предмета сбоку или очень близко к нему.`,
         uk: `"Next to" ${phraseUk} означає "поруч із / безпосередньо біля": один предмет розташований збоку або дуже близько до іншого.`,
         es: `"Next to" ${phraseEs} equivale a «al lado de»: proximidad inmediata junto al objeto de referencia.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'in front of':
@@ -898,6 +1155,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"In front of" ${phraseRu} означает "перед": предмет находится с передней стороны другого объекта, не внутри и не рядом сбоку.`,
         uk: `"In front of" ${phraseUk} означає "перед": предмет розташований з переднього боку іншого об\'єкта, не всередині й не збоку.`,
         es: `"In front of" ${phraseEs} significa «delante de»: posición en la parte frontal del punto de referencia.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'about':
@@ -905,6 +1168,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"About" ${phraseRu} означает "о / про": он показывает тему мысли, разговора, вопроса или сообщения.`,
         uk: `"About" ${phraseUk} означає "про": він показує тему думки, розмови, питання або повідомлення.`,
         es: `"About" ${phraseEs} marca el tema: pensar, hablar, preguntar o escribir sobre algo.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'back':
@@ -912,6 +1181,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Back" ${phraseRu} показывает возврат: назад в прежнее место или обратно к человеку. В сочетаниях go back / give back это часть устойчивого блока.`,
         uk: `"Back" ${phraseUk} показує повернення: назад у попереднє місце або назад до людини. У сполуках go back / give back це частина сталого блоку.`,
         es: `"Back" ${phraseEs} expresa retorno: volver a un lugar anterior o devolver algo a alguien; en go back / give back funciona como partícula fija.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'to':
@@ -919,6 +1194,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"To" ${phraseRu} задаёт направление к цели: к месту, человеку или результату. По-русски это часто переводится как "к / в / до".`,
         uk: `"To" ${phraseUk} задає напрям до цілі: до місця, людини або результату. Українською це часто перекладається як "до / у".`,
         es: `"To" ${phraseEs} marca dirección meta hacia lugar, persona o resultado (en español suelen usarse equivalentes de «a», «hacia» o «hasta»).`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'from':
@@ -926,6 +1207,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"From" ${phraseRu} указывает на источник или отправную точку: откуда что-то идёт, приходит или берётся.`,
         uk: `"From" ${phraseUk} вказує на джерело або відправну точку: звідки щось іде, приходить або береться.`,
         es: `"From" ${phraseEs} señala origen o punto de partida.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'with':
@@ -933,6 +1220,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"With" ${phraseRu} означает "с": вместе с человеком, предметом или инструментом, с которым выполняется действие.`,
         uk: `"With" ${phraseUk} означає "з": разом з людиною, предметом або інструментом, яким виконується дія.`,
         es: `"With" ${phraseEs} marca compañía o instrumento.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'of':
@@ -940,6 +1233,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Of" ${phraseRu} связывает два существительных и показывает принадлежность или часть целого. По-русски обычно передаётся родительным падежом.`,
         uk: `"Of" ${phraseUk} пов\'язує два іменники й показує належність або частину цілого. Українською зазвичай передається родовим відмінком.`,
         es: `"Of" ${phraseEs} relaciona posesión o parte respecto de un conjunto (equivalente frecuente a «de» en español).`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'for':
@@ -947,6 +1246,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"For" ${phraseRu} отвечает на вопрос "для чего / для кого / зачем". Здесь он указывает на цель, пользу или адресата.`,
         uk: `"For" ${phraseUk} відповідає на питання "для чого / для кого / навіщо". Тут він вказує на мету, користь або адресата.`,
         es: `"For" ${phraseEs} orienta finalidad o destinatario práctico.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'by':
@@ -954,6 +1259,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"By" ${phraseRu} показывает способ действия, автора или средство, с помощью которого что-то происходит.`,
         uk: `"By" ${phraseUk} показує спосіб дії, виконавця або засіб, за допомогою якого щось відбувається.`,
         es: `"By" ${phraseEs} marca modo, agente o medio según el contexto.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'before':
@@ -961,6 +1272,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Before" ${phraseRu} означает "до / перед": одно действие или событие предшествует другому во времени.`,
         uk: `"Before" ${phraseUk} означає "до / перед": одна дія або подія передує іншій у часі.`,
         es: `"Before" ${phraseEs} encadena anterioridad temporal respecto siguiente hecho.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'after':
@@ -968,6 +1285,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"After" ${phraseRu} означает "после": одно действие происходит позже другого во времени или порядке.`,
         uk: `"After" ${phraseUk} означає "після": одна дія відбувається пізніше за іншу у часі чи порядку.`,
         es: `"After" ${phraseEs} marca sucesión posterior.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'during':
@@ -975,6 +1298,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"During" ${phraseRu} означает "во время": действие происходит внутри указанного события или периода.`,
         uk: `"During" ${phraseUk} означає "під час": дія відбувається всередині вказаної події або періоду.`,
         es: `"During" ${phraseEs} sitúa la acción dentro de un evento o de un periodo concreto.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'under':
@@ -982,6 +1311,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Under" ${phraseRu} означает "под": положение ниже предмета или под его покрытием/контролем.`,
         uk: `"Under" ${phraseUk} означає "під": положення нижче предмета або під його покриттям/контролем.`,
         es: `"Under" ${phraseEs} indica posición «por debajo» o, en sentido figurado, sometimiento o cobertura (protección, control).`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'over':
@@ -989,6 +1324,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Over" ${phraseRu} означает "над / через / поверх": положение выше или движение поперёк предмета.`,
         uk: `"Over" ${phraseUk} означає "над / через / поверх": положення вище або рух упоперек предмета.`,
         es: `"Over" ${phraseEs} marca estar «por encima» de algo o moverse «por encima / al otro lado».`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'above':
@@ -996,6 +1337,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Above" ${phraseRu} означает "выше" по уровню или положению. Важна сама высота относительно объекта, без движения.`,
         uk: `"Above" ${phraseUk} означає "вище" за рівнем або положенням. Важлива сама висота відносно об\'єкта, без руху.`,
         es: `"Above" ${phraseEs} expresa mayor altura o nivel respecto del punto de referencia, sin atravesarlo.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'behind':
@@ -1003,6 +1350,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Behind" ${phraseRu} означает "позади / за": предмет или человек находится с задней стороны другого объекта.`,
         uk: `"Behind" ${phraseUk} означає "позаду / за": предмет або людина знаходиться з заднього боку іншого об\'єкта.`,
         es: `"Behind" ${phraseEs} ubica algo detrás del frente habitual del objeto de referencia.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'between':
@@ -1010,6 +1363,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Between" ${phraseRu} означает "между" двумя отдельными объектами: что-то находится в промежутке между ними.`,
         uk: `"Between" ${phraseUk} означає "між" двома окремими об\'єктами: щось знаходиться у проміжку між ними.`,
         es: `"Between" ${phraseEs} usa dos referencias claras: algo situado «entre» ambas.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'among':
@@ -1017,6 +1376,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Among" ${phraseRu} означает "среди" группы: объект находится внутри множества людей или предметов.`,
         uk: `"Among" ${phraseUk} означає "серед" групи: об\'єкт знаходиться всередині множини людей або предметів.`,
         es: `"Among" ${phraseEs} encaja dentro de un grupo plural: «entre» varios.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'near':
@@ -1024,6 +1389,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Near" ${phraseRu} означает "рядом с / недалеко от": важно близкое расстояние, а не прямой контакт.`,
         uk: `"Near" ${phraseUk} означає "поруч із / недалеко від": важлива близька відстань, а не прямий контакт.`,
         es: `"Near" ${phraseEs} marca proximidad sin contacto forzoso.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'inside':
@@ -1031,6 +1402,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Inside" ${phraseRu} прямо подчёркивает нахождение во внутренней части объекта или помещения. Сильнее, чем "in".`,
         uk: `"Inside" ${phraseUk} прямо підкреслює перебування у внутрішній частині об\'єкта чи приміщення. Сильніший за "in".`,
         es: `"Inside" ${phraseEs} refuerza «en el interior» (con más fuerza semántica que «in» en muchos ejemplos).`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'outside':
@@ -1038,6 +1415,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Outside" ${phraseRu} означает "снаружи / вне": предмет или человек находится не внутри, а за пределами места.`,
         uk: `"Outside" ${phraseUk} означає "ззовні / поза": предмет або людина знаходиться не всередині, а за межами місця.`,
         es: `"Outside" ${phraseEs} marca exterioridad.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'opposite':
@@ -1045,6 +1428,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Opposite" ${phraseRu} означает "напротив": два объекта находятся лицом друг к другу или по разные стороны.`,
         uk: `"Opposite" ${phraseUk} означає "навпроти": два об\'єкти знаходяться один навпроти одного або по різні боки.`,
         es: `"Opposite" ${phraseEs} indica «enfrente», del otro lado de la vía o del espacio compartido.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'around':
@@ -1052,6 +1441,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Around" ${phraseRu} означает "вокруг / по периметру" либо "примерно". В этой фразе он показывает охват или приблизительное значение.`,
         uk: `"Around" ${phraseUk} означає "навколо / по периметру" або "приблизно". У цій фразі він показує охоплення чи приблизне значення.`,
         es: `"Around" ${phraseEs} sirve para «alrededor» (perímetro) o para cantidades aproximadas («unos…»).`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'across':
@@ -1059,6 +1454,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Across" ${phraseRu} означает "через / поперёк": переход с одной стороны на другую через пространство.`,
         uk: `"Across" ${phraseUk} означає "через / упоперек": перехід з одного боку на інший через простір.`,
         es: `"Across" ${phraseEs} describe cruzar de un lado al otro (calle, plaza, superficie).`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'through':
@@ -1066,6 +1467,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Through" ${phraseRu} означает движение "сквозь / через внутренность": важно пройти внутри объекта от начала до конца.`,
         uk: `"Through" ${phraseUk} означає рух "крізь / через середину": важливо пройти всередині об\'єкта від початку до кінця.`,
         es: `"Through" ${phraseEs} suele expresar atravesar el interior y salir por el otro lado.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'along':
@@ -1073,6 +1480,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Along" ${phraseRu} означает движение или расположение вдоль протяжённого объекта: улица, река, граница.`,
         uk: `"Along" ${phraseUk} означає рух або розташування вздовж протяжного об\'єкта: вулиця, річка, межа.`,
         es: `"Along" ${phraseEs} describe paralelismo a eje longitudinal.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'against':
@@ -1080,6 +1493,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Against" ${phraseRu} означает "против" или контакт впритык к поверхности: показывает сопротивление либо опору.`,
         uk: `"Against" ${phraseUk} означає "проти" або контакт упритул до поверхні: показує опір або опору.`,
         es: `"Against" ${phraseEs} señala oposición o contacto adhesivo.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'without':
@@ -1087,6 +1506,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Without" ${phraseRu} означает "без": действие происходит при отсутствии указанного человека, предмета или условия.`,
         uk: `"Without" ${phraseUk} означає "без": дія відбувається за відсутності вказаної людини, предмета або умови.`,
         es: `"Without" ${phraseEs} indica ausencia de persona, objeto o condición.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'off':
@@ -1094,6 +1519,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Off" ${phraseRu} показывает отделение, снятие или удаление от поверхности: "прочь / не на".`,
         uk: `"Off" ${phraseUk} показує відокремлення, зняття або віддалення від поверхні: "геть / не на".`,
         es: `"Off" ${phraseEs} en verbos frasales expresa separar, quitar, apagar… según el verbo base.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'up':
@@ -1101,6 +1532,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Up" ${phraseRu} показывает движение вверх либо завершённость действия в составе фразового глагола.`,
         uk: `"Up" ${phraseUk} показує рух угору або завершеність дії у складі фразового дієслова.`,
         es: `"Up" ${phraseEs} indica dirección ascendente o partícula fija en el verbo frasal («wake up», etc.).`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'down':
@@ -1108,6 +1545,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Down" ${phraseRu} показывает движение вниз или снижение: направление либо уменьшение значения.`,
         uk: `"Down" ${phraseUk} показує рух униз або зниження: напрям або зменшення значення.`,
         es: `"Down" ${phraseEs} indica bajar, disminuir o partícula de verbos frasales («calm down», etc.).`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'out':
@@ -1115,6 +1558,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"Out" ${phraseRu} показывает движение наружу или результат "вне": действие выводит что-то изнутри.`,
         uk: `"Out" ${phraseUk} показує рух назовні або результат "поза": дія виводить щось зсередини.`,
         es: `"Out" ${phraseEs} expresa exteriorización o componente verbal compuesto.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'at':
@@ -1122,6 +1571,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"At" ${phraseRu} указывает на конкретную точку: место как пункт, момент времени или цель действия.`,
         uk: `"At" ${phraseUk} вказує на конкретну точку: місце як пункт, момент часу або ціль дії.`,
         es: `"At" ${phraseEs} fija un punto en espacio, tiempo o foco de la acción.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'on':
@@ -1129,6 +1584,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"On" ${phraseRu} показывает контакт с поверхностью или связь с конкретным днём/носителем. Между предметом и опорой есть прямой контакт.`,
         uk: `"On" ${phraseUk} показує контакт із поверхнею або зв\'язок з конкретним днем/носієм. Між предметом і опорою є прямий контакт.`,
         es: `"On" ${phraseEs} expresa contacto con superficie o fijación a día/medio («on TV», «on Monday»…).`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     case 'in':
@@ -1136,6 +1597,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
         ru: `"In" ${phraseRu} показывает нахождение внутри объёма, области или периода. Действие или предмет находится в пределах указанного пространства.`,
         uk: `"In" ${phraseUk} показує перебування всередині об\'єму, області або періоду. Дія або предмет знаходиться в межах вказаного простору.`,
         es: `"In" ${phraseEs} sitúa dentro de un volumen, ámbito o periodo.`,
+        'pt-BR': planned['pt-BR'],
+        ptBr: planned.ptBr,
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
         level: 'context',
       };
     default:
@@ -1145,11 +1612,23 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
 
 export function explainPrepositionChoice(preposition: string, sentence: string): Explanation {
   const answer = preposition.trim().toLowerCase();
+  const planned = plannedExplanationFallback(answer, sentence);
 
   const overrideKey = makeOverrideKey(sentence, answer);
   const override = overrideKey ? PREPOSITION_OVERRIDES[overrideKey] : undefined;
   if (override) {
-    return withPlannedFallback(answer, sentence, { ru: override.ru, uk: override.uk, es: override.es, level: 'specific' });
+    return withPlannedFallback(answer, sentence, {
+      ru: override.ru,
+      uk: override.uk,
+      es: override.es,
+      'pt-BR': planned['pt-BR'],
+      ptBr: planned.ptBr,
+      vi: planned.vi,
+      id: planned.id,
+      tr: planned.tr,
+      pl: planned.pl,
+      level: 'specific',
+    });
   }
 
   const matched = ruleFor(answer, sentence);
@@ -1161,7 +1640,12 @@ export function explainPrepositionChoice(preposition: string, sentence: string):
     ru: `Здесь нужен предлог "${answer}" в сочетании "${trim}". Именно он передаёт нужное отношение между словами этой фразы; сравни смысл всей конструкции, а не отдельный перевод.`,
     uk: `Тут потрібен прийменник "${answer}" у сполученні "${trim}". Саме він передає потрібне відношення між словами цієї фрази; порівнюй зміст усієї конструкції, а не окремий переклад.`,
     es: `En esta frase corresponde la preposición «${answer}» en la colocación «${trim}». Es esa relación léxica y no un sustituto cualquiera; valora el significado global, no sólo una traducción palabra por palabra.`,
-    ...plannedExplanationFallback(answer, sentence),
+    'pt-BR': planned['pt-BR'],
+    ptBr: planned.ptBr,
+    vi: planned.vi,
+    id: planned.id,
+    tr: planned.tr,
+    pl: planned.pl,
     level: 'context',
   };
 }

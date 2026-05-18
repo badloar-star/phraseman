@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import auth from '@react-native-firebase/auth';
+import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {  AppState,
@@ -47,6 +48,14 @@ import {
   ugcCardThemeLabel,
   type UgcCardThemeId,
 } from './community_packs/ugcCardThemePresets';
+import {
+  UGC_CARD_BACK_DEFAULT_ID,
+  UGC_CARD_BACK_IDS,
+  cardBackFanImage,
+  cardBackImage,
+  ugcCardBackLabel,
+  type UgcCardBackId,
+} from './flashcards/cardBackCatalog';
 import { getCanonicalUserId } from './user_id_policy';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { getTextInputSystemEditMenuProps } from './textInputSystemMenuProps';
@@ -122,6 +131,7 @@ export default function CommunityPackCreateScreen() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [themeIdx, setThemeIdx] = useState(0);
+  const [cardBackIdx, setCardBackIdx] = useState(0);
   const [rows, setRows] = useState<Row[]>([]);
   const [busy, setBusy] = useState(false);
   const [loadErr, setLoadErr] = useState<string | null>(null);
@@ -154,6 +164,9 @@ export default function CommunityPackCreateScreen() {
   const [draftHydrated, setDraftHydrated] = useState(() => isEditMode || !canUse);
 
   const themeKey: UgcCardThemeId = (UGC_CARD_THEME_IDS[themeIdx] ?? UGC_CARD_THEME_DEFAULT_ID) as UgcCardThemeId;
+  const cardBackKey: UgcCardBackId = (UGC_CARD_BACK_IDS[cardBackIdx] ?? UGC_CARD_BACK_DEFAULT_ID) as UgcCardBackId;
+  const selectedCardBack = cardBackImage(cardBackKey);
+  const selectedCardBackFan = cardBackFanImage(cardBackKey);
 
   const packVis = useMemo(
     () => getCommunityUgcPackPaywallTheme(themeKey, { themeMode, isLight: isLightTheme }),
@@ -245,6 +258,8 @@ export default function CommunityPackCreateScreen() {
       setDescription(snap.description);
       const ti = UGC_CARD_THEME_IDS.indexOf(snap.cardThemeKey as UgcCardThemeId);
       setThemeIdx(ti >= 0 ? ti : 0);
+      const bi = UGC_CARD_BACK_IDS.indexOf(snap.cardBackKey as UgcCardBackId);
+      setCardBackIdx(bi >= 0 ? bi : 0);
       setRows(
         snap.cards.map((c) => ({
           id: c.id,
@@ -278,6 +293,7 @@ export default function CommunityPackCreateScreen() {
         setTitle(d.title);
         setDescription(d.description);
         setThemeIdx(d.themeIdx);
+        setCardBackIdx(d.cardBackIdx);
         setRows(d.rows.map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })));
         setAddCardFormOpen(d.addCardFormOpen);
         setDraftEn(d.draftEn);
@@ -301,6 +317,7 @@ export default function CommunityPackCreateScreen() {
         description,
         priceShards: COMMUNITY_PACK_PRICE_SHARDS,
         themeIdx,
+        cardBackIdx,
         rows,
         addCardFormOpen,
         draftEn,
@@ -318,6 +335,7 @@ export default function CommunityPackCreateScreen() {
     title,
     description,
     themeIdx,
+    cardBackIdx,
     rows,
     addCardFormOpen,
     draftEn,
@@ -336,6 +354,7 @@ export default function CommunityPackCreateScreen() {
           description,
           priceShards: COMMUNITY_PACK_PRICE_SHARDS,
           themeIdx,
+          cardBackIdx,
           rows,
           addCardFormOpen,
           draftEn,
@@ -354,6 +373,7 @@ export default function CommunityPackCreateScreen() {
     title,
     description,
     themeIdx,
+    cardBackIdx,
     rows,
     addCardFormOpen,
     draftEn,
@@ -463,6 +483,7 @@ export default function CommunityPackCreateScreen() {
         description,
         priceShards: COMMUNITY_PACK_PRICE_SHARDS,
         themeIdx,
+        cardBackIdx,
         rows,
         addCardFormOpen,
         draftEn,
@@ -470,7 +491,7 @@ export default function CommunityPackCreateScreen() {
         draftEs,
         draftNote,
       }),
-    [title, description, themeIdx, rows, addCardFormOpen, draftEn, draftRu, draftEs, draftNote],
+    [title, description, themeIdx, cardBackIdx, rows, addCardFormOpen, draftEn, draftRu, draftEs, draftNote],
   );
 
   const performClearLocalDraft = useCallback(() => {
@@ -479,6 +500,7 @@ export default function CommunityPackCreateScreen() {
     setTitle('');
     setDescription('');
     setThemeIdx(0);
+    setCardBackIdx(0);
     setRows([]);
     setAddCardFormOpen(false);
     setDraftEn('');
@@ -506,9 +528,10 @@ export default function CommunityPackCreateScreen() {
       priceShards: COMMUNITY_PACK_PRICE_SHARDS,
       cards,
       cardThemeKey: themeKey,
+      cardBackKey,
     };
     return p;
-  }, [title, description, rows, themeKey, lang]);
+  }, [title, description, rows, themeKey, cardBackKey, lang]);
 
   const runSubmit = useCallback(
     async (updatePackId?: string) => {
@@ -597,9 +620,16 @@ export default function CommunityPackCreateScreen() {
     });
   }, []);
 
+  const bumpCardBack = useCallback((delta: number) => {
+    setCardBackIdx((i) => {
+      const n = UGC_CARD_BACK_IDS.length;
+      return (i + delta + n * 10) % n;
+    });
+  }, []);
+
   if (!canUse) {
     return (
-      <ScreenGradient>
+      <ScreenGradient artBackdrop="flashcards">
         <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
           <View style={styles.headerRow}>
             <TouchableOpacity
@@ -627,7 +657,7 @@ export default function CommunityPackCreateScreen() {
 
   if (isEditMode && loadErr) {
     return (
-      <ScreenGradient>
+      <ScreenGradient artBackdrop="flashcards">
         <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
           <View style={[styles.headerRow, { borderBottomColor: t.border }]}>
             <TouchableOpacity
@@ -656,7 +686,7 @@ export default function CommunityPackCreateScreen() {
   }
 
   return (
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="flashcards">
       <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
         <KeyboardAvoidingView
           style={{ flex: 1 }}
@@ -780,6 +810,78 @@ export default function CommunityPackCreateScreen() {
                     <Ionicons name="chevron-forward" size={28} color={t.accent} />
                   </TouchableOpacity>
                 </View>
+              </View>
+
+              <Text style={labelStyle(t)}>{L('Иконка набора', 'Іконка набору', 'Icono del pack', 'Icone do pack', 'Biểu tượng bộ thẻ', 'Ikon paket', 'Paket ikonu', 'Ikona pakietu')}</Text>
+              <View style={[styles.cardBackPickerPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+                <View style={styles.cardBackHeroRow}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      Keyboard.dismiss();
+                      bumpCardBack(-1);
+                    }}
+                    style={styles.stepperHit}
+                    accessibilityRole="button"
+                  >
+                    <Ionicons name="chevron-back" size={28} color={t.accent} />
+                  </TouchableOpacity>
+
+                  <View style={styles.cardBackHero}>
+                    {selectedCardBackFan ? (
+                      <Image source={selectedCardBackFan} style={styles.cardBackHeroImage} contentFit="contain" />
+                    ) : selectedCardBack ? (
+                      <Image source={selectedCardBack} style={styles.cardBackHeroImage} contentFit="contain" />
+                    ) : null}
+                  </View>
+
+                  <TouchableOpacity
+                    onPress={() => {
+                      Keyboard.dismiss();
+                      bumpCardBack(1);
+                    }}
+                    style={styles.stepperHit}
+                    accessibilityRole="button"
+                  >
+                    <Ionicons name="chevron-forward" size={28} color={t.accent} />
+                  </TouchableOpacity>
+                </View>
+
+                <Text style={[styles.cardBackPickerTitle, { color: t.textPrimary }]} numberOfLines={1}>
+                  {ugcCardBackLabel(cardBackKey, lang)}
+                </Text>
+
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={styles.cardBackThumbRow}
+                  keyboardShouldPersistTaps="handled"
+                >
+                  {UGC_CARD_BACK_IDS.map((id, idx) => {
+                    const selected = id === cardBackKey;
+                    const img = cardBackImage(id);
+                    return (
+                      <TouchableOpacity
+                        key={id}
+                        onPress={() => {
+                          Keyboard.dismiss();
+                          setCardBackIdx(idx);
+                        }}
+                        activeOpacity={0.82}
+                        accessibilityRole="button"
+                        accessibilityState={{ selected }}
+                        style={[
+                          styles.cardBackThumb,
+                          {
+                            borderColor: selected ? t.accent : t.border,
+                            backgroundColor: selected ? t.bgSurface2 : t.bgSurface,
+                          },
+                        ]}
+                      >
+                        {img ? <Image source={img} style={styles.cardBackThumbImage} contentFit="contain" /> : null}
+                      </TouchableOpacity>
+                    );
+                  })}
+                </ScrollView>
               </View>
 
               <TouchableOpacity
@@ -1080,4 +1182,45 @@ const styles = StyleSheet.create({
   },
   stepperHit: { padding: 8, minWidth: 48, alignItems: 'center' },
   stepperVal: { fontSize: 22, fontWeight: '800', minWidth: 0, textAlign: 'center' },
+  cardBackPickerPanel: {
+    marginTop: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: 14,
+    borderWidth: 1,
+  },
+  cardBackHeroRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 10,
+  },
+  cardBackHero: {
+    flex: 1,
+    height: 126,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cardBackHeroImage: { width: '100%', height: '100%' },
+  cardBackPickerTitle: {
+    marginTop: 4,
+    fontSize: 15,
+    fontWeight: '800',
+    textAlign: 'center',
+  },
+  cardBackThumbRow: {
+    gap: 10,
+    paddingTop: 12,
+    paddingBottom: 2,
+  },
+  cardBackThumb: {
+    width: 64,
+    height: 86,
+    borderRadius: 12,
+    borderWidth: 1.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  cardBackThumbImage: { width: 58, height: 80 },
 });

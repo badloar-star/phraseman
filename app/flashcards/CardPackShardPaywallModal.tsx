@@ -30,6 +30,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getVolumetricShadow, useTheme } from '../../components/ThemeContext';
+import { paywallGlassColor } from '../../components/paywallGlass';
 import type { Lang } from '../../constants/i18n';
 import { BRAND_SHARDS_ES } from '../../constants/terms_es';
 import { oskolokImageForPackShards } from '../oskolok';
@@ -40,7 +41,7 @@ import {
   type FlashcardMarketPack,
 } from './marketplace';
 import { getCardPackPaywallTheme } from './cardPackPaywallTheme';
-import { bundledPackTilePng } from './packMarketplaceIcons';
+import { packTileImageForPack } from './packMarketplaceIcons';
 
 export type CardPackPaywallMode = 'confirm' | 'insufficient' | 'voucher';
 
@@ -209,6 +210,9 @@ export default function CardPackShardPaywallModal({
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const isLightTheme = false;
+  const sheetCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
+  const sheetSurfaceBg = paywallGlassColor(t.bgSurface, themeMode, 'surface');
+  const sheetPrimaryBg = paywallGlassColor(t.bgPrimary, themeMode, 'primary');
   const bodyTextColor = t.textMuted;
   const subLabelColor = t.textMuted;
   const insets = useSafeAreaInsets();
@@ -219,7 +223,7 @@ export default function CardPackShardPaywallModal({
   const descLines = useMemo(() => splitDescriptionToLines(desc), [desc]);
   const meta = str.metaCards(pack.cardCount);
   const iconName = packCategoryIonIcon(pack.category) as keyof typeof Ionicons.glyphMap;
-  const packPng = bundledPackTilePng(pack.id);
+  const packPng = packTileImageForPack(pack);
   const paywallVisual = useMemo(
     () => getCardPackPaywallTheme(pack, { themeMode, isLight: isLightTheme }),
     [pack.id, pack.category, themeMode, isLightTheme],
@@ -365,7 +369,7 @@ export default function CardPackShardPaywallModal({
                     {
                       borderRadius: 24,
                       overflow: 'hidden',
-                      backgroundColor: t.bgCard,
+                      backgroundColor: sheetCardBg,
                       borderWidth: 1,
                       borderColor: paywallVisual.borderAccent,
                     },
@@ -373,7 +377,7 @@ export default function CardPackShardPaywallModal({
                   ]}
                 >
                   <LinearGradient
-                    colors={[`${t.bgSurface}F2`, t.bgPrimary]}
+                    colors={[sheetSurfaceBg, sheetPrimaryBg]}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 0.5, y: 1 }}
                     style={{ paddingBottom: 4 }}

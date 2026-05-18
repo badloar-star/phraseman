@@ -3,7 +3,23 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const CONTRAST = [
   'in + enclosed place',
@@ -156,16 +172,66 @@ export const PREPOSITION_TIME_PLACE_TRAINING: DiagnosisTraining = {
       'Algunas frases se aprenden como bloque: at work, on the bus, in the car.',
       'Primero ve el tipo de frase; luego elige la palabra pequeña.',
     ],
+    'pt-BR': [
+      'Se for espaço dentro de algo, use um bloco com in: in the room, in the car, in Dublin.',
+      'Se algo está sobre uma superfície, use on: on the table, on the wall.',
+      'Se o lugar funciona como ponto ou localização, muitas vezes use at: at the door, at work, at the station.',
+      'Se o tempo é amplo, use in: in July, in 2026, in the evening.',
+      'Se é dia ou data, use on: on Monday, on May 5th.',
+      'Se é hora exata, use at: at 8, at 6:30.',
+      'Algumas frases são aprendidas como bloco: at work, on the bus, in the car.',
+      'Primeiro veja o tipo de frase; depois escolha a palavrinha.',
+    ],
+    vi: [
+      'Nếu là không gian bên trong thứ gì đó, dùng cụm với in: in the room, in the car, in Dublin.',
+      'Nếu thứ gì đó ở trên bề mặt, dùng on: on the table, on the wall.',
+      'Nếu nơi đó hoạt động như một điểm hoặc vị trí, thường dùng at: at the door, at work, at the station.',
+      'Nếu thời gian rộng, dùng in: in July, in 2026, in the evening.',
+      'Nếu là ngày hoặc ngày tháng, dùng on: on Monday, on May 5th.',
+      'Nếu là giờ chính xác, dùng at: at 8, at 6:30.',
+      'Một số cụm nên học như khối cố định: at work, on the bus, in the car.',
+      'Trước tiên nhìn loại cụm; sau đó chọn từ nhỏ.',
+    ],
+    id: [
+      'Jika itu ruang di dalam sesuatu, gunakan blok dengan in: in the room, in the car, in Dublin.',
+      'Jika sesuatu berada di atas permukaan, gunakan on: on the table, on the wall.',
+      'Jika tempat berfungsi sebagai titik atau lokasi, sering gunakan at: at the door, at work, at the station.',
+      'Jika waktunya luas, gunakan in: in July, in 2026, in the evening.',
+      'Jika itu hari atau tanggal, gunakan on: on Monday, on May 5th.',
+      'Jika itu jam yang tepat, gunakan at: at 8, at 6:30.',
+      'Beberapa frasa dipelajari sebagai blok: at work, on the bus, in the car.',
+      'Lihat dulu jenis frasanya; lalu pilih kata kecilnya.',
+    ],
+    tr: [
+      'Bir şeyin içindeki alan ise in ile kalıp kullan: in the room, in the car, in Dublin.',
+      'Bir şey yüzey üzerindeyse on kullan: on the table, on the wall.',
+      'Yer bir nokta veya konum gibi çalışıyorsa çoğu zaman at kullan: at the door, at work, at the station.',
+      'Zaman genişse in kullan: in July, in 2026, in the evening.',
+      'Gün veya tarihse on kullan: on Monday, on May 5th.',
+      'Kesin saatse at kullan: at 8, at 6:30.',
+      'Bazı ifadeler kalıp olarak öğrenilir: at work, on the bus, in the car.',
+      'Önce ifade türünü gör; sonra küçük kelimeyi seç.',
+    ],
+    pl: [
+      'Jeśli chodzi o przestrzeń wewnątrz czegoś, użyj bloku z in: in the room, in the car, in Dublin.',
+      'Jeśli coś jest na powierzchni, użyj on: on the table, on the wall.',
+      'Jeśli miejsce działa jak punkt lub lokalizacja, często użyj at: at the door, at work, at the station.',
+      'Jeśli czas jest szeroki, użyj in: in July, in 2026, in the evening.',
+      'Jeśli to dzień lub data, użyj on: on Monday, on May 5th.',
+      'Jeśli to dokładna godzina, użyj at: at 8, at 6:30.',
+      'Niektóre frazy warto znać jako bloki: at work, on the bus, in the car.',
+      'Najpierw zobacz typ frazy, potem wybierz małe słowo.',
+    ],
   },
   examples: [
-    { en: 'I am in the room.', ru: 'Я в комнате.', uk: 'Я в кімнаті.', es: 'Estoy en la habitación.', why: tri('Комната вокруг человека. Он внутри, поэтому in the room.', 'Кімната навколо людини. Вона всередині, тому in the room.', 'La habitación rodea a la persona. Está dentro, por eso in the room.') },
-    { en: 'The keys are on the table.', ru: 'Ключи на столе.', uk: 'Ключі на столі.', es: 'Las llaves están sobre la mesa.', why: tri('Стол - поверхность. Ключи лежат на ней, поэтому on the table.', 'Стіл - поверхня. Ключі лежать на ній, тому on the table.', 'La mesa es superficie. Las llaves están encima, por eso on the table.') },
-    { en: 'I am at the door.', ru: 'Я у двери.', uk: 'Я біля дверей.', es: 'Estoy en la puerta.', why: tri('Дверь здесь точка, рядом с которой стоит человек: at the door.', 'Двері тут точка, біля якої стоїть людина: at the door.', 'La puerta funciona como punto: at the door.') },
-    { en: 'I work on Monday.', ru: 'Я работаю в понедельник.', uk: 'Я працюю в понеділок.', es: 'Trabajo el lunes.', why: tri('Monday - день. Для дня нужен блок on Monday.', 'Monday - день. Для дня потрібен блок on Monday.', 'Monday es un día. Con días usamos on Monday.') },
-    { en: 'The meeting starts at 8.', ru: 'Встреча начинается в 8.', uk: 'Зустріч починається о 8.', es: 'La reunión empieza a las 8.', why: tri('8 - точный час. Для точного часа нужен at 8.', '8 - точна година. Для точної години потрібен at 8.', '8 es hora exacta. Usamos at 8.') },
-    { en: 'I was born in 1990.', ru: 'Я родился в 1990 году.', uk: 'Я народився у 1990 році.', es: 'Nací en 1990.', why: tri('1990 - год, широкий период. Поэтому in 1990.', '1990 - рік, широкий період. Тому in 1990.', '1990 es un año, un periodo amplio. Por eso in 1990.') },
-    { en: 'She is on the bus.', ru: 'Она в автобусе.', uk: 'Вона в автобусі.', es: 'Ella está en el autobús.', why: tri('Для автобуса как транспорта обычный готовый блок - on the bus.', 'Для автобуса як транспорту звичний готовий шматок - on the bus.', 'Con bus como transporte, el bloque normal es on the bus.') },
-    { en: 'He is in the car.', ru: 'Он в машине.', uk: 'Він у машині.', es: 'Él está en el coche.', why: tri('Машина как маленькое пространство: человек внутри, поэтому in the car.', 'Машина як маленький простір: людина всередині, тому in the car.', 'El coche es un espacio pequeño: la persona está dentro, por eso in the car.') },
+    { en: 'I am in the room.', ru: 'Я в комнате.', uk: 'Я в кімнаті.', es: 'Estoy en la habitación.', 'pt-BR': 'Estou no quarto.', vi: 'Tôi đang ở trong phòng.', id: 'Saya ada di dalam ruangan.', tr: 'Odadayım.', pl: 'Jestem w pokoju.', why: tri('Комната вокруг человека. Он внутри, поэтому in the room.', 'Кімната навколо людини. Вона всередині, тому in the room.', 'La habitación rodea a la persona. Está dentro, por eso in the room.') },
+    { en: 'The keys are on the table.', ru: 'Ключи на столе.', uk: 'Ключі на столі.', es: 'Las llaves están sobre la mesa.', 'pt-BR': 'As chaves estão sobre a mesa.', vi: 'Chìa khóa ở trên bàn.', id: 'Kunci-kunci ada di atas meja.', tr: 'Anahtarlar masanın üzerinde.', pl: 'Klucze są na stole.', why: tri('Стол - поверхность. Ключи лежат на ней, поэтому on the table.', 'Стіл - поверхня. Ключі лежать на ній, тому on the table.', 'La mesa es superficie. Las llaves están encima, por eso on the table.') },
+    { en: 'I am at the door.', ru: 'Я у двери.', uk: 'Я біля дверей.', es: 'Estoy en la puerta.', 'pt-BR': 'Estou na porta.', vi: 'Tôi đang ở cửa.', id: 'Saya ada di dekat pintu.', tr: 'Kapıdayım.', pl: 'Jestem przy drzwiach.', why: tri('Дверь здесь точка, рядом с которой стоит человек: at the door.', 'Двері тут точка, біля якої стоїть людина: at the door.', 'La puerta funciona como punto: at the door.') },
+    { en: 'I work on Monday.', ru: 'Я работаю в понедельник.', uk: 'Я працюю в понеділок.', es: 'Trabajo el lunes.', 'pt-BR': 'Eu trabalho na segunda-feira.', vi: 'Tôi làm việc vào thứ Hai.', id: 'Saya bekerja pada hari Senin.', tr: 'Pazartesi çalışıyorum.', pl: 'Pracuję w poniedziałek.', why: tri('Monday - день. Для дня нужен блок on Monday.', 'Monday - день. Для дня потрібен блок on Monday.', 'Monday es un día. Con días usamos on Monday.') },
+    { en: 'The meeting starts at 8.', ru: 'Встреча начинается в 8.', uk: 'Зустріч починається о 8.', es: 'La reunión empieza a las 8.', 'pt-BR': 'A reunião começa às 8.', vi: 'Cuộc họp bắt đầu lúc 8 giờ.', id: 'Rapat dimulai pukul 8.', tr: 'Toplantı saat 8de başlıyor.', pl: 'Spotkanie zaczyna się o 8.', why: tri('8 - точный час. Для точного часа нужен at 8.', '8 - точна година. Для точної години потрібен at 8.', '8 es hora exacta. Usamos at 8.') },
+    { en: 'I was born in 1990.', ru: 'Я родился в 1990 году.', uk: 'Я народився у 1990 році.', es: 'Nací en 1990.', 'pt-BR': 'Nasci em 1990.', vi: 'Tôi sinh năm 1990.', id: 'Saya lahir pada tahun 1990.', tr: "1990'da doğdum.", pl: 'Urodziłem się w 1990 roku.', why: tri('1990 - год, широкий период. Поэтому in 1990.', '1990 - рік, широкий період. Тому in 1990.', '1990 es un año, un periodo amplio. Por eso in 1990.') },
+    { en: 'She is on the bus.', ru: 'Она в автобусе.', uk: 'Вона в автобусі.', es: 'Ella está en el autobús.', 'pt-BR': 'Ela está no ônibus.', vi: 'Cô ấy đang ở trên xe buýt.', id: 'Dia ada di bus.', tr: 'O otobüste.', pl: 'Ona jest w autobusie.', why: tri('Для автобуса как транспорта обычный готовый блок - on the bus.', 'Для автобуса як транспорту звичний готовий шматок - on the bus.', 'Con bus como transporte, el bloque normal es on the bus.') },
+    { en: 'He is in the car.', ru: 'Он в машине.', uk: 'Він у машині.', es: 'Él está en el coche.', 'pt-BR': 'Ele está no carro.', vi: 'Anh ấy đang ở trong xe hơi.', id: 'Dia ada di dalam mobil.', tr: 'O arabada.', pl: 'On jest w samochodzie.', why: tri('Машина как маленькое пространство: человек внутри, поэтому in the car.', 'Машина як маленький простір: людина всередині, тому in the car.', 'El coche es un espacio pequeño: la persona está dentro, por eso in the car.') },
   ],
   introBlocks: [
     { id: 'intro_problem', type: 'diagnosis', text: tri('Здесь ловушка не в одном слове. Ты видишь русское “в/на” и слишком быстро выбираешь in, on или at.', 'Тут пастка не в одному слові. Ти бачиш українське “в/на” і занадто швидко обираєш in, on або at.', 'La trampa no está en una sola palabra. Ves una traducción y eliges demasiado rápido in, on o at.') },

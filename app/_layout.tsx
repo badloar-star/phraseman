@@ -8,7 +8,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import Constants from 'expo-constants';
 import * as Linking from 'expo-linking';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, AppState, Image, InteractionManager, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, AppState, Image, ImageBackground, InteractionManager, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
 import AchievementToast from '../components/AchievementToast';
@@ -26,7 +26,7 @@ import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
-import { getMaxEnergyForLevel } from '../constants/theme';
+import { getMaxEnergyForLevel, type ThemeMode } from '../constants/theme';
 import type { Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
 import { ENABLE_DEV_TOOLS, IS_EXPO_GO } from './config';
@@ -37,7 +37,7 @@ import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
 import { registerInLeagueGroupSilently } from './firestore_leagues';
 import { PlayInstallReferrer } from 'react-native-play-install-referrer';
 import { migrateWeekPointsIfNeeded, updateStreakOnActivity } from './hall_of_fame_utils';
-import { preloadImages } from './image_preload';
+import { preloadImages, preloadStartupImages } from './image_preload';
 import { prefetchQuizPhrases } from './quiz_phrases_loader';
 import {
   checkLeagueOvertakeNotification, getNotifSettingsSnapshot, hydrateNotifSettingsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhrasOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler,
@@ -57,6 +57,7 @@ import MatchFoundToast from '../components/MatchFoundToast';
 import ActionToast from '../components/ActionToast';
 import ArenaFriendInviteHost from '../components/ArenaFriendInviteHost';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
+import SoundEventHost from '../components/SoundEventHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
 import { getCanonicalUserId } from './user_id_policy';
 import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
@@ -74,13 +75,26 @@ import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
+import {
+  cancelScheduledAnimatedStateUpdates,
+  scheduleTrackedAnimatedStateUpdate,
+  type ScheduledAnimatedStateUpdate,
+} from '../components/animationScheduling';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import GoldBevel from '../components/GoldBevel';
+import {
+  RewardModalBackdrop,
+  rewardModalAccentColor,
+  rewardModalPanelBorder,
+  rewardModalPanelColors,
+  rewardModalSoftSurface,
+} from '../components/RewardModalBackdrop';
 import {
   checkLeagueBonusAvailability,
   subscribeLeagueBonusAvailability,
   type LeagueBonusAvailability,
 } from './services/league_chest_rewards';
+import { FIRST_LESSON_SHEET_BACKGROUNDS } from '../components/firstLessonSheetAssets';
 
 /** Список друзей с диска в память до открытия вкладки — чтобы первый кадр вкладки мог сразу показать строки. */
 startFriendsTabSwrPrime();
@@ -97,6 +111,70 @@ DefaultText.defaultProps = {
 
 const STARTUP_SPLASH_BG = '#101214';
 const USE_ELITE_LEVEL_UP_MODAL = true;
+const FIRST_LESSON_SHEET_PANEL_SCRIMS: Record<ThemeMode, string> = {
+  dark: 'rgba(3,10,6,0.56)',
+  neon: 'rgba(3,12,3,0.50)',
+  gold: 'rgba(5,5,5,0.52)',
+  coral: 'rgba(28,8,5,0.50)',
+  minimalLight: 'rgba(255,250,237,0.86)',
+  minimalDark: 'rgba(5,7,9,0.48)',
+};
+const FIRST_LESSON_SHEET_TITLE_COLORS: Record<ThemeMode, string> = {
+  dark: '#F7FFF4',
+  neon: '#F8FFF1',
+  gold: '#FFF7DF',
+  coral: '#FFF7F2',
+  minimalLight: '#1B1712',
+  minimalDark: '#FFFFFF',
+};
+const FIRST_LESSON_SHEET_SUBTITLE_COLORS: Record<ThemeMode, string> = {
+  dark: '#CFE7CF',
+  neon: '#DDF8C8',
+  gold: '#EBD7A5',
+  coral: '#FFD8CF',
+  minimalLight: '#635845',
+  minimalDark: '#C5CAD0',
+};
+const FIRST_LESSON_SHEET_LATER_COLORS: Record<ThemeMode, string> = {
+  dark: '#A8BFA6',
+  neon: '#BFDCA7',
+  gold: '#BDAA7A',
+  coral: '#D5A59B',
+  minimalLight: '#766B58',
+  minimalDark: '#9298A1',
+};
+const FIRST_LESSON_SHEET_BORDER_COLORS: Record<ThemeMode, string> = {
+  dark: 'rgba(189,255,143,0.26)',
+  neon: 'rgba(210,255,0,0.34)',
+  gold: 'rgba(255,210,99,0.34)',
+  coral: 'rgba(255,133,112,0.34)',
+  minimalLight: 'rgba(120,91,42,0.22)',
+  minimalDark: 'rgba(255,255,255,0.16)',
+};
+const FIRST_LESSON_SHEET_CTA_TEXT_COLORS: Record<ThemeMode, string> = {
+  dark: '#F6FFF2',
+  neon: '#172300',
+  gold: '#FFE9A8',
+  coral: '#350D08',
+  minimalLight: '#3F2C08',
+  minimalDark: '#FFFFFF',
+};
+const FIRST_LESSON_SHEET_CTA_GRADIENTS: Record<ThemeMode, readonly [string, string]> = {
+  dark: ['#2F8A42', '#155A2B'],
+  neon: ['#C8FF00', '#A7E600'],
+  gold: ['#1D1910', '#4D3A16'],
+  coral: ['#FF7A66', '#EF4F3D'],
+  minimalLight: ['#FFF2BF', '#E7B84E'],
+  minimalDark: ['#2B3035', '#15181B'],
+};
+const FIRST_LESSON_SHEET_CTA_SHADOW_COLORS: Record<ThemeMode, string> = {
+  dark: '#7CF05C',
+  neon: '#C8FF00',
+  gold: '#D5A63D',
+  coral: '#FF715F',
+  minimalLight: '#B78328',
+  minimalDark: '#FFFFFF',
+};
 const DAILY_LOGIN_BONUS_XP_BY_DAY = [
   20, 25, 30, 40, 50, 75, 120,
   130, 140, 150, 160, 170, 180, 220,
@@ -333,6 +411,7 @@ function GlobalLevelUpHandler() {
   const isShowingRef = useRef(false);
   const dismissingLevelUpRef = useRef(false);
   const giftOpenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
   /** Сериализация flush: двойной await getItem до removeItem давал дубликаты уровня в queueRef. */
   const flushQueueBusyRef = useRef(false);
   const flushQueueRetryRef = useRef(false);
@@ -399,30 +478,36 @@ function GlobalLevelUpHandler() {
     };
   }, [flushQueue]);
 
+  useEffect(() => () => {
+    cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
+  }, []);
+
   const dismissLevelUp = () => {
     if (dismissingLevelUpRef.current) return;
     dismissingLevelUpRef.current = true;
     Animated.timing(levelUpOpacity, { toValue: 0, duration: 300, useNativeDriver: true }).start(() => {
-      setShowLevelUp(false);
-      void (async () => {
-        try {
-          const name = (await AsyncStorage.getItem('user_name')) || userName;
-          const l: Lang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
-          await registerXP(100, 'level_up_bonus', name, l);
-          await tryGrantPremiumMonthlyWagerFromLevelUp();
-          const prem = await getVerifiedPremiumStatus().catch(() => false);
-          setLevelGiftDualMode(!!prem);
-        } finally {
-          InteractionManager.runAfterInteractions(() => {
-            // Android can keep the closing Modal's native window alive for a beat.
-            // Opening the gift Modal immediately after level-up caused stuck touches/ANR.
-            giftOpenTimerRef.current = setTimeout(() => {
-              giftOpenTimerRef.current = null;
-              setShowGiftModal(true);
-            }, Platform.OS === 'android' ? 260 : 180);
-          });
-        }
-      })();
+      scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
+        setShowLevelUp(false);
+        void (async () => {
+          try {
+            const name = (await AsyncStorage.getItem('user_name')) || userName;
+            const l: Lang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
+            await registerXP(100, 'level_up_bonus', name, l);
+            await tryGrantPremiumMonthlyWagerFromLevelUp();
+            const prem = await getVerifiedPremiumStatus().catch(() => false);
+            setLevelGiftDualMode(!!prem);
+          } finally {
+            InteractionManager.runAfterInteractions(() => {
+              // Android can keep the closing Modal's native window alive for a beat.
+              // Opening the gift Modal immediately after level-up caused stuck touches/ANR.
+              giftOpenTimerRef.current = setTimeout(() => {
+                giftOpenTimerRef.current = null;
+                setShowGiftModal(true);
+              }, Platform.OS === 'android' ? 260 : 180);
+            });
+          }
+        })();
+      });
     });
   };
 
@@ -443,6 +528,7 @@ function GlobalLevelUpHandler() {
   const levelUpOverlayVisible = useOverlayVisible('levelUp', showLevelUp || showGiftModal);
   const levelUpGlowOpacity = levelUpGlow.interpolate({ inputRange: [0, 1], outputRange: [0.14, 0.44] });
   const levelUpModalScale = levelUpOpacity.interpolate({ inputRange: [0, 1], outputRange: USE_ELITE_LEVEL_UP_MODAL ? [0.9, 1] : [0.85, 1] });
+  const levelUpAccent = rewardModalAccentColor(themeMode, t);
 
   useEffect(() => {
     if (!showLevelUp || !levelUpOverlayVisible) return;
@@ -458,7 +544,8 @@ function GlobalLevelUpHandler() {
         statusBarTranslucent
         onRequestClose={() => {}}
       >
-        <View style={{ flex: 1, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? 'rgba(0,0,0,0.90)' : 'rgba(3,5,10,0.86)') : 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+        <View style={{ flex: 1, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? 'rgba(0,0,0,0.90)' : 'rgba(3,5,10,0.86)') : 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 24, overflow: 'hidden' }}>
+          {USE_ELITE_LEVEL_UP_MODAL && <RewardModalBackdrop themeMode={themeMode} intensity="strong" />}
           <Animated.View testID="level-up-modal" style={{
             transform: [
               { translateY: levelUpTranslateY },
@@ -475,7 +562,7 @@ function GlobalLevelUpHandler() {
             ...(USE_ELITE_LEVEL_UP_MODAL && isGoldTheme ? goldShadow(3) : {}),
           }}>
             <LinearGradient
-              colors={USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? GOLD_GRADIENTS.premiumPanel : [t.bgSurface, t.bgCard, t.bgSurface2]) : t.cardGradient}
+              colors={USE_ELITE_LEVEL_UP_MODAL ? rewardModalPanelColors(themeMode, t) : t.cardGradient}
               locations={USE_ELITE_LEVEL_UP_MODAL && isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
@@ -484,7 +571,7 @@ function GlobalLevelUpHandler() {
               padding: USE_ELITE_LEVEL_UP_MODAL ? 26 : 28,
               alignItems: 'center',
               borderWidth: 1,
-              borderColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? GOLD_RICH.hairlineStrong : t.border) : t.textSecond + '44',
+              borderColor: USE_ELITE_LEVEL_UP_MODAL ? rewardModalPanelBorder(themeMode, t) : t.textSecond + '44',
             }}>
               {USE_ELITE_LEVEL_UP_MODAL && isGoldTheme && <GoldBevel radius={32} intensity="strong" />}
               {USE_ELITE_LEVEL_UP_MODAL && (
@@ -497,7 +584,7 @@ function GlobalLevelUpHandler() {
                       left: 34,
                       right: 34,
                       height: 1,
-                      backgroundColor: isGoldTheme ? GOLD_RICH.champagne : t.gold,
+                      backgroundColor: levelUpAccent,
                       opacity: levelUpGlowOpacity,
                     }}
                   />
@@ -509,10 +596,10 @@ function GlobalLevelUpHandler() {
                       left: 0,
                       right: 0,
                       height: 82,
-                      backgroundColor: isGoldTheme ? GOLD_RICH.washStrong : 'rgba(246,200,95,0.055)',
+                      backgroundColor: rewardModalSoftSurface(themeMode, t),
                     }}
                   />
-                  <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : t.gold, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 12 }}>
+                  <Text style={{ color: levelUpAccent, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 12 }}>
                     {lang === 'uk' ? 'Новий рівень' : lang === 'es' ? 'Nuevo nivel' : 'Новый уровень'}
                   </Text>
                 </>
@@ -539,8 +626,8 @@ function GlobalLevelUpHandler() {
                 </View>
               )}
 
-              <View style={{ backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.05)') : t.bgSurface, paddingHorizontal: USE_ELITE_LEVEL_UP_MODAL ? 18 : 16, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 999 : 16, marginTop: USE_ELITE_LEVEL_UP_MODAL ? 14 : 10, borderWidth: USE_ELITE_LEVEL_UP_MODAL ? 1 : 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? GOLD_RICH.hairline : 'rgba(255,255,255,0.12)') : 'transparent' }}>
-                <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : t.gold, fontWeight: '800', fontSize: f.caption }}>
+              <View style={{ backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? rewardModalSoftSurface(themeMode, t) : t.bgSurface, paddingHorizontal: USE_ELITE_LEVEL_UP_MODAL ? 18 : 16, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 999 : 16, marginTop: USE_ELITE_LEVEL_UP_MODAL ? 14 : 10, borderWidth: USE_ELITE_LEVEL_UP_MODAL ? 1 : 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? rewardModalPanelBorder(themeMode, t) : 'transparent' }}>
+                <Text style={{ color: levelUpAccent, fontWeight: '800', fontSize: f.caption }}>
                   {lang === 'uk'
                     ? `+100 XP — бонус за ${currentLevel} рівень`
                     : lang === 'es'
@@ -563,6 +650,8 @@ function GlobalLevelUpHandler() {
 
               <TouchableOpacity
                 testID="level-up-dismiss"
+                accessibilityRole="button"
+                accessibilityLabel={lang === 'uk' ? 'Продовжити' : lang === 'es' ? 'Continuar' : 'Продолжить'}
                 onPress={dismissLevelUp}
                 style={{ marginTop: USE_ELITE_LEVEL_UP_MODAL ? 22 : 20, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? 'transparent' : t.textPrimary) : t.accent, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 18 : 16, paddingHorizontal: USE_ELITE_LEVEL_UP_MODAL ? 46 : 40, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 14 : 12, borderWidth: USE_ELITE_LEVEL_UP_MODAL ? 1 : 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? GOLD_RICH.hairlineStrong : 'rgba(255,255,255,0.18)') : 'transparent', overflow: 'hidden' }}
               >
@@ -599,6 +688,7 @@ function GlobalLevelUpHandler() {
           userName={userName}
           lang={lang}
           onClose={onGiftClose}
+          deliveryMode="inventory"
         />
       ) : (
         <LevelGiftModal
@@ -607,6 +697,7 @@ function GlobalLevelUpHandler() {
           userName={userName}
           lang={lang}
           onClose={onGiftClose}
+          deliveryMode="inventory"
         />
       )}
     </>
@@ -654,7 +745,7 @@ function AppContent() {
   const [notifNudgeMissedDays, setNotifNudgeMissedDays] = useState(0);
   const { setLang, lang } = useLang();
   const { showAchievement } = useAchievement();
-  const { theme: tTheme } = useTheme();
+  const { theme: tTheme, themeMode } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
   const insets = useSafeAreaInsets();
@@ -1189,6 +1280,11 @@ function AppContent() {
         }
       } catch {}
 
+      await Promise.race([
+        preloadStartupImages(),
+        new Promise<void>((resolve) => setTimeout(resolve, 450)),
+      ]).catch(() => {});
+
       clearTimeout(safetyTimer);
       setReady(true);
       setTimeout(flushPending, 280);
@@ -1274,6 +1370,15 @@ function AppContent() {
   const leagueBonusAvailableModalVisible = useOverlayVisible('leagueBonusAvailable', !!leagueBonusAvailable);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
   const firstLessonSheetVisible = useOverlayVisible('firstLessonSheet', showFirstLessonSheet);
+  const firstLessonSheetBackground = FIRST_LESSON_SHEET_BACKGROUNDS[themeMode] ?? FIRST_LESSON_SHEET_BACKGROUNDS.minimalDark;
+  const firstLessonSheetScrim = FIRST_LESSON_SHEET_PANEL_SCRIMS[themeMode] ?? FIRST_LESSON_SHEET_PANEL_SCRIMS.minimalDark;
+  const firstLessonSheetTitleColor = FIRST_LESSON_SHEET_TITLE_COLORS[themeMode] ?? '#FFFFFF';
+  const firstLessonSheetSubtitleColor = FIRST_LESSON_SHEET_SUBTITLE_COLORS[themeMode] ?? '#C5CAD0';
+  const firstLessonSheetLaterColor = FIRST_LESSON_SHEET_LATER_COLORS[themeMode] ?? '#9298A1';
+  const firstLessonSheetBorderColor = FIRST_LESSON_SHEET_BORDER_COLORS[themeMode] ?? 'rgba(255,255,255,0.16)';
+  const firstLessonSheetCtaTextColor = FIRST_LESSON_SHEET_CTA_TEXT_COLORS[themeMode] ?? '#FFFFFF';
+  const firstLessonSheetCtaGradient = FIRST_LESSON_SHEET_CTA_GRADIENTS[themeMode] ?? FIRST_LESSON_SHEET_CTA_GRADIENTS.neon;
+  const firstLessonSheetCtaShadowColor = FIRST_LESSON_SHEET_CTA_SHADOW_COLORS[themeMode] ?? '#C8FF00';
 
   if (!ready) {
     return (
@@ -1482,7 +1587,7 @@ function AppContent() {
           emitAppEvent('energy_onboarding_may_show');
         }}
       >
-        <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+        <View style={styles.firstLessonSheetOverlay}>
           <TouchableOpacity
             style={{ flex: 1 }}
             activeOpacity={1}
@@ -1492,18 +1597,24 @@ function AppContent() {
               emitAppEvent('energy_onboarding_may_show');
             }}
           />
-          <View style={{
-            backgroundColor: '#141414',
-            borderTopLeftRadius: 28, borderTopRightRadius: 28,
-            padding: 28, paddingBottom: Math.max(insets.bottom + 16, 44),
-            borderTopWidth: 1, borderColor: 'rgba(200,255,0,0.15)',
-            alignItems: 'center',
-          }}>
-            <Text style={{ fontSize: 40, marginBottom: 12 }}>🚀</Text>
-            <Text style={{ color: '#fff', fontSize: 22, fontWeight: '800', textAlign: 'center', marginBottom: 8 }}>
+          <ImageBackground
+            source={firstLessonSheetBackground}
+            resizeMode="cover"
+            imageStyle={styles.firstLessonSheetBackgroundImage}
+            style={[
+              styles.firstLessonSheetPanel,
+              {
+                paddingBottom: Math.max(insets.bottom + 18, 46),
+                borderColor: firstLessonSheetBorderColor,
+                shadowColor: firstLessonSheetCtaShadowColor,
+              },
+            ]}
+          >
+            <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { backgroundColor: firstLessonSheetScrim }]} />
+            <Text style={[styles.firstLessonSheetTitle, { color: firstLessonSheetTitleColor }]}>
               {lang === 'es' ? '¿Empezamos la primera lección?' : lang === 'uk' ? 'Почнемо перший урок?' : 'Начнём первый урок?'}
             </Text>
-            <Text style={{ color: '#A8A8A8', fontSize: 15, textAlign: 'center', lineHeight: 22, marginBottom: 28 }}>
+            <Text style={[styles.firstLessonSheetSubtitle, { color: firstLessonSheetSubtitleColor }]}>
               {lang === 'es'
                 ? 'La primera lección dura unos 10 minutos. Después ya sabrás 50 frases útiles.'
                 : lang === 'uk'
@@ -1511,7 +1622,7 @@ function AppContent() {
                 : 'Первый урок займёт ~10 минут. Уже после него ты будешь знать 50 живых фраз.'}
             </Text>
             <TouchableOpacity
-              style={{ width: '100%', backgroundColor: '#C8FF00', borderRadius: 14, paddingVertical: 16, alignItems: 'center', marginBottom: 12 }}
+              style={[styles.firstLessonSheetCtaTouchable, { shadowColor: firstLessonSheetCtaShadowColor }]}
               onPress={() => {
                 if (firstLessonStartHandledRef.current) return;
                 firstLessonStartHandledRef.current = true;
@@ -1532,13 +1643,30 @@ function AppContent() {
               }}
               activeOpacity={0.85}
             >
-              <Text style={{ color: '#1A2400', fontSize: 18, fontWeight: '700' }}>
-                {lang === 'es' ? '¡Vamos! 🔥' : lang === 'uk' ? 'Так, поїхали! 🔥' : 'Да, поехали! 🔥'}
-              </Text>
+              <LinearGradient
+                colors={firstLessonSheetCtaGradient}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={[
+                  styles.firstLessonSheetCta,
+                  {
+                    borderColor: firstLessonSheetBorderColor,
+                  },
+                ]}
+              >
+                <Text
+                  numberOfLines={1}
+                  adjustsFontSizeToFit
+                  minimumFontScale={0.78}
+                  style={[styles.firstLessonSheetCtaText, { color: firstLessonSheetCtaTextColor }]}
+                >
+                  {lang === 'es' ? '¡Vamos! 🔥' : lang === 'uk' ? 'Так, поїхали! 🔥' : 'Да, поехали! 🔥'}
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
             <TouchableOpacity
               testID="first-lesson-later"
-              style={{ paddingVertical: 14, paddingHorizontal: 40, marginBottom: 8 }}
+              style={styles.firstLessonSheetLaterButton}
               onPress={() => {
                 setShowFirstLessonSheet(false);
                 setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
@@ -1546,11 +1674,11 @@ function AppContent() {
               }}
               activeOpacity={0.7}
             >
-              <Text style={{ color: '#888', fontSize: 15, fontWeight: '500' }}>
+              <Text style={[styles.firstLessonSheetLaterText, { color: firstLessonSheetLaterColor }]}>
                 {lang === 'es' ? 'Más tarde' : lang === 'uk' ? 'Пізніше' : 'Позже'}
               </Text>
             </TouchableOpacity>
-          </View>
+          </ImageBackground>
         </View>
       </Modal>
     )}
@@ -1560,6 +1688,89 @@ function AppContent() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  firstLessonSheetOverlay: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0,0,0,0.58)',
+  },
+  firstLessonSheetPanel: {
+    width: '100%',
+    overflow: 'hidden',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    borderTopWidth: 1,
+    paddingHorizontal: 28,
+    paddingTop: 44,
+    alignItems: 'center',
+    backgroundColor: '#111315',
+    shadowOffset: { width: 0, height: -10 },
+    shadowOpacity: 0.28,
+    shadowRadius: 24,
+    elevation: 18,
+  },
+  firstLessonSheetBackgroundImage: {
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+  },
+  firstLessonSheetTitle: {
+    fontSize: 24,
+    lineHeight: 30,
+    fontWeight: '800',
+    textAlign: 'center',
+    letterSpacing: 0,
+    marginBottom: 12,
+  },
+  firstLessonSheetSubtitle: {
+    fontSize: 16,
+    lineHeight: 24,
+    textAlign: 'center',
+    letterSpacing: 0,
+    marginBottom: 32,
+    maxWidth: 360,
+  },
+  firstLessonSheetCtaTouchable: {
+    width: '100%',
+    minHeight: 64,
+    borderRadius: 18,
+    marginBottom: 16,
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.18,
+    shadowRadius: 18,
+    elevation: 8,
+  },
+  firstLessonSheetCta: {
+    width: '100%',
+    minHeight: 64,
+    borderRadius: 18,
+    overflow: 'hidden',
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+  },
+  firstLessonSheetCtaText: {
+    fontSize: 18,
+    lineHeight: 24,
+    fontWeight: '800',
+    textAlign: 'center',
+    letterSpacing: 0,
+  },
+  firstLessonSheetLaterButton: {
+    minHeight: 48,
+    paddingVertical: 12,
+    paddingHorizontal: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  firstLessonSheetLaterText: {
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: '600',
+    letterSpacing: 0,
+  },
+});
 
 export default function RootLayout() {
   return (
@@ -1579,6 +1790,7 @@ export default function RootLayout() {
                     <ActionToast />
                     <ArenaFriendInviteHost />
                     <MatchFoundToast />
+                    <SoundEventHost />
                     <GlobalLevelUpHandler />
                     <GlobalShardsEarnedHost />
                     <ThemedBlockingAlertHost />

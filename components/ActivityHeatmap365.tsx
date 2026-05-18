@@ -24,6 +24,14 @@ import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n
 import type { Theme } from '../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import GoldBevel from './GoldBevel';
+import StatsCardArtSurface from './StatsCardArtSurface';
+import {
+  RewardModalBackdrop,
+  rewardModalAccentColor,
+  rewardModalPanelBorder,
+  rewardModalPanelColors,
+  rewardModalSoftSurface,
+} from './RewardModalBackdrop';
 import {
   ACTIVITY_365_GOAL_KEY,
   type Activity365Analytics,
@@ -273,9 +281,9 @@ function StatPill({ label, value, t, f }: { label: string; value: string | numbe
 }
 
 function DayDetailModal({ day, onClose }: { day: Activity365Day | null; onClose: () => void }) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const isGoldTheme = t.bgPrimary === GOLD_RICH.blackVoid;
+  const modalAccent = rewardModalAccentColor(themeMode, t);
   if (!day) return null;
   const rows = [
     { icon: 'star-outline', label: 'XP', value: day.xp },
@@ -353,14 +361,15 @@ function DayDetailModal({ day, onClose }: { day: Activity365Day | null; onClose:
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onClose}>
       <TouchableOpacity activeOpacity={1} onPress={onClose} style={styles.modalBackdrop}>
-        <TouchableOpacity testID="activity-365-day-modal" activeOpacity={1} onPress={() => {}} style={[styles.modalCard, { backgroundColor: t.bgCard, borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border }]}>
-          <LinearGradient colors={isGoldTheme ? [GOLD_RICH.bronzeWashStrong, GOLD_RICH.mist, 'rgba(0,0,0,0)'] : ['rgba(82,160,255,0.20)', 'rgba(255,215,0,0.12)', 'rgba(0,0,0,0)']} style={styles.modalGlow}>
+        <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
+        <TouchableOpacity testID="activity-365-day-modal" activeOpacity={1} onPress={() => {}} style={[styles.modalCard, { backgroundColor: 'transparent', borderColor: rewardModalPanelBorder(themeMode, t), shadowColor: modalAccent }]}>
+          <LinearGradient colors={rewardModalPanelColors(themeMode, t)} style={styles.modalGlow}>
             <View style={styles.modalHeader}>
               <View>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>
                   {formatDay(day.date)}
                 </Text>
-                <Text style={{ color: day.active ? t.correct : t.textMuted, fontSize: f.caption, marginTop: 4 }}>
+                <Text style={{ color: day.active ? modalAccent : t.textMuted, fontSize: f.caption, marginTop: 4 }}>
                   {day.active
                     ? triLang(lang, {
                       ru: 'Активный день',
@@ -390,8 +399,8 @@ function DayDetailModal({ day, onClose }: { day: Activity365Day | null; onClose:
             </View>
             <View style={styles.detailGrid}>
               {rows.map(row => (
-                <View key={row.label} style={[styles.detailTile, { borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, backgroundColor: isGoldTheme ? GOLD_RICH.graphiteWarm : t.bgSurface2 }]}>
-                  <Ionicons name={row.icon as any} size={18} color={isGoldTheme ? GOLD_RICH.paleGold : t.accent} />
+                <View key={row.label} style={[styles.detailTile, { borderColor: rewardModalPanelBorder(themeMode, t), backgroundColor: rewardModalSoftSurface(themeMode, t) }]}>
+                  <Ionicons name={row.icon as any} size={18} color={modalAccent} />
                   <Text style={{ color: t.textGhost, fontSize: f.caption - 2, marginTop: 7 }}>{row.label}</Text>
                   <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginTop: 2 }}>{row.value}</Text>
                 </View>
@@ -405,9 +414,10 @@ function DayDetailModal({ day, onClose }: { day: Activity365Day | null; onClose:
 }
 
 function MonthlyReportModal({ analytics, onClose }: { analytics: Activity365Analytics | null; onClose: () => void }) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const isGoldTheme = t.bgPrimary === GOLD_RICH.blackVoid;
+  const isGoldTheme = themeMode === 'gold';
+  const modalAccent = rewardModalAccentColor(themeMode, t);
   const m = analytics?.currentMonth;
   const currentMonthDays = useMemo(() => (
     analytics && m ? analytics.days.filter(day => day.date.slice(0, 7) === m.key && !day.future) : []
@@ -419,8 +429,9 @@ function MonthlyReportModal({ analytics, onClose }: { analytics: Activity365Anal
   return (
     <Modal visible={!!analytics} transparent animationType="fade" onRequestClose={onClose}>
       <TouchableOpacity activeOpacity={1} onPress={onClose} style={styles.modalBackdrop}>
-        <TouchableOpacity testID="activity-365-monthly-report-modal" activeOpacity={1} onPress={() => {}} style={[styles.modalCard, { backgroundColor: t.bgCard, borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border }]}>
-          <LinearGradient colors={isGoldTheme ? [GOLD_RICH.washStrong, GOLD_RICH.bronzeWash, 'rgba(0,0,0,0)'] : ['rgba(255,215,0,0.20)', 'rgba(82,160,255,0.12)', 'rgba(0,0,0,0)']} style={styles.modalGlow}>
+        <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
+        <TouchableOpacity testID="activity-365-monthly-report-modal" activeOpacity={1} onPress={() => {}} style={[styles.modalCard, { backgroundColor: 'transparent', borderColor: rewardModalPanelBorder(themeMode, t), shadowColor: modalAccent }]}>
+          <LinearGradient colors={rewardModalPanelColors(themeMode, t)} style={styles.modalGlow}>
             <View style={styles.modalHeader}>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>
                 {triLang(lang, {
@@ -515,7 +526,7 @@ function MonthlyReportModal({ analytics, onClose }: { analytics: Activity365Anal
                 pl: "Powtórka",
               })} value={totals.review} t={t} f={f} />
             </View>
-            <View style={[styles.reportSummary, { borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, backgroundColor: isGoldTheme ? GOLD_RICH.graphiteWarm : t.bgSurface2 }]}>
+            <View style={[styles.reportSummary, { borderColor: rewardModalPanelBorder(themeMode, t), backgroundColor: rewardModalSoftSurface(themeMode, t) }]}>
               <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }}>
                 {triLang(lang, {
                   ru: 'Вывод месяца',
@@ -661,7 +672,7 @@ export default function ActivityHeatmap365() {
   };
 
   return (
-    <LinearGradient testID="activity-365-card" colors={cardGradient} locations={luxuryLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[styles.card, { borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border }, isGoldTheme ? goldShadow(2) : null]}>
+    <StatsCardArtSurface testID="activity-365-card" name="weekRhythm" theme={t} isGoldTheme={isGoldTheme} gradientColors={cardGradient} gradientLocations={luxuryLocations} radius={18} style={[styles.card, { borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border }, isGoldTheme ? goldShadow(2) : null]}>
       {isGoldTheme && <GoldBevel radius={18} intensity="normal" />}
       <TouchableOpacity testID="activity-365-toggle" activeOpacity={0.88} onPress={() => setExpanded(prev => !prev)} style={styles.topBar}>
         <View style={[styles.iconOrb, { backgroundColor: isGoldTheme ? GOLD_RICH.wash : t.correct + '1F' }]}>
@@ -996,7 +1007,7 @@ export default function ActivityHeatmap365() {
 
       <DayDetailModal day={selectedDay} onClose={() => setSelectedDay(null)} />
       <MonthlyReportModal analytics={reportOpen ? analytics : null} onClose={() => setReportOpen(false)} />
-    </LinearGradient>
+    </StatsCardArtSurface>
   );
 }
 
@@ -1182,6 +1193,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 1,
     overflow: 'hidden',
+    shadowOffset: { width: 0, height: 18 },
+    shadowOpacity: 0.24,
+    shadowRadius: 28,
+    elevation: 18,
   },
   modalGlow: {
     padding: 18,

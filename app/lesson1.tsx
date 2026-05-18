@@ -22,6 +22,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
+import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import { triLang, type Lang } from '../constants/i18n';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient, ThemeMode } from '../constants/theme';
@@ -2382,6 +2383,7 @@ export default function LessonScreen() {
     <>
     <TouchableWithoutFeedback onPress={settings.hardMode ? undefined : handleBgTap}>
       <ScreenGradient>
+        <LessonArtBackdrop variant="practice" />
         <SafeAreaView style={{ flex: 1 }}>
           <LessonContent
             showIntroScreens={showIntroScreens}

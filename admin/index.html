@@ -294,6 +294,28 @@
     }
     .app-msg-preview-title { color:#f8fafc; font-size:16px; font-weight:900; margin-bottom:8px; }
     .app-msg-preview-body { color:#b9c2d0; font-size:13px; line-height:1.5; white-space:pre-wrap; }
+    .app-msg-poll-box {
+      margin: 6px 0 12px;
+      padding: 12px;
+      border: 1px solid rgba(96,165,250,.28);
+      border-radius: 12px;
+      background: rgba(37,99,235,.08);
+    }
+    .app-msg-poll-toolbar {
+      display: grid;
+      grid-template-columns: minmax(160px, 220px) minmax(0, 1fr);
+      gap: 10px;
+      align-items: end;
+      margin-bottom: 8px;
+    }
+    .app-msg-poll-toolbar .hint { margin-bottom: 10px; }
+    .app-msg-poll-options { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:8px; }
+    .app-msg-poll-option-row[hidden] { display:none; }
+    .app-msg-poll-option { display:flex; align-items:center; gap:8px; color:#dbeafe; font-size:12px; font-weight:700; background:#111827; border:1px solid #263247; border-radius:10px; padding:8px 10px; }
+    .app-msg-poll-option span:first-child { width:18px; height:18px; border-radius:50%; border:1px solid #60a5fa; display:inline-flex; align-items:center; justify-content:center; color:#93c5fd; font-size:10px; flex:0 0 auto; }
+    .app-msg-poll-preview { display:none; margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,.10); }
+    .app-msg-poll-preview-title { color:#bfdbfe; font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:.45px; margin-bottom:8px; }
+    .app-msg-poll-preview-options { display:flex; flex-direction:column; gap:7px; }
     .app-msg-list { display:flex; flex-direction:column; gap:10px; }
     .app-msg-card {
       background:#10101a;
@@ -316,6 +338,7 @@
     .app-msg-kpi { background:#10101a; border:1px solid #2a2a3a; border-radius:10px; padding:10px 12px; min-width:120px; }
     .app-msg-kpi .label { color:#777; font-size:10px; text-transform:uppercase; letter-spacing:.45px; }
     .app-msg-kpi .value { color:#fff; font-size:20px; font-weight:900; margin-top:3px; }
+    @media (max-width: 720px) { .app-msg-poll-toolbar, .app-msg-poll-options { grid-template-columns:1fr; } }
     @media (max-width: 1120px) { .app-msg-shell { grid-template-columns:1fr; } }
     .review-promo-shell { width: 100%; max-width: none; }
     .review-promo-panel { max-width: none; }
@@ -1325,13 +1348,22 @@
     <div class="app-msg-kpi"><div class="label">Всего</div><div class="value" id="am-kpi-total">—</div></div>
     <div class="app-msg-kpi"><div class="label">Лайки</div><div class="value" id="am-kpi-likes">—</div></div>
     <div class="app-msg-kpi"><div class="label">Дизлайки</div><div class="value" id="am-kpi-dislikes">—</div></div>
+    <div class="app-msg-kpi"><div class="label">Опросы</div><div class="value" id="am-kpi-polls">—</div></div>
+    <div class="app-msg-kpi"><div class="label">Голоса</div><div class="value" id="am-kpi-poll-votes">—</div></div>
   </div>
   <div class="app-msg-shell">
     <div class="app-msg-panel">
       <h2 id="am-form-title">Новое сообщение</h2>
-      <div class="hint">Тема и письмо выглядят в приложении как аккуратная почтовая карточка. Пока используем только русский текст.</div>
+      <div class="hint">Тема и письмо выглядят в приложении как аккуратная почтовая карточка. Опрос добавляется внутрь того же inbox-сообщения.</div>
       <input type="hidden" id="am-edit-id" value="">
       <div class="app-msg-grid">
+        <div class="app-msg-field">
+          <label>Формат</label>
+          <select id="am-kind" oninput="updateAppMessagePreview()">
+            <option value="message">Сообщение</option>
+            <option value="poll">Сообщение + опрос</option>
+          </select>
+        </div>
         <div class="app-msg-field">
           <label>Статус</label>
           <select id="am-active" oninput="updateAppMessagePreview()">
@@ -1364,9 +1396,40 @@
         <label>Сообщение</label>
         <textarea id="am-message-ru" placeholder="Текст письма для пользователя" oninput="updateAppMessagePreview()"></textarea>
       </div>
+      <div id="am-poll-fields" class="app-msg-poll-box" style="display:none">
+        <div class="app-msg-field">
+          <label>Вопрос голосования</label>
+          <input id="am-poll-question-ru" type="text" placeholder="Например: Какой формат тренировки добавить следующим?" oninput="updateAppMessagePreview()">
+        </div>
+        <div class="app-msg-poll-toolbar">
+          <div class="app-msg-field">
+            <label>Количество вариантов</label>
+            <select id="am-poll-option-count" oninput="updateAppMessagePreview()">
+              <option value="2">2 варианта</option>
+              <option value="3">3 варианта</option>
+              <option value="4">4 варианта</option>
+              <option value="5">5 вариантов</option>
+              <option value="6">6 вариантов</option>
+            </select>
+          </div>
+          <div class="hint">Заполни минимум 2 и максимум 6 вариантов. Пользователь сможет выбрать один вариант и потом изменить выбор.</div>
+        </div>
+        <div class="app-msg-poll-options">
+          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="1"><label>Вариант 1</label><input id="am-poll-option-1" type="text" placeholder="Короткие уроки" oninput="updateAppMessagePreview()"></div>
+          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="2"><label>Вариант 2</label><input id="am-poll-option-2" type="text" placeholder="Больше квизов" oninput="updateAppMessagePreview()"></div>
+          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="3"><label>Вариант 3</label><input id="am-poll-option-3" type="text" placeholder="Опционально" oninput="updateAppMessagePreview()"></div>
+          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="4"><label>Вариант 4</label><input id="am-poll-option-4" type="text" placeholder="Опционально" oninput="updateAppMessagePreview()"></div>
+          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="5"><label>Вариант 5</label><input id="am-poll-option-5" type="text" placeholder="Опционально" oninput="updateAppMessagePreview()"></div>
+          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="6"><label>Вариант 6</label><input id="am-poll-option-6" type="text" placeholder="Опционально" oninput="updateAppMessagePreview()"></div>
+        </div>
+      </div>
       <div class="app-msg-preview">
         <div class="app-msg-preview-title" id="am-preview-title">Тема сообщения</div>
         <div class="app-msg-preview-body" id="am-preview-body">Текст появится здесь.</div>
+        <div class="app-msg-poll-preview" id="am-preview-poll">
+          <div class="app-msg-poll-preview-title" id="am-preview-poll-question">Опрос</div>
+          <div class="app-msg-poll-preview-options" id="am-preview-poll-options"></div>
+        </div>
       </div>
       <div class="app-msg-actions">
         <button type="button" onclick="saveAppMessage()">💾 Сохранить</button>
@@ -8091,24 +8154,176 @@
     return new Date(n).toISOString().replace('T', ' ').slice(0, 16);
   }
 
+  const APP_MESSAGE_POLL_MIN_OPTIONS = 2;
+  const APP_MESSAGE_POLL_MAX_OPTIONS = 6;
+  const APP_MESSAGE_POLL_OPTION_NUMBERS = Array.from({ length: APP_MESSAGE_POLL_MAX_OPTIONS }, (_, index) => index + 1);
+
+  function appMessageFieldValue(id) {
+    return String(document.getElementById(id)?.value || '').trim();
+  }
+
+  function appMessageIsPollDraft() {
+    return appMessageFieldValue('am-kind') === 'poll';
+  }
+
+  function appMessageClampPollOptionCount(value) {
+    const n = Math.floor(Number(value || APP_MESSAGE_POLL_MIN_OPTIONS));
+    if (!Number.isFinite(n)) return APP_MESSAGE_POLL_MIN_OPTIONS;
+    return Math.max(APP_MESSAGE_POLL_MIN_OPTIONS, Math.min(APP_MESSAGE_POLL_MAX_OPTIONS, n));
+  }
+
+  function appMessageGetPollOptionCount() {
+    return appMessageClampPollOptionCount(document.getElementById('am-poll-option-count')?.value);
+  }
+
+  function appMessageSetPollOptionCount(value) {
+    const count = appMessageClampPollOptionCount(value);
+    const el = document.getElementById('am-poll-option-count');
+    if (el) el.value = String(count);
+    updateAppMessagePollOptionRows();
+  }
+
+  function updateAppMessagePollOptionRows() {
+    const count = appMessageGetPollOptionCount();
+    APP_MESSAGE_POLL_OPTION_NUMBERS.forEach((n) => {
+      const row = document.querySelector(`[data-am-poll-option-row="${n}"]`);
+      if (!row) return;
+      const visible = n <= count;
+      row.hidden = !visible;
+      row.setAttribute('aria-hidden', String(!visible));
+    });
+  }
+
+  function appMessageReadPollOptionTexts() {
+    return APP_MESSAGE_POLL_OPTION_NUMBERS
+      .slice(0, appMessageGetPollOptionCount())
+      .map((n) => appMessageFieldValue(`am-poll-option-${n}`));
+  }
+
+  function appMessageBuildPollPayload(titleRu, messageRu) {
+    if (!appMessageIsPollDraft()) return null;
+    const questionRu = appMessageFieldValue('am-poll-question-ru') || titleRu || messageRu;
+    const optionTexts = appMessageReadPollOptionTexts();
+    if (optionTexts.some((text) => !text)) {
+      throw new Error(`Заполни все выбранные варианты опроса (${appMessageGetPollOptionCount()})`);
+    }
+    if (optionTexts.length < 2) {
+      throw new Error('Для опроса нужны минимум 2 варианта');
+    }
+    const options = optionTexts.map((text, index) => ({
+      id: `opt_${index + 1}`,
+      textRu: text,
+      textUk: text,
+      textEs: text,
+    }));
+    return {
+      questionRu,
+      questionUk: questionRu,
+      questionEs: questionRu,
+      options,
+      optionIds: options.map((option) => option.id),
+    };
+  }
+
+  function appMessageEmptyPollCounts(poll) {
+    return Object.fromEntries((poll?.optionIds || []).map((id) => [id, 0]));
+  }
+
+  function appMessagePollStructureChanged(previousPoll, nextPoll) {
+    if (!previousPoll || !nextPoll) return true;
+    const previousOptions = Array.isArray(previousPoll.options) ? previousPoll.options : [];
+    const nextOptions = Array.isArray(nextPoll.options) ? nextPoll.options : [];
+    if (previousOptions.length !== nextOptions.length) return true;
+    return previousOptions.some((option, index) => {
+      const next = nextOptions[index] || {};
+      return String(option?.id || '') !== String(next.id || '')
+        || String(option?.textRu || '') !== String(next.textRu || '');
+    });
+  }
+
+  async function resetAppMessagePollEngagement(messageId) {
+    const pollVotes = await getDocs(collection(db, 'app_messages', messageId, 'poll_votes')).catch(() => ({ docs: [] }));
+    const voteDocs = pollVotes.docs || [];
+    for (let i = 0; i < voteDocs.length; i += 400) {
+      const batch = writeBatch(db);
+      voteDocs.slice(i, i + 400).forEach((vote) => batch.delete(vote.ref));
+      await batch.commit();
+    }
+    while (true) {
+      const states = await getDocs(query(collectionGroup(db, 'app_message_states'), where('messageId', '==', messageId), limit(400))).catch(() => ({ docs: [] }));
+      const stateDocs = states.docs || [];
+      if (!stateDocs.length) break;
+      const batch = writeBatch(db);
+      const nowMs = Date.now();
+      stateDocs.forEach((state) => batch.update(state.ref, { pollOptionId: deleteField(), updatedAtMs: nowMs }));
+      await batch.commit();
+      if (stateDocs.length < 400) break;
+    }
+  }
+
+  function appMessagePollCountsFromData(data) {
+    const raw = data?.pollCounts || data?.poll?.counts || {};
+    if (!raw || typeof raw !== 'object') return {};
+    const out = {};
+    Object.entries(raw).forEach(([id, count]) => {
+      const cleanId = String(id || '').replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 40);
+      if (!cleanId) return;
+      const n = Math.floor(Number(count || 0));
+      out[cleanId] = Number.isFinite(n) && n > 0 ? n : 0;
+    });
+    return out;
+  }
+
+  function appMessagePollVoteTotal(data, counts) {
+    const explicit = Math.floor(Number(data?.pollVoteCount ?? data?.poll?.voteCount));
+    if (Number.isFinite(explicit) && explicit >= 0) return explicit;
+    return Object.values(counts || {}).reduce((sum, n) => sum + (Number(n) || 0), 0);
+  }
+
   window.updateAppMessagePreview = function() {
     const title = String(document.getElementById('am-title-ru')?.value || '').trim() || 'Тема сообщения';
     const body = String(document.getElementById('am-message-ru')?.value || '').trim() || 'Текст появится здесь.';
     const titleEl = document.getElementById('am-preview-title');
     const bodyEl = document.getElementById('am-preview-body');
+    const pollFields = document.getElementById('am-poll-fields');
+    const pollPreview = document.getElementById('am-preview-poll');
+    const pollQuestion = document.getElementById('am-preview-poll-question');
+    const pollOptions = document.getElementById('am-preview-poll-options');
     if (titleEl) titleEl.textContent = title;
     if (bodyEl) bodyEl.textContent = body;
+    const isPoll = appMessageIsPollDraft();
+    if (pollFields) pollFields.style.display = isPoll ? 'block' : 'none';
+    updateAppMessagePollOptionRows();
+    if (!pollPreview || !pollOptions) return;
+    if (!isPoll) {
+      pollPreview.style.display = 'none';
+      pollOptions.innerHTML = '';
+      return;
+    }
+    const question = appMessageFieldValue('am-poll-question-ru') || title;
+    const options = appMessageReadPollOptionTexts().filter(Boolean);
+    pollPreview.style.display = 'block';
+    if (pollQuestion) pollQuestion.textContent = question;
+    pollOptions.innerHTML = options.length
+      ? options.map((text, index) => `<div class="app-msg-poll-option"><span>${index + 1}</span>${escapeHtml(text)}</div>`).join('')
+      : '<div class="broadcast-muted">Добавь варианты ответа.</div>';
   };
 
   window.resetAppMessageForm = function() {
-    ['am-edit-id','am-title-ru','am-title-uk','am-title-es','am-message-ru','am-message-uk','am-message-es'].forEach((id) => {
+    ['am-edit-id','am-title-ru','am-title-uk','am-title-es','am-message-ru','am-message-uk','am-message-es','am-poll-question-ru'].forEach((id) => {
       const el = document.getElementById(id);
       if (el) el.value = '';
     });
+    APP_MESSAGE_POLL_OPTION_NUMBERS.forEach((n) => {
+      const el = document.getElementById(`am-poll-option-${n}`);
+      if (el) el.value = '';
+    });
+    document.getElementById('am-kind').value = 'message';
     document.getElementById('am-active').value = 'true';
     document.getElementById('am-audience').value = 'all';
     document.getElementById('am-priority').value = '0';
     document.getElementById('am-days').value = '30';
+    document.getElementById('am-poll-option-count').value = String(APP_MESSAGE_POLL_MIN_OPTIONS);
     document.getElementById('am-form-title').textContent = 'Новое сообщение';
     const st = document.getElementById('am-status');
     if (st) st.textContent = '';
@@ -8132,6 +8347,23 @@
     return { likes, dislikes };
   }
 
+  async function loadAppMessagePollCounts(messageId, data) {
+    if (!data?.poll) return { pollCounts: {}, pollVoteCount: 0 };
+    const cachedCounts = appMessagePollCountsFromData(data);
+    const cachedTotal = appMessagePollVoteTotal(data, cachedCounts);
+    if (Number.isFinite(Number(data?.pollVoteCount)) || Object.keys(cachedCounts).length) {
+      return { pollCounts: cachedCounts, pollVoteCount: cachedTotal };
+    }
+    const snap = await getDocs(collection(db, 'app_messages', messageId, 'poll_votes'));
+    const pollCounts = {};
+    snap.docs.forEach((d) => {
+      const optionId = String(d.data()?.optionId || '');
+      if (!optionId) return;
+      pollCounts[optionId] = (pollCounts[optionId] || 0) + 1;
+    });
+    return { pollCounts, pollVoteCount: snap.docs.length };
+  }
+
   function renderAppMessages() {
     const list = document.getElementById('am-list');
     if (!list) return;
@@ -8140,10 +8372,14 @@
     const active = rows.filter((r) => r.active === true && Number(r.expiresAtMs || 0) > now).length;
     const likes = rows.reduce((sum, r) => sum + Number(r.likes || 0), 0);
     const dislikes = rows.reduce((sum, r) => sum + Number(r.dislikes || 0), 0);
+    const polls = rows.filter((r) => r.poll).length;
+    const pollVotes = rows.reduce((sum, r) => sum + Number(r.pollVoteCount || 0), 0);
     document.getElementById('am-kpi-active').textContent = String(active);
     document.getElementById('am-kpi-total').textContent = String(rows.length);
     document.getElementById('am-kpi-likes').textContent = String(likes);
     document.getElementById('am-kpi-dislikes').textContent = String(dislikes);
+    document.getElementById('am-kpi-polls').textContent = String(polls);
+    document.getElementById('am-kpi-poll-votes').textContent = String(pollVotes);
 
     if (!rows.length) {
       list.innerHTML = '<div class="reports-empty" style="padding:30px 0">Сообщений пока нет</div>';
@@ -8154,15 +8390,25 @@
       const cls = expired ? ' expired' : (m.active ? '' : ' off');
       const status = expired ? 'истекло' : (m.active ? 'активно' : 'выключено');
       const body = appMessagePreviewText(m.messageRu || '', 180);
+      const pollQuestion = m.poll ? String(m.poll.questionRu || m.titleRu || 'Опрос') : '';
+      const pollSummary = m.poll
+        ? `<br>📊 опрос: ${escapeHtml(appMessagePreviewText(pollQuestion, 100))} · голосов: ${Number(m.pollVoteCount || 0)}`
+        : '';
+      const pollOptions = m.poll?.options?.length
+        ? `<br>${m.poll.options.map((option) => {
+            const count = Number((m.pollCounts || {})[option.id] || 0);
+            return `${escapeHtml(option.textRu || option.id)}: ${count}`;
+          }).join(' · ')}`
+        : '';
       return `
         <div class="app-msg-card${cls}" data-am-card="${escapeHtml(m.id)}">
           <div style="min-width:0">
-            <div class="app-msg-card-title">${m.active ? '🟢' : '⚫'} ${escapeHtml(m.titleRu || '—')}</div>
+            <div class="app-msg-card-title">${m.active ? '🟢' : '⚫'} ${m.poll ? '📊 ' : ''}${escapeHtml(m.titleRu || '—')}</div>
             <div class="app-msg-card-body">${escapeHtml(body || '—')}</div>
             <div class="app-msg-meta">
               ${escapeHtml(status)} · audience: ${escapeHtml(m.audience || 'all')} · priority: ${Number(m.priority || 0)}<br>
               создано: ${appMessageDate(m.createdAtMs)} · истекает: ${appMessageDate(m.expiresAtMs)}<br>
-              👍 ${Number(m.likes || 0)} · 👎 ${Number(m.dislikes || 0)} · id: <code>${escapeHtml(m.id)}</code>
+              👍 ${Number(m.likes || 0)} · 👎 ${Number(m.dislikes || 0)} · id: <code>${escapeHtml(m.id)}</code>${pollSummary}${pollOptions}
             </div>
           </div>
           <div class="app-msg-card-actions">
@@ -8192,7 +8438,8 @@
       const rows = await Promise.all(snap.docs.map(async (d) => {
         const data = d.data() || {};
         const counts = await loadAppMessageReactionCounts(d.id, data).catch(() => ({ likes: 0, dislikes: 0 }));
-        return { id: d.id, ...data, ...counts };
+        const pollCounts = await loadAppMessagePollCounts(d.id, data).catch(() => ({ pollCounts: {}, pollVoteCount: 0 }));
+        return { id: d.id, ...data, ...counts, ...pollCounts };
       }));
       window._appMessages = rows;
       renderAppMessages();
@@ -8209,10 +8456,25 @@
     const messageRu = val('am-message-ru');
     if (!titleRu) { showToast('Введите тему RU', 'err'); return; }
     if (!messageRu) { showToast('Введите сообщение RU', 'err'); return; }
+    let poll = null;
+    try {
+      poll = appMessageBuildPollPayload(titleRu, messageRu);
+    } catch (e) {
+      showToast(e.message || String(e), 'err');
+      return;
+    }
     const nowMs = Date.now();
     const nowIso = appMessageNowIso();
     const days = appMessageClampDays(val('am-days'));
+    const previousRow = editId ? (window._appMessages || []).find((m) => m.id === editId) : null;
+    const previousPoll = previousRow?.poll || null;
+    const shouldResetPollEngagement = Boolean(
+      editId
+      && (poll || previousPoll)
+      && (!poll || !previousPoll || appMessagePollStructureChanged(previousPoll, poll))
+    );
     const payload = {
+      kind: poll ? 'poll' : 'message',
       active: val('am-active') !== 'false',
       audience: ['all','free','premium'].includes(val('am-audience')) ? val('am-audience') : 'all',
       priority: Math.max(0, Math.min(99, Math.floor(Number(val('am-priority') || 0)))),
@@ -8226,18 +8488,37 @@
       updatedAtMs: nowMs,
       updatedBy: auth.currentUser?.email || 'unknown',
     };
+    if (poll) {
+      payload.poll = poll;
+      if (shouldResetPollEngagement || !editId) {
+        payload.pollCounts = appMessageEmptyPollCounts(poll);
+        payload.pollVoteCount = 0;
+        payload.pollCountUpdatedAtMs = nowMs;
+      }
+    } else if (editId) {
+      payload.poll = deleteField();
+      payload.pollCounts = deleteField();
+      payload.pollVoteCount = deleteField();
+      payload.pollCountUpdatedAtMs = deleteField();
+    }
+    if (shouldResetPollEngagement) {
+      payload.pollResetAtMs = nowMs;
+    }
     const ok = await showConfirmModal({
-      title: editId ? 'Сохранить изменения сообщения?' : 'Отправить сообщение пользователям?',
-      desc: editId ? 'Текст обновится у пользователей в inbox.' : 'Сообщение появится на главной в inbox у выбранной аудитории.',
+      title: editId ? 'Сохранить изменения сообщения?' : (poll ? 'Отправить опрос пользователям?' : 'Отправить сообщение пользователям?'),
+      desc: editId ? 'Текст обновится у пользователей в inbox.' : (poll ? 'Сообщение появится в inbox вместе с голосованием.' : 'Сообщение появится на главной в inbox у выбранной аудитории.'),
       confirmLabel: editId ? 'Сохранить' : 'Отправить',
       danger: false,
     });
     if (!ok) return;
     try {
       if (editId) {
+        if (shouldResetPollEngagement) {
+          await resetAppMessagePollEngagement(editId);
+        }
         await updateDoc(doc(db, 'app_messages', editId), payload);
-        logAction('app_message_edit', `app_message:${editId}`, { titleRu, active: payload.active });
-        showToast('✅ Сообщение обновлено');
+        logAction('app_message_edit', `app_message:${editId}`, { titleRu, active: payload.active, kind: payload.kind });
+        showToast(poll ? '✅ Опрос обновлён' : '✅ Сообщение обновлено');
       } else {
         const expiresAtMs = nowMs + days * 24 * 60 * 60 * 1000;
         const ref = await addDoc(collection(db, 'app_messages'), {
@@ -8248,9 +8529,10 @@
           expiresAtMs,
           ttlDays: days,
           createdBy: auth.currentUser?.email || 'unknown',
+          ...(poll ? { pollCounts: appMessageEmptyPollCounts(poll), pollVoteCount: 0 } : {}),
         });
-        logAction('app_message_send', `app_message:${ref.id}`, { titleRu, active: payload.active });
-        showToast('✅ Сообщение отправлено');
+        logAction('app_message_send', `app_message:${ref.id}`, { titleRu, active: payload.active, kind: payload.kind });
+        showToast(poll ? '✅ Опрос отправлен' : '✅ Сообщение отправлено');
       }
       window.resetAppMessageForm();
       await window.loadAppMessages(true);
@@ -8267,8 +8549,16 @@
     document.getElementById('am-audience').value = row.audience || 'all';
     document.getElementById('am-priority').value = String(row.priority || 0);
     document.getElementById('am-days').value = String(appMessageClampDays(row.ttlDays || 30));
+    document.getElementById('am-kind').value = row.poll ? 'poll' : 'message';
     document.getElementById('am-title-ru').value = row.titleRu || '';
     document.getElementById('am-message-ru').value = row.messageRu || '';
+    document.getElementById('am-poll-question-ru').value = row.poll?.questionRu || '';
+    APP_MESSAGE_POLL_OPTION_NUMBERS.forEach((n) => {
+      const option = row.poll?.options?.[n - 1];
+      const el = document.getElementById(`am-poll-option-${n}`);
+      if (el) el.value = option?.textRu || '';
+    });
+    appMessageSetPollOptionCount(row.poll?.options?.length || APP_MESSAGE_POLL_MIN_OPTIONS);
     document.getElementById('am-form-title').textContent = 'Редактирование сообщения';
     const st = document.getElementById('am-status');
     if (st) st.textContent = `Редактируется ${row.id}. Срок хранения не продлевается.`;
@@ -8302,6 +8592,13 @@
       docs.slice(i, i + 400).forEach((r) => batch.delete(r.ref));
       await batch.commit();
     }
+    const pollVotes = await getDocs(collection(db, 'app_messages', id, 'poll_votes')).catch(() => ({ docs: [] }));
+    const voteDocs = pollVotes.docs || [];
+    for (let i = 0; i < voteDocs.length; i += 400) {
+      const batch = writeBatch(db);
+      voteDocs.slice(i, i + 400).forEach((r) => batch.delete(r.ref));
+      await batch.commit();
+    }
     while (true) {
       const states = await getDocs(query(collectionGroup(db, 'app_message_states'), where('messageId', '==', id), limit(400))).catch(() => ({ docs: [] }));
       const stateDocs = states.docs || [];
@@ -8317,7 +8614,7 @@
   window.deleteAppMessage = async function(id) {
     const ok = await showConfirmModal({
       title: 'Удалить сообщение?',
-      desc: 'Оно пропадёт из inbox у пользователей. Реакции к этому сообщению тоже будут удалены.',
+      desc: 'Оно пропадёт из inbox у пользователей. Реакции и голоса опроса тоже будут удалены.',
       confirmLabel: 'Удалить',
       danger: true,
     });

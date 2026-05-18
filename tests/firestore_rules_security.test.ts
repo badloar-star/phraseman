@@ -116,6 +116,9 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toMatch(/app_messages\/\{messageId\} \{[\s\S]*?allow read: if request\.auth != null;/);
     expect(rules).toMatch(/reactions\/\{userId\} \{[\s\S]*?request\.resource\.data\.messageId == messageId/);
     expect(rules).toMatch(/reactions\/\{userId\} \{[\s\S]*?request\.resource\.data\.reaction in \['like', 'dislike'\]/);
+    expect(rules).toContain('match /poll_votes/{userId} {');
+    expect(rules).toMatch(/poll_votes\/\{userId\} \{[\s\S]*?allow create, update: if appMessagePollVoteOk\(messageId, userId\);/);
+    expect(rules).toMatch(/function appMessagePollVoteOk\(messageId, userId\) \{[\s\S]*?request\.resource\.data\.optionId in message\.poll\.optionIds/);
   });
 });
 

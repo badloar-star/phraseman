@@ -533,7 +533,7 @@ function inferLocaleContainerKey(name, rel, parentKeyPath) {
   if (!AMBIGUOUS_EXACT_LOCALE_KEYS.has(locale)) return locale;
   const context = `${normalizePath(rel || '')}:${parentKeyPath || ''}`;
   if (locale === 'id' && normalizePath(rel || '') === 'constants/i18n.ts' && !parentKeyPath) return locale;
-  if (/sourceLocales|quiz_source_locale_payloads/i.test(context)) return locale;
+  if (/sourceLocales|source_locale|quiz_source_locale_payloads/i.test(context)) return locale;
   return null;
 }
 

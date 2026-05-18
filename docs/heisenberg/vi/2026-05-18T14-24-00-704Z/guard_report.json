@@ -1,0 +1,17 @@
+{
+  "targetLocale": "vi",
+  "targetBaseLang": "vi",
+  "targetInterfaceStatus": "planned",
+  "knownLocaleConflict": false,
+  "targetRegisteredAsAppLocale": true,
+  "integrationBlockers": [],
+  "collisionPatternCount": 3,
+  "pathCollisions": [],
+  "isolationPolicy": [
+    "Do not write generated target-language content into ru/uk/es fields.",
+    "Keep target language work under docs/heisenberg/<locale>/ until the integration gate is explicit.",
+    "A future apply step must add a new locale registry entry and locale-specific files, never mutate existing locale fields in place.",
+    "Target locale is registered as planned/disabled; do not enable it until UI bundle and semantic gates pass.",
+    "Before integration, run the generated manifest diff and the app test bundle."
+  ]
+}

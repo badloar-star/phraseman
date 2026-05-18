@@ -24,7 +24,7 @@ import LeagueCrownName from '../components/LeagueCrownName';
 import PlayerProfileModal, { PlayerInfo } from '../components/PlayerProfileModal';
 import ReportUserModal from '../components/ReportUserModal';
 import { getBestAvatarForLevel } from '../constants/avatars';
-import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
+import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
 import { getRankImage, getRankImageDisplayScale, useArenaRank } from '../hooks/use-arena-rank';
 import { hapticTap } from '../hooks/use-haptics';
@@ -44,7 +44,8 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO, DEV_MODE } from './config';
 import { computeAllPercentiles } from './leaderboard_stats';
 
 const ARENA_MANUAL_REFRESH_COOLDOWN_UNTIL_KEY = 'arena_top100_manual_cooldown_until_v1';
-const ARENA_ROW_HEIGHT = 68;
+const LEADERBOARD_AVATAR_SIZE = 52;
+const ARENA_ROW_HEIGHT = 84;
 
 const TIER_RU: Record<RankTier, string> = {
   bronze: 'Бронза',
@@ -464,6 +465,8 @@ export default function ArenaLeaderboardScreen() {
                     : String(item.avatarEmoji?.trim() || getBestAvatarForLevel(lvl));
                   const rowAura = isMe ? myAura : item.aura;
                   const rowIsPremium = isMe ? myIsPremium : item.isPremium;
+                  const rowEffectiveAura = getEffectiveAvatarAuraId(rowAura, rowIsPremium);
+                  const rowUsesPremiumAura = rowEffectiveAura === PREMIUM_AVATAR_AURA_ID;
                   const hasLeagueCrown = !!item.leagueCrown && item.leagueCrown.expiresAt > Date.now();
                   const duelLabel = rankLabelByLang(item.tier, item.levelRoman, lang);
                   const rankImg = getRankImage(item.tier, item.levelRoman);
@@ -504,7 +507,7 @@ export default function ArenaLeaderboardScreen() {
                         borderBottomWidth: 0.5,
                         borderBottomColor: t.border,
                         backgroundColor: isMe ? t.accentBg : t.bgCard,
-                        borderLeftWidth: isMe ? 4 : 0,
+                        borderLeftWidth: 4,
                         borderLeftColor: isMe ? t.accent : 'transparent',
                         opacity: pressed ? 0.75 : 1,
                       })}
@@ -521,16 +524,16 @@ export default function ArenaLeaderboardScreen() {
                         {item.place}
                       </Text>
                       <PremiumAvatarHalo
-                        enabled={rowIsPremium}
-                        avatarSize={36}
+                        enabled={rowUsesPremiumAura}
+                        avatarSize={LEADERBOARD_AVATAR_SIZE}
                         maskColor={isMe ? t.accentBg : t.bgCard}
                         style={{ marginRight: 10 }}
                       >
                         <AvatarView
                           avatar={rowAvatar}
                           totalXP={totalXp}
-                          size={36}
-                          auraId={getEffectiveAvatarAuraId(rowAura, rowIsPremium)}
+                          size={LEADERBOARD_AVATAR_SIZE}
+                          auraId={rowUsesPremiumAura ? undefined : rowEffectiveAura}
                         />
                       </PremiumAvatarHalo>
                       <View style={{ flex: 1, minWidth: 0 }}>
@@ -587,6 +590,10 @@ export default function ArenaLeaderboardScreen() {
             )}
 
             {showMyRankFooter && myArena && (
+              (() => {
+                const myEffectiveAura = getEffectiveAvatarAuraId(myAura, myIsPremium);
+                const myUsesPremiumAura = myEffectiveAura === PREMIUM_AVATAR_AURA_ID;
+                return (
               <View
                 style={{
                   position: 'absolute',
@@ -629,16 +636,16 @@ export default function ArenaLeaderboardScreen() {
                     )}
                   </View>
                   <PremiumAvatarHalo
-                    enabled={myIsPremium}
-                    avatarSize={36}
+                    enabled={myUsesPremiumAura}
+                    avatarSize={LEADERBOARD_AVATAR_SIZE}
                     maskColor={t.accentBg}
                     style={{ marginRight: 10 }}
                   >
                     <AvatarView
                       avatar={myAvatar}
                       totalXP={myTotalXp}
-                      size={36}
-                      auraId={getEffectiveAvatarAuraId(myAura, myIsPremium)}
+                      size={LEADERBOARD_AVATAR_SIZE}
+                      auraId={myUsesPremiumAura ? undefined : myEffectiveAura}
                     />
                   </PremiumAvatarHalo>
                   <View style={{ flex: 1, justifyContent: 'center', minWidth: 0 }}>
@@ -699,8 +706,10 @@ export default function ArenaLeaderboardScreen() {
                       />
                     </View>
                   ) : null}
+                  </View>
                 </View>
-              </View>
+                );
+              })()
             )}
           </View>
         </ContentWrap>

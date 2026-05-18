@@ -3,7 +3,23 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk: string,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const CONTRAST = ['to', 'into', 'from', 'out of', 'towards', 'in', 'direction', 'source'];
 
@@ -134,16 +150,61 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       'Towards = in the direction of.',
       'First draw the arrow, then choose the word.',
     ],
+    'pt-BR': [
+      'To = movimento para um lugar ou pessoa.',
+      'Into = movimento para dentro.',
+      'From = ponto de partida.',
+      'Out of = de dentro para fora.',
+      'In = já dentro.',
+      'Towards = na direção de.',
+      'Primeiro desenhe a seta, depois escolha a palavra.',
+    ],
+    vi: [
+      'To = chuyển động đến một nơi hoặc một người.',
+      'Into = chuyển động vào bên trong.',
+      'From = điểm xuất phát.',
+      'Out of = từ bên trong ra ngoài.',
+      'In = đã ở bên trong.',
+      'Towards = theo hướng về phía.',
+      'Trước tiên vẽ mũi tên, rồi chọn từ.',
+    ],
+    id: [
+      'To = gerakan menuju tempat atau orang.',
+      'Into = gerakan masuk ke dalam.',
+      'From = titik awal.',
+      'Out of = dari dalam ke luar.',
+      'In = sudah berada di dalam.',
+      'Towards = ke arah.',
+      'Gambar panahnya dulu, lalu pilih katanya.',
+    ],
+    tr: [
+      'To = bir yere veya kişiye doğru hareket.',
+      'Into = içeri doğru hareket.',
+      'From = başlangıç noktası.',
+      'Out of = içeriden dışarı.',
+      'In = zaten içeride.',
+      'Towards = yönüne doğru.',
+      'Önce oku çiz, sonra kelimeyi seç.',
+    ],
+    pl: [
+      'To = ruch do miejsca lub osoby.',
+      'Into = ruch do środka.',
+      'From = punkt startowy.',
+      'Out of = ze środka na zewnątrz.',
+      'In = już w środku.',
+      'Towards = w kierunku.',
+      'Najpierw narysuj strzałkę, potem wybierz słowo.',
+    ],
   },
   examples: [
-    { en: 'I go to work every day.', ru: 'Я хожу на работу каждый день.', uk: 'Я ходжу на роботу щодня.', es: 'I go to work every day.', why: tri('Стрелка идёт к месту: to work.', 'Стрілка йде до місця: to work.', 'The arrow goes to a place: to work.') },
-    { en: 'She walked into the room.', ru: 'Она вошла в комнату.', uk: 'Вона увійшла в кімнату.', es: 'She walked into the room.', why: tri('Стрелка входит внутрь комнаты: into the room.', 'Стрілка входить усередину кімнати: into the room.', 'The arrow goes inside: into the room.') },
-    { en: 'He came from work late.', ru: 'Он пришёл с работы поздно.', uk: 'Він прийшов з роботи пізно.', es: 'He came from work late.', why: tri('Work - место, откуда он пришёл: from work.', 'Work - місце, звідки він прийшов: from work.', 'Work is where he came from.') },
-    { en: 'Take the phone out of the bag.', ru: 'Достань телефон из сумки.', uk: 'Дістань телефон із сумки.', es: 'Take the phone out of the bag.', why: tri('Телефон был внутри сумки и движется наружу: out of the bag.', 'Телефон був усередині сумки і рухається назовні: out of the bag.', 'The phone moves from inside to outside: out of the bag.') },
-    { en: 'I am in the room.', ru: 'Я в комнате.', uk: 'Я в кімнаті.', es: 'I am in the room.', why: tri('Движения нет. Человек уже внутри комнаты: in the room.', 'Руху немає. Людина вже всередині кімнати: in the room.', 'No movement. Already inside: in the room.') },
-    { en: 'I went into the room.', ru: 'Я вошёл в комнату.', uk: 'Я увійшов у кімнату.', es: 'I went into the room.', why: tri('Здесь есть вход внутрь, поэтому into the room.', 'Тут є вхід усередину, тому into the room.', 'There is movement inside: into the room.') },
-    { en: 'Send it to me.', ru: 'Отправь это мне.', uk: 'Надішли це мені.', es: 'Send it to me.', why: tri('To может показывать не место, а человека-получателя: to me.', 'To може показувати не місце, а людину-отримувача: to me.', 'To can point to the receiver: to me.') },
-    { en: 'She walked towards the door.', ru: 'Она пошла к двери.', uk: 'Вона пішла до дверей.', es: 'She walked towards the door.', why: tri('Towards - в сторону двери. Не обязательно значит, что она дошла до двери.', 'Towards - у бік дверей. Не обовʼязково значить, що вона дійшла до дверей.', 'Towards means in the direction of the door.') },
+    { en: 'I go to work every day.', ru: 'Я хожу на работу каждый день.', uk: 'Я ходжу на роботу щодня.', es: 'I go to work every day.', 'pt-BR': 'Eu vou ao trabalho todos os dias.', vi: 'Tôi đi làm mỗi ngày.', id: 'Saya pergi bekerja setiap hari.', tr: 'Her gün işe giderim.', pl: 'Chodzę do pracy codziennie.', why: tri('Стрелка идёт к месту: to work.', 'Стрілка йде до місця: to work.', 'The arrow goes to a place: to work.') },
+    { en: 'She walked into the room.', ru: 'Она вошла в комнату.', uk: 'Вона увійшла в кімнату.', es: 'She walked into the room.', 'pt-BR': 'Ela entrou na sala.', vi: 'Cô ấy bước vào phòng.', id: 'Dia berjalan masuk ke ruangan.', tr: 'Odaya girdi.', pl: 'Weszła do pokoju.', why: tri('Стрелка входит внутрь комнаты: into the room.', 'Стрілка входить усередину кімнати: into the room.', 'The arrow goes inside: into the room.') },
+    { en: 'He came from work late.', ru: 'Он пришёл с работы поздно.', uk: 'Він прийшов з роботи пізно.', es: 'He came from work late.', 'pt-BR': 'Ele chegou tarde do trabalho.', vi: 'Anh ấy đi làm về muộn.', id: 'Dia pulang dari kerja terlambat.', tr: 'İşten geç geldi.', pl: 'Przyszedł późno z pracy.', why: tri('Work - место, откуда он пришёл: from work.', 'Work - місце, звідки він прийшов: from work.', 'Work is where he came from.') },
+    { en: 'Take the phone out of the bag.', ru: 'Достань телефон из сумки.', uk: 'Дістань телефон із сумки.', es: 'Take the phone out of the bag.', 'pt-BR': 'Tire o telefone da bolsa.', vi: 'Lấy điện thoại ra khỏi túi.', id: 'Keluarkan telepon dari tas.', tr: 'Telefonu çantadan çıkar.', pl: 'Wyjmij telefon z torby.', why: tri('Телефон был внутри сумки и движется наружу: out of the bag.', 'Телефон був усередині сумки і рухається назовні: out of the bag.', 'The phone moves from inside to outside: out of the bag.') },
+    { en: 'I am in the room.', ru: 'Я в комнате.', uk: 'Я в кімнаті.', es: 'I am in the room.', 'pt-BR': 'Estou na sala.', vi: 'Tôi đang ở trong phòng.', id: 'Saya ada di ruangan.', tr: 'Odadayım.', pl: 'Jestem w pokoju.', why: tri('Движения нет. Человек уже внутри комнаты: in the room.', 'Руху немає. Людина вже всередині кімнати: in the room.', 'No movement. Already inside: in the room.') },
+    { en: 'I went into the room.', ru: 'Я вошёл в комнату.', uk: 'Я увійшов у кімнату.', es: 'I went into the room.', 'pt-BR': 'Entrei na sala.', vi: 'Tôi đã đi vào phòng.', id: 'Saya masuk ke ruangan.', tr: 'Odaya girdim.', pl: 'Wszedłem do pokoju.', why: tri('Здесь есть вход внутрь, поэтому into the room.', 'Тут є вхід усередину, тому into the room.', 'There is movement inside: into the room.') },
+    { en: 'Send it to me.', ru: 'Отправь это мне.', uk: 'Надішли це мені.', es: 'Send it to me.', 'pt-BR': 'Envie isso para mim.', vi: 'Gửi nó cho tôi.', id: 'Kirimkan itu kepada saya.', tr: 'Onu bana gönder.', pl: 'Wyślij mi to.', why: tri('To может показывать не место, а человека-получателя: to me.', 'To може показувати не місце, а людину-отримувача: to me.', 'To can point to the receiver: to me.') },
+    { en: 'She walked towards the door.', ru: 'Она пошла к двери.', uk: 'Вона пішла до дверей.', es: 'She walked towards the door.', 'pt-BR': 'Ela caminhou em direção à porta.', vi: 'Cô ấy đi về phía cửa.', id: 'Dia berjalan menuju pintu.', tr: 'Kapıya doğru yürüdü.', pl: 'Poszła w stronę drzwi.', why: tri('Towards - в сторону двери. Не обязательно значит, что она дошла до двери.', 'Towards - у бік дверей. Не обовʼязково значить, що вона дійшла до дверей.', 'Towards means in the direction of the door.') },
   ],
   introBlocks: [
     { id: 'intro_problem', type: 'diagnosis', text: tri('Здесь ловушка в маршруте. Слова похожи, но стрелка движения разная.', 'Тут пастка в маршруті. Слова схожі, але стрілка руху різна.', 'The trap is the route. The words look close, but the movement arrow is different.') },

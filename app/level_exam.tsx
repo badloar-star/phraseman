@@ -490,11 +490,11 @@ export default function LevelExam() {
             ru: 'Premium откроет уроки уровня и доступ к зачёту. Без Premium доступны только первые 3 урока.',
             uk: 'Premium відкриє уроки рівня і доступ до заліку. Без Premium доступні лише перші 3 уроки.',
             es: 'Premium abre las lecciones del nivel y el acceso al examen. Sin Premium solo están disponibles las 3 primeras lecciones.',
-            'pt-BR': "O Premium abre as aulas do n?vel e o acesso ao teste. Sem Premium, s? as 3 primeiras aulas ficam dispon?veis.",
-            vi: "Premium m? c?c b?i h?c c?a c?p ?? v? quy?n truy c?p v?o b?i ki?m tra. Kh?ng c? Premium, ch? 3 b?i h?c ??u ti?n kh? d?ng.",
+            'pt-BR': "O Premium abre as aulas do nível e o acesso ao teste. Sem Premium, só as 3 primeiras aulas ficam disponíveis.",
+            vi: "Premium mở các bài học của cấp độ và quyền truy cập vào bài kiểm tra. Không có Premium, chỉ 3 bài học đầu tiên khả dụng.",
             id: "Premium membuka pelajaran level ini dan akses ke ujian. Tanpa Premium, hanya 3 pelajaran pertama yang tersedia.",
-            tr: "Premium, seviyenin derslerini ve s?nava eri?imi a?ar. Premium olmadan yaln?zca ilk 3 ders kullan?labilir.",
-            pl: "Premium odblokowuje lekcje poziomu i dost?p do testu. Bez Premium dost?pne s? tylko pierwsze 3 lekcje.",
+            tr: "Premium, seviyenin derslerini ve sınava erişimi açar. Premium olmadan yalnızca ilk 3 ders kullanılabilir.",
+            pl: "Premium odblokowuje lekcje poziomu i dostęp do testu. Bez Premium dostępne są tylko pierwsze 3 lekcje.",
           }));
           setAccessState('blocked');
         }
@@ -516,21 +516,21 @@ export default function LevelExam() {
             ru: `Чтобы открыть уровень ${examLevel}, сначала сдайте зачёт ${prevLevel}.`,
             uk: `Щоб відкрити рівень ${examLevel}, спочатку складіть залік ${prevLevel}.`,
             es: `Para abrir el nivel ${examLevel}, primero supera el examen de ${prevLevel}.`,
-            'pt-BR': `Para abrir o n?vel ${examLevel}, primeiro passe no teste ${prevLevel}.`,
-            vi: `?? m? c?p ?? ${examLevel}, tr??c ti?n h?y v??t qua b?i ki?m tra ${prevLevel}.`,
+            'pt-BR': `Para abrir o nível ${examLevel}, primeiro passe no teste ${prevLevel}.`,
+            vi: `Để mở cấp độ ${examLevel}, trước tiên hãy vượt qua bài kiểm tra ${prevLevel}.`,
             id: `Untuk membuka level ${examLevel}, selesaikan dulu ujian ${prevLevel}.`,
-            tr: `${examLevel} seviyesini a?mak i?in ?nce ${prevLevel} s?nav?n? ge?.`,
-            pl: `Aby odblokowa? poziom ${examLevel}, najpierw zalicz test ${prevLevel}.`,
+            tr: `${examLevel} seviyesini açmak için önce ${prevLevel} sınavını geç.`,
+            pl: `Aby odblokować poziom ${examLevel}, najpierw zalicz test ${prevLevel}.`,
           })
           : triLang(lang, {
             ru: 'Этот зачёт пока недоступен.',
             uk: 'Цей залік поки недоступний.',
             es: 'Este examen todavía no está disponible.',
-            'pt-BR': "Este teste ainda n?o est? dispon?vel.",
-            vi: "B?i ki?m tra n?y hi?n ch?a kh? d?ng.",
+            'pt-BR': "Este teste ainda não está disponível.",
+            vi: "Bài kiểm tra này hiện chưa khả dụng.",
             id: "Ujian ini belum tersedia.",
-            tr: "Bu s?nav hen?z kullan?lam?yor.",
-            pl: "Ten test nie jest jeszcze dost?pny.",
+            tr: "Bu sınav henüz kullanılamıyor.",
+            pl: "Ten test nie jest jeszcze dostępny.",
           }));
         setAccessState('blocked');
       }
@@ -541,11 +541,11 @@ export default function LevelExam() {
           ru: 'Не удалось проверить доступ к зачёту. Попробуйте открыть его ещё раз.',
           uk: 'Не вдалося перевірити доступ до заліку. Спробуйте відкрити його ще раз.',
           es: 'No se pudo comprobar el acceso al examen. Inténtalo de nuevo.',
-          'pt-BR': "N?o foi poss?vel verificar o acesso ao teste. Tente abri-lo de novo.",
-          vi: "Kh?ng th? ki?m tra quy?n truy c?p v?o b?i ki?m tra. H?y th? m? l?i.",
+          'pt-BR': "Não foi possível verificar o acesso ao teste. Tente abri-lo de novo.",
+          vi: "Không thể kiểm tra quyền truy cập vào bài kiểm tra. Hãy thử mở lại.",
           id: "Tidak dapat memeriksa akses ke ujian. Coba buka lagi.",
-          tr: "S?nava eri?im kontrol edilemedi. Tekrar a?may? dene.",
-          pl: "Nie uda?o si? sprawdzi? dost?pu do testu. Spr?buj otworzy? go jeszcze raz.",
+          tr: "Sınava erişim kontrol edilemedi. Tekrar açmayı dene.",
+          pl: "Nie udało się sprawdzić dostępu do testu. Spróbuj otworzyć go jeszcze raz.",
         }));
         setAccessState('blocked');
       }
@@ -702,10 +702,10 @@ export default function LevelExam() {
                   uk: 'Перевіряємо доступ',
                   es: 'Comprobando acceso',
                   'pt-BR': "Verificando acesso",
-                  vi: "?ang ki?m tra quy?n truy c?p",
+                  vi: "Đang kiểm tra quyền truy cập",
                   id: "Memeriksa akses",
-                  tr: "Eri?im kontrol ediliyor",
-                  pl: "Sprawdzanie dost?pu",
+                  tr: "Erişim kontrol ediliyor",
+                  pl: "Sprawdzanie dostępu",
                 })
                 : title}
             </Text>
@@ -715,11 +715,11 @@ export default function LevelExam() {
                   ru: 'Секунду, сверяем текущий уровень.',
                   uk: 'Секунду, звіряємо поточний рівень.',
                   es: 'Un segundo, estamos comprobando tu nivel actual.',
-                  'pt-BR': "Um segundo, estamos conferindo seu n?vel atual.",
-                  vi: "Ch? m?t ch?t, ch?ng t?i ?ang ki?m tra c?p ?? hi?n t?i c?a b?n.",
+                  'pt-BR': "Um segundo, estamos conferindo seu nível atual.",
+                  vi: "Chờ một chút, chúng tôi đang kiểm tra cấp độ hiện tại của bạn.",
                   id: "Sebentar, kami sedang memeriksa levelmu saat ini.",
                   tr: "Bir saniye, mevcut seviyeni kontrol ediyoruz.",
-                  pl: "Chwileczk?, sprawdzamy Tw?j aktualny poziom.",
+                  pl: "Chwileczkę, sprawdzamy Twój aktualny poziom.",
                 })
                 : blockedText}
             </Text>
@@ -749,7 +749,7 @@ export default function LevelExam() {
                       uk: 'Отримати Premium',
                       es: 'Obtener Premium',
                       'pt-BR': "Obter Premium",
-                      vi: "M? Premium",
+                      vi: "Mở Premium",
                       id: "Dapatkan Premium",
                       tr: "Premium al",
                       pl: "Kup Premium",
@@ -759,7 +759,7 @@ export default function LevelExam() {
                       uk: 'До уроків',
                       es: 'Ir a lecciones',
                       'pt-BR': "Ir para as aulas",
-                      vi: "??n b?i h?c",
+                      vi: "Đến bài học",
                       id: "Ke pelajaran",
                       tr: "Derslere git",
                       pl: "Do lekcji",
@@ -784,7 +784,7 @@ export default function LevelExam() {
           uk: 'ЗАПИТАНЬ',
           es: 'PREGUNTAS',
           'pt-BR': "PERGUNTAS",
-          vi: "C?U H?I",
+          vi: "CÂU HỎI",
           id: "PERTANYAAN",
           tr: "SORU",
           pl: "PYTANIA",
@@ -798,9 +798,9 @@ export default function LevelExam() {
           uk: 'ДЛЯ ЗДАЧІ',
           es: 'PARA APROBAR',
           'pt-BR': "PARA PASSAR",
-          vi: "?? ??T",
+          vi: "ĐỂ ĐẠT",
           id: "UNTUK LULUS",
-          tr: "GE?MEK ???N",
+          tr: "GEÇMEK İÇİN",
           pl: "DO ZALICZENIA",
         }),
       },
@@ -811,7 +811,7 @@ export default function LevelExam() {
           uk: 'БЕЗ',
           es: 'SIN',
           'pt-BR': "SEM",
-          vi: "KH?NG",
+          vi: "KHÔNG",
           id: "TANPA",
           tr: "YOK",
           pl: "BEZ",
@@ -821,7 +821,7 @@ export default function LevelExam() {
           uk: 'ШТРАФУ',
           es: 'PENALIZAR',
           'pt-BR': "PENALIDADE",
-          vi: "PH?T",
+          vi: "PHẠT",
           id: "PENALTI",
           tr: "CEZA",
           pl: "KARY",
@@ -832,11 +832,11 @@ export default function LevelExam() {
       ru: `${INTRO_Q_COUNT} вопросов по ключевым темам уровня ${lvl}. Для перехода дальше нужно набрать минимум ${PASS_PCT}%. Если результат не устроит, зачёт можно пройти повторно — без штрафа, с сохранением лучшего результата.`,
       uk: `${INTRO_Q_COUNT} запитань за ключовими темами рівня ${lvl}. Щоб перейти далі, потрібно набрати щонайменше ${PASS_PCT}%. Якщо результат не влаштує, залік можна пройти повторно — без штрафу, зі збереженням найкращого результату.`,
       es: `${INTRO_Q_COUNT} preguntas sobre los temas clave del nivel ${lvl}. Para avanzar necesitas al menos un ${PASS_PCT} %. Si quieres mejorar, puedes repetir el examen sin penalización: guardaremos tu mejor resultado.`,
-      'pt-BR': `${INTRO_Q_COUNT} perguntas sobre os temas principais do n?vel ${lvl}. Para avan?ar, voc? precisa acertar pelo menos ${PASS_PCT}%. Se quiser melhorar, pode refazer o teste sem penalidade: vamos guardar seu melhor resultado.`,
-      vi: `${INTRO_Q_COUNT} c?u h?i v? c?c ch? ?? ch?nh c?a c?p ?? ${lvl}. ?? ?i ti?p, b?n c?n ??t ?t nh?t ${PASS_PCT}%. N?u mu?n c?i thi?n, b?n c? th? l?m l?i b?i ki?m tra kh?ng b? ph?t; k?t qu? t?t nh?t s? ???c gi? l?i.`,
+      'pt-BR': `${INTRO_Q_COUNT} perguntas sobre os temas principais do nível ${lvl}. Para avançar, você precisa acertar pelo menos ${PASS_PCT}%. Se quiser melhorar, pode refazer o teste sem penalidade: vamos guardar seu melhor resultado.`,
+      vi: `${INTRO_Q_COUNT} câu hỏi về các chủ đề chính của cấp độ ${lvl}. Để đi tiếp, bạn cần đạt ít nhất ${PASS_PCT}%. Nếu muốn cải thiện, bạn có thể làm lại bài kiểm tra không bị phạt; kết quả tốt nhất sẽ được giữ lại.`,
       id: `${INTRO_Q_COUNT} pertanyaan tentang topik utama level ${lvl}. Untuk lanjut, kamu perlu mendapat minimal ${PASS_PCT}%. Jika ingin memperbaiki hasil, kamu bisa mengulang ujian tanpa penalti; hasil terbaikmu akan disimpan.`,
-      tr: `${lvl} seviyesinin ana konular?ndan ${INTRO_Q_COUNT} soru. Devam etmek i?in en az %${PASS_PCT} alman gerekir. Sonucunu iyile?tirmek istersen s?nav? cezas?z tekrar edebilirsin; en iyi sonucun saklan?r.`,
-      pl: `${INTRO_Q_COUNT} pyta? z g??wnych temat?w poziomu ${lvl}. Aby przej?? dalej, potrzebujesz co najmniej ${PASS_PCT}%. Je?li chcesz poprawi? wynik, mo?esz powt?rzy? test bez kary; zapiszemy najlepszy rezultat.`,
+      tr: `${lvl} seviyesinin ana konularından ${INTRO_Q_COUNT} soru. Devam etmek için en az %${PASS_PCT} alman gerekir. Sonucunu iyileştirmek istersen sınavı cezasız tekrar edebilirsin; en iyi sonucun saklanır.`,
+      pl: `${INTRO_Q_COUNT} pytań z głównych tematów poziomu ${lvl}. Aby przejść dalej, potrzebujesz co najmniej ${PASS_PCT}%. Jeśli chcesz poprawić wynik, możesz powtórzyć test bez kary; zapiszemy najlepszy rezultat.`,
     });
     const premiumNote =
       lvl !== 'B2'
@@ -844,11 +844,11 @@ export default function LevelExam() {
           ru: 'С Premium все уроки текущего уровня открыты сразу; следующий уровень откроется после сдачи этого зачёта.',
           uk: 'З Premium усі уроки поточного рівня відкриті одразу; наступний рівень відкриється після складання цього заліку.',
           es: 'Con Premium todas las lecciones del nivel actual están abiertas; el siguiente nivel se abrirá al aprobar este examen.',
-          'pt-BR': "Com Premium, todas as aulas do n?vel atual ficam abertas de uma vez; o pr?ximo n?vel ser? aberto depois que voc? passar neste teste.",
-          vi: "V?i Premium, t?t c? b?i h?c c?a c?p ?? hi?n t?i ???c m? ngay; c?p ?? ti?p theo s? m? sau khi b?n v??t qua b?i ki?m tra n?y.",
+          'pt-BR': "Com Premium, todas as aulas do nível atual ficam abertas de uma vez; o próximo nível será aberto depois que você passar neste teste.",
+          vi: "Với Premium, tất cả bài học của cấp độ hiện tại được mở ngay; cấp độ tiếp theo sẽ mở sau khi bạn vượt qua bài kiểm tra này.",
           id: "Dengan Premium, semua pelajaran di level saat ini langsung terbuka; level berikutnya akan terbuka setelah kamu lulus ujian ini.",
-          tr: "Premium ile mevcut seviyenin t?m dersleri hemen a??l?r; bir sonraki seviye bu s?nav? ge?tikten sonra a??l?r.",
-          pl: "Z Premium wszystkie lekcje obecnego poziomu s? od razu otwarte; nast?pny poziom odblokuje si? po zaliczeniu tego testu.",
+          tr: "Premium ile mevcut seviyenin tüm dersleri hemen açılır; bir sonraki seviye bu sınavı geçtikten sonra açılır.",
+          pl: "Z Premium wszystkie lekcje obecnego poziomu są od razu otwarte; następny poziom odblokuje się po zaliczeniu tego testu.",
         })
         : null;
 
@@ -981,10 +981,10 @@ export default function LevelExam() {
                       ru: 'Начать зачёт',
                       uk: 'Почати залік',
                       es: 'Empezar examen',
-                      'pt-BR': "Come?ar teste",
-                      vi: "B?t ??u b?i ki?m tra",
+                      'pt-BR': "Começar teste",
+                      vi: "Bắt đầu bài kiểm tra",
                       id: "Mulai ujian",
-                      tr: "S?nava ba?la",
+                      tr: "Sınava başla",
                       pl: "Rozpocznij test",
                     })}
                   </Text>
@@ -1000,11 +1000,11 @@ export default function LevelExam() {
                   ru: `Зачёт уровня ${lvl}: вступление`,
                   uk: `Залік рівня ${lvl}: вступ`,
                   es: `Examen de nivel ${lvl}: intro`,
-                  'pt-BR': `Teste de n?vel ${lvl}: introdu??o`,
-                  vi: `B?i ki?m tra tr?nh ?? ${lvl}: m? ??u`,
+                  'pt-BR': `Teste de nível ${lvl}: introdução`,
+                  vi: `Bài kiểm tra trình độ ${lvl}: mở đầu`,
                   id: `Ujian level ${lvl}: pengantar`,
-                  tr: `${lvl} seviye s?nav?: giri?`,
-                  pl: `Test poziomu ${lvl}: wst?p`,
+                  tr: `${lvl} seviye sınavı: giriş`,
+                  pl: `Test poziomu ${lvl}: wstęp`,
                 })}
                 textColor={sx.muted}
               />
@@ -1022,7 +1022,7 @@ export default function LevelExam() {
       .filter(x => x.q && x.chosen !== x.correct);
     return (
       <>
-      <ScreenGradient>
+      <ScreenGradient artBackdrop="exam">
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
@@ -1052,32 +1052,32 @@ export default function LevelExam() {
                       ru: '🥇 Золото!',
                       uk: '🥇 Золото!',
                       es: '🥇 ¡Oro!',
-                      'pt-BR': "?? Ouro!",
-                      vi: "?? V?ng!",
-                      id: "?? Emas!",
-                      tr: "?? Alt?n!",
-                      pl: "?? Z?oto!",
+                      'pt-BR': "🥇 Ouro!",
+                      vi: "🥇 Vàng!",
+                      id: "🥇 Emas!",
+                      tr: "🥇 Altın!",
+                      pl: "🥇 Złoto!",
                     })
                     : examMedalTier === 'silver'
                       ? triLang(lang, {
                         ru: '🥈 Новая медаль!',
                         uk: '🥈 Нова медаль!',
                         es: '🥈 ¡Nueva medalla!',
-                        'pt-BR': "?? Nova medalha!",
-                        vi: "?? Huy ch??ng m?i!",
-                        id: "?? Medali baru!",
-                        tr: "?? Yeni madalya!",
-                        pl: "?? Nowy medal!",
+                        'pt-BR': "🥈 Nova medalha!",
+                        vi: "🥈 Huy chương mới!",
+                        id: "🥈 Medali baru!",
+                        tr: "🥈 Yeni madalya!",
+                        pl: "🥈 Nowy medal!",
                       })
                       : triLang(lang, {
                         ru: '🥉 Новая медаль!',
                         uk: '🥉 Нова медаль!',
                         es: '🥉 ¡Nueva medalla!',
-                        'pt-BR': "?? Nova medalha!",
-                        vi: "?? Huy ch??ng m?i!",
-                        id: "?? Medali baru!",
-                        tr: "?? Yeni madalya!",
-                        pl: "?? Nowy medal!",
+                        'pt-BR': "🥉 Nova medalha!",
+                        vi: "🥉 Huy chương mới!",
+                        id: "🥉 Medali baru!",
+                        tr: "🥉 Yeni madalya!",
+                        pl: "🥉 Nowy medal!",
                       })}
                 </Text>
               )}
@@ -1088,9 +1088,9 @@ export default function LevelExam() {
                   uk: `${correctCount} з ${total} правильно`,
                   es: `${correctCount} de ${total} acertadas`,
                   'pt-BR': `${correctCount} de ${total} corretas`,
-                  vi: `${correctCount} / ${total} c?u ??ng`,
+                  vi: `${correctCount} / ${total} câu đúng`,
                   id: `${correctCount} dari ${total} benar`,
-                  tr: `${total} sorudan ${correctCount} do?ru`,
+                  tr: `${total} sorudan ${correctCount} doğru`,
                   pl: `${correctCount} z ${total} poprawnie`,
                 })}
               </Text>
@@ -1099,11 +1099,11 @@ export default function LevelExam() {
                   ru: `Попытка №${examPassCount}`,
                   uk: `Спроба №${examPassCount}`,
                   es: `Intento n.º ${examPassCount}`,
-                  'pt-BR': `Tentativa n? ${examPassCount}`,
-                  vi: `L?n th? s? ${examPassCount}`,
+                  'pt-BR': `Tentativa nº ${examPassCount}`,
+                  vi: `Lần thứ ${examPassCount}`,
                   id: `Percobaan ke-${examPassCount}`,
                   tr: `${examPassCount}. deneme`,
-                  pl: `Podej?cie nr ${examPassCount}`,
+                  pl: `Podejście nr ${examPassCount}`,
                 })}
               </Text>
             </View>
@@ -1137,32 +1137,32 @@ export default function LevelExam() {
                   ru: `Ниже ${PASS_PCT}% зачёт не засчитан — вернись к «Теории», «Словарю» и «Формам глаголов» по ошибкам.`,
                   uk: `Нижче ${PASS_PCT}% залік не зараховано — повернись до «Теорії», «Словника» й форм дієслів за помилками.`,
                   es: `Por debajo del ${PASS_PCT} % no hay aprobado: repasa «Teoría», «Vocabulario» y verbos en los temas fallidos.`,
-                  'pt-BR': `Abaixo de ${PASS_PCT}%, o teste n?o conta como aprovado ? volte a ?Teoria?, ?Vocabul?rio? e ?Formas verbais? nos temas em que errou.`,
-                  vi: `D??i ${PASS_PCT}% th? ch?a ??t: h?y quay l?i ?L? thuy?t?, ?T? v?ng? v? ?D?ng ??ng t?? ? c?c ch? ?? b? sai.`,
-                  id: `Di bawah ${PASS_PCT}%, ujian belum lulus ? kembali ke ?Teori?, ?Kosakata?, dan ?Bentuk kata kerja? pada topik yang salah.`,
-                  tr: `%${PASS_PCT} alt? ge?erli say?lmaz ? hata yapt???n konularda ?Teori?, ?Kelime? ve ?Fiil formlar?? b?l?mlerine d?n.`,
-                  pl: `Poni?ej ${PASS_PCT}% test nie jest zaliczony ? wr?? do ?Teorii?, ?S?ownika? i ?Form czasownik?w? przy tematach z b??dami.`,
+                  'pt-BR': `Abaixo de ${PASS_PCT}%, o teste não conta como aprovado — volte a "Teoria", "Vocabulário" e "Formas verbais" nos temas em que errou.`,
+                  vi: `Dưới ${PASS_PCT}% thì chưa đạt: hãy quay lại "Lý thuyết", "Từ vựng" và "Dạng động từ" ở các chủ đề bị sai.`,
+                  id: `Di bawah ${PASS_PCT}%, ujian belum lulus — kembali ke "Teori", "Kosakata", dan "Bentuk kata kerja" pada topik yang salah.`,
+                  tr: `%${PASS_PCT} altı geçerli sayılmaz — hata yaptığın konularda "Teori", "Kelime" ve "Fiil formları" bölümlerine dön.`,
+                  pl: `Poniżej ${PASS_PCT}% test nie jest zaliczony — wróć do "Teorii", "Słownika" i "Form czasowników" przy tematach z błędami.`,
                 })
                 : pct >= 90
                   ? triLang(lang, {
                     ru: 'Отлично по темам уровня — закрепи слабые уроки, чтобы удерживать планку.',
                     uk: 'Чудово за темами рівня — закріплюй слабкі уроки, щоб тримати планку.',
                     es: 'Muy bien por temas del nivel: refuerza lecciones flojas para mantener el ritmo.',
-                    'pt-BR': "Muito bem nos temas do n?vel: reforce as aulas mais fracas para manter o ritmo.",
-                    vi: "B?n l?m r?t t?t ? c?c ch? ?? c?a c?p ?? n?y: h?y c?ng c? c?c b?i c?n y?u ?? gi? nh?p.",
+                    'pt-BR': "Muito bem nos temas do nível: reforce as aulas mais fracas para manter o ritmo.",
+                    vi: "Bạn làm rất tốt ở các chủ đề của cấp độ này: hãy củng cố các bài còn yếu để giữ nhịp.",
                     id: "Bagus sekali untuk topik level ini: perkuat pelajaran yang masih lemah agar ritmenya terjaga.",
-                    tr: "Seviye konular?nda ?ok iyi: tempoyu korumak i?in zay?f dersleri peki?tir.",
-                    pl: "Bardzo dobrze z temat?w tego poziomu: utrwal s?absze lekcje, ?eby utrzyma? form?.",
+                    tr: "Seviye konularında çok iyi: tempoyu korumak için zayıf dersleri pekiştir.",
+                    pl: "Bardzo dobrze z tematów tego poziomu: utrwal słabsze lekcje, żeby utrzymać formę.",
                   })
                   : triLang(lang, {
                     ru: `Зачёт сдан (${PASS_PCT}%+) — при желании добейся ${90}% для золота.`,
                     uk: `Залік здано (${PASS_PCT}%+) — за бажанням добийся ${90}% для золота.`,
                     es: `Aprobado (${PASS_PCT} %+); si quieres, apunta al ${90} % para el oro.`,
                     'pt-BR': `Teste aprovado (${PASS_PCT}%+); se quiser, mire em ${90}% para ganhar ouro.`,
-                    vi: `?? ??t (${PASS_PCT}%+); n?u mu?n, h?y nh?m t?i ${90}% ?? l?y v?ng.`,
+                    vi: `Đã đạt (${PASS_PCT}%+); nếu muốn, hãy nhắm tới ${90}% để lấy vàng.`,
                     id: `Lulus (${PASS_PCT}%+); kalau mau, kejar ${90}% untuk emas.`,
-                    tr: `Ge?tin (%${PASS_PCT}+); istersen alt?n i?in %${90} hedefle.`,
-                    pl: `Zaliczone (${PASS_PCT}%+); je?li chcesz, celuj w ${90}% na z?oto.`,
+                    tr: `Geçtin (%${PASS_PCT}+); istersen altın için %${90} hedefle.`,
+                    pl: `Zaliczone (${PASS_PCT}%+); jeśli chcesz, celuj w ${90}% na złoto.`,
                   })}
             </Text>
 
@@ -1175,10 +1175,10 @@ export default function LevelExam() {
                     uk: 'Помилки:',
                     es: 'Errores:',
                     'pt-BR': "Erros:",
-                    vi: "L?i sai:",
+                    vi: "Lỗi sai:",
                     id: "Kesalahan:",
                     tr: "Hatalar:",
-                    pl: "B??dy:",
+                    pl: "Błędy:",
                   })}
                 </Text>
                 {wrongItems.map((item, i) => (
@@ -1252,10 +1252,10 @@ export default function LevelExam() {
                   uk: 'Спробувати ще раз',
                   es: 'Intentar de nuevo',
                   'pt-BR': "Tentar de novo",
-                  vi: "Th? l?i",
+                  vi: "Thử lại",
                   id: "Coba lagi",
                   tr: "Tekrar dene",
-                  pl: "Spr?buj ponownie",
+                  pl: "Spróbuj ponownie",
                 })}
               </Text>
               </LinearGradient>
@@ -1283,11 +1283,11 @@ export default function LevelExam() {
                   ru: 'К урокам',
                   uk: 'До уроків',
                   es: 'Volver a las lecciones',
-                  'pt-BR': "Voltar ?s aulas",
-                  vi: "Quay l?i b?i h?c",
+                  'pt-BR': "Voltar às aulas",
+                  vi: "Quay lại bài học",
                   id: "Kembali ke pelajaran",
-                  tr: "Derslere d?n",
-                  pl: "Wr?? do lekcji",
+                  tr: "Derslere dön",
+                  pl: "Wróć do lekcji",
                 })}
               </Text>
               </LinearGradient>
@@ -1301,9 +1301,9 @@ export default function LevelExam() {
                   uk: `Залік ${lvl}: результат ${pct}%`,
                   es: `Examen ${lvl}: resultado ${pct}%`,
                   'pt-BR': `Teste ${lvl}: resultado ${pct}%`,
-                  vi: `B?i ki?m tra ${lvl}: k?t qu? ${pct}%`,
+                  vi: `Bài kiểm tra ${lvl}: kết quả ${pct}%`,
                   id: `Ujian ${lvl}: hasil ${pct}%`,
-                  tr: `${lvl} s?nav?: sonu? %${pct}`,
+                  tr: `${lvl} sınavı: sonuç %${pct}`,
                   pl: `Test ${lvl}: wynik ${pct}%`,
                 })}
                 textColor={sx.muted}
@@ -1322,7 +1322,7 @@ export default function LevelExam() {
 
   const progressPct = Math.round((idx + 1) / total * 100);
   return (
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="exam">
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
         {/* Хедер */}
@@ -1378,7 +1378,7 @@ export default function LevelExam() {
               uk: 'Урок',
               es: 'Lección',
               'pt-BR': "Aula",
-              vi: "B?i h?c",
+              vi: "Bài học",
               id: "Pelajaran",
               tr: "Ders",
               pl: "Lekcja",
@@ -1446,21 +1446,21 @@ export default function LevelExam() {
                     ru: 'Далее →',
                     uk: 'Далі →',
                     es: 'Siguiente →',
-                    'pt-BR': "Pr?ximo ?",
-                    vi: "Ti?p theo ?",
-                    id: "Berikutnya ?",
-                    tr: "?leri ?",
-                    pl: "Dalej ?",
+                    'pt-BR': "Próximo →",
+                    vi: "Tiếp theo →",
+                    id: "Berikutnya →",
+                    tr: "İleri →",
+                    pl: "Dalej →",
                   })
                   : triLang(lang, {
                     ru: 'Завершить',
                     uk: 'Завершити',
                     es: 'Terminar',
                     'pt-BR': "Finalizar",
-                    vi: "Ho?n th?nh",
+                    vi: "Hoàn thành",
                     id: "Selesai",
                     tr: "Bitir",
-                    pl: "Zako?cz",
+                    pl: "Zakończ",
                   })}
               </Text>
             </TouchableOpacity>
@@ -1482,29 +1482,29 @@ export default function LevelExam() {
           uk: 'Вийти?',
           es: '¿Salir del examen?',
           'pt-BR': "Sair do teste?",
-          vi: "Tho?t b?i ki?m tra?",
+          vi: "Thoát bài kiểm tra?",
           id: "Keluar dari ujian?",
-          tr: "S?navdan ??k?ls?n m??",
-          pl: "Wyj?? z testu?",
+          tr: "Sınavdan çıkılsın mı?",
+          pl: "Wyjść z testu?",
         })}
         message={triLang(lang, {
           ru: 'Прогресс зачёта будет потерян',
           uk: 'Прогрес заліку буде втрачено',
           es: 'Perderás el progreso de este examen.',
-          'pt-BR': "O progresso deste teste ser? perdido.",
-          vi: "Ti?n tr?nh b?i ki?m tra s? b? m?t.",
+          'pt-BR': "O progresso deste teste será perdido.",
+          vi: "Tiến trình bài kiểm tra sẽ bị mất.",
           id: "Progres ujian ini akan hilang.",
-          tr: "Bu s?navdaki ilerlemen kaybolacak.",
-          pl: "Post?p w tym te?cie zostanie utracony.",
+          tr: "Bu sınavdaki ilerlemen kaybolacak.",
+          pl: "Postęp w tym teście zostanie utracony.",
         })}
         cancelLabel={triLang(lang, {
           ru: 'Отмена',
           uk: 'Скасувати',
           es: 'Cancelar',
           'pt-BR': "Cancelar",
-          vi: "H?y",
+          vi: "Hủy",
           id: "Batal",
-          tr: "?ptal",
+          tr: "İptal",
           pl: "Anuluj",
         })}
         confirmLabel={triLang(lang, {
@@ -1512,10 +1512,10 @@ export default function LevelExam() {
           uk: 'Вийти',
           es: 'Salir',
           'pt-BR': "Sair",
-          vi: "Tho?t",
+          vi: "Thoát",
           id: "Keluar",
-          tr: "??k",
-          pl: "Wyjd?",
+          tr: "Çık",
+          pl: "Wyjdź",
         })}
         onCancel={() => setExitExamConfirm(false)}
         onConfirm={() => {

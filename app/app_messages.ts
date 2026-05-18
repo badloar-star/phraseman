@@ -5,6 +5,7 @@ import { getCanonicalUserId } from './user_id_policy';
 export type AppMessageReaction = 'like' | 'dislike';
 export type AppMessageAudience = 'all' | 'free' | 'premium';
 export type AppMessageLang = 'ru' | 'uk' | 'es';
+export type AppMessageKind = 'message' | 'poll';
 
 export const APP_MESSAGES_COLLECTION = 'app_messages';
 export const APP_MESSAGE_STATES_COLLECTION = 'app_message_states';
@@ -12,8 +13,26 @@ export const APP_MESSAGE_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
 const APP_MESSAGES_CACHE_KEY = 'app_messages_cache_v1';
 
+export type AppMessagePollOption = {
+  id: string;
+  textRu: string;
+  textUk: string;
+  textEs: string;
+};
+
+export type AppMessagePoll = {
+  questionRu: string;
+  questionUk: string;
+  questionEs: string;
+  options: AppMessagePollOption[];
+  optionIds: string[];
+  counts: Record<string, number>;
+  voteCount: number;
+};
+
 export type AppMessage = {
   id: string;
+  kind: AppMessageKind;
   active: boolean;
   audience: AppMessageAudience;
   titleRu: string;
@@ -29,18 +48,21 @@ export type AppMessage = {
   expiresAt: string;
   expiresAtMs: number;
   priority: number;
+  poll: AppMessagePoll | null;
 };
 
 export type AppMessageState = {
   messageId: string;
   readAtMs: number | null;
   reaction: AppMessageReaction | null;
+  pollOptionId?: string | null;
   updatedAtMs: number;
 };
 
 export type AppMessageWithState = AppMessage & {
   readAtMs: number | null;
   reaction: AppMessageReaction | null;
+  pollOptionId: string | null;
   unread: boolean;
 };
 
@@ -79,6 +101,73 @@ function cleanText(value: unknown, fallback = ''): string {
   return String(value ?? fallback).trim();
 }
 
+function cleanPollOptionId(value: unknown, fallback: string): string {
+  const raw = cleanText(value, fallback).replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 40);
+  return raw || fallback;
+}
+
+function cleanPollCounts(value: unknown): Record<string, number> {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+  const out: Record<string, number> = {};
+  Object.entries(value as Record<string, unknown>).forEach(([key, raw]) => {
+    const optionId = cleanPollOptionId(key, '');
+    if (!optionId) return;
+    const n = Math.floor(Number(raw ?? 0));
+    out[optionId] = Number.isFinite(n) && n > 0 ? n : 0;
+  });
+  return out;
+}
+
+function normalizeAppMessagePoll(
+  data: Record<string, unknown>,
+  titleFallback: string,
+  messageFallback: string,
+): AppMessagePoll | null {
+  const rawPoll = data.poll;
+  if (!rawPoll || typeof rawPoll !== 'object' || Array.isArray(rawPoll)) return null;
+
+  const pollData = rawPoll as Record<string, unknown>;
+  const rawOptions = Array.isArray(pollData.options) ? pollData.options : [];
+  const options: AppMessagePollOption[] = [];
+
+  rawOptions.forEach((row) => {
+    if (!row || typeof row !== 'object' || Array.isArray(row)) return;
+    const optionData = row as Record<string, unknown>;
+    const textRu = cleanText(optionData.textRu ?? optionData.labelRu ?? optionData.text, '');
+    if (!textRu) return;
+    const fallbackId = `opt_${options.length + 1}`;
+    const id = cleanPollOptionId(optionData.id, fallbackId);
+    if (options.some((option) => option.id === id)) return;
+    options.push({
+      id,
+      textRu,
+      textUk: cleanText(optionData.textUk ?? optionData.labelUk, textRu),
+      textEs: cleanText(optionData.textEs ?? optionData.labelEs, textRu),
+    });
+  });
+
+  if (options.length < 2) return null;
+
+  const counts = cleanPollCounts(data.pollCounts ?? pollData.counts);
+  const countSum = Object.values(counts).reduce((sum, n) => sum + n, 0);
+  const rawVoteCount = Math.floor(Number(data.pollVoteCount ?? pollData.voteCount ?? countSum));
+  const voteCount = Number.isFinite(rawVoteCount) && rawVoteCount > 0 ? rawVoteCount : countSum;
+  const questionRu = cleanText(
+    pollData.questionRu ?? pollData.question ?? data.pollQuestionRu,
+    titleFallback || messageFallback || 'Poll',
+  );
+
+  return {
+    questionRu,
+    questionUk: cleanText(pollData.questionUk ?? data.pollQuestionUk, questionRu),
+    questionEs: cleanText(pollData.questionEs ?? data.pollQuestionEs, questionRu),
+    options,
+    optionIds: options.map((option) => option.id),
+    counts,
+    voteCount,
+  };
+}
+
 export function normalizeAppMessage(id: string, data: Record<string, unknown>, nowMs = Date.now()): AppMessage {
   const createdAt = cleanText(data.createdAt, new Date(nowMs).toISOString());
   const createdAtMs = toMs(data.createdAtMs ?? data.createdAt, Date.parse(createdAt) || nowMs);
@@ -92,9 +181,13 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
     audienceRaw === 'free' || audienceRaw === 'premium' ? audienceRaw : 'all';
   const titleRu = cleanText(data.titleRu, 'Message from the team');
   const messageRu = cleanText(data.messageRu, '');
+  const poll = normalizeAppMessagePoll(data, titleRu, messageRu);
+  const kindRaw = cleanText(data.kind, poll ? 'poll' : 'message');
+  const kind: AppMessageKind = kindRaw === 'poll' && poll ? 'poll' : 'message';
 
   return {
     id,
+    kind,
     active: data.active !== false,
     audience,
     titleRu,
@@ -110,15 +203,18 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
     expiresAt,
     expiresAtMs,
     priority: Math.max(0, Math.floor(Number(data.priority ?? 0) || 0)),
+    poll,
   };
 }
 
 export function normalizeAppMessageState(messageId: string, data: Record<string, unknown>): AppMessageState {
   const reactionRaw = cleanText(data.reaction, '');
+  const pollOptionId = cleanText(data.pollOptionId, '');
   return {
     messageId,
     readAtMs: toMs(data.readAtMs ?? data.readAt, 0) || null,
     reaction: reactionRaw === 'like' || reactionRaw === 'dislike' ? reactionRaw : null,
+    pollOptionId: pollOptionId || null,
     updatedAtMs: toMs(data.updatedAtMs ?? data.updatedAt, 0),
   };
 }
@@ -149,6 +245,18 @@ export function pickAppMessageText(
   return { title: message.titleRu, body: message.messageRu };
 }
 
+export function pickAppMessagePollQuestion(poll: AppMessagePoll, lang: AppMessageLang): string {
+  if (lang === 'uk') return poll.questionUk || poll.questionRu;
+  if (lang === 'es') return poll.questionEs || poll.questionRu;
+  return poll.questionRu;
+}
+
+export function pickAppMessagePollOptionText(option: AppMessagePollOption, lang: AppMessageLang): string {
+  if (lang === 'uk') return option.textUk || option.textRu;
+  if (lang === 'es') return option.textEs || option.textRu;
+  return option.textRu;
+}
+
 export function buildAppMessagePreview(body: string, maxChars = 120): string {
   const compact = String(body || '').replace(/\s+/g, ' ').trim();
   if (compact.length <= maxChars) return compact;
@@ -175,6 +283,7 @@ export function mergeAppMessagesWithStates(
         ...message,
         readAtMs,
         reaction: state?.reaction ?? null,
+        pollOptionId: state?.pollOptionId ?? null,
         unread: !readAtMs,
       };
     });
@@ -338,6 +447,23 @@ export async function setAppMessageReaction(
   await Promise.all([
     stateRef.set({ messageId, reaction: null, updatedAtMs: nowMs }, { merge: true }),
     typeof reactionRef.delete === 'function' ? reactionRef.delete() : Promise.resolve(),
+  ]);
+}
+
+export async function setAppMessagePollVote(messageId: string, optionId: string): Promise<void> {
+  const cleanOptionId = String(optionId || '').trim();
+  if (!messageId || !/^[A-Za-z0-9_-]{1,40}$/.test(cleanOptionId)) return;
+  const firestoreFactory = await getFirestoreModule();
+  const uid = await getCanonicalUserId().catch(() => null);
+  if (!firestoreFactory || !uid) return;
+  const nowMs = Date.now();
+  const db = firestoreFactory();
+  const stateRef = db.collection('users').doc(uid).collection(APP_MESSAGE_STATES_COLLECTION).doc(messageId);
+  const voteRef = db.collection(APP_MESSAGES_COLLECTION).doc(messageId).collection('poll_votes').doc(uid);
+
+  await Promise.all([
+    stateRef.set({ messageId, pollOptionId: cleanOptionId, updatedAtMs: nowMs }, { merge: true }),
+    voteRef.set({ messageId, userId: uid, optionId: cleanOptionId, updatedAtMs: nowMs }, { merge: true }),
   ]);
 }
 

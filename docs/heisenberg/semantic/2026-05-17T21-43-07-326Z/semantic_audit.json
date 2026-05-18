@@ -1,0 +1,116 @@
+{
+  "generatedAt": "2026-05-17T21:43:07.325Z",
+  "mode": "semantic-audit",
+  "strict": true,
+  "summary": {
+    "findings": 4,
+    "blockers": 4,
+    "warnings": 0,
+    "reviewGroups": 4,
+    "byCode": {
+      "mojibake": 4
+    },
+    "bySurface": {
+      "quiz": 1,
+      "flashcards": 3
+    }
+  },
+  "reviewGroups": [
+    {
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 215,
+      "field": "prompt",
+      "severity": "blocker",
+      "code": "mojibake",
+      "message": "Text looks like UTF-8 mojibake, so semantic review cannot trust it.",
+      "sample": "Có ai thấy điện thoại của tôi không?",
+      "count": 1,
+      "locales": [
+        "vi"
+      ]
+    },
+    {
+      "surface": "flashcards",
+      "id": "fi19",
+      "field": "sourceLocales",
+      "severity": "blocker",
+      "code": "mojibake",
+      "message": "Text looks like UTF-8 mojibake, so semantic review cannot trust it.",
+      "sample": "đúng không?",
+      "count": 1,
+      "locales": [
+        "vi"
+      ]
+    },
+    {
+      "surface": "flashcards",
+      "id": "si6",
+      "field": "sourceLocales",
+      "severity": "blocker",
+      "code": "mojibake",
+      "message": "Text looks like UTF-8 mojibake, so semantic review cannot trust it.",
+      "sample": "chúng ta đổi lịch được không?",
+      "count": 1,
+      "locales": [
+        "vi"
+      ]
+    },
+    {
+      "surface": "flashcards",
+      "id": "si18",
+      "field": "sourceLocales",
+      "severity": "blocker",
+      "code": "mojibake",
+      "message": "Text looks like UTF-8 mojibake, so semantic review cannot trust it.",
+      "sample": "bạn giúp tôi một việc được không?",
+      "count": 1,
+      "locales": [
+        "vi"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 215,
+      "locale": "vi",
+      "field": "prompt",
+      "severity": "blocker",
+      "code": "mojibake",
+      "message": "Text looks like UTF-8 mojibake, so semantic review cannot trust it.",
+      "sample": "Có ai thấy điện thoại của tôi không?"
+    },
+    {
+      "surface": "flashcards",
+      "id": "fi19",
+      "locale": "vi",
+      "field": "sourceLocales",
+      "severity": "blocker",
+      "code": "mojibake",
+      "message": "Text looks like UTF-8 mojibake, so semantic review cannot trust it.",
+      "sample": "đúng không?"
+    },
+    {
+      "surface": "flashcards",
+      "id": "si6",
+      "locale": "vi",
+      "field": "sourceLocales",
+      "severity": "blocker",
+      "code": "mojibake",
+      "message": "Text looks like UTF-8 mojibake, so semantic review cannot trust it.",
+      "sample": "chúng ta đổi lịch được không?"
+    },
+    {
+      "surface": "flashcards",
+      "id": "si18",
+      "locale": "vi",
+      "field": "sourceLocales",
+      "severity": "blocker",
+      "code": "mojibake",
+      "message": "Text looks like UTF-8 mojibake, so semantic review cannot trust it.",
+      "sample": "bạn giúp tôi một việc được không?"
+    }
+  ]
+}

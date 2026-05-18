@@ -21,6 +21,7 @@ import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
 import PremiumGoldButton from './PremiumGoldButton';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { oskolokImageForPackShards } from '../app/oskolok';
+import { paywallGlassColor } from './paywallGlass';
 
 export type ArenaLimitMode = 'matchmaking' | 'invite';
 
@@ -51,6 +52,7 @@ export default function ArenaLimitModal({
   const router = useRouter();
   const dailyMax = dailyMaxProp ?? ARENA_DAILY_MAX;
   const { theme: t, themeMode, f } = useTheme();
+  const paywallSheetBg = paywallGlassColor(t.bgCard, themeMode, 'card');
   const { lang } = useLang();
   const isUK = lang === 'uk';
   const isES = lang === 'es';
@@ -189,7 +191,7 @@ export default function ArenaLimitModal({
       </Animated.View>
 
       <Animated.View
-        style={[styles.sheet, { backgroundColor: t.bgCard, transform: [{ translateY: slideY }] }]}
+        style={[styles.sheet, { backgroundColor: paywallSheetBg, transform: [{ translateY: slideY }] }]}
         pointerEvents="box-none"
       >
         {/* Внутренний радиальный отблеск сверху листа */}

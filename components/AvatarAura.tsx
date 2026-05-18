@@ -61,11 +61,11 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
   }
 
   if (isPremiumAura) {
-    const outer = Math.round(size * 1.34);
-    const ring = Math.max(2, Math.round(size * 0.05));
-    const glowScale = auraPhase.interpolate({ inputRange: [0, 1], outputRange: [0.96, 1.05] });
-    const glowOpacity = auraPhase.interpolate({ inputRange: [0, 1], outputRange: [0.52, 0.88] });
-    const rimOpacity = auraPhase.interpolate({ inputRange: [0, 1], outputRange: [0.72, 1] });
+    const outer = size + 6;
+    const ring = 1;
+    const glowScale = auraPhase.interpolate({ inputRange: [0, 1], outputRange: [0.99, 1.02] });
+    const glowOpacity = auraPhase.interpolate({ inputRange: [0, 1], outputRange: [0.16, 0.28] });
+    const rimOpacity = auraPhase.interpolate({ inputRange: [0, 1], outputRange: [0.72, 0.9] });
     const glintX = auraPhase.interpolate({ inputRange: [0, 1], outputRange: [-outer * 0.42, outer * 0.42] });
 
     return (
@@ -87,7 +87,7 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
             width: outer,
             height: outer,
             borderRadius: outer / 2,
-            backgroundColor: 'rgba(250,204,21,0.22)',
+            backgroundColor: 'rgba(250,204,21,0.08)',
             opacity: glowOpacity,
             transform: [{ scale: glowScale }],
           }}
@@ -99,7 +99,7 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
             width: Math.round(outer * 0.92),
             height: Math.round(outer * 0.92),
             borderRadius: Math.round(outer * 0.46),
-            backgroundColor: 'rgba(255,214,10,0.13)',
+            backgroundColor: 'transparent',
             overflow: 'hidden',
           }}
         >
@@ -109,11 +109,11 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
                 position: 'absolute',
                 top: -outer * 0.14,
                 left: outer * 0.44,
-                width: Math.max(6, Math.round(size * 0.09)),
+                width: 2,
                 height: outer * 1.2,
                 borderRadius: 999,
-                backgroundColor: 'rgba(255,255,255,0.42)',
-                opacity: 0.36,
+                backgroundColor: 'rgba(255,255,255,0.34)',
+                opacity: 0.24,
                 transform: [{ translateX: glintX }, { rotate: '-24deg' }],
               }}
             />
@@ -130,21 +130,21 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
             borderColor: '#FACC15',
             opacity: rimOpacity,
             shadowColor: '#FACC15',
-            shadowOpacity: 0.45,
-            shadowRadius: 14,
-            elevation: 8,
+            shadowOpacity: 0.16,
+            shadowRadius: 4,
+            elevation: 2,
           }}
         />
         <View
           pointerEvents="none"
           style={{
             position: 'absolute',
-            width: Math.round(outer * 0.78),
-            height: Math.round(outer * 0.78),
-            borderRadius: Math.round(outer * 0.39),
+            width: size + 2,
+            height: size + 2,
+            borderRadius: (size + 2) / 2,
             borderWidth: 1,
             borderColor: '#FFF2A8',
-            opacity: 0.68,
+            opacity: 0.42,
           }}
         />
         <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
@@ -548,8 +548,8 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
     );
   }
 
-  const outer = Math.round(size * 1.22);
-  const ring = Math.max(2, Math.round(size * 0.045));
+  const outer = Math.round(size + Math.max(4, Math.min(6, size * 0.12)));
+  const ring = 1;
 
   return (
     <View
@@ -573,19 +573,19 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
           backgroundColor: aura.softColor,
           borderWidth: ring,
           borderColor: aura.color,
-          opacity: 0.72,
+          opacity: 0.28,
         }}
       />
       <View
         pointerEvents="none"
         style={{
           position: 'absolute',
-          width: Math.round(outer * 0.84),
-          height: Math.round(outer * 0.84),
-          borderRadius: Math.round(outer * 0.42),
+          width: Math.round(outer * 0.92),
+          height: Math.round(outer * 0.92),
+          borderRadius: Math.round(outer * 0.46),
           borderWidth: 1,
           borderColor: aura.color,
-          opacity: 0.52,
+          opacity: 0.2,
         }}
       />
       <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>

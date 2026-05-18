@@ -6,6 +6,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loadWeekLeaderboard } from './hall_of_fame_utils';
 import { getOrCreateLeagueGroup, updateMyGroupPoints } from './firestore_leagues';
+import { getCanonicalUserId } from './user_id_policy';
 
 import type { Lang, PlannedInterfaceLang } from '../constants/i18n';
 
@@ -31,7 +32,7 @@ export interface ClubDef {
 
 export const CLUBS: ClubDef[] = [
   {
-    id: 0, ionIcon: 'flag-outline', imageUri: require("../assets/images/levels/LIG MED.webp"), color: '#7B9BB5', frameId: 'club_initiator',
+    id: 0, ionIcon: 'flag-outline', imageUri: require("../assets/images/levels/league-v4/LIG MED ASCENDANT.webp"), color: '#7B9BB5', frameId: 'club_initiator',
     nameRU: 'Медная лига',  nameUK: 'Мідь', nameES: 'Cobre',
     shortRU: 'Медная лига', shortUK: 'Мідь',
     tagRU: 'Бонус: +0% XP', tagUK: 'Бонус: +0% XP', tagES: 'Bonificación: +0% XP',
@@ -41,7 +42,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ласкаво просимо, ініціаторе! Кожен експерт колись стояв на твоєму місці. Головне — почати.',
   },
   {
-    id: 1, ionIcon: 'flame', imageUri: require("../assets/images/levels/LIG BRONZ.webp"), color: '#5BA88B', frameId: 'club_adept',
+    id: 1, ionIcon: 'flame', imageUri: require("../assets/images/levels/league-v4/LIG BRONZ ASCENDANT.webp"), color: '#5BA88B', frameId: 'club_adept',
     nameRU: 'Бронзовая лига', nameUK: 'Бронза', nameES: 'Bronce',
     shortRU: 'Бронзовая лига', shortUK: 'Бронза',
     tagRU: 'Бонус: +10% XP',  tagUK: 'Бонус: +10% XP', tagES: 'Bonificación: +10% XP',
@@ -51,7 +52,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Твою відданість помічено! Адепти знають: повторення — мати навчання. Продовжуй в тому ж дусі!',
   },
   {
-    id: 2, ionIcon: 'compass-outline', imageUri: require("../assets/images/levels/LIG SEREBRO.webp"), color: '#4A90A4', frameId: 'club_seeker',
+    id: 2, ionIcon: 'compass-outline', imageUri: require("../assets/images/levels/league-v4/LIG SEREBRO ASCENDANT.webp"), color: '#4A90A4', frameId: 'club_seeker',
     nameRU: 'Серебряная лига', nameUK: 'Срібло', nameES: 'Plata',
     shortRU: 'Серебряная лига', shortUK: 'Срібло',
     tagRU: 'Бонус: +20% XP', tagUK: 'Бонус: +20% XP', tagES: 'Bonificación: +20% XP',
@@ -61,7 +62,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти на вірному шляху, шукачу! Кожен новий урок — це відкриття нового горизонту.',
   },
   {
-    id: 3, ionIcon: 'hammer-outline', imageUri: require("../assets/images/levels/LIG ZOLOTO.webp"), color: '#7BA84A', frameId: 'club_practitioner',
+    id: 3, ionIcon: 'hammer-outline', imageUri: require("../assets/images/levels/league-v4/LIG ZOLOTO ASCENDANT.webp"), color: '#7BA84A', frameId: 'club_practitioner',
     nameRU: 'Золотая лига',   nameUK: 'Золото', nameES: 'Oro',
     shortRU: 'Золотая лига',  shortUK: 'Золото',
     tagRU: 'Бонус: +30% XP', tagUK: 'Бонус: +30% XP', tagES: 'Bonificación: +30% XP',
@@ -71,7 +72,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Справа майстра боїться! Практики будують знання цеглина за цеглиною. Ти у відмінній формі!',
   },
   {
-    id: 4, ionIcon: 'analytics-outline', imageUri: require("../assets/images/levels/LIG PLATINA.webp"), color: '#C8A84A', frameId: 'club_analyst',
+    id: 4, ionIcon: 'analytics-outline', imageUri: require("../assets/images/levels/league-v4/LIG PLATINA ASCENDANT.webp"), color: '#C8A84A', frameId: 'club_analyst',
     nameRU: 'Платиновая лига', nameUK: 'Платина', nameES: 'Platino',
     shortRU: 'Платиновая лига', shortUK: 'Платина',
     tagRU: 'Бонус: +40% XP', tagUK: 'Бонус: +40% XP', tagES: 'Bonificación: +40% XP',
@@ -81,7 +82,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Твій розум гостріший, ніж учора! Аналітики перетворюють складність на ясність. Ти мислиш системно!',
   },
   {
-    id: 5, ionIcon: 'library-outline', imageUri: require("../assets/images/levels/LIG IZUMRUD.webp"), color: '#CD7F32', frameId: 'club_erudite',
+    id: 5, ionIcon: 'library-outline', imageUri: require("../assets/images/levels/league-v4/LIG IZUMRUD ASCENDANT.webp"), color: '#CD7F32', frameId: 'club_erudite',
     nameRU: 'Изумрудная лига', nameUK: 'Смарагд', nameES: 'Esmeralda',
     shortRU: 'Изумрудная лига', shortUK: 'Смарагд',
     tagRU: 'Бонус: +50% XP', tagUK: 'Бонус: +50% XP', tagES: 'Bonificación: +50% XP',
@@ -91,7 +92,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Знання — твоя сила! Ерудити — люди, яким завжди є що сказати. Ти заслужено тут!',
   },
   {
-    id: 6, ionIcon: 'diamond', imageUri: require("../assets/images/levels/LIG SAPFIR.webp"), color: '#4A90D9', frameId: 'club_connoisseur',
+    id: 6, ionIcon: 'diamond', imageUri: require("../assets/images/levels/league-v4/LIG SAPFIR ASCENDANT.webp"), color: '#4A90D9', frameId: 'club_connoisseur',
     nameRU: 'Сапфировая лига', nameUK: 'Сапфір', nameES: 'Zafiro',
     shortRU: 'Сапфировая лига', shortUK: 'Сапфір',
     tagRU: 'Бонус: +60% XP', tagUK: 'Бонус: +60% XP', tagES: 'Bonificación: +60% XP',
@@ -101,7 +102,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти знаєш мову зсередини! Знавці помічають те, що інші пропускають. Ти в еліті!',
   },
   {
-    id: 7, ionIcon: 'medal', imageUri: require("../assets/images/levels/LIG RUBIN.webp"), color: '#9B59B6', frameId: 'club_expert',
+    id: 7, ionIcon: 'medal', imageUri: require("../assets/images/levels/league-v4/LIG RUBIN ASCENDANT.webp"), color: '#9B59B6', frameId: 'club_expert',
     nameRU: 'Рубиновая лига', nameUK: 'Рубін', nameES: 'Rubí',
     shortRU: 'Рубиновая лига', shortUK: 'Рубін',
     tagRU: 'Бонус: +70% XP', tagUK: 'Бонус: +70% XP', tagES: 'Bonificación: +70% XP',
@@ -111,7 +112,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Експертний рівень! Твої знання виходять за межі підручника. Ти говориш — всі слухають!',
   },
   {
-    id: 8, ionIcon: 'school-outline', imageUri: require("../assets/images/levels/LIG ALMAZ.webp"), color: '#A8B4C0', frameId: 'club_magister',
+    id: 8, ionIcon: 'school-outline', imageUri: require("../assets/images/levels/league-v4/LIG ALMAZ ASCENDANT.webp"), color: '#A8B4C0', frameId: 'club_magister',
     nameRU: 'Алмазная лига', nameUK: 'Діамант', nameES: 'Diamante',
     shortRU: 'Алмазная лига', shortUK: 'Діамант',
     tagRU: 'Бонус: +80% XP',  tagUK: 'Бонус: +80% XP', tagES: 'Bonificación: +80% XP',
@@ -121,7 +122,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Магістерська мантія тобі личить! Ти в абсолютній еліті тих, хто вивчає англійську. Капелюх долу!',
   },
   {
-    id: 9, ionIcon: 'bulb-outline', imageUri: require("../assets/images/levels/LIG CHERNIY ALMAZ.webp"), color: '#E87E30', frameId: 'club_thinker',
+    id: 9, ionIcon: 'bulb-outline', imageUri: require("../assets/images/levels/league-v4/LIG CHERNIY ALMAZ ASCENDANT.webp"), color: '#E87E30', frameId: 'club_thinker',
     nameRU: 'Лига Черного Алмаза', nameUK: 'Чорний Діамант', nameES: 'Diamante negro',
     shortRU: 'Лига Черного Алмаза', shortUK: 'Чорний Діамант',
     tagRU: 'Бонус: +90% XP',   tagUK: 'Бонус: +90% XP', tagES: 'Bonificación: +90% XP',
@@ -131,7 +132,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти мислиш англійською! Це найвищий рівень занурення. Мислителі — рідкість і гордість ліги!',
   },
   {
-    id: 10, ionIcon: 'hammer', imageUri: require("../assets/images/levels/LIG EFIR.webp"), color: '#D4A017', frameId: 'club_master',
+    id: 10, ionIcon: 'hammer', imageUri: require("../assets/images/levels/league-v4/LIG EFIR ASCENDANT.webp"), color: '#D4A017', frameId: 'club_master',
     nameRU: 'Эфирная лига',  nameUK: 'Ефір', nameES: 'Éter',
     shortRU: 'Эфирная лига', shortUK: 'Ефір',
     tagRU: 'Бонус: +100% XP',   tagUK: 'Бонус: +100% XP', tagES: 'Bonificación: +100% XP',
@@ -141,7 +142,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Майстер слова! Ти серед найкращих у додатку. Твоя англійська — це мистецтво. Ми пишаємось тобою!',
   },
   {
-    id: 11, ionIcon: 'trophy-outline', imageUri: require("../assets/images/levels/LIG VISHAYA.webp"), color: '#FFD700', frameId: 'club_professor',
+    id: 11, ionIcon: 'trophy-outline', imageUri: require("../assets/images/levels/league-v4/LIG VISHAYA ASCENDANT.webp"), color: '#FFD700', frameId: 'club_professor',
     nameRU: 'Высшая лига',   nameUK: 'Вища Ліга', nameES: 'Liga suprema',
     shortRU: 'Высшая лига',  shortUK: 'Вища Ліга',
     tagRU: 'Бонус: +110% XP', tagUK: 'Бонус: +110% XP', tagES: 'Bonificación: +110% XP',
@@ -339,6 +340,125 @@ const STATE_KEY  = 'league_state_v3';
 const RESULT_KEY = 'league_result_pending';
 const RESULT_CONSUMED_SIG_KEY = 'league_result_consumed_sig';
 
+export const LEAGUE_RESULT_ZONE_RATIO = 0.15;
+
+export const getLeagueResultZoneSize = (total: number): number => (
+  total >= 2 ? Math.max(1, Math.ceil(total * LEAGUE_RESULT_ZONE_RATIO)) : 0
+);
+
+const normalizeMemberName = (name?: string | null): string =>
+  String(name ?? '').replace(/\s+/g, ' ').trim().toLowerCase();
+
+const readMemberPoints = (member: GroupMember | undefined, fallback = 0): number => {
+  const points = Number(member?.points);
+  return Number.isFinite(points) ? points : fallback;
+};
+
+const findCurrentMemberIndex = (
+  group: GroupMember[],
+  myName?: string | null,
+  myUid?: string | null,
+): number => {
+  const existingMe = group.findIndex(m => m.isMe === true);
+  if (existingMe >= 0) return existingMe;
+
+  const uid = String(myUid ?? '').trim();
+  if (uid) {
+    const uidMatch = group.findIndex(m => String(m.uid ?? '').trim() === uid);
+    if (uidMatch >= 0) return uidMatch;
+  }
+
+  const name = normalizeMemberName(myName);
+  if (!name) return -1;
+  const nameMatches = group
+    .map((m, index) => ({ m, index }))
+    .filter(({ m }) => normalizeMemberName(m.name) === name);
+  if (nameMatches.length === 0) return -1;
+
+  nameMatches.sort((a, b) => readMemberPoints(b.m) - readMemberPoints(a.m));
+  return nameMatches[0].index;
+};
+
+const ensureCurrentUserInGroup = (
+  group: GroupMember[],
+  myName: string,
+  myWeekPoints: number,
+  myUid?: string | null,
+  mode: 'current-points' | 'stored-points' = 'current-points',
+): GroupMember[] => {
+  const source = Array.isArray(group) ? group : [];
+  const myIndex = findCurrentMemberIndex(source, myName, myUid);
+  const fallbackName = myName.trim() || source[myIndex]?.name || 'Player';
+
+  if (myIndex < 0) {
+    return [
+      ...source.map(m => ({ ...m, isMe: false })),
+      {
+        name: fallbackName,
+        points: Math.max(0, Math.floor(Number(myWeekPoints) || 0)),
+        isMe: true,
+        uid: myUid || undefined,
+      },
+    ];
+  }
+
+  return source.map((m, index) => {
+    if (index !== myIndex) return { ...m, isMe: false };
+    const points = mode === 'stored-points'
+      ? readMemberPoints(m, myWeekPoints)
+      : Math.max(0, Math.floor(Number(myWeekPoints) || 0));
+    return {
+      ...m,
+      name: fallbackName,
+      points,
+      isMe: true,
+      uid: m.uid ?? myUid ?? undefined,
+    };
+  });
+};
+
+const getMyUidSafe = async (): Promise<string | null> => {
+  try { return await getCanonicalUserId(); } catch { return null; }
+};
+
+const repairPendingResultForCurrentUser = async (
+  result: LeagueResult,
+  preferredName?: string | null,
+  preferredUid?: string | null,
+): Promise<LeagueResult> => {
+  const [namePairs, loadedUid] = await Promise.all([
+    AsyncStorage.multiGet(['user_name']),
+    getMyUidSafe(),
+  ]);
+  const storedName = namePairs[0]?.[1];
+  const myName = (preferredName || storedName || '').trim();
+  const myUid = preferredUid ?? loadedUid;
+  const resultGroup = Array.isArray(result.group) ? result.group : [];
+  const currentIndex = findCurrentMemberIndex(resultGroup, myName, myUid);
+  const storedPoints = readMemberPoints(resultGroup[currentIndex], 0);
+  const repairedGroup = ensureCurrentUserInGroup(
+    resultGroup,
+    myName,
+    storedPoints,
+    myUid,
+    'stored-points',
+  );
+
+  const repaired = calculateResult(
+    {
+      leagueId: result.prevLeagueId,
+      weekId: getWeekId(),
+      group: repairedGroup,
+    },
+    storedPoints,
+  );
+
+  return {
+    ...repaired,
+    prevLeagueId: result.prevLeagueId,
+  };
+};
+
 export const getLeagueResultSignature = (result: LeagueResult): string => JSON.stringify({
   prevLeagueId: result.prevLeagueId,
   newLeagueId: result.newLeagueId,
@@ -373,7 +493,16 @@ const saveLeagueState = async (s: LeagueState) => {
 export const loadPendingResult = async (): Promise<LeagueResult | null> => {
   try {
     const s = await AsyncStorage.getItem(RESULT_KEY);
-    return s ? JSON.parse(s) : null;
+    if (!s) return null;
+    const parsed = JSON.parse(s) as LeagueResult;
+    if (!parsed || typeof parsed !== 'object') return null;
+    const repaired = await repairPendingResultForCurrentUser(parsed);
+    await AsyncStorage.setItem(RESULT_KEY, JSON.stringify(repaired));
+    const state = await loadLeagueState();
+    if (state && state.leagueId !== repaired.newLeagueId) {
+      await saveLeagueState({ ...state, leagueId: repaired.newLeagueId });
+    }
+    return repaired;
   } catch { return null; }
 };
 
@@ -414,8 +543,9 @@ const fetchGroupForUser = async (
 ): Promise<GroupMember[] | null> => {
   // Кэш на 60 сек чтобы не спамить Firestore при каждом рендере
   const now = Date.now();
+  const myUid = await getMyUidSafe();
   if (_groupCache && now - _groupCache.ts < GROUP_CACHE_TTL) {
-    return _groupCache.group.map(m => m.isMe ? { ...m, points: myWeekPoints } : m);
+    return ensureCurrentUserInGroup(_groupCache.group, myName, myWeekPoints, myUid);
   }
   // Пробуем получить реальную группу из Firestore
   const remoteGroup = await getOrCreateLeagueGroup(
@@ -425,8 +555,9 @@ const fetchGroupForUser = async (
     myWeekPoints,
   );
   if (remoteGroup && remoteGroup.length > 0) {
-    _groupCache = { group: remoteGroup, ts: Date.now() };
-    return remoteGroup;
+    const repairedRemoteGroup = ensureCurrentUserInGroup(remoteGroup, myName, myWeekPoints, myUid);
+    _groupCache = { group: repairedRemoteGroup, ts: Date.now() };
+    return repairedRemoteGroup;
   }
   return null;
 };
@@ -455,17 +586,19 @@ export const submitMyPoints = async (points: number) => {
 };
 
 export const calculateResult = (state: LeagueState, myWeekPoints: number): LeagueResult => {
-  const updated = state.group
+  const normalizedGroup = ensureCurrentUserInGroup(state.group, '', myWeekPoints, null);
+  const updated = normalizedGroup
     .map(m => m.isMe ? { ...m, points: myWeekPoints } : m)
     .sort((a, b) => b.points - a.points);
 
   const total        = updated.length;
-  const myRank       = updated.findIndex(m => m.isMe) + 1;
+  const myRank       = Math.max(1, updated.findIndex(m => m.isMe) + 1);
 
   // Need at least 2 participants for meaningful ranking
   const hasValidGroup = total >= 2;
-  const topCutoff    = hasValidGroup ? Math.max(1, Math.ceil(total * 0.15)) : 0;
-  const bottomCutoff = hasValidGroup ? total - Math.ceil(total * 0.15) + 1 : total + 1;
+  const zoneSize     = getLeagueResultZoneSize(total);
+  const topCutoff    = hasValidGroup ? zoneSize : 0;
+  const bottomCutoff = hasValidGroup ? total - zoneSize + 1 : total + 1;
   const promoted     = hasValidGroup && myRank <= topCutoff && state.leagueId < CLUBS.length - 1;
   const demoted      = hasValidGroup && myRank >= bottomCutoff && state.leagueId > 0 && !promoted;
 
@@ -480,10 +613,14 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
   };
 };
 
-const getStoredMyPointsFromLeagueState = (state: LeagueState): number => {
-  const me = state.group.find(m => m.isMe);
-  const points = Number(me?.points);
-  return Number.isFinite(points) ? points : 0;
+const getStoredMyPointsFromLeagueState = (
+  state: LeagueState,
+  myName?: string | null,
+  myUid?: string | null,
+): number => {
+  const group = Array.isArray(state.group) ? state.group : [];
+  const me = group[findCurrentMemberIndex(group, myName, myUid)];
+  return readMemberPoints(me, 0);
 };
 
 export const checkLeagueOnAppOpen = async (
@@ -491,6 +628,7 @@ export const checkLeagueOnAppOpen = async (
   myWeekPoints: number, // передаём НЕДЕЛЬНЫЕ очки
 ): Promise<{ needShowResult: boolean; result: LeagueResult | null; state: LeagueState }> => {
   const currentWeekId = getWeekId();
+  const myUid = await getMyUidSafe();
 
   // Batch both reads into a single multiGet
   const [[, pendingRaw], [, stateRaw]] = await AsyncStorage.multiGet([RESULT_KEY, STATE_KEY]);
@@ -502,12 +640,20 @@ export const checkLeagueOnAppOpen = async (
   try { state = stateRaw ? JSON.parse(stateRaw) : null; } catch { state = null; }
 
   if (pending) {
-    const fallbackState = state ?? {
-      leagueId: pending.newLeagueId,
+    const safePending = await repairPendingResultForCurrentUser(pending, myName, myUid);
+    await AsyncStorage.setItem(RESULT_KEY, JSON.stringify(safePending)).catch(() => {});
+    const fallbackState = state ? {
+      ...state,
+      leagueId: safePending.newLeagueId,
+    } : {
+      leagueId: safePending.newLeagueId,
       weekId: currentWeekId,
-      group: pending.group,
+      group: safePending.group,
     };
-    return { needShowResult: true, result: pending, state: fallbackState };
+    if (state && state.leagueId !== safePending.newLeagueId) {
+      await saveLeagueState(fallbackState).catch(() => {});
+    }
+    return { needShowResult: true, result: safePending, state: fallbackState };
   }
 
   // Первый запуск — state ещё нет, нужно показать хоть что-то
@@ -523,7 +669,9 @@ export const checkLeagueOnAppOpen = async (
 
   // Новая неделя — считаем итоги
   if (currentWeekId !== state.weekId) {
-    const result = calculateResult(state, getStoredMyPointsFromLeagueState(state));
+    const storedMyPoints = getStoredMyPointsFromLeagueState(state, myName, myUid);
+    const rolloverGroup = ensureCurrentUserInGroup(state.group, myName, storedMyPoints, myUid, 'stored-points');
+    const result = calculateResult({ ...state, group: rolloverGroup }, storedMyPoints);
     await savePendingResult(result);
 
     // КРИТИЧНО: state.weekId надо двинуть на новую неделю СРАЗУ, иначе при сбое
@@ -534,11 +682,11 @@ export const checkLeagueOnAppOpen = async (
     await saveLeagueState({
       leagueId: result.newLeagueId,
       weekId:   currentWeekId,
-      group:    state.group,
+      group:    rolloverGroup,
     });
 
     const remote = await fetchGroupForUser(result.newLeagueId, myName, 0);
-    const finalGroup = remote ?? state.group;
+    const finalGroup = remote ?? rolloverGroup;
     const newState: LeagueState = {
       leagueId: result.newLeagueId,
       weekId:   currentWeekId,
@@ -552,8 +700,7 @@ export const checkLeagueOnAppOpen = async (
   // Если remote недоступен — НЕ переписываем state.group (там могут быть реальные
   // участники, загруженные ранее), только обновляем мои очки.
   const freshGroup = await fetchGroupForUser(state.leagueId, myName, myWeekPoints, currentWeekId);
-  const updatedGroup = freshGroup ?? state.group
-    .map(m => m.isMe ? { ...m, name: myName, points: myWeekPoints } : m)
+  const updatedGroup = freshGroup ?? ensureCurrentUserInGroup(state.group, myName, myWeekPoints, myUid)
     .sort((a, b) => b.points - a.points);
 
   const updatedState = { ...state, group: updatedGroup };

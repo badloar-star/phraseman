@@ -8,6 +8,11 @@ import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { type WordCategory } from '../app/phrase_analytics';
 import { useOverlayVisible } from './OverlayArbiter';
+import {
+  cancelScheduledAnimatedStateUpdates,
+  scheduleTrackedAnimatedStateUpdate,
+  type ScheduledAnimatedStateUpdate,
+} from './animationScheduling';
 
 interface CoachToastProps {
   category: WordCategory;
@@ -71,6 +76,7 @@ export default function CoachToast({
   const overlayVisible = useOverlayVisible('coachToast', true);
   const slideAnim = useRef(new Animated.Value(120)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
+  const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
 
   const categoryLabel = triLang(lang, {
     ru: labelRu,
@@ -84,11 +90,18 @@ export default function CoachToast({
   });
 
   const dismiss = useCallback(() => {
+    cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
     Animated.parallel([
       Animated.timing(slideAnim, { toValue: 120, duration: 220, useNativeDriver: true }),
       Animated.timing(opacityAnim, { toValue: 0, duration: 200, useNativeDriver: true }),
-    ]).start(() => onDismiss());
+    ]).start(() => {
+      scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, onDismiss);
+    });
   }, [opacityAnim, onDismiss, slideAnim]);
+
+  useEffect(() => () => {
+    cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
+  }, []);
 
   useEffect(() => {
     if (!overlayVisible) return;

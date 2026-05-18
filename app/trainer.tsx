@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import Svg, { Circle, G, Line, Path, Rect } from 'react-native-svg';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
@@ -19,6 +20,8 @@ import { getDiagnosisTraining } from './diagnosis_trainings';
 import { loadResolvedPersonalTrainings, type ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
 import { choosePersonalTrainingCandidate } from './personal_training_taxonomy';
 import { GOLD_RICH } from '../constants/goldTheme';
+import { trainerThemeIconPalette, type TrainerThemeIconKind } from '../constants/trainerThemeIcons';
+import type { ThemeMode } from '../constants/theme';
 type RoutePath = '/trainer_words_session' | '/trainer_phrases_session' | '/trainer_arena_session';
 interface SectionInfo {
     queue: TrainerQueue;
@@ -44,8 +47,55 @@ interface SectionInfo {
 interface PracticeOption {
     id: 'context' | 'words';
     queues: TrainerQueue[];
-    icon: keyof typeof Ionicons.glyphMap;
+    iconKind: TrainerThemeIconKind;
     accent: string;
+}
+
+function TrainerThemeIcon({
+    kind,
+    themeMode,
+    size = 52,
+}: {
+    kind: TrainerThemeIconKind;
+    themeMode: ThemeMode;
+    size?: number;
+}) {
+    const p = trainerThemeIconPalette(themeMode);
+    if (kind === 'phrases') {
+        return (<Svg width={size} height={size} viewBox="0 0 64 64">
+          <Path d="M12 28C12 17 22 10 35 10C48 10 56 18 56 29C56 40 46 47 33 47H29L18 55L20 44C15 40 12 35 12 28Z" fill={p.primary} opacity={0.72} stroke={p.stroke} strokeWidth={2.8} strokeLinejoin="round"/>
+          <Path d="M28 37C28 29 36 24 47 24C57 24 62 30 62 38C62 46 54 52 44 52H40L32 58L34 49C30 46 28 42 28 37Z" fill={p.secondary} opacity={0.88} stroke={p.stroke} strokeWidth={2.4} strokeLinejoin="round"/>
+          <Path d="M9 19C7 22 6 26 7 31M16 11C13 13 11 16 10 19" stroke={p.tertiary} strokeWidth={3.3} strokeLinecap="round" opacity={0.8}/>
+          <Circle cx={46} cy={14} r={2.1} fill={p.tertiary}/>
+          <Path d="M52 9L54 13L58 15L54 17L52 21L50 17L46 15L50 13Z" fill={p.tertiary}/>
+        </Svg>);
+    }
+    if (kind === 'words') {
+        return (<Svg width={size} height={size} viewBox="0 0 64 64">
+          <G transform="rotate(-8 32 32)">
+            <Rect x={20} y={17} width={31} height={37} rx={6} fill={p.muted} opacity={0.8} stroke={p.stroke} strokeWidth={2.3}/>
+            <Rect x={16} y={12} width={31} height={37} rx={6} fill={p.primary} opacity={0.92} stroke={p.stroke} strokeWidth={2.5}/>
+            <Path d="M22 12V43L27 39L32 44V13Z" fill={p.secondary} opacity={0.95}/>
+            <Path d="M29 26L37 20L35 29L43 29L32 37L34 28Z" fill={p.tertiary} opacity={0.95}/>
+          </G>
+          <Rect x={47} y={40} width={10} height={8} rx={2.5} fill={p.secondary} stroke={p.stroke} strokeWidth={1.7}/>
+          <Rect x={48} y={51} width={9} height={7} rx={2.2} fill={p.primary} opacity={0.82} stroke={p.stroke} strokeWidth={1.5}/>
+          <Circle cx={21} cy={10} r={2.2} fill={p.tertiary}/>
+        </Svg>);
+    }
+    return (<Svg width={size} height={size} viewBox="0 0 64 64">
+      <Rect x={9} y={40} width={7} height={13} rx={1.6} fill={p.primary} opacity={0.7} stroke={p.stroke} strokeWidth={1.6}/>
+      <Rect x={21} y={34} width={7} height={19} rx={1.6} fill={p.secondary} opacity={0.82} stroke={p.stroke} strokeWidth={1.6}/>
+      <Rect x={33} y={27} width={7} height={26} rx={1.6} fill={p.primary} opacity={0.86} stroke={p.stroke} strokeWidth={1.6}/>
+      <Path d="M12 33L24 24L36 30L50 15" fill="none" stroke={p.tertiary} strokeWidth={3.2} strokeLinecap="round" strokeLinejoin="round"/>
+      <Circle cx={12} cy={33} r={4} fill={p.primary} stroke={p.stroke} strokeWidth={2}/>
+      <Circle cx={24} cy={24} r={4} fill={p.secondary} stroke={p.stroke} strokeWidth={2}/>
+      <Circle cx={36} cy={30} r={4} fill={p.primary} stroke={p.stroke} strokeWidth={2}/>
+      <Circle cx={50} cy={15} r={4} fill={p.secondary} stroke={p.stroke} strokeWidth={2}/>
+      <Circle cx={48} cy={43} r={9} fill="none" stroke={p.stroke} strokeWidth={3.4}/>
+      <Line x1={54} y1={50} x2={61} y2={57} stroke={p.stroke} strokeWidth={4} strokeLinecap="round"/>
+      <Path d="M10 16L13 19M13 16L10 19M51 25L55 29M55 25L51 29" stroke={p.secondary} strokeWidth={2.4} strokeLinecap="round"/>
+    </Svg>);
 }
 const SECTIONS: SectionInfo[] = [
     {
@@ -104,13 +154,13 @@ const PRACTICE_OPTIONS: PracticeOption[] = [
     {
         id: 'context',
         queues: ['phrases', 'arena'],
-        icon: 'chatbubbles',
+        iconKind: 'phrases',
         accent: '#2DD4BF',
     },
     {
         id: 'words',
         queues: ['words'],
-        icon: 'library',
+        iconKind: 'words',
         accent: '#60A5FA',
     },
 ];
@@ -120,11 +170,11 @@ const recommendedStartText = (queue: TrainerQueue | null, lang: Lang): string =>
             ru: 'Сначала повтори фразы. Здесь самые свежие ошибки в контексте.',
             uk: 'Спочатку повтори фрази. Тут найсвіжіші помилки в контексті.',
             es: 'Empieza con frases: son tus errores más recientes en contexto.',
-            'pt-BR': "Comece pelas frases. Aqui est?o os erros mais recentes em contexto.",
-            vi: "H?y b?t ??u v?i c?m c?u. ??y l? nh?ng l?i m?i nh?t trong ng? c?nh.",
+            'pt-BR': "Comece pelas frases. Aqui estão os erros mais recentes em contexto.",
+            vi: "Hãy bắt đầu với cụm câu. Đây là những lỗi mới nhất trong ngữ cảnh.",
             id: "Mulai dari frasa. Di sini ada kesalahan terbaru dalam konteks.",
-            tr: "?nce ifadeleri tekrar et. Burada ba?lam i?indeki en yeni hatalar?n var.",
-            pl: "Zacznij od fraz. Tu s? naj?wie?sze b??dy w kontek?cie.",
+            tr: "Önce ifadeleri tekrar et. Burada bağlam içindeki en yeni hataların var.",
+            pl: "Zacznij od fraz. Tu są najświeższe błędy w kontekście.",
         });
     }
     if (queue === 'words') {
@@ -132,11 +182,11 @@ const recommendedStartText = (queue: TrainerQueue | null, lang: Lang): string =>
             ru: 'Сначала повтори слова. Это самый быстрый способ закрыть свежие ошибки.',
             uk: 'Спочатку повтори слова. Це найшвидший спосіб закрити свіжі помилки.',
             es: 'Empieza con palabras: es la forma más rápida de cerrar errores recientes.',
-            'pt-BR': "Comece pelas palavras. ? o jeito mais r?pido de fechar erros recentes.",
-            vi: "H?y b?t ??u v?i t? v?ng. ??y l? c?ch nhanh nh?t ?? x? l? l?i m?i.",
+            'pt-BR': "Comece pelas palavras. É o jeito mais rápido de fechar erros recentes.",
+            vi: "Hãy bắt đầu với từ vựng. Đây là cách nhanh nhất để xử lý lỗi mới.",
             id: "Mulai dari kata. Ini cara tercepat untuk menutup kesalahan terbaru.",
-            tr: "?nce kelimeleri tekrar et. Yeni hatalar? kapatman?n en h?zl? yolu bu.",
-            pl: "Zacznij od s??w. To najszybszy spos?b na domkni?cie ?wie?ych b??d?w.",
+            tr: "Önce kelimeleri tekrar et. Yeni hataları kapatmanın en hızlı yolu bu.",
+            pl: "Zacznij od słów. To najszybszy sposób na domknięcie świeżych błędów.",
         });
     }
     if (queue === 'arena') {
@@ -144,11 +194,11 @@ const recommendedStartText = (queue: TrainerQueue | null, lang: Lang): string =>
             ru: 'Сначала повтори фразы. Там сейчас самые свежие ошибки.',
             uk: 'Спочатку повтори фрази. Там зараз найсвіжіші помилки.',
             es: 'Empieza con frases: ahí están tus errores más recientes.',
-            'pt-BR': "Comece pelas frases. Ali est?o os erros mais recentes agora.",
-            vi: "H?y b?t ??u v?i c?m c?u. Hi?n c?c l?i m?i nh?t n?m ? ??.",
+            'pt-BR': "Comece pelas frases. Ali estão os erros mais recentes agora.",
+            vi: "Hãy bắt đầu với cụm câu. Hiện các lỗi mới nhất nằm ở đó.",
             id: "Mulai dari frasa. Di sana ada kesalahan terbaru saat ini.",
-            tr: "?nce ifadeleri tekrar et. En yeni hatalar ?u anda orada.",
-            pl: "Zacznij od fraz. Tam s? teraz naj?wie?sze b??dy.",
+            tr: "Önce ifadeleri tekrar et. En yeni hatalar şu anda orada.",
+            pl: "Zacznij od fraz. Tam są teraz najświeższe błędy.",
         });
     }
     return triLang(lang, {
@@ -156,10 +206,10 @@ const recommendedStartText = (queue: TrainerQueue | null, lang: Lang): string =>
         uk: 'Почни з короткого тренування за свіжими помилками.',
         es: 'Empieza con un repaso corto de errores recientes.',
         'pt-BR': "Comece com um treino curto dos erros recentes.",
-        vi: "B?t ??u b?ng m?t b?i luy?n ng?n v?i c?c l?i m?i.",
+        vi: "Bắt đầu bằng một bài luyện ngắn với các lỗi mới.",
         id: "Mulai dengan latihan singkat untuk kesalahan terbaru.",
-        tr: "Yeni hatalar i?in k?sa bir antrenmanla ba?la.",
-        pl: "Zacznij od kr?tkiego treningu ?wie?ych b??d?w.",
+        tr: "Yeni hatalar için kısa bir antrenmanla başla.",
+        pl: "Zacznij od krótkiego treningu świeżych błędów.",
     });
 };
 const todayReviewLabel = (count: number, lang: Lang): string => triLang(lang, {
@@ -167,30 +217,30 @@ const todayReviewLabel = (count: number, lang: Lang): string => triLang(lang, {
     uk: count === 1 ? 'на повтор сьогодні' : 'на повтор сьогодні',
     es: count === 1 ? 'para repasar hoy' : 'para repasar hoy',
     'pt-BR': count === 1 ? 'para revisar hoje' : 'para revisar hoje',
-    vi: count === 1 ? 'c?n ?n h?m nay' : 'c?n ?n h?m nay',
+    vi: count === 1 ? 'cần ôn hôm nay' : 'cần ôn hôm nay',
     id: count === 1 ? 'untuk diulas hari ini' : 'untuk diulas hari ini',
-    tr: count === 1 ? 'bug?n tekrar i?in' : 'bug?n tekrar i?in',
-    pl: count === 1 ? 'do powt?rki dzi?' : 'do powt?rki dzi?',
+    tr: count === 1 ? 'bugün tekrar için' : 'bugün tekrar için',
+    pl: count === 1 ? 'do powtórki dziś' : 'do powtórki dziś',
 });
 const scheduledLaterText = (count: number, lang: Lang): string => triLang(lang, {
     ru: `Еще ${count} уже отложено на следующие повторения.`,
     uk: `Ще ${count} уже відкладено на наступні повторення.`,
     es: `${count} más ya están programados para próximos repasos.`,
-    'pt-BR': `Mais ${count} j? foram agendados para pr?ximas revis?es.`,
-    vi: `${count} m?c n?a ?? ???c l?n l?ch cho c?c l?n ?n ti?p theo.`,
+    'pt-BR': `Mais ${count} já foram agendados para próximas revisões.`,
+    vi: `${count} mục nữa đã được lên lịch cho các lần ôn tiếp theo.`,
     id: `${count} lagi sudah dijadwalkan untuk ulasan berikutnya.`,
-    tr: `${count} ??e sonraki tekrarlar i?in planland?.`,
-    pl: `Jeszcze ${count} zaplanowano na kolejne powt?rki.`,
+    tr: `${count} öğe sonraki tekrarlar için planlandı.`,
+    pl: `Jeszcze ${count} zaplanowano na kolejne powtórki.`,
 });
 const smartMixStartText = (lang: Lang): string => triLang(lang, {
     ru: 'Начни короткую тренировку по самым важным ошибкам. Порядок уже выбран автоматически.',
     uk: 'Почни коротке тренування за найважливішими помилками. Порядок уже обрано автоматично.',
     es: 'Start a short review of your most important mistakes. The order is already picked.',
-    'pt-BR': "Comece um treino curto com seus erros mais importantes. A ordem j? foi escolhida automaticamente.",
-    vi: "B?t ??u m?t b?i luy?n ng?n v?i nh?ng l?i quan tr?ng nh?t. Th? t? ?? ???c ch?n t? ??ng.",
+    'pt-BR': "Comece um treino curto com seus erros mais importantes. A ordem já foi escolhida automaticamente.",
+    vi: "Bắt đầu một bài luyện ngắn với những lỗi quan trọng nhất. Thứ tự đã được chọn tự động.",
     id: "Mulai latihan singkat untuk kesalahan paling penting. Urutannya sudah dipilih otomatis.",
-    tr: "En ?nemli hatalar?nla k?sa bir antrenmana ba?la. S?ralama otomatik se?ildi.",
-    pl: "Zacznij kr?tki trening najwa?niejszych b??d?w. Kolejno?? zosta?a dobrana automatycznie.",
+    tr: "En önemli hatalarınla kısa bir antrenmana başla. Sıralama otomatik seçildi.",
+    pl: "Zacznij krótki trening najważniejszych błędów. Kolejność została dobrana automatycznie.",
 });
 const queueTitle = (queue: TrainerQueue, lang: Lang): string => {
     if (queue === 'phrases')
@@ -199,9 +249,9 @@ const queueTitle = (queue: TrainerQueue, lang: Lang): string => {
             uk: 'Фрази',
             es: 'Frases',
             'pt-BR': "Frases",
-            vi: "C?m c?u",
+            vi: "Cụm câu",
             id: "Frasa",
-            tr: "?fadeler",
+            tr: "İfadeler",
             pl: "Frazy",
         });
     if (queue === 'words')
@@ -210,19 +260,19 @@ const queueTitle = (queue: TrainerQueue, lang: Lang): string => {
             uk: 'Слова',
             es: 'Palabras',
             'pt-BR': "Palavras",
-            vi: "T? v?ng",
+            vi: "Từ vựng",
             id: "Kata",
             tr: "Kelimeler",
-            pl: "S?owa",
+            pl: "Słowa",
         });
     return triLang(lang, {
         ru: 'Фразы',
         uk: 'Фрази',
         es: 'Frases',
         'pt-BR': "Frases",
-        vi: "C?m c?u",
+        vi: "Cụm câu",
         id: "Frasa",
-        tr: "?fadeler",
+        tr: "İfadeler",
         pl: "Frazy",
     });
 };
@@ -233,10 +283,10 @@ const queueSubtitle = (queue: TrainerQueue, lang: Lang): string => {
             uk: 'Повтори помилки в контексті.',
             es: 'Review mistakes in context.',
             'pt-BR': "Revise erros em contexto.",
-            vi: "?n l?i trong ng? c?nh.",
+            vi: "Ôn lại trong ngữ cảnh.",
             id: "Ulas kesalahan dalam konteks.",
-            tr: "Hatalar? ba?lam i?inde tekrar et.",
-            pl: "Powt?rz b??dy w kontek?cie.",
+            tr: "Hataları bağlam içinde tekrar et.",
+            pl: "Powtórz błędy w kontekście.",
         });
     if (queue === 'words')
         return triLang(lang, {
@@ -244,20 +294,20 @@ const queueSubtitle = (queue: TrainerQueue, lang: Lang): string => {
             uk: 'Повтори слова, які варто закріпити.',
             es: 'Review words that need another pass.',
             'pt-BR': "Revise palavras que precisam ser fixadas.",
-            vi: "?n c?c t? c?n c?ng c?.",
+            vi: "Ôn các từ cần củng cố.",
             id: "Ulas kata yang perlu diperkuat.",
-            tr: "Peki?tirmen gereken kelimeleri tekrar et.",
-            pl: "Powt?rz s?owa, kt?re warto utrwali?.",
+            tr: "Pekiştirmen gereken kelimeleri tekrar et.",
+            pl: "Powtórz słowa, które warto utrwalić.",
         });
     return triLang(lang, {
         ru: 'Повтори ошибки без таймера и давления.',
         uk: 'Повтори помилки без таймера й тиску.',
         es: 'Review mistakes without timer or pressure.',
-        'pt-BR': "Revise erros sem cron?metro nem press?o.",
-        vi: "?n l?i kh?ng c? h?n gi? hay ?p l?c.",
+        'pt-BR': "Revise erros sem cronômetro nem pressão.",
+        vi: "Ôn lại không có hạn giờ hay áp lực.",
         id: "Ulas kesalahan tanpa timer atau tekanan.",
-        tr: "Hatalar? zamanlay?c? ve bask? olmadan tekrar et.",
-        pl: "Powt?rz b??dy bez timera i presji.",
+        tr: "Hataları zamanlayıcı ve baskı olmadan tekrar et.",
+        pl: "Powtórz błędy bez timera i presji.",
     });
 };
 const optionTitle = (option: PracticeOption, lang: Lang): string => {
@@ -267,9 +317,9 @@ const optionTitle = (option: PracticeOption, lang: Lang): string => {
             uk: 'Фрази',
             es: 'Frases',
             'pt-BR': "Frases",
-            vi: "C?m c?u",
+            vi: "Cụm câu",
             id: "Frasa",
-            tr: "?fadeler",
+            tr: "İfadeler",
             pl: "Frazy",
         });
     }
@@ -282,10 +332,10 @@ const optionSubtitle = (option: PracticeOption, lang: Lang): string => {
             uk: 'Повтори помилки в контексті.',
             es: 'Review mistakes in context.',
             'pt-BR': "Revise erros em contexto.",
-            vi: "?n l?i trong ng? c?nh.",
+            vi: "Ôn lại trong ngữ cảnh.",
             id: "Ulas kesalahan dalam konteks.",
-            tr: "Hatalar? ba?lam i?inde tekrar et.",
-            pl: "Powt?rz b??dy w kontek?cie.",
+            tr: "Hataları bağlam içinde tekrar et.",
+            pl: "Powtórz błędy w kontekście.",
         });
     }
     return queueSubtitle('words', lang);
@@ -451,7 +501,6 @@ export default function TrainerScreen() {
     useFocusEffect(useCallback(() => { void loadData(); }, [loadData]));
     const total = dashboard?.totalDue ?? 0;
     const nextOption = useMemo(() => (dashboard.nextQueue === 'words' ? PRACTICE_OPTIONS[1] : PRACTICE_OPTIONS[0]), [dashboard]);
-    const analyticsAccent = isGoldTheme ? GOLD_RICH.metalGold : '#FACC15';
     const primaryAccent = isGoldTheme ? GOLD_RICH.metalGold : hasPremium ? '#FACC15' : nextOption.accent;
     const primaryTextColor = isGoldTheme || (hasPremium) ? '#17130A' : '#fff';
     const shownAnalytics: PhraseAnalyticsResult = analytics ?? {
@@ -520,10 +569,10 @@ export default function TrainerScreen() {
             ru: 'Моя практика',
             uk: 'Моя практика',
             es: 'Mi práctica',
-            'pt-BR': "Minha pr?tica",
-            vi: "Luy?n t?p c?a t?i",
+            'pt-BR': "Minha prática",
+            vi: "Luyện tập của tôi",
             id: "Latihanku",
-            tr: "Prati?im",
+            tr: "Pratiğim",
             pl: "Moja praktyka",
         })}
               </Text>
@@ -543,7 +592,6 @@ export default function TrainerScreen() {
                 ? option.id === 'context' ? GOLD_RICH.metalGold : GOLD_RICH.champagne
                 :
                     option.accent;
-            const optionAccentSoft = isGoldTheme ? GOLD_RICH.wash : optionAccent + '20';
             const optionAccentBorder = isGoldTheme
                 ? (isNext ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet)
                 :
@@ -559,8 +607,8 @@ export default function TrainerScreen() {
                         opacity: empty ? 0.62 : 1,
                     },
                 ]}>
-                  <View style={[styles.cardIcon, { backgroundColor: optionAccentSoft, borderColor: optionAccentBorder }]}>
-                    <Ionicons name={option.icon} size={20} color={optionAccent}/>
+                  <View style={styles.cardIcon}>
+                    <TrainerThemeIcon kind={option.iconKind} themeMode={themeMode}/>
                   </View>
                   <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
@@ -573,10 +621,10 @@ export default function TrainerScreen() {
                         ru: 'лучший старт',
                         uk: 'кращий старт',
                         es: 'mejor inicio',
-                        'pt-BR': "melhor in?cio",
-                        vi: "b?t ??u t?t nh?t",
+                        'pt-BR': "melhor início",
+                        vi: "bắt đầu tốt nhất",
                         id: "awal terbaik",
-                        tr: "en iyi ba?lang??",
+                        tr: "en iyi başlangıç",
                         pl: "najlepszy start",
                     })}
                           </Text>
@@ -589,10 +637,10 @@ export default function TrainerScreen() {
                         uk: 'Зараз нічого повторювати.',
                         es: 'Nada que repasar ahora.',
                         'pt-BR': "Nada para revisar agora.",
-                        vi: "Hi?n ch?a c? g? ?? ?n.",
+                        vi: "Hiện chưa có gì để ôn.",
                         id: "Belum ada yang perlu diulas.",
-                        tr: "?u an tekrar edecek bir ?ey yok.",
-                        pl: "Nie ma teraz nic do powt?rki.",
+                        tr: "Şu an tekrar edecek bir şey yok.",
+                        pl: "Nie ma teraz nic do powtórki.",
                     })
                     : optionSubtitle(option, lang)}
                     </Text>
@@ -608,8 +656,8 @@ export default function TrainerScreen() {
             {/* ── Аналитика ошибок inline ── */}
             {hasPremium ? (<View style={[styles.analyticsBlock, { backgroundColor: isGoldTheme ? 'rgba(8,8,6,0.94)' : t.bgCard, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : '#FACC1533' }]}>
                 <View style={styles.analyticsHeader}>
-                  <View style={[styles.cardIcon, { backgroundColor: isGoldTheme ? GOLD_RICH.wash : '#FACC1520', borderColor: isGoldTheme ? GOLD_RICH.hairline : '#FACC1566' }]}>
-                    <Ionicons name="analytics" size={20} color={analyticsAccent}/>
+                  <View style={styles.cardIcon}>
+                    <TrainerThemeIcon kind="analytics" themeMode={themeMode}/>
                   </View>
                   <View style={{ flex: 1 }}>
                     <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>
@@ -617,11 +665,11 @@ export default function TrainerScreen() {
                 ru: 'Аналитика ошибок',
                 uk: 'Аналітика помилок',
                 es: 'Análisis de errores',
-                'pt-BR': "An?lise de erros",
-                vi: "Ph?n t?ch l?i",
+                'pt-BR': "Análise de erros",
+                vi: "Phân tích lỗi",
                 id: "Analitik kesalahan",
                 tr: "Hata analizi",
-                pl: "Analiza b??d?w",
+                pl: "Analiza błędów",
             })}
                     </Text>
                     <Text style={[styles.cardSub, { color: t.textMuted, fontSize: f.caption }]}>
@@ -630,10 +678,10 @@ export default function TrainerScreen() {
                 uk: `${shownAnalytics.totalMistakes} помилок за ${shownAnalytics.windowDays} днів`,
                 es: `${shownAnalytics.totalMistakes} errores en ${shownAnalytics.windowDays} días`,
                 'pt-BR': `${shownAnalytics.totalMistakes} erros em ${shownAnalytics.windowDays} dias`,
-                vi: `${shownAnalytics.totalMistakes} l?i trong ${shownAnalytics.windowDays} ng?y`,
+                vi: `${shownAnalytics.totalMistakes} lỗi trong ${shownAnalytics.windowDays} ngày`,
                 id: `${shownAnalytics.totalMistakes} kesalahan dalam ${shownAnalytics.windowDays} hari`,
-                tr: `${shownAnalytics.windowDays} g?nde ${shownAnalytics.totalMistakes} hata`,
-                pl: `${shownAnalytics.totalMistakes} b??d?w w ${shownAnalytics.windowDays} dni`,
+                tr: `${shownAnalytics.windowDays} günde ${shownAnalytics.totalMistakes} hata`,
+                pl: `${shownAnalytics.totalMistakes} błędów w ${shownAnalytics.windowDays} dni`,
             })}
                     </Text>
                   </View>
@@ -656,7 +704,7 @@ export default function TrainerScreen() {
                         uk: 'Категорії',
                         es: 'Categorías',
                         'pt-BR': "Categorias",
-                        vi: "Danh m?c",
+                        vi: "Danh mục",
                         id: "Kategori",
                         tr: "Kategoriler",
                         pl: "Kategorie",
@@ -667,7 +715,7 @@ export default function TrainerScreen() {
                             uk: 'Уроки',
                             es: 'Lecciones',
                             'pt-BR': "Aulas",
-                            vi: "B?i h?c",
+                            vi: "Bài học",
                             id: "Pelajaran",
                             tr: "Dersler",
                             pl: "Lekcje",
@@ -677,9 +725,9 @@ export default function TrainerScreen() {
                             uk: 'Фрази',
                             es: 'Frases',
                             'pt-BR': "Frases",
-                            vi: "C?m c?u",
+                            vi: "Cụm câu",
                             id: "Frasa",
-                            tr: "?fadeler",
+                            tr: "İfadeler",
                             pl: "Frazy",
                         })}
                       </Text>
@@ -693,11 +741,11 @@ export default function TrainerScreen() {
                     ru: 'Сделай квиз или тренировку с ошибками - здесь появятся темы и фразы для разбора.',
                     uk: 'Зроби квіз або тренування з помилками - тут зʼявляться теми й фрази для розбору.',
                     es: 'Haz un quiz o una práctica con errores y aquí aparecerán temas y frases para analizar.',
-                    'pt-BR': "Fa?a um quiz ou treino com erros: aqui aparecer?o temas e frases para analisar.",
-                    vi: "L?m quiz ho?c b?i luy?n c? l?i: c?c ch? ?? v? c?m c?u c?n ph?n t?ch s? xu?t hi?n ? ??y.",
+                    'pt-BR': "Faça um quiz ou treino com erros: aqui aparecerão temas e frases para analisar.",
+                    vi: "Làm quiz hoặc bài luyện có lỗi: các chủ đề và cụm câu cần phân tích sẽ xuất hiện ở đây.",
                     id: "Kerjakan kuis atau latihan dengan kesalahan: topik dan frasa untuk dibahas akan muncul di sini.",
-                    tr: "Hatal? bir quiz ya da antrenman yap: analiz i?in konular ve ifadeler burada g?r?necek.",
-                    pl: "Zr?b quiz albo trening z b??dami: tu pojawi? si? tematy i frazy do analizy.",
+                    tr: "Hatalı bir quiz ya da antrenman yap: analiz için konular ve ifadeler burada görünecek.",
+                    pl: "Zrób quiz albo trening z błędami: tu pojawią się tematy i frazy do analizy.",
                 })}
                     </Text>
                     <Ionicons name="chevron-forward" size={18} color={t.textMuted}/>
@@ -717,7 +765,7 @@ export default function TrainerScreen() {
                         uk: 'Урок',
                         es: 'Lec.',
                         'pt-BR': "Aula",
-                        vi: "B?i",
+                        vi: "Bài",
                         id: "Pel.",
                         tr: "Ders",
                         pl: "Lek.",
@@ -745,7 +793,7 @@ export default function TrainerScreen() {
                         uk: 'Урок',
                         es: 'Lec.',
                         'pt-BR': "Aula",
-                        vi: "B?i",
+                        vi: "Bài",
                         id: "Pel.",
                         tr: "Ders",
                         pl: "Lek.",
@@ -755,8 +803,8 @@ export default function TrainerScreen() {
                       </View>))}
                   </View>)}
               </View>) : !hasPremium ? (<TouchableOpacity accessibilityRole="button" accessibilityLabel="Mistake analytics" onPress={() => { hapticTap(); router.push('/phrase_analytics_screen' as any); }} activeOpacity={0.86} style={[styles.card, { backgroundColor: isGoldTheme ? 'rgba(8,8,6,0.92)' : t.bgCard, borderColor: isGoldTheme ? GOLD_RICH.hairline : '#FACC1566' }]}>
-                <View style={[styles.cardIcon, { backgroundColor: isGoldTheme ? GOLD_RICH.wash : '#FACC1520', borderColor: isGoldTheme ? GOLD_RICH.hairline : '#FACC1566' }]}>
-                  <Ionicons name="analytics" size={20} color={analyticsAccent}/>
+                <View style={styles.cardIcon}>
+                  <TrainerThemeIcon kind="analytics" themeMode={themeMode}/>
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>
@@ -764,11 +812,11 @@ export default function TrainerScreen() {
                 ru: 'Аналитика ошибок',
                 uk: 'Аналітика помилок',
                 es: 'Análisis de errores',
-                'pt-BR': "An?lise de erros",
-                vi: "Ph?n t?ch l?i",
+                'pt-BR': "Análise de erros",
+                vi: "Phân tích lỗi",
                 id: "Analitik kesalahan",
                 tr: "Hata analizi",
-                pl: "Analiza b??d?w",
+                pl: "Analiza błędów",
             })}
                   </Text>
                   <Text style={[styles.cardSub, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={2}>
@@ -776,11 +824,11 @@ export default function TrainerScreen() {
                 ru: 'Где ошибаешься чаще всего - по темам и фразам',
                 uk: 'Де помиляєшся найчастіше - за темами й фразами',
                 es: 'Dónde fallas más: temas y frases concretas',
-                'pt-BR': "Onde voc? erra com mais frequ?ncia: por temas e frases",
-                vi: "B?n hay sai nh?t ? ??u: theo ch? ?? v? c?m c?u",
+                'pt-BR': "Onde você erra com mais frequência: por temas e frases",
+                vi: "Bạn hay sai nhất ở đâu: theo chủ đề và cụm câu",
                 id: "Di mana kamu paling sering salah: berdasarkan topik dan frasa",
-                tr: "En ?ok nerede hata yap?yorsun: konu ve ifadelere g?re",
-                pl: "Gdzie najcz??ciej si? mylisz: wed?ug temat?w i fraz",
+                tr: "En çok nerede hata yapıyorsun: konu ve ifadelere göre",
+                pl: "Gdzie najczęściej się mylisz: według tematów i fraz",
             })}
                   </Text>
                 </View>
@@ -843,7 +891,7 @@ const styles = StyleSheet.create({
     sectionTitle: { fontWeight: '900', marginTop: 4 },
     card: {
         flexDirection: 'row',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         borderRadius: 18,
         borderWidth: 1,
         paddingVertical: 14,
@@ -851,10 +899,8 @@ const styles = StyleSheet.create({
         gap: 12,
     },
     cardIcon: {
-        width: 42,
-        height: 42,
-        borderRadius: 14,
-        borderWidth: 1,
+        width: 56,
+        height: 56,
         alignItems: 'center',
         justifyContent: 'center',
     },

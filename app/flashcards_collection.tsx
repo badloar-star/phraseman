@@ -1142,7 +1142,7 @@ export default function FlashcardsScreen() {
   if (mode === 'create' || mode === 'edit') {
     const canSave = draftEN.trim().length > 0 && draftTR.trim().length > 0;
     return (
-      <ScreenGradient>
+      <ScreenGradient artBackdrop="flashcards">
       <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
         <KeyboardAvoidingView style={{ flex:1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
@@ -1270,7 +1270,7 @@ export default function FlashcardsScreen() {
 
   // ── Empty state ────────────────────────────────────────────────────────────
   if (!loading && filteredCards.length === 0) return (
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="flashcards">
     <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
       <ContentWrap>
@@ -1390,7 +1390,7 @@ export default function FlashcardsScreen() {
   );
 
   return (
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="flashcards">
     <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
 

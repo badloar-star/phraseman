@@ -1,7 +1,6 @@
 import React from 'react';
 import { Image, View } from 'react-native';
 import Svg, { Defs, LinearGradient, Polygon, Stop } from 'react-native-svg';
-import CustomAvatarSilhouette, { isCustomAvatarSilhouette } from './CustomAvatarSilhouette';
 import {
   CUSTOM_AVATAR_GRADIENTS,
   CustomAvatarLogoColor,
@@ -32,7 +31,6 @@ export default function CustomAvatarBadge({ value, avatarId, gradientId, logoCol
   const isWhiteLogo = resolvedLogoColor === 'white';
   const rimColor = isWhiteLogo ? '#38BDF8' : '#F8FAFC';
   const logoColorFinal = isWhiteLogo ? '#FFFFFF' : '#111827';
-  const detailColorFinal = isWhiteLogo ? '#111827' : '#F8FAFC';
   const rimOpacity = isWhiteLogo ? 0.34 : 0.82;
   const rimOffsets: readonly (readonly [number, number])[] = [
     [-rimOffset, 0],
@@ -43,30 +41,10 @@ export default function CustomAvatarBadge({ value, avatarId, gradientId, logoCol
   const points = '50,3.5 93,26 93,74 50,96.5 7,74 7,26';
 
   if (!avatar) return null;
-  const renderSilhouette = isCustomAvatarSilhouette(avatar.id);
-
-  if (renderSilhouette) {
-    return (
-      <View style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }, style]}>
-        <Svg width={size} height={size} viewBox="0 0 100 100">
-          <Defs>
-            <LinearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
-              <Stop offset="0" stopColor={gradient.colors[0]} />
-              <Stop offset="0.52" stopColor={gradient.colors[1]} />
-              <Stop offset="1" stopColor={gradient.colors[2]} />
-            </LinearGradient>
-          </Defs>
-          <Polygon points={points} fill={`url(#${gid})`} stroke="rgba(255,255,255,0.58)" strokeWidth={3.5} />
-          <CustomAvatarSilhouette avatarId={avatar.id} primary={logoColorFinal} secondary={detailColorFinal} />
-        </Svg>
-      </View>
-    );
-  }
-
   const nativeImage = isWhiteLogo ? avatar.imageWhite : avatar.imageBlack;
   const imageSource = nativeImage ?? avatar.image;
   if (!imageSource) return null;
-  const imageSize = Math.round(size * (nativeImage ? 0.9 : 0.84));
+  const imageSize = Math.round(size * (nativeImage ? 1 : 0.84));
 
   return (
     <View style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }, style]}>

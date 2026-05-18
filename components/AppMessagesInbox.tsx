@@ -21,8 +21,11 @@ import {
   buildAppMessagePreview,
   filterAppMessagesSnapshotForAudience,
   markAppMessageRead,
+  pickAppMessagePollOptionText,
+  pickAppMessagePollQuestion,
   pickAppMessageText,
   setAppMessageReaction,
+  setAppMessagePollVote,
   subscribeUserAppMessages,
 } from '../app/app_messages';
 
@@ -46,6 +49,10 @@ function inboxText(lang: 'ru' | 'uk' | 'es') {
       unread: 'Нове',
       like: 'Подобається',
       dislike: 'Не подобається',
+      poll: 'Опитування',
+      pollVotes: 'голосів',
+      pollSelected: 'Ваш вибір',
+      pollResultsHint: 'Результати після вибору',
     };
   }
   if (lang === 'es') {
@@ -58,6 +65,10 @@ function inboxText(lang: 'ru' | 'uk' | 'es') {
       unread: 'Nuevo',
       like: 'Me gusta',
       dislike: 'No me gusta',
+      poll: 'Encuesta',
+      pollVotes: 'votos',
+      pollSelected: 'Tu eleccion',
+      pollResultsHint: 'Resultados despues de elegir',
     };
   }
   return {
@@ -69,6 +80,10 @@ function inboxText(lang: 'ru' | 'uk' | 'es') {
     unread: 'Новое',
     like: 'Нравится',
     dislike: 'Не нравится',
+    poll: 'Опрос',
+    pollVotes: 'голосов',
+    pollSelected: 'Ваш выбор',
+    pollResultsHint: 'Результаты после выбора',
   };
 
 }
@@ -168,6 +183,32 @@ export default function AppMessagesInbox() {
     void setAppMessageReaction(selected.id, next);
   };
 
+  const voteOnSelectedPoll = (optionId: string) => {
+    if (!selected?.poll || selected.pollOptionId === optionId) return;
+    const previousOptionId = selected.pollOptionId;
+    setMessages((prev) =>
+      prev.map((message) => {
+        if (message.id !== selected.id || !message.poll) return message;
+        const counts = { ...message.poll.counts };
+        if (previousOptionId) {
+          counts[previousOptionId] = Math.max(0, (counts[previousOptionId] || 0) - 1);
+        }
+        counts[optionId] = (counts[optionId] || 0) + 1;
+        return {
+          ...message,
+          pollOptionId: optionId,
+          poll: {
+            ...message.poll,
+            counts,
+            voteCount: previousOptionId ? message.poll.voteCount : message.poll.voteCount + 1,
+          },
+        };
+      }),
+    );
+    hapticTap();
+    void setAppMessagePollVote(selected.id, optionId);
+  };
+
   const chrome = isDark
     ? {
       bg: '#111820',
@@ -179,7 +220,7 @@ export default function AppMessagesInbox() {
       soft: '#7C8798',
     }
     : {
-      bg: themeMode === 'minimalLight' ? '#F8F4EA' : '#F7F8FB',
+      bg: themeMode === 'minimalLight' ? '#F3ECDC' : '#F7F8FB',
       panel: '#FFFFFF',
       card: '#F1F4F8',
       border: 'rgba(32,37,46,0.12)',
@@ -219,7 +260,9 @@ export default function AppMessagesInbox() {
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.listContent}>
           {messages.map((message) => {
             const text = pickAppMessageText(message, lang);
-            const preview = buildAppMessagePreview(text.body, 160);
+            const preview = message.poll
+              ? pickAppMessagePollQuestion(message.poll, lang)
+              : buildAppMessagePreview(text.body, 160);
             return (
               <TouchableOpacity
                 key={message.id}
@@ -234,6 +277,12 @@ export default function AppMessagesInbox() {
                       {text.title}
                     </Text>
                   </View>
+                  {message.poll ? (
+                    <View style={[styles.pollBadge, { borderColor: chrome.border }]}>
+                      <Ionicons name="stats-chart-outline" size={11} color={chrome.soft} />
+                      <Text style={[styles.pollBadgeText, { color: chrome.soft }]}>{copy.poll}</Text>
+                    </View>
+                  ) : null}
                   <Text style={[styles.messageDate, { color: chrome.soft }]}>{formatMessageDate(message.createdAtMs)}</Text>
                 </View>
                 <Text style={[styles.messagePreview, { color: chrome.muted }]} numberOfLines={2}>
@@ -246,6 +295,74 @@ export default function AppMessagesInbox() {
       )}
     </>
   );
+
+  const renderPoll = (message: AppMessageWithState) => {
+    if (!message.poll) return null;
+    const poll = message.poll;
+    const showResults = Boolean(message.pollOptionId);
+    const totalVotes = Math.max(0, poll.voteCount);
+    return (
+      <View style={[styles.pollCard, { backgroundColor: chrome.card, borderColor: chrome.border }]}>
+        <View style={styles.pollHeader}>
+          <View style={[styles.pollHeaderIcon, { backgroundColor: isDark ? '#263447' : '#E7EEF8' }]}>
+            <Ionicons name="stats-chart" size={15} color={isDark ? '#93C5FD' : '#2563EB'} />
+          </View>
+          <View style={styles.pollHeaderText}>
+            <Text style={[styles.pollLabel, { color: chrome.soft }]}>{copy.poll}</Text>
+            <Text style={[styles.pollQuestion, { color: chrome.text }]}>{pickAppMessagePollQuestion(poll, lang)}</Text>
+          </View>
+        </View>
+
+        <View style={styles.pollOptions}>
+          {poll.options.map((option) => {
+            const selectedOption = message.pollOptionId === option.id;
+            const count = Math.max(0, poll.counts[option.id] || 0);
+            const pct = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
+            const optionColor = selectedOption ? '#63D98F' : chrome.text;
+            return (
+              <TouchableOpacity
+                key={option.id}
+                activeOpacity={0.84}
+                onPress={() => voteOnSelectedPoll(option.id)}
+                style={[
+                  styles.pollOption,
+                  {
+                    borderColor: selectedOption ? '#63D98F' : chrome.border,
+                    backgroundColor: selectedOption ? 'rgba(99,217,143,0.12)' : (isDark ? '#17202A' : '#FFFFFF'),
+                  },
+                ]}
+              >
+                <View style={styles.pollOptionTop}>
+                  <Ionicons
+                    name={selectedOption ? 'radio-button-on' : 'radio-button-off'}
+                    size={17}
+                    color={selectedOption ? '#63D98F' : chrome.soft}
+                  />
+                  <Text style={[styles.pollOptionText, { color: optionColor }]} numberOfLines={3}>
+                    {pickAppMessagePollOptionText(option, lang)}
+                  </Text>
+                  {showResults ? (
+                    <Text style={[styles.pollOptionMeta, { color: selectedOption ? '#63D98F' : chrome.soft }]}>
+                      {pct}%
+                    </Text>
+                  ) : null}
+                </View>
+                {showResults ? (
+                  <View style={[styles.pollTrack, { backgroundColor: isDark ? '#0F1720' : '#E8EEF6' }]}>
+                    <View style={[styles.pollFill, { width: `${pct}%`, backgroundColor: selectedOption ? '#63D98F' : '#93A4B8' }]} />
+                  </View>
+                ) : null}
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+
+        <Text style={[styles.pollFooter, { color: chrome.soft }]}>
+          {showResults ? `${copy.pollVotes}: ${totalVotes}` : copy.pollResultsHint}
+        </Text>
+      </View>
+    );
+  };
 
   const renderDetail = () => {
     if (!selected) return null;
@@ -279,6 +396,7 @@ export default function AppMessagesInbox() {
           <Text style={[styles.detailDate, { color: chrome.soft }]}>{formatMessageDate(selected.createdAtMs)}</Text>
           <Text style={[styles.detailTitle, { color: chrome.text }]}>{text.title}</Text>
           <Text style={[styles.detailBody, { color: chrome.muted }]}>{text.body}</Text>
+          {renderPoll(selected)}
 
           <View style={styles.reactions}>
             <TouchableOpacity
@@ -473,6 +591,19 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: '800',
   },
+  pollBadge: {
+    height: 22,
+    borderRadius: 11,
+    borderWidth: 0.5,
+    paddingHorizontal: 7,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  pollBadgeText: {
+    fontSize: 10,
+    fontWeight: '900',
+  },
   messagePreview: {
     paddingLeft: 16,
     fontSize: 13,
@@ -516,6 +647,83 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 23,
     fontWeight: '600',
+  },
+  pollCard: {
+    marginTop: 18,
+    borderRadius: 16,
+    borderWidth: 1,
+    padding: 14,
+  },
+  pollHeader: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 10,
+    marginBottom: 12,
+  },
+  pollHeaderIcon: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  pollHeaderText: {
+    flex: 1,
+    minWidth: 0,
+  },
+  pollLabel: {
+    fontSize: 10,
+    fontWeight: '900',
+    textTransform: 'uppercase',
+    marginBottom: 3,
+  },
+  pollQuestion: {
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: '900',
+  },
+  pollOptions: {
+    gap: 8,
+  },
+  pollOption: {
+    minHeight: 48,
+    borderRadius: 13,
+    borderWidth: 1,
+    paddingHorizontal: 11,
+    paddingVertical: 10,
+  },
+  pollOptionTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  pollOptionText: {
+    flex: 1,
+    minWidth: 0,
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '800',
+  },
+  pollOptionMeta: {
+    minWidth: 38,
+    textAlign: 'right',
+    fontSize: 12,
+    fontWeight: '900',
+  },
+  pollTrack: {
+    height: 5,
+    borderRadius: 999,
+    overflow: 'hidden',
+    marginTop: 9,
+  },
+  pollFill: {
+    height: '100%',
+    borderRadius: 999,
+  },
+  pollFooter: {
+    marginTop: 10,
+    fontSize: 11,
+    fontWeight: '800',
   },
   reactions: {
     flexDirection: 'row',

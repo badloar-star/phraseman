@@ -36,7 +36,7 @@ import { actionToastTri, emitAppEvent } from '../events';
 import { stageOwnedPackCardsForNavigation } from '../flashcards_collection';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
-import { bundledPackTilePng } from './packMarketplaceIcons';
+import { packTileImageForPack } from './packMarketplaceIcons';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import ReportPackModal from '../../components/ReportPackModal';
@@ -566,7 +566,7 @@ export default function FlashcardsCategoryHub({
       const packTileLabel =
         pack.isCommunityUgc && displayTitle.trim().length > 0 ? displayTitle.trim() : hubCode;
       const ion = packCategoryIonIcon(pack.category) as any;
-      const packPng = bundledPackTilePng(pack.id);
+      const packPng = packTileImageForPack(pack);
       const dimWhileOtherBuying = !owned && buyingPackId && buyingPackId !== pack.id;
       const i = tileAnimIndex++;
       const cardShadow: ViewStyle = !owned ? shadowForTile(t, 'shop') : {};
@@ -627,7 +627,7 @@ export default function FlashcardsCategoryHub({
                   t={t}
                   tileW={tileW}
                   pack={pack}
-                  iconSize={Math.min(packTileIconSize, Math.floor(tileW * 0.76))}
+                  iconSize={packTileIconSize}
                   ion={ion}
                   packPng={packPng}
                   cardShadow={cardShadow}

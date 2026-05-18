@@ -3,7 +3,23 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const ARTICLE_OPTIONS = [
   { id: 'a', text: 'a' },
@@ -149,16 +165,61 @@ export const ARTICLE_THE_SPECIFIC_TRAINING: DiagnosisTraining = {
       'The suele usarse con best, only, same: the best, the only one, the same thing.',
       'The no se usa para ideas generales en plural o incontables: I like music, Dogs are friendly.',
     ],
+    'pt-BR': [
+      'The nem sempre se traduz como "este", mas muitas vezes significa "aquele mesmo".',
+      'A primeira menção normalmente usa a/an: I saw a dog.',
+      'A segunda menção normalmente usa the: The dog was angry.',
+      'The é usado quando o objeto fica claro pela situação: Close the door.',
+      'The é usado com objetos únicos: the sun, the moon, the internet.',
+      'The costuma aparecer com best, only, same: the best, the only one, the same thing.',
+      'The não é usado para ideias gerais no plural ou incontáveis: I like music, Dogs are friendly.',
+    ],
+    vi: [
+      'The không phải lúc nào cũng dịch là "này", nhưng thường có nghĩa là "chính cái đó".',
+      'Lần nhắc đầu tiên thường dùng a/an: I saw a dog.',
+      'Lần nhắc thứ hai thường dùng the: The dog was angry.',
+      'Dùng the khi vật đã rõ từ tình huống: Close the door.',
+      'Dùng the với những vật duy nhất: the sun, the moon, the internet.',
+      'The thường đi với best, only, same: the best, the only one, the same thing.',
+      'Không dùng the cho ý tưởng chung ở số nhiều hoặc danh từ không đếm được: I like music, Dogs are friendly.',
+    ],
+    id: [
+      'The tidak selalu diterjemahkan sebagai "ini", tetapi sering berarti "yang itu juga".',
+      'Penyebutan pertama biasanya memakai a/an: I saw a dog.',
+      'Penyebutan kedua biasanya memakai the: The dog was angry.',
+      'The dipakai ketika objek jelas dari situasi: Close the door.',
+      'The dipakai dengan objek unik: the sun, the moon, the internet.',
+      'The sering dipakai dengan best, only, same: the best, the only one, the same thing.',
+      'The tidak dipakai untuk ide umum dalam bentuk jamak atau kata tak terhitung: I like music, Dogs are friendly.',
+    ],
+    tr: [
+      'The her zaman "bu" diye çevrilmez; çoğu zaman "o aynı şey" anlamını verir.',
+      'İlk bahiste genelde a/an kullanılır: I saw a dog.',
+      'İkinci bahiste genelde the kullanılır: The dog was angry.',
+      'Nesne durumdan belliyse the kullanılır: Close the door.',
+      'Tekil/benzersiz nesnelerle the kullanılır: the sun, the moon, the internet.',
+      'The çoğu zaman best, only, same ile kullanılır: the best, the only one, the same thing.',
+      'Çoğul veya sayılamayan genel fikirlerde the kullanılmaz: I like music, Dogs are friendly.',
+    ],
+    pl: [
+      'The nie zawsze tłumaczy się jako "ten", ale często znaczy "ten konkretny".',
+      'Pierwsza wzmianka zwykle używa a/an: I saw a dog.',
+      'Druga wzmianka zwykle używa the: The dog was angry.',
+      'The używamy, gdy obiekt jest jasny z sytuacji: Close the door.',
+      'The używamy z obiektami wyjątkowymi: the sun, the moon, the internet.',
+      'The często występuje z best, only, same: the best, the only one, the same thing.',
+      'The nie używamy dla ogólnych idei w liczbie mnogiej albo niepoliczalnych: I like music, Dogs are friendly.',
+    ],
   },
   examples: [
-    { en: 'I saw a dog. The dog was angry.', ru: 'Я увидел собаку. Эта собака была злой.', uk: 'Я побачив собаку. Цей собака був злий.', es: 'Vi un perro. El perro estaba enfadado.', why: tri('Сначала dog новый, поэтому a dog. Потом мы уже знаем, о какой собаке речь, поэтому the dog.', 'Спочатку dog новий, тому a dog. Потім ми вже знаємо, про якого собаку йдеться, тому the dog.', 'Primero dog es nuevo, por eso a dog. Luego ya sabemos de qué perro hablamos, por eso the dog.') },
-    { en: 'Can you close the window?', ru: 'Можешь закрыть окно?', uk: 'Можеш зачинити вікно?', es: 'Puedes cerrar la ventana?', why: tri('Окно понятно из ситуации. Собеседник понимает, какое именно окно нужно закрыть.', 'Вікно зрозуміле із ситуації. Співрозмовник розуміє, яке саме вікно треба зачинити.', 'La ventana queda clara por la situación. La otra persona entiende exactamente qué ventana cerrar.') },
-    { en: 'The sun is bright today.', ru: 'Солнце сегодня яркое.', uk: 'Сонце сьогодні яскраве.', es: 'El sol brilla mucho hoy.', why: tri('В обычном контексте солнце одно и всем понятно, о чем речь. Поэтому the sun.', 'У звичайному контексті сонце одне і всім зрозуміло, про що йдеться. Тому the sun.', 'En el contexto normal, el sol es único y todos entienden de qué hablamos. Por eso the sun.') },
-    { en: 'This is the best answer.', ru: 'Это лучший ответ.', uk: 'Це найкраща відповідь.', es: 'Esta es la mejor respuesta.', why: tri('best выделяет один вариант как самый лучший. С superlative обычно нужен the.', 'best виділяє один варіант як найкращий. Із superlative зазвичай потрібен the.', 'best marca una opción como la mejor. Con superlativo normalmente usamos the.') },
-    { en: 'I need the same book.', ru: 'Мне нужна та же самая книга.', uk: 'Мені потрібна та сама книга.', es: 'Necesito el mismo libro.', why: tri('same почти всегда требует the, потому что мы говорим не о любой книге, а о той же самой.', 'same майже завжди потребує the, бо ми говоримо не про будь-яку книгу, а про ту саму.', 'same casi siempre necesita the porque no hablamos de cualquier libro, sino del mismo.') },
-    { en: 'She is the only person I trust.', ru: 'Она единственный человек, которому я доверяю.', uk: 'Вона єдина людина, якій я довіряю.', es: 'Ella es la única persona en quien confío.', why: tri('only выделяет одного конкретного человека. Поэтому the only person.', 'only виділяє одну конкретну людину. Тому the only person.', 'only marca a una persona específica. Por eso the only person.') },
-    { en: 'I like music.', ru: 'Мне нравится музыка.', uk: 'Мені подобається музика.', es: 'Me gusta la música.', why: tri('В английском music здесь общая идея, не конкретная музыка. Поэтому без the.', 'В англійській music тут загальна ідея, не конкретна музика. Тому без the.', 'En inglés music aquí es una idea general, no música específica. Por eso va sin the.') },
-    { en: 'Dogs are friendly.', ru: 'Собаки дружелюбные.', uk: 'Собаки дружелюбні.', es: 'Los perros son amigables.', why: tri('Dogs во множественном числе говорит о собаках вообще. Для общей идеи the не нужен.', 'Dogs у множині говорить про собак загалом. Для загальної ідеї the не потрібен.', 'Dogs en plural habla de perros en general. Para una idea general no usamos the.') },
+    { en: 'I saw a dog. The dog was angry.', ru: 'Я увидел собаку. Эта собака была злой.', uk: 'Я побачив собаку. Цей собака був злий.', es: 'Vi un perro. El perro estaba enfadado.', 'pt-BR': 'Eu vi um cachorro. O cachorro estava bravo.', vi: 'Tôi đã thấy một con chó. Con chó đó rất dữ.', id: 'Saya melihat seekor anjing. Anjing itu marah.', tr: 'Bir köpek gördüm. Köpek kızgındı.', pl: 'Zobaczyłem psa. Ten pies był zły.', why: tri('Сначала dog новый, поэтому a dog. Потом мы уже знаем, о какой собаке речь, поэтому the dog.', 'Спочатку dog новий, тому a dog. Потім ми вже знаємо, про якого собаку йдеться, тому the dog.', 'Primero dog es nuevo, por eso a dog. Luego ya sabemos de qué perro hablamos, por eso the dog.') },
+    { en: 'Can you close the window?', ru: 'Можешь закрыть окно?', uk: 'Можеш зачинити вікно?', es: 'Puedes cerrar la ventana?', 'pt-BR': 'Você pode fechar a janela?', vi: 'Bạn có thể đóng cửa sổ không?', id: 'Bisakah kamu menutup jendela itu?', tr: 'Pencereyi kapatabilir misin?', pl: 'Możesz zamknąć okno?', why: tri('Окно понятно из ситуации. Собеседник понимает, какое именно окно нужно закрыть.', 'Вікно зрозуміле із ситуації. Співрозмовник розуміє, яке саме вікно треба зачинити.', 'La ventana queda clara por la situación. La otra persona entiende exactamente qué ventana cerrar.') },
+    { en: 'The sun is bright today.', ru: 'Солнце сегодня яркое.', uk: 'Сонце сьогодні яскраве.', es: 'El sol brilla mucho hoy.', 'pt-BR': 'O sol está forte hoje.', vi: 'Hôm nay mặt trời rất sáng.', id: 'Matahari terang hari ini.', tr: 'Bugün güneş parlak.', pl: 'Słońce jest dziś jasne.', why: tri('В обычном контексте солнце одно и всем понятно, о чем речь. Поэтому the sun.', 'У звичайному контексті сонце одне і всім зрозуміло, про що йдеться. Тому the sun.', 'En el contexto normal, el sol es único y todos entienden de qué hablamos. Por eso the sun.') },
+    { en: 'This is the best answer.', ru: 'Это лучший ответ.', uk: 'Це найкраща відповідь.', es: 'Esta es la mejor respuesta.', 'pt-BR': 'Esta é a melhor resposta.', vi: 'Đây là câu trả lời tốt nhất.', id: 'Ini adalah jawaban terbaik.', tr: 'Bu en iyi cevap.', pl: 'To jest najlepsza odpowiedź.', why: tri('best выделяет один вариант как самый лучший. С superlative обычно нужен the.', 'best виділяє один варіант як найкращий. Із superlative зазвичай потрібен the.', 'best marca una opción como la mejor. Con superlativo normalmente usamos the.') },
+    { en: 'I need the same book.', ru: 'Мне нужна та же самая книга.', uk: 'Мені потрібна та сама книга.', es: 'Necesito el mismo libro.', 'pt-BR': 'Eu preciso do mesmo livro.', vi: 'Tôi cần cùng cuốn sách đó.', id: 'Saya perlu buku yang sama.', tr: 'Aynı kitaba ihtiyacım var.', pl: 'Potrzebuję tej samej książki.', why: tri('same почти всегда требует the, потому что мы говорим не о любой книге, а о той же самой.', 'same майже завжди потребує the, бо ми говоримо не про будь-яку книгу, а про ту саму.', 'same casi siempre necesita the porque no hablamos de cualquier libro, sino del mismo.') },
+    { en: 'She is the only person I trust.', ru: 'Она единственный человек, которому я доверяю.', uk: 'Вона єдина людина, якій я довіряю.', es: 'Ella es la única persona en quien confío.', 'pt-BR': 'Ela é a única pessoa em quem confio.', vi: 'Cô ấy là người duy nhất tôi tin tưởng.', id: 'Dia satu-satunya orang yang saya percayai.', tr: 'O güvendiğim tek kişi.', pl: 'Ona jest jedyną osobą, której ufam.', why: tri('only выделяет одного конкретного человека. Поэтому the only person.', 'only виділяє одну конкретну людину. Тому the only person.', 'only marca a una persona específica. Por eso the only person.') },
+    { en: 'I like music.', ru: 'Мне нравится музыка.', uk: 'Мені подобається музика.', es: 'Me gusta la música.', 'pt-BR': 'Eu gosto de música.', vi: 'Tôi thích âm nhạc.', id: 'Saya suka musik.', tr: 'Müziği severim.', pl: 'Lubię muzykę.', why: tri('В английском music здесь общая идея, не конкретная музыка. Поэтому без the.', 'В англійській music тут загальна ідея, не конкретна музика. Тому без the.', 'En inglés music aquí es una idea general, no música específica. Por eso va sin the.') },
+    { en: 'Dogs are friendly.', ru: 'Собаки дружелюбные.', uk: 'Собаки дружелюбні.', es: 'Los perros son amigables.', 'pt-BR': 'Cachorros são amigáveis.', vi: 'Chó rất thân thiện.', id: 'Anjing itu ramah.', tr: 'Köpekler dost canlısıdır.', pl: 'Psy są przyjazne.', why: tri('Dogs во множественном числе говорит о собаках вообще. Для общей идеи the не нужен.', 'Dogs у множині говорить про собак загалом. Для загальної ідеї the не потрібен.', 'Dogs en plural habla de perros en general. Para una idea general no usamos the.') },
   ],
   introBlocks: [
     { id: 'intro_problem', type: 'diagnosis', text: tri('Похоже, ты путаешь the. Это частая ошибка, потому что в русском нет такого же артикля. Но идея простая: the появляется, когда предмет уже не просто “какой-то”, а “тот самый”.', 'Схоже, ти плутаєш the. Це часта помилка, бо в українській немає такого самого артикля. Але ідея проста: the з’являється, коли предмет уже не просто “якийсь”, а “той самий”.', 'Parece que confundes the. Es un error común porque en español el sistema no funciona exactamente igual. Pero la idea es simple: the aparece cuando algo ya no es “uno cualquiera”, sino “ese mismo”.') },

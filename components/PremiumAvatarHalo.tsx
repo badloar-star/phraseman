@@ -2,9 +2,9 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import { Animated, Easing, View, ViewStyle } from 'react-native';
 import Svg, { Defs, LinearGradient, Polygon, Stop } from 'react-native-svg';
 
-const RING = 3;
+const HALO_PADDING = 2;
+const HALO_STROKE = 1.1;
 
-/** Pointy-top regular hexagon: vertex at top (−90° + k·60°). */
 function hexPoints(cx: number, cy: number, circumRadius: number): string {
   const pts: string[] = [];
   for (let i = 0; i < 6; i++) {
@@ -16,27 +16,16 @@ function hexPoints(cx: number, cy: number, circumRadius: number): string {
 
 type Props = {
   enabled: boolean;
-  /** Inner avatar / badge size (square bounding box) */
   avatarSize: number;
-  /** Fill for inner hex — hides gradient so only the gold edge shows */
   maskColor: string;
   children: React.ReactNode;
   style?: ViewStyle;
-  /**
-   * В списках (сотни ячеек) «перелив» на JS-потоке грузит телефон.
-   * false = тот же вид, фаза зафиксирована (как в начале цикла).
-   */
   animateShimmer?: boolean;
 };
 
-/**
- * Premium gold hex frame — stationary, rich gold with two gradients
- * cross-fading ("перелив") + soft edge stroke. useNativeDriver: false so SVG always animates.
- */
 export default function PremiumAvatarHalo({
   enabled,
   avatarSize,
-  maskColor,
   children,
   style,
   animateShimmer = true,
@@ -56,13 +45,13 @@ export default function PremiumAvatarHalo({
       Animated.sequence([
         Animated.timing(phase, {
           toValue: 1,
-          duration: 2800,
+          duration: 2400,
           easing: Easing.inOut(Easing.sin),
           useNativeDriver: false,
         }),
         Animated.timing(phase, {
           toValue: 0,
-          duration: 2800,
+          duration: 2400,
           easing: Easing.inOut(Easing.sin),
           useNativeDriver: false,
         }),
@@ -76,104 +65,21 @@ export default function PremiumAvatarHalo({
     return <View style={style}>{children}</View>;
   }
 
-  const outer = avatarSize + RING * 2;
+  const outer = avatarSize + HALO_PADDING * 2;
   const cx = outer / 2;
   const cy = outer / 2;
-  const rOuter = outer / 2;
-  const rInner = avatarSize / 2;
-  const outerPts = hexPoints(cx, cy, rOuter);
+  const radius = outer / 2 - HALO_STROKE;
+  const points = hexPoints(cx, cy, radius);
 
-  if (!animateShimmer) {
-    return (
-      <View
-        style={[
-          {
-            width: outer,
-            height: outer,
-            alignItems: 'center',
-            justifyContent: 'center',
-          },
-          style,
-        ]}
-      >
-        <View
-          pointerEvents="none"
-          style={{ position: 'absolute', width: outer, height: outer, opacity: 1 }}
-        >
-          <Svg width={outer} height={outer}>
-            <Defs>
-              <LinearGradient id={ids.warm} x1="0%" y1="100%" x2="100%" y2="0%">
-                <Stop offset="0%" stopColor="#B8860B" />
-                <Stop offset="28%" stopColor="#D4AF37" />
-                <Stop offset="50%" stopColor="#FFC400" />
-                <Stop offset="72%" stopColor="#FFD700" />
-                <Stop offset="100%" stopColor="#E6AC00" />
-              </LinearGradient>
-            </Defs>
-            <Polygon points={outerPts} fill={`url(#${ids.warm})`} />
-          </Svg>
-        </View>
-        <View
-          pointerEvents="none"
-          style={{ position: 'absolute', width: outer, height: outer, opacity: 0.58 }}
-        >
-          <Svg width={outer} height={outer}>
-            <Defs>
-              <LinearGradient id={ids.cool} x1="100%" y1="0%" x2="0%" y2="100%">
-                <Stop offset="0%" stopColor="#FFE566" />
-                <Stop offset="25%" stopColor="#FFD700" />
-                <Stop offset="50%" stopColor="#FFCC00" />
-                <Stop offset="75%" stopColor="#FFF159" />
-                <Stop offset="100%" stopColor="#F0C419" />
-              </LinearGradient>
-            </Defs>
-            <Polygon points={outerPts} fill={`url(#${ids.cool})`} />
-          </Svg>
-        </View>
-        <View
-          pointerEvents="none"
-          style={{ position: 'absolute', width: outer, height: outer, opacity: 0.72 }}
-        >
-          <Svg width={outer} height={outer}>
-            <Polygon
-              points={outerPts}
-              fill="none"
-              stroke="#FFDF40"
-              strokeWidth={1.55}
-              strokeLinejoin="round"
-            />
-          </Svg>
-        </View>
-        <Svg
-          pointerEvents="none"
-          style={{ position: 'absolute', width: outer, height: outer }}
-          width={outer}
-          height={outer}
-        >
-          <Polygon points={hexPoints(cx, cy, rInner)} fill={maskColor} />
-        </Svg>
-        <View style={{ width: avatarSize, height: avatarSize, alignItems: 'center', justifyContent: 'center' }}>
-          {children}
-        </View>
-      </View>
-    );
-  }
-
-  /** Тёплый насыщенный золотой — в минимуме не уходит в «грязь». */
-  const warmOpacity = phase.interpolate({
-    inputRange: [0, 1],
-    outputRange: [1, 0.32],
-  });
-  /** Светлый золотой блик — без белого, чтобы кольцо всегда читалось как золото. */
-  const coolOpacity = phase.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0.58, 1],
-  });
-  /** Кайма чуть дышит отдельно. */
-  const rimOpacity = phase.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0.72, 1],
-  });
+  const warmOpacity = animateShimmer
+    ? phase.interpolate({ inputRange: [0, 1], outputRange: [0.88, 0.26] })
+    : 0.72;
+  const coolOpacity = animateShimmer
+    ? phase.interpolate({ inputRange: [0, 1], outputRange: [0.18, 0.82] })
+    : 0;
+  const glintOpacity = animateShimmer
+    ? phase.interpolate({ inputRange: [0, 1], outputRange: [0.18, 0.38] })
+    : 0.24;
 
   return (
     <View
@@ -189,78 +95,63 @@ export default function PremiumAvatarHalo({
     >
       <Animated.View
         pointerEvents="none"
-        style={{
-          position: 'absolute',
-          width: outer,
-          height: outer,
-          opacity: warmOpacity,
-        }}
+        style={{ position: 'absolute', width: outer, height: outer, opacity: warmOpacity }}
       >
         <Svg width={outer} height={outer}>
           <Defs>
             <LinearGradient id={ids.warm} x1="0%" y1="100%" x2="100%" y2="0%">
-              <Stop offset="0%" stopColor="#B8860B" />
-              <Stop offset="28%" stopColor="#D4AF37" />
-              <Stop offset="50%" stopColor="#FFC400" />
-              <Stop offset="72%" stopColor="#FFD700" />
-              <Stop offset="100%" stopColor="#E6AC00" />
+              <Stop offset="0%" stopColor="#C99716" />
+              <Stop offset="45%" stopColor="#FFE58A" />
+              <Stop offset="100%" stopColor="#D7A10E" />
             </LinearGradient>
           </Defs>
-          <Polygon points={outerPts} fill={`url(#${ids.warm})`} />
-        </Svg>
-      </Animated.View>
-
-      <Animated.View
-        pointerEvents="none"
-        style={{
-          position: 'absolute',
-          width: outer,
-          height: outer,
-          opacity: coolOpacity,
-        }}
-      >
-        <Svg width={outer} height={outer}>
-          <Defs>
-            <LinearGradient id={ids.cool} x1="100%" y1="0%" x2="0%" y2="100%">
-              <Stop offset="0%" stopColor="#FFE566" />
-              <Stop offset="25%" stopColor="#FFD700" />
-              <Stop offset="50%" stopColor="#FFCC00" />
-              <Stop offset="75%" stopColor="#FFF159" />
-              <Stop offset="100%" stopColor="#F0C419" />
-            </LinearGradient>
-          </Defs>
-          <Polygon points={outerPts} fill={`url(#${ids.cool})`} />
-        </Svg>
-      </Animated.View>
-
-      <Animated.View
-        pointerEvents="none"
-        style={{
-          position: 'absolute',
-          width: outer,
-          height: outer,
-          opacity: rimOpacity,
-        }}
-      >
-        <Svg width={outer} height={outer}>
           <Polygon
-            points={outerPts}
+            points={points}
             fill="none"
-            stroke="#FFDF40"
-            strokeWidth={1.55}
+            stroke={`url(#${ids.warm})`}
+            strokeWidth={HALO_STROKE}
             strokeLinejoin="round"
           />
         </Svg>
       </Animated.View>
 
-      <Svg
+      <Animated.View
         pointerEvents="none"
-        style={{ position: 'absolute', width: outer, height: outer }}
-        width={outer}
-        height={outer}
+        style={{ position: 'absolute', width: outer, height: outer, opacity: coolOpacity }}
       >
-        <Polygon points={hexPoints(cx, cy, rInner)} fill={maskColor} />
-      </Svg>
+        <Svg width={outer} height={outer}>
+          <Defs>
+            <LinearGradient id={ids.cool} x1="100%" y1="0%" x2="0%" y2="100%">
+              <Stop offset="0%" stopColor="#FFF6C2" />
+              <Stop offset="42%" stopColor="#FACC15" />
+              <Stop offset="100%" stopColor="#F59E0B" />
+            </LinearGradient>
+          </Defs>
+          <Polygon
+            points={points}
+            fill="none"
+            stroke={`url(#${ids.cool})`}
+            strokeWidth={0.9}
+            strokeLinejoin="round"
+          />
+        </Svg>
+      </Animated.View>
+
+      <Animated.View
+        pointerEvents="none"
+        style={{ position: 'absolute', width: outer, height: outer, opacity: glintOpacity }}
+      >
+        <Svg width={outer} height={outer}>
+          <Polygon
+            points={points}
+            fill="none"
+            stroke="#FFF2A8"
+            strokeWidth={0.55}
+            strokeLinejoin="round"
+          />
+        </Svg>
+      </Animated.View>
+
       <View style={{ width: avatarSize, height: avatarSize, alignItems: 'center', justifyContent: 'center' }}>
         {children}
       </View>

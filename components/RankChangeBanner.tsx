@@ -24,6 +24,13 @@ export default function RankChangeBanner({
 }: Props) {
   const { f } = useTheme();
   const anim = useRef(new Animated.Value(0)).current;
+  const onCloseRef = useRef(onClose);
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  const animationKey = `${delta}:${passedName?.trim() ?? ''}:${lostToName?.trim() ?? ''}`;
 
   useEffect(() => {
     anim.setValue(0);
@@ -36,10 +43,10 @@ export default function RankChangeBanner({
     }
     const a = Animated.sequence(seq);
     a.start(({ finished }) => {
-      if (finished && duration > 0) onClose();
+      if (finished && duration > 0) onCloseRef.current();
     });
     return () => a.stop();
-  }, [anim, duration, onClose]);
+  }, [anim, duration, animationKey]);
 
   const isUp = delta > 0;
   const absN = Math.abs(delta);
@@ -148,7 +155,7 @@ export default function RankChangeBanner({
     >
       <Pressable
         onPress={() => {
-          Animated.timing(anim, { toValue: 0, duration: 200, useNativeDriver: true }).start(() => onClose());
+          Animated.timing(anim, { toValue: 0, duration: 200, useNativeDriver: true }).start(() => onCloseRef.current());
         }}
         style={{
           backgroundColor: bg,

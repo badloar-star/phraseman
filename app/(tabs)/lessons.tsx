@@ -47,20 +47,86 @@ export const useSketchLessonVisual = true;
 const USE_ELITE_LESSONS_MAP = true;
 // ── Список уроков: один стиль «Туман / Графит» (мягкие заливки + чернила) во всех темах приложения ──
 const PALETTE_SKETCH: Record<string, string> = {
-    A1: '#B8DFC8',
-    A2: '#A8CCE8',
-    B1: '#EDD89A',
-    B2: '#E8B8A0',
+    A1: '#D4CCBC',
+    A2: '#C5BBA8',
+    B1: '#B4AA9A',
+    B2: '#A19D95',
+};
+const PALETTE_CORAL: Record<string, string> = {
+    A1: '#F1B2A9',
+    A2: '#EAA08F',
+    B1: '#E0AE83',
+    B2: '#D98B99',
+};
+const LESSON_LEVEL_PALETTES: Record<string, Record<string, string>> = {
+    dark: {
+        A1: '#B8D6B8',
+        A2: '#A7CFB0',
+        B1: '#C6D79B',
+        B2: '#96BEA0',
+    },
+    neon: {
+        A1: '#DDF58A',
+        A2: '#CDEC6E',
+        B1: '#E6F6A8',
+        B2: '#B8DF5D',
+    },
+    gold: {
+        A1: '#F2DFA5',
+        A2: '#E6C878',
+        B1: '#D0A95B',
+        B2: '#B88A45',
+    },
+    coral: PALETTE_CORAL,
+    minimalLight: PALETTE_SKETCH,
+    minimalDark: {
+        A1: '#A9B8D0',
+        A2: '#94A8C2',
+        B1: '#838F9F',
+        B2: '#B5B0A4',
+    },
 };
 const EXAM_META_SKETCH: Record<string, {
     bg: string;
     accent: string;
     icon: string;
 }> = {
-    A1: { bg: '#4A564E', accent: '#F2F6F3', icon: 'school-outline' },
-    A2: { bg: '#3D4E5C', accent: '#EAF0F5', icon: 'school-outline' },
-    B1: { bg: '#5A4F3A', accent: '#FAF6EC', icon: 'school-outline' },
-    B2: { bg: '#3A3630', accent: '#F5F2EC', icon: 'trophy' },
+    A1: { bg: '#3F3D39', accent: '#F3F0E8', icon: 'school-outline' },
+    A2: { bg: '#353638', accent: '#ECEFF3', icon: 'school-outline' },
+    B1: { bg: '#2C3035', accent: '#E5E9EF', icon: 'school-outline' },
+    B2: { bg: '#242932', accent: '#EEF2F8', icon: 'trophy' },
+};
+const EXAM_META_CORAL: Record<string, {
+    bg: string;
+    accent: string;
+    icon: string;
+}> = {
+    A1: { bg: '#4B3432', accent: '#F8E1DC', icon: 'school-outline' },
+    A2: { bg: '#4A352E', accent: '#F6DDD2', icon: 'school-outline' },
+    B1: { bg: '#4A3B2E', accent: '#F6E6D3', icon: 'school-outline' },
+    B2: { bg: '#432C34', accent: '#F6DDE5', icon: 'trophy' },
+};
+const EXAM_META_BY_THEME: Record<string, typeof EXAM_META_SKETCH> = {
+    minimalLight: EXAM_META_SKETCH,
+    minimalDark: {
+        A1: { bg: '#263040', accent: '#DFE8F7', icon: 'school-outline' },
+        A2: { bg: '#232D3D', accent: '#D5E1F2', icon: 'school-outline' },
+        B1: { bg: '#252B35', accent: '#D3DAE5', icon: 'school-outline' },
+        B2: { bg: '#302E2A', accent: '#EFE8DC', icon: 'trophy' },
+    },
+    dark: {
+        A1: { bg: '#344637', accent: '#E2F4E3', icon: 'school-outline' },
+        A2: { bg: '#304333', accent: '#DDF2E1', icon: 'school-outline' },
+        B1: { bg: '#41472D', accent: '#F0F7D7', icon: 'school-outline' },
+        B2: { bg: '#2F3F34', accent: '#D9EFDF', icon: 'trophy' },
+    },
+    neon: {
+        A1: { bg: '#303A16', accent: '#F0FBC3', icon: 'school-outline' },
+        A2: { bg: '#2B3711', accent: '#E8F8AD', icon: 'school-outline' },
+        B1: { bg: '#343D1D', accent: '#F5FBD1', icon: 'school-outline' },
+        B2: { bg: '#28320E', accent: '#DFF397', icon: 'trophy' },
+    },
+    coral: EXAM_META_CORAL,
 };
 function cefrKey(num: number): string {
     if (num <= 8)
@@ -71,8 +137,9 @@ function cefrKey(num: number): string {
         return 'B1';
     return 'B2';
 }
-function bookPalette(num: number): string {
-    return PALETTE_SKETCH[cefrKey(num)];
+function bookPalette(num: number, themeMode = 'minimalLight'): string {
+    const palette = LESSON_LEVEL_PALETTES[themeMode] ?? PALETTE_SKETCH;
+    return palette[cefrKey(num)] ?? PALETTE_SKETCH[cefrKey(num)];
 }
 function darkenHex(hex: string, factor = 0.45): string {
     const r = parseInt(hex.slice(1, 3), 16);
@@ -85,6 +152,12 @@ function lightenHex(hex: string, factor = 1.3): string {
     const g = Math.min(255, Math.round(parseInt(hex.slice(3, 5), 16) * factor));
     const b = Math.min(255, Math.round(parseInt(hex.slice(5, 7), 16) * factor));
     return `rgb(${r},${g},${b})`;
+}
+function rgbaHex(hex: string, alpha: number): string {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r},${g},${b},${alpha})`;
 }
 // ── Medal images ────────────────────────────────────────────────────────────
 const MEDAL_IMAGES: Record<string, any> = {
@@ -125,6 +198,7 @@ export default function LessonsTab() {
     const { goHome } = useTabNav();
     const { theme: t, f, themeMode } = useTheme();
     const isGoldTheme = themeMode === 'gold';
+    const isCoralTheme = themeMode === 'coral';
     const goldBright = GOLD_RICH.champagne;
     const goldAntique = GOLD_RICH.agedGold;
     const goldHairline = GOLD_RICH.hairline;
@@ -326,10 +400,10 @@ export default function LessonsTab() {
             string,
             string
         ][] = [
-            [1, 'A1', bookPalette(1)],
-            [9, 'A2', bookPalette(9)],
-            [19, 'B1', bookPalette(19)],
-            [29, 'B2', bookPalette(29)],
+            [1, 'A1', bookPalette(1, themeMode)],
+            [9, 'A2', bookPalette(9, themeMode)],
+            [19, 'B1', bookPalette(19, themeMode)],
+            [29, 'B2', bookPalette(29, themeMode)],
         ];
         lessons.forEach((name, idx) => {
             const num = idx + 1;
@@ -343,7 +417,7 @@ export default function LessonsTab() {
             }
         });
         return data;
-    }, [lessons]);
+    }, [lessons, themeMode]);
     const currentLessonNum = useMemo(() => {
         const idx = unlockedLessons.findIndex((unlocked, i) => unlocked && (progCounts[i] ?? 0) < 50);
         return idx >= 0 ? idx + 1 : null;
@@ -449,7 +523,8 @@ export default function LessonsTab() {
             // ── Exam card ────────────────────────────────────────────────
             if (item.kind === 'exam') {
                 const { level: lvl } = item;
-                const sketchMeta = EXAM_META_SKETCH[lvl];
+                const themeExamMeta = EXAM_META_BY_THEME[themeMode] ?? EXAM_META_SKETCH;
+                const sketchMeta = themeExamMeta[lvl];
                 const goldLevel = goldCefrAccent(lvl);
                 const meta = isGoldTheme
                     ? { bg: goldSurface, accent: goldLevel.accent, icon: sketchMeta.icon }
@@ -571,44 +646,69 @@ export default function LessonsTab() {
             const { index, name } = item;
             const num = index + 1;
             const isUnlocked = unlockedLessons[index];
-            const bg = bookPalette(num);
+            const bg = bookPalette(num, themeMode);
             const darkBg = darkenHex(bg, 0.42);
             const progPct = Math.min(100, Math.round((progCounts[index] ?? 0) / 50 * 100));
             const isComplete = progPct >= 100;
             const isCurrent = currentLessonNum === num;
             const lessonLevel = getCourseLevelForLesson(num);
             const lessonGoldLevel = goldCefrAccent(lessonLevel);
+            const lessonAccent = bg;
+            const lessonOnAccentColor = isCoralTheme ? '#FFF8F4' : darkenHex(bg, 0.34);
             const prevLessonLevel = getPreviousCourseLevel(lessonLevel);
             const levelLockedByExam = isPremium && !isUnlocked && !DEV_MODE && !noLimits;
             const premiumRequired = !isPremium && !DEV_MODE && !noLimits && requiresPremiumForLesson(num);
-            const lockedCardHasLightFill = !isUnlocked && progPct > 0 && premiumRequired;
+            const showLessonProgressFill = isUnlocked && progPct > 0;
+            const lockedCardHasLightFill = false;
             const cardRadius = isGoldTheme ? 14 : USE_ELITE_LESSONS_MAP ? 18 : 16;
+            const lockedCardBaseColor = isGoldTheme
+                ? goldSurface
+                : isCoralTheme
+                    ? darkenHex(bg, 0.23)
+                    : darkenHex(bg, 0.28);
+            const cardLayerStyle = {
+                position: 'absolute' as const,
+                left: 0,
+                top: 0,
+                right: 0,
+                bottom: 0,
+                borderRadius: cardRadius,
+                overflow: 'hidden' as const,
+            };
             const lessonTextColor = isGoldTheme
                 ? (isUnlocked ? t.textPrimary : 'rgba(247,241,228,0.44)')
                 :
                     !isUnlocked
-                        ? levelLockedByExam
+                        ? isCoralTheme
+                            ? 'rgba(255,248,244,0.44)'
+                            : levelLockedByExam
                             ? 'rgba(255,255,255,0.42)'
                             : (lockedCardHasLightFill ? 'rgba(42,34,24,0.76)' : 'rgba(255,255,255,0.35)')
-                        : useSketchLessonVisual
+                        : isCoralTheme
+                            ? '#FFF8F4'
+                            : useSketchLessonVisual
                             ? 'rgba(22,28,26,0.94)'
                             : 'rgba(255,255,255,0.97)';
             const lessonMetaColor = isGoldTheme
                 ? (isUnlocked ? t.textMuted : 'rgba(184,173,146,0.36)')
                 :
                     !isUnlocked
-                        ? levelLockedByExam
+                        ? isCoralTheme
+                            ? 'rgba(255,214,204,0.34)'
+                            : levelLockedByExam
                             ? 'rgba(255,255,255,0.30)'
                             : (lockedCardHasLightFill ? 'rgba(42,34,24,0.62)' : 'rgba(255,255,255,0.30)')
-                        : useSketchLessonVisual
-                            ? 'rgba(42,48,44,0.62)'
+                        : isCoralTheme
+                            ? 'rgba(255,214,204,0.72)'
+                            : useSketchLessonVisual
+                            ? darkenHex(bg, 0.43)
                             : 'rgba(255,255,255,0.70)';
             return (<Animated.View key={`l-${num}`} style={{
                     marginTop: 5,
                     marginHorizontal: 14,
                     borderRadius: cardRadius,
                     transform: [{ scale: scaleAnim ?? 1 }],
-                    shadowColor: isGoldTheme ? '#000' : useSketchLessonVisual ? '#2A2620' : '#000',
+                    shadowColor: isGoldTheme ? '#000' : darkenHex(bg, isCoralTheme ? 0.18 : 0.28),
                     shadowOffset: { width: 0, height: isCurrent ? 7 : isUnlocked ? 4 : 2 },
                     shadowOpacity: USE_ELITE_LESSONS_MAP
                         ? (isCurrent ? 0.20 : isUnlocked ? 0.11 : 0.05)
@@ -643,59 +743,75 @@ export default function LessonsTab() {
                     else {
                         setGateModal({ kind: 'lesson', prevNum: num - 1 });
                     }
-                }} style={{
+                    }} style={{
                     height: BOOK_H,
                     borderRadius: cardRadius,
                     overflow: 'hidden',
+                    backgroundColor: isUnlocked ? 'transparent' : lockedCardBaseColor,
                     borderWidth: isGoldTheme ? 1 : USE_ELITE_LESSONS_MAP ? 1 : useSketchLessonVisual && isUnlocked ? 1.5 : 0,
                     borderColor: isGoldTheme
                         ? (isCurrent ? GOLD_RICH.hairlineStrong : isUnlocked ? goldHairline : GOLD_RICH.hairlineQuiet)
                         :
                             USE_ELITE_LESSONS_MAP
-                                ? (isCurrent ? 'rgba(255,255,255,0.38)' : isUnlocked ? 'rgba(255,255,255,0.16)' : 'rgba(255,255,255,0.08)')
-                                : useSketchLessonVisual && isUnlocked ? 'rgba(55,48,38,0.28)' : 'transparent',
+                                ? rgbaHex(lessonAccent, isCurrent ? 0.70 : isUnlocked ? 0.36 : 0.16)
+                                : useSketchLessonVisual && isUnlocked ? rgbaHex(lessonAccent, 0.44) : 'transparent',
                 }}>
                 {/* Card background */}
                 {isUnlocked ? (<LinearGradient colors={isGoldTheme
                         ? (isCurrent ? goldCardGradient('selected') : lessonGoldLevel.card)
                         :
-                            [darkenHex(bg, 0.52), darkBg, darkenHex(bg, 0.38)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={{ position: 'absolute', left: 0, top: 0, right: 0, bottom: 0 }}/>) : levelLockedByExam ? (<LinearGradient colors={isGoldTheme
+                            isCoralTheme
+                                ? [darkenHex(bg, 0.62), darkenHex(bg, 0.43), darkenHex(bg, 0.30)]
+                                : [darkenHex(bg, 0.52), darkBg, darkenHex(bg, 0.38)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>) : levelLockedByExam ? (<LinearGradient colors={isGoldTheme
                         ? goldCardGradient('muted')
                         :
-                            [darkenHex(bg, 0.46), darkenHex(bg, 0.40), darkenHex(bg, 0.34)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={{ position: 'absolute', left: 0, top: 0, right: 0, bottom: 0, opacity: isGoldTheme ? 0.62 : 0.44 }}/>) : (<LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : ['#1c1c1e', '#242426', '#1a1a1c']} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={{ position: 'absolute', left: 0, top: 0, right: 0, bottom: 0 }}/>)}
+                            isCoralTheme
+                                ? [darkenHex(bg, 0.34), darkenHex(bg, 0.28), darkenHex(bg, 0.23)]
+                                : [darkenHex(bg, 0.36), darkenHex(bg, 0.31), darkenHex(bg, 0.26)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={[cardLayerStyle, { opacity: isGoldTheme ? 0.68 : 1 }]}/>) : (<LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isCoralTheme ? ['#1A1113', '#24191C', '#130D0F'] : ['#1c1c1e', '#242426', '#1a1a1c']} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>)}
+                {isGoldTheme && (<LinearGradient colors={[
+                        rgbaHex(lessonAccent, isUnlocked ? 0.22 : 0.08),
+                        'rgba(0,0,0,0)',
+                        rgbaHex(lessonAccent, isCurrent ? 0.20 : 0.10),
+                    ]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={cardLayerStyle}/>)}
                 {isGoldTheme && <GoldBevel radius={cardRadius} intensity={isCurrent ? 'strong' : isUnlocked ? 'normal' : 'quiet'}/>}
-                {false}
                 {/* Progress fill — left-to-right gradient bg → lightenHex(bg) */}
-                {progPct > 0 && (<LinearGradient colors={isGoldTheme
-                        ? [goldAntique, goldBright, lessonGoldLevel.accent] as [
+                {showLessonProgressFill && (<LinearGradient colors={isGoldTheme
+                        ? [goldAntique, goldBright, lessonAccent] as [
                             string,
                             string,
                             string
                         ]
                         :
-                            [bg, lightenHex(bg, 1.28)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{
+                            isCoralTheme
+                                ? [darkenHex(bg, 0.84), bg]
+                                : [bg, lightenHex(bg, 1.28)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{
                         position: 'absolute',
                         left: 0, top: 0, bottom: 0,
                         width: `${progPct}%`,
                         opacity: isGoldTheme ? (levelLockedByExam ? 0.16 : 0.22) : levelLockedByExam ? 0.28 : 1,
                         borderTopLeftRadius: cardRadius,
                         borderBottomLeftRadius: cardRadius,
-                        borderTopRightRadius: isComplete ? cardRadius : 0,
-                        borderBottomRightRadius: isComplete ? cardRadius : 0,
+                        borderTopRightRadius: cardRadius,
+                        borderBottomRightRadius: cardRadius,
                     }}/>)}
                 {/* Subtle inner highlight on filled part top edge */}
-                {progPct > 0 && (<View style={{
+                {showLessonProgressFill && (<View style={{
                         position: 'absolute', left: 0, top: 0,
                         width: `${progPct}%`, height: 1.5,
-                        backgroundColor: isGoldTheme ? GOLD_RICH.hairlineStrong : useSketchLessonVisual ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.3)',
+                        backgroundColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCoralTheme ? 'rgba(255,230,222,0.52)' : useSketchLessonVisual ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.3)',
                         opacity: levelLockedByExam ? 0.24 : 1,
                         borderTopLeftRadius: cardRadius,
-                        borderTopRightRadius: isComplete ? cardRadius : 0,
+                        borderTopRightRadius: cardRadius,
                     }}/>)}
+                <View style={{
+                        position: 'absolute', left: 0, right: 0, top: 0,
+                        height: 2,
+                        backgroundColor: lessonAccent,
+                        opacity: isUnlocked ? (isCurrent ? 0.78 : 0.45) : 0.22,
+                    }}/>
 
                 {/* Content */}
                 <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 18 }}>
-                  {USE_ELITE_LESSONS_MAP && isCurrent && (<View style={{ position: 'absolute', left: 0, top: 10, bottom: 10, width: 3, borderRadius: 2, backgroundColor: isGoldTheme ? lessonGoldLevel.accent : 'rgba(255,255,255,0.62)' }}/>)}
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
                     <Text style={{
                     color: lessonMetaColor,
@@ -718,17 +834,19 @@ export default function LessonsTab() {
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                       {!isUnlocked
                     ? premiumRequired
-                        ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? GOLD_RICH.hairlineStrong : lockedCardHasLightFill ? 'rgba(42,34,24,0.36)' : 'rgba(255,255,255,0.35)'}/>
+                        ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHex(lessonAccent, 0.64) : isCoralTheme ? rgbaHex(lessonAccent, 0.60) : lockedCardHasLightFill ? darkenHex(bg, 0.40) : rgbaHex(lessonAccent, 0.46)}/>
                         : null
                     : USE_ELITE_LESSONS_MAP && isComplete
-                        ? <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? lessonGoldLevel.accent : useSketchLessonVisual ? 'rgba(26,32,28,0.76)' : 'rgba(255,255,255,0.86)'}/>
+                        ? <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? lessonAccent : isCoralTheme ? 'rgba(255,236,230,0.86)' : useSketchLessonVisual ? lessonOnAccentColor : 'rgba(255,255,255,0.86)'}/>
                         : progPct > 0
                             ? (<Text style={{
                                     color: isGoldTheme
                                         ? (isComplete ? goldBright : t.textMuted)
                                         :
-                                            useSketchLessonVisual
-                                                ? (isComplete ? 'rgba(26,32,28,0.92)' : 'rgba(42,48,44,0.78)')
+                                            isCoralTheme
+                                                ? (isComplete ? '#FFF8F4' : 'rgba(255,236,230,0.82)')
+                                                : useSketchLessonVisual
+                                                ? (isComplete ? lessonOnAccentColor : darkenHex(bg, 0.42))
                                                 : (isComplete ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.75)'),
                                     fontSize: f.label,
                                     fontWeight: '800',

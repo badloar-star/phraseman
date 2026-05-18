@@ -1,0 +1,555 @@
+{
+  "version": "generated-v4",
+  "generatedAt": "2026-05-18T12:04:20.418Z",
+  "intent": "Rounded hexagonal hexahedron crystal level badges; improved over v2 by removing laurel/medal spikes and over v3 by avoiding object icons.",
+  "sourceAtlases": [
+    "tmp/avatar-generation-v4/source-atlases/levels-1-10.png",
+    "tmp/avatar-generation-v4/source-atlases/levels-11-20.png",
+    "tmp/avatar-generation-v4/source-atlases/levels-21-30.png",
+    "tmp/avatar-generation-v4/source-atlases/levels-31-40.png",
+    "tmp/avatar-generation-v4/source-atlases/levels-41-50.png",
+    "tmp/avatar-generation-v4/source-atlases/levels-51-60.png"
+  ],
+  "levels": [
+    {
+      "level": 1,
+      "file": "assets/images/levels/generated-v4/1.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-1-10.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 18992
+    },
+    {
+      "level": 2,
+      "file": "assets/images/levels/generated-v4/2.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-1-10.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 22922
+    },
+    {
+      "level": 3,
+      "file": "assets/images/levels/generated-v4/3.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-1-10.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 27398
+    },
+    {
+      "level": 4,
+      "file": "assets/images/levels/generated-v4/4.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-1-10.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 26790
+    },
+    {
+      "level": 5,
+      "file": "assets/images/levels/generated-v4/5.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-1-10.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 29604
+    },
+    {
+      "level": 6,
+      "file": "assets/images/levels/generated-v4/6.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-1-10.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 30902
+    },
+    {
+      "level": 7,
+      "file": "assets/images/levels/generated-v4/7.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-1-10.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 32104
+    },
+    {
+      "level": 8,
+      "file": "assets/images/levels/generated-v4/8.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-1-10.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 32348
+    },
+    {
+      "level": 9,
+      "file": "assets/images/levels/generated-v4/9.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-1-10.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 33962
+    },
+    {
+      "level": 10,
+      "file": "assets/images/levels/generated-v4/10.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-1-10.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 35074
+    },
+    {
+      "level": 11,
+      "file": "assets/images/levels/generated-v4/11.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-11-20.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 33084
+    },
+    {
+      "level": 12,
+      "file": "assets/images/levels/generated-v4/12.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-11-20.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 35332
+    },
+    {
+      "level": 13,
+      "file": "assets/images/levels/generated-v4/13.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-11-20.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 37550
+    },
+    {
+      "level": 14,
+      "file": "assets/images/levels/generated-v4/14.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-11-20.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 35750
+    },
+    {
+      "level": 15,
+      "file": "assets/images/levels/generated-v4/15.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-11-20.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 40946
+    },
+    {
+      "level": 16,
+      "file": "assets/images/levels/generated-v4/16.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-11-20.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 36240
+    },
+    {
+      "level": 17,
+      "file": "assets/images/levels/generated-v4/17.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-11-20.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 35670
+    },
+    {
+      "level": 18,
+      "file": "assets/images/levels/generated-v4/18.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-11-20.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 36012
+    },
+    {
+      "level": 19,
+      "file": "assets/images/levels/generated-v4/19.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-11-20.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 36706
+    },
+    {
+      "level": 20,
+      "file": "assets/images/levels/generated-v4/20.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-11-20.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 41006
+    },
+    {
+      "level": 21,
+      "file": "assets/images/levels/generated-v4/21.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-21-30.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 32008
+    },
+    {
+      "level": 22,
+      "file": "assets/images/levels/generated-v4/22.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-21-30.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 34630
+    },
+    {
+      "level": 23,
+      "file": "assets/images/levels/generated-v4/23.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-21-30.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 37824
+    },
+    {
+      "level": 24,
+      "file": "assets/images/levels/generated-v4/24.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-21-30.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 36730
+    },
+    {
+      "level": 25,
+      "file": "assets/images/levels/generated-v4/25.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-21-30.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 40782
+    },
+    {
+      "level": 26,
+      "file": "assets/images/levels/generated-v4/26.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-21-30.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 38316
+    },
+    {
+      "level": 27,
+      "file": "assets/images/levels/generated-v4/27.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-21-30.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 37766
+    },
+    {
+      "level": 28,
+      "file": "assets/images/levels/generated-v4/28.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-21-30.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 39194
+    },
+    {
+      "level": 29,
+      "file": "assets/images/levels/generated-v4/29.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-21-30.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 38870
+    },
+    {
+      "level": 30,
+      "file": "assets/images/levels/generated-v4/30.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-21-30.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 40734
+    },
+    {
+      "level": 31,
+      "file": "assets/images/levels/generated-v4/31.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-31-40.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 38520
+    },
+    {
+      "level": 32,
+      "file": "assets/images/levels/generated-v4/32.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-31-40.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 39884
+    },
+    {
+      "level": 33,
+      "file": "assets/images/levels/generated-v4/33.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-31-40.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 42418
+    },
+    {
+      "level": 34,
+      "file": "assets/images/levels/generated-v4/34.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-31-40.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 38876
+    },
+    {
+      "level": 35,
+      "file": "assets/images/levels/generated-v4/35.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-31-40.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 47264
+    },
+    {
+      "level": 36,
+      "file": "assets/images/levels/generated-v4/36.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-31-40.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 47262
+    },
+    {
+      "level": 37,
+      "file": "assets/images/levels/generated-v4/37.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-31-40.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 47078
+    },
+    {
+      "level": 38,
+      "file": "assets/images/levels/generated-v4/38.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-31-40.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 44640
+    },
+    {
+      "level": 39,
+      "file": "assets/images/levels/generated-v4/39.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-31-40.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 47560
+    },
+    {
+      "level": 40,
+      "file": "assets/images/levels/generated-v4/40.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-31-40.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 50986
+    },
+    {
+      "level": 41,
+      "file": "assets/images/levels/generated-v4/41.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-41-50.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 26604
+    },
+    {
+      "level": 42,
+      "file": "assets/images/levels/generated-v4/42.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-41-50.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 31076
+    },
+    {
+      "level": 43,
+      "file": "assets/images/levels/generated-v4/43.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-41-50.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 32988
+    },
+    {
+      "level": 44,
+      "file": "assets/images/levels/generated-v4/44.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-41-50.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 30596
+    },
+    {
+      "level": 45,
+      "file": "assets/images/levels/generated-v4/45.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-41-50.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 40186
+    },
+    {
+      "level": 46,
+      "file": "assets/images/levels/generated-v4/46.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-41-50.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 33080
+    },
+    {
+      "level": 47,
+      "file": "assets/images/levels/generated-v4/47.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-41-50.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 37128
+    },
+    {
+      "level": 48,
+      "file": "assets/images/levels/generated-v4/48.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-41-50.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 35972
+    },
+    {
+      "level": 49,
+      "file": "assets/images/levels/generated-v4/49.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-41-50.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 36112
+    },
+    {
+      "level": 50,
+      "file": "assets/images/levels/generated-v4/50.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-41-50.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43350
+    },
+    {
+      "level": 51,
+      "file": "assets/images/levels/generated-v4/51.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-51-60.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 31758
+    },
+    {
+      "level": 52,
+      "file": "assets/images/levels/generated-v4/52.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-51-60.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 35080
+    },
+    {
+      "level": 53,
+      "file": "assets/images/levels/generated-v4/53.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-51-60.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 33380
+    },
+    {
+      "level": 54,
+      "file": "assets/images/levels/generated-v4/54.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-51-60.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 35768
+    },
+    {
+      "level": 55,
+      "file": "assets/images/levels/generated-v4/55.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-51-60.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 48002
+    },
+    {
+      "level": 56,
+      "file": "assets/images/levels/generated-v4/56.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-51-60.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 34602
+    },
+    {
+      "level": 57,
+      "file": "assets/images/levels/generated-v4/57.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-51-60.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 34546
+    },
+    {
+      "level": 58,
+      "file": "assets/images/levels/generated-v4/58.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-51-60.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 36814
+    },
+    {
+      "level": 59,
+      "file": "assets/images/levels/generated-v4/59.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-51-60.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 34204
+    },
+    {
+      "level": 60,
+      "file": "assets/images/levels/generated-v4/60.webp",
+      "sourceAtlas": "tmp/avatar-generation-v4/source-atlases/levels-51-60.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 39500
+    }
+  ]
+}

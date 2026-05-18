@@ -3,7 +3,6 @@
  * Левый — картинка редкости; правый — GIFT PREMIUM. Открытие в любом порядке, затем общий экран.
  */
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -13,33 +12,55 @@ import {
   Image,
   Modal,
   ScrollView,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import {
   applyGift, ApplyGiftResult, GiftDef, giftDescForLang, giftRarityUiLabel,
-  giftShardAmount, giftTitleForLang, isEnergyBonusGiftId,
+  giftTitleForLang, isEnergyBonusGiftId,
   rollF2pLevelGiftForUser, rollPremiumLevelGiftForUser,
 } from '../app/level_gift_system';
 import { triLang, type Lang } from '../constants/i18n';
-import { oskolokImageForPackShards } from '../app/oskolok';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useEnergy } from './EnergyContext';
 import { useTheme, type Fonts } from './ThemeContext';
 import type { Theme } from '../constants/theme';
 import { GiftOpenBurst, animTierF2p, animTierPrem, type GiftAnimTier } from './GiftOpenEffects';
-import { markGiftClaimed, saveClaimedGiftRarity, UNCLAIMED_GIFTS_KEY } from './LevelGiftModal';
 import AvatarAura from './AvatarAura';
 import AvatarView from './AvatarView';
 import CustomAvatarBadge from './CustomAvatarBadge';
 import { getBestAvatarForLevel } from '../constants/avatars';
+import { getLevelGiftImage } from '../constants/levelGiftImages';
+import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
+import {
+  RewardModalBackdrop,
+  rewardModalAccentColor,
+  rewardModalPanelBorder,
+  rewardModalPanelColors,
+  rewardModalPrimaryButtonColors,
+  rewardModalPrimaryButtonText,
+  rewardModalSoftSurface,
+} from './RewardModalBackdrop';
+import {
+  markDualGiftClaimed,
+  markGiftClaimed,
+  saveClaimedGiftRarity,
+  saveUnclaimedDualGift,
+  setLevelHadDualClaim,
+  type PremPair,
+} from '../app/level_gift_inventory';
 
-const F2P_IMAGES: Record<string, number> = {
-  common: require('../assets/images/levels/GIF_COMMON.webp'),
-  rare:   require('../assets/images/levels/GIFT_RARE.webp'),
-  epic:   require('../assets/images/levels/GIFT_EPIC.webp'),
-};
+export {
+  loadDualClaimedLevels,
+  loadUnclaimedDualGifts,
+  markDualGiftClaimed,
+  saveUnclaimedDualGift,
+  setLevelHadDualClaim,
+  UNCLAIMED_DUAL_GIFTS_KEY,
+  type PremPair,
+} from '../app/level_gift_inventory';
 
 /** Подписи сундуков/карточек — не «F2P»/англ. жаргон, а нормальные RU/UK/ES. */
 const DUAL_UI = {
@@ -72,8 +93,6 @@ const secondChestLabel = (lang: Lang) => triLang(lang, {
 /** Заголовок карточки премиум-награды: тёмный фиолетовый на светлом фоне (не бледный #C4B5FD). */
 const PREM_LABEL_COLOR = '#D6B85C';
 /** Без пробела в имени — иначе Metro/бандл на части девайсов не подхватывают `require` и `Image` пустой. */
-const PREMIUM_CHEST = require('../assets/images/levels/GIFT_PREMIUM.webp');
-
 const RARITY_BORDER: Record<string, string> = {
   common: '#44444488',
   rare:   '#2563EB88',
@@ -86,6 +105,11 @@ const RARITY_BG: Record<string, string> = {
 };
 
 const USE_ELITE_DUAL_LEVEL_GIFT_MODAL = true;
+const DUAL_CHEST_IMAGE_SIZE = USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 88 : 82;
+const DUAL_CHEST_STAGE_SIZE = USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 108 : 98;
+const MINI_REWARD_STAGE_SIZE = 116;
+const MINI_REWARD_ICON_SIZE = 94;
+const DETAIL_REWARD_ICON_SIZE = 58;
 
 const isCosmeticGiftId = (id?: string): boolean =>
   id === 'cosmetic_avatar_common' ||
@@ -127,67 +151,7 @@ function CosmeticGiftPreview({ result, level }: { result: ApplyGiftResult | null
   return null;
 }
 
-export const UNCLAIMED_DUAL_GIFTS_KEY = 'unclaimed_level_gifts_dual_v1';
-const CLAIMED_DUAL_LEVELS_KEY = 'claimed_level_gift_dual_flag_v1';
-
 type BoxKey = 'f2p' | 'prem';
-
-export interface PremPair {
-  f2p:  GiftDef;
-  prem: GiftDef;
-}
-
-export const saveUnclaimedDualGift = async (level: number, pair: PremPair): Promise<void> => {
-  try {
-    const raw = await AsyncStorage.getItem(UNCLAIMED_DUAL_GIFTS_KEY);
-    const map: Record<number, PremPair> = raw ? JSON.parse(raw) : {};
-    map[level] = pair;
-    await AsyncStorage.setItem(UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(map));
-    // взаимоисключение с одиночным
-    const raw1 = await AsyncStorage.getItem(UNCLAIMED_GIFTS_KEY);
-    if (raw1) {
-      const m: Record<number, GiftDef> = JSON.parse(raw1);
-      delete m[level];
-      await AsyncStorage.setItem(UNCLAIMED_GIFTS_KEY, JSON.stringify(m));
-    }
-  } catch { /* */ }
-};
-
-export const loadUnclaimedDualGifts = async (): Promise<Record<number, PremPair>> => {
-  try {
-    const raw = await AsyncStorage.getItem(UNCLAIMED_DUAL_GIFTS_KEY);
-    return raw ? JSON.parse(raw) : {};
-  } catch { return {}; }
-};
-
-export const markDualGiftClaimed = async (level: number): Promise<void> => {
-  try {
-    const raw = await AsyncStorage.getItem(UNCLAIMED_DUAL_GIFTS_KEY);
-    if (!raw) return;
-    const map: Record<number, PremPair> = JSON.parse(raw);
-    delete map[level];
-    await AsyncStorage.setItem(UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(map));
-  } catch { /* */ }
-};
-
-export const setLevelHadDualClaim = async (level: number): Promise<void> => {
-  try {
-    const raw = await AsyncStorage.getItem(CLAIMED_DUAL_LEVELS_KEY);
-    const set: number[] = raw ? JSON.parse(raw) : [];
-    if (!set.includes(level)) {
-      set.push(level);
-      await AsyncStorage.setItem(CLAIMED_DUAL_LEVELS_KEY, JSON.stringify(set));
-    }
-  } catch { /* */ }
-};
-
-export const loadDualClaimedLevels = async (): Promise<Set<number>> => {
-  try {
-    const raw = await AsyncStorage.getItem(CLAIMED_DUAL_LEVELS_KEY);
-    const a: number[] = raw ? JSON.parse(raw) : [];
-    return new Set(a);
-  } catch { return new Set(); }
-};
 
 interface Props {
   visible:           boolean;
@@ -196,15 +160,19 @@ interface Props {
   lang:              Lang;
   onClose:           (claimed: boolean) => void;
   preRolledPair?:    PremPair;
+  /** claim = apply now; inventory = reveal and save for later application */
+  deliveryMode?:     'claim' | 'inventory';
 }
 
 /** pair: сундуки + мини-раскрытие (только названия); full: описания + «Получить всё» */
 type Phase = 'pair' | 'full';
 
-export default function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolledPair }: Props) {
+export default function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolledPair, deliveryMode = 'claim' }: Props) {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const premiumChestSource = getLevelGiftImage(themeMode, 'premium');
   const { energy, maxEnergy, reload: reloadEnergy } = useEnergy();
+  const storesOnly = deliveryMode === 'inventory';
 
   const [f2pGift, setF2pGift]   = useState<GiftDef | null>(null);
   const [premGift, setPremGift] = useState<GiftDef | null>(null);
@@ -345,6 +313,11 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
     };
   }, [visible, phase, opened.size, f2pGift, premGift, fadeReveal, detailScale, ctaShine]);
 
+  useEffect(() => {
+    if (!visible || !storesOnly || !f2pGift || !premGift) return;
+    void saveUnclaimedDualGift(level, { f2p: f2pGift, prem: premGift });
+  }, [visible, storesOnly, level, f2pGift, premGift]);
+
   // Idle: оба сундука (или один оставшийся) качаются с разной фазой
   useEffect(() => {
     if (!visible || !f2pGift || !premGift || phase !== 'pair' || opening) return;
@@ -404,17 +377,17 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
 
     Animated.sequence([
       Animated.parallel([
-        Animated.timing(shakeA, { toValue:  9,  duration: 44,  useNativeDriver: true }),
-        Animated.timing(scaleA, { toValue: 0.94, duration: 90, useNativeDriver: true }),
+        Animated.timing(shakeA, { toValue:  9,  duration: 34,  useNativeDriver: true }),
+        Animated.timing(scaleA, { toValue: 0.94, duration: 66, useNativeDriver: true }),
       ]),
-      Animated.timing(shakeA, { toValue: -12, duration: 46, useNativeDriver: true }),
-      Animated.timing(shakeA, { toValue:  10, duration: 42, useNativeDriver: true }),
-      Animated.timing(shakeA, { toValue:   0, duration: 34, useNativeDriver: true }),
+      Animated.timing(shakeA, { toValue: -12, duration: 34, useNativeDriver: true }),
+      Animated.timing(shakeA, { toValue:  10, duration: 30, useNativeDriver: true }),
+      Animated.timing(shakeA, { toValue:   0, duration: 24, useNativeDriver: true }),
     ]).start(() => {
       Animated.sequence([
-        Animated.spring(scaleA, { toValue: 1.18, tension: 190, friction: 6, useNativeDriver: true }),
-        Animated.timing(scaleA, { toValue: 1.42, duration: 140, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
-        Animated.timing(scaleA, { toValue: 0, duration: 120, easing: Easing.in(Easing.cubic), useNativeDriver: true }),
+        Animated.spring(scaleA, { toValue: 1.18, tension: 240, friction: 7, useNativeDriver: true }),
+        Animated.timing(scaleA, { toValue: 1.42, duration: 96, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
+        Animated.timing(scaleA, { toValue: 0, duration: 76, easing: Easing.in(Easing.cubic), useNativeDriver: true }),
       ]).start(() => {
         floatA.setValue(0);
         rockA.setValue(0);
@@ -429,6 +402,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
         if (which === 'prem' || g.rarity === 'epic' || g.rarity === 'rare') void hapticSuccess();
         else void hapticTap();
         void (async () => {
+          if (storesOnly) return;
           const result = await applyGift(g, userName, energy, maxEnergy, setEnergyFn, { isPremium: true });
           if (which === 'f2p') setF2pAppliedMeta(result);
           else setPremAppliedMeta(result);
@@ -462,6 +436,11 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
     if (!f2pGift || !premGift || doneClosingRef.current) return;
     doneClosingRef.current = true;
     void hapticSuccess();
+    if (storesOnly) {
+      await saveUnclaimedDualGift(level, { f2p: f2pGift, prem: premGift });
+      onClose(false);
+      return;
+    }
     await markDualGiftClaimed(level);
     await markGiftClaimed(level);
     await setLevelHadDualClaim(level);
@@ -476,11 +455,6 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
 
   if (!visible || !f2pGift || !premGift) return null;
 
-  const strongestRarity = f2pGift.rarity === 'epic' || premGift.rarity === 'epic'
-    ? 'epic'
-    : f2pGift.rarity === 'rare' || premGift.rarity === 'rare'
-      ? 'rare'
-      : 'common';
   const borderC = f2pGift.rarity === 'epic' || premGift.rarity === 'epic'
     ? RARITY_BORDER.epic
     : f2pGift.rarity === 'rare' || premGift.rarity === 'rare'
@@ -491,12 +465,15 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
     : f2pGift.rarity === 'rare' || premGift.rarity === 'rare'
       ? RARITY_BG.rare
       : RARITY_BG.common;
-  const hasCosmeticGift = isCosmeticGiftId(f2pGift?.id) || isCosmeticGiftId(premGift?.id);
+  const hasCosmeticGift = !storesOnly && (isCosmeticGiftId(f2pGift?.id) || isCosmeticGiftId(premGift?.id));
   const modalScale = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.93, 1] });
   const modalY = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
   const glowOpacity = modalGlow.interpolate({ inputRange: [0, 1], outputRange: [0.16, 0.44] });
   const revealY = fadeReveal.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
   const ctaShineX = ctaShine.interpolate({ inputRange: [0, 1], outputRange: [-180, 220] });
+  const modalAccent = rewardModalAccentColor(themeMode, t);
+  const primaryButtonColors = rewardModalPrimaryButtonColors(themeMode);
+  const primaryButtonText = rewardModalPrimaryButtonText(themeMode);
 
   const onRequestCloseModal = () => {
     if (opened.size === 2 && f2pGift && premGift) {
@@ -508,21 +485,31 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
 
   return (
     <Modal transparent visible animationType="fade" onRequestClose={onRequestCloseModal}>
-      <View style={{ flex: 1, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(3,5,10,0.88)' : 'rgba(0,0,0,0.78)', justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flex: 1, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(3,5,10,0.88)' : 'rgba(0,0,0,0.78)', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
+        {USE_ELITE_DUAL_LEVEL_GIFT_MODAL && <RewardModalBackdrop themeMode={themeMode} intensity="strong" />}
         <Animated.View testID="level-gift-dual-modal" style={{
-          backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? t.bgSurface : t.bgCard,
+          backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'transparent' : t.bgCard,
           borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 30 : 28,
           padding: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 22 : 24,
           width: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 334 : 320,
           maxHeight: '88%',
           overflow: 'hidden',
           borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 1.5,
-          borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? (borderC === RARITY_BORDER.common ? t.border : borderC) : borderC,
+          borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t, borderC === RARITY_BORDER.common ? undefined : borderC) : borderC,
           shadowColor: premGift?.rarity === 'epic' || f2pGift?.rarity === 'epic' ? '#FFD700' : USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? '#D6B85C' : '#7C3AED',
           shadowOpacity: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.32 : 0.35,
           shadowRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 32 : 20,
           transform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? [{ scale: modalScale }, { translateY: modalY }] : [],
         }}>
+          {USE_ELITE_DUAL_LEVEL_GIFT_MODAL && (
+            <LinearGradient
+              pointerEvents="none"
+              colors={rewardModalPanelColors(themeMode, t)}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={StyleSheet.absoluteFill}
+            />
+          )}
           {USE_ELITE_DUAL_LEVEL_GIFT_MODAL && (
             <>
               <Animated.View
@@ -533,7 +520,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                   left: 30,
                   right: 30,
                   height: 1,
-                  backgroundColor: PREM_LABEL_COLOR,
+                  backgroundColor: modalAccent,
                   opacity: glowOpacity,
                 }}
               />
@@ -545,7 +532,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                   left: 0,
                   right: 0,
                   height: 84,
-                  backgroundColor: 'rgba(214,184,92,0.055)',
+                  backgroundColor: rewardModalSoftSurface(themeMode, t),
                 }}
               />
             </>
@@ -554,7 +541,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
             <View style={{ ...{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: 28 }, backgroundColor: bgTint, pointerEvents: 'none' }} />
           )}
 
-          <Text style={{ color: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? PREM_LABEL_COLOR : t.textPrimary, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 4, textAlign: 'center' }}>
+          <Text style={{ color: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? modalAccent : t.textPrimary, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 4, textAlign: 'center' }}>
             {triLang(lang, {
               ru: `Премиум: уровень ${level}`,
               uk: `Преміум: рівень ${level}`,
@@ -573,7 +560,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
           {phase === 'pair' && (
             <>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 10 : 6 }}>
-                <View style={{ flex: 1, alignItems: 'center', minWidth: 0, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.045)' : 'transparent', borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 0, borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 0, borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.10)' : 'transparent', paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 0, paddingHorizontal: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 6 : 0 }}>
+                <View style={{ flex: 1, alignItems: 'center', minWidth: 0, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalSoftSurface(themeMode, t) : 'transparent', borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 0, borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 0, borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : 'transparent', paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 0, paddingHorizontal: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 6 : 0 }}>
                   {opened.has('f2p') && f2pGift ? (
                     <MiniRewardPeek
                       gift={f2pGift}
@@ -592,6 +579,10 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                       style={{ alignItems: 'center' }}
                     >
                       <Animated.View style={{
+                        width: DUAL_CHEST_STAGE_SIZE,
+                        height: DUAL_CHEST_STAGE_SIZE,
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         transform: [
                           { translateY: !opened.has('f2p') && opening !== 'f2p' ? fFloat : 0 },
                           { rotateZ: !opened.has('f2p') && opening !== 'f2p' ? fRockI : '0deg' },
@@ -600,8 +591,8 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                         ],
                       }}>
                         <Image
-                          source={F2P_IMAGES[f2pGift?.rarity ?? 'common']}
-                          style={{ width: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 94 : 88, height: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 94 : 88 }}
+                          source={getLevelGiftImage(themeMode, f2pGift?.rarity ?? 'common')}
+                          style={{ width: DUAL_CHEST_IMAGE_SIZE, height: DUAL_CHEST_IMAGE_SIZE }}
                           resizeMode="contain"
                         />
                       </Animated.View>
@@ -611,7 +602,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                     {firstChestLabel(lang)}
                   </Text>
                 </View>
-                <View style={{ flex: 1, alignItems: 'center', minWidth: 0, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(214,184,92,0.06)' : 'transparent', borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 0, borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 0, borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(214,184,92,0.20)' : 'transparent', paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 0, paddingHorizontal: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 6 : 0 }}>
+                <View style={{ flex: 1, alignItems: 'center', minWidth: 0, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? `${modalAccent}14` : 'transparent', borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 0, borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 0, borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? `${modalAccent}36` : 'transparent', paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 0, paddingHorizontal: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 6 : 0 }}>
                   {opened.has('prem') && premGift ? (
                     <MiniRewardPeek
                       gift={premGift}
@@ -630,6 +621,10 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                       style={{ alignItems: 'center' }}
                     >
                       <Animated.View style={{
+                        width: DUAL_CHEST_STAGE_SIZE,
+                        height: DUAL_CHEST_STAGE_SIZE,
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         transform: [
                           { translateY: !opened.has('prem') && opening !== 'prem' ? pFloat : 0 },
                           { rotateZ: !opened.has('prem') && opening !== 'prem' ? pRockI : '0deg' },
@@ -637,7 +632,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                           { translateX: pShake },
                         ],
                       }}>
-                        <Image source={PREMIUM_CHEST} style={{ width: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 94 : 88, height: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 94 : 88 }} resizeMode="contain" />
+                        <Image source={premiumChestSource} style={{ width: DUAL_CHEST_IMAGE_SIZE, height: DUAL_CHEST_IMAGE_SIZE }} resizeMode="contain" />
                       </Animated.View>
                     </TouchableOpacity>
                   )}
@@ -745,7 +740,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                         marginTop: hasCosmeticGift ? 10 : 16,
                         overflow: 'hidden',
                         borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 1.5,
-                        borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.22)' : '#A78BFA',
+                        borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : '#A78BFA',
                         shadowColor: '#FFFFFF',
                         shadowOpacity: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.18 : 0,
                         shadowRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 14 : 0,
@@ -753,7 +748,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                       }}
                     >
                       <LinearGradient
-                        colors={USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? ['#FFFFFF', '#E8E3D4'] : ['#6D28D9', '#4C1D95']}
+                        colors={USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? primaryButtonColors : ['#6D28D9', '#4C1D95']}
                         start={{ x: 0, y: 0 }}
                         end={{ x: 1, y: 1 }}
                         style={{ paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 15 : 14, alignItems: 'center', justifyContent: 'center' }}
@@ -772,8 +767,10 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                             }}
                           />
                         )}
-                        <Text style={{ color: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? '#111827' : '#FFFFFF', fontSize: f.bodyLg, fontWeight: '900' }}>
-                          {triLang(lang, { ru: 'Получить всё', uk: 'Отримати всі', es: 'Reclamar todo', 'pt-BR': 'Resgatar tudo', vi: 'Nhận tất cả', id: 'Klaim semua', tr: 'Hepsini al', pl: 'Odbierz wszystko' })}
+                        <Text style={{ color: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? primaryButtonText : '#FFFFFF', fontSize: f.bodyLg, fontWeight: '900' }}>
+                          {storesOnly
+                            ? triLang(lang, { ru: 'Сохранить в подарках', uk: 'Зберегти в подарунках', es: 'Guardar en regalos', 'pt-BR': 'Guardar em presentes', vi: 'Lưu vào quà', id: 'Simpan ke hadiah', tr: 'Hediyelere kaydet', pl: 'Zapisz w prezentach' })
+                            : triLang(lang, { ru: 'Получить всё', uk: 'Отримати всі', es: 'Reclamar todo', 'pt-BR': 'Resgatar tudo', vi: 'Nhận tất cả', id: 'Klaim semua', tr: 'Hepsini al', pl: 'Odbierz wszystko' })}
                         </Text>
                       </LinearGradient>
                     </TouchableOpacity>
@@ -806,67 +803,36 @@ function MiniRewardPeek({ gift, lang, theme: t, fonts: f, burstTier, premVisual 
   premVisual:  boolean;
 }) {
   const entry = useRef(new Animated.Value(0)).current;
-  const glow = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     entry.setValue(0);
-    glow.setValue(0);
     const pop = Animated.spring(entry, {
       toValue: 1,
       tension: 145,
       friction: 8,
       useNativeDriver: true,
     });
-    const halo = Animated.loop(
-      Animated.sequence([
-        Animated.timing(glow, { toValue: 1, duration: 1200, easing: Easing.inOut(Easing.cubic), useNativeDriver: true }),
-        Animated.timing(glow, { toValue: 0, duration: 1200, easing: Easing.inOut(Easing.cubic), useNativeDriver: true }),
-      ]),
-    );
     pop.start();
-    halo.start();
-    return () => {
-      pop.stop();
-      halo.stop();
-    };
-  }, [entry, glow, gift.id]);
+    return () => pop.stop();
+  }, [entry, gift.id]);
 
   const entryScale = entry.interpolate({ inputRange: [0, 1], outputRange: [0.68, 1] });
   const entryY = entry.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
-  const glowScale = glow.interpolate({ inputRange: [0, 1], outputRange: [0.86, 1.08] });
-  const glowOpacity = glow.interpolate({ inputRange: [0, 1], outputRange: [0.16, 0.32] });
 
   return (
-    <Animated.View style={{ width: '100%', minHeight: 108, alignItems: 'center', justifyContent: 'flex-start', opacity: entry, transform: [{ translateY: entryY }, { scale: entryScale }] }}>
-      <View style={{ width: 100, height: 100, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-        <GiftOpenBurst key={`${gift.id}-${burstTier}`} tier={burstTier} size={100} />
-        <Animated.View
-          pointerEvents="none"
+    <Animated.View style={{ width: '100%', minHeight: 136, alignItems: 'center', justifyContent: 'flex-start', opacity: entry, transform: [{ translateY: entryY }, { scale: entryScale }] }}>
+      <View style={{ width: MINI_REWARD_STAGE_SIZE, height: MINI_REWARD_STAGE_SIZE, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+        <GiftOpenBurst key={`${gift.id}-${burstTier}`} tier={burstTier} size={MINI_REWARD_STAGE_SIZE} />
+        <Image
+          source={getLevelGiftRewardIcon(gift.id)}
           style={{
-            position: 'absolute',
-            width: premVisual ? 76 : 68,
-            height: premVisual ? 76 : 68,
-            borderRadius: 999,
-            backgroundColor: premVisual ? 'rgba(214,184,92,0.34)' : gift.rarity === 'epic' ? 'rgba(245,158,11,0.32)' : gift.rarity === 'rare' ? 'rgba(96,165,250,0.28)' : 'rgba(255,255,255,0.12)',
-            opacity: glowOpacity,
-            transform: [{ scale: glowScale }],
+            width: MINI_REWARD_ICON_SIZE,
+            height: MINI_REWARD_ICON_SIZE,
+            zIndex: 2,
+            position: 'relative',
           }}
+          resizeMode="contain"
         />
-        {premVisual ? (
-          <Image
-            source={PREMIUM_CHEST}
-            style={{ width: 56, height: 56, zIndex: 2, position: 'relative' }}
-            resizeMode="contain"
-          />
-        ) : giftShardAmount(gift.id) > 0 ? (
-          <Image
-            source={oskolokImageForPackShards(giftShardAmount(gift.id))}
-            style={{ width: 60, height: 60, zIndex: 2, position: 'relative' }}
-            resizeMode="contain"
-          />
-        ) : (
-          <Text style={{ fontSize: 44, zIndex: 2, position: 'relative' }}>{gift.icon}</Text>
-        )}
       </View>
       <Text
         numberOfLines={2}
@@ -875,7 +841,7 @@ function MiniRewardPeek({ gift, lang, theme: t, fonts: f, burstTier, premVisual 
           fontSize:         f.body,
           fontWeight:       '800',
           textAlign:        'center',
-          marginTop:        4,
+          marginTop:        2,
           zIndex:           2,
           position:         'relative',
           paddingHorizontal: 2,
@@ -943,11 +909,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level }: {
         {label} · {giftRarityUiLabel(rarity, lang)}
       </Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-        {premVisual
-          ? <Image source={PREMIUM_CHEST} style={{ width: 40, height: 40 }} resizeMode="contain" />
-          : giftShardAmount(g.id) > 0
-            ? <Image source={oskolokImageForPackShards(giftShardAmount(g.id))} style={{ width: 44, height: 44 }} resizeMode="contain" />
-            : <Text style={{ fontSize: 36 }}>{g.icon}</Text>}
+        <Image source={getLevelGiftRewardIcon(g.id)} style={{ width: DETAIL_REWARD_ICON_SIZE, height: DETAIL_REWARD_ICON_SIZE }} resizeMode="contain" />
         <View style={{ flex: 1 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.h2 - 2, fontWeight: '900' }}>{giftTitleForLang(g, lang)}</Text>
           <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 2 }}>{giftDescForLang(g, lang)}</Text>

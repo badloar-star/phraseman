@@ -15,6 +15,10 @@ const ENERGY_IMAGES: Partial<Record<EnergyAssetThemeMode, any>> = {
   minimalLight: require('../assets/images/energy/energy-sketch.png'),
 };
 
+const PREMIUM_ENERGY_IMAGES: Partial<Record<EnergyAssetThemeMode, any>> = {
+  minimalLight: require('../assets/images/energy/energy-sketch-premium.png'),
+};
+
 const FROZEN_ENERGY_IMAGES: Partial<Record<EnergyAssetThemeMode, any>> = {
   dark: require('../assets/images/energy/energy-forest-frozen.png'),
   neon: require('../assets/images/energy/energy-neon-frozen.png'),
@@ -79,9 +83,12 @@ export default function EnergyIcon({
   const themedEnergyImage = themeMode
     ? (variant === 'frozen' ? FROZEN_ENERGY_IMAGES[themeMode] : ENERGY_IMAGES[themeMode])
     : undefined;
+  const premiumEnergyImage = themeMode && variant === 'normal' && isPremium
+    ? PREMIUM_ENERGY_IMAGES[themeMode]
+    : undefined;
   const energyImage = variant === 'frozen'
     ? themedEnergyImage ?? FROZEN_ENERGY_IMAGES.dark ?? fallbackEnergyImage
-    : themedEnergyImage ?? fallbackEnergyImage;
+    : premiumEnergyImage ?? themedEnergyImage ?? fallbackEnergyImage;
 
   const computedTint = (() => {
     if (variant === 'frozen') return undefined;

@@ -159,6 +159,28 @@ describe('heisenberg localization pipeline core', () => {
     expect(ids).toContain('id:id:11.sourceLocales.id.text:ID text');
   });
 
+  it('extracts Indonesian id containers in source-locale files without treating plain id fields as locale text', () => {
+    const text = `
+      export const PERSONAL_TRAINING_SUMMARY_SOURCE_LOCALES = {
+        article_a_an: {
+          es: { title: 'ES title', shortDiagnosis: 'ES diagnosis' },
+          id: { title: 'ID title', shortDiagnosis: 'ID diagnosis' },
+          tr: { title: 'TR title', shortDiagnosis: 'TR diagnosis' },
+        },
+        metadata: { id: 'plain id', title: 'Plain title' },
+      };
+    `;
+    const items = core.extractLocalizedItemsFromText('app/personal_training_source_locales.ts', text);
+    const ids = items.map((item: any) => `${item.locale}:${item.keyPath}:${item.text}`);
+
+    expect(ids).toContain('es:article_a_an.es.title:ES title');
+    expect(ids).toContain('id:article_a_an.id.title:ID title');
+    expect(ids).toContain('id:article_a_an.id.shortDiagnosis:ID diagnosis');
+    expect(ids).toContain('tr:article_a_an.tr.shortDiagnosis:TR diagnosis');
+    expect(ids.some((id: string) => id.includes('plain id'))).toBe(false);
+    expect(ids.some((id: string) => id.includes('Plain title'))).toBe(false);
+  });
+
   it('extracts direct irregular-verb source locale maps without treating ordinary id as a locale', () => {
     const text = `
       export const IRREGULAR_VERB_SOURCE_LOCALES = {

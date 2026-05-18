@@ -1,6 +1,6 @@
 /**
  * Progress Map — визуальная карта прогресса.
- * Вертикальный скролл: уровни 1-50, milestone\'ы на 10/20/30/40/50.
+ * Вертикальный скролл: уровни 1-MAX_LEVEL, milestone\'ы на 10/20/30/40/50.
  * Подарки уровня: принятые, непринятые (можно открыть здесь), будущие.
  */
 
@@ -37,15 +37,10 @@ import {
   readGiftXpBank,
 } from './level_gift_system';
 import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
-import { getXPProgress, getMaxEnergyForLevel } from '../constants/theme';
+import { getLevelGiftImage } from '../constants/levelGiftImages';
+import { getLevelGiftRewardIcon, type LevelGiftRewardIconId } from '../constants/levelGiftRewardIcons';
+import { getXPProgress, getMaxEnergyForLevel, MAX_LEVEL } from '../constants/theme';
 import { TITLES } from '../constants/titles';
-
-const CHEST_IMAGES: Record<string, any> = {
-  common: require('../assets/images/levels/GIF_COMMON.webp'),
-  rare:   require('../assets/images/levels/GIFT_RARE.webp'),
-  epic:   require('../assets/images/levels/GIFT_EPIC.webp'),
-};
-const PREMIUM_CHEST_SM = require('../assets/images/levels/GIFT_PREMIUM.webp');
 
 interface MilestoneInfo {
   level: number;
@@ -66,10 +61,23 @@ interface MilestoneInfo {
 
 interface ActiveGiftInfo {
   key: string;
-  icon: string;
+  iconGiftId: LevelGiftRewardIconId;
   title: string;
   desc: string;
 }
+
+const xpBankRewardIconForTotal = (grantedTotal: number): LevelGiftRewardIconId => {
+  if (grantedTotal >= 1000) return 'premium_xp_bank_1000';
+  if (grantedTotal >= 600) return 'xp_bank_600';
+  if (grantedTotal >= 300) return 'xp_bank_300';
+  return 'xp_bank_150';
+};
+
+const focusRewardIconForMultiplier = (multiplier: number): LevelGiftRewardIconId => {
+  if (multiplier >= 2) return 'xp_2x_24h';
+  if (multiplier >= 1.5) return 'focus_15m_50';
+  return 'focus_10m_25';
+};
 
 const formatMsLeft = (ms: number, lang: 'ru' | 'uk' | 'es' | PlannedInterfaceLang): string => {
   const safe = Math.max(0, ms);
@@ -174,7 +182,7 @@ const MILESTONE_PLANNED_COPY: Record<number, {
 };
 
 export default function ProgressMapScreen() {
-  const { theme: t, f, isDark } = useTheme();
+  const { theme: t, f, isDark, themeMode } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
   const [totalXP, setTotalXP] = useState(0);
@@ -185,6 +193,7 @@ export default function ProgressMapScreen() {
   const [claimedRarities, setClaimedRarities] = useState<Record<number, string>>({});
   const [dualClaimedLevels, setDualClaimedLevels] = useState<Set<number>>(() => new Set());
   const [activeGifts, setActiveGifts] = useState<ActiveGiftInfo[]>([]);
+  const showActiveGiftsOnProgressMap = false;
 
   // Gift modal state for unclaimed gifts opened from this screen
   const [giftModalVisible, setGiftModalVisible] = useState(false);
@@ -248,7 +257,7 @@ export default function ProgressMapScreen() {
     if (xpBank.remaining > 0) {
       nextActive.push({
         key: 'xp_bank',
-        icon: '⚡',
+        iconGiftId: xpBankRewardIconForTotal(xpBank.grantedTotal),
         title: triLang(lang, {
   ru: 'Бонус ×2',
   uk: 'Бонус ×2',
@@ -279,7 +288,7 @@ export default function ProgressMapScreen() {
       if (ms > 0 && mult > 1) {
         nextActive.push({
           key: 'gift_focus',
-          icon: '⏱️',
+          iconGiftId: focusRewardIconForMultiplier(mult),
           title: triLang(lang, {
   ru: 'Фокус',
   uk: 'Фокус',
@@ -298,7 +307,7 @@ export default function ProgressMapScreen() {
     if (packTrial) {
       nextActive.push({
         key: 'pack_trial',
-        icon: '📦',
+        iconGiftId: 'pack_voucher_48h',
         title: triLang(lang, {
   ru: 'Ваучер набора',
   uk: 'Ваучер набору',
@@ -325,7 +334,7 @@ export default function ProgressMapScreen() {
     if (arenaMax > ARENA_DAILY_MAX) {
       nextActive.push({
         key: 'arena_extra',
-        icon: '🎟️',
+        iconGiftId: 'arena_extra_5',
         title: triLang(lang, {
   ru: 'Арена',
   uk: 'Арена',
@@ -352,7 +361,7 @@ export default function ProgressMapScreen() {
     if (hintsToday > 0) {
       nextActive.push({
         key: 'hints',
-        icon: '💡',
+        iconGiftId: hintsToday >= 3 ? 'hint_3' : 'hint_1',
         title: triLang(lang, {
   ru: 'Подсказки',
   uk: 'Підказки',
@@ -385,7 +394,7 @@ export default function ProgressMapScreen() {
       if (remaining > 0) {
         nextActive.push({
           key: 'chain_shield',
-          icon: '🛡️',
+          iconGiftId: remaining >= 3 ? 'chain_shield_3' : 'chain_shield_1',
           title: triLang(lang, {
   ru: 'Защита цепочки',
   uk: 'Захист ланцюжка',
@@ -413,7 +422,7 @@ export default function ProgressMapScreen() {
     if (wagerDiscount) {
       nextActive.push({
         key: 'wager_discount',
-        icon: '🎲',
+        iconGiftId: 'wager_discount_25',
         title: triLang(lang, {
   ru: 'Скидка на пари',
   uk: 'Знижка на парі',
@@ -431,7 +440,7 @@ export default function ProgressMapScreen() {
     if (clubGiftBoost === '1') {
       nextActive.push({
         key: 'club_boost',
-        icon: '👥',
+        iconGiftId: 'club_boost_free',
         title: triLang(lang, {
   ru: 'Буст клуба',
   uk: 'Буст клубу',
@@ -521,7 +530,7 @@ export default function ProgressMapScreen() {
     }
   };
 
-  const levels = Array.from({ length: 50 }, (_, i) => i + 1);
+  const levels = Array.from({ length: MAX_LEVEL }, (_, i) => i + 1);
 
   const renderLevelRow: ListRenderItem<number> = ({ item: lvl }) => {
     const isDone = lvl < userLevel;
@@ -563,25 +572,8 @@ export default function ProgressMapScreen() {
 
     const rowInner = (
       <View style={rowStyle}>
-          <View style={{ alignItems: 'center', width: 50 }}>
-            {isCurrent ? (
-              <LevelBadge level={lvl} size={44} autoplay />
-            ) : (
-              <View
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 8,
-                  backgroundColor: t.bgSurface2,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderWidth: 1,
-                  borderColor: t.border,
-                }}
-              >
-                <Text style={{ color: t.textMuted, fontSize: 15, fontWeight: '800' }}>{lvl}</Text>
-              </View>
-            )}
+          <View style={{ alignItems: 'center', justifyContent: 'center', width: 50, height: 50 }}>
+            <LevelBadge level={lvl} size={isCurrent ? 46 : 44} autoplay={isCurrent} centeredNumber />
           </View>
 
           <View style={{ flex: 1 }}>
@@ -620,17 +612,28 @@ export default function ProgressMapScreen() {
               </Text>
             )}
             {milestoneGift && (
-              <Text
+              <View
                 style={{
-                  color: isDone || isCurrent ? t.textSecond : t.textMuted,
-                  fontSize: 11,
-                  fontWeight: '700',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 4,
                   marginTop: 4,
                 }}
-                numberOfLines={1}
               >
-                {milestoneGift.icon} {giftTitleForLang(milestoneGift, lang)}
-              </Text>
+                <Image source={getLevelGiftRewardIcon(milestoneGift.id)} style={{ width: 16, height: 16 }} resizeMode="contain" />
+                <Text
+                  style={{
+                    color: isDone || isCurrent ? t.textSecond : t.textMuted,
+                    fontSize: 11,
+                    fontWeight: '700',
+                    flex: 1,
+                    minWidth: 0,
+                  }}
+                  numberOfLines={1}
+                >
+                  {giftTitleForLang(milestoneGift, lang)}
+                </Text>
+              </View>
             )}
           </View>
 
@@ -675,13 +678,13 @@ export default function ProgressMapScreen() {
                 <View style={{ alignItems: 'flex-end' }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2 }}>
                     <Image
-                      source={CHEST_IMAGES[claimedRarities[lvl]] ?? CHEST_IMAGES.common}
+                      source={getLevelGiftImage(themeMode, claimedRarities[lvl])}
                       style={{ width: 28, height: 28, opacity: 0.7 }}
                       resizeMode="contain"
                     />
                     {dualClaimedLevels.has(lvl) && (
                       <Image
-                        source={PREMIUM_CHEST_SM}
+                        source={getLevelGiftImage(themeMode, 'premium')}
                         style={{ width: 22, height: 22, opacity: 0.85 }}
                         resizeMode="contain"
                       />
@@ -697,7 +700,7 @@ export default function ProgressMapScreen() {
               ) : isDone ? (
                 <View style={{ alignItems: 'flex-end' }}>
                   <Image
-                    source={CHEST_IMAGES.common}
+                    source={getLevelGiftImage(themeMode, 'common')}
                     style={{ width: 28, height: 28, opacity: 0.55 }}
                     resizeMode="contain"
                   />
@@ -860,7 +863,7 @@ export default function ProgressMapScreen() {
             extraData={{ userLevel, unclaimedGifts, unclaimedDual, claimedRarities, dualClaimedLevels, activeGifts, lang }}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40 }}
-            ListHeaderComponent={activeGifts.length > 0 ? (
+            ListHeaderComponent={showActiveGiftsOnProgressMap && activeGifts.length > 0 ? (
               <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 14, marginBottom: 12, borderWidth: 0.5, borderColor: t.border }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
@@ -893,7 +896,7 @@ export default function ProgressMapScreen() {
                         backgroundColor: t.bgSurface2,
                       }}
                     >
-                      <Text style={{ fontSize: 20 }}>{gift.icon}</Text>
+                      <Image source={getLevelGiftRewardIcon(gift.iconGiftId)} style={{ width: 28, height: 28 }} resizeMode="contain" />
                       <View style={{ flex: 1, minWidth: 0 }}>
                         <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '800' }} numberOfLines={1}>
                           {gift.title}

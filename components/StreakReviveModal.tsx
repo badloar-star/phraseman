@@ -23,6 +23,13 @@ import { getShardsBalance } from '../app/shards_system';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import { emitAppEvent } from '../app/events';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
+import {
+  RewardModalBackdrop,
+  rewardModalAccentColor,
+  rewardModalPanelBorder,
+  rewardModalPanelColors,
+  rewardModalSoftSurface,
+} from './RewardModalBackdrop';
 
 interface StreakReviveModalProps {
   visible: boolean;
@@ -43,7 +50,7 @@ function formatRemaining(ms: number, lang: 'ru' | 'uk' | 'es'): string {
 export default function StreakReviveModal({ visible, offer, onClose, onRevived }: StreakReviveModalProps) {
   const router = useRouter();
   const { lang } = useLang();
-  const { f, themeMode } = useTheme();
+  const { f, theme: t, themeMode } = useTheme();
   const isUK = lang === 'uk';
   const isES = lang === 'es';
   const [busy, setBusy] = useState(false);
@@ -182,6 +189,7 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
   }, [busy, onClose]);
 
   const isLight = false;
+  const modalAccent = rewardModalAccentColor(themeMode, t);
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onDismiss}>
@@ -197,9 +205,10 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
             { backgroundColor: isLight ? 'rgba(0,0,0,0.48)' : 'rgba(0,0,0,0.74)' },
           ]}
         >
+          <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
           <View pointerEvents="none" style={StyleSheet.absoluteFill}>
             <LinearGradient
-              colors={[`${PAYWALL_MODAL.gold}14`, 'transparent']}
+              colors={[`${modalAccent}14`, 'transparent']}
               start={{ x: 0.5, y: 0 }}
               end={{ x: 0.5, y: 0.55 }}
               style={StyleSheet.absoluteFill}
@@ -211,16 +220,23 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
               style={[
                 styles.card,
                 {
-                  backgroundColor: PAYWALL_MODAL.cardBg,
-                  borderColor: PAYWALL_MODAL.border,
+                  backgroundColor: 'transparent',
+                  borderColor: rewardModalPanelBorder(themeMode, t),
                   borderWidth: 1,
-                  shadowColor: PAYWALL_MODAL.shadow,
+                  shadowColor: modalAccent,
                   shadowOpacity: isLight ? PAYWALL_MODAL.shadowOpacityLight : PAYWALL_MODAL.shadowOpacityDark,
                 },
               ]}
             >
             <LinearGradient
-              colors={[`${PAYWALL_MODAL.gold}18`, 'transparent']}
+              colors={rewardModalPanelColors(themeMode, t)}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={StyleSheet.absoluteFill}
+              pointerEvents="none"
+            />
+            <LinearGradient
+              colors={[`${modalAccent}18`, 'transparent']}
               start={{ x: 0.5, y: 0 }}
               end={{ x: 0.5, y: 1 }}
               style={styles.cardGlow}
@@ -233,14 +249,14 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
                 style={[
                   styles.heroHalo,
                   {
-                    backgroundColor: PAYWALL_MODAL.gold,
+                    backgroundColor: modalAccent,
                     opacity: haloPulse.interpolate({ inputRange: [0, 1], outputRange: [0.08, 0.22] }),
                     transform: [{ scale: haloPulse.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1.08] }) }],
                   },
                 ]}
               />
               <Animated.View style={[styles.iconShell, flameStyle]}>
-                <Ionicons name="flame" size={30} color={PAYWALL_MODAL.gold} />
+                <Ionicons name="flame" size={30} color={modalAccent} />
               </Animated.View>
             </View>
 
@@ -251,8 +267,8 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
               style={[
                 styles.streakPill,
                 {
-                  backgroundColor: PAYWALL_MODAL.innerBg,
-                  borderColor: PAYWALL_MODAL.iconBoxBorder,
+                  backgroundColor: rewardModalSoftSurface(themeMode, t),
+                  borderColor: rewardModalPanelBorder(themeMode, t),
                 },
               ]}
             >
@@ -271,7 +287,7 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
               <View
                 style={[
                   styles.shardBtnInner,
-                  { borderColor: PAYWALL_MODAL.border, backgroundColor: PAYWALL_MODAL.goldSoft },
+                  { borderColor: rewardModalPanelBorder(themeMode, t), backgroundColor: rewardModalSoftSurface(themeMode, t) },
                 ]}
               >
                 {false && busy ? (
@@ -285,7 +301,7 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
                       style={[
                         styles.shardBtnLabel,
                         {
-                          color: PAYWALL_MODAL.title,
+                          color: modalAccent,
                           fontSize: f.body,
                           textAlign: 'center',
                         },
@@ -300,7 +316,7 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
 
             <TouchableOpacity
               onPress={onDismiss}
-              style={[styles.btnGhost, { borderColor: PAYWALL_MODAL.goldLine, marginTop: 6 }]}
+              style={[styles.btnGhost, { borderColor: rewardModalPanelBorder(themeMode, t), backgroundColor: rewardModalSoftSurface(themeMode, t), marginTop: 6 }]}
               activeOpacity={0.75}
               accessibilityRole="button"
             >

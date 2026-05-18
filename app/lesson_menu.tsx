@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
+import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import { useLang } from '../components/LangContext';
 import ContentWrap from '../components/ContentWrap';
 import EnergyBar from '../components/EnergyBar';
@@ -728,6 +729,7 @@ export default function LessonMenu() {
 });
     return (
       <ScreenGradient>
+      <LessonArtBackdrop variant="menu" />
       <SafeAreaView style={{flex:1}}>
         <ContentWrap>
         {/* Хедер */}
@@ -824,6 +826,7 @@ export default function LessonMenu() {
 
   return (
     <ScreenGradient>
+    <LessonArtBackdrop variant="menu" />
     <SafeAreaView style={{flex:1}}>
       <ContentWrap>
       {/* Хедер */}

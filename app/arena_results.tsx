@@ -31,6 +31,7 @@ import { bumpStatsDaily } from './stats_daily_breakdown';
 import { oskolokImageForPackShards } from './oskolok';
 import { getRankImage, getRankImageDisplayScale } from '../hooks/use-arena-rank';
 import { RankChangeModal, TIER_COLORS } from './components/RankChangeModal';
+import { playAppSound } from './audio/sound_manager';
 import { triLang, type Lang } from '../constants/i18n';
 import { arenaBilingualFirst } from '../constants/arena_i18n';
 import { pickRandomBotName, pickRandomBotNameEs } from './constants/bot_names';
@@ -841,6 +842,13 @@ export default function DuelResultsScreen() {
   const isDrawRaw = isDrawServer || localDraw;
   const isDraw = !opponentSurrendered && !isForfeited && isDrawRaw;
   const isWinner = !isForfeited && !isDraw && (opponentSurrendered || myRank === 1);
+  const resultSoundPlayedRef = useRef(false);
+
+  useEffect(() => {
+    if (resultSoundPlayedRef.current || players.length === 0 || isForfeited || isDraw) return;
+    resultSoundPlayedRef.current = true;
+    void playAppSound(isWinner ? 'arena.result.win' : 'arena.result.loss');
+  }, [isDraw, isForfeited, isWinner, players.length]);
 
   const xpGained = isSpecialChallenge
     ? 0

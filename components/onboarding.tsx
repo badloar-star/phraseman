@@ -7,6 +7,8 @@ import {
   Image,
   StatusBar,
   type ImageSourcePropType,
+  type StyleProp,
+  type ViewStyle,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -40,6 +42,7 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 import { GoogleSignInButton, AppleSignInButton } from './AuthProviderButtons';
+import { backgroundTransitionKey, useBackgroundBlurSwitch } from './backgroundTransition';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -57,6 +60,16 @@ const TARGET_LEVELS = ['a1', 'a2', 'b1', 'b2', 'c1'] as const;
 const PROGRESS_STEPS = ['welcome', 'name', 'streak', 'auth'] as const;
 type OnboardingStepKey = 'beta' | 'welcome' | 'demo2' | 'demo' | 'name' | 'streak' | 'auth';
 type StreakMilestoneIconKind = 'flame' | 'bolt' | 'gem' | 'crown';
+type OnboardingParticleSpec = {
+  left: `${number}%`;
+  top: `${number}%`;
+  size: number;
+  delay: number;
+  duration: number;
+  rise: number;
+  drift: number;
+  opacity: number;
+};
 const USE_ELITE_ONBOARDING_WELCOME = true;
 const ONBOARDING_ACCENT = '#F2B84B';
 const ONBOARDING_ACCENT_BG = 'rgba(242,184,75,0.16)';
@@ -69,6 +82,7 @@ const ONBOARDING_BG_QUIZ = require('../assets/images/onboarding/onboarding-bg-qu
 const ONBOARDING_BG_STREAK = require('../assets/images/onboarding/onboarding-bg-streak-wide.webp');
 const ONBOARDING_BG_AUTH = require('../assets/images/onboarding/onboarding-bg-auth-wide.webp');
 const ONBOARDING_LINGMAN_ICON = require('../assets/images/onboarding/lingman-icon-transparent.png');
+const ONBOARDING_AUTH_ICON = require('../assets/images/onboarding/auth-quick-start-icon.png');
 const ONBOARDING_STREAK_ICONS: Record<StreakMilestoneIconKind, ImageSourcePropType> = {
   flame: require('../assets/images/onboarding/streak-flame-medallion.png'),
   bolt: require('../assets/images/onboarding/streak-bolt-medallion.png'),
@@ -82,6 +96,28 @@ const PREV_STEP: Partial<Record<OnboardingStepKey, OnboardingStepKey>> = {
   streak: 'name',
   auth: 'streak',
 };
+const ONBOARDING_BACKGROUND_PARTICLES: OnboardingParticleSpec[] = [
+  { left:  '9%', top: '26%', size: 2, delay: 500,  duration: 9800,  rise: 82,  drift:  10, opacity: 0.20 },
+  { left: '23%', top: '34%', size: 2, delay: 2400, duration: 10600, rise: 96,  drift: -12, opacity: 0.22 },
+  { left: '48%', top: '22%', size: 2, delay: 3900, duration: 11200, rise: 76,  drift:  8,  opacity: 0.18 },
+  { left: '73%', top: '30%', size: 2, delay: 1200, duration: 10100, rise: 90,  drift: -10, opacity: 0.21 },
+  { left: '88%', top: '40%', size: 2, delay: 5600, duration: 10800, rise: 104, drift:  13, opacity: 0.18 },
+  { left: '16%', top: '47%', size: 2, delay: 3300, duration: 9300,  rise: 118, drift: -14, opacity: 0.25 },
+  { left: '39%', top: '52%', size: 2, delay: 700,  duration: 9900,  rise: 126, drift:  16, opacity: 0.24 },
+  { left: '64%', top: '48%', size: 2, delay: 4500, duration: 9600,  rise: 112, drift: -15, opacity: 0.23 },
+  { left:  '8%', top: '78%', size: 2, delay: 0,    duration: 7600, rise: 142, drift:  16, opacity: 0.46 },
+  { left: '18%', top: '84%', size: 3, delay: 900,  duration: 9200, rise: 184, drift: -20, opacity: 0.42 },
+  { left: '30%', top: '72%', size: 2, delay: 1800, duration: 8200, rise: 128, drift:  12, opacity: 0.38 },
+  { left: '42%', top: '88%', size: 2, delay: 2600, duration: 9800, rise: 208, drift: -14, opacity: 0.40 },
+  { left: '56%', top: '76%', size: 3, delay: 600,  duration: 8600, rise: 156, drift:  18, opacity: 0.44 },
+  { left: '68%', top: '86%', size: 2, delay: 2200, duration: 9400, rise: 198, drift: -18, opacity: 0.36 },
+  { left: '82%', top: '74%', size: 2, delay: 1400, duration: 7900, rise: 132, drift:  10, opacity: 0.34 },
+  { left: '92%', top: '82%', size: 3, delay: 3200, duration: 9100, rise: 176, drift: -22, opacity: 0.40 },
+  { left: '14%', top: '58%', size: 2, delay: 4100, duration: 10400, rise: 154, drift:  12, opacity: 0.28 },
+  { left: '36%', top: '64%', size: 2, delay: 5200, duration: 9700,  rise: 168, drift: -16, opacity: 0.30 },
+  { left: '61%', top: '60%', size: 2, delay: 3600, duration: 10100, rise: 146, drift:  14, opacity: 0.28 },
+  { left: '76%', top: '66%', size: 2, delay: 4700, duration: 8900,  rise: 138, drift: -10, opacity: 0.32 },
+];
 
 
 export default function Onboarding({ onDone, onLangSelect }: Props) {
@@ -144,6 +180,22 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     lang === 'es' ? es : isUK ? uk : ru;
   const triOb = (ru: string, uk: string, es: string) =>
     lang === 'es' ? es : isUK ? uk : ru;
+
+  const renderScreen = (
+    testID: string | undefined,
+    source: ImageSourcePropType,
+    children: React.ReactNode,
+    contentStyle?: StyleProp<ViewStyle>,
+  ) => (
+    <OnboardingScreenShell
+      testID={testID}
+      source={source}
+      screenFade={screenFade}
+      contentStyle={contentStyle}
+    >
+      {children}
+    </OnboardingScreenShell>
+  );
 
   // Плавный переход между экранами
   const goToStep = useCallback((next: typeof step) => {
@@ -226,22 +278,15 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   useEffect(() => {
     if (step !== 'welcome') return;
     lingmanPulse.setValue(0);
-    const pulse = Animated.loop(
-      Animated.sequence([
-        Animated.timing(lingmanPulse, {
-          toValue: 1,
-          duration: 26000,
-          easing: Easing.inOut(Easing.quad),
-          useNativeDriver: true,
-        }),
-        Animated.timing(lingmanPulse, {
-          toValue: 0,
-          duration: 26000,
-          easing: Easing.inOut(Easing.quad),
-          useNativeDriver: true,
-        }),
-      ]),
-    );
+    const pulse = Animated.sequence([
+      Animated.delay(700),
+      Animated.timing(lingmanPulse, {
+        toValue: 1,
+        duration: 22000,
+        easing: Easing.out(Easing.quad),
+        useNativeDriver: true,
+      }),
+    ]);
     pulse.start();
     return () => pulse.stop();
   }, [lingmanPulse, step]);
@@ -263,9 +308,17 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   useEffect(() => {
     if (step !== 'streak') return;
     milestoneAnims.forEach(a => a.setValue(0));
-    Animated.stagger(150, milestoneAnims.map(a =>
-      Animated.timing(a, { toValue: 1, duration: 280, useNativeDriver: true })
-    )).start();
+    Animated.sequence([
+      Animated.delay(160),
+      Animated.stagger(150, milestoneAnims.map(a =>
+        Animated.timing(a, {
+          toValue: 1,
+          duration: 560,
+          easing: Easing.out(Easing.cubic),
+          useNativeDriver: true,
+        })
+      )),
+    ]).start();
   }, [step, milestoneAnims]);
 
   useEffect(() => {
@@ -479,9 +532,10 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               '📸 Сделай скриншот, если что-то не так',
               '💬 Напиши мне в Telegram со скриншотом',
             ];
-    return (
-      <SafeAreaView edges={[]} style={styles.container} testID="onboarding-beta-screen">
-        <OnboardingArtBackground source={ONBOARDING_BG_PROFESSOR_OBSERVATORY} motion="zoomOut" />
+    return renderScreen(
+      'onboarding-beta-screen',
+      ONBOARDING_BG_BETA,
+      (
         <ScrollView contentContainerStyle={{ alignItems: 'center', paddingHorizontal: 28, paddingVertical: 40 }} showsVerticalScrollIndicator={false}>
           <Text style={{ fontSize: 52, marginBottom: 16 }}>🧪</Text>
           <Text style={[styles.appName, { marginBottom: 24 }]}>
@@ -542,7 +596,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
             <Text style={styles.continueBtnText}>{pick('Понятно 👍', 'Зрозуміло 👍', 'Entendido 👍')}</Text>
           </TouchableOpacity>
         </ScrollView>
-      </SafeAreaView>
+      ),
     );
   }
 
@@ -551,13 +605,12 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     if (USE_ELITE_ONBOARDING_WELCOME) {
       const heroY = welcomeIntro.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
       const heroScale = welcomeIntro.interpolate({ inputRange: [0, 1], outputRange: [0.98, 1] });
-      const lingmanScale = lingmanPulse.interpolate({ inputRange: [0, 1], outputRange: [0.96, 1.055] });
-      return (
-        <SafeAreaView edges={[]} style={styles.container} testID="onboarding-welcome-screen">
-          <Animated.View style={[styles.eliteWelcomeRoot, { opacity: screenFade }]}>
-            <OnboardingArtBackground source={ONBOARDING_BG_SAGE_COUNCIL} motion="zoomOut" />
-            <View pointerEvents="none" style={styles.eliteWelcomeTopLight} />
-
+      const lingmanScale = lingmanPulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.105] });
+      return renderScreen(
+        'onboarding-welcome-screen',
+        ONBOARDING_BG_WELCOME,
+        (
+          <>
             <Animated.View
               style={[
                 styles.eliteWelcomeMain,
@@ -611,14 +664,16 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
                 {triOb('Займет меньше минуты.', 'Займе менше хвилини.', 'Tarda menos de un minuto.')}
               </Text>
             </View>
-          </Animated.View>
-        </SafeAreaView>
+          </>
+        ),
+        styles.eliteWelcomeRoot,
       );
     }
-    return (
-      <SafeAreaView edges={[]} style={styles.container} testID="onboarding-welcome-screen">
-        <Animated.View style={{ flex: 1, opacity: screenFade, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
-          <OnboardingArtBackground source={ONBOARDING_BG_SAGE_COUNCIL} motion="zoomOut" />
+    return renderScreen(
+      'onboarding-welcome-screen',
+      ONBOARDING_BG_WELCOME,
+      (
+        <>
           <Text style={{ color: DARK.gold, fontSize: 13, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 32, textAlign: 'center' }}>
             Phraseman
           </Text>
@@ -646,8 +701,9 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               {triOb('Попробовать →', 'Спробувати →', 'Probar ahora →')}
             </Text>
           </TouchableOpacity>
-        </Animated.View>
-      </SafeAreaView>
+        </>
+      ),
+      { justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 },
     );
   }
 
@@ -681,10 +737,11 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               'Я боюсь потерять это место',
             ];
     const correctIndex = 0;
-    return (
-      <SafeAreaView edges={[]} style={styles.container} testID="onboarding-demo-screen">
-        <Animated.View style={{ flex: 1, opacity: screenFade }}>
-          <OnboardingArtBackground source={ONBOARDING_BG_PHRASE_ARCHIVE} motion="zoomOut" />
+    return renderScreen(
+      'onboarding-demo-screen',
+      ONBOARDING_BG_QUIZ,
+      (
+        <>
           {renderProgressBar()}
         <ScrollView contentContainerStyle={[styles.center, { paddingTop: 0, flexGrow: 1 }]} showsVerticalScrollIndicator={false}>
           <Text style={[styles.appName, { marginBottom: 8 }]}>Phraseman</Text>
@@ -766,8 +823,8 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
             </Animated.View>
           )}
         </ScrollView>
-        </Animated.View>
-      </SafeAreaView>
+        </>
+      ),
     );
   }
 
@@ -810,10 +867,11 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       }
     };
 
-    return (
-      <SafeAreaView edges={[]} style={styles.container} testID="onboarding-demo2-screen">
-        <Animated.View style={{ flex: 1, opacity: screenFade }}>
-          <OnboardingArtBackground source={ONBOARDING_BG_PROFESSOR_OBSERVATORY} motion="zoomOut" />
+    return renderScreen(
+      'onboarding-demo2-screen',
+      ONBOARDING_BG_BUILDER,
+      (
+        <>
           {renderProgressBar()}
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', paddingHorizontal: 28, paddingVertical: 20 }} showsVerticalScrollIndicator={false}>
           {/* Приветствие */}
@@ -949,17 +1007,18 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
             )}
           </Animated.View>
         </ScrollView>
-        </Animated.View>
-      </SafeAreaView>
+        </>
+      ),
     );
   }
 
   // ── Шаг 3: Имя ──────────────────────────────────────────────────────────────
   if (step === 'name') {
-    return (
-      <SafeAreaView edges={[]} style={styles.container}>
-        <Animated.View style={{ flex: 1, opacity: screenFade }}>
-          <OnboardingArtBackground source={ONBOARDING_BG_PROFESSOR_OBSERVATORY} motion="zoomOut" />
+    return renderScreen(
+      undefined,
+      ONBOARDING_BG_NAME,
+      (
+        <>
           {renderProgressBar()}
         <KeyboardAvoidingView
           style={{ flex: 1 }}
@@ -1050,8 +1109,8 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
             </TouchableOpacity>
           </ScrollView>
         </KeyboardAvoidingView>
-        </Animated.View>
-      </SafeAreaView>
+        </>
+      ),
     );
   }
 
@@ -1078,14 +1137,15 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               { label: '14 дней подряд', icon: 'gem', reward: 'Становится проще' },
               { label: '30 дней подряд', icon: 'crown', reward: 'Сильная серия' },
             ];
-    return (
-      <SafeAreaView edges={[]} style={styles.container} testID="onboarding-streak-screen">
-        <Animated.View style={{ flex: 1, opacity: screenFade }}>
-          <OnboardingArtBackground source={ONBOARDING_BG_PHRASE_ARCHIVE} motion="zoomOut" />
+    return renderScreen(
+      'onboarding-streak-screen',
+      ONBOARDING_BG_STREAK,
+      (
+        <>
           {renderProgressBar()}
         <ScrollView contentContainerStyle={[styles.center, { flexGrow: 1, paddingHorizontal: 28 }]} showsVerticalScrollIndicator={false}>
           <View style={styles.streakHeroIconWrap}>
-            <OnboardingStreakIcon kind="flame" size={76} hero />
+            <OnboardingStreakIcon kind="flame" size={108} hero />
           </View>
           <Text style={[styles.title, { marginBottom: 8 }]}>
             {pick(
@@ -1105,14 +1165,25 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
           {/* Milestones */}
           <View style={{ width: '100%', gap: 10, marginBottom: 32 }}>
             {streakMilestones.map((m, i) => (
-              <Animated.View key={m.label} style={{ opacity: milestoneAnims[i], transform: [{ translateY: milestoneAnims[i].interpolate({ inputRange: [0, 1], outputRange: [16, 0] }) }] }}>
+              <Animated.View
+                key={m.label}
+                style={{
+                  opacity: milestoneAnims[i],
+                  transform: [
+                    { translateY: milestoneAnims[i].interpolate({ inputRange: [0, 1], outputRange: [24, 0] }) },
+                    { scale: milestoneAnims[i].interpolate({ inputRange: [0, 1], outputRange: [0.96, 1] }) },
+                  ],
+                }}
+              >
               <View style={styles.onboardingGlassCard}>
-                <OnboardingStreakIcon kind={m.icon} size={52} />
-                <View style={{ flex: 1 }}>
-                  <Text style={{ color: ONBOARDING_ACCENT, fontSize: 13, fontWeight: '700', marginBottom: 2 }}>
+                <View style={styles.streakMilestoneIconSlot}>
+                  <OnboardingStreakIcon kind={m.icon} size={78} />
+                </View>
+                <View style={styles.streakMilestoneTextWrap}>
+                  <Text style={styles.streakMilestoneTitle}>
                     {m.label}
                   </Text>
-                  <Text style={{ color: ONBOARDING_TEXT_MUTED, fontSize: 13, fontWeight: '600' }}>{m.reward}</Text>
+                  <Text style={styles.streakMilestoneReward}>{m.reward}</Text>
                 </View>
               </View>
               </Animated.View>
@@ -1130,20 +1201,25 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
             </Text>
           </TouchableOpacity>
         </ScrollView>
-        </Animated.View>
-      </SafeAreaView>
+        </>
+      ),
     );
   }
 
   // ── Шаг auth: Сохрани прогресс через Google / Apple (опционально) ────────────
   if (step === 'auth') {
-    return <AuthOnboardingStep
-      isUK={isUK}
-      lang={lang}
-      renderProgressBar={renderProgressBar}
-      screenFade={screenFade}
-      onComplete={handleFinishOnboarding}
-    />;
+    return renderScreen(
+      'onboarding-auth-screen',
+      ONBOARDING_BG_AUTH,
+      (
+        <AuthOnboardingStep
+          isUK={isUK}
+          lang={lang}
+          renderProgressBar={renderProgressBar}
+          onComplete={handleFinishOnboarding}
+        />
+      ),
+    );
   }
 
   // Fallback — не должен достигаться
@@ -1159,13 +1235,11 @@ function AuthOnboardingStep({
   isUK,
   lang,
   renderProgressBar,
-  screenFade,
   onComplete,
 }: {
   isUK: boolean;
   lang: Lang;
   renderProgressBar: () => React.ReactNode;
-  screenFade: Animated.Value;
   onComplete: () => Promise<void> | void;
 }) {
   const authPick = (ru: string, uk: string, es: string) =>
@@ -1250,12 +1324,15 @@ function AuthOnboardingStep({
   const interactionLocked = loadingProvider !== null || authBusy;
 
   return (
-    <SafeAreaView edges={[]} style={styles.container} testID="onboarding-auth-screen">
-      <Animated.View style={{ flex: 1, opacity: screenFade }}>
-        <OnboardingArtBackground source={ONBOARDING_BG_SAGE_COUNCIL} motion="zoomOut" />
-        {renderProgressBar()}
+    <>
+      {renderProgressBar()}
         <ScrollView contentContainerStyle={[styles.center, { flexGrow: 1, paddingHorizontal: 28 }]} showsVerticalScrollIndicator={false}>
-          <Text style={{ fontSize: 56, marginBottom: 12 }}>🚀</Text>
+          <Image
+            source={ONBOARDING_AUTH_ICON}
+            style={styles.authQuickStartIcon}
+            resizeMode="contain"
+            accessible={false}
+          />
           <Text style={[styles.title, { marginBottom: 8 }]}>
             {authPick('Быстрый старт', 'Швидкий старт', 'Inicio rápido')}
           </Text>
@@ -1323,6 +1400,28 @@ function AuthOnboardingStep({
             )}
           </Text>
         </ScrollView>
+    </>
+  );
+}
+
+function OnboardingScreenShell({
+  testID,
+  source,
+  screenFade,
+  contentStyle,
+  children,
+}: {
+  testID?: string;
+  source: ImageSourcePropType;
+  screenFade: Animated.Value;
+  contentStyle?: StyleProp<ViewStyle>;
+  children: React.ReactNode;
+}) {
+  return (
+    <SafeAreaView edges={[]} style={styles.container} testID={testID}>
+      <OnboardingArtBackground source={source} motion="zoomOut" />
+      <Animated.View style={[styles.onboardingContentLayer, contentStyle, { opacity: screenFade }]}>
+        {children}
       </Animated.View>
     </SafeAreaView>
   );
@@ -1356,9 +1455,15 @@ function OnboardingStreakIcon({
 
 const styles = StyleSheet.create({
   container:       { flex: 1, backgroundColor: '#020304', overflow: 'hidden' },
+  onboardingContentLayer: { flex: 1 },
   center:          { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 30 },
   appName:         { color: ONBOARDING_ACCENT, fontSize: 15, fontWeight: '800', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 },
   title:           { color: '#FFF8E8', fontSize: 24, fontWeight: '800', textAlign: 'center', marginBottom: 40, lineHeight: 34 },
+  authQuickStartIcon: {
+    width: 132,
+    height: 132,
+    marginBottom: 12,
+  },
   progressWrap: {
     paddingTop: 0,
   },
@@ -1386,21 +1491,43 @@ const styles = StyleSheet.create({
   },
   onboardingBg: {
     ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
     backgroundColor: '#020304',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  onboardingBgImageStack: {
+    ...StyleSheet.absoluteFillObject,
+    opacity: 0.68,
   },
   onboardingBgImage: {
     ...StyleSheet.absoluteFillObject,
-    opacity: 0.68,
+    width: '100%',
+    height: '100%',
   },
   onboardingBgDim: {
     ...StyleSheet.absoluteFillObject,
   },
+  onboardingParticleLayer: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  onboardingParticle: {
+    position: 'absolute',
+    backgroundColor: 'rgba(242,184,75,0.92)',
+    shadowColor: ONBOARDING_ACCENT,
+    shadowOpacity: 0.72,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 0 },
+  },
   onboardingGlassCard: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 104,
+    position: 'relative',
     borderRadius: 18,
-    padding: 14,
-    gap: 14,
+    paddingVertical: 16,
+    paddingHorizontal: 104,
     borderWidth: 1,
     borderColor: 'rgba(255,244,205,0.18)',
     backgroundColor: 'rgba(20,18,15,0.50)',
@@ -1408,6 +1535,31 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.24,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 8 },
+  },
+  streakMilestoneIconSlot: {
+    position: 'absolute',
+    left: 16,
+    top: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  streakMilestoneTextWrap: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  streakMilestoneTitle: {
+    color: ONBOARDING_ACCENT,
+    fontSize: 13,
+    fontWeight: '800',
+    marginBottom: 4,
+    textAlign: 'center',
+  },
+  streakMilestoneReward: {
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 13,
+    fontWeight: '700',
+    textAlign: 'center',
   },
   streakHeroIconWrap: {
     marginBottom: 12,
@@ -1432,15 +1584,6 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
     justifyContent: 'space-between',
     overflow: 'hidden',
-  },
-  eliteWelcomeTopLight: {
-    position: 'absolute',
-    top: 0,
-    left: 40,
-    right: 40,
-    height: 1,
-    backgroundColor: ONBOARDING_ACCENT,
-    opacity: 0.28,
   },
   eliteWelcomeHeader: {
     flexDirection: 'row',
@@ -1770,43 +1913,68 @@ function OnboardingArtBackground({
   motion?: 'zoomIn' | 'zoomOut';
 }) {
   const progress = useRef(new Animated.Value(0)).current;
+  const { activeValue: activeSource } = useBackgroundBlurSwitch({
+    value: source,
+    transitionKey: backgroundTransitionKey(source),
+  });
+  const particleAnims = useRef(ONBOARDING_BACKGROUND_PARTICLES.map(() => new Animated.Value(0))).current;
 
   useEffect(() => {
     progress.setValue(0);
-    const anim = Animated.loop(
-      Animated.sequence([
-        Animated.timing(progress, {
-          toValue: 1,
-          duration: 32000,
-          easing: Easing.inOut(Easing.quad),
-          useNativeDriver: true,
-        }),
-        Animated.timing(progress, {
-          toValue: 0,
-          duration: 32000,
-          easing: Easing.inOut(Easing.quad),
-          useNativeDriver: true,
-        }),
-      ]),
-    );
+    const anim = Animated.timing(progress, {
+      toValue: 1,
+      duration: 15000,
+      easing: Easing.out(Easing.quad),
+      useNativeDriver: true,
+    });
     anim.start();
     return () => anim.stop();
-  }, [motion, progress, source]);
+  }, [motion, progress]);
+
+  useEffect(() => {
+    let active = true;
+    particleAnims.forEach((value, index) => {
+      const spec = ONBOARDING_BACKGROUND_PARTICLES[index];
+      const run = () => {
+        if (!active) return;
+        value.setValue(0);
+        Animated.sequence([
+          Animated.delay(spec.delay),
+          Animated.timing(value, {
+            toValue: 1,
+            duration: spec.duration,
+            easing: Easing.out(Easing.cubic),
+            useNativeDriver: true,
+          }),
+        ]).start(({ finished }) => {
+          if (active && finished) run();
+        });
+      };
+      run();
+    });
+
+    return () => {
+      active = false;
+      particleAnims.forEach(value => value.stopAnimation());
+    };
+  }, [particleAnims]);
 
   const scale = progress.interpolate({
     inputRange: [0, 1],
-    outputRange: motion === 'zoomIn' ? [1.018, 1.0] : [1.018, 1.0],
+    outputRange: motion === 'zoomIn' ? [1.0, 1.085] : [1.085, 1.0],
   });
-
   return (
     <>
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <View pointerEvents="none" style={styles.onboardingBg}>
-        <Animated.Image
-          source={source}
-          style={[styles.onboardingBgImage, { transform: [{ scale }] }]}
-          resizeMode="cover"
-        />
+        <View pointerEvents="none" style={styles.onboardingBgImageStack}>
+          <Animated.Image
+            source={activeSource}
+            style={[styles.onboardingBgImage, { transform: [{ scale }] }]}
+            resizeMode="cover"
+            resizeMethod="resize"
+          />
+        </View>
         <LinearGradient
           colors={[
             'rgba(1,2,3,0.58)',
@@ -1818,6 +1986,49 @@ function OnboardingArtBackground({
           locations={[0, 0.32, 0.56, 0.78, 1]}
           style={styles.onboardingBgDim}
         />
+        <View pointerEvents="none" style={styles.onboardingParticleLayer}>
+          {ONBOARDING_BACKGROUND_PARTICLES.map((spec, index) => {
+            const anim = particleAnims[index];
+            const translateY = anim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0, -spec.rise],
+            });
+            const translateX = anim.interpolate({
+              inputRange: [0, 0.55, 1],
+              outputRange: [0, spec.drift * 0.52, spec.drift],
+            });
+            const opacity = anim.interpolate({
+              inputRange: [0, 0.12, 0.68, 1],
+              outputRange: [0, spec.opacity, spec.opacity * 0.62, 0],
+            });
+            const particleScale = anim.interpolate({
+              inputRange: [0, 0.2, 1],
+              outputRange: [0.55, 1, 0.62],
+            });
+
+            return (
+              <Animated.View
+                key={`${spec.left}-${spec.top}-${index}`}
+                style={[
+                  styles.onboardingParticle,
+                  {
+                    left: spec.left,
+                    top: spec.top,
+                    width: spec.size,
+                    height: spec.size,
+                    borderRadius: spec.size / 2,
+                    opacity,
+                    transform: [
+                      { translateX },
+                      { translateY },
+                      { scale: particleScale },
+                    ],
+                  },
+                ]}
+              />
+            );
+          })}
+        </View>
       </View>
     </>
   );

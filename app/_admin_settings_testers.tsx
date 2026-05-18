@@ -5,7 +5,6 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated,
-  Dimensions,
   Platform,
   ScrollView,
   Switch,
@@ -62,6 +61,15 @@ import {
 import { RankChangeModal, TIER_COLORS } from './components/RankChangeModal';
 import { setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
 import { actionToastTri, emitAppEvent } from './events';
+import { playAppSound, preloadAppSounds } from './audio/sound_manager';
+import { SOUND_MANIFEST, type SoundId } from './audio/sound_manifest';
+import {
+  applyUserSettingsNow,
+  getUserSettingsSnapshot,
+  loadSettings as loadUserSettings,
+  normalizeAppSoundVolume,
+  type UserSettings,
+} from './user_settings_store';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import NoEnergyModal from '../components/NoEnergyModal';
 import ArenaLimitModal from '../components/ArenaLimitModal';
@@ -129,8 +137,18 @@ const CYCLE_END_SHOWN_KEY = 'lesson_cycle_end_intro_shown';
 const RED = '#FF2020';
 const RED_DIM = '#CC0000';
 const RED_DARK = '#8B0000';
-const RED_BG = 'rgba(255,0,0,0.08)';
-const RED_BORDER = 'rgba(255,32,32,0.35)';
+const ADMIN_BG = '#000000';
+const ADMIN_HEADER_BG = '#0D0000';
+const ADMIN_SURFACE = '#140000';
+const ADMIN_SURFACE_ELEVATED = '#1B0000';
+const ADMIN_SURFACE_MUTED = '#0A0000';
+const ADMIN_SURFACE_DANGER = '#260000';
+const ADMIN_TEXT = '#FFD6D6';
+const ADMIN_TEXT_MUTED = '#FF8A8A';
+const ADMIN_BORDER_MUTED = '#4A0000';
+const RED_BG = '#190000';
+const RED_BORDER = 'rgba(255,32,32,0.58)';
+const RED_BORDER_SOFT = 'rgba(255,32,32,0.34)';
 const DAILY_TASK_QA_PACKS = getDailyTaskAdminPacks(3);
 
 function getIsoWeekIdForDate(d: Date): string {
@@ -183,57 +201,6 @@ const ADMIN_GLOBAL_BROADCAST_PREVIEW: GlobalBroadcastModalPayload = {
   reviewCtaPl: 'Oceń aplikację',
   createdAt: '2026-05-14T00:00:00.000Z',
 };
-
-const MATRIX_CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモ01ラリルレロ0123456789ABCDEF!@#$%';
-const SCREEN_HEIGHT = Dimensions.get('window').height;
-
-function MatrixColumn({ x, delay, speed, chars }: { x: number; delay: number; speed: number; chars: string }) {
-  const translateY = useRef(new Animated.Value(-SCREEN_HEIGHT)).current;
-  useEffect(() => {
-    const loop = Animated.loop(
-      Animated.sequence([
-        Animated.delay(delay),
-        Animated.timing(translateY, { toValue: SCREEN_HEIGHT, duration: speed, useNativeDriver: true }),
-        Animated.timing(translateY, { toValue: -SCREEN_HEIGHT, duration: 0, useNativeDriver: true }),
-      ])
-    );
-    loop.start();
-    return () => loop.stop();
-  }, [delay, speed, translateY]);
-  return (
-    <Animated.Text
-      style={{
-        position: 'absolute',
-        left: x,
-        top: 0,
-        transform: [{ translateY }],
-        color: RED_DIM,
-        fontSize: 11,
-        fontFamily: 'monospace',
-        opacity: 0.55,
-        lineHeight: 14,
-        width: 16,
-      }}
-      numberOfLines={0}
-    >
-      {chars}
-    </Animated.Text>
-  );
-}
-
-function buildMatrixCols() {
-  const result: { x: number; delay: number; speed: number; chars: string }[] = [];
-  const screenW = Dimensions.get('window').width;
-  const count = Math.floor(screenW / 18);
-  for (let i = 0; i < count; i++) {
-    const colLen = 8 + Math.floor(Math.random() * 24);
-    let s = '';
-    for (let j = 0; j < colLen; j++) s += MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)] + '\n';
-    result.push({ x: i * 18, delay: Math.floor(Math.random() * 3000), speed: 2500 + Math.floor(Math.random() * 3500), chars: s });
-  }
-  return result;
-}
-const MATRIX_COLS = buildMatrixCols();
 
 /** Превью пейволлов: label — кнопка, sub — подсказка, что смотреть; params — как в проде. */
 const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<string, string> }[] = [
@@ -334,12 +301,9 @@ const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<str
   },
 ];
 
-function MatrixBackground() {
-  const cols = MATRIX_COLS;
+function AdminBackground() {
   return (
-    <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, overflow: 'hidden', backgroundColor: '#0D0000' }} pointerEvents="none">
-      {cols.map((c, i) => <MatrixColumn key={i} {...c} />)}
-    </View>
+    <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, overflow: 'hidden', backgroundColor: ADMIN_BG }} pointerEvents="none" />
   );
 }
 
@@ -347,13 +311,13 @@ const ToggleRow = ({ icon, label, sub, value, onToggle, t, f }: {
   icon: string; label: string; sub?: string; value: boolean; onToggle: (val: boolean) => void;
   t: any; f: any;
 }) => (
-  <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: RED_BORDER }}>
+  <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: RED_BORDER_SOFT, backgroundColor: ADMIN_SURFACE }}>
     <Ionicons name={icon as any} size={22} color={RED} style={{ marginRight: 14 }} />
     <View style={{ flex: 1 }}>
-      <Text style={{ color: '#FFB0B0', fontSize: f.bodyLg }}>{label}</Text>
-      {sub && <Text style={{ color: '#FF8080', fontSize: f.caption, marginTop: 2 }}>{sub}</Text>}
+      <Text style={{ color: ADMIN_TEXT, fontSize: f.bodyLg }}>{label}</Text>
+      {sub && <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, marginTop: 2 }}>{sub}</Text>}
     </View>
-    <Switch value={value} onValueChange={onToggle} thumbColor={value ? RED : '#555'} trackColor={{ false: '#333', true: RED_DARK }} />
+    <Switch value={value} onValueChange={onToggle} thumbColor={value ? RED : ADMIN_BORDER_MUTED} trackColor={{ false: ADMIN_SURFACE_MUTED, true: RED_DARK }} />
   </View>
 );
 
@@ -365,23 +329,115 @@ const ButtonRow = ({ icon, label, sub, onPress, danger, testID, t, f, doHaptic }
     testID={testID}
     accessibilityLabel={testID ? `qa-${testID}` : undefined}
     accessible={!!testID}
-    style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: RED_BORDER, backgroundColor: danger ? 'rgba(180,0,0,0.15)' : 'transparent' }}
+    style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: RED_BORDER_SOFT, backgroundColor: danger ? ADMIN_SURFACE_DANGER : ADMIN_SURFACE }}
     onPress={() => { doHaptic(); onPress(); }}
     activeOpacity={0.6}
   >
     <Ionicons name={icon as any} size={22} color={danger ? '#FF4444' : RED} style={{ marginRight: 14 }} />
     <View style={{ flex: 1 }}>
-      <Text style={{ color: danger ? '#FF4444' : '#FFB0B0', fontSize: f.bodyLg }}>{label}</Text>
-      {sub && <Text style={{ color: '#FF8080', fontSize: f.caption, marginTop: 2 }}>{sub}</Text>}
+      <Text style={{ color: danger ? '#FF6B6B' : ADMIN_TEXT, fontSize: f.bodyLg }}>{label}</Text>
+      {sub && <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, marginTop: 2 }}>{sub}</Text>}
     </View>
     <Ionicons name="chevron-forward" size={18} color={RED_DIM} />
   </TouchableOpacity>
 );
 
+function AdminSoundLab({
+  soundSettings,
+  updateSoundSettings,
+  t,
+  f,
+  doHaptic,
+}: {
+  soundSettings: UserSettings;
+  updateSoundSettings: (patch: Partial<UserSettings>) => void;
+  t: any;
+  f: any;
+  doHaptic: () => void;
+}) {
+  const volume = normalizeAppSoundVolume(soundSettings.appSoundsVolume);
+  const setVolume = (nextVolume: number) => updateSoundSettings({ appSoundsVolume: normalizeAppSoundVolume(nextVolume) });
+
+  return (
+    <>
+      <View style={{ paddingHorizontal: 20, paddingTop: 14, paddingBottom: 10, backgroundColor: ADMIN_SURFACE }}>
+        <Text style={{ color: ADMIN_TEXT, fontSize: 15, fontWeight: '900', marginBottom: 4 }}>
+          App Voice Sound Lab
+        </Text>
+        <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, lineHeight: f.caption * 1.45 }}>
+          Real production sound ids. Play here ignores user mute so every asset can be checked.
+        </Text>
+      </View>
+
+      <ToggleRow
+        icon="volume-high-outline"
+        label="App sounds enabled"
+        sub="Production master switch for rewards, learning and arena sounds"
+        value={soundSettings.appSoundsEnabled}
+        onToggle={value => updateSoundSettings({ appSoundsEnabled: value })}
+        t={t}
+        f={f}
+      />
+      <ToggleRow
+        icon="musical-notes-outline"
+        label="Ceremony sounds enabled"
+        sub="Level up, Premium, league chest, rank and gold-theme moments"
+        value={soundSettings.ceremonySoundsEnabled}
+        onToggle={value => updateSoundSettings({ ceremonySoundsEnabled: value })}
+        t={t}
+        f={f}
+      />
+
+      <View style={{ paddingHorizontal: 20, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: RED_BORDER_SOFT, backgroundColor: ADMIN_SURFACE }}>
+        <Text style={{ color: ADMIN_TEXT, fontSize: f.bodyLg, fontWeight: '800' }}>
+          Preview volume: {Math.round(volume * 100)}%
+        </Text>
+        <View style={{ flexDirection: 'row', gap: 8, marginTop: 10 }}>
+          {[0.35, 0.65, 1].map(value => (
+            <TouchableOpacity
+              key={`sound-volume-${value}`}
+              onPress={() => { doHaptic(); setVolume(value); }}
+              activeOpacity={0.75}
+              style={{
+                minHeight: 42,
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 10,
+                borderWidth: 1,
+                borderColor: Math.abs(volume - value) < 0.02 ? RED : RED_BORDER_SOFT,
+                backgroundColor: Math.abs(volume - value) < 0.02 ? RED_DARK : ADMIN_SURFACE_ELEVATED,
+              }}
+            >
+              <Text style={{ color: ADMIN_TEXT, fontSize: f.caption, fontWeight: '900' }}>
+                {Math.round(value * 100)}%
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </View>
+
+      {SOUND_MANIFEST.map(item => (
+        <ButtonRow
+          key={item.id}
+          testID={`sound-lab-play-${item.id.replace(/[^a-z0-9]+/gi, '-')}`}
+          icon={item.category === 'ceremony' ? 'sparkles-outline' : item.category === 'reward' ? 'diamond-outline' : 'radio-button-on-outline'}
+          label={`Play ${item.id}`}
+          sub={`${item.group} · ${item.category} · ${item.durationMs} ms · ${item.assetPath}`}
+          onPress={() => void playAppSound(item.id as SoundId, { force: true, volume })}
+          t={t}
+          f={f}
+          doHaptic={doHaptic}
+        />
+      ))}
+    </>
+  );
+}
+
 function AdminCosmeticsPreview({ f }: { f: any }) {
   return (
     <View style={{ paddingHorizontal: 16, paddingTop: 14, paddingBottom: 18 }}>
-      <Text style={{ color: '#FFB0B0', fontSize: 15, fontWeight: '900', marginBottom: 10 }}>
+      <Text style={{ color: ADMIN_TEXT, fontSize: 15, fontWeight: '900', marginBottom: 10 }}>
         Аватары уровней
       </Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
@@ -397,13 +453,13 @@ function AdminCosmeticsPreview({ f }: { f: any }) {
                 justifyContent: 'center',
                 borderRadius: 10,
                 borderWidth: 1,
-                borderColor: RED_BORDER,
-                backgroundColor: 'rgba(255,255,255,0.035)',
+                borderColor: RED_BORDER_SOFT,
+                backgroundColor: ADMIN_SURFACE_ELEVATED,
                 paddingVertical: 8,
               }}
             >
               <AvatarView avatar={String(level)} level={level} size={52} />
-              <Text style={{ color: '#FFB0B0', fontSize: 10, fontWeight: '900', marginTop: 5 }}>
+              <Text style={{ color: ADMIN_TEXT, fontSize: 10, fontWeight: '900', marginTop: 5 }}>
                 Ур. {level}
               </Text>
             </View>
@@ -411,7 +467,7 @@ function AdminCosmeticsPreview({ f }: { f: any }) {
         })}
       </View>
 
-      <Text style={{ color: '#FFB0B0', fontSize: 15, fontWeight: '900', marginTop: 18, marginBottom: 10 }}>
+      <Text style={{ color: ADMIN_TEXT, fontSize: 15, fontWeight: '900', marginTop: 18, marginBottom: 10 }}>
         Ауры
       </Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
@@ -432,8 +488,8 @@ function AdminCosmeticsPreview({ f }: { f: any }) {
                 justifyContent: 'center',
                 borderRadius: 10,
                 borderWidth: 1,
-                borderColor: RED_BORDER,
-                backgroundColor: 'rgba(255,255,255,0.035)',
+                borderColor: RED_BORDER_SOFT,
+                backgroundColor: ADMIN_SURFACE_ELEVATED,
                 paddingVertical: 9,
                 paddingHorizontal: 6,
               }}
@@ -441,10 +497,10 @@ function AdminCosmeticsPreview({ f }: { f: any }) {
               <AvatarAura auraId={aura.id} size={56}>
                 <AvatarView avatar={String(previewLevel)} level={previewLevel} size={56} />
               </AvatarAura>
-              <Text style={{ color: '#FFB0B0', fontSize: 10, fontWeight: '900', marginTop: 7 }} numberOfLines={1}>
+              <Text style={{ color: ADMIN_TEXT, fontSize: 10, fontWeight: '900', marginTop: 7 }} numberOfLines={1}>
                 {aura.nameRu}
               </Text>
-              <Text style={{ color: '#FF8080', fontSize: f.caption, fontWeight: '800', marginTop: 2 }} numberOfLines={1}>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, fontWeight: '800', marginTop: 2 }} numberOfLines={1}>
                 {unlockLabel}
               </Text>
             </View>
@@ -460,7 +516,7 @@ function AccordionSection({ id, icon, title, badge, open, onToggle, children }: 
   onToggle: (id: string) => void; children: React.ReactNode;
 }) {
   return (
-    <View style={{ marginHorizontal: 12, marginBottom: 8, borderRadius: 14, borderWidth: 1, borderColor: RED_BORDER, overflow: 'hidden', backgroundColor: 'rgba(30,0,0,0.6)' }}>
+    <View style={{ marginHorizontal: 12, marginBottom: 8, borderRadius: 14, borderWidth: 1, borderColor: RED_BORDER, overflow: 'hidden', backgroundColor: ADMIN_SURFACE }}>
       <TouchableOpacity
         testID={`testers-section-${id}`}
         style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 }}
@@ -468,7 +524,7 @@ function AccordionSection({ id, icon, title, badge, open, onToggle, children }: 
         activeOpacity={0.7}
       >
         <Ionicons name={icon as any} size={20} color={RED} style={{ marginRight: 12 }} />
-        <Text style={{ flex: 1, color: '#FFB0B0', fontSize: 15, fontWeight: '700' }}>{title}</Text>
+        <Text style={{ flex: 1, color: ADMIN_TEXT, fontSize: 15, fontWeight: '700' }}>{title}</Text>
         {badge !== undefined && badge > 0 && (
           <View style={{ backgroundColor: RED_DARK, borderRadius: 10, paddingHorizontal: 7, paddingVertical: 2, marginRight: 8 }}>
             <Text style={{ color: '#fff', fontSize: 11, fontWeight: '700' }}>{badge}</Text>
@@ -477,7 +533,7 @@ function AccordionSection({ id, icon, title, badge, open, onToggle, children }: 
         <AccordionChevronIonicons isOpen={open} size={16} color={RED_DIM} />
       </TouchableOpacity>
       {open && (
-        <View style={{ borderTopWidth: 0.5, borderTopColor: RED_BORDER }}>
+        <View style={{ borderTopWidth: 0.5, borderTopColor: RED_BORDER_SOFT, backgroundColor: ADMIN_SURFACE }}>
           {children}
         </View>
       )}
@@ -487,7 +543,12 @@ function AccordionSection({ id, icon, title, badge, open, onToggle, children }: 
 
 export default function SettingsTestersFunctions() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ qa?: string | string[]; qaRun?: string | string[] }>();
+  const params = useLocalSearchParams<{
+    qa?: string | string[];
+    qaRun?: string | string[];
+    qaGiftLevel?: string | string[];
+    qaDualGiftLevel?: string | string[];
+  }>();
   const { theme: t, f, themeMode, setThemeMode } = useTheme();
   const { lang } = useLang();
   const isLightTheme = themeMode === 'minimalLight';
@@ -575,9 +636,45 @@ export default function SettingsTestersFunctions() {
   const TIER_SHORT_NAMES: Record<string, string> = { bronze: 'Бронза', silver: 'Серебро', gold: 'Золото', platinum: 'Платина', diamond: 'Алмаз', master: 'Мастер', grandmaster: 'Гранд', legend: 'Легенда' };
   const RANK_LEVELS = ['I', 'II', 'III'];
 
-  const [openSection, setOpenSection] = useState<string | null>('premium_modals');
+  const [openSection, setOpenSection] = useState<string | null>('sound_lab');
+  const [soundSettings, setSoundSettings] = useState<UserSettings>(() => getUserSettingsSnapshot());
   const [dailyTaskSeedMode, setDailyTaskSeedMode] = useState<DailyTaskSeedMode>('empty');
   const [trialCooldownStatusLine, setTrialCooldownStatusLine] = useState('…');
+
+  useEffect(() => {
+    preloadAppSounds();
+    void loadUserSettings().then(setSoundSettings);
+  }, []);
+
+  const updateSoundSettings = useCallback((patch: Partial<UserSettings>) => {
+    setSoundSettings(prev => {
+      const next = { ...prev, ...patch };
+      applyUserSettingsNow(next);
+      return getUserSettingsSnapshot();
+    });
+  }, []);
+
+  const dualGiftPreviewKey = useRef<string | null>(null);
+  const giftPreviewKey = useRef<string | null>(null);
+  useEffect(() => {
+    const levelRaw = Array.isArray(params.qaGiftLevel) ? params.qaGiftLevel[0] : params.qaGiftLevel;
+    if (!levelRaw || giftPreviewKey.current === levelRaw) return;
+    const level = Number.parseInt(levelRaw, 10);
+    if (!Number.isFinite(level) || level <= 0) return;
+    giftPreviewKey.current = levelRaw;
+    setGiftModalLevel(level);
+    setGiftModalVisible(true);
+  }, [params.qaGiftLevel]);
+
+  useEffect(() => {
+    const levelRaw = Array.isArray(params.qaDualGiftLevel) ? params.qaDualGiftLevel[0] : params.qaDualGiftLevel;
+    if (!levelRaw || dualGiftPreviewKey.current === levelRaw) return;
+    const level = Number.parseInt(levelRaw, 10);
+    if (!Number.isFinite(level) || level <= 0) return;
+    dualGiftPreviewKey.current = levelRaw;
+    setGiftDualModalLevel(level);
+    setGiftDualModalVisible(true);
+  }, [params.qaDualGiftLevel]);
 
   const seedProfileCardUpgradeQa = useCallback(async () => {
     await replaceShardsBalanceLocal(1200);
@@ -695,6 +792,21 @@ export default function SettingsTestersFunctions() {
       es: crownWinner
         ? 'QA: la liga se abrirá con “Recoger la corona”'
         : 'QA: la liga se abrirá con “Recoger bono de liga”',
+      'pt-BR': crownWinner
+        ? 'QA: a liga abrirá com “Resgatar coroa”'
+        : 'QA: a liga abrirá com “Resgatar bônus da liga”',
+      vi: crownWinner
+        ? 'QA: màn hình giải đấu sẽ mở với nút “Nhận vương miện”'
+        : 'QA: màn hình giải đấu sẽ mở với nút “Nhận thưởng giải đấu”',
+      id: crownWinner
+        ? 'QA: layar liga akan terbuka dengan tombol “Ambil mahkota”'
+        : 'QA: layar liga akan terbuka dengan tombol “Ambil bonus liga”',
+      tr: crownWinner
+        ? 'QA: lig ekranı “Tacını al” düğmesiyle açılacak'
+        : 'QA: lig ekranı “Lig bonusunu al” düğmesiyle açılacak',
+      pl: crownWinner
+        ? 'QA: ekran ligi otworzy się z przyciskiem „Odbierz koronę”'
+        : 'QA: ekran ligi otworzy się z przyciskiem „Odbierz bonus ligi”',
     }));
     router.push('/club_screen' as any);
   }, [router]);
@@ -873,6 +985,11 @@ export default function SettingsTestersFunctions() {
             ru: 'Проверка ActionToast: SUCCESS',
             uk: 'Перевірка ActionToast: SUCCESS',
             es: 'Prueba ActionToast: SUCCESS',
+            'pt-BR': 'Teste ActionToast: SUCCESS',
+            vi: 'Kiểm tra ActionToast: SUCCESS',
+            id: 'Uji ActionToast: SUCCESS',
+            tr: 'ActionToast testi: SUCCESS',
+            pl: 'Test ActionToast: SUCCESS',
           }),
         );
         setTimeout(() => {
@@ -882,6 +999,11 @@ export default function SettingsTestersFunctions() {
               ru: 'Проверка ActionToast: ERROR',
               uk: 'Перевірка ActionToast: ERROR',
               es: 'Prueba ActionToast: ERROR',
+              'pt-BR': 'Teste ActionToast: ERROR',
+              vi: 'Kiểm tra ActionToast: ERROR',
+              id: 'Uji ActionToast: ERROR',
+              tr: 'ActionToast testi: ERROR',
+              pl: 'Test ActionToast: ERROR',
             }),
           );
         }, 200);
@@ -892,6 +1014,11 @@ export default function SettingsTestersFunctions() {
               ru: 'Проверка ActionToast: INFO',
               uk: 'Перевірка ActionToast: INFO',
               es: 'Prueba ActionToast: INFO',
+              'pt-BR': 'Teste ActionToast: INFO',
+              vi: 'Kiểm tra ActionToast: INFO',
+              id: 'Uji ActionToast: INFO',
+              tr: 'ActionToast testi: INFO',
+              pl: 'Test ActionToast: INFO',
             }),
           );
           markQa('actionToast');
@@ -1001,6 +1128,11 @@ export default function SettingsTestersFunctions() {
             ru: 'Всем урокам даны золотые медали. Всем экзаменам даны золотые медали.',
             uk: 'Усім урокам дані золоті медалі. Усім екзаменам дані золоті медалі.',
             es: 'Medalla de oro en todas las lecciones y en todos los exámenes.',
+            'pt-BR': 'Medalha de ouro em todas as lições e todos os exames.',
+            vi: 'Huy chương vàng cho tất cả bài học và tất cả bài kiểm tra.',
+            id: 'Medali emas untuk semua pelajaran dan semua ujian.',
+            tr: 'Tüm derslere ve tüm sınavlara altın madalya verildi.',
+            pl: 'Złoty medal we wszystkich lekcjach i wszystkich egzaminach.',
           }),
         );
       } catch {
@@ -1010,6 +1142,11 @@ export default function SettingsTestersFunctions() {
             ru: 'Не удалось активировать.',
             uk: 'Не вдалося активувати.',
             es: 'No se pudo activar.',
+            'pt-BR': 'Não foi possível ativar.',
+            vi: 'Không thể kích hoạt.',
+            id: 'Tidak dapat mengaktifkan.',
+            tr: 'Etkinleştirilemedi.',
+            pl: 'Nie udało się aktywować.',
           }),
         );
       }
@@ -1036,6 +1173,11 @@ export default function SettingsTestersFunctions() {
           ru: '5000 XP добавлено',
           uk: '5000 XP додано',
           es: 'Se han añadido 5000 XP.',
+          'pt-BR': '5000 XP adicionados',
+          vi: 'Đã thêm 5000 XP',
+          id: '5000 XP ditambahkan',
+          tr: '5000 XP eklendi',
+          pl: 'Dodano 5000 XP',
         }),
       );
     } catch {
@@ -1045,6 +1187,11 @@ export default function SettingsTestersFunctions() {
           ru: 'Не удалось добавить XP',
           uk: 'Не вдалося додати XP',
           es: 'No se pudieron añadir XP.',
+          'pt-BR': 'Não foi possível adicionar XP',
+          vi: 'Không thể thêm XP',
+          id: 'Tidak dapat menambahkan XP',
+          tr: 'XP eklenemedi',
+          pl: 'Nie udało się dodać XP',
         }),
       );
     }
@@ -1068,6 +1215,11 @@ export default function SettingsTestersFunctions() {
           ru: 'Все достижения и рамки разблокированы',
           uk: 'Усі досягнення та рамки розблоковано',
           es: 'Todos los logros y marcos desbloqueados.',
+          'pt-BR': 'Todas as conquistas e molduras foram desbloqueadas',
+          vi: 'Tất cả thành tích và khung đã được mở khóa',
+          id: 'Semua pencapaian dan bingkai terbuka',
+          tr: 'Tüm başarımlar ve çerçeveler açıldı',
+          pl: 'Wszystkie osiągnięcia i ramki odblokowane',
         }),
       );
     } catch {
@@ -1077,6 +1229,11 @@ export default function SettingsTestersFunctions() {
           ru: 'Ошибка разблокировки',
           uk: 'Помилка розблокування',
           es: 'Error al desbloquear.',
+          'pt-BR': 'Erro ao desbloquear',
+          vi: 'Lỗi mở khóa',
+          id: 'Gagal membuka kunci',
+          tr: 'Kilidi açma hatası',
+          pl: 'Błąd odblokowania',
         }),
       );
     }
@@ -1099,6 +1256,11 @@ export default function SettingsTestersFunctions() {
             ru: 'Лига не инициализирована',
             uk: 'Ліга не ініціалізована',
             es: 'La liga no está inicializada.',
+            'pt-BR': 'A liga não foi inicializada',
+            vi: 'Giải đấu chưa được khởi tạo',
+            id: 'Liga belum diinisialisasi',
+            tr: 'Lig başlatılmadı',
+            pl: 'Liga nie została zainicjowana',
           }),
         );
         return;
@@ -1164,6 +1326,11 @@ export default function SettingsTestersFunctions() {
           ru: 'Не удалось выполнить конец недели',
           uk: 'Не вдалося виконати кінець тижня',
           es: 'No se pudo simular el fin de semana.',
+          'pt-BR': 'Não foi possível simular o fim da semana',
+          vi: 'Không thể mô phỏng cuối tuần',
+          id: 'Tidak dapat mensimulasikan akhir pekan',
+          tr: 'Hafta sonu simüle edilemedi',
+          pl: 'Nie udało się zasymulować końca tygodnia',
         }),
       );
     }
@@ -1184,6 +1351,21 @@ export default function SettingsTestersFunctions() {
         es: seeded.length
           ? `Daily tasks QA: pack ${pack.label}, mode ${dailyTaskSeedMode}`
           : 'Daily tasks QA: seed failed',
+        'pt-BR': seeded.length
+          ? `Daily tasks QA: pacote ${pack.label}, modo ${dailyTaskSeedMode}`
+          : 'Daily tasks QA: seed falhou',
+        vi: seeded.length
+          ? `Daily tasks QA: gói ${pack.label}, chế độ ${dailyTaskSeedMode}`
+          : 'Daily tasks QA: seed thất bại',
+        id: seeded.length
+          ? `Daily tasks QA: paket ${pack.label}, mode ${dailyTaskSeedMode}`
+          : 'Daily tasks QA: seed gagal',
+        tr: seeded.length
+          ? `Daily tasks QA: paket ${pack.label}, mod ${dailyTaskSeedMode}`
+          : 'Daily tasks QA: seed başarısız',
+        pl: seeded.length
+          ? `Daily tasks QA: pakiet ${pack.label}, tryb ${dailyTaskSeedMode}`
+          : 'Daily tasks QA: seed nie powiódł się',
       }),
     );
     if (seeded.length) router.push('/daily_tasks_screen' as any);
@@ -1198,6 +1380,11 @@ export default function SettingsTestersFunctions() {
         ru: 'Daily tasks QA override cleared',
         uk: 'Daily tasks QA override cleared',
         es: 'Daily tasks QA override cleared',
+        'pt-BR': 'Override de QA das tarefas diárias limpo',
+        vi: 'Đã xóa ghi đè QA nhiệm vụ hằng ngày',
+        id: 'Override QA tugas harian dibersihkan',
+        tr: 'Günlük görev QA override temizlendi',
+        pl: 'Wyczyszczono override QA zadań dziennych',
       }),
     );
   };
@@ -1280,6 +1467,11 @@ export default function SettingsTestersFunctions() {
           ru: `Firestore weekly rollover seeded: ${previousWeekId} -> ${currentWeekId}`,
           uk: `Firestore weekly rollover seeded: ${previousWeekId} -> ${currentWeekId}`,
           es: `Firestore weekly rollover seeded: ${previousWeekId} -> ${currentWeekId}`,
+          'pt-BR':  `Rollover semanal do Firestore semeado: ${previousWeekId} -> ${currentWeekId}`,
+          vi:  `Đã seed rollover tuần Firestore: ${previousWeekId} -> ${currentWeekId}`,
+          id:  `Rollover mingguan Firestore di-seed: ${previousWeekId} -> ${currentWeekId}`,
+          tr:  `Firestore haftalık rollover seed edildi: ${previousWeekId} -> ${currentWeekId}`,
+          pl:  `Zasiano tygodniowy rollover Firestore: ${previousWeekId} -> ${currentWeekId}`,
         }),
       );
     } catch {
@@ -1289,6 +1481,11 @@ export default function SettingsTestersFunctions() {
           ru: 'Firestore weekly rollover seed failed',
           uk: 'Firestore weekly rollover seed failed',
           es: 'Firestore weekly rollover seed failed',
+          'pt-BR': 'Falha ao semear rollover semanal do Firestore',
+          vi: 'Seed rollover tuần Firestore thất bại',
+          id: 'Seed rollover mingguan Firestore gagal',
+          tr: 'Firestore haftalık rollover seed başarısız',
+          pl: 'Seed tygodniowego rollover Firestore nie powiódł się',
         }),
       );
     }
@@ -1310,6 +1507,11 @@ export default function SettingsTestersFunctions() {
           ru: 'Премиум снят',
           uk: 'Преміум знято',
           es: 'Premium desactivado.',
+          'pt-BR': 'Premium desativado',
+          vi: 'Đã tắt Premium',
+          id: 'Premium dinonaktifkan',
+          tr: 'Premium devre dışı bırakıldı',
+          pl: 'Premium wyłączony',
         }),
       );
     } catch {
@@ -1319,6 +1521,11 @@ export default function SettingsTestersFunctions() {
           ru: 'Не удалось снять премиум',
           uk: 'Не вдалося зняти преміум',
           es: 'No se pudo quitar Premium.',
+          'pt-BR': 'Não foi possível remover Premium',
+          vi: 'Không thể gỡ Premium',
+          id: 'Tidak dapat menghapus Premium',
+          tr: 'Premium kaldırılamadı',
+          pl: 'Nie udało się usunąć Premium',
         }),
       );
     }
@@ -1403,6 +1610,11 @@ export default function SettingsTestersFunctions() {
           ru: 'Все данные сброшены на уровень 0',
           uk: 'Усі дані скинуто на рівень 0',
           es: 'Todos los datos restablecidos al nivel 0.',
+          'pt-BR': 'Todos os dados foram redefinidos para o nível 0',
+          vi: 'Tất cả dữ liệu đã được đặt lại về cấp 0',
+          id: 'Semua data direset ke level 0',
+          tr: 'Tüm veriler 0. seviyeye sıfırlandı',
+          pl: 'Wszystkie dane zresetowano do poziomu 0',
         }),
       );
     } catch {
@@ -1412,6 +1624,11 @@ export default function SettingsTestersFunctions() {
           ru: 'Не удалось сбросить данные',
           uk: 'Не вдалося скинути дані',
           es: 'No se pudieron restablecer los datos.',
+          'pt-BR': 'Não foi possível redefinir os dados',
+          vi: 'Không thể đặt lại dữ liệu',
+          id: 'Tidak dapat mereset data',
+          tr: 'Veriler sıfırlanamadı',
+          pl: 'Nie udało się zresetować danych',
         }),
       );
     }
@@ -1426,6 +1643,11 @@ export default function SettingsTestersFunctions() {
           ru: 'Статистика сброшена',
           uk: 'Статистику скинуто',
           es: 'Estadísticas restablecidas.',
+          'pt-BR': 'Estatísticas redefinidas',
+          vi: 'Đã đặt lại thống kê',
+          id: 'Statistik direset',
+          tr: 'İstatistikler sıfırlandı',
+          pl: 'Statystyki zresetowane',
         }),
       );
     } catch {
@@ -1435,6 +1657,11 @@ export default function SettingsTestersFunctions() {
           ru: 'Не удалось сбросить статистику',
           uk: 'Не вдалося скинути статистику',
           es: 'No se pudieron restablecer las estadísticas.',
+          'pt-BR': 'Não foi possível redefinir as estatísticas',
+          vi: 'Không thể đặt lại thống kê',
+          id: 'Tidak dapat mereset statistik',
+          tr: 'İstatistikler sıfırlanamadı',
+          pl: 'Nie udało się zresetować statystyk',
         }),
       );
     }
@@ -1451,17 +1678,22 @@ export default function SettingsTestersFunctions() {
           ru: 'Не удалось подготовить тестовое повторение',
           uk: 'Не вдалося підготувати тестове повторення',
           es: 'No se pudo preparar la repetición de prueba.',
+          'pt-BR': 'Não foi possível preparar a repetição de teste',
+          vi: 'Không thể chuẩn bị lượt ôn thử',
+          id: 'Tidak dapat menyiapkan replay uji',
+          tr: 'Test tekrarı hazırlanamadı',
+          pl: 'Nie udało się przygotować testowej powtórki',
         }),
       );
     }
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <MatrixBackground />
+    <View style={{ flex: 1, backgroundColor: ADMIN_BG }}>
+      <AdminBackground />
       <SafeAreaView style={{ flex: 1 }}>
         {/* Header */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: RED_BORDER, backgroundColor: 'rgba(13,0,0,0.92)' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: RED_BORDER, backgroundColor: ADMIN_HEADER_BG }}>
           <TouchableOpacity onPress={() => {
             if (router.canGoBack()) router.back();
             else router.replace('/(tabs)/home' as any);
@@ -1472,17 +1704,34 @@ export default function SettingsTestersFunctions() {
             <Text style={{ color: RED, fontSize: f.h2, fontWeight: '900', textShadowColor: RED_DIM, textShadowRadius: 8, textShadowOffset: { width: 0, height: 0 } }}>
               🛠 Админ панель
             </Text>
-            <Text style={{ color: '#FF8080', fontSize: f.caption, marginTop: 2 }}>Dev only · не для пользователей</Text>
+            <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, marginTop: 2 }}>Dev only · не для пользователей</Text>
           </View>
         </View>
 
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 60, paddingTop: 12 }} style={{ backgroundColor: 'rgba(13,0,0,0.80)' }}>
-          <View style={{ marginHorizontal: 12, marginBottom: 10, borderRadius: 14, borderWidth: 1.5, borderColor: RED, backgroundColor: RED_BG, overflow: 'hidden' }}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 60, paddingTop: 12 }} style={{ backgroundColor: ADMIN_BG }}>
+          <AccordionSection
+            id="sound_lab"
+            icon="musical-notes-outline"
+            title="App Voice Sound Lab"
+            badge={SOUND_MANIFEST.length}
+            open={openSection === 'sound_lab'}
+            onToggle={(id) => setOpenSection(openSection === id ? null : id)}
+          >
+            <AdminSoundLab
+              soundSettings={soundSettings}
+              updateSoundSettings={updateSoundSettings}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+          </AccordionSection>
+
+          <View style={{ marginHorizontal: 12, marginBottom: 10, borderRadius: 14, borderWidth: 1.5, borderColor: RED, backgroundColor: ADMIN_SURFACE, overflow: 'hidden' }}>
             <View style={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 6 }}>
-              <Text style={{ color: '#FFB0B0', fontSize: 13, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
+              <Text style={{ color: ADMIN_TEXT, fontSize: 13, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
                 Maestro quick QA
               </Text>
-              <Text style={{ color: '#FF8080', fontSize: 11, marginTop: 2 }}>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, marginTop: 2 }}>
                 Stable entry points for live admin flows
               </Text>
             </View>
@@ -1536,7 +1785,7 @@ export default function SettingsTestersFunctions() {
                 borderRadius: 14,
                 borderWidth: 1.5,
                 borderColor: RED,
-                backgroundColor: RED_BG,
+                backgroundColor: ADMIN_SURFACE,
                 paddingHorizontal: 14,
                 paddingVertical: 12,
                 flexDirection: 'row',
@@ -1545,7 +1794,7 @@ export default function SettingsTestersFunctions() {
             >
               <Ionicons name="flask-outline" size={20} color={RED} style={{ marginRight: 10 }} />
               <View style={{ flex: 1 }}>
-                <Text style={{ color: '#FFB0B0', fontSize: 15, fontWeight: '800' }}>
+                <Text style={{ color: ADMIN_TEXT, fontSize: 15, fontWeight: '800' }}>
                   {triLang(lang, {
   uk: 'Повтор: 7 тестових карток',
   ru: 'Повтор: 7 тестовых карточек',
@@ -1557,7 +1806,7 @@ export default function SettingsTestersFunctions() {
   pl: 'Aktywna powtórka: 7 kart testowych',
 })}
                 </Text>
-                <Text style={{ color: '#FF8080', fontSize: 12, marginTop: 2 }}>
+                <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 12, marginTop: 2 }}>
                   {triLang(lang, {
   uk: 'Сид урок 99: старі тест-записи видаляються, потім екран «Повторення»',
   ru: 'Сид урок 99: старые тест-записи удаляются, затем экран «Повторение»',
@@ -1584,7 +1833,7 @@ export default function SettingsTestersFunctions() {
             onToggle={(id) => setOpenSection(openSection === id ? null : id)}
           >
             <View style={{ paddingHorizontal: 20, paddingTop: 12, paddingBottom: 8 }}>
-              <Text style={{ color: '#FF8080', fontSize: f.caption, lineHeight: f.caption * 1.45 }}>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, lineHeight: f.caption * 1.45 }}>
                 Сейчас:{' '}
                 {platformUiPreview === 'real'
                   ? `как на устройстве (${Platform.OS})`
@@ -1805,36 +2054,36 @@ export default function SettingsTestersFunctions() {
             open={openSection === 'arena_modals'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             {/* Rank picker */}
             <View style={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8, gap: 8 }}>
-              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>Выбери ранг:</Text>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>Выбери ранг:</Text>
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
                 {TIERS_LIST.map(tier => (
                   <TouchableOpacity key={tier} onPress={() => { doHaptic(); setRankTestTier(tier); }}
-                    style={{ borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, borderWidth: 1.5, borderColor: rankTestTier === tier ? (TIER_COLORS[tier] ?? RED) : '#333', backgroundColor: rankTestTier === tier ? (TIER_COLORS[tier] ?? RED) + '22' : 'transparent' }}
+                    style={{ borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, borderWidth: 1.5, borderColor: rankTestTier === tier ? RED : ADMIN_BORDER_MUTED, backgroundColor: rankTestTier === tier ? RED_BG : ADMIN_SURFACE_MUTED }}
                     activeOpacity={0.75}>
-                    <Text style={{ color: TIER_COLORS[tier] ?? '#aaa', fontSize: 12, fontWeight: '700' }}>{TIER_SHORT_NAMES[tier]}</Text>
+                    <Text style={{ color: rankTestTier === tier ? RED : ADMIN_TEXT_MUTED, fontSize: 12, fontWeight: '700' }}>{TIER_SHORT_NAMES[tier]}</Text>
                   </TouchableOpacity>
                 ))}
               </View>
-              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase', marginTop: 4 }}>Уровень:</Text>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase', marginTop: 4 }}>Уровень:</Text>
               <View style={{ flexDirection: 'row', gap: 6 }}>
                 {RANK_LEVELS.map(lv => (
                   <TouchableOpacity key={lv} onPress={() => { doHaptic(); setRankTestLevel(lv); }}
-                    style={{ borderRadius: 8, paddingHorizontal: 18, paddingVertical: 7, borderWidth: 1.5, borderColor: rankTestLevel === lv ? (TIER_COLORS[rankTestTier] ?? RED) : '#333', backgroundColor: rankTestLevel === lv ? (TIER_COLORS[rankTestTier] ?? RED) + '22' : 'transparent' }}
+                    style={{ borderRadius: 8, paddingHorizontal: 18, paddingVertical: 7, borderWidth: 1.5, borderColor: rankTestLevel === lv ? RED : ADMIN_BORDER_MUTED, backgroundColor: rankTestLevel === lv ? RED_BG : ADMIN_SURFACE_MUTED }}
                     activeOpacity={0.75}>
-                    <Text style={{ color: rankTestLevel === lv ? (TIER_COLORS[rankTestTier] ?? '#aaa') : '#888', fontSize: 14, fontWeight: '800' }}>{lv}</Text>
+                    <Text style={{ color: rankTestLevel === lv ? RED : ADMIN_TEXT_MUTED, fontSize: 14, fontWeight: '800' }}>{lv}</Text>
                   </TouchableOpacity>
                 ))}
               </View>
               <View style={{ flexDirection: 'row', gap: 8, marginTop: 4 }}>
                 <TouchableOpacity onPress={() => { doHaptic(); setRankModal({ promoted: true, tier: rankTestTier, level: rankTestLevel }); }}
-                  style={{ flex: 1, borderRadius: 10, paddingVertical: 11, borderWidth: 1.5, borderColor: TIER_COLORS[rankTestTier] ?? RED, backgroundColor: (TIER_COLORS[rankTestTier] ?? RED) + '22', alignItems: 'center' }}
+                  style={{ flex: 1, borderRadius: 10, paddingVertical: 11, borderWidth: 1.5, borderColor: RED, backgroundColor: RED_BG, alignItems: 'center' }}
                   activeOpacity={0.8}>
-                  <Text style={{ color: TIER_COLORS[rankTestTier] ?? RED, fontSize: 13, fontWeight: '800' }}>⬆️ Повышение</Text>
+                  <Text style={{ color: RED, fontSize: 13, fontWeight: '800' }}>⬆️ Повышение</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => { doHaptic(); setRankModal({ promoted: false, tier: rankTestTier, level: rankTestLevel }); }}
-                  style={{ flex: 1, borderRadius: 10, paddingVertical: 11, borderWidth: 1.5, borderColor: '#555', backgroundColor: '#1a1a1a', alignItems: 'center' }}
+                  style={{ flex: 1, borderRadius: 10, paddingVertical: 11, borderWidth: 1.5, borderColor: ADMIN_BORDER_MUTED, backgroundColor: ADMIN_SURFACE_MUTED, alignItems: 'center' }}
                   activeOpacity={0.8}>
-                  <Text style={{ color: '#aaa', fontSize: 13, fontWeight: '800' }}>⬇️ Понижение</Text>
+                  <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 13, fontWeight: '800' }}>⬇️ Понижение</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -1890,6 +2139,11 @@ export default function SettingsTestersFunctions() {
                 ru: 'Лига выполнила цель недели. Бонус уже ждёт!',
                 uk: 'Ліга виконала ціль тижня. Бонус уже чекає!',
                 es: 'La liga completó la meta semanal. Tu bono te espera.',
+                'pt-BR': 'A liga cumpriu a meta semanal. O bônus já está esperando!',
+                vi: 'Giải đấu đã hoàn thành mục tiêu tuần. Phần thưởng đang chờ!',
+                id: 'Liga menyelesaikan target mingguan. Bonus sudah menunggu!',
+                tr: 'Lig haftalık hedefi tamamladı. Bonus seni bekliyor!',
+                pl: 'Liga osiągnęła cel tygodnia. Bonus już czeka!',
               }))}
               t={t} f={f} doHaptic={doHaptic}
             />
@@ -1946,6 +2200,11 @@ export default function SettingsTestersFunctions() {
                   ru: 'Редкая тема разблокирована локально',
                   uk: 'Рідкісну тему розблоковано локально',
                   es: 'Tema raro desbloqueado localmente',
+                  'pt-BR': 'Tema raro desbloqueado localmente',
+                  vi: 'Chủ đề hiếm đã được mở khóa cục bộ',
+                  id: 'Tema langka dibuka secara lokal',
+                  tr: 'Nadir tema yerel olarak açıldı',
+                  pl: 'Rzadki motyw odblokowany lokalnie',
                 }));
               }}
               t={t} f={f} doHaptic={doHaptic}
@@ -1961,6 +2220,11 @@ export default function SettingsTestersFunctions() {
                   ru: 'Редкая тема сброшена локально и снова скрыта до награды лиги',
                   uk: 'Рідкісну тему скинуто локально й знову сховано до нагороди ліги',
                   es: 'Tema raro restablecido localmente hasta la recompensa',
+                  'pt-BR': 'Tema raro redefinido localmente e oculto novamente até a recompensa da liga',
+                  vi: 'Chủ đề hiếm đã được đặt lại cục bộ và lại ẩn cho đến phần thưởng giải đấu',
+                  id: 'Tema langka direset lokal dan disembunyikan lagi hingga hadiah liga',
+                  tr: 'Nadir tema yerel olarak sıfırlandı ve lig ödülüne kadar yeniden gizlendi',
+                  pl: 'Rzadki motyw zresetowany lokalnie i ponownie ukryty do nagrody ligi',
                 }));
               }}
               t={t} f={f} doHaptic={doHaptic}
@@ -1987,6 +2251,11 @@ export default function SettingsTestersFunctions() {
                     ru: 'Флаг сброшен',
                     uk: 'Прапор скинуто',
                     es: 'Marcador reiniciado.',
+                    'pt-BR': 'Marcador reiniciado.',
+                    vi: 'Đã đặt lại cờ.',
+                    id: 'Penanda direset.',
+                    tr: 'Bayrak sıfırlandı.',
+                    pl: 'Flaga zresetowana.',
                   }),
                 );
               }}
@@ -2007,11 +2276,11 @@ export default function SettingsTestersFunctions() {
             {/* Trial UI QA — приоритетный блок: проверка новой золотой ленты + Free 3 days
                 в карточках планов. _force_trial_ui=1 форсит UI даже без реального RC
                 (Expo Go / dev / магазин не отдаёт intro). В проде параметр недоступен. */}
-            <View style={{ marginHorizontal: 12, marginVertical: 10, borderRadius: 12, borderWidth: 1.5, borderColor: '#FFD700', backgroundColor: 'rgba(255,215,0,0.08)', padding: 12 }}>
-              <Text style={{ color: '#FFD700', fontSize: 13, fontWeight: '900', letterSpacing: 0.4, marginBottom: 6 }}>
+            <View style={{ marginHorizontal: 12, marginVertical: 10, borderRadius: 12, borderWidth: 1.5, borderColor: RED, backgroundColor: ADMIN_SURFACE_ELEVATED, padding: 12 }}>
+              <Text style={{ color: RED, fontSize: 13, fontWeight: '900', letterSpacing: 0.4, marginBottom: 6 }}>
                 🎁 ТРИАЛ-UI · ЧТО ПРОВЕРИТЬ
               </Text>
-              <Text style={{ color: '#FFE07A', fontSize: 11, lineHeight: 15, marginBottom: 10 }}>
+              <Text style={{ color: ADMIN_TEXT, fontSize: 11, lineHeight: 15, marginBottom: 10 }}>
                 {`✓ Сверху золотая лента «Попробуй Premium 3 дня бесплатно»\n✓ В обоих карточках справа: «Бесплатно» (зелёным) + «на 3 дня» + мелко «затем €X/період»\n✓ CTA: «🚀 3 дня бесплатно — затем €X/період»\n✗ Большие ценники справа НЕ доминируют (compliance ok)`}
               </Text>
               <TouchableOpacity
@@ -2022,9 +2291,9 @@ export default function SettingsTestersFunctions() {
                   router.push({ pathname: '/premium_modal', params: { context: 'generic', _force_trial_ui: '1' } } as any);
                 }}
                 activeOpacity={0.8}
-                style={{ backgroundColor: '#FFD700', borderRadius: 10, paddingVertical: 11, paddingHorizontal: 12, alignItems: 'center', marginBottom: 8 }}
+                style={{ backgroundColor: RED_DARK, borderRadius: 10, paddingVertical: 11, paddingHorizontal: 12, alignItems: 'center', marginBottom: 8 }}
               >
-                <Text style={{ color: '#1a1208', fontSize: 13, fontWeight: '900' }}>
+                <Text style={{ color: '#fff', fontSize: 13, fontWeight: '900' }}>
                   ⚡ ФОРС: trial-UI + сброс кулдауна
                 </Text>
               </TouchableOpacity>
@@ -2036,13 +2305,13 @@ export default function SettingsTestersFunctions() {
                   router.push({ pathname: '/premium_modal', params: { context: 'generic' } } as any);
                 }}
                 activeOpacity={0.8}
-                style={{ borderRadius: 10, paddingVertical: 9, paddingHorizontal: 12, alignItems: 'center', borderWidth: 1, borderColor: '#FFD700' }}
+                style={{ borderRadius: 10, paddingVertical: 9, paddingHorizontal: 12, alignItems: 'center', borderWidth: 1, borderColor: RED_BORDER }}
               >
-                <Text style={{ color: '#FFE07A', fontSize: 12, fontWeight: '700' }}>
+                <Text style={{ color: ADMIN_TEXT, fontSize: 12, fontWeight: '700' }}>
                   «Натуральный» режим (как у юзера)
                 </Text>
               </TouchableOpacity>
-              <Text style={{ color: '#FF8080', fontSize: 10, marginTop: 8, fontStyle: 'italic', lineHeight: 14 }}>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 10, marginTop: 8, fontStyle: 'italic', lineHeight: 14 }}>
                 ФОРС → trial-UI рендерится всегда (Expo Go/dev/RC без intro).{'\n'}
                 Натуральный → как у реального юзера: лента покажется ТОЛЬКО если магазин отдал intro phase.
               </Text>
@@ -2062,6 +2331,11 @@ export default function SettingsTestersFunctions() {
                     ru: 'Кулдаун сброшен. Открой пейволл снизу.',
                     uk: 'Кулдаун скинуто. Відкрий пейволл знизу.',
                     es: 'Enfriamiento reiniciado. Abre el paywall abajo.',
+                    'pt-BR': 'Cooldown redefinido. Abra o paywall abaixo.',
+                    vi: 'Đã đặt lại cooldown. Mở paywall bên dưới.',
+                    id: 'Cooldown direset. Buka paywall di bawah.',
+                    tr: "Bekleme süresi sıfırlandı. Aşağıdaki paywall'u aç.",
+                    pl: 'Cooldown zresetowany. Otwórz paywall poniżej.',
                   }),
                 );
               }}
@@ -2157,6 +2431,11 @@ export default function SettingsTestersFunctions() {
                   ru: 'pending выставлен — открой главный экран',
                   uk: 'pending виставлено — відкрий головний екран',
                   es: 'pending activado — abre la pantalla principal',
+                  'pt-BR': 'pending definido — abra a tela inicial',
+                  vi: 'đã đặt pending — mở màn hình chính',
+                  id: 'pending disetel — buka layar utama',
+                  tr: 'pending ayarlandı — ana ekranı aç',
+                  pl: 'pending ustawione — otwórz ekran główny',
                 }));
               }}
               t={t}
@@ -2206,16 +2485,16 @@ export default function SettingsTestersFunctions() {
             />
             {paywallCounters !== null && (
               <View style={{ paddingHorizontal: 16, paddingVertical: 10, gap: 4 }}>
-                <Text style={{ color: '#FFE07A', fontSize: 12, fontWeight: '700', marginBottom: 4 }}>
+                <Text style={{ color: ADMIN_TEXT, fontSize: 12, fontWeight: '700', marginBottom: 4 }}>
                   Текущие значения:
                 </Text>
-                <Text style={{ color: '#FFB0B0', fontSize: 12 }}>
+                <Text style={{ color: ADMIN_TEXT, fontSize: 12 }}>
                   ⚡ Нет энергии: <Text style={{ color: '#fff', fontWeight: '700' }}>{paywallCounters.energy}</Text>
                   {'  '}🔥 Цепочка потеряна: <Text style={{ color: '#fff', fontWeight: '700' }}>{paywallCounters.streak}</Text>
                   {'  '}💜 Hard-блоки: <Text style={{ color: '#fff', fontWeight: '700' }}>{paywallCounters.hard}</Text>
                 </Text>
                 {paywallTagsPreview && paywallTagsPreview.length > 0 && (
-                  <Text style={{ color: '#FF8080', fontSize: 11, marginTop: 4 }}>
+                  <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, marginTop: 4 }}>
                     Теги: {paywallTagsPreview.join(' · ')}
                   </Text>
                 )}
@@ -2257,6 +2536,11 @@ export default function SettingsTestersFunctions() {
                   ru: 'Счётчики пейволла сброшены',
                   uk: 'Лічильники пейволу скинуті',
                   es: 'Contadores del paywall restablecidos',
+                  'pt-BR': 'Contadores do paywall redefinidos',
+                  vi: 'Đã đặt lại bộ đếm paywall',
+                  id: 'Penghitung paywall direset',
+                  tr: 'Paywall sayaçları sıfırlandı',
+                  pl: 'Liczniki paywalla zresetowane',
                 }));
               }}
               t={t} f={f} doHaptic={doHaptic}
@@ -2291,7 +2575,7 @@ export default function SettingsTestersFunctions() {
             />
             {freeSessionsLeft !== null && (
               <View style={{ paddingHorizontal: 16, paddingVertical: 8 }}>
-                <Text style={{ color: '#FFB0B0', fontSize: 12 }}>
+                <Text style={{ color: ADMIN_TEXT, fontSize: 12 }}>
                   Бесплатных сессий сегодня:{' '}
                   <Text style={{ color: freeSessionsLeft > 0 ? '#22C55E' : '#FF4444', fontWeight: '700' }}>
                     {freeSessionsLeft}
@@ -2301,14 +2585,14 @@ export default function SettingsTestersFunctions() {
             )}
             {mistakeLogPreview !== null && (
               <View style={{ paddingHorizontal: 16, paddingBottom: 8 }}>
-                <Text style={{ color: '#FFE07A', fontSize: 11, fontWeight: '700', marginBottom: 4 }}>
+                <Text style={{ color: ADMIN_TEXT, fontSize: 11, fontWeight: '700', marginBottom: 4 }}>
                   Топ ошибок ({mistakeLogPreview.length}):
                 </Text>
                 {mistakeLogPreview.length === 0 ? (
-                  <Text style={{ color: '#FF8080', fontSize: 11 }}>Лог пуст</Text>
+                  <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11 }}>Лог пуст</Text>
                 ) : (
                   mistakeLogPreview.slice(0, 5).map(m => (
-                    <Text key={m.phrase} style={{ color: '#FFB0B0', fontSize: 11 }}>
+                    <Text key={m.phrase} style={{ color: ADMIN_TEXT, fontSize: 11 }}>
                       {m.phrase} — {m.count}×
                     </Text>
                   ))
@@ -2324,7 +2608,7 @@ export default function SettingsTestersFunctions() {
               t={t} f={f} doHaptic={doHaptic}
             />
             <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
-              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
                 Текущий TrainerStore:
               </Text>
             </View>
@@ -2341,6 +2625,11 @@ export default function SettingsTestersFunctions() {
                   ru: 'TrainerStore засеян: открой /trainer или текущие сессии ниже',
                   uk: 'TrainerStore засіяно: відкрий /trainer або поточні сесії нижче',
                   es: 'TrainerStore sembrado: abre /trainer o las sesiones actuales abajo',
+                  'pt-BR': 'TrainerStore semeado: abra /trainer ou as sessões atuais abaixo',
+                  vi: 'TrainerStore đã được seed: mở /trainer hoặc các phiên hiện tại bên dưới',
+                  id: 'TrainerStore di-seed: buka /trainer atau sesi saat ini di bawah',
+                  tr: 'TrainerStore seed edildi: /trainer ekranını veya aşağıdaki mevcut oturumları aç',
+                  pl: 'TrainerStore zasiany: otwórz /trainer albo bieżące sesje poniżej',
                 }));
               }}
               t={t} f={f} doHaptic={doHaptic}
@@ -2358,12 +2647,17 @@ export default function SettingsTestersFunctions() {
                   ru: 'TrainerStore очищен',
                   uk: 'TrainerStore очищено',
                   es: 'TrainerStore limpiado',
+                  'pt-BR': 'TrainerStore limpo',
+                  vi: 'Đã xóa TrainerStore',
+                  id: 'TrainerStore dibersihkan',
+                  tr: 'TrainerStore temizlendi',
+                  pl: 'TrainerStore wyczyszczony',
                 }));
               }}
               t={t} f={f} doHaptic={doHaptic}
             />
             <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
-              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
                 Текущие сессии тренера:
               </Text>
             </View>
@@ -2448,6 +2742,11 @@ export default function SettingsTestersFunctions() {
                   ru: '15 записей добавлено в лог ошибок',
                   uk: '15 записів додано в лог помилок',
                   es: '15 entradas añadidas al log de errores',
+                  'pt-BR': '15 registros adicionados ao log de erros',
+                  vi: 'Đã thêm 15 bản ghi vào nhật ký lỗi',
+                  id: '15 entri ditambahkan ke log kesalahan',
+                  tr: 'Hata günlüğüne 15 kayıt eklendi',
+                  pl: 'Dodano 15 wpisów do dziennika błędów',
                 }));
               }}
               t={t} f={f} doHaptic={doHaptic}
@@ -2465,6 +2764,11 @@ export default function SettingsTestersFunctions() {
                   ru: 'Лог ошибок очищен',
                   uk: 'Лог помилок очищено',
                   es: 'Log de errores limpiado',
+                  'pt-BR': 'Log de erros limpo',
+                  vi: 'Đã xóa nhật ký lỗi',
+                  id: 'Log kesalahan dibersihkan',
+                  tr: 'Hata günlüğü temizlendi',
+                  pl: 'Dziennik błędów wyczyszczony',
                 }));
               }}
               t={t} f={f} doHaptic={doHaptic}
@@ -2481,13 +2785,18 @@ export default function SettingsTestersFunctions() {
                   ru: 'Лимит сессий сброшен — 1 сессия доступна',
                   uk: 'Ліміт сесій скинуто — 1 сесія доступна',
                   es: 'Límite de sesiones restablecido — 1 sesión disponible',
+                  'pt-BR': 'Limite de sessões redefinido — 1 sessão disponível',
+                  vi: 'Đã đặt lại giới hạn phiên — còn 1 phiên',
+                  id: 'Batas sesi direset — 1 sesi tersedia',
+                  tr: 'Oturum sınırı sıfırlandı — 1 oturum kullanılabilir',
+                  pl: 'Limit sesji zresetowany — dostępna 1 sesja',
                 }));
               }}
               t={t} f={f} doHaptic={doHaptic}
             />
             {/* Legacy active_recall modes */}
             <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
-              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
                 Legacy SRS /review modes:
               </Text>
             </View>
@@ -2548,7 +2857,7 @@ export default function SettingsTestersFunctions() {
             />
             {/* Mock-данные для тестирования перцентилей */}
             <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
-              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
                 Mock-данные (без Firestore):
               </Text>
             </View>
@@ -2563,6 +2872,11 @@ export default function SettingsTestersFunctions() {
                   ru: 'Mock-данные установлены — открой streak_stats или home',
                   uk: 'Mock-дані встановлено — відкрий streak_stats або home',
                   es: 'Mock inyectado — abre streak_stats o home',
+                  'pt-BR': 'Mock definido — abra streak_stats ou home',
+                  vi: 'Đã đặt mock — mở streak_stats hoặc home',
+                  id: 'Mock disetel — buka streak_stats atau home',
+                  tr: 'Mock veriler ayarlandı — streak_stats veya home aç',
+                  pl: 'Mock ustawiony — otwórz streak_stats albo home',
                 }));
               }}
               t={t} f={f} doHaptic={doHaptic}
@@ -2578,6 +2892,11 @@ export default function SettingsTestersFunctions() {
                   ru: 'Mock сброшен — перцентили снова из Firestore',
                   uk: 'Mock скинуто',
                   es: 'Mock borrado',
+                  'pt-BR': 'Mock limpo — percentis voltam do Firestore',
+                  vi: 'Đã xóa mock — percentile lại lấy từ Firestore',
+                  id: 'Mock dihapus — persentil kembali dari Firestore',
+                  tr: 'Mock sıfırlandı — yüzdelikler yeniden Firestore üzerinden',
+                  pl: 'Mock wyczyszczony — percentyle znów z Firestore',
                 }));
               }}
               t={t} f={f} doHaptic={doHaptic}
@@ -2585,7 +2904,7 @@ export default function SettingsTestersFunctions() {
 
             {/* Навигация к местам отображения перцентилей */}
             <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
-              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
                 Где показываются перцентили:
               </Text>
             </View>
@@ -2631,7 +2950,7 @@ export default function SettingsTestersFunctions() {
             />
             {/* Diagnosis trainer экран */}
             <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
-              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
                 Diagnosis trainer — экран тренировки:
               </Text>
             </View>
@@ -2687,7 +3006,7 @@ export default function SettingsTestersFunctions() {
             ))}
             {/* CoachToast превью */}
             <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
-              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
                 Diagnosis Toast:
               </Text>
             </View>
@@ -2866,6 +3185,11 @@ export default function SettingsTestersFunctions() {
                   ru: '15 exact POS записей добавлено → проверь CoachToast и аналитику',
                   uk: '15 exact POS записів додано → перевір CoachToast і аналітику',
                   es: '15 eventos POS exactos añadidos → revisa CoachToast y analítica',
+                  'pt-BR': '15 registros exact POS adicionados → confira CoachToast e analytics',
+                  vi: 'Đã thêm 15 bản ghi exact POS → kiểm tra CoachToast và analytics',
+                  id: '15 catatan exact POS ditambahkan → periksa CoachToast dan analytics',
+                  tr: '15 exact POS kaydı eklendi → CoachToast ve analitiği kontrol et',
+                  pl: 'Dodano 15 wpisów exact POS → sprawdź CoachToast i analitykę',
                 }));
               }}
               t={t} f={f} doHaptic={doHaptic}
@@ -2882,6 +3206,11 @@ export default function SettingsTestersFunctions() {
                   ru: 'Лог очищен — аналитика пустая',
                   uk: 'Лог очищено',
                   es: 'Log limpiado',
+                  'pt-BR': 'Log limpo — analytics vazio',
+                  vi: 'Đã xóa log — analytics trống',
+                  id: 'Log dibersihkan — analytics kosong',
+                  tr: 'Günlük temizlendi — analiz boş',
+                  pl: 'Log wyczyszczony — analityka pusta',
                 }));
               }}
               t={t} f={f} doHaptic={doHaptic}
@@ -3075,6 +3404,11 @@ export default function SettingsTestersFunctions() {
                     ru: 'Проверка ActionToast: SUCCESS',
                     uk: 'Перевірка ActionToast: SUCCESS',
                     es: 'Prueba ActionToast: SUCCESS',
+                    'pt-BR': 'Teste ActionToast: SUCCESS',
+                    vi: 'Kiểm tra ActionToast: SUCCESS',
+                    id: 'Uji ActionToast: SUCCESS',
+                    tr: 'ActionToast testi: SUCCESS',
+                    pl: 'Test ActionToast: SUCCESS',
                   }),
                 );
                 markQa('actionToast');
@@ -3089,6 +3423,11 @@ export default function SettingsTestersFunctions() {
                     ru: 'Проверка ActionToast: ERROR',
                     uk: 'Перевірка ActionToast: ERROR',
                     es: 'Prueba ActionToast: ERROR',
+                    'pt-BR': 'Teste ActionToast: ERROR',
+                    vi: 'Kiểm tra ActionToast: ERROR',
+                    id: 'Uji ActionToast: ERROR',
+                    tr: 'ActionToast testi: ERROR',
+                    pl: 'Test ActionToast: ERROR',
                   }),
                 );
                 markQa('actionToast');
@@ -3103,6 +3442,11 @@ export default function SettingsTestersFunctions() {
                     ru: 'Проверка ActionToast: INFO',
                     uk: 'Перевірка ActionToast: INFO',
                     es: 'Prueba ActionToast: INFO',
+                    'pt-BR': 'Teste ActionToast: INFO',
+                    vi: 'Kiểm tra ActionToast: INFO',
+                    id: 'Uji ActionToast: INFO',
+                    tr: 'ActionToast testi: INFO',
+                    pl: 'Test ActionToast: INFO',
                   }),
                 );
                 markQa('actionToast');
@@ -3216,8 +3560,8 @@ export default function SettingsTestersFunctions() {
                   borderBottomColor: RED_BORDER,
                 }}
               >
-                <Text style={{ color: '#FFB0B0', fontSize: 14, flex: 1, paddingRight: 8 }}>{label}</Text>
-                <Text style={{ color: qaChecks[key] ? '#22C55E' : '#FF8080', fontSize: 13, fontWeight: '700' }}>
+                <Text style={{ color: ADMIN_TEXT, fontSize: 14, flex: 1, paddingRight: 8 }}>{label}</Text>
+                <Text style={{ color: qaChecks[key] ? '#22C55E' : ADMIN_TEXT_MUTED, fontSize: 13, fontWeight: '700' }}>
                   {qaChecks[key] ? '✅ OK' : '⏳ TODO'}
                 </Text>
                 <Ionicons name="chevron-forward" size={16} color={RED_DIM} style={{ marginLeft: 6 }} />
@@ -3460,6 +3804,31 @@ export default function SettingsTestersFunctions() {
                 : perm.openedSettings
                   ? 'Se abrieron los ajustes de la app: activa las notificaciones ahí.'
                   : 'El sistema no concedió el permiso.',
+              'pt-BR': ok
+                ? 'Permissão de notificações concedida.'
+                : perm.openedSettings
+                  ? 'Configurações do app abertas: ative as notificações lá.'
+                  : 'A permissão do sistema não foi concedida.',
+              vi: ok
+                ? 'Đã cấp quyền thông báo.'
+                : perm.openedSettings
+                  ? 'Đã mở cài đặt ứng dụng: hãy bật thông báo ở đó.'
+                  : 'Hệ thống chưa cấp quyền.',
+              id: ok
+                ? 'Izin notifikasi diberikan.'
+                : perm.openedSettings
+                  ? 'Pengaturan aplikasi terbuka: aktifkan notifikasi di sana.'
+                  : 'Izin sistem tidak diberikan.',
+              tr: ok
+                ? 'Bildirim izni verildi.'
+                : perm.openedSettings
+                  ? 'Uygulama ayarları açıldı: bildirimleri oradan aç.'
+                  : 'Sistem izni verilmedi.',
+              pl: ok
+                ? 'Zgoda na powiadomienia przyznana.'
+                : perm.openedSettings
+                  ? 'Otwarto ustawienia aplikacji: włącz tam powiadomienia.'
+                  : 'System nie przyznał zgody.',
             }),
           );
         }}

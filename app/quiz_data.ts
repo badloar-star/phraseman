@@ -5608,7 +5608,7 @@ const EASY_POOL: QuizPoolEntry[] = [
     explanationsES: [
       'Correcto. Con un adjetivo largo como interesting, usamos more interesting.',
       'Interestinger no funciona en inglés estándar. Para este adjetivo, usa more interesting.',
-      'Interest es interés. Para describir el libro necesitas interesting.',
+      'More interest no funciona aquí: interest es interés. Para describir el libro necesitas more interesting.',
       'Than queda incompleto si no dices con qué lo comparas. Aquí la frase termina antes.',
     ],
     lessonNum: 0,
@@ -6726,7 +6726,7 @@ const EASY_POOL: QuizPoolEntry[] = [
   {
     ru: 'Ты слушаешь музыку?',
     uk: 'Ти слухаєш музику?',
-    es: '¿Escuchas música?',
+    es: '¿Estás escuchando música?',
     choices: ['Do you listen to music?', 'Are you listen to music?', 'Are you listening to music?', 'Are you listing to music?'],
     correct: 2,
     explanations: [
@@ -6742,10 +6742,10 @@ const EASY_POOL: QuizPoolEntry[] = [
       'Кумедна плутанина! Слова listening і listing співзвучні, але обраний варіант означає складання списків. Вийшло, що ти вносиш музику до списку замість того, щоб її слухати. Стеж за літерами!',
     ],
     explanationsES: [
-      'Correcto. Do you listen to music? pregunta por un hábito o gusto.',
-      'Are you listen no funciona. Con are necesitarías listening, pero aquí el target es present simple.',
-      'Are you listening to music? es correcto para ahora, pero aquí preguntamos en general.',
-      'Listing significa haciendo una lista. Para escuchar necesitas listening o listen.',
+      'Do you listen to music? pregunta por un hábito o gusto. Aquí preguntamos sobre ahora.',
+      'Are you listen no funciona. Con are necesitas listening.',
+      'Correcto. Are you listening to music? usa are + listening to para una acción en curso.',
+      'Listing significa haciendo una lista. Para escuchar necesitas listening.',
     ],
     lessonNum: 0,
     level: 'A1',
@@ -7149,8 +7149,8 @@ const EASY_POOL: QuizPoolEntry[] = [
     ],
     explanationsES: [
       'Correcto. Are you writing a message? usa are + ing para una acción en curso.',
-      'Do no va con writing en present continuous. Necesitas are.',
-      'El orden y la forma verbal no funcionan. En pregunta: Are you writing...?',
+      'Do you writing a message? no va con present continuous. Necesitas are.',
+      'You are write a message? no funciona: el orden y el verbo write están mal para la pregunta.',
       'Is no va con you. Con you usamos are.',
     ],
     lessonNum: 0,
@@ -7176,7 +7176,7 @@ const EASY_POOL: QuizPoolEntry[] = [
     ],
     explanationsES: [
       'Leaved no es el pasado correcto de leave. La forma irregular es left.',
-      'Correcto. Left es el pasado de leave.',
+      'Correcto. He left home usa left, el pasado de leave.',
       'Leave está en presente. Para pasado necesitas left.',
       'Is left suena a pasiva o estado. Aquí buscamos past simple: left.',
     ],
@@ -7202,7 +7202,7 @@ const EASY_POOL: QuizPoolEntry[] = [
       'Помилка! Потрібен майбутній час will go, а не просто go.',
     ],
     explanationsES: [
-      'Correcto. Go on holiday es la combinación natural, y will marca futuro.',
+      'Correcto. I will go on holiday usa will go on holiday, la combinación natural para futuro.',
       'In holiday no es la combinación correcta aquí. Decimos on holiday.',
       'Decimos go on holiday, no go to holiday.',
       'I go on holiday habla de presente o hábito. Para futuro necesitas will go.',
@@ -7258,7 +7258,7 @@ const EASY_POOL: QuizPoolEntry[] = [
     explanationsES: [
       'Correcto. I love music usa present simple para un gusto general.',
       'Con I no añadimos s al verbo. La forma es love.',
-      'Am sobra aquí. Love funciona como verbo principal.',
+      'I am love music no funciona: love music usa love como verbo principal sin am.',
       'I loving no funciona sin auxiliar y además aquí buscamos present simple.',
     ],
     lessonNum: 0,
@@ -7367,7 +7367,7 @@ const EASY_POOL: QuizPoolEntry[] = [
       'I not play copia el orden del español. En inglés necesitas don\'t play.',
       'Doesn\'t va con he, she o it. Con I usamos don\'t.',
       'Correcto. I don\'t play the guitar usa don\'t para negar play.',
-      'Am not no se usa con play en present simple. Necesitas don\'t.',
+      'I am not play the guitar no funciona: am not play no se usa en present simple. Necesitas don\'t.',
     ],
     lessonNum: 0,
     level: 'A1',
@@ -7445,7 +7445,7 @@ const EASY_POOL: QuizPoolEntry[] = [
       'Помилка! Is не використовується з модальним дієсловом can.',
     ],
     explanationsES: [
-      'Correcto. Con can hacemos la pregunta poniendo can antes del sujeto.',
+      'Correcto. Can she swim? hace la pregunta poniendo can antes del sujeto.',
       'Después de can el verbo va en forma base: swim, no swims.',
       'Can no necesita does. Decimos Can she swim?',
       'Is no se usa con el modal can.',
@@ -7474,8 +7474,8 @@ const EASY_POOL: QuizPoolEntry[] = [
     explanationsES: [
       'Drinked no es el pasado correcto. Drink es irregular: drank.',
       'Drink está en presente. Aquí hace falta pasado: drank.',
-      'Correcto. Drank es el past simple de drink.',
-      'Have drink no funciona. En present perfect sería have drunk.',
+      'Correcto. I drank water usa drank, el past simple de drink.',
+      'I have drink water no funciona. En present perfect sería I have drunk water.',
     ],
     lessonNum: 0,
     level: 'A1',
@@ -7500,7 +7500,7 @@ const EASY_POOL: QuizPoolEntry[] = [
     ],
     explanationsES: [
       'Are no se usa para formar esta pregunta en present simple.',
-      'Correcto. Con they usamos Do they live...?',
+      'Correcto. Do they live in France? usa Do they live in... con they.',
       'Does va con he/she/it. Con they usamos do.',
       'En una pregunta normal de present simple necesitas do al principio.',
     ],
@@ -7526,7 +7526,7 @@ const EASY_POOL: QuizPoolEntry[] = [
       "Помилка! Isn\'t використовується з дієсловом be, а не з understand.",
     ],
     explanationsES: [
-      'Correcto. Con she en negativo de present simple usamos does not / doesn\'t.',
+      'Correcto. She doesn\'t understand Spanish usa doesn\'t en negativo de present simple con she.',
       'Don\'t va con I/you/we/they. Con she usamos doesn\'t.',
       'Falta el auxiliar doesn\'t. She not understand no es una forma correcta.',
       'Isn\'t va con be. Understand necesita doesn\'t para el negativo.',
@@ -7634,7 +7634,7 @@ const EASY_POOL: QuizPoolEntry[] = [
       'Помилка! Was dance — неправильна конструкція. Потрібне просто danced.',
     ],
     explanationsES: [
-      'Correcto. Danced es el past simple regular de dance.',
+      'Correcto. They danced yesterday usa danced, el past simple regular de dance.',
       'Dance está en presente. Con yesterday necesitas past simple: danced.',
       'Dances es presente para he/she/it, no pasado.',
       'Was dance no es la forma correcta. Aquí basta danced.',
@@ -7985,7 +7985,7 @@ const EASY_POOL: QuizPoolEntry[] = [
       'Помилка! Is використовується з he/she/it. З we потрібне are.',
     ],
     explanationsES: [
-      'Correcto. We are walking usa are + ing para una acción en curso.',
+      'Correcto. We are walking in the park usa are + walking para una acción en curso.',
       'Falta are. Walking necesita el verbo be en present continuous.',
       'Walks va con he/she/it. Con we no usamos -s.',
       'Is va con he/she/it. Con we usamos are.',
@@ -8013,7 +8013,7 @@ const EASY_POOL: QuizPoolEntry[] = [
     ],
     explanationsES: [
       'Go solo está en presente. Con tomorrow aquí se busca una forma de futuro.',
-      'Correcto. Will go marca futuro y después de will el verbo queda en forma base.',
+      'Correcto. I will go to the shop tomorrow marca futuro y después de will el verbo queda en forma base.',
       'I am going to the shop tomorrow puede ser posible como plan, pero este ejercicio busca will go.',
       'Después de will no usamos goes. La forma correcta es will go.',
     ],
@@ -8040,7 +8040,7 @@ const EASY_POOL: QuizPoolEntry[] = [
     ],
     explanationsES: [
       'Falta el auxiliar does. La pregunta completa es Where does your friend live?',
-      'Correcto. Your friend funciona como he/she, por eso usamos does.',
+      'Correcto. Where does your friend live? usa does porque your friend funciona como he/she.',
       'Con does, el verbo principal va en forma base: live, no lives.',
       'Is no se usa para formar esta pregunta con el verbo live en present simple.',
     ],
@@ -8093,10 +8093,10 @@ const EASY_POOL: QuizPoolEntry[] = [
       'Помилка! Is she able cook — неправильно. Потрібне Is she able to cook? або просто Can she cook?',
     ],
     explanationsES: [
-      'Correcto. Con can hacemos la pregunta poniendo can antes del sujeto.',
+      'Correcto. Can she cook? hace la pregunta poniendo can antes del sujeto.',
       'Después de can el verbo va en forma base: cook, no cooks.',
       'Can no necesita does. Decimos Can she cook?',
-      'Able necesita to: Is she able to cook? La opción simple aquí es Can she cook?',
+      'Is she able cook está incompleta. Able necesita to: Is she able to cook? La opción simple aquí es Can she cook?',
     ],
     lessonNum: 0,
     level: 'A1',
@@ -8120,7 +8120,7 @@ const EASY_POOL: QuizPoolEntry[] = [
       'Помилка! Без допоміжного дієслова am форма living неправильна.',
     ],
     explanationsES: [
-      'Falta el artículo an, y para residencia estable aquí usamos live.',
+      'I am living in apartment está incompleta: falta el artículo an, y para residencia estable aquí usamos live.',
       'Correcto. I live in an apartment usa present simple y an antes de apartment.',
       'Con I no añadimos -s al verbo. Decimos live, no lives.',
       'Living solo no funciona. Para continuous necesitarías am living, pero aquí se busca live.',
@@ -8174,8 +8174,8 @@ const EASY_POOL: QuizPoolEntry[] = [
       'Помилка! У питанні допоміжне дієслово ставиться перед підметом: Are you waiting?',
     ],
     explanationsES: [
-      'Correcto. Are you waiting...? usa present continuous en forma de pregunta.',
-      'Do no va con waiting en present continuous. Necesitas are.',
+      'Correcto. Are you waiting for the bus? usa present continuous en forma de pregunta.',
+      'Do you waiting for the bus? mezcla do con waiting. En present continuous necesitas are.',
       'Is no va con you. Con you usamos are.',
       'En pregunta, are va antes de you: Are you waiting?',
     ],
@@ -8902,7 +8902,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
       `Смешная путаница! Слово ink означает чернила. Получилось, что гусеница превратилась в чернильную бабочку. Нам нужна частичка into, а не канцелярские принадлежности. Будь внимательнее!`,
     ],
     explanationsES: [
-      `Turn to puede indicar girarse hacia algo o acudir a alguien; para una transformación usamos turn into.`,
+      `The caterpillar turned to a beautiful butterfly usa turned to, que puede indicar girarse hacia algo o acudir a alguien; para una transformación usamos turn into.`,
       `Correcto. Turn into significa convertirse en algo diferente.`,
       `Onto habla de moverse hacia una superficie; no sirve para una transformación.`,
       `Ink significa tinta; aquí necesitas into.`,
@@ -9352,7 +9352,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
     explanationsES: [
       `Drop off puede significar dejar a alguien en un lugar o quedarse dormido; no es abandonar estudios.`,
       `Falta out of. Para abandonar una universidad usamos drop out of.`,
-      `Correcto. Drop out of significa dejar un curso, escuela o universidad antes de terminar.`,
+      `Correcto. Drop out of university significa dejar la universidad antes de terminar; drop out of también sirve para un curso o escuela.`,
       `Dressed significa vestido o se vistió; aquí necesitas dropped.`,
     ],
     explanationsUK: [
@@ -9510,7 +9510,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
       `Смешная путаница! Слово warm означает теплый. У тебя получилось, что кроссовки стали очень теплыми снаружи. Нам нужно слово worn (изношенный). Будь внимательнее к произношению и написанию!`,
     ],
     explanationsES: [
-      `Wear down puede significar desgastar poco a poco, pero para quedar inutilizable aquí encaja worn out.`,
+      `These old sneakers have completely worn down usa worn down, que puede significar desgastar poco a poco, pero para quedar inutilizable aquí encaja worn out.`,
       `Correcto. Worn out significa gastado o desgastado por mucho uso.`,
       `Torn out viene de tear y habla de arrancar o romper; aquí necesitas worn.`,
       `Warm significa cálido; aquí necesitas worn.`,
@@ -9992,7 +9992,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
     explanationsES: [
       `Correcto. Look down on significa menospreciar o tratar a alguien como inferior.`,
       `Falta on. La expresión completa es look down on someone.`,
-      `Below significa debajo; no forma esta expresión.`,
+      `Look below no forma esta expresión. Below significa debajo; aquí se necesita look down on.`,
       `Town significa ciudad; aquí necesitas down.`,
     ],
     explanationsUK: [
@@ -10406,7 +10406,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
       `Ловушка! Хотя слово long созвучно, без частички a оно просто означает длинный. Фраза потеряла смысл и превратилась в странный набор слов. Используй полную форму get along!`,
     ],
     explanationsES: [
-      `Good es adjetivo; aquí necesitas el verbo get.`,
+      `I good along with my brother usa good along, pero good es adjetivo; aquí necesitas el verbo get.`,
       `Correcto. Get along with someone significa llevarse bien con alguien.`,
       `Alone significa solo; aquí necesitas along.`,
       `Getting long mezcla la forma y cambia el sentido. La expresión es get along with.`,
@@ -10534,7 +10534,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
       `Смешная путаница! Если написать no body раздельно, это будет значить «я не видел никакого тела». Согласись, для офисных будней это звучит слишком мрачно. Пиши это слово слитно, когда говоришь о людях!`,
     ],
     explanationsES: [
-      `En inglés estándar evitamos doble negación: nobody ya tiene sentido negativo, así que no usamos didn\\'t.`,
+      `I didn't see nobody usa doble negación. En inglés estándar nobody ya tiene sentido negativo, así que no usamos didn't.`,
       `Correcto. I saw nobody usa una sola negación y significa que no viste a nadie.`,
       `I no saw someone copia otra estructura y no funciona en inglés estándar.`,
       `No body separado habla de un cuerpo físico. Para nadie usamos nobody junto.`,
@@ -10696,7 +10696,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
     explanationsES: [
       `Después de mind usamos -ing: waiting, no to wait.`,
       `Not against no es la forma natural para decir que no te importa esperar.`,
-      `Correcto. I don\\'t mind waiting here significa que esperar aquí está bien para ti.`,
+      `Correcto. I don't mind waiting here significa que esperar aquí está bien para ti.`,
       `Weighting tiene que ver con peso o ponderación; aquí necesitas waiting.`,
     ],
     explanationsUK: [
@@ -10759,7 +10759,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
     ],
     explanationsES: [
       `Correcto. Past continuous marca la acción de fondo: I was walking home. Past simple marca el evento: I saw her.`,
-      `See normalmente no se usa como acción continua en esta frase. Decimos when I saw her.`,
+      `I was walking home when I was seeing her usa was seeing, pero see normalmente no se usa como acción continua en esta frase. Decimos when I saw her.`,
       `I went home when I saw her cambia el sentido: parece que te fuiste a casa después de verla.`,
       `Working significa trabajando; aquí necesitas walking.`,
     ],
@@ -10790,7 +10790,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
       `Смешная путаница! Слова work и walk звучат похоже, но теперь получается, что ты еще не догулял, хотя планировал закончить дела. Следи за буквами в середине слова!`,
     ],
     explanationsES: [
-      `I didn\\'t finish... yet se oye en algunos contextos, pero este item apunta al present perfect con yet.`,
+      `I didn't finish... yet se oye en algunos contextos, pero este item apunta al present perfect con yet.`,
       `Falta el participio. Con have not usamos finished, no finish.`,
       `Correcto. I have not finished my work yet usa present perfect para algo que sigue pendiente.`,
       `Walk significa paseo o caminar. Para trabajo necesitas work.`,
@@ -10983,7 +10983,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
     ],
     explanationsES: [
       `En una indirect question usamos orden de afirmación: where he lives, no where does he live.`,
-      `Correcto. I don\\'t know where he lives mantiene el orden sujeto + verbo.`,
+      `Correcto. I don't know where he lives mantiene el orden sujeto + verbo.`,
       `Con he en presente simple necesitas lives, no live.`,
       `Leaves significa hojas o se va. Aquí necesitas lives.`,
     ],
@@ -11079,8 +11079,8 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
     ],
     explanationsES: [
       `Después de mind usamos -ing: helping, no to help.`,
+      `Correcto. I don't mind helping you significa que ayudar está bien para ti.`,
       `I not mind help no es una estructura correcta para esta idea.`,
-      `Correcto. I don\\'t mind helping you significa que ayudar está bien para ti.`,
       `Mine significa mío o mina. Aquí necesitas mind.`,
     ],
     explanationsUK: [
@@ -11239,7 +11239,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
     ],
     explanationsES: [
       `Después de mind usamos -ing: waiting, no to wait.`,
-      `Correcto. I don\\'t mind waiting significa que esperar no te molesta.`,
+      `Correcto. I don't mind waiting significa que esperar no te molesta.`,
       `Falta la forma -ing. La estructura es mind + waiting.`,
       `Weight significa peso. Aquí necesitas wait en forma waiting.`,
     ],
@@ -11334,7 +11334,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
       `Смешная путаница! Слова nobody (никто) и no buddy (нет приятеля) звучат похоже, но пишутся по-разному. Сейчас получилось, что у тебя просто нет друга, который в курсе. Пиши слово слитно!`,
     ],
     explanationsES: [
-      `Nobody ya tiene sentido negativo. En inglés estándar no añadimos don\\'t.`,
+      `Nobody don't know about it usa doble negación. Nobody ya tiene sentido negativo, así que en inglés estándar no añadimos don't.`,
       `Correcto. Nobody knows usa una sola negación y verbo en tercera persona.`,
       `Nobody funciona como sujeto singular, por eso necesitamos knows, no know.`,
       `No buddy separado significa "ningún colega/amigo", no nobody.`,
@@ -11590,7 +11590,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
       `Смешная путаница! Слова you и shoe звучат в некоторых контекстах отдаленно похоже, но теперь ты спрашиваешь мнение «ботинка». Для обращения к человеку нам нужно слово you!`,
     ],
     explanationsES: [
-      `Correcto. En una tag question, una frase afirmativa con will lleva la etiqueta negativa won\\'t you.`,
+      `Correcto. En una tag question, una frase afirmativa con will lleva la etiqueta negativa won't you.`,
       `Will not you no es la forma natural de esta tag question.`,
       `Don\\'t you no coincide con el auxiliar will de la frase principal.`,
       `Shoe significa zapato. Aquí necesitas you.`,
@@ -11622,7 +11622,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
       `Ой, какая путаница! Слова knew (знал) и new (новый) звучат абсолютно одинаково. Но сейчас ты сказал, что ты «новый ответ». Верни букву k в начало слова!`,
     ],
     explanationsES: [
-      `I wish I don\\'t know significa casi lo contrario y no expresa el deseo correcto.`,
+      `I wish I don't know significa casi lo contrario y no expresa el deseo correcto.`,
       `Correcto. Para un deseo sobre el presente usamos wish + past simple: I wish I knew.`,
       `Have known apunta a otra estructura y no encaja con este deseo presente.`,
       `New significa nuevo. Aquí necesitas knew, pasado de know.`,
@@ -11654,9 +11654,9 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
       `Смешная ситуация! Слова open и ocean имеют общие звуки, но теперь твоя дверь отказывается быть «океаном». Для входа нам нужно действие open. Следи за концовкой слова!`,
     ],
     explanationsES: [
-      `The door didn\\'t open puede ser gramatical, pero wouldn\\'t open expresa que se negaba/no lograba abrirse.`,
+      `The door didn't open puede ser gramatical, pero wouldn't open expresa que se negaba/no lograba abrirse.`,
       `Correcto. Wouldn\\'t open se usa cuando algo no funcionaba aunque intentaras abrirlo.`,
-      `Después de wouldn\\'t usamos verbo base: open, no opened.`,
+      `Después de wouldn't usamos verbo base: open, no opened.`,
       `Ocean significa océano. Aquí necesitas open.`,
     ],
     explanationsUK: [
@@ -18842,6 +18842,7 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Я предлагаю ей обсудить этот вопрос с менеджером напрямую`,
     uk: `Я пропоную їй обговорити це питання з менеджером безпосередньо`,
+    es: `Le sugiero que hable de este asunto directamente con el gerente`,
     choices: [
       `I suggest that she discusses this issue with the manager directly.`,
       `I suggest that she discuss this issue with the manager directly.`,
@@ -18861,12 +18862,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівний переклад фрази, але в англійській мові слово suggest не дуже дружить із часточкою to та вказівкою на людину одразу після. Краще використовувати конструкцію через that. Обери інший варіант!`,
       `Яка неприємна плутанина! Слово disgust означає огиду. Вийшло, що ти пропонуєш їй «відчути огиду» до питання замість того, щоб обговорити його. Тобі потрібна дія discuss. Будь уважнішим!`,
     ],
+    explanationsES: [
+      `I suggest that she discusses this issue with the manager directly usa discusses, pero después de suggest en esta estructura se usa la forma base: discuss, sin -s.`,
+      `Correcto. I suggest that she discuss this issue with the manager directly usa la forma base discuss después de suggest. Suena formal y preciso.`,
+      `I suggest her to discuss this issue with the manager directly copia otra estructura. En inglés natural usamos suggest that she discuss...`,
+      `I suggest that she disgust this issue with the manager directly cambia discuss por disgust. Disgust significa dar asco o causar repulsión; aquí necesitas discuss.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я не ожидал, что она так легко выдаст наш секрет`,
     uk: `Я не очікував, що вона так легко видасть наш секрет`,
+    es: `No esperaba que ella revelara nuestro secreto tan fácilmente`,
     choices: [
       `I didn\'t expect her to spill the beans so easily.`,
       `I didn\'t expect her to give out our secret so easily.`,
@@ -18886,12 +18894,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але для порівняння «так легко» нам потрібно використовувати слово so перед характеристикою дії. Тобі потрібно замінити as на слово so. Постав його на місце!`,
       `Яка літерна плутанина! Слово spell означає вимовляти по буквах або чаклувати. Вийшло, що вона «диктувала квасолю по буквах». Тобі потрібна дія spill (проливати). Будь уважнішим!`,
     ],
+    explanationsES: [
+      `Correcto. I didn't expect her to spill the beans so easily usa spill the beans para decir revelar un secreto de forma idiomática.`,
+      `I didn't expect her to give out our secret so easily se entiende, pero para este matiz idiomático el ejercicio busca spill the beans.`,
+      `I didn't expect her to spill the beans as easily cambia so por as. Para “tan fácilmente” aquí necesitas so easily.`,
+      `I didn't expect her to spell the beans so easily cambia spill por spell. Spell significa deletrear; la expresión correcta es spill the beans.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Утверждают, что он покинул страну до начала расследования`,
     uk: `Стверджують, що він покинув країну до початку розслідування`,
+    es: `Supuestamente, él salió del país antes de que comenzara la investigación`,
     choices: [
       `Allegedly, he left the country before the investigation began.`,
       `Legendly, he left the country before the investigation began.`,
@@ -18911,12 +18926,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це правильний варіант, але він звучить занадто просто для твого арсеналу. Щоб твоя мова була по-справжньому вишуканою та точною, краще використовувати одне сильне вставне слово. Спробуй варіант із словом allegedly!`,
       `Ти майже біля цілі, але тут переплутано прийменник часу. Слово since означає «з того часу як», а нам потрібно показати, що подія сталася раніше. Тобі потрібно замінити його на before. Виправ цю деталь!`,
     ],
+    explanationsES: [
+      `Correcto. Allegedly, he left the country before the investigation began marca que es una afirmación o versión, no algo que presentes como hecho propio.`,
+      `Legendly no es la palabra para “supuestamente”. Aquí necesitas allegedly.`,
+      `They say that he left the country before the investigation began es correcto, pero menos compacto. El ejercicio busca el adverbio allegedly.`,
+      `Allegedly, he left the country since the investigation began usa since, que significa “desde que”. Aquí necesitas before porque salió antes.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне удалось убедить сестру помочь мне с переездом`,
     uk: `Мені вдалося переконати сестру допомогти мені з переїздом`,
+    es: `Logré convencer a mi hermana de que me ayudara con la mudanza`,
     choices: [
       `I got my sister help me with the move.`,
       `I got my sister to help me with the move.`,
@@ -18936,12 +18958,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівний переклад, який не зовсім правильний за змістом. Слово manage зазвичай використовується для опису того, як ти сам із чимось впорався. Для переконання інших краще підходить варіант із got. Спробуй його!`,
       `Яка зоологічна плутанина! Слово goat означає козу. Вийшло, що в реченні раптово з\'явилася тварина замість дії. Тобі потрібне слово got. Стеж за літерами в середині!`,
     ],
+    explanationsES: [
+      `I got my sister help me with the move está sin to. Con get someone to do something necesitas to help.`,
+      `Correcto. I got my sister to help me with the move significa que lograste convencerla o conseguir su ayuda.`,
+      `I managed my sister to help me with the move suena literal. Manage suele hablar de lograr hacer algo tú mismo; aquí encaja got my sister to help.`,
+      `I goat my sister to help me with the move cambia got por goat. Goat significa cabra; aquí necesitas got.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Вид с вершины горы был просто изысканным (невероятно красивым)`,
     uk: `Вид із вершини гори був просто вишуканим (неймовірно красивим)`,
+    es: `La vista desde la cima de la montaña era simplemente exquisita`,
     choices: [
       `The view from the mountain top was just very beautiful.`,
       `The view from the mountain top was just exquisite.`,
@@ -18961,12 +18990,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже впорався, але обрав форму іменника «вишуканість». В кінці речення нам потрібне слово, що описує сам краєвид. Тобі потрібно прибрати закінчення ness, щоб вийшов опис. Виправ це слово!`,
       `Яка дивна плутанина! Слово excused означає «пробачений» або «вибачений». Вийшло, що гору за щось пробачили. Тобі потрібне саме слово exquisite. Будь уважнішим до звучання та написання!`,
     ],
+    explanationsES: [
+      `The view from the mountain top was just very beautiful es correcto, pero más común. El ejercicio busca el adjetivo más preciso y elegante: exquisite.`,
+      `Correcto. The view from the mountain top was just exquisite usa exquisite para una belleza refinada, intensa o especial.`,
+      `The view from the mountain top was just exquisiteness usa un sustantivo. Aquí necesitas el adjetivo exquisite.`,
+      `The view from the mountain top was just excused cambia exquisite por excused, que significa disculpado. Aquí necesitas exquisite.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы я был умнее, я бы не совершил ту ошибку в прошлом году`,
     uk: `Якби я був розумнішим, я б не припустився тієї помилки минулого року`,
+    es: `Si fuera más inteligente, no habría cometido ese error el año pasado`,
     choices: [
       `If I were smarter, I wouldn\'t make that mistake last year.`,
       `If I were smarter, I wouldn\'t have made that mistake last year.`,
@@ -18986,12 +19022,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `У частині речення з умовою слово would зайве. Щоб описати уявну ситуацію в теперішньому, нам потрібна форма were. Прибери помічника майбутнього з першої частини та постави правильну форму!`,
       `Яка кулінарна плутанина! Слова mistake та steak співзвучні, але обраний варіант означає, що ти «не приготував той стейк». У результаті сенс став дуже дивним. Тобі потрібне слово mistake. Стеж за літерами!`,
     ],
+    explanationsES: [
+      `If I were smarter, I wouldn't make that mistake last year mezcla una condición hipotética con un resultado que suena presente o futuro. Como habla de last year, necesitas wouldn't have made.`,
+      `Correcto. If I were smarter, I wouldn't have made that mistake last year conecta una cualidad imaginaria con un error concreto del pasado.`,
+      `If I would be smarter, I wouldn't have made that mistake last year pone would dentro de la parte con if. En esta estructura va If I were smarter.`,
+      `If I were smarter, I wouldn't have made that steak last year cambia mistake por steak. Steak es un filete; aquí necesitas mistake.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Эта лекция была невероятно скучной и утомительной`,
     uk: `Ця лекція була неймовірно нудною та стомлюючою`,
+    es: `Esta conferencia fue increíblemente tediosa y agotadora`,
     choices: [
       `This lecture was incredibly boring and long.`,
       `This lecture was incredibly tedious.`,
@@ -19011,12 +19054,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але обрав форму іменника «нудьга». В кінці речення нам потрібне слово, що описує саму лекцію. Тобі потрібно прибрати закінчення ness, щоб вийшов опис. Залиши форму tedious!`,
       `Яка плутанина в почуттях! Слова tedious та hideous співзвучні, але обраний варіант означає «огидний» або «потворний». Лекція була нудною, а не страшною. Тобі потрібне саме слово tedious. Будь уважнішим!`,
     ],
+    explanationsES: [
+      `This lecture was incredibly boring and long se entiende, pero es más básico. El ejercicio busca una palabra más precisa para algo largo, monótono y pesado: tedious.`,
+      `Correcto. This lecture was incredibly tedious expresa que la conferencia fue aburrida, repetitiva y agotadora de seguir.`,
+      `This lecture was incredibly tediousness usa un sustantivo. Después de was incredibly necesitas el adjetivo tedious.`,
+      `This lecture was incredibly hideous cambia tedious por hideous. Hideous significa horrible o espantoso; aquí necesitas tedious.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если ты думаешь, что это он украл деньги, ты ошибаешься (идешь по ложному следу)`,
     uk: `Якщо ти думаєш, що це він украв гроші, ти помиляєшся (йдеш хибним шляхом)`,
+    es: `Si crees que él robó el dinero, estás siguiendo la pista equivocada`,
     choices: [
       `If you think he stole the money, you are barking up the wrong tree.`,
       `If you think he stole the money, you are barking on the wrong tree.`,
@@ -19036,12 +19086,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівний переклад, який позбавляє твою мову фарб. Щоб звучати як справжній знавець мови, використовуй яскраву метафору з деревом. Спробуй знайти варіант із дією barking!`,
       `Яка транспортна плутанина! Слова barking та parking співзвучні, але обраний варіант означає «паркуватися». Вийшло, що ти припаркував машину на дереві. Тобі потрібна дія barking. Стеж за першою літерою!`,
     ],
+    explanationsES: [
+      `Correcto. If you think he stole the money, you are barking up the wrong tree usa una idiom para decir que estás culpando a la persona equivocada o siguiendo una pista falsa.`,
+      `If you think he stole the money, you are barking on the wrong tree cambia up por on. La idiom fija es barking up the wrong tree.`,
+      `If you think he stole the money, you are going by the wrong way suena a traducción literal. Para esta idea natural usamos barking up the wrong tree.`,
+      `If you think he stole the money, you are parking up the wrong tree cambia barking por parking. Parking es aparcar; aquí necesitas barking.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Он не только отличный музыкант, но и потрясающий повар`,
     uk: `Він не тільки чудовий музикант, а й приголомшливий кухар`,
+    es: `No solo es un gran músico, sino también un cocinero increíble`,
     choices: [
       `Not only he is a great musician, but he is also an amazing cook.`,
       `Not only is he a great musician, but he is also an amazing cook.`,
@@ -19061,12 +19118,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Тут не вистачає важливого партнера. Слово Not only завжди вимагає у другій частині речення слово but. Без нього конструкція розсипається. Додай це маленьке слово на його законне місце!`,
       `Яка кухонна плутанина! Слово cook — це кухар, а обраний варіант означає газовану воду або паливо. Вийшло, що музикант перетворився на напій. Тобі потрібне слово cook. Будь уважнішим до літер!`,
     ],
+    explanationsES: [
+      `Not only he is a great musician, but he is also an amazing cook deja el orden normal después de Not only. Al empezar así, necesitamos inversión: is he.`,
+      `Correcto. Not only is he a great musician, but he is also an amazing cook usa la inversión después de Not only y mantiene but also en la segunda parte.`,
+      `Not only is he a great musician, and he is also an amazing cook rompe la pareja Not only... but also. Aquí necesitas but, no and.`,
+      `Not only is he a great musician, but he is also an amazing coke cambia cook por coke. Coke puede ser una bebida; aquí necesitas cook.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Хочешь кофе?`,
     uk: `Хочеш кави?`,
+    es: `¿Quieres café?`,
     choices: [
       `Want coffee?`,
       `Do you want a coffee?`,
@@ -19086,12 +19150,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти додав закінчення ing, але в таких коротких запитаннях це звучить неприродно. Нам потрібна початкова форма дії без зайвих добавок, щоб еліпсис спрацював правильно. Прибери це закінчення!`,
       `Яка прикра плутанина! Слово wont означає звичку або звичай. Вийшло, що ти запитуєш про «звичай кави». Тобі потрібна дія want. Стеж за літерами в середині цього короткого слова!`,
     ],
+    explanationsES: [
+      `Correcto. Want coffee? es una pregunta informal con el inicio Do you omitido. Suena natural entre personas que ya tienen contexto.`,
+      `Do you want a coffee? es correcto y más completo, pero el ejercicio busca la versión corta de conversación: Want coffee?`,
+      `Wanting coffee? usa -ing, pero para este ellipsis informal necesitamos la forma base: Want coffee?`,
+      `Wont coffee? cambia want por wont. Wont significa costumbre o hábito; aquí necesitas want.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Перестань ходить вокруг да около и скажи мне правду`,
     uk: `Перестань ходити довкола і скажи мені правду`,
+    es: `Deja de darle vueltas y dime la verdad`,
     choices: [
       `Stop walking around the bush and tell me the truth.`,
       `Stop beating around the bush and tell me the truth.`,
@@ -19111,12 +19182,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це теж правильний варіант, але він частіше зустрічається у британській англійській. Хоча ти молодець, давай спробуємо використати найпопулярніший варіант із прийменником around для універсальності!`,
       `Яка перукарська плутанина! Слово brush означає щітку або пензель. Вийшло, що ти б\'єш навколо «щітки». Тобі потрібне слово bush, яке означає кущ. Будь уважнішим до літер у кінці!`,
     ],
+    explanationsES: [
+      `Stop walking around the bush and tell me the truth traduce la imagen demasiado literal. La idiom natural es beat around the bush.`,
+      `Correcto. Stop beating around the bush and tell me the truth pide hablar directo y dejar de evitar el punto principal.`,
+      `Stop beating about the bush and tell me the truth también existe, sobre todo en inglés británico, pero aquí buscamos la versión más universal: around.`,
+      `Stop beating around the brush and tell me the truth cambia bush por brush. Brush es cepillo o brocha; la idiom necesita bush.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Поговаривают, что он заработал состояние на криптовалюте`,
     uk: `Подейкують, що він заробив статки на криптовалюті`,
+    es: `Se rumorea que hizo una fortuna con criptomonedas`,
     choices: [
       `He is rumoured to have made a fortune in cryptocurrency.`,
       `It is rumoured he made a fortune in cryptocurrency.`,
@@ -19136,12 +19214,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але в цій частині речення нам потрібно показати, що статки вже зароблені в минулому. Для цього після to тобі не вистачає зв\'язки have та форми made. Додай їх, щоб час став правильним!`,
       `Яка житлова плутанина! Слово roomed означає «проживати в кімнаті». Вийшло, що його «поселили в кімнату», щоб він заробив грошей. Тобі потрібне слово rumoured. Стеж за літерами на початку слова!`,
     ],
+    explanationsES: [
+      `Correcto. He is rumoured to have made a fortune in cryptocurrency usa una estructura pasiva para presentar un rumor y marca que la fortuna ya se hizo antes.`,
+      `It is rumoured he made a fortune in cryptocurrency se entiende, pero el ejercicio busca la versión más elegante donde he es el sujeto: He is rumoured to have made...`,
+      `He is rumoured to make a fortune in cryptocurrency suena como si fuera algo habitual o futuro. Para un resultado ya logrado necesitas to have made.`,
+      `He is roomed to have made a fortune in cryptocurrency cambia rumoured por roomed. Roomed habla de alojarse en una habitación; aquí necesitas rumoured.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я с нетерпением жду встречи с вами на следующей неделе`,
     uk: `Я з нетерпінням чекаю на зустріч із вами наступного тижня`,
+    es: `Espero con ganas reunirme con usted la próxima semana`,
     choices: [
       `I look forward to meet you next week.`,
       `I look forward to meeting you next week.`,
@@ -19161,12 +19246,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівний переклад, який носії мови майже не використовують у живому мовленні. Для такого приємного очікування є спеціальне фразове дієслово. Спробуй варіант зі словом forward!`,
       `Яка м\'ясна плутанина! Слово meaty означає «м\'ясистий». Вийшло щось дуже дивне і ніякове про «м\'ясисту зустріч». Тобі потрібна дія meeting. Будь уважнішим до літер у середині!`,
     ],
+    explanationsES: [
+      `I look forward to meet you next week falla porque después de look forward to necesitamos -ing: meeting.`,
+      `Correcto. I look forward to meeting you next week usa to como preposición, por eso después va meeting, no meet.`,
+      `I wait with impatience to meeting you next week suena como traducción literal. En inglés natural para esta idea usamos look forward to meeting.`,
+      `I look forward to meaty you next week cambia meeting por meaty. Meaty significa carnoso; aquí necesitas meeting.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Было совершенно очевидно, что он лжет`,
     uk: `Було цілком очевидно, що він бреше`,
+    es: `Era descaradamente obvio que estaba mintiendo`,
     choices: [
       `It was very obvious that he was lying.`,
       `It was blatantly obvious that he was lying.`,
@@ -19186,12 +19278,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але щоб описати ступінь «очевидності», нам потрібно перетворити слово на ознаку дії. Тобі не вистачає закінчення ly у слові blatantly. Додай ці літери, щоб фраза зазвучала гармонійно!`,
       `Яка затишна плутанина! Слово blanket означає ковдру. Вийшло, що очевидність була «вкрита ковдрою». Тобі потрібне слово blatantly. Стеж за літерами на початку цього довгого слова!`,
     ],
+    explanationsES: [
+      `It was very obvious that he was lying es correcto, pero más común. El ejercicio busca un intensificador más fuerte: blatantly obvious.`,
+      `Correcto. It was blatantly obvious that he was lying significa que era muy evidente, casi imposible de negar.`,
+      `It was blatant obvious that he was lying usa blatant como adjetivo. Para modificar obvious necesitas el adverbio blatantly.`,
+      `It was blanketly obvious that he was lying cambia blatantly por blanketly. Blanket es manta; aquí necesitas blatantly.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Едва я вошел в здание, как начался ливень`,
     uk: `Щойно я увійшов у будівлю, як почалася злива`,
+    es: `Apenas había entrado en el edificio cuando empezó a llover a cántaros`,
     choices: [
       `Hardly I had entered the building when it started to pour.`,
       `Hardly had I entered the building when it started to pour.`,
@@ -19211,12 +19310,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Тут закралася маленька неточність у зв\'язці. Слово Hardly дружить тільки зі словом when. Варіант зі словом than зарезервований для іншої конструкції. Заміни його на when і все вийде!`,
       `Яка водна плутанина! Слово poor означає бідний. Вийшло, що небо почало «бідніти», а не поливати дощем. Тобі потрібна дія pour. Стеж за літерами в середині слова!`,
     ],
+    explanationsES: [
+      `Hardly I had entered the building when it started to pour deja el orden normal. Después de empezar con Hardly necesitamos inversión: had I entered.`,
+      `Correcto. Hardly had I entered the building when it started to pour usa la inversión correcta y la pareja Hardly... when.`,
+      `Hardly had I entered the building than it started to pour mezcla conectores. Con Hardly usamos when, no than.`,
+      `Hardly had I entered the building when it started to poor cambia pour por poor. Poor significa pobre; aquí necesitas pour, llover fuerte.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Погода во время нашего отпуска была просто ужасной`,
     uk: `Погода під час нашої відпустки була просто жахливою`,
+    es: `El tiempo durante nuestras vacaciones fue simplemente atroz`,
     choices: [
       `The weather during our vacation was just atrocious.`,
       `The weather during our vacation was just very bad.`,
@@ -19236,12 +19342,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже впорався, але в кінці речення нам потрібне слово, що описує саму погоду, а не те, як вона щось робить. Тобі потрібно прибрати зайві літери ly в кінці. Залиши форму atrocious!`,
       `Яка дивна плутанина! Такого слова в мові немає, але воно співзвучне зі словом «привабливий». У результаті замість жаху вийшло щось незрозуміле. Тобі потрібне саме слово atrocious. Будь уважнішим!`,
     ],
+    explanationsES: [
+      `Correcto. The weather during our vacation was just atrocious usa atrocious para decir que el tiempo fue muy malo, no solo “un poco malo”.`,
+      `The weather during our vacation was just very bad se entiende, pero es más básico. El ejercicio busca el adjetivo fuerte atrocious.`,
+      `The weather during our vacation was just atrociously usa un adverbio. Después de was just necesitas el adjetivo atrocious.`,
+      `The weather during our vacation was just attractious usa una forma que no funciona aquí y se parece a attractive. Necesitas atrocious.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мы с моим коллегой редко сходимся во взглядах на этот проект`,
     uk: `Ми з моїм колегою рідко сходимося в поглядах на цей проєкт`,
+    es: `Mi colega y yo rara vez estamos de acuerdo sobre este proyecto`,
     choices: [
       `My colleague and I seldom see eye to eye on this project.`,
       `My colleague and I seldom see with eyes to eyes on this project.`,
@@ -19261,12 +19374,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але для вираження думки щодо чогось у цій зв\'язці потрібен інший прийменник. Тобі потрібно замінити слово at на слово on. Постав правильний прийменник на місце!`,
       `Яка морська плутанина! Слова sea (море) та see (бачити) звучать однаково, але пишуться по-різному. Вийшло, що ви «морите» очима. Тобі потрібна дія see. Стеж за літерами!`,
     ],
+    explanationsES: [
+      `Correcto. My colleague and I seldom see eye to eye on this project usa see eye to eye para decir estar de acuerdo, y seldom marca que pasa pocas veces.`,
+      `My colleague and I seldom see with eyes to eyes on this project traduce la imagen demasiado literal. La idiom fija es see eye to eye.`,
+      `My colleague and I seldom see eye to eye at this project usa at, pero para estar de acuerdo sobre un tema aquí necesitamos on this project.`,
+      `My colleague and I seldom sea eye to eye on this project cambia see por sea. Sea significa mar; aquí necesitas el verbo see.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Крайне важно, чтобы он вовремя подготовил отчет`,
     uk: `Вкрай важливо, щоб він вчасно підготував звіт`,
+    es: `Es esencial que él prepare el informe a tiempo`,
     choices: [
       `It is essential that he prepares the report on time.`,
       `It is essential that he prepare the report on time.`,
@@ -19286,12 +19406,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівний переклад майбутнього часу, але в цій конструкції слово will зайве. Нам потрібна чиста форма дії без помічників майбутнього. Просто прибери це зайве слово!`,
       `Яка кумедна плутанина! Слово repairs означає лагодити або ремонтувати. Вийшло, що звіт зламався і його треба полагодити інструментами. Тобі потрібна дія prepare. Будь уважнішим до значення слів!`,
     ],
+    explanationsES: [
+      `It is essential that he prepares the report on time usa prepares, pero después de essential en esta estructura formal usamos la forma base: prepare.`,
+      `Correcto. It is essential that he prepare the report on time usa el mandative subjunctive: prepare sin -s después de he.`,
+      `It is essential that he will prepare the report on time mete will, pero esta estructura no necesita futuro. Necesitas he prepare.`,
+      `It is essential that he repairs the report on time cambia prepare por repairs. Repairs significa reparar; aquí necesitas prepare.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я был горько разочарован результатом матча`,
     uk: `Я був гірко розчарований результатом матчу`,
+    es: `Me decepcionó profundamente el resultado del partido`,
     choices: [
       `I was bitterly disappointed with the match result.`,
       `I was bitter disappointed with the match result.`,
@@ -19311,12 +19438,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це правильний варіант, але він занадто простий для твого рівня. Нам потрібне більш яскраве та «смачне» слово замість звичайного very. Спробуй знайти варіант із згадкою про гіркоту!`,
       `Яка масляна плутанина! Слово butterly співзвучне з маслом. Вийшло, що ти розчарований «як масце». Тобі потрібне слово bitterly. Стеж за літерами в середині слова!`,
     ],
+    explanationsES: [
+      `Correcto. I was bitterly disappointed with the match result usa bitterly disappointed para expresar una decepción fuerte, no solo normal.`,
+      `I was bitter disappointed with the match result usa bitter como adjetivo. Para intensificar disappointed necesitas el adverbio bitterly.`,
+      `I was very disappointed with the match result es correcto, pero más común. El ejercicio busca la colocación más fuerte: bitterly disappointed.`,
+      `I was butterly disappointed with the match result cambia bitterly por butterly. Butter se relaciona con mantequilla; aquí necesitas bitterly.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мы отправились в путь рано утром, чтобы избежать пробок`,
     uk: `Ми вирушили в дорогу рано-вранці, щоб уникнути заторів`,
+    es: `Salimos temprano por la mañana para evitar el tráfico`,
     choices: [
       `We started off early in the morning to avoid traffic.`,
       `We set off early in the morning to avoid traffic.`,
@@ -19336,12 +19470,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже впорався, але в цьому фразовому дієслові після слова set обов\'язково має стояти слово з двома літерами f. Ти обрав прийменник, який тут не підходить за змістом. Додай ще одну f у слово off!`,
       `Ой, тут змінився зміст! Слово sat — це форма дієслова «сидіти». Вийшло, що ви просто «посиділи» вранці замість того, щоб їхати. Тобі потрібне слово set. Стеж за голосною в середині слова!`,
     ],
+    explanationsES: [
+      `We started off early in the morning to avoid traffic se entiende, pero para iniciar un viaje la combinación más natural aquí es set off.`,
+      `Correcto. We set off early in the morning to avoid traffic usa set off para decir que salimos o emprendimos el viaje.`,
+      `We set of early in the morning to avoid traffic escribe of con una sola f. El phrasal verb necesita off.`,
+      `We sat off early in the morning to avoid traffic cambia set por sat. Sat es el pasado de sit; aquí necesitas set.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Что мне действительно нужно, так это чашка крепкого кофе`,
     uk: `Що мені справді потрібно, так це чашка міцної кави`,
+    es: `Lo que realmente necesito es una taza de café fuerte`,
     choices: [
       `What I really need is a cup of strong coffee.`,
       `That I really need is a cup of strong coffee.`,
@@ -19361,12 +19502,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Тут з\'явилося зайве слово it, яке дублює зміст і заважає реченню «летіти». У цій конструкції дія is має йти одразу після того, чого ти потребуєш. Прибери цей зайвий елемент!`,
       `Яка кулінарна плутанина! Слово knead означає «місити тісто». Вийшло, що ти зібрався «замішувати» чашку кави. Тобі потрібне слово need. Будь уважнішим до літер на початку дії!`,
     ],
+    explanationsES: [
+      `Correcto. What I really need is a cup of strong coffee usa What I really need para enfocar lo más importante de la frase.`,
+      `That I really need is a cup of strong coffee no funciona como inicio de esta estructura enfática. Aquí necesitamos What I really need.`,
+      `What I really need it is a cup of strong coffee añade it de más. Después de What I really need va directamente is.`,
+      `What I really knead is a cup of strong coffee cambia need por knead. Knead significa amasar; aquí necesitas need.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Это, пожалуй, лучший фильм, который я когда-либо видел`,
     uk: `Це, мабуть, найкращий фільм, який я коли-небудь бачив`,
+    es: `Esta es posiblemente la mejor película que he visto en mi vida`,
     choices: [
       `This is arguably the best movie I have ever seen.`,
       `This is argue the best movie I have ever seen.`,
@@ -19386,12 +19534,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить зрозуміло, але занадто просто для твого арсеналу. Щоб звучати більш академічно і професійно, краще використовувати варіант, який запрошує до дискусії. Спробуй знайти варіант зі словом arguably!`,
       `Тут закрався зайвий знак! Хоча слово довге, писати його через дефіс не потрібно. Це робить його схожим на помилку у словнику. Просто з\'єднай усі частини в одне ціле слово!`,
     ],
+    explanationsES: [
+      `Correcto. This is arguably the best movie I have ever seen usa arguably para sonar seguro, pero no absolutamente categórico.`,
+      `This is argue the best movie I have ever seen usa el verbo argue, no el adverbio. Aquí necesitas arguably.`,
+      `This is probably the best movie I have ever seen se entiende, pero es más simple. El ejercicio busca el matiz más sofisticado de arguably.`,
+      `This is argue-ably the best movie I have ever seen parte arguably con un guion. La palabra se escribe junta: arguably.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Короче говоря, мы решили остаться дома`,
     uk: `Коротше кажучи, ми вирішили залишитися вдома`,
+    es: `En resumen, decidimos quedarnos en casa`,
     choices: [
       `To cut a long story short, we decided to stay at home.`,
       `To short a long story cut, we decided to stay at home.`,
@@ -19411,12 +19566,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівна спроба перекласти українську фразу. В англійській для цього моменту є своя стала історія про «відрізання частини розповіді». Спробуй знайти варіант із згадкою про story!`,
       `Яка магазинна плутанина! Слово store означає магазин. Вийшло, що ти «скорочуєш довгий магазин». Тобі потрібне слово story для позначення розповіді. Будь уважнішим до літер у середині слова!`,
     ],
+    explanationsES: [
+      `Correcto. To cut a long story short, we decided to stay at home es una fórmula natural para resumir y saltar detalles.`,
+      `To short a long story cut, we decided to stay at home tiene las palabras de la idiom en orden incorrecto. La fórmula fija empieza con To cut a long story short.`,
+      `Short speaking, we decided to stay at home suena como traducción literal. En inglés natural usamos To cut a long story short.`,
+      `To cut a long store short, we decided to stay at home cambia story por store. Store es tienda; aquí necesitas story.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы я не был таким забывчивым, я бы не оставил документы в такси вчера`,
     uk: `Якби я не був таким забудькуватим, я б не залишив документи в таксі вчора`,
+    es: `Si no fuera tan olvidadizo, no habría dejado los documentos en el taxi ayer`,
     choices: [
       `If I wasn\'t so forgetful, I wouldn\'t have left the documents in the taxi yesterday.`,
       `If I hadn\'t been so forgetful, I wouldn\'t leave the documents in the taxi yesterday.`,
@@ -19436,12 +19598,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівний переклад, який не враховує, що документи загубилися вчора. Для події в минулому в другій частині обов\'язково потрібен помічник have та третя форма дієслова. Додай їх, щоб фраза стала правильною!`,
       `Яка дивна плутанина! Слово lived означає «жив». Вийшло, що ти не «пожив» документами в таксі. Тобі потрібне слово left для позначення того, що ти їх там забув. Будь уважнішим до літер!`,
     ],
+    explanationsES: [
+      `Correcto. If I wasn't so forgetful, I wouldn't have left the documents in the taxi yesterday mezcla una característica general con una consecuencia pasada concreta.`,
+      `If I hadn't been so forgetful, I wouldn't leave the documents in the taxi yesterday pone pasado perfecto en la primera parte y deja la consecuencia como presente/futuro. Aquí buscamos wasn't + wouldn't have left.`,
+      `If I wasn't so forgetful, I wouldn't leave the documents in the taxi yesterday no marca que ocurrió ayer. Para yesterday necesitas wouldn't have left.`,
+      `If I wasn't so forgetful, I wouldn't have lived the documents in the taxi yesterday cambia left por lived. Lived significa vivió; aquí necesitas left.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне нужно освежить свои знания французского перед поездкой в Париж`,
     uk: `Мені потрібно освіжити свої знання французької перед поїздкою до Парижа`,
+    es: `Necesito repasar mi francés antes del viaje a París`,
     choices: [
       `I need to fresh up my French before the trip to Paris.`,
       `I need to brush up on my French before the trip to Paris.`,
@@ -19461,12 +19630,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але в цьому виразі після слова up обов\'язково має стояти часточка on. Без неї фраза здається незакінченою. Додай цей маленький елемент на його законне місце!`,
       `Яка кумедна плутанина! Слово blush означає «червоніти» від збентеження. Вийшло, що ти збираєшся «червоніти» над французькою. Тобі потрібне слово brush. Стеж за першою літерою в дії!`,
     ],
+    explanationsES: [
+      `I need to fresh up my French before the trip to Paris traduce “refrescar” demasiado literal. La expresión natural es brush up on.`,
+      `Correcto. I need to brush up on my French before the trip to Paris significa repasar o refrescar una habilidad que ya tienes.`,
+      `I need to brush up my French before the trip to Paris está incompleto para esta expresión. Necesitas brush up on my French.`,
+      `I need to blush up on my French before the trip to Paris cambia brush por blush. Blush significa sonrojarse; aquí necesitas brush.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Тебе стоит уговорить своего друга помочь нам с переездом`,
     uk: `Тобі варто вмовити свого друга допомогти нам із переїздом`,
+    es: `Deberías convencer a tu amigo de que nos ayude con la mudanza`,
     choices: [
       `You should get your friend to help us with the move.`,
       `You should get your friend help us with the move.`,
@@ -19486,12 +19662,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це теж правильна конструкція, але вона більше підходить, коли ти доручаєш роботу підлеглому. Для прохання до друга краще використовувати структуру з get. Спробуй змінити спосіб переконання!`,
       `Яка будівельна плутанина! Слово gate означає ворота. Вийшло, що ти пропонуєш «приробити ворота» до друга. Тобі потрібна дія get. Будь уважнішим до літер у середині!`,
     ],
+    explanationsES: [
+      `Correcto. You should get your friend to help us with the move usa get someone to do something para decir convencer o lograr que alguien ayude.`,
+      `You should get your friend help us with the move está sin to. Con get someone to do something necesitas to help.`,
+      `You should have your friend help us with the move puede sonar a encargar o hacer que alguien haga una tarea. Para convencer a un amigo, aquí encaja get your friend to help.`,
+      `You should gate your friend to help us with the move cambia get por gate. Gate significa puerta o portón; aquí necesitas get.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне нужно отремонтировать ноутбук до завтрашней презентации`,
     uk: `Мені потрібно відремонтувати ноутбук до завтрашньої презентації`,
+    es: `Necesito que me reparen el portátil antes de la presentación de mañana`,
     choices: [
       `I need to get my laptop repaired before tomorrow\'s presentation.`,
       `I need to repair my laptop before tomorrow\'s presentation.`,
@@ -19511,12 +19694,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але в цій конструкції дія в кінці має бути у формі завершеності. Тобі не вистачає закінчення ed у слові repair. Постав його на місце!`,
       `Яка плутанина! Слово prepared означає «підготовлений». Вийшло, що ноутбук потрібно просто підготувати, а не полагодити. Тобі потрібна дія repaired. Стеж за значенням слова!`,
     ],
+    explanationsES: [
+      `Correcto. I need to get my laptop repaired before tomorrow's presentation significa que alguien lo va a reparar por ti, no necesariamente tú mismo.`,
+      `I need to repair my laptop before tomorrow's presentation suena como si tú fueras a arreglarlo personalmente. Para delegarlo, usa get my laptop repaired.`,
+      `I need to get my laptop repair before tomorrow's presentation deja repair en forma base. En get something done necesitas repaired.`,
+      `I need to get my laptop prepared before tomorrow's presentation cambia repaired por prepared. Prepared es preparado; aquí necesitas repaired.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Многие компании решили последовать моде на использование искусственного интеллекта`,
     uk: `Багато компаній вирішили наслідувати моду на використання штучного інтелекту`,
+    es: `Muchas empresas decidieron subirse a la moda de usar inteligencia artificial`,
     choices: [
       `Many companies decided to jump on the bandwagon of using artificial intelligence.`,
       `Many companies decided to jump on the band-wagon of using artificial intelligence.`,
@@ -19536,12 +19726,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як спроба переказати ідіому своїми словами, але сталий вираз вимагає прийменника on та слова bandwagon. Спробуй використати класичний варіант!`,
       `Яка кумедна плутанина! Слово wedding означає весілля. Вийшло, що компанії стрибають на «групове весілля». Тобі потрібне слово bandwagon. Стеж за кінцівкою слова!`,
     ],
+    explanationsES: [
+      `Correcto. Many companies decided to jump on the bandwagon of using artificial intelligence usa jump on the bandwagon para sumarse a una tendencia popular.`,
+      `Many companies decided to jump on the band-wagon of using artificial intelligence escribe bandwagon con guion. La idiom se escribe como una sola palabra: bandwagon.`,
+      `Many companies decided to jump into the wagon of using artificial intelligence intenta reconstruir la imagen, pero la expresión fija es jump on the bandwagon.`,
+      `Many companies decided to jump on the band-wedding of using artificial intelligence cambia bandwagon por band-wedding. Wedding significa boda; aquí necesitas bandwagon.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Её вкус в одежде можно описать как изысканный`,
     uk: `Її смак в одязі можна описати як вишуканий`,
+    es: `Su gusto para la ropa se puede describir como exquisito`,
     choices: [
       `Her taste in clothes can be described as very beautiful.`,
       `Her taste in clothes can be described as exquisite.`,
@@ -19561,12 +19758,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Тут помилка у формі дії. Після зв\'язки can be нам потрібно додати закінчення d до слова describe, щоб вийшов опис якості. Виправ цю граматичну деталь!`,
       `Яка незручна плутанина! Слово excused означає «звільнений» або «вибачений». Вийшло, що її смак від чогось звільнили. Тобі потрібне слово exquisite. Будь уважнішим до літер!`,
     ],
+    explanationsES: [
+      `Her taste in clothes can be described as very beautiful se entiende, pero es demasiado básico. El ejercicio busca el adjetivo más preciso: exquisite.`,
+      `Correcto. Her taste in clothes can be described as exquisite usa exquisite para hablar de gusto refinado y elegante.`,
+      `Her taste in clothes can be describe as exquisite deja describe en forma base. Después de can be necesitas described.`,
+      `Her taste in clothes can be described as excused cambia exquisite por excused. Excused significa disculpado o exento; aquí necesitas exquisite.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Его лекция была невероятно нудной и долгой`,
     uk: `Його лекція була неймовірно нудною і довгою`,
+    es: `Su conferencia fue increíblemente tediosa y larga`,
     choices: [
       `His lecture was incredibly boring and long.`,
       `His lecture was incredibly tedious and lengthy.`,
@@ -19586,12 +19790,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже впорався, але в кінці речення нам потрібен прикметник, що описує лекцію, а не прислівник. Тобі потрібно замінити lengthily на правильне lengthy. Виправ це маленьке закінчення!`,
       `Ой, тут закралася зайва деталь! Хоча вимовляється це слово частинами, писати його через дефіс не потрібно. Це робить слово схожим на щось інше. Просто прибери цей знак у середині слова!`,
     ],
+    explanationsES: [
+      `His lecture was incredibly boring and long se entiende, pero es más simple. El ejercicio busca palabras más precisas: tedious and lengthy.`,
+      `Correcto. His lecture was incredibly tedious and lengthy describe una conferencia monótona y demasiado larga con vocabulario más avanzado.`,
+      `His lecture was incredibly tedious and lengthily usa lengthily, que es adverbio. Aquí necesitas el adjetivo lengthy.`,
+      `His lecture was incredibly tedi-ous and lengthy separa tedious con un guion. La palabra correcta se escribe junta: tedious.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я не хочу хвастаться, но я сам все это сделал`,
     uk: `Я не хочу хвалитися, але я сам усе це зробив`,
+    es: `No quiero presumir, pero lo hice todo yo solo`,
     choices: [
       `I don\'t want to boast, but I did it all by myself.`,
       `I don\'t want to blow my own horn, but I did it all by myself.`,
@@ -19611,12 +19822,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але в самому кінці слова by та myself мають стояти окремо, а саме слово myself пишеться разом. У тебе вийшло зайве розділення в останньому слові. З\'єднай ці частини разом!`,
       `Яка кольорова плутанина! Слово blue означає синій колір. Вийшло, що ти збираєшся «посинити» свій ріжок. Тобі потрібна дія blow (дути). Будь уважнішим до літер у середині дії!`,
     ],
+    explanationsES: [
+      `I don't want to boast, but I did it all by myself es correcto, pero más directo. El ejercicio busca la idiom más conversacional: blow my own horn.`,
+      `Correcto. I don't want to blow my own horn, but I did it all by myself usa una idiom para decir “no quiero presumir” antes de mencionar un logro.`,
+      `I don't want to blow my own horn, but I did it all by my self separa myself. La forma correcta es by myself.`,
+      `I don't want to blue my own horn, but I did it all by myself cambia blow por blue. Blue es azul; aquí necesitas blow.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы я знал, я бы пришел`,
     uk: `Якби я знав, я б прийшов`,
+    es: `Si lo hubiera sabido, habría venido`,
     choices: [
       `Had I known, I would have come.`,
       `Known, I would have come.`,
@@ -19636,12 +19854,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти переплутав час. Ця форма підходить для мрії про теперішнє, але наша подія вже залишилася в минулому. Тобі потрібно додати had і використати третю форму дієслова. Зроби крок у минуле!`,
       `Яка плутанина у словах! Слово none означає «аніскільки» або «жоден». Вийшло, що у тебе «нічого не було». Тобі потрібне слово known для позначення знання. Стеж за літерами!`,
     ],
+    explanationsES: [
+      `Correcto. Had I known, I would have come es una versión más formal de If I had known, I would have come.`,
+      `Known, I would have come elimina demasiado. Para quitar if en esta estructura necesitas empezar con Had I known.`,
+      `If I knew, I would have come mezcla una condición de presente con una consecuencia pasada. Para algo pasado necesitas If I had known o Had I known.`,
+      `Had I none, I would have come cambia known por none. None significa ninguno o nada; aquí necesitas known.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я заставил своего брата помыть мою машину`,
     uk: `Я змусив свого брата помити мою машину`,
+    es: `Hice que mi hermano lavara mi coche`,
     choices: [
       `I had my brother wash my car.`,
       `I had my brother to wash my car.`,
@@ -19661,12 +19886,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівний переклад, і до того ж із помилкою. Після дієслова примусу make часточка to ніколи не ставиться. Але для нашого рівня краще обрати варіант із had. Спробуй змінити структуру!`,
       `Яка кумедна підміна! Слово watch означає «дивитися». Вийшло, що брат просто сидів і дивився на машину замість того, щоб мити її. Тобі потрібна дія wash. Будь уважнішим!`,
     ],
+    explanationsES: [
+      `Correcto. I had my brother wash my car usa have someone do something para decir que hiciste que otra persona hiciera la tarea.`,
+      `I had my brother to wash my car añade to de más. Después de had my brother va la forma base: wash.`,
+      `I made my brother to wash my car usa to después de made. Después de make someone do something tampoco va to.`,
+      `I had my brother watch my car cambia wash por watch. Watch significa mirar o vigilar; aquí necesitas wash.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Он случайно выдал наш секрет, и теперь все об этом знают`,
     uk: `Він випадково видав наш секрет, і тепер усі про це знають`,
+    es: `Él reveló accidentalmente nuestro secreto, y ahora todos lo saben`,
     choices: [
       `He accidentally spilled the beans, and now everyone knows.`,
       `He accidentally gave out our secret, and now everyone knows.`,
@@ -19686,12 +19918,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Яка сміттєва плутанина! Слово bins означає сміттєві відра. Вийшло, що він перекинув баки, а не видав секрет. Тобі потрібне слово beans (квасоля). Стеж за літерами в середині!`,
       `Ти майже впорався, але в цій ідіомі перед квасолею обов\'язково має стояти слово the. Без нього фраза втрачає свій магічний зміст носіїв мови. Додай цей елемент перед словом beans!`,
     ],
+    explanationsES: [
+      `Correcto. He accidentally spilled the beans, and now everyone knows usa spill the beans para decir que reveló un secreto sin querer.`,
+      `He accidentally gave out our secret, and now everyone knows se entiende, pero es más literal. El ejercicio busca la idiom spill the beans.`,
+      `He accidentally spilled the bins, and now everyone knows cambia beans por bins. Bins son cubos de basura; aquí necesitas beans.`,
+      `He accidentally spilled beans, and now everyone knows omite the. La idiom fija es spill the beans.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы он не провалил собеседование на прошлой неделе, он был бы нашим коллегой сейчас`,
     uk: `Якби він не провалив співбесіду минулого тижня, він був би нашим колегою зараз`,
+    es: `Si no hubiera fallado la entrevista la semana pasada, ahora sería nuestro colega`,
     choices: [
       `If he didn\'t fail the interview last week, he would be our colleague now.`,
       `If he hadn\'t failed the interview last week, he would have been our colleague now.`,
@@ -19711,12 +19950,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній майстер змішаних часів! Ти ідеально поєднав подію в минулому та її результат у теперішньому. Це звучить неймовірно професійно і точно. Приголомшливий вибір!`,
       `Яка географічна плутанина! Слово college означає навчальний заклад. Вийшло, що людина стала б цілим «коледжем». Тобі потрібне слово colleague для позначення співробітника. Стеж за літерами в кінці!`,
     ],
+    explanationsES: [
+      `If he didn't fail the interview last week, he would be our colleague now no marca bien el pasado irreal. Para last week necesitas hadn't failed.`,
+      `If he hadn't failed the interview last week, he would have been our colleague now deja el resultado también en pasado, pero now pide presente: would be.`,
+      `Correcto. If he hadn't failed the interview last week, he would be our colleague now conecta una causa pasada irreal con un resultado presente.`,
+      `If he hadn't failed the interview last week, he would be our college now cambia colleague por college. College es institución educativa; aquí necesitas colleague.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Ты ошибаешься, если думаешь, что я имею к этому отношение`,
     uk: `Ти помиляєшся, якщо думаєш, що я маю до цього відношення`,
+    es: `Te equivocas si crees que tengo algo que ver con esto`,
     choices: [
       `You are barking up the wrong tree if you think I\'m involved.`,
       `You are barking at the wrong tree if you think I\'m involved.`,
@@ -19736,12 +19982,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівна спроба перекласти зміст, але так ніхто не каже. Щоб звучати круто і на високому рівні, використовуй образ із деревом і гавкотом. Спробуй знайти варіант із дією barking!`,
       `Яка транспортна плутанина! Дієслово parking означає паркування машини. Вийшло, що ти «паркуєшся» на дерево. Тобі потрібна дія barking (гавкіт). Будь уважнішим до першої літери!`,
     ],
+    explanationsES: [
+      `Correcto. You are barking up the wrong tree if you think I'm involved usa una idiom para decir que la otra persona está equivocada sobre quién tiene relación con algo.`,
+      `You are barking at the wrong tree if you think I'm involved cambia up por at. La idiom fija es barking up the wrong tree.`,
+      `You are mistaken the tree if you think I'm involved suena como traducción literal y no es natural. Para este sentido usamos barking up the wrong tree.`,
+      `You are parking up the wrong tree if you think I'm involved cambia barking por parking. Parking es aparcar; aquí necesitas barking.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я предлагаю, чтобы она немедленно обсудила этот вопрос с менеджером`,
     uk: `Я пропоную, щоб вона негайно обговорила це питання з менеджером`,
+    es: `Sugiero que ella discuta este asunto con el gerente de inmediato`,
     choices: [
       `I suggest that she discusses this matter with the manager immediately.`,
       `I suggest she discuss this matter with the manager immediately.`,
@@ -19761,12 +20014,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Тут нагромадження зайвих слів. Хоча зміст зрозумілий, на високому рівні краще використовувати коротку зв\'язку з that та прямою формою дієслова. Прибери for та to, щоб фраза стала витонченішою!`,
       `Ой, яка неприємна плутанина! Слово disgusts означає викликати огиду. Вийшло, що вона має «викликати огиду» до питання замість обговорення. Тобі потрібне слово discuss. Стеж за літерами!`,
     ],
+    explanationsES: [
+      `I suggest that she discusses this matter with the manager immediately usa discusses, pero después de suggest en esta estructura formal necesitamos discuss sin -s.`,
+      `Correcto. I suggest she discuss this matter with the manager immediately usa la forma base discuss después de suggest.`,
+      `I suggest for her to discuss this matter with the manager immediately añade for y to de forma pesada. La estructura natural es suggest she discuss.`,
+      `I suggest she disgusts this matter with the manager immediately cambia discuss por disgusts. Disgusts significa causa repulsión; aquí necesitas discuss.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `По-видимому, он потерял интерес к проекту после того, как бюджет сократили`,
     uk: `Очевидно, він втратив інтерес до проєкту після того, як бюджет скоротили`,
+    es: `Al parecer, perdió interés en el proyecto después de que recortaron el presupuesto`,
     choices: [
       `Seemingly, he lost interest in the project after the budget was slashed.`,
       `From the looks, he lost interest in the project after the budget was slashed.`,
@@ -19786,12 +20046,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Тут не вистачає важливого елемента в кінці. Бюджет не сам себе скоротив, його скоротили інші люди, тому нам потрібен помічник was перед дією. Додай його, щоб фраза стала логічною!`,
       `Яка кумедна плутанина! Це слово означає «як по маслу» або «успішно», що зовсім не в\'яжеться з втратою інтересу. Тобі потрібне слово Seemingly. Будь уважнішим до значення слів!`,
     ],
+    explanationsES: [
+      `Correcto. Seemingly, he lost interest in the project after the budget was slashed presenta la idea con cautela y usa pasiva para el presupuesto recortado.`,
+      `From the looks, he lost interest in the project after the budget was slashed suena como calco. Para “al parecer” aquí encaja Seemingly.`,
+      `Seemingly, he lost interest in the project after the budget slashed hace que el presupuesto parezca actuar solo. Necesitas was slashed.`,
+      `Swimmingly, he lost interest in the project after the budget was slashed cambia Seemingly por Swimmingly. Swimmingly significa sin problemas; aquí no encaja.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если ты будешь халтурить, конечный результат будет ужасным`,
     uk: `Якщо ти будеш халтурити, кінцевий результат буде жахливим`,
+    es: `Si tomas atajos, el resultado final será horrible`,
     choices: [
       `If you cut the corners, the final outcome will be atrocious.`,
       `If you will cut corners, the final outcome will be atrocious.`,
@@ -19811,12 +20078,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній віртуоз! Використання ідіоми про кути разом із таким точним синонімом для слова поганий робить твою мову неймовірно багатою. Ти звучиш як справжній профі. Блискуче!`,
       `Ой, це звучить дуже небезпечно! Слово coroners означає слідчих, які оглядають тіла. Вийшло, що ти пропонуєш «різати» людей замість того, щоб халтурити. Тобі потрібне слово corners. Стеж за літерами!`,
     ],
+    explanationsES: [
+      `If you cut the corners, the final outcome will be atrocious añade the, pero la idiom fija es cut corners, sin artículo.`,
+      `If you will cut corners, the final outcome will be atrocious usa will después de if. Para una condición futura usamos If you cut corners.`,
+      `Correcto. If you cut corners, the final outcome will be atrocious combina la idiom cut corners con atrocious para un resultado muy malo.`,
+      `If you cut coroners, the final outcome will be atrocious cambia corners por coroners. Coroners son forenses; aquí necesitas corners.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Только тогда я понял, насколько серьезной была ситуация`,
     uk: `Тільки тоді я зрозумів, наскільки серйозною була ситуація`,
+    es: `Solo entonces me di cuenta de lo grave que era la situación`,
     choices: [
       `Only then I realized how grave the situation was.`,
       `It was only then that I realized how grave the situation was.`,
@@ -19836,12 +20110,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти заплутався в порядку слів у самому кінці. Коли ми описуємо якість у кінці такої фрази, помічник was має стояти після самої ситуації, а не перед нею. Поміняй два останніх слова місцями!`,
       `Яка холодна плутанина! Ти перетворив усвідомлення на «справжній лід». Це звучить кумедно, але нам потрібна дія realize. Будь уважнішим до написання слова в середині!`,
     ],
+    explanationsES: [
+      `Only then I realized how grave the situation was necesita inversión si empiezas con Only then: Only then did I realize. Aquí la opción correcta usa otra estructura enfática.`,
+      `Correcto. It was only then that I realized how grave the situation was enfatiza el momento exacto en que llegó la comprensión.`,
+      `It was only then that I realized how grave was the situation pone was antes de the situation. En esta cláusula indirecta va how grave the situation was.`,
+      `It was only then that I real-iced how grave the situation was rompe realized como si fuera ice. Aquí necesitas realized.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Ты абсолютно прав, говоря, что нам нужно сменить стратегию`,
     uk: `Ти абсолютно правий, кажучи, що нам потрібно змінити стратегію`,
+    es: `Tienes toda la razón al decir que necesitamos cambiar de estrategia`,
     choices: [
       `You hit the nail on the head when you said we need to change strategy.`,
       `You hit the nail on the hair when you said we need to change strategy.`,
@@ -19861,12 +20142,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже вгадав, але у цій сталій фразі ми використовуємо прийменник on. Маленьке слово onto тут зайве і руйнує магію ідіоми. Прибери зайві літери!`,
       `Це звучить як переклад ідеї, але в англійській цвях потрібно саме «ударити» словом hit. Дієслово beat сюди не підходить. Заміни дію, щоб фраза стала правильною!`,
     ],
+    explanationsES: [
+      `Correcto. You hit the nail on the head when you said we need to change strategy usa una idiom para decir que alguien acertó exactamente.`,
+      `You hit the nail on the hair when you said we need to change strategy cambia head por hair. La idiom fija es hit the nail on the head.`,
+      `You hit the nail onto the head when you said we need to change strategy usa onto, pero la expresión fija necesita on.`,
+      `You beat the nail on the head when you said we need to change strategy cambia hit por beat. En esta idiom el verbo correcto es hit.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Ни в коем случае нельзя открывать эту дверь`,
     uk: `У жодному разі не можна відкривати ці двері`,
+    es: `Bajo ningún concepto debes abrir esta puerta`,
     choices: [
       `On no account you should open this door.`,
       `On no account should you open this door.`,
@@ -19886,12 +20174,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як переклад слів по черзі, який ми часто робимо в голові. Але для такого рівня нам потрібна вишуканіша конструкція з перестановкою слів і словом account. Спробуй знайти складніший варіант!`,
       `Яка кумедна плутанина! Слово doer означає діяча або людину, яка щось робить. Вийшло, що ти забороняєш відкривати «людину». Тобі потрібне слово door. Будь уважнішим до літер у кінці!`,
     ],
+    explanationsES: [
+      `On no account you should open this door deja el orden normal, pero después de On no account necesitamos inversión: should you.`,
+      `Correcto. On no account should you open this door usa una inversión formal para expresar una prohibición muy fuerte.`,
+      `In no case you can open this door suena como traducción literal y no usa la estructura formal esperada. Aquí buscamos On no account should you...`,
+      `On no account should you open this doer cambia door por doer. Doer es una persona que hace cosas; aquí necesitas door.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я терпеть не могу, когда мне говорят, что делать`,
     uk: `Я терпіти не можу, коли мені кажуть, що робити`,
+    es: `No soporto que me digan qué hacer`,
     choices: [
       `I hate when people tell me what to do.`,
       `I resent being told what to do.`,
@@ -19911,12 +20206,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти обрав чудове слово для обурення, але після нього нам потрібна дія із закінченням ing, а не зв\'язка з to. Ці маленькі деталі відділяють гарну мову від ідеальної. Додай три літери до слова be!`,
       `Яка часова плутанина! Слово recent означає нещодавній. Вийшло, що ти «нещодавній бути сказаним». Тобі потрібна дія resent, яка починається на літеру s. Будь уважнішим до написання!`,
     ],
+    explanationsES: [
+      `I hate when people tell me what to do se entiende, pero es más simple. El ejercicio busca resent being told para expresar molestia de forma más precisa.`,
+      `Correcto. I resent being told what to do usa resent + -ing y una forma pasiva para decir que te molesta que te den órdenes.`,
+      `I resent to be told what to do usa to be, pero después de resent necesitamos -ing: being told.`,
+      `I recent being told what to do cambia resent por recent. Recent significa reciente; aquí necesitas resent.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Только когда я пришел домой, я осознал, что потерял кошелек`,
     uk: `Тільки коли я прийшов додому, я усвідомив, що загубив гаманець`,
+    es: `No fue hasta que llegué a casa que me di cuenta de que había perdido la cartera`,
     choices: [
       `Not until I got home I realized that I had lost my wallet.`,
       `Not until I got home did I realize that I had lost my wallet.`,
@@ -19936,12 +20238,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Тут не вистачає відразу двох важливих речей. По-перше, потрібно переставити слова в другій частині, додавши did. По-друге, гаманець загубився ще раніше, ніж ти прийшов, тому там потрібне слово had. Спробуй виправити обидва моменти!`,
       `Яка кумедна гра слів! Ти обрав варіант, який звучить як «справжні очі», а нам потрібна дія, що означає усвідомлення. Тобі потрібне слово realize. Будь уважнішим до літер!`,
     ],
+    explanationsES: [
+      `Not until I got home I realized that I had lost my wallet necesita inversión en la segunda parte: did I realize.`,
+      `Correcto. Not until I got home did I realize that I had lost my wallet usa inversión después de Not until y past perfect para lo que pasó antes.`,
+      `Not until I got home I realized that I lost my wallet falla en dos puntos: falta did I realize y falta had lost para la acción anterior.`,
+      `Not until I got home did I real-eyes that I had lost my wallet rompe realize como si fueran eyes. Aquí necesitas realize.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `У нас нет четкого плана, так что будем действовать по обстоятельствам`,
     uk: `У нас немає чіткого плану, тож будемо діяти за обставинами`,
+    es: `No tenemos un plan claro, así que improvisaremos según la situación`,
     choices: [
       `We don\'t have a clear plan, so we will act by the situations.`,
       `We don\'t have a clear plan, so we will play it by year.`,
@@ -19961,12 +20270,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній віртуоз розмовних виразів! Ця ідіома показує, що ти вмієш адаптуватися і говориш як справжній носій мови. Ти звучиш дуже круто і впевнено. Блискуче!`,
       `Ти обрав чудову ідіому, але заплутався в граматиці. Після слова will нам потрібна проста дія без закінчень. Прибери ing у кінці, щоб фраза стала правильною!`,
     ],
+    explanationsES: [
+      `We don't have a clear plan, so we will act by the situations suena como traducción literal. En inglés natural para improvisar usamos play it by ear.`,
+      `We don't have a clear plan, so we will play it by year cambia ear por year. La idiom correcta es play it by ear.`,
+      `Correcto. We don't have a clear plan, so we will play it by ear significa que decidiremos sobre la marcha según lo que pase.`,
+      `We don't have a clear plan, so we will playing it by ear usa playing después de will. Después de will necesitas play.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Тебе нужно отремонтировать машину как можно скорее`,
     uk: `Тобі потрібно відремонтувати машину якомога швидше`,
+    es: `Necesitas que te reparen el coche lo antes posible`,
     choices: [
       `You need to get your car repaired as soon as possible.`,
       `You need to repair your car as soon as possible.`,
@@ -19986,12 +20302,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але в цій конструкції головна дія має стояти в третій формі. Тобі не вистачає закінчення ed у кінці слова repair. Додай ці дві літери, і все буде ідеально!`,
       `Яка кумедна плутанина! З дефісом це слово перетворюється на «знову створений парою». Вийшло, що машині потрібно знайти «пару». Тобі потрібне цільне слово repaired. Прибери зайвий знак у середині!`,
     ],
+    explanationsES: [
+      `Correcto. You need to get your car repaired as soon as possible significa que alguien reparará el coche por ti.`,
+      `You need to repair your car as soon as possible suena como si tú fueras a repararlo personalmente. Para llevarlo a un profesional, usa get your car repaired.`,
+      `You need to get your car repair as soon as possible deja repair en forma base. En get something done necesitas repaired.`,
+      `You need to get your car re-paired as soon as possible separa repaired con guion. La palabra correcta va junta: repaired.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы я не был таким застенчивым, я бы подошел к ней на вечеринке вчера`,
     uk: `Якби я не був таким сором\'язливим, я б підійшов до неї на вечірці вчора`,
+    es: `Si no fuera tan tímido, me habría acercado a ella en la fiesta ayer`,
     choices: [
       `If I wouldn\'t be so shy, I would approach her at the party yesterday.`,
       `If I weren\'t so shy, I would have approached her at the party yesterday.`,
@@ -20011,12 +20334,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Перша частина звучить непогано для розмовної мови, але друга частина зовсім не підходить для минулого. Тобі потрібно додати зв\'язку would have і змінити закінчення у головної дії на ed. Виправ фінал!`,
       `Яка ювелірна плутанина! Слово brooch означає брошку (прикрасу). Вийшло, що ти хотів «мати брошку її» замість того, щоб підійти. Тобі потрібна дія approached. Будь уважнішим до літер у середині!`,
     ],
+    explanationsES: [
+      `If I wouldn't be so shy, I would approach her at the party yesterday tiene dos problemas: wouldn't no va en la parte con if, y yesterday pide would have approached.`,
+      `Correcto. If I weren't so shy, I would have approached her at the party yesterday conecta una característica general con una acción pasada que no ocurrió.`,
+      `If I wasn't so shy, I would approach her at the party yesterday suena posible en la primera parte, pero la segunda no marca el pasado. Necesitas would have approached.`,
+      `If I weren't so shy, I would have a brooch her at the party yesterday convierte approached en a brooch. Brooch es un broche; aquí necesitas approached.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я предпочитаю держать его на расстоянии, так как не доверяю ему`,
     uk: `Я віддаю перевагу тримати його на відстані, оскільки не довіряю йому`,
+    es: `Prefiero mantenerlo a distancia porque no confío en él`,
     choices: [
       `I prefer to keep him at arm\'s length because I don\'t trust him.`,
       `I prefer to keep him on the distance because I don\'t trust him.`,
@@ -20036,12 +20366,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але дієслово підібрано не зовсім точно. У цій сталій фразі ми використовуємо дію keep, а не hold. Заміни одне слово, і фраза відразу стане правильною і красивою!`,
       `Яка силова плутанина! Слово strength означає силу. Вийшло, що ти тримаєш його на якійсь «силі руки». Тобі потрібне слово length, що означає довжину. Стеж за літерами на початку слова!`,
     ],
+    explanationsES: [
+      `Correcto. I prefer to keep him at arm's length because I don't trust him usa una idiom para mantener distancia emocional o social.`,
+      `I prefer to keep him on the distance because I don't trust him suena como traducción literal. La idiom natural es keep him at arm's length.`,
+      `I prefer to hold him at arm's length because I don't trust him cambia keep por hold. La expresión fija usa keep.`,
+      `I prefer to keep him at arm's strength because I don't trust him cambia length por strength. Strength es fuerza; aquí necesitas length.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Жизненно важно, чтобы он был проинформирован о любых изменениях немедленно`,
     uk: `Життєво важливо, щоб він був проінформований про будь-які зміни негайно`,
+    es: `Es vital que se le informe inmediatamente de cualquier cambio`,
     choices: [
       `It is vital that he is informed about any changes immediately.`,
       `It is vital for him being informed about any changes immediately.`,
@@ -20061,12 +20398,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній віртуоз! Використання форми be після прикметника важливості — це ознака вищого пілотажу в англійській. Ти звучиш дуже офіційно і при цьому абсолютно правильно. Блискуче!`,
       `Яка дивна плутанина! Ти розділив слово дефісом, і вийшло, що він має бути «у формі» всередині чогось. Тобі потрібне цільне слово informed. Прибери зайвий знак у середині!`,
     ],
+    explanationsES: [
+      `It is vital that he is informed about any changes immediately se entiende, pero en esta estructura formal después de vital usamos be, no is.`,
+      `It is vital for him being informed about any changes immediately mezcla preposición y forma -ing de manera poco natural. Aquí necesitamos that he be informed.`,
+      `Correcto. It is vital that he be informed about any changes immediately usa mandative subjunctive y pasiva formal.`,
+      `It is vital that he be in-formed about any changes immediately separa informed con guion. Aquí necesitas informed como una sola palabra.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мало он знал о том, что его ждет сюрприз`,
     uk: `Мало він знав про те, що на нього чекає сюрприз`,
+    es: `Poco sabía él que le esperaba una sorpresa`,
     choices: [
       `Little he knew that a surprise was in store for him.`,
       `Little did he know that a surprise was in store for him.`,
@@ -20086,12 +20430,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ой, ти заплутався у часах! Сюрприз уже був у минулому, тому помічник does тут не підходить. Нам потрібно використати форму did, щоб усі частини речення подружилися між собою. Заміни одну літеру!`,
       `Яка кумедна плутанина! Слово gnaw означає гризти або глодати. Вийшло, що він «мало гриз» замість того, щоб мало знати. Тобі потрібне слово know. Стеж за літерами на початку слова!`,
     ],
+    explanationsES: [
+      `Little he knew that a surprise was in store for him deja el orden normal. Después de Little al inicio necesitamos inversión: did he know.`,
+      `Correcto. Little did he know that a surprise was in store for him usa inversión para crear un tono narrativo y dramático.`,
+      `Little does he know that a surprise was in store for him usa does, pero el resto está en pasado. Necesitas did.`,
+      `Little did he gnaw that a surprise was in store for him cambia know por gnaw. Gnaw significa roer; aquí necesitas know.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Тебе нужно взять себя в руки и закончить этот отчет`,
     uk: `Тобі треба взяти себе в руки і закінчити цей звіт`,
+    es: `Tienes que recomponerte y terminar este informe`,
     choices: [
       `You need to take yourself in hands and finish this report.`,
       `You need to pull yourself together and finish this report.`,
@@ -20111,12 +20462,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але в цій ідіомі зайве слово. Нам потрібне слово together, що означає разом, а не altogether, що означає зовсім або повністю. Прибери зайву частину в середині слова!`,
       `Ой, ми попливли не в той бік! Слово pool означає басейн або об\'єднання ресурсів. Вийшло, що ти пропонуєш «зробити з себе басейн». Тобі потрібна дія pull. Стеж за літерами!`,
     ],
+    explanationsES: [
+      `You need to take yourself in hands and finish this report traduce la idea demasiado literal. En inglés natural usamos pull yourself together.`,
+      `Correcto. You need to pull yourself together and finish this report significa recomponerte, organizarte y seguir adelante.`,
+      `You need to pull yourself altogether and finish this report cambia together por altogether. La idiom fija es pull yourself together.`,
+      `You need to pool yourself together and finish this report cambia pull por pool. Pool puede ser piscina o juntar recursos; aquí necesitas pull.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Считается, что он заработал состояние на инвестициях`,
     uk: `Вважається, що він заробив статки на інвестиціях`,
+    es: `Se cree que ganó una fortuna con inversiones`,
     choices: [
       `He is believed to earn a fortune from investments.`,
       `He is believed to have earned a fortune from investments.`,
@@ -20136,12 +20494,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Тебе зрозуміють, але на високому рівні це звучить занадто просто. Щоб зробити мову вишуканішою, почни речення відразу з головного героя і використовуй зв\'язку be believed to. Спробуй перебудувати все заново!`,
       `Яка емоційна плутанина! Слово yearned означає «палко бажати». Вийшло, що він просто «дуже хотів» статки, але не факт, що заробив. Тобі потрібне слово earned. Будь уважнішим до першої літери!`,
     ],
+    explanationsES: [
+      `He is believed to earn a fortune from investments suena como si todavía ganara dinero ahora. Para algo ya logrado necesitas to have earned.`,
+      `Correcto. He is believed to have earned a fortune from investments usa perfect infinitive para marcar que la fortuna ya fue ganada.`,
+      `It is believed that he earned a fortune from investments se entiende, pero el ejercicio busca la versión más elegante con He is believed to have earned...`,
+      `He is believed to have yearned a fortune from investments cambia earned por yearned. Yearned significa anheló; aquí necesitas earned.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я не пошел на вечеринку, и мой брат тоже (не пошел)`,
     uk: `Я не пішов на вечірку, і мій брат теж (не пішов)`,
+    es: `No fui a la fiesta, y mi hermano tampoco`,
     choices: [
       `I didn\'t go to the party, and neither did my brother.`,
       `I didn\'t go to the party, and my brother also didn\'t.`,
@@ -20161,12 +20526,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти обрав правильне слово, але забув поміняти їх місцями. У цій конструкції помічник did має стояти перед тим, про кого ми говоримо. Просто перестав його на одну позицію вперед!`,
       `Ой, яка географічна плутанина! Слово nether означає нижній або підземний (як у комп\'ютерних іграх). Тобі потрібне слово neither з літерою i в середині. Будь уважнішим до літер!`,
     ],
+    explanationsES: [
+      `Correcto. I didn't go to the party, and neither did my brother usa neither + inversión para decir que la segunda persona tampoco hizo la acción.`,
+      `I didn't go to the party, and my brother also didn't se entiende, pero suena más básico. El ejercicio busca neither did my brother.`,
+      `I didn't go to the party, and neither my brother did usa neither, pero no invierte el orden. Necesitas neither did my brother.`,
+      `I didn't go to the party, and nether did my brother cambia neither por nether. Nether significa inferior o subterráneo; aquí necesitas neither.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я наконец-то выкроил время, чтобы ответить на твои письма`,
     uk: `Я нарешті знайшов час, щоб відповісти на твої листи`,
+    es: `Por fin encontré tiempo para responder tus correos`,
     choices: [
       `I finally found time for answering your emails.`,
       `I finally got around to answering your emails.`,
@@ -20186,12 +20558,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але в цьому виразі після часточки to нам обов\'язково потрібне закінчення ing у дії. Це одна з тих самих маленьких особливостей, які потрібно запам\'ятати. Додай три літери в кінці!`,
       `Яка спортивна плутанина! Вираз a round зазвичай означає раунд у боксі або коло напоїв. Вийшло, що ти провів цілий «раунд» відповідей. Тобі потрібне дієслово got around. Прибери зайве слово!`,
     ],
+    explanationsES: [
+      `I finally found time for answering your emails se entiende, pero es menos natural. Para “por fin me puse con eso” usamos got around to.`,
+      `Correcto. I finally got around to answering your emails significa que lo habías pospuesto y por fin lo hiciste.`,
+      `I finally got around to answer your emails usa answer después de to, pero en got around to necesitamos -ing: answering.`,
+      `I finally got a round of answering your emails convierte got around en a round. A round es una ronda; aquí necesitas got around to.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я бы предпочел, чтобы ты не рассказывал им мой секрет`,
     uk: `Я б віддав перевагу, щоб ти не розповідав їм мій секрет`,
+    es: `Preferiría que no les contaras mi secreto`,
     choices: [
       `I would rather you not to tell them my secret.`,
       `I would rather you didn\'t tell them my secret.`,
@@ -20211,12 +20590,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить зрозуміло, але на високому рівні ми прагнемо цікавіших структур. Спробуй використати варіант із rather, де дія стоїть у формі минулого часу. Це зробить твою мову багатшою!`,
       `Ой, яка плутанина! Слово tail означає хвіст або стеження. Вийшло, що ти не хочеш, щоб секрету «приробили хвоста». Тобі потрібна дія tell. Будь уважнішим до літер у середині слова!`,
     ],
+    explanationsES: [
+      `I would rather you not to tell them my secret usa to, pero con would rather + persona necesitamos pasado: you didn't tell.`,
+      `Correcto. I would rather you didn't tell them my secret usa pasado para expresar una preferencia educada sobre el presente o futuro.`,
+      `I would prefer you not telling them my secret se entiende, pero el ejercicio busca la estructura más fina con would rather you didn't tell.`,
+      `I would rather you didn't tail them my secret cambia tell por tail. Tail puede ser cola o seguir a alguien; aquí necesitas tell.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Тебе не следует принимать ее помощь как должное`,
     uk: `Тобі не слід сприймати її допомогу як належне`,
+    es: `No deberías dar por sentada su ayuda`,
     choices: [
       `You shouldn\'t take her help as a must.`,
       `You shouldn\'t take her help for granted.`,
@@ -20236,12 +20622,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ой, яка кам\'яна помилка! Слово granite означає граніт. Вийшло, що ти не повинен сприймати допомогу «як шматок каменю». Тобі потрібне слово granted. Будь уважнішим до закінчення!`,
       `Ти обрав правильні слова, але заплутався в граматиці. Після слова shouldn\'t нам потрібна проста дія без жодних закінчень. Прибери ing у першого дієслова, щоб фраза стала правильною!`,
     ],
+    explanationsES: [
+      `You shouldn't take her help as a must suena como traducción literal. La expresión natural es take her help for granted.`,
+      `Correcto. You shouldn't take her help for granted significa que no deberías asumir que su ayuda está garantizada.`,
+      `You shouldn't take her help for granite cambia granted por granite. Granite es granito; aquí necesitas granted.`,
+      `You shouldn't taking her help for granted usa taking después de shouldn't. Después de shouldn't necesitas take.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Короче говоря, мы решили отменить встречу`,
     uk: `Коротше кажучи, ми вирішили скасувати зустріч`,
+    es: `En resumen, decidimos cancelar la reunión`,
     choices: [
       `To make a long story short, we decided to call off the meeting.`,
       `To make a long story shortly, we decided to call off the meeting.`,
@@ -20261,12 +20654,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Тебе зрозуміють, але це звучить трохи формально і нудно. Для живої та цікавої мови краще використовувати ідіому про історію. Спробуй знайти варіант, де історія стає короткою!`,
       `Яка гардеробна плутанина! Слово shirt означає сорочку. Вийшло, що ти перетворив історію на предмет одягу. Тобі потрібне слово short. Будь уважнішим до літер у кінці!`,
     ],
+    explanationsES: [
+      `Correcto. To make a long story short, we decided to call off the meeting combina una fórmula para resumir con call off para cancelar.`,
+      `To make a long story shortly, we decided to call off the meeting usa shortly, pero la expresión fija termina en short.`,
+      `Briefly speaking, we decided to cancel the meeting se entiende, pero suena más plano. El ejercicio busca To make a long story short y call off.`,
+      `To make a long story shirt, we decided to call off the meeting cambia short por shirt. Shirt es camisa; aquí necesitas short.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `О детях хорошо заботятся в этой школе`,
     uk: `Про дітей добре піклуються в цій школі`,
+    es: `En esta escuela cuidan bien de los niños`,
     choices: [
       `Children are well look after in this school.`,
       `Children are well looked after in this school.`,
@@ -20286,12 +20686,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Яка просторова помилка! Слово behind означає «позаду». У парі зі словом турбота нам потрібен саме прийменник after. Зміни напрямок уваги, щоб фраза набула змісту!`,
       `Це звучить як дослівний переклад, який ламає всю логіку англійської мови. Нам потрібно почати з тих, про кого піклуються, і використовувати спеціальну зв\'язку be looked after. Спробуй перебудувати все заново!`,
     ],
+    explanationsES: [
+      `Children are well look after in this school pierde la forma de participio. En pasiva necesitas looked after.`,
+      `Correcto. Children are well looked after in this school mantiene el phrasal verb look after dentro de una pasiva natural.`,
+      `Children are well looked behind in this school cambia after por behind. Looked after significa cuidados; behind no sirve aquí.`,
+      `About children is well looked in this school copia el orden de otro idioma. En inglés empezamos por Children are well looked after.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы я принял то предложение о работе в прошлом году, я бы сейчас жил в Лондоне`,
     uk: `Якби я прийняв ту пропозицію про роботу минулого року, я б зараз жив у Лондоні`,
+    es: `Si hubiera aceptado aquella oferta de trabajo el año pasado, ahora estaría viviendo en Londres`,
     choices: [
       `If I accepted that job offer last year, I would live in London now.`,
       `If I had accepted that job offer last year, I would be living in London now.`,
@@ -20311,12 +20718,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти чудово почав, але в кінці обрав форму, яка говорить тільки про минуле. Оскільки ти живеш (або не живеш) у Лондоні прямо зараз, нам потрібно прибрати have і додати закінчення ing до дії. Виправ фінал!`,
       `Яка прикра плутанина! Обране тобою слово означає «виключати». Вийшло, що ти «виключив» пропозицію замість того, щоб її прийняти. Тобі потрібне слово accepted. Будь уважнішим до першої літери!`,
     ],
+    explanationsES: [
+      `If I accepted that job offer last year, I would live in London now usa pasado simple, pero para una oportunidad perdida en el pasado necesitas had accepted.`,
+      `Correcto. If I had accepted that job offer last year, I would be living in London now conecta una causa pasada irreal con una situación presente.`,
+      `If I had accepted that job offer last year, I would have lived in London now pone el resultado en pasado, pero now pide would be living.`,
+      `If I had excepted that job offer last year, I would be living in London now cambia accepted por excepted. Excepted significa excluyó; aquí necesitas accepted.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Нам нужно убедиться, что мы все одинаково понимаем ситуацию (на одной волне)`,
     uk: `Нам потрібно переконатися, що ми всі однаково розуміємо ситуацію (на одній хвилі)`,
+    es: `Tenemos que asegurarnos de que todos entendemos la situación de la misma manera`,
     choices: [
       `We need to make sure we are all on the same page.`,
       `We need to make sure we are all in the same book.`,
@@ -20336,12 +20750,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівний переклад, який позбавляє твою мову барв. На високому рівні краще використовувати соковиті сталі вирази замість простих слів. Спробуй знайти варіант про сторінку!`,
       `Ой, яка тісна плутанина! Слово cage означає клітку. Вийшло, що ти пропонуєш усім залізти в одну клітку. Тобі потрібне слово page. Стеж за першою літерою, щоб не обмежити свободу колег!`,
     ],
+    explanationsES: [
+      `Correcto. We need to make sure we are all on the same page usa una idiom para decir que todos entienden lo mismo.`,
+      `We need to make sure we are all in the same book cambia page por book. La idiom fija es on the same page.`,
+      `We need to verify that we all understand same suena literal y le falta una estructura natural. Aquí encaja be on the same page.`,
+      `We need to make sure we are all on the same cage cambia page por cage. Cage es jaula; aquí necesitas page.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Она активно выступает за использование возобновляемых источников энергии`,
     uk: `Вона активно виступає за використання відновлюваних джерел енергії`,
+    es: `Ella defiende activamente el uso de fuentes de energía renovable`,
     choices: [
       `She is actively speaking for using renewable energy sources.`,
       `She actively advocates the use of renewable energy sources.`,
@@ -20361,12 +20782,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти обрав шикарне слово, але додав зайвий прийменник for після нього. В англійській це дієслово відразу переходить до предмета без додаткових маленьких слів. Просто прибери for!`,
       `Яка смачна, але дивна помилка! Ти переплутав дієслово з назвою фрукта авокадо. Вийшло, що вона «авокадить» використання енергії. Тобі потрібне слово advocates. Будь уважнішим до середини слова!`,
     ],
+    explanationsES: [
+      `She is actively speaking for using renewable energy sources se entiende, pero suena poco natural. Para apoyar públicamente una idea usamos advocate.`,
+      `Correcto. She actively advocates the use of renewable energy sources usa advocate directamente con el objeto, sin for, para apoyar una causa o idea.`,
+      `She actively advocates for the use of renewable energy sources es posible en algunos contextos, pero este ejercicio busca el uso transitivo más directo: advocates the use.`,
+      `She actively avocados the use of renewable energy sources cambia advocates por avocados. Avocados son aguacates; aquí necesitas advocates.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Тебе следовало готовиться к экзамену весь вчерашний вечер (но ты этого не делал)`,
     uk: `Тобі слід було готуватися до іспиту весь учорашній вечір (але ти цього не робив)`,
+    es: `Deberías haber estado preparándote para el examen durante toda la tarde de ayer`,
     choices: [
       `You should have been preparing for the exam all evening yesterday.`,
       `You should be preparing for the exam all evening yesterday.`,
@@ -20386,12 +20814,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Майже ідеально, але це звучить як разова дія. Щоб підкреслити, що ти мав «сидіти за книжками» весь вечір безперервно, краще додати закінчення ing до дії. Спробуй знайти триваліший варіант!`,
       `Яка технічна плутанина! Слово repairing означає лагодити або ремонтувати. Вийшло, що ти мав увесь вечір «ремонтувати» іспит. Тобі потрібне слово preparing. Стеж за літерами на початку!`,
     ],
+    explanationsES: [
+      `Correcto. You should have been preparing for the exam all evening yesterday usa should have been + -ing para decir que el proceso debía estar ocurriendo durante todo ese tiempo pasado.`,
+      `You should be preparing for the exam all evening yesterday habla de un consejo ahora, pero all evening yesterday exige pasado: should have been preparing.`,
+      `You should have prepared for the exam all evening yesterday puede sonar como resultado general, pero no marca el proceso durante toda la tarde. Aquí va should have been preparing.`,
+      `You should have been repairing for the exam all evening yesterday cambia preparing por repairing. Repairing es reparar; para estudiar antes de un examen necesitas preparing.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мы работаем уже десять часов, давай закончим на сегодня (закруглимся)`,
     uk: `Ми працюємо вже десять годин, давай закінчимо на сьогодні (закруглимося)`,
+    es: `Llevamos diez horas trabajando; terminemos por hoy`,
     choices: [
       `We have been working for ten hours, let\'s finish today.`,
       `We have been working for ten hours, let\'s call it a day.`,
@@ -20411,12 +20846,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але в цій ідіомі зайве слово. Ми «називаємо це днем» з маленьким словом a, а не the. Прибери цей елемент, щоб фраза стала по-справжньому сталою та правильною!`,
       `Ой, ми попливли не туди! Слово bay означає затоку або бухту. Вийшло, що ти пропонуєш «назвати це затокою». Тобі потрібне слово day. Будь уважнішим до першої літери!`,
     ],
+    explanationsES: [
+      `We have been working for ten hours, let\'s finish today se entiende, pero suena literal. Para cerrar una jornada de trabajo, en inglés natural usamos let\'s call it a day.`,
+      `Correcto. We have been working for ten hours, let\'s call it a day usa una idiom muy natural para decir que ya basta por hoy.`,
+      `We have been working for ten hours, let\'s call it the day usa the, pero la idiom fija es call it a day.`,
+      `We have been working for ten hours, let\'s call it a bay cambia day por bay. Bay es bahía; aquí necesitas day.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Твоя неосторожность может поставить под угрозу успех всего предприятия`,
     uk: `Твоя необережність може поставити під загрозу успіх усього підприємства`,
+    es: `Tu imprudencia podría poner en riesgo el éxito de toda la iniciativa`,
     choices: [
       `Your imprudence might put under danger the success of the whole venture.`,
       `Your imprudence might jeopardize the success of the whole venture.`,
@@ -20436,12 +20878,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти обрав чудове слово, але додав зайвий прийменник on після нього. Це дієслово не потребує після себе жодних маленьких слів, воно одразу переходить до предмета. Прибери зайве слово on!`,
       `Яке дике перетворення! Вийшло слово, схоже на леопарда. Замість загрози ти «олеопардив» успіх проєкту. Тобі потрібне слово jeopardize. Будь обережнішим із літерами на початку!`,
     ],
+    explanationsES: [
+      `Your imprudence might put under danger the success of the whole venture copia la idea de poner bajo peligro, pero no es la forma natural. Aquí encaja jeopardize.`,
+      `Correcto. Your imprudence might jeopardize the success of the whole venture usa un verbo fuerte para decir que algo pone el éxito en riesgo.`,
+      `Your imprudence might jeopardize on the success of the whole venture añade on, pero jeopardize va directamente con el objeto: jeopardize the success.`,
+      `Your imprudence might leopardize the success of the whole venture cambia jeopardize por una palabra inventada que recuerda a leopard. Aquí necesitas jeopardize.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Боюсь, ты упустил свой шанс (возможность)`,
     uk: `Боюся, ти втратив свій шанс (можливість)`,
+    es: `Me temo que perdiste tu oportunidad`,
     choices: [
       `I am afraid you missed the ship.`,
       `I am afraid you missed the boat.`,
@@ -20461,12 +20910,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Тебе зрозуміють, але це звучить занадто просто і буденно. На твоєму рівні краще використовувати соковиті вирази, які роблять мову багатшою. Спробуй знайти варіант із човном!`,
       `Яка взуттєва плутанина! Слово boot означає черевик. Вийшло, що ти промахнувся повз черевик. Тобі потрібне слово boat. Будь уважнішим до літер у середині!`,
     ],
+    explanationsES: [
+      `I am afraid you missed the ship usa transporte, pero no la idiom correcta. La expresión fija para perder una oportunidad es miss the boat.`,
+      `Correcto. I am afraid you missed the boat suena natural para decir que la oportunidad ya pasó.`,
+      `I am afraid you have lost the chance se entiende, pero suena plano. Aquí el objetivo es la idiom missed the boat.`,
+      `I am afraid you missed the boot cambia boat por boot. Boot es bota; aquí necesitas boat.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Эта работа должна быть выполнена к завтрашнему дню`,
     uk: `Ця робота має бути виконана до завтра`,
+    es: `Este trabajo tiene que estar terminado para mañana`,
     choices: [
       `This work must be doing by tomorrow.`,
       `This work needs to be done by tomorrow.`,
@@ -20486,12 +20942,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти намагаєшся використовувати основу слова, але в пасивних справах нам завжди потрібен помічник be та третя форма дієслова. Заміни make на done, щоб усе звучало правильно!`,
       `Яка поетична помилка! Слово dawn означає світанок. Вийшло, що робота має «стати світанком». Тобі потрібне слово done. Стеж за літерами, щоб не перетворити звіт на природне явище!`,
     ],
+    explanationsES: [
+      `This work must be doing by tomorrow usa doing, como si el trabajo estuviera haciendo algo. Para un resultado pasivo necesitas be done.`,
+      `Correcto. This work needs to be done by tomorrow usa needs to be done para decir que el trabajo debe quedar terminado antes de mañana.`,
+      `This work must be make by tomorrow usa make sin la forma correcta. En passive necesitas be + participio: be done.`,
+      `This work needs to be dawn by tomorrow cambia done por dawn. Dawn es amanecer; aquí necesitas done.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Крайне маловероятно, что они согласятся на эти условия`,
     uk: `Вкрай малоймовірно, що вони погодяться на ці умови`,
+    es: `Es muy poco probable que acepten estos términos`,
     choices: [
       `It is highly unlikely that they will agree to these terms.`,
       `It is very non-probable that they will agree to these terms.`,
@@ -20511,12 +20974,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти загубив хвостик у головного слова! Слово unlike означає «на відміну від». Щоб вийшло значення ймовірності, тобі не вистачає закінчення ly у слові unlikely. Додай його!`,
       `Яка невдача! Обране тобою слово означає «невезучий» або «той, що приносить нещастя». Вийшло, що їм просто «не щастить» погодитися. Тобі потрібне слово unlikely. Будь уважнішим!`,
     ],
+    explanationsES: [
+      `Correcto. It is highly unlikely that they will agree to these terms suena natural y formal para decir que algo tiene muy poca probabilidad.`,
+      `It is very non-probable that they will agree to these terms intenta construir la idea lógicamente, pero en inglés natural usamos unlikely.`,
+      `It is highly unlike that they will agree to these conditions usa unlike, que significa diferente de. Para probabilidad necesitas unlikely.`,
+      `It is highly unlucky that they will agree to these terms usa unlucky, que habla de mala suerte. Aquí necesitas unlikely.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Крайне важно, чтобы он прибыл вовремя`,
     uk: `Вкрай важливо, щоб він прибув вчасно`,
+    es: `Es esencial que él llegue a tiempo`,
     choices: [
       `It is essential that he arrives on time.`,
       `It is essential that he arrive on time.`,
@@ -20536,12 +21006,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить зрозуміло, але занадто просто для твого рівня. Щоб твоя мова була вишуканішою, краще використовувати структуру з that. Спробуй знайти варіант, де дія стоїть у початковій формі!`,
       `Ой, яка плутанина! Обране тобою слово означає «отримувати» або «витягувати» (наприклад, користь). Вийшло, що він має щось витягнути вчасно. Тобі потрібна дія arrive. Стеж за літерами на початку!`,
     ],
+    explanationsES: [
+      `It is essential that he arrives on time usa arrives con s, pero después de essential that en estilo formal va la forma base: he arrive.`,
+      `Correcto. It is essential that he arrive on time usa el subjunctive formal: arrive sin s, aunque el sujeto sea he.`,
+      `It is very important for him to arrive in time se entiende, pero el ejercicio busca la estructura más formal con that y forma base: he arrive.`,
+      `It is essential that he derive on time cambia arrive por derive. Derive significa derivar u obtener; aquí necesitas arrive.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Кажется, я заболеваю простудой`,
     uk: `Здається, я захворію на застуду`,
+    es: `Creo que me estoy resfriando`,
     choices: [
       `I think I am coming down with a cold.`,
       `I think I am coming down a cold.`,
@@ -20561,12 +21038,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти намагаєшся перекласти думку буквально, використовуючи прийменник by. Але в англійській для хвороб ми використовуємо зовсім інші зв\'язки. Спробуй знайти більш ідіоматичний варіант із дієсловом come!`,
       `Яка кумедна плутанина! Обране тобою дієслово означає «заспокоюватися». Вийшло, що ти знаходиш дзен разом із застудою. Тобі потрібне слово coming. Будь уважнішим до голосних!`,
     ],
+    explanationsES: [
+      `Correcto. I think I am coming down with a cold es una forma natural de decir que empiezas a enfermarte de un resfriado.`,
+      `I think I am coming down a cold pierde with. La expresión completa es come down with a cold.`,
+      `It seems that I am falling ill by cold suena como traducción literal. En inglés natural para este caso usamos come down with a cold.`,
+      `I think I am calming down with a cold cambia coming por calming. Calming down es calmarse; aquí necesitas coming down.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Тебе нужно научиться читать между строк`,
     uk: `Тобі потрібно навчитися читати між рядків`,
+    es: `Necesitas aprender a leer entre líneas`,
     choices: [
       `You need to learn how to read between the rows.`,
       `You need to learn to read between lines.`,
@@ -20586,12 +21070,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній віртуоз! Використання слова для позначення навички робить твоє прохання дуже вагомим і красивим. Ти звучиш упевнено і дуже по-англійськи. Блискуче!`,
       `Ой, як небезпечно! Слово lions означає левів. Вийшло, що тобі потрібно читати, перебуваючи між хижаками. Тобі потрібне слово lines. Будь обережнішим, одна літера змінює все!`,
     ],
+    explanationsES: [
+      `You need to learn how to read between the rows usa rows, que son filas. La idiom correcta usa lines: read between the lines.`,
+      `You need to learn to read between lines casi llega, pero falta the. La expresión fija es read between the lines.`,
+      `Correcto. You need to acquire the skill of reading between the lines mantiene la idiom completa y suena más elaborado por acquire the skill.`,
+      `You need to learn to read between the lions cambia lines por lions. Lions son leones; aquí necesitas lines.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне удалось уговорить его пересмотреть свое решение`,
     uk: `Мені вдалося вмовити його переглянути своє рішення`,
+    es: `Logré convencerlo de que reconsiderara su decisión`,
     choices: [
       `I managed to get him to reconsider his decision.`,
       `I managed to get him reconsider his decision.`,
@@ -20611,19 +21102,26 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як переклад слів окремо, але в англійській після слів переконання ми не використовуємо зв\'язку for. Тобі потрібна більш природна структура. Спробуй варіант із дієсловом get!`,
       `Яка плутанина у словах! Обране тобою слово означає помиритися або владнати конфлікт. Вийшло, що ти змусив його «помиритися з рішенням». Тобі потрібна дія reconsider. Стеж за літерами!`,
     ],
+    explanationsES: [
+      `Correcto. I managed to get him to reconsider his decision usa get someone to do something para decir que lograste que otra persona hiciera algo.`,
+      `I managed to get him reconsider his decision pierde to después de get him. La estructura completa es get him to reconsider.`,
+      `I managed to persuade him for reconsider his decision copia la lógica de otro idioma. Después de persuade someone usamos to + verb, no for.`,
+      `I managed to get him to reconcile his decision cambia reconsider por reconcile. Reconcile es reconciliar o resolver un conflicto; aquí necesitas reconsider.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Пожалуйста, держите меня в курсе событий по этому проекту`,
     uk: `Будь ласка, тримайте мене в курсі подій щодо цього проєкту`,
+    es: `Por favor, mantenme al tanto de este proyecto`,
     choices: [
       `Please, keep me in the loop regarding this project.`,
       `Please, keep me in loop regarding this project.`,
       `Please, hold me in course of this project.`,
       `Please, keep me in the soup regarding this project.`,
     ],
-    correct: 1,
+    correct: 0,
     explanations: [
       `Твой деловой английский просто на высоте! Эта идиома — лучший способ попросить не забывать делиться новостями. Ты звучишь как человек, который в теме. Блестящая работа!`,
       `Ты выбрал отличный образ, но потерял слово the перед петлей. Без него идиома теряет свою устойчивость и звучит немного странно. Верни этот маленький элемент на место!`,
@@ -20636,12 +21134,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як буквальний переклад фрази з твоєї мови. Англомовні люди використовують зовсім інші картинки для цієї думки. Спробуй знайти варіант із «петлею»!`,
       `Ой, яка кулінарна помилка! Слово soup означає суп. Вийшло, що ти просиш залишити тебе «у супі». Навряд чи тобі там сподобається! Тобі потрібне слово loop. Будь уважнішим до першої літери!`,
     ],
+    explanationsES: [
+      `Correcto. Please, keep me in the loop regarding this project usa la idiom in the loop para pedir que te mantengan informado.`,
+      `Please, keep me in loop regarding this project pierde the. La expresión fija es in the loop.`,
+      `Please, hold me in course of this project suena como traducción literal. En inglés natural para estar informado usamos keep me in the loop.`,
+      `Please, keep me in the soup regarding this project cambia loop por soup. Soup es sopa; aquí necesitas loop.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Только усердно работая, ты сможешь достичь своих целей`,
     uk: `Тільки старанно працюючи, ти зможеш досягти своїх цілей`,
+    es: `Solo trabajando duro podrás alcanzar tus metas`,
     choices: [
       `Only by working hard you can achieve your goals.`,
       `Only by working hard can you achieve your goals.`,
@@ -20661,12 +21166,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти намагаєшся будувати речення за правилами своєї мови, використовуючи зв\'язку для. Але в англійській після слів здібності нам потрібне слово to. Спробуй більш просунуту структуру з перестановкою слів!`,
       `Ой, яка комп\'ютерна плутанина! Слово archive означає відправити в архів або зберегти старі дані. Вийшло, що ти «архівуєш» цілі замість того, щоб їх досягти. Тобі потрібне слово achieve. Будь обережнішим!`,
     ],
+    explanationsES: [
+      `Only by working hard you can achieve your goals empieza bien, pero después de Only by al inicio necesitamos inversión: can you, no you can.`,
+      `Correcto. Only by working hard can you achieve your goals usa inversión después de Only by para marcar la única condición.`,
+      `Only with hard work you will be able for achieve your goals copia la estructura de otro idioma. Able va con to, y aquí se busca la inversión con Only by.`,
+      `Only by working hard can you archive your goals cambia achieve por archive. Archive es archivar; aquí necesitas achieve.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Ты, должно быть, шутишь! (Разыгрываешь меня)`,
     uk: `Ти, мабуть, жартуєш! (Розвiдуєш мене)`,
+    es: `¡Debes de estar bromeando!`,
     choices: [
       `You must be pulling my leg!`,
       `You must be pulling my foot!`,
@@ -20686,12 +21198,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить зрозуміло, але занадто просто для твого рівня. Щоб твоя мова була соковитою та ідіоматичною, краще використовувати вираз про «ногу». Спробуй знайти цей варіант!`,
       `Яка водна плутанина! Слово pooling означає об\'єднання ресурсів або створення басейну. Вийшло, що ти «збираєш мою ногу в басейн». Тобі потрібна дія pulling. Стеж за голосними!`,
     ],
+    explanationsES: [
+      `Correcto. You must be pulling my leg! es una idiom natural para decir que alguien te está tomando el pelo o bromeando.`,
+      `You must be pulling my foot! cambia leg por foot. La expresión fija usa leg, no foot.`,
+      `You probably are playing me se entiende de forma general, pero no expresa la idiom de broma. Aquí va pulling my leg.`,
+      `You must be pooling my leg! cambia pulling por pooling. Pooling es juntar recursos; aquí necesitas pulling.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я был крайне раздражен его постоянными жалобами`,
     uk: `Я був вкрай роздратований його постійними скаргами`,
+    es: `Estaba exasperado por sus quejas constantes`,
     choices: [
       `I was very angry with his constant complaints.`,
       `I was exasperated by his constant complaints.`,
@@ -20711,12 +21230,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти обрав слово, яке звучить майже так само, але воно означає «погіршувати ситуацію» або хворобу. Коли ми говоримо про почуття людини, нам потрібне саме слово exasperated. Виправ одну літеру!`,
       `Ти обрав чудове слово для почуттів, але помилився в кінці фрази. Слово complain — це дія, а для позначення самих «скарг» нам потрібен іменник із літерою t на кінці. Додай її у фінальне слово!`,
     ],
+    explanationsES: [
+      `I was very angry with his constant complaints se entiende, pero suena más básico. Para irritación fuerte y paciencia agotada, encaja exasperated.`,
+      `Correcto. I was exasperated by his constant complaints expresa que sus quejas constantes te irritaban muchísimo.`,
+      `I was exacerbated by his constant complaints confunde exasperated con exacerbated. Exacerbated significa empeorado; para el sentimiento necesitas exasperated.`,
+      `I was exasperated with his constant complains usa complains como verbo. Para las quejas necesitas el sustantivo complaints.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы она не была такой упрямой, она бы извинилась перед тобой вчера`,
     uk: `Якби вона не була такою впертою, вона б вибачилася перед тобою вчора`,
+    es: `Si ella no fuera tan terca, se habría disculpado contigo ayer`,
     choices: [
       `If she wouldn\'t be so stubborn, she would have apologized to you yesterday.`,
       `If she weren\'t so stubborn, she would apologize to you yesterday.`,
@@ -20736,12 +21262,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній геній граматики! Ти ідеально поєднав її характер загалом та конкретну подію у минулому. Це звучить дуже професійно та природно. Блискучий вибір!`,
       `Яке суворе рішення! Обране слово означає скасувати закон або розірвати угоду. Вийшло, що вона мала тебе «анулювати». Тобі потрібне слово apologized. Стеж за літерами!`,
     ],
+    explanationsES: [
+      `If she wouldn\'t be so stubborn, she would have apologized to you yesterday pone wouldn\'t dentro de la condición. Después de if aquí necesitamos weren\'t.`,
+      `If she weren\'t so stubborn, she would apologize to you yesterday empieza bien, pero yesterday pide resultado pasado: would have apologized.`,
+      `Correcto. If she weren\'t so stubborn, she would have apologized to you yesterday conecta una cualidad imaginaria con un resultado pasado.`,
+      `If she weren\'t so stubborn, she would have abolished to you yesterday cambia apologized por abolished. Abolish es abolir; aquí necesitas apologized.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я больше не намерен мириться с его грубым поведением`,
     uk: `Я більше не маю наміру миритися з його грубою поведінкою`,
+    es: `Ya no tengo intención de tolerar su comportamiento insolente`,
     choices: [
       `I am no longer intended to put up with his insolent behavior.`,
       `I am no longer intending to put up with his insolent behavior.`,
@@ -20761,12 +21294,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти загубив важливий елемент пазла! У цьому фразовому дієслові обов\'язково має бути слово up перед словом with. Без нього зміст фрази просто розсипається. Поверни його на місце!`,
       `Вийшло щось про садівництво! Слово pot означає квітковий горщик. Замість терпіння вийшло, що ти зібрався щось «садити в горщики». Тобі потрібна дія put. Будь уважнішим до літер!`,
     ],
+    explanationsES: [
+      `I am no longer intended to put up with his insolent behavior usa intended, que suena pasivo o adjetivo. Para intención activa aquí va intending.`,
+      `Correcto. I am no longer intending to put up with his insolent behavior combina intending con put up with para decir que ya no vas a tolerarlo.`,
+      `I am no longer intending to put with his insolent behavior pierde up. La phrasal verb completa es put up with.`,
+      `I am no longer intending to pot up with his insolent behavior cambia put por pot. Pot es maceta o poner en una maceta; aquí necesitas put.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я не хочу играть второстепенную роль в этом проекте`,
     uk: `Я не хочу грати другорядну роль у цьому проєкті`,
+    es: `No quiero hacer un papel secundario en este proyecto`,
     choices: [
       `I am reluctant to play second fiddle in this undertaking.`,
       `I am reluctant to play the second fiddle in this undertaking.`,
@@ -20786,12 +21326,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівний переклад, який позбавляє твою мову барв. На високому рівні краще використовувати образні вирази, щоб показати свою майстерність. Спробуй знайти варіант зі скрипкою!`,
       `Яка загадкова плутанина! Слово riddle означає загадку. Вийшло, що ти не хочеш розгадувати «другу загадку». Тобі потрібне слово fiddle. Лише одна літера, а зміст зовсім інший!`,
     ],
+    explanationsES: [
+      `Correcto. I am reluctant to play second fiddle in this undertaking usa la idiom play second fiddle para no tener un papel secundario.`,
+      `I am reluctant to play the second fiddle in this undertaking añade the, pero la idiom fija es play second fiddle, sin the.`,
+      `I don\'t want to play a second role in this project se entiende, pero suena literal. La idiom natural es play second fiddle.`,
+      `I am reluctant to play second riddle in this undertaking cambia fiddle por riddle. Riddle es acertijo; aquí necesitas fiddle.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `По-видимому, это решение было принято без его согласия`,
     uk: `Мабуть, це рішення було прийняте без його згоди`,
+    es: `Al parecer, esta decisión se tomó sin su consentimiento`,
     choices: [
       `Seemingly, this decision was made without his consent.`,
       `Seemingly, this decision was made without his consensus.`,
@@ -20811,12 +21358,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти загубив пару літер на початку! Обране тобою слово означає «пристойний» або «належний». Щоб висловити значення «мабуть», тобі не вистачає хвостика ingly. Додай його до основи!`,
       `Ти намагаєшся перекласти українську думку дослівно, але це звучить занадто просто. На високому рівні для висловлення припущення краще використовувати одне сильне прислівник. Спробуй знайти варіант на літеру S!`,
     ],
+    explanationsES: [
+      `Correcto. Seemingly, this decision was made without his consent usa seemingly para marcar distancia y consent para permiso de una persona.`,
+      `Seemingly, this decision was made without his consensus cambia consent por consensus. Consensus es acuerdo de grupo; aquí necesitas consent.`,
+      `Seemly, this decision was made without his consent usa seemly, que significa apropiado o decoroso. Para al parecer necesitas seemingly.`,
+      `Looking like, this decision was made without his consent copia una idea literal. En una frase formal encaja mejor seemingly.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я с нетерпением жду возможности обсудить это с вами`,
     uk: `Я з нетерпінням чекаю на можливість обговорити це з вами`,
+    es: `Estoy deseando poder hablar de esto con usted`,
     choices: [
       `I am looking forward to discuss this with you.`,
       `I am looking forward to discussing this with you.`,
@@ -20836,12 +21390,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти переклав фразу слово в слово з рідної мови. Тебе зрозуміють, але англійці так майже ніколи не говорять. Щоб звучати круто, використовуй сталий вираз із дієсловом look. Спробуй його знайти!`,
       `Яка неприємна плутанина! Обране тобою слово означає «викликати відразу». Вийшло, що ти чекаєш на щось огидне. Тобі потрібна дія discussing. Стеж за літерами в середині!`,
     ],
+    explanationsES: [
+      `I am looking forward to discuss this with you usa discuss después de to, pero en looking forward to ese to pide -ing: discussing.`,
+      `Correcto. I am looking forward to discussing this with you usa looking forward to + -ing y suena natural en contexto profesional.`,
+      `I wait with impatience to discuss this with you copia una expresión de otro idioma. En inglés natural usamos looking forward to discussing.`,
+      `I am looking forward to disgusting this with you cambia discussing por disgusting. Disgusting significa asqueroso; aquí necesitas discussing.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы я не проспал утром, я бы не был сейчас таким уставшим`,
     uk: `Якби я не проспав уранці, я б не був зараз таким втомленим`,
+    es: `Si no me hubiera quedado dormido esta mañana, ahora no estaría tan cansado`,
     choices: [
       `If I didn\'t oversleep this morning, I wouldn\'t be so exhausted now.`,
       `If I hadn\'t overslept this morning, I wouldn\'t be so exhausted now.`,
@@ -20861,12 +21422,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але після помічника had дія завжди вимагає третю форму. Додай закінчення t до слова oversleep, щоб граматика стала ідеальною. Ти на правильному шляху!`,
       `Яка плутанина в описах! Обране слово означає «вичерпний» (наприклад, відповідь). Щоб сказати, що ти сам виснажений, тобі потрібне слово exhausted. Будь уважнішим до закінчень!`,
     ],
+    explanationsES: [
+      `If I didn\'t oversleep this morning, I wouldn\'t be so exhausted now usa una condición normal, pero this morning ya pasó. Necesitas hadn\'t overslept.`,
+      `Correcto. If I hadn\'t overslept this morning, I wouldn\'t be so exhausted now conecta un pasado irreal con el estado de ahora.`,
+      `If I hadn\'t oversleep this morning, I wouldn\'t be so exhausted now pierde el participio. Después de had necesitas overslept.`,
+      `If I hadn\'t overslept this morning, I wouldn\'t be so exhaustive now cambia exhausted por exhaustive. Exhaustive es exhaustivo; aquí necesitas exhausted.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Тебе не стоит халтурить, если хочешь добиться успеха`,
     uk: `Тобі не варто халтурити, якщо хочеш досягти успіху`,
+    es: `No deberías hacer las cosas a medias si quieres tener éxito`,
     choices: [
       `You shouldn\'t cut corners if you want to succeed.`,
       `You shouldn\'t cut the corners if you want to succeed.`,
@@ -20886,12 +21454,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить дуже просто і по-дитячому. На твоєму рівні потрібно використовувати більш соковиті ідіоматичні вирази для опису неякісної роботи. Спробуй знайти варіант із кутами!`,
       `Ой, яка моторошна помилка! Слово coroners означає слідчих, які ведуть справи про смерть. Вийшло, що ти радиш «не різати слідчих». Тобі потрібне слово corners. Будь обережнішим із літерами!`,
     ],
+    explanationsES: [
+      `Correcto. You shouldn\'t cut corners if you want to succeed usa cut corners para decir que no debes ahorrar esfuerzo bajando la calidad.`,
+      `You shouldn\'t cut the corners if you want to succeed añade the, pero la idiom fija es cut corners, sin artículo.`,
+      `You shouldn\'t do bad work if you want to succeed se entiende, pero suena demasiado plano. La idiom natural es cut corners.`,
+      `You shouldn\'t cut coroners if you want to succeed cambia corners por coroners. Coroners son forenses; aquí necesitas corners.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Давно пора тебе найти работу`,
     uk: `Давно пора тобі знайти роботу`,
+    es: `Ya va siendo hora de que encuentres trabajo`,
     choices: [
       `It is high time you found a job.`,
       `It is high time you find a job.`,
@@ -20911,12 +21486,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти намагаєшся перекласти українську фразу дослівно, але в англійській для цього є спеціальна структура з «високим часом». Спробуй знайти більш ідіоматичний та професійний варіант!`,
       `Яка морська плутанина! Слово tide означає приплив. Вийшло, що настав «високий приплив», щоб шукати роботу. Тобі потрібне слово time. Стеж за літерами в кінці слова!`,
     ],
+    explanationsES: [
+      `Correcto. It is high time you found a job usa past form después de high time para decir que algo ya debería haber ocurrido.`,
+      `It is high time you find a job usa presente, pero después de high time normalmente necesitamos found, no find.`,
+      `It is a long time for you to find a job copia la idea literalmente. La estructura natural es It is high time you found a job.`,
+      `It is high tide you found a job cambia time por tide. Tide es marea; aquí necesitas time.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Сообщают, что он заработал миллионы на этой сделке`,
     uk: `Повідомляють, що він заробив мільйони на цій угоді`,
+    es: `Se informa que ganó millones con ese trato`,
     choices: [
       `He is reported to have made millions on that deal.`,
       `He is reported to make millions on that deal.`,
@@ -20936,12 +21518,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти намагаєшся будувати речення за канонами своєї мови, але в англійській така структура не працює. Тобі потрібно або почати з героя He, або використовувати слово that. Спробуй перебудувати фразу!`,
       `Яка гастрономічна помилка! Слово meal означає прийом їжі або їжу. Вийшло, що він заробив статки на «цьому обіді». Тобі потрібне слово deal. Стеж за першою літерою у слові!`,
     ],
+    explanationsES: [
+      `Correcto. He is reported to have made millions on that deal usa passive reporting y have made para una acción anterior al informe.`,
+      `He is reported to make millions on that deal suena como presente o hábito. Si el dinero ya se ganó, necesitas to have made.`,
+      `It is reported him to make millions on that deal no es una estructura correcta. Usa He is reported to... o It is reported that...`,
+      `He is reported to have made millions on that meal cambia deal por meal. Meal es comida; aquí necesitas deal.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Было совершенно очевидно, что он врет`,
     uk: `Було цілком очевидно, що він бреше`,
+    es: `Era descaradamente obvio que estaba mintiendo`,
     choices: [
       `It was very obvious that he was lying.`,
       `It was blatant obvious that he was lying.`,
@@ -20961,12 +21550,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній майстер точних формулювань! Ця колокація робить твою мову впевненою та професійною. Ти звучиш як людина, яка ідеально володіє нюансами мови. Приголомшливо!`,
       `Ой, яка смислова плутанина! Слово oblivious означає «забудькуватий» або «такий, що нічого не помічає навколо». Вийшло, що все було «забудькувато». Тобі потрібне слово obvious. Будь обережнішим!`,
     ],
+    explanationsES: [
+      `It was very obvious that he was lying se entiende, pero suena más básico. Blatantly obvious expresa una obviedad mucho más fuerte.`,
+      `It was blatant obvious that he was lying usa el adjetivo blatant donde necesitamos el adverbio blatantly para modificar obvious.`,
+      `Correcto. It was blatantly obvious that he was lying usa una colocación natural para algo demasiado evidente.`,
+      `It was blatantly oblivious that he was lying cambia obvious por oblivious. Oblivious significa que no se da cuenta; aquí necesitas obvious.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Она настояла на том, чтобы он немедленно ушел`,
     uk: `Вона наполягла на тому, щоб він негайно пішов`,
+    es: `Ella insistió en que él se fuera inmediatamente`,
     choices: [
       `She insisted that he leaves immediately.`,
       `She insisted that he leave immediately.`,
@@ -20986,12 +21582,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівний переклад думки. В англійській мові після цієї дії ми будуємо ціле міні-речення зі словом that. Спробуй знайти варіант із складнішою та красивішою структурою!`,
       `Яка природна плутанина! Слово leaf означає листок дерева. Вийшло, що вона просила його «стати листочком». Тобі потрібна дія leave. Будь уважнішим до літер у кінці слова!`,
     ],
+    explanationsES: [
+      `She insisted that he leaves immediately usa leaves con s, pero después de insisted that en estilo formal va la forma base: he leave.`,
+      `Correcto. She insisted that he leave immediately usa el subjunctive formal: leave sin s después de insisted that.`,
+      `She insisted him to leave immediately copia otra estructura. Con insist usamos insisted that he leave, no insisted him to.`,
+      `She insisted that he leaf immediately cambia leave por leaf. Leaf es hoja de árbol; aquí necesitas leave.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Многие люди начали инвестировать в крипту, просто следуя моде`,
     uk: `Багато людей почали інвестувати в крипту, просто наслідуючи моду`,
+    es: `Mucha gente empezó a invertir en cripto simplemente siguiendo la moda`,
     choices: [
       `Many people started investing in crypto, just following the fashion.`,
       `Many people started investing in crypto, just jumping on the bandwagon.`,
@@ -21011,12 +21614,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але в цьому довгому слові з\'явилася зайва літера g. Через неї сталий вираз виглядає неправильно. Залиши одну g у слові bandwagon, і все стане ідеально!`,
       `Яка юридична помилка! Слово banned означає «заборонений». Вийшло, що люди стрибають на «заборонений віз». Тобі потрібне слово bandwagon. Стеж за тим, щоб слова не розділялися!`,
     ],
+    explanationsES: [
+      `Many people started investing in crypto, just following the fashion se entiende, pero suena más literal. La idiom natural es jump on the bandwagon.`,
+      `Correcto. Many people started investing in crypto, just jumping on the bandwagon dice que la gente se sumó porque la tendencia ya era popular.`,
+      `Many people started investing in crypto, just jumping on the bandwaggon añade una g de más. La palabra correcta es bandwagon.`,
+      `Many people started investing in crypto, just jumping on the banned wagon separa y cambia la palabra. Banned es prohibido; aquí necesitas bandwagon.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне удалось убедить его передумать`,
     uk: `Мені вдалося переконати його змінити думку`,
+    es: `Logré convencerlo de que cambiara de opinión`,
     choices: [
       `I got him to change his mind.`,
       `I got him change his mind.`,
@@ -21036,12 +21646,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це правильний і красивий варіант, але він дуже офіційний. Щоб звучати простіше, але при цьому на високому рівні, краще використовувати конструкцію з коротким словом got. Спробуй її знайти!`,
       `Яка тваринна плутанина! Слово goat означає козла. Вийшло, що ти «використав козла», щоб переконати друга. Тобі потрібна дія got. Будь уважнішим, одна літера змінює все!`,
     ],
+    explanationsES: [
+      `Correcto. I got him to change his mind usa get someone to do something y suena natural para decir que lograste convencerlo.`,
+      `I got him change his mind pierde to. Después de got him necesitamos to change.`,
+      `I managed to persuade him to change his mind es correcto, pero más formal. Aquí se busca la estructura más corta y natural con got him to.`,
+      `I goat him to change his mind cambia got por goat. Goat es cabra; aquí necesitas got.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы я был умнее, я бы принял то предложение о работе в прошлом месяце`,
     uk: `Якби я був розумнішим, я б прийняв ту пропозицію про роботу минулого місяця`,
+    es: `Si fuera más listo, habría aceptado aquella oferta de trabajo el mes pasado`,
     choices: [
       `If I were smarter, I would accept that job offer last month.`,
       `If I were smarter, I would have accepted that job offer last month.`,
@@ -21061,12 +21678,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти переніс українську частку «б» прямо в першу частину речення, але в англійській умові після if слово would використовувати не можна. Заміни його на were, щоб фраза стала правильною!`,
       `Яка кар\'єрна плутанина! Слово officer означає офіцера або чиновника. Вийшло, що ти хотів прийняти «офіцера роботи» замість пропозиції. Тобі потрібне слово offer. Будь уважнішим до літер!`,
     ],
+    explanationsES: [
+      `If I were smarter, I would accept that job offer last month empieza bien, pero last month exige resultado pasado: would have accepted.`,
+      `Correcto. If I were smarter, I would have accepted that job offer last month conecta una cualidad imaginaria con una decisión pasada.`,
+      `If I would be smarter, I would have accepted that job offer last month pone would dentro de la condición. Después de if aquí va were.`,
+      `If I were smarter, I would have accepted that job officer last month cambia offer por officer. Officer es oficial o funcionario; aquí necesitas offer.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Ты попал в самую точку, сказав это`,
     uk: `Ти влучив у саму точку, сказавши це`,
+    es: `Diste en el clavo al decir eso`,
     choices: [
       `You hit the nail on the head by saying that.`,
       `You hit the nail in the head by saying that.`,
@@ -21086,12 +21710,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як переклад української фрази слово в слово. Хоча тебе зрозуміють, така мова позбавлена англійської образності. Щоб звучати на високому рівні, використовуй метафору з цвяхом. Спробуй її знайти!`,
       `Ой, бідний равлик! Слово snail означає равлика. Вийшло, що ти вдарив равлика по голові замість того, щоб влучити в суть справи. Тобі потрібне слово nail. Заміни першу літеру в слові!`,
     ],
+    explanationsES: [
+      `Correcto. You hit the nail on the head by saying that usa la idiom exacta para decir que alguien acertó por completo.`,
+      `You hit the nail in the head by saying that cambia on por in. La idiom fija es hit the nail on the head.`,
+      `You got into the point by saying that suena como traducción literal. En inglés idiomático usamos hit the nail on the head.`,
+      `You hit the snail on the head by saying that cambia nail por snail. Snail es caracol; aquí necesitas nail.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Только когда я пришел домой, я понял, что потерял кошелек`,
     uk: `Тільки коли я прийшов додому, я зрозумів, що загубив гаманець`,
+    es: `Solo cuando llegué a casa me di cuenta de que había perdido la cartera`,
     choices: [
       `Only when I came home I realized I had lost my wallet.`,
       `It was only when I came home that I realized I had lost my wallet.`,
@@ -21111,12 +21742,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти чудово почав будувати емфазу, але помилився у сполучному слові. У цій сталій конструкції нам потрібен тільки місток that. Заміни which на правильний елемент, і фраза стане бездоганною!`,
       `Ой, яка кумедна плутанина! Слово valet означає особистого слугу або паркувальника. Вийшло, що ти загубив людину, а не гроші. Тобі потрібне слово wallet. Стеж за літерами в середині!`,
     ],
+    explanationsES: [
+      `Only when I came home I realized I had lost my wallet empieza con Only when, pero le falta inversión o una estructura enfática completa. Aquí la opción natural usa It was only when... that...`,
+      `Correcto. It was only when I came home that I realized I had lost my wallet destaca el momento exacto en que entendiste lo que había pasado.`,
+      `It was only when I came home which I realized I had lost my wallet usa which, pero en esta estructura enfática el enlace correcto es that.`,
+      `It was only when I came home that I realized I had lost my valet cambia wallet por valet. Valet es aparcacoches o asistente; aquí necesitas wallet.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Он обещал помочь, но в последний момент пошел на попятную`,
     uk: `Він обіцяв допомогти, але в останній момент пішов на задній план`,
+    es: `Prometió ayudar, pero se echó atrás en el último momento`,
     choices: [
       `He promised to help, but he backed out at the last minute.`,
       `He promised to help, but he went on the back in the last minute.`,
@@ -21136,12 +21774,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але цей варіант означає «відступити» або «відійти назад» (наприклад, від загрози). Для відмови від участі в угоді або домовленості нам потрібна часточка out. Постав її на місце!`,
       `Яка кулінарна помилка! Слово baked означає «спік». Вийшло, що він щось спік замість того, щоб допомогти. Тобі потрібна дія backed. Будь уважнішим, одна літера змінює все!`,
     ],
+    explanationsES: [
+      `Correcto. He promised to help, but he backed out at the last minute usa backed out para decir que se retiró de una promesa o acuerdo.`,
+      `He promised to help, but he went on the back in the last minute copia una imagen literal. Para echarse atrás usamos back out.`,
+      `He promised to help, but he backed off at the last minute puede significar retroceder o alejarse. Para abandonar un compromiso, aquí va backed out.`,
+      `He promised to help, but he baked out at the last minute cambia backed por baked. Baked es horneó; aquí necesitas backed.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `У нее очень изысканный вкус в одежде`,
     uk: `У неї дуже вишуканий смак в одязі`,
+    es: `Tiene un gusto muy refinado para la ropa`,
     choices: [
       `She has a very good taste in clothes.`,
       `She has an exquisite taste in clothes.`,
@@ -21161,12 +21806,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти обрав шикарне слово, але промахнувся з маленьким прийменником у кінці. В англійській мові смак проявляється «в» чомусь, тому нам потрібне саме слово in. Виправ цю сполучну ланку!`,
       `Ой, яка болюча помилка! Обране тобою слово означає «мучительний» або «нестерпний» (зазвичай про біль). Вийшло, що її смак завдає страждань. Тобі потрібне слово exquisite. Будь обережнішим!`,
     ],
+    explanationsES: [
+      `She has a very good taste in clothes se entiende, pero suena más básico y menos preciso. Aquí buscamos exquisite taste.`,
+      `Correcto. She has an exquisite taste in clothes usa exquisite para un gusto refinado y de alto nivel.`,
+      `She has an exquisite taste on clothes usa on, pero para gusto en un área usamos in: taste in clothes.`,
+      `She has an excruciating taste in clothes cambia exquisite por excruciating. Excruciating suele ser doloroso o insoportable; aquí necesitas exquisite.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Это, пожалуй, самое красивое здание в городе`,
     uk: `Це, мабуть, найкрасивіша будівля в місті`,
+    es: `Este es, posiblemente, el edificio más exquisito de la ciudad`,
     choices: [
       `This is arguably the most exquisite building in the city.`,
       `This is arguable the most exquisite building in the city.`,
@@ -21186,12 +21838,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це непоганий варіант, але він виражає сумнів у тому, що ти бачиш. Для впевненої, але обережної заяви про лідерство в чомусь найкраще підходить варіант про аргументи. Спробуй його!`,
       `Яка пухнаста плутанина! Слово kitty означає кошеня або спільний грошовий фонд. Вийшло, що будівля знаходиться «у кошеняті». Тобі потрібне слово city. Будь уважнішим із першою літерою!`,
     ],
+    explanationsES: [
+      `Correcto. This is arguably the most exquisite building in the city usa arguably para presentar una opinión fuerte pero defendible.`,
+      `This is arguable the most exquisite building in the city usa arguable como adjetivo. Aquí necesitas el adverbio arguably.`,
+      `This is seemingly the most exquisite building in the city suena como si solo pareciera serlo. Arguably expresa una afirmación defendible.`,
+      `This is arguably the most exquisite building in the kitty cambia city por kitty. Kitty puede ser gatito o fondo común; aquí necesitas city.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я был горько разочарован результатами экзамена`,
     uk: `Я був гірко розчарований результатами іспиту`,
+    es: `Me decepcionaron profundamente los resultados del examen`,
     choices: [
       `I was very disappointed with the exam results.`,
       `I was bitterly disappointed with the exam results.`,
@@ -21211,19 +21870,26 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але в цій зв\'язці перше слово має бути прислівником. Додай закінчення ly, щоб вийшло описання того, «наскільки» ти розчарований. Виправ цей маленький недолік!`,
       `Ти чудово обрав основну фразу, але промахнувся з прийменником у кінці. У цьому контексті почуття спрямовані на об\'єкт, тому нам потрібне саме слово with. Заміни маленьке слово, і все стане вірно!`,
     ],
+    explanationsES: [
+      `I was very disappointed with the exam results se entiende, pero no expresa tanta intensidad. Bitterly disappointed es mucho más fuerte.`,
+      `Correcto. I was bitterly disappointed with the exam results usa una collocation natural para una decepción profunda.`,
+      `I was bitter disappointed with the exam results usa bitter como adjetivo. Para modificar disappointed necesitas bitterly.`,
+      `I was bitterly disappointed at the exam results cambia with por at. En esta collocation usamos disappointed with the results.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Не успел он закончить речь, как зал взорвался аплодисментами`,
     uk: `Не встиг він закінчити промову, як зал вибухнув аплодисментами`,
+    es: `En cuanto terminó su discurso, el público estalló en aplausos`,
     choices: [
       `No sooner he had finished his speech than the audience burst into applause.`,
       `No sooner had he finished his speech when the audience burst into applause.`,
       `No sooner had he finished his speech than the audience burst into applause.`,
       `No sooner had he finished his peach than the audience burst into applause.`,
     ],
-    correct: 1,
+    correct: 2,
     explanations: [
       `Ты выбрал правильную конструкцию, но забыл переставить слова. Когда мы начинаем с No sooner, помощник had должен выбежать вперед перед героем I. Поменяй их местами!`,
       `Ты отлично справился с порядком слов, но запутался в связках. Эта конструкция работает только в паре со словом than. Оставь when для фразы с Hardly. Исправь союз в середине!`,
@@ -21236,19 +21902,26 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній віртуоз складної граматики! Це ідеальне використання інверсії, яке робить твою мову урочистою та динамічною. Ти звучиш просто блискуче!`,
       `Яка апетитна плутанина! Слово peach означає персик. Вийшло, що зал аплодував тому, що він з\'їв фрукт. Тобі потрібне слово speech. Будь уважнішим із першою літерою!`,
     ],
+    explanationsES: [
+      `No sooner he had finished his speech than the audience burst into applause usa la pareja correcta than, pero le falta inversión: No sooner had he finished.`,
+      `No sooner had he finished his speech when the audience burst into applause tiene la inversión, pero usa when. No sooner se combina con than.`,
+      `Correcto. No sooner had he finished his speech than the audience burst into applause usa inversión y la pareja fija No sooner... than...`,
+      `No sooner had he finished his peach than the audience burst into applause cambia speech por peach. Peach es melocotón; aquí necesitas speech.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Погода вчера была просто чудовищной`,
     uk: `Погода вчора була просто жахливою`,
+    es: `El tiempo de ayer fue sencillamente espantoso`,
     choices: [
       `The weather yesterday was very bad.`,
       `The weather yesterday was atrocious.`,
       `The weather yesterday was atrociousness.`,
       `The weather yesterday was conscious.`,
     ],
-    correct: 2,
+    correct: 1,
     explanations: [
       `Это звучит слишком просто и скучно для твоего уровня. Чтобы твоя речь была сочной и выразительной, используй более сильное и точное слово вместо bad. Попробуй найти вариант посолиднее!`,
       `Твой словарный запас просто на высоте! Это слово идеально передает всю степень ужаса от погоды и показывает твое мастерство владения нюансами. Ты звучишь потрясающе!`,
@@ -21261,12 +21934,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти обрав чудове слово, але перетворив його на назву якості «жахливість». Для опису погоди нам потрібен саме прикметник. Прибери кінцівку ness, щоб вийшло просто описання!`,
       `Ой, яка філософська помилка! Слово conscious означає «свідомий». Вийшло, що погода була «притомною». Тобі потрібне слово atrocious. Будь уважнішим, ці слова зовсім різні за змістом!`,
     ],
+    explanationsES: [
+      `The weather yesterday was very bad se entiende, pero suena muy básico. Para algo realmente horrible usamos atrocious.`,
+      `Correcto. The weather yesterday was atrocious usa un adjetivo fuerte y natural para decir que el tiempo fue terrible.`,
+      `The weather yesterday was atrociousness usa un sustantivo, no un adjetivo. Para describir weather necesitas atrocious.`,
+      `The weather yesterday was conscious cambia atrocious por conscious. Conscious significa consciente; aquí necesitas atrocious.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Меня раздражает, когда мне говорят, что делать`,
     uk: `Мене дратує, коли мені кажуть, що робити`,
+    es: `Me molesta que me digan qué hacer`,
     choices: [
       `I resent being told what to do.`,
       `I resent to be told what to do.`,
@@ -21286,12 +21966,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить занадто просто, як прямий переклад думки. Щоб твоя мова відповідала високому рівню, краще використовувати конструкцію з being. Спробуй знайти просунутіший варіант!`,
       `Яка плутанина у схожих словах! Обране тобою слово означає «недавній». Тобі ж потрібна дія resent, яка виражає обурення. Перевір літери в середині слова!`,
     ],
+    explanationsES: [
+      `Correcto. I resent being told what to do usa resent + -ing y una passive form para sonar más natural y preciso.`,
+      `I resent to be told what to do usa to be, pero después de resent normalmente va -ing: being told.`,
+      `I resent when they tell me what to do se entiende, pero suena más directo y simple. Aquí se busca resent being told.`,
+      `I recent being told what to do cambia resent por recent. Recent significa reciente; aquí necesitas resent.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Ей пришлось работать до поздна, чтобы закончить проект`,
     uk: `Їй довелося працювати допізна, щоб закінчити проєкт`,
+    es: `Tuvo que trabajar hasta tarde para terminar el proyecto`,
     choices: [
       `She had to burn the midnight oil to finish the project.`,
       `She had to burn the midnight soil to finish the project.`,
@@ -21311,12 +21998,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це правильний варіант, але він звучить звичайно. Щоб показати багатство своєї мови, краще використовувати красиву ідіому про олію. Спробуй знайти більш «просунутий» варіант!`,
       `Ти чудово підібрав ідіому, але помилився у граматиці. Після помічника had to нам потрібна дія у початковій формі без закінчень. Прибери закінчення -ed у кінці слова burn!`,
     ],
+    explanationsES: [
+      `Correcto. She had to burn the midnight oil to finish the project usa una idiom para decir que trabajó hasta muy tarde.`,
+      `She had to burn the midnight soil to finish the project cambia oil por soil. Soil es tierra; aquí necesitas oil.`,
+      `She had to work till late to finish the project se entiende, pero suena más común. La idiom buscada es burn the midnight oil.`,
+      `She had to burned the midnight oil to finish the project usa burned después de had to. Después de had to va la forma base: burn.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Им пришлось отменить встречу из-за дождя`,
     uk: `Їм довелося скасувати зустріч через дощ`,
+    es: `Tuvieron que cancelar la reunión por la lluvia`,
     choices: [
       `They had to call out the meeting due to the rain.`,
       `They had to cancel off the meeting due to the rain.`,
@@ -21336,12 +22030,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Яка вугільна плутанина! Слово coal означає вугілля. Вийшло, що вони «відвантажували вугілля» замість скасування зустрічі. Тобі потрібна дія call. Будь уважнішим до літер у середині!`,
       `Твій рівень володіння фразовими дієсловами просто вражає! Ти використовуєш саме ті слова, які роблять мову природною та професійною. Чудово!`,
     ],
+    explanationsES: [
+      `They had to call out the meeting due to the rain usa call out, que no significa cancelar una reunión. Para cancelar usamos call off.`,
+      `They had to cancel off the meeting due to the rain mezcla cancel con una partícula innecesaria. Cancel funciona solo; el phrasal verb es call off.`,
+      `They had to coal off the meeting due to the rain cambia call por coal. Coal es carbón; aquí necesitas call.`,
+      `Correcto. They had to call off the meeting due to the rain usa call off para cancelar un evento o reunión.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы я принял то предложение о работе тогда, я бы сейчас был богат`,
     uk: `Якби я прийняв ту пропозицію про роботу тоді, я був би зараз багатим`,
+    es: `Si hubiera aceptado aquella oferta de trabajo entonces, ahora sería rico`,
     choices: [
       `If I took that job offer then, I would be rich now.`,
       `If I had taken that job offer then, I would have been rich now.`,
@@ -21361,12 +22062,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній майстер подорожей у часі! Ти правильно поєднав минулу дію з теперішнім результатом. Це один із найкрутіших прийомів у мові. Чудова робота!`,
       `Яка плутанина у словах! Слово reach означає «дотягуватися» або «досягати». Вийшло, що ти був би «досяжністю». Тобі потрібне слово rich. Будь уважнішим, коли обираєш між багатством та рухом!`,
     ],
+    explanationsES: [
+      `If I took that job offer then, I would be rich now usa pasado simple, pero then habla de una oportunidad perdida en el pasado. Necesitas had taken.`,
+      `If I had taken that job offer then, I would have been rich now coloca el resultado en pasado, pero now pide would be rich.`,
+      `Correcto. If I had taken that job offer then, I would be rich now conecta una decisión pasada irreal con un resultado presente.`,
+      `If I had taken that job offer then, I would be reach now cambia rich por reach. Reach es alcanzar; aquí necesitas rich.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Тебе не следует смотреть свысока на людей только потому, что они беднее`,
     uk: `Тобі не слід дивитися зверхньо на людей тільки тому, що вони бідніші`,
+    es: `No deberías mirar por encima del hombro a la gente solo porque es más pobre`,
     choices: [
       `You shouldn\'t look down on people just because they are poorer.`,
       `You shouldn\'t look from high on people just because they are poorer.`,
@@ -21386,12 +22094,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але в цьому виразі в кінці завжди має стояти часточка on. Варіант із at означає, що ти просто фізично дивишся вниз. Додай on, щоб з\'явився сенс зневаги!`,
       `Ой, яка світанкова помилка! Слово dawn означає світанок. Вийшло, що ти «світаєш» на людей. Тобі потрібне слово down. Стеж за літерами в середині слова!`,
     ],
+    explanationsES: [
+      `Correcto. You shouldn\'t look down on people just because they are poorer usa look down on para hablar de desprecio o superioridad.`,
+      `You shouldn\'t look from high on people just because they are poorer copia la imagen literalmente. La expresión inglesa es look down on.`,
+      `You shouldn\'t look down at people just because they are poorer puede sonar físico: mirar hacia abajo. Para desprecio necesitas look down on.`,
+      `You shouldn\'t look dawn on people just because they are poorer cambia down por dawn. Dawn es amanecer; aquí necesitas down.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Давай, расскажи секрет! Я никому не скажу`,
     uk: `Давай, розкажи секрет! Я нікому не скажу`,
+    es: `Vamos, cuenta el secreto. No se lo diré a nadie`,
     choices: [
       `Come on, tell the secret! I won\'t tell anyone.`,
       `Come on, spill the beans! I won\'t tell anyone.`,
@@ -21411,12 +22126,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Яка магічна плутанина! Слово spell означає вимовляти по літерах або накладати закляття. Вийшло, що ти просиш «зачаклувати квасолю». Тобі потрібна дія spill. Будь уважнішим із літерами!`,
       `Ой, яка брудна помилка! Слово bins означає сміттєві баки. Вийшло, що ти пропонуєш «розлити сміттєві баки». Тобі потрібне слово beans. Перевір літери, щоб не влаштувати безлад!`,
     ],
+    explanationsES: [
+      `Come on, tell the secret! I won\'t tell anyone se entiende, pero suena plano. La idiom para revelar un secreto es spill the beans.`,
+      `Correcto. Come on, spill the beans! I won\'t tell anyone usa una idiom natural para pedir que alguien revele el secreto.`,
+      `Come on, spell the beans! I won\'t tell anyone cambia spill por spell. Spell es deletrear o hacer un hechizo; aquí necesitas spill.`,
+      `Come on, spill the bins! I won\'t tell anyone cambia beans por bins. Bins son cubos de basura; aquí necesitas beans.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне удалось уговорить его починить мой ноутбук`,
     uk: `Мені вдалося вмовити його полагодити мій ноутбук`,
+    es: `Logré convencerlo de que arreglara mi portátil`,
     choices: [
       `I managed to get him fix my laptop.`,
       `I managed to get him to fix my laptop.`,
@@ -21436,12 +22158,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ой, яка технічна плутанина! Слово labtop не існує, хоча воно і співзвучне з ноутбуком. До того ж тут бракує часточки to перед дією fix. Будь уважнішим до деталей!`,
       `Це звучить так, ніби ти змусив його силою або погрозами. Наша ж фраза була про «вмовити», тому обраний варіант занадто грубий для цього контексту. Спробуй м\'якший спосіб вираження!`,
     ],
+    explanationsES: [
+      `I managed to get him fix my laptop pierde to después de get him. La estructura completa es get him to fix.`,
+      `Correcto. I managed to get him to fix my laptop usa get someone to do something para una persuasión o gestión lograda.`,
+      `I managed to get him fix my labtop tiene dos problemas: falta to y labtop no existe. Necesitas get him to fix my laptop.`,
+      `I managed to make him fix my laptop suena más fuerte, como obligarlo. Para convencerlo o lograrlo, aquí encaja get him to fix.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Ей удалось придумать гениальный план`,
     uk: `Їй вдалося придумати геніальний план`,
+    es: `Se le ocurrió un plan brillante`,
     choices: [
       `She managed to come up with a brilliant plan.`,
       `She managed to come up with a brilliant plane.`,
@@ -21461,12 +22190,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже впорався, але обрав не той прийменник у кінці зв\'язки. Це фразове дієслово працює тільки з часточкою with. Заміни of на потрібний елемент, щоб усе звучало правильно!`,
       `Це звучить як переклад слів окремо, але в живій мові для раптового осяяння або крутої ідеї завжди використовують варіант із рухом вгору. Спробуй обрати ту саму потрійну зв\'язку!`,
     ],
+    explanationsES: [
+      `Correcto. She managed to come up with a brilliant plan usa come up with para decir que se le ocurrió una idea o solución.`,
+      `She managed to come up with a brilliant plane cambia plan por plane. Plane es avión; aquí necesitas plan.`,
+      `She managed to come up of a brilliant plan usa of, pero el phrasal verb completo es come up with.`,
+      `She managed to think out a brilliant plan suena como traducción por partes. En inglés natural para una idea usamos come up with.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Видел его сегодня?`,
     uk: `Бачив його сьогодні?`,
+    es: `¿Lo has visto hoy?`,
     choices: [
       `Seen him today?`,
       `Saw him today?`,
@@ -21486,12 +22222,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівна спроба скоротити питання, але так англійською не кажуть. Або використовуй повну форму Did you see, або переходь на просунутий стиль і залишай тільки seen. Спробуй ще раз!`,
       `Ой, яка театральна плутанина! Слово scene означає сцену в кіно чи театрі. Вийшло, що ти запитуєш про «сцену його». Тобі потрібна дія seen. Будь уважнішим із подібними за звучанням словами!`,
     ],
+    explanationsES: [
+      `Correcto. Seen him today? es una versión conversacional reducida de Have you seen him today?`,
+      `Saw him today? no funciona bien como reducción de Have you seen him today? En este estilo corto necesitamos seen.`,
+      `Did see him today? suena incompleto. La forma completa sería Did you see him today?, o la forma reducida Seen him today?`,
+      `Scene him today? cambia seen por scene. Scene es escena; aquí necesitas seen.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Нам нужно уладить последние детали перед встречей`,
     uk: `Нам потрібно владнати останні деталі перед зустріччю`,
+    es: `Tenemos que resolver los últimos detalles antes de la reunión`,
     choices: [
       `We need to iron over the last details before the meeting.`,
       `We need to smooth the last details before the meeting.`,
@@ -21511,12 +22254,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Твій рівень англійської просто вражає! Це фразове дієслово показує, що ти вмієш висловлюватися точно і лаконічно. Ти звучиш як справжній експерт у переговорах. Чудово!`,
       `Яка вівсяна плутанина! Слово oat означає овес. Вийшло, що ти збираєшся «прасувати овес». Тобі потрібна часточка out. Перевір літери, щоб не перетворити серйозну справу на сніданок!`,
     ],
+    explanationsES: [
+      `We need to iron over the last details before the meeting usa iron, pero la phrasal verb correcta para resolver detalles es iron out.`,
+      `We need to smooth the last details before the meeting se entiende, pero en inglés de trabajo suena más natural iron out the details.`,
+      `Correcto. We need to iron out the last details before the meeting usa iron out para arreglar o resolver detalles pendientes.`,
+      `We need to iron oat the last details before the meeting cambia out por oat. Oat es avena; aquí necesitas out.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Работа была утомительной и долгой`,
     uk: `Робота була стомлюючою та довгою`,
+    es: `El trabajo fue tedioso y largo`,
     choices: [
       `The work was tedious and long.`,
       `The work was teddy and long.`,
@@ -21536,12 +22286,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це правильне слово, але воно занадто звичайне для твого високого рівня. Щоб твоя мова виділялася і звучала багатше, використовуй більш точний і просунутий синонім. Спробуй ще раз!`,
       `Ти обрав чудове слово, але перетворив його на прислівник. Для опису того, «якою» була робота, нам потрібен прикметник без зайвих закінчень. Прибери ly в кінці слова tedious, і все стане на свої місця!`,
     ],
+    explanationsES: [
+      `Correcto. The work was tedious and long usa tedious para algo largo, monótono y cansado, no solo boring.`,
+      `The work was teddy and long cambia tedious por teddy. Teddy se asocia con un osito de peluche; aquí necesitas tedious.`,
+      `The work was boring and long se entiende, pero es más básico. Tedious expresa mejor lo pesado y monótono.`,
+      `The work was tediously and long usa el adverbio tediously. Para describir the work necesitas el adjetivo tedious.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я не могу упустить такой блестящий шанс`,
     uk: `Я не можу упустити такий блискучий шанс`,
+    es: `No puedo dejar pasar una oportunidad tan brillante`,
     choices: [
       `I can\'t pass down such a brilliant chance.`,
       `I can\'t lose such a brilliant chance.`,
@@ -21561,12 +22318,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній віртуоз! Використання цього фразового дієслова замість звичайних слів миттєво видає в тобі знавця мови. Ти звучиш дуже природно і впевнено. Чудово!`,
       `Ой, яка мавпяча помилка! Слово ape означає мавпу. Вийшло, що ти «не можеш мавпувати шанс». Тобі потрібна часточка up. Будь уважнішим із короткими словами!`,
     ],
+    explanationsES: [
+      `I can\'t pass down such a brilliant chance usa pass down, que significa transmitir algo a otra persona o generación. Para una oportunidad necesitas pass up.`,
+      `I can\'t lose such a brilliant chance se entiende, pero suena más simple. La phrasal verb natural es pass up a chance.`,
+      `Correcto. I can\'t pass up such a brilliant chance usa pass up para decir que no puedes dejar pasar una oportunidad.`,
+      `I can\'t pass ape such a brilliant chance cambia up por ape. Ape es simio; aquí necesitas up.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Он всегда делает больше, чем просят, чтобы помочь клиентам`,
     uk: `Він завжди робить більше, ніж просять, щоб допомогти клієнтам`,
+    es: `Siempre hace un esfuerzo adicional para ayudar a los clientes`,
     choices: [
       `He always goes the extra mile to help customers.`,
       `He always does more mile to help customers.`,
@@ -21586,12 +22350,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Яка поштова плутанина! Слово mail означає пошту або лист. Вийшло, що він проходить «зайвий лист». Тобі потрібне слово mile, яке означає одиницю шляху. Виправ літери!`,
       `Ти майже впорався, але в цій ідіомі ми завжди використовуємо слово the, тому що ця «миля» — конкретний образ. Заміни an на the, щоб фраза звучала як у носія мови!`,
     ],
+    explanationsES: [
+      `Correcto. He always goes the extra mile to help customers usa la idiom go the extra mile para alguien que hace más de lo esperado.`,
+      `He always does more mile to help customers intenta traducir la idea por partes. La expresión fija es goes the extra mile.`,
+      `He always goes the extra mail to help customers cambia mile por mail. Mail es correo; aquí necesitas mile.`,
+      `He always goes an extra mile to help customers casi llega, pero la idiom fija usa the: goes the extra mile.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Она настояла на том, чтобы он ушел немедленно`,
     uk: `Вона наполягла на тому, щоб він пішов негайно`,
+    es: `Ella insistió en que él se fuera inmediatamente`,
     choices: [
       `She insisted that he leaves immediately.`,
       `She insisted on him to leave immediately.`,
@@ -21611,12 +22382,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній віртуоз граматики! Використання сослагательного наклонения показує, що ти відчуваєш найтонші нюанси мови. Ти звучиш дуже впевнено та професійно. Приголомшливо!`,
       `Яка природна плутанина! Слово leaf означає листок дерева. Вийшло, що вона наполягала, щоб він «став листочком». Тобі потрібна дія leave. Перевір останню літеру в слові!`,
     ],
+    explanationsES: [
+      `She insisted that he leaves immediately usa leaves con s. Después de insisted that, en esta construcción formal, el verbo va en forma base: he leave.`,
+      `She insisted on him to leave immediately no es la estructura natural aquí. Para esta idea usamos insisted that he leave immediately.`,
+      `Correcto. She insisted that he leave immediately usa leave sin s después de insisted that.`,
+      `She insisted that he leaf immediately cambia leave por leaf. Leaf significa hoja; aquí necesitas leave.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Из-за ужасающей погоды наш рейс отменили`,
     uk: `Через жахливу погоду наш рейс скасували`,
+    es: `Debido al clima espantoso, cancelaron nuestro vuelo`,
     choices: [
       `Due to the atrocious weather, our flight was canceled.`,
       `Due to the very bad weather, our flight was canceled.`,
@@ -21636,12 +22414,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти підібрав чудовий опис погоди, але загубив частину дії в кінці. Без помічника was виходить, що рейс «сам себе скасував». Додай це маленьке слово перед словом canceled!`,
       `Яка хитра плутанина у словах! Слово whether перекладається як «чи» (у питаннях). Вийшло «через жахливе чи». Тобі потрібне слово weather. Будь уважнішим із написанням цих близнюків!`,
     ],
+    explanationsES: [
+      `Correcto. Due to the atrocious weather, our flight was canceled usa atrocious para un clima realmente horrible y was canceled para la pasiva.`,
+      `Due to the very bad weather, our flight was canceled se entiende, pero es más básico. El ejercicio busca el adjetivo fuerte atrocious.`,
+      `Due to the atrocious weather, our flight canceled pierde was. Sin was suena como si el vuelo se cancelara a sí mismo.`,
+      `Due to the atrocious whether, our flight was canceled cambia weather por whether. Whether significa si; aquí necesitas weather.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `По-видимому, он не осознает серьезности ситуации`,
     uk: `Очевидно, він не усвідомлює серйозності ситуації`,
+    es: `Al parecer, él no entiende la gravedad de la situación`,
     choices: [
       `Seemingly, he doesn\'t realize the gravity of the situation.`,
       `Seemingly, he doesn\'t realize the gravel of the situation.`,
@@ -21661,12 +22446,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але обрав не того помічника. Для заперечення звичайної дії нам потрібне слово doesn\'t. Помічник isn\'t використовується тільки з описами або процесами з ing. Постав doesn\'t на місце!`,
       `Це звучить як дослівна спроба перекласти «на вигляд», але в англійській мові такого прислівника для цього контексту не існує. Щоб звучати природно, використовуй саме слово seemingly. Спробуй змінити початок!`,
     ],
+    explanationsES: [
+      `Correcto. Seemingly, he doesn\'t realize the gravity of the situation usa seemingly para “al parecer” y gravity como seriedad de la situación.`,
+      `Seemingly, he doesn\'t realize the gravel of the situation cambia gravity por gravel. Gravel es grava; aquí necesitas gravity.`,
+      `Seemingly, he isn\'t realize the gravity of the situation usa isn\'t con un verbo normal. Para negar realize necesitamos doesn\'t realize.`,
+      `Lookingly, he doesn\'t realize the gravity of the situation suena como una traducción literal. Para este contexto usamos seemingly.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Нам нужно внимательно изучить этот вопрос`,
     uk: `Нам потрібно уважно вивчити це питання`,
+    es: `Tenemos que investigar este asunto con cuidado`,
     choices: [
       `We need to look into this matter carefully.`,
       `We need to look into this mother carefully.`,
@@ -21686,19 +22478,26 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти підібрав чудове дієслово, але загубив зв\'язок. Після часточки to дія має стояти у своїй найпростішій формі без жодних закінчень. Прибери ing у кінці слова looking, і все буде правильно!`,
       `Це звучить як переклад за словами, та ще й із зайвим прийменником. Дієслову study в такому значенні не потрібен прийменник at. Але щоб звучати крутіше і на високому рівні, краще обрати варіант із фразовим дієсловом!`,
     ],
+    explanationsES: [
+      `Correcto. We need to look into this matter carefully usa look into para investigar o revisar un asunto con cuidado.`,
+      `We need to look into this mother carefully cambia matter por mother. Mother significa madre; aquí necesitas matter, asunto o cuestión.`,
+      `We need to looking into this matter carefully usa looking después de to. Después de need to va el verbo base: look into.`,
+      `We need to study at this matter carefully suena traducido por partes y añade at. Para investigar un asunto, lo natural es look into this matter.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Её вкус в одежде просто изысканный`,
     uk: `Її смак в одязі просто вишуканий`,
+    es: `Su gusto en ropa es simplemente exquisito`,
     choices: [
       `Her taste in clothes is simply exquisite.`,
       `Her taste on clothes is simply exquisite.`,
       `Her taste in clothes is simply extinguished.`,
       `Her taste in clothes is simply tasty.`,
     ],
-    correct: 1,
+    correct: 0,
     explanations: [
       `Твой словарный запас просто поражает! Использование такого точного и красивого слова вместо обычного nice или beautiful мгновенно поднимает твою речь на уровень знатока. Ты звучишь великолепно!`,
       `Ты выбрал шикарное слово, но споткнулся на предлоге. Когда мы говорим о вкусе «в чем-то», в английском языке мы всегда используем именно в (in). Замени on на in, и фраза станет идеальной!`,
@@ -21711,12 +22510,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Яка пожежна плутанина! Слово extinguished означає «загашений» (наприклад, вогонь). Вийшло, що її смак в одязі просто «загашений». Тобі потрібне слово exquisite. Будь уважнішим із подібними словами!`,
       `Це звучить дуже дивно і буквально. Слово tasty використовується для їжі, яку смачно їсти. Говорити так про одяг — це кумедна помилка. Використовуй більш відповідне слово для моди та стилю!`,
     ],
+    explanationsES: [
+      `Correcto. Her taste in clothes is simply exquisite usa taste in clothes y exquisite para un gusto muy refinado.`,
+      `Her taste on clothes is simply exquisite usa on, pero para gusto en una categoría usamos in: taste in clothes.`,
+      `Her taste in clothes is simply extinguished cambia exquisite por extinguished. Extinguished significa apagado o extinguido; aquí necesitas exquisite.`,
+      `Her taste in clothes is simply tasty usa tasty, que va con comida. Para estilo y ropa, necesitas exquisite.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я рекомендую ему прийти вовремя`,
     uk: `Я рекомендую йому прийти вчасно`,
+    es: `Le recomiendo que llegue a tiempo`,
     choices: [
       `I recommend that he comes on time.`,
       `I recommend him to come on time.`,
@@ -21736,12 +22542,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній майстер тонких налаштувань мови! Використання сослагательного наклонения робить твою мову неймовірно грамотною та елегантною. Ти звучиш як людина, яка знає всі секрети граматики. Приголомшливо!`,
       `Яка кумедна плутанина! Слово comb означає «зачісуватися». Вийшло, що ти рекомендуєш йому вчасно розчесати волосся. Тобі потрібне слово come. Стеж за літерами в кінці!`,
     ],
+    explanationsES: [
+      `I recommend that he comes on time usa comes con s. Después de recommend that, en esta estructura formal, el verbo va en forma base: he come.`,
+      `I recommend him to come on time suena poco natural para esta idea. Aquí lo correcto es construirlo con that: recommend that he come.`,
+      `Correcto. I recommend that he come on time usa come sin s después de recommend that.`,
+      `I recommend that he comb on time cambia come por comb. Comb significa peinar; aquí necesitas come.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Тебе не следовало поднимать эту тему на собрании`,
     uk: `Тобі не слід було піднімати цю тему на зборах`,
+    es: `No deberías haber sacado ese tema en la reunión`,
     choices: [
       `You shouldn\'t have brought up that topic at the meeting.`,
       `You shouldn\'t have raised up that topic at the meeting.`,
@@ -21761,12 +22574,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти намагаєшся перетворити фразове дієслово на одне слово, але в англійській так не роблять для цього значення. Часточка up має стояти після основної дії. Постав її на своє місце!`,
       `Ой, яка прикра помилка! Обране поєднання з off означає «успішно впоратися з чимось складним». У результаті сенс фрази повністю змінився. Тобі потрібна часточка up. Виправ це!`,
     ],
+    explanationsES: [
+      `Correcto. You shouldn\'t have brought up that topic at the meeting usa shouldn\'t have + brought up para decir que no debiste mencionar ese tema.`,
+      `You shouldn\'t have raised up that topic at the meeting mezcla raise con up. Puedes say raise that topic o brought up that topic, pero no raised up aquí.`,
+      `You shouldn\'t have upbrought that topic at the meeting intenta pegar el phrasal verb en una sola palabra. La forma correcta es brought up.`,
+      `You shouldn\'t have brought off that topic at the meeting cambia up por off. Brought off significa lograr algo difícil; aquí necesitas brought up.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Ты попал прямо в точку, когда сказал, что нам нужен новый план`,
     uk: `Ти влучив прямо в ціль, коли сказав, що нам потрібен новий план`,
+    es: `Diste en el clavo cuando dijiste que necesitábamos un nuevo plan`,
     choices: [
       `You hit the nail on the head when you said we needed a new plan.`,
       `You hit the point when you said we needed a new plan.`,
@@ -21786,12 +22606,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Яка повільна плутанина! Слово snail означає равлика. Вийшло, що ти «ударив равлика по голові». Тобі потрібне слово nail, яке означає цвях. Виправ одну літеру на початку!`,
       `Ти обрав чудову фразу, але помилився в маленькому елементі. У цій ідіомі ми «влучаємо по капелюшку», тому нам потрібен прийменник on. Заміни in на on, щоб усе стало ідеально!`,
     ],
+    explanationsES: [
+      `Correcto. You hit the nail on the head when you said we needed a new plan usa la idiom hit the nail on the head para decir que alguien acertó exactamente.`,
+      `You hit the point when you said we needed a new plan se entiende, pero pierde la idiom natural. Aquí buscamos hit the nail on the head.`,
+      `You hit the snail on the head when you said we needed a new plan cambia nail por snail. Snail significa caracol; aquí necesitas nail.`,
+      `You hit the nail in the head when you said we needed a new plan usa in. La idiom fija es on the head.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне вчера починили машину`,
     uk: `Мені вчора полагодили машину`,
+    es: `Ayer me arreglaron el coche`,
     choices: [
       `I had my car repair yesterday.`,
       `I had my car repaired yesterday.`,
@@ -21811,12 +22638,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить так, ніби ти сам узяв ключі та крутив гайки весь день. Якщо ти хочеш сказати, що машину лагодив майстер у сервісі, нам потрібна конструкція зі словом had. Спробуй перебудувати фразу!`,
       `Яка дивна плутанина! Слова car та cat звучать схоже, але обраний варіант означає, що тобі «полагодили кота». Сподіваюся, з твоим улюбленцем усе гаразд. Заміни cat на car!`,
     ],
+    explanationsES: [
+      `I had my car repair yesterday casi usa la estructura correcta, pero falta el participio. Después de had my car necesitamos repaired.`,
+      `Correcto. I had my car repaired yesterday significa que alguien arregló el coche por ti, no que tú lo arreglaste personalmente.`,
+      `I repaired my car yesterday dice que tú reparaste el coche. Para una reparación hecha por otra persona, usamos I had my car repaired.`,
+      `I had my cat repaired yesterday cambia car por cat. Cat significa gato; aquí necesitas car.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если ты думаешь, что я украл твои деньги, ты глубоко заблуждаешься (ищешь не там)`,
     uk: `Якщо ти думаєш, що я вкрав твої гроші, ти глибоко помиляєшся (шукаєш не там)`,
+    es: `Si crees que robé tu dinero, estás buscando en el lugar equivocado`,
     choices: [
       `If you think I stole your money, you are barking up the wrong tree.`,
       `If you think I stole your money, you are barking on the wrong tree.`,
@@ -21836,12 +22670,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це зрозумілий варіант, але він звучить занадто просто і буквально. Щоб твоя мова була на рівні знавця, краще використовувати образний вираз про дерево. Спробуй згадати ідіому!`,
       `Ой, яка числова плутанина! Слова tree та three звучать майже однаково, але обраний варіант означає цифру три. Вийшло, що ти «гавкаєш на неправильну трійку». Заміни three на tree!`,
     ],
+    explanationsES: [
+      `Correcto. If you think I stole your money, you are barking up the wrong tree usa una idiom para decir que alguien busca la explicación en el lugar equivocado.`,
+      `If you think I stole your money, you are barking on the wrong tree usa on, pero la idiom fija es barking up the wrong tree.`,
+      `If you think I stole your money, you search in the wrong place se entiende, pero es una traducción literal. El objetivo aquí es la idiom barking up the wrong tree.`,
+      `If you think I stole your money, you are barking up the wrong three cambia tree por three. Three es el número tres; aquí necesitas tree.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Меня возмущает, когда со мной обращаются как с ребенком`,
     uk: `Мене обурює, коли зі мною поводяться як із дитиною`,
+    es: `Me molesta que me traten como a un niño`,
     choices: [
       `I resent being treated like a child.`,
       `I resent treating like a child.`,
@@ -21861,12 +22702,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як переклад за словами, який занадто важкий для англійського вуха. Щоб висловити обурення красиво і стисло, використовуй конструкцію з дієсловом resent. Спробуй перебудувати фразу!`,
       `Яка лякаюча помилка! Слово traded означає «торгувати» або «обмінювати». Вийшло, що тебе обурює, коли тебе «обмінюють як дитину». Тобі потрібне слово treated. Перевір літери в середині!`,
     ],
+    explanationsES: [
+      `Correcto. I resent being treated like a child usa resent being treated para decir que te molesta cómo te tratan.`,
+      `I resent treating like a child pierde being. Sin being, parece que tú tratas a alguien así, no que te tratan a ti.`,
+      `It angers me when people speak with me like with child suena pesado y traducido palabra por palabra. La forma más natural aquí es I resent being treated like a child.`,
+      `I resent being traded like a child cambia treated por traded. Traded significa intercambiado o vendido; aquí necesitas treated.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если вам понадобится помощь, дайте мне знать`,
     uk: `Якщо вам знадобиться допомога, дайте мені знати`,
+    es: `Si necesita ayuda, avíseme`,
     choices: [
       `Should you need any assistance, let me know.`,
       `If you will need any assistance, let me know.`,
@@ -21886,12 +22734,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти обрав круту конструкцію, але додав зайву часточку to. У цій схемі дія має йти відразу за виконавцем у своїй початковій формі. Просто прибери to перед need!`,
       `Яка кухонна плутанина! Слово knead означає «місити тісто». Вийшло, що ти пропонуєш «помісити допомогу». Тобі потрібне слово need, яке означає потребу. Перевір літери на початку!`,
     ],
+    explanationsES: [
+      `Correcto. Should you need any assistance, let me know es una forma formal y educada de decir if you need any assistance.`,
+      `If you will need any assistance, let me know usa will después de if. Para esta condición futura, en inglés usamos need, no will need.`,
+      `Should you to need any assistance, let me know añade to de más. En esta inversión formal va should you need.`,
+      `Should you knead any assistance, let me know cambia need por knead. Knead significa amasar; aquí necesitas need.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Там было так жарко, что я чуть не упал в обморок`,
     uk: `Там було так жарко, що я ледь не знепритомнів`,
+    es: `Hacía tanto calor que casi me desmayé`,
     choices: [
       `It was so hot that I almost passed out.`,
       `It was so hot that I almost passed away.`,
@@ -21902,7 +22757,7 @@ const HARD_POOL: QuizPoolEntry[] = [
     explanations: [
       `Ты просто мастер разговорных оборотов! Этот фразовый глагол идеально передает смысл потери сознания от жары или усталости. Ты звучишь очень естественно. Потрясающая работа!`,
       `Ой, это слишком трагично! Выбранное выражение означает «умереть». В итоге вместо легкого обморока получилось сообщение о кончине. Тебе нужно слово out вместо away. Исправь это скорее!`,
-      `Ты смешал два разных способа сказать об обмороке. Слово faint само по себе означает «париться», и ему не нужен хвостик out. Либо используй просто fainted, либо выбранный ранее фразовый глагол. Убери out!`,
+      `Ты смешал два разных способа сказать об обмороке. Слово faint само по себе означает «терять сознание», и ему не нужен хвостик out. Либо используй просто fainted, либо выбранный ранее фразовый глагол. Убери out!`,
       `Ты выбрал отличный глагол, но ошибся в усилении жары. Перед отдельным качеством (жарко) нам нужно слово so. Слово such используется только если дальше есть предмет. Замени such на so!`,
     ],
     explanationsUK: [
@@ -21911,12 +22766,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти змішав два різні способи сказати про непритомність. Слово faint саме по собі означає «мліти», і йому не потрібен хвостик out. Або використовуй просто fainted, або обране раніше фразове дієслово. Прибери out!`,
       `Ти обрав чудове дієслово, але помилився в посиленні спеки. Перед окремою якістю (жарко) нам потрібне слово so. Слово such використовується тільки якщо далі є предмет. Заміни such на so!`,
     ],
+    explanationsES: [
+      `Correcto. It was so hot that I almost passed out usa passed out para casi perder el conocimiento.`,
+      `It was so hot that I almost passed away cambia out por away. Passed away significa morir; aquí necesitas passed out.`,
+      `It was so hot that I almost fainted out mezcla dos formas. Faint ya significa desmayarse, así que no necesita out.`,
+      `It was such hot that I almost passed out usa such con un adjetivo solo. Para hot necesitamos so hot.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Ты серьезно? Нет, ты меня разыгрываешь!`,
     uk: `Ти серйозно? Ні, ти мене розігруєш!`,
+    es: `¿Hablas en serio? ¡No, me estás tomando el pelo!`,
     choices: [
       `Are you serious? No, you are pulling my leg!`,
       `Are you serious? No, you are playing my leg!`,
@@ -21936,12 +22798,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Яка технічна плутанина! Слово lag означає затримку в комп\'ютерній грі. Вийшло, що ти тягнеш чиюсь «затримку». Тобі потрібне слово leg, яке означає ногу. Перевір літери в кінці!`,
       `Ти підібрав шикарну фразу, але загубив час. Оскільки розіграш відбувається прямо зараз, нам потрібна тривала форма з помічником are та закінченням ing. Додай ці елементи до дії!`,
     ],
+    explanationsES: [
+      `Correcto. Are you serious? No, you are pulling my leg! usa pulling my leg para decir que alguien está bromeando o tomándote el pelo.`,
+      `Are you serious? No, you are playing my leg! traduce la idea con el verbo incorrecto. La idiom fija usa pulling, no playing.`,
+      `Are you serious? No, you are pulling my lag! cambia leg por lag. Lag es retraso técnico; aquí necesitas leg.`,
+      `Are you serious? No, you pull my leg! pierde la forma continua. Como la broma está pasando ahora, usamos you are pulling my leg.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Она была горько разочарована результатами экзамена`,
     uk: `Вона була гірко розчарована результатами іспиту`,
+    es: `Ella estaba profundamente decepcionada con los resultados del examen`,
     choices: [
       `She was bitterly disappointed with the exam results.`,
       `She was bitter disappointed with the exam results.`,
@@ -21961,12 +22830,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівний переклад слова «кислий», але в англійській розчарування буває тільки «гірким». Спробуй використати більш точне поєднання з коренем bitter!`,
       `Яка дивна пригода! Слово disappeared означає «зникла». Вийшло, що вона гірко зникла після іспиту. Тобі потрібне слово disappointed. Будь уважнішим із довгими словами!`,
     ],
+    explanationsES: [
+      `Correcto. She was bitterly disappointed with the exam results usa bitterly disappointed para una decepción muy fuerte.`,
+      `She was bitter disappointed with the exam results usa bitter como adjetivo. Para modificar disappointed necesitamos el adverbio bitterly.`,
+      `She was sour disappointed with the exam results traduce “ácido” literalmente. En inglés natural decimos bitterly disappointed.`,
+      `She was bitterly disappeared with the exam results cambia disappointed por disappeared. Disappeared significa desapareció; aquí necesitas disappointed.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Что мне действительно нужно, так это хороший отдых`,
     uk: `Що мені справді потрібно, так це гарний відпочинок`,
+    es: `Lo que realmente necesito es un buen descanso`,
     choices: [
       `What I really need it is a good rest.`,
       `That what I really need is a good rest.`,
@@ -21986,12 +22862,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній майстер акцентів! Ця фраза звучить дуже впевнено і допомагає тобі чітко висловити своє бажання. Твоя англійська стає по-справжньому живою. Чудова робота!`,
       `Ой, який несподіваний фінал! Слово rust означає іржу. Вийшло, що тобі для щастя потрібна «гарна іржа». Тобі потрібне слово rest. Перевір літери в кінці!`,
     ],
+    explanationsES: [
+      `What I really need it is a good rest añade it de más. Después de toda la parte What I really need va directamente is.`,
+      `That what I really need is a good rest copia una estructura de otro idioma. Para este énfasis en inglés empezamos con What.`,
+      `Correcto. What I really need is a good rest enfatiza exactamente qué necesitas.`,
+      `What I really need is a good rust cambia rest por rust. Rust significa óxido; aquí necesitas rest.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Тебе не следует смотреть свысока на людей, которые зарабатывают меньше`,
     uk: `Тобі не слід дивитися зверхньо на людей, які заробляють менше`,
+    es: `No deberías menospreciar a las personas que ganan menos`,
     choices: [
       `You shouldn\'t look down on people who earn less.`,
       `You shouldn\'t look down to people who earn less.`,
@@ -22011,12 +22894,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як спроба перекласти українську фразу за словами. В англійській є свій особливий вираз для такого випадку. Спробуй використати конструкцію з дієсловом look і прийменником down!`,
       `Яка дивна плутанина! Слово win означає перемагати або вигравати в лотерею. А коли ми говоримо про зарплату, нам потрібна дія earn. Заміни слово, щоб фраза стала логічною!`,
     ],
+    explanationsES: [
+      `Correcto. You shouldn\'t look down on people who earn less usa look down on para hablar de menospreciar a alguien.`,
+      `You shouldn\'t look down to people who earn less usa to, pero el phrasal verb fijo es look down on.`,
+      `You shouldn\'t look from high on people who earn less traduce la imagen palabra por palabra. En inglés natural usamos look down on.`,
+      `You shouldn\'t look down on people who win less cambia earn por win. Para dinero que se recibe por trabajo, necesitamos earn.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Заполнение этих бланков было крайне нудным занятием`,
     uk: `Заповнення цих бланків було вкрай нудним заняттям`,
+    es: `Rellenar estos formularios fue una tarea extremadamente tediosa`,
     choices: [
       `Filling out these forms was an extremely boring task.`,
       `Filling out these forms was an extremely tedious task.`,
@@ -22036,12 +22926,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ой, яка екзотична помилка! Слово tusk означає бивень слона. Вийшло, що заповнення бланків — це «бивень». Тобі потрібне слово task, яке означає завдання. Виправ одну літеру!`,
       `Ти підібрав шикарні слова, але загубив зв\'язок у граматиці. Твоя головна дія тут — саме заповнення, воно одне. Тому нам потрібен помічник was замість were. Постав його у правильну форму!`,
     ],
+    explanationsES: [
+      `Filling out these forms was an extremely boring task es correcto, pero más básico. El ejercicio busca tedious para algo largo, monótono y pesado.`,
+      `Correcto. Filling out these forms was an extremely tedious task usa tedious para una tarea aburrida y cansada por repetición.`,
+      `Filling out these forms was an extremely tedious tusk cambia task por tusk. Tusk significa colmillo; aquí necesitas task.`,
+      `Filling out these forms were an extremely tedious task usa were, pero el sujeto es Filling out these forms, una acción singular. Necesitas was.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Для мастера его уровня этот проект был сущим пустяком`,
     uk: `Для майстра його рівня цей проєкт був справжньою дрібницею`,
+    es: `Para un maestro de su nivel, este proyecto fue pan comido`,
     choices: [
       `For a master of his level this project was a real peace of cake.`,
       `For a master of his level this project was a piece of cake.`,
@@ -22061,12 +22958,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівна спроба перекласти сенс, але носії мови так не кажуть. В англійській є свій сталий «смачний» вираз для простих завдань. Спробуй ідіому про шматочок торта!`,
       `Ти підібрав чудову ідіому, але загубив зв\'язок слів. Проєкт у нас один, тому дія має бути у формі was. Помічник were тут не підходить. Заміни його на потрібний!`,
     ],
+    explanationsES: [
+      `For a master of his level this project was a real peace of cake cambia piece por peace. Peace significa paz; aquí necesitas piece.`,
+      `Correcto. For a master of his level this project was a piece of cake usa la idiom piece of cake para algo muy fácil.`,
+      `For a master of his level this project was easy like a cake traduce la idea literalmente. La idiom natural es a piece of cake.`,
+      `For a master of his level this project were a piece of cake usa were, pero this project es singular. Necesitas was.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Как бы усердно ты ни старался, это займет время`,
     uk: `Як би старанно ти не намагався, це займе час`,
+    es: `Por mucho que te esfuerces, llevará tiempo`,
     choices: [
       `No matter how hard you try, it will take time.`,
       `No matter how hardly you try, it will take time.`,
@@ -22086,12 +22990,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як прямий переклад із рідної мови, але в англійській така структура не працює. Для цієї думки нам потрібен сталий початок no matter. Спробуй перебудувати початок!`,
       `Яка душевна помилка! Слово heart означає серце. Вийшло «як би серце ти не намагався». Тобі потрібне слово hard, яке говорить про старанність. Поміняй літери в середині!`,
     ],
+    explanationsES: [
+      `Correcto. No matter how hard you try, it will take time usa no matter how para “por mucho que” y hard para esfuerzo.`,
+      `No matter how hardly you try, it will take time usa hardly, que significa apenas o casi no. Para esfuerzo necesitamos hard.`,
+      `How hard you would not try, it will take time copia otra estructura. En inglés natural usamos No matter how hard you try.`,
+      `No matter how heart you try, it will take time cambia hard por heart. Heart significa corazón; aquí necesitas hard.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне нездоровится сегодня`,
     uk: `Мені нездужається сьогодні`,
+    es: `Hoy me siento un poco mal`,
     choices: [
       `I am under the weather today.`,
       `I am under the water today.`,
@@ -22111,12 +23022,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівний переклад, який в англійській має зовсім інший, часто незручний підтекст. Щоб сказати про здоров\'я, краще використовувати красиву ідіому. Спробуй варіант із погодою!`,
       `Ти майже біля цілі, але в цій сталій фразі перед погодою обов\'язково має стояти слово the. Без цієї маленької деталі вираз розсипається. Додай the перед weather!`,
     ],
+    explanationsES: [
+      `Correcto. I am under the weather today usa under the weather para decir que hoy no te sientes bien o estás un poco enfermo.`,
+      `I am under the water today cambia weather por water. Water es agua; aquí necesitas weather.`,
+      `I feel myself bad today suena como una traducción literal y no es natural para hablar de salud. Usa under the weather.`,
+      `I am under weather today pierde the. La idiom fija es under the weather.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Это, пожалуй, лучший фильм года`,
     uk: `Це, мабуть, найкращий фільм року`,
+    es: `Se podría decir que esta es la mejor película del año`,
     choices: [
       `This is arguably the best movie of the year.`,
       `This is arguably best movie of the year.`,
@@ -22136,12 +23054,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але обрав форму прикметника замість прислівника. Щоб описати все твердження, нам потрібне закінчення ly. Заміни arguable на arguably, щоб фраза стала ідеальною!`,
       `Яке образливе слово! Слово ugly означає потворний. У результаті замість того, щоб похвалити фільм, ти назвав його некрасивим. Тобі потрібне слово arguably. Будь уважнішим із початком!`,
     ],
+    explanationsES: [
+      `Correcto. This is arguably the best movie of the year usa arguably para presentar una opinión fuerte sin sonar totalmente absoluto.`,
+      `This is arguably best movie of the year pierde the. Con best necesitamos the best movie.`,
+      `This is arguable the best movie of the year usa el adjetivo arguable. Para modificar toda la idea necesitamos el adverbio arguably.`,
+      `This is ugly the best movie of the year cambia arguably por ugly. Ugly significa feo; aquí necesitas arguably.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне удалось уговорить его передумать`,
     uk: `Мені вдалося вмовити його змінити думку`,
+    es: `Logré convencerlo de que cambiara de opinión`,
     choices: [
       `I managed to get him change his mind.`,
       `I managed to have him change his mind.`,
@@ -22161,12 +23086,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній майстер переконання! Використання цієї конструкції показує, що ти чудово розбираєшся в тонкощах керування діями інших. Ти звучиш дуже природно. Чудова робота!`,
       `Яка дивна картина! Слово chain означає ланцюг. Вийшло, що ти вмовив його «прикувати свій розум ланцюгом». Тобі потрібна дія change. Перевір літери в середині слова!`,
     ],
+    explanationsES: [
+      `I managed to get him change his mind pierde to. Con get someone to do something necesitamos get him to change.`,
+      `I managed to have him change his mind puede sonar más como organizar o dar una orden. Para convencerlo, aquí encaja mejor get him to change.`,
+      `Correcto. I managed to get him to change his mind usa get someone to do something para decir que lograste convencerlo.`,
+      `I managed to get him to chain his mind cambia change por chain. Chain significa encadenar; aquí necesitas change.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Нам не следует экономить на качестве, если мы хотим успеха`,
     uk: `Нам не слід економити на якості, якщо ми хочемо успіху`,
+    es: `No deberíamos ahorrar a costa de la calidad si queremos tener éxito`,
     choices: [
       `We shouldn\'t cut corners on quality if we want success.`,
       `We shouldn\'t economy on quality if we want success.`,
@@ -22186,12 +23118,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти обрав чудовий вираз, але маленький прийменник тебе підвів. У цій фразі ми завжди використовуємо слово on, коли говоримо, на чому саме ми не хочемо економити. Заміни in на on!`,
       `Ой, яка лякаюча помилка! Слово coroners означає слідчих, які розслідують причини смерті. Вийшло, що ти пропонуєш «не різати слідчих». Тобі потрібне слово corners. Будь уважнішим із літерами!`,
     ],
+    explanationsES: [
+      `Correcto. We shouldn\'t cut corners on quality if we want success usa cut corners on para decir que no debemos ahorrar haciendo las cosas peor.`,
+      `We shouldn\'t economy on quality if we want success usa economy como si fuera verbo. Para esta idea natural usamos cut corners on quality.`,
+      `We shouldn\'t cut corners in quality if we want success usa in, pero con esta idiom decimos cut corners on quality.`,
+      `We shouldn\'t cut coroners on quality if we want success cambia corners por coroners. Coroners son forenses; aquí necesitas corners.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне неприятно, когда со мной обращаются как с ребенком`,
     uk: `Мені неприємно, коли зі мною поводяться як з дитиною`,
+    es: `Me incomoda que me traten como a un niño`,
     choices: [
       `I resent being treated like a child.`,
       `I resent treating like a child.`,
@@ -22211,12 +23150,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Речення зрозуміле, але воно звучить занадто просто для твоєї майстерності. Щоб показати характер і високий рівень, краще використовувати дієслово resent і пасивну конструкцію. Спробуй сильніший варіант!`,
       `Яка плутанина у словах! Обране слово співзвучне з погрозою. Вийшло, що тобі «погрожують як дитині». Тобі потрібна дія treated, яка означає поводження або лікування. Прибери зайву літеру h!`,
     ],
+    explanationsES: [
+      `Correcto. I resent being treated like a child usa resent + being treated para decir que te molesta recibir ese trato.`,
+      `I resent treating like a child pierde being. Sin being, parece que tú tratas a alguien así.`,
+      `I feel bad when people treat me like a child se entiende, pero es más básico. Resent being treated suena más preciso y fuerte.`,
+      `I resent being threated like a child cambia treated por threated. Threated no funciona aquí; necesitas treated.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Именно ее самоотверженность помогла команде победить`,
     uk: `Саме її самовідданість допомогла команді перемогти`,
+    es: `Fue su dedicación lo que ayudó al equipo a ganar`,
     choices: [
       `It was her dedication what helped the team win.`,
       `It was her dedication that helped the team win.`,
@@ -22236,12 +23182,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Тут вийшов переклад за словами, і речення втратило свою структуру. Слово was тут заважає дії, перетворюючи її на дивну форму. Прибери was і перебудуй фразу під сильну конструкцію!`,
       `Яка кумедна плутанина! Слово wine означає вино. Вийшло, що самовідданість допомогла команді «вино», а не перемогти. Тобі потрібна дія win без літери e в кінці. Виправ це!`,
     ],
+    explanationsES: [
+      `It was her dedication what helped the team win usa what, pero en esta estructura de énfasis necesitamos that.`,
+      `Correcto. It was her dedication that helped the team win enfatiza que fue su dedicación la que ayudó al equipo.`,
+      `Her dedication was helped the team win suena traducido por partes y rompe la estructura. Necesitamos It was her dedication that helped...`,
+      `It was her dedication that helped the team wine cambia win por wine. Wine significa vino; aquí necesitas win.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Погода была ужасной все выходные`,
     uk: `Погода була жахливою всі вихідні`,
+    es: `El clima estuvo terrible todo el fin de semana`,
     choices: [
       `The weather was very bad all weekend.`,
       `The weather was atrocious all weekend.`,
@@ -22261,19 +23214,26 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти підібрав шикарне слово, але прийменник through тут зайвий. Коли ми говоримо про період цілком, достатньо просто сказати all weekend. Прибери зайве слово перед all!`,
       `Ой, яка плутанина у словах! Обране слово weak означає слабкий. Вийшло «слабкий кінець» замість вихідних. Тобі потрібне слово weekend через дві літери e в середині. Виправ це!`,
     ],
+    explanationsES: [
+      `The weather was very bad all weekend es correcto, pero más básico. El ejercicio busca atrocious para un clima realmente terrible.`,
+      `Correcto. The weather was atrocious all weekend usa atrocious para decir que el clima fue muy malo todo el fin de semana.`,
+      `The weather was atrocious through all weekend añade through de más. Para todo el periodo basta all weekend.`,
+      `The weather was atrocious all weakend cambia weekend por weakend. Weak significa débil; aquí necesitas weekend.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы он принял то предложение о работе в прошлом году, он был бы сейчас богат`,
     uk: `Якби він прийняв ту пропозицію про роботу минулого року, він був би зараз багатим`,
+    es: `Si hubiera aceptado esa oferta de trabajo el año pasado, ahora sería rico`,
     choices: [
       `If he accepted that job offer last year, he would be rich now.`,
       `If he had accepted that job offer last year, he would have been rich now.`,
       `If he had accepted that job offer last year, he would be rich now.`,
       `If he had accepted that job offer last year, he would be reach now.`,
     ],
-    correct: 1,
+    correct: 2,
     explanations: [
       `Ты выбрал форму для обычного условия, но здесь мы говорим о событии, которое уже давно прошло. Тебе не хватает помощника had перед словом accepted, чтобы показать связь с прошлым годом. Добавь его!`,
       `Ты отлично справился с прошлым, но в конце произошла путаница. Слово now говорит нам, что богатство — это текущее состояние, поэтому форма have been здесь лишняя. Просто оставь would be!`,
@@ -22286,12 +23246,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній стратег часу! Це ідеальне поєднання того, що сталося тоді, і того, що ми маємо зараз. Ти звучиш дуже професійно і точно. Приголомшливо!`,
       `Ой, яка плутанина у словах! Обране слово reach означає досягати або дотягуватися. А нам потрібен саме прикметник багатий. Заміни reach на rich, щоб сенс не загубився!`,
     ],
+    explanationsES: [
+      `If he accepted that job offer last year, he would be rich now usa accepted, pero last year habla de una condición pasada irreal. Necesitamos had accepted.`,
+      `If he had accepted that job offer last year, he would have been rich now empieza bien, pero now pide resultado presente: would be, no would have been.`,
+      `Correcto. If he had accepted that job offer last year, he would be rich now conecta una decisión pasada con una consecuencia presente.`,
+      `If he had accepted that job offer last year, he would be reach now cambia rich por reach. Reach significa alcanzar; aquí necesitas rich.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Это изысканно сделанное украшение`,
     uk: `Це вишукано зроблена прикраса`,
+    es: `Es un adorno elaborado exquisitamente`,
     choices: [
       `It is a very good made ornament.`,
       `It is an exquisitely crafted ornament.`,
@@ -22311,12 +23278,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти обрав дуже красиві слова, але сенс полетів в інший бік! Слово argument означає суперечку або довід, а ми говоримо про ювелірний виріб. Тобі потрібне слово ornament. Поверни прикрасу на місце!`,
       `Ти майже біля цілі, але маленька деталь на початку все зіпсувала. Слово exquisitely починається з голосного звуку, тому нам потрібен помічник an замість a. Додай одну літеру n на початок!`,
     ],
+    explanationsES: [
+      `It is a very good made ornament se entiende a medias, pero no suena natural. Para “hecho con mucho detalle” usamos exquisitely crafted.`,
+      `Correcto. It is an exquisitely crafted ornament usa exquisitely crafted para algo hecho con mucho cuidado y belleza.`,
+      `It is an exquisitely crafted argument cambia ornament por argument. Argument significa argumento o discusión; aquí necesitas ornament.`,
+      `It is a exquisitely crafted ornament usa a, pero antes de sonido vocálico necesitamos an: an exquisitely crafted ornament.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я бы предпочел, чтобы ты не рассказывал ей секрет`,
     uk: `Я б волів, щоб ти не розповідав їй секрет`,
+    es: `Preferiría que no le contaras el secreto`,
     choices: [
       `I would rather you don\'t tell her the secret.`,
       `I would rather you didn\'t tell her the secret.`,
@@ -22336,12 +23310,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Яка містична плутанина! Слово sacred означає священний. Вийшло, що ти просиш «не розповідати їй священне». Тобі потрібне слово secret. Перевір літери в середині слова!`,
       `Це звучить дуже нагромаджено і трохи неприродно. Тут набагато краще спрацює просте речення з людиною в середині. Прибери r у слова your і ing у дії!`,
     ],
+    explanationsES: [
+      `I would rather you don\'t tell her the secret está cerca, pero después de would rather + persona usamos pasado: didn\'t tell.`,
+      `Correcto. I would rather you didn\'t tell her the secret usa pasado para una preferencia o petición educada sobre ahora o el futuro.`,
+      `I would rather you didn\'t tell her the sacred cambia secret por sacred. Sacred significa sagrado; aquí necesitas secret.`,
+      `I would rather your not telling her the secret mezcla your con una forma en ing. La estructura natural es you didn\'t tell her.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Перестань ходить вокруг да около`,
     uk: `Перестань ходити довкола`,
+    es: `Deja de irte por las ramas`,
     choices: [
       `Stop walking around the bush.`,
       `Stop beating around the brush.`,
@@ -22361,12 +23342,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній майстер образної мови! Ця ідіома — найкращий спосіб попросити когось перейти до справи. Твій словниковий запас вражає. Так тримати!`,
       `Ти вибрав правильні слова, але зв\'язок між ними підвів. Після заклику припинити щось робити нам потрібне закінчення ing. Заміни to beat на beating, щоб усе стало на свої місця!`,
     ],
+    explanationsES: [
+      `Stop walking around the bush traduce la imagen demasiado literal. La idiom inglesa usa beating, no walking.`,
+      `Stop beating around the brush cambia bush por brush. Brush significa cepillo o brocha; aquí necesitas bush.`,
+      `Correcto. Stop beating around the bush es la idiom natural para pedir que alguien vaya al grano.`,
+      `Stop to beat around the bush usa to beat. Después de stop para dejar de hacer algo, necesitamos beating.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Необходимо, чтобы он присутствовал на встрече`,
     uk: `Необхідно, щоб він був присутнім на зустрічі`,
+    es: `Es necesario que él esté presente en la reunión`,
     choices: [
       `It is essential that he be present at the meeting.`,
       `It is essential that he is present at the meeting.`,
@@ -22386,12 +23374,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти намагаєшся поєднати дві різні конструкції. Якщо ти використовуєш слово for, то перед дією має з\'явитися часточка to. Або використовуй зв\'язку зі словом that. Обери щось одне!`,
       `Яка кумедна плутанина! Слово bee означає бджолу. Вийшло, що він має бути «бджолою» на зустрічі. Тобі потрібна форма дієслова be з однією літерою e. Прибери зайву літеру в кінці!`,
     ],
+    explanationsES: [
+      `Correcto. It is essential that he be present at the meeting usa be en forma base después de It is essential that.`,
+      `It is essential that he is present at the meeting se oye en habla cotidiana, pero el ejercicio busca la forma formal be.`,
+      `It is essential for him be present at the meeting mezcla estructuras. Con for sería for him to be; con that usamos that he be.`,
+      `It is essential that he bee present at the meeting cambia be por bee. Bee significa abeja; aquí necesitas be.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Ни при каких обстоятельствах тебе не следует открывать эту дверь`,
     uk: `За жодних обставин тобі не слід відчиняти ці двері`,
+    es: `Bajo ninguna circunstancia deberías abrir esta puerta`,
     choices: [
       `Under no circumstances you should open this door.`,
       `Under no circumstances should you open this door.`,
@@ -22411,12 +23406,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти правильно використав порядок слів, але обраний помічник на початку звучить занадто офіційно, ніби це давній закон або контракт. Для особистої поради нам потрібне саме слово should. Постав його замість shall!`,
       `Кумедна плутанина! Слово deer означає олень. Вийшло, що ти забороняєш «відчиняти оленя», що звучить дуже дивно. Тобі потрібне слово door. Стеж за голосними літерами в середині!`,
     ],
+    explanationsES: [
+      `Under no circumstances you should open this door pierde la inversión. Después de Under no circumstances va should you.`,
+      `Correcto. Under no circumstances should you open this door usa inversión para una prohibición fuerte.`,
+      `Under no circumstances shall you open this door tiene la inversión, pero shall suena demasiado legal o antiguo aquí. El objetivo es should.`,
+      `Under no circumstances should you open this deer cambia door por deer. Deer significa ciervo; aquí necesitas door.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Он был горько разочарован результатом`,
     uk: `Він був гірко розчарований результатом`,
+    es: `Él estaba profundamente decepcionado con el resultado`,
     choices: [
       `He was very disappointed with the result.`,
       `He was bitterly disappointed with the result.`,
@@ -22436,12 +23438,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти чудово підібрав слова, але прийменник у кінці трохи підвів. Коли ми говоримо про розчарування чимось, в англійській частіше використовується слово with. Заміни by на with для більшої природності!`,
       `Яка географічна плутанина! Слово resort означає курорт. Вийшло, що він розчарований місцем відпочинку, а не підсумком справи. Тобі потрібне слово result. Поміняй закінчення слова!`,
     ],
+    explanationsES: [
+      `He was very disappointed with the result es correcto, pero más simple. El ejercicio busca bitterly disappointed para una decepción fuerte.`,
+      `Correcto. He was bitterly disappointed with the result usa una colocación natural para una decepción intensa.`,
+      `He was bitterly disappointed by the result se entiende, pero con disappointed suele sonar más natural with the result.`,
+      `He was bitterly disappointed with the resort cambia result por resort. Resort significa complejo turístico; aquí necesitas result.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне неприятно, когда мне говорят, что делать`,
     uk: `Мені неприємно, коли мені кажуть, що робити`,
+    es: `Me molesta que me digan qué hacer`,
     choices: [
       `I resent to be told what to do.`,
       `I resent being told what to do.`,
@@ -22461,12 +23470,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це речення зрозуміле, але воно занадто просте. Для твого рівня краще використовувати більш точне дієслово resent, яке передає почуття образи та обурення. Спробуй варіант із сильнішим словом!`,
       `Яка дивна плутанина! Слово tolled означає дзвін дзвона або збір мита. Вийшло, що тобою «дзвонять» або «збирають податки». Тобі потрібне слово told з однією літерою l. Прибери зайву літеру в середині!`,
     ],
+    explanationsES: [
+      `I resent to be told what to do usa to be, pero después de resent necesitamos una forma en ing: being told.`,
+      `Correcto. I resent being told what to do usa resent + being told para decir que te molesta recibir órdenes.`,
+      `I feel bad when people tell me what to do se entiende, pero es más básico. Resent being told expresa mejor la molestia.`,
+      `I resent being tolled what to do cambia told por tolled. Tolled se relaciona con campanas o peajes; aquí necesitas told.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы я был умнее, я бы не совершил ту ошибку в прошлом`,
     uk: `Якби я був розумнішим, я б не зробив ту помилку в минулому`,
+    es: `Si fuera más listo, no habría cometido ese error`,
     choices: [
       `If I were smarter, I wouldn\'t make that mistake in the past.`,
       `If I was smarter, I wouldn\'t have made that mistake.`,
@@ -22486,12 +23502,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній майстер часу! Це бездоганне поєднання твоєї постійної якості та конкретної події з минулого. Ти звучиш дуже глибоко і грамотно. Чудово!`,
       `Яка кумедна плутанина! Слово maid означає покоївку. Вийшло, що ти б «не покоївку» ту помилку. Тобі потрібна дія made через літеру e на кінці. Виправ це!`,
     ],
+    explanationsES: [
+      `If I were smarter, I wouldn\'t make that mistake in the past usa make con in the past. Para un error que ya ocurrió, necesitamos wouldn\'t have made.`,
+      `If I was smarter, I wouldn\'t have made that mistake se entiende en habla informal, pero la forma objetivo para una condición irreal es were.`,
+      `Correcto. If I were smarter, I wouldn\'t have made that mistake conecta una cualidad imaginaria con un error pasado.`,
+      `If I were smarter, I wouldn\'t have maid that mistake cambia made por maid. Maid significa empleada doméstica; aquí necesitas made.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Это было скрытым благословением (нет худа без добра)`,
     uk: `Це було прихованим благословенням (немає лиха без добра)`,
+    es: `Fue una bendición encubierta`,
     choices: [
       `It was a blessing in the skies.`,
       `It was a blessing in disguise.`,
@@ -22511,12 +23534,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти переклав сенс абсолютно вірно, але англійці використовують для цього сталу картинку з переодяганням. Щоб звучати на свій високий рівень, обери варіант зі словом disguise!`,
       `Ти майже біля цілі, але в цій сталій фразі ми використовуємо прийменник in. Прийменник on тут не підходить, він руйнує всю магію вислову. Поміняй його на in!`,
     ],
+    explanationsES: [
+      `It was a blessing in the skies cambia disguise por skies. Skies significa cielos; la idiom necesita disguise.`,
+      `Correcto. It was a blessing in disguise significa que algo parecía malo, pero terminó siendo positivo.`,
+      `It was the hidden blessing transmite parte del sentido, pero no es la idiom natural. La forma fija es a blessing in disguise.`,
+      `It was a blessing on disguise usa on, pero la idiom fija usa in: a blessing in disguise.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я бы предпочел, чтобы ты не курил здесь`,
     uk: `Я б волів, щоб ти не курив тут`,
+    es: `Preferiría que no fumaras aquí`,
     choices: [
       `I would rather you not smoke here.`,
       `I would rather you didn\'t smoke here.`,
@@ -22536,12 +23566,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Яка дивна ситуація! Слово hair означає волосся. Вийшло, що ти просиш «не курити волосся» тут. Тобі потрібне слово here, що означає місце. Виправ літери в кінці!`,
       `Це звучить як спроба поєднати два різні правила. Тут нам потрібне звичайне речення з людиною на першому місці, а не присвійна форма. Постав просто you і прибери ing!`,
     ],
+    explanationsES: [
+      `I would rather you not smoke here se entiende, pero después de would rather + persona la forma objetivo aquí es didn\'t smoke.`,
+      `Correcto. I would rather you didn\'t smoke here usa pasado para una petición educada sobre el presente.`,
+      `I would rather you didn\'t smoke hair cambia here por hair. Hair significa pelo; aquí necesitas here.`,
+      `I would rather your not smoking here mezcla your con una forma en ing. La estructura natural es you didn\'t smoke.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Только когда я приехал в аэропорт, я понял, что забыл паспорт`,
     uk: `Тільки коли я приїхав в аеропорт, я зрозумів, що забув паспорт`,
+    es: `Solo cuando llegué al aeropuerto me di cuenta de que había olvidado mi pasaporte`,
     choices: [
       `It was only when I arrived at the airport that I realized I had forgotten my passport.`,
       `It was only when I arrived at the airport then I realized I had forgotten my passport.`,
@@ -22561,12 +23598,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як переклад за словами, але тут загубилися важливі частини. З дієсловом arrive ми використовуємо прийменник at, а на початку не вистачає структури It was. Збери фразу заново!`,
       `Кумедна плутанина! Слова passport і password схожі, але друге означає пароль. У підсумку замість документа для аеропорту ти згадав код доступу. Для подорожі потрібен passport!`,
     ],
+    explanationsES: [
+      `Correcto. It was only when I arrived at the airport that I realized I had forgotten my passport usa la estructura completa It was only when... that...`,
+      `It was only when I arrived at the airport then I realized I had forgotten my passport usa then, pero en esta estructura necesitamos that.`,
+      `Only when I arrived to the airport I realized I had forgotten my passport pierde It was y usa arrived to. Con airport usamos arrived at.`,
+      `It was only when I arrived at the airport that I realized I had forgotten my password cambia passport por password. Password es contraseña; aquí necesitas passport.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я предлагаю ей пойти к врачу`,
     uk: `Я пропоную їй піти до лікаря`,
+    es: `Sugiero que ella vaya al médico`,
     choices: [
       `I suggest she goes to the doctor.`,
       `I suggest her to go to the doctor.`,
@@ -22586,12 +23630,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній віртуоз стилю! Використання такої форми після пропозиції — ознака дуже високого рівня. Твоя мова звучить неймовірно вишукано та правильно. Чудова робота!`,
       `Яка кулінарна помилка! Слово dough означає тісто. Вийшло, що ти пропонуєш їй стати «тістом» у лікаря. Тобі потрібна дія go. Заміни слово на просте і зрозуміле переміщення!`,
     ],
+    explanationsES: [
+      `I suggest she goes to the doctor se oye a veces, pero la forma objetivo después de suggest es el verbo base: she go.`,
+      `I suggest her to go to the doctor copia otra estructura. Con suggest no usamos her to go aquí; usamos suggest she go.`,
+      `Correcto. I suggest she go to the doctor usa go sin s después de suggest.`,
+      `I suggest she dough to the doctor cambia go por dough. Dough significa masa; aquí necesitas go.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне нужно починить машину (в сервисе)`,
     uk: `Мені потрібно полагодити машину (у сервісі)`,
+    es: `Necesito que me arreglen el coche`,
     choices: [
       `I need to fix my car.`,
       `I need to have my car fixed.`,
@@ -22611,12 +23662,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але в цій зв\'язці остання дія обов\'язково має бути у третій формі. Тобі не вистачає закінчення ed у слова fix. Без нього конструкція розвалиться. Підправ хвостик слова!`,
       `Яка плутанина в гаражі! Замість машини у тебе вийшло слово cat, що означає кота. У результаті замість ремонту авто ти просиш відвезти улюбленця до ветеринара на операцію. Поверни літеру r на місце!`,
     ],
+    explanationsES: [
+      `I need to fix my car suena como si tú fueras a arreglar el coche. Si lo hará un mecánico, usamos have my car fixed.`,
+      `Correcto. I need to have my car fixed significa que necesitas que alguien repare el coche por ti.`,
+      `I need to have my car fix casi tiene la estructura, pero al final necesitamos fixed, no fix.`,
+      `I need to have my cat fixed cambia car por cat. Cat significa gato; aquí necesitas car.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Это было последней каплей`,
     uk: `Це було останньою краплею`,
+    es: `Eso fue la gota que colmó el vaso`,
     choices: [
       `It was the last drop.`,
       `It was the last stray.`,
@@ -22636,12 +23694,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній майстер ідіом! Цей вираз про останню соломинку, що переламала спину верблюду, звучить максимально круто. Ти показуєш глибоке знання мови. Чудово!`,
       `Твоє знання ідіоми тішить, але перед унікальним поняттям у конкретній ситуації нам обов\'язково потрібне слово the. Без цього маленького визначника фраза звучить незавершеною. Додай його на початок!`,
     ],
+    explanationsES: [
+      `It was the last drop traduce la idea literalmente. En inglés la idiom es the last straw.`,
+      `It was the last stray cambia straw por stray. Stray significa perdido o sin hogar; aquí necesitas straw.`,
+      `Correcto. It was the last straw usa la idiom para el momento final en que alguien ya no aguanta más.`,
+      `It was last straw conoce la idiom, pero falta the. La forma fija es the last straw.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Ходят слухи, что он уволился`,
     uk: `Ходять чутки, що він звільнився`,
+    es: `Se rumorea que él ha renunciado`,
     choices: [
       `He is rumoured to have resigned.`,
       `He is rumoured to resign.`,
@@ -22661,12 +23726,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як переклад за словами зі словника, але в англійській мові для чуток є красивіша стала конструкція. Почни фразу з того, про кого говорять, використовуючи слово rumoured. Спробуй ще раз!`,
       `Яка кумедна помилка! Слово roomed означає, що його кудись поселили в кімнату. Вийшло, що його «поселили», щоб він звільнився. Тобі потрібне слово rumoured з літерою u в середині. Виправ це!`,
     ],
+    explanationsES: [
+      `Correcto. He is rumoured to have resigned usa to have resigned para decir que, según los rumores, la renuncia ya ocurrió.`,
+      `He is rumoured to resign suena como si fuera a renunciar ahora o en el futuro. Para algo ya ocurrido necesitamos to have resigned.`,
+      `It goes rumours that he resigned suena traducido palabra por palabra. La estructura natural empieza con la persona: He is rumoured...`,
+      `He is roomed to have resigned cambia rumoured por roomed. Roomed significa alojado en una habitación; aquí necesitas rumoured.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы я тогда принял то предложение, я был бы сейчас богат`,
     uk: `Якби я тоді прийняв ту пропозицію, я був би зараз багатим`,
+    es: `Si hubiera aceptado aquella oferta entonces, ahora sería rico`,
     choices: [
       `If I took that offer back then, I would be rich now.`,
       `If I had taken that offer back then, I would be rich now.`,
@@ -22686,19 +23758,26 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти чудово побудував початок, але в кінці закрався зайвий помічник have. Оскільки ми говоримо про стан зараз, нам потрібно просто would be. Прибери have been, щоб повернутися в теперішній час!`,
       `Яка кумедна плутанина! Слово reach означає дотягуватися або охоплення. Вийшло, що ти був би «охопленням» замість того, щоб бути багатим. Тобі потрібне слово rich через літеру i. Поміняй літери в середині!`,
     ],
+    explanationsES: [
+      `If I took that offer back then, I would be rich now usa took, pero back then habla de una condición pasada irreal. Necesitamos had taken.`,
+      `Correcto. If I had taken that offer back then, I would be rich now conecta una decisión pasada con un resultado presente.`,
+      `If I had taken that offer back then, I would have been rich now usa would have been, pero now pide resultado presente: would be.`,
+      `If I had taken that offer back then, I would be reach now cambia rich por reach. Reach significa alcanzar; aquí necesitas rich.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я с нетерпением жду нашей встречи`,
     uk: `Я з нетерпінням чекаю на нашу зустріч`,
+    es: `Estoy deseando que nos veamos`,
     choices: [
       `I look forward to meet you.`,
       `I look forward to meeting you.`,
       `I am looking forward for meeting you.`,
       `I look forward to meaty you.`,
     ],
-    correct: 0,
+    correct: 1,
     explanations: [
       `Ты почти у цели, но это выражение требует после себя действия с окончанием ing. Здесь слово to — это не просто частичка, а предлог, после которого нужно именно такое оформление. Добавь ing к слову meet!`,
       `Потрясающе! Ты не поддался искушению использовать обычную форму и выбрал правильный хвостик ing. Это звучит очень грамотно и по-деловому. Твой уровень владения языком впечатляет!`,
@@ -22711,12 +23790,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти правильно підібрав закінчення, але схибив із маленьким словом у середині. У цій сталій фразі завжди має стояти прийменник to, а не for. Виправ цю маленьку сполучну ланку!`,
       `Кумедна плутанина! Слово meaty означає м\'ясний. Вийшло, що ти чекаєш на щось «м\'ясне» замість зустрічі з людиною. Тобі потрібна дія meeting з двома літерами e. Зміни м\'ясо на зустріч!`,
     ],
+    explanationsES: [
+      `I look forward to meet you usa meet después de to. En look forward to, to funciona como preposición, así que necesitamos meeting.`,
+      `Correcto. I look forward to meeting you usa meeting después de look forward to.`,
+      `I am looking forward for meeting you usa for, pero la expresión fija lleva to: looking forward to meeting you.`,
+      `I look forward to meaty you cambia meeting por meaty. Meaty significa carnoso; aquí necesitas meeting.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Это совершенно очевидно, что он виноват`,
     uk: `Цілком очевидно, що він винен`,
+    es: `Es descaradamente obvio que él tiene la culpa`,
     choices: [
       `It is blatantly obvious that he is in fault.`,
       `It is blatantly obvious that he is at fault.`,
@@ -22736,12 +23822,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Яке хитре слово! Oblivious означає забудькуватий або той, хто нічого не помічає. Вийшло, що він «неуважно винен» замість того, щоб це було всім ясно. Тобі потрібне слово obvious. Поміняй середину слова!`,
       `Це звучить як дослівний переклад, але для англійської мови така фраза має починатися зі слова It. Заміна It на This на початку — це часта помилка, яка видає кальку. Постав It на перше місце!`,
     ],
+    explanationsES: [
+      `It is blatantly obvious that he is in fault usa in fault, pero la expresión correcta es at fault.`,
+      `Correcto. It is blatantly obvious that he is at fault usa blatantly obvious y at fault para decir que la culpa es clara.`,
+      `It is blatantly oblivious that he is at fault cambia obvious por oblivious. Oblivious significa que no se da cuenta; aquí necesitas obvious.`,
+      `This is completely obvious that he is at fault suena como calco. Para esta estructura en inglés empezamos con It is.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Похоже, я заболел простудой`,
     uk: `Схоже, я захворів на застуду`,
+    es: `Parece que me resfrié`,
     choices: [
       `It seems I came down with a cold.`,
       `It seems I came down by a cold.`,
@@ -22761,12 +23854,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти намагаєшся перекласти ідею падіння у хворобу дослівно, але в англійській це фразове дієслово звучить інакше. Для легкого нездужання нам потрібне слово came на початку конструкції. Поміняй дію!`,
       `Яка багата помилка! Слово gold означає золото. Вийшло, що ти раптово «захворів на золото». Хоча це звучить привабливо, для застуди нам потрібне слово cold через літеру c. Поміняй коштовність на чхання!`,
     ],
+    explanationsES: [
+      `Correcto. It seems I came down with a cold usa came down with para decir que empezaste a enfermarte de un resfriado.`,
+      `It seems I came down by a cold usa by, pero la expresión para enfermarse es came down with.`,
+      `It seems I fell down with a cold traduce la idea de caer literalmente. Para enfermarse usamos came down with.`,
+      `It seems I came down with a gold cambia cold por gold. Gold significa oro; aquí necesitas cold.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я терпеть не могу, когда мне указывают, что делать`,
     uk: `Я терпіти не можу, коли мені вказують, що робити`,
+    es: `No soporto que me digan qué hacer`,
     choices: [
       `I resent being told what to do.`,
       `I resent telling what to do.`,
@@ -22786,12 +23886,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це правильний переклад, але він звучить занадто просто для твого рівня. Нам потрібна більш стисла та статусна структура без зайвих слів. Спробуй варіант із формою being told!`,
       `Яка фінансова помилка! Слово tolled пов\'язане з оплатою мита або дзвоном дзвона. Вийшло, що ти обурюєшся, коли тебе «обкладають митом». Тобі потрібне слово told через d на кінці. Виправ це!`,
     ],
+    explanationsES: [
+      `Correcto. I resent being told what to do usa being told para mostrar que la acción va hacia ti: te dicen qué hacer.`,
+      `I resent telling what to do pierde el sentido pasivo. Suena como si tú estuvieras diciendo a otros qué hacer. Necesitas being told.`,
+      `I resent when they tell me what to do se entiende, pero para este nivel la forma más compacta y natural es I resent being told what to do.`,
+      `I resent being tolled what to do cambia told por tolled. Tolled se relaciona con peajes o campanas; aquí necesitas told.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Экзамен был сущим пустяком для него`,
     uk: `Іспит був справжньою дрібницею для нього`,
+    es: `El examen fue pan comido para él`,
     choices: [
       `The exam was a peace of cake for him.`,
       `The exam was a piece of cake for him.`,
@@ -22811,12 +23918,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це занадто буденно. На високому рівні ми уникаємо слова very і замінюємо прості описи соковитими ідіомами. Давай додамо твоїй мові трохи яскравості та оберемо варіант про торт!`,
       `Ти правильно підібрав слова, але порядок слів трохи «спіткнувся». В англійській мові опис того, яким був предмет, має йти відразу після нього. Перестав for him у самий кінець речення!`,
     ],
+    explanationsES: [
+      `The exam was a peace of cake for him cambia piece por peace. Peace significa paz; la idiom correcta es a piece of cake.`,
+      `Correcto. The exam was a piece of cake for him usa la idiom para decir que el examen fue muy fácil para él.`,
+      `The exam was very easy for him es correcto en sentido, pero aquí buscamos la idiom: a piece of cake.`,
+      `The exam was for him a piece of cake tiene el orden raro. Lo natural es poner for him al final: was a piece of cake for him.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я был горько разочарован результатами`,
     uk: `Я був гірко розчарований результатами`,
+    es: `Me sentí profundamente decepcionado con los resultados`,
     choices: [
       `I was bitterly disappointed with the results.`,
       `I was bitterly disappeared with the results.`,
@@ -22836,12 +23950,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але тут нам потрібне саме прислівник, що відповідає на питання «як?». Тобі не вистачає хвостика ly в кінці першого слова, щоб воно правильно описувало твій стан. Додай ці дві літери!`,
       `Слова правильні, але їх розставили не по місцях. Підсилювальне слово має стояти прямо перед тим почуттям, яке воно підкреслює. Постав bitterly перед словом disappointed для потрібного ефекту!`,
     ],
+    explanationsES: [
+      `Correcto. I was bitterly disappointed with the results usa bitterly como adverbio para intensificar disappointed.`,
+      `I was bitterly disappeared with the results cambia disappointed por disappeared. Disappeared significa desaparecido; aquí necesitas disappointed.`,
+      `I was bitter disappointed with the results usa bitter como adjetivo. Para describir el sentimiento necesitas el adverbio bitterly.`,
+      `I was disappointed by the results bitterly pone bitterly demasiado tarde. El adverbio debe ir justo antes de disappointed.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Эта сумма — лишь капля в море по сравнению с общим долгом`,
     uk: `Ця сума — лише крапля в морі порівняно із загальним боргом`,
+    es: `Esta cantidad es solo una gota en el océano comparada con la deuda total`,
     choices: [
       `This amount is just a drop in the ocean compared to the total debt.`,
       `This amount is just a drop in the ocean comparing with the total debt.`,
@@ -22861,12 +23982,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це дослівний переклад, який звучить дуже дивно для англійця. Щоб передати масштаб проблеми, потрібно використовувати сталий вираз про краплю в океані. Спробуй варіант із drop та ocean!`,
       `Яка плутанина! Слово drip зазвичай означає кран, що капає, або нудну людину. В ідіомі про масштаб завжди використовується слово drop. Поміняй одну літеру в середині!`,
     ],
+    explanationsES: [
+      `Correcto. This amount is just a drop in the ocean usa la idiom para decir que la suma es mínima frente a algo enorme.`,
+      `This amount is just a drop in the ocean comparing with... usa comparing, pero aquí necesitamos compared to para conectar la comparación.`,
+      `This amount is just a piece of water in the sea traduce la imagen palabra por palabra. La idiom inglesa es a drop in the ocean.`,
+      `This amount is just a drip in the ocean cambia drop por drip. Drip es goteo; la idiom fija usa drop.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Крайне важно, чтобы он присутствовал на встрече`,
     uk: `Вкрай важливо, щоб він був присутнім на зустрічі`,
+    es: `Es fundamental que él esté presente en la reunión`,
     choices: [
       `It is essential that he is present at the meeting.`,
       `It is essential for him to present at the meeting.`,
@@ -22886,12 +24014,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти справжній майстер високого стилю! Використання чистої форми be після таких вимог — це ознака дуже глибоких знань. Твоя мова звучить неймовірно вишукано та правильно. Браво!`,
       `Ой, яка лісова плутанина! Слово pheasant означає птаха фазана. Вийшло, що вкрай важливо, щоб на зустрічі він був «фазаном». Тобі потрібне слово present. Прибери птаха з офісу!`,
     ],
+    explanationsES: [
+      `It is essential that he is present at the meeting se entiende, pero en la forma formal después de essential usamos la base verbal: he be present.`,
+      `It is essential for him to present at the meeting suena como si él tuviera que presentar algo. Para presencia, necesitamos that he be present.`,
+      `Correcto. It is essential that he be present at the meeting usa be en forma base después de essential.`,
+      `It is essential that he be pheasant at the meeting cambia present por pheasant. Pheasant es un faisán; aquí necesitas present.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Якобы он присвоил эти средства`,
     uk: `Нібито він привласнив ці кошти`,
+    es: `Presuntamente, él malversó esos fondos`,
     choices: [
       `Allegedly, he embezzled the funds.`,
       `Allegedly, he embezzled the fans.`,
@@ -22911,12 +24046,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить як дослівний переклад, який не зовсім підходить для теми фінансів. Щоб звучати як професіонал, краще обрати точніше дієслово embezzled. Твій вибір зрозумілий, але давай зробимо його вишуканішим!`,
       `Тут трапилася біда з часом. Якщо ти використовуєш помічника has, то у дії має бути закінчення d. Або просто залиш дієслово в минулому часі без зайвих помічників. Виправ хвостик у слова!`,
     ],
+    explanationsES: [
+      `Correcto. Allegedly marca que es una acusación no confirmada, y embezzled the funds habla de apropiarse de dinero o fondos.`,
+      `Allegedly, he embezzled the fans cambia funds por fans. Fans son admiradores o ventiladores; aquí necesitas funds.`,
+      `Allegedly, he appropriated these means suena como calco y no encaja bien con dinero. Para fondos, embezzled the funds es más preciso.`,
+      `Allegedly, he has embezzle the funds mezcla has con una forma incorrecta. Después de has sería embezzled, pero aquí basta el pasado: he embezzled.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `То, что мне нужно сейчас, это чашка крепкого кофе`,
     uk: `Те, що мені потрібно зараз, це горнятко міцної кави`,
+    es: `Lo que necesito ahora es una taza de café fuerte`,
     choices: [
       `What I need is a cup of potent coffee.`,
       `What I need it is a cup of potent coffee.`,
@@ -22936,12 +24078,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Майже в точку, але для такого виділення на початку має стояти слово What. Використання That робить фразу схожою на кальку з рідної мови. Постав What на перше місце!`,
       `Кумедна підміна! Слово patent означає патент на винахід. Вийшло, що тобі потрібна запатентована кава замість міцної. Тобі потрібне слово potent через літеру o. Виправ одну літеру!`,
     ],
+    explanationsES: [
+      `Correcto. What I need is... resalta exactamente lo que necesitas, y potent coffee suena como café fuerte o intenso.`,
+      `What I need it is... mete un it extra. What I need ya funciona como el sujeto de la frase, así que no hace falta it.`,
+      `That I need now... suena como calco. Para esta estructura enfática, el inicio natural es What I need is...`,
+      `What I need is a cup of patent coffee cambia potent por patent. Patent se relaciona con una patente; aquí necesitas potent.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Если бы я не был таким ленивым, я бы закончил проект вчера`,
     uk: `Якби я не був таким ленивим, я б закінчив проєкт учора`,
+    es: `Si no fuera tan perezoso, habría terminado el proyecto ayer`,
     choices: [
       `If I weren\'t so lazy, I would finish the project yesterday.`,
       `If I wasn\'t so lazy, I finished the project yesterday.`,
@@ -22961,12 +24110,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти просто геній граматики! Ти майстерно поєднав свою постійну якість із нереальним результатом у минулому. Це одна з найвишуканіших конструкцій у мові. Чудово!`,
       `Яка кумедна плутанина! Дієслово furnish означає меблювати. Вийшло, що ти хотів «обставити проєкт меблями» замість того, щоб його закінчити. Тобі потрібне слово finished. Заміни меблі на фінал!`,
     ],
+    explanationsES: [
+      `If I weren\'t so lazy, I would finish the project yesterday mezcla yesterday con would finish. Para un resultado pasado, necesitas would have finished.`,
+      `If I wasn\'t so lazy, I finished the project yesterday suena como dos hechos sueltos. Para una condición irreal, necesitamos would have finished.`,
+      `Correcto. If I weren\'t so lazy, I would have finished the project yesterday conecta una cualidad actual con un resultado pasado no realizado.`,
+      `If I weren\'t so lazy, I would have furnished the project yesterday cambia finished por furnished. Furnished significa amueblado; aquí necesitas finished.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне пришлось поработать допоздна, чтобы успеть к дедлайну`,
     uk: `Мені довелося попрацювати допізна, щоб встигнути до дедлайну`,
+    es: `Tuve que trabajar hasta muy tarde para cumplir con el plazo`,
     choices: [
       `I had to burn the midnight oil to meet the deadline.`,
       `I had to burn the midnight soil to meet the deadline.`,
@@ -22986,12 +24142,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це правильне речення, але воно занадто просте для твого рівня. Щоб звучати цікавіше, використовуй ідіому про нічну олію та дієслово meet для крайнього терміну. Спробуй соковитіший варіант!`,
       `Ти обрав гарний вислів, але схибив із часом. Оскільки ми говоримо про те, що вже сталося, нам потрібен помічник had to замість must. Виправ час на минулий!`,
     ],
+    explanationsES: [
+      `Correcto. I had to burn the midnight oil significa que tuviste que trabajar hasta muy tarde, y meet the deadline es cumplir el plazo.`,
+      `I had to burn the midnight soil cambia oil por soil. Soil significa tierra o suelo; la idiom correcta usa oil.`,
+      `I had to work very late to catch the deadline se entiende, pero catch the deadline no es la colocación natural. La frase objetivo es burn the midnight oil to meet the deadline.`,
+      `I must burn the midnight oil to meet the deadline usa must en presente. Como hablamos de algo que ya pasó, necesitamos had to.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Тебе стоит отремонтировать машину`,
     uk: `Тобі варто відремонтувати машину`,
+    es: `Deberías mandar reparar tu coche`,
     choices: [
       `You should repair your car.`,
       `You should have your car repaired.`,
@@ -23011,12 +24174,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але в самому кінці не вистачає однієї деталі. У цій зв\'язці останнє слово має стояти у третій формі, тобто із закінченням ed. Додай ці дві літери в кінці слова repair!`,
       `Ой, яка плутанина в діях! Слово prepared означає підготовлена. Вийшло, що ти радиш «підготувати машину», а не полагодити її. Тобі потрібне слово repaired. Поверни на місце ремонт!`,
     ],
+    explanationsES: [
+      `You should repair your car suena como si tú fueras a arreglar el coche personalmente. Si lo hace un mecánico, usamos have your car repaired.`,
+      `Correcto. You should have your car repaired significa que deberías hacer que alguien repare tu coche.`,
+      `You should have your car repair casi tiene la estructura, pero al final necesitamos repaired, no repair.`,
+      `You should have your car prepared cambia repaired por prepared. Prepared significa preparado; aquí necesitas repaired.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Я хожу в спортзал крайне редко`,
     uk: `Я ходжу до спортзалу вкрай рідко`,
+    es: `Voy al gimnasio muy de vez en cuando`,
     choices: [
       `I go to the gym once in a blue moon.`,
       `I go to the gym once in a blue sun.`,
@@ -23036,12 +24206,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це дослівна спроба перекласти слово рідко, яка не працює в англійській. Слово few використовується тільки для лічби предметів. Для опису частоти дій краще використовувати красиву ідіому. Спробуй варіант про місяць!`,
       `Ти був дуже близький, але підвела маленька часточка. У цьому сталому виразі завжди використовується прийменник in. З прийменником at фраза втрачає свою магічну силу та правильність. Заміни цей прийменник!`,
     ],
+    explanationsES: [
+      `Correcto. I go to the gym once in a blue moon usa una idiom para decir que vas al gimnasio extremadamente rara vez.`,
+      `I go to the gym once in a blue sun cambia moon por sun. La imagen fija en inglés es blue moon, no blue sun.`,
+      `I go to the gym very few intenta traducir “rara vez” literalmente. Few sirve para contar cosas; para frecuencia usamos once in a blue moon.`,
+      `I go to the gym once at a blue moon casi tiene la idiom, pero el preposition correcto es in: once in a blue moon.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Он настоял на том, чтобы она ушла немедленно`,
     uk: `Він наполіг на тому, щоб вона пішла негайно`,
+    es: `Él insistió en que ella se fuera inmediatamente`,
     choices: [
       `He insisted that she goes immediately.`,
       `He insisted that she leave immediately.`,
@@ -23061,12 +24238,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Тут змішалися дві різні структури. Якщо ти обираєш прийменник on, то дія має закінчитися на ing. Або почни ціле речення через слово that, як у більш елегантному варіанті. Виправ зв\'язку слів!`,
       `Яка природна помилка! Слово leaf означає листок дерева. Вийшло, що він вимагав, щоб вона «олиствилася» або перетворилася на листочок. Тобі потрібна дія leave — йти. Заміни предмет на дію!`,
     ],
+    explanationsES: [
+      `He insisted that she goes immediately se entiende, pero después de insist en esta forma usamos el verbo base: she leave.`,
+      `Correcto. He insisted that she leave immediately usa leave sin s después de insisted that.`,
+      `He insisted on her leave immediately mezcla estructuras. Con insisted on sería leaving; con that usamos she leave.`,
+      `He insisted that she leaf immediately cambia leave por leaf. Leaf es una hoja; aquí necesitas leave.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Пожалуй, это самый изысканный ужин, который я когда-либо пробовал`,
     uk: `Мабуть, це найвишуканіша вечеря, яку я коли-небудь куштував`,
+    es: `Podría decirse que esta es la cena más exquisita que he probado`,
     choices: [
       `This is argue the most exquisite dinner I have ever tasted.`,
       `Arguably, this is the most exquisite dinner I have ever tasted.`,
@@ -23086,12 +24270,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Майже ідеально, але загубився зв\'язок часів. Коли ми говоримо про життєвий досвід до цього моменту, нам обов\'язково потрібен помічник have перед дією. Постав це маленьке слово на місце!`,
       `Яка плутанина в словах! Слово excruciating означає болісний або нестерпний. Вийшло, що вечеря була катуванням. Тобі потрібне слово exquisite для опису краси та смаку. Виправ це!`,
     ],
+    explanationsES: [
+      `This is argue the most exquisite dinner... usa argue como verbo, pero aquí necesitamos el adverbio introductorio Arguably.`,
+      `Correcto. Arguably, this is the most exquisite dinner I have ever tasted suaviza la afirmación y usa have ever tasted para experiencia de vida.`,
+      `Arguably, this is the most exquisite dinner I ever tasted pierde have. Para experiencia hasta ahora, usamos I have ever tasted.`,
+      `Arguably, this is the most excruciating dinner... cambia exquisite por excruciating. Excruciating significa doloroso o insoportable; aquí necesitas exquisite.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Только тогда я осознал серьезность ситуации`,
     uk: `Тільки тоді я усвідомив серйозність ситуації`,
+    es: `Solo entonces me di cuenta de la gravedad de la situación`,
     choices: [
       `Only then I realized the gravity of the situation.`,
       `It was only then that I realized the gravity of the situation.`,
@@ -23111,12 +24302,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ой, тут вийшов перебір із минулим часом. Коли в реченні вже є помічник did, основна дія має повернутися до початкової форми. Прибери закінчення ed у слова realize!`,
       `Кумедна заміна! Слово gravy означає підливку або соус. Вийшло, що ти усвідомив «підливку ситуації». Нам же потрібна серйозність і важливість — gravity. Поверни на місце правильне слово!`,
     ],
+    explanationsES: [
+      `Only then I realized the gravity of the situation pierde la estructura enfática. Aquí usamos It was only then that... para marcar “solo entonces”.`,
+      `Correcto. It was only then that I realized the gravity of the situation enfatiza el momento exacto en que entendiste la gravedad.`,
+      `Only then did I realized the gravity of the situation usa did y realized juntos. Después de did, el verbo debe volver a realize.`,
+      `It was only then that I realized the gravy of the situation cambia gravity por gravy. Gravy es salsa; aquí necesitas gravity.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Редко мне доводилось видеть столь вопиющую несправедливость`,
     uk: `Рідко мені доводилося бачити таку волаючу несправедливість`,
+    es: `Rara vez he presenciado una injusticia tan descarada`,
     choices: [
       `Rarely have I witnessed such blatant injustice.`,
       `Rarely I have witnessed such blatant injustice.`,
@@ -23136,12 +24334,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить занадто просто, як звичайний переклад. Щоб передати всю силу обурення на високому рівні, почни з Rarely і перестав слова. І не забудь, що перед якістю нам потрібне слово such. Спробуй ще раз!`,
       `Ой, яка затишна, але неправильна заміна! Слово blanket означає ковдру. Вийшло «несправедливість у вигляді ковдри». Тобі потрібне слово blatant для позначення чогось очевидного і волаючого. Виправ це!`,
     ],
+    explanationsES: [
+      `Correcto. Rarely have I witnessed... usa inversión después de Rarely al inicio y such blatant injustice para una injusticia muy evidente.`,
+      `Rarely I have witnessed... mantiene el orden normal. Después de Rarely al principio, necesitamos inversión: Rarely have I...`,
+      `I rarely witnessed so blatant injustice suena más plano y además falta such antes de blatant injustice.`,
+      `Rarely have I witnessed such blanket injustice cambia blatant por blanket. Blanket significa manta; aquí necesitas blatant.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Как только мы вышли, пошел дождь`,
     uk: `Як тільки ми вийшли, пішов дощ`,
+    es: `Apenas nos pusimos en marcha, empezó a llover`,
     choices: [
       `No sooner had we set off than it started to rain.`,
       `No sooner we set off than it started to rain.`,
@@ -23161,12 +24366,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Ти майже біля цілі, але одне маленьке слово все зіпсувало. У цій парі зі словом No sooner завжди має йти слово than. Слово when тут не підходить. Заміни його на than!`,
       `Ой, яка плутанина в діях! Слово sat означає «сиділи». Вийшло, що ви «відсиділи», а не вирушили в дорогу. Тобі потрібна дія set. Зміни літеру a на e!`,
     ],
+    explanationsES: [
+      `Correcto. No sooner had we set off than it started to rain usa inversión con had y la pareja fija no sooner... than.`,
+      `No sooner we set off than it started to rain pierde la inversión. Después de No sooner al inicio, necesitamos had we set off.`,
+      `No sooner had we set off when it started to rain usa when, pero la pareja correcta es no sooner... than.`,
+      `No sooner had we sat off than it started to rain cambia set por sat. Sat significa sentado; aquí necesitas set off.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Терпеть не могу, когда мне говорят, что делать`,
     uk: `Терпіти не можу, коли мені кажуть, що робити`,
+    es: `No soporto que me digan qué hacer`,
     choices: [
       `I resent being told what to do.`,
       `I resent telling what to do.`,
@@ -23186,12 +24398,19 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Це звучить занадто просто і трохи по-дитячому. На твоєму рівні краще використовувати дієслово resent та пасивну форму. І пам\'ятай, що після say ми зазвичай не ставимо людину одразу. Спробуй варіант із resent!`,
       `Яка звукова плутанина! Слово tolled стосується ударів дзвона або дорожнього мита. Вийшло, що тебе «оплатили» або у тебе «подзвонили». Тобі потрібне слово told через одну літеру l. Виправ це!`,
     ],
+    explanationsES: [
+      `Correcto. I resent being told what to do usa resent y la forma pasiva being told para decir que te molesta que otros te den órdenes.`,
+      `I resent telling what to do invierte el sentido. Suena como si te molestara decirles a otros qué hacer. Necesitas being told.`,
+      `I hate when people say me what to do suena simple y además say me no es natural aquí. La forma objetivo es I resent being told what to do.`,
+      `I resent being tolled what to do cambia told por tolled. Tolled se relaciona con peajes o campanas; aquí necesitas told.`,
+    ],
     lessonNum: 0,
     level: 'B2',
   },
   {
     ru: `Мне кажется, что это решение весьма сомнительное`,
     uk: `Мені здається, що це рішення досить сумнівне`,
+    es: `Al parecer, esta decisión es bastante dudosa`,
     choices: [
       `Seemingly, this decision is quite dubious.`,
       `Seems, this decision is quite dubious.`,
@@ -23210,6 +24429,12 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Тут не вистачає граматичного фундаменту. Слово seems не може просто так стояти на початку. Тобі потрібно перетворити його на вставне слово, додавши хвостик ly. Додай закінчення ly до першого слова!`,
       `Це правильне речення, але воно занадто просте для твого рівня. Щоб звучати ввічливіше та професійніше, використовуй вставні слова та точніші синоніми. Спробуй варіант зі словом dubious!`,
       `Майже ідеально, але підвела орфографія. У слові «сумнівний» після літери d має йти літера u, а не подвійна o. Це робить слово схожим на щось кумедне, але неправильне. Виправ літери в середині!`,
+    ],
+    explanationsES: [
+      `Correcto. Seemingly suaviza la opinión, y quite dubious suena más preciso que simplemente very bad.`,
+      `Seems, this decision is quite dubious no funciona como palabra introductoria. Necesitas el adverbio seemingly.`,
+      `I think that this decision is very bad se entiende, pero es demasiado simple. Seemingly y dubious lo hacen más profesional y matizado.`,
+      `Seemingly, this decision is quite doobious escribe mal dubious. Después de d va u, no doble o.`,
     ],
     lessonNum: 0,
     level: 'B2',

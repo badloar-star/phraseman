@@ -1487,7 +1487,7 @@ export default function AchievementsScreen() {
     : String(unlockedCount);
 
   return (
-    <ScreenGradient>
+    <ScreenGradient artBackdrop="achievements">
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
 

@@ -3,7 +3,23 @@
 
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => ({
+  ru,
+  uk,
+  es,
+  'pt-BR': planned['pt-BR'] ?? es,
+  vi: planned.vi ?? es,
+  id: planned.id ?? es,
+  tr: planned.tr ?? es,
+  pl: planned.pl ?? es,
+});
 
 const CONTRAST = [
   'should + base verb',
@@ -173,6 +189,56 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       'Use should call, must leave.',
       'Have to questions use do/does.',
     ],
+    'pt-BR': [
+      'Should soa como conselho: You should rest.',
+      'Must soa como regra forte: You must stop.',
+      "Mustn't significa proibição.",
+      'Have to significa necessidade por causa da situação.',
+      'Com he/she/it, use has to.',
+      "Don't have to significa que não é necessário.",
+      'Use should call, must leave.',
+      'Perguntas com have to usam do/does.',
+    ],
+    vi: [
+      'Should nghe như lời khuyên: You should rest.',
+      'Must nghe như quy tắc mạnh: You must stop.',
+      "Mustn't nghĩa là cấm.",
+      'Have to nghĩa là cần thiết do tình huống.',
+      'Với he/she/it, dùng has to.',
+      "Don't have to nghĩa là không cần thiết.",
+      'Dùng should call, must leave.',
+      'Câu hỏi với have to dùng do/does.',
+    ],
+    id: [
+      'Should terdengar seperti saran: You should rest.',
+      'Must terdengar seperti aturan kuat: You must stop.',
+      "Mustn't berarti larangan.",
+      'Have to berarti keharusan karena situasi.',
+      'Dengan he/she/it, gunakan has to.',
+      "Don't have to berarti tidak perlu.",
+      'Gunakan should call, must leave.',
+      'Pertanyaan dengan have to memakai do/does.',
+    ],
+    tr: [
+      'Should tavsiye gibi duyulur: You should rest.',
+      'Must güçlü bir kural gibi duyulur: You must stop.',
+      "Mustn't yasak demektir.",
+      'Have to durumdan gelen zorunluluk demektir.',
+      'He/she/it ile has to kullanılır.',
+      "Don't have to gerekli değil demektir.",
+      'Should call, must leave kullan.',
+      'Have to sorularında do/does kullanılır.',
+    ],
+    pl: [
+      'Should brzmi jak rada: You should rest.',
+      'Must brzmi jak mocna zasada: You must stop.',
+      "Mustn't oznacza zakaz.",
+      'Have to oznacza konieczność wynikającą z sytuacji.',
+      'Z he/she/it używaj has to.',
+      "Don't have to znaczy, że coś nie jest konieczne.",
+      'Używaj should call, must leave.',
+      'Pytania z have to używają do/does.',
+    ],
   },
   examples: [
     {
@@ -180,6 +246,11 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       ru: 'Тебе стоит отдохнуть.',
       uk: 'Тобі варто відпочити.',
       es: 'You should rest.',
+      'pt-BR': 'Você deveria descansar.',
+      vi: 'Bạn nên nghỉ ngơi.',
+      id: 'Kamu sebaiknya beristirahat.',
+      tr: 'Dinlenmelisin.',
+      pl: 'Powinieneś odpocząć.',
       why: tri('Это совет, не приказ.', 'Це порада, не наказ.', 'Advice, not an order.'),
     },
     {
@@ -187,6 +258,11 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       ru: 'Ты обязан пристегнуться.',
       uk: 'Ти зобовʼязаний пристебнутися.',
       es: 'You must wear a seatbelt.',
+      'pt-BR': 'Você deve usar cinto de segurança.',
+      vi: 'Bạn phải thắt dây an toàn.',
+      id: 'Kamu harus memakai sabuk pengaman.',
+      tr: 'Emniyet kemeri takmalısın.',
+      pl: 'Musisz zapiąć pas bezpieczeństwa.',
       why: tri('Это правило, поэтому звучит сильнее.', 'Це правило, тому звучить сильніше.', 'A rule sounds stronger.'),
     },
     {
@@ -194,6 +270,11 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       ru: 'Мне нужно работать завтра.',
       uk: 'Мені потрібно працювати завтра.',
       es: 'I have to work tomorrow.',
+      'pt-BR': 'Tenho que trabalhar amanhã.',
+      vi: 'Ngày mai tôi phải làm việc.',
+      id: 'Saya harus bekerja besok.',
+      tr: 'Yarın çalışmak zorundayım.',
+      pl: 'Muszę jutro pracować.',
       why: tri('Необходимость идет из расписания.', 'Необхідність іде з розкладу.', 'The schedule creates the necessity.'),
     },
     {
@@ -201,6 +282,11 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       ru: 'Ей нужно уйти рано.',
       uk: 'Їй потрібно піти рано.',
       es: 'She has to leave early.',
+      'pt-BR': 'Ela tem que sair cedo.',
+      vi: 'Cô ấy phải rời đi sớm.',
+      id: 'Dia harus pergi lebih awal.',
+      tr: 'Erken ayrılmak zorunda.',
+      pl: 'Ona musi wyjść wcześniej.',
       why: tri('С she нужен кусок has to.', 'З she потрібен шматок has to.', 'She takes has to.'),
     },
     {
@@ -208,6 +294,11 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       ru: 'Тебе не обязательно приходить.',
       uk: 'Тобі не обовʼязково приходити.',
       es: "You don't have to come.",
+      'pt-BR': 'Você não precisa vir.',
+      vi: 'Bạn không cần đến.',
+      id: 'Kamu tidak perlu datang.',
+      tr: 'Gelmek zorunda değilsin.',
+      pl: 'Nie musisz przychodzić.',
       why: tri('Это не запрет. Просто нет обязанности.', 'Це не заборона. Просто немає обовʼязку.', 'No obligation, not prohibition.'),
     },
     {
@@ -215,6 +306,11 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       ru: 'Здесь нельзя курить.',
       uk: 'Тут не можна курити.',
       es: "You mustn't smoke here.",
+      'pt-BR': 'Você não pode fumar aqui.',
+      vi: 'Bạn không được hút thuốc ở đây.',
+      id: 'Kamu tidak boleh merokok di sini.',
+      tr: 'Burada sigara içmemelisin.',
+      pl: 'Nie wolno ci tu palić.',
       why: tri("Mustn't - это запрет.", "Mustn't - це заборона.", "Mustn't means prohibited."),
     },
     {
@@ -222,6 +318,11 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       ru: 'Тебе не стоит переживать.',
       uk: 'Тобі не варто хвилюватися.',
       es: "You shouldn't worry.",
+      'pt-BR': 'Você não deveria se preocupar.',
+      vi: 'Bạn không nên lo lắng.',
+      id: 'Kamu sebaiknya tidak khawatir.',
+      tr: 'Endişelenmemelisin.',
+      pl: 'Nie powinieneś się martwić.',
       why: tri("Shouldn't - совет не делать.", "Shouldn't - порада не робити.", "Advice not to do something."),
     },
     {
@@ -229,6 +330,11 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       ru: 'Тебе нужно работать завтра?',
       uk: 'Тобі потрібно працювати завтра?',
       es: 'Do you have to work tomorrow?',
+      'pt-BR': 'Você tem que trabalhar amanhã?',
+      vi: 'Ngày mai bạn có phải làm việc không?',
+      id: 'Apakah kamu harus bekerja besok?',
+      tr: 'Yarın çalışmak zorunda mısın?',
+      pl: 'Czy musisz jutro pracować?',
       why: tri('В вопросе с have to появляется Do.', 'У питанні з have to зʼявляється Do.', 'Have to questions use Do.'),
     },
   ],

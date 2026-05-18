@@ -24,6 +24,7 @@ import {
 import { useTheme } from './ThemeContext';
 import { useEnergy } from './EnergyContext';
 import { useLang } from './LangContext';
+import EnergyIcon from './EnergyIcon';
 import { hapticTap, hapticWarning } from '../hooks/use-haptics';
 import { getShardsBalance } from '../app/shards_system';
 import {
@@ -37,6 +38,7 @@ import { emitAppEvent } from '../app/events';
 import { incrementEnergyZeroCount } from '../app/paywall_personalization';
 import PremiumGoldButton from './PremiumGoldButton';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
+import { paywallGlassColor } from './paywallGlass';
 
 interface Props {
   visible: boolean;
@@ -73,6 +75,7 @@ export default function NoEnergyModal({
 }: Props) {
   const router = useRouter();
   const { theme: t, themeMode, f } = useTheme();
+  const paywallCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
   const { formattedTime, energy, bonusEnergy, maxEnergy, isUnlimited, reload } = useEnergy();
   const { lang } = useLang();
   const isUK = lang === 'uk';
@@ -291,7 +294,7 @@ export default function NoEnergyModal({
           style={[
             styles.card,
             {
-              backgroundColor: t.bgCard,
+              backgroundColor: paywallCardBg,
               opacity: cardOp,
               transform: [{ scale: cardScale }],
               shadowColor: ENERGY_GLOW,
@@ -321,21 +324,26 @@ export default function NoEnergyModal({
                 },
               ]}
             />
-            <Animated.Text
+            <Animated.View
               style={[
-                styles.emoji,
+                styles.boltIcon,
                 {
                   transform: [
                     { scale: boltScale },
                     { rotate: boltShake.interpolate({ inputRange: [-1, 1], outputRange: ['-12deg', '12deg'] }) },
                   ],
-                  textShadowColor: ENERGY_GLOW + 'CC',
-                  textShadowRadius: 18,
                 },
               ]}
             >
-              ⚡
-            </Animated.Text>
+              <EnergyIcon
+                filled
+                themeColor={t.gold}
+                size={64}
+                animateChange={false}
+                shouldShake={false}
+                themeMode={themeMode}
+              />
+            </Animated.View>
           </View>
 
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
@@ -363,7 +371,7 @@ export default function NoEnergyModal({
                   resizeMode="contain"
                 />
                 <Text style={{ color: t.textPrimary, fontWeight: '800', fontSize: f.body, flex: 1 }}>
-                  {isUK ? 'Відновити енергію' : isES ? 'Recuperar energía' : 'Восстановить энергию'} · {shardCost} 💎
+                  {isUK ? 'Відновити енергію' : isES ? 'Recuperar energía' : 'Восстановить энергию'} · {shardCost}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -435,7 +443,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 88, height: 88, borderRadius: 44,
   },
-  emoji: { fontSize: 52 },
+  boltIcon: {
+    width: 68,
+    height: 68,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   title: { fontWeight: '700', textAlign: 'center' },
   subtitle: { textAlign: 'center', lineHeight: 22 },
   shardBtn: {

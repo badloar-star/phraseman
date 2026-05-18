@@ -1,4 +1,5 @@
 import { DeviceEventEmitter } from 'react-native';
+import type { PlannedTriLangCopy } from '../constants/i18n';
 
 /** Анти-бурст для `action_toast` внутри ~400 мс (мульти-тап); дальше фильтрует ActionToast. */
 let _lastActionToastKey = '';
@@ -73,7 +74,7 @@ export type AppEventMap = {
 /** RU + UK + ES для `action_toast` без дублирования полей. */
 export function actionToastTri(
   type: AppEventMap['action_toast']['type'],
-  m: { ru: string; uk: string; es: string },
+  m: { ru: string; uk: string; es: string } & PlannedTriLangCopy,
 ): AppEventMap['action_toast'] {
   return { type, messageRu: m.ru, messageUk: m.uk, messageEs: m.es };
 }

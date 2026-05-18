@@ -25,6 +25,7 @@ import { useScreen } from '../hooks/use-screen';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { arenaToasts } from '../constants/arena_i18n';
+import { arenaActionIconSource } from './arena_action_icons';
 import { ARENA_LOBBY_ACCEPT_MS, ARENA_PLAY_AGAIN_BOT_MAX_MS, ARENA_PLAY_AGAIN_BOT_MIN_MS, CLOUD_SYNC_ENABLED, ENABLE_ARENA_RANKED_WAGER, IS_EXPO_GO, } from './config';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import type { ArenaSession, LobbyChoice } from './types/arena';
@@ -39,6 +40,7 @@ import { getLevelFromXP } from '../constants/theme';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AvatarView from '../components/AvatarView';
 import GoldBevel from '../components/GoldBevel';
+import { backgroundTransitionKey, useBackgroundBlurSwitch } from '../components/backgroundTransition';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { subscribeTodayArenaHillThrone, type ArenaHillThrone } from './services/arena_hill';
 import { subscribeArenaFeatureFlags, type ArenaFeatureFlags, } from './services/arena_feature_flags';
@@ -52,6 +54,14 @@ const ARENA_THEME_BACKDROPS = {
     coral: require('../assets/images/arena/knowledge-arena-coral.webp'),
     minimalLight: require('../assets/images/arena/knowledge-arena-minimal-light.webp'),
     minimalDark: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
+} as const;
+const ARENA_TICKET_ICONS = {
+    dark: require('../assets/images/arena_tickets/ticket-dark.png'),
+    neon: require('../assets/images/arena_tickets/ticket-neon.png'),
+    gold: require('../assets/images/arena_tickets/ticket-gold.png'),
+    coral: require('../assets/images/arena_tickets/ticket-coral.png'),
+    minimalLight: require('../assets/images/arena_tickets/ticket-minimal-light.png'),
+    minimalDark: require('../assets/images/arena_tickets/ticket-minimal-dark.png'),
 } as const;
 type IdleQueueHintCache = {
     value: number;
@@ -154,7 +164,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         uk: 'Гравець',
         es: 'Jugador',
         'pt-BR': "Jogador",
-        vi: "Ng??i ch?i",
+        vi: "Người chơi",
         id: "Pemain",
         tr: "Oyuncu",
         pl: "Gracz",
@@ -797,7 +807,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 uk: 'Гравець',
                 es: 'Jugador',
                 'pt-BR': "Jogador",
-                vi: "Ng??i ch?i",
+                vi: "Người chơi",
                 id: "Pemain",
                 tr: "Oyuncu",
                 pl: "Gracz",
@@ -932,10 +942,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
             uk: `У разі перемоги +${payout} осколків.`,
             es: `Si ganas +${payout} fragmentos.`,
             'pt-BR': `Se vencer, +${payout} fragmentos.`,
-            vi: `N?u th?ng, +${payout} m?nh.`,
+            vi: `Nếu thắng, +${payout} mảnh.`,
             id: `Jika menang, +${payout} pecahan.`,
-            tr: `Kazan?rsan +${payout} par?a.`,
-            pl: `Je?li wygrasz, +${payout} od?amk?w.`,
+            tr: `Kazanırsan +${payout} parça.`,
+            pl: `Jeśli wygrasz, +${payout} odłamków.`,
         });
     }, [lang, rankedWagerPending, rankedWagerUiReady]);
     const rankedWagerCardEl = arenaRankedWagerEnabled && !friendRoomId ? (<View style={[
@@ -954,9 +964,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
             uk: 'Ставка на матч',
             es: 'Apuesta del encuentro',
             'pt-BR': "Aposta da partida",
-            vi: "C??c tr?n ??u",
+            vi: "Cược trận đấu",
             id: "Taruhan pertandingan",
-            tr: "Ma? bahsi",
+            tr: "Maç bahsi",
             pl: "Stawka meczu",
         })}
           </Text>
@@ -1150,10 +1160,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
             ru: `Сейчас ищут матч: ${queueOthersCount}`,
             es: `Jugadores buscando partida: ${queueOthersCount}`,
             'pt-BR': `Procurando partida agora: ${queueOthersCount}`,
-            vi: `?ang t?m tr?n: ${queueOthersCount}`,
+            vi: `Đang tìm trận: ${queueOthersCount}`,
             id: `Sedang mencari pertandingan: ${queueOthersCount}`,
-            tr: `?u an ma? arayanlar: ${queueOthersCount}`,
-            pl: `Szukaj? meczu: ${queueOthersCount}`,
+            tr: `Şu an maç arayanlar: ${queueOthersCount}`,
+            pl: `Szukają meczu: ${queueOthersCount}`,
         })}>
         <Ionicons name="people" size={18} color={t.accent}/>
         <Text style={[styles.queueActivityBadgeText, { color: t.textPrimary }]}>
@@ -1162,10 +1172,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
             ru: 'Ищут матч: ',
             es: 'Buscan partida: ',
             'pt-BR': "Procurando partida: ",
-            vi: "?ang t?m tr?n: ",
+            vi: "Đang tìm trận: ",
             id: "Mencari pertandingan: ",
-            tr: "Ma? arayanlar: ",
-            pl: "Szukaj? meczu: ",
+            tr: "Maç arayanlar: ",
+            pl: "Szukają meczu: ",
         })}
           <Text style={{ fontWeight: '900', color: t.accent }}>{queueOthersCount}</Text>
         </Text>
@@ -1179,16 +1189,54 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 ? ('#F59E0B')
                 : ('#58E58B');
     const arenaTicketsText = isUnlimited ? '∞' : `${arenaTicketsLeft}/${dailyMax}`;
+    const arenaTicketIconSource = ARENA_TICKET_ICONS[themeMode] ?? ARENA_TICKET_ICONS.dark;
+    const arenaMatchIconSource = arenaActionIconSource('match', themeMode);
+    const arenaFriendIconSource = arenaActionIconSource('friend', themeMode);
+    const arenaThroneIconSource = arenaActionIconSource('throne', themeMode);
+    const arenaActionLogoChrome = useMemo(() => {
+        const dark = {
+            match: { bg: 'rgba(8,42,30,0.72)', border: 'rgba(57,242,122,0.58)', shadow: '#39F27A' },
+            friend: { bg: 'rgba(10,38,36,0.72)', border: 'rgba(91,226,205,0.46)', shadow: '#5BE2CD' },
+            throne: { bg: 'rgba(54,43,14,0.72)', border: 'rgba(245,217,122,0.48)', shadow: '#F5D97A' },
+        };
+        const neon = {
+            match: { bg: 'rgba(8,34,38,0.78)', border: 'rgba(182,255,0,0.72)', shadow: '#B6FF00' },
+            friend: { bg: 'rgba(38,8,62,0.78)', border: 'rgba(217,70,239,0.64)', shadow: '#D946EF' },
+            throne: { bg: 'rgba(44,18,65,0.78)', border: 'rgba(255,202,40,0.62)', shadow: '#FFCA28' },
+        };
+        const gold = {
+            match: { bg: 'rgba(24,19,9,0.82)', border: GOLD_RICH.hairlineStrong, shadow: GOLD_RICH.champagne },
+            friend: { bg: 'rgba(35,22,18,0.82)', border: 'rgba(244,196,154,0.56)', shadow: '#F4C49A' },
+            throne: { bg: 'rgba(38,26,8,0.86)', border: 'rgba(255,214,122,0.70)', shadow: '#FFD67A' },
+        };
+        const coral = {
+            match: { bg: 'rgba(58,25,18,0.76)', border: 'rgba(255,112,88,0.66)', shadow: '#FF7058' },
+            friend: { bg: 'rgba(58,21,40,0.76)', border: 'rgba(255,145,170,0.62)', shadow: '#FF91AA' },
+            throne: { bg: 'rgba(63,24,22,0.80)', border: 'rgba(255,184,77,0.62)', shadow: '#FFB84D' },
+        };
+        const minimalLight = {
+            match: { bg: 'rgba(255,252,246,0.92)', border: 'rgba(86,96,86,0.42)', shadow: '#7C8A7E' },
+            friend: { bg: 'rgba(255,252,246,0.92)', border: 'rgba(117,112,147,0.40)', shadow: '#757093' },
+            throne: { bg: 'rgba(255,252,246,0.94)', border: 'rgba(185,137,37,0.44)', shadow: '#B98925' },
+        };
+        const minimalDark = {
+            match: { bg: 'rgba(14,18,23,0.86)', border: 'rgba(116,168,214,0.42)', shadow: '#74A8D6' },
+            friend: { bg: 'rgba(16,18,25,0.86)', border: 'rgba(133,151,196,0.42)', shadow: '#8597C4' },
+            throne: { bg: 'rgba(20,19,17,0.88)', border: 'rgba(179,149,91,0.44)', shadow: '#B3955B' },
+        };
+        const byTheme = { dark, neon, gold, coral, minimalLight, minimalDark } as const;
+        return byTheme[themeMode] ?? dark;
+    }, [themeMode]);
     const arenaGlass = useMemo(() => {
         const light = themeMode === 'minimalLight';
         const neon = themeMode === 'neon';
         const gold = themeMode === 'gold';
         const accent = t.accent;
         const warm = gold || light ? '#B98925' : '#F5D97A';
-        const ctaBase = neon ? t.accent : gold ? t.textSecond : light ? '#3B4A6B' : t.correct;
+        const ctaBase = gold ? t.textSecond : light ? '#3B4A6B' : t.accent;
         return {
             cardColors: light
-                ? ['rgba(255,255,255,0.62)', 'rgba(255,253,248,0.34)', 'rgba(255,255,255,0.20)']
+                ? ['rgba(255,252,246,0.78)', 'rgba(239,232,219,0.56)', 'rgba(223,211,191,0.36)']
                 : gold
                     ? GOLD_GRADIENTS.premiumPanel
                     :
@@ -1197,11 +1245,11 @@ export default function DuelLobbyScreen({ isTab = false }: {
                             alphaColor(t.bgCard, 0.42, '255,255,255'),
                             'rgba(255,255,255,0.055)',
                         ],
-            cardBorder: gold ? GOLD_RICH.hairlineStrong : light ? 'rgba(40,37,32,0.18)' : alphaColor(accent, 0.24),
-            cardHighlight: gold ? GOLD_RICH.edgeLight : light ? 'rgba(255,255,255,0.72)' : 'rgba(255,255,255,0.14)',
-            innerBg: gold ? GOLD_RICH.bronzeWash : light ? 'rgba(255,255,255,0.32)' : 'rgba(255,255,255,0.07)',
-            innerBgSoft: gold ? GOLD_RICH.wash : light ? 'rgba(255,255,255,0.22)' : 'rgba(255,255,255,0.045)',
-            innerBorder: gold ? GOLD_RICH.hairline : light ? 'rgba(40,37,32,0.13)' : alphaColor(accent, 0.18),
+            cardBorder: gold ? GOLD_RICH.hairlineStrong : light ? 'rgba(52,45,35,0.28)' : alphaColor(accent, 0.24),
+            cardHighlight: gold ? GOLD_RICH.edgeLight : light ? 'rgba(255,252,246,0.70)' : 'rgba(255,255,255,0.14)',
+            innerBg: gold ? GOLD_RICH.bronzeWash : light ? 'rgba(255,252,246,0.48)' : 'rgba(255,255,255,0.07)',
+            innerBgSoft: gold ? GOLD_RICH.wash : light ? 'rgba(63,55,44,0.10)' : 'rgba(255,255,255,0.045)',
+            innerBorder: gold ? GOLD_RICH.hairline : light ? 'rgba(52,45,35,0.24)' : alphaColor(accent, 0.18),
             accent: accent,
             accentSoft: alphaColor(accent, light ? 0.10 : 0.15),
             solidAccent: accent,
@@ -1212,7 +1260,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             warm,
             warmBg: alphaColor(warm, light ? 0.10 : 0.14, '245,217,122'),
             warmBorder: alphaColor(warm, light ? 0.20 : 0.28, '245,217,122'),
-            ctaColors: gold ? GOLD_GRADIENTS.primaryButton : [alphaColor(ctaBase, 0.95), alphaColor(ctaBase, 0.78), alphaColor(t.correct, 0.62)],
+            ctaColors: gold ? GOLD_GRADIENTS.primaryButton : [alphaColor(ctaBase, 0.95), alphaColor(ctaBase, 0.78), alphaColor(ctaBase, 0.62)],
             ctaText: t.correctText,
             ctaSubText: alphaColor(t.correctText, 0.66, '7,17,31'),
             ctaIcon: t.correctText,
@@ -1254,9 +1302,13 @@ export default function DuelLobbyScreen({ isTab = false }: {
         outputRange: [8, 0],
     });
     const arenaBackdropSource = ARENA_THEME_BACKDROPS[themeMode] ?? ARENA_THEME_BACKDROPS.dark;
+    const { activeValue: activeArenaBackdropSource } = useBackgroundBlurSwitch({
+        value: arenaBackdropSource,
+        transitionKey: `${themeMode}:${backgroundTransitionKey(arenaBackdropSource)}`,
+    });
     return (<ScreenGradient>
       {!isTab && <View pointerEvents="none" style={styles.arenaScreenHeroLayer}>
-        <Animated.Image source={arenaBackdropSource} resizeMode="cover" style={[
+        <Animated.Image source={activeArenaBackdropSource} resizeMode="cover" style={[
             styles.arenaScreenHeroImage,
             {
                 opacity: arenaScreenHeroOpacity,
@@ -1295,7 +1347,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             uk: 'Арена',
             es: 'Arena',
             'pt-BR': "Arena",
-            vi: "??u tr??ng",
+            vi: "Đấu trường",
             id: "Arena",
             tr: "Arena",
             pl: "Arena",
@@ -1312,9 +1364,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
             uk: 'рейтинг',
             es: 'ranked',
             'pt-BR': "ranqueado",
-            vi: "x?p h?ng",
+            vi: "xếp hạng",
             id: "peringkat",
-            tr: "s?ralamal?",
+            tr: "sıralamalı",
             pl: "rankingowy",
         })}
             </Text>
@@ -1326,7 +1378,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             uk: `Квитки арени: ${arenaTicketsText}`,
             es: `Entradas de arena: ${arenaTicketsText}`,
             'pt-BR': `Ingressos da arena: ${arenaTicketsText}`,
-            vi: `V? ??u tr??ng: ${arenaTicketsText}`,
+            vi: `Vé đấu trường: ${arenaTicketsText}`,
             id: `Tiket arena: ${arenaTicketsText}`,
             tr: `Arena biletleri: ${arenaTicketsText}`,
             pl: `Bilety areny: ${arenaTicketsText}`,
@@ -1337,7 +1389,14 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 backgroundColor: `${arenaTicketsColor}18`,
             },
         ]}>
-            <Ionicons name="ticket" size={16} color={arenaTicketsColor}/>
+            <Image
+              source={arenaTicketIconSource}
+              resizeMode="contain"
+              style={[
+                styles.arenaTicketIcon,
+                { opacity: !isUnlimited && arenaTicketsLeft <= 0 ? 0.72 : 1 },
+              ]}
+            />
             <Text style={[styles.arenaTicketText, { color: arenaTicketsColor, fontSize: f.label }]}>
               {arenaTicketsText}
             </Text>
@@ -1418,9 +1477,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 ru: 'Ищем соперника',
                 es: 'Buscando rival',
                 'pt-BR': "Procurando rival",
-                vi: "?ang t?m ??i th?",
+                vi: "Đang tìm đối thủ",
                 id: "Mencari lawan",
-                tr: "Rakip aran?yor",
+                tr: "Rakip aranıyor",
                 pl: "Szukamy rywala",
             })}
                 </Text>
@@ -1433,9 +1492,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 ru: `В очереди: ${formatElapsed(displayElapsed)}`,
                 es: `En cola: ${formatElapsed(displayElapsed)}`,
                 'pt-BR': `Na fila: ${formatElapsed(displayElapsed)}`,
-                vi: `Trong h?ng ch?: ${formatElapsed(displayElapsed)}`,
+                vi: `Trong hàng chờ: ${formatElapsed(displayElapsed)}`,
                 id: `Dalam antrean: ${formatElapsed(displayElapsed)}`,
-                tr: `S?rada: ${formatElapsed(displayElapsed)}`,
+                tr: `Sırada: ${formatElapsed(displayElapsed)}`,
                 pl: `W kolejce: ${formatElapsed(displayElapsed)}`,
             })}
                 </Text>
@@ -1447,7 +1506,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     ru: 'Соперник найден!',
                     es: '¡Rival encontrado!',
                     'pt-BR': "Rival encontrado!",
-                    vi: "?? t?m th?y ??i th?!",
+                    vi: "Đã tìm thấy đối thủ!",
                     id: "Lawan ditemukan!",
                     tr: "Rakip bulundu!",
                     pl: "Znaleziono rywala!",
@@ -1482,7 +1541,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     ru: 'ПРИНЯТЬ',
                     es: 'ACEPTAR',
                     'pt-BR': "ACEITAR",
-                    vi: "CH?P NH?N",
+                    vi: "CHẤP NHẬN",
                     id: "TERIMA",
                     tr: "KABUL ET",
                     pl: "AKCEPTUJ",
@@ -1499,19 +1558,19 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     ru: 'Отклонить',
                     es: 'Rechazar',
                     'pt-BR': "Recusar",
-                    vi: "T? ch?i",
+                    vi: "Từ chối",
                     id: "Tolak",
                     tr: "Reddet",
-                    pl: "Odrzu?",
+                    pl: "Odrzuć",
                 })
                 : triLang(lang, {
                     uk: 'Скасувати',
                     ru: 'Отмена',
                     es: 'Cancelar',
                     'pt-BR': "Cancelar",
-                    vi: "H?y",
+                    vi: "Hủy",
                     id: "Batal",
-                    tr: "?ptal",
+                    tr: "İptal",
                     pl: "Anuluj",
                 })}>
                     <Text style={[
@@ -1530,19 +1589,19 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     ru: 'Отклонить',
                     es: 'Rechazar',
                     'pt-BR': "Recusar",
-                    vi: "T? ch?i",
+                    vi: "Từ chối",
                     id: "Tolak",
                     tr: "Reddet",
-                    pl: "Odrzu?",
+                    pl: "Odrzuć",
                 })
                 : triLang(lang, {
                     uk: 'Скасувати',
                     ru: 'Отмена',
                     es: 'Cancelar',
                     'pt-BR': "Cancelar",
-                    vi: "H?y",
+                    vi: "Hủy",
                     id: "Batal",
-                    tr: "?ptal",
+                    tr: "İptal",
                     pl: "Anuluj",
                 })}
                     </Text>
@@ -1563,7 +1622,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 themeMode === 'gold' ? goldShadow(3) : null,
                 null,
             ]}>
-                <Animated.Image source={arenaBackdropSource} resizeMode="cover" style={[
+                <Animated.Image source={activeArenaBackdropSource} resizeMode="cover" style={[
                 styles.arenaHeroImage,
                 {
                     opacity: arenaHeroOpacity,
@@ -1586,9 +1645,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 uk: `${idleQueueHintDisplayCount} у пошуку`,
                 es: `${idleQueueHintDisplayCount} buscando`,
                 'pt-BR': `${idleQueueHintDisplayCount} procurando`,
-                vi: `${idleQueueHintDisplayCount} ?ang t?m`,
+                vi: `${idleQueueHintDisplayCount} đang tìm`,
                 id: `${idleQueueHintDisplayCount} mencari`,
-                tr: `${idleQueueHintDisplayCount} ar?yor`,
+                tr: `${idleQueueHintDisplayCount} arıyor`,
                 pl: `${idleQueueHintDisplayCount} szuka`,
             })}
                     </Text>
@@ -1597,13 +1656,13 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     <Ionicons name="trophy-outline" size={14} color={arenaGlass.warm}/>
                     <Text style={[styles.arenaModeText, { color: arenaGlass.warm, fontSize: f.caption }]}>
                       {triLang(lang, {
-                ru: 'Ranked',
-                uk: 'Ranked',
-                es: 'Ranked',
+                ru: 'Рейтинг',
+                uk: 'Рейтинг',
+                es: 'Clasificatoria',
                 'pt-BR': "Ranqueado",
-                vi: "X?p h?ng",
-                id: "Ranked",
-                tr: "S?ralamal?",
+                vi: "Xếp hạng",
+                id: "Peringkat",
+                tr: "Sıralamalı",
                 pl: "Rankingowy",
             })}
                     </Text>
@@ -1617,9 +1676,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 uk: 'Обери формат матчу',
                 es: 'Elige formato de partida',
                 'pt-BR': "Escolha o formato da partida",
-                vi: "Ch?n ??nh d?ng tr?n ??u",
+                vi: "Chọn định dạng trận đấu",
                 id: "Pilih format pertandingan",
-                tr: "Ma? format?n? se?",
+                tr: "Maç formatını seç",
                 pl: "Wybierz format meczu",
             })}
                   </Text>
@@ -1636,8 +1695,16 @@ export default function DuelLobbyScreen({ isTab = false }: {
             ]}>
                     {themeMode === 'gold' && <GoldBevel radius={20} intensity="strong"/>}
                     {false}
-                    <View style={[styles.arenaLaunchIconWrap, { backgroundColor: arenaGlass.ctaIconBg }]}>
-                      <Ionicons name="flash" size={25} color={arenaGlass.ctaIcon}/>
+                    <View style={[styles.arenaLaunchIconWrap, {
+                        backgroundColor: 'transparent',
+                        borderColor: 'transparent',
+                        shadowColor: arenaActionLogoChrome.match.shadow,
+                    }]}>
+                      <Image
+                        source={arenaMatchIconSource}
+                        resizeMode="contain"
+                        style={styles.arenaLaunchActionIcon}
+                      />
                     </View>
                     <View style={styles.arenaLaunchTextWrap}>
                       <Text style={[styles.arenaLaunchTitle, { color: arenaGlass.ctaText, fontSize: f.h2 + 3 }]}>
@@ -1646,10 +1713,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 uk: 'Знайти матч',
                 es: 'Buscar partida',
                 'pt-BR': "Encontrar partida",
-                vi: "T?m tr?n",
+                vi: "Tìm trận",
                 id: "Cari pertandingan",
-                tr: "Ma? bul",
-                pl: "Znajd? mecz",
+                tr: "Maç bul",
+                pl: "Znajdź mecz",
             })}
                       </Text>
                       <Text style={[styles.arenaLaunchSub, { color: arenaGlass.ctaSubText, fontSize: f.caption }]}>
@@ -1658,9 +1725,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 uk: 'підбір суперника',
                 es: 'matchmaking',
                 'pt-BR': "pareamento",
-                vi: "gh?p tr?n",
+                vi: "ghép trận",
                 id: "matchmaking",
-                tr: "e?le?tirme",
+                tr: "eşleştirme",
                 pl: "dobieranie rywala",
             })}
                       </Text>
@@ -1669,22 +1736,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                   </LinearGradient>
                 </TouchableOpacity>
 
-                <View style={styles.arenaCostRow}>
-                  {isUnlimited ? (<View style={[styles.arenaCostChip, { backgroundColor: arenaGlass.warmBg, borderColor: arenaGlass.warmBorder }]}>
-                      <Ionicons name="sparkles" size={14} color={arenaGlass.warm}/>
-                      <Text style={[styles.arenaCostText, { color: arenaGlass.warm, fontSize: f.caption }]}>
-                        {triLang(lang, {
-                    ru: 'Premium без лимита',
-                    uk: 'Premium без ліміту',
-                    es: 'Premium ilimitado',
-                    'pt-BR': "Premium sem limite",
-                    vi: "Premium kh?ng gi?i h?n",
-                    id: "Premium tanpa batas",
-                    tr: "S?n?rs?z Premium",
-                    pl: "Premium bez limitu",
-                })}
-                      </Text>
-                    </View>) : (<>
+                {!isUnlimited ? (<View style={styles.arenaCostRow}>
                       <View style={[styles.arenaCostChip, { backgroundColor: arenaGlass.innerBg, borderColor: arenaGlass.innerBorder }]}>
                         <Ionicons name="flash" size={14} color={arenaGlass.warm}/>
                         <Text style={[styles.arenaCostText, { color: screenMuted, fontSize: f.caption }]}>
@@ -1693,7 +1745,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     uk: '1 енергія',
                     es: '1 energía',
                     'pt-BR': "1 energia",
-                    vi: "1 n?ng l??ng",
+                    vi: "1 năng lượng",
                     id: "1 energi",
                     tr: "1 enerji",
                     pl: "1 energia",
@@ -1701,22 +1753,28 @@ export default function DuelLobbyScreen({ isTab = false }: {
                         </Text>
                       </View>
                       <View style={[styles.arenaCostChip, { backgroundColor: `${arenaTicketsColor}12`, borderColor: `${arenaTicketsColor}33` }]}>
-                        <Ionicons name="ticket" size={14} color={arenaTicketsColor}/>
+                        <Image
+                          source={arenaTicketIconSource}
+                          resizeMode="contain"
+                          style={[
+                            styles.arenaCostTicketIcon,
+                            { opacity: arenaTicketsLeft <= 0 ? 0.72 : 1 },
+                          ]}
+                        />
                         <Text style={[styles.arenaCostText, { color: screenMuted, fontSize: f.caption }]}>
                           {triLang(lang, {
                     ru: '1 билет',
                     uk: '1 квиток',
                     es: '1 entrada',
                     'pt-BR': "1 ingresso",
-                    vi: "1 v?",
+                    vi: "1 vé",
                     id: "1 tiket",
                     tr: "1 bilet",
                     pl: "1 bilet",
                 })}
                         </Text>
                       </View>
-                    </>)}
-                </View>
+                </View>) : null}
 
                 <View style={styles.arenaActionList}>
                   <TouchableOpacity testID="arena-play-with-friend" accessibilityLabel="qa-arena-play-with-friend" accessible={true} accessibilityRole="button" accessibilityState={{ expanded: friendRoomId != null }} onPress={() => {
@@ -1733,8 +1791,16 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 }
                 void handlePlayWithFriend();
             }} activeOpacity={0.78} style={[styles.arenaCommandButton, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBg }]}>
-                    <View style={[styles.arenaCommandIcon, { backgroundColor: arenaGlass.accentSoft }]}>
-                      <Ionicons name="people-outline" size={20} color={arenaGlass.accent}/>
+                    <View style={[styles.arenaCommandIcon, {
+                        backgroundColor: 'transparent',
+                        borderColor: 'transparent',
+                        shadowColor: arenaActionLogoChrome.friend.shadow,
+                    }]}>
+                      <Image
+                        source={arenaFriendIconSource}
+                        resizeMode="contain"
+                        style={styles.arenaCommandActionIcon}
+                      />
                     </View>
                     <View style={styles.arenaCommandCopy}>
                       <Text style={[styles.arenaCommandTitle, { color: screenTitleColor, fontSize: f.sub }]}>
@@ -1743,22 +1809,22 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 uk: 'Виклик другу',
                 es: 'Reto a un amigo',
                 'pt-BR': "Desafio a amigo",
-                vi: "Th?ch ??u b?n b?",
+                vi: "Thách đấu bạn bè",
                 id: "Tantang teman",
-                tr: "Arkada?a meydan oku",
+                tr: "Arkadaşa meydan oku",
                 pl: "Wyzwanie dla znajomego",
             })}
                       </Text>
                       <Text style={[styles.arenaCommandSub, { color: screenMuted, fontSize: f.caption }]}>
                         {triLang(lang, {
-                ru: 'Личный бой по приглашению',
-                uk: 'Особистий бій за запрошенням',
-                es: 'Duelo privado por invitación',
-                'pt-BR': "Duelo privado por convite",
-                vi: "??u ri?ng b?ng l?i m?i",
-                id: "Duel pribadi lewat undangan",
-                tr: "Davetli ?zel d?ello",
-                pl: "Prywatny pojedynek z zaproszenia",
+                ru: 'Матч по приглашению',
+                uk: 'Матч за запрошенням',
+                es: 'Partida privada por invitación',
+                'pt-BR': "Partida privada por convite",
+                vi: "Phiên chơi riêng qua lời mời",
+                id: "Pertandingan pribadi lewat undangan",
+                tr: "Davetli özel maç",
+                pl: "Prywatny mecz z zaproszenia",
             })}
                       </Text>
                     </View>
@@ -1822,7 +1888,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                                 uk: 'Arena',
                                 es: 'Arena',
                                 'pt-BR': "Arena",
-                                vi: "??u tr??ng",
+                                vi: "Đấu trường",
                                 id: "Arena",
                                 tr: "Arena",
                                 pl: "Arena",
@@ -1833,20 +1899,20 @@ export default function DuelLobbyScreen({ isTab = false }: {
                                     uk: 'Надсилаємо',
                                     es: 'Enviando',
                                     'pt-BR': "Enviando",
-                                    vi: "?ang g?i",
+                                    vi: "Đang gửi",
                                     id: "Mengirim",
-                                    tr: "G?nderiliyor",
-                                    pl: "Wysy?anie",
+                                    tr: "Gönderiliyor",
+                                    pl: "Wysyłanie",
                                 })
                                 : triLang(lang, {
                                     ru: 'Бросить вызов',
                                     uk: 'Кинути виклик',
                                     es: 'Lanzar reto',
-                                    'pt-BR': "Lan?ar desafio",
-                                    vi: "G?i th?ch ??u",
+                                    'pt-BR': "Lançar desafio",
+                                    vi: "Gửi thách đấu",
                                     id: "Kirim tantangan",
                                     tr: "Meydan oku",
-                                    pl: "Rzu? wyzwanie",
+                                    pl: "Rzuć wyzwanie",
                                 })}
                               </Text>
                             </TouchableOpacity>)}
@@ -1857,10 +1923,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
                         ru: 'Пока нет друзей для вызова.',
                         uk: 'Поки немає друзів для виклику.',
                         es: 'Aún no hay amigos para retar.',
-                        'pt-BR': "Ainda n?o h? amigos para desafiar.",
-                        vi: "Ch?a c? b?n b? ?? th?ch ??u.",
+                        'pt-BR': "Ainda não há amigos para desafiar.",
+                        vi: "Chưa có bạn bè để thách đấu.",
                         id: "Belum ada teman untuk ditantang.",
-                        tr: "Meydan okuyacak arkada? yok.",
+                        tr: "Meydan okuyacak arkadaş yok.",
                         pl: "Nie masz jeszcze znajomych do wyzwania.",
                     })}
                           </Text>
@@ -1868,8 +1934,16 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     </View>)}
 
                   <View testID="arena-throne-info" accessible accessibilityRole="text" style={[styles.arenaInfoRow, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
-                    <View style={[styles.arenaCommandIcon, { backgroundColor: arenaGlass.warmBg }]}>
-                      <Ionicons name="trophy-outline" size={20} color={arenaGlass.warm}/>
+                    <View style={[styles.arenaCommandIcon, {
+                        backgroundColor: 'transparent',
+                        borderColor: 'transparent',
+                        shadowColor: arenaActionLogoChrome.throne.shadow,
+                    }]}>
+                      <Image
+                        source={arenaThroneIconSource}
+                        resizeMode="contain"
+                        style={styles.arenaCommandActionIcon}
+                      />
                     </View>
                     <View style={styles.arenaCommandCopy}>
                       <Text style={[styles.arenaCommandTitle, { color: screenTitleColor, fontSize: f.sub }]}>
@@ -1879,9 +1953,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     uk: 'Трон дня',
                     es: 'Trono del día',
                     'pt-BR': "Trono do dia",
-                    vi: "Ngai v?ng h?m nay",
+                    vi: "Ngai vàng hôm nay",
                     id: "Takhta hari ini",
-                    tr: "G?n?n taht?",
+                    tr: "Günün tahtı",
                     pl: "Tron dnia",
                 })
                 : triLang(lang, {
@@ -1889,9 +1963,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     uk: 'Трон вільний',
                     es: 'Trono libre',
                     'pt-BR': "Trono livre",
-                    vi: "Ngai v?ng c?n tr?ng",
+                    vi: "Ngai vàng còn trống",
                     id: "Takhta kosong",
-                    tr: "Taht bo?",
+                    tr: "Taht boş",
                     pl: "Tron wolny",
                 })}
                       </Text>
@@ -1901,36 +1975,24 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     ru: `${hillThrone.championName} · ${hillThrone.score} побед`,
                     uk: `${hillThrone.championName} · ${hillThrone.score} перемог`,
                     es: `${hillThrone.championName} · ${hillThrone.score} victorias`,
-                    'pt-BR': `${hillThrone.championName} ? ${hillThrone.score} vit?rias`,
-                    vi: `${hillThrone.championName} ? ${hillThrone.score} tr?n th?ng`,
-                    id: `${hillThrone.championName} ? ${hillThrone.score} kemenangan`,
-                    tr: `${hillThrone.championName} ? ${hillThrone.score} galibiyet`,
-                    pl: `${hillThrone.championName} ? ${hillThrone.score} zwyci?stw`,
+                    'pt-BR': `${hillThrone.championName} · ${hillThrone.score} vitórias`,
+                    vi: `${hillThrone.championName} · ${hillThrone.score} trận thắng`,
+                    id: `${hillThrone.championName} · ${hillThrone.score} kemenangan`,
+                    tr: `${hillThrone.championName} · ${hillThrone.score} galibiyet`,
+                    pl: `${hillThrone.championName} · ${hillThrone.score} zwycięstw`,
                 })
                 : triLang(lang, {
                     ru: 'Пока никто не занял трон',
                     uk: 'Поки ніхто не зайняв трон',
                     es: 'Nadie ocupa el trono aún',
-                    'pt-BR': "Ningu?m ocupou o trono ainda",
-                    vi: "Ch?a ai chi?m ngai v?ng",
+                    'pt-BR': "Ninguém ocupou o trono ainda",
+                    vi: "Chưa ai chiếm ngai vàng",
                     id: "Belum ada yang menduduki takhta",
-                    tr: "Taht? hen?z kimse almad?",
-                    pl: "Nikt jeszcze nie zaj?? tronu",
+                    tr: "Tahtı henüz kimse almadı",
+                    pl: "Nikt jeszcze nie zajął tronu",
                 })}
                       </Text>
                     </View>
-                    <Text style={[styles.arenaInfoBadge, { color: arenaGlass.warm, fontSize: f.caption, backgroundColor: arenaGlass.warmBg }]}>
-                      {triLang(lang, {
-                ru: 'Инфо',
-                uk: 'Інфо',
-                es: 'Info',
-                'pt-BR': "Info",
-                vi: "Th?ng tin",
-                id: "Info",
-                tr: "Bilgi",
-                pl: "Info",
-            })}
-                    </Text>
                   </View>
                 </View>
               </LinearGradient>
@@ -1948,7 +2010,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             uk: 'Лобі арени',
             es: 'Lobby de la arena',
             'pt-BR': "Lobby da arena",
-            vi: "S?nh ??u tr??ng",
+            vi: "Sảnh đấu trường",
             id: "Lobi arena",
             tr: "Arena lobisi",
             pl: "Lobby areny",
@@ -2009,6 +2071,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         gap: 6,
+    },
+    arenaTicketIcon: {
+        width: 23,
+        height: 17,
+        flexShrink: 0,
     },
     arenaTicketText: { fontWeight: '900', fontVariant: ['tabular-nums'] },
     rankBadge: {
@@ -2161,16 +2228,27 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 16,
-        gap: 12,
+        paddingLeft: 12,
+        paddingRight: 16,
+        gap: 11,
     },
     arenaLaunchIconWrap: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
+        width: 60,
+        height: 60,
+        borderRadius: 0,
+        borderWidth: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(7,17,31,0.12)',
+        backgroundColor: 'transparent',
+        overflow: 'visible',
+        shadowOpacity: 0,
+        shadowRadius: 0,
+        shadowOffset: { width: 0, height: 0 },
+        elevation: 0,
+    },
+    arenaLaunchActionIcon: {
+        width: 64,
+        height: 64,
     },
     arenaLaunchTextWrap: { flex: 1, minWidth: 0 },
     arenaLaunchTitle: { fontWeight: '900', letterSpacing: 0 },
@@ -2191,6 +2269,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 6,
     },
+    arenaCostTicketIcon: {
+        width: 19,
+        height: 14,
+        flexShrink: 0,
+    },
     arenaCostText: { fontWeight: '800' },
     arenaActionList: {
         gap: 12,
@@ -2206,12 +2289,23 @@ const styles = StyleSheet.create({
         gap: 12,
     },
     arenaCommandIcon: {
-        width: 42,
-        height: 42,
-        borderRadius: 16,
+        width: 52,
+        height: 52,
+        borderRadius: 0,
+        borderWidth: 0,
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
+        backgroundColor: 'transparent',
+        overflow: 'visible',
+        shadowOpacity: 0,
+        shadowRadius: 0,
+        shadowOffset: { width: 0, height: 0 },
+        elevation: 0,
+    },
+    arenaCommandActionIcon: {
+        width: 58,
+        height: 58,
     },
     arenaCommandCopy: { flex: 1, minWidth: 0, gap: 2 },
     arenaCommandTitle: { fontWeight: '900', letterSpacing: 0 },
@@ -2224,13 +2318,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         gap: 12,
-    },
-    arenaInfoBadge: {
-        fontWeight: '900',
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        borderRadius: 999,
-        overflow: 'hidden',
     },
     arenaCommandActionText: { fontWeight: '900', flexShrink: 0 },
     arenaFriendsPanel: {

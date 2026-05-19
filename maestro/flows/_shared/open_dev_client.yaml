@@ -18,10 +18,6 @@ appId: app.phraseman
       - tapOn: "Continue"
       - waitForAnimationToEnd:
           timeout: 3000
-- tapOn:
-    point: "50%,94%"
-- waitForAnimationToEnd:
-    timeout: 5000
 - runFlow:
     when:
       visible: "Go home"
@@ -29,10 +25,6 @@ appId: app.phraseman
       - tapOn: "Go home"
       - waitForAnimationToEnd:
           timeout: 5000
-- tapOn:
-    point: "73%,27%"
-- waitForAnimationToEnd:
-    timeout: 5000
 - runFlow:
     when:
       visible: "New development server"
@@ -41,5 +33,7 @@ appId: app.phraseman
           point: "50%,26%"
       - waitForAnimationToEnd:
           timeout: 8000
-- waitForAnimationToEnd:
-    timeout: 8000
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 120000

@@ -105,3 +105,30 @@ describe('accountDelete stable id resolver', () => {
     });
   });
 });
+
+describe('accountDelete query deletion safety', () => {
+  it('fails instead of looping forever when a query makes no delete progress', async () => {
+    const ref = { path: 'stuck/doc' };
+    const query = {
+      limit: jest.fn(() => ({
+        get: jest.fn(async () => ({ empty: false, docs: [{ ref }] })),
+      })),
+    };
+    const ctx = {
+      db: { recursiveDelete: jest.fn() },
+      writer: {},
+      seen: new Set<string>([ref.path]),
+      runId: 'test',
+      stableUidHash: 'stable',
+      authUidHash: 'auth',
+      startedAtMs: 0,
+      lastProgressLogDocs: 0,
+      writerClosed: false,
+    };
+    const stats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
+
+    await expect(__accountDeleteTestHooks.deleteQuery(query as any, ctx as any, stats as any))
+      .rejects.toMatchObject({ code: 'internal' });
+    expect(stats.queriesRun).toBe(1);
+  });
+});

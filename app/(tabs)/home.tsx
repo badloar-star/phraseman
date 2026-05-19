@@ -41,6 +41,7 @@ import { isCustomAvatarValue } from '../../constants/custom_avatars';
 import { checkAchievements } from '../achievements';
 import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
 import EnergyIcon from '../../components/EnergyIcon';
+import { getAdaptiveEnergyIconLayout } from '../../components/energyIconLayout';
 import { loadAllMedals, countMedals } from '../medal_utils';
 import { getTrainerTotalDue } from '../trainer_store';
 import { getCurrentMultiplier } from '../xp_manager';
@@ -67,6 +68,7 @@ import { FOREGROUND_CLOUD_REFRESH_DELAY_MS } from '../app_resume_policy';
 import { fetchActiveLeagueCrowns, getLeagueChestGoal } from '../services/league_chest_rewards';
 import { shouldShowLeagueRace } from '../league_race_visibility';
 import { getHomeMenuImages } from '../home_menu_icons';
+import { isStreakFreezeActiveToday } from '../streak_freeze';
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
 const ENERGY_TOOLTIP_W = 220;
@@ -765,7 +767,8 @@ export default function HomeScreen() {
                 getCurrentMultiplier(),
             ]);
             const parsedFreeze = freezeRaw ? JSON.parse(freezeRaw) : null;
-            setFreezeActive(!!(parsedFreeze?.active));
+            const freezeIsActive = isStreakFreezeActiveToday(parsedFreeze);
+            setFreezeActive(freezeIsActive);
             setPremiumFreezeUsed(freeFreezeRaw === 'true');
             setTotalXPMulti(baseMulti);
             rememberHomeScreenHydration({
@@ -777,7 +780,7 @@ export default function HomeScreen() {
                 weekPoints: weekPts,
                 shardsBalance: shardsBal,
                 lessonsCompleted: done,
-                freezeActive: !!(parsedFreeze?.active),
+                freezeActive: freezeIsActive,
                 premiumFreezeUsed: freeFreezeRaw === 'true',
                 totalXPMulti: baseMulti,
                 userAvatar: avatarSnap,
@@ -899,7 +902,7 @@ export default function HomeScreen() {
             if (willLose) {
                 const freezeRaw2 = await AsyncStorage.getItem('streak_freeze');
                 const freeze2 = freezeRaw2 ? JSON.parse(freezeRaw2) : null;
-                const alreadyFrozen = !!(freeze2?.active);
+                const alreadyFrozen = isStreakFreezeActiveToday(freeze2);
                 if (!alreadyFrozen) {
                     setStreakAtRisk(true);
                 }
@@ -1229,8 +1232,19 @@ export default function HomeScreen() {
         const eliteShimmerX = eliteStatusShimmer.interpolate({ inputRange: [0, 1], outputRange: [-90, Math.max(320, CONTENT_W)] });
         const homeHeaderShardIconSource = oskolokImageForPackShards(Math.max(1, shardsBalance));
         const homeHeaderShardIconSize = 38;
-        const homeEnergyIconSize = energyMax > 6 ? 34 : 38;
-        const homeEnergyIconOverlap = -Math.round(homeEnergyIconSize * 0.45);
+        const homeHeaderEnergyClusterMaxWidth = Math.max(112, CONTENT_W - 184);
+        const homeHeaderEnergySlots = Math.max(1, energyMax + Math.max(0, energyBonus));
+        const homeEnergyLayout = getAdaptiveEnergyIconLayout({
+            slotCount: homeHeaderEnergySlots,
+            iconSize: energyMax > 6 ? 34 : 38,
+            maxWidth: homeHeaderEnergyClusterMaxWidth,
+            minIconSize: 22,
+        });
+        const homeEnergyIconSize = homeEnergyLayout.iconSize;
+        const homeEnergyIconOverlap = homeEnergyLayout.marginLeft;
+        const homeEnergyIconsWidth = homeEnergyLayout.width;
+        const homeEnergyTimerInlineReserve = !energyUnlimited && energyCount < energyMax && timeUntilNextEnergy ? 96 : 0;
+        const homeEnergyHeaderStacked = homeEnergyIconsWidth + homeEnergyTimerInlineReserve > homeHeaderEnergyClusterMaxWidth;
         const homeLeagueChestPct = homeLeagueChest
             ? Math.min(100, Math.round((homeLeagueChest.progress / Math.max(1, homeLeagueChest.goal)) * 100))
             : 0;
@@ -1256,10 +1270,10 @@ export default function HomeScreen() {
             }}>{shardsBonusText}</Animated.Text>
               {/* Energy + shards — в одной строке */}
               <View style={{ flexDirection: 'row-reverse', alignItems: 'center', justifyContent: 'space-between', marginTop: 6, gap: 8 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 1 }}>
-                  <View ref={energyIconRef} collapsable={false} style={{ flexDirection: 'row', alignItems: 'center', flexShrink: 1 }}>
-                <TouchableOpacity activeOpacity={0.7} onPress={showEnergyTooltip} style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 1 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
+                  <View ref={energyIconRef} collapsable={false} style={{ flexDirection: 'row', alignItems: 'center', flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
+                <TouchableOpacity activeOpacity={0.7} onPress={showEnergyTooltip} style={{ flexDirection: homeEnergyHeaderStacked ? 'column' : 'row', alignItems: homeEnergyHeaderStacked ? 'flex-end' : 'center', gap: homeEnergyHeaderStacked ? 2 : 4, flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', flexShrink: 0, width: homeEnergyIconsWidth, maxWidth: '100%' }}>
                     {Array.from({ length: energyMax }).map((_, i) => (<View key={i} style={{ marginLeft: i > 0 ? homeEnergyIconOverlap : 0 }}>
                         <EnergyIcon filled={i < energyCount} themeColor={i < energyCount ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeEnergyIconSize} animateChange={true} shouldShake={false} themeMode={themeMode} tintColor={i < energyCount ? energyFilledTint : undefined} isPremium={energyUnlimited}/>
                       </View>))}
@@ -1267,7 +1281,7 @@ export default function HomeScreen() {
                         <EnergyIcon filled={true} themeColor={BONUS_ENERGY_COLOR} size={homeEnergyIconSize} animateChange={false} shouldShake={false} themeMode={themeMode} tintColor={BONUS_ENERGY_COLOR}/>
                       </View>))}
                   </View>
-                  {!energyUnlimited && energyCount < energyMax && timeUntilNextEnergy && (<Text style={{ fontSize: f.label, color: t.heroTextMuted, fontWeight: '500', marginLeft: 6 }}>
+                  {!energyUnlimited && energyCount < energyMax && timeUntilNextEnergy && (<Text style={{ fontSize: homeEnergyHeaderStacked ? Math.max(10, f.label - 1) : f.label, color: t.heroTextMuted, fontWeight: '500', marginLeft: homeEnergyHeaderStacked ? 0 : 6, flexShrink: 1, maxWidth: '100%', textAlign: 'right' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.72}>
                       {`+1 ${triLang(lang, {
                     ru: 'через',
                     uk: 'через',

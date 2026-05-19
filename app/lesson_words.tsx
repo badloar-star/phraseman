@@ -721,7 +721,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'afternoon', ru: 'День (после полудня)', uk: 'Після полудня (друга половина дня)', es: 'tarde', pos: 'nouns' },
     { en: 'evening', ru: 'Вечер', uk: 'Вечір', es: 'tarde (вечер)', pos: 'nouns' },
     { en: 'night', ru: 'Ночь', uk: 'Ніч', es: 'noche', pos: 'nouns' },
-    { en: 'midnight', ru: 'Полночь', uk: 'Північ', es: 'medianoche', pos: 'nouns' },
+    { en: 'midnight', ru: 'Полночь', uk: 'Опівніч', es: 'medianoche', pos: 'nouns' },
     { en: 'AM', ru: 'До полудня (утро)', uk: 'До полудня (ранок)', es: 'a. m.', pos: 'nouns' },
     { en: 'PM', ru: 'После полудня (день и вечер)', uk: 'Після полудня (день і вечір)', es: 'p. m.', pos: 'nouns' },
     { en: "o\'clock", ru: 'Ровно (указание часа)', uk: 'Рівно (на годиннику)', es: 'en punto', 'pt-BR': 'em ponto', vi: 'đúng giờ', id: 'tepat pukul', tr: 'tam saat', pl: 'punkt / równo o', pos: 'nouns' },

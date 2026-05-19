@@ -68,10 +68,10 @@ import {
 } from '../quizzes/constants';
 import { incrementHardPaywallBlock } from '../paywall_personalization';
 import {
+  consumeFreeDailyQuizStart,
   FREE_DAILY_QUIZ_LIMIT,
   getFreeDailyQuizState,
   hasFreeDailyQuizzesLeft,
-  incrementFreeDailyQuizCount,
   type QuizDailyLimitState,
 } from '../quiz_daily_limit';
 import {
@@ -314,6 +314,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
     left: FREE_DAILY_QUIZ_LIMIT,
     exhausted: false,
   });
+  const startInFlightRef = useRef(false);
   const screenTitleColor = t.textPrimary;
   const { width: windowWidth } = useWindowDimensions();
   /** Ширина трека полоски: translateX + native driver (без скачков interpolate от onLayout) */
@@ -355,25 +356,51 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
     return () => { cancelled = true; };
   }, []);
 
+  const consumeFreeSlotForStart = async (lv: Level): Promise<boolean> => {
+    if (DEV_MODE || isPremium || lv !== 'easy') return true;
+
+    const nextState = await consumeFreeDailyQuizStart();
+    if (nextState) {
+      setFreeQuizState(nextState);
+      return true;
+    }
+
+    setFreeQuizState(await getFreeDailyQuizState());
+    router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
+    return false;
+  };
 
   const handleStart = (lv: Level) => {
+    if (startInFlightRef.current) return;
     if (!energyUnlimited && energy + bonusEnergy <= 0) {
       logEnergyLimitHit('quiz');
       trackEnergyHit().catch(() => {});
       setShowLevelNoEnergy(true);
       return;
     }
-    const anim = fillAnims[lv];
-    anim.setValue(0);
-    Animated.timing(anim, {
-      toValue: 1,
-      duration: 420,
-      easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
-    }).start(({ finished }) => {
-      if (!finished) return;
+    startInFlightRef.current = true;
+    void consumeFreeSlotForStart(lv).then((canStart) => {
+      if (!canStart) {
+        startInFlightRef.current = false;
+        return;
+      }
+      const anim = fillAnims[lv];
       anim.setValue(0);
-      onSelect(lv);
+      Animated.timing(anim, {
+        toValue: 1,
+        duration: 420,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }).start(({ finished }) => {
+        if (!finished) {
+          startInFlightRef.current = false;
+          return;
+        }
+        anim.setValue(0);
+        onSelect(lv);
+      });
+    }).catch(() => {
+      startInFlightRef.current = false;
     });
   };
 
@@ -715,9 +742,6 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
       const score = results.filter(Boolean).length;
       logQuizComplete(level, score);
       void bumpQuizSessionCompleted(level);
-      if (!DEV_MODE && !isPremium) {
-        void incrementFreeDailyQuizCount();
-      }
       void (async () => {
         const { checkAchievements: ca } = await import('../achievements');
         const totalKey = 'achievement_quiz_total_count';
@@ -1247,17 +1271,17 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
           })()}
           <TouchableOpacity
             style={{ width:'100%', borderWidth:1.5, borderColor:levelAccent, padding:18, borderRadius:14, alignItems:'center', marginBottom:12, backgroundColor:t.bgCard }}
-            onPress={() => {
+            onPress={async () => {
               hapticTap();
               // Отменяем все pending таймеры от предыдущей игры
               if (autoAdvanceTimerRef.current) { clearTimeout(autoAdvanceTimerRef.current); autoAdvanceTimerRef.current = null; }
               if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
               if (!DEV_MODE && !isPremium) {
-                void hasFreeDailyQuizzesLeft().then((hasLeft) => {
-                  if (hasLeft) return;
+                const nextState = await consumeFreeDailyQuizStart();
+                if (!nextState) {
                   router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
-                });
-                return;
+                  return;
+                }
               }
               fadeAnim.stopAnimation();
               fadeAnim.setValue(1);
@@ -1822,6 +1846,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
     <NoEnergyModal
       visible={showNoEnergyModal}
       onClose={dismissEnergyModal}
+      onBeforeOpenPremium={() => setShowNoEnergyModal(false)}
       paywallContext="no_energy"
     />
 
@@ -1890,6 +1915,14 @@ export default function QuizzesScreen() {
                 messageEs: 'No tienes energía suficiente para el cuestionario.',
               });
               return;
+            }
+            if (!DEV_MODE && !isPremium && nav === 'easy') {
+              const nextState = await consumeFreeDailyQuizStart();
+              if (!nextState) {
+                await AsyncStorage.removeItem('quiz_nav_level');
+                router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
+                return;
+              }
             }
             await AsyncStorage.removeItem('quiz_nav_level');
             fromTaskRef.current = true;

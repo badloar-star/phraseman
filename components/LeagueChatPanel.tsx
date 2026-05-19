@@ -26,6 +26,10 @@ import {
 } from '../app/firestore_league_chat';
 import { hapticTap } from '../hooks/use-haptics';
 import { checkAchievements } from '../app/achievements';
+import {
+  getLeagueChatConnectionUi,
+  getLeagueChatKeyboardAvoidingBehavior,
+} from './leagueChatPanelBehavior';
 
 const HIDE_UNDO_MS = 10_000;
 const CHAT_RETRY_MS = 2_500;
@@ -164,21 +168,42 @@ export default function LeagueChatPanel({
     };
   }, [room, authorizationRetryNonce]);
 
+  const currentRoomKey = roomKey(room);
+  const roomAuthorized = !!room && currentRoomKey === authorizedRoomKey;
+  const roomAuthorizing = !!room && currentRoomKey === authorizingRoomKey;
+  const connectionUi = getLeagueChatConnectionUi({
+    hasRoom: !!room,
+    roomAuthorized,
+    roomAuthorizing,
+    subscriptionError,
+    sending,
+    draft,
+    draftBlocked,
+  });
+
   useEffect(() => {
-    const key = roomKey(room);
-    if (!room || key !== authorizedRoomKey) {
+    if (!room) {
       setMessages([]);
       return;
     }
     let cancelled = false;
     const memoryMessages = getCachedLeagueChatMessagesSync(room);
-    setSubscriptionError(false);
     setMessages(memoryMessages);
     void loadCachedLeagueChatMessages(room).then((cached) => {
       if (cancelled) return;
       setMessages(cached);
       requestAnimationFrame(() => scrollRef.current?.scrollToEnd({ animated: false }));
     });
+    return () => {
+      cancelled = true;
+    };
+  }, [room]);
+
+  useEffect(() => {
+    if (!room || !connectionUi.shouldSubscribe) return;
+    let cancelled = false;
+    const key = currentRoomKey;
+    setSubscriptionError(false);
     const unsub = subscribeLeagueChatMessages(
       room,
       (rows) => {
@@ -197,7 +222,7 @@ export default function LeagueChatPanel({
       cancelled = true;
       unsub();
     };
-  }, [room, authorizedRoomKey, subscriptionNonce]);
+  }, [room, currentRoomKey, connectionUi.shouldSubscribe, subscriptionNonce]);
 
   const visibleMessages = useMemo(
     () => messages.filter((m) => m.authorUid === myUid || !blockedUsers[m.authorUid]),
@@ -456,15 +481,7 @@ export default function LeagueChatPanel({
     }, HIDE_UNDO_MS);
   }, [cancelPendingHide, lang, myUid, pendingHideUntilByUid, showToast]);
 
-  if (!room && !roomReady) {
-    return <View testID="league-chat-loading" style={{ flex: 1 }} />;
-  }
-
-  const currentRoomKey = roomKey(room);
-  const roomAuthorized = !!room && currentRoomKey === authorizedRoomKey;
-  const roomAuthorizing = !!room && currentRoomKey === authorizingRoomKey;
-
-  if (!room || !roomAuthorized || roomAuthorizing || subscriptionError) {
+  if (connectionUi.showBlockingConnectionState) {
     return (
       <View testID="league-chat-resolving" style={{ flex: 1, padding: 18, justifyContent: 'center', alignItems: 'center', gap: 8 }}>
         <Ionicons name="chatbubbles-outline" size={28} color={t.textGhost} />
@@ -641,7 +658,7 @@ export default function LeagueChatPanel({
       </View>
     </Modal>
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      behavior={getLeagueChatKeyboardAvoidingBehavior(Platform.OS)}
       keyboardVerticalOffset={0}
       style={{ flex: 1 }}
     >
@@ -862,6 +879,8 @@ export default function LeagueChatPanel({
               testID="league-chat-input"
               value={draft}
               onChangeText={handleDraftChange}
+              editable={connectionUi.canEditDraft}
+              onFocus={() => requestAnimationFrame(() => scrollRef.current?.scrollToEnd({ animated: true }))}
               placeholder={triLang(lang, {
   ru: 'Сообщение...',
   uk: 'Повідомлення...',
@@ -884,6 +903,7 @@ export default function LeagueChatPanel({
                 borderColor: draftBlocked ? '#E05252' : t.border,
                 color: t.textPrimary,
                 backgroundColor: t.bgSurface,
+                opacity: connectionUi.canEditDraft ? 1 : 0.62,
                 paddingHorizontal: 14,
                 paddingVertical: 10,
                 fontSize: f.sub,
@@ -891,7 +911,7 @@ export default function LeagueChatPanel({
             />
             <TouchableOpacity
               testID="league-chat-send"
-              disabled={sending || !draft.trim()}
+              disabled={!connectionUi.canSendDraft}
               onPress={submit}
               style={{
                 width: 42,
@@ -899,13 +919,13 @@ export default function LeagueChatPanel({
                 borderRadius: 21,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: draft.trim() && !draftBlocked ? t.accent : t.bgSurface,
-                borderWidth: draft.trim() && !draftBlocked ? 0 : 0.5,
+                backgroundColor: connectionUi.canSendDraft ? t.accent : t.bgSurface,
+                borderWidth: connectionUi.canSendDraft ? 0 : 0.5,
                 borderColor: t.border,
-                opacity: sending ? 0.65 : 1,
+                opacity: sending || !connectionUi.canEditDraft ? 0.65 : 1,
               }}
             >
-              <Ionicons name="send" size={18} color={draft.trim() && !draftBlocked ? t.correctText : t.textMuted} />
+              <Ionicons name="send" size={18} color={connectionUi.canSendDraft ? t.correctText : t.textMuted} />
             </TouchableOpacity>
           </View>
         </View>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, memo, useCallback, useMemo } from 'react';
 import {
-  View, Text, SectionList, TouchableOpacity, Modal, Dimensions, Pressable, Image,
+  View, Text, SectionList, TouchableOpacity, Modal, Pressable, Image, ScrollView, useWindowDimensions,
   InteractionManager,
   Share,
 } from 'react-native';
@@ -31,13 +31,21 @@ import { usePremium } from '../components/PremiumContext';
 import { oskolokImageForPackShards } from './oskolok';
 import { buildAchievementShareMessage } from './achievement_share';
 
-const { width: SW } = Dimensions.get('window');
 const GRID_GAP = 10;
 const GRID_SIDE_PADDING = 36;
-const GRID_WIDTH = Math.min(SW, 640) - GRID_SIDE_PADDING;
-const COLS = SW < 430 ? 3 : 4;
-const SHIELD_OUTER = Math.max(72, Math.floor((GRID_WIDTH - (COLS - 1) * GRID_GAP) / COLS));
-const SHIELD_W = Math.min(112, SHIELD_OUTER - 4);
+
+function getAchievementGridMetrics(screenW: number) {
+  const safeW = Math.max(1, screenW);
+  const cols = safeW < 330 ? 2 : safeW < 430 ? 3 : 4;
+  const sidePadding = safeW < 360 ? 24 : GRID_SIDE_PADDING;
+  const gridWidth = Math.max(120, Math.min(safeW, 640) - sidePadding);
+  const rawOuter = Math.floor((gridWidth - (cols - 1) * GRID_GAP) / cols);
+  const shieldOuter = Math.max(62, rawOuter);
+  const shieldW = Math.max(54, Math.min(safeW < 360 ? 90 : 112, shieldOuter - 4));
+  return { cols, gap: GRID_GAP, shieldOuter, shieldW };
+}
+
+type AchievementGridMetrics = ReturnType<typeof getAchievementGridMetrics>;
 
 interface AchievementStats {
   streak: number;
@@ -1075,6 +1083,7 @@ function AchievementModal({
   const router = useRouter();
   const [claiming, setClaiming] = useState(false);
   const { lang } = useLang();
+  const { width: screenW, height: screenH } = useWindowDimensions();
   const unlocked = !!state?.unlockedAt;
   const pendingShard = hasPendingShardReward(state);
   const color    = achievementCategoryColor(achievement.category);
@@ -1092,6 +1101,9 @@ function AchievementModal({
     achievementNeedsPremiumQuiz(achievement.id) &&
     !isPremium &&
     !DEV_MODE;
+  const modalWidth = Math.min(560, Math.max(220, screenW - 32));
+  const modalMaxHeight = Math.max(240, screenH - 48);
+  const modalPad = screenW < 360 ? 18 : 24;
 
   const formatDate = (iso: string) => {
     const d = new Date(iso);
@@ -1100,9 +1112,14 @@ function AchievementModal({
 
   return (
     <Modal transparent animationType="fade" onRequestClose={onClose}>
-      <Pressable style={{ flex: 1, backgroundColor: '#00000088', justifyContent: 'center', alignItems: 'center', padding: 24 }} onPress={onClose}>
-        <Pressable onPress={e => e.stopPropagation()}>
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 24, alignItems: 'center', width: SW - 48, gap: 12, position: 'relative' }}>
+      <Pressable style={{ flex: 1, backgroundColor: '#00000088', justifyContent: 'center', alignItems: 'center', padding: 16 }} onPress={onClose}>
+        <Pressable onPress={e => e.stopPropagation()} style={{ width: modalWidth, maxHeight: modalMaxHeight }}>
+          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, width: '100%', maxHeight: modalMaxHeight, overflow: 'hidden', position: 'relative' }}>
+            <ScrollView
+              keyboardShouldPersistTaps="handled"
+              showsVerticalScrollIndicator
+              contentContainerStyle={{ padding: modalPad, alignItems: 'center', gap: 12 }}
+            >
             {/* Shield */}
             <BadgeShield
               unlocked={unlocked}
@@ -1291,6 +1308,7 @@ function AchievementModal({
                 {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
               </Text>
             </TouchableOpacity>
+            </ScrollView>
           </View>
         </Pressable>
       </Pressable>
@@ -1303,6 +1321,7 @@ type AccordionSectionProps = {
   section: AchievementListSection;
   isOpen: boolean;
   onToggle: () => void;
+  gridMetrics: AchievementGridMetrics;
   stateMap: Map<string, AchievementState>;
   stats: AchievementStats;
   lang: Lang;
@@ -1319,6 +1338,7 @@ const AccordionSection = memo(function AccordionSection({
   section,
   isOpen,
   onToggle,
+  gridMetrics,
   stateMap,
   stats,
   lang,
@@ -1375,7 +1395,7 @@ const AccordionSection = memo(function AccordionSection({
       {isOpen && (
         <View style={{ paddingTop: 14, paddingHorizontal: 2, gap: 16 }}>
           {section.data.map(row => (
-            <View key={row.rowKey} style={{ flexDirection: 'row', gap: GRID_GAP }}>
+            <View key={row.rowKey} style={{ flexDirection: 'row', gap: gridMetrics.gap }}>
               {row.items.map(a => (
                 <AchievementGridCell
                   key={a.id}
@@ -1389,8 +1409,8 @@ const AccordionSection = memo(function AccordionSection({
                   f={f}
                   isDark={isDark}
                   gold={gold}
-                  shieldW={SHIELD_W}
-                  shieldOuter={SHIELD_OUTER}
+                  shieldW={gridMetrics.shieldW}
+                  shieldOuter={gridMetrics.shieldOuter}
                   onSelect={onSelect}
                   revealLockedDetails={revealLockedDetails}
                   showPremiumQuizGate={
@@ -1414,8 +1434,10 @@ export default function AchievementsScreen() {
   const { theme: t, f, isDark, themeMode } = useTheme();
   const { lang }        = useLang();
   const { isPremium }   = usePremium();
+  const { width: screenW } = useWindowDimensions();
   const gold            = t.gold;
   const premiumQuizHintDisabled = isPremium || DEV_MODE;
+  const gridMetrics = useMemo(() => getAchievementGridMetrics(screenW), [screenW]);
 
   const [states, setStates]   = useState<AchievementState[]>([]);
   const [stats, setStats]     = useState<AchievementStats>(emptyAchievementStats());
@@ -1457,8 +1479,8 @@ export default function AchievementsScreen() {
       if (catAchs.length === 0) return [];
       const catUnlocked = allCatAchs.filter(a => !!stateMap.get(a.id)?.unlockedAt).length;
       const rows: AchievementGridRow[] = [];
-      for (let i = 0; i < catAchs.length; i += COLS) {
-        const chunk = catAchs.slice(i, i + COLS);
+      for (let i = 0; i < catAchs.length; i += gridMetrics.cols) {
+        const chunk = catAchs.slice(i, i + gridMetrics.cols);
         rows.push({ rowKey: `${cat}-${i}`, items: chunk });
       }
       return {
@@ -1471,7 +1493,7 @@ export default function AchievementsScreen() {
         data: rows,
       };
     });
-  }, [lang, showAllAchievements, stateMap, themeMode]);
+  }, [gridMetrics.cols, lang, showAllAchievements, stateMap, themeMode]);
 
   const handleToggle = useCallback((cat: string) => {
     setOpenCategory(prev => (prev === cat ? null : cat));
@@ -1546,6 +1568,7 @@ export default function AchievementsScreen() {
               section={item}
               isOpen={openCategory === item.key}
               onToggle={() => handleToggle(item.key)}
+              gridMetrics={gridMetrics}
               stateMap={stateMap}
               stats={stats}
               lang={lang}

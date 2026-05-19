@@ -8,6 +8,7 @@ import { sendStreakWarning } from './notifications';
 import { markStreakLost } from './streak_revive';
 import { incrementStreakLostCount } from './paywall_personalization';
 import { repairDevSeededStreakInStorage } from './streak_safety';
+import { isStreakFreezeActiveToday } from './streak_freeze';
 import type { Lang } from '../constants/i18n';
 
 export const LEVEL_BASE: Record<string, number> = { easy: 5, medium: 7, hard: 10 };
@@ -170,7 +171,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
       const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
 
       // 1. Заморозка активна и пропущен ровно 1 день
-      if (freeze?.active && lastActive && lastActive >= dayBeforeStr) {
+      if (isStreakFreezeActiveToday(freeze, today) && lastActive && lastActive >= dayBeforeStr) {
         await AsyncStorage.setItem('streak_freeze', JSON.stringify({ ...freeze, active: false }));
         // streak не меняем — заморозка спасла
       }
@@ -442,7 +443,7 @@ export const checkStreakLossPending = async (): Promise<{ willLose: boolean; str
     const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
     const todayStr = new Date().toISOString().split('T')[0];
     // Заморозка уже активна сегодня — цепочка сохранится автоматически
-    if (freeze?.active && freeze?.date === todayStr) return { willLose: false, streakBefore: streak };
+    if (isStreakFreezeActiveToday(freeze, todayStr)) return { willLose: false, streakBefore: streak };
 
     return { willLose: true, streakBefore: streak };
   } catch { return { willLose: false, streakBefore: 0 }; }

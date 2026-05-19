@@ -46,4 +46,24 @@ describe('quiz_daily_limit', () => {
       exhausted: false,
     });
   });
+
+  it('consumes one free quiz when a free-tier quiz session starts', async () => {
+    const { consumeFreeDailyQuizStart, getFreeDailyQuizState } = await import('../app/quiz_daily_limit');
+
+    await expect(consumeFreeDailyQuizStart()).resolves.toMatchObject({
+      count: 1,
+      left: 2,
+      exhausted: false,
+    });
+    await expect(getFreeDailyQuizState()).resolves.toMatchObject({ count: 1, left: 2 });
+  });
+
+  it('does not consume beyond the daily free quiz limit', async () => {
+    const today = new Date().toISOString().slice(0, 10);
+    mockStorage.quiz_daily_free_limit_v1 = JSON.stringify({ date: today, count: 3 });
+    const { consumeFreeDailyQuizStart, getFreeDailyQuizState } = await import('../app/quiz_daily_limit');
+
+    await expect(consumeFreeDailyQuizStart()).resolves.toBeNull();
+    await expect(getFreeDailyQuizState()).resolves.toMatchObject({ count: 3, left: 0, exhausted: true });
+  });
 });

@@ -15,6 +15,7 @@ import { getShardsBalance } from './shards_system';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
 import { getTrainerCounts } from './trainer_store';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
+import { isStreakFreezeActiveToday, streakFreezeDateKey } from './streak_freeze';
 
 const STATS_PRELOAD_CACHE_KEY = 'stats_preload_cache_v2';
 const DAYS_SHOW = 14;
@@ -305,7 +306,7 @@ export function invalidateStatsCache(): void {
 }
 
 async function buildFreshStatsSnapshot(): Promise<StatsPreloadData> {
-  const todayStr = new Date().toISOString().split('T')[0];
+  const todayStr = streakFreezeDateKey();
 
   const [
     streakVal,
@@ -335,7 +336,7 @@ async function buildFreshStatsSnapshot(): Promise<StatsPreloadData> {
   const activityRows = buildActivityRows(statsMap, fgDaily);
 
   const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
-  const freezeIsActive = !!(freeze?.active && freeze?.date === todayStr);
+  const freezeIsActive = isStreakFreezeActiveToday(freeze, todayStr);
 
   let chainShieldDays = 0;
   if (csRaw) {

@@ -388,6 +388,15 @@ describe('lesson_words.tsx Spanish gloss coverage', () => {
     expect(lessonWordRecognitionPrompt(row!, 'uk')).toBe('Туфлі / черевики');
   });
 
+  it('midnight: Ukrainian prompt means time of night, not north', () => {
+    const row = rows.find(r => r.en === 'midnight');
+    expect(row).toBeDefined();
+    expect(row!.ru).toBe('Полночь');
+    expect(row!.uk).toBe('Опівніч');
+    expect(lessonWordRecognitionPrompt(row!, 'ru')).toBe('Полночь');
+    expect(lessonWordRecognitionPrompt(row!, 'uk')).toBe('Опівніч');
+  });
+
   it('plural noun reports: bank prompt follows singular English answer', () => {
     const cases: Array<[string, string, string, string]> = [
       ['friends', 'friend', 'Друг', 'Друг'],

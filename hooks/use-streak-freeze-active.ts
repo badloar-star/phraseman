@@ -1,18 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { AppState } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { onAppEvent } from '../app/events';
+import { readStreakFreezeActive } from '../app/streak_freeze';
 
-export async function readStreakFreezeActive(): Promise<boolean> {
-  try {
-    const raw = await AsyncStorage.getItem('streak_freeze');
-    if (!raw) return false;
-    const parsed = JSON.parse(raw);
-    return parsed?.active === true;
-  } catch {
-    return false;
-  }
-}
+export { readStreakFreezeActive };
 
 export function useStreakFreezeActive(): boolean {
   const [freezeActive, setFreezeActive] = useState(false);

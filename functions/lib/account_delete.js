@@ -41,11 +41,13 @@ const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const DELETE_BATCH_LIMIT = 100;
+const ACCOUNT_DELETE_TIMEOUT_SECONDS = 540;
+const ACCOUNT_DELETE_PROGRESS_LOG_DOCS = 500;
 const MAX_ID_LEN = 180;
 const ACCOUNT_DELETE_OPTIONS = {
     region: REGION,
     enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK,
-    timeoutSeconds: 540,
+    timeoutSeconds: ACCOUNT_DELETE_TIMEOUT_SECONDS,
     memory: '1GiB',
     maxInstances: 20,
 };
@@ -137,6 +139,72 @@ function accountDeleteQueryPlan(stableUid, authUid) {
     }
     return out;
 }
+function hashId(value) {
+    return (0, crypto_1.createHash)('sha256').update(value).digest('hex');
+}
+function accountDeleteLog(ctx, stage, stats, extra = {}) {
+    console.log(JSON.stringify({
+        event: 'account_delete',
+        runId: ctx.runId,
+        stage,
+        stableUidHash: ctx.stableUidHash.slice(0, 16),
+        authUidHash: ctx.authUidHash.slice(0, 16),
+        elapsedMs: Date.now() - ctx.startedAtMs,
+        ...stats,
+        ...extra,
+    }));
+}
+function createDeleteContext(db, stableUid, authUid, stats) {
+    const stableUidHash = hashId(stableUid);
+    const authUidHash = hashId(authUid);
+    const ctx = {
+        db,
+        writer: null,
+        seen: new Set(),
+        runId: `${stableUidHash.slice(0, 8)}_${Date.now()}`,
+        stableUidHash,
+        authUidHash,
+        startedAtMs: Date.now(),
+        lastProgressLogDocs: 0,
+        writerClosed: false,
+    };
+    const writer = db.bulkWriter({
+        throttling: {
+            initialOpsPerSecond: 200,
+            maxOpsPerSecond: 500,
+        },
+    });
+    writer.onWriteResult(() => {
+        stats.docsDeleted += 1;
+        if (stats.docsDeleted - ctx.lastProgressLogDocs >= ACCOUNT_DELETE_PROGRESS_LOG_DOCS) {
+            ctx.lastProgressLogDocs = stats.docsDeleted;
+            accountDeleteLog(ctx, 'progress', stats);
+        }
+    });
+    writer.onWriteError((error) => {
+        console.warn(JSON.stringify({
+            event: 'account_delete_write_error',
+            runId: ctx.runId,
+            path: error.documentRef.path,
+            code: error.code,
+            failedAttempts: error.failedAttempts,
+        }));
+        return error.failedAttempts < 3;
+    });
+    ctx.writer = writer;
+    return ctx;
+}
+async function closeDeleteWriter(ctx) {
+    if (ctx.writerClosed)
+        return;
+    ctx.writerClosed = true;
+    await ctx.writer.close();
+}
+async function runDeleteStage(ctx, stats, stage, fn) {
+    accountDeleteLog(ctx, `${stage}:start`, stats);
+    await fn();
+    accountDeleteLog(ctx, `${stage}:done`, stats);
+}
 async function getEmailsForDeletion(db, authUid, stableUid) {
     const emails = new Set();
     const add = (value) => {
@@ -190,29 +258,28 @@ async function resolveStableUidForDelete(db, authUid, requestedStableId) {
     }
     return resolveKnownStableUid();
 }
-async function deleteDocTree(ref, stats, seen) {
-    if (seen.has(ref.path))
+async function deleteDocTree(ctx, ref) {
+    if (ctx.seen.has(ref.path))
         return;
-    seen.add(ref.path);
-    const subcollections = await ref.listCollections();
-    for (const col of subcollections) {
-        await deleteQuery(col, stats, seen);
-    }
-    await ref.delete();
-    stats.docsDeleted += 1;
+    ctx.seen.add(ref.path);
+    await ctx.db.recursiveDelete(ref, ctx.writer);
 }
-async function deleteQuery(query, stats, seen) {
+async function deleteQuery(query, ctx, stats) {
     for (;;) {
+        const docsDeletedBefore = stats.docsDeleted;
         stats.queriesRun += 1;
         const snap = await query.limit(DELETE_BATCH_LIMIT).get();
         if (snap.empty)
             return;
         for (const doc of snap.docs) {
-            await deleteDocTree(doc.ref, stats, seen);
+            await deleteDocTree(ctx, doc.ref);
+        }
+        if (stats.docsDeleted === docsDeletedBefore) {
+            throw new https_1.HttpsError('internal', 'account_delete_no_progress');
         }
     }
 }
-async function deleteDirectDocs(db, stableUid, authUid, stats, seen) {
+async function deleteDirectDocs(db, stableUid, authUid, ctx) {
     const ids = Array.from(new Set([stableUid, authUid].filter(Boolean)));
     const directCollections = [
         'users',
@@ -227,28 +294,28 @@ async function deleteDirectDocs(db, stableUid, authUid, stats, seen) {
     ];
     for (const collection of directCollections) {
         for (const id of ids) {
-            await deleteDocTree(db.collection(collection).doc(id), stats, seen);
+            await deleteDocTree(ctx, db.collection(collection).doc(id));
         }
     }
-    await deleteDocTree(db.collection('league_chat_members').doc(authUid), stats, seen);
+    await deleteDocTree(ctx, db.collection('league_chat_members').doc(authUid));
 }
-async function deleteFieldMatches(db, stableUid, authUid, stats, seen) {
+async function deleteFieldMatches(db, stableUid, authUid, ctx, stats) {
     for (const spec of accountDeleteQueryPlan(stableUid, authUid)) {
         const q = db.collection(spec.collection).where(spec.field, spec.op, spec.value);
-        await deleteQuery(q, stats, seen);
+        await deleteQuery(q, ctx, stats);
     }
 }
-async function deleteEmailMatches(db, emails, stats, seen) {
+async function deleteEmailMatches(db, emails, ctx, stats) {
     for (const email of emails) {
-        await deleteQuery(db.collection('website_contact_inbox').where('email', '==', email), stats, seen);
-        await deleteQuery(db.collection('auth_links').where('email', '==', email), stats, seen);
+        await deleteQuery(db.collection('website_contact_inbox').where('email', '==', email), ctx, stats);
+        await deleteQuery(db.collection('auth_links').where('email', '==', email), ctx, stats);
     }
 }
-async function deleteCollectionGroupMatches(db, stableUid, authUid, stats, seen) {
+async function deleteCollectionGroupMatches(db, stableUid, authUid, ctx, stats) {
     const values = Array.from(new Set([stableUid, authUid].filter(Boolean)));
     for (const value of values) {
-        await deleteQuery(db.collectionGroup('messages').where('authorUid', '==', value), stats, seen);
-        await deleteQuery(db.collectionGroup('messages').where('authorStableUid', '==', value), stats, seen);
+        await deleteQuery(db.collectionGroup('messages').where('authorUid', '==', value), ctx, stats);
+        await deleteQuery(db.collectionGroup('messages').where('authorStableUid', '==', value), ctx, stats);
     }
 }
 async function removeFromLeagueGroups(db, stableUid, stats) {
@@ -259,23 +326,27 @@ async function removeFromLeagueGroups(db, stableUid, stats) {
         if (snap.empty)
             return;
         const batch = db.batch();
+        let madeProgress = false;
         for (const doc of snap.docs) {
             const data = doc.data() || {};
             const members = data.members && typeof data.members === 'object' ? data.members : {};
-            const nextCount = Math.max(0, Object.keys(members).length - (members[stableUid] ? 1 : 0));
+            const hadMember = Object.prototype.hasOwnProperty.call(members, stableUid);
+            const nextCount = Math.max(0, Object.keys(members).length - (hadMember ? 1 : 0));
+            if (!hadMember && nextCount > 0)
+                continue;
             if (nextCount <= 0) {
                 batch.delete(doc.ref);
                 stats.docsDeleted += 1;
+                madeProgress = true;
             }
             else {
-                batch.set(doc.ref, {
-                    [`members.${stableUid}`]: admin.firestore.FieldValue.delete(),
-                    memberCount: nextCount,
-                    updatedAt: Date.now(),
-                }, { merge: true });
+                batch.update(doc.ref, new admin.firestore.FieldPath('members', stableUid), admin.firestore.FieldValue.delete(), 'memberCount', nextCount, 'updatedAt', Date.now());
                 stats.docsUpdated += 1;
+                madeProgress = true;
             }
         }
+        if (!madeProgress)
+            throw new https_1.HttpsError('internal', 'league_group_delete_no_progress');
         await batch.commit();
     }
 }
@@ -297,28 +368,55 @@ exports.accountDeleteMine = (0, https_1.onCall)(ACCOUNT_DELETE_OPTIONS, async (r
     const authUid = request.auth.uid;
     const stableUid = await resolveStableUidForDelete(db, authUid, request.data?.stableId);
     const stats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
-    const seen = new Set();
+    const ctx = createDeleteContext(db, stableUid, authUid, stats);
     const emails = await getEmailsForDeletion(db, authUid, stableUid);
-    await deleteDirectDocs(db, stableUid, authUid, stats, seen);
-    await deleteFieldMatches(db, stableUid, authUid, stats, seen);
-    await deleteCollectionGroupMatches(db, stableUid, authUid, stats, seen);
-    await deleteEmailMatches(db, emails, stats, seen);
-    await removeFromLeagueGroups(db, stableUid, stats);
-    await markAccountDeletionTombstone(db, stableUid, authUid, stats);
     try {
-        await admin.auth().deleteUser(authUid);
-        stats.authDeleted = true;
+        accountDeleteLog(ctx, 'start', stats, { emailCount: emails.length });
+        await runDeleteStage(ctx, stats, 'direct_docs', () => deleteDirectDocs(db, stableUid, authUid, ctx));
+        await runDeleteStage(ctx, stats, 'field_matches', () => deleteFieldMatches(db, stableUid, authUid, ctx, stats));
+        await runDeleteStage(ctx, stats, 'collection_group_matches', () => deleteCollectionGroupMatches(db, stableUid, authUid, ctx, stats));
+        await runDeleteStage(ctx, stats, 'email_matches', () => deleteEmailMatches(db, emails, ctx, stats));
+        await runDeleteStage(ctx, stats, 'league_groups', () => removeFromLeagueGroups(db, stableUid, stats));
+        await closeDeleteWriter(ctx);
+        await runDeleteStage(ctx, stats, 'tombstone', () => markAccountDeletionTombstone(db, stableUid, authUid, stats));
+        try {
+            await admin.auth().deleteUser(authUid);
+            stats.authDeleted = true;
+        }
+        catch (e) {
+            if (e?.code !== 'auth/user-not-found') {
+                throw new https_1.HttpsError('internal', 'auth_delete_failed');
+            }
+        }
+        accountDeleteLog(ctx, 'done', stats);
+        return { ok: true, stableUid, authUid, ...stats };
     }
     catch (e) {
-        if (e?.code !== 'auth/user-not-found') {
-            throw new https_1.HttpsError('internal', 'auth_delete_failed');
+        accountDeleteLog(ctx, 'failed', stats, {
+            code: e?.code ?? 'unknown',
+            message: String(e?.message ?? e).slice(0, 160),
+        });
+        if (e instanceof https_1.HttpsError)
+            throw e;
+        throw new https_1.HttpsError('internal', 'account_delete_failed');
+    }
+    finally {
+        if (!ctx.writerClosed) {
+            await closeDeleteWriter(ctx).catch((e) => {
+                console.warn(JSON.stringify({
+                    event: 'account_delete_writer_close_failed',
+                    runId: ctx.runId,
+                    message: String(e?.message ?? e).slice(0, 160),
+                }));
+            });
         }
     }
-    return { ok: true, stableUid, authUid, ...stats };
 });
 exports.__accountDeleteTestHooks = {
     accountDeleteQueryPlan,
     FIELD_QUERY_SPECS,
     resolveStableUidForDelete,
+    deleteQuery,
+    ACCOUNT_DELETE_OPTIONS,
 };
 //# sourceMappingURL=account_delete.js.map

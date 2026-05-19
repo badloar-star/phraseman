@@ -33,6 +33,7 @@ import { scheduleDailyReminder } from '../app/notifications';
 import { reserveName } from '../app/firestore_leaderboard';
 import { validateProfileName } from '../app/settings/profile_name_service';
 import { enqueueThemedBlockingInfoAlert } from '../app/themed_blocking_alert_queue';
+import { useScreen } from '../hooks/use-screen';
 import {
   signInWithProvider,
   isAppleSignInAvailable,
@@ -122,7 +123,18 @@ const ONBOARDING_BACKGROUND_PARTICLES: OnboardingParticleSpec[] = [
 
 export default function Onboarding({ onDone, onLangSelect }: Props) {
   const insets = useSafeAreaInsets();
+  const { width: viewportW, height: viewportH, uiScale } = useScreen();
   const progressTopPadding = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0) + 8;
+  const narrowViewport = Math.min(viewportW, viewportH);
+  const compactOnboarding = narrowViewport < 370 || viewportH < 700;
+  const onboardingScale = Math.min(1, Math.max(0.78, uiScale));
+  const onboardingHPad = compactOnboarding ? 18 : 28;
+  const onboardingScrollProps = {
+    keyboardShouldPersistTaps: 'handled' as const,
+    showsVerticalScrollIndicator: true,
+  };
+  const streakHeroIconSize = Math.round((compactOnboarding ? 76 : 92) * onboardingScale);
+  const streakMilestoneIconSize = Math.round((compactOnboarding ? 50 : 60) * onboardingScale);
 
   // uk -> UA; es-* -> Spanish UI when the interface locale is enabled; otherwise RU.
   const detectLang = (): Lang => {
@@ -536,7 +548,15 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       'onboarding-beta-screen',
       ONBOARDING_BG_BETA,
       (
-        <ScrollView contentContainerStyle={{ alignItems: 'center', paddingHorizontal: 28, paddingVertical: 40 }} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          {...onboardingScrollProps}
+          contentContainerStyle={{
+            alignItems: 'center',
+            paddingHorizontal: onboardingHPad,
+            paddingTop: compactOnboarding ? 24 : 40,
+            paddingBottom: (compactOnboarding ? 24 : 40) + insets.bottom,
+          }}
+        >
           <Text style={{ fontSize: 52, marginBottom: 16 }}>🧪</Text>
           <Text style={[styles.appName, { marginBottom: 24 }]}>
             {pick('Бета-тест', 'Бета-тест', 'Prueba beta')}
@@ -743,7 +763,18 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       (
         <>
           {renderProgressBar()}
-        <ScrollView contentContainerStyle={[styles.center, { paddingTop: 0, flexGrow: 1 }]} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          {...onboardingScrollProps}
+          contentContainerStyle={[
+            styles.center,
+            {
+              paddingTop: 0,
+              flexGrow: 1,
+              paddingHorizontal: onboardingHPad,
+              paddingBottom: 24 + insets.bottom,
+            },
+          ]}
+        >
           <Text style={[styles.appName, { marginBottom: 8 }]}>Phraseman</Text>
           <Text style={{ color: DARK.textMuted, fontSize: 14, marginBottom: 28, textAlign: 'center' }}>
             {pick(
@@ -873,7 +904,16 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       (
         <>
           {renderProgressBar()}
-        <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', paddingHorizontal: 28, paddingVertical: 20 }} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          {...onboardingScrollProps}
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: 'center',
+            paddingHorizontal: onboardingHPad,
+            paddingTop: compactOnboarding ? 16 : 20,
+            paddingBottom: (compactOnboarding ? 18 : 20) + insets.bottom,
+          }}
+        >
           {/* Приветствие */}
           <Animated.View style={{ opacity: demo2GreetFade, marginBottom: 28 }}>
             <Text style={{ color: DARK.gold, fontSize: 13, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 10, textAlign: 'center' }}>
@@ -1030,12 +1070,12 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               flexGrow: 1,
               justifyContent: 'center',
               alignItems: 'center',
-              paddingHorizontal: 30,
+              paddingHorizontal: onboardingHPad,
               paddingVertical: 24,
-              paddingBottom: 24 + keyboardPad,
+              paddingBottom: 24 + keyboardPad + insets.bottom,
             }}
             keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator={false}
+            showsVerticalScrollIndicator
           >
             <Text style={styles.appName}>Phraseman</Text>
             <Text style={styles.title}>
@@ -1143,9 +1183,21 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       (
         <>
           {renderProgressBar()}
-        <ScrollView contentContainerStyle={[styles.center, { flexGrow: 1, paddingHorizontal: 28 }]} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          {...onboardingScrollProps}
+          contentContainerStyle={[
+            styles.center,
+            {
+              flexGrow: 1,
+              justifyContent: compactOnboarding ? 'flex-start' : 'center',
+              paddingHorizontal: onboardingHPad,
+              paddingTop: compactOnboarding ? 8 : 0,
+              paddingBottom: 24 + insets.bottom,
+            },
+          ]}
+        >
           <View style={styles.streakHeroIconWrap}>
-            <OnboardingStreakIcon kind="flame" size={108} hero />
+            <OnboardingStreakIcon kind="flame" size={streakHeroIconSize} hero />
           </View>
           <Text style={[styles.title, { marginBottom: 8 }]}>
             {pick(
@@ -1163,7 +1215,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
           </Text>
 
           {/* Milestones */}
-          <View style={{ width: '100%', gap: 10, marginBottom: 32 }}>
+          <View style={{ width: '100%', gap: compactOnboarding ? 8 : 10, marginBottom: compactOnboarding ? 20 : 32 }}>
             {streakMilestones.map((m, i) => (
               <Animated.View
                 key={m.label}
@@ -1175,15 +1227,37 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
                   ],
                 }}
               >
-              <View style={styles.onboardingGlassCard}>
-                <View style={styles.streakMilestoneIconSlot}>
-                  <OnboardingStreakIcon kind={m.icon} size={78} />
+              <View style={[styles.onboardingGlassCard, compactOnboarding && styles.onboardingGlassCardCompact]}>
+                <View
+                  style={[
+                    styles.streakMilestoneIconSlot,
+                    {
+                      width: Math.max(56, streakMilestoneIconSize + 12),
+                      marginRight: compactOnboarding ? 8 : 12,
+                    },
+                  ]}
+                >
+                  <OnboardingStreakIcon kind={m.icon} size={streakMilestoneIconSize} />
                 </View>
                 <View style={styles.streakMilestoneTextWrap}>
-                  <Text style={styles.streakMilestoneTitle}>
+                  <Text
+                    style={[styles.streakMilestoneTitle, compactOnboarding && styles.streakMilestoneTextCompact]}
+                    numberOfLines={2}
+                    adjustsFontSizeToFit
+                    minimumFontScale={0.78}
+                    maxFontSizeMultiplier={1}
+                  >
                     {m.label}
                   </Text>
-                  <Text style={styles.streakMilestoneReward}>{m.reward}</Text>
+                  <Text
+                    style={[styles.streakMilestoneReward, compactOnboarding && styles.streakMilestoneTextCompact]}
+                    numberOfLines={2}
+                    adjustsFontSizeToFit
+                    minimumFontScale={0.78}
+                    maxFontSizeMultiplier={1}
+                  >
+                    {m.reward}
+                  </Text>
                 </View>
               </View>
               </Animated.View>
@@ -1248,6 +1322,10 @@ function AuthOnboardingStep({
   const [appleAvail, setAppleAvail] = useState(false);
   const [loadingProvider, setLoadingProvider] = useState<AuthProviderId | null>(null);
   const [authBusy, setAuthBusy] = useState(false);
+  const insets = useSafeAreaInsets();
+  const { width: viewportW, height: viewportH } = useScreen();
+  const compactOnboarding = Math.min(viewportW, viewportH) < 370 || viewportH < 700;
+  const onboardingHPad = compactOnboarding ? 18 : 28;
 
   useEffect(() => {
     isGoogleSignInAvailable().then(setGoogleAvail).catch(() => setGoogleAvail(false));
@@ -1326,7 +1404,18 @@ function AuthOnboardingStep({
   return (
     <>
       {renderProgressBar()}
-        <ScrollView contentContainerStyle={[styles.center, { flexGrow: 1, paddingHorizontal: 28 }]} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator
+          contentContainerStyle={[
+            styles.center,
+            {
+              flexGrow: 1,
+              paddingHorizontal: onboardingHPad,
+              paddingBottom: 24 + insets.bottom,
+            },
+          ]}
+        >
           <Image
             source={ONBOARDING_AUTH_ICON}
             style={styles.authQuickStartIcon}
@@ -1456,7 +1545,7 @@ function OnboardingStreakIcon({
 const styles = StyleSheet.create({
   container:       { flex: 1, backgroundColor: '#020304', overflow: 'hidden' },
   onboardingContentLayer: { flex: 1 },
-  center:          { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 30 },
+  center:          { flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 30 },
   appName:         { color: ONBOARDING_ACCENT, fontSize: 15, fontWeight: '800', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 },
   title:           { color: '#FFF8E8', fontSize: 24, fontWeight: '800', textAlign: 'center', marginBottom: 40, lineHeight: 34 },
   authQuickStartIcon: {
@@ -1522,12 +1611,12 @@ const styles = StyleSheet.create({
   onboardingGlassCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: 104,
+    justifyContent: 'flex-start',
+    minHeight: 92,
     position: 'relative',
     borderRadius: 18,
-    paddingVertical: 16,
-    paddingHorizontal: 104,
+    paddingVertical: 14,
+    paddingHorizontal: 14,
     borderWidth: 1,
     borderColor: 'rgba(255,244,205,0.18)',
     backgroundColor: 'rgba(20,18,15,0.50)',
@@ -1536,16 +1625,20 @@ const styles = StyleSheet.create({
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 8 },
   },
+  onboardingGlassCardCompact: {
+    minHeight: 78,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderRadius: 16,
+  },
   streakMilestoneIconSlot: {
-    position: 'absolute',
-    left: 16,
-    top: 0,
-    bottom: 0,
+    flexShrink: 0,
     justifyContent: 'center',
     alignItems: 'center',
   },
   streakMilestoneTextWrap: {
-    width: '100%',
+    flex: 1,
+    minWidth: 0,
     alignItems: 'center',
   },
   streakMilestoneTitle: {
@@ -1554,6 +1647,10 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     marginBottom: 4,
     textAlign: 'center',
+  },
+  streakMilestoneTextCompact: {
+    fontSize: 12,
+    lineHeight: 16,
   },
   streakMilestoneReward: {
     color: ONBOARDING_TEXT_MUTED,

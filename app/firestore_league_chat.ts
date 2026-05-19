@@ -196,11 +196,6 @@ export async function resolveMyLeagueChatRoom(): Promise<LeagueChatRoom | null> 
   if (!groupId || weekId !== getWeekId()) return null;
   const room = { groupId, weekId, leagueId };
   await cacheLeagueChatRoom(room);
-  const auth = await authorizeLeagueChatRoom(room);
-  if (auth === 'forbidden') {
-    await forgetCachedLeagueChatRoom(room);
-    return null;
-  }
   return room;
 }
 

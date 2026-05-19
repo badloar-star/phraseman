@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   DeviceEventEmitter,
+  ActivityIndicator,
 } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -246,6 +247,20 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
             maxLength={12}
             editable={!deleting}
           />
+          {deleting && (
+            <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 14, lineHeight: 19 }}>
+              {L({
+                ru: 'Удаляем аккаунт и очищаем облачные данные. Это может занять несколько минут.',
+                uk: 'Видаляємо акаунт і очищаємо хмарні дані. Це може зайняти кілька хвилин.',
+                es: 'Eliminando la cuenta y limpiando los datos en la nube. Puede tardar unos minutos.',
+                'pt-BR': 'Excluindo a conta e limpando os dados na nuvem. Isso pode levar alguns minutos.',
+                vi: 'Đang xóa tài khoản và dọn dữ liệu đám mây. Quá trình này có thể mất vài phút.',
+                id: 'Menghapus akun dan membersihkan data cloud. Ini mungkin memerlukan beberapa menit.',
+                tr: 'Hesap siliniyor ve bulut verileri temizleniyor. Bu birkaç dakika sürebilir.',
+                pl: 'Usuwamy konto i czyścimy dane w chmurze. Może to potrwać kilka minut.',
+              })}
+            </Text>
+          )}
           <View style={{ flexDirection: 'row', gap: 12 }}>
             <TouchableOpacity
               disabled={deleting}
@@ -276,7 +291,7 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
                 borderRadius: 10,
                 alignItems: 'center',
                 backgroundColor: deleteConfirmInput === deleteConfirmWord ? t.wrong : t.bgSurface,
-                opacity: !deleting && deleteConfirmInput === deleteConfirmWord ? 1 : 0.35,
+                opacity: deleting ? 0.78 : deleteConfirmInput === deleteConfirmWord ? 1 : 0.35,
               }}
               onPress={async () => {
                 if (deleting) return;
@@ -339,18 +354,21 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
                 }
               }}
             >
-              <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700', opacity: deleting ? 0.72 : 1 }}>
-                {L({
-                  ru: 'Удалить',
-                  uk: 'Видалити',
-                  es: 'Eliminar',
-                  'pt-BR': 'Excluir',
-                  vi: 'Xóa',
-                  id: 'Hapus',
-                  tr: 'Sil',
-                  pl: 'Usuń',
-                })}
-              </Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                {deleting && <ActivityIndicator size="small" color="#fff" />}
+                <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700', opacity: deleting ? 0.72 : 1 }}>
+                  {L({
+                    ru: 'Удалить',
+                    uk: 'Видалити',
+                    es: 'Eliminar',
+                    'pt-BR': 'Excluir',
+                    vi: 'Xóa',
+                    id: 'Hapus',
+                    tr: 'Sil',
+                    pl: 'Usuń',
+                  })}
+                </Text>
+              </View>
             </TouchableOpacity>
           </View>
         </View>

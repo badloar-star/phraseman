@@ -17,6 +17,7 @@ import { processAdminGrantForCelebration } from './premium_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
 import { normalizeDevSeededStreakValue, repairDevSeededStreakInStorage } from './streak_safety';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS } from './account_delete_timeout';
 
 /** Одна строка прогресса по заданию (как TaskProgress в daily_tasks, без лишних импортов). */
 type DailyTaskProgressRow = {
@@ -514,7 +515,9 @@ async function waitForFirebaseAuthUid(): Promise<string | null> {
   return null;
 }
 
-function callable<TReq, TRes>(name: string) {
+type CallableOptions = { timeout?: number };
+
+function callable<TReq, TRes>(name: string, options?: CallableOptions) {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { getApp } = require('@react-native-firebase/app');
   // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -522,8 +525,9 @@ function callable<TReq, TRes>(name: string) {
   const typedHttpsCallable = httpsCallable as <Req, Res>(
     functionsInstance: unknown,
     callableName: string,
+    callableOptions?: CallableOptions,
   ) => (data: Req) => Promise<{ data: Res }>;
-  return typedHttpsCallable<TReq, TRes>(getFunctions(getApp(), 'us-central1'), name);
+  return typedHttpsCallable<TReq, TRes>(getFunctions(getApp(), 'us-central1'), name, options);
 }
 
 export async function ensureStableAuthLinkForStableId(stableIdRaw: string): Promise<boolean> {
@@ -1245,8 +1249,8 @@ export async function deleteCloudData(): Promise<void> {
       queriesRun: number;
       authDeleted: boolean;
     }
-  >('accountDeleteMine');
-  const res = await withTimeout(fn({ stableId: canonicalUid }), 60_000, 'account_delete_callable');
+  >('accountDeleteMine', { timeout: ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS });
+  const res = await withTimeout(fn({ stableId: canonicalUid }), ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS, 'account_delete_callable');
   if (!res.data?.ok) throw new Error('account_delete_failed');
 }
 

@@ -11,7 +11,7 @@ export const BP_LARGE_TABLET = 840;
 export const REF_PHONE_MIN_DIMENSION = 390;
 
 /**
- * Повертає множник ~0.82–1.22 для шрифтів, ds.spacing, висот таб-бару тощо.
+ * Повертає множник ~0.74–1.22 для шрифтів, ds.spacing, висот таб-бару тощо.
  * Не замінює користувацький FONT_SCALE у ThemeContext — множиться з ним.
  */
 export function computeUiScale(width: number, height: number): number {
@@ -27,9 +27,14 @@ export function computeUiScale(width: number, height: number): number {
   }
 
   let s = narrow / REF_PHONE_MIN_DIMENSION;
+  if (wide < 640) {
+    s *= 0.90;
+  } else if (wide < 700) {
+    s *= 0.95;
+  }
   // Альбом або дуже широке вікно — трохи зменшуємо, щоб текст не роздувався
   if (aspect >= 1.85) {
     s *= 0.94;
   }
-  return Math.min(1.14, Math.max(0.82, s));
+  return Math.min(1.14, Math.max(0.74, s));
 }

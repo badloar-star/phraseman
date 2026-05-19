@@ -1506,14 +1506,14 @@ export default function FlashcardsScreen() {
               gap: 12,
             }}
             accessibilityLabel={triLang(lang, {
-              ru: 'Играть с карточками',
-              uk: 'Грати з картками',
-              es: 'Jugar con tarjetas',
-              'pt-BR': 'Jogar com cartões',
-              vi: 'Chơi với thẻ',
-              id: 'Bermain dengan kartu',
-              tr: 'Kartlarla oyna',
-              pl: 'Graj kartami',
+              ru: 'Тренироваться с карточками',
+              uk: 'Тренуватися з картками',
+              es: 'Practicar con tarjetas',
+              'pt-BR': 'Praticar com cartões',
+              vi: 'Luyện tập với thẻ',
+              id: 'Berlatih dengan kartu',
+              tr: 'Kartlarla pratik yap',
+              pl: 'Ćwicz z fiszkami',
             })}
           >
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, flex: 1, minWidth: 0 }}>
@@ -1537,29 +1537,14 @@ export default function FlashcardsScreen() {
                   style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}
                 >
                   {triLang(lang, {
-                    ru: 'Играть с этими карточками',
-                    uk: 'Грати з цими картками',
-                    es: 'Jugar con estas tarjetas',
-                    'pt-BR': 'Jogar com estes cartões',
-                    vi: 'Chơi với các thẻ này',
-                    id: 'Bermain dengan kartu ini',
-                    tr: 'Bu kartlarla oyna',
-                    pl: 'Graj tymi kartami',
-                  })}
-                </Text>
-                <Text
-                  numberOfLines={1}
-                  style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', marginTop: 2 }}
-                >
-                  {triLang(lang, {
-                    ru: 'Да/Нет: подходит ли перевод',
-                    uk: 'Так/Ні: чи підходить переклад',
-                    es: 'Sí/No: ¿coincide?',
-                    'pt-BR': 'Sim/Não: a tradução combina?',
-                    vi: 'Có/Không: bản dịch có khớp không?',
-                    id: 'Ya/Tidak: apakah terjemahannya cocok?',
-                    tr: 'Evet/Hayır: çeviri uyuyor mu?',
-                    pl: 'Tak/Nie: czy tłumaczenie pasuje?',
+                    ru: 'Тренироваться с этими карточками',
+                    uk: 'Тренуватися з цими картками',
+                    es: 'Practicar con estas tarjetas',
+                    'pt-BR': 'Praticar com estes cartões',
+                    vi: 'Luyện tập với các thẻ này',
+                    id: 'Berlatih dengan kartu ini',
+                    tr: 'Bu kartlarla pratik yap',
+                    pl: 'Ćwicz z tymi fiszkami',
                   })}
                 </Text>
               </View>

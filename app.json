@@ -15,7 +15,15 @@
     "updates": {
       "enabled": true,
       "url": "https://u.expo.dev/87b454d9-0384-4213-8c26-fc12162e73d2",
-      "checkAutomatically": "ON_LOAD"
+      "checkAutomatically": "ON_LOAD",
+      "assetPatternsToBeBundled": [
+        "node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/*",
+        "assets/images/icon.png",
+        "assets/images/splash-icon.png",
+        "assets/images/android-icon-foreground.png",
+        "assets/images/android-icon-monochrome.png",
+        "assets/images/favicon.png"
+      ]
     },
     "android": {
       "package": "app.phraseman",

@@ -12,6 +12,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { isStreakFreezeActiveToday } from './streak_freeze';
 
 export interface RepairState {
   eligibleDate:  string | null;   // YYYY-MM-DD когда стала доступна починка
@@ -72,7 +73,7 @@ export const isRepairEligible = async (): Promise<boolean> => {
     if (isNaN(streak) || streak <= 1) return false;             // цепочка уже 0–1
 
     const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
-    if (freeze?.active) return false;                            // заморозка спасёт сама
+    if (isStreakFreezeActiveToday(freeze, t)) return false;       // заморозка спасёт сама
 
     if (repair.repaired && repair.repairDate === t) return false; // уже починен
     return true;

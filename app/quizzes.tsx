@@ -64,10 +64,10 @@ import { LEVEL_CONFIG, Level, QUIZ_LEVEL_CARD_BACKGROUNDS, QUIZ_LEVEL_LOGOS, THE
 import { diffWords } from './quizzes/diff';
 import { computeNextQuizProgression, getQuizTimerSeconds } from './quizzes/progression';
 import {
+  consumeFreeDailyQuizStart,
   FREE_DAILY_QUIZ_LIMIT,
   getFreeDailyQuizState,
   hasFreeDailyQuizzesLeft,
-  incrementFreeDailyQuizCount,
   type QuizDailyLimitState,
 } from './quiz_daily_limit';
 import { buildQuizShareMessage, quizShareMessageLang } from './quizzes/results';
@@ -112,6 +112,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
     left: FREE_DAILY_QUIZ_LIMIT,
     exhausted: false,
   });
+  const startInFlightRef = useRef(false);
   const { width: windowWidth } = useWindowDimensions();
   const startTrackW = Math.max(1, windowWidth - 40);
 
@@ -161,8 +162,22 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
     return () => { cancelled = true; };
   }, []);
 
+  const consumeFreeSlotForStart = async (lv: Level): Promise<boolean> => {
+    if (DEV_MODE || isPremium || lv !== 'easy') return true;
+
+    const nextState = await consumeFreeDailyQuizStart();
+    if (nextState) {
+      setFreeQuizState(nextState);
+      return true;
+    }
+
+    setFreeQuizState(await getFreeDailyQuizState());
+    router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
+    return false;
+  };
 
   const handleStart = (lv: Level) => {
+    if (startInFlightRef.current) return;
     void trackFeatureStart('quiz', 'start', { level: lv }, 'quizzes');
     if (!entryEnergyUnlimited && energy + bonusEnergy <= 0) {
       void trackFeatureBlocked('quiz', 'start', 'no_energy', { level: lv, energy, bonusEnergy }, 'quizzes');
@@ -171,17 +186,29 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
       setShowEntryNoEnergy(true);
       return;
     }
-    const anim = fillAnims[lv];
-    anim.setValue(0);
-    Animated.timing(anim, {
-      toValue: 1,
-      duration: 420,
-      easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
-    }).start(({ finished }) => {
-      if (!finished) return;
+    startInFlightRef.current = true;
+    void consumeFreeSlotForStart(lv).then((canStart) => {
+      if (!canStart) {
+        startInFlightRef.current = false;
+        return;
+      }
+      const anim = fillAnims[lv];
       anim.setValue(0);
-      onSelect(lv);
+      Animated.timing(anim, {
+        toValue: 1,
+        duration: 420,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }).start(({ finished }) => {
+        if (!finished) {
+          startInFlightRef.current = false;
+          return;
+        }
+        anim.setValue(0);
+        onSelect(lv);
+      });
+    }).catch(() => {
+      startInFlightRef.current = false;
     });
   };
 
@@ -532,7 +559,6 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   const streakRef   = useRef(0);
   // results в ref — чтобы handleTap не читал устаревший стейт из замыкания
   const resultsRef  = useRef<boolean[]>([]);
-  const freeQuizCompletionMarkedRef = useRef(false);
   const quizSessionCountedRef = useRef(false);
   const wrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
 
@@ -613,10 +639,6 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
       pct: total > 0 ? Math.round(right / total * 100) : 0,
       perfect,
     }, 'quizzes');
-    if (!DEV_MODE && !isPremium && !freeQuizCompletionMarkedRef.current) {
-      freeQuizCompletionMarkedRef.current = true;
-      void incrementFreeDailyQuizCount();
-    }
     if (!quizSessionCountedRef.current) {
       quizSessionCountedRef.current = true;
       void (async () => {
@@ -981,14 +1003,14 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
             setDone(reviewState.done);
             setCoachToast(null);
           }}
-          onRestart={() => {
+          onRestart={async () => {
             clearQuizPendingTimers(autoAdvanceTimerRef, timerRef);
             if (!DEV_MODE && !isPremium) {
-              void hasFreeDailyQuizzesLeft().then((hasLeft) => {
-                if (hasLeft) return;
+              const nextState = await consumeFreeDailyQuizStart();
+              if (!nextState) {
                 router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
-              });
-              return;
+                return;
+              }
             }
             fadeAnim.stopAnimation();
             fadeAnim.setValue(1);
@@ -1006,7 +1028,6 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
             setTypedOk(restartState.typedOk);
             setCoachToast(null);
             wrongMistakesRef.current = [];
-            freeQuizCompletionMarkedRef.current = false;
             xpAnimStarted.current = false;
             xpFlyY.setValue(0);
             xpFlyOpacity.setValue(1);
@@ -1525,6 +1546,14 @@ export default function QuizzesScreen() {
             messageEs: 'No tienes energía suficiente para el cuestionario.',
           });
           return;
+        }
+        if (!DEV_MODE && !isPremium && val === 'easy') {
+          const nextState = await consumeFreeDailyQuizStart();
+          if (!nextState) {
+            await AsyncStorage.removeItem('quiz_nav_level');
+            router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
+            return;
+          }
         }
         await AsyncStorage.removeItem('quiz_nav_level');
         setLevel(val as Level);

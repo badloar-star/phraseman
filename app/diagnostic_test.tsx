@@ -1073,6 +1073,8 @@ export default function DiagnosticTest() {
   const isBuilding = q.type === 'build';
   const isAnswered = chosen !== null || typeSubmitted || buildSubmitted;
   const correctAnswer = isTyping ? (q?.answer || q?.opts?.[q.correct] || '') : '';
+  const continueA11yLabel = isES ? s.lesson.next : isUK ? 'Далі' : 'Продолжить';
+  const continueButtonLabel = isES ? `${s.lesson.next} →` : isUK ? 'Далі →' : 'Продолжить →';
 
   return (
     <ScreenGradient artBackdrop="diagnosticTest">
@@ -1335,36 +1337,44 @@ export default function DiagnosticTest() {
               </Text>
             </TouchableOpacity>
           )}
-
-          {isAnswered && !autoAdvance && (
-            <>
-              <Text style={{ color: sx.second, fontSize: f.caption, textAlign: 'center', marginTop: 14, marginBottom: 8 }}>
-                {isES ? 'Toca el botón de abajo' : isUK ? 'Торкніться кнопку нижче' : 'Нажмите кнопку ниже'}
-              </Text>
-              <TouchableOpacity
-                style={{
-                  backgroundColor: `${t.accent}22`,
-                  borderRadius: 14,
-                  paddingVertical: 16,
-                  paddingHorizontal: 20,
-                  alignItems: 'center',
-                  borderWidth: 1.5,
-                  borderColor: t.accent,
-                }}
-                onPress={() => { hapticTap(); advance(score); }}
-                activeOpacity={0.85}
-                accessibilityRole="button"
-                accessibilityLabel={isES ? s.lesson.next : isUK ? 'Далі' : 'Продолжить'}
-              >
-                <Text style={{ color: t.accent, fontSize: f.bodyLg, fontWeight: '800' }}>
-                  {isES ? `${s.lesson.next} →` : isUK ? 'Далі →' : 'Продолжить →'}
-                </Text>
-              </TouchableOpacity>
-            </>
-          )}
           </View>
         </View>
         </ScrollView>
+        {isAnswered && !autoAdvance && (
+          <View
+            testID="diagnostic-continue-footer"
+            style={{
+              paddingHorizontal: 20,
+              paddingTop: 10,
+              paddingBottom: Math.max(12, insets.bottom + 12),
+              borderTopWidth: 1,
+              borderTopColor: t.border,
+              backgroundColor: t.bgPrimary,
+            }}
+          >
+            <TouchableOpacity
+              style={{
+                minHeight: 52,
+                backgroundColor: `${t.accent}22`,
+                borderRadius: 14,
+                paddingVertical: 14,
+                paddingHorizontal: 20,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderWidth: 1.5,
+                borderColor: t.accent,
+              }}
+              onPress={() => { hapticTap(); advance(score); }}
+              activeOpacity={0.85}
+              accessibilityRole="button"
+              accessibilityLabel={continueA11yLabel}
+            >
+              <Text style={{ color: t.accent, fontSize: f.bodyLg, fontWeight: '800' }}>
+                {continueButtonLabel}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
         </ContentWrap>
       </SafeAreaView>
     </KeyboardAvoidingView>

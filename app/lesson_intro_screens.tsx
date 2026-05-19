@@ -7,9 +7,9 @@ import {
   Animated,
   ImageBackground,
   StyleSheet,
-  Dimensions,
   ScrollView,
   Easing,
+  useWindowDimensions,
   type ImageSourcePropType,
   type LayoutChangeEvent,
 } from 'react-native';
@@ -27,8 +27,6 @@ import type { IntroLine, IntroTextPart, IntroTextTone, LessonIntroExample, Lesso
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { spanishLessonUiStringsActive, spanishStudyActive } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
-
-const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 
 /**
  * Разбивает текст на сегменты: обычный текст и английские вставки.
@@ -753,6 +751,7 @@ export default function LessonIntroScreens({
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const insets = useSafeAreaInsets();
+  const { height: screenH } = useWindowDimensions();
   const isLight = themeMode === 'minimalLight';
 
   const totalBlocks = introScreens.length;
@@ -771,7 +770,7 @@ export default function LessonIntroScreens({
 
   const scrollRef = useRef<ScrollView | null>(null);
   const blockYRef = useRef<Record<number, number>>({});
-  const visibleHeightRef = useRef<number>(SCREEN_H);
+  const visibleHeightRef = useRef<number>(screenH);
 
   const handleBlockLayout = useCallback((index: number, y: number) => {
     blockYRef.current[index] = y;
@@ -1023,8 +1022,9 @@ export default function LessonIntroScreens({
           <ScrollView
             ref={scrollRef}
             contentContainerStyle={styles.scrollContent}
-            showsVerticalScrollIndicator={false}
+            showsVerticalScrollIndicator
             keyboardShouldPersistTaps="handled"
+            nestedScrollEnabled
             scrollEventThrottle={16}
             bounces
             overScrollMode="always"

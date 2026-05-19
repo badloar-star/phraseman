@@ -53,6 +53,15 @@ export async function incrementFreeDailyQuizCount(): Promise<QuizDailyLimitState
   return normalize({ date: state.date, count: nextCount });
 }
 
+export async function consumeFreeDailyQuizStart(): Promise<QuizDailyLimitState | null> {
+  const state = await getFreeDailyQuizState();
+  if (state.exhausted) return null;
+
+  const nextCount = state.count + 1;
+  await AsyncStorage.setItem(KEY, JSON.stringify({ date: state.date, count: nextCount }));
+  return normalize({ date: state.date, count: nextCount });
+}
+
 export async function hasFreeDailyQuizzesLeft(): Promise<boolean> {
   return !(await getFreeDailyQuizState()).exhausted;
 }

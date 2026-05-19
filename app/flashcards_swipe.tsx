@@ -38,6 +38,14 @@ import {
   packTitleForInterface,
   type FlashcardMarketPack,
 } from './flashcards/marketplace';
+import {
+  clearFlashcardsSwipeSessionDraft,
+  loadFlashcardsSwipeSessionDraft,
+  saveFlashcardsSwipeSessionDraft,
+  type FlashcardsSwipePromptDraft,
+  type FlashcardsSwipeSessionDraft,
+  type FlashcardsSwipeSessionScope,
+} from './flashcards_swipe_session';
 import { peekCustomCardsCache, readCustomCards } from './flashcards/storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './flashcards/types';
 import { flashcardContentLang } from './spanish_content_gate';
@@ -640,6 +648,92 @@ function emptyProgress(): CardProgress {
   return { wrong: 0, hints: 0, attempts: 0, recoveryCorrect: 0, scoreAwarded: 0 };
 }
 
+function promptToDraft(prompt: Prompt): FlashcardsSwipePromptDraft {
+  return {
+    id: prompt.id,
+    cardKey: prompt.card.trainingKey,
+    shownTranslation: prompt.shownTranslation,
+    trueTranslation: prompt.trueTranslation,
+    isMatch: prompt.isMatch,
+  };
+}
+
+function promptFromDraft(
+  draft: FlashcardsSwipePromptDraft,
+  cardsByKey: Map<string, TrainingCard>,
+): Prompt | null {
+  const card = cardsByKey.get(draft.cardKey);
+  if (!card) return null;
+  return {
+    id: draft.id,
+    card,
+    shownTranslation: draft.shownTranslation,
+    trueTranslation: draft.trueTranslation,
+    isMatch: draft.isMatch,
+  };
+}
+
+function buildSessionDraft(input: {
+  scope: FlashcardsSwipeSessionScope;
+  trainingCards: TrainingCard[];
+  queue: Prompt[];
+  feedback: FeedbackState | null;
+  stats: SessionStats;
+  progress: Record<string, CardProgress>;
+}): FlashcardsSwipeSessionDraft {
+  return {
+    version: 1,
+    savedAt: Date.now(),
+    sourceIds: input.scope.sourceIds,
+    routeSource: input.scope.routeSource,
+    routeFilter: input.scope.routeFilter,
+    contentLang: input.scope.contentLang,
+    trainingKeys: input.trainingCards.map((card) => card.trainingKey),
+    queue: input.queue.map(promptToDraft),
+    feedback: input.feedback
+      ? { kind: input.feedback.kind, prompt: promptToDraft(input.feedback.prompt) }
+      : null,
+    stats: input.stats,
+    progress: input.progress,
+  };
+}
+
+function restoreSessionDraft(
+  draft: FlashcardsSwipeSessionDraft,
+  cards: TrainingCard[],
+): {
+  trainingCards: TrainingCard[];
+  queue: Prompt[];
+  feedback: FeedbackState | null;
+  stats: SessionStats;
+  progress: Record<string, CardProgress>;
+} | null {
+  const cardsByKey = new Map(cards.map((card) => [card.trainingKey, card]));
+  const trainingCards = draft.trainingKeys.map((key) => cardsByKey.get(key));
+  if (trainingCards.some((card) => !card)) return null;
+
+  const queue = draft.queue.map((prompt) => promptFromDraft(prompt, cardsByKey));
+  if (queue.some((prompt) => !prompt) || queue.length === 0) return null;
+
+  const feedbackPrompt = draft.feedback
+    ? promptFromDraft(draft.feedback.prompt, cardsByKey)
+    : null;
+  if (draft.feedback && !feedbackPrompt) return null;
+
+  const validKeys = new Set(cards.map((card) => card.trainingKey));
+  const progress = Object.fromEntries(
+    Object.entries(draft.progress).filter(([key]) => validKeys.has(key)),
+  );
+
+  return {
+    trainingCards: trainingCards as TrainingCard[],
+    queue: queue as Prompt[],
+    feedback: draft.feedback && feedbackPrompt ? { kind: draft.feedback.kind, prompt: feedbackPrompt } : null,
+    stats: draft.stats,
+    progress,
+  };
+}
+
 export default function FlashcardsSwipeScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{
@@ -700,10 +794,22 @@ export default function FlashcardsSwipeScreen() {
   const memoryRef = useRef<SwipeMemory>({});
   const settlingRef = useRef(false);
   const quickStartDoneRef = useRef(false);
+  const draftRestoreAttemptedRef = useRef(false);
   const hasVisibleSourcesRef = useRef(initialSources.length > 0);
   const position = useRef(new Animated.ValueXY()).current;
   // Training always lands on the setup screen; legacy quick routes are ignored.
   const quickStart = false;
+
+  const selectedSourceIdsForDraft = useMemo(() => [...selectedIds].sort(), [selectedIds]);
+  const sessionDraftScope = useMemo<FlashcardsSwipeSessionScope>(
+    () => ({
+      sourceIds: selectedSourceIdsForDraft,
+      routeSource: requestedSourceId,
+      routeFilter: requestedFilter,
+      contentLang: cardContentLang,
+    }),
+    [cardContentLang, requestedFilter, requestedSourceId, selectedSourceIdsForDraft],
+  );
 
   const text = useMemo(
     () => ({
@@ -917,16 +1023,6 @@ export default function FlashcardsSwipeScreen() {
         tr: "Yerleşmesi için yakında tekrar göstereceğim.",
         pl: "Pokażę ją wkrótce ponownie, żeby się utrwaliła.",
       }),
-      question: triLang(lang, {
-        ru: 'Подходит ли перевод к фразе?',
-        uk: 'Чи підходить переклад до фрази?',
-        es: '¿Coincide la traducción?',
-        'pt-BR': "A tradução coincide?",
-        vi: "Bản dịch có khớp không?",
-        id: "Apakah terjemahannya cocok?",
-        tr: "Çeviri eşleşiyor mu?",
-        pl: "Czy tłumaczenie pasuje?",
-      }),
       mastered: triLang(lang, {
         ru: 'Закреплено',
         uk: 'Закріплено',
@@ -968,14 +1064,14 @@ export default function FlashcardsSwipeScreen() {
         pl: "Poprawna odpowiedź",
       }),
       shownTranslation: triLang(lang, {
-        ru: 'Перевод на карточке',
-        uk: 'Переклад на картці',
-        es: 'Traducción en la tarjeta',
-        'pt-BR': "Tradução no cartão",
-        vi: "Bản dịch trên thẻ",
-        id: "Terjemahan di kartu",
-        tr: "Karttaki çeviri",
-        pl: "Tłumaczenie na fiszce",
+        ru: 'Этот перевод подходит?',
+        uk: 'Цей переклад підходить?',
+        es: '¿Esta traducción coincide?',
+        'pt-BR': "Esta tradução combina?",
+        vi: "Bản dịch này có khớp không?",
+        id: "Apakah terjemahan ini cocok?",
+        tr: "Bu çeviri uyuyor mu?",
+        pl: "Czy to tłumaczenie pasuje?",
       }),
       phraseLabel: triLang(lang, {
         ru: 'Фраза',
@@ -1257,16 +1353,6 @@ export default function FlashcardsSwipeScreen() {
         tr: "yeni",
         pl: "nowe",
       }),
-      swipeHint: triLang(lang, {
-        ru: 'Да — если перевод совпадает. Нет — если на карточке чужой перевод.',
-        uk: 'Так — якщо переклад збігається. Ні — якщо на картці чужий переклад.',
-        es: 'Sí si coincide. No si la tarjeta muestra otra traducción.',
-        'pt-BR': "Sim se coincidir. Não se o cartão mostrar outra tradução.",
-        vi: "Chọn Có nếu khớp. Chọn Không nếu thẻ hiển thị bản dịch khác.",
-        id: "Pilih Ya jika cocok. Pilih Tidak jika kartu menampilkan terjemahan lain.",
-        tr: "Eşleşiyorsa Evet. Kart başka çeviri gösteriyorsa Hayır.",
-        pl: "Tak, jeśli pasuje. Nie, jeśli fiszka pokazuje inne tłumaczenie.",
-      }),
       sessionSummary: triLang(lang, {
         ru: 'Слабые вернутся внутри сессии. Лёгкие уйдут на повтор позже.',
         uk: 'Слабкі повернуться в сесії. Легкі підуть на повтор пізніше.',
@@ -1505,6 +1591,7 @@ export default function FlashcardsSwipeScreen() {
 
   const startSession = useCallback(async () => {
     if (selectedSources.length === 0 || starting) return;
+    draftRestoreAttemptedRef.current = true;
     void hapticTap();
     setStarting(true);
     setLoadError('');
@@ -1543,6 +1630,43 @@ export default function FlashcardsSwipeScreen() {
   }, [buildPromptQueue, buildSessionCards, lang, position, selectedSources, starting]);
 
   useEffect(() => {
+    if (draftRestoreAttemptedRef.current) return;
+    if (phase !== 'select' || loadingSources || starting || selectedSources.length === 0) return;
+    if (sessionDraftScope.sourceIds.length === 0) return;
+
+    let cancelled = false;
+    draftRestoreAttemptedRef.current = true;
+    void (async () => {
+      const draft = await loadFlashcardsSwipeSessionDraft(sessionDraftScope).catch(() => null);
+      if (!draft || cancelled) return;
+
+      const memory = await loadSwipeMemory().catch(() => ({} as SwipeMemory));
+      const { cards, info } = await buildSessionCards(selectedSources, memory);
+      if (cancelled) return;
+
+      const restored = restoreSessionDraft(draft, cards);
+      if (!restored) {
+        await clearFlashcardsSwipeSessionDraft().catch(() => {});
+        return;
+      }
+
+      memoryRef.current = memory;
+      progressRef.current = restored.progress;
+      position.setValue({ x: 0, y: 0 });
+      setFeedback(restored.feedback);
+      setTrainingCards(restored.trainingCards);
+      setQueue(restored.queue);
+      setStats(restored.stats);
+      setSessionInfo(info);
+      setPhase('play');
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [buildSessionCards, loadingSources, phase, position, selectedSources, sessionDraftScope, starting]);
+
+  useEffect(() => {
     if (!quickStart || quickStartDoneRef.current || phase !== 'select') return;
     if (loadingSources || starting || selectedSources.length === 0) return;
     quickStartDoneRef.current = true;
@@ -1551,15 +1675,13 @@ export default function FlashcardsSwipeScreen() {
 
   const exitTraining = useCallback(() => {
     void hapticTap();
-    if (quickStart) {
-      router.back();
-      return;
-    }
-    setPhase('select');
-  }, [quickStart, router]);
+    draftRestoreAttemptedRef.current = true;
+    router.back();
+  }, [router]);
 
   const openSettings = useCallback(() => {
     void hapticTap();
+    draftRestoreAttemptedRef.current = true;
     quickStartDoneRef.current = true;
     setFeedback(null);
     position.setValue({ x: 0, y: 0 });
@@ -1605,6 +1727,24 @@ export default function FlashcardsSwipeScreen() {
   const progressPct = stats.total > 0 ? Math.min(100, Math.round((stats.mastered / stats.total) * 100)) : 0;
   const currentPrompt = queue[0] ?? null;
   const done = phase === 'play' && !currentPrompt && stats.total > 0;
+
+  useEffect(() => {
+    if (phase !== 'play' || trainingCards.length === 0) return;
+    if (done || queue.length === 0) {
+      void clearFlashcardsSwipeSessionDraft().catch(() => {});
+      return;
+    }
+
+    const draft = buildSessionDraft({
+      scope: sessionDraftScope,
+      trainingCards,
+      queue,
+      feedback,
+      stats,
+      progress: progressRef.current,
+    });
+    void saveFlashcardsSwipeSessionDraft(draft).catch(() => {});
+  }, [done, feedback, phase, queue, sessionDraftScope, stats, trainingCards]);
 
   useEffect(() => {
     if (!currentPrompt?.id) return;
@@ -2106,10 +2246,6 @@ export default function FlashcardsSwipeScreen() {
             </Animated.View>
 
             <View style={styles.cardTopLine}>
-              <View style={[styles.modePill, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-                <Ionicons name="help-circle-outline" size={15} color={t.textSecond} />
-                <Text style={[styles.modePillText, { color: t.textPrimary, fontSize: f.caption }]}>{text.question}</Text>
-              </View>
               <View
                 onStartShouldSetResponder={() => true}
                 onMoveShouldSetResponder={() => false}
@@ -2209,9 +2345,6 @@ export default function FlashcardsSwipeScreen() {
           </TouchableOpacity>
         ) : (
           <>
-            {stats.answered < 3 ? (
-              <Text style={[styles.swipeHint, { color: t.textMuted, fontSize: f.caption }]}>{text.swipeHint}</Text>
-            ) : null}
             <TouchableOpacity
               onPress={revealCurrent}
               style={[styles.revealButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
@@ -2650,22 +2783,8 @@ const styles = StyleSheet.create({
   cardTopLine: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     gap: 10,
-  },
-  modePill: {
-    flex: 1,
-    minHeight: 38,
-    borderRadius: 14,
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-  },
-  modePillText: {
-    flex: 1,
-    fontWeight: '900',
   },
   speakButtonHitbox: {
     width: 52,
@@ -2761,11 +2880,6 @@ const styles = StyleSheet.create({
   },
   revealText: {
     fontWeight: '900',
-  },
-  swipeHint: {
-    textAlign: 'center',
-    fontWeight: '800',
-    marginBottom: 8,
   },
   answerButtons: {
     flexDirection: 'row',

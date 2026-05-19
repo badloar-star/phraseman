@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, Pressable } from 'react-native';
+import { View, StyleSheet, Text, Pressable, useWindowDimensions } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import EnergyIcon from './EnergyIcon';
+import { getAdaptiveEnergyIconLayout } from './energyIconLayout';
 import { useEnergy } from './EnergyContext';
 import { getTimeUntilNextRecovery, formatTimeUntilRecovery } from '../app/energy_system';
 import EnergyRefillShardModal from './EnergyRefillShardModal';
@@ -12,7 +13,6 @@ import { hapticTap } from '../hooks/use-haptics';
 
 const PREMIUM_BLUE = '#4FC3F7';
 const ENERGY_ICON_SIZE = 30;
-const ENERGY_ICON_OVERLAP = -Math.round(ENERGY_ICON_SIZE * 0.45);
 
 interface Props {
   energyCount: number; // 0-5
@@ -29,6 +29,7 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
   const { isUnlimited } = useEnergy();
+  const { width: windowWidth } = useWindowDimensions();
   const energyLongPressHint = triLang(lang, {
     ru: 'Долгое нажатие — восстановить энергию за осколки',
     uk: 'Довге натискання — відновити енергію за осколки',
@@ -44,6 +45,11 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
   const filledTint = premiumTint;
   const filledColor = isUnlimited ? PREMIUM_BLUE : t.gold;
   const [timeUntilNextEnergy, setTimeUntilNextEnergy] = useState<string | null>(null);
+  const energyLayout = getAdaptiveEnergyIconLayout({
+    slotCount: maxEnergy,
+    iconSize: ENERGY_ICON_SIZE,
+    maxWidth: Math.min(156, Math.max(ENERGY_ICON_SIZE, windowWidth * 0.38)),
+  });
 
   // Update timer every second when energy is not at max
   useEffect(() => {
@@ -76,13 +82,13 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
         delayLongPress={480}
         accessibilityHint={energyLongPressHint}
       >
-      <View style={styles.stackContainer}>
+      <View style={[styles.stackContainer, { width: energyLayout.width, maxWidth: energyLayout.maxWidth }]}>
         {Array.from({ length: maxEnergy }).map((_, i) => (
-          <View key={i} style={{ marginLeft: i > 0 ? ENERGY_ICON_OVERLAP : 0 }}>
+          <View key={i} style={{ marginLeft: i > 0 ? energyLayout.marginLeft : 0 }}>
             <EnergyIcon
               filled={i < energyCount}
               themeColor={i < energyCount ? filledColor : t.textGhost}
-              size={ENERGY_ICON_SIZE}
+              size={energyLayout.iconSize}
               animateChange={true}
               shouldShake={shouldShake}
               themeMode={themeMode}

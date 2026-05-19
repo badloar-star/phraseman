@@ -5,12 +5,14 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 const DELETE_BATCH_LIMIT = 100;
+const ACCOUNT_DELETE_TIMEOUT_SECONDS = 540;
+const ACCOUNT_DELETE_PROGRESS_LOG_DOCS = 500;
 const MAX_ID_LEN = 180;
 
 const ACCOUNT_DELETE_OPTIONS = {
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK,
-  timeoutSeconds: 540,
+  timeoutSeconds: ACCOUNT_DELETE_TIMEOUT_SECONDS,
   memory: '1GiB' as const,
   maxInstances: 20,
 } as const;
@@ -20,6 +22,18 @@ type DeleteStats = {
   docsUpdated: number;
   queriesRun: number;
   authDeleted: boolean;
+};
+
+type DeleteContext = {
+  db: admin.firestore.Firestore;
+  writer: FirebaseFirestore.BulkWriter;
+  seen: Set<string>;
+  runId: string;
+  stableUidHash: string;
+  authUidHash: string;
+  startedAtMs: number;
+  lastProgressLogDocs: number;
+  writerClosed: boolean;
 };
 
 type QueryValueKind = 'stable' | 'auth' | 'both';
@@ -122,6 +136,92 @@ export function accountDeleteQueryPlan(stableUid: string, authUid: string): Arra
   return out;
 }
 
+function hashId(value: string): string {
+  return createHash('sha256').update(value).digest('hex');
+}
+
+function accountDeleteLog(
+  ctx: Pick<DeleteContext, 'runId' | 'stableUidHash' | 'authUidHash' | 'startedAtMs'>,
+  stage: string,
+  stats: DeleteStats,
+  extra: Record<string, unknown> = {},
+): void {
+  console.log(JSON.stringify({
+    event: 'account_delete',
+    runId: ctx.runId,
+    stage,
+    stableUidHash: ctx.stableUidHash.slice(0, 16),
+    authUidHash: ctx.authUidHash.slice(0, 16),
+    elapsedMs: Date.now() - ctx.startedAtMs,
+    ...stats,
+    ...extra,
+  }));
+}
+
+function createDeleteContext(
+  db: admin.firestore.Firestore,
+  stableUid: string,
+  authUid: string,
+  stats: DeleteStats,
+): DeleteContext {
+  const stableUidHash = hashId(stableUid);
+  const authUidHash = hashId(authUid);
+  const ctx: DeleteContext = {
+    db,
+    writer: null as unknown as FirebaseFirestore.BulkWriter,
+    seen: new Set<string>(),
+    runId: `${stableUidHash.slice(0, 8)}_${Date.now()}`,
+    stableUidHash,
+    authUidHash,
+    startedAtMs: Date.now(),
+    lastProgressLogDocs: 0,
+    writerClosed: false,
+  };
+
+  const writer = db.bulkWriter({
+    throttling: {
+      initialOpsPerSecond: 200,
+      maxOpsPerSecond: 500,
+    },
+  });
+  writer.onWriteResult(() => {
+    stats.docsDeleted += 1;
+    if (stats.docsDeleted - ctx.lastProgressLogDocs >= ACCOUNT_DELETE_PROGRESS_LOG_DOCS) {
+      ctx.lastProgressLogDocs = stats.docsDeleted;
+      accountDeleteLog(ctx, 'progress', stats);
+    }
+  });
+  writer.onWriteError((error) => {
+    console.warn(JSON.stringify({
+      event: 'account_delete_write_error',
+      runId: ctx.runId,
+      path: error.documentRef.path,
+      code: error.code,
+      failedAttempts: error.failedAttempts,
+    }));
+    return error.failedAttempts < 3;
+  });
+  ctx.writer = writer;
+  return ctx;
+}
+
+async function closeDeleteWriter(ctx: DeleteContext): Promise<void> {
+  if (ctx.writerClosed) return;
+  ctx.writerClosed = true;
+  await ctx.writer.close();
+}
+
+async function runDeleteStage(
+  ctx: DeleteContext,
+  stats: DeleteStats,
+  stage: string,
+  fn: () => Promise<void>,
+): Promise<void> {
+  accountDeleteLog(ctx, `${stage}:start`, stats);
+  await fn();
+  accountDeleteLog(ctx, `${stage}:done`, stats);
+}
+
 async function getEmailsForDeletion(
   db: admin.firestore.Firestore,
   authUid: string,
@@ -188,32 +288,29 @@ async function resolveStableUidForDelete(
 }
 
 async function deleteDocTree(
+  ctx: DeleteContext,
   ref: FirebaseFirestore.DocumentReference,
-  stats: DeleteStats,
-  seen: Set<string>,
 ): Promise<void> {
-  if (seen.has(ref.path)) return;
-  seen.add(ref.path);
-
-  const subcollections = await ref.listCollections();
-  for (const col of subcollections) {
-    await deleteQuery(col, stats, seen);
-  }
-  await ref.delete();
-  stats.docsDeleted += 1;
+  if (ctx.seen.has(ref.path)) return;
+  ctx.seen.add(ref.path);
+  await ctx.db.recursiveDelete(ref, ctx.writer);
 }
 
 async function deleteQuery(
   query: FirebaseFirestore.Query,
+  ctx: DeleteContext,
   stats: DeleteStats,
-  seen: Set<string>,
 ): Promise<void> {
   for (;;) {
+    const docsDeletedBefore = stats.docsDeleted;
     stats.queriesRun += 1;
     const snap = await query.limit(DELETE_BATCH_LIMIT).get();
     if (snap.empty) return;
     for (const doc of snap.docs) {
-      await deleteDocTree(doc.ref, stats, seen);
+      await deleteDocTree(ctx, doc.ref);
+    }
+    if (stats.docsDeleted === docsDeletedBefore) {
+      throw new HttpsError('internal', 'account_delete_no_progress');
     }
   }
 }
@@ -222,8 +319,7 @@ async function deleteDirectDocs(
   db: admin.firestore.Firestore,
   stableUid: string,
   authUid: string,
-  stats: DeleteStats,
-  seen: Set<string>,
+  ctx: DeleteContext,
 ): Promise<void> {
   const ids = Array.from(new Set([stableUid, authUid].filter(Boolean)));
   const directCollections = [
@@ -239,34 +335,34 @@ async function deleteDirectDocs(
   ];
   for (const collection of directCollections) {
     for (const id of ids) {
-      await deleteDocTree(db.collection(collection).doc(id), stats, seen);
+      await deleteDocTree(ctx, db.collection(collection).doc(id));
     }
   }
-  await deleteDocTree(db.collection('league_chat_members').doc(authUid), stats, seen);
+  await deleteDocTree(ctx, db.collection('league_chat_members').doc(authUid));
 }
 
 async function deleteFieldMatches(
   db: admin.firestore.Firestore,
   stableUid: string,
   authUid: string,
+  ctx: DeleteContext,
   stats: DeleteStats,
-  seen: Set<string>,
 ): Promise<void> {
   for (const spec of accountDeleteQueryPlan(stableUid, authUid)) {
     const q = db.collection(spec.collection).where(spec.field, spec.op, spec.value);
-    await deleteQuery(q, stats, seen);
+    await deleteQuery(q, ctx, stats);
   }
 }
 
 async function deleteEmailMatches(
   db: admin.firestore.Firestore,
   emails: string[],
+  ctx: DeleteContext,
   stats: DeleteStats,
-  seen: Set<string>,
 ): Promise<void> {
   for (const email of emails) {
-    await deleteQuery(db.collection('website_contact_inbox').where('email', '==', email), stats, seen);
-    await deleteQuery(db.collection('auth_links').where('email', '==', email), stats, seen);
+    await deleteQuery(db.collection('website_contact_inbox').where('email', '==', email), ctx, stats);
+    await deleteQuery(db.collection('auth_links').where('email', '==', email), ctx, stats);
   }
 }
 
@@ -274,13 +370,13 @@ async function deleteCollectionGroupMatches(
   db: admin.firestore.Firestore,
   stableUid: string,
   authUid: string,
+  ctx: DeleteContext,
   stats: DeleteStats,
-  seen: Set<string>,
 ): Promise<void> {
   const values = Array.from(new Set([stableUid, authUid].filter(Boolean)));
   for (const value of values) {
-    await deleteQuery(db.collectionGroup('messages').where('authorUid', '==', value), stats, seen);
-    await deleteQuery(db.collectionGroup('messages').where('authorStableUid', '==', value), stats, seen);
+    await deleteQuery(db.collectionGroup('messages').where('authorUid', '==', value), ctx, stats);
+    await deleteQuery(db.collectionGroup('messages').where('authorStableUid', '==', value), ctx, stats);
   }
 }
 
@@ -295,22 +391,32 @@ async function removeFromLeagueGroups(
     const snap = await db.collection('league_groups').where(path, '==', stableUid).limit(DELETE_BATCH_LIMIT).get();
     if (snap.empty) return;
     const batch = db.batch();
+    let madeProgress = false;
     for (const doc of snap.docs) {
       const data = doc.data() || {};
       const members = data.members && typeof data.members === 'object' ? data.members as Record<string, unknown> : {};
-      const nextCount = Math.max(0, Object.keys(members).length - (members[stableUid] ? 1 : 0));
+      const hadMember = Object.prototype.hasOwnProperty.call(members, stableUid);
+      const nextCount = Math.max(0, Object.keys(members).length - (hadMember ? 1 : 0));
+      if (!hadMember && nextCount > 0) continue;
       if (nextCount <= 0) {
         batch.delete(doc.ref);
         stats.docsDeleted += 1;
+        madeProgress = true;
       } else {
-        batch.set(doc.ref, {
-          [`members.${stableUid}`]: admin.firestore.FieldValue.delete(),
-          memberCount: nextCount,
-          updatedAt: Date.now(),
-        }, { merge: true });
+        batch.update(
+          doc.ref,
+          new admin.firestore.FieldPath('members', stableUid),
+          admin.firestore.FieldValue.delete(),
+          'memberCount',
+          nextCount,
+          'updatedAt',
+          Date.now(),
+        );
         stats.docsUpdated += 1;
+        madeProgress = true;
       }
     }
+    if (!madeProgress) throw new HttpsError('internal', 'league_group_delete_no_progress');
     await batch.commit();
   }
 }
@@ -339,30 +445,54 @@ export const accountDeleteMine = onCall(ACCOUNT_DELETE_OPTIONS, async (request) 
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForDelete(db, authUid, request.data?.stableId);
   const stats: DeleteStats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
-  const seen = new Set<string>();
+  const ctx = createDeleteContext(db, stableUid, authUid, stats);
   const emails = await getEmailsForDeletion(db, authUid, stableUid);
 
-  await deleteDirectDocs(db, stableUid, authUid, stats, seen);
-  await deleteFieldMatches(db, stableUid, authUid, stats, seen);
-  await deleteCollectionGroupMatches(db, stableUid, authUid, stats, seen);
-  await deleteEmailMatches(db, emails, stats, seen);
-  await removeFromLeagueGroups(db, stableUid, stats);
-  await markAccountDeletionTombstone(db, stableUid, authUid, stats);
-
   try {
-    await admin.auth().deleteUser(authUid);
-    stats.authDeleted = true;
+    accountDeleteLog(ctx, 'start', stats, { emailCount: emails.length });
+    await runDeleteStage(ctx, stats, 'direct_docs', () => deleteDirectDocs(db, stableUid, authUid, ctx));
+    await runDeleteStage(ctx, stats, 'field_matches', () => deleteFieldMatches(db, stableUid, authUid, ctx, stats));
+    await runDeleteStage(ctx, stats, 'collection_group_matches', () => deleteCollectionGroupMatches(db, stableUid, authUid, ctx, stats));
+    await runDeleteStage(ctx, stats, 'email_matches', () => deleteEmailMatches(db, emails, ctx, stats));
+    await runDeleteStage(ctx, stats, 'league_groups', () => removeFromLeagueGroups(db, stableUid, stats));
+    await closeDeleteWriter(ctx);
+    await runDeleteStage(ctx, stats, 'tombstone', () => markAccountDeletionTombstone(db, stableUid, authUid, stats));
+
+    try {
+      await admin.auth().deleteUser(authUid);
+      stats.authDeleted = true;
+    } catch (e: any) {
+      if (e?.code !== 'auth/user-not-found') {
+        throw new HttpsError('internal', 'auth_delete_failed');
+      }
+    }
+
+    accountDeleteLog(ctx, 'done', stats);
+    return { ok: true, stableUid, authUid, ...stats };
   } catch (e: any) {
-    if (e?.code !== 'auth/user-not-found') {
-      throw new HttpsError('internal', 'auth_delete_failed');
+    accountDeleteLog(ctx, 'failed', stats, {
+      code: e?.code ?? 'unknown',
+      message: String(e?.message ?? e).slice(0, 160),
+    });
+    if (e instanceof HttpsError) throw e;
+    throw new HttpsError('internal', 'account_delete_failed');
+  } finally {
+    if (!ctx.writerClosed) {
+      await closeDeleteWriter(ctx).catch((e) => {
+        console.warn(JSON.stringify({
+          event: 'account_delete_writer_close_failed',
+          runId: ctx.runId,
+          message: String(e?.message ?? e).slice(0, 160),
+        }));
+      });
     }
   }
-
-  return { ok: true, stableUid, authUid, ...stats };
 });
 
 export const __accountDeleteTestHooks = {
   accountDeleteQueryPlan,
   FIELD_QUERY_SPECS,
   resolveStableUidForDelete,
+  deleteQuery,
+  ACCOUNT_DELETE_OPTIONS,
 };

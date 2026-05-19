@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Pressable, Text, View } from 'react-native';
+import { Animated, Pressable, Text, useWindowDimensions, View } from 'react-native';
 import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING } from '../constants/motion';
 import { useEnergy } from './EnergyContext';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import EnergyIcon from './EnergyIcon';
+import { getAdaptiveEnergyIconLayout } from './energyIconLayout';
 import EnergyRefillShardModal from './EnergyRefillShardModal';
 import { hapticTap } from '../hooks/use-haptics';
 import { BRAND_SHARDS_ES } from '../constants/terms_es';
@@ -14,6 +15,7 @@ const PREMIUM_BLUE = '#4FC3F7';
 
 interface Props {
   size?: number; // icon size, default 30
+  maxWidth?: number;
 }
 
 /**
@@ -22,10 +24,11 @@ interface Props {
  */
 const BONUS_COLOR = '#FFD700'; // gold for bonus slots
 
-export default function EnergyBar({ size = 30 }: Props) {
+export default function EnergyBar({ size = 30, maxWidth }: Props) {
   const { energy, bonusEnergy, maxEnergy, formattedTime, isUnlimited } = useEnergy();
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();
+  const { width: windowWidth } = useWindowDimensions();
   const [refillModal, setRefillModal] = useState(false);
   const energyLongPressHint = triLang(lang, {
     ru: 'Долгое нажатие — восстановить энергию за осколки',
@@ -106,7 +109,13 @@ export default function EnergyBar({ size = 30 }: Props) {
   const emptyColor = t.textGhost;
 
   const safeBonus = Math.min(bonusEnergy, bonusScaleAnims.length);
-  const overlap = -Math.round(size * 0.45);
+  const totalSlots = Math.max(1, maxEnergy + safeBonus);
+  const energyLayout = getAdaptiveEnergyIconLayout({
+    slotCount: totalSlots,
+    iconSize: size,
+    maxWidth: maxWidth ?? Math.min(156, Math.max(size, windowWidth * 0.36)),
+  });
+  const overlap = energyLayout.marginLeft;
 
   return (
     <View style={{ alignItems: 'center' }}>
@@ -118,13 +127,13 @@ export default function EnergyBar({ size = 30 }: Props) {
         delayLongPress={480}
         accessibilityHint={energyLongPressHint}
       >
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', width: energyLayout.width, maxWidth: energyLayout.maxWidth }}>
         {Array.from({ length: maxEnergy }).map((_, i) => (
           <Animated.View key={i} style={{ marginLeft: i > 0 ? overlap : 0, transform: [{ scale: scaleAnims[i] }] }}>
             <EnergyIcon
               filled={i < energy}
               themeColor={i < energy ? filledColor : emptyColor}
-              size={size}
+              size={energyLayout.iconSize}
               animateChange={true}
               shouldShake={false}
               themeMode={themeMode}
@@ -141,7 +150,7 @@ export default function EnergyBar({ size = 30 }: Props) {
             <EnergyIcon
               filled={true}
               themeColor={bonusAccent}
-              size={size}
+              size={energyLayout.iconSize}
               animateChange={false}
               shouldShake={false}
               themeMode={themeMode}

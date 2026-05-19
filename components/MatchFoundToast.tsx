@@ -11,7 +11,6 @@ import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
 import { ARENA_LOBBY_ACCEPT_MS, CLOUD_SYNC_ENABLED } from '../app/config';
 import { setSessionLobbyChoice } from '../app/services/arena_db';
 import { reserveArenaGameEntry } from '../app/arena_access_gate';
-import { playAppSound } from '../app/audio/sound_manager';
 import { useOverlayVisible } from './OverlayArbiter';
 import {
   cancelScheduledAnimatedStateUpdates,
@@ -95,7 +94,6 @@ export default function MatchFoundToast({ host = 'root' }: { host?: MatchFoundTo
     toastActiveRef.current = true;
     setVisible(true);
     hapticSoftImpact();
-    void playAppSound('arena.match.found');
 
     if (slideInRafRef.current != null) cancelAnimationFrame(slideInRafRef.current);
     /** Откладываем привязку анимированных нод на следующий кадр —

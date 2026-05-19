@@ -1954,8 +1954,8 @@ export const claimAchievementShardReward = async (achievementId: string): Promis
   if (!reserved) return false;
 
   const n = await addShardsRaw(1, `achievement:${achievementId}`, {
-    showEarnModal: true,
-    earnModalKey: 'achievement_shard',
+    showEarnModal: false,
+    skipServerAwait: true,
   });
   if (n >= 1) {
     try {

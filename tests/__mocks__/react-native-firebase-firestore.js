@@ -6,7 +6,7 @@
  *   firestore.__resetTestState()
  */
 
-/** @type {{ rewardClaimExists: boolean; userDocExists: boolean; userShards: number | null; userShardsUpdatedAtMs: number | null; userShardsUpdatedOp: string | null; userShardsUpdatedReason: string | null }} */
+/** @type {{ rewardClaimExists: boolean; userDocExists: boolean; userShards: number | null; userShardsUpdatedAtMs: number | null; userShardsUpdatedOp: string | null; userShardsUpdatedReason: string | null; runTransactionCalls: number }} */
 const testState = {
   rewardClaimExists: false,
   userDocExists: true,
@@ -14,6 +14,7 @@ const testState = {
   userShardsUpdatedAtMs: null,
   userShardsUpdatedOp: null,
   userShardsUpdatedReason: null,
+  runTransactionCalls: 0,
 };
 
 function createRef(path) {
@@ -61,6 +62,7 @@ function firestore() {
   return {
     collection: jest.fn((name) => createRef(name)),
     runTransaction: async (fn) => {
+      testState.runTransactionCalls += 1;
       const transaction = {
         get: jest.fn(async (ref) => {
           const p = ref.__path || '';
@@ -121,6 +123,7 @@ firestore.__resetTestState = () => {
   testState.userShardsUpdatedAtMs = null;
   testState.userShardsUpdatedOp = null;
   testState.userShardsUpdatedReason = null;
+  testState.runTransactionCalls = 0;
 };
 
 firestore.default = firestore;

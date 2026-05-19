@@ -207,6 +207,7 @@ type BodyProps = {
   fadeAnim: Animated.Value;
   shimmerAnim: Animated.Value;
   onBackdropPress: () => void;
+  onClose: () => void;
   duelRank: { tier: string; level: string; xp: number } | null;
   multipliers: MultiplierBreakdown | null;
   onFriendRequestToast: (message: string, toastType?: 'error' | 'info') => void;
@@ -220,6 +221,7 @@ function PlayerProfileModalBody({
   fadeAnim,
   shimmerAnim,
   onBackdropPress,
+  onClose,
   duelRank,
   multipliers,
   onFriendRequestToast,
@@ -689,6 +691,41 @@ function PlayerProfileModalBody({
         shadowRadius: prestigeActive ? 22 : 12,
         elevation: prestigeActive ? 12 : 6,
       }}>
+        <TouchableOpacity
+          testID="player-profile-close"
+          accessibilityRole="button"
+          accessibilityLabel={triLang(lang as Lang, {
+            ru: 'Закрыть профиль',
+            uk: 'Закрити профіль',
+            es: 'Cerrar perfil',
+            'pt-BR': 'Fechar perfil',
+            vi: 'Đóng hồ sơ',
+            id: 'Tutup profil',
+            tr: 'Profili kapat',
+            pl: 'Zamknij profil',
+          })}
+          hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
+          onPress={() => {
+            hapticTap();
+            onClose();
+          }}
+          style={{
+            position: 'absolute',
+            top: 14,
+            right: 14,
+            zIndex: 30,
+            width: 38,
+            height: 38,
+            borderRadius: 19,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: prestigeActive ? 'rgba(0,0,0,0.28)' : 'rgba(255,255,255,0.10)',
+            borderWidth: 1,
+            borderColor: prestigeActive ? cardVisual.accentStrong : 'rgba(255,255,255,0.14)',
+          }}
+        >
+          <Ionicons name="close" size={22} color={prestigeActive ? '#FFFFFF' : t.textPrimary} />
+        </TouchableOpacity>
         {prestigeActive && (
           <>
             <LinearGradient
@@ -1538,6 +1575,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
             fadeAnim={fadeAnim}
             shimmerAnim={shimmerAnim}
             onBackdropPress={handleClose}
+            onClose={handleClose}
             duelRank={duelRank}
             multipliers={multipliers}
             onFriendRequestToast={showFriendRequestToast}

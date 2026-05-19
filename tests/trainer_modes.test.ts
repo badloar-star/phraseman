@@ -279,11 +279,18 @@ describe('trainer — free session limit', () => {
     await expect(consumeTrainerSessionEntry('/trainer_words_session')).resolves.toBe(false);
   });
 
+  it('does not spend the free session while only reserving navigation', async () => {
+    mockStorage.tester_no_premium = 'true';
+    await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
+    await expect(getFreeSessionsLeftToday()).resolves.toBe(1);
+  });
+
   it('consumes a reserved free entry once and marks the daily session used', async () => {
     mockStorage.tester_no_premium = 'true';
     await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(0);
+    await expect(getFreeSessionsLeftToday()).resolves.toBe(1);
     await expect(consumeTrainerSessionEntry('/trainer_words_session')).resolves.toBe(true);
+    await expect(getFreeSessionsLeftToday()).resolves.toBe(0);
     await expect(consumeTrainerSessionEntry('/trainer_words_session')).resolves.toBe(false);
   });
 
@@ -291,6 +298,7 @@ describe('trainer — free session limit', () => {
     mockStorage.tester_no_premium = 'true';
     await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
     await expect(consumeTrainerSessionEntry('/trainer_phrases_session')).resolves.toBe(false);
+    await expect(getFreeSessionsLeftToday()).resolves.toBe(1);
   });
 });
 

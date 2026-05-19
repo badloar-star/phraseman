@@ -3,9 +3,9 @@
 ## Как работает приглашение на дуэль
 
 ### 1. Генерация ссылки
-`app/arena_lobby.tsx` — константа `DEEPLINK_BASE = 'https://badloar-star.github.io/phraseman/duel'`
+`app/arena_duel_share.ts` — константа `ARENA_DUEL_DEEPLINK_BASE = 'https://knowlyapps.com/phraseman/duel'`
 
-Ссылка выглядит так: `https://badloar-star.github.io/phraseman/duel/262RlLL`
+Ссылка выглядит так: `https://knowlyapps.com/phraseman/duel/262RlLL`
 roomId генерируется функцией `genRoomId()` — 7 случайных символов base36 в верхнем регистре.
 
 Комната живёт **10 минут** (`expiresAt: Date.now() + 10 * 60 * 1000`) в Firestore коллекции `arena_rooms`.
@@ -16,10 +16,10 @@ roomId генерируется функцией `genRoomId()` — 7 случа�
 
 Android перехватывает ссылку через `intentFilters` в `app.json`:
 ```json
-{ "scheme": "https", "host": "badloar-star.github.io", "pathPrefix": "/phraseman/duel" }
+{ "scheme": "https", "host": "knowlyapps.com", "pathPrefix": "/phraseman/duel" }
 ```
 
-Верификация домена: `gh-pages` ветка репозитория содержит `.well-known/assetlinks.json` с SHA256 fingerprint APK.
+Верификация домена: Firebase Hosting для `knowlyapps.com` отдаёт `/.well-known/assetlinks.json` с SHA-256 fingerprint сертификата подписи приложения из Google Play Console.
 
 `app/_layout.tsx` слушает `Linking.getInitialURL()` и `Linking.addEventListener('url')`.
 Паттерн: `/duel/([A-Z0-9]+)/i` → навигация на `/arena_join?roomId=ROOMID`.

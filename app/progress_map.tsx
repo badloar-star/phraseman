@@ -22,6 +22,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import LevelGiftArt from '../components/LevelGiftArt';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import LevelBadge from '../components/LevelBadge';
@@ -37,7 +38,6 @@ import {
   readGiftXpBank,
 } from './level_gift_system';
 import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
-import { getLevelGiftImage } from '../constants/levelGiftImages';
 import { getLevelGiftRewardIcon, type LevelGiftRewardIconId } from '../constants/levelGiftRewardIcons';
 import { getXPProgress, getMaxEnergyForLevel, MAX_LEVEL } from '../constants/theme';
 import { TITLES } from '../constants/titles';
@@ -620,7 +620,7 @@ export default function ProgressMapScreen() {
                   marginTop: 4,
                 }}
               >
-                <Image source={getLevelGiftRewardIcon(milestoneGift.id)} style={{ width: 16, height: 16 }} resizeMode="contain" />
+                <Image source={getLevelGiftRewardIcon(milestoneGift.id, themeMode)} style={{ width: 16, height: 16 }} resizeMode="contain" />
                 <Text
                   style={{
                     color: isDone || isCurrent ? t.textSecond : t.textMuted,
@@ -677,16 +677,18 @@ export default function ProgressMapScreen() {
               claimedRarities[lvl] ? (
                 <View style={{ alignItems: 'flex-end' }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2 }}>
-                    <Image
-                      source={getLevelGiftImage(themeMode, claimedRarities[lvl])}
-                      style={{ width: 28, height: 28, opacity: 0.7 }}
-                      resizeMode="contain"
+                    <LevelGiftArt
+                      themeMode={themeMode}
+                      variant={claimedRarities[lvl]}
+                      size={28}
+                      opacity={0.7}
                     />
                     {dualClaimedLevels.has(lvl) && (
-                      <Image
-                        source={getLevelGiftImage(themeMode, 'premium')}
-                        style={{ width: 22, height: 22, opacity: 0.85 }}
-                        resizeMode="contain"
+                      <LevelGiftArt
+                        themeMode={themeMode}
+                        variant="premium"
+                        size={22}
+                        opacity={0.85}
                       />
                     )}
                   </View>
@@ -699,10 +701,11 @@ export default function ProgressMapScreen() {
                 </View>
               ) : isDone ? (
                 <View style={{ alignItems: 'flex-end' }}>
-                  <Image
-                    source={getLevelGiftImage(themeMode, 'common')}
-                    style={{ width: 28, height: 28, opacity: 0.55 }}
-                    resizeMode="contain"
+                  <LevelGiftArt
+                    themeMode={themeMode}
+                    variant="common"
+                    size={28}
+                    opacity={0.55}
                   />
                   <Text
                     style={{ color: t.textMuted, fontSize: 10, fontWeight: '600', marginTop: 2, textAlign: 'right' }}
@@ -819,7 +822,7 @@ export default function ProgressMapScreen() {
 
   return (
     <View style={{ flex: 1 }}>
-      <ScreenGradient>
+      <ScreenGradient artBackdrop="progressMap">
         <SafeAreaView style={{ flex: 1 }}>
           {/* Header */}
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 8, paddingBottom: 12 }}>
@@ -860,7 +863,7 @@ export default function ProgressMapScreen() {
             data={levels}
             keyExtractor={item => String(item)}
             renderItem={renderLevelRow}
-            extraData={{ userLevel, unclaimedGifts, unclaimedDual, claimedRarities, dualClaimedLevels, activeGifts, lang }}
+            extraData={{ userLevel, unclaimedGifts, unclaimedDual, claimedRarities, dualClaimedLevels, activeGifts, lang, themeMode }}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40 }}
             ListHeaderComponent={showActiveGiftsOnProgressMap && activeGifts.length > 0 ? (
@@ -896,7 +899,7 @@ export default function ProgressMapScreen() {
                         backgroundColor: t.bgSurface2,
                       }}
                     >
-                      <Image source={getLevelGiftRewardIcon(gift.iconGiftId)} style={{ width: 28, height: 28 }} resizeMode="contain" />
+                      <Image source={getLevelGiftRewardIcon(gift.iconGiftId, themeMode)} style={{ width: 28, height: 28 }} resizeMode="contain" />
                       <View style={{ flex: 1, minWidth: 0 }}>
                         <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '800' }} numberOfLines={1}>
                           {gift.title}

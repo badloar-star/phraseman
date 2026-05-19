@@ -6,6 +6,7 @@
 import { L1_PHRASE_STRUCTURES, getDistractorsForWord } from './lesson1_distractor_logic';
 import { ENABLE_DEV_STUDY_TARGET_LANG } from './config';
 import { phraseWordRowsForStudyTarget } from './phrase_target_utils';
+import { buildSmartPhraseOptions } from './smart_distractors';
 import type { StudyTargetLang } from './study_target_lang_dev';
 
 /** Заполнение до 6 вариантов при нехватке уникальных дистракторов (режим ES). */
@@ -496,25 +497,6 @@ function optionIdentity(value: string): string {
   return String(value ?? '').trim().replace(/[.,!?;:]+$/g, '').toLowerCase();
 }
 
-function finalizeOptionRow(choices: string[], correct: string | undefined | null): string[] {
-  const c = typeof correct === 'string' ? correct.trim() : '';
-  const deduped: string[] = [];
-  const seen = new Set<string>();
-  for (const w of choices) {
-    if (w == null || String(w).trim() === '') continue;
-    const s = String(w);
-    const k = optionIdentity(s);
-    if (seen.has(k)) continue;
-    seen.add(k);
-    deduped.push(s);
-  }
-  if (c && !deduped.some((w) => optionIdentity(w) === optionIdentity(c))) {
-    deduped.unshift(c);
-  }
-  const trimmed = deduped.slice(0, 6);
-  return shuffle(trimmed);
-}
-
 const getPerWordDistracts = (
   phrase: any,
   wordIndex: number = 0,
@@ -607,45 +589,28 @@ const getPerWordDistracts = (
     if (contraction) seen.add(optionIdentity(contraction));
     if (contractionExpansion) seen.add(optionIdentity(contractionExpansion[0]));
 
-    const pickUnique = (pool: string[], count: number, preserveOrder = false): string[] => {
-      const result: string[] = [];
-      const candidates = preserveOrder ? pool : shuffle([...pool]);
-      for (const w of candidates) {
-        if (result.length >= count) break;
-        if (isConfusingVolumeDistractor(w)) continue;
-        const k = optionIdentity(w);
-        if (!seen.has(k)) {
-          seen.add(k);
-          result.push(w);
-        }
-      }
-      return result;
-    };
-
     const extras = [
       ...(contraction ? [contraction] : []),
       ...(contractionExpansion ? [contractionExpansion[0]] : []),
     ];
-    const targetDistractors = Math.max(0, 5 - extras.length);
-    const fromCurrent = pickUnique(currentDistractors, targetDistractors, true);
-    const nextDistractors = (nextWordData.distractors ?? []).slice(0, 5);
-    const fromNext = pickUnique(
-      nextDistractors.filter((d: string) => d !== nextCorrect),
-      Math.max(0, targetDistractors - fromCurrent.length),
-    );
+    const nextDistractors = (nextWordData.distractors ?? []).filter((d: string) => d !== nextCorrect);
+    const smartPool = [
+      ...extras.map((value) => ({ value, category: cat, source: 'manual' as const })),
+      ...currentDistractors.map((value: string) => ({ value, source: 'manual' as const })),
+      ...nextDistractors.map((value: string) => ({ value, source: 'nextWord' as const })),
+      ...categoryFallbackPool.map((value: string) => ({ value, category: cat, source: 'category' as const })),
+      ...globalFallbackPool.map((value: string) => ({ value, source: 'fallback' as const })),
+    ].filter((candidate) => {
+      if (isConfusingVolumeDistractor(candidate.value)) return false;
+      const k = optionIdentity(candidate.value);
+      return !seen.has(k);
+    });
 
-    const combined = [currentCorrect, ...extras, ...fromCurrent, ...fromNext];
-    if (combined.length < 6) {
-      const fallback = [...categoryFallbackPool, ...globalFallbackPool].filter(
-        (w: string) => !seen.has(optionIdentity(w)) && !isConfusingVolumeDistractor(w),
-      );
-      for (const w of shuffle(fallback)) {
-        if (combined.length >= 6) break;
-        seen.add(optionIdentity(w));
-        combined.push(w);
-      }
-    }
-    return finalizeOptionRow(combined.slice(0, 6), currentCorrect);
+    return buildSmartPhraseOptions(String(currentCorrect), smartPool, {
+      category: cat,
+      optionCount: 6,
+      protectedValues: extras,
+    });
   }
 
   // Last word or no next word: show exactly 6, deduplicated
@@ -659,22 +624,21 @@ const getPerWordDistracts = (
     seenLast.add(k);
     return true;
   });
-  const result = [
-    currentCorrect,
-    ...(contractionExpansion ? [contractionExpansion[0]] : []),
-    ...uniqueDistractors,
+  const protectedValues = contractionExpansion ? [contractionExpansion[0]] : [];
+  const fallback = [...categoryFallbackPool, ...globalFallbackPool].filter(
+    (w: string) => !seenLast.has(optionIdentity(w)) && !isConfusingVolumeDistractor(w),
+  );
+  const lastWordPool = [
+    ...protectedValues.map((value) => ({ value, category: cat, source: 'manual' as const })),
+    ...uniqueDistractors.map((value: string) => ({ value, source: 'manual' as const })),
+    ...fallback.map((value: string) => ({ value, source: 'fallback' as const })),
+    ...categoryFallbackPool.map((value: string) => ({ value, category: cat, source: 'category' as const })),
   ];
-  if (result.length < 6) {
-    const fallback = [...categoryFallbackPool, ...globalFallbackPool].filter(
-      (w: string) => !seenLast.has(optionIdentity(w)) && !isConfusingVolumeDistractor(w),
-    );
-    for (const w of shuffle(fallback)) {
-      if (result.length >= 6) break;
-      seenLast.add(optionIdentity(w));
-      result.push(w);
-    }
-  }
-  return finalizeOptionRow(result.slice(0, 6), currentCorrect);
+  return buildSmartPhraseOptions(String(currentCorrect), lastWordPool, {
+    category: cat,
+    optionCount: 6,
+    protectedValues,
+  });
 };
 
 const makeSmartOptionsL1 = (english: string, wordIndex: number = 0): string[] => {

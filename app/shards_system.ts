@@ -421,6 +421,26 @@ export const addShardsRaw = async (
 ): Promise<number> => {
   try {
     if (!Number.isFinite(amount) || amount <= 0) return 0;
+    if (options?.skipServerAwait) {
+      const meta = localWriteStamp('earn', logReason);
+      const newBalance = await withStorageLock(async () => {
+        const current = await getShardsBalance();
+        const next = current + amount;
+        await persistLocalBalance(next, meta);
+        return next;
+      });
+      setShardsBalanceMemory(newBalance);
+      void bumpLifetimeShardsEarned(amount);
+      void syncShardsToCloud(newBalance, meta);
+      void logShardTransaction('earn', amount, logReason, newBalance, newBalance - amount);
+      emitAppEvent('shards_balance_updated', { balance: newBalance });
+      if (options.showEarnModal) {
+        const k = options.earnModalKey ?? logReason ?? 'generic_raw';
+        emitAppEvent('shards_earned', { amount, reasonKey: k });
+      }
+      return amount;
+    }
+
     const localBase = await getShardsBalance();
     const cloudApplied = await applyShardDeltaToCloud(amount, 'earn', logReason, localBase);
     if (cloudApplied.ok) {

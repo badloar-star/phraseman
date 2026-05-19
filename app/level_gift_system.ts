@@ -31,8 +31,8 @@ import { registerXP } from './xp_manager';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import {
   CUSTOM_AVATAR_GRADIENTS,
+  CUSTOM_AVATAR_GIFT_POOL,
   CUSTOM_AVATAR_OWNED_KEY,
-  CUSTOM_AVATAR_SHOP,
   customAvatarGiftLabelForLang,
   type CustomAvatarLogoColor,
 } from '../constants/custom_avatars';
@@ -992,7 +992,7 @@ export const unlockRandomCustomAvatarGift = async (): Promise<GiftCosmeticUnlock
   try {
     const raw = await AsyncStorage.getItem(CUSTOM_AVATAR_OWNED_KEY);
     const owned: Record<string, string> = raw ? JSON.parse(raw) : {};
-    const candidates = CUSTOM_AVATAR_SHOP.filter(a => !owned[a.id]);
+    const candidates = CUSTOM_AVATAR_GIFT_POOL.filter(a => !owned[a.id]);
     if (candidates.length === 0) return null;
     const avatar = candidates[Math.floor(Math.random() * candidates.length)]!;
     const gradient = CUSTOM_AVATAR_GRADIENTS[Math.floor(Math.random() * CUSTOM_AVATAR_GRADIENTS.length)]!;

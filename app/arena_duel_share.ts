@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const ARENA_DUEL_DEEPLINK_BASE = 'https://badloar-star.github.io/phraseman/duel';
+export const ARENA_DUEL_DEEPLINK_BASE = 'https://knowlyapps.com/phraseman/duel';
 
 const _duelRu = [
   `⚔️ Вызываю тебя на интеллектуальную дуэль по английскому в Phraseman! Или боишься проиграть? 😉`,

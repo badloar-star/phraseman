@@ -4,7 +4,11 @@ import {
   getMilestoneLevelGift,
   rollF2pLevelGiftForUser,
 } from '../app/level_gift_system';
-import { CUSTOM_AVATAR_SHOP } from '../constants/custom_avatars';
+import {
+  CUSTOM_AVATAR_GIFT_POOL,
+  CUSTOM_AVATAR_SHOP,
+  isCustomAvatarGiftOnly,
+} from '../constants/custom_avatars';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/xp_manager', () => ({ registerXP: jest.fn().mockResolvedValue({ finalDelta: 0 }) }));
@@ -80,9 +84,9 @@ describe('level gift milestone rewards', () => {
     const result = await applyGift(gift, 'TestUser', 3, 5, jest.fn());
 
     const unlocked = result.cosmeticUnlocked;
-    expect(CUSTOM_AVATAR_SHOP).toHaveLength(30);
+    expect(CUSTOM_AVATAR_GIFT_POOL).toHaveLength(30);
     expect(unlocked).toMatchObject({ kind: 'avatar' });
-    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === unlocked?.id)).toBe(true);
+    expect(CUSTOM_AVATAR_GIFT_POOL.some((avatar) => avatar.id === unlocked?.id)).toBe(true);
     expect(unlocked?.gradientId).toBeTruthy();
     expect(unlocked?.logoColor === 'black' || unlocked?.logoColor === 'white').toBe(true);
     expect(mockStorage.custom_avatar_gift_owned_v1).toBe(unlocked?.id);
@@ -90,5 +94,11 @@ describe('level gift milestone rewards', () => {
     const owned = JSON.parse(mockStorage.custom_avatar_owned_v1 || '{}');
     expect(owned[unlocked!.id]).toBe(`${unlocked!.gradientId}:${unlocked!.logoColor}`);
     expect(mockStorage.avatar_aura_gift_owned_v1).toBeUndefined();
+  });
+
+  it('keeps people and animal avatars out of the shard shop', () => {
+    expect(CUSTOM_AVATAR_SHOP).toHaveLength(10);
+    expect(CUSTOM_AVATAR_SHOP.every((avatar) => !isCustomAvatarGiftOnly(avatar.id))).toBe(true);
+    expect(CUSTOM_AVATAR_GIFT_POOL.some((avatar) => isCustomAvatarGiftOnly(avatar.id))).toBe(true);
   });
 });

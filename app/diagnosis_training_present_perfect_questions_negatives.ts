@@ -3,7 +3,19 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (ru: string, uk: string, es: string): TriText => {
+  const plannedFallback = {
+    'pt-BR': es,
+    vi: es,
+    id: es,
+    tr: es,
+    pl: es,
+  } satisfies Record<PlannedTrainingLocale, string>;
+
+  return { ru, uk, es, ...plannedFallback };
+};
 
 const CONTRAST = [
   'have you + V3',
@@ -169,6 +181,66 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       "Never already makes the meaning negative: don't usually say haven't never.",
       'Already can appear in questions, but neutral already? often uses yet.',
     ],
+    'pt-BR': [
+      'Em perguntas, have/has vem no começo: Have you finished?',
+      'Com he, she, it, usamos has: Has she called?',
+      'Depois de have/has, use V3: done, seen, finished, called.',
+      'Não diga Did you finished? Para Present Perfect, use Have you finished?',
+      "Em negativas, usamos haven't ou hasn't.",
+      "Depois de haven't/hasn't, use V3: haven't seen, hasn't called.",
+      'Yet costuma ficar no fim de perguntas ou negativas.',
+      'Ever normalmente pergunta sobre experiência: Have you ever been there?',
+      "Never já traz sentido negativo: normalmente não diga haven't never.",
+      'Already pode aparecer em perguntas, mas o "já?" neutro muitas vezes usa yet.',
+    ],
+    vi: [
+      'Trong câu hỏi, have/has đứng đầu: Have you finished?',
+      'Với he, she, it, dùng has: Has she called?',
+      'Sau have/has, dùng V3: done, seen, finished, called.',
+      'Đừng nói Did you finished? Với Present Perfect, dùng Have you finished?',
+      "Câu phủ định dùng haven't hoặc hasn't.",
+      "Sau haven't/hasn't, dùng V3: haven't seen, hasn't called.",
+      'Yet thường đứng cuối câu hỏi hoặc câu phủ định.',
+      'Ever thường hỏi về trải nghiệm: Have you ever been there?',
+      "Never đã mang nghĩa phủ định, nên thường không dùng haven't never.",
+      'Already có thể xuất hiện trong câu hỏi, nhưng câu hỏi trung tính "đã chưa?" thường dùng yet.',
+    ],
+    id: [
+      'Dalam pertanyaan, have/has berada di awal: Have you finished?',
+      'Dengan he, she, it, gunakan has: Has she called?',
+      'Setelah have/has, gunakan V3: done, seen, finished, called.',
+      'Jangan mengatakan Did you finished? Untuk Present Perfect, gunakan Have you finished?',
+      "Kalimat negatif memakai haven't atau hasn't.",
+      "Setelah haven't/hasn't, gunakan V3: haven't seen, hasn't called.",
+      'Yet sering berada di akhir pertanyaan atau kalimat negatif.',
+      'Ever biasanya menanyakan pengalaman: Have you ever been there?',
+      "Never sudah bermakna negatif, jadi biasanya jangan memakai haven't never.",
+      'Already bisa muncul dalam pertanyaan, tetapi pertanyaan netral "sudah?" sering memakai yet.',
+    ],
+    tr: [
+      'Soruda have/has başa gelir: Have you finished?',
+      'He, she, it ile has kullanırız: Has she called?',
+      'Have/has sonrasında V3 kullan: done, seen, finished, called.',
+      'Did you finished? deme. Present Perfect için Have you finished? kullan.',
+      "Olumsuzda haven't veya hasn't kullanırız.",
+      "Haven't/hasn't sonrasında V3 kullan: haven't seen, hasn't called.",
+      'Yet genellikle soru veya olumsuz cümlenin sonunda durur.',
+      'Ever genellikle deneyim sorar: Have you ever been there?',
+      "Never zaten olumsuz anlam taşır; genelde haven't never deme.",
+      'Already sorularda olabilir, ama nötr "çoktan mı?" sorusunda sıkça yet kullanılır.',
+    ],
+    pl: [
+      'W pytaniu have/has stoi na początku: Have you finished?',
+      'Z he, she, it używamy has: Has she called?',
+      'Po have/has użyj V3: done, seen, finished, called.',
+      'Nie mów Did you finished? W Present Perfect użyj Have you finished?',
+      "W przeczeniach używamy haven't albo hasn't.",
+      "Po haven't/hasn't użyj V3: haven't seen, hasn't called.",
+      'Yet często stoi na końcu pytania albo przeczenia.',
+      'Ever zwykle pyta o doświadczenie: Have you ever been there?',
+      "Never już ma znaczenie przeczenia, więc zwykle nie mówimy haven't never.",
+      'Already może wystąpić w pytaniu, ale neutralne "już?" często budujemy z yet.',
+    ],
   },
   examples: [
     {
@@ -176,6 +248,11 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       ru: 'Ты закончил урок?',
       uk: 'Ти закінчив урок?',
       es: 'Have you finished the lesson?',
+      'pt-BR': 'Você terminou a lição?',
+      vi: 'Bạn đã hoàn thành bài học chưa?',
+      id: 'Apakah kamu sudah menyelesaikan pelajaran?',
+      tr: 'Dersi bitirdin mi?',
+      pl: 'Czy skończyłeś lekcję?',
       why: tri('В вопросе have выходит в начало, а finished остается V3.', 'У питанні have виходить на початок, а finished залишається V3.', 'Have comes first in the question, and finished stays V3.'),
     },
     {
@@ -183,6 +260,11 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       ru: 'Она тебе позвонила?',
       uk: 'Вона тобі подзвонила?',
       es: 'Has she called you?',
+      'pt-BR': 'Ela ligou para você?',
+      vi: 'Cô ấy đã gọi cho bạn chưa?',
+      id: 'Apakah dia sudah meneleponmu?',
+      tr: 'Seni aradı mı?',
+      pl: 'Czy ona do ciebie zadzwoniła?',
       why: tri('С she нужен has. Called уже правильная форма после has.', 'З she потрібен has. Called уже правильна форма після has.', 'She needs has. Called is the right form after has.'),
     },
     {
@@ -190,6 +272,11 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       ru: 'Я еще не закончил.',
       uk: 'Я ще не закінчив.',
       es: "I haven't finished yet.",
+      'pt-BR': 'Ainda não terminei.',
+      vi: 'Tôi vẫn chưa hoàn thành.',
+      id: 'Saya belum selesai.',
+      tr: 'Henüz bitirmedim.',
+      pl: 'Jeszcze nie skończyłem.',
       why: tri("Haven't finished yet дает смысл 'еще не закончил'.", "Haven't finished yet дає зміст 'ще не закінчив'.", "Haven't finished yet means not finished yet."),
     },
     {
@@ -197,6 +284,11 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       ru: 'Она не видела сообщение.',
       uk: 'Вона не бачила повідомлення.',
       es: "She hasn't seen the message.",
+      'pt-BR': 'Ela não viu a mensagem.',
+      vi: 'Cô ấy chưa xem tin nhắn.',
+      id: 'Dia belum melihat pesannya.',
+      tr: 'Mesajı görmedi.',
+      pl: 'Ona nie widziała wiadomości.',
       why: tri("С she берем hasn't. После hasn't нужен seen, не see и не saw.", "З she беремо hasn't. Після hasn't потрібен seen, не see і не saw.", "With she, use hasn't. After hasn't, use seen, not see or saw."),
     },
     {
@@ -204,6 +296,11 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       ru: 'Ты когда-нибудь это пробовал?',
       uk: 'Ти коли-небудь це пробував?',
       es: 'Have you ever tried it?',
+      'pt-BR': 'Você já experimentou isso?',
+      vi: 'Bạn đã từng thử nó chưa?',
+      id: 'Apakah kamu pernah mencobanya?',
+      tr: 'Bunu hiç denedin mi?',
+      pl: 'Czy kiedykolwiek tego próbowałeś?',
       why: tri('Ever удобно спрашивает об опыте.', 'Ever зручно питає про досвід.', 'Ever naturally asks about experience.'),
     },
     {
@@ -211,6 +308,11 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       ru: 'Я никогда этого не пробовал.',
       uk: 'Я ніколи цього не пробував.',
       es: 'I have never tried it.',
+      'pt-BR': 'Nunca experimentei isso.',
+      vi: 'Tôi chưa bao giờ thử nó.',
+      id: 'Saya belum pernah mencobanya.',
+      tr: 'Bunu hiç denemedim.',
+      pl: 'Nigdy tego nie próbowałem.',
       why: tri("Never уже дает отрицательный смысл, поэтому не нужно haven't never.", "Never уже дає заперечний зміст, тому не потрібно haven't never.", "Never already makes the meaning negative, so do not use haven't never."),
     },
     {
@@ -218,6 +320,11 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       ru: 'Они уже ушли?',
       uk: 'Вони вже пішли?',
       es: 'Have they left yet?',
+      'pt-BR': 'Eles já foram embora?',
+      vi: 'Họ đã rời đi chưa?',
+      id: 'Apakah mereka sudah pergi?',
+      tr: 'Onlar ayrıldı mı?',
+      pl: 'Czy oni już wyszli?',
       why: tri('В нейтральном вопросе "уже?" yet часто стоит в конце.', 'У нейтральному питанні "вже?" yet часто стоїть у кінці.', 'In a neutral already? question, yet often comes at the end.'),
     },
     {
@@ -225,6 +332,11 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       ru: 'Они еще не ушли.',
       uk: 'Вони ще не пішли.',
       es: "They haven't left yet.",
+      'pt-BR': 'Eles ainda não foram embora.',
+      vi: 'Họ vẫn chưa rời đi.',
+      id: 'Mereka belum pergi.',
+      tr: 'Henüz ayrılmadılar.',
+      pl: 'Oni jeszcze nie wyszli.',
       why: tri("Haven't left yet значит, что до текущего момента они еще не ушли.", "Haven't left yet означає, що до поточного моменту вони ще не пішли.", "Haven't left yet means they have not left up to now."),
     },
   ],

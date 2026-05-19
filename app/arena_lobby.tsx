@@ -56,12 +56,12 @@ const ARENA_THEME_BACKDROPS = {
     minimalDark: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
 } as const;
 const ARENA_TICKET_ICONS = {
-    dark: require('../assets/images/arena_tickets/ticket-dark.png'),
-    neon: require('../assets/images/arena_tickets/ticket-neon.png'),
-    gold: require('../assets/images/arena_tickets/ticket-gold.png'),
-    coral: require('../assets/images/arena_tickets/ticket-coral.png'),
-    minimalLight: require('../assets/images/arena_tickets/ticket-minimal-light.png'),
-    minimalDark: require('../assets/images/arena_tickets/ticket-minimal-dark.png'),
+    dark: require('../assets/images/arena_tickets/ticket-dark.webp'),
+    neon: require('../assets/images/arena_tickets/ticket-neon.webp'),
+    gold: require('../assets/images/arena_tickets/ticket-gold.webp'),
+    coral: require('../assets/images/arena_tickets/ticket-coral.webp'),
+    minimalLight: require('../assets/images/arena_tickets/ticket-minimal-light.webp'),
+    minimalDark: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
 } as const;
 type IdleQueueHintCache = {
     value: number;

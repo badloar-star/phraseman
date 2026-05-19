@@ -2,7 +2,19 @@
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = 'This training is available for this interface language.'): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (ru: string, uk = ru, es = 'This training is available for this interface language.'): TriText => {
+  const plannedFallback = {
+    'pt-BR': es,
+    vi: es,
+    id: es,
+    tr: es,
+    pl: es,
+  } satisfies Record<PlannedTrainingLocale, string>;
+
+  return { ru, uk, es, ...plannedFallback };
+};
 
 const CONTRAST = [
   'who for people',
@@ -171,16 +183,76 @@ export const RELATIVE_CLAUSES_WHO_WHICH_THAT_TRAINING: DiagnosisTraining = {
       'That is usually not used after a comma in strict usage.',
       'Whose means possession.',
     ],
+    'pt-BR': [
+      'Who costuma ser usado para pessoas: the man who called.',
+      'Which costuma ser usado para coisas, animais, ideias e situações.',
+      'That pode funcionar com pessoas e coisas quando o detalhe é essencial para o sentido.',
+      'Não repita he/it depois de who/which/that quando o papel já está preenchido.',
+      'Na frase the book I bought, that pode ser omitido.',
+      'Se a ação vem logo depois da lacuna, normalmente precisamos de um conector.',
+      'Who não é a escolha básica para coisas comuns.',
+      'Which não é a escolha básica para pessoas.',
+      'That normalmente não é usado depois de vírgula em uso mais estrito.',
+      'Whose indica posse.',
+    ],
+    vi: [
+      'Who thường dùng cho người: the man who called.',
+      'Which thường dùng cho đồ vật, động vật, ý tưởng và tình huống.',
+      'That có thể dùng với người và vật khi phần bổ sung là cần thiết cho ý nghĩa.',
+      'Đừng lặp he/it sau who/which/that khi vai trò đó đã được lấp đầy.',
+      'Trong cụm the book I bought, có thể bỏ that.',
+      'Nếu hành động đứng ngay sau chỗ trống, thường cần từ nối.',
+      'Who không phải lựa chọn cơ bản cho đồ vật thông thường.',
+      'Which không phải lựa chọn cơ bản cho người.',
+      'Trong cách dùng nghiêm ngặt, that thường không đứng sau dấu phẩy.',
+      'Whose chỉ sự sở hữu.',
+    ],
+    id: [
+      'Who sering dipakai untuk orang: the man who called.',
+      'Which sering dipakai untuk benda, hewan, ide, dan situasi.',
+      'That bisa dipakai untuk orang dan benda saat detailnya penting untuk makna.',
+      'Jangan ulangi he/it setelah who/which/that saat perannya sudah terisi.',
+      'Dalam frasa the book I bought, that bisa dihilangkan.',
+      'Jika tindakan langsung muncul setelah bagian kosong, konektor biasanya diperlukan.',
+      'Who bukan pilihan dasar untuk benda biasa.',
+      'Which bukan pilihan dasar untuk orang.',
+      'That biasanya tidak dipakai setelah koma dalam penggunaan yang ketat.',
+      'Whose menunjukkan kepemilikan.',
+    ],
+    tr: [
+      'Who genellikle insanlar için kullanılır: the man who called.',
+      'Which genellikle şeyler, hayvanlar, fikirler ve durumlar için kullanılır.',
+      'That, ayrıntı anlam için gerekliyse insanlar ve şeylerle kullanılabilir.',
+      'Rol zaten doluysa who/which/that sonrasında he/it tekrar etme.',
+      'The book I bought ifadesinde that atılabilir.',
+      'Boşluktan hemen sonra eylem geliyorsa genellikle bağlayıcı gerekir.',
+      'Who sıradan şeyler için temel seçim değildir.',
+      'Which insanlar için temel seçim değildir.',
+      'Katı kullanımda that genellikle virgülden sonra kullanılmaz.',
+      'Whose sahiplik gösterir.',
+    ],
+    pl: [
+      'Who często używamy dla ludzi: the man who called.',
+      'Which często używamy dla rzeczy, zwierząt, idei i sytuacji.',
+      'That może działać z ludźmi i rzeczami, gdy doprecyzowanie jest ważne dla sensu.',
+      'Nie powtarzaj he/it po who/which/that, gdy rola jest już wypełniona.',
+      'W wyrażeniu the book I bought można pominąć that.',
+      'Jeśli zaraz po luce pojawia się czynność, łącznik zwykle jest potrzebny.',
+      'Who nie jest podstawowym wyborem dla zwykłych rzeczy.',
+      'Which nie jest podstawowym wyborem dla ludzi.',
+      'That zwykle nie występuje po przecinku w ścisłym użyciu.',
+      'Whose oznacza posiadanie.',
+    ],
   },
   examples: [
-    { en: 'The man who called you is here.', ru: 'The man who called you is here.', uk: 'The man who called you is here.', es: 'The man who called you is here.', why: tri('Man - человек, поэтому who звучит естественно.', 'Man - людина, тому who звучить природно.') },
-    { en: 'The book which helped me is on the table.', ru: 'The book which helped me is on the table.', uk: 'The book which helped me is on the table.', es: 'The book which helped me is on the table.', why: tri('Book - вещь, поэтому which работает.', 'Book - річ, тому which працює.') },
-    { en: 'The book that helped me is on the table.', ru: 'The book that helped me is on the table.', uk: 'The book that helped me is on the table.', es: 'The book that helped me is on the table.', why: tri('That может заменить which в таком важном уточнении.', 'That може замінити which у такому важливому уточненні.') },
-    { en: 'The person that I met yesterday was very kind.', ru: 'The person that I met yesterday was very kind.', uk: 'The person that I met yesterday was very kind.', es: 'The person that I met yesterday was very kind.', why: tri('That соединяет person и I met yesterday.', 'That поєднує person та I met yesterday.') },
-    { en: 'The phone that I bought is expensive.', ru: 'The phone that I bought is expensive.', uk: 'The phone that I bought is expensive.', es: 'The phone that I bought is expensive.', why: tri('Phone - вещь, и that здесь работает.', 'Phone - річ, і that тут працює.') },
-    { en: 'The phone I bought is expensive.', ru: 'The phone I bought is expensive.', uk: 'The phone I bought is expensive.', es: 'The phone I bought is expensive.', why: tri('Здесь that можно не произносить.', 'Тут that можна не вимовляти.') },
-    { en: 'I know a woman whose son lives in Cork.', ru: 'I know a woman whose son lives in Cork.', uk: 'I know a woman whose son lives in Cork.', es: 'I know a woman whose son lives in Cork.', why: tri('Whose показывает связь: whose son.', 'Whose показує звʼязок: whose son.') },
-    { en: 'My brother, who lives in Dublin, is a doctor.', ru: 'My brother, who lives in Dublin, is a doctor.', uk: 'My brother, who lives in Dublin, is a doctor.', es: 'My brother, who lives in Dublin, is a doctor.', why: tri('После запятой про человека в строгой норме берем who, не that.', 'Після коми про людину у строгій нормі беремо who, не that.') },
+    { en: 'The man who called you is here.', ru: 'The man who called you is here.', uk: 'The man who called you is here.', es: 'The man who called you is here.', 'pt-BR': 'O homem que ligou para você está aqui.', vi: 'Người đàn ông đã gọi cho bạn đang ở đây.', id: 'Pria yang meneleponmu ada di sini.', tr: 'Seni arayan adam burada.', pl: 'Mężczyzna, który do ciebie dzwonił, jest tutaj.', why: tri('Man - человек, поэтому who звучит естественно.', 'Man - людина, тому who звучить природно.') },
+    { en: 'The book which helped me is on the table.', ru: 'The book which helped me is on the table.', uk: 'The book which helped me is on the table.', es: 'The book which helped me is on the table.', 'pt-BR': 'O livro que me ajudou está na mesa.', vi: 'Cuốn sách đã giúp tôi đang ở trên bàn.', id: 'Buku yang membantu saya ada di atas meja.', tr: 'Bana yardımcı olan kitap masanın üzerinde.', pl: 'Książka, która mi pomogła, jest na stole.', why: tri('Book - вещь, поэтому which работает.', 'Book - річ, тому which працює.') },
+    { en: 'The book that helped me is on the table.', ru: 'The book that helped me is on the table.', uk: 'The book that helped me is on the table.', es: 'The book that helped me is on the table.', 'pt-BR': 'O livro que me ajudou está na mesa.', vi: 'Cuốn sách đã giúp tôi đang ở trên bàn.', id: 'Buku yang membantu saya ada di atas meja.', tr: 'Bana yardımcı olan kitap masanın üzerinde.', pl: 'Książka, która mi pomogła, jest na stole.', why: tri('That может заменить which в таком важном уточнении.', 'That може замінити which у такому важливому уточненні.') },
+    { en: 'The person that I met yesterday was very kind.', ru: 'The person that I met yesterday was very kind.', uk: 'The person that I met yesterday was very kind.', es: 'The person that I met yesterday was very kind.', 'pt-BR': 'A pessoa que conheci ontem foi muito gentil.', vi: 'Người mà tôi gặp hôm qua rất tử tế.', id: 'Orang yang saya temui kemarin sangat baik.', tr: 'Dün tanıştığım kişi çok nazikti.', pl: 'Osoba, którą wczoraj spotkałem, była bardzo miła.', why: tri('That соединяет person и I met yesterday.', 'That поєднує person та I met yesterday.') },
+    { en: 'The phone that I bought is expensive.', ru: 'The phone that I bought is expensive.', uk: 'The phone that I bought is expensive.', es: 'The phone that I bought is expensive.', 'pt-BR': 'O telefone que comprei é caro.', vi: 'Chiếc điện thoại mà tôi mua thì đắt.', id: 'Ponsel yang saya beli mahal.', tr: 'Satın aldığım telefon pahalı.', pl: 'Telefon, który kupiłem, jest drogi.', why: tri('Phone - вещь, и that здесь работает.', 'Phone - річ, і that тут працює.') },
+    { en: 'The phone I bought is expensive.', ru: 'The phone I bought is expensive.', uk: 'The phone I bought is expensive.', es: 'The phone I bought is expensive.', 'pt-BR': 'O telefone que comprei é caro.', vi: 'Chiếc điện thoại tôi mua thì đắt.', id: 'Ponsel yang saya beli mahal.', tr: 'Satın aldığım telefon pahalı.', pl: 'Telefon, który kupiłem, jest drogi.', why: tri('Здесь that можно не произносить.', 'Тут that можна не вимовляти.') },
+    { en: 'I know a woman whose son lives in Cork.', ru: 'I know a woman whose son lives in Cork.', uk: 'I know a woman whose son lives in Cork.', es: 'I know a woman whose son lives in Cork.', 'pt-BR': 'Conheço uma mulher cujo filho mora em Cork.', vi: 'Tôi biết một người phụ nữ có con trai sống ở Cork.', id: 'Saya kenal seorang wanita yang putranya tinggal di Cork.', tr: "Oğlu Cork'ta yaşayan bir kadın tanıyorum.", pl: 'Znam kobietę, której syn mieszka w Cork.', why: tri('Whose показывает связь: whose son.', 'Whose показує звʼязок: whose son.') },
+    { en: 'My brother, who lives in Dublin, is a doctor.', ru: 'My brother, who lives in Dublin, is a doctor.', uk: 'My brother, who lives in Dublin, is a doctor.', es: 'My brother, who lives in Dublin, is a doctor.', 'pt-BR': 'Meu irmão, que mora em Dublin, é médico.', vi: 'Anh trai tôi, người sống ở Dublin, là bác sĩ.', id: 'Saudara laki-laki saya, yang tinggal di Dublin, adalah dokter.', tr: "Dublin'de yaşayan kardeşim doktor.", pl: 'Mój brat, który mieszka w Dublinie, jest lekarzem.', why: tri('После запятой про человека в строгой норме берем who, не that.', 'Після коми про людину у строгій нормі беремо who, не that.') },
   ],
   introBlocks: [
     {

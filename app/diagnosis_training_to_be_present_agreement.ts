@@ -3,7 +3,19 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (ru: string, uk: string, es: string): TriText => {
+  const plannedFallback = {
+    'pt-BR': es,
+    vi: es,
+    id: es,
+    tr: es,
+    pl: es,
+  } satisfies Record<PlannedTrainingLocale, string>;
+
+  return { ru, uk, es, ...plannedFallback };
+};
 
 function beStep(input: {
   id: string;
@@ -119,16 +131,66 @@ export const TO_BE_PRESENT_AGREEMENT_TRAINING: DiagnosisTraining = {
       'En pregunta, be va al principio: Is she ready?',
       'En negación, not va después de be: They are not here.',
     ],
+    'pt-BR': [
+      'Use be para papel ou função: He is a doctor.',
+      'Use be para qualidade ou estado: She is tired, I am ready.',
+      'Use be para lugar: They are at home.',
+      'I sempre usa am.',
+      'He/she/it e uma coisa no singular usam is.',
+      'You/we/they e plural usam are.',
+      'Em perguntas, be vai para o início: Is she ready?',
+      'Em negativas, not vem depois de be: They are not here.',
+    ],
+    vi: [
+      'Dùng be khi nói về vai trò: He is a doctor.',
+      'Dùng be khi nói về tính chất hoặc trạng thái: She is tired, I am ready.',
+      'Dùng be khi nói về nơi chốn: They are at home.',
+      'I luôn đi với am.',
+      'He/she/it và một vật số ít đi với is.',
+      'You/we/they và số nhiều đi với are.',
+      'Trong câu hỏi, be đứng ở đầu: Is she ready?',
+      'Trong câu phủ định, not đứng sau be: They are not here.',
+    ],
+    id: [
+      'Gunakan be untuk peran: He is a doctor.',
+      'Gunakan be untuk sifat atau keadaan: She is tired, I am ready.',
+      'Gunakan be untuk tempat: They are at home.',
+      'I selalu memakai am.',
+      'He/she/it dan satu benda tunggal memakai is.',
+      'You/we/they dan bentuk jamak memakai are.',
+      'Dalam pertanyaan, be pindah ke awal: Is she ready?',
+      'Dalam kalimat negatif, not berada setelah be: They are not here.',
+    ],
+    tr: [
+      'Rol veya meslek için be kullan: He is a doctor.',
+      'Nitelik veya durum için be kullan: She is tired, I am ready.',
+      'Yer bildirirken be kullan: They are at home.',
+      'I her zaman am alır.',
+      'He/she/it ve tekil bir şey is alır.',
+      'You/we/they ve çoğul are alır.',
+      'Soruda be başa gelir: Is she ready?',
+      'Olumsuzda not, be sonrasına gelir: They are not here.',
+    ],
+    pl: [
+      'Użyj be przy roli albo zawodzie: He is a doctor.',
+      'Użyj be przy cesze albo stanie: She is tired, I am ready.',
+      'Użyj be przy miejscu: They are at home.',
+      'I zawsze łączy się z am.',
+      'He/she/it i jedna rzecz w liczbie pojedynczej łączą się z is.',
+      'You/we/they i liczba mnoga łączą się z are.',
+      'W pytaniu be idzie na początek: Is she ready?',
+      'W przeczeniu not stoi po be: They are not here.',
+    ],
   },
   examples: [
-    { en: 'I am ready.', ru: 'Я готов.', uk: 'Я готовий.', es: 'Estoy listo.', why: tri('I всегда требует am.', 'I завжди потребує am.', 'I siempre necesita am.') },
-    { en: 'She is tired.', ru: 'Она устала.', uk: 'Вона втомлена.', es: 'Ella está cansada.', why: tri('She идет с is. Tired - состояние.', 'She йде з is. Tired - стан.', 'She va con is. Tired es estado.') },
-    { en: 'They are at home.', ru: 'Они дома.', uk: 'Вони вдома.', es: 'Están en casa.', why: tri('They идет с are. At home - место.', 'They йде з are. At home - місце.', 'They va con are. At home es lugar.') },
-    { en: 'It is cold today.', ru: 'Сегодня холодно.', uk: 'Сьогодні холодно.', es: 'Hace frío hoy.', why: tri('Для погоды часто используется it is.', 'Для погоди часто використовується it is.', 'Para clima muchas veces usamos it is.') },
-    { en: 'You are right.', ru: 'Ты прав.', uk: 'Ти правий.', es: 'Tienes razón.', why: tri('You всегда идет с are.', 'You завжди йде з are.', 'You siempre va con are.') },
-    { en: 'The lesson is difficult.', ru: 'Урок сложный.', uk: 'Урок складний.', es: 'La lección es difícil.', why: tri('The lesson — это один урок, поэтому is.', 'The lesson — це один урок, тому is.', 'The lesson = one thing, por eso is.') },
-    { en: 'The books are on the table.', ru: 'Книги на столе.', uk: 'Книги на столі.', es: 'Los libros están sobre la mesa.', why: tri('Books — это несколько книг, поэтому are.', 'Books — це кілька книжок, тому are.', 'Books = plural, por eso are.') },
-    { en: 'Is she ready?', ru: 'Она готова?', uk: 'Вона готова?', es: 'Está lista?', why: tri('В вопросе is выходит вперед.', 'У питанні is виходить вперед.', 'En pregunta, is va al principio.') },
+    { en: 'I am ready.', ru: 'Я готов.', uk: 'Я готовий.', es: 'Estoy listo.', 'pt-BR': 'Estou pronto.', vi: 'Tôi đã sẵn sàng.', id: 'Saya siap.', tr: 'Hazırım.', pl: 'Jestem gotowy.', why: tri('I всегда требует am.', 'I завжди потребує am.', 'I siempre necesita am.') },
+    { en: 'She is tired.', ru: 'Она устала.', uk: 'Вона втомлена.', es: 'Ella está cansada.', 'pt-BR': 'Ela está cansada.', vi: 'Cô ấy mệt.', id: 'Dia lelah.', tr: 'O yorgun.', pl: 'Ona jest zmęczona.', why: tri('She идет с is. Tired - состояние.', 'She йде з is. Tired - стан.', 'She va con is. Tired es estado.') },
+    { en: 'They are at home.', ru: 'Они дома.', uk: 'Вони вдома.', es: 'Están en casa.', 'pt-BR': 'Eles estão em casa.', vi: 'Họ đang ở nhà.', id: 'Mereka ada di rumah.', tr: 'Onlar evde.', pl: 'Oni są w domu.', why: tri('They идет с are. At home - место.', 'They йде з are. At home - місце.', 'They va con are. At home es lugar.') },
+    { en: 'It is cold today.', ru: 'Сегодня холодно.', uk: 'Сьогодні холодно.', es: 'Hace frío hoy.', 'pt-BR': 'Está frio hoje.', vi: 'Hôm nay trời lạnh.', id: 'Hari ini dingin.', tr: 'Bugün hava soğuk.', pl: 'Dziś jest zimno.', why: tri('Для погоды часто используется it is.', 'Для погоди часто використовується it is.', 'Para clima muchas veces usamos it is.') },
+    { en: 'You are right.', ru: 'Ты прав.', uk: 'Ти правий.', es: 'Tienes razón.', 'pt-BR': 'Você está certo.', vi: 'Bạn đúng.', id: 'Kamu benar.', tr: 'Haklısın.', pl: 'Masz rację.', why: tri('You всегда идет с are.', 'You завжди йде з are.', 'You siempre va con are.') },
+    { en: 'The lesson is difficult.', ru: 'Урок сложный.', uk: 'Урок складний.', es: 'La lección es difícil.', 'pt-BR': 'A lição é difícil.', vi: 'Bài học này khó.', id: 'Pelajaran ini sulit.', tr: 'Ders zor.', pl: 'Lekcja jest trudna.', why: tri('The lesson — это один урок, поэтому is.', 'The lesson — це один урок, тому is.', 'The lesson = one thing, por eso is.') },
+    { en: 'The books are on the table.', ru: 'Книги на столе.', uk: 'Книги на столі.', es: 'Los libros están sobre la mesa.', 'pt-BR': 'Os livros estão sobre a mesa.', vi: 'Những cuốn sách ở trên bàn.', id: 'Buku-buku ada di atas meja.', tr: 'Kitaplar masanın üzerinde.', pl: 'Książki są na stole.', why: tri('Books — это несколько книг, поэтому are.', 'Books — це кілька книжок, тому are.', 'Books = plural, por eso are.') },
+    { en: 'Is she ready?', ru: 'Она готова?', uk: 'Вона готова?', es: 'Está lista?', 'pt-BR': 'Ela está pronta?', vi: 'Cô ấy sẵn sàng chưa?', id: 'Apakah dia siap?', tr: 'O hazır mı?', pl: 'Czy ona jest gotowa?', why: tri('В вопросе is выходит вперед.', 'У питанні is виходить вперед.', 'En pregunta, is va al principio.') },
   ],
   introBlocks: [
     { id: 'intro_problem', type: 'diagnosis', text: tri('Похоже, ты путаешь am, is и are или пропускаешь это маленькое слово там, где английский без него разваливается.', 'Схоже, ти плутаєш am, is і are або пропускаєш це маленьке слово там, де англійська без нього розвалюється.', 'Parece que confundes am, is y are u omites be donde el inglés lo necesita.') },

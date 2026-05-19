@@ -6,27 +6,27 @@ type EnergyVariant = 'normal' | 'frozen';
 type EnergyAssetThemeMode = ThemeMode | 'crimson';
 
 const ENERGY_IMAGES: Partial<Record<EnergyAssetThemeMode, any>> = {
-  dark: require('../assets/images/energy/energy-forest.png'),
-  neon: require('../assets/images/energy/energy-neon.png'),
-  gold: require('../assets/images/energy/energy-gold.png'),
-  coral: require('../assets/images/energy/energy-coral.png'),
-  crimson: require('../assets/images/energy/energy-crimson.png'),
-  minimalDark: require('../assets/images/energy/energy-graphite.png'),
-  minimalLight: require('../assets/images/energy/energy-sketch.png'),
+  dark: require('../assets/images/energy/energy-forest.webp'),
+  neon: require('../assets/images/energy/energy-neon.webp'),
+  gold: require('../assets/images/energy/energy-gold.webp'),
+  coral: require('../assets/images/energy/energy-coral.webp'),
+  crimson: require('../assets/images/energy/energy-crimson.webp'),
+  minimalDark: require('../assets/images/energy/energy-graphite.webp'),
+  minimalLight: require('../assets/images/energy/energy-sketch.webp'),
 };
 
 const PREMIUM_ENERGY_IMAGES: Partial<Record<EnergyAssetThemeMode, any>> = {
-  minimalLight: require('../assets/images/energy/energy-sketch-premium.png'),
+  minimalLight: require('../assets/images/energy/energy-sketch-premium.webp'),
 };
 
 const FROZEN_ENERGY_IMAGES: Partial<Record<EnergyAssetThemeMode, any>> = {
-  dark: require('../assets/images/energy/energy-forest-frozen.png'),
-  neon: require('../assets/images/energy/energy-neon-frozen.png'),
-  gold: require('../assets/images/energy/energy-gold-frozen.png'),
-  coral: require('../assets/images/energy/energy-coral-frozen.png'),
-  crimson: require('../assets/images/energy/energy-crimson-frozen.png'),
-  minimalDark: require('../assets/images/energy/energy-graphite-frozen.png'),
-  minimalLight: require('../assets/images/energy/energy-sketch-frozen.png'),
+  dark: require('../assets/images/energy/energy-forest-frozen.webp'),
+  neon: require('../assets/images/energy/energy-neon-frozen.webp'),
+  gold: require('../assets/images/energy/energy-gold-frozen.webp'),
+  coral: require('../assets/images/energy/energy-coral-frozen.webp'),
+  crimson: require('../assets/images/energy/energy-crimson-frozen.webp'),
+  minimalDark: require('../assets/images/energy/energy-graphite-frozen.webp'),
+  minimalLight: require('../assets/images/energy/energy-sketch-frozen.webp'),
 };
 
 interface EnergyIconProps {
@@ -79,7 +79,7 @@ export default function EnergyIcon({
     }
   }, [shouldShake, shakeAnim]);
 
-  const fallbackEnergyImage = require('../assets/images/energy/energy-forest.png');
+  const fallbackEnergyImage = require('../assets/images/energy/energy-forest.webp');
   const themedEnergyImage = themeMode
     ? (variant === 'frozen' ? FROZEN_ENERGY_IMAGES[themeMode] : ENERGY_IMAGES[themeMode])
     : undefined;

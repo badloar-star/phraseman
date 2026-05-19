@@ -1,7 +1,7 @@
 {
   "name": "phraseman",
   "main": "expo-router/entry",
-  "version": "1.5.33",
+  "version": "1.5.37",
   "scripts": {
     "start": "expo start",
     "start:emu": "powershell.exe -ExecutionPolicy Bypass -File ./scripts/dev-android-emulator.ps1",
@@ -120,7 +120,6 @@
     "@react-navigation/native": "^7.1.8",
     "expo": "~54.0.34",
     "expo-apple-authentication": "~8.0.8",
-    "expo-av": "~16.0.8",
     "expo-blur": "~15.0.8",
     "expo-build-properties": "~1.0.10",
     "expo-clipboard": "~8.0.8",
@@ -172,6 +171,9 @@
     "ts-jest": "^29.4.6",
     "tsx": "^4.20.0",
     "typescript": "~5.9.2"
+  },
+  "overrides": {
+    "postcss": "8.5.14"
   },
   "jest": {
     "preset": "ts-jest",

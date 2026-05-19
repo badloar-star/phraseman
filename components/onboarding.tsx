@@ -81,13 +81,13 @@ const ONBOARDING_BG_BUILDER = require('../assets/images/onboarding/onboarding-bg
 const ONBOARDING_BG_QUIZ = require('../assets/images/onboarding/onboarding-bg-quiz-wide.webp');
 const ONBOARDING_BG_STREAK = require('../assets/images/onboarding/onboarding-bg-streak-wide.webp');
 const ONBOARDING_BG_AUTH = require('../assets/images/onboarding/onboarding-bg-auth-wide.webp');
-const ONBOARDING_LINGMAN_ICON = require('../assets/images/onboarding/lingman-icon-transparent.png');
-const ONBOARDING_AUTH_ICON = require('../assets/images/onboarding/auth-quick-start-icon.png');
+const ONBOARDING_LINGMAN_ICON = require('../assets/images/onboarding/lingman-icon-transparent.webp');
+const ONBOARDING_AUTH_ICON = require('../assets/images/onboarding/auth-quick-start-icon.webp');
 const ONBOARDING_STREAK_ICONS: Record<StreakMilestoneIconKind, ImageSourcePropType> = {
-  flame: require('../assets/images/onboarding/streak-flame-medallion.png'),
-  bolt: require('../assets/images/onboarding/streak-bolt-medallion.png'),
-  gem: require('../assets/images/onboarding/streak-gem-medallion.png'),
-  crown: require('../assets/images/onboarding/streak-crown-medallion.png'),
+  flame: require('../assets/images/onboarding/streak-flame-medallion.webp'),
+  bolt: require('../assets/images/onboarding/streak-bolt-medallion.webp'),
+  gem: require('../assets/images/onboarding/streak-gem-medallion.webp'),
+  crown: require('../assets/images/onboarding/streak-crown-medallion.webp'),
 };
 const PREV_STEP: Partial<Record<OnboardingStepKey, OnboardingStepKey>> = {
   demo2: 'welcome',

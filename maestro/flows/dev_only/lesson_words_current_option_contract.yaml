@@ -1,0 +1,8 @@
+appId: app.phraseman
+---
+- extendedWaitUntil:
+    visible:
+      id: "lesson-words-option-correct"
+    timeout: 30000
+- assertVisible:
+    id: "lesson-words-option-correct"

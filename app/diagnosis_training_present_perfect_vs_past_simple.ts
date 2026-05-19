@@ -3,7 +3,19 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (ru: string, uk: string, es: string): TriText => {
+  const plannedFallback = {
+    'pt-BR': es,
+    vi: es,
+    id: es,
+    tr: es,
+    pl: es,
+  } satisfies Record<PlannedTrainingLocale, string>;
+
+  return { ru, uk, es, ...plannedFallback };
+};
 
 const CONTRAST = [
   'present perfect',
@@ -168,6 +180,61 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       'Do not say I have seen him yesterday. With yesterday, use I saw him yesterday.',
       'Do not say Did you ever been there? For experience, use Have you ever been there?',
     ],
+    'pt-BR': [
+      'Use Present Perfect quando o resultado importa agora: I have lost my keys.',
+      'Use Past Simple quando um momento passado específico é nomeado: I lost my keys yesterday.',
+      'Com yesterday, last week, in 2020 e ago, Past Simple geralmente é melhor.',
+      'Com ever e never para experiência de vida, Present Perfect geralmente é melhor.',
+      'Already e yet costumam aparecer com Present Perfect.',
+      'Perguntas com when geralmente usam Past Simple: When did you arrive?',
+      'Perguntas sobre experiencia geralmente usam Present Perfect: Have you ever tried it?',
+      'Não diga I have seen him yesterday. Com yesterday, use I saw him yesterday.',
+      'Não diga Did you ever been there? Para experiência, use Have you ever been there?',
+    ],
+    vi: [
+      'Dùng Present Perfect khi kết quả hiện tại quan trọng: I have lost my keys.',
+      'Dùng Past Simple khi nêu một thời điểm cụ thể trong quá khứ: I lost my keys yesterday.',
+      'Với yesterday, last week, in 2020 và ago, thường dùng Past Simple.',
+      'Với ever và never về trải nghiệm sống, thường dùng Present Perfect.',
+      'Already và yet thường đi với Present Perfect.',
+      'Câu hỏi với when thường dùng Past Simple: When did you arrive?',
+      'Câu hỏi về trải nghiệm thường dùng Present Perfect: Have you ever tried it?',
+      'Đừng nói I have seen him yesterday. Với yesterday, dùng I saw him yesterday.',
+      'Đừng nói Did you ever been there? Với trải nghiệm, dùng Have you ever been there?',
+    ],
+    id: [
+      'Gunakan Present Perfect saat hasilnya penting sekarang: I have lost my keys.',
+      'Gunakan Past Simple saat waktu lampau yang spesifik disebut: I lost my keys yesterday.',
+      'Dengan yesterday, last week, in 2020, dan ago, Past Simple biasanya lebih tepat.',
+      'Dengan ever dan never untuk pengalaman hidup, Present Perfect biasanya lebih tepat.',
+      'Already dan yet sering muncul dengan Present Perfect.',
+      'Pertanyaan dengan when biasanya memakai Past Simple: When did you arrive?',
+      'Pertanyaan pengalaman biasanya memakai Present Perfect: Have you ever tried it?',
+      'Jangan mengatakan I have seen him yesterday. Dengan yesterday, gunakan I saw him yesterday.',
+      'Jangan mengatakan Did you ever been there? Untuk pengalaman, gunakan Have you ever been there?',
+    ],
+    tr: [
+      'Sonuç şimdi önemliyse Present Perfect kullan: I have lost my keys.',
+      'Belirli bir geçmiş zaman söyleniyorsa Past Simple kullan: I lost my keys yesterday.',
+      'Yesterday, last week, in 2020 ve ago ile genellikle Past Simple daha uygundur.',
+      'Ever ve never ile yaşam deneyimi anlatırken genellikle Present Perfect daha uygundur.',
+      'Already ve yet sıkça Present Perfect ile kullanılır.',
+      'When soruları genellikle Past Simple kullanır: When did you arrive?',
+      'Deneyim soruları genellikle Present Perfect kullanır: Have you ever tried it?',
+      'I have seen him yesterday deme. Yesterday ile I saw him yesterday kullan.',
+      'Did you ever been there? deme. Deneyim için Have you ever been there? kullan.',
+    ],
+    pl: [
+      'Użyj Present Perfect, gdy ważny jest rezultat teraz: I have lost my keys.',
+      'Użyj Past Simple, gdy podany jest konkretny czas w przeszłości: I lost my keys yesterday.',
+      'Z yesterday, last week, in 2020 i ago zwykle lepszy jest Past Simple.',
+      'Z ever i never przy doświadczeniu życiowym zwykle lepszy jest Present Perfect.',
+      'Already i yet często występują z Present Perfect.',
+      'Pytania z when zwykle używają Past Simple: When did you arrive?',
+      'Pytania o doświadczenie zwykle używają Present Perfect: Have you ever tried it?',
+      'Nie mów I have seen him yesterday. Z yesterday użyj I saw him yesterday.',
+      'Nie mów Did you ever been there? Przy doświadczeniu użyj Have you ever been there?',
+    ],
   },
   examples: [
     {
@@ -175,6 +242,11 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       ru: 'Я потерял ключи.',
       uk: 'Я загубив ключі.',
       es: 'I have lost my keys.',
+      'pt-BR': 'Perdi minhas chaves.',
+      vi: 'Tôi đã làm mất chìa khóa.',
+      id: 'Saya kehilangan kunci saya.',
+      tr: 'Anahtarlarımı kaybettim.',
+      pl: 'Zgubiłem klucze.',
       why: tri('Фокус на результате сейчас: ключей нет.', 'Фокус на результаті зараз: ключів немає.', 'The focus is result now: the keys are missing.'),
     },
     {
@@ -182,6 +254,11 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       ru: 'Я потерял ключи вчера.',
       uk: 'Я загубив ключі вчора.',
       es: 'I lost my keys yesterday.',
+      'pt-BR': 'Perdi minhas chaves ontem.',
+      vi: 'Tôi đã làm mất chìa khóa hôm qua.',
+      id: 'Saya kehilangan kunci saya kemarin.',
+      tr: 'Anahtarlarımı dün kaybettim.',
+      pl: 'Zgubiłem klucze wczoraj.',
       why: tri('Yesterday называет законченный момент в прошлом.', 'Yesterday називає завершений момент у минулому.', 'Yesterday names a finished past time.'),
     },
     {
@@ -189,6 +266,11 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       ru: 'Ты когда-нибудь пробовал суши?',
       uk: 'Ти коли-небудь пробував суші?',
       es: 'Have you ever tried sushi?',
+      'pt-BR': 'Você já experimentou sushi?',
+      vi: 'Bạn đã từng thử sushi chưa?',
+      id: 'Apakah kamu pernah mencoba sushi?',
+      tr: 'Hiç suşi denedin mi?',
+      pl: 'Czy kiedykolwiek próbowałeś sushi?',
       why: tri('Ever спрашивает об опыте до текущего момента.', 'Ever питає про досвід до поточного моменту.', 'Ever asks about experience up to now.'),
     },
     {
@@ -196,6 +278,11 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       ru: 'Ты пробовал суши вчера?',
       uk: 'Ти пробував суші вчора?',
       es: 'Did you try sushi yesterday?',
+      'pt-BR': 'Você experimentou sushi ontem?',
+      vi: 'Hôm qua bạn đã thử sushi chưa?',
+      id: 'Apakah kamu mencoba sushi kemarin?',
+      tr: 'Dün suşi denedin mi?',
+      pl: 'Czy próbowałeś sushi wczoraj?',
       why: tri('Yesterday задает конкретный момент, поэтому нужен did.', 'Yesterday задає конкретний момент, тому потрібен did.', 'Yesterday gives a specific time, so use did.'),
     },
     {
@@ -203,6 +290,11 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       ru: 'Она уже закончила задачу.',
       uk: 'Вона вже закінчила завдання.',
       es: 'She has already finished the task.',
+      'pt-BR': 'Ela já terminou a tarefa.',
+      vi: 'Cô ấy đã hoàn thành nhiệm vụ rồi.',
+      id: 'Dia sudah menyelesaikan tugasnya.',
+      tr: 'Görevi çoktan bitirdi.',
+      pl: 'Ona już skończyła zadanie.',
       why: tri('Already показывает результат к текущему моменту.', 'Already показує результат до поточного моменту.', 'Already shows a result by now.'),
     },
     {
@@ -210,6 +302,11 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       ru: 'Она закончила задачу на прошлой неделе.',
       uk: 'Вона закінчила завдання минулого тижня.',
       es: 'She finished the task last week.',
+      'pt-BR': 'Ela terminou a tarefa na semana passada.',
+      vi: 'Cô ấy đã hoàn thành nhiệm vụ tuần trước.',
+      id: 'Dia menyelesaikan tugas itu minggu lalu.',
+      tr: 'Görevi geçen hafta bitirdi.',
+      pl: 'Ona skończyła zadanie w zeszłym tygodniu.',
       why: tri('Last week называет законченный прошлый период.', 'Last week називає завершений минулий період.', 'Last week names a finished past period.'),
     },
     {
@@ -217,6 +314,11 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       ru: 'Я никогда не был в Лондоне.',
       uk: 'Я ніколи не був у Лондоні.',
       es: 'I have never been to London.',
+      'pt-BR': 'Nunca estive em Londres.',
+      vi: 'Tôi chưa bao giờ đến London.',
+      id: 'Saya belum pernah ke London.',
+      tr: "Londra'ya hiç gitmedim.",
+      pl: 'Nigdy nie byłem w Londynie.',
       why: tri('Never говорит об отсутствии опыта до текущего момента.', 'Never говорить про відсутність досвіду до поточного моменту.', 'Never says the experience is absent up to now.'),
     },
     {
@@ -224,6 +326,11 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       ru: 'Я ездил в Дублин в 2020 году.',
       uk: 'Я їздив до Дубліна у 2020 році.',
       es: 'I went to Dublin in 2020.',
+      'pt-BR': 'Fui a Dublin em 2020.',
+      vi: 'Tôi đã đến Dublin năm 2020.',
+      id: 'Saya pergi ke Dublin pada tahun 2020.',
+      tr: "2020'de Dublin'e gittim.",
+      pl: 'Pojechałem do Dublina w 2020 roku.',
       why: tri('In 2020 называет конкретный прошлый период.', 'In 2020 називає конкретний минулий період.', 'In 2020 names a specific past period.'),
     },
   ],

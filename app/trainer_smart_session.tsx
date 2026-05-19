@@ -10,7 +10,6 @@ import ContentWrap from '../components/ContentWrap';
 import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
-import { playAppSound } from './audio/sound_manager';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { checkAchievements } from './achievements';
 import { logMistake } from './mistake_log';
@@ -492,7 +491,6 @@ export default function TrainerSmartSession() {
     setState(correct ? 'correct' : 'wrong');
     if (correct) hapticSuccess();
     else hapticError();
-    void playAppSound(correct ? 'answer.correct' : 'answer.wrong');
 
     await markTrainerResult(current.item.key, current.item.queue, correct);
     if (current.category) {

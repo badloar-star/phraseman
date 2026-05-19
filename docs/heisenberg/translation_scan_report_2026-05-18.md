@@ -3,7 +3,7 @@
 ## Gate status
 
 - `npm run heisenberg:gate`: PASS
-- Batch manifest: `docs/heisenberg/batch/2026-05-18T14-23-54-767Z/manifest.json`
+- Batch manifest: `docs/heisenberg/batch/2026-05-18T15-12-06-313Z/manifest.json`
 - Batch locales: `es`, `pt-BR`, `vi`, `id`, `tr`, `pl`
 - Batch coverage: `partial units: 0`, `missing-all units: 0` for every target locale
 - Existing `es` locale audit blockers: `0`
@@ -14,7 +14,7 @@
 - Focused Jest inside gate: PASS, 5 suites / 61 tests
 - `npx tsc --noEmit --pretty false`: PASS
 - `npm run heisenberg:semantic-audit:strict`: PASS, `0 blockers`, `259 warnings`
-- `npm run heisenberg:ui-audit`: PASS command, latest `activationReady=no`, `601 findings`, `0 missing triLang locale units`
+- `npm run heisenberg:ui-audit`: PASS command, latest `activationReady=no`, `490 findings`, `0 missing triLang locale units`
 - Earlier same-day extra contract check: `npx jest --runTestsByPath tests/level_gift_reward_icons.test.ts --no-cache --runInBand`: PASS, 2 tests
 
 ## Fixes applied
@@ -70,24 +70,36 @@
 - `app/diagnosis_training_preposition_common_verb_patterns.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
 - `app/diagnosis_training_preposition_direction_to_into_from.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
 - `app/diagnosis_training_preposition_duration_for_since.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
+- `app/diagnosis_training_preposition_place_in_on_at.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
+- `app/diagnosis_training_preposition_time_in_on_at.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
+- `app/diagnosis_training_preposition_time_place.ts`: added planned-locale learning bullets, `8` example translations, a local planned-aware `tri()` fallback, and corrected Turkish `8'de`; file is now `0` UI findings.
+- `app/diagnosis_training_present_perfect_questions_negatives.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
+- `app/diagnosis_training_present_perfect_vs_past_simple.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
+- `app/diagnosis_training_pronoun_case.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
+- `app/diagnosis_training_quantifier_some_any.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
+- `app/diagnosis_training_relative_clauses_who_which_that.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
+- `app/diagnosis_training_reported_speech_basic.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
+- `app/diagnosis_training_to_be_present_agreement.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
+- `app/diagnosis_training_too_enough.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
+- `app/diagnosis_training_verb_past_simple_negative_question.ts`: added planned-locale learning bullets, `8` example translations, and a local planned-aware `tri()` fallback; file is now `0` UI findings.
 
 ## UI untranslated checklist
 
-Latest UI report: `docs/heisenberg/ui/2026-05-18T14-24-46-024Z/ui_locale_audit.md`
+Latest UI report: `docs/heisenberg/ui/2026-05-18T15-14-02-244Z/ui_locale_audit.md`
 
 - Files scanned: `611`
-- Findings: `601` (`-40` since the previous report snapshot, `-1273` since the first report today)
-- Missing locale units: `2958` (`-200` since the previous report snapshot)
+- Findings: `490` (`-54` since the previous report snapshot, `-1384` since the first report today)
+- Missing locale units: `2403` (`-270` since the previous report snapshot)
 - `triLang` missing locale units: `0`
 - Locale object findings:
-  - `locale-object-missing-all-planned-locales`: `581`
+  - `locale-object-missing-all-planned-locales`: `470`
   - `locale-object-missing-planned-locales`: `20`
 - Missing by locale:
-  - `pt-BR`: `601`
-  - `vi`: `592`
-  - `id`: `581`
-  - `tr`: `592`
-  - `pl`: `592`
+  - `pt-BR`: `490`
+  - `vi`: `481`
+  - `id`: `470`
+  - `tr`: `481`
+  - `pl`: `481`
 
 Files now at `0` UI findings after these passes:
 
@@ -139,39 +151,51 @@ Files now at `0` UI findings after these passes:
 - `app/diagnosis_training_preposition_common_verb_patterns.ts`
 - `app/diagnosis_training_preposition_direction_to_into_from.ts`
 - `app/diagnosis_training_preposition_duration_for_since.ts`
+- `app/diagnosis_training_preposition_place_in_on_at.ts`
+- `app/diagnosis_training_preposition_time_in_on_at.ts`
+- `app/diagnosis_training_preposition_time_place.ts`
+- `app/diagnosis_training_present_perfect_questions_negatives.ts`
+- `app/diagnosis_training_present_perfect_vs_past_simple.ts`
+- `app/diagnosis_training_pronoun_case.ts`
+- `app/diagnosis_training_quantifier_some_any.ts`
+- `app/diagnosis_training_relative_clauses_who_which_that.ts`
+- `app/diagnosis_training_reported_speech_basic.ts`
+- `app/diagnosis_training_to_be_present_agreement.ts`
+- `app/diagnosis_training_too_enough.ts`
+- `app/diagnosis_training_verb_past_simple_negative_question.ts`
 - `components/LeagueChestOpenModal.tsx`
 
 Priority files remaining:
 
-1. `app/diagnosis_training_preposition_place_in_on_at.ts` - 10
-2. `app/diagnosis_training_preposition_time_in_on_at.ts` - 10
-3. `app/diagnosis_training_preposition_time_place.ts` - 10
-4. `app/diagnosis_training_present_perfect_questions_negatives.ts` - 10
-5. `app/diagnosis_training_present_perfect_vs_past_simple.ts` - 10
-6. `app/diagnosis_training_pronoun_case.ts` - 10
-7. `app/diagnosis_training_quantifier_some_any.ts` - 10
-8. `app/diagnosis_training_relative_clauses_who_which_that.ts` - 10
-9. `app/diagnosis_training_reported_speech_basic.ts` - 10
-10. `app/diagnosis_training_to_be_present_agreement.ts` - 10
-11. `app/diagnosis_training_too_enough.ts` - 10
-12. `app/diagnosis_training_verb_past_simple_negative_question.ts` - 10
-13. `app/diagnosis_training_verb_past_simple_regular_irregular.ts` - 10
-14. `app/diagnosis_training_verb_present_continuous_basic.ts` - 10
-15. `app/diagnosis_training_verb_present_perfect_basic.ts` - 10
-16. `app/diagnosis_training_verb_present_simple_negative_question.ts` - 10
-17. `app/diagnosis_training_verb_present_simple_statement.ts` - 10
-18. `app/diagnosis_training_verb_present_simple_vs_continuous.ts` - 10
-19. `app/diagnosis_training_verb_third_person.ts` - 10
-20. `app/diagnosis_training_verb_was_were.ts` - 10
-21. `app/diagnosis_training_word_order_basic_statement.ts` - 10
-22. `app/lesson_intro_screens_lesson20_v2.ts` - 10
-23. `app/lesson_intro_screens_lesson21_v2.ts` - 10
-24. `app/lesson_intro_screens_lesson9_v2.ts` - 10
-25. `app/diagnosis_training_condition_zero_first.ts` - 9
+1. `app/diagnosis_training_verb_past_simple_regular_irregular.ts` - 10
+2. `app/diagnosis_training_verb_present_continuous_basic.ts` - 10
+3. `app/diagnosis_training_verb_present_perfect_basic.ts` - 10
+4. `app/diagnosis_training_verb_present_simple_negative_question.ts` - 10
+5. `app/diagnosis_training_verb_present_simple_statement.ts` - 10
+6. `app/diagnosis_training_verb_present_simple_vs_continuous.ts` - 10
+7. `app/diagnosis_training_verb_third_person.ts` - 10
+8. `app/diagnosis_training_verb_was_were.ts` - 10
+9. `app/diagnosis_training_word_order_basic_statement.ts` - 10
+10. `app/lesson_intro_screens_lesson20_v2.ts` - 10
+11. `app/lesson_intro_screens_lesson21_v2.ts` - 10
+12. `app/lesson_intro_screens_lesson9_v2.ts` - 10
+13. `app/diagnosis_training_condition_zero_first.ts` - 9
+14. `app/diagnosis_training_conjunction_logic.ts` - 9
+15. `app/diagnosis_training_modifier_very_really_quite.ts` - 9
+16. `app/diagnosis_training_past_continuous_basic.ts` - 9
+17. `app/diagnosis_training_past_simple_vs_past_continuous.ts` - 9
+18. `app/diagnosis_training_preposition_direction.ts` - 9
+19. `app/diagnosis_training_present_perfect_for_since.ts` - 9
+20. `app/diagnosis_training_pronoun_possessive.ts` - 9
+21. `app/diagnosis_training_used_to_basic.ts` - 9
+22. `app/lesson_intro_screens_lesson13_v2.ts` - 9
+23. `app/lesson_intro_screens_lesson15_v2.ts` - 9
+24. `app/lesson_intro_screens_lesson16_v2.ts` - 9
+25. `app/lesson_intro_screens_lesson17_v2.ts` - 9
 
 ## Semantic checklist
 
-Latest semantic report: `docs/heisenberg/semantic/2026-05-18T14-24-42-667Z/semantic_audit.md`
+Latest semantic report: `docs/heisenberg/semantic/2026-05-18T15-13-56-458Z/semantic_audit.md`
 
 - Blockers: `0`
 - Warnings: `259`
@@ -193,7 +217,7 @@ Quality warnings to review after coverage:
 
 ## Next execution checklist
 
-1. Continue the UI queue in the priority order above, starting with `app/diagnosis_training_preposition_place_in_on_at.ts`.
+1. Continue the UI queue in the priority order above, starting with `app/diagnosis_training_verb_past_simple_regular_irregular.ts`.
 2. Add quiz source-locale payloads for HARD `#273`-`#297`.
 3. Review semantic warnings for protected English terms and distractor index drift.
 4. Keep the newly-zeroed analytics, arena, prep-flashcard, lesson-intro, diagnostic, and diagnosis-training files at `0` findings when future copy is added.

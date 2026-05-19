@@ -61,15 +61,6 @@ import {
 import { RankChangeModal, TIER_COLORS } from './components/RankChangeModal';
 import { setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
 import { actionToastTri, emitAppEvent } from './events';
-import { playAppSound, preloadAppSounds } from './audio/sound_manager';
-import { SOUND_MANIFEST, type SoundId } from './audio/sound_manifest';
-import {
-  applyUserSettingsNow,
-  getUserSettingsSnapshot,
-  loadSettings as loadUserSettings,
-  normalizeAppSoundVolume,
-  type UserSettings,
-} from './user_settings_store';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import NoEnergyModal from '../components/NoEnergyModal';
 import ArenaLimitModal from '../components/ArenaLimitModal';
@@ -342,98 +333,6 @@ const ButtonRow = ({ icon, label, sub, onPress, danger, testID, t, f, doHaptic }
   </TouchableOpacity>
 );
 
-function AdminSoundLab({
-  soundSettings,
-  updateSoundSettings,
-  t,
-  f,
-  doHaptic,
-}: {
-  soundSettings: UserSettings;
-  updateSoundSettings: (patch: Partial<UserSettings>) => void;
-  t: any;
-  f: any;
-  doHaptic: () => void;
-}) {
-  const volume = normalizeAppSoundVolume(soundSettings.appSoundsVolume);
-  const setVolume = (nextVolume: number) => updateSoundSettings({ appSoundsVolume: normalizeAppSoundVolume(nextVolume) });
-
-  return (
-    <>
-      <View style={{ paddingHorizontal: 20, paddingTop: 14, paddingBottom: 10, backgroundColor: ADMIN_SURFACE }}>
-        <Text style={{ color: ADMIN_TEXT, fontSize: 15, fontWeight: '900', marginBottom: 4 }}>
-          App Voice Sound Lab
-        </Text>
-        <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, lineHeight: f.caption * 1.45 }}>
-          Real production sound ids. Play here ignores user mute so every asset can be checked.
-        </Text>
-      </View>
-
-      <ToggleRow
-        icon="volume-high-outline"
-        label="App sounds enabled"
-        sub="Production master switch for rewards, learning and arena sounds"
-        value={soundSettings.appSoundsEnabled}
-        onToggle={value => updateSoundSettings({ appSoundsEnabled: value })}
-        t={t}
-        f={f}
-      />
-      <ToggleRow
-        icon="musical-notes-outline"
-        label="Ceremony sounds enabled"
-        sub="Level up, Premium, league chest, rank and gold-theme moments"
-        value={soundSettings.ceremonySoundsEnabled}
-        onToggle={value => updateSoundSettings({ ceremonySoundsEnabled: value })}
-        t={t}
-        f={f}
-      />
-
-      <View style={{ paddingHorizontal: 20, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: RED_BORDER_SOFT, backgroundColor: ADMIN_SURFACE }}>
-        <Text style={{ color: ADMIN_TEXT, fontSize: f.bodyLg, fontWeight: '800' }}>
-          Preview volume: {Math.round(volume * 100)}%
-        </Text>
-        <View style={{ flexDirection: 'row', gap: 8, marginTop: 10 }}>
-          {[0.35, 0.65, 1].map(value => (
-            <TouchableOpacity
-              key={`sound-volume-${value}`}
-              onPress={() => { doHaptic(); setVolume(value); }}
-              activeOpacity={0.75}
-              style={{
-                minHeight: 42,
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: 10,
-                borderWidth: 1,
-                borderColor: Math.abs(volume - value) < 0.02 ? RED : RED_BORDER_SOFT,
-                backgroundColor: Math.abs(volume - value) < 0.02 ? RED_DARK : ADMIN_SURFACE_ELEVATED,
-              }}
-            >
-              <Text style={{ color: ADMIN_TEXT, fontSize: f.caption, fontWeight: '900' }}>
-                {Math.round(value * 100)}%
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-      </View>
-
-      {SOUND_MANIFEST.map(item => (
-        <ButtonRow
-          key={item.id}
-          testID={`sound-lab-play-${item.id.replace(/[^a-z0-9]+/gi, '-')}`}
-          icon={item.category === 'ceremony' ? 'sparkles-outline' : item.category === 'reward' ? 'diamond-outline' : 'radio-button-on-outline'}
-          label={`Play ${item.id}`}
-          sub={`${item.group} · ${item.category} · ${item.durationMs} ms · ${item.assetPath}`}
-          onPress={() => void playAppSound(item.id as SoundId, { force: true, volume })}
-          t={t}
-          f={f}
-          doHaptic={doHaptic}
-        />
-      ))}
-    </>
-  );
-}
-
 function AdminCosmeticsPreview({ f }: { f: any }) {
   return (
     <View style={{ paddingHorizontal: 16, paddingTop: 14, paddingBottom: 18 }}>
@@ -636,23 +535,9 @@ export default function SettingsTestersFunctions() {
   const TIER_SHORT_NAMES: Record<string, string> = { bronze: 'Бронза', silver: 'Серебро', gold: 'Золото', platinum: 'Платина', diamond: 'Алмаз', master: 'Мастер', grandmaster: 'Гранд', legend: 'Легенда' };
   const RANK_LEVELS = ['I', 'II', 'III'];
 
-  const [openSection, setOpenSection] = useState<string | null>('sound_lab');
-  const [soundSettings, setSoundSettings] = useState<UserSettings>(() => getUserSettingsSnapshot());
+  const [openSection, setOpenSection] = useState<string | null>(null);
   const [dailyTaskSeedMode, setDailyTaskSeedMode] = useState<DailyTaskSeedMode>('empty');
   const [trialCooldownStatusLine, setTrialCooldownStatusLine] = useState('…');
-
-  useEffect(() => {
-    preloadAppSounds();
-    void loadUserSettings().then(setSoundSettings);
-  }, []);
-
-  const updateSoundSettings = useCallback((patch: Partial<UserSettings>) => {
-    setSoundSettings(prev => {
-      const next = { ...prev, ...patch };
-      applyUserSettingsNow(next);
-      return getUserSettingsSnapshot();
-    });
-  }, []);
 
   const dualGiftPreviewKey = useRef<string | null>(null);
   const giftPreviewKey = useRef<string | null>(null);
@@ -1709,23 +1594,6 @@ export default function SettingsTestersFunctions() {
         </View>
 
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 60, paddingTop: 12 }} style={{ backgroundColor: ADMIN_BG }}>
-          <AccordionSection
-            id="sound_lab"
-            icon="musical-notes-outline"
-            title="App Voice Sound Lab"
-            badge={SOUND_MANIFEST.length}
-            open={openSection === 'sound_lab'}
-            onToggle={(id) => setOpenSection(openSection === id ? null : id)}
-          >
-            <AdminSoundLab
-              soundSettings={soundSettings}
-              updateSoundSettings={updateSoundSettings}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-            />
-          </AccordionSection>
-
           <View style={{ marginHorizontal: 12, marginBottom: 10, borderRadius: 14, borderWidth: 1.5, borderColor: RED, backgroundColor: ADMIN_SURFACE, overflow: 'hidden' }}>
             <View style={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 6 }}>
               <Text style={{ color: ADMIN_TEXT, fontSize: 13, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>

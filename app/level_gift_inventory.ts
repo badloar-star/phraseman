@@ -5,6 +5,7 @@ export const UNCLAIMED_GIFTS_KEY = 'unclaimed_level_gifts';
 export const CLAIMED_GIFTS_KEY = 'claimed_level_gifts';
 export const UNCLAIMED_DUAL_GIFTS_KEY = 'unclaimed_level_gifts_dual_v1';
 export const CLAIMED_DUAL_LEVELS_KEY = 'claimed_level_gift_dual_flag_v1';
+export const PENDING_LEVEL_GIFT_COUNT_CACHE_KEY = 'pending_level_gift_count_cache_v1';
 
 export interface PremPair {
   f2p: GiftDef;
@@ -28,14 +29,52 @@ export type PendingLevelGiftInventoryItem =
       giftCount: 2;
     };
 
+let pendingInventoryCache: PendingLevelGiftInventoryItem[] | null = null;
+
 const parseJsonRecord = <T>(raw: string | null): Record<number, T> => {
   if (!raw) return {};
   try {
-    return JSON.parse(raw) as Record<number, T>;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object') return {};
+    if (Array.isArray(parsed)) {
+      return parsed.reduce<Record<number, T>>((acc, item) => {
+        const level = Number(item?.level);
+        const gift = item?.gift ?? item;
+        if (Number.isFinite(level) && gift) acc[level] = gift as T;
+        return acc;
+      }, {});
+    }
+    return parsed as Record<number, T>;
   } catch {
     return {};
   }
 };
+
+const writePendingGiftCountCache = async (count: number): Promise<void> => {
+  try {
+    await AsyncStorage.setItem(PENDING_LEVEL_GIFT_COUNT_CACHE_KEY, String(Math.max(0, Math.floor(count))));
+  } catch {
+    // Header cache only; the source of truth remains the inventory maps.
+  }
+};
+
+export const readPendingLevelGiftCountCache = async (): Promise<number> => {
+  try {
+    const raw = await AsyncStorage.getItem(PENDING_LEVEL_GIFT_COUNT_CACHE_KEY);
+    return Math.max(0, Math.floor(Number(raw) || 0));
+  } catch {
+    return 0;
+  }
+};
+
+const refreshPendingGiftCountCache = async (): Promise<number> => {
+  const count = await loadPendingLevelGiftCount();
+  await writePendingGiftCountCache(count);
+  return count;
+};
+
+export const getPendingLevelGiftInventoryCache = (): PendingLevelGiftInventoryItem[] =>
+  pendingInventoryCache ? [...pendingInventoryCache] : [];
 
 /** Save claimed gift rarity for display purposes. */
 export const saveClaimedGiftRarity = async (level: number, rarity: string): Promise<void> => {
@@ -73,6 +112,7 @@ export const saveUnclaimedGift = async (level: number, gift: GiftDef): Promise<v
       delete dualMap[level];
       await AsyncStorage.setItem(UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dualMap));
     }
+    await refreshPendingGiftCountCache();
   } catch {
     // A missed cache write should not block the level-up flow.
   }
@@ -86,6 +126,7 @@ export const markGiftClaimed = async (level: number): Promise<void> => {
     const map = parseJsonRecord<GiftDef>(raw);
     delete map[level];
     await AsyncStorage.setItem(UNCLAIMED_GIFTS_KEY, JSON.stringify(map));
+    await refreshPendingGiftCountCache();
   } catch {
     // Best effort cleanup.
   }
@@ -114,6 +155,7 @@ export const saveUnclaimedDualGift = async (level: number, pair: PremPair): Prom
       delete singleMap[level];
       await AsyncStorage.setItem(UNCLAIMED_GIFTS_KEY, JSON.stringify(singleMap));
     }
+    await refreshPendingGiftCountCache();
   } catch {
     // Best effort cache write.
   }
@@ -135,6 +177,7 @@ export const markDualGiftClaimed = async (level: number): Promise<void> => {
     const map = parseJsonRecord<PremPair>(raw);
     delete map[level];
     await AsyncStorage.setItem(UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(map));
+    await refreshPendingGiftCountCache();
   } catch {
     // Best effort cleanup.
   }
@@ -158,6 +201,7 @@ export const markDualGiftPartClaimed = async (level: number, part: DualGiftPart)
       singleMap[level] = remainingGift;
       await AsyncStorage.setItem(UNCLAIMED_GIFTS_KEY, JSON.stringify(singleMap));
     }
+    await refreshPendingGiftCountCache();
   } catch {
     // Best effort cleanup.
   }
@@ -217,7 +261,7 @@ export const loadPendingLevelGiftInventory = async (): Promise<PendingLevelGiftI
       },
     ]));
 
-  return [...singleItems, ...dualItems]
+  const items = [...singleItems, ...dualItems]
     .filter((item) => Number.isFinite(item.level))
     .sort((a, b) => {
       if (b.level !== a.level) return b.level - a.level;
@@ -225,9 +269,13 @@ export const loadPendingLevelGiftInventory = async (): Promise<PendingLevelGiftI
         item.kind === 'single' && item.dualPart === 'prem' ? 1 : 0;
       return partOrder(a) - partOrder(b);
     });
+  pendingInventoryCache = items;
+  return items;
 };
 
 export const loadPendingLevelGiftCount = async (): Promise<number> => {
   const items = await loadPendingLevelGiftInventory();
-  return items.reduce((sum, item) => sum + item.giftCount, 0);
+  const count = items.reduce((sum, item) => sum + item.giftCount, 0);
+  await writePendingGiftCountCache(count);
+  return count;
 };

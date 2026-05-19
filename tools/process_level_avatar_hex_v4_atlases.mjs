@@ -34,7 +34,7 @@ function numberSvg(level) {
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
-      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#FFFFFF" flood-opacity="0.35"/>
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000000" flood-opacity="0.35"/>
       <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.35"/>
     </filter>
   </defs>
@@ -47,8 +47,8 @@ function numberSvg(level) {
     font-size="${fontSize}"
     font-weight="900"
     letter-spacing="-6"
-    fill="#0B0F14"
-    stroke="#F8F1DC"
+    fill="#FFFFFF"
+    stroke="#0B0F14"
     stroke-width="${strokeWidth}"
     paint-order="stroke fill"
     filter="url(#shadow)">${text}</text>
@@ -61,7 +61,7 @@ function numberSvg(level) {
     font-size="${fontSize}"
     font-weight="900"
     letter-spacing="-6"
-    fill="#0B0F14">${text}</text>
+    fill="#FFFFFF">${text}</text>
 </svg>`);
 }
 

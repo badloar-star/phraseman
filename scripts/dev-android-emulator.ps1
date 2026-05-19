@@ -3,7 +3,8 @@
 # matching plugins/withAndroidDevServer127.js.
 param(
   [switch]$Clear,
-  [string]$Avd = ""
+  [string]$Avd = "",
+  [switch]$Headless
 )
 # adb prints "daemon..." on stderr; Stop turns native stderr into a terminating error.
 $ErrorActionPreference = "Continue"
@@ -75,14 +76,19 @@ if (-not (Test-AdbDeviceOnline)) {
     Write-Host "Device detected after adb reconnect."
   } else {
     $names = @( & $emuExe -list-avds 2>$null )
-    $picked = ($names | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne '' })[0]
+    $availableAvds = @($names | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne '' })
+    $preferredAvds = @("Pixel_Fold", "Pixel_8_Pro", "Small_Phone", "Pixel_8")
+    $picked = ($preferredAvds | Where-Object { $availableAvds -contains $_ } | Select-Object -First 1)
+    if (-not $picked) { $picked = $availableAvds[0] }
     if ($Avd.Trim()) { $picked = $Avd.Trim() }
     if (-not $picked) {
       Write-Host "No AVD. Create one: Android Studio - Device Manager."
       exit 1
     }
-    $emuArgs = @("-avd", $picked, "-gpu", "swiftshader_indirect", "-no-snapshot-load")
-    Start-Process -FilePath $emuExe -ArgumentList $emuArgs -WindowStyle Normal
+    $emuArgs = @("-avd", $picked, "-gpu", "swiftshader_indirect", "-no-snapshot-load", "-no-boot-anim", "-no-audio")
+    if ($Headless) { $emuArgs += "-no-window" }
+    $windowStyle = if ($Headless) { "Hidden" } else { "Normal" }
+    Start-Process -FilePath $emuExe -ArgumentList $emuArgs -WindowStyle $windowStyle
     Write-Host "Waiting for $picked ..."
     try { & $adb wait-for-device 2>&1 | Out-Null } catch { }
     for ($i = 0; $i -lt 180; $i++) {

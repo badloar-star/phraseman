@@ -1,30 +1,22 @@
 /**
- * Расширяет статический app.json.
- * При локальном запуске (npm run android / dev): задай EXPO_PUBLIC_DISABLE_EXPO_UPDATES=1 —
- * Expo Updates не подменит JS из интернета, будет вшитый бандл сборки/Micro.
- *
- * На EAS build эта переменная не задаётся → updates как в app.json (вкл.).
+ * Extends the static app.json config.
+ * For local dev builds, set EXPO_PUBLIC_DISABLE_EXPO_UPDATES=1 so the dev
+ * client uses the bundled JS instead of checking Expo Updates on startup.
  */
-const fs = require('fs');
-const path = require('path');
+module.exports = ({ config }) => {
+  const disableExpoUpdates = process.env.EXPO_PUBLIC_DISABLE_EXPO_UPDATES === '1';
 
-const appJson = JSON.parse(fs.readFileSync(path.join(__dirname, 'app.json'), 'utf8'));
-const expoBase = appJson.expo || {};
+  const updates = config.updates
+    ? {
+        ...config.updates,
+        enabled: disableExpoUpdates ? false : config.updates.enabled !== false,
+      }
+    : disableExpoUpdates
+      ? { enabled: false }
+      : undefined;
 
-const disableExpoUpdates = process.env.EXPO_PUBLIC_DISABLE_EXPO_UPDATES === '1';
-
-const updates = expoBase.updates
-  ? {
-      ...expoBase.updates,
-      enabled: disableExpoUpdates ? false : expoBase.updates.enabled !== false,
-    }
-  : disableExpoUpdates
-    ? { enabled: false }
-    : undefined;
-
-module.exports = {
-  expo: {
-    ...expoBase,
+  return {
+    ...config,
     ...(updates ? { updates } : {}),
-  },
+  };
 };

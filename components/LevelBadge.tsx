@@ -120,9 +120,9 @@ export default function LevelBadge({ level, size = 40, height, autoplay: autopla
           textAnchor="middle"
           fontSize={numberFontSize}
           fontWeight="900"
-          fill="rgba(3, 18, 25, 0.48)"
-          stroke="rgba(3, 18, 25, 0.54)"
-          strokeWidth={size * 0.055}
+          fill="rgba(255, 255, 255, 0.92)"
+          stroke="rgba(36, 151, 230, 0.66)"
+          strokeWidth={size * 0.05}
         >
           {clamped}
         </SvgText>
@@ -132,7 +132,7 @@ export default function LevelBadge({ level, size = 40, height, autoplay: autopla
           textAnchor="middle"
           fontSize={numberFontSize}
           fontWeight="900"
-          fill={`url(#${numberGradientId})`}
+          fill="#FFFFFF"
           stroke="rgba(255, 255, 255, 0.22)"
           strokeWidth={size * 0.012}
         >

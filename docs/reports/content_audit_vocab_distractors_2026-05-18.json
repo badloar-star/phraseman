@@ -1,0 +1,135 @@
+{
+  "stamp": "2026-05-18",
+  "byKind": {
+    "D_PREP_CATEGORY": 1,
+    "D_FP_CROSS_CLASS": 20
+  },
+  "issues": [
+    {
+      "kind": "D_PREP_CATEGORY",
+      "lesson": 31,
+      "ctx": "lesson31_phrase_15 words[6]",
+      "msg": "correct=\"to\" похож на предлог, но category=\"infinitive_marker\""
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 6,
+      "ctx": "fp=ayuda|ella|por|quiere|qué",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L6:lesson6_phrase_24:¿; L6:lesson6_phrase_24:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 6,
+      "ctx": "fp=cash|ella|lleva|por|qué",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L6:lesson6_phrase_29:¿; L6:lesson6_phrase_29:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 6,
+      "ctx": "fp=ayuda|ellos|necesitan|por|qué",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L6:lesson6_phrase_33:¿; L6:lesson6_phrase_33:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 6,
+      "ctx": "fp=ella|habla|por|qué|tan",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L6:lesson6_phrase_39:¿; L6:lesson6_phrase_39:despacio; L6:lesson6_phrase_39:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 6,
+      "ctx": "fp=cierra|ella|por|qué|ventanas",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L6:lesson6_phrase_44:¿; L6:lesson6_phrase_44:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 6,
+      "ctx": "fp=ayuda|ella|por|qué|siempre",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L6:lesson6_phrase_49:¿; L6:lesson6_phrase_49:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 7,
+      "ctx": "fp=billetes|mal|no|poco|tienen",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L7:lesson7_phrase_13:; L7:lesson7_phrase_43:bolsos"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 7,
+      "ctx": "fp=no|para|tengo|tiempo|un",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L7:lesson7_phrase_50:café; L7:lesson7_phrase_50:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 8,
+      "ctx": "fp=ella|la|llama|mañana|por",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L8:lesson8_phrase_17:¿; L8:lesson8_phrase_17:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 8,
+      "ctx": "fp=a|empieza|las|ocho|él",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L8:lesson8_phrase_19:¿; L8:lesson8_phrase_19:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 8,
+      "ctx": "fp=el|hoy|lunes|nos|reunimos",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L8:lesson8_phrase_20:¿; L8:lesson8_phrase_20:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 8,
+      "ctx": "fp=el|ella|tiempo|tiene|viernes",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L8:lesson8_phrase_37:¿; L8:lesson8_phrase_37:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 8,
+      "ctx": "fp=el|haces|hoy|lunes|qué",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L8:lesson8_phrase_41:¿; L8:lesson8_phrase_41:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 8,
+      "ctx": "fp=cuándo|la|llaman|por|tarde",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L8:lesson8_phrase_42:¿; L8:lesson8_phrase_42:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 8,
+      "ctx": "fp=noche|por|qué|trabaja|él",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L8:lesson8_phrase_43:¿; L8:lesson8_phrase_43:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 8,
+      "ctx": "fp=dónde|el|nos|reunimos|viernes",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L8:lesson8_phrase_44:¿; L8:lesson8_phrase_44:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 8,
+      "ctx": "fp=cuesta|cuánto|en|hoy|invierno",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L8:lesson8_phrase_45:¿; L8:lesson8_phrase_45:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 8,
+      "ctx": "fp=bien|duermes|la|noche|por",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L8:lesson8_phrase_46:¿; L8:lesson8_phrase_46:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 10,
+      "ctx": "fp=bien|llamar|puede|tarde|ya",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L10:lesson10_phrase_3:más; L10:lesson10_phrase_3:"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 10,
+      "ctx": "fp=con|de|en|para|por",
+      "msg": "один distractor-set для разных грамм. классов [article, open]: L10:lesson10_phrase_11:al; L10:lesson10_phrase_28:a; L11:lesson11_phrase_11:a; L11:lesson11_phrase_12:a; L11:lesson11_phrase_12:a; L11:lesson11_phrase_44:a; L11:lesson11_phrase_45:a; L11:lesson11_phrase_46:a …"
+    }
+  ]
+}

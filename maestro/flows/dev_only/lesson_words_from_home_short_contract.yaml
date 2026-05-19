@@ -1,0 +1,37 @@
+appId: app.phraseman
+---
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 30000
+- tapOn:
+    id: "tab-index"
+- waitForAnimationToEnd:
+    timeout: 5000
+- scrollUntilVisible:
+    element:
+      id: "lessons-row-1"
+    direction: DOWN
+    timeout: 30000
+    speed: 60
+    visibilityPercentage: 25
+- tapOn:
+    id: "lessons-row-1"
+- extendedWaitUntil:
+    visible:
+      id: "lesson-menu-back"
+    timeout: 30000
+- tapOn:
+    id: "lesson-menu-words"
+- extendedWaitUntil:
+    visible:
+      id: "lesson-words-header-back"
+    timeout: 30000
+- tapOn:
+    id: "lesson-words-tab-train"
+- extendedWaitUntil:
+    visible:
+      id: "lesson-words-option-correct"
+    timeout: 60000
+- assertVisible:
+    id: "lesson-words-option-correct"

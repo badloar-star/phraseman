@@ -5,8 +5,11 @@ import {
   markDualGiftClaimed,
   markDualGiftPartClaimed,
   markGiftClaimed,
+  PENDING_LEVEL_GIFT_COUNT_CACHE_KEY,
+  readPendingLevelGiftCountCache,
   saveUnclaimedDualGift,
   saveUnclaimedGift,
+  UNCLAIMED_GIFTS_KEY,
 } from '../app/level_gift_inventory';
 import type { GiftDef } from '../app/level_gift_system';
 
@@ -44,6 +47,7 @@ describe('level gift inventory', () => {
     await saveUnclaimedGift(10, makeGift('shards_6', 'rare'));
 
     await expect(loadPendingLevelGiftCount()).resolves.toBe(2);
+    await expect(readPendingLevelGiftCountCache()).resolves.toBe(2);
     await expect(loadPendingLevelGiftInventory()).resolves.toMatchObject([
       { kind: 'single', level: 10, giftCount: 1, gift: { id: 'shards_6' } },
       { kind: 'single', level: 5, giftCount: 1, gift: { id: 'xp_bank_150' } },
@@ -106,6 +110,22 @@ describe('level gift inventory', () => {
     await markDualGiftClaimed(30);
 
     await expect(loadPendingLevelGiftCount()).resolves.toBe(0);
+    expect(mockStorage[PENDING_LEVEL_GIFT_COUNT_CACHE_KEY]).toBe('0');
     await expect(loadPendingLevelGiftInventory()).resolves.toEqual([]);
+  });
+
+  it('normalizes older array-shaped gift records instead of undercounting them', async () => {
+    mockStorage[UNCLAIMED_GIFTS_KEY] = JSON.stringify([
+      { level: 7, gift: makeGift('xp_100') },
+      { level: 8, gift: makeGift('hint_3') },
+      { level: 9, gift: makeGift('shards_10') },
+    ]);
+
+    await expect(loadPendingLevelGiftCount()).resolves.toBe(3);
+    await expect(loadPendingLevelGiftInventory()).resolves.toMatchObject([
+      { level: 9, gift: { id: 'shards_10' } },
+      { level: 8, gift: { id: 'hint_3' } },
+      { level: 7, gift: { id: 'xp_100' } },
+    ]);
   });
 });

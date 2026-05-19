@@ -1,4 +1,5 @@
 import type { ImageSourcePropType } from 'react-native';
+import type { ThemeMode } from './theme';
 
 const LEVEL_GIFT_REWARD_ICON_KEYS = [
   'arena_extra_5',
@@ -48,6 +49,25 @@ export const LEVEL_GIFT_REWARD_ICON_IDS: readonly string[] = LEVEL_GIFT_REWARD_I
 export type LevelGiftRewardIconId = typeof LEVEL_GIFT_REWARD_ICON_KEYS[number];
 
 const FALLBACK_LEVEL_GIFT_REWARD_ICON_ID: LevelGiftRewardIconId = 'choice_3_level';
+const DEFAULT_SHARD_ICON_THEME: ThemeMode = 'minimalDark';
+
+const SHARD_GIFT_AMOUNTS: Partial<Record<LevelGiftRewardIconId, number>> = {
+  shards_3: 3,
+  shards_6: 6,
+  shards_10: 10,
+  prem_shards_10: 10,
+  prem_shards_15: 15,
+  prem_shards_20: 20,
+};
+
+const THEMED_SHARD_GIFT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
+  dark: require('../assets/images/shards/dark-80.webp'),
+  neon: require('../assets/images/shards/neon-80.webp'),
+  gold: require('../assets/images/shards/gold-80.webp'),
+  coral: require('../assets/images/shards/coral-80.webp'),
+  minimalLight: require('../assets/images/shards/minimalLight-80.webp'),
+  minimalDark: require('../assets/images/shards/minimalDark-80.webp'),
+};
 
 const LEVEL_GIFT_REWARD_ICONS: Record<LevelGiftRewardIconId, ImageSourcePropType> = {
   arena_extra_5: require('../assets/images/level_gift_reward_icons/arena_extra_5.webp'),
@@ -92,7 +112,15 @@ const LEVEL_GIFT_REWARD_ICONS: Record<LevelGiftRewardIconId, ImageSourcePropType
   xp_bank_600: require('../assets/images/level_gift_reward_icons/xp_bank_600.webp'),
 };
 
-export function getLevelGiftRewardIcon(giftId: string | null | undefined): ImageSourcePropType {
+export function getLevelGiftRewardIcon(
+  giftId: string | null | undefined,
+  themeMode: ThemeMode = DEFAULT_SHARD_ICON_THEME,
+): ImageSourcePropType {
+  const shardAmount = SHARD_GIFT_AMOUNTS[giftId as LevelGiftRewardIconId] ?? 0;
+  if (shardAmount > 0) {
+    return THEMED_SHARD_GIFT_ICONS[themeMode] ?? THEMED_SHARD_GIFT_ICONS[DEFAULT_SHARD_ICON_THEME];
+  }
+
   return (
     LEVEL_GIFT_REWARD_ICONS[giftId as LevelGiftRewardIconId] ??
     LEVEL_GIFT_REWARD_ICONS[FALLBACK_LEVEL_GIFT_REWARD_ICON_ID]

@@ -2,10 +2,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Image, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
+import LevelGiftArt from '../components/LevelGiftArt';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
 import { useLang } from '../components/LangContext';
@@ -14,15 +15,17 @@ import StatsArtBackdrop from '../components/StatsArtBackdrop';
 import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
-import { getLevelGiftImage } from '../constants/levelGiftImages';
 import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
 import {
   giftDescForLang,
   giftRarityUiLabel,
+  giftShardAmount,
   giftTitleForLang,
   type GiftDef,
 } from './level_gift_system';
+import { oskolokImageForPackShards } from './oskolok';
 import {
+  getPendingLevelGiftInventoryCache,
   loadPendingLevelGiftInventory,
   markDualGiftPartClaimed,
   type PendingLevelGiftInventoryItem,
@@ -35,27 +38,28 @@ import {
 const giftAccent = (rarity: string): string =>
   rarity === 'epic' ? '#FFD700' : rarity === 'rare' ? '#60A5FA' : '#D6B85C';
 
-function GiftIcon({ gift }: { gift: GiftDef }) {
+function GiftIcon({ gift, themeMode }: { gift: GiftDef; themeMode: Parameters<typeof oskolokImageForPackShards>[1] }) {
   return (
     <Image
-      source={getLevelGiftRewardIcon(gift.id)}
+      source={getLevelGiftRewardIcon(gift.id, themeMode)}
       style={{ width: 38, height: 38 }}
       resizeMode="contain"
     />
   );
 }
 
-function GiftLine({ gift, label, lang, muted, primary }: {
+function GiftLine({ gift, label, lang, muted, primary, themeMode }: {
   gift: GiftDef;
   label?: string;
   lang: Parameters<typeof giftTitleForLang>[1];
   muted: string;
   primary: string;
+  themeMode: Parameters<typeof oskolokImageForPackShards>[1];
 }) {
   return (
     <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center', minWidth: 0 }}>
       <View style={{ width: 42, height: 42, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.06)' }}>
-        <GiftIcon gift={gift} />
+        <GiftIcon gift={gift} themeMode={themeMode} />
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
         {!!label && (
@@ -88,7 +92,7 @@ export default function LevelGiftsInventoryScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
-  const [items, setItems] = useState<PendingLevelGiftInventoryItem[]>([]);
+  const [items, setItems] = useState<PendingLevelGiftInventoryItem[]>(() => getPendingLevelGiftInventoryCache());
   const [activeItems, setActiveItems] = useState<ActiveLevelGiftInventoryItem[]>([]);
   const [userName, setUserName] = useState('');
   const [selected, setSelected] = useState<PendingLevelGiftInventoryItem | null>(null);
@@ -108,12 +112,6 @@ export default function LevelGiftsInventoryScreen() {
     void loadData();
     return undefined;
   }, [loadData]));
-
-  const totalGiftCount = useMemo(
-    () => items.reduce((sum, item) => sum + item.giftCount, 0),
-    [items],
-  );
-  const visibleGiftCount = totalGiftCount + activeItems.length;
 
   const closeGiftModal = () => {
     setSelected(null);
@@ -141,16 +139,12 @@ export default function LevelGiftsInventoryScreen() {
                 pl: 'Prezenty',
               })}
             </Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, borderRadius: 999, paddingHorizontal: 11, paddingVertical: 8, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border }}>
-              <Ionicons name="gift-outline" size={17} color={t.textSecond} />
-              <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }}>{visibleGiftCount}</Text>
-            </View>
           </View>
 
           <ScrollView contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false}>
             {activeItems.length > 0 && (
               <View style={{ gap: 10 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 2 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 2 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
                     {triLang(lang, {
                       ru: 'Активные сейчас',
@@ -163,9 +157,6 @@ export default function LevelGiftsInventoryScreen() {
                       pl: 'Aktywne teraz',
                     })}
                   </Text>
-                  <View style={{ borderRadius: 999, paddingHorizontal: 8, paddingVertical: 3, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border }}>
-                    <Text style={{ color: t.textSecond, fontSize: 11, fontWeight: '900' }}>{activeItems.length}</Text>
-                  </View>
                 </View>
                 {activeItems.map((gift) => (
                   <View
@@ -183,7 +174,7 @@ export default function LevelGiftsInventoryScreen() {
                     }}
                   >
                     <View style={{ width: 44, height: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: `${gift.accent}22` }}>
-                      <Image source={getLevelGiftRewardIcon(gift.iconGiftId)} style={{ width: 38, height: 38 }} resizeMode="contain" />
+                      <Image source={getLevelGiftRewardIcon(gift.iconGiftId, themeMode)} style={{ width: 38, height: 38 }} resizeMode="contain" />
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
                       <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
@@ -259,7 +250,8 @@ export default function LevelGiftsInventoryScreen() {
                       : 'common'
                   : primaryGift.rarity;
                 const accent = giftAccent(strongestRarity);
-                const chest = getLevelGiftImage(themeMode, item.kind === 'dual' ? 'premium' : strongestRarity);
+                const singleShardAmount = item.kind === 'single' ? giftShardAmount(item.gift.id) : 0;
+                const rowArtSize = singleShardAmount > 0 ? 56 : 62;
                 const rowKey = item.kind === 'single' && item.dualPart
                   ? `${item.kind}-${item.level}-${item.dualPart}`
                   : `${item.kind}-${item.level}`;
@@ -272,8 +264,20 @@ export default function LevelGiftsInventoryScreen() {
                     style={{ borderRadius: 22, padding: 14, borderWidth: 1, borderColor: `${accent}88`, overflow: 'hidden' }}
                   >
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                      <View style={{ width: 68, height: 68, alignItems: 'center', justifyContent: 'center' }}>
-                        <Image source={chest} style={{ width: 68, height: 68 }} resizeMode="contain" />
+                      <View style={{ width: 68, height: 68, alignItems: 'center', justifyContent: 'center', padding: 4 }}>
+                        {singleShardAmount > 0 ? (
+                          <Image
+                            source={oskolokImageForPackShards(singleShardAmount, themeMode)}
+                            style={{ width: rowArtSize, height: rowArtSize }}
+                            resizeMode="contain"
+                          />
+                        ) : (
+                          <LevelGiftArt
+                            themeMode={themeMode}
+                            variant={item.kind === 'dual' ? 'premium' : strongestRarity}
+                            size={rowArtSize}
+                          />
+                        )}
                       </View>
                       <View style={{ flex: 1, minWidth: 0 }}>
                         <Text style={{ color: accent, fontSize: 11, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }} numberOfLines={1}>
@@ -336,6 +340,7 @@ export default function LevelGiftsInventoryScreen() {
                           lang={lang}
                           muted={t.textMuted}
                           primary={t.textPrimary}
+                          themeMode={themeMode}
                         />
                         <GiftLine
                           gift={item.pair.prem}
@@ -343,6 +348,7 @@ export default function LevelGiftsInventoryScreen() {
                           lang={lang}
                           muted={t.textMuted}
                           primary={t.textPrimary}
+                          themeMode={themeMode}
                         />
                       </View>
                     ) : (

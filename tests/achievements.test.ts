@@ -27,9 +27,11 @@ jest.mock('../app/shards_system', () => ({
 import {
   ALL_ACHIEVEMENTS,
   checkAchievements,
+  claimAchievementShardReward,
   devSeedAchievementsSmoke,
   loadAchievementStates,
 } from '../app/achievements';
+import { addShardsRaw } from '../app/shards_system';
 import { ACHIEVEMENT_ES } from '../app/achievements_es_locale';
 import { MAX_LEVEL } from '../constants/theme';
 
@@ -101,6 +103,20 @@ describe('achievements', () => {
     expect(source).not.toContain('ALL_ACHIEVEMENTS.length');
     expect(source).not.toContain('`${ALL_ACHIEVEMENTS.length} наград`');
     expect(source).not.toContain('`${ALL_ACHIEVEMENTS.length} нагород`');
+  });
+
+  it('claims achievement shards through the local-first path without a blocking global shard modal', async () => {
+    const id = ALL_ACHIEVEMENTS[0].id;
+    await AsyncStorage.setItem('achievements_v1', JSON.stringify([
+      { id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false },
+    ]));
+
+    await expect(claimAchievementShardReward(id)).resolves.toBe(true);
+
+    expect(addShardsRaw).toHaveBeenCalledWith(1, `achievement:${id}`, {
+      showEarnModal: false,
+      skipServerAwait: true,
+    });
   });
 
   it('renders achievements screen as earned-only by default with a dev-only all rewards toggle', () => {

@@ -22,7 +22,6 @@ import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { getLevelGiftRewardIcon, type LevelGiftRewardIconId } from '../constants/levelGiftRewardIcons';
 import type { ThemeMode } from '../constants/theme';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
-import { playAppSound } from '../app/audio/sound_manager';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import AvatarAura from './AvatarAura';
 import CustomAvatarBadge from './CustomAvatarBadge';
@@ -49,7 +48,7 @@ type RewardCard = {
     | { type: 'goldTheme'; source: ImageSourcePropType };
 };
 
-const LEAGUE_CROWN_ICON = require('../assets/images/league/league_crown.png');
+const LEAGUE_CROWN_ICON = require('../assets/images/league/league_crown.webp');
 const LEAGUE_GOLD_THEME_REWARD_ICON = require('../assets/images/league_bonus/gold-theme-card-reward.webp');
 const FALLBACK_CUSTOM_AVATAR_ID = 'custom-gen-04';
 const FALLBACK_CUSTOM_GRADIENT_ID = 'noirgold';
@@ -339,7 +338,6 @@ export default function LeagueChestOpenModal({
   useEffect(() => {
     if (!visible) return;
     hapticSuccess();
-    void playAppSound('league.chest.open');
     scale.setValue(0.72);
     opacity.setValue(0);
     crownFloat.setValue(0);

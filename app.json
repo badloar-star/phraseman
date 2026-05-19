@@ -3,7 +3,7 @@
     "name": "Phraseman",
     "owner": "badloar",
     "slug": "phraseman",
-    "version": "1.5.33",
+    "version": "1.5.37",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "phraseman",
@@ -20,7 +20,7 @@
     "android": {
       "package": "app.phraseman",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 73,
+      "versionCode": 75,
       "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
@@ -34,18 +34,13 @@
           "data": [
             {
               "scheme": "https",
-              "host": "badloar-star.github.io",
-              "pathPrefix": "/phraseman/duel"
-            },
-            {
-              "scheme": "https",
-              "host": "badloar-star.github.io",
+              "host": "knowlyapps.com",
               "pathPrefix": "/phraseman/invite"
             },
             {
               "scheme": "https",
               "host": "knowlyapps.com",
-              "pathPrefix": "/phraseman/invite"
+              "pathPrefix": "/phraseman/duel"
             }
           ],
           "category": [
@@ -61,10 +56,10 @@
         "android.permission.INTERNET",
         "android.permission.RECEIVE_BOOT_COMPLETED",
         "android.permission.VIBRATE",
-        "android.permission.POST_NOTIFICATIONS"
+        "android.permission.POST_NOTIFICATIONS",
+        "com.google.android.gms.permission.AD_ID"
       ],
       "blockedPermissions": [
-        "com.google.android.gms.permission.AD_ID",
         "android.permission.ACCESS_ADSERVICES_AD_ID",
         "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
         "android.permission.ACCESS_ADSERVICES_TOPICS",
@@ -75,7 +70,7 @@
     },
     "ios": {
       "bundleIdentifier": "app.phraseman",
-      "buildNumber": "73",
+      "buildNumber": "75",
       "supportsTablet": false,
       "usesAppleSignIn": true,
       "associatedDomains": [

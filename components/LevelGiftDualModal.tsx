@@ -26,13 +26,13 @@ import { triLang, type Lang } from '../constants/i18n';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useEnergy } from './EnergyContext';
 import { useTheme, type Fonts } from './ThemeContext';
-import type { Theme } from '../constants/theme';
+import type { Theme, ThemeMode } from '../constants/theme';
 import { GiftOpenBurst, animTierF2p, animTierPrem, type GiftAnimTier } from './GiftOpenEffects';
 import AvatarAura from './AvatarAura';
 import AvatarView from './AvatarView';
 import CustomAvatarBadge from './CustomAvatarBadge';
+import LevelGiftArt from './LevelGiftArt';
 import { getBestAvatarForLevel } from '../constants/avatars';
-import { getLevelGiftImage } from '../constants/levelGiftImages';
 import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
 import {
   RewardModalBackdrop,
@@ -170,7 +170,6 @@ type Phase = 'pair' | 'full';
 export default function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolledPair, deliveryMode = 'claim' }: Props) {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
-  const premiumChestSource = getLevelGiftImage(themeMode, 'premium');
   const { energy, maxEnergy, reload: reloadEnergy } = useEnergy();
   const storesOnly = deliveryMode === 'inventory';
 
@@ -567,6 +566,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                       lang={lang}
                       theme={t}
                       fonts={f}
+                      themeMode={themeMode}
                       burstTier={animTierF2p(f2pGift.rarity)}
                       premVisual={false}
                     />
@@ -590,10 +590,10 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                           { translateX: fShake },
                         ],
                       }}>
-                        <Image
-                          source={getLevelGiftImage(themeMode, f2pGift?.rarity ?? 'common')}
-                          style={{ width: DUAL_CHEST_IMAGE_SIZE, height: DUAL_CHEST_IMAGE_SIZE }}
-                          resizeMode="contain"
+                        <LevelGiftArt
+                          themeMode={themeMode}
+                          variant={f2pGift?.rarity ?? 'common'}
+                          size={DUAL_CHEST_IMAGE_SIZE}
                         />
                       </Animated.View>
                     </TouchableOpacity>
@@ -609,6 +609,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                       lang={lang}
                       theme={t}
                       fonts={f}
+                      themeMode={themeMode}
                       burstTier={animTierPrem()}
                       premVisual
                     />
@@ -632,7 +633,11 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                           { translateX: pShake },
                         ],
                       }}>
-                        <Image source={premiumChestSource} style={{ width: DUAL_CHEST_IMAGE_SIZE, height: DUAL_CHEST_IMAGE_SIZE }} resizeMode="contain" />
+                        <LevelGiftArt
+                          themeMode={themeMode}
+                          variant="premium"
+                          size={DUAL_CHEST_IMAGE_SIZE}
+                        />
                       </Animated.View>
                     </TouchableOpacity>
                   )}
@@ -702,6 +707,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                       label={firstChestLabel(lang)}
                       meta={f2pAppliedMeta}
                       level={level}
+                      themeMode={themeMode}
                     />
                     <View style={{ height: 10 }} />
                     <GiftResultBlock
@@ -710,6 +716,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                       premVisual
                       meta={premAppliedMeta}
                       level={level}
+                      themeMode={themeMode}
                     />
                     {hasCosmeticGift && (
                       <TouchableOpacity
@@ -794,11 +801,12 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
 }
 
 /** Сразу после открытия: только иконка + название, без описания (анимация по редкости). */
-function MiniRewardPeek({ gift, lang, theme: t, fonts: f, burstTier, premVisual }: {
+function MiniRewardPeek({ gift, lang, theme: t, fonts: f, themeMode, burstTier, premVisual }: {
   gift:        GiftDef;
   lang:        Lang;
   theme:       Theme;
   fonts:       Fonts;
+  themeMode:   ThemeMode;
   burstTier:   GiftAnimTier;
   premVisual:  boolean;
 }) {
@@ -824,7 +832,7 @@ function MiniRewardPeek({ gift, lang, theme: t, fonts: f, burstTier, premVisual 
       <View style={{ width: MINI_REWARD_STAGE_SIZE, height: MINI_REWARD_STAGE_SIZE, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
         <GiftOpenBurst key={`${gift.id}-${burstTier}`} tier={burstTier} size={MINI_REWARD_STAGE_SIZE} />
         <Image
-          source={getLevelGiftRewardIcon(gift.id)}
+          source={getLevelGiftRewardIcon(gift.id, themeMode)}
           style={{
             width: MINI_REWARD_ICON_SIZE,
             height: MINI_REWARD_ICON_SIZE,
@@ -853,7 +861,7 @@ function MiniRewardPeek({ gift, lang, theme: t, fonts: f, burstTier, premVisual 
   );
 }
 
-function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level }: {
+function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeMode }: {
   t:     Theme;
   f:     Fonts;
   g:     GiftDef;
@@ -862,6 +870,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level }: {
   premVisual?: boolean;
   meta:  ApplyGiftResult;
   level: number;
+  themeMode: ThemeMode;
 }) {
   const rarity     = g.rarity;
   const accentCol  = premVisual ? PREM_LABEL_COLOR : rarity === 'epic' ? '#FFD700' : rarity === 'rare' ? '#60A5FA' : 'rgba(255,255,255,0.28)';
@@ -909,7 +918,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level }: {
         {label} · {giftRarityUiLabel(rarity, lang)}
       </Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-        <Image source={getLevelGiftRewardIcon(g.id)} style={{ width: DETAIL_REWARD_ICON_SIZE, height: DETAIL_REWARD_ICON_SIZE }} resizeMode="contain" />
+        <Image source={getLevelGiftRewardIcon(g.id, themeMode)} style={{ width: DETAIL_REWARD_ICON_SIZE, height: DETAIL_REWARD_ICON_SIZE }} resizeMode="contain" />
         <View style={{ flex: 1 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.h2 - 2, fontWeight: '900' }}>{giftTitleForLang(g, lang)}</Text>
           <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 2 }}>{giftDescForLang(g, lang)}</Text>

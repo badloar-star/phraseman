@@ -11,7 +11,7 @@ type Props = {
   fontWeight?: '700' | '800' | '900';
 };
 
-const LEAGUE_CROWN_ICON = require('../assets/images/league/league_crown.png');
+const LEAGUE_CROWN_ICON = require('../assets/images/league/league_crown.webp');
 
 export default function LeagueCrownName({
   text,

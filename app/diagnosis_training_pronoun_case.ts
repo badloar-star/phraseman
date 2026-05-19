@@ -3,7 +3,19 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (ru: string, uk: string, es: string): TriText => {
+  const plannedFallback = {
+    'pt-BR': es,
+    vi: es,
+    id: es,
+    tr: es,
+    pl: es,
+  } satisfies Record<PlannedTrainingLocale, string>;
+
+  return { ru, uk, es, ...plannedFallback };
+};
 
 function pronounStep(input: {
   id: string;
@@ -132,16 +144,71 @@ export const PRONOUN_CASE_TRAINING: DiagnosisTraining = {
       'They y them: they hacen, them recibe la acción / a ellos / con ellos.',
       'You no cambia: you puede ser subject y object.',
     ],
+    'pt-BR': [
+      'I, he, she, we, they são usados quando o pronome faz a ação: I work, he knows, she called.',
+      'Me, him, her, us, them são usados quando a ação atinge a pessoa: help me, call him, see her.',
+      'Depois de preposições, usamos me, him, her, us, them: to me, with him, for her, between us.',
+      'I vira me depois de verbo ou preposição: call me, with me.',
+      'He vira him depois de verbo ou preposição: call him, with him.',
+      'She e her: she faz a ação, her recebe a ação.',
+      'We e us: we fazemos, us recebe a ação / para nós / conosco.',
+      'They e them: they fazem, them recebe a ação / para eles / com eles.',
+      'You não muda: pode ser sujeito e objeto.',
+    ],
+    vi: [
+      'I, he, she, we, they dùng khi đại từ làm hành động: I work, he knows, she called.',
+      'Me, him, her, us, them dùng khi hành động tác động vào người đó: help me, call him, see her.',
+      'Sau giới từ, dùng me, him, her, us, them: to me, with him, for her, between us.',
+      'I đổi thành me sau động từ hoặc giới từ: call me, with me.',
+      'He đổi thành him sau động từ hoặc giới từ: call him, with him.',
+      'She và her: she làm hành động, her nhận hành động.',
+      'We và us: we làm hành động, us nhận hành động / cho chúng tôi / với chúng tôi.',
+      'They và them: they làm hành động, them nhận hành động / cho họ / với họ.',
+      'You không đổi: có thể là chủ ngữ và tân ngữ.',
+    ],
+    id: [
+      'I, he, she, we, they dipakai saat pronomina melakukan tindakan: I work, he knows, she called.',
+      'Me, him, her, us, them dipakai saat tindakan mengenai orang itu: help me, call him, see her.',
+      'Setelah preposisi, gunakan me, him, her, us, them: to me, with him, for her, between us.',
+      'I menjadi me setelah verba atau preposisi: call me, with me.',
+      'He menjadi him setelah verba atau preposisi: call him, with him.',
+      'She dan her: she melakukan tindakan, her menerima tindakan.',
+      'We dan us: we melakukan, us menerima tindakan / kepada kami / dengan kami.',
+      'They dan them: they melakukan, them menerima tindakan / kepada mereka / dengan mereka.',
+      'You tidak berubah: bisa menjadi subjek dan objek.',
+    ],
+    tr: [
+      'I, he, she, we, they zamir eylemi yapıyorsa kullanılır: I work, he knows, she called.',
+      'Me, him, her, us, them eylem kişiye yöneliyorsa kullanılır: help me, call him, see her.',
+      'Edatlardan sonra me, him, her, us, them kullanırız: to me, with him, for her, between us.',
+      'I, fiil veya edattan sonra me olur: call me, with me.',
+      'He, fiil veya edattan sonra him olur: call him, with him.',
+      'She ve her: she eylemi yapar, her eylemi alır.',
+      'We ve us: we yapar, us eylemi alır / bize / bizimle.',
+      'They ve them: they yapar, them eylemi alır / onlara / onlarla.',
+      'You değişmez: hem subject hem object olabilir.',
+    ],
+    pl: [
+      'I, he, she, we, they używamy, gdy zaimek wykonuje czynność: I work, he knows, she called.',
+      'Me, him, her, us, them używamy, gdy czynność dotyczy osoby: help me, call him, see her.',
+      'Po przyimkach używamy me, him, her, us, them: to me, with him, for her, between us.',
+      'I zmienia się w me po czasowniku albo przyimku: call me, with me.',
+      'He zmienia się w him po czasowniku albo przyimku: call him, with him.',
+      'She i her: she wykonuje czynność, her odbiera czynność.',
+      'We i us: we wykonujemy, us odbiera czynność / nam / z nami.',
+      'They i them: they wykonują, them odbiera czynność / im / z nimi.',
+      'You się nie zmienia: może być podmiotem i dopełnieniem.',
+    ],
   },
   examples: [
-    { en: 'I called him yesterday.', ru: 'Я позвонил ему вчера.', uk: 'Я подзвонив йому вчора.', es: 'Lo llamé ayer.', why: tri('I делает действие, him получает действие после called.', 'I виконує дію, him отримує дію після called.', 'I hace la acción, him recibe la acción después de called.') },
-    { en: 'He called me yesterday.', ru: 'Он позвонил мне вчера.', uk: 'Він подзвонив мені вчора.', es: 'Él me llamó ayer.', why: tri('He делает действие. Me получает действие после called.', 'He виконує дію. Me отримує дію після called.', 'He hace la acción. Me recibe la acción después de called.') },
-    { en: 'She helped us.', ru: 'Она помогла нам.', uk: 'Вона допомогла нам.', es: 'Ella nos ayudó.', why: tri('She делает действие. Us получает помощь.', 'She виконує дію. Us отримує допомогу.', 'She hace la acción. Us recibe la ayuda.') },
-    { en: 'They invited her.', ru: 'Они пригласили ее.', uk: 'Вони запросили її.', es: 'La invitaron.', why: tri('They делают действие. Her получает действие после invited.', 'They виконують дію. Her отримує дію після invited.', 'They hacen la acción. Her recibe la acción después de invited.') },
-    { en: 'This is for me.', ru: 'Это для меня.', uk: 'Це для мене.', es: 'Esto es para mí.', why: tri('После for ставим me: for me.', 'Після for ставимо me: for me.', 'Después de for necesitamos object form: for me.') },
-    { en: 'I spoke to him.', ru: 'Я поговорил с ним.', uk: 'Я поговорив з ним.', es: 'Hablé con él.', why: tri('После to ставим him: to him.', 'Після to ставимо him: to him.', 'Después de to necesitamos object form: to him.') },
-    { en: 'Between you and me, this is strange.', ru: 'Между нами говоря, это странно.', uk: 'Між нами кажучи, це дивно.', es: 'Entre tú y yo, esto es raro.', why: tri('После between ставим me: between you and me.', 'Після between ставимо me: between you and me.', 'Después de between necesitamos object form: between you and me.') },
-    { en: 'You and I need to talk.', ru: 'Нам с тобой нужно поговорить.', uk: 'Нам з тобою потрібно поговорити.', es: 'Tú y yo tenemos que hablar.', why: tri('You and I вместе делают действие need.', 'You and I разом виконують дію need.', 'You and I juntos hacen la acción need.') },
+    { en: 'I called him yesterday.', ru: 'Я позвонил ему вчера.', uk: 'Я подзвонив йому вчора.', es: 'Lo llamé ayer.', 'pt-BR': 'Liguei para ele ontem.', vi: 'Tôi đã gọi cho anh ấy hôm qua.', id: 'Saya meneleponnya kemarin.', tr: 'Dün onu aradım.', pl: 'Zadzwoniłem do niego wczoraj.', why: tri('I делает действие, him получает действие после called.', 'I виконує дію, him отримує дію після called.', 'I hace la acción, him recibe la acción después de called.') },
+    { en: 'He called me yesterday.', ru: 'Он позвонил мне вчера.', uk: 'Він подзвонив мені вчора.', es: 'Él me llamó ayer.', 'pt-BR': 'Ele me ligou ontem.', vi: 'Anh ấy đã gọi cho tôi hôm qua.', id: 'Dia menelepon saya kemarin.', tr: 'Dün beni aradı.', pl: 'On zadzwonił do mnie wczoraj.', why: tri('He делает действие. Me получает действие после called.', 'He виконує дію. Me отримує дію після called.', 'He hace la acción. Me recibe la acción después de called.') },
+    { en: 'She helped us.', ru: 'Она помогла нам.', uk: 'Вона допомогла нам.', es: 'Ella nos ayudó.', 'pt-BR': 'Ela nos ajudou.', vi: 'Cô ấy đã giúp chúng tôi.', id: 'Dia membantu kami.', tr: 'O bize yardım etti.', pl: 'Ona nam pomogła.', why: tri('She делает действие. Us получает помощь.', 'She виконує дію. Us отримує допомогу.', 'She hace la acción. Us recibe la ayuda.') },
+    { en: 'They invited her.', ru: 'Они пригласили ее.', uk: 'Вони запросили її.', es: 'La invitaron.', 'pt-BR': 'Eles a convidaram.', vi: 'Họ đã mời cô ấy.', id: 'Mereka mengundangnya.', tr: 'Onu davet ettiler.', pl: 'Oni ją zaprosili.', why: tri('They делают действие. Her получает действие после invited.', 'They виконують дію. Her отримує дію після invited.', 'They hacen la acción. Her recibe la acción después de invited.') },
+    { en: 'This is for me.', ru: 'Это для меня.', uk: 'Це для мене.', es: 'Esto es para mí.', 'pt-BR': 'Isto é para mim.', vi: 'Cái này dành cho tôi.', id: 'Ini untuk saya.', tr: 'Bu benim için.', pl: 'To jest dla mnie.', why: tri('После for ставим me: for me.', 'Після for ставимо me: for me.', 'Después de for necesitamos object form: for me.') },
+    { en: 'I spoke to him.', ru: 'Я поговорил с ним.', uk: 'Я поговорив з ним.', es: 'Hablé con él.', 'pt-BR': 'Falei com ele.', vi: 'Tôi đã nói chuyện với anh ấy.', id: 'Saya berbicara dengannya.', tr: 'Onunla konuştum.', pl: 'Rozmawiałem z nim.', why: tri('После to ставим him: to him.', 'Після to ставимо him: to him.', 'Después de to necesitamos object form: to him.') },
+    { en: 'Between you and me, this is strange.', ru: 'Между нами говоря, это странно.', uk: 'Між нами кажучи, це дивно.', es: 'Entre tú y yo, esto es raro.', 'pt-BR': 'Entre você e mim, isso é estranho.', vi: 'Nói riêng giữa bạn và tôi, điều này thật lạ.', id: 'Antara kamu dan saya, ini aneh.', tr: 'Seninle benim aramda, bu garip.', pl: 'Między tobą a mną, to dziwne.', why: tri('После between ставим me: between you and me.', 'Після between ставимо me: between you and me.', 'Después de between necesitamos object form: between you and me.') },
+    { en: 'You and I need to talk.', ru: 'Нам с тобой нужно поговорить.', uk: 'Нам з тобою потрібно поговорити.', es: 'Tú y yo tenemos que hablar.', 'pt-BR': 'Você e eu precisamos conversar.', vi: 'Bạn và tôi cần nói chuyện.', id: 'Kamu dan saya perlu berbicara.', tr: 'Sen ve ben konuşmalıyız.', pl: 'Ty i ja musimy porozmawiać.', why: tri('You and I вместе делают действие need.', 'You and I разом виконують дію need.', 'You and I juntos hacen la acción need.') },
   ],
   introBlocks: [
     { id: 'intro_problem', type: 'diagnosis', text: tri('Похоже, ты путаешь пары I/me, he/him, she/her. Это не про перевод, а про роль в предложении.', 'Схоже, ти плутаєш пари I/me, he/him, she/her. Це не про переклад, а про роль у реченні.', 'Parece que confundes pares como I/me, he/him, she/her. No va de traducción, sino del papel en la frase.') },

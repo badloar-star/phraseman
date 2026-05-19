@@ -36,7 +36,7 @@ import { emitAppEvent } from '../app/events';
 import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
 import { triLang } from '../constants/i18n';
 
-const AUTH_QUICK_START_ICON = require('../assets/images/onboarding/auth-quick-start-icon.png');
+const AUTH_QUICK_START_ICON = require('../assets/images/onboarding/auth-quick-start-icon.webp');
 
 interface Props {
   visible: boolean;

@@ -1,0 +1,82 @@
+[
+  {
+    "heading": "Privacy Policy - Phraseman by Knowly",
+    "body": "Last updated: May 17, 2026\n\nThis Privacy Policy explains how Knowly (\"we\", \"us\") collects, uses, discloses, stores, and deletes information when you use the Phraseman mobile app, related cloud features, and the Knowly website pages for Phraseman. Privacy contact: support.phraseman@gmail.com."
+  },
+  {
+    "heading": "1. Age and minors",
+    "body": "Phraseman is a general-audience educational app. The app is not intended to be used by children under 13 without verifiable parent or guardian consent, or by children under the age at which consent is required in their country.\n\nIf you are a parent or guardian and believe a child provided personal data without the required consent, contact support.phraseman@gmail.com with subject \"Parent Privacy Request\". We will review and delete or de-identify the relevant account data unless we must retain limited records for legal, safety, fraud-prevention, or transaction reasons.\n\nChildren and minors should not use public, chat, community, referral, or purchase features without parent or guardian supervision."
+  },
+  {
+    "heading": "2. Data stored on your device",
+    "body": "The app stores learning progress, XP, streaks, achievements, flashcards, daily tasks, lesson state, app settings, notification settings, cached activity/error queues, and similar app data on your device using AsyncStorage and related platform storage.\n\nThe app also creates a Phraseman stable app identifier. It is stored in SecureStore where available and mirrored in local storage so progress, cloud sync, purchases, referrals, moderation, and account recovery can work across app sessions. Depending on iOS Keychain, Android backup/restore, or device settings, this identifier or a backup of it may survive reinstall or device restore until you use the in-app account deletion flow or reset the app/device storage."
+  },
+  {
+    "heading": "3. Account, authentication, and cloud sync",
+    "body": "The app uses Firebase Authentication. By default, Firebase may create an anonymous app session so cloud features can operate without a Knowly username/password.\n\nYou may optionally sign in with Google or Apple. If you do, Firebase and Knowly may process provider identifiers, Firebase Auth UID, email address if shared, display name if shared, provider type, platform, sign-in timestamps, and account-linking records. We use this to restore progress, link devices, prevent account drift, secure the service, and prevent abuse.\n\nCloud sync may store progress and app state in Firebase Firestore, including XP, lessons, streaks, achievements, custom flashcards, certificates, Shards balance and ledger data, premium status metadata, RevenueCat purchase metadata, daily/weekly stats, foreground usage totals, settings, and feature state needed to operate the app."
+  },
+  {
+    "heading": "4. Public, social, and multiplayer data",
+    "body": "Some data is visible to other users when you use social or competitive features. This may include nickname, avatar, frame, aura, profile card settings, XP, streak, league or club tier, weekly points, rank, arena profile, wins/matches, premium or club markers, friend activity, gifts, community pack author information, seller notifications, and similar gameplay/profile fields.\n\nVisibility depends on the feature: some fields are public to app users, some are visible to league or arena participants, some to friends, some to community pack buyers/sellers, and some only to moderators/admins."
+  },
+  {
+    "heading": "5. User content, community packs, chat, reports, and moderation",
+    "body": "If you create Community Packs, submit flashcard text, use league chat or room chat, send reports, or contact support, we process the content you provide and related metadata. This may include titles, descriptions, card text and translations, chat messages, normalized text used for moderation, report reasons, reporter/reported user IDs and names, author IDs, buyer/seller IDs, moderation decisions, timestamps, platform, app version, and audit fields.\n\nPublished Community Packs and approved catalog metadata may be visible in the app. Pack cards may be visible to the author, moderators, and users who access or purchase the pack with Shards. Chat messages may be visible to the relevant room, league, or group and to moderators.\n\nWe may review, block, remove, de-identify, retain, or disclose user content and reports when needed to operate moderation, enforce Terms, protect users, investigate abuse, handle disputes, or comply with law."
+  },
+  {
+    "heading": "6. Friends, gifts, referrals, and invite codes",
+    "body": "Friend features may process friend codes, friend relationships, friend requests, gifts sent/received, gift history, activity feed entries, likes, Shards ledger entries, and daily limits.\n\nReferral features may process referral codes, referral owners, referral attributions, referrer/referee stable IDs, reward status, monthly caps, and Google Play Install Referrer or deep-link/manual-code source information. We use this to attribute rewards, prevent self-referrals and abuse, and operate the referral program."
+  },
+  {
+    "heading": "7. Purchases, subscriptions, RevenueCat, and Shards",
+    "body": "Premium subscriptions and Shards purchases are billed through the Apple App Store or Google Play. Knowly does not receive your payment card or bank details.\n\nWe use RevenueCat to verify subscriptions, entitlements, receipts, product IDs, transaction IDs, store, environment, purchase/expiry timestamps, cancellation/billing status, and related webhook events. RevenueCat may receive a Phraseman app user ID or canonical stable ID and attributes such as `phraseman_uid` so subscription and purchase state can be restored and matched to your account.\n\nShards are a virtual in-app balance. We may store Shards balances, purchases, grants, spending, refunds/reversals, pack purchases, seller credits, platform fees, and audit logs in Firebase."
+  },
+  {
+    "heading": "8. Analytics, diagnostics, and app health",
+    "body": "We use Firebase Analytics, Firebase Crashlytics, and our own limited app activity/error logs to operate, secure, debug, and improve the app. These records may include app events, screens/features used, purchase/paywall/referral events, error context, crash logs, stack traces, cancellation survey answers, app version, build number, platform, OS version, device name, app state, user name, Firebase/Auth IDs, stable app ID, and other app metadata.\n\nThese records are not described as anonymous. Some diagnostics and analytics may be linked to your app account or device/app instance. Android builds are not intended to request Advertising ID for this app; if advertising/tracking use is added later, the app store disclosures and this Policy must be updated first. We do not sell personal information."
+  },
+  {
+    "heading": "9. Notifications",
+    "body": "If you enable notifications, the app may request notification permission and store notification settings and scheduled notification IDs locally. Notifications may include reminders, phrase of the day, streak warnings, weekly/monthly recaps, XP, lesson counts, streak counts, phrase text, league rank changes, or similar app context.\n\nThe current reminders are primarily local scheduled notifications. If remote push tokens are added or used, we will update this Policy and store disclosures as required."
+  },
+  {
+    "heading": "10. Text-to-speech audio",
+    "body": "The app uses your device's built-in text-to-speech engine through expo-speech to pronounce English phrases and example sentences. Based on the current implementation, pronunciation is generated on device and Knowly does not receive the generated audio."
+  },
+  {
+    "heading": "11. Website contact and support",
+    "body": "If you use the Knowly website contact form or email support, we may process your name, email address, message, topic, page URL, user-agent, forwarded IP header, support metadata, and our replies. We may use an email service provider such as Resend to deliver contact-form notifications."
+  },
+  {
+    "heading": "12. Third-party services and processors",
+    "body": "The app and related services use third-party providers, including:\n- Google Firebase services such as Authentication, Firestore, Cloud Functions, Analytics, Crashlytics, and App Check\n- Google Play Services, Google Sign-In, Google Play Billing, and Google Play Install Referrer on Android\n- Apple Sign In, Apple App Store, and Apple in-app purchase systems on iOS\n- RevenueCat for subscription and purchase verification\n- Expo / EAS / Expo Updates for app infrastructure\n- Resend or another email provider for website contact/support notifications\n\nThese providers process data under their own terms and privacy policies. Data may be processed in countries other than your country of residence, subject to applicable safeguards."
+  },
+  {
+    "heading": "13. Legal bases and purposes",
+    "body": "Depending on your location, we process data on these bases:\n- Contract/performance of the app: account operation, progress sync, purchases, subscriptions, Shards, leaderboards, social features, support, and requested features\n- Legitimate interests: security, fraud prevention, abuse prevention, debugging, analytics, service reliability, moderation, and product improvement\n- Consent: optional notifications, optional Google/Apple sign-in where required, and any consent-based analytics or child/parent consent where required\n- Legal obligations: tax, accounting, consumer protection, store compliance, dispute handling, law-enforcement requests, and regulatory compliance"
+  },
+  {
+    "heading": "14. Retention",
+    "body": "We retain data only as long as reasonably needed for the purposes above, unless a longer period is required or permitted by law.\n\nTypical retention criteria:\n- Local app data remains on your device until you delete it, use account deletion, clear app data, or uninstall; backup/keychain behavior may vary by platform\n- Active cloud progress and profile data is retained while your account is active\n- Chat, reports, moderation records, safety records, purchase records, referral records, and fraud-prevention records may be retained longer where needed for safety, disputes, legal compliance, chargebacks, accounting, or abuse prevention\n- Website contact/support messages are retained as long as needed to respond and keep support/security records\n\nWe no longer promise automatic deletion after a fixed inactivity period unless such a deletion job is implemented and active."
+  },
+  {
+    "heading": "15. Account and data deletion",
+    "body": "You can request deletion from inside the app where available, from the public deletion instructions at https://knowlyapps.com/legal/data-deletion/, or by emailing support.phraseman@gmail.com with subject \"Delete My Data\".\n\nThe in-app deletion flow calls a backend deletion function. It is designed to delete or de-identify active account data, including the Firebase Auth user, users/{stable_id} data and subcollections, leaderboard/profile records, auth links, name/friend/referral indexes, many social/UGC/chat/report records, analytics/error records linked to the stable ID, and local app data on the device.\n\nSome records may remain when retention is required or permitted for legal compliance, payment/tax/accounting, fraud prevention, security, dispute handling, chargebacks/refunds, moderation integrity, backups, or data stored by app stores and third-party processors. Deleting the account does not automatically cancel an active App Store or Google Play subscription; you must cancel it in the store subscription settings."
+  },
+  {
+    "heading": "16. Your rights",
+    "body": "Depending on your location, you may have rights to access, correct, delete, restrict, object to processing, port your data, withdraw consent, and complain to a data protection authority.\n\nCalifornia and other US state residents may request information about categories of personal information collected, sources, purposes, disclosures, and deletion/correction where applicable. We do not sell personal information. We do not share personal information for cross-context behavioral advertising unless the app store disclosures and this Policy are updated to say so.\n\nTo exercise rights, email support.phraseman@gmail.com with subject \"Privacy Request\". We may need to verify your request and may retain limited records when allowed or required by law."
+  },
+  {
+    "heading": "17. Security",
+    "body": "We use technical and organizational measures such as Firebase security rules, authenticated Cloud Functions, App Check where enabled, TLS/HTTPS, access controls, and operational monitoring. No system is perfectly secure, and we cannot guarantee absolute security."
+  },
+  {
+    "heading": "18. Changes",
+    "body": "We may update this Policy from time to time. Material changes will be reflected in the \"Last updated\" date and may include in-app notice or website updates where practicable. Continued use of the app after changes means you accept the updated Policy where permitted by law."
+  },
+  {
+    "heading": "19. Contact",
+    "body": "Knowly - Phraseman\nEmail: support.phraseman@gmail.com\n\nUse this contact for privacy requests, parental requests, account deletion, support, legal notices, and questions about this Policy."
+  }
+]

@@ -14,6 +14,7 @@ import { loadLeagueState } from './league_engine';
 import { getShardsBalance } from './shards_system';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
 import { getTrainerCounts } from './trainer_store';
+import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
 
 const STATS_PRELOAD_CACHE_KEY = 'stats_preload_cache_v2';
 const DAYS_SHOW = 14;
@@ -61,6 +62,7 @@ export interface StatsPreloadData {
   streakAtRisk: boolean;
   /** Только слова + фразы, без arena. CTA в тренажер показываем с 5+. */
   trainerPracticeDue: number;
+  pendingGiftCount: number;
   /** true once a successful preload has completed */
   loaded: boolean;
   updatedAt: number;
@@ -91,6 +93,7 @@ const DEFAULT_CACHE: StatsPreloadData = {
   myName: '',
   streakAtRisk: false,
   trainerPracticeDue: 0,
+  pendingGiftCount: 0,
   loaded: false,
   updatedAt: 0,
 };
@@ -181,6 +184,7 @@ function normalizeStatsCache(value: Partial<StatsPreloadData> | null | undefined
     engineLeagueId: value?.engineLeagueId == null ? null : Math.max(0, Math.floor(Number(value.engineLeagueId) || 0)),
     myName: String(value?.myName ?? ''),
     trainerPracticeDue: Math.max(0, Math.floor(Number(value?.trainerPracticeDue) || 0)),
+    pendingGiftCount: Math.max(0, Math.floor(Number(value?.pendingGiftCount) || 0)),
     loaded: value?.loaded === true,
     updatedAt: Math.max(0, Number(value?.updatedAt) || 0),
   };
@@ -346,7 +350,7 @@ async function buildFreshStatsSnapshot(): Promise<StatsPreloadData> {
     }
   }
 
-  const [clubM, gm, giftXpBank, shardsBalance, wp, { willLose }, ls, trainerCounts] = await Promise.all([
+  const [clubM, gm, giftXpBank, shardsBalance, wp, { willLose }, ls, trainerCounts, pendingGiftCount] = await Promise.all([
     getXPMultiplier(),
     readGiftMultiplier(),
     readGiftXpBank(),
@@ -355,6 +359,7 @@ async function buildFreshStatsSnapshot(): Promise<StatsPreloadData> {
     checkStreakLossPending(),
     loadLeagueState(),
     getTrainerCounts(),
+    loadPendingLevelGiftCount().catch(() => readPendingLevelGiftCountCache()),
   ]);
 
   let clubBoostExpiresAt = 0;
@@ -394,6 +399,7 @@ async function buildFreshStatsSnapshot(): Promise<StatsPreloadData> {
     myName: name || '',
     streakAtRisk: willLose && !freezeIsActive,
     trainerPracticeDue: trainerCounts.words + trainerCounts.phrases,
+    pendingGiftCount,
     loaded: true,
     updatedAt: Date.now(),
   });

@@ -63,6 +63,7 @@ import { trackFeatureOpened } from '../user_stats';
 import { perfMark, perfScreenMount, perfNavStart } from '../perf-monitor';
 import { emitAppEvent, onAppEvent } from '../events';
 import { ensureAnonUser } from '../cloud_sync';
+import { FOREGROUND_CLOUD_REFRESH_DELAY_MS } from '../app_resume_policy';
 import { fetchActiveLeagueCrowns, getLeagueChestGoal } from '../services/league_chest_rewards';
 import { shouldShowLeagueRace } from '../league_race_visibility';
 import { getHomeMenuImages } from '../home_menu_icons';
@@ -468,7 +469,7 @@ export default function HomeScreen() {
                     resumeTask = InteractionManager.runAfterInteractions(() => {
                         loadData();
                     });
-                }, 350);
+                }, FOREGROUND_CLOUD_REFRESH_DELAY_MS);
             }
             else if (resumeTimer) {
                 clearTimeout(resumeTimer);
@@ -990,6 +991,7 @@ export default function HomeScreen() {
         }
         await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: today }));
         setFreezeActive(true);
+        emitAppEvent('streak_freeze_updated', { active: true });
         setStreakAtRisk(false);
         void checkAchievements({ type: 'streak_freeze_used' });
     };
@@ -1259,10 +1261,10 @@ export default function HomeScreen() {
                 <TouchableOpacity activeOpacity={0.7} onPress={showEnergyTooltip} style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 1 }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     {Array.from({ length: energyMax }).map((_, i) => (<View key={i} style={{ marginLeft: i > 0 ? homeEnergyIconOverlap : 0 }}>
-                        <EnergyIcon filled={i < energyCount} themeColor={i < energyCount ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeEnergyIconSize} animateChange={true} shouldShake={false} themeMode={themeMode} tintColor={i < energyCount ? energyFilledTint : undefined} isPremium={energyUnlimited} variant={freezeActive ? 'frozen' : 'normal'}/>
+                        <EnergyIcon filled={i < energyCount} themeColor={i < energyCount ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeEnergyIconSize} animateChange={true} shouldShake={false} themeMode={themeMode} tintColor={i < energyCount ? energyFilledTint : undefined} isPremium={energyUnlimited}/>
                       </View>))}
                     {energyBonus > 0 && Array.from({ length: energyBonus }).map((_, i) => (<View key={`bonus_${i}`} style={{ marginLeft: homeEnergyIconOverlap }}>
-                        <EnergyIcon filled={true} themeColor={BONUS_ENERGY_COLOR} size={homeEnergyIconSize} animateChange={false} shouldShake={false} themeMode={themeMode} tintColor={BONUS_ENERGY_COLOR} variant={freezeActive ? 'frozen' : 'normal'}/>
+                        <EnergyIcon filled={true} themeColor={BONUS_ENERGY_COLOR} size={homeEnergyIconSize} animateChange={false} shouldShake={false} themeMode={themeMode} tintColor={BONUS_ENERGY_COLOR}/>
                       </View>))}
                   </View>
                   {!energyUnlimited && energyCount < energyMax && timeUntilNextEnergy && (<Text style={{ fontSize: f.label, color: t.heroTextMuted, fontWeight: '500', marginLeft: 6 }}>

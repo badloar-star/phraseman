@@ -5,11 +5,22 @@ node_modules
 scripts/*
 !scripts/eas_production_version_gate.mjs
 docs/
+qa-artifacts/
+tmp/
+builds/
+subscription-recovery/
+functions/
+exports/
+SSIU/
+admin/
 graphify-out/
 .obsidian/
 .hive-mind/
 .claude-flow/
 .claude/
+.expo/
+.agents/
+.planning/
 
 # Test files
 tests/
@@ -42,6 +53,7 @@ service-account*.json
 
 # Large files not needed for build
 graphify-out/
+/*.png
 *.map
 *.log
 

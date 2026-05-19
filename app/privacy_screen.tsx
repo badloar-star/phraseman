@@ -8,8 +8,8 @@ import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { KNOWLY_LEGAL_PRIVACY_URL } from './config';
 import { hapticTap } from '../hooks/use-haptics';
-import PRIVACY_POLICY_EN from '../legal/privacy_policy_en.json';
-import PRIVACY_POLICY_EN_IOS from '../legal/privacy_policy_en_ios.json';
+import PRIVACY_POLICY_EN from './legal/privacy_policy_en.json';
+import PRIVACY_POLICY_EN_IOS from './legal/privacy_policy_en_ios.json';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 
 type PolicySection = { heading: string; body: string };

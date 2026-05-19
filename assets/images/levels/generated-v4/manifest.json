@@ -1,6 +1,6 @@
 {
   "version": "generated-v4",
-  "generatedAt": "2026-05-18T12:04:20.418Z",
+  "generatedAt": "2026-05-18T15:51:19.004Z",
   "intent": "Rounded hexagonal hexahedron crystal level badges; improved over v2 by removing laurel/medal spikes and over v3 by avoiding object icons.",
   "sourceAtlases": [
     "tmp/avatar-generation-v4/source-atlases/levels-1-10.png",
@@ -18,7 +18,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 18992
+      "bytes": 19006
     },
     {
       "level": 2,
@@ -27,7 +27,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 22922
+      "bytes": 23104
     },
     {
       "level": 3,
@@ -36,7 +36,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 27398
+      "bytes": 27632
     },
     {
       "level": 4,
@@ -45,7 +45,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 26790
+      "bytes": 26830
     },
     {
       "level": 5,
@@ -54,7 +54,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 29604
+      "bytes": 29708
     },
     {
       "level": 6,
@@ -63,7 +63,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 30902
+      "bytes": 31180
     },
     {
       "level": 7,
@@ -72,7 +72,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 32104
+      "bytes": 32080
     },
     {
       "level": 8,
@@ -81,7 +81,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 32348
+      "bytes": 32506
     },
     {
       "level": 9,
@@ -90,7 +90,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 33962
+      "bytes": 33938
     },
     {
       "level": 10,
@@ -99,7 +99,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 35074
+      "bytes": 35174
     },
     {
       "level": 11,
@@ -108,7 +108,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 33084
+      "bytes": 32924
     },
     {
       "level": 12,
@@ -117,7 +117,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 35332
+      "bytes": 35206
     },
     {
       "level": 13,
@@ -126,7 +126,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 37550
+      "bytes": 36162
     },
     {
       "level": 14,
@@ -135,7 +135,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 35750
+      "bytes": 35128
     },
     {
       "level": 15,
@@ -144,7 +144,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 40946
+      "bytes": 40410
     },
     {
       "level": 16,
@@ -153,7 +153,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 36240
+      "bytes": 35482
     },
     {
       "level": 17,
@@ -162,7 +162,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 35670
+      "bytes": 35250
     },
     {
       "level": 18,
@@ -171,7 +171,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 36012
+      "bytes": 35288
     },
     {
       "level": 19,
@@ -180,7 +180,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 36706
+      "bytes": 35802
     },
     {
       "level": 20,
@@ -189,7 +189,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 41006
+      "bytes": 40346
     },
     {
       "level": 21,
@@ -198,7 +198,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 32008
+      "bytes": 32300
     },
     {
       "level": 22,
@@ -207,7 +207,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 34630
+      "bytes": 34950
     },
     {
       "level": 23,
@@ -216,7 +216,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 37824
+      "bytes": 37578
     },
     {
       "level": 24,
@@ -225,7 +225,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 36730
+      "bytes": 36610
     },
     {
       "level": 25,
@@ -234,7 +234,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 40782
+      "bytes": 40510
     },
     {
       "level": 26,
@@ -243,7 +243,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 38316
+      "bytes": 38370
     },
     {
       "level": 27,
@@ -252,7 +252,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 37766
+      "bytes": 37066
     },
     {
       "level": 28,
@@ -261,7 +261,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 39194
+      "bytes": 38908
     },
     {
       "level": 29,
@@ -270,7 +270,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 38870
+      "bytes": 38754
     },
     {
       "level": 30,
@@ -279,7 +279,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 40734
+      "bytes": 41390
     },
     {
       "level": 31,
@@ -288,7 +288,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 38520
+      "bytes": 38728
     },
     {
       "level": 32,
@@ -297,7 +297,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 39884
+      "bytes": 40312
     },
     {
       "level": 33,
@@ -306,7 +306,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 42418
+      "bytes": 42462
     },
     {
       "level": 34,
@@ -315,7 +315,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 38876
+      "bytes": 39522
     },
     {
       "level": 35,
@@ -324,7 +324,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 47264
+      "bytes": 47830
     },
     {
       "level": 36,
@@ -333,7 +333,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 47262
+      "bytes": 47928
     },
     {
       "level": 37,
@@ -342,7 +342,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 47078
+      "bytes": 47518
     },
     {
       "level": 38,
@@ -351,7 +351,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 44640
+      "bytes": 45262
     },
     {
       "level": 39,
@@ -360,7 +360,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 47560
+      "bytes": 47772
     },
     {
       "level": 40,
@@ -369,7 +369,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 50986
+      "bytes": 51384
     },
     {
       "level": 41,
@@ -378,7 +378,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 26604
+      "bytes": 26964
     },
     {
       "level": 42,
@@ -387,7 +387,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 31076
+      "bytes": 31498
     },
     {
       "level": 43,
@@ -396,7 +396,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 32988
+      "bytes": 33812
     },
     {
       "level": 44,
@@ -405,7 +405,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 30596
+      "bytes": 30812
     },
     {
       "level": 45,
@@ -414,7 +414,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 40186
+      "bytes": 40646
     },
     {
       "level": 46,
@@ -423,7 +423,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 33080
+      "bytes": 33532
     },
     {
       "level": 47,
@@ -432,7 +432,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 37128
+      "bytes": 37404
     },
     {
       "level": 48,
@@ -441,7 +441,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 35972
+      "bytes": 36338
     },
     {
       "level": 49,
@@ -450,7 +450,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 36112
+      "bytes": 36672
     },
     {
       "level": 50,
@@ -459,7 +459,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43350
+      "bytes": 44030
     },
     {
       "level": 51,
@@ -468,7 +468,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 31758
+      "bytes": 32104
     },
     {
       "level": 52,
@@ -477,7 +477,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 35080
+      "bytes": 35668
     },
     {
       "level": 53,
@@ -486,7 +486,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 33380
+      "bytes": 33848
     },
     {
       "level": 54,
@@ -495,7 +495,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 35768
+      "bytes": 36100
     },
     {
       "level": 55,
@@ -504,7 +504,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 48002
+      "bytes": 48474
     },
     {
       "level": 56,
@@ -513,7 +513,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 34602
+      "bytes": 35072
     },
     {
       "level": 57,
@@ -522,7 +522,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 34546
+      "bytes": 35094
     },
     {
       "level": 58,
@@ -531,7 +531,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 36814
+      "bytes": 37206
     },
     {
       "level": 59,
@@ -540,7 +540,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 34204
+      "bytes": 35448
     },
     {
       "level": 60,
@@ -549,7 +549,7 @@
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 39500
+      "bytes": 40796
     }
   ]
 }

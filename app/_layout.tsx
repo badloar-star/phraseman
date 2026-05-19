@@ -57,7 +57,6 @@ import MatchFoundToast from '../components/MatchFoundToast';
 import ActionToast from '../components/ActionToast';
 import ArenaFriendInviteHost from '../components/ArenaFriendInviteHost';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
-import SoundEventHost from '../components/SoundEventHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
 import { getCanonicalUserId } from './user_id_policy';
 import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
@@ -222,7 +221,7 @@ function StartupSplashHold({ visible }: { visible: boolean }) {
       }}
     >
       <Image
-        source={require('../assets/images/splash-icon.png')}
+        source={require('../assets/images/splash-icon.webp')}
         resizeMode="contain"
         style={{ width: 240, height: 240 }}
       />
@@ -1001,6 +1000,7 @@ function AppContent() {
   // Фоновый flush синка: перед уходом приложения в background/inactive.
   useEffect(() => {
     let flushTimer: ReturnType<typeof setTimeout> | null = null;
+    let lastBackgroundSyncAt = 0;
     const sub = AppState.addEventListener('change', (state) => {
       if (flushTimer) {
         clearTimeout(flushTimer);
@@ -1009,10 +1009,13 @@ function AppContent() {
       if (state === 'background' || state === 'inactive') {
         flushTimer = setTimeout(() => {
           flushTimer = null;
+          const now = Date.now();
+          if (now - lastBackgroundSyncAt < 60_000) return;
           if (AppState.currentState === 'background' || AppState.currentState === 'inactive') {
-            syncToCloud({ forceNow: true }).catch(() => {});
+            lastBackgroundSyncAt = now;
+            syncToCloud().catch(() => {});
           }
-        }, 900);
+        }, 1_800);
       }
     });
     return () => {
@@ -1790,7 +1793,6 @@ export default function RootLayout() {
                     <ActionToast />
                     <ArenaFriendInviteHost />
                     <MatchFoundToast />
-                    <SoundEventHost />
                     <GlobalLevelUpHandler />
                     <GlobalShardsEarnedHost />
                     <ThemedBlockingAlertHost />

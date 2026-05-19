@@ -199,7 +199,7 @@ function premiumHeroScrim(themeMode: ThemeMode): string[] {
   return ['rgba(0,0,0,0.36)', 'rgba(0,0,0,0.16)', 'rgba(0,0,0,0.58)'];
 }
 
-function useShardHeroIcon(ctx: PremiumContext): boolean {
+function shouldUseShardHeroIcon(ctx: PremiumContext): boolean {
   return ctx === 'generic';
 }
 
@@ -348,12 +348,12 @@ const PAYWALL_COPY: Record<PremiumContext, PaywallCopy> = {
     subtitleEs: 'Débiles, Smart Mix, Por tema, Difíciles — 4 modos solo para Premium. Sin límite de sesiones.',
   },
   trainer_limit: {
-    titleRu: 'Сессия Тренера использована',
-    titleUk: 'Сесію Тренера використано',
-    titleEs: 'Sesión del Entrenador usada',
-    subtitleRu: 'Free: 1 сессия в сутки. Premium: безлимит повторений в любых режимах.',
-    subtitleUk: 'Free: 1 сесія на добу. Premium: безліміт повторень у будь-яких режимах.',
-    subtitleEs: 'Free: 1 sesión al día. Premium: repeticiones ilimitadas en todos los modos.',
+    titleRu: 'Тренер доступен 1 раз в день',
+    titleUk: 'Тренер доступний 1 раз на день',
+    titleEs: 'El Entrenador está disponible 1 vez al día',
+    subtitleRu: 'В бесплатной версии можно начать одну сессию в день. Premium открывает безлимит повторений во всех режимах.',
+    subtitleUk: 'У безкоштовній версії можна почати одну сесію на день. Premium відкриває безліміт повторень у всіх режимах.',
+    subtitleEs: 'En la versión gratis puedes iniciar una sesión al día. Premium desbloquea repeticiones ilimitadas en todos los modos.',
   },
   diagnosis_training: {
     titleRu: 'Новые разборы ошибок — в Premium',
@@ -1892,6 +1892,7 @@ export default function PremiumModal() {
     if (ctx === 'streak') {
       const today = new Date().toISOString().split('T')[0];
       await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: today }));
+      emitAppEvent('streak_freeze_updated', { active: true });
     }
   };
 
@@ -2888,6 +2889,231 @@ export default function PremiumModal() {
             animationType="fade"
             onRequestClose={() => setExitTrialOfferVisible(false)}
           >
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: 'rgba(0,0,0,0.68)',
+                justifyContent: 'center',
+                alignItems: 'center',
+                paddingHorizontal: 20,
+                paddingTop: insets.top + 18,
+                paddingBottom: insets.bottom + 18,
+              }}
+            >
+              <View
+                style={{
+                  backgroundColor: paywallCardBg,
+                  width: '100%',
+                  maxWidth: 360,
+                  maxHeight: '92%',
+                  borderRadius: 22,
+                  paddingHorizontal: 20,
+                  paddingTop: 20,
+                  paddingBottom: 18,
+                  borderWidth: 1,
+                  borderColor: '#FACC1555',
+                  shadowColor: '#000',
+                  shadowOpacity: 0.28,
+                  shadowRadius: 22,
+                  shadowOffset: { width: 0, height: 14 },
+                  elevation: 14,
+                }}
+              >
+                <TouchableOpacity
+                  accessibilityRole="button"
+                  accessibilityLabel={LP('Закрыть', 'Закрити', 'Cerrar', {
+                    'pt-BR': 'Fechar',
+                    vi: 'Dong',
+                    id: 'Tutup',
+                    tr: 'Kapat',
+                    pl: 'Zamknij',
+                  })}
+                  hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                  style={{
+                    position: 'absolute',
+                    top: 12,
+                    right: 12,
+                    width: 36,
+                    height: 36,
+                    borderRadius: 18,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: 'rgba(255,255,255,0.08)',
+                    zIndex: 2,
+                  }}
+                  onPress={() => {
+                    hapticTap();
+                    setExitTrialOfferVisible(false);
+                  }}
+                >
+                  <Ionicons name="close" size={20} color={t.textMuted} />
+                </TouchableOpacity>
+
+                <View style={{ alignItems: 'center', marginBottom: 18, paddingTop: 10 }}>
+                  <View
+                    style={{
+                      width: 48,
+                      height: 48,
+                      borderRadius: 24,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: '#FFD7001F',
+                      borderWidth: 1,
+                      borderColor: '#FFD70066',
+                      marginBottom: 12,
+                    }}
+                  >
+                    <Ionicons name="sparkles" size={24} color="#FFD700" />
+                  </View>
+                  <Text
+                    numberOfLines={2}
+                    adjustsFontSizeToFit
+                    minimumFontScale={0.84}
+                    style={{
+                      color: t.textPrimary,
+                      fontSize: Math.min(f.h2, 24),
+                      lineHeight: 29,
+                      fontWeight: '900',
+                      textAlign: 'center',
+                      paddingHorizontal: 28,
+                    }}
+                  >
+                    {LP('3 дня Premium бесплатно', '3 дні Premium безкоштовно', '3 dias de Premium gratis', {
+                      'pt-BR': '3 dias de Premium gratis',
+                      vi: '3 ngay Premium mien phi',
+                      id: 'Premium gratis 3 hari',
+                      tr: '3 gun Premium ucretsiz',
+                      pl: '3 dni Premium za darmo',
+                    })}
+                  </Text>
+                  <Text
+                    style={{
+                      color: t.textMuted,
+                      fontSize: f.body,
+                      lineHeight: 22,
+                      marginTop: 12,
+                      textAlign: 'center',
+                    }}
+                  >
+                    {LP(
+                      'Попробуй Premium сейчас. Если не подойдет, отменить можно до конца пробного периода.',
+                      'Спробуй Premium зараз. Якщо не підійде, скасувати можна до завершення пробного періоду.',
+                      'Prueba Premium ahora. Si no te convence, puedes cancelar antes de que termine la prueba.',
+                      {
+                        'pt-BR': 'Teste o Premium agora. Se nao gostar, voce pode cancelar antes do fim do periodo gratis.',
+                        vi: 'Dung thu Premium ngay. Neu khong phu hop, ban co the huy truoc khi het thoi gian dung thu.',
+                        id: 'Coba Premium sekarang. Jika tidak cocok, kamu bisa membatalkan sebelum masa uji coba berakhir.',
+                        tr: 'Premiumu simdi dene. Uygun degilse deneme suresi bitmeden iptal edebilirsin.',
+                        pl: 'Wyprobuj Premium teraz. Jesli Ci nie pasuje, mozesz anulowac przed koncem okresu probnego.',
+                      },
+                    )}
+                  </Text>
+                  <Text
+                    style={{
+                      color: t.textGhost,
+                      fontSize: Math.max(12, f.caption),
+                      lineHeight: 18,
+                      marginTop: 10,
+                      textAlign: 'center',
+                    }}
+                  >
+                    {LP(
+                      'После пробного периода подписка продолжится по выбранному плану.',
+                      'Після пробного періоду підписка продовжиться за обраним планом.',
+                      'Despues de la prueba, la suscripcion continuara con el plan elegido.',
+                      {
+                        'pt-BR': 'Depois do teste, a assinatura continuara no plano escolhido.',
+                        vi: 'Sau thoi gian dung thu, goi dang ky se tiep tuc theo goi da chon.',
+                        id: 'Setelah uji coba, langganan berlanjut dengan paket yang dipilih.',
+                        tr: 'Deneme suresinden sonra abonelik secilen planla devam eder.',
+                        pl: 'Po okresie probnym subskrypcja bedzie kontynuowana w wybranym planie.',
+                      },
+                    )}
+                  </Text>
+                </View>
+
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: '#FFD700',
+                    borderRadius: 14,
+                    minHeight: 52,
+                    paddingVertical: 16,
+                    paddingHorizontal: 14,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: 8,
+                    opacity: purchasing ? 0.62 : 1,
+                  }}
+                  activeOpacity={0.86}
+                  disabled={purchasing}
+                  onPress={() => {
+                    hapticTap();
+                    setExitTrialOfferVisible(false);
+                    setSelected(exitTrialPlan);
+                    logPaywallPlanSelectDeduped(exitTrialPlan);
+                    logExitTrialOfferAccepted(ctx, exitTrialPlan);
+                    void handlePurchase(exitTrialPlan);
+                  }}
+                >
+                  <Text
+                    numberOfLines={1}
+                    adjustsFontSizeToFit
+                    minimumFontScale={0.78}
+                    style={{ color: '#1F1A08', fontSize: f.bodyLg, fontWeight: '900', textAlign: 'center' }}
+                  >
+                    {LP('Начать бесплатно', 'Почати безкоштовно', 'Empezar gratis', {
+                      'pt-BR': 'Comecar gratis',
+                      vi: 'Bat dau mien phi',
+                      id: 'Mulai gratis',
+                      tr: 'Ucretsiz basla',
+                      pl: 'Zacznij za darmo',
+                    })}
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  activeOpacity={0.78}
+                  style={{
+                    minHeight: 48,
+                    paddingVertical: 13,
+                    paddingHorizontal: 12,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: 8,
+                    borderRadius: 14,
+                    backgroundColor: 'rgba(255,255,255,0.06)',
+                  }}
+                  onPress={() => {
+                    hapticTap();
+                    setExitTrialOfferVisible(false);
+                    closePaywallAfterDecline('continue_free');
+                  }}
+                >
+                  <Text
+                    numberOfLines={1}
+                    adjustsFontSizeToFit
+                    minimumFontScale={0.78}
+                    style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}
+                  >
+                    {LP('Остаться на бесплатной версии', 'Залишитися на безкоштовній версії', 'Seguir gratis', {
+                      'pt-BR': 'Continuar gratis',
+                      vi: 'Tiep tuc mien phi',
+                      id: 'Tetap gratis',
+                      tr: 'Ucretsiz devam et',
+                      pl: 'Zostan przy wersji darmowej',
+                    })}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
+          {false && (
+          <Modal
+            visible={false}
+            transparent
+            animationType="fade"
+            onRequestClose={() => setExitTrialOfferVisible(false)}
+          >
             <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.58)', justifyContent: 'flex-end' }}>
               <View
                 style={{
@@ -2992,6 +3218,7 @@ export default function PremiumModal() {
               </View>
             </View>
           </Modal>
+          )}
           <Animated.View style={{
             flex: 1,
             opacity: entranceOpacity,
@@ -3142,6 +3369,8 @@ export default function PremiumModal() {
                     backgroundColor: heroArt.accent,
                     opacity: heroGlow,
                     top: -60,
+                    left: '50%',
+                    transform: [{ translateX: -90 }],
                   }}
                 />
                 <Animated.View
@@ -3154,10 +3383,12 @@ export default function PremiumModal() {
                     backgroundColor: heroArt.accent2,
                     opacity: heroGlow.interpolate({ inputRange: [0.35, 0.62], outputRange: [0.08, 0.16] }),
                     bottom: -70,
+                    left: '50%',
+                    transform: [{ translateX: -120 }],
                   }}
                 />
                 <View style={{ backgroundColor: paywallSurfaceBg, borderRadius: 24, paddingHorizontal: 14, paddingVertical: 8, marginBottom: 12, borderWidth: 1, borderColor: heroArt.accent + '33' }}>
-                  {useShardHeroIcon(ctx)
+                  {shouldUseShardHeroIcon(ctx)
                     ? renderPremiumShardGlyph(56, 56, heroArt.shardAmount)
                     : isEnergyGlyph(hero.emoji)
                     ? renderPremiumEnergyGlyph(54)

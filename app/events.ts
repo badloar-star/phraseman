@@ -46,6 +46,7 @@ export type AppEventMap = {
   streak_revive_offer: { lostStreak: number };
   /** Цепочка восстановлена за осколки — home/UI должны мгновенно обновить отображение. */
   streak_revived: { restoredStreak: number; spent: number };
+  streak_freeze_updated: { active: boolean };
   /** Урок впервые завершён (lesson_complete впервые). Используется mastery UI. */
   lesson_finished_once: { lessonId: number };
   /** Юзер запустил перепрохождение урока (mastery). lesson1.tsx должен перезагрузить прогресс. */

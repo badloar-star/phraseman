@@ -8,8 +8,8 @@ import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { KNOWLY_LEGAL_TERMS_URL } from './config';
 import { hapticTap } from '../hooks/use-haptics';
-import TERMS_OF_USE_EN from '../legal/terms_of_use_en.json';
-import TERMS_OF_USE_EN_IOS from '../legal/terms_of_use_en_ios.json';
+import TERMS_OF_USE_EN from './legal/terms_of_use_en.json';
+import TERMS_OF_USE_EN_IOS from './legal/terms_of_use_en_ios.json';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 
 type PolicySection = { heading: string; body: string };

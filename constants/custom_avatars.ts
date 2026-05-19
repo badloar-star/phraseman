@@ -344,8 +344,20 @@ export const CUSTOM_AVATARS: CustomAvatarDef[] = [
   { id: 'custom-35', name: 'Star Student', image: require('../assets/images/avatars/custom-35-logo.webp') },
 ];
 
-export const CUSTOM_AVATAR_SHOP: CustomAvatarDef[] = CUSTOM_AVATARS.filter((avatar) =>
+export function isCustomAvatarGiftOnly(id: string): boolean {
+  return /^custom-gen-(0[1-9]|1[0-9]|20)$/.test(id);
+}
+
+export const CUSTOM_AVATAR_GIFT_POOL: CustomAvatarDef[] = CUSTOM_AVATARS.filter((avatar) =>
   avatar.id.startsWith('custom-gen-'),
+);
+
+export const CUSTOM_AVATAR_GIFT_ONLY: CustomAvatarDef[] = CUSTOM_AVATAR_GIFT_POOL.filter((avatar) =>
+  isCustomAvatarGiftOnly(avatar.id),
+);
+
+export const CUSTOM_AVATAR_SHOP: CustomAvatarDef[] = CUSTOM_AVATAR_GIFT_POOL.filter((avatar) =>
+  !isCustomAvatarGiftOnly(avatar.id),
 );
 
 export type CustomAvatarValue = {

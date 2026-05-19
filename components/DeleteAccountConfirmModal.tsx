@@ -8,7 +8,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   DeviceEventEmitter,
-  ActivityIndicator,
 } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -340,22 +339,18 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
                 }
               }}
             >
-              {deleting ? (
-                <ActivityIndicator size="small" color="#fff" />
-              ) : (
-                <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
-                  {L({
-                    ru: 'Удалить',
-                    uk: 'Видалити',
-                    es: 'Eliminar',
-                    'pt-BR': 'Excluir',
-                    vi: 'Xóa',
-                    id: 'Hapus',
-                    tr: 'Sil',
-                    pl: 'Usuń',
-                  })}
-                </Text>
-              )}
+              <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700', opacity: deleting ? 0.72 : 1 }}>
+                {L({
+                  ru: 'Удалить',
+                  uk: 'Видалити',
+                  es: 'Eliminar',
+                  'pt-BR': 'Excluir',
+                  vi: 'Xóa',
+                  id: 'Hapus',
+                  tr: 'Sil',
+                  pl: 'Usuń',
+                })}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

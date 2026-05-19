@@ -3,7 +3,19 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (ru: string, uk: string, es: string): TriText => {
+  const plannedFallback = {
+    'pt-BR': es,
+    vi: es,
+    id: es,
+    tr: es,
+    pl: es,
+  } satisfies Record<PlannedTrainingLocale, string>;
+
+  return { ru, uk, es, ...plannedFallback };
+};
 
 const CONTRAST = [
   'did + base verb',
@@ -167,6 +179,56 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       'With a question word: What did you buy? Where did she go?',
       'With be, use a separate path: Was he ready? Were they home?',
     ],
+    'pt-BR': [
+      'Em afirmação normal, o verbo mostra o passado: I went, she called, they bought.',
+      'Em pergunta, did mostra o passado: Did you go?',
+      'Depois de did, não use a forma passada: não Did you went, mas Did you go.',
+      "Em negativa, didn't mostra o passado: I didn't go.",
+      "Depois de didn't, não use a forma passada: não I didn't bought, mas I didn't buy.",
+      'Com yesterday, last night, last week e ago, perguntas no passado muitas vezes precisam de did.',
+      'Com palavra interrogativa: What did you buy? Where did she go?',
+      'Com be, use outro caminho: Was he ready? Were they home?',
+    ],
+    vi: [
+      'Trong câu khẳng định thường, động từ cho biết quá khứ: I went, she called, they bought.',
+      'Trong câu hỏi, did cho biết quá khứ: Did you go?',
+      'Sau did, đừng dùng dạng quá khứ: không Did you went, mà là Did you go.',
+      "Trong câu phủ định, didn't cho biết quá khứ: I didn't go.",
+      "Sau didn't, đừng dùng dạng quá khứ: không I didn't bought, mà là I didn't buy.",
+      'Với yesterday, last night, last week và ago, câu hỏi quá khứ thường cần did.',
+      'Với từ hỏi: What did you buy? Where did she go?',
+      'Với be, dùng đường riêng: Was he ready? Were they home?',
+    ],
+    id: [
+      'Dalam pernyataan biasa, verba menunjukkan masa lampau: I went, she called, they bought.',
+      'Dalam pertanyaan, did menunjukkan masa lampau: Did you go?',
+      'Setelah did, jangan gunakan bentuk lampau: bukan Did you went, tetapi Did you go.',
+      "Dalam kalimat negatif, didn't menunjukkan masa lampau: I didn't go.",
+      "Setelah didn't, jangan gunakan bentuk lampau: bukan I didn't bought, tetapi I didn't buy.",
+      'Dengan yesterday, last night, last week, dan ago, pertanyaan lampau sering membutuhkan did.',
+      'Dengan kata tanya: What did you buy? Where did she go?',
+      'Dengan be, gunakan jalur terpisah: Was he ready? Were they home?',
+    ],
+    tr: [
+      'Normal cümlede fiil geçmişi gösterir: I went, she called, they bought.',
+      'Soruda did geçmişi gösterir: Did you go?',
+      'Did sonrasında geçmiş form kullanma: Did you went değil, Did you go.',
+      "Olumsuzda didn't geçmişi gösterir: I didn't go.",
+      "Didn't sonrasında geçmiş form kullanma: I didn't bought değil, I didn't buy.",
+      'Yesterday, last night, last week ve ago ile geçmiş sorular çoğu zaman did ister.',
+      'Soru kelimesiyle: What did you buy? Where did she go?',
+      'Be ile ayrı yol kullan: Was he ready? Were they home?',
+    ],
+    pl: [
+      'W zwykłym twierdzeniu czasownik pokazuje przeszłość: I went, she called, they bought.',
+      'W pytaniu did pokazuje przeszłość: Did you go?',
+      'Po did nie używaj formy przeszłej: nie Did you went, tylko Did you go.',
+      "W przeczeniu didn't pokazuje przeszłość: I didn't go.",
+      "Po didn't nie używaj formy przeszłej: nie I didn't bought, tylko I didn't buy.",
+      'Z yesterday, last night, last week i ago pytania w przeszłości często potrzebują did.',
+      'Ze słowem pytającym: What did you buy? Where did she go?',
+      'Z be użyj osobnej ścieżki: Was he ready? Were they home?',
+    ],
   },
   examples: [
     {
@@ -174,6 +236,11 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       ru: 'Ты пошел домой?',
       uk: 'Ти пішов додому?',
       es: 'Did you go home?',
+      'pt-BR': 'Você foi para casa?',
+      vi: 'Bạn đã về nhà chưa?',
+      id: 'Apakah kamu pulang?',
+      tr: 'Eve gittin mi?',
+      pl: 'Czy poszedłeś do domu?',
       why: tri('Did уже показывает прошлое, поэтому дальше go.', 'Did уже показує минуле, тому далі go.', 'Did already shows the past, so use go after it.'),
     },
     {
@@ -181,6 +248,11 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       ru: 'Я не пошел домой.',
       uk: 'Я не пішов додому.',
       es: "I didn't go home.",
+      'pt-BR': 'Eu não fui para casa.',
+      vi: 'Tôi đã không về nhà.',
+      id: 'Saya tidak pulang.',
+      tr: 'Eve gitmedim.',
+      pl: 'Nie poszedłem do domu.',
       why: tri("Didn't уже показывает отрицание в прошлом, поэтому дальше go.", "Didn't уже показує заперечення в минулому, тому далі go.", "Didn't already shows the past negative, so use go after it."),
     },
     {
@@ -188,6 +260,11 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       ru: 'Она тебе позвонила?',
       uk: 'Вона тобі подзвонила?',
       es: 'Did she call you?',
+      'pt-BR': 'Ela ligou para você?',
+      vi: 'Cô ấy đã gọi cho bạn chưa?',
+      id: 'Apakah dia meneleponmu?',
+      tr: 'Seni aradı mı?',
+      pl: 'Czy ona do ciebie zadzwoniła?',
       why: tri('В вопросе: Did she call? Не called.', 'У питанні: Did she call? Не called.', 'In a question: Did she call? Not called.'),
     },
     {
@@ -195,6 +272,11 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       ru: 'Она мне не позвонила.',
       uk: 'Вона мені не подзвонила.',
       es: "She didn't call me.",
+      'pt-BR': 'Ela não me ligou.',
+      vi: 'Cô ấy đã không gọi cho tôi.',
+      id: 'Dia tidak menelepon saya.',
+      tr: 'Beni aramadı.',
+      pl: 'Ona do mnie nie zadzwoniła.',
       why: tri("После didn't нужен call.", "Після didn't потрібен call.", "After didn't, use call."),
     },
     {
@@ -202,6 +284,11 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       ru: 'Что ты купил?',
       uk: 'Що ти купив?',
       es: 'What did you buy?',
+      'pt-BR': 'O que você comprou?',
+      vi: 'Bạn đã mua gì?',
+      id: 'Apa yang kamu beli?',
+      tr: 'Ne satın aldın?',
+      pl: 'Co kupiłeś?',
       why: tri('What стоит в начале, потом did you buy.', 'What стоїть на початку, потім did you buy.', 'What comes first, then did you buy.'),
     },
     {
@@ -209,6 +296,11 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       ru: 'Куда она пошла?',
       uk: 'Куди вона пішла?',
       es: 'Where did she go?',
+      'pt-BR': 'Para onde ela foi?',
+      vi: 'Cô ấy đã đi đâu?',
+      id: 'Ke mana dia pergi?',
+      tr: 'O nereye gitti?',
+      pl: 'Dokąd ona poszła?',
       why: tri('После did используем go, не went.', 'Після did використовуємо go, не went.', 'After did, use go, not went.'),
     },
     {
@@ -216,6 +308,11 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       ru: 'Он не видел сообщение.',
       uk: 'Він не бачив повідомлення.',
       es: "He didn't see the message.",
+      'pt-BR': 'Ele não viu a mensagem.',
+      vi: 'Anh ấy đã không thấy tin nhắn.',
+      id: 'Dia tidak melihat pesan itu.',
+      tr: 'Mesajı görmedi.',
+      pl: 'On nie widział wiadomości.',
       why: tri("В утверждении было бы saw, но после didn't возвращаем see.", "У твердженні було б saw, але після didn't повертаємо see.", "In a statement it would be saw, but after didn't use see."),
     },
     {
@@ -223,6 +320,11 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       ru: 'Они работали вчера?',
       uk: 'Вони працювали вчора?',
       es: 'Did they work yesterday?',
+      'pt-BR': 'Eles trabalharam ontem?',
+      vi: 'Hôm qua họ có làm việc không?',
+      id: 'Apakah mereka bekerja kemarin?',
+      tr: 'Dün çalıştılar mı?',
+      pl: 'Czy oni pracowali wczoraj?',
       why: tri('Yesterday показывает прошлое, а вопрос собирает did + work.', 'Yesterday показує минуле, а питання збирає did + work.', 'Yesterday shows the past, and the question uses did + work.'),
     },
   ],

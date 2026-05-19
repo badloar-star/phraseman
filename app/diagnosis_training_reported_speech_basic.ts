@@ -2,7 +2,19 @@
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (ru: string, uk = ru, es = ru): TriText => {
+  const plannedFallback = {
+    'pt-BR': es,
+    vi: es,
+    id: es,
+    tr: es,
+    pl: es,
+  } satisfies Record<PlannedTrainingLocale, string>;
+
+  return { ru, uk, es, ...plannedFallback };
+};
 
 const CONTRAST = [
   'said that',
@@ -170,16 +182,76 @@ export const REPORTED_SPEECH_BASIC_TRAINING: DiagnosisTraining = {
       'The clause usually has no question mark.',
       'This trainer practices basic backshift.',
     ],
+    'pt-BR': [
+      'Reported speech reconta o sentido, não copia a citação exata.',
+      'Depois de said, that é comum: He said that he was tired.',
+      'Told precisa de uma pessoa: He told me that he was tired.',
+      'I muda conforme o sentido: I -> he/she, my -> his/her.',
+      'Depois de said/asked no passado, o tempo muitas vezes recua: am/is -> was, will -> would, can -> could.',
+      'Perguntas em reported speech usam ordem normal de palavras.',
+      'Perguntas sim/não recebem if ou whether.',
+      'Where/what/when continuam, mas a ordem vira normal.',
+      'Dentro do reported speech, normalmente não há ponto de interrogação.',
+      'Este treino pratica o backshift básico.',
+    ],
+    vi: [
+      'Reported speech kể lại ý nghĩa, không chép nguyên câu trích dẫn.',
+      'Sau said, that rất thường gặp: He said that he was tired.',
+      'Told cần một người nhận lời nói: He told me that he was tired.',
+      'I thay đổi theo nghĩa: I -> he/she, my -> his/her.',
+      'Sau said/asked ở quá khứ, thì thường lùi lại: am/is -> was, will -> would, can -> could.',
+      'Câu hỏi trong reported speech dùng trật tự từ bình thường.',
+      'Câu hỏi yes/no dùng if hoặc whether.',
+      'Where/what/when vẫn giữ lại, nhưng trật tự trở thành bình thường.',
+      'Bên trong reported speech thường không có dấu hỏi.',
+      'Bài này luyện backshift cơ bản.',
+    ],
+    id: [
+      'Reported speech menceritakan kembali makna, bukan menyalin kutipan persis.',
+      'Setelah said, that umum dipakai: He said that he was tired.',
+      'Told membutuhkan orang: He told me that he was tired.',
+      'I berubah sesuai makna: I -> he/she, my -> his/her.',
+      'Setelah said/asked dalam bentuk lampau, tense sering mundur: am/is -> was, will -> would, can -> could.',
+      'Pertanyaan dalam reported speech memakai urutan kata normal.',
+      'Pertanyaan ya/tidak memakai if atau whether.',
+      'Where/what/when tetap ada, tetapi urutannya menjadi normal.',
+      'Di dalam reported speech, biasanya tidak ada tanda tanya.',
+      'Latihan ini melatih backshift dasar.',
+    ],
+    tr: [
+      'Reported speech anlamı aktarır, alıntıyı birebir kopyalamaz.',
+      'Said sonrasında that yaygındır: He said that he was tired.',
+      'Told bir kişi ister: He told me that he was tired.',
+      'I anlama göre değişir: I -> he/she, my -> his/her.',
+      'Geçmişte said/asked sonrasında zaman çoğu kez geri kayar: am/is -> was, will -> would, can -> could.',
+      'Aktarılan sorularda normal kelime sırası kullanılır.',
+      'Evet/hayır soruları if veya whether alır.',
+      'Where/what/when kalır, ama sıra normal olur.',
+      'Reported speech içinde genellikle soru işareti olmaz.',
+      'Bu antrenman temel backshift çalıştırır.',
+    ],
+    pl: [
+      'Reported speech przekazuje sens, a nie kopiuje dokładny cytat.',
+      'Po said często używamy that: He said that he was tired.',
+      'Told wymaga osoby: He told me that he was tired.',
+      'I zmienia się zgodnie z sensem: I -> he/she, my -> his/her.',
+      'Po said/asked w czasie przeszłym czas często cofa się: am/is -> was, will -> would, can -> could.',
+      'Pytania w reported speech mają normalny szyk zdania.',
+      'Pytania tak/nie dostają if albo whether.',
+      'Where/what/when zostają, ale szyk staje się normalny.',
+      'W środku reported speech zwykle nie ma znaku zapytania.',
+      'Ten trening ćwiczy podstawowy backshift.',
+    ],
   },
   examples: [
-    { en: 'He said that he was tired.', ru: 'He said that he was tired.', uk: 'He said that he was tired.', es: 'He said that he was tired.', why: tri('I am tired становится he was tired.', 'I am tired стає he was tired.', 'I am tired becomes he was tired.') },
-    { en: 'She said that she was busy.', ru: 'She said that she was busy.', uk: 'She said that she was busy.', es: 'She said that she was busy.', why: tri('I am busy становится she was busy.', 'I am busy стає she was busy.', 'I am busy becomes she was busy.') },
-    { en: 'He told me that he needed help.', ru: 'He told me that he needed help.', uk: 'He told me that he needed help.', es: 'He told me that he needed help.', why: tri('Told требует человека: told me.', 'Told вимагає людину: told me.', 'Told needs someone: told me.') },
-    { en: 'She said that she would call me.', ru: 'She said that she would call me.', uk: 'She said that she would call me.', es: 'She said that she would call me.', why: tri('Will часто становится would.', 'Will часто стає would.', 'Will often becomes would.') },
-    { en: 'He asked if I was busy.', ru: 'He asked if I was busy.', uk: 'He asked if I was busy.', es: 'He asked if I was busy.', why: tri('Вопрос да/нет: if + I was, не was I.', 'Питання так/ні: if + I was, не was I.', 'Yes/no question: if + I was, not was I.') },
-    { en: 'She asked where I lived.', ru: 'She asked where I lived.', uk: 'She asked where I lived.', es: 'She asked where I lived.', why: tri('Where остается, но порядок обычный: I lived.', 'Where залишається, але порядок звичайний: I lived.', 'Where stays, but the order is normal: I lived.') },
-    { en: 'He asked me what I wanted.', ru: 'He asked me what I wanted.', uk: 'He asked me what I wanted.', es: 'He asked me what I wanted.', why: tri('What остается, do уходит, wanted идет после I.', 'What залишається, do зникає, wanted іде після I.', 'What stays, do disappears, wanted goes after I.') },
-    { en: "She said that she couldn't come.", ru: "She said that she couldn't come.", uk: "She said that she couldn't come.", es: "She said that she couldn't come.", why: tri("Can часто становится could; отрицание = couldn't.", "Can часто стає could; заперечення = couldn't.", "Can often becomes could; negative = couldn't.") },
+    { en: 'He said that he was tired.', ru: 'He said that he was tired.', uk: 'He said that he was tired.', es: 'He said that he was tired.', 'pt-BR': 'Ele disse que estava cansado.', vi: 'Anh ấy nói rằng anh ấy mệt.', id: 'Dia mengatakan bahwa dia lelah.', tr: 'Yorgun olduğunu söyledi.', pl: 'Powiedział, że jest zmęczony.', why: tri('I am tired становится he was tired.', 'I am tired стає he was tired.', 'I am tired becomes he was tired.') },
+    { en: 'She said that she was busy.', ru: 'She said that she was busy.', uk: 'She said that she was busy.', es: 'She said that she was busy.', 'pt-BR': 'Ela disse que estava ocupada.', vi: 'Cô ấy nói rằng cô ấy bận.', id: 'Dia mengatakan bahwa dia sibuk.', tr: 'Meşgul olduğunu söyledi.', pl: 'Powiedziała, że jest zajęta.', why: tri('I am busy становится she was busy.', 'I am busy стає she was busy.', 'I am busy becomes she was busy.') },
+    { en: 'He told me that he needed help.', ru: 'He told me that he needed help.', uk: 'He told me that he needed help.', es: 'He told me that he needed help.', 'pt-BR': 'Ele me disse que precisava de ajuda.', vi: 'Anh ấy nói với tôi rằng anh ấy cần giúp đỡ.', id: 'Dia memberi tahu saya bahwa dia membutuhkan bantuan.', tr: 'Bana yardıma ihtiyacı olduğunu söyledi.', pl: 'Powiedział mi, że potrzebuje pomocy.', why: tri('Told требует человека: told me.', 'Told вимагає людину: told me.', 'Told needs someone: told me.') },
+    { en: 'She said that she would call me.', ru: 'She said that she would call me.', uk: 'She said that she would call me.', es: 'She said that she would call me.', 'pt-BR': 'Ela disse que me ligaria.', vi: 'Cô ấy nói rằng cô ấy sẽ gọi cho tôi.', id: 'Dia mengatakan bahwa dia akan menelepon saya.', tr: 'Beni arayacağını söyledi.', pl: 'Powiedziała, że do mnie zadzwoni.', why: tri('Will часто становится would.', 'Will часто стає would.', 'Will often becomes would.') },
+    { en: 'He asked if I was busy.', ru: 'He asked if I was busy.', uk: 'He asked if I was busy.', es: 'He asked if I was busy.', 'pt-BR': 'Ele perguntou se eu estava ocupado.', vi: 'Anh ấy hỏi liệu tôi có bận không.', id: 'Dia bertanya apakah saya sibuk.', tr: 'Meşgul olup olmadığımı sordu.', pl: 'Zapytał, czy jestem zajęty.', why: tri('Вопрос да/нет: if + I was, не was I.', 'Питання так/ні: if + I was, не was I.', 'Yes/no question: if + I was, not was I.') },
+    { en: 'She asked where I lived.', ru: 'She asked where I lived.', uk: 'She asked where I lived.', es: 'She asked where I lived.', 'pt-BR': 'Ela perguntou onde eu morava.', vi: 'Cô ấy hỏi tôi sống ở đâu.', id: 'Dia bertanya di mana saya tinggal.', tr: 'Nerede yaşadığımı sordu.', pl: 'Zapytała, gdzie mieszkam.', why: tri('Where остается, но порядок обычный: I lived.', 'Where залишається, але порядок звичайний: I lived.', 'Where stays, but the order is normal: I lived.') },
+    { en: 'He asked me what I wanted.', ru: 'He asked me what I wanted.', uk: 'He asked me what I wanted.', es: 'He asked me what I wanted.', 'pt-BR': 'Ele me perguntou o que eu queria.', vi: 'Anh ấy hỏi tôi muốn gì.', id: 'Dia bertanya kepada saya apa yang saya inginkan.', tr: 'Bana ne istediğimi sordu.', pl: 'Zapytał mnie, czego chcę.', why: tri('What остается, do уходит, wanted идет после I.', 'What залишається, do зникає, wanted іде після I.', 'What stays, do disappears, wanted goes after I.') },
+    { en: "She said that she couldn't come.", ru: "She said that she couldn't come.", uk: "She said that she couldn't come.", es: "She said that she couldn't come.", 'pt-BR': 'Ela disse que não poderia vir.', vi: 'Cô ấy nói rằng cô ấy không thể đến.', id: 'Dia mengatakan bahwa dia tidak bisa datang.', tr: 'Gelemeyeceğini söyledi.', pl: 'Powiedziała, że nie może przyjść.', why: tri("Can часто становится could; отрицание = couldn't.", "Can часто стає could; заперечення = couldn't.", "Can often becomes could; negative = couldn't.") },
   ],
   introBlocks: [
     {

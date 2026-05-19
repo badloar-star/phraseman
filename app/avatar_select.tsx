@@ -36,12 +36,14 @@ import {
 import {
   CUSTOM_AVATAR_BUY_COST,
   CUSTOM_AVATAR_GRADIENTS,
+  CUSTOM_AVATAR_GIFT_ONLY,
   CUSTOM_AVATAR_OWNED_KEY,
   CUSTOM_AVATAR_RESTYLE_COST,
   CUSTOM_AVATAR_SHOP,
   CustomAvatarLogoColor,
   CustomAvatarDef,
   customAvatarGradientNameForLang,
+  isCustomAvatarGiftOnly,
   makeCustomAvatarValue,
   parseCustomAvatarValue,
 } from '../constants/custom_avatars';
@@ -438,6 +440,13 @@ export default function AvatarSelect() {
     leagueId,
     streak,
   }), [activeAvatar, effectiveAuraId, leagueId, previewFrameId, streak, totalXp, userName]);
+  const visibleCustomAvatars = useMemo(
+    () => [
+      ...CUSTOM_AVATAR_SHOP,
+      ...CUSTOM_AVATAR_GIFT_ONLY.filter((avatar) => !!owned[avatar.id]),
+    ],
+    [owned],
+  );
 
   const load = useCallback(async () => {
     try {
@@ -561,6 +570,12 @@ export default function AvatarSelect() {
     if (!draftAvatar || busy) return;
     const avatarId = draftAvatar.id;
     const wasOwned = !!owned[avatarId];
+    const giftOnly = isCustomAvatarGiftOnly(avatarId);
+    if (giftOnly && !wasOwned) {
+      setDraftAvatar(null);
+      showToast('info', 'Этот аватар можно получить только подарком');
+      return;
+    }
     const previousStyle = decodeOwnedStyle(owned[avatarId]);
     const styleChanged = wasOwned && (
       previousStyle.gradientId !== draftGradientId ||
@@ -935,9 +950,9 @@ export default function AvatarSelect() {
         ) : null}
 
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: GRID_GAP, justifyContent: 'center' }}>
-          {CUSTOM_AVATAR_SHOP.map((avatar) => {
+          {visibleCustomAvatars.map((avatar) => {
             const isOwned = !!owned[avatar.id];
-            const isGifted = isOwned && giftedAvatarId === avatar.id;
+            const isGifted = isOwned && (giftedAvatarId === avatar.id || isCustomAvatarGiftOnly(avatar.id));
             const ownedStyle = decodeOwnedStyle(owned[avatar.id]);
             const gradientId = ownedStyle.gradientId;
             const logoColor = ownedStyle.logoColor;

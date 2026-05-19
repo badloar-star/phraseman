@@ -37,6 +37,9 @@
         { "source": "/phrase/legal/terms", "destination": "/legal/terms/", "type": 301 },
         { "source": "/phrase/legal/terms/**", "destination": "/legal/terms/", "type": 301 }
       ],
+      "rewrites": [
+        { "source": "/phraseman/duel/**", "destination": "/phraseman/duel/index.html" }
+      ],
       "headers": [
         {
           "source": "**",

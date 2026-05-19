@@ -17,7 +17,7 @@ type Props = {
   onOpenLeague: () => void;
 };
 
-const LEAGUE_CROWN_ICON = require('../assets/images/league/league_crown.png');
+const LEAGUE_CROWN_ICON = require('../assets/images/league/league_crown.webp');
 
 export default function LeagueBonusAvailableModal({
   visible,

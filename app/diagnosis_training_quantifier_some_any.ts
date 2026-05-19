@@ -3,7 +3,19 @@
 
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (ru: string, uk = ru, es = ru): TriText => {
+  const plannedFallback = {
+    'pt-BR': es,
+    vi: es,
+    id: es,
+    tr: es,
+    pl: es,
+  } satisfies Record<PlannedTrainingLocale, string>;
+
+  return { ru, uk, es, ...plannedFallback };
+};
 
 const CONTRAST = ['some', 'any', 'no', 'not any', 'someone/anyone', 'something/anything'];
 const SMART_CONTRAST = ['some', 'any', 'no', 'not any', 'something', 'anything'];
@@ -206,6 +218,61 @@ export const QUANTIFIER_SOME_ANY_TRAINING: DiagnosisTraining = {
       'Something is often positive.',
       'Anything often follows a negative or question.',
     ],
+    'pt-BR': [
+      'Em uma afirmação comum, some muitas vezes indica uma quantidade positiva: I have some time.',
+      "Depois de don't/not, muitas vezes usamos any: I don't have any money.",
+      'Em pergunta neutra, muitas vezes usamos any: Do you have any questions?',
+      'Em oferta de comida ou bebida, muitas vezes usamos some: Would you like some coffee?',
+      'Em pedido, muitas vezes usamos some: Can I have some water?',
+      'No sentido de "qualquer", usamos any: Choose any lesson.',
+      "A palavra no funciona sem don't/not: I have no idea.",
+      'Something costuma soar positivo.',
+      'Anything costuma aparecer depois de negativa ou pergunta.',
+    ],
+    vi: [
+      'Trong câu khẳng định thông thường, some thường chỉ một lượng có thật: I have some time.',
+      "Sau don't/not, thường dùng any: I don't have any money.",
+      'Trong câu hỏi trung tính, thường dùng any: Do you have any questions?',
+      'Khi mời đồ ăn hoặc đồ uống, thường dùng some: Would you like some coffee?',
+      'Khi xin hoặc yêu cầu, thường dùng some: Can I have some water?',
+      'Với nghĩa "bất kỳ", dùng any: Choose any lesson.',
+      "No hoạt động không cần don't/not: I have no idea.",
+      'Something thường mang cảm giác khẳng định.',
+      'Anything thường đi sau phủ định hoặc trong câu hỏi.',
+    ],
+    id: [
+      'Dalam pernyataan biasa, some sering menunjukkan jumlah positif: I have some time.',
+      "Setelah don't/not, sering gunakan any: I don't have any money.",
+      'Dalam pertanyaan netral, sering gunakan any: Do you have any questions?',
+      'Dalam tawaran makanan atau minuman, sering gunakan some: Would you like some coffee?',
+      'Dalam permintaan, sering gunakan some: Can I have some water?',
+      'Untuk arti "apa saja", gunakan any: Choose any lesson.',
+      "No bekerja tanpa don't/not: I have no idea.",
+      'Something sering terdengar positif.',
+      'Anything sering mengikuti kalimat negatif atau pertanyaan.',
+    ],
+    tr: [
+      'Normal olumlu cümlede some genellikle pozitif bir miktar gösterir: I have some time.',
+      "Don't/not sonrasında genellikle any kullanılır: I don't have any money.",
+      'Nötr soruda genellikle any kullanılır: Do you have any questions?',
+      'Yiyecek veya içecek teklifinde genellikle some kullanılır: Would you like some coffee?',
+      'Rica ederken genellikle some kullanılır: Can I have some water?',
+      '"Herhangi bir" anlamında any kullanılır: Choose any lesson.',
+      "No, don't/not olmadan çalışır: I have no idea.",
+      'Something çoğu zaman olumlu duyulur.',
+      'Anything çoğu zaman olumsuz cümle veya sorudan sonra gelir.',
+    ],
+    pl: [
+      'W zwykłym zdaniu twierdzącym some często oznacza pozytywną ilość: I have some time.',
+      "Po don't/not często używamy any: I don't have any money.",
+      'W neutralnym pytaniu często używamy any: Do you have any questions?',
+      'W propozycji jedzenia albo napoju często używamy some: Would you like some coffee?',
+      'W prośbie często używamy some: Can I have some water?',
+      'W znaczeniu "dowolny" używamy any: Choose any lesson.',
+      "No działa bez don't/not: I have no idea.",
+      'Something często brzmi pozytywnie.',
+      'Anything często występuje po przeczeniu albo w pytaniu.',
+    ],
   },
   examples: [
     {
@@ -213,6 +280,11 @@ export const QUANTIFIER_SOME_ANY_TRAINING: DiagnosisTraining = {
       ru: 'У меня сегодня есть немного свободного времени.',
       uk: 'У мене сьогоднi є трохи вiльного часу.',
       es: 'I have some free time today.',
+      'pt-BR': 'Tenho um pouco de tempo livre hoje.',
+      vi: 'Hôm nay tôi có chút thời gian rảnh.',
+      id: 'Saya punya sedikit waktu luang hari ini.',
+      tr: 'Bugün biraz boş vaktim var.',
+      pl: 'Mam dziś trochę wolnego czasu.',
       why: tri('Время есть, количество положительное: some.', 'Час є, кiлькiсть позитивна: some.', 'Positive amount: some.'),
     },
     {
@@ -220,6 +292,11 @@ export const QUANTIFIER_SOME_ANY_TRAINING: DiagnosisTraining = {
       ru: 'У меня сегодня нет свободного времени.',
       uk: 'У мене сьогоднi немає вiльного часу.',
       es: "I don't have any free time today.",
+      'pt-BR': 'Hoje não tenho nenhum tempo livre.',
+      vi: 'Hôm nay tôi không có chút thời gian rảnh nào.',
+      id: 'Saya tidak punya waktu luang sama sekali hari ini.',
+      tr: 'Bugün hiç boş vaktim yok.',
+      pl: 'Dziś nie mam wcale wolnego czasu.',
       why: tri("После don't нужен any.", "Пiсля don't потрiбен any.", "After don't: any."),
     },
     {
@@ -227,6 +304,11 @@ export const QUANTIFIER_SOME_ANY_TRAINING: DiagnosisTraining = {
       ru: 'У тебя есть вопросы?',
       uk: 'У тебе є питання?',
       es: 'Do you have any questions?',
+      'pt-BR': 'Você tem alguma pergunta?',
+      vi: 'Bạn có câu hỏi nào không?',
+      id: 'Apakah kamu punya pertanyaan?',
+      tr: 'Herhangi bir sorun var mı?',
+      pl: 'Czy masz jakieś pytania?',
       why: tri('Нейтрально проверяем наличие вопросов: any.', 'Нейтрально перевiряємо наявнiсть питань: any.', 'Neutral question: any.'),
     },
     {
@@ -234,6 +316,11 @@ export const QUANTIFIER_SOME_ANY_TRAINING: DiagnosisTraining = {
       ru: 'Хочешь чаю?',
       uk: 'Хочеш чаю?',
       es: 'Would you like some tea?',
+      'pt-BR': 'Você gostaria de um pouco de chá?',
+      vi: 'Bạn có muốn uống chút trà không?',
+      id: 'Apakah kamu mau sedikit teh?',
+      tr: 'Biraz çay ister misin?',
+      pl: 'Czy chcesz trochę herbaty?',
       why: tri('Это предложение, поэтому звучит some.', 'Це пропозицiя, тому звучить some.', 'Offer: some.'),
     },
     {
@@ -241,6 +328,11 @@ export const QUANTIFIER_SOME_ANY_TRAINING: DiagnosisTraining = {
       ru: 'Можно мне воды?',
       uk: 'Можна менi води?',
       es: 'Can I have some water?',
+      'pt-BR': 'Posso tomar um pouco de água?',
+      vi: 'Cho tôi xin chút nước được không?',
+      id: 'Boleh saya minta sedikit air?',
+      tr: 'Biraz su alabilir miyim?',
+      pl: 'Czy mogę prosić trochę wody?',
       why: tri('Это просьба, поэтому звучит some.', 'Це прохання, тому звучить some.', 'Request: some.'),
     },
     {
@@ -248,6 +340,11 @@ export const QUANTIFIER_SOME_ANY_TRAINING: DiagnosisTraining = {
       ru: 'Ты можешь выбрать любой урок.',
       uk: 'Ти можеш обрати будь-який урок.',
       es: 'You can choose any lesson.',
+      'pt-BR': 'Você pode escolher qualquer lição.',
+      vi: 'Bạn có thể chọn bất kỳ bài học nào.',
+      id: 'Kamu bisa memilih pelajaran apa saja.',
+      tr: 'Herhangi bir dersi seçebilirsin.',
+      pl: 'Możesz wybrać dowolną lekcję.',
       why: tri('Любой без ограничения = any.', 'Будь-який без обмеження = any.', 'Free choice: any.'),
     },
     {
@@ -255,6 +352,11 @@ export const QUANTIFIER_SOME_ANY_TRAINING: DiagnosisTraining = {
       ru: 'Мне нужно что-нибудь выпить.',
       uk: 'Менi потрiбно щось випити.',
       es: 'I need something to drink.',
+      'pt-BR': 'Preciso de algo para beber.',
+      vi: 'Tôi cần thứ gì đó để uống.',
+      id: 'Saya butuh sesuatu untuk diminum.',
+      tr: 'İçecek bir şeye ihtiyacım var.',
+      pl: 'Potrzebuję czegoś do picia.',
       why: tri('В положительной фразе естественно something.', 'У позитивнiй фразi природно something.', 'Positive need: something.'),
     },
     {
@@ -262,6 +364,11 @@ export const QUANTIFIER_SOME_ANY_TRAINING: DiagnosisTraining = {
       ru: 'Мне ничего не нужно.',
       uk: 'Менi нiчого не потрiбно.',
       es: "I don't need anything.",
+      'pt-BR': 'Não preciso de nada.',
+      vi: 'Tôi không cần gì cả.',
+      id: 'Saya tidak membutuhkan apa pun.',
+      tr: 'Hiçbir şeye ihtiyacım yok.',
+      pl: 'Nie potrzebuję niczego.',
       why: tri("После don't естественно anything.", "Пiсля don't природно anything.", "After don't: anything."),
     },
   ],

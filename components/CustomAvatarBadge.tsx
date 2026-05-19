@@ -18,6 +18,47 @@ type Props = {
   style?: any;
 };
 
+type AvatarImageFit = {
+  scale: number;
+  translateX?: number;
+  translateY?: number;
+};
+
+const DEFAULT_NATIVE_IMAGE_FIT: AvatarImageFit = { scale: 1.1 };
+
+const CUSTOM_AVATAR_IMAGE_FITS: Record<string, AvatarImageFit> = {
+  'custom-gen-01': { scale: 1.08 },
+  'custom-gen-02': { scale: 1.13 },
+  'custom-gen-03': { scale: 1.08 },
+  'custom-gen-04': { scale: 1.08 },
+  'custom-gen-05': { scale: 1.09 },
+  'custom-gen-06': { scale: 1.08 },
+  'custom-gen-07': { scale: 1.11 },
+  'custom-gen-08': { scale: 1.08 },
+  'custom-gen-09': { scale: 1.08 },
+  'custom-gen-10': { scale: 1.08 },
+  'custom-gen-11': { scale: 1.28 },
+  'custom-gen-12': { scale: 1.25 },
+  'custom-gen-13': { scale: 1.28 },
+  'custom-gen-14': { scale: 1.18 },
+  'custom-gen-15': { scale: 1.12 },
+  'custom-gen-16': { scale: 1.08 },
+  'custom-gen-17': { scale: 1.26 },
+  'custom-gen-18': { scale: 1.2 },
+  'custom-gen-19': { scale: 1.22 },
+  'custom-gen-20': { scale: 1.07 },
+  'custom-gen-21': { scale: 1.06 },
+  'custom-gen-22': { scale: 1.07 },
+  'custom-gen-23': { scale: 1.04 },
+  'custom-gen-24': { scale: 1.13 },
+  'custom-gen-25': { scale: 1.24 },
+  'custom-gen-26': { scale: 1.17 },
+  'custom-gen-27': { scale: 1.1 },
+  'custom-gen-28': { scale: 1.07 },
+  'custom-gen-29': { scale: 1.13 },
+  'custom-gen-30': { scale: 1.05 },
+};
+
 export default function CustomAvatarBadge({ value, avatarId, gradientId, logoColor, size = 44, style }: Props) {
   const parsed = parseCustomAvatarValue(value);
   const resolvedAvatarId = avatarId ?? parsed?.avatarId;
@@ -44,7 +85,21 @@ export default function CustomAvatarBadge({ value, avatarId, gradientId, logoCol
   const nativeImage = isWhiteLogo ? avatar.imageWhite : avatar.imageBlack;
   const imageSource = nativeImage ?? avatar.image;
   if (!imageSource) return null;
-  const imageSize = Math.round(size * (nativeImage ? 1 : 0.84));
+  const imageFit = nativeImage && resolvedAvatarId
+    ? (CUSTOM_AVATAR_IMAGE_FITS[resolvedAvatarId] ?? DEFAULT_NATIVE_IMAGE_FIT)
+    : { scale: 1 };
+  const imageSize = Math.round(size * (nativeImage ? imageFit.scale : 0.84));
+  const imageTranslateX = Math.round(size * (imageFit.translateX ?? 0));
+  const imageTranslateY = Math.round(size * (imageFit.translateY ?? 0));
+  const centeredImageStyle = {
+    position: 'absolute' as const,
+    left: '50%' as const,
+    top: '50%' as const,
+    marginLeft: -imageSize / 2,
+    marginTop: -imageSize / 2,
+    width: imageSize,
+    height: imageSize,
+  };
 
   return (
     <View style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }, style]}>
@@ -63,9 +118,7 @@ export default function CustomAvatarBadge({ value, avatarId, gradientId, logoCol
           key={`${x}:${y}`}
           source={imageSource}
           style={{
-            position: 'absolute',
-            width: imageSize,
-            height: imageSize,
+            ...centeredImageStyle,
             opacity: rimOpacity,
             tintColor: rimColor,
             transform: [{ translateX: x }, { translateY: y }],
@@ -76,9 +129,9 @@ export default function CustomAvatarBadge({ value, avatarId, gradientId, logoCol
       <Image
         source={imageSource}
         style={{
-          width: imageSize,
-          height: imageSize,
+          ...centeredImageStyle,
           tintColor: nativeImage ? undefined : logoColorFinal,
+          transform: [{ translateX: imageTranslateX }, { translateY: imageTranslateY }],
         }}
         resizeMode="contain"
       />

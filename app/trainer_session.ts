@@ -65,7 +65,6 @@ export async function reserveTrainerSessionEntry(
     if (!hasPremium) {
       const freeLeft = await getFreeSessionsLeftToday();
       if (freeLeft <= 0) return false;
-      await markFreeSessionUsed();
     }
 
     const entry: TrainerSessionEntry = {
@@ -91,12 +90,13 @@ export async function consumeTrainerSessionEntry(route: TrainerSessionRoute): Pr
     const entry = JSON.parse(raw) as Partial<TrainerSessionEntry>;
     await AsyncStorage.removeItem(TRAINER_SESSION_ENTRY_KEY);
 
-    return (
+    const valid =
       entry.route === route &&
       entry.date === todayKey() &&
       typeof entry.expiresAt === 'number' &&
-      entry.expiresAt >= Date.now()
-    );
+      entry.expiresAt >= Date.now();
+    if (valid) await markFreeSessionUsed();
+    return valid;
   } catch {
     await AsyncStorage.removeItem(TRAINER_SESSION_ENTRY_KEY).catch(() => {});
     return false;

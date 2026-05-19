@@ -25,8 +25,8 @@ import { useTheme } from './ThemeContext';
 import AvatarAura from './AvatarAura';
 import AvatarView from './AvatarView';
 import CustomAvatarBadge from './CustomAvatarBadge';
+import LevelGiftArt from './LevelGiftArt';
 import { getBestAvatarForLevel } from '../constants/avatars';
-import { getLevelGiftImage } from '../constants/levelGiftImages';
 import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
 import { GiftOpenBurst, animTierF2p } from './GiftOpenEffects';
 import {
@@ -487,10 +487,10 @@ export default function LevelGiftModal({
                     { translateX: shakeAnim },
                   ],
                 }}>
-                  <Image
-                    source={getLevelGiftImage(themeMode, gift?.rarity ?? 'common')}
-                    style={{ width: LEVEL_GIFT_CHEST_IMAGE_SIZE, height: LEVEL_GIFT_CHEST_IMAGE_SIZE }}
-                    resizeMode="contain"
+                  <LevelGiftArt
+                    themeMode={themeMode}
+                    variant={gift?.rarity ?? 'common'}
+                    size={LEVEL_GIFT_CHEST_IMAGE_SIZE}
                   />
                 </Animated.View>
 
@@ -528,7 +528,7 @@ export default function LevelGiftModal({
               {gift?.choices?.length ? (
                 <>
                   <Image
-                    source={getLevelGiftRewardIcon(gift.id)}
+                    source={getLevelGiftRewardIcon(gift.id, themeMode)}
                     style={{ width: 82, height: 82, marginBottom: 8 }}
                     resizeMode="contain"
                   />
@@ -559,7 +559,7 @@ export default function LevelGiftModal({
                         }}
                       >
                         <Image
-                          source={getLevelGiftRewardIcon(choice.id)}
+                          source={getLevelGiftRewardIcon(choice.id, themeMode)}
                           style={{ width: 38, height: 38 }}
                           resizeMode="contain"
                         />
@@ -604,7 +604,7 @@ export default function LevelGiftModal({
                 {gift && <GiftOpenBurst key={`${gift.id}-${rarity}-single`} tier={animTierF2p(rarity)} size={132} />}
                 {gift && (
                   <Image
-                    source={getLevelGiftRewardIcon(gift.id)}
+                    source={getLevelGiftRewardIcon(gift.id, themeMode)}
                     style={{ width: 106, height: 106, zIndex: 2 }}
                     resizeMode="contain"
                   />

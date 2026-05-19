@@ -3,7 +3,19 @@
 
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const tri = (ru: string, uk = ru, es = ru): TriText => {
+  const plannedFallback = {
+    'pt-BR': es,
+    vi: es,
+    id: es,
+    tr: es,
+    pl: es,
+  } satisfies Record<PlannedTrainingLocale, string>;
+
+  return { ru, uk, es, ...plannedFallback };
+};
 
 const CONTRAST = [
   'too + adjective',
@@ -153,6 +165,46 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       'Too much: too much noise.',
       'Too many: too many people.',
     ],
+    'pt-BR': [
+      'Too muitas vezes significa excesso: too hot, too expensive.',
+      'Enough vem depois de palavras de qualidade: good enough, old enough.',
+      'Enough vem antes de coisas: enough time, enough chairs.',
+      'Not enough significa insuficiente.',
+      'Too much: too much noise.',
+      'Too many: too many people.',
+    ],
+    vi: [
+      'Too thường nghĩa là quá mức: too hot, too expensive.',
+      'Enough đứng sau từ chỉ chất lượng: good enough, old enough.',
+      'Enough đứng trước danh từ/sự vật: enough time, enough chairs.',
+      'Not enough nghĩa là không đủ.',
+      'Too much: too much noise.',
+      'Too many: too many people.',
+    ],
+    id: [
+      'Too sering berarti berlebihan: too hot, too expensive.',
+      'Enough berada setelah kata sifat/kualitas: good enough, old enough.',
+      'Enough berada sebelum benda: enough time, enough chairs.',
+      'Not enough berarti tidak cukup.',
+      'Too much: too much noise.',
+      'Too many: too many people.',
+    ],
+    tr: [
+      'Too çoğu zaman aşırılık demektir: too hot, too expensive.',
+      'Enough nitelik kelimelerinden sonra gelir: good enough, old enough.',
+      'Enough isimlerden önce gelir: enough time, enough chairs.',
+      'Not enough yetersiz demektir.',
+      'Too much: too much noise.',
+      'Too many: too many people.',
+    ],
+    pl: [
+      'Too często oznacza nadmiar: too hot, too expensive.',
+      'Enough stoi po słowach jakości: good enough, old enough.',
+      'Enough stoi przed rzeczami: enough time, enough chairs.',
+      'Not enough oznacza niewystarczająco.',
+      'Too much: too much noise.',
+      'Too many: too many people.',
+    ],
   },
   examples: [
     {
@@ -160,6 +212,11 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       ru: 'Этот кофе слишком горячий.',
       uk: 'Ця кава занадто гаряча.',
       es: 'This coffee is too hot.',
+      'pt-BR': 'Este café está quente demais.',
+      vi: 'Cà phê này quá nóng.',
+      id: 'Kopi ini terlalu panas.',
+      tr: 'Bu kahve çok sıcak.',
+      pl: 'Ta kawa jest za gorąca.',
       why: tri('Too hot = перебор, пить неудобно.', 'Too hot = перебір, пити незручно.', 'Too hot means excessive.'),
     },
     {
@@ -167,6 +224,11 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       ru: 'Этот кофе достаточно горячий.',
       uk: 'Ця кава достатньо гаряча.',
       es: 'This coffee is hot enough.',
+      'pt-BR': 'Este café está quente o suficiente.',
+      vi: 'Cà phê này đủ nóng.',
+      id: 'Kopi ini cukup panas.',
+      tr: 'Bu kahve yeterince sıcak.',
+      pl: 'Ta kawa jest wystarczająco gorąca.',
       why: tri('Enough стоит после hot: hot enough.', 'Enough стоїть після hot: hot enough.', 'Enough after hot.'),
     },
     {
@@ -174,6 +236,11 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       ru: 'У меня недостаточно времени.',
       uk: 'У мене недостатньо часу.',
       es: "I don't have enough time.",
+      'pt-BR': 'Não tenho tempo suficiente.',
+      vi: 'Tôi không có đủ thời gian.',
+      id: 'Saya tidak punya cukup waktu.',
+      tr: 'Yeterince zamanım yok.',
+      pl: 'Nie mam wystarczająco dużo czasu.',
       why: tri('Enough стоит перед time: enough time.', 'Enough стоїть перед time: enough time.', 'Enough before time.'),
     },
     {
@@ -181,6 +248,11 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       ru: 'Она достаточно взрослая, чтобы водить.',
       uk: 'Вона достатньо доросла, щоб водити.',
       es: 'She is old enough to drive.',
+      'pt-BR': 'Ela tem idade suficiente para dirigir.',
+      vi: 'Cô ấy đủ tuổi để lái xe.',
+      id: 'Dia cukup umur untuk mengemudi.',
+      tr: 'Araba kullanacak kadar büyük.',
+      pl: 'Ona jest wystarczająco dorosła, żeby prowadzić.',
       why: tri('Enough стоит после old: old enough.', 'Enough стоїть після old: old enough.', 'Old enough.'),
     },
     {
@@ -188,6 +260,11 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       ru: 'Он слишком устал, чтобы работать.',
       uk: 'Він занадто втомлений, щоб працювати.',
       es: 'He is too tired to work.',
+      'pt-BR': 'Ele está cansado demais para trabalhar.',
+      vi: 'Anh ấy quá mệt để làm việc.',
+      id: 'Dia terlalu lelah untuk bekerja.',
+      tr: 'Çalışamayacak kadar yorgun.',
+      pl: 'On jest zbyt zmęczony, żeby pracować.',
       why: tri('Too tired to work = устал настолько, что работать не может.', 'Too tired to work = втомився настільки, що не може працювати.', 'Too tired to work.'),
     },
     {
@@ -195,6 +272,11 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       ru: 'Здесь слишком много людей.',
       uk: 'Тут занадто багато людей.',
       es: 'There are too many people here.',
+      'pt-BR': 'Há gente demais aqui.',
+      vi: 'Ở đây có quá nhiều người.',
+      id: 'Ada terlalu banyak orang di sini.',
+      tr: 'Burada çok fazla insan var.',
+      pl: 'Jest tu za dużo ludzi.',
       why: tri('С people нужен блок too many people.', 'З people потрібен блок too many people.', 'Too many people.'),
     },
     {
@@ -202,6 +284,11 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       ru: 'Слишком много шума.',
       uk: 'Занадто багато шуму.',
       es: 'There is too much noise.',
+      'pt-BR': 'Há barulho demais.',
+      vi: 'Có quá nhiều tiếng ồn.',
+      id: 'Terlalu banyak suara bising.',
+      tr: 'Çok fazla gürültü var.',
+      pl: 'Jest za dużo hałasu.',
       why: tri('С noise нужен блок too much noise.', 'З noise потрібен блок too much noise.', 'Too much noise.'),
     },
     {
@@ -209,6 +296,11 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       ru: 'Этот ответ недостаточно хороший.',
       uk: 'Ця відповідь недостатньо хороша.',
       es: 'This answer is not good enough.',
+      'pt-BR': 'Esta resposta não é boa o suficiente.',
+      vi: 'Câu trả lời này chưa đủ tốt.',
+      id: 'Jawaban ini tidak cukup baik.',
+      tr: 'Bu cevap yeterince iyi değil.',
+      pl: 'Ta odpowiedź nie jest wystarczająco dobra.',
       why: tri('Not good enough = качества не хватает.', 'Not good enough = якості не вистачає.', 'Not good enough.'),
     },
   ],

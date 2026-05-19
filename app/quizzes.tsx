@@ -49,7 +49,6 @@ import { isQuizChoiceCorrect, quizPrimaryCorrectIndex, type QuizPhrase } from '.
 import { getQuizPhrasesLoaded } from './quiz_phrases_loader';
 import { DEFAULT_SETTINGS, loadSettings, saveSettings, UserSettings as Settings } from './settings_edu';
 import { useTabNav } from './TabContext';
-import { playAppSound } from './audio/sound_manager';
 import { calculateRewardWithBonus } from './variable_reward_system';
 import { registerXP } from './xp_manager';
 import { recordMistake } from './active_recall';
@@ -822,7 +821,6 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     if (!isRight && settings.haptics) {
       void hapticError();
     }
-    void playAppSound(isRight ? 'answer.correct' : 'answer.wrong');
 
     if (settings.voiceOut && current?.answer) {
       speakAudio(current.answer, settings.speechRate, { language: 'en-US' });

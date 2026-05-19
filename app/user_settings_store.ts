@@ -3,7 +3,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const SETTINGS_KEY = 'user_settings';
 const MIN_SPEECH_RATE = 0.5;
 const MAX_SPEECH_RATE = 1.0;
-export const APP_SOUND_DEFAULT_VOLUME = 0.65;
 
 export const DEFAULT_SETTINGS = {
   autoCheck: false,
@@ -14,9 +13,6 @@ export const DEFAULT_SETTINGS = {
   autoAdvance: false,
   haptics: true,
   immediateCheck: false,
-  appSoundsEnabled: true,
-  appSoundsVolume: APP_SOUND_DEFAULT_VOLUME,
-  ceremonySoundsEnabled: true,
 };
 
 export type UserSettings = typeof DEFAULT_SETTINGS;
@@ -29,24 +25,18 @@ export function normalizeSpeechRate(value: unknown): number {
   return Math.max(MIN_SPEECH_RATE, Math.min(MAX_SPEECH_RATE, Math.round(n * 10) / 10));
 }
 
-export function normalizeAppSoundVolume(value: unknown): number {
-  const n = typeof value === 'number' ? value : Number(value);
-  if (!Number.isFinite(n)) return APP_SOUND_DEFAULT_VOLUME;
-  return Math.max(0, Math.min(1, Math.round(n * 100) / 100));
-}
-
 function normalizeSettings(raw: Partial<UserSettings> | null | undefined): UserSettings {
   const base = { ...(raw ?? {}) } as Record<string, unknown>;
   delete base.showHints;
+  delete base.appSoundsEnabled;
+  delete base.ceremonySoundsEnabled;
+  delete base.appSoundsVolume;
   const merged = { ...DEFAULT_SETTINGS, ...base } as UserSettings;
   return {
     ...merged,
     voiceOut: !!merged.voiceOut,
     speechRate: normalizeSpeechRate(merged.speechRate),
     speechVoiceId: typeof merged.speechVoiceId === 'string' ? merged.speechVoiceId : '',
-    appSoundsEnabled: merged.appSoundsEnabled !== false,
-    appSoundsVolume: normalizeAppSoundVolume(merged.appSoundsVolume),
-    ceremonySoundsEnabled: merged.ceremonySoundsEnabled !== false,
   };
 }
 

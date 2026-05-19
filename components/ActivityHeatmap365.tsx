@@ -589,7 +589,7 @@ export default function ActivityHeatmap365() {
   const legendApprox = Math.max(7, Math.min(10, Math.round(cellSize)));
 
   const onGridLayout = useCallback((e: LayoutChangeEvent) => {
-    const w = e.nativeEvent.layout.width;
+    const w = Math.max(0, e.nativeEvent.layout.width - 16);
     if (w <= 1) return;
     setGridInnerW((prev) => (Math.abs(prev - w) < 0.5 ? prev : w));
   }, []);
@@ -1095,6 +1095,8 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     paddingVertical: 12,
     paddingHorizontal: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   nextStepBar: {
     marginTop: 10,

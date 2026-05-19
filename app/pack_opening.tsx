@@ -19,7 +19,6 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { getVolumetricShadow, useTheme } from '../components/ThemeContext';
 import { hapticSoftImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
-import { playAppSound } from './audio/sound_manager';
 import { triLang, type Lang } from '../constants/i18n';
 import {
   buildMarketplaceOwnedCards,
@@ -427,7 +426,6 @@ export default function PackOpeningScreen() {
   const onFlipOne = useCallback((idx: number) => {
     setFlippedSet((prev) => {
       if (prev.has(idx)) return prev;
-      void playAppSound('pack.card.reveal');
       const next = new Set(prev);
       next.add(idx);
       return next;

@@ -255,6 +255,11 @@ export default function ClubScreen() {
   const [gameAlert, setGameAlert] = useState<{
     title: string;
     message: string;
+    intent?: 'boostSuccess';
+    meta?: {
+      multiplier?: number;
+      duration?: string;
+    };
     actions: { label: string; style?: 'cancel' | 'default'; onPress?: () => void | Promise<void> }[];
   } | null>(null);
   const [activeLeagueBoost, setActiveLeagueBoost] = useState<LeaguePersonalBoostState | null>(null);
@@ -916,27 +921,41 @@ export default function ClubScreen() {
     const def = getLeagueBoostDef(id);
     void checkAchievements({ type: 'league_boost', multiplier: def?.multiplier ?? (id === 'x3_15m' ? 3 : 2) });
     setGameAlert({
+      intent: 'boostSuccess',
       title: triLang(lang, {
-        ru: 'Буст активирован',
-        uk: 'Буст активовано',
+        ru: 'Буст включён',
+        uk: 'Буст увімкнено',
         es: 'Impulso activado',
-        'pt-BR': "Impulso ativado",
-        vi: "Đã bật tăng tốc",
-        id: "Boost diaktifkan",
-        tr: "Takviye etkinleştirildi",
-        pl: "Wzmocnienie aktywowane",
+        'pt-BR': 'Impulso ativado',
+        vi: 'Đã bật tăng tốc',
+        id: 'Boost diaktifkan',
+        tr: 'Takviye açıldı',
+        pl: 'Wzmocnienie włączone',
       }),
       message: triLang(lang, {
-        ru: 'Время действия уже запущено.',
-        uk: 'Час дії вже запущено.',
-        es: 'El periodo del impulso ya ha empezado.',
-        'pt-BR': "O tempo de duração já começou.",
-        vi: "Thời gian hiệu lực đã bắt đầu.",
-        id: "Masa aktifnya sudah dimulai.",
-        tr: "Etki süresi başladı.",
-        pl: "Czas działania już się rozpoczął.",
+        ru: `${def ? `×${def.multiplier} к опыту` : 'Бонус к опыту'} активен ${def ? `на ${boostLabel(def)}` : 'сразу'}. Новые очки будут считаться с этим множителем.`,
+        uk: `${def ? `×${def.multiplier} до досвіду` : 'Бонус до досвіду'} активний ${def ? `на ${boostLabel(def)}` : 'одразу'}. Нові очки рахуватимуться з цим множником.`,
+        es: `${def ? `×${def.multiplier} XP` : 'El bonus de XP'} está activo ${def ? `durante ${boostLabel(def)}` : 'ahora'}. Los nuevos puntos usarán este multiplicador.`,
+        'pt-BR': `${def ? `×${def.multiplier} XP` : 'O bônus de XP'} já está ativo${def ? ` por ${boostLabel(def)}` : ''}. Os novos pontos usarão este multiplicador.`,
+        vi: `${def ? `×${def.multiplier} XP` : 'Bonus XP'} đã hoạt động${def ? ` trong ${boostLabel(def)}` : ''}. Điểm mới sẽ dùng hệ số này.`,
+        id: `${def ? `×${def.multiplier} XP` : 'Bonus XP'} aktif${def ? ` selama ${boostLabel(def)}` : ''}. Poin baru akan memakai pengali ini.`,
+        tr: `${def ? `×${def.multiplier} XP` : 'XP bonusu'} aktif${def ? `: ${boostLabel(def)}` : ''}. Yeni puanlar bu çarpanla hesaplanır.`,
+        pl: `${def ? `×${def.multiplier} XP` : 'Bonus XP'} jest aktywny${def ? ` przez ${boostLabel(def)}` : ''}. Nowe punkty użyją tego mnożnika.`,
       }),
-      actions: [{ label: 'OK', style: 'default' }],
+      meta: {
+        multiplier: def?.multiplier,
+        duration: def ? boostLabel(def) : undefined,
+      },
+      actions: [{ label: triLang(lang, {
+        ru: 'Отлично',
+        uk: 'Чудово',
+        es: 'Perfecto',
+        'pt-BR': 'Perfeito',
+        vi: 'Tuyệt',
+        id: 'Mantap',
+        tr: 'Harika',
+        pl: 'Super',
+      }), style: 'default' }],
     });
   };
 
@@ -1003,6 +1022,9 @@ export default function ClubScreen() {
   useEffect(() => {
     if (clubTab === 'chat') setBoostMenuVisible(false);
   }, [clubTab]);
+
+  const gameAlertIsBoostSuccess = gameAlert?.intent === 'boostSuccess';
+  const gameAlertAccent = gameAlertIsBoostSuccess ? leagueBoostCostAccent : t.accent;
 
   return (
     <ScreenGradient>
@@ -1824,14 +1846,91 @@ export default function ClubScreen() {
           onPress={() => setGameAlert(null)}
         >
           <Pressable onPress={() => {}}>
-            <View style={{ backgroundColor:t.bgCard, borderRadius:18, padding:18, width:'90%', maxWidth:320, borderWidth:0.5, borderColor:t.border }}>
-              <Text style={{ color:t.textPrimary, fontSize:f.h2, fontWeight:'800', marginBottom:10 }}>
+            <View style={{
+              backgroundColor:t.bgCard,
+              borderRadius: gameAlertIsBoostSuccess ? 24 : 18,
+              padding: gameAlertIsBoostSuccess ? 22 : 18,
+              width:'90%',
+              maxWidth: gameAlertIsBoostSuccess ? 360 : 320,
+              borderWidth:1,
+              borderColor: gameAlertIsBoostSuccess ? `${gameAlertAccent}66` : t.border,
+              overflow:'hidden',
+              shadowColor: gameAlertAccent,
+              shadowOpacity: gameAlertIsBoostSuccess ? 0.28 : 0.16,
+              shadowRadius: gameAlertIsBoostSuccess ? 22 : 10,
+              shadowOffset:{ width:0, height:12 },
+              elevation: gameAlertIsBoostSuccess ? 16 : 8,
+            }}>
+              {gameAlertIsBoostSuccess && (
+                <>
+                  <LinearGradient
+                    colors={[`${gameAlertAccent}24`, 'transparent']}
+                    style={{ position:'absolute', top:0, left:0, right:0, height:132 }}
+                    pointerEvents="none"
+                  />
+                  <View style={{ alignItems:'center', marginBottom:14 }}>
+                    <View style={{
+                      width:66,
+                      height:66,
+                      borderRadius:20,
+                      alignItems:'center',
+                      justifyContent:'center',
+                      backgroundColor:`${gameAlertAccent}22`,
+                      borderWidth:1,
+                      borderColor:`${gameAlertAccent}66`,
+                    }}>
+                      <Ionicons name="flash" size={34} color={gameAlertAccent} />
+                    </View>
+                  </View>
+                </>
+              )}
+              <Text style={{
+                color:t.textPrimary,
+                fontSize:f.h2,
+                fontWeight:'800',
+                marginBottom:10,
+                textAlign: gameAlertIsBoostSuccess ? 'center' : 'left',
+              }}>
                 {gameAlert?.title}
               </Text>
-              <Text style={{ color:t.textSecond, fontSize:f.body, lineHeight:22 }}>
+              {gameAlertIsBoostSuccess && (
+                <View style={{
+                  alignSelf:'center',
+                  flexDirection:'row',
+                  alignItems:'center',
+                  gap:8,
+                  paddingVertical:8,
+                  paddingHorizontal:12,
+                  borderRadius:999,
+                  backgroundColor:`${gameAlertAccent}18`,
+                  borderWidth:1,
+                  borderColor:`${gameAlertAccent}44`,
+                  marginBottom:12,
+                }}>
+                  <Text style={{ color:gameAlertAccent, fontSize:f.body, fontWeight:'900' }}>
+                    {gameAlert.meta?.multiplier ? `×${gameAlert.meta.multiplier}` : 'XP'}
+                  </Text>
+                  {!!gameAlert.meta?.duration && (
+                    <Text style={{ color:t.textPrimary, fontSize:f.sub, fontWeight:'800' }}>
+                      {gameAlert.meta.duration}
+                    </Text>
+                  )}
+                </View>
+              )}
+              <Text style={{
+                color:t.textSecond,
+                fontSize:f.body,
+                lineHeight:22,
+                textAlign: gameAlertIsBoostSuccess ? 'center' : 'left',
+              }}>
                 {gameAlert?.message}
               </Text>
-              <View style={{ marginTop:18, flexDirection:'row', justifyContent:'flex-end', gap:10 }}>
+              <View style={{
+                marginTop: gameAlertIsBoostSuccess ? 20 : 18,
+                flexDirection:'row',
+                justifyContent: gameAlertIsBoostSuccess ? 'center' : 'flex-end',
+                gap:10,
+              }}>
                 {(gameAlert?.actions ?? []).map((action, idx) => (
                   <TouchableOpacity
                     key={`${action.label}-${idx}`}
@@ -1841,11 +1940,13 @@ export default function ClubScreen() {
                     }}
                     style={{
                       paddingVertical:10,
-                      paddingHorizontal:14,
-                      borderRadius:10,
-                      backgroundColor: action.style === 'cancel' ? t.bgSurface : t.accent,
-                      borderWidth:0.5,
-                      borderColor:t.border,
+                      paddingHorizontal: gameAlertIsBoostSuccess ? 28 : 14,
+                      minHeight:44,
+                      justifyContent:'center',
+                      borderRadius: gameAlertIsBoostSuccess ? 14 : 10,
+                      backgroundColor: action.style === 'cancel' ? t.bgSurface : gameAlertAccent,
+                      borderWidth:1,
+                      borderColor: action.style === 'cancel' ? t.border : gameAlertAccent,
                     }}
                   >
                     <Text style={{ color: action.style === 'cancel' ? t.textPrimary : t.correctText, fontSize:f.sub, fontWeight:'800' }}>

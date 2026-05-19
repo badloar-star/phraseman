@@ -51,6 +51,33 @@ const ignoredRootFolders = [
   'tools',
 ];
 
+const defaultEnhanceMiddleware = config.server?.enhanceMiddleware;
+config.server = {
+  ...config.server,
+  enhanceMiddleware: (middleware, server) => {
+    const enhancedMiddleware = defaultEnhanceMiddleware
+      ? defaultEnhanceMiddleware(middleware, server)
+      : middleware;
+
+    return (req, res, next) => {
+      if (req.url?.includes('.bundle')) {
+        const accept = req.headers.accept;
+        if (typeof accept === 'string' && accept.includes('multipart/mixed')) {
+          const nextAccept = accept
+            .split(',')
+            .map((value) => value.trim())
+            .filter((value) => value !== 'multipart/mixed')
+            .join(', ');
+
+          req.headers.accept = nextAccept || '*/*';
+        }
+      }
+
+      return enhancedMiddleware(req, res, next);
+    };
+  },
+};
+
 const defaultResolveRequest = config.resolver.resolveRequest;
 const routerContextPath = path.join(__dirname, 'router.ctx.js');
 

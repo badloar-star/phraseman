@@ -3,6 +3,10 @@ import * as Haptics from 'expo-haptics';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 let cachedHapticTap: boolean | null = null;
+export const HAPTIC_TAP_COOLDOWN_MS = 180;
+export const HAPTIC_FEEDBACK_COOLDOWN_MS = 4_500;
+let lastTapHapticAt = Number.NEGATIVE_INFINITY;
+let lastFeedbackHapticAt = Number.NEGATIVE_INFINITY;
 
 // Синхронный кэш — читаем при старте приложения
 if (typeof window !== 'undefined') {
@@ -16,6 +20,20 @@ export function setHapticCacheEnabled(enabled: boolean) {
   cachedHapticTap = enabled;
 }
 
+function canRunTapHaptic(): boolean {
+  const now = Date.now();
+  if (now - lastTapHapticAt < HAPTIC_TAP_COOLDOWN_MS) return false;
+  lastTapHapticAt = now;
+  return true;
+}
+
+function canRunFeedbackHaptic(): boolean {
+  const now = Date.now();
+  if (now - lastFeedbackHapticAt < HAPTIC_FEEDBACK_COOLDOWN_MS) return false;
+  lastFeedbackHapticAt = now;
+  return true;
+}
+
 /**
  * tap() — лёгкий тактильный отклик на каждое нажатие.
  * Вызывается напрямую без хука для использования вне компонентов.
@@ -23,6 +41,7 @@ export function setHapticCacheEnabled(enabled: boolean) {
 export async function hapticTap() {
   try {
     if (cachedHapticTap === false) return;
+    if (!canRunTapHaptic()) return;
     if (cachedHapticTap === null) {
       const val = await AsyncStorage.getItem('haptics_tap');
       cachedHapticTap = val !== 'false';
@@ -35,6 +54,7 @@ export async function hapticTap() {
 async function runIfEnabled(run: () => Promise<void>) {
   try {
     if (cachedHapticTap === false) return;
+    if (!canRunFeedbackHaptic()) return;
     if (cachedHapticTap === null) {
       const val = await AsyncStorage.getItem('haptics_tap');
       cachedHapticTap = val !== 'false';
@@ -78,3 +98,10 @@ export function useHaptics() {
   const mediumImpact = useCallback(() => { hapticMediumImpact(); }, []);
   return { tap, success, warning, error, softImpact, lightImpact, mediumImpact };
 }
+
+export const __hapticsTestHooks = {
+  resetRateLimit() {
+    lastTapHapticAt = Number.NEGATIVE_INFINITY;
+    lastFeedbackHapticAt = Number.NEGATIVE_INFINITY;
+  },
+};

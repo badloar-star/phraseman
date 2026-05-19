@@ -42,6 +42,7 @@ import type { PhraseMistakeInput } from './phrase_analytics';
 import { bumpStatsDaily } from './stats_daily_breakdown';
 import { LESSON_DATA } from './lesson_data_all';
 import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { buildLessonWordOptions } from './lesson_word_options';
 
 const shuffle = <T,>(arr: T[]): T[] => {
   const a = [...arr];
@@ -2288,8 +2289,6 @@ const groupByPOS = (words: Word[], lang: Lang) => {
     }));
 };
 
-const fy = <T,>(a: T[]): T[] => { const r=[...a]; for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];} return r; };
-
 // Cross-lesson pool: deduped union of all lesson words for expanding distractors
 const ALL_WORDS_FLAT: Word[] = (() => {
   const seen = new Set<string>();
@@ -2478,31 +2477,15 @@ const CAFE_EN_DISTRACTOR_SKIP = new Set<string>(['place', 'places']);
 const ISSUE_RECOGNITION_DISTRACTOR_SKIP = new Set<string>(['answer', 'problem']);
 
 const makeOptions = (correct: Word, all: Word[]): string[] => {
-  const notMe = (w: Word) => w.en !== correct.en;
-  const posOk = (w: Word) =>
-    !(correct.en === 'cafe' && CAFE_EN_DISTRACTOR_SKIP.has(w.en)) &&
-    !(correct.en === 'issue' && ISSUE_RECOGNITION_DISTRACTOR_SKIP.has(w.en));
-  const lessonSamePos = fy(all.filter(w => notMe(w) && w.pos === correct.pos && posOk(w)));
-  const fromLesson    = lessonSamePos.slice(0, Math.min(3, lessonSamePos.length));
-  const fromCross = fy(
-    ALL_WORDS_FLAT.filter(
-      w =>
-        notMe(w) &&
-        w.pos === correct.pos &&
-        posOk(w) &&
-        !fromLesson.some(l => l.en === w.en),
-    ),
-  ).slice(0, 5 - fromLesson.length);
-  let combined = [...fromLesson, ...fromCross];
-  if (combined.length < 5) {
-    const fallback = fy(
-      [...all, ...ALL_WORDS_FLAT].filter(
-        w => notMe(w) && posOk(w) && !combined.some(c => c.en === w.en),
-      ),
-    );
-    combined = [...combined, ...fallback].slice(0, 5);
+  const blockedValues = new Set<string>();
+  if (correct.en === 'cafe') {
+    CAFE_EN_DISTRACTOR_SKIP.forEach((value) => blockedValues.add(value));
   }
-  return fy([...combined.slice(0, 5).map(w => w.en), correct.en]);
+  if (correct.en === 'issue') {
+    ISSUE_RECOGNITION_DISTRACTOR_SKIP.forEach((value) => blockedValues.add(value));
+  }
+
+  return buildLessonWordOptions(correct, all, ALL_WORDS_FLAT, { blockedValues });
 };
 
 const isLessonWordOptionCorrect = (option: string, correct: string): boolean =>

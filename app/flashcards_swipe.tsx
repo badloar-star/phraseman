@@ -3,7 +3,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  ActivityIndicator,
   Animated,
   PanResponder,
   ScrollView,
@@ -757,16 +756,6 @@ export default function FlashcardsSwipeScreen() {
         id: "Mulai",
         tr: "Başla",
         pl: "Zacznij",
-      }),
-      preparing: triLang(lang, {
-        ru: 'Готовлю тренировку',
-        uk: 'Готую тренування',
-        es: 'Preparando práctica',
-        'pt-BR': "Preparando treino",
-        vi: "Đang chuẩn bị luyện tập",
-        id: "Menyiapkan latihan",
-        tr: "Alıştırma hazırlanıyor",
-        pl: "Przygotowywanie treningu",
       }),
       reload: triLang(lang, {
         ru: 'Обновить',
@@ -1885,14 +1874,8 @@ export default function FlashcardsSwipeScreen() {
             },
           ]}
         >
-          {starting ? (
-            <ActivityIndicator color={t.correctText} />
-          ) : (
-            <>
-              <Ionicons name="play" size={20} color={t.correctText} />
-              <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>{text.start}</Text>
-            </>
-          )}
+          <Ionicons name={starting ? 'sparkles-outline' : 'play'} size={20} color={t.correctText} />
+          <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>{text.start}</Text>
         </TouchableOpacity>
       </View>
 
@@ -1904,7 +1887,7 @@ export default function FlashcardsSwipeScreen() {
 
       {loadingSources && sources.length === 0 ? (
         <View style={styles.loadingBox}>
-          <ActivityIndicator color={t.accent} />
+          <Ionicons name="albums-outline" size={26} color={t.accent} />
         </View>
       ) : sources.length === 0 ? (
         <View style={[styles.emptyBox, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
@@ -2285,8 +2268,7 @@ export default function FlashcardsSwipeScreen() {
       <View style={[styles.quickStartIcon, { backgroundColor: `${t.accent}22`, borderColor: t.border }]}>
         <Ionicons name="sparkles-outline" size={30} color={t.accent} />
       </View>
-      <ActivityIndicator color={t.accent} style={{ marginTop: 18 }} />
-      <Text style={[styles.quickStartTitle, { color: t.textPrimary, fontSize: f.h2 }]}>{text.preparing}</Text>
+      <Text style={[styles.quickStartTitle, { color: t.textPrimary, fontSize: f.h2, marginTop: 18 }]}>{text.smartQueue}</Text>
       <Text style={[styles.quickStartSub, { color: t.textMuted, fontSize: f.body }]}>{text.sessionSummary}</Text>
     </View>
   );

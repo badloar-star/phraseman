@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phraseman Duel</title>
+  <script>
+    const segments = window.location.pathname.split('/').filter(Boolean);
+    const roomId = segments[segments.length - 1] || '';
+    if (roomId && roomId !== 'duel') {
+      window.location = 'phraseman://duel/' + encodeURIComponent(roomId);
+    }
+    setTimeout(() => {
+      window.location = 'https://play.google.com/store/apps/details?id=app.phraseman';
+    }, 1800);
+  </script>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #101214;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      text-align: center;
+    }
+    main { padding: 32px; }
+    h1 { font-size: 28px; margin: 0 0 8px; }
+    p { color: #b8c0c7; margin: 0; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Opening Phraseman duel...</h1>
+    <p>If the app does not open, you will be sent to Google Play.</p>
+  </main>
+</body>
+</html>

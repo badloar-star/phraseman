@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { View, Text, ScrollView, Modal, Pressable, TouchableOpacity, Image, Platform, Share, } from 'react-native';
+import { Animated, View, Text, ScrollView, Modal, Pressable, TouchableOpacity, Image, Platform, Share, PanResponder, StyleSheet, } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
@@ -26,7 +26,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { getShardsBalance, spendShards } from './shards_system';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { getStatsCache, hydrateStatsCacheFromStorage, refreshStatsCache, type StatsCachedDay, type StatsCachedTimeDay, type StatsPreloadData, } from './statsCache';
-import { onAppEvent } from './events';
+import { emitAppEvent, onAppEvent } from './events';
 import { oskolokImageForPackShards } from './oskolok';
 import { loadActiveLeagueBoost } from './league_personal_boosts';
 import { syncDailyAnalyticsIfNeeded, loadPercentileData } from './daily_analytics_sync';
@@ -39,7 +39,7 @@ import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '.
 import GoldBevel from '../components/GoldBevel';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
-import { loadPendingLevelGiftCount } from './level_gift_inventory';
+import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 /** Градиент карточек статистики — берём из темы вместо хардкода зелёного */
@@ -74,10 +74,10 @@ function pluralRu(n: number, one: string, few: string, many: string): string {
         return few;
     return many;
 }
-function ruAchievementPhrase(total: number): string {
+function ruAchievementRewardPhrase(total: number): string {
     return `${total} ${pluralRu(total, 'достижение', 'достижения', 'достижений')}`;
 }
-function ukAchievementPhrase(total: number): string {
+function ukAchievementRewardPhrase(total: number): string {
     return `${total} ${pluralRu(total, 'досягнення', 'досягнення', 'досягнень')}`;
 }
 function plAchievementPhrase(total: number): string {
@@ -902,6 +902,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme }: {
     const [wagerNeedShards, setWagerNeedShards] = useState(false);
     const [wagerConfirm, setWagerConfirm] = useState(false);
     const [wagerInfoOpen, setWagerInfoOpen] = useState(false);
+    const wagerSheetY = useRef(new Animated.Value(0)).current;
     const reload = async () => {
         const [w, shardsRaw] = await Promise.all([
             loadWager(),
@@ -913,6 +914,42 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme }: {
     };
     useEffect(() => { reload(); }, []);
     const clampTierIdx = (i: number) => Math.max(0, Math.min(i, WAGER_TIERS.length - 1));
+    const closeWagerModal = useCallback(() => {
+        setModalOpen(false);
+        wagerSheetY.setValue(0);
+    }, [wagerSheetY]);
+    const wagerPanResponder = useMemo(() => PanResponder.create({
+        onMoveShouldSetPanResponder: (_evt, gesture) => (
+            gesture.dy > 8 && Math.abs(gesture.dy) > Math.abs(gesture.dx)
+        ),
+        onPanResponderMove: (_evt, gesture) => {
+            wagerSheetY.setValue(Math.max(0, gesture.dy));
+        },
+        onPanResponderRelease: (_evt, gesture) => {
+            if (gesture.dy > 70 || gesture.vy > 0.85) {
+                Animated.timing(wagerSheetY, {
+                    toValue: 420,
+                    duration: 160,
+                    useNativeDriver: true,
+                }).start(closeWagerModal);
+                return;
+            }
+            Animated.spring(wagerSheetY, {
+                toValue: 0,
+                useNativeDriver: true,
+                tension: 180,
+                friction: 22,
+            }).start();
+        },
+        onPanResponderTerminate: () => {
+            Animated.spring(wagerSheetY, {
+                toValue: 0,
+                useNativeDriver: true,
+                tension: 180,
+                friction: 22,
+            }).start();
+        },
+    }), [closeWagerModal, wagerSheetY]);
     const handlePlace = () => {
         const tier = WAGER_TIERS[clampTierIdx(selectedTier)];
         if (!tier)
@@ -928,7 +965,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme }: {
         const ok = await placeWager(totalStreak, clampTierIdx(selectedTier));
         if (ok) {
             await reload();
-            setModalOpen(false);
+            closeWagerModal();
         }
         setPlacing(false);
     };
@@ -1247,13 +1284,36 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme }: {
       </TouchableOpacity>
 
       {/* Модал выбора ставки */}
-      <Modal visible={modalOpen} transparent animationType="slide" onRequestClose={() => setModalOpen(false)}>
-        <Pressable style={{ flex: 1, backgroundColor: '#00000088', justifyContent: 'flex-end' }} onPress={() => setModalOpen(false)}>
-          <Pressable onPress={e => e.stopPropagation()}>
-            <View testID="wager-modal" style={{ backgroundColor: t.bgPrimary, borderTopLeftRadius: 28, borderTopRightRadius: 28, borderTopWidth: 1, borderLeftWidth: 1, borderRightWidth: 1, borderColor: `${t.accent}59`, paddingHorizontal: 20, paddingTop: 12, paddingBottom: 0, maxHeight: '92%', overflow: 'hidden' }}>
+      <Modal visible={modalOpen} transparent animationType="slide" onRequestClose={closeWagerModal}>
+        <View style={{ flex: 1, backgroundColor: '#00000088', justifyContent: 'flex-end' }}>
+          <Pressable style={{ ...StyleSheet.absoluteFillObject }} onPress={closeWagerModal} />
+          <Animated.View
+            testID="wager-modal"
+            style={{
+                backgroundColor: t.bgPrimary,
+                borderTopLeftRadius: 28,
+                borderTopRightRadius: 28,
+                borderTopWidth: 1,
+                borderLeftWidth: 1,
+                borderRightWidth: 1,
+                borderColor: `${t.accent}59`,
+                paddingHorizontal: 20,
+                paddingTop: 12,
+                paddingBottom: 0,
+                maxHeight: '92%',
+                overflow: 'hidden',
+                transform: [{ translateY: wagerSheetY }],
+            }}
+          >
 
               {/* Handle */}
-              <View style={{ width: 36, height: 4, backgroundColor: t.border, borderRadius: 2, alignSelf: 'center', marginBottom: 18 }}/>
+              <View
+                {...wagerPanResponder.panHandlers}
+                hitSlop={{ top: 14, bottom: 14, left: 80, right: 80 }}
+                style={{ alignSelf: 'center', paddingHorizontal: 28, paddingTop: 2, paddingBottom: 16 }}
+              >
+                <View style={{ width: 42, height: 5, backgroundColor: t.border, borderRadius: 3 }}/>
+              </View>
 
               <ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: insets.bottom + 36 }}>
               {/* Header */}
@@ -1275,6 +1335,15 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme }: {
                   <Image source={oskolokImageForPackShards(typeof shardsWager === 'number' ? shardsWager : 0)} style={{ width: 16, height: 16 }} resizeMode="contain"/>
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>{shardsWager}</Text>
                 </View>
+                <TouchableOpacity
+                  testID="wager-close"
+                  onPress={closeWagerModal}
+                  hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                  activeOpacity={0.75}
+                  style={{ width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border }}
+                >
+                  <Ionicons name="close" size={20} color={t.textMuted}/>
+                </TouchableOpacity>
               </View>
               <Text style={{ color: t.textMuted, fontSize: f.sub, marginBottom: 14, lineHeight: 20 }}>
                 {triLang(lang, {
@@ -1426,7 +1495,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme }: {
               </View>
 
               {/* CTA */}
-              <TouchableOpacity testID="wager-place" onPress={handlePlace} disabled={placing || !canAfford} activeOpacity={0.85} style={{ borderRadius: 16, overflow: 'hidden' }}>
+              <TouchableOpacity testID="wager-place" onPress={handlePlace} disabled={placing} activeOpacity={0.85} style={{ borderRadius: 16, overflow: 'hidden' }}>
                 <LinearGradient colors={canAfford ? [t.accent, t.accent] : [t.bgSurface, t.bgSurface]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ paddingVertical: 15, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center', gap: 6, borderRadius: 16, borderWidth: canAfford ? 0 : 1, borderColor: t.border }}>
                   {placing ? (<Text style={{ color: canAfford ? t.correctText : t.textGhost, fontSize: f.body, fontWeight: '800' }}>
                       {triLang(lang, {
@@ -1487,9 +1556,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme }: {
               </TouchableOpacity>
               </ScrollView>
 
-            </View>
-          </Pressable>
-        </Pressable>
+          </Animated.View>
+        </View>
       </Modal>
       <ThemedConfirmModal visible={wagerNeedShards} title={triLang(lang, {
             ru: 'Недостаточно осколков',
@@ -2377,7 +2445,7 @@ export default function StreakStats() {
     const [, setHadPremiumEver] = useState(_sc.hadPremiumEver);
     const [trainerPracticeDue, setTrainerPracticeDue] = useState(_sc.trainerPracticeDue);
     const [achievementCount, setAchievementCount] = useState(0);
-    const [pendingGiftCount, setPendingGiftCount] = useState(0);
+    const [pendingGiftCount, setPendingGiftCount] = useState(_sc.pendingGiftCount);
     const [freezeConfirmVisible, setFreezeConfirmVisible] = useState(false);
     const [freezeNeedShardsModal, setFreezeNeedShardsModal] = useState(false);
     const [bonusOpen, setBonusOpen] = useState(true);
@@ -2397,14 +2465,19 @@ export default function StreakStats() {
     }, []));
     useFocusEffect(useCallback(() => {
         let cancelled = false;
+        void readPendingLevelGiftCountCache()
+            .then(count => {
+            if (!cancelled && count > 0)
+                setPendingGiftCount(count);
+        })
+            .catch(() => { });
         void loadPendingLevelGiftCount()
             .then(count => {
             if (!cancelled)
                 setPendingGiftCount(count);
         })
             .catch(() => {
-            if (!cancelled)
-                setPendingGiftCount(0);
+            // Keep the last known value on transient storage errors to avoid a visible zero flash.
         });
         return () => { cancelled = true; };
     }, []));
@@ -2509,6 +2582,7 @@ export default function StreakStats() {
         setChainShieldDays(snapshot.chainShieldDays);
         setHadPremiumEver(snapshot.hadPremiumEver);
         setTrainerPracticeDue(snapshot.trainerPracticeDue);
+        setPendingGiftCount(snapshot.pendingGiftCount);
     }, [wdays]);
     const loadAll = React.useCallback(async () => {
         await hydrateStatsCacheFromStorage();
@@ -2670,6 +2744,7 @@ export default function StreakStats() {
         }
         await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: today }));
         setFreezeActive(true);
+        emitAppEvent('streak_freeze_updated', { active: true });
         setStreakAtRisk(false);
     };
     return (<ScreenGradient>
@@ -2756,15 +2831,16 @@ export default function StreakStats() {
       </Modal>
 
       <ContentWrap>
-      <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 15, paddingTop: Platform.OS === 'android' ? 28 : 15, paddingBottom: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-        <TouchableOpacity onPress={() => router.back()}>
+      <View style={{ paddingHorizontal: 15, paddingTop: Platform.OS === 'android' ? 28 : 15, paddingBottom: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <TouchableOpacity onPress={() => router.back()} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
           <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
         </TouchableOpacity>
         <Text
-          style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginLeft: 8, flexShrink: 0, maxWidth: 132 }}
+          style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginLeft: 8, flex: 1 }}
           numberOfLines={1}
           adjustsFontSizeToFit
-          minimumFontScale={0.78}
+          minimumFontScale={0.82}
         >
           {triLang(lang, {
             ru: 'Статистика',
@@ -2777,10 +2853,11 @@ export default function StreakStats() {
             pl: "Statystyki",
         })}
         </Text>
-        <View style={{ flexGrow: 1, flexShrink: 1, minWidth: 8 }}/>
+        </View>
+        <View style={{ flexDirection: 'row', gap: 10, marginTop: 12 }}>
         <TouchableOpacity testID="stats-header-achievements" accessibilityHint={triLang(lang, {
-            ru: ruAchievementPhrase(achievementCount),
-            uk: ukAchievementPhrase(achievementCount),
+            ru: ruAchievementRewardPhrase(achievementCount),
+            uk: ukAchievementRewardPhrase(achievementCount),
             es: `${achievementCount} logro${achievementCount === 1 ? '' : 's'}`,
             'pt-BR': `${achievementCount} conquista${achievementCount === 1 ? '' : 's'}`,
             vi: `${achievementCount} thành tích`,
@@ -2790,12 +2867,12 @@ export default function StreakStats() {
         })} activeOpacity={0.82} onPress={() => {
             hapticTap();
             router.push('/achievements_screen' as any);
-        }} style={{ flexDirection: 'row', alignItems: 'center', gap: 6, borderRadius: 999, paddingHorizontal: 11, paddingVertical: 8, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, flexShrink: 1, minWidth: 44 }}>
-          <Ionicons name="trophy-outline" size={17} color={t.textSecond}/>
-          <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', flexShrink: 1 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
+        }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}>
+          <Ionicons name="trophy-outline" size={19} color={t.textSecond}/>
+          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
             {triLang(lang, {
-            ru: ruAchievementPhrase(achievementCount),
-            uk: ukAchievementPhrase(achievementCount),
+            ru: ruAchievementRewardPhrase(achievementCount),
+            uk: ukAchievementRewardPhrase(achievementCount),
             es: `${achievementCount} logro${achievementCount === 1 ? '' : 's'}`,
             'pt-BR': `${achievementCount} conquista${achievementCount === 1 ? '' : 's'}`,
             vi: `${achievementCount} thành tích`,
@@ -2817,9 +2894,9 @@ export default function StreakStats() {
         })} activeOpacity={0.82} onPress={() => {
             hapticTap();
             router.push('/level_gifts_inventory' as any);
-        }} style={{ flexDirection: 'row', alignItems: 'center', gap: 6, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 8, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: pendingGiftCount > 0 ? `${t.textSecond}88` : t.border, marginLeft: 6, flexShrink: 1, minWidth: 44 }}>
-          <Ionicons name="gift-outline" size={17} color={pendingGiftCount > 0 ? t.textSecond : t.textMuted}/>
-          <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', flexShrink: 1 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
+        }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: t.bgCard, borderWidth: 1, borderColor: pendingGiftCount > 0 ? `${t.textSecond}88` : t.border }}>
+          <Ionicons name="gift-outline" size={19} color={pendingGiftCount > 0 ? t.textSecond : t.textMuted}/>
+          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
             {triLang(lang, {
             ru: ruGiftPhrase(pendingGiftCount),
             uk: ukGiftPhrase(pendingGiftCount),
@@ -2832,6 +2909,7 @@ export default function StreakStats() {
         })}
           </Text>
         </TouchableOpacity>
+        </View>
       </View>
 
       <ScrollView ref={scrollRef} pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false}>

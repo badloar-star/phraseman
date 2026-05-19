@@ -159,8 +159,16 @@ const FLASHCARDS_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
   minimalDark: require('../assets/images/screen_backdrops/flashcards/flashcards-minimal-dark.webp'),
 };
 
+const PROGRESS_MAP_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
+  dark: require('../assets/images/screen_backdrops/progress_map/progress-map-dark.webp'),
+  neon: require('../assets/images/screen_backdrops/progress_map/progress-map-neon.webp'),
+  gold: require('../assets/images/screen_backdrops/progress_map/progress-map-gold.webp'),
+  coral: require('../assets/images/screen_backdrops/progress_map/progress-map-coral.webp'),
+  minimalLight: require('../assets/images/screen_backdrops/progress_map/progress-map-minimal-light.webp'),
+  minimalDark: require('../assets/images/screen_backdrops/progress_map/progress-map-minimal-dark.webp'),
+};
+
 // Keep route-specific backdrop names while dedicated deep-screen art is not bundled yet.
-const PROGRESS_MAP_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = LESSON_BACKDROPS;
 const SHARDS_SHOP_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = SETTINGS_BACKDROPS;
 
 const STATISTICS_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {

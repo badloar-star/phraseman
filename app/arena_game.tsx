@@ -32,7 +32,6 @@ import { SCORE_CONFIG, QUESTIONS_PER_MATCH, type SessionPlayer } from './types/a
 import { hapticMediumImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { IS_EXPO_GO } from './config';
 import { emitAppEvent } from './events';
-import { playAppSound } from './audio/sound_manager';
 import { logArenaDirectGateBlocked, logEvent } from './firebase';
 import { consumeArenaGameEntry } from './arena_access_gate';
 import { recordMistakeFromArena } from './active_recall';
@@ -516,7 +515,6 @@ export default function DuelGameScreen() {
     if (hasAnswered || !currentQuestion) return;
     await hapticMediumImpact();
     const isCorrect = option === currentQuestion.correct;
-    void playAppSound(isCorrect ? 'answer.correct' : 'answer.wrong');
     const to = session.questionTimeoutMs ?? 40_000;
     const st = session.questionStartedAt;
     const elapsed = st != null

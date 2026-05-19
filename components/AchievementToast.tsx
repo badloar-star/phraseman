@@ -53,6 +53,7 @@ export default function AchievementToast() {
   const timerRef      = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isDragging    = useRef(false);
   const animateOutRef = useRef<() => void>(() => {});
+  const modalVisibleRef = useRef(false);
   /** rAF-id для отложенного in-анима. Под Fabric нельзя стартовать
    *  Animated.start() в той же синхронной паузе с маунтом <Animated.View>:
    *  native ещё не закоммитил view-тег, connectAnimatedNodeToView кидает
@@ -128,6 +129,7 @@ export default function AchievementToast() {
         cancelAnimationFrame(rafInRef.current);
         rafInRef.current = null;
       }
+      modalVisibleRef.current = false;
       setModalVisible(false);
       Animated.parallel([
         Animated.timing(translateY, { toValue: 160, duration: MOTION_DURATION.normal, useNativeDriver: true }),
@@ -142,6 +144,7 @@ export default function AchievementToast() {
       if (timerRef.current) clearTimeout(timerRef.current);
       if (rafInRef.current != null) cancelAnimationFrame(rafInRef.current);
       cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
+      modalVisibleRef.current = false;
       setModalVisible(false);
 
       // Обновить отображаемый тост (без прохода через null — нет мигания)
@@ -196,11 +199,12 @@ export default function AchievementToast() {
     };
   }, [currentToast, toastOverlayVisible, translateY, opacity, scale, swipeDx, swipeDy, dismissCurrent]);
 
-  const animateOut = () => {
+  const animateOut = (forceDismiss = false) => {
     Animated.parallel([
       Animated.timing(translateY, { toValue: 160, duration: MOTION_DURATION.slow, useNativeDriver: true }),
       Animated.timing(opacity,    { toValue: 0,   duration: MOTION_DURATION.normal, useNativeDriver: true }),
     ]).start(() => {
+      if (!forceDismiss && modalVisibleRef.current) return;
       scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, dismissCurrent);
     });
   };
@@ -210,13 +214,16 @@ export default function AchievementToast() {
   const handlePress = () => {
     hapticTap();
     if (timerRef.current) clearTimeout(timerRef.current);
+    cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
+    modalVisibleRef.current = true;
     setModalVisible(true);
   };
 
   const handleModalClose = () => {
     hapticTap();
+    modalVisibleRef.current = false;
     setModalVisible(false);
-    animateOut();
+    animateOut(true);
   };
 
   if (!displayedToast || !toastOverlayVisible) return null;

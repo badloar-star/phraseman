@@ -5,6 +5,12 @@ import Purchases from 'react-native-purchases';
 import { getVerifiedPremiumStatus, invalidatePremiumCache } from '../app/premium_guard';
 import { CLOUD_SYNC_ENABLED, DEV_IAP_BYPASS, FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from '../app/config';
 import { onAppEvent } from '../app/events';
+import {
+  FOREGROUND_CLOUD_REFRESH_DELAY_MS,
+  FOREGROUND_LIGHT_REFRESH_DELAY_MS,
+  getForegroundRefreshKind,
+  LONG_BACKGROUND_CLOUD_REFRESH_MS,
+} from '../app/app_resume_policy';
 import { getTrialReofferBlockedByCooldown } from '../app/premium_trial_eligibility';
 import { anyPackageHasTrialIntro } from '../app/premium_trial_signal';
 import { resolvePremiumPackages } from '../app/revenuecat_init';
@@ -26,9 +32,6 @@ const PremiumContext = createContext<PremiumContextValue>({
   trialEligible: false,
   reload: async () => {},
 });
-
-const FOREGROUND_CLOUD_PREMIUM_REFRESH_MS = 30 * 1000;
-const MIN_BACKGROUND_FOR_CLOUD_REFRESH_MS = 2 * 1000;
 
 export function usePremium(): PremiumContextValue {
   return useContext(PremiumContext);
@@ -52,7 +55,6 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const [isPremium, setIsPremium] = useState(FORCE_PREMIUM);
   const [trialEligible, setTrialEligible] = useState(false);
   const backgroundedAtRef = useRef<number | null>(null);
-  const lastForegroundCloudRefreshRef = useRef(0);
 
   const reloadTrialEligible = useCallback(async () => {
     const v = await computeTrialEligible();
@@ -111,28 +113,26 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
           ? Date.now() - backgroundedAtRef.current
           : 0;
         backgroundedAtRef.current = null;
-        if (backgroundDurationMs > 5 * 60 * 1000) {
-          invalidatePremiumCache();
-          lastForegroundCloudRefreshRef.current = Date.now();
-          void reloadAfterCloudRefresh();
-          return;
-        }
-        const shouldRefreshCloud =
-          backgroundDurationMs >= MIN_BACKGROUND_FOR_CLOUD_REFRESH_MS &&
-          Date.now() - lastForegroundCloudRefreshRef.current >= FOREGROUND_CLOUD_PREMIUM_REFRESH_MS;
-        if (shouldRefreshCloud) {
-          lastForegroundCloudRefreshRef.current = Date.now();
-          void reloadAfterCloudRefresh();
-          return;
-        }
         if (resumeTimer) clearTimeout(resumeTimer);
         resumeTask?.cancel?.();
+
+        if (getForegroundRefreshKind(backgroundDurationMs) === 'cloud') {
+          invalidatePremiumCache();
+          resumeTimer = setTimeout(() => {
+            resumeTimer = null;
+            resumeTask = InteractionManager.runAfterInteractions(() => {
+              void reloadAfterCloudRefresh();
+            });
+          }, backgroundDurationMs >= LONG_BACKGROUND_CLOUD_REFRESH_MS ? FOREGROUND_LIGHT_REFRESH_DELAY_MS : FOREGROUND_CLOUD_REFRESH_DELAY_MS);
+          return;
+        }
+
         resumeTimer = setTimeout(() => {
           resumeTimer = null;
           resumeTask = InteractionManager.runAfterInteractions(() => {
             void reload();
           });
-        }, 650);
+        }, FOREGROUND_LIGHT_REFRESH_DELAY_MS);
       } else if (state === 'background') {
         backgroundedAtRef.current = Date.now();
         if (resumeTimer) {

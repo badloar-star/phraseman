@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
-import { claimDailyTasksAllShardsReward, loadShardsFromCloud } from '../app/shards_system';
+import { addShardsRaw, claimDailyTasksAllShardsReward, loadShardsFromCloud } from '../app/shards_system';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
@@ -102,5 +102,18 @@ describe('loadShardsFromCloud balance freshness', () => {
 
     expect(mockStorage.shards_balance).toBe('20');
     expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBe(3_000);
+  });
+});
+
+describe('addShardsRaw local-first mode', () => {
+  it('uses the local balance immediately when skipServerAwait is requested', async () => {
+    const fs = firestore as any;
+    fs.__testState.userDocExists = true;
+    fs.__testState.userShards = 99;
+    mockStorage.shards_balance = '4';
+
+    await expect(addShardsRaw(2, 'achievement:test', { skipServerAwait: true })).resolves.toBe(2);
+
+    expect(mockStorage.shards_balance).toBe('6');
   });
 });

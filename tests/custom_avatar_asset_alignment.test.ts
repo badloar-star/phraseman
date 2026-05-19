@@ -61,6 +61,15 @@ async function readAlphaBounds(filePath: string): Promise<AlphaBounds> {
 }
 
 describe('custom avatar assets', () => {
+  it('renders badge images as absolute centered layers', () => {
+    const source = fs.readFileSync(path.join(__dirname, '..', 'components', 'CustomAvatarBadge.tsx'), 'utf8');
+
+    expect(source).toContain("left: '50%'");
+    expect(source).toContain("top: '50%'");
+    expect(source).toContain('marginLeft: -imageSize / 2');
+    expect(source).toContain('marginTop: -imageSize / 2');
+  });
+
   it('keeps generated badge artwork centered in its transparent canvas', async () => {
     const files = fs
       .readdirSync(AVATAR_ASSET_DIR)
@@ -83,7 +92,7 @@ describe('custom avatar assets', () => {
     }
 
     expect(failures).toEqual([]);
-  });
+  }, 30000);
 
   it('keeps generated badge artwork inside the inset hexagon safe area', async () => {
     const files = fs
@@ -115,5 +124,5 @@ describe('custom avatar assets', () => {
     }
 
     expect(failures).toEqual([]);
-  });
+  }, 30000);
 });

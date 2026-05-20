@@ -333,14 +333,17 @@ async function applyBroadcastReward(payload: GlobalBroadcastModalPayload): Promi
 }
 
 function pickLatest(activeDocs: Array<{ id: string; data: Record<string, unknown> }>): GlobalBroadcastModalPayload | null {
-  if (!activeDocs.length) return null;
-  const sorted = [...activeDocs].sort((a, b) => {
-    const aTs = Date.parse(String(a.data.createdAt ?? ''));
-    const bTs = Date.parse(String(b.data.createdAt ?? ''));
+  const allowed = activeDocs
+    .map((doc) => normalizePayload(doc.id, doc.data))
+    .filter((payload) => !isRetiredLeagueSystemBroadcast(payload));
+
+  if (!allowed.length) return null;
+  const sorted = [...allowed].sort((a, b) => {
+    const aTs = Date.parse(String(a.createdAt ?? ''));
+    const bTs = Date.parse(String(b.createdAt ?? ''));
     return (Number.isFinite(bTs) ? bTs : 0) - (Number.isFinite(aTs) ? aTs : 0);
   });
-  const top = sorted[0];
-  return normalizePayload(top.id, top.data);
+  return sorted[0];
 }
 
 function isRetiredLeagueSystemBroadcast(payload: GlobalBroadcastModalPayload): boolean {
@@ -385,12 +388,15 @@ export async function fetchPendingGlobalBroadcastModal(): Promise<GlobalBroadcas
       id: d.id,
       data: d.data() ?? {},
     }));
+    for (const doc of activeDocs) {
+      const payload = normalizePayload(doc.id, doc.data);
+      if (isRetiredLeagueSystemBroadcast(payload)) {
+        await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
+      }
+    }
+
     const payload = pickLatest(activeDocs);
     if (!payload) return null;
-    if (isRetiredLeagueSystemBroadcast(payload)) {
-      await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
-      return null;
-    }
 
     if (payload.premiumAudience !== 'all') {
       const userSnap = await db.collection('users').doc(uid).get();

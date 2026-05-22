@@ -10,16 +10,13 @@ const tri = (
   uk: string,
   es: string,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (planned[locale]) copy[locale] = planned[locale];
+  }
+  return copy;
+};
 
 const ARTICLE_OPTIONS = [
   { id: 'a', text: 'a' },
@@ -29,6 +26,212 @@ const ARTICLE_OPTIONS = [
 ];
 
 type ArticleOptionId = 'a' | 'an' | 'the' | 'no article';
+
+const ZERO_STEP_TRANSLATIONS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  zero_easy_001: {
+    'pt-BR': 'Cachorros são animais leais.',
+    vi: 'Chó là loài vật trung thành.',
+    id: 'Anjing adalah hewan yang setia.',
+    tr: 'Köpekler sadık hayvanlardır.',
+    pl: 'Psy są wiernymi zwierzętami.',
+  },
+  zero_easy_002: {
+    'pt-BR': 'Crianças aprendem muito rápido.',
+    vi: 'Trẻ em học rất nhanh.',
+    id: 'Anak-anak belajar sangat cepat.',
+    tr: 'Çocuklar çok hızlı öğrenir.',
+    pl: 'Dzieci uczą się bardzo szybko.',
+  },
+  zero_easy_003: {
+    'pt-BR': 'As crianças nesta sala estão muito quietas.',
+    vi: 'Những đứa trẻ trong phòng này rất yên lặng.',
+    id: 'Anak-anak di ruangan ini sangat tenang.',
+    tr: 'Bu odadaki çocuklar çok sessiz.',
+    pl: 'Dzieci w tym pokoju są bardzo ciche.',
+  },
+  zero_contrast_001: {
+    'pt-BR': 'Eu gosto de música.',
+    vi: 'Tôi thích âm nhạc.',
+    id: 'Saya suka musik.',
+    tr: 'Müziği severim.',
+    pl: 'Lubię muzykę.',
+  },
+  zero_contrast_002: {
+    'pt-BR': 'Água é importante para a vida.',
+    vi: 'Nước rất quan trọng cho sự sống.',
+    id: 'Air penting untuk kehidupan.',
+    tr: 'Su yaşam için önemlidir.',
+    pl: 'Woda jest ważna dla życia.',
+  },
+  zero_contrast_003: {
+    'pt-BR': 'A água neste copo está fria.',
+    vi: 'Nước trong chiếc ly này lạnh.',
+    id: 'Air di gelas ini dingin.',
+    tr: 'Bu bardaktaki su soğuk.',
+    pl: 'Woda w tej szklance jest zimna.',
+  },
+  zero_contrast_004: {
+    'pt-BR': 'Ela fala inglês muito bem.',
+    vi: 'Cô ấy nói tiếng Anh rất tốt.',
+    id: 'Dia berbicara bahasa Inggris dengan sangat baik.',
+    tr: 'O çok iyi İngilizce konuşur.',
+    pl: 'Ona bardzo dobrze mówi po angielsku.',
+  },
+  zero_contrast_005: {
+    'pt-BR': 'Nós jogamos futebol depois do trabalho.',
+    vi: 'Chúng tôi chơi bóng đá sau giờ làm.',
+    id: 'Kami bermain sepak bola setelah bekerja.',
+    tr: 'İşten sonra futbol oynarız.',
+    pl: 'Gramy w piłkę nożną po pracy.',
+  },
+  zero_contrast_006: {
+    'pt-BR': 'Eu tomei café da manhã às sete.',
+    vi: 'Tôi đã ăn sáng lúc bảy giờ.',
+    id: 'Saya sarapan pukul tujuh.',
+    tr: 'Saat yedide kahvaltı yaptım.',
+    pl: 'Zjadłem śniadanie o siódmej.',
+  },
+  zero_mixed_001: {
+    'pt-BR': 'Eu gosto da música neste filme.',
+    vi: 'Tôi thích phần nhạc trong bộ phim này.',
+    id: 'Saya suka musik dalam film ini.',
+    tr: 'Bu filmdeki müziği seviyorum.',
+    pl: 'Lubię muzykę w tym filmie.',
+  },
+  zero_mixed_002: {
+    'pt-BR': 'O café da manhã que você preparou estava incrível.',
+    vi: 'Bữa sáng bạn làm thật tuyệt vời.',
+    id: 'Sarapan yang kamu buat luar biasa.',
+    tr: 'Hazırladığın kahvaltı harikaydı.',
+    pl: 'Śniadanie, które zrobiłeś, było niesamowite.',
+  },
+  zero_mixed_003: {
+    'pt-BR': 'Estou aprendendo espanhol.',
+    vi: 'Tôi đang học tiếng Tây Ban Nha.',
+    id: 'Saya sedang belajar bahasa Spanyol.',
+    tr: 'İspanyolca öğreniyorum.',
+    pl: 'Uczę się hiszpańskiego.',
+  },
+  zero_mixed_004: {
+    'pt-BR': 'Professores precisam de paciência.',
+    vi: 'Giáo viên cần sự kiên nhẫn.',
+    id: 'Guru membutuhkan kesabaran.',
+    tr: 'Öğretmenlerin sabra ihtiyacı vardır.',
+    pl: 'Nauczyciele potrzebują cierpliwości.',
+  },
+  zero_mixed_005: {
+    'pt-BR': 'Dinheiro não pode comprar felicidade.',
+    vi: 'Tiền không thể mua được hạnh phúc.',
+    id: 'Uang tidak bisa membeli kebahagiaan.',
+    tr: 'Para mutluluğu satın alamaz.',
+    pl: 'Pieniądze nie mogą kupić szczęścia.',
+  },
+  zero_mixed_006: {
+    'pt-BR': 'Ele chutou uma bola para o jardim.',
+    vi: 'Anh ấy đá một quả bóng vào vườn.',
+    id: 'Dia menendang sebuah bola ke kebun.',
+    tr: 'Bahçeye bir futbol topu tekmeledi.',
+    pl: 'Kopnął piłkę do ogrodu.',
+  },
+};
+
+const ZERO_SKILL_HINTS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  general_plural: {
+    'pt-BR': 'Plural em sentido geral fala da categoria inteira; normalmente não usamos artigo.',
+    vi: 'Số nhiều mang nghĩa chung nói về cả nhóm; thường không dùng mạo từ.',
+    id: 'Bentuk jamak bermakna umum membicarakan seluruh kategori; biasanya tanpa artikel.',
+    tr: 'Genel anlamdaki çoğul tüm kategoriyi anlatır; genelde article kullanılmaz.',
+    pl: 'Liczba mnoga w znaczeniu ogólnym mówi o całej kategorii; zwykle bez przedimka.',
+  },
+  specific_plural_the: {
+    'pt-BR': 'A frase torna o plural específico; nesse caso usamos the.',
+    vi: 'Cụm từ làm danh từ số nhiều trở nên cụ thể; khi đó dùng the.',
+    id: 'Frasa membuat bentuk jamak menjadi spesifik; gunakan the.',
+    tr: 'İfade çoğulu belirli yapar; bu durumda the kullanılır.',
+    pl: 'Fraza czyni liczbę mnogą konkretną; wtedy używamy the.',
+  },
+  uncountable_general: {
+    'pt-BR': 'A palavra incontável está em sentido geral; normalmente sem artigo.',
+    vi: 'Danh từ không đếm được đang mang nghĩa chung; thường không dùng mạo từ.',
+    id: 'Kata tak terhitung dipakai dalam makna umum; biasanya tanpa artikel.',
+    tr: 'Sayılamayan kelime genel anlamdadır; genelde article yoktur.',
+    pl: 'Rzeczownik niepoliczalny ma znaczenie ogólne; zwykle bez przedimka.',
+  },
+  specific_uncountable_the: {
+    'pt-BR': 'A palavra incontável ficou específica pelo contexto; use the.',
+    vi: 'Danh từ không đếm được đã trở nên cụ thể nhờ ngữ cảnh; dùng the.',
+    id: 'Kata tak terhitung menjadi spesifik karena konteks; gunakan the.',
+    tr: 'Sayılamayan kelime bağlamla belirli hale geldi; the kullan.',
+    pl: 'Rzeczownik niepoliczalny stał się konkretny dzięki kontekstowi; użyj the.',
+  },
+  language_no_article: {
+    'pt-BR': 'Nomes de idiomas normalmente ficam sem artigo.',
+    vi: 'Tên ngôn ngữ thường không dùng mạo từ.',
+    id: 'Nama bahasa biasanya tanpa artikel.',
+    tr: 'Dil adları genelde article almaz.',
+    pl: 'Nazwy języków zwykle występują bez przedimka.',
+  },
+  sport_no_article: {
+    'pt-BR': 'Esportes e jogos como atividade normalmente ficam sem artigo.',
+    vi: 'Thể thao và trò chơi như hoạt động thường không dùng mạo từ.',
+    id: 'Olahraga dan permainan sebagai aktivitas biasanya tanpa artikel.',
+    tr: 'Spor ve oyun adları etkinlik olarak genelde article almaz.',
+    pl: 'Sporty i gry jako aktywności zwykle są bez przedimka.',
+  },
+  meal_no_article: {
+    'pt-BR': 'Refeições em sentido comum normalmente ficam sem artigo.',
+    vi: 'Bữa ăn theo nghĩa thông thường thường không dùng mạo từ.',
+    id: 'Makanan dalam arti biasa biasanya tanpa artikel.',
+    tr: 'Öğünler normal anlamda genelde article almaz.',
+    pl: 'Posiłki w zwykłym znaczeniu zwykle występują bez przedimka.',
+  },
+  meal_specific_the: {
+    'pt-BR': 'A refeição ficou específica pela frase depois dela; use the.',
+    vi: 'Bữa ăn trở nên cụ thể nhờ phần phía sau; dùng the.',
+    id: 'Makanan menjadi spesifik karena frasa setelahnya; gunakan the.',
+    tr: 'Öğün sonraki ifadeyle belirli hale geldi; the kullan.',
+    pl: 'Posiłek stał się konkretny dzięki frazie po nim; użyj the.',
+  },
+  sport_specific_equipment_contrast: {
+    'pt-BR': 'Aqui football é uma bola, uma coisa contável singular; use a.',
+    vi: 'Ở đây football là một quả bóng, một vật đếm được số ít; dùng a.',
+    id: 'Di sini football berarti bola, satu benda dapat dihitung; gunakan a.',
+    tr: 'Burada football oyun değil, tekil sayılabilir bir top; a kullan.',
+    pl: 'Tutaj football oznacza piłkę, jedną policzalną rzecz; użyj a.',
+  },
+};
+
+const ZERO_GENERIC_HINTS: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'Pergunte se a palavra é geral ou específica antes de escolher o artigo.',
+  vi: 'Hãy hỏi từ đó mang nghĩa chung hay cụ thể trước khi chọn mạo từ.',
+  id: 'Tanyakan apakah kata itu umum atau spesifik sebelum memilih artikel.',
+  tr: 'Article seçmeden önce kelimenin genel mi belirli mi olduğunu sor.',
+  pl: 'Przed wyborem przedimka zapytaj, czy słowo jest ogólne czy konkretne.',
+};
+
+function fillPlanned(copy: TriText, planned: Partial<Record<PlannedTrainingLocale, string>>): TriText {
+  const next: TriText = { ...copy };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] && planned[locale]) next[locale] = planned[locale];
+  }
+  return next;
+}
+
+function plannedZeroFeedback(input: {
+  targetSkill: string;
+  correctAnswer: ArticleOptionId;
+  focusWords: string[];
+}): Record<PlannedTrainingLocale, string> {
+  const focus = input.focusWords.join(' / ');
+  const hints = ZERO_SKILL_HINTS[input.targetSkill] ?? ZERO_GENERIC_HINTS;
+  return {
+    'pt-BR': `A resposta correta é "${input.correctAnswer}"${focus ? ` para ${focus}` : ''}. ${hints['pt-BR']}`,
+    vi: `Đáp án đúng là "${input.correctAnswer}"${focus ? ` cho ${focus}` : ''}. ${hints.vi}`,
+    id: `Jawaban yang benar adalah "${input.correctAnswer}"${focus ? ` untuk ${focus}` : ''}. ${hints.id}`,
+    tr: `Doğru cevap "${input.correctAnswer}"${focus ? ` (${focus})` : ''}. ${hints.tr}`,
+    pl: `Poprawna odpowiedź to "${input.correctAnswer}"${focus ? ` dla ${focus}` : ''}. ${hints.pl}`,
+  };
+}
 
 function zeroStep(input: {
   id: string;
@@ -44,64 +247,94 @@ function zeroStep(input: {
   focusWords: string[];
 }): DiagnosisTrainingStep {
   const correctIndex = ARTICLE_OPTIONS.findIndex((option) => option.id === input.correctAnswer);
+  const plannedFeedback = plannedZeroFeedback(input);
+  const plannedTranslation = ZERO_STEP_TRANSLATIONS[input.id] ?? plannedFeedback;
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: fillPlanned(input.translation, plannedTranslation),
     explanationBlock: tri(
       'Не выбирай артикль автоматически. Сначала спроси: это один предмет, конкретный предмет или общая идея?',
       'Не обирай артикль автоматично. Спочатку запитай: це один предмет, конкретний предмет чи загальна ідея?',
       'No elijas artículo automáticamente. Primero pregunta: es una cosa, algo específico o una idea general?',
+      {
+        'pt-BR': 'Não escolha artigo automaticamente. Primeiro pergunte: é uma coisa, algo específico ou uma ideia geral?',
+        vi: 'Đừng chọn mạo từ tự động. Trước tiên hãy hỏi: đó là một vật, vật cụ thể hay ý tưởng chung?',
+        id: 'Jangan memilih artikel secara otomatis. Tanyakan dulu: ini satu benda, benda spesifik, atau ide umum?',
+        tr: 'Article otomatik seçme. Önce sor: bu tek bir nesne mi, belirli bir nesne mi, yoksa genel fikir mi?',
+        pl: 'Nie wybieraj przedimka automatycznie. Najpierw zapytaj: czy to jedna rzecz, konkretna rzecz czy ogólna idea?',
+      },
     ),
     microTask: tri(
       'Выбери: a/an, the или no article.',
       'Обери: a/an, the або no article.',
       'Elige: a/an, the o no article.',
+      {
+        'pt-BR': 'Escolha: a/an, the ou no article.',
+        vi: 'Chọn: a/an, the hoặc no article.',
+        id: 'Pilih: a/an, the, atau no article.',
+        tr: 'Seç: a/an, the veya no article.',
+        pl: 'Wybierz: a/an, the albo no article.',
+      },
     ),
     sentence: input.sentence,
     answerOptions: ARTICLE_OPTIONS,
     correctAnswerId: input.correctAnswer,
     correctIndex,
-    correctFeedback: input.correctFeedback,
+    correctFeedback: fillPlanned(input.correctFeedback, plannedFeedback),
     wrongFeedbackByOption: {
-      a: input.wrong.a ?? tri(
+      a: fillPlanned(input.wrong.a ?? tri(
         'a нужен перед одним исчисляемым предметом. Здесь смысл другой: проверь, не говорит ли слово о категории или идее вообще.',
         'a потрібен перед одним злічуваним предметом. Тут зміст інший: перевір, чи не говорить слово про категорію або ідею загалом.',
         'a is used before one countable thing. Here the meaning is different: check if the word means a category or idea in general.',
-      ),
-      an: input.wrong.an ?? tri(
+      ), plannedFeedback),
+      an: fillPlanned(input.wrong.an ?? tri(
         'an работает как a, только перед гласным звуком. Здесь сначала надо решить, нужен ли артикль вообще.',
         'an працює як a, тільки перед голосним звуком. Тут спочатку треба вирішити, чи потрібен артикль узагалі.',
         'an works like a, but before a vowel sound. Here first decide whether an article is needed at all.',
-      ),
-      the: input.wrong.the ?? tri(
+      ), plannedFeedback),
+      the: fillPlanned(input.wrong.the ?? tri(
         'the делает предмет конкретным. Здесь фраза чаще говорит об общей идее, поэтому артикль может быть не нужен.',
         'the робить предмет конкретним. Тут фраза частіше говорить про загальну ідею, тому артикль може бути не потрібен.',
         'the makes the thing specific. Here the phrase usually means a general idea, so an article may not be needed.',
-      ),
-      'no article': input.wrong['no article'] ?? tri(
+      ), plannedFeedback),
+      'no article': fillPlanned(input.wrong['no article'] ?? tri(
         'Без артикля не всегда правильно. Если слово стало конкретным из-за контекста, английский часто возвращает the.',
         'Без артикля не завжди правильно. Якщо слово стало конкретним через контекст, англійська часто повертає the.',
         'No article is not always right. If the word becomes specific because of context, English often brings back the.',
-      ),
+      ), plannedFeedback),
     },
     retryFeedback: [
-      input.retry[0],
-      input.retry[1],
-      input.retry[2],
+      fillPlanned(input.retry[0], plannedFeedback),
+      fillPlanned(input.retry[1], plannedFeedback),
+      fillPlanned(input.retry[2], plannedFeedback),
       tri(
         `Подсказка: здесь правильный выбор - ${input.correctAnswer}.`,
         `Підказка: тут правильний вибір - ${input.correctAnswer}.`,
         `Pista: aquí la opción correcta es ${input.correctAnswer}.`,
+        {
+          'pt-BR': `Dica: aqui a escolha correta é ${input.correctAnswer}.`,
+          vi: `Gợi ý: lựa chọn đúng ở đây là ${input.correctAnswer}.`,
+          id: `Petunjuk: pilihan yang benar di sini adalah ${input.correctAnswer}.`,
+          tr: `İpucu: burada doğru seçim ${input.correctAnswer}.`,
+          pl: `Wskazówka: tutaj poprawny wybór to ${input.correctAnswer}.`,
+        },
       ),
     ],
     fallbackExplanation: tri(
       'Один исчисляемый предмет - a/an. Конкретный предмет - the. Общая категория, вещество, язык, спорт или обычный прием пищи - часто no article.',
       'Один злічуваний предмет - a/an. Конкретний предмет - the. Загальна категорія, речовина, мова, спорт або звичайний прийом їжі - часто no article.',
       'One countable thing - a/an. Specific thing - the. General category, substance, language, sport or normal meal - often no article.',
+      {
+        'pt-BR': 'Uma coisa contável singular - a/an. Coisa específica - the. Categoria geral, substância, idioma, esporte ou refeição comum - muitas vezes no article.',
+        vi: 'Một vật đếm được số ít - a/an. Vật cụ thể - the. Nhóm chung, chất liệu, ngôn ngữ, thể thao hoặc bữa ăn thông thường - thường no article.',
+        id: 'Satu benda dapat dihitung - a/an. Benda spesifik - the. Kategori umum, zat, bahasa, olahraga, atau makanan biasa - sering no article.',
+        tr: 'Tekil sayılabilir nesne - a/an. Belirli nesne - the. Genel kategori, madde, dil, spor veya normal öğün - çoğu zaman no article.',
+        pl: 'Jedna policzalna rzecz - a/an. Konkretna rzecz - the. Ogólna kategoria, substancja, język, sport albo zwykły posiłek - często no article.',
+      },
     ),
     focusWords: input.focusWords,
   };
@@ -114,28 +347,68 @@ export const ARTICLE_ZERO_TRAINING: DiagnosisTraining = {
   status: 'active',
   priority: 3,
   supportedLocales: ['ru', 'uk', 'es'],
-  title: tri('Zero Article: когда артикль не нужен', 'Zero Article: коли артикль не потрібен', 'Zero Article: cuando no usamos artículo'),
-  shortTitle: tri('Без артикля', 'Без артикля', 'Sin artículo'),
+  title: tri('Zero Article: когда артикль не нужен', 'Zero Article: коли артикль не потрібен', 'Zero Article: cuando no usamos artículo', {
+    'pt-BR': 'Zero Article: quando não usamos artigo',
+    vi: 'Zero Article: khi không cần mạo từ',
+    id: 'Zero Article: ketika artikel tidak diperlukan',
+    tr: 'Zero Article: article gerekmediğinde',
+    pl: 'Zero Article: gdy przedimek nie jest potrzebny',
+  }),
+  shortTitle: tri('Без артикля', 'Без артикля', 'Sin artículo', {
+    'pt-BR': 'Sem artigo',
+    vi: 'Không có mạo từ',
+    id: 'Tanpa artikel',
+    tr: 'Article yok',
+    pl: 'Bez przedimka',
+  }),
   shortDiagnosis: tri(
     'Ты ставишь артикль там, где английский часто оставляет слово без артикля.',
     'Ти ставиш артикль там, де англійська часто залишає слово без артикля.',
     'Usas artículo donde el inglés muchas veces deja la palabra sin artículo.',
+    {
+      'pt-BR': 'Você coloca artigo onde o inglês muitas vezes deixa a palavra sem artigo.',
+      vi: 'Bạn đặt mạo từ ở nơi tiếng Anh thường để từ không có mạo từ.',
+      id: 'Kamu memakai artikel di tempat bahasa Inggris sering membiarkan kata tanpa artikel.',
+      tr: 'İngilizcenin çoğu zaman kelimeyi article olmadan bıraktığı yerde article koyuyorsun.',
+      pl: 'Stawiasz przedimek tam, gdzie angielski często zostawia słowo bez przedimka.',
+    },
   ),
   diagnosisText: tri(
     'Ты ставишь a/an или the там, где английский часто не ставит артикль вообще. Обычно это происходит с общими идеями, множественным числом, неисчисляемыми словами, языками, спортом, приемами пищи и некоторыми устойчивыми выражениями.',
     'Ти ставиш a/an або the там, де англійська часто не ставить артикль взагалі. Зазвичай це трапляється із загальними ідеями, множиною, незлічуваними словами, мовами, спортом, прийомами їжі та деякими сталими виразами.',
     'Usas a/an o the donde el inglés muchas veces no usa artículo. Normalmente pasa con ideas generales, plural, incontables, idiomas, deportes, comidas y algunas expresiones fijas.',
+    {
+      'pt-BR': 'Você usa a/an ou the onde o inglês muitas vezes não usa artigo nenhum. Normalmente isso acontece com ideias gerais, plural, incontáveis, idiomas, esportes, refeições e algumas expressões fixas.',
+      vi: 'Bạn dùng a/an hoặc the ở nơi tiếng Anh thường không dùng mạo từ. Điều này thường xảy ra với ý chung, số nhiều, danh từ không đếm được, ngôn ngữ, thể thao, bữa ăn và một số cụm cố định.',
+      id: 'Kamu memakai a/an atau the di tempat bahasa Inggris sering tidak memakai artikel sama sekali. Biasanya ini terjadi dengan ide umum, bentuk jamak, kata tak terhitung, bahasa, olahraga, makanan, dan beberapa ungkapan tetap.',
+      tr: 'İngilizcenin çoğu zaman hiç article kullanmadığı yerde a/an veya the kullanıyorsun. Bu genelde genel fikirlerde, çoğullarda, sayılamayanlarda, dillerde, sporlarda, öğünlerde ve bazı sabit ifadelerde olur.',
+      pl: 'Używasz a/an albo the tam, gdzie angielski często nie używa żadnego przedimka. Zwykle dzieje się tak przy ogólnych ideach, liczbie mnogiej, rzeczownikach niepoliczalnych, językach, sportach, posiłkach i niektórych stałych wyrażeniach.',
+    },
   ),
   mentalModel: tri(
     'Если ты говоришь не об одном конкретном предмете, а о категории, идее, веществе, языке, спорте или еде в общем смысле - часто артикль не нужен.',
     'Якщо ти говориш не про один конкретний предмет, а про категорію, ідею, речовину, мову, спорт або їжу в загальному сенсі - часто артикль не потрібен.',
     'Si no hablas de un objeto específico, sino de una categoría, idea, sustancia, idioma, deporte o comida en sentido general, muchas veces no usamos artículo.',
+    {
+      'pt-BR': 'Se você não fala de um objeto específico, mas de uma categoria, ideia, substância, idioma, esporte ou comida em sentido geral, muitas vezes não usamos artigo.',
+      vi: 'Nếu bạn không nói về một vật cụ thể mà nói về nhóm, ý tưởng, chất, ngôn ngữ, thể thao hoặc món ăn theo nghĩa chung, thường không dùng mạo từ.',
+      id: 'Jika kamu tidak membicarakan satu objek spesifik, melainkan kategori, ide, zat, bahasa, olahraga, atau makanan dalam arti umum, sering kali tidak memakai artikel.',
+      tr: 'Belirli tek bir nesneden değil de genel anlamda kategori, fikir, madde, dil, spor veya yemekten bahsediyorsan çoğu zaman article gerekmez.',
+      pl: 'Jeśli nie mówisz o jednym konkretnym przedmiocie, tylko o kategorii, idei, substancji, języku, sporcie albo jedzeniu w znaczeniu ogólnym, często przedimek nie jest potrzebny.',
+    },
   ),
   contrastSet: ['a', 'an', 'the', 'no article'],
   coreRule: tri(
     'No article используется, когда слово говорит об общем смысле: I like music, Dogs are friendly, She speaks English, We play football, I had breakfast.',
     'No article використовується, коли слово має загальний сенс: I like music, Dogs are friendly, She speaks English, We play football, I had breakfast.',
     'No article se usa cuando la palabra tiene sentido general: I like music, Dogs are friendly, She speaks English, We play football, I had breakfast.',
+    {
+      'pt-BR': 'No article é usado quando a palavra tem sentido geral: I like music, Dogs are friendly, She speaks English, We play football, I had breakfast.',
+      vi: 'No article dùng khi từ mang nghĩa chung: I like music, Dogs are friendly, She speaks English, We play football, I had breakfast.',
+      id: 'No article digunakan ketika kata bermakna umum: I like music, Dogs are friendly, She speaks English, We play football, I had breakfast.',
+      tr: 'No article, kelime genel anlam taşıdığında kullanılır: I like music, Dogs are friendly, She speaks English, We play football, I had breakfast.',
+      pl: 'No article używamy, gdy słowo ma znaczenie ogólne: I like music, Dogs are friendly, She speaks English, We play football, I had breakfast.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -220,19 +493,19 @@ export const ARTICLE_ZERO_TRAINING: DiagnosisTraining = {
     ],
   },
   examples: [
-    { en: 'Dogs are friendly.', ru: 'Собаки дружелюбные.', uk: 'Собаки дружелюбні.', es: 'Los perros son amigables.', 'pt-BR': 'Cachorros são amigáveis.', vi: 'Chó rất thân thiện.', id: 'Anjing itu ramah.', tr: 'Köpekler dost canlısıdır.', pl: 'Psy są przyjazne.', why: tri('Dogs во множественном числе говорит о собаках вообще. Это категория, не конкретная группа собак. Поэтому без артикля.', 'Dogs у множині говорить про собак загалом. Це категорія, не конкретна група собак. Тому без артикля.', 'Dogs en plural habla de perros en general. Es una categoría, no un grupo específico de perros. Por eso va sin artículo.') },
-    { en: 'I like music.', ru: 'Мне нравится музыка.', uk: 'Мені подобається музика.', es: 'Me gusta la música.', 'pt-BR': 'Eu gosto de música.', vi: 'Tôi thích âm nhạc.', id: 'Saya suka musik.', tr: 'Müziği severim.', pl: 'Lubię muzykę.', why: tri('Music здесь общая идея и неисчисляемое слово. Это не конкретная музыка, поэтому без the.', 'Music тут загальна ідея і незлічуване слово. Це не конкретна музика, тому без the.', 'Music aquí es una idea general y una palabra incontable. No es música específica, por eso va sin the.') },
-    { en: 'She speaks English.', ru: 'Она говорит по-английски.', uk: 'Вона говорить англійською.', es: 'Ella habla inglés.', 'pt-BR': 'Ela fala inglês.', vi: 'Cô ấy nói tiếng Anh.', id: 'Dia berbicara bahasa Inggris.', tr: 'O İngilizce konuşur.', pl: 'Ona mówi po angielsku.', why: tri('Названия языков обычно идут без артикля: English, Spanish, Ukrainian.', 'Назви мов зазвичай ідуть без артикля: English, Spanish, Ukrainian.', 'Los nombres de idiomas normalmente van sin artículo: English, Spanish, Ukrainian.') },
-    { en: 'We play football on Sundays.', ru: 'Мы играем в футбол по воскресеньям.', uk: 'Ми граємо у футбол по неділях.', es: 'Jugamos al fútbol los domingos.', 'pt-BR': 'Nós jogamos futebol aos domingos.', vi: 'Chúng tôi chơi bóng đá vào Chủ nhật.', id: 'Kami bermain sepak bola pada hari Minggu.', tr: 'Pazar günleri futbol oynarız.', pl: 'Gramy w piłkę nożną w niedziele.', why: tri('Названия спорта и игр обычно идут без артикля: play football, play tennis, play chess.', 'Назви спорту та ігор зазвичай ідуть без артикля: play football, play tennis, play chess.', 'Los deportes y juegos normalmente van sin artículo: play football, play tennis, play chess.') },
-    { en: 'I had breakfast at seven.', ru: 'Я позавтракал в семь.', uk: 'Я поснідав о сьомій.', es: 'Desayuné a las siete.', 'pt-BR': 'Eu tomei café da manhã às sete.', vi: 'Tôi đã ăn sáng lúc bảy giờ.', id: 'Saya sarapan pukul tujuh.', tr: 'Saat yedide kahvaltı yaptım.', pl: 'Zjadłem śniadanie o siódmej.', why: tri('Meals в обычном общем смысле часто идут без артикля: have breakfast, have lunch, have dinner.', 'Meals у звичайному загальному сенсі часто йдуть без артикля: have breakfast, have lunch, have dinner.', 'Las comidas en sentido general muchas veces van sin artículo: have breakfast, have lunch, have dinner.') },
-    { en: 'Water is important.', ru: 'Вода важна.', uk: 'Вода важлива.', es: 'El agua es importante.', 'pt-BR': 'Água é importante.', vi: 'Nước rất quan trọng.', id: 'Air itu penting.', tr: 'Su önemlidir.', pl: 'Woda jest ważna.', why: tri('Water здесь вещество в общем смысле. Это не конкретная вода в стакане, поэтому без артикля.', 'Water тут речовина в загальному сенсі. Це не конкретна вода у склянці, тому без артикля.', 'Water aquí es una sustancia en sentido general. No es agua específica en un vaso, por eso va sin artículo.') },
-    { en: 'The water in this bottle is cold.', ru: 'Вода в этой бутылке холодная.', uk: 'Вода в цій пляшці холодна.', es: 'El agua de esta botella está fría.', 'pt-BR': 'A água nesta garrafa está fria.', vi: 'Nước trong chai này lạnh.', id: 'Air di botol ini dingin.', tr: 'Bu şişedeki su soğuk.', pl: 'Woda w tej butelce jest zimna.', why: tri('Здесь water уже конкретная: вода в этой бутылке. Поэтому the water.', 'Тут water уже конкретна: вода в цій пляшці. Тому the water.', 'Aquí water ya es específica: el agua de esta botella. Por eso the water.') },
-    { en: 'Children need attention.', ru: 'Детям нужно внимание.', uk: 'Дітям потрібна увага.', es: 'Los niños necesitan atención.', 'pt-BR': 'Crianças precisam de atenção.', vi: 'Trẻ em cần sự chú ý.', id: 'Anak-anak membutuhkan perhatian.', tr: 'Çocukların ilgiye ihtiyacı vardır.', pl: 'Dzieci potrzebują uwagi.', why: tri('Children здесь означает детей вообще. Это plural general meaning, поэтому без артикля.', 'Children тут означає дітей загалом. Це plural general meaning, тому без артикля.', 'Children aquí significa niños en general. Es plural general meaning, por eso va sin artículo.') },
+    { en: 'Dogs are friendly.', ru: 'Собаки дружелюбные.', uk: 'Собаки дружелюбні.', es: 'Los perros son amigables.', 'pt-BR': 'Cachorros são amigáveis.', vi: 'Chó rất thân thiện.', id: 'Anjing itu ramah.', tr: 'Köpekler dost canlısıdır.', pl: 'Psy są przyjazne.', why: tri('Dogs во множественном числе говорит о собаках вообще. Это категория, не конкретная группа собак. Поэтому без артикля.', 'Dogs у множині говорить про собак загалом. Це категорія, не конкретна група собак. Тому без артикля.', 'Dogs en plural habla de perros en general. Es una categoría, no un grupo específico de perros. Por eso va sin artículo.', { 'pt-BR': 'Dogs no plural fala de cachorros em geral. É uma categoria, não um grupo específico. Por isso vai sem artigo.', vi: 'Dogs ở số nhiều nói về chó nói chung. Đó là một nhóm, không phải một nhóm chó cụ thể. Vì vậy không dùng mạo từ.', id: 'Dogs dalam bentuk jamak membicarakan anjing secara umum. Ini kategori, bukan kelompok anjing spesifik. Jadi tanpa artikel.', tr: 'Dogs çoğul halde genel olarak köpeklerden bahseder. Bu belirli bir grup değil, kategoridir. Bu yüzden article yok.', pl: 'Dogs w liczbie mnogiej mówi o psach ogólnie. To kategoria, nie konkretna grupa psów. Dlatego bez przedimka.' }) },
+    { en: 'I like music.', ru: 'Мне нравится музыка.', uk: 'Мені подобається музика.', es: 'Me gusta la música.', 'pt-BR': 'Eu gosto de música.', vi: 'Tôi thích âm nhạc.', id: 'Saya suka musik.', tr: 'Müziği severim.', pl: 'Lubię muzykę.', why: tri('Music здесь общая идея и неисчисляемое слово. Это не конкретная музыка, поэтому без the.', 'Music тут загальна ідея і незлічуване слово. Це не конкретна музика, тому без the.', 'Music aquí es una idea general y una palabra incontable. No es música específica, por eso va sin the.', { 'pt-BR': 'Music aqui é uma ideia geral e uma palavra incontável. Não é música específica, por isso fica sem the.', vi: 'Music ở đây là ý chung và là danh từ không đếm được. Không phải nhạc cụ thể, nên không dùng the.', id: 'Music di sini adalah ide umum dan kata tak terhitung. Bukan musik spesifik, jadi tanpa the.', tr: 'Music burada genel fikir ve sayılamayan kelimedir. Belirli müzik değil, bu yüzden the yok.', pl: 'Music to tutaj ogólna idea i rzeczownik niepoliczalny. Nie chodzi o konkretną muzykę, więc bez the.' }) },
+    { en: 'She speaks English.', ru: 'Она говорит по-английски.', uk: 'Вона говорить англійською.', es: 'Ella habla inglés.', 'pt-BR': 'Ela fala inglês.', vi: 'Cô ấy nói tiếng Anh.', id: 'Dia berbicara bahasa Inggris.', tr: 'O İngilizce konuşur.', pl: 'Ona mówi po angielsku.', why: tri('Названия языков обычно идут без артикля: English, Spanish, Ukrainian.', 'Назви мов зазвичай ідуть без артикля: English, Spanish, Ukrainian.', 'Los nombres de idiomas normalmente van sin artículo: English, Spanish, Ukrainian.', { 'pt-BR': 'Nomes de idiomas normalmente ficam sem artigo: English, Spanish, Ukrainian.', vi: 'Tên ngôn ngữ thường không dùng mạo từ: English, Spanish, Ukrainian.', id: 'Nama bahasa biasanya tanpa artikel: English, Spanish, Ukrainian.', tr: 'Dil adları genelde article almaz: English, Spanish, Ukrainian.', pl: 'Nazwy języków zwykle występują bez przedimka: English, Spanish, Ukrainian.' }) },
+    { en: 'We play football on Sundays.', ru: 'Мы играем в футбол по воскресеньям.', uk: 'Ми граємо у футбол по неділях.', es: 'Jugamos al fútbol los domingos.', 'pt-BR': 'Nós jogamos futebol aos domingos.', vi: 'Chúng tôi chơi bóng đá vào Chủ nhật.', id: 'Kami bermain sepak bola pada hari Minggu.', tr: 'Pazar günleri futbol oynarız.', pl: 'Gramy w piłkę nożną w niedziele.', why: tri('Названия спорта и игр обычно идут без артикля: play football, play tennis, play chess.', 'Назви спорту та ігор зазвичай ідуть без артикля: play football, play tennis, play chess.', 'Los deportes y juegos normalmente van sin artículo: play football, play tennis, play chess.', { 'pt-BR': 'Esportes e jogos normalmente ficam sem artigo: play football, play tennis, play chess.', vi: 'Tên thể thao và trò chơi thường không dùng mạo từ: play football, play tennis, play chess.', id: 'Nama olahraga dan permainan biasanya tanpa artikel: play football, play tennis, play chess.', tr: 'Spor ve oyun adları genelde article almaz: play football, play tennis, play chess.', pl: 'Nazwy sportów i gier zwykle są bez przedimka: play football, play tennis, play chess.' }) },
+    { en: 'I had breakfast at seven.', ru: 'Я позавтракал в семь.', uk: 'Я поснідав о сьомій.', es: 'Desayuné a las siete.', 'pt-BR': 'Eu tomei café da manhã às sete.', vi: 'Tôi đã ăn sáng lúc bảy giờ.', id: 'Saya sarapan pukul tujuh.', tr: 'Saat yedide kahvaltı yaptım.', pl: 'Zjadłem śniadanie o siódmej.', why: tri('Meals в обычном общем смысле часто идут без артикля: have breakfast, have lunch, have dinner.', 'Meals у звичайному загальному сенсі часто йдуть без артикля: have breakfast, have lunch, have dinner.', 'Las comidas en sentido general muchas veces van sin artículo: have breakfast, have lunch, have dinner.', { 'pt-BR': 'Refeições em sentido comum muitas vezes ficam sem artigo: have breakfast, have lunch, have dinner.', vi: 'Bữa ăn theo nghĩa thông thường thường không dùng mạo từ: have breakfast, have lunch, have dinner.', id: 'Makanan dalam arti biasa sering tanpa artikel: have breakfast, have lunch, have dinner.', tr: 'Öğünler normal anlamda çoğu zaman article almaz: have breakfast, have lunch, have dinner.', pl: 'Posiłki w zwykłym znaczeniu często są bez przedimka: have breakfast, have lunch, have dinner.' }) },
+    { en: 'Water is important.', ru: 'Вода важна.', uk: 'Вода важлива.', es: 'El agua es importante.', 'pt-BR': 'Água é importante.', vi: 'Nước rất quan trọng.', id: 'Air itu penting.', tr: 'Su önemlidir.', pl: 'Woda jest ważna.', why: tri('Water здесь вещество в общем смысле. Это не конкретная вода в стакане, поэтому без артикля.', 'Water тут речовина в загальному сенсі. Це не конкретна вода у склянці, тому без артикля.', 'Water aquí es una sustancia en sentido general. No es agua específica en un vaso, por eso va sin artículo.', { 'pt-BR': 'Water aqui é uma substância em sentido geral. Não é uma água específica em um copo, por isso vai sem artigo.', vi: 'Water ở đây là chất theo nghĩa chung. Không phải nước cụ thể trong ly, nên không dùng mạo từ.', id: 'Water di sini adalah zat dalam arti umum. Bukan air spesifik di gelas, jadi tanpa artikel.', tr: 'Water burada genel anlamda maddedir. Bardaktaki belirli su değil, bu yüzden article yok.', pl: 'Water to tutaj substancja w znaczeniu ogólnym. Nie chodzi o konkretną wodę w szklance, więc bez przedimka.' }) },
+    { en: 'The water in this bottle is cold.', ru: 'Вода в этой бутылке холодная.', uk: 'Вода в цій пляшці холодна.', es: 'El agua de esta botella está fría.', 'pt-BR': 'A água nesta garrafa está fria.', vi: 'Nước trong chai này lạnh.', id: 'Air di botol ini dingin.', tr: 'Bu şişedeki su soğuk.', pl: 'Woda w tej butelce jest zimna.', why: tri('Здесь water уже конкретная: вода в этой бутылке. Поэтому the water.', 'Тут water уже конкретна: вода в цій пляшці. Тому the water.', 'Aquí water ya es específica: el agua de esta botella. Por eso the water.', { 'pt-BR': 'Aqui water já é específica: a água nesta garrafa. Por isso the water.', vi: 'Ở đây water đã cụ thể: nước trong chai này. Vì vậy dùng the water.', id: 'Di sini water sudah spesifik: air di botol ini. Jadi the water.', tr: 'Burada water artık belirli: bu şişedeki su. Bu yüzden the water.', pl: 'Tutaj water jest już konkretna: woda w tej butelce. Dlatego the water.' }) },
+    { en: 'Children need attention.', ru: 'Детям нужно внимание.', uk: 'Дітям потрібна увага.', es: 'Los niños necesitan atención.', 'pt-BR': 'Crianças precisam de atenção.', vi: 'Trẻ em cần sự chú ý.', id: 'Anak-anak membutuhkan perhatian.', tr: 'Çocukların ilgiye ihtiyacı vardır.', pl: 'Dzieci potrzebują uwagi.', why: tri('Children здесь означает детей вообще. Это plural general meaning, поэтому без артикля.', 'Children тут означає дітей загалом. Це plural general meaning, тому без артикля.', 'Children aquí significa niños en general. Es plural general meaning, por eso va sin artículo.', { 'pt-BR': 'Children aqui significa crianças em geral. É plural general meaning, por isso vai sem artigo.', vi: 'Children ở đây nghĩa là trẻ em nói chung. Đây là nghĩa chung số nhiều, nên không dùng mạo từ.', id: 'Children di sini berarti anak-anak secara umum. Ini makna umum jamak, jadi tanpa artikel.', tr: 'Children burada genel olarak çocuklar demektir. Genel çoğul anlamdır, bu yüzden article yok.', pl: 'Children oznacza tu dzieci ogólnie. To ogólne znaczenie liczby mnogiej, więc bez przedimka.' }) },
   ],
   introBlocks: [
-    { id: 'intro_problem', type: 'diagnosis', text: tri('Похоже, ты иногда ставишь артикль там, где английский оставляет слово голым. Это не хаос. У zero article есть логика: часто мы не ставим артикль, когда говорим о вещи вообще, а не о конкретном экземпляре.', 'Схоже, ти іноді ставиш артикль там, де англійська залишає слово без нього. Це не хаос. У zero article є логіка: часто ми не ставимо артикль, коли говоримо про річ загалом, а не про конкретний екземпляр.', 'Parece que a veces pones artículo donde el inglés deja la palabra sin artículo. No es caos. Zero article tiene lógica: muchas veces no usamos artículo cuando hablamos de algo en general, no de un ejemplo específico.') },
-    { id: 'intro_rule', type: 'rule', text: tri('Главный вопрос: это конкретный предмет или общая идея? Конкретный предмет часто требует the. Общая идея часто идет без артикля.', 'Головне питання: це конкретний предмет чи загальна ідея? Конкретний предмет часто потребує the. Загальна ідея часто йде без артикля.', 'La pregunta principal: es un objeto específico o una idea general? El objeto específico muchas veces necesita the. La idea general muchas veces va sin artículo.') },
-    { id: 'intro_warning', type: 'warning', text: tri('Не переноси артикли из русского перевода. В английском I like music без the, хотя по-русски мы говорим “музыка”.', 'Не перенось артиклі з українського перекладу. В англійській I like music без the, хоча українською ми говоримо “музика”.', 'No copies los artículos desde la traducción española o rusa/ucraniana. En inglés decimos I like music sin the, aunque en español sea la música.') },
+    { id: 'intro_problem', type: 'diagnosis', text: tri('Похоже, ты иногда ставишь артикль там, где английский оставляет слово голым. Это не хаос. У zero article есть логика: часто мы не ставим артикль, когда говорим о вещи вообще, а не о конкретном экземпляре.', 'Схоже, ти іноді ставиш артикль там, де англійська залишає слово без нього. Це не хаос. У zero article є логіка: часто ми не ставимо артикль, коли говоримо про річ загалом, а не про конкретний екземпляр.', 'Parece que a veces pones artículo donde el inglés deja la palabra sin artículo. No es caos. Zero article tiene lógica: muchas veces no usamos artículo cuando hablamos de algo en general, no de un ejemplo específico.', { 'pt-BR': 'Parece que às vezes você coloca artigo onde o inglês deixa a palavra sem artigo. Não é caos. O zero article tem lógica: muitas vezes não usamos artigo quando falamos de algo em geral, não de um exemplo específico.', vi: 'Có vẻ đôi khi bạn đặt mạo từ ở nơi tiếng Anh để từ trần. Không phải hỗn loạn. Zero article có logic: ta thường không dùng mạo từ khi nói về sự vật nói chung, không phải một ví dụ cụ thể.', id: 'Sepertinya kadang kamu memakai artikel di tempat bahasa Inggris membiarkan kata tanpa artikel. Ini bukan kacau. Zero article punya logika: sering kali kita tidak memakai artikel saat berbicara tentang sesuatu secara umum, bukan contoh spesifik.', tr: 'Bazen İngilizcenin kelimeyi article olmadan bıraktığı yerde article koyuyorsun gibi görünüyor. Bu kaos değil. Zero article mantıklıdır: belirli bir örnekten değil, genel olarak bir şeyden bahsederken çoğu zaman article kullanmayız.', pl: 'Wygląda na to, że czasem stawiasz przedimek tam, gdzie angielski zostawia słowo bez niego. To nie chaos. Zero article ma logikę: często nie używamy przedimka, gdy mówimy o rzeczy ogólnie, a nie o konkretnym egzemplarzu.' }) },
+    { id: 'intro_rule', type: 'rule', text: tri('Главный вопрос: это конкретный предмет или общая идея? Конкретный предмет часто требует the. Общая идея часто идет без артикля.', 'Головне питання: це конкретний предмет чи загальна ідея? Конкретний предмет часто потребує the. Загальна ідея часто йде без артикля.', 'La pregunta principal: es un objeto específico o una idea general? El objeto específico muchas veces necesita the. La idea general muchas veces va sin artículo.', { 'pt-BR': 'Pergunta principal: é um objeto específico ou uma ideia geral? Objeto específico muitas vezes precisa de the. Ideia geral muitas vezes vai sem artigo.', vi: 'Câu hỏi chính: đó là vật cụ thể hay ý tưởng chung? Vật cụ thể thường cần the. Ý tưởng chung thường không có mạo từ.', id: 'Pertanyaan utama: ini objek spesifik atau ide umum? Objek spesifik sering perlu the. Ide umum sering tanpa artikel.', tr: 'Ana soru: bu belirli bir nesne mi, yoksa genel fikir mi? Belirli nesne çoğu zaman the ister. Genel fikir çoğu zaman article almaz.', pl: 'Główne pytanie: czy to konkretny przedmiot, czy ogólna idea? Konkretny przedmiot często wymaga the. Ogólna idea często jest bez przedimka.' }) },
+    { id: 'intro_warning', type: 'warning', text: tri('Не переноси артикли из русского перевода. В английском I like music без the, хотя по-русски мы говорим “музыка”.', 'Не перенось артиклі з українського перекладу. В англійській I like music без the, хоча українською ми говоримо “музика”.', 'No copies los artículos desde la traducción española o rusa/ucraniana. En inglés decimos I like music sin the, aunque en español sea la música.', { 'pt-BR': 'Não copie artigos da tradução. Em inglês dizemos I like music sem the, mesmo que em português pareça natural dizer "a música".', vi: 'Đừng bê mạo từ từ bản dịch. Trong tiếng Anh nói I like music không có the, dù trong tiếng Việt ta nói "âm nhạc".', id: 'Jangan menyalin artikel dari terjemahan. Dalam bahasa Inggris kita mengatakan I like music tanpa the, meskipun terjemahannya terasa memakai penanda umum.', tr: 'Article seçimlerini çeviriden taşıma. İngilizcede I like music ifadesi the olmadan söylenir.', pl: 'Nie przenoś przedimków z tłumaczenia. Po angielsku mówimy I like music bez the, mimo że po polsku mówimy "muzyka".' }) },
   ],
   steps: [
     zeroStep({
@@ -570,32 +843,32 @@ export const ARTICLE_ZERO_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Обычное объяснение: показываем, почему здесь общий смысл, а не конкретный предмет.', 'Звичайне пояснення: показуємо, чому тут загальний сенс, а не конкретний предмет.', 'Explicación normal: mostramos por qué aquí hay sentido general, no objeto específico.'),
-    depth2: tri('Проще: сводим выбор к вопросу “конкретное или вообще?”', 'Простіше: зводимо вибір до питання “конкретне чи загалом?”', 'Más simple: reducimos la elección a “específico o en general?”'),
-    depth3: tri('Еще проще: даем готовую пару general vs specific.', 'Ще простіше: даємо готову пару general vs specific.', 'Aún más simple: damos una pareja lista general vs specific.'),
-    depth4: tri('Почти подсказка: прямо указываем, что артикль не нужен.', 'Майже підказка: прямо вказуємо, що артикль не потрібен.', 'Casi pista: indicamos directamente que no se necesita artículo.'),
+    depth1: tri('Обычное объяснение: показываем, почему здесь общий смысл, а не конкретный предмет.', 'Звичайне пояснення: показуємо, чому тут загальний сенс, а не конкретний предмет.', 'Explicación normal: mostramos por qué aquí hay sentido general, no objeto específico.', { 'pt-BR': 'Explicação normal: mostramos por que aqui há sentido geral, não objeto específico.', vi: 'Giải thích bình thường: cho thấy vì sao ở đây là nghĩa chung, không phải vật cụ thể.', id: 'Penjelasan biasa: tunjukkan mengapa ini makna umum, bukan objek spesifik.', tr: 'Normal açıklama: burada neden belirli nesne değil de genel anlam olduğunu gösteririz.', pl: 'Zwykłe wyjaśnienie: pokazujemy, dlaczego tu jest sens ogólny, a nie konkretny przedmiot.' }),
+    depth2: tri('Проще: сводим выбор к вопросу “конкретное или вообще?”', 'Простіше: зводимо вибір до питання “конкретне чи загалом?”', 'Más simple: reducimos la elección a “específico o en general?”', { 'pt-BR': 'Mais simples: reduzimos a escolha a "específico ou em geral?"', vi: 'Đơn giản hơn: rút lựa chọn về "cụ thể hay nói chung?"', id: 'Lebih sederhana: pilihan diringkas menjadi "spesifik atau umum?"', tr: 'Daha basit: seçimi "belirli mi, genel mi?" sorusuna indiririz.', pl: 'Prościej: sprowadzamy wybór do pytania "konkretne czy ogólnie?"' }),
+    depth3: tri('Еще проще: даем готовую пару general vs specific.', 'Ще простіше: даємо готову пару general vs specific.', 'Aún más simple: damos una pareja lista general vs specific.', { 'pt-BR': 'Ainda mais simples: damos o par pronto general vs specific.', vi: 'Đơn giản hơn nữa: đưa cặp có sẵn general và specific.', id: 'Lebih sederhana lagi: berikan pasangan siap pakai general vs specific.', tr: 'Daha da basit: hazır general vs specific çiftini veririz.', pl: 'Jeszcze prościej: dajemy gotową parę general vs specific.' }),
+    depth4: tri('Почти подсказка: прямо указываем, что артикль не нужен.', 'Майже підказка: прямо вказуємо, що артикль не потрібен.', 'Casi pista: indicamos directamente que no se necesita artículo.', { 'pt-BR': 'Quase dica: indicamos diretamente que não é preciso artigo.', vi: 'Gần như gợi ý: nói thẳng rằng không cần mạo từ.', id: 'Hampir petunjuk: langsung tunjukkan bahwa artikel tidak diperlukan.', tr: 'Neredeyse ipucu: article gerekmediğini doğrudan belirtiriz.', pl: 'Prawie podpowiedź: wskazujemy bezpośrednio, że przedimek nie jest potrzebny.' }),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
       action: 'show_simplified_rule_card',
-      card: tri('Остановись. Не выбирай артикль автоматически. Сначала спроси: это “конкретное” или “вообще”? Конкретное - часто the. Вообще - часто без артикля.', 'Зупинись. Не обирай артикль автоматично. Спочатку запитай: це “конкретне” чи “загалом”? Конкретне - часто the. Загалом - часто без артикля.', 'Detente. No elijas artículo automáticamente. Primero pregunta: es “específico” o “en general”? Específico - muchas veces the. En general - muchas veces sin artículo.'),
+      card: tri('Остановись. Не выбирай артикль автоматически. Сначала спроси: это “конкретное” или “вообще”? Конкретное - часто the. Вообще - часто без артикля.', 'Зупинись. Не обирай артикль автоматично. Спочатку запитай: це “конкретне” чи “загалом”? Конкретне - часто the. Загалом - часто без артикля.', 'Detente. No elijas artículo automáticamente. Primero pregunta: es “específico” o “en general”? Específico - muchas veces the. En general - muchas veces sin artículo.', { 'pt-BR': 'Pare. Não escolha artigo automaticamente. Primeiro pergunte: é "específico" ou "em geral"? Específico - muitas vezes the. Em geral - muitas vezes sem artigo.', vi: 'Dừng lại. Đừng chọn mạo từ tự động. Trước tiên hỏi: "cụ thể" hay "nói chung"? Cụ thể - thường the. Nói chung - thường không có mạo từ.', id: 'Berhenti. Jangan memilih artikel otomatis. Tanyakan dulu: "spesifik" atau "umum"? Spesifik - sering the. Umum - sering tanpa artikel.', tr: 'Dur. Article otomatik seçme. Önce sor: "belirli" mi, "genel" mi? Belirli - çoğu zaman the. Genel - çoğu zaman article yok.', pl: 'Zatrzymaj się. Nie wybieraj przedimka automatycznie. Najpierw zapytaj: "konkretne" czy "ogólnie"? Konkretne - często the. Ogólnie - często bez przedimka.' }),
     },
     afterThreeWrongInSameExercise: {
       action: 'show_general_specific_hint_then_retry',
-      card: tri('Подсказка по смыслу: система покажет, слово используется в общем или конкретном смысле, но не выберет ответ за пользователя.', 'Підказка за змістом: система покаже, слово використовується в загальному чи конкретному сенсі, але не вибере відповідь за користувача.', 'Pista de significado: el sistema mostrará si la palabra se usa en sentido general o específico, pero no elegirá la respuesta por el usuario.'),
+      card: tri('Подсказка по смыслу: система покажет, слово используется в общем или конкретном смысле, но не выберет ответ за пользователя.', 'Підказка за змістом: система покаже, слово використовується в загальному чи конкретному сенсі, але не вибере відповідь за користувача.', 'Pista de significado: el sistema mostrará si la palabra se usa en sentido general o específico, pero no elegirá la respuesta por el usuario.', { 'pt-BR': 'Dica de sentido: o sistema mostrará se a palavra é usada em sentido geral ou específico, mas não escolherá a resposta pelo usuário.', vi: 'Gợi ý về nghĩa: hệ thống sẽ cho biết từ được dùng theo nghĩa chung hay cụ thể, nhưng không chọn đáp án thay người dùng.', id: 'Petunjuk makna: sistem akan menunjukkan apakah kata dipakai dalam arti umum atau spesifik, tetapi tidak memilih jawaban untuk pengguna.', tr: 'Anlam ipucu: sistem kelimenin genel mi belirli mi kullanıldığını gösterecek, ama cevabı kullanıcı adına seçmeyecek.', pl: 'Podpowiedź znaczenia: system pokaże, czy słowo jest użyte w sensie ogólnym czy konkretnym, ale nie wybierze odpowiedzi za użytkownika.' }),
     },
     afterFourWrongInSameExercise: {
       action: 'switch_to_guided_mode',
-      card: tri('Режим подсказки: сначала выбери смысл - “вещь вообще” или “конкретная вещь”. Потом система вернет тебя к выбору артикля.', 'Режим підказки: спочатку обери сенс - “річ загалом” чи “конкретна річ”. Потім система поверне тебе до вибору артикля.', 'Modo guiado: primero elige el sentido - “cosa en general” o “cosa específica”. Luego el sistema te devuelve al artículo.'),
+      card: tri('Режим подсказки: сначала выбери смысл - “вещь вообще” или “конкретная вещь”. Потом система вернет тебя к выбору артикля.', 'Режим підказки: спочатку обери сенс - “річ загалом” чи “конкретна річ”. Потім система поверне тебе до вибору артикля.', 'Modo guiado: primero elige el sentido - “cosa en general” o “cosa específica”. Luego el sistema te devuelve al artículo.', { 'pt-BR': 'Modo guiado: primeiro escolha o sentido - "coisa em geral" ou "coisa específica". Depois o sistema devolve você à escolha do artigo.', vi: 'Chế độ hướng dẫn: trước tiên chọn nghĩa - "sự vật nói chung" hay "sự vật cụ thể". Sau đó hệ thống đưa bạn quay lại chọn mạo từ.', id: 'Mode terpandu: pilih dulu makna - "benda secara umum" atau "benda spesifik". Lalu sistem mengembalikanmu ke pilihan artikel.', tr: 'Rehberli mod: önce anlamı seç - "genel olarak şey" mi, "belirli şey" mi. Sonra sistem seni article seçimine döndürür.', pl: 'Tryb prowadzenia: najpierw wybierz sens - "rzecz ogólnie" czy "konkretna rzecz". Potem system wróci z tobą do wyboru przedimka.' }),
     },
   },
   guidedMode: {
     enabled: true,
     triggerAfterWrongAttempts: 4,
     tasks: [
-      { id: 'guided_zero_001', prompt: tri('В предложении Dogs are loyal animals речь о конкретных собаках или о собаках вообще?', 'У реченні Dogs are loyal animals йдеться про конкретних собак чи про собак загалом?', 'En Dogs are loyal animals hablamos de perros específicos o de perros en general?'), options: ['конкретные собаки', 'собаки вообще'], correctIndex: 1, thenReturnToExerciseId: 'zero_easy_001' },
-      { id: 'guided_zero_002', prompt: tri('В предложении I like music речь о конкретной музыке или о музыке вообще?', 'У реченні I like music йдеться про конкретну музику чи про музику загалом?', 'En I like music hablamos de música específica o música en general?'), options: ['конкретная музыка', 'музыка вообще'], correctIndex: 1, thenReturnToExerciseId: 'zero_contrast_001' },
-      { id: 'guided_zero_003', prompt: tri('В фразе the water in this glass вода конкретная?', 'У фразі the water in this glass вода конкретна?', 'En the water in this glass, el agua es específica?'), options: ['да', 'нет'], correctIndex: 0, thenReturnToExerciseId: 'zero_contrast_003' },
+      { id: 'guided_zero_001', prompt: tri('В предложении Dogs are loyal animals речь о конкретных собаках или о собаках вообще?', 'У реченні Dogs are loyal animals йдеться про конкретних собак чи про собак загалом?', 'En Dogs are loyal animals hablamos de perros específicos o de perros en general?', { 'pt-BR': 'Em Dogs are loyal animals, falamos de cachorros específicos ou de cachorros em geral?', vi: 'Trong Dogs are loyal animals, ta nói về những con chó cụ thể hay chó nói chung?', id: 'Dalam Dogs are loyal animals, kita membicarakan anjing spesifik atau anjing secara umum?', tr: 'Dogs are loyal animals cümlesinde belirli köpeklerden mi, genel olarak köpeklerden mi bahsediyoruz?', pl: 'W Dogs are loyal animals mówimy o konkretnych psach czy o psach ogólnie?' }), options: ['конкретные собаки', 'собаки вообще'], correctIndex: 1, thenReturnToExerciseId: 'zero_easy_001' },
+      { id: 'guided_zero_002', prompt: tri('В предложении I like music речь о конкретной музыке или о музыке вообще?', 'У реченні I like music йдеться про конкретну музику чи про музику загалом?', 'En I like music hablamos de música específica o música en general?', { 'pt-BR': 'Em I like music, falamos de música específica ou música em geral?', vi: 'Trong I like music, ta nói về âm nhạc cụ thể hay âm nhạc nói chung?', id: 'Dalam I like music, kita berbicara tentang musik spesifik atau musik secara umum?', tr: 'I like music cümlesinde belirli müzikten mi, genel olarak müzikten mi bahsediyoruz?', pl: 'W I like music mówimy o konkretnej muzyce czy o muzyce ogólnie?' }), options: ['конкретная музыка', 'музыка вообще'], correctIndex: 1, thenReturnToExerciseId: 'zero_contrast_001' },
+      { id: 'guided_zero_003', prompt: tri('В фразе the water in this glass вода конкретная?', 'У фразі the water in this glass вода конкретна?', 'En the water in this glass, el agua es específica?', { 'pt-BR': 'Em the water in this glass, a água é específica?', vi: 'Trong the water in this glass, nước có cụ thể không?', id: 'Dalam the water in this glass, airnya spesifik?', tr: 'the water in this glass ifadesinde su belirli mi?', pl: 'Czy w the water in this glass woda jest konkretna?' }), options: ['да', 'нет'], correctIndex: 0, thenReturnToExerciseId: 'zero_contrast_003' },
     ],
   },
   smartTrainerConfig: {
@@ -603,7 +876,13 @@ export const ARTICLE_ZERO_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'article',
     microDiagnosisId: 'article_zero',
-    diagnosisLabel: tri('Когда артикль не нужен', 'Коли артикль не потрібен', 'Cuando no usamos artículo'),
+    diagnosisLabel: tri('Когда артикль не нужен', 'Коли артикль не потрібен', 'Cuando no usamos artículo', {
+      'pt-BR': 'Quando não usamos artigo',
+      vi: 'Khi không cần mạo từ',
+      id: 'Ketika artikel tidak diperlukan',
+      tr: 'Article gerekmediğinde',
+      pl: 'Gdy przedimek nie jest potrzebny',
+    }),
     contrastSet: ['a', 'an', 'the', 'no article'],
     focusWords: ['no article', 'the', 'a', 'an'],
     focusPatterns: [
@@ -635,7 +914,7 @@ export const ARTICLE_ZERO_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_article_zero_start',
     answer: 'diagnosis_training_article_zero_answer',
     mastery: 'diagnosis_training_article_zero_mastery',
-    fallback: 'diagnosis_training_article_zero_fallback',
+    recovery: 'diagnosis_training_article_zero_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',
@@ -677,5 +956,3 @@ export const ARTICLE_ZERO_TRAINING: DiagnosisTraining = {
     hasFallbackRoute: true,
   },
 };
-
-

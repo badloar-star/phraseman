@@ -111,6 +111,8 @@ appId: app.phraseman
       visible:
         id: "onboarding-streak-continue"
     commands:
+      - waitForAnimationToEnd:
+          timeout: 2500
       - tapOn:
           id: "onboarding-streak-continue"
       - waitForAnimationToEnd:
@@ -121,6 +123,8 @@ appId: app.phraseman
       visible:
         id: "onboarding-energy-continue"
     commands:
+      - waitForAnimationToEnd:
+          timeout: 2500
       - tapOn:
           id: "onboarding-energy-continue"
       - waitForAnimationToEnd:
@@ -131,6 +135,8 @@ appId: app.phraseman
       visible:
         id: "onboarding-auth-later"
     commands:
+      - waitForAnimationToEnd:
+          timeout: 2500
       - tapOn:
           id: "onboarding-auth-later"
       - waitForAnimationToEnd:
@@ -145,3 +151,23 @@ appId: app.phraseman
           id: "level-up-dismiss"
       - waitForAnimationToEnd:
           timeout: 3000
+
+- runFlow:
+    when:
+      visible:
+        id: "save-progress-banner-dismiss"
+    commands:
+      - tapOn:
+          id: "save-progress-banner-dismiss"
+      - waitForAnimationToEnd:
+          timeout: 2000
+
+- runFlow:
+    when:
+      visible:
+        id: "auth-prompt-later"
+    commands:
+      - tapOn:
+          id: "auth-prompt-later"
+      - waitForAnimationToEnd:
+          timeout: 2000

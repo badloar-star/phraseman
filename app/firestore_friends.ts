@@ -167,12 +167,12 @@ export async function readCachedMyInviteCodeForFriends(): Promise<string | null>
  *
  * referral_system подгружается лениво, чтобы тесты без Firebase могли импортировать этот файл.
  */
-export async function ensureMyInviteCodeForFriends(displayNameForReferralFallback: string): Promise<string | null> {
+export async function ensureMyInviteCodeForFriends(displayNameForReferralDefault: string): Promise<string | null> {
   const owner = await resolveOwnerForFriendCodeCache();
   if (isReferralCloudEnabled()) {
     try {
       const { generateReferralCode } = await import('./referral_system');
-      const ref = await generateReferralCode(displayNameForReferralFallback || 'Player');
+      const ref = await generateReferralCode(displayNameForReferralDefault || 'Player');
       const t = (ref ?? '').trim().toUpperCase();
       if (t.length > 0 && isValidInviteCodeLookup(t)) {
         await saveOwnerScopedStoredCode(owner, t);
@@ -322,7 +322,7 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
       if (!(await isUidBannedBestEffort(db, uid))) return { uid, source: 'legacy_friend_code' };
     }
   } catch {
-    /* Best-effort fallback for old users whose friend_code_index was never backfilled. */
+    /* Best-effort legacy lookup for old users whose friend_code_index was never backfilled. */
   }
 
   return null;

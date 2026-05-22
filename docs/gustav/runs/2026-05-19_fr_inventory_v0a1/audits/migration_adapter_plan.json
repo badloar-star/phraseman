@@ -1,0 +1,1437 @@
+{
+  "schemaVersion": "gustav-migration-adapter-plan-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-19T18:01:42.917Z",
+  "status": "HOLD",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_migration_adapter_plan.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "summary": {
+    "phases": 6,
+    "adapters": 16,
+    "blockerAdapters": 16,
+    "productModules": 35,
+    "sourceFiles": 61,
+    "storageKeys": 99,
+    "targetStorageRecords": 348,
+    "surfaceBlockers": 92,
+    "cloudTargetMappings": 42,
+    "localCloudDecisions": 28,
+    "canStartFrenchGenerationAfterPlanOnly": false
+  },
+  "phases": [
+    {
+      "id": "P0",
+      "title": "Plan-only freeze",
+      "status": "HOLD",
+      "adapters": [],
+      "exitCriteria": [
+        "No product runtime files are changed by this plan.",
+        "Adapter plan is reviewed with storage, cloud, route and My Practice risks visible."
+      ]
+    },
+    {
+      "id": "P1",
+      "title": "Production target identity and key builder",
+      "status": "HOLD",
+      "adapters": [
+        "production_study_target",
+        "target_storage_key_builder"
+      ],
+      "exitCriteria": [
+        "Production StudyTarget is separate from sourceLocale and dev StudyTargetLang.",
+        "Target storage keys can be generated and tested for en/fr."
+      ]
+    },
+    {
+      "id": "P2",
+      "title": "Legacy English compatibility",
+      "status": "HOLD",
+      "adapters": [
+        "legacy_english_compat"
+      ],
+      "exitCriteria": [
+        "Legacy flat learning state copies to en only.",
+        "French reads have no legacy fallback."
+      ]
+    },
+    {
+      "id": "P3",
+      "title": "Target local stores for learning surfaces",
+      "status": "HOLD",
+      "adapters": [
+        "lesson_progress_store",
+        "lesson_session_store",
+        "lesson_reward_idempotency",
+        "level_exam_certificate_store",
+        "quiz_progress_store",
+        "trainer_practice_store",
+        "personal_practice_store",
+        "flashcards_target_store"
+      ],
+      "exitCriteria": [
+        "Lessons, quizzes, trainer, My Practice and flashcards use target-aware store APIs.",
+        "Route-level target switch tests pass for en/fr."
+      ]
+    },
+    {
+      "id": "P4",
+      "title": "Cloud, achievements and stats split",
+      "status": "HOLD",
+      "adapters": [
+        "achievement_progress_store",
+        "target_stats_store",
+        "cloud_sync_target_buckets"
+      ],
+      "exitCriteria": [
+        "Global versus target payloads are split.",
+        "Cloud restore hydrates only selected target buckets."
+      ]
+    },
+    {
+      "id": "P5",
+      "title": "Surface integration and guards",
+      "status": "HOLD",
+      "adapters": [
+        "route_surface_integration",
+        "raw_storage_guard"
+      ],
+      "exitCriteria": [
+        "All user-facing blocker surfaces are covered by target-aware adapters.",
+        "Readiness gate returns GO for French generation."
+      ]
+    }
+  ],
+  "adapters": [
+    {
+      "id": "production_study_target",
+      "phase": "P1",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "study_target",
+      "dependsOn": [],
+      "productModules": [
+        "app/study_target.ts",
+        "components/StudyTargetContext.tsx"
+      ],
+      "coveredSurfaceDomains": [
+        "app_shell",
+        "settings_source_locale"
+      ],
+      "sourceFiles": [
+        "app/study_target_lang_dev.ts",
+        "components/StudyTargetContext.tsx",
+        "app/spanish_content_gate.ts",
+        "app/(tabs)/settings.tsx"
+      ],
+      "storageKeys": [
+        "study_target_v1",
+        "dev_study_target_lang"
+      ],
+      "cloudActions": [],
+      "implementationSteps": [
+        "Introduce production StudyTarget type with en/fr and keep it separate from sourceLocale.",
+        "Rename or isolate dev StudyTargetLang so Spanish experiments cannot drive French target selection.",
+        "Expose a provider API that route surfaces can consume without reading sourceLocale as target."
+      ],
+      "testsRequired": [
+        "Switch sourceLocale ru -> uk and assert studyTarget remains fr.",
+        "Enable French target and assert Spanish dev gates do not activate."
+      ],
+      "rollbackNotes": [
+        "Feature-flag the production target provider and keep dev Spanish path untouched until migration is complete."
+      ],
+      "blockers": [
+        "Current StudyTargetLang is dev-only en/es.",
+        "Production StudyTarget does not exist yet."
+      ]
+    },
+    {
+      "id": "target_storage_key_builder",
+      "phase": "P1",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "storage",
+      "dependsOn": [
+        "production_study_target"
+      ],
+      "productModules": [
+        "app/target_storage_keys.ts"
+      ],
+      "coveredSurfaceDomains": [
+        "lesson_runtime",
+        "quiz",
+        "trainer_practice",
+        "flashcards",
+        "achievements",
+        "progress_stats"
+      ],
+      "sourceFiles": [
+        "app/(tabs)/home.tsx",
+        "app/(tabs)/lessons.tsx",
+        "app/(tabs)/quizzes.tsx",
+        "app/achievements.ts",
+        "app/achievements_screen.tsx",
+        "app/active_recall.ts",
+        "app/auth_provider.ts",
+        "app/cloud_sync.ts",
+        "app/daily_tasks.ts",
+        "app/daily_tasks_screen.tsx",
+        "app/diagnostic_test.tsx",
+        "app/exam_certificate.ts",
+        "app/firestore_leaderboard.ts",
+        "app/firestore_league_chat.ts",
+        "app/flashcards/storage.ts",
+        "app/global_broadcast_modal.ts",
+        "app/lesson1.tsx",
+        "app/lesson_complete.tsx",
+        "app/lesson_irregular_verbs.tsx",
+        "app/lesson_lock_system.ts",
+        "app/lesson_menu.tsx",
+        "app/lesson_screen_bootstrap.ts",
+        "app/lesson_words.tsx",
+        "app/lessons_tab_state.ts",
+        "app/level_exam.tsx",
+        "app/level_gift_system.ts",
+        "app/lifetime_profile_stats.ts",
+        "app/mastery.ts",
+        "app/medal_utils.ts",
+        "app/mistake_log.ts",
+        "app/notifications.ts",
+        "app/preposition_drill.tsx",
+        "app/quizzes.tsx",
+        "app/referral_bootstrap.ts",
+        "app/release_wave_bonus.ts",
+        "app/services/league_chest_rewards.ts",
+        "app/shards_system.ts",
+        "app/streak_safety.ts",
+        "app/trainer_store.ts",
+        "hooks/use-flashcards.ts"
+      ],
+      "storageKeys": [
+        "achievement_active_recall_correct_count",
+        "achievement_daily_phrase_read_count",
+        "achievement_daily_phrase_save_count",
+        "achievement_flashcards_flip_count",
+        "achievement_flashcards_saved_count",
+        "achievement_flashcards_source_set_v1",
+        "achievement_flashcards_view_streak_v1",
+        "achievement_lesson_${...}_perfect_passes_v1",
+        "achievement_quiz_hard_perfect_count",
+        "achievement_quiz_perfect_levels_today_v1",
+        "achievement_quiz_perfect_streak_v1",
+        "achievement_quiz_total_count",
+        "achievement_trainer_correct_count",
+        "achievement_trainer_correct_streak_v1",
+        "achievement_trainer_perfect_session_count",
+        "active_recall_items",
+        "custom_flashcards_v2",
+        "diagnostic_last",
+        "flashcards",
+        "flashcards_v1",
+        "irregular_verbs_global",
+        "lesson${...}_best_score",
+        "lesson${...}_bonus_granted",
+        "lesson${...}_cellIndex",
+        "lesson${...}_errorReplayOverride",
+        "lesson${...}_errorReplayQueue",
+        "lesson${...}_errorReplaySince",
+        "lesson${...}_intro_shown",
+        "lesson${...}_irregular_shards_granted",
+        "lesson${...}_listening_progress",
+        "lesson${...}_pass_count",
+        "lesson${...}_phraseOrder",
+        "lesson${...}_preposition_progress",
+        "lesson${...}_progress",
+        "lesson${...}_words",
+        "lesson1_progress",
+        "lesson1_words",
+        "level_exam_${...}_best_pct",
+        "level_exam_${...}_pass_count",
+        "level_exam_${...}_passed"
+      ],
+      "cloudActions": [],
+      "implementationSteps": [
+        "Create typed targetKey/sourceTargetKey helpers and legacyEnglishKey compatibility helper.",
+        "Add a runtime assertTargetKey guard for target-sensitive domains.",
+        "Allow raw legacy keys only inside explicitly named migration adapters."
+      ],
+      "testsRequired": [
+        "Key builder returns distinct keys for en/fr for every target-sensitive domain.",
+        "Raw storage guard fails on a new flat lesson/trainer/quiz key outside migration adapters."
+      ],
+      "rollbackNotes": [
+        "Keep helper additive first; do not delete legacy keys until migration confidence is recorded."
+      ],
+      "blockers": [
+        "348 target-sensitive storage records still exist.",
+        "Raw target-sensitive key families still need routing."
+      ]
+    },
+    {
+      "id": "legacy_english_compat",
+      "phase": "P2",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "storage",
+      "dependsOn": [
+        "target_storage_key_builder"
+      ],
+      "productModules": [
+        "app/legacy_english_progress_migration.ts"
+      ],
+      "coveredSurfaceDomains": [
+        "lesson_list",
+        "lesson_runtime",
+        "quiz",
+        "trainer_practice",
+        "flashcards"
+      ],
+      "sourceFiles": [
+        "app/(tabs)/home.tsx",
+        "app/(tabs)/lessons.tsx",
+        "app/(tabs)/quizzes.tsx",
+        "app/achievements.ts",
+        "app/achievements_screen.tsx",
+        "app/active_recall.ts",
+        "app/auth_provider.ts",
+        "app/cloud_sync.ts",
+        "app/daily_tasks_screen.tsx",
+        "app/diagnostic_test.tsx",
+        "app/exam.tsx",
+        "app/exam_readiness.ts",
+        "app/flashcards/storage.ts",
+        "app/lesson1.tsx",
+        "app/lesson_complete.tsx",
+        "app/lesson_irregular_verbs.tsx",
+        "app/lesson_lock_system.ts",
+        "app/lesson_menu.tsx",
+        "app/lesson_screen_bootstrap.ts",
+        "app/lessons_tab_state.ts",
+        "app/level_exam.tsx",
+        "app/lifetime_profile_stats.ts",
+        "app/medal_utils.ts",
+        "app/notifications.ts",
+        "app/preposition_drill.tsx",
+        "app/quizzes.tsx",
+        "app/streak_safety.ts",
+        "app/trainer_store.ts",
+        "hooks/use-flashcards.ts"
+      ],
+      "storageKeys": [
+        "achievement_active_recall_correct_count",
+        "achievement_daily_phrase_read_count",
+        "achievement_daily_phrase_save_count",
+        "achievement_flashcards_flip_count",
+        "achievement_flashcards_saved_count",
+        "achievement_flashcards_source_set_v1",
+        "achievement_flashcards_view_streak_v1",
+        "achievement_lesson_${...}_perfect_passes_v1",
+        "achievement_quiz_hard_perfect_count",
+        "achievement_quiz_perfect_levels_today_v1",
+        "achievement_quiz_perfect_streak_v1",
+        "achievement_quiz_total_count",
+        "achievement_trainer_correct_count",
+        "achievement_trainer_correct_streak_v1",
+        "achievement_trainer_perfect_session_count",
+        "active_recall_items",
+        "custom_flashcards_v2",
+        "diagnostic_last",
+        "flashcards",
+        "flashcards_v1",
+        "irregular_verbs_global",
+        "lesson${...}_best_score",
+        "lesson${...}_bonus_granted",
+        "lesson${...}_cellIndex",
+        "lesson${...}_errorReplayOverride",
+        "lesson${...}_errorReplayQueue",
+        "lesson${...}_errorReplaySince",
+        "lesson${...}_intro_shown",
+        "lesson${...}_irregular_shards_granted",
+        "lesson${...}_listening_progress",
+        "lesson${...}_pass_count",
+        "lesson${...}_phraseOrder",
+        "lesson${...}_preposition_progress",
+        "lesson${...}_progress",
+        "lesson${...}_words",
+        "lesson1_progress",
+        "lesson1_words",
+        "level_exam_${...}_best_pct",
+        "level_exam_${...}_pass_count",
+        "level_exam_${...}_passed"
+      ],
+      "cloudActions": [
+        "legacy flat keys map to en target only"
+      ],
+      "implementationSteps": [
+        "Read legacy flat keys only through a one-time English compatibility adapter.",
+        "Copy legacy learning state to v2::en without deleting rollback keys.",
+        "Make fr target reads fail closed when only legacy English keys exist."
+      ],
+      "testsRequired": [
+        "Existing English user keeps lesson, quiz, trainer and flashcard state after migration.",
+        "French user sees empty target state even when legacy English progress exists."
+      ],
+      "rollbackNotes": [
+        "Do not remove legacy keys; rollback disables v2 reads and falls back to existing English behavior."
+      ],
+      "blockers": [
+        "Legacy English mapping has not been implemented or tested."
+      ]
+    },
+    {
+      "id": "lesson_progress_store",
+      "phase": "P3",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "lesson",
+      "dependsOn": [
+        "legacy_english_compat"
+      ],
+      "productModules": [
+        "app/lesson_progress_store.ts"
+      ],
+      "coveredSurfaceDomains": [
+        "lesson_list",
+        "lesson_menu",
+        "lesson_runtime",
+        "lesson_completion",
+        "home_dashboard"
+      ],
+      "sourceFiles": [
+        "app/(tabs)/home.tsx",
+        "app/(tabs)/lessons.tsx",
+        "app/lesson1.tsx",
+        "app/lesson_complete.tsx",
+        "app/lesson_irregular_verbs.tsx",
+        "app/lesson_lock_system.ts",
+        "app/lesson_menu.tsx",
+        "app/lesson_words.tsx",
+        "app/lessons_tab_state.ts",
+        "app/preposition_drill.tsx"
+      ],
+      "storageKeys": [
+        "lesson${...}_best_score",
+        "lesson${...}_listening_progress",
+        "lesson${...}_pass_count",
+        "lesson${...}_preposition_progress",
+        "lesson${...}_progress",
+        "lesson${...}_words",
+        "lesson1_progress",
+        "lesson1_words",
+        "unlocked_lessons"
+      ],
+      "cloudActions": [
+        "lesson${...}_best_score:map_to_target -> progress/targets/{studyTarget}/lesson${...}_best_score",
+        "lesson${...}_intro_shown:map_to_target -> progress/targets/{studyTarget}/lesson${...}_intro_shown",
+        "lesson${...}_listening_progress:map_to_target -> progress/targets/{studyTarget}/lesson${...}_listening_progress",
+        "lesson${...}_pass_count:map_to_target -> progress/targets/{studyTarget}/lesson${...}_pass_count",
+        "lesson${...}_progress:map_to_target -> progress/targets/{studyTarget}/lesson${...}_progress",
+        "lesson${...}_words:map_to_target -> progress/targets/{studyTarget}/lesson${...}_words",
+        "unlocked_lessons:map_to_target -> progress/targets/{studyTarget}/unlocked_lessons"
+      ],
+      "implementationSteps": [
+        "Centralize lesson progress, unlocks, words and score reads/writes.",
+        "Replace direct AsyncStorage calls in lesson list/menu/runtime/completion surfaces with store calls.",
+        "Keep French lesson ids separate until a French source graph approves lesson ordering."
+      ],
+      "testsRequired": [
+        "English lesson completion does not mark French lesson complete.",
+        "French target does not reuse English unlocked_lessons.",
+        "Home and lessons tab render target-specific progress."
+      ],
+      "rollbackNotes": [
+        "Store adapter can read v2 first and legacy en second only when studyTarget=en."
+      ],
+      "blockers": [
+        "Lesson surfaces currently use flat lesson keys across multiple screens."
+      ]
+    },
+    {
+      "id": "lesson_session_store",
+      "phase": "P3",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "lesson",
+      "dependsOn": [
+        "target_storage_key_builder"
+      ],
+      "productModules": [
+        "app/lesson_session_store.ts"
+      ],
+      "coveredSurfaceDomains": [
+        "lesson_runtime"
+      ],
+      "sourceFiles": [
+        "app/lesson1.tsx",
+        "app/lesson_irregular_verbs.tsx",
+        "app/lesson_words.tsx",
+        "app/preposition_drill.tsx"
+      ],
+      "storageKeys": [
+        "lesson${...}_cellIndex",
+        "lesson${...}_errorReplayOverride",
+        "lesson${...}_errorReplayQueue",
+        "lesson${...}_errorReplaySince",
+        "lesson${...}_intro_shown",
+        "lesson${...}_phraseOrder"
+      ],
+      "cloudActions": [
+        "lesson${...}_cellIndex:keep_local_target_scoped:lesson${...}_cellIndex_v2::{studyTarget}",
+        "lesson${...}_errorReplayOverride:keep_local_target_scoped:lesson${...}_errorReplayOverride_v2::{studyTarget}",
+        "lesson${...}_errorReplayQueue:keep_local_target_scoped:lesson${...}_errorReplayQueue_v2::{studyTarget}",
+        "lesson${...}_errorReplaySince:keep_local_target_scoped:lesson${...}_errorReplaySince_v2::{studyTarget}",
+        "lesson${...}_phraseOrder:keep_local_target_scoped:lesson${...}_phraseOrder_v2::{studyTarget}"
+      ],
+      "implementationSteps": [
+        "Move lesson runtime session state to target-scoped local-only keys.",
+        "Document these keys as not cloud-synced.",
+        "Reset session state on studyTarget change unless an explicit target session exists."
+      ],
+      "testsRequired": [
+        "Switch en -> fr does not resume English cell index, phrase order or replay queue.",
+        "Cloud sync does not export local session keys."
+      ],
+      "rollbackNotes": [
+        "Session adapter can clear v2 target session keys without touching legacy lesson progress."
+      ],
+      "blockers": [
+        "Lesson runtime can resume local state from the wrong target."
+      ]
+    },
+    {
+      "id": "lesson_reward_idempotency",
+      "phase": "P3",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "lesson",
+      "dependsOn": [
+        "target_storage_key_builder"
+      ],
+      "productModules": [
+        "app/reward_idempotency_store.ts"
+      ],
+      "coveredSurfaceDomains": [
+        "lesson_completion",
+        "lesson_runtime",
+        "commerce_rewards"
+      ],
+      "sourceFiles": [
+        "app/lesson_complete.tsx",
+        "app/lesson_irregular_verbs.tsx",
+        "app/preposition_drill.tsx"
+      ],
+      "storageKeys": [
+        "lesson${...}_bonus_granted",
+        "lesson${...}_irregular_shards_granted",
+        "prep_drill_perfect_${...}"
+      ],
+      "cloudActions": [
+        "lesson${...}_bonus_granted:sync_under_target:progress/targets/{studyTarget}/lesson${...}_bonus_granted",
+        "lesson${...}_irregular_shards_granted:sync_under_target:progress/targets/{studyTarget}/lesson${...}_irregular_shards_granted",
+        "prep_drill_perfect_${...}:sync_under_target:progress/targets/{studyTarget}/prep_drill_perfect_${...}"
+      ],
+      "implementationSteps": [
+        "Create target-scoped reward grant ids.",
+        "Decide per reward whether idempotency is local target-scoped or synced under target.",
+        "Map legacy reward markers to English only."
+      ],
+      "testsRequired": [
+        "French reward can be granted even if English reward marker exists.",
+        "Cloud restore does not double-grant target rewards."
+      ],
+      "rollbackNotes": [
+        "Preserve legacy reward markers; disable new grants behind a feature flag if needed."
+      ],
+      "blockers": [
+        "Flat reward markers can suppress or duplicate French rewards."
+      ]
+    },
+    {
+      "id": "level_exam_certificate_store",
+      "phase": "P3",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "lesson",
+      "dependsOn": [
+        "legacy_english_compat"
+      ],
+      "productModules": [
+        "app/level_exam_store.ts",
+        "app/certificate_store.ts"
+      ],
+      "coveredSurfaceDomains": [
+        "lesson_list",
+        "progress_stats"
+      ],
+      "sourceFiles": [
+        "app/(tabs)/lessons.tsx",
+        "app/cloud_sync.ts",
+        "app/exam_certificate.ts",
+        "app/lesson_lock_system.ts",
+        "app/lessons_tab_state.ts",
+        "app/level_exam.tsx",
+        "app/medal_utils.ts"
+      ],
+      "storageKeys": [
+        "level_exam_${...}_best_pct",
+        "level_exam_${...}_pass_count",
+        "level_exam_${...}_passed",
+        "level_exam_${...}_pct",
+        "level_exam_A1_best_pct",
+        "level_exam_A1_pass_count",
+        "level_exam_A1_passed",
+        "level_exam_A1_pct",
+        "level_exam_A2_best_pct",
+        "level_exam_A2_pass_count",
+        "level_exam_A2_passed",
+        "level_exam_A2_pct",
+        "level_exam_B1_best_pct",
+        "level_exam_B1_pass_count",
+        "level_exam_B1_passed",
+        "level_exam_B1_pct",
+        "level_exam_B2_best_pct",
+        "level_exam_B2_pass_count",
+        "level_exam_B2_passed",
+        "level_exam_B2_pct",
+        "lingman_certificate_v1"
+      ],
+      "cloudActions": [
+        "level_exam_A1_best_pct:map_to_target -> progress/targets/{studyTarget}/level_exam_A1_best_pct",
+        "level_exam_A1_pass_count:map_to_target -> progress/targets/{studyTarget}/level_exam_A1_pass_count",
+        "level_exam_A1_passed:map_to_target -> progress/targets/{studyTarget}/level_exam_A1_passed",
+        "level_exam_A1_pct:map_to_target -> progress/targets/{studyTarget}/level_exam_A1_pct",
+        "level_exam_A2_best_pct:map_to_target -> progress/targets/{studyTarget}/level_exam_A2_best_pct",
+        "level_exam_A2_pass_count:map_to_target -> progress/targets/{studyTarget}/level_exam_A2_pass_count",
+        "level_exam_A2_passed:map_to_target -> progress/targets/{studyTarget}/level_exam_A2_passed",
+        "level_exam_A2_pct:map_to_target -> progress/targets/{studyTarget}/level_exam_A2_pct",
+        "level_exam_B1_best_pct:map_to_target -> progress/targets/{studyTarget}/level_exam_B1_best_pct",
+        "level_exam_B1_pass_count:map_to_target -> progress/targets/{studyTarget}/level_exam_B1_pass_count",
+        "level_exam_B1_passed:map_to_target -> progress/targets/{studyTarget}/level_exam_B1_passed",
+        "level_exam_B1_pct:map_to_target -> progress/targets/{studyTarget}/level_exam_B1_pct",
+        "level_exam_B2_best_pct:map_to_target -> progress/targets/{studyTarget}/level_exam_B2_best_pct",
+        "level_exam_B2_pass_count:map_to_target -> progress/targets/{studyTarget}/level_exam_B2_pass_count",
+        "level_exam_B2_passed:map_to_target -> progress/targets/{studyTarget}/level_exam_B2_passed",
+        "level_exam_B2_pct:map_to_target -> progress/targets/{studyTarget}/level_exam_B2_pct",
+        "lingman_certificate_v1:map_to_target -> progress/targets/{studyTarget}/lingman_certificate_v1"
+      ],
+      "implementationSteps": [
+        "Store exam results and certificates under studyTarget.",
+        "Keep English certificates mapped to en only.",
+        "Do not assume French CEFR structure equals English until source graph approves it."
+      ],
+      "testsRequired": [
+        "English A1 pass does not unlock French A1 certificate.",
+        "French exam state writes only to fr target bucket."
+      ],
+      "rollbackNotes": [
+        "Certificate v2 can be hidden without deleting legacy certificate key."
+      ],
+      "blockers": [
+        "Exam/certificate proof state is currently target-unscoped."
+      ]
+    },
+    {
+      "id": "quiz_progress_store",
+      "phase": "P3",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "quiz",
+      "dependsOn": [
+        "target_storage_key_builder"
+      ],
+      "productModules": [
+        "app/quiz_progress_store.ts"
+      ],
+      "coveredSurfaceDomains": [
+        "quiz"
+      ],
+      "sourceFiles": [
+        "app/(tabs)/quizzes.tsx",
+        "app/daily_tasks_screen.tsx",
+        "app/lifetime_profile_stats.ts",
+        "app/quizzes.tsx"
+      ],
+      "storageKeys": [
+        "achievement_quiz_hard_perfect_count",
+        "achievement_quiz_perfect_levels_today_v1",
+        "achievement_quiz_perfect_streak_v1",
+        "achievement_quiz_total_count",
+        "lifetime_quiz_counters_migrated_v1",
+        "lifetime_quiz_easy_v1",
+        "lifetime_quiz_hard_v1",
+        "lifetime_quiz_medium_v1",
+        "quiz_hard_count",
+        "quiz_nav_level"
+      ],
+      "cloudActions": [
+        "lifetime_quiz_counters_migrated_v1:map_to_target -> progress/targets/{studyTarget}/lifetime_quiz_counters_migrated_v1",
+        "lifetime_quiz_easy_v1:map_to_target -> progress/targets/{studyTarget}/lifetime_quiz_easy_v1",
+        "lifetime_quiz_hard_v1:map_to_target -> progress/targets/{studyTarget}/lifetime_quiz_hard_v1",
+        "lifetime_quiz_medium_v1:map_to_target -> progress/targets/{studyTarget}/lifetime_quiz_medium_v1",
+        "achievement_quiz_hard_perfect_count:sync_under_target:progress/targets/{studyTarget}/achievement_quiz_hard_perfect_count",
+        "achievement_quiz_perfect_levels_today_v1:sync_under_target:progress/targets/{studyTarget}/achievement_quiz_perfect_levels_today_v1",
+        "achievement_quiz_perfect_streak_v1:sync_under_target:progress/targets/{studyTarget}/achievement_quiz_perfect_streak_v1",
+        "achievement_quiz_total_count:sync_under_target:progress/targets/{studyTarget}/achievement_quiz_total_count",
+        "quiz_hard_count:sync_under_target:progress/targets/{studyTarget}/quiz_hard_count",
+        "quiz_nav_level:keep_local_target_scoped:quiz_nav_level_v2::{studyTarget}"
+      ],
+      "implementationSteps": [
+        "Move quiz navigation and counters to target-aware store APIs.",
+        "Keep quiz_nav_level local target-scoped unless explicit cloud policy changes.",
+        "Route quiz achievement counters through achievement adapter."
+      ],
+      "testsRequired": [
+        "French quiz navigation does not resume English quiz level.",
+        "French quiz counters do not increment English quiz achievements."
+      ],
+      "rollbackNotes": [
+        "Quiz v2 keys can be cleared per target while preserving legacy English counters."
+      ],
+      "blockers": [
+        "Quiz state has direct route and tab surfaces with target-sensitive keys."
+      ]
+    },
+    {
+      "id": "trainer_practice_store",
+      "phase": "P3",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "trainer",
+      "dependsOn": [
+        "target_storage_key_builder"
+      ],
+      "productModules": [
+        "app/target_practice_store.ts",
+        "app/trainer_store.ts",
+        "app/mistake_log.ts",
+        "app/active_recall.ts"
+      ],
+      "coveredSurfaceDomains": [
+        "trainer_practice"
+      ],
+      "sourceFiles": [
+        "app/active_recall.ts",
+        "app/mistake_log.ts",
+        "app/trainer.tsx",
+        "app/trainer_arena_session.tsx",
+        "app/trainer_phrases_session.tsx",
+        "app/trainer_smart_session.tsx",
+        "app/trainer_store.ts",
+        "app/trainer_words_session.tsx"
+      ],
+      "storageKeys": [
+        "achievement_active_recall_correct_count",
+        "achievement_trainer_correct_count",
+        "achievement_trainer_correct_streak_v1",
+        "achievement_trainer_perfect_session_count",
+        "active_recall_items",
+        "lesson${...}_preposition_progress",
+        "mistake_log_v1",
+        "prep_drill_perfect_${...}",
+        "trainer_store_v1"
+      ],
+      "cloudActions": [
+        "achievement_active_recall_correct_count:map_to_target -> progress/targets/{studyTarget}/achievement_active_recall_correct_count",
+        "achievement_trainer_correct_count:map_to_target -> progress/targets/{studyTarget}/achievement_trainer_correct_count",
+        "achievement_trainer_correct_streak_v1:map_to_target -> progress/targets/{studyTarget}/achievement_trainer_correct_streak_v1",
+        "active_recall_items:map_to_target -> progress/targets/{studyTarget}/active_recall_items",
+        "achievement_trainer_perfect_session_count:sync_under_target:progress/targets/{studyTarget}/achievement_trainer_perfect_session_count",
+        "lesson${...}_preposition_progress:sync_under_target:progress/targets/{studyTarget}/lesson${...}_preposition_progress",
+        "mistake_log_v1:sync_under_target:progress/targets/{studyTarget}/mistake_log_v1",
+        "prep_drill_perfect_${...}:sync_under_target:progress/targets/{studyTarget}/prep_drill_perfect_${...}",
+        "trainer_store_v1:sync_under_target:progress/targets/{studyTarget}/trainer_store_v1"
+      ],
+      "implementationSteps": [
+        "Move trainer_store, mistake_log and active_recall queues under studyTarget.",
+        "Keep sourceLocale feedback separate from target practice state.",
+        "Expose one practice store consumed by trainer and My Practice surfaces."
+      ],
+      "testsRequired": [
+        "French trainer queue never reads English active_recall_items.",
+        "French mistake log survives ru/uk sourceLocale switch without duplicating target items."
+      ],
+      "rollbackNotes": [
+        "Keep legacy trainer_store_v1 and mistake_log_v1 mapped to en only."
+      ],
+      "blockers": [
+        "Trainer and mistake logs carry target-language material."
+      ]
+    },
+    {
+      "id": "personal_practice_store",
+      "phase": "P3",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "personal_practice",
+      "dependsOn": [
+        "trainer_practice_store"
+      ],
+      "productModules": [
+        "app/personal_practice_store.ts",
+        "app/diagnostic_store.ts"
+      ],
+      "coveredSurfaceDomains": [
+        "personal_practice"
+      ],
+      "sourceFiles": [
+        "app/diagnostic_test.tsx",
+        "app/problem_coach.tsx"
+      ],
+      "storageKeys": [
+        "diagnostic_last",
+        "open_diagnostic"
+      ],
+      "cloudActions": [
+        "diagnostic_last:map_to_target -> progress/targets/{studyTarget}/diagnostic_last",
+        "open_diagnostic:keep_local_target_scoped:open_diagnostic_v2::{studyTarget}"
+      ],
+      "implementationSteps": [
+        "Prefix every diagnosis and recommendation id with studyTarget.",
+        "Store localized feedback under studyTarget/sourceLocale, not under target-only progress.",
+        "Make My Practice recommendations consume target practice store snapshots."
+      ],
+      "testsRequired": [
+        "fr:<id> and en:<id> diagnoses cannot collide.",
+        "Russian and Ukrainian feedback for French diagnosis do not overwrite each other."
+      ],
+      "rollbackNotes": [
+        "Diagnosis v2 can be disabled and legacy English diagnostic_last kept as en-only."
+      ],
+      "blockers": [
+        "My Practice can otherwise mix English diagnosis and French recommendations."
+      ]
+    },
+    {
+      "id": "flashcards_target_store",
+      "phase": "P3",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "flashcards",
+      "dependsOn": [
+        "target_storage_key_builder"
+      ],
+      "productModules": [
+        "app/flashcards/target_storage.ts",
+        "hooks/use-flashcards.ts"
+      ],
+      "coveredSurfaceDomains": [
+        "flashcards"
+      ],
+      "sourceFiles": [
+        "app/flashcards/storage.ts",
+        "app/flashcards_collection.tsx",
+        "app/flashcards_swipe.tsx",
+        "hooks/use-flashcards.ts"
+      ],
+      "storageKeys": [
+        "achievement_flashcards_flip_count",
+        "achievement_flashcards_saved_count",
+        "achievement_flashcards_source_set_v1",
+        "achievement_flashcards_view_streak_v1",
+        "custom_flashcards_v2",
+        "flashcards",
+        "flashcards_v1",
+        "irregular_verbs_global"
+      ],
+      "cloudActions": [
+        "achievement_flashcards_flip_count:map_to_target -> progress/targets/{studyTarget}/achievement_flashcards_flip_count",
+        "achievement_flashcards_saved_count:map_to_target -> progress/targets/{studyTarget}/achievement_flashcards_saved_count",
+        "achievement_flashcards_source_set_v1:map_to_target -> progress/targets/{studyTarget}/achievement_flashcards_source_set_v1",
+        "achievement_flashcards_view_streak_v1:map_to_target -> progress/targets/{studyTarget}/achievement_flashcards_view_streak_v1",
+        "custom_flashcards_v2:map_to_target -> progress/targets/{studyTarget}/custom_flashcards_v2",
+        "flashcard_pack_trial_gift_v1:keep_global -> progress/global/flashcard_pack_trial_gift_v1",
+        "flashcards:map_to_target -> progress/targets/{studyTarget}/flashcards",
+        "flashcards_owned_packs_v1:keep_global -> progress/global/flashcards_owned_packs_v1",
+        "flashcards_progress_v1:map_to_target -> progress/targets/{studyTarget}/flashcards_progress_v1",
+        "flashcards_v1:map_to_target -> progress/targets/{studyTarget}/flashcards_v1",
+        "irregular_verbs_global:map_to_target -> progress/targets/{studyTarget}/irregular_verbs_global"
+      ],
+      "implementationSteps": [
+        "Add studyTarget metadata to system and custom cards.",
+        "Move progress and owned target card state under studyTarget.",
+        "Keep sourceLocale translations as card copy metadata."
+      ],
+      "testsRequired": [
+        "English custom card does not appear in French unless explicitly copied.",
+        "French flashcard progress is independent from English progress."
+      ],
+      "rollbackNotes": [
+        "Flashcard v2 can read legacy English only when studyTarget=en."
+      ],
+      "blockers": [
+        "Flashcard content and progress are target-sensitive."
+      ]
+    },
+    {
+      "id": "achievement_progress_store",
+      "phase": "P4",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "achievements",
+      "dependsOn": [
+        "lesson_progress_store",
+        "quiz_progress_store",
+        "trainer_practice_store",
+        "flashcards_target_store"
+      ],
+      "productModules": [
+        "app/achievement_progress_store.ts",
+        "app/achievements.ts",
+        "app/achievements_screen.tsx"
+      ],
+      "coveredSurfaceDomains": [
+        "achievements"
+      ],
+      "sourceFiles": [
+        "app/achievements.ts",
+        "app/achievements_screen.tsx"
+      ],
+      "storageKeys": [
+        "achievement_active_recall_correct_count",
+        "achievement_daily_phrase_read_count",
+        "achievement_daily_phrase_save_count",
+        "achievement_flashcards_flip_count",
+        "achievement_flashcards_saved_count",
+        "achievement_flashcards_source_set_v1",
+        "achievement_flashcards_view_streak_v1",
+        "achievement_lesson_${...}_perfect_passes_v1",
+        "achievement_quiz_hard_perfect_count",
+        "achievement_quiz_perfect_levels_today_v1",
+        "achievement_quiz_perfect_streak_v1",
+        "achievement_quiz_total_count",
+        "achievement_trainer_correct_count",
+        "achievement_trainer_correct_streak_v1",
+        "achievement_trainer_perfect_session_count"
+      ],
+      "cloudActions": [
+        "achievement_active_recall_correct_count:map_to_target -> progress/targets/{studyTarget}/achievement_active_recall_correct_count",
+        "achievement_all_daily_streak_v1:keep_global -> progress/global/achievement_all_daily_streak_v1",
+        "achievement_arena_wager_win_count:keep_global -> progress/global/achievement_arena_wager_win_count",
+        "achievement_arena_win_count:keep_global -> progress/global/achievement_arena_win_count",
+        "achievement_arena_win_streak:keep_global -> progress/global/achievement_arena_win_streak",
+        "achievement_energy_refill_count:keep_global -> progress/global/achievement_energy_refill_count",
+        "achievement_flashcards_flip_count:map_to_target -> progress/targets/{studyTarget}/achievement_flashcards_flip_count",
+        "achievement_flashcards_saved_count:map_to_target -> progress/targets/{studyTarget}/achievement_flashcards_saved_count",
+        "achievement_flashcards_source_set_v1:map_to_target -> progress/targets/{studyTarget}/achievement_flashcards_source_set_v1",
+        "achievement_flashcards_view_streak_v1:map_to_target -> progress/targets/{studyTarget}/achievement_flashcards_view_streak_v1",
+        "achievement_gift_sent_count:keep_global -> progress/global/achievement_gift_sent_count",
+        "achievement_league_boost_count:keep_global -> progress/global/achievement_league_boost_count",
+        "achievement_league_chat_message_count:keep_global -> progress/global/achievement_league_chat_message_count",
+        "achievement_shards_spent_total:keep_global -> progress/global/achievement_shards_spent_total",
+        "achievement_trainer_correct_count:map_to_target -> progress/targets/{studyTarget}/achievement_trainer_correct_count",
+        "achievement_trainer_correct_streak_v1:map_to_target -> progress/targets/{studyTarget}/achievement_trainer_correct_streak_v1",
+        "achievements_state:block_unknown -> no-target-path"
+      ],
+      "implementationSteps": [
+        "Split achievement state into global and target buckets using taxonomy.",
+        "Route target-content counters through target stores.",
+        "Hold mixed achievements until product policy decides global versus per-target behavior."
+      ],
+      "testsRequired": [
+        "Target achievement unlocks independently for en and fr.",
+        "Global achievement remains shared only when taxonomy says global."
+      ],
+      "rollbackNotes": [
+        "Keep flat achievements_state read-only during migration and never delete before rollback window."
+      ],
+      "blockers": [
+        "Achievement taxonomy still contains target and mixed blocker entries."
+      ]
+    },
+    {
+      "id": "target_stats_store",
+      "phase": "P4",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "stats",
+      "dependsOn": [
+        "lesson_progress_store",
+        "quiz_progress_store",
+        "trainer_practice_store"
+      ],
+      "productModules": [
+        "app/target_stats_store.ts",
+        "app/lifetime_profile_stats.ts",
+        "app/stats_daily_breakdown.ts"
+      ],
+      "coveredSurfaceDomains": [
+        "progress_stats"
+      ],
+      "sourceFiles": [
+        "app/cloud_sync.ts",
+        "app/lifetime_profile_stats.ts"
+      ],
+      "storageKeys": [
+        "lifetime_quiz_counters_migrated_v1",
+        "lifetime_quiz_easy_v1",
+        "lifetime_quiz_hard_v1",
+        "lifetime_quiz_medium_v1"
+      ],
+      "cloudActions": [
+        "daily_stats:block_unknown -> no-target-path",
+        "lifetime_quiz_counters_migrated_v1:map_to_target -> progress/targets/{studyTarget}/lifetime_quiz_counters_migrated_v1",
+        "lifetime_quiz_easy_v1:map_to_target -> progress/targets/{studyTarget}/lifetime_quiz_easy_v1",
+        "lifetime_quiz_hard_v1:map_to_target -> progress/targets/{studyTarget}/lifetime_quiz_hard_v1",
+        "lifetime_quiz_medium_v1:map_to_target -> progress/targets/{studyTarget}/lifetime_quiz_medium_v1",
+        "stats_daily_breakdown_v1:block_unknown -> no-target-path",
+        "user_stats_v1:block_unknown -> no-target-path"
+      ],
+      "implementationSteps": [
+        "Split global engagement stats from target learning stats.",
+        "Decide whether XP stays global while words/phrases/quizzes become target-scoped.",
+        "Route progress_map and lifetime profile reads through split stats APIs."
+      ],
+      "testsRequired": [
+        "French words/phrases/quizzes do not increment English target stats.",
+        "Global engagement counters remain shared after target switch."
+      ],
+      "rollbackNotes": [
+        "Keep v1 stats payloads intact and expose v2 stats behind target feature flag."
+      ],
+      "blockers": [
+        "Stats payloads currently mix global and target learning fields."
+      ]
+    },
+    {
+      "id": "cloud_sync_target_buckets",
+      "phase": "P4",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "cloud",
+      "dependsOn": [
+        "lesson_progress_store",
+        "quiz_progress_store",
+        "trainer_practice_store",
+        "flashcards_target_store",
+        "achievement_progress_store",
+        "target_stats_store"
+      ],
+      "productModules": [
+        "app/cloud_sync.ts",
+        "app/auth_provider.ts"
+      ],
+      "coveredSurfaceDomains": [
+        "cloud_sync"
+      ],
+      "sourceFiles": [
+        "app/auth_provider.ts",
+        "app/cloud_sync.ts"
+      ],
+      "storageKeys": [
+        "achievement_active_recall_correct_count",
+        "achievement_all_daily_streak_v1",
+        "achievement_arena_wager_win_count",
+        "achievement_arena_win_count",
+        "achievement_arena_win_streak",
+        "achievement_energy_refill_count",
+        "achievement_flashcards_flip_count",
+        "achievement_flashcards_saved_count",
+        "achievement_flashcards_source_set_v1",
+        "achievement_flashcards_view_streak_v1",
+        "achievement_gift_sent_count",
+        "achievement_league_boost_count",
+        "achievement_league_chat_message_count",
+        "achievement_shards_spent_total",
+        "achievement_trainer_correct_count",
+        "achievement_trainer_correct_streak_v1",
+        "achievements_state",
+        "active_recall_items",
+        "admin_premium_override",
+        "app_lang",
+        "app_version",
+        "arena_daily_gift_bonus_v1",
+        "avatar_aura_gift_owned_v1",
+        "avatar_aura_owned_v1",
+        "chain_shield",
+        "club_gift_free_boost_v1",
+        "community_owned_pack_ids_v1",
+        "custom_avatar_gift_owned_v1",
+        "custom_avatar_owned_v1",
+        "custom_flashcards_v2",
+        "daily_stats",
+        "daily_tasks_progress",
+        "device_platform",
+        "diagnostic_last",
+        "flashcard_pack_trial_gift_v1",
+        "flashcards",
+        "flashcards_owned_packs_v1",
+        "flashcards_progress_v1",
+        "flashcards_v1",
+        "gift_xp_bank_v1"
+      ],
+      "cloudActions": [
+        "achievement_active_recall_correct_count:map_to_target",
+        "achievement_flashcards_flip_count:map_to_target",
+        "achievement_flashcards_saved_count:map_to_target",
+        "achievement_flashcards_source_set_v1:map_to_target",
+        "achievement_flashcards_view_streak_v1:map_to_target",
+        "achievement_trainer_correct_count:map_to_target",
+        "achievement_trainer_correct_streak_v1:map_to_target",
+        "achievements_state:block_unknown",
+        "active_recall_items:map_to_target",
+        "app_lang:map_to_source_locale",
+        "custom_flashcards_v2:map_to_target",
+        "daily_stats:block_unknown",
+        "diagnostic_last:map_to_target",
+        "flashcards:map_to_target",
+        "flashcards_progress_v1:map_to_target",
+        "flashcards_v1:map_to_target",
+        "irregular_verbs_global:map_to_target",
+        "lang:map_to_source_locale",
+        "lesson${...}_best_score:map_to_target",
+        "lesson${...}_intro_shown:map_to_target",
+        "lesson${...}_listening_progress:map_to_target",
+        "lesson${...}_pass_count:map_to_target",
+        "lesson${...}_progress:map_to_target",
+        "lesson${...}_words:map_to_target",
+        "level_exam_A1_best_pct:map_to_target",
+        "level_exam_A1_pass_count:map_to_target",
+        "level_exam_A1_passed:map_to_target",
+        "level_exam_A1_pct:map_to_target",
+        "level_exam_A2_best_pct:map_to_target",
+        "level_exam_A2_pass_count:map_to_target",
+        "level_exam_A2_passed:map_to_target",
+        "level_exam_A2_pct:map_to_target",
+        "level_exam_B1_best_pct:map_to_target",
+        "level_exam_B1_pass_count:map_to_target",
+        "level_exam_B1_passed:map_to_target",
+        "level_exam_B1_pct:map_to_target",
+        "level_exam_B2_best_pct:map_to_target",
+        "level_exam_B2_pass_count:map_to_target",
+        "level_exam_B2_passed:map_to_target",
+        "level_exam_B2_pct:map_to_target"
+      ],
+      "implementationSteps": [
+        "Move cloud learning payloads under progress/targets/{studyTarget}.",
+        "Keep global account/product state under progress/global.",
+        "Restore only selected target buckets and map legacy flat cloud state to en."
+      ],
+      "testsRequired": [
+        "Cloud restore for en does not write fr target keys.",
+        "Cloud restore for fr does not overwrite en target keys.",
+        "Empty local AsyncStorage cannot overwrite existing target cloud buckets."
+      ],
+      "rollbackNotes": [
+        "Do not delete legacy cloud fields until dual-read window is complete."
+      ],
+      "blockers": [
+        "Cloud sync mapping still has target and mixed payload blockers."
+      ]
+    },
+    {
+      "id": "route_surface_integration",
+      "phase": "P5",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "ui",
+      "dependsOn": [
+        "production_study_target",
+        "lesson_progress_store",
+        "quiz_progress_store",
+        "trainer_practice_store",
+        "flashcards_target_store",
+        "achievement_progress_store"
+      ],
+      "productModules": [
+        "app/_layout.tsx",
+        "app/(tabs)/home.tsx",
+        "app/(tabs)/lessons.tsx",
+        "app/lesson1.tsx",
+        "app/quizzes.tsx",
+        "app/trainer.tsx",
+        "app/flashcards.tsx"
+      ],
+      "coveredSurfaceDomains": [
+        "home_dashboard",
+        "lesson_list",
+        "lesson_runtime",
+        "quiz",
+        "trainer_practice",
+        "flashcards",
+        "achievements",
+        "progress_stats"
+      ],
+      "sourceFiles": [
+        "app/(tabs)/home.tsx",
+        "app/(tabs)/lessons.tsx",
+        "app/(tabs)/quizzes.tsx",
+        "app/(tabs)/settings.tsx",
+        "app/achievements_screen.tsx",
+        "app/arena_leaderboard.tsx",
+        "app/arena_rating.tsx",
+        "app/avatar_select.tsx",
+        "app/daily_tasks_screen.tsx",
+        "app/diagnostic_test.tsx",
+        "app/exam.tsx",
+        "app/flashcards_collection.tsx",
+        "app/flashcards_swipe.tsx",
+        "app/lesson1.tsx",
+        "app/lesson_complete.tsx",
+        "app/lesson_intro_screens.tsx",
+        "app/lesson_irregular_verbs.tsx",
+        "app/lesson_menu.tsx",
+        "app/lesson_words.tsx",
+        "app/level_exam.tsx",
+        "app/pack_opening.tsx",
+        "app/preposition_drill.tsx",
+        "app/problem_coach.tsx",
+        "app/quizzes.tsx",
+        "app/review.tsx",
+        "app/trainer.tsx",
+        "app/trainer_arena_session.tsx",
+        "app/trainer_phrases_session.tsx",
+        "app/trainer_smart_session.tsx",
+        "app/trainer_words_session.tsx",
+        "components/LangContext.tsx",
+        "components/StudyTargetContext.tsx"
+      ],
+      "storageKeys": [],
+      "cloudActions": [],
+      "implementationSteps": [
+        "Inject production studyTarget into every user-facing learning route.",
+        "Replace direct target-sensitive storage reads with adapter APIs.",
+        "Keep sourceLocale switching limited to copy/explanations."
+      ],
+      "testsRequired": [
+        "Route smoke matrix: ru/fr, uk/fr, ru/en and uk/en.",
+        "No user-facing French route displays English progress after target switch."
+      ],
+      "rollbackNotes": [
+        "Route integration should be feature-flagged so English-only app shell can stay active."
+      ],
+      "blockers": [
+        "66 blocker surfaces remain in current inventory."
+      ]
+    },
+    {
+      "id": "raw_storage_guard",
+      "phase": "P5",
+      "status": "HOLD",
+      "risk": "blocker",
+      "ownerArea": "tests",
+      "dependsOn": [
+        "target_storage_key_builder"
+      ],
+      "productModules": [
+        "scripts/gustav_storage_inventory.ts",
+        "tests/target_storage_keys.test.ts"
+      ],
+      "coveredSurfaceDomains": [
+        "all"
+      ],
+      "sourceFiles": [],
+      "storageKeys": [],
+      "cloudActions": [],
+      "implementationSteps": [
+        "Add CI/test gate that fails new raw target-sensitive AsyncStorage keys outside migration adapters.",
+        "Update Gustav readiness gate to require adapter-plan implementation evidence, not just plan existence.",
+        "Keep generated French blocked until this guard is green."
+      ],
+      "testsRequired": [
+        "Adding AsyncStorage.getItem(`lesson${id}_progress`) outside adapter must fail guard.",
+        "Migration adapter raw legacy reads are allowed by explicit allowlist only."
+      ],
+      "rollbackNotes": [
+        "Guard can start as warning in architecture branch, then become blocking before French generation."
+      ],
+      "blockers": [
+        "No raw storage guard exists yet."
+      ]
+    }
+  ],
+  "highestRiskFiles": [
+    {
+      "sourcePath": "app/cloud_sync.ts",
+      "domain": "cloud_sync",
+      "targetStorageRecords": 47,
+      "blockers": 2
+    },
+    {
+      "sourcePath": "app/achievements.ts",
+      "domain": "achievements",
+      "targetStorageRecords": 35,
+      "blockers": 1
+    },
+    {
+      "sourcePath": "app/lesson1.tsx",
+      "domain": "lesson_runtime",
+      "targetStorageRecords": 31,
+      "blockers": 2
+    },
+    {
+      "sourcePath": "app/lesson_lock_system.ts",
+      "domain": "lesson_list",
+      "targetStorageRecords": 17,
+      "blockers": 1
+    },
+    {
+      "sourcePath": "app/achievements_screen.tsx",
+      "domain": "achievements",
+      "targetStorageRecords": 15,
+      "blockers": 2
+    },
+    {
+      "sourcePath": "app/medal_utils.ts",
+      "domain": "other",
+      "targetStorageRecords": 13,
+      "blockers": 1
+    },
+    {
+      "sourcePath": "app/release_wave_bonus.ts",
+      "domain": "other",
+      "targetStorageRecords": 13,
+      "blockers": 1
+    },
+    {
+      "sourcePath": "app/lesson_menu.tsx",
+      "domain": "lesson_menu",
+      "targetStorageRecords": 12,
+      "blockers": 2
+    },
+    {
+      "sourcePath": "app/lifetime_profile_stats.ts",
+      "domain": "quiz",
+      "targetStorageRecords": 9,
+      "blockers": 1
+    },
+    {
+      "sourcePath": "app/(tabs)/quizzes.tsx",
+      "domain": "quiz",
+      "targetStorageRecords": 8,
+      "blockers": 3
+    },
+    {
+      "sourcePath": "app/quizzes.tsx",
+      "domain": "quiz",
+      "targetStorageRecords": 8,
+      "blockers": 3
+    },
+    {
+      "sourcePath": "app/(tabs)/lessons.tsx",
+      "domain": "lesson_list",
+      "targetStorageRecords": 8,
+      "blockers": 2
+    },
+    {
+      "sourcePath": "app/daily_tasks.ts",
+      "domain": "other",
+      "targetStorageRecords": 7,
+      "blockers": 1
+    },
+    {
+      "sourcePath": "app/lessons_tab_state.ts",
+      "domain": "lesson_list",
+      "targetStorageRecords": 7,
+      "blockers": 1
+    },
+    {
+      "sourcePath": "app/services/league_chest_rewards.ts",
+      "domain": "social_arena",
+      "targetStorageRecords": 7,
+      "blockers": 1
+    },
+    {
+      "sourcePath": "app/lesson_complete.tsx",
+      "domain": "lesson_completion",
+      "targetStorageRecords": 6,
+      "blockers": 2
+    },
+    {
+      "sourcePath": "app/lesson_irregular_verbs.tsx",
+      "domain": "lesson_runtime",
+      "targetStorageRecords": 6,
+      "blockers": 2
+    },
+    {
+      "sourcePath": "app/mistake_log.ts",
+      "domain": "trainer_practice",
+      "targetStorageRecords": 6,
+      "blockers": 2
+    },
+    {
+      "sourcePath": "app/lesson_screen_bootstrap.ts",
+      "domain": "other",
+      "targetStorageRecords": 6,
+      "blockers": 1
+    },
+    {
+      "sourcePath": "app/active_recall.ts",
+      "domain": "trainer_practice",
+      "targetStorageRecords": 5,
+      "blockers": 2
+    },
+    {
+      "sourcePath": "app/daily_tasks_screen.tsx",
+      "domain": "quiz",
+      "targetStorageRecords": 5,
+      "blockers": 2
+    },
+    {
+      "sourcePath": "app/level_gift_system.ts",
+      "domain": "commerce_rewards",
+      "targetStorageRecords": 5,
+      "blockers": 1
+    },
+    {
+      "sourcePath": "app/mastery.ts",
+      "domain": "other",
+      "targetStorageRecords": 5,
+      "blockers": 1
+    },
+    {
+      "sourcePath": "app/diagnostic_test.tsx",
+      "domain": "personal_practice",
+      "targetStorageRecords": 4,
+      "blockers": 3
+    },
+    {
+      "sourcePath": "app/lesson_words.tsx",
+      "domain": "lesson_runtime",
+      "targetStorageRecords": 4,
+      "blockers": 2
+    },
+    {
+      "sourcePath": "app/preposition_drill.tsx",
+      "domain": "lesson_runtime",
+      "targetStorageRecords": 4,
+      "blockers": 2
+    },
+    {
+      "sourcePath": "app/trainer_store.ts",
+      "domain": "trainer_practice",
+      "targetStorageRecords": 4,
+      "blockers": 2
+    },
+    {
+      "sourcePath": "app/global_broadcast_modal.ts",
+      "domain": "other",
+      "targetStorageRecords": 4,
+      "blockers": 1
+    },
+    {
+      "sourcePath": "app/notifications.ts",
+      "domain": "other",
+      "targetStorageRecords": 4,
+      "blockers": 1
+    },
+    {
+      "sourcePath": "hooks/use-flashcards.ts",
+      "domain": "flashcards",
+      "targetStorageRecords": 4,
+      "blockers": 1
+    }
+  ],
+  "notes": [
+    "This is an implementation strategy artifact, not permission to edit product runtime files.",
+    "Every adapter remains HOLD until implemented and verified by tests.",
+    "French generation remains blocked after this plan because planning does not equal target-safe storage/runtime implementation."
+  ]
+}

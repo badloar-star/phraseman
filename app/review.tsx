@@ -10,7 +10,7 @@
  *
  * Откуда берутся данные:
  *   lesson1.tsx → checkAnswer() → recordMistake(phrase.english, phrase.russian, lessonId)
- *   → active_recall.ts сохраняет фразу в AsyncStorage ('active_recall_items')
+ *   → active_recall.ts сохраняет фразу в target-aware AsyncStorage
  *   → getDueItems(SESSION_LIMIT, { commitSessionOverflow: true }) — сессия + перенос перегруза на завтра
  *
  * Свайп по карточке с переводом — переключение фразы сессии до ответа.
@@ -26,7 +26,7 @@
 
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -48,7 +48,7 @@ import Reanimated, {
   withTiming
 } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { triLang, type Lang } from '../constants/i18n';
+import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -81,6 +81,7 @@ import { englishRecallSurface } from './phrase_target_utils';
 import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './coach_toast_trigger';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import CoachToast from '../components/CoachToast';
+import { frenchTrainerGateCopy, srsReviewContentAvailableForTarget } from './trainer_target_gate';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 
@@ -89,10 +90,71 @@ const CONTENT_W = Math.min(SCREEN_W, 640);
 const CUE_PAGER_PAGE_W = SCREEN_W - 32;
 const REVIEW_BURN_HINT_SHOWN_KEY = 'review_burn_hint_shown_v1';
 
+const REVIEW_TRANSLATION_UNAVAILABLE_HINT: Record<PlannedInterfaceLang, string> = {
+  'pt-BR': 'Tradução ainda indisponível para esta frase',
+  vi: 'Chưa có bản dịch cho cụm này',
+  id: 'Terjemahan frasa ini belum tersedia',
+  tr: 'Bu ifade için çeviri henüz yok',
+  pl: 'Tłumaczenie tej frazy jest jeszcze niedostępne',
+};
+
+const REVIEW_COMPLETION_TITLES: Record<Lang, { strong: string[]; steady: string[]; retry: string[] }> = {
+  ru: {
+    strong: ['Отлично!', 'Великолепно!', 'Ты машина!', 'Так держать!', 'Мощно! 💪'],
+    steady: ['Хорошо!', 'Неплохо!', 'Растёшь!', 'Ещё чуть-чуть — и отлично!'],
+    retry: ['Ещё поработаем!', 'Не сдавайся!', 'Повтори и попробуй ещё раз!', 'Ошибки — это опыт! 📖'],
+  },
+  uk: {
+    strong: ['Відмінно!', 'Чудово!', 'Ти машина!', 'Так тримати!', 'Мощно! 💪'],
+    steady: ['Добре!', 'Непогано!', 'Зростаєш!', 'Ще трохи — і відмінно!'],
+    retry: ['Ще попрацюємо!', 'Не здавайся!', 'Повтори і спробуй ще раз!', 'Помилки — це досвід! 📖'],
+  },
+  es: {
+    strong: ['¡Genial!', '¡Excelente!', '¡Eres una máquina!', '¡Así se hace!', '¡Fuerte! 💪'],
+    steady: ['¡Bien!', '¡No está mal!', '¡Sigues mejorando!', '¡Un poco más y genial!'],
+    retry: ['¡Seguimos!', '¡No te rindas!', 'Repasa e inténtalo otra vez', '¡De los errores también se aprende! 📖'],
+  },
+  'pt-BR': {
+    strong: ['Excelente!', 'Muito bem!', 'Você mandou muito!', 'Continue assim!', 'Forte! 💪'],
+    steady: ['Bom!', 'Nada mal!', 'Você está melhorando!', 'Mais um pouco e fica ótimo!'],
+    retry: ['Vamos continuar!', 'Não desista!', 'Revise e tente de novo', 'Também se aprende com os erros! 📖'],
+  },
+  vi: {
+    strong: ['Tuyệt vời!', 'Xuất sắc!', 'Bạn làm rất tốt!', 'Cứ thế nhé!', 'Mạnh mẽ lắm! 💪'],
+    steady: ['Tốt!', 'Không tệ!', 'Bạn đang tiến bộ!', 'Thêm chút nữa là tuyệt!'],
+    retry: ['Tiếp tục nào!', 'Đừng bỏ cuộc!', 'Ôn lại rồi thử lần nữa', 'Sai cũng là cách học! 📖'],
+  },
+  id: {
+    strong: ['Hebat!', 'Luar biasa!', 'Kamu keren!', 'Pertahankan!', 'Kuat! 💪'],
+    steady: ['Bagus!', 'Tidak buruk!', 'Kamu makin berkembang!', 'Sedikit lagi jadi luar biasa!'],
+    retry: ['Kita lanjutkan!', 'Jangan menyerah!', 'Ulangi dan coba lagi', 'Dari kesalahan juga belajar! 📖'],
+  },
+  tr: {
+    strong: ['Harika!', 'Mükemmel!', 'Çok iyisin!', 'Böyle devam!', 'Güçlü! 💪'],
+    steady: ['İyi!', 'Fena değil!', 'Gelişiyorsun!', 'Biraz daha, harika olacak!'],
+    retry: ['Devam ediyoruz!', 'Vazgeçme!', 'Tekrar et ve yeniden dene', 'Hatalardan da öğrenilir! 📖'],
+  },
+  pl: {
+    strong: ['Świetnie!', 'Doskonale!', 'Jesteś świetny!', 'Tak trzymaj!', 'Mocno! 💪'],
+    steady: ['Dobrze!', 'Nieźle!', 'Robisz postępy!', 'Jeszcze trochę i będzie świetnie!'],
+    retry: ['Działamy dalej!', 'Nie poddawaj się!', 'Powtórz i spróbuj jeszcze raz', 'Na błędach też się uczymy! 📖'],
+  },
+};
+
 /** Подсказка на карточке: ES только при изучении ES + UI es (dev). */
 function recallTranslationHint(item: RecallItem, lang: Lang, studyTarget: StudyTargetLang): string {
-  if (spanishLessonUiStringsActive(lang, studyTarget)) return item.correctAnswerES ?? item.correctAnswer;
-  if (lang === 'uk' && item.correctAnswerUK) return item.correctAnswerUK;
+  const spanishHint = item.correctAnswerES?.trim() || item.correctAnswer;
+  if (spanishLessonUiStringsActive(lang, studyTarget)) return spanishHint;
+  const localizedHints: Partial<Record<Lang, string | undefined>> = {
+    uk: item.correctAnswerUK,
+    'pt-BR': REVIEW_TRANSLATION_UNAVAILABLE_HINT['pt-BR'],
+    vi: REVIEW_TRANSLATION_UNAVAILABLE_HINT.vi,
+    id: REVIEW_TRANSLATION_UNAVAILABLE_HINT.id,
+    tr: REVIEW_TRANSLATION_UNAVAILABLE_HINT.tr,
+    pl: REVIEW_TRANSLATION_UNAVAILABLE_HINT.pl,
+  };
+  const localizedHint = localizedHints[lang]?.trim();
+  if (localizedHint) return localizedHint;
   return item.correctAnswer;
 }
 
@@ -187,7 +249,7 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
   });
 }
 
-function recallCueInstruction(mode: ReviewMode, lang: Lang): string {
+function recallCueInstruction(mode: ReviewMode, lang: Lang, studyTarget: StudyTargetLang): string {
   if (mode === 'word_bank') {
     return triLang(lang, {
       ru: 'Соберите фразу: жмите слова по порядку',
@@ -210,6 +272,18 @@ function recallCueInstruction(mode: ReviewMode, lang: Lang): string {
       id: "Apa artinya? Pilih terjemahan",
       tr: "Ne anlama geliyor? Çeviriyi seç",
       pl: "Co to znaczy? Wybierz tłumaczenie",
+    });
+  }
+  if (studyTarget === 'fr') {
+    return triLang(lang, {
+      ru: 'Вспомните и напишите по-французски',
+      uk: 'Згадайте і напишіть французькою',
+      es: 'Recuerda y escribe en francés',
+      'pt-BR': 'Lembre e escreva em francês',
+      vi: 'Nhớ lại và viết bằng tiếng Pháp',
+      id: 'Ingat dan tulis dalam bahasa Prancis',
+      tr: 'Hatırla ve Fransızca yaz',
+      pl: 'Przypomnij sobie i napisz po francusku',
     });
   }
   return triLang(lang, {
@@ -544,6 +618,7 @@ export default function ReviewScreen() {
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const srsReviewGateOpen = srsReviewContentAvailableForTarget(studyTarget);
   // trainerMode и lessonId передаются из trainer.tsx при старте режимной сессии.
   const params = useLocalSearchParams<{ trainerMode?: string; lessonId?: string; category?: string }>();
   const trainerMode = (params.trainerMode ?? 'due') as TrainerMode;
@@ -655,8 +730,8 @@ export default function ReviewScreen() {
     // Когда запускаем из trainer.tsx с trainerMode — используем getTrainerItems.
     // Стандартный /review без params грузит «due» с commitSessionOverflow.
     const itemsPromise = params.trainerMode
-      ? getTrainerItems(trainerMode, SESSION_LIMIT, trainerLessonId, trainerCategory)
-      : getDueItems(SESSION_LIMIT, { commitSessionOverflow: true });
+      ? getTrainerItems(trainerMode, SESSION_LIMIT, trainerLessonId, trainerCategory, studyTarget)
+      : getDueItems(SESSION_LIMIT, { commitSessionOverflow: true }, studyTarget);
     itemsPromise.then(due => {
       setItems(due);
       setLoading(false);
@@ -667,7 +742,7 @@ export default function ReviewScreen() {
       const timer = timerRef.current;
       if (timer) clearTimeout(timer);
     };
-  }, [loadCard, params.trainerMode, trainerLessonId, trainerCategory, trainerMode]);
+  }, [loadCard, params.trainerMode, trainerLessonId, trainerCategory, trainerMode, studyTarget]);
 
   const shouldShowBurnHint = status === 'result' && canBurn && !burnHintSeen;
 
@@ -793,14 +868,17 @@ export default function ReviewScreen() {
               : storedTokenMeta?.tokenIndex,
           }
         : undefined;
-      logMistake(item.phrase, item.lessonId, 'trainer', 'wrong_pick', tokenMeta);
+      logMistake(item.phrase, item.lessonId, 'trainer', 'wrong_pick', tokenMeta, studyTarget);
       wrongPhrasesRef.current.push(tokenMeta ? { phrase: item.phrase, ...tokenMeta } : item.phrase);
     }
-    markReviewed(item.phrase, ok, tokenMeta).catch(() => {});
+    markReviewed(item.phrase, ok, tokenMeta, studyTarget).catch(() => {});
 
     if (!recallSessionTracked.current) {
       recallSessionTracked.current = true;
-      updateMultipleTaskProgress([{ type: 'recall_session', increment: 1 }]).catch(() => {});
+      updateMultipleTaskProgress(
+        [{ type: 'recall_session', increment: 1 }],
+        { studyTarget },
+      ).catch(() => {});
     }
 
     if (ok) {
@@ -811,11 +889,14 @@ export default function ReviewScreen() {
           setTotalXP(prev => prev + result.finalDelta);
         }).catch(() => { setTotalXP(prev => prev + 5); });
       }
-      updateMultipleTaskProgress([{ type: 'recall_answers', increment: 1 }]).catch(() => {});
+      updateMultipleTaskProgress(
+        [{ type: 'recall_answers', increment: 1 }],
+        { studyTarget },
+      ).catch(() => {});
     }
 
     checkingRef.current = false;
-  }, [items, index, lang, mode, nextSlot, resultAnim, trainerMode]);
+  }, [items, index, lang, mode, nextSlot, resultAnim, trainerMode, studyTarget]);
 
   const onWordBankTap = useCallback((tile: WordBankTile) => {
     if (status !== 'playing' || burning) return;
@@ -901,7 +982,7 @@ export default function ReviewScreen() {
     hapticTap();
     const newItems = items.filter((_, i) => i !== fromIndex);
     // Не await — сразу огонь; запись в storage не должна вставлять кадр «тишины» перед эффектом
-    void removeItem(item.phrase).catch(() => {});
+    void removeItem(item.phrase, studyTarget).catch(() => {});
 
     // Слайд сразу по завершению parallel (без setTimeout(2300) — тот и давал секунду «подвисания»)
     const afterBurn = () => {
@@ -937,19 +1018,23 @@ export default function ReviewScreen() {
   useEffect(() => {
     if (!done) return;
     if (wrong === 0 && correct >= 5) {
-      updateMultipleTaskProgress([{ type: 'recall_perfect', increment: 1 }]).catch(() => {});
+      updateMultipleTaskProgress(
+        [{ type: 'recall_perfect', increment: 1 }],
+        { studyTarget },
+      ).catch(() => {});
     }
     // Проверяем нужен ли тост точного диагноза
     let cancelled = false;
-    void checkCoachToastNeededWithAnalytics(wrongPhrasesRef.current).then((decision) => {
+    void checkCoachToastNeededWithAnalytics(wrongPhrasesRef.current, studyTarget, lang).then((decision) => {
       if (!cancelled && decision.show) setCoachToast(decision);
     });
     return () => { cancelled = true; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [done]);
+  }, [done, lang, studyTarget]);
 
   // ─── Нечего повторять ─────────────────────────────────────────────────────
   if (items.length === 0) {
+    const sourceGateCopy = frenchTrainerGateCopy(lang);
     return (
       <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
@@ -971,9 +1056,9 @@ export default function ReviewScreen() {
           </Text>
         </View>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32 }}>
-          <Text style={{ fontSize: 56, marginBottom: 16 }}>✅</Text>
+          <Text style={{ fontSize: 56, marginBottom: 16 }}>{srsReviewGateOpen ? '✅' : '🔒'}</Text>
           <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
-            {triLang(lang, {
+            {!srsReviewGateOpen ? sourceGateCopy.title : triLang(lang, {
               ru: 'Нечего повторять!',
               uk: 'Нічого повторювати!',
               es: '¡Nada que repasar por ahora!',
@@ -985,7 +1070,7 @@ export default function ReviewScreen() {
             })}
           </Text>
           <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 8, lineHeight: 22 }}>
-            {triLang(lang, {
+            {!srsReviewGateOpen ? sourceGateCopy.body : triLang(lang, {
               ru: 'Допускай ошибки в уроках — они появятся здесь для повторения',
               uk: 'Допускай помилки в уроках — вони з\'являться тут для повторення',
               es: 'Si te equivocas en las lecciones, aquí aparecerán frases para repasar.',
@@ -1025,23 +1110,12 @@ export default function ReviewScreen() {
     const pct   = total > 0 ? Math.round((correct / total) * 100) : 0;
     const emoji = pct >= 80 ? '🏆' : pct >= 50 ? '💪' : '📖';
     const _rp = (a: string[]) => a[Math.floor(Math.random() * a.length)];
-    const title = pct >= 80
-      ? _rp(lang === 'es'
-          ? ['¡Genial!', '¡Excelente!', '¡Eres una máquina!', '¡Así se hace!', '¡Fuerte! 💪']
-          : lang === 'uk'
-            ? ['Відмінно!', 'Чудово!', 'Ти машина!', 'Так тримати!', 'Мощно! 💪']
-            : ['Отлично!', 'Великолепно!', 'Ты машина!', 'Так держать!', 'Мощно! 💪'])
+    const titlePool = pct >= 80
+      ? REVIEW_COMPLETION_TITLES[lang].strong
       : pct >= 50
-        ? _rp(lang === 'es'
-            ? ['¡Bien!', '¡No está mal!', '¡Sigues mejorando!', '¡Un poco más y genial!']
-            : lang === 'uk'
-              ? ['Добре!', 'Непогано!', 'Зростаєш!', 'Ще трохи — і відмінно!']
-              : ['Хорошо!', 'Неплохо!', 'Растёшь!', 'Ещё чуть-чуть — и отлично!'])
-        : _rp(lang === 'es'
-            ? ['¡Seguimos!', '¡No te rindas!', 'Repasa e inténtalo otra vez', '¡De los errores también se aprende! 📖']
-            : lang === 'uk'
-              ? ['Ще попрацюємо!', 'Не здавайся!', 'Повтори і спробуй ще раз!', 'Помилки — це досвід! 📖']
-              : ['Ещё поработаем!', 'Не сдавайся!', 'Повтори и попробуй ещё раз!', 'Ошибки — это опыт! 📖']);
+        ? REVIEW_COMPLETION_TITLES[lang].steady
+        : REVIEW_COMPLETION_TITLES[lang].retry;
+    const title = _rp(titlePool);
 
     return (
       <ScreenGradient>
@@ -1063,7 +1137,7 @@ export default function ReviewScreen() {
                   uk: 'Вірно',
                   es: 'Aciertos',
                   'pt-BR': "Corretas",
-                  vi: "??ng",
+                  vi: 'Đúng',
                   id: "Benar",
                   tr: "Doğru",
                   pl: "Poprawne",
@@ -1081,7 +1155,7 @@ export default function ReviewScreen() {
                   vi: "Lỗi sai",
                   id: "Kesalahan",
                   tr: "Hatalar",
-                  pl: "B??dy",
+                  pl: 'Błędy',
                 })}
               </Text>
             </View>
@@ -1319,7 +1393,7 @@ export default function ReviewScreen() {
                   >
                     <Animated.View style={{ opacity: i === index ? burnTextOp : 1, zIndex: 1, alignItems: 'center' }}>
                       <Text style={{ color: t.textMuted, fontSize: f.caption, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 }}>
-                        {recallCueInstruction(pageMode, lang)}
+                        {recallCueInstruction(pageMode, lang, studyTarget)}
                       </Text>
                       <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700', textAlign: 'center', lineHeight: 30 }}>
                         {pageMode === 'meaning_match'

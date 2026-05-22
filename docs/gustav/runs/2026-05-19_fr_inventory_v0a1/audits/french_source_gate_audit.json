@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "gustav-french-source-gate-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-22T08:31:13.401Z",
+  "status": "PASS",
+  "command": {
+    "argv": [
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "summary": {
+    "activeSeedLessonLimit": 0,
+    "draftSeedLessonLimit": 0,
+    "nextBlockedLessonId": 1,
+    "evidenceClaims": 22,
+    "acceptedClaims": 2,
+    "rowLedgerRows": 50,
+    "rowLedgerProposedFrenchRows": 0,
+    "blockers": 0,
+    "warnings": 0,
+    "mayActivateNextLesson": false
+  },
+  "artifacts": {
+    "evidenceLedger": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/evidence_ledger.json",
+    "lessonSourceGate": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_starter_source_gate.md",
+    "lessonRowLedger": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_row_ledger.json",
+    "appSeedFile": "app/lesson_data_fr_seed.ts",
+    "introScreenFile": "app/lesson_intro_screens_fr.ts"
+  },
+  "findings": []
+}

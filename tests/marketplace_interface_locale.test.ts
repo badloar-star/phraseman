@@ -5,6 +5,8 @@ import {
   packHubCodeName,
   packTitleForInterface,
 } from '../app/flashcards/marketplace';
+import fs from 'fs';
+import path from 'path';
 
 function basePack(p: Partial<FlashcardMarketPack>): FlashcardMarketPack {
   return {
@@ -72,7 +74,7 @@ describe('packTitleForInterface', () => {
       titleEs: '',
       titleRu: '',
       titleUk: '',
-      codeName: 'ugc_fallback',
+      codeName: 'ugc_reserve',
       isCommunityUgc: true,
       isOfficial: false,
     });
@@ -83,6 +85,35 @@ describe('packTitleForInterface', () => {
     for (const pack of BUNDLED_MARKETPLACE_PACKS) {
       const title = packTitleForInterface(pack, 'es');
       expect(title.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('planned storefront locales use explicit localized metadata', () => {
+    const pack = basePack({
+      titlePtBr: 'Titulo PT',
+      titleVi: 'Tieu de VI',
+      titleId: 'Judul ID',
+      titleTr: 'Baslik TR',
+      titlePl: 'Tytul PL',
+    });
+    expect(packTitleForInterface(pack, 'pt-BR')).toBe('Titulo PT');
+    expect(packTitleForInterface(pack, 'vi')).toBe('Tieu de VI');
+    expect(packTitleForInterface(pack, 'id')).toBe('Judul ID');
+    expect(packTitleForInterface(pack, 'tr')).toBe('Baslik TR');
+    expect(packTitleForInterface(pack, 'pl')).toBe('Tytul PL');
+  });
+
+  it('bundled packs: planned storefront titles never reuse RU / UK / ES text', () => {
+    const planned = ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+    for (const pack of BUNDLED_MARKETPLACE_PACKS) {
+      for (const lang of planned) {
+        const title = packTitleForInterface(pack, lang);
+        expect(title.length).toBeGreaterThan(0);
+        expect(title).not.toBe(pack.titleRu);
+        expect(title).not.toBe(pack.titleUk);
+        expect(title).not.toBe(pack.titleEs);
+        expect(stringHasCyrillicOrSimilar(title)).toBe(false);
+      }
     }
   });
 });
@@ -127,7 +158,7 @@ describe('packDescriptionForInterface', () => {
     expect(packDescriptionForInterface(packRu, 'es')).toBe('R2');
   });
 
-  it('ES official fallback mentions cardCount in Spanish when descriptionEs missing', () => {
+  it('ES official reserve copy mentions cardCount in Spanish when descriptionEs missing', () => {
     const pack = basePack({
       descriptionEs: '',
       cardCount: 42,
@@ -137,7 +168,7 @@ describe('packDescriptionForInterface', () => {
     expect(packDescriptionForInterface(pack, 'es')).toBe('Paquete de 42 tarjetas en inglés.');
   });
 
-  it('ES official fallback without cards uses generic phrase', () => {
+  it('ES official reserve copy without cards uses generic phrase', () => {
     const pack = basePack({
       descriptionEs: '',
       cardCount: 0,
@@ -153,5 +184,63 @@ describe('packDescriptionForInterface', () => {
       expect(desc.length).toBeGreaterThan(0);
       expect(stringHasCyrillicOrSimilar(desc)).toBe(false);
     }
+  });
+
+  it('planned descriptions use explicit localized metadata', () => {
+    const pack = basePack({
+      descriptionPtBr: 'Descricao PT',
+      descriptionVi: 'Mo ta VI',
+      descriptionId: 'Deskripsi ID',
+      descriptionTr: 'Aciklama TR',
+      descriptionPl: 'Opis PL',
+    });
+    expect(packDescriptionForInterface(pack, 'pt-BR')).toBe('Descricao PT');
+    expect(packDescriptionForInterface(pack, 'vi')).toBe('Mo ta VI');
+    expect(packDescriptionForInterface(pack, 'id')).toBe('Deskripsi ID');
+    expect(packDescriptionForInterface(pack, 'tr')).toBe('Aciklama TR');
+    expect(packDescriptionForInterface(pack, 'pl')).toBe('Opis PL');
+  });
+
+  it('planned community descriptions stay empty when no localized metadata exists', () => {
+    const pack = basePack({
+      descriptionPtBr: '',
+      descriptionVi: '',
+      descriptionId: '',
+      descriptionTr: '',
+      descriptionPl: '',
+      descriptionEs: 'Descripcion ES',
+      descriptionRu: 'Описание RU',
+      descriptionUk: 'Опис UK',
+      isCommunityUgc: true,
+      isOfficial: false,
+    });
+    expect(packDescriptionForInterface(pack, 'pt-BR')).toBe('');
+    expect(packDescriptionForInterface(pack, 'vi')).toBe('');
+    expect(packDescriptionForInterface(pack, 'id')).toBe('');
+    expect(packDescriptionForInterface(pack, 'tr')).toBe('');
+    expect(packDescriptionForInterface(pack, 'pl')).toBe('');
+  });
+
+  it('bundled packs: planned descriptions never reuse RU / UK / ES text', () => {
+    const planned = ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+    for (const pack of BUNDLED_MARKETPLACE_PACKS) {
+      for (const lang of planned) {
+        const desc = packDescriptionForInterface(pack, lang);
+        expect(desc.length).toBeGreaterThan(0);
+        expect(desc).not.toBe(pack.descriptionRu);
+        expect(desc).not.toBe(pack.descriptionUk);
+        expect(desc).not.toBe(pack.descriptionEs);
+        expect(stringHasCyrillicOrSimilar(desc)).toBe(false);
+      }
+    }
+  });
+});
+
+describe('marketplace locale source guard', () => {
+  it('does not route planned storefront locales through legacy runtime branches', () => {
+    const source = fs.readFileSync(path.join(__dirname, '../app/flashcards/marketplace.ts'), 'utf8');
+    expect(source).not.toMatch(/lang\s*={2,3}\s*['"](?:ru|uk|es)['"]/);
+    expect(source).not.toContain('legacyBundledMarketPacks');
+    expect(source).not.toMatch(/return\s+pack\.(?:title|description)(?:Ru|Uk|Es)/);
   });
 });

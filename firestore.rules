@@ -240,6 +240,11 @@ service cloud.firestore {
       allow read, update, delete: if isAdmin();
     }
 
+    match /vip_survey_responses/{userId} {
+      allow read: if isAdmin() || userDocOwnerMatchesAuth(userId);
+      allow create, update, delete: if isAdmin();
+    }
+
     match /daily_phrases/{phraseId} {
       allow read: if request.auth != null;
       allow create, update, delete: if isAdmin();
@@ -443,25 +448,40 @@ service cloud.firestore {
     // Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð¿Ñ€Ð¸ Ð»Ð¾Ð³Ð¸Ð½Ðµ Ð½Ð° Ð½Ð¾Ð²Ð¾Ð¼ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ðµ: query auth_links/{providerUid}
     // Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð²Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ stable_id Ð¸ Ð¿Ð¾Ð´Ñ‚ÑÐ½ÑƒÑ‚ÑŒ Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑ.
     match /auth_links/{providerUid} {
-      // Read Ð½ÑƒÐ¶ÐµÐ½ Ð»ÑŽÐ±Ð¾Ð¼Ñƒ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ð¾Ð¼Ñƒ ÐºÐ»Ð¸ÐµÐ½Ñ‚Ñƒ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ ÑÐ´ÐµÐ»Ð°Ñ‚ÑŒ lookup Ð¿Ñ€Ð¸ login.
-      // providerUid ÑÐ°Ð¼ Ð¿Ð¾ ÑÐµÐ±Ðµ Ð½Ðµ PII (opaque sub).
-      allow read: if request.auth != null;
+      function ownsAuthLinkDoc() {
+        return request.auth != null && request.auth.uid == providerUid;
+      }
+
+      function stableIdOwnedByThisAuth(stableId) {
+        return stableId is string
+          && stableId.size() > 0
+          && stableUserMatchesAuth(stableId);
+      }
+
+      // The app only needs to read the link for the provider account that is
+      // currently signed in. Broad authenticated reads expose account mappings.
+      allow read: if isAdmin() || ownsAuthLinkDoc();
 
       // Create: Ð¿Ñ€Ð¸ Ð¿ÐµÑ€Ð²Ð¾Ð¼ login. Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ð´Ð¾Ð»Ð¶ÐµÐ½ ÑÑÑ‹Ð»Ð°Ñ‚ÑŒÑÑ Ð½Ð° providerUid Ð¸Ð· id
       // Ð¸ ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‚ÑŒ stable_id Ñ‚ÐµÐºÑƒÑ‰ÐµÐ³Ð¾ ÑŽÐ·ÐµÑ€Ð° + provider.
-      allow create: if request.auth != null
+      allow create: if ownsAuthLinkDoc()
         && request.resource.data.providerUid == providerUid
         && request.resource.data.stable_id is string
         && request.resource.data.stable_id.size() > 0
-        && request.resource.data.provider in ['google', 'apple'];
+        && request.resource.data.provider in ['google', 'apple']
+        && stableIdOwnedByThisAuth(request.resource.data.stable_id);
 
       // Update: Ð¿Ñ€Ð¸ relogin Ð¸Ð»Ð¸ swap Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚Ð°. ÐœÐµÐ½ÑÐµÐ¼ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð±ÐµÐ»Ñ‹Ð¹ ÑÐ¿Ð¸ÑÐ¾Ðº Ð¿Ð¾Ð»ÐµÐ¹.
       // providerUid Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð½ÐµÐ»ÑŒÐ·Ñ.
-      allow update: if request.auth != null
+      allow update: if ownsAuthLinkDoc()
         && resource.data.providerUid == providerUid
         && request.resource.data.providerUid == providerUid
         && request.resource.data.diff(resource.data).affectedKeys()
-           .hasOnly(['stable_id', 'email', 'displayName', 'lastSignInAt', 'devicePlatform']);
+           .hasOnly(['stable_id', 'email', 'displayName', 'lastSignInAt', 'devicePlatform'])
+        && (
+          request.resource.data.stable_id == resource.data.stable_id
+          || stableIdOwnedByThisAuth(request.resource.data.stable_id)
+        );
 
       // Delete: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð°Ð´Ð¼Ð¸Ð½ (Ñ‡ÐµÑ€ÐµÐ· Ð¿Ð°Ð½ÐµÐ»ÑŒ) Ð¸Ð»Ð¸ Cloud Function Ð´Ð»Ñ revocation.
       allow delete: if isAdmin();

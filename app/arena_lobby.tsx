@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, Animated, Easing, ScrollView, } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import Constants from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
@@ -18,7 +18,7 @@ import ArenaLimitModal, { ArenaLimitMode } from '../components/ArenaLimitModal';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { ARENA_DAILY_MAX, ARENA_MATCHES_SHARD_REFILL_COST, ARENA_MATCHES_SHARD_REFILL_SLOTS, getDailyArenaCount, getDailyArenaMaxToday, } from './arena_daily_limit';
 import { canStartArenaMatch, chargeArenaEntry, reserveArenaGameEntry } from './arena_access_gate';
-import { emitAppEvent, onAppEvent } from './events';
+import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import { logEvent } from './firebase';
 import { useTabNav } from './TabContext';
 import { useScreen } from '../hooks/use-screen';
@@ -40,21 +40,16 @@ import { getLevelFromXP } from '../constants/theme';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AvatarView from '../components/AvatarView';
 import GoldBevel from '../components/GoldBevel';
-import { backgroundTransitionKey, useBackgroundBlurSwitch } from '../components/backgroundTransition';
+import { backgroundTransitionKey, usePersistentBackgroundLayers } from '../components/backgroundTransition';
+import { getAppArtBackdropSource } from '../components/appArtBackdropRegistry';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { subscribeTodayArenaHillThrone, type ArenaHillThrone } from './services/arena_hill';
 import { subscribeArenaFeatureFlags, type ArenaFeatureFlags, } from './services/arena_feature_flags';
 /** Підказка idle «скільки шукають у мережі» (день 1–7, ніч 1–2): спільний кеш, оновлення ~1 хв. */
 const IDLE_QUEUE_HINT_TTL_MS = 60 * 1000;
 const USE_ELITE_ARENA_LOBBY = true;
-const ARENA_THEME_BACKDROPS = {
-    dark: require('../assets/images/arena/knowledge-arena-dark.webp'),
-    neon: require('../assets/images/arena/knowledge-arena-neon.webp'),
-    gold: require('../assets/images/arena/knowledge-arena-gold.webp'),
-    coral: require('../assets/images/arena/knowledge-arena-coral.webp'),
-    minimalLight: require('../assets/images/arena/knowledge-arena-minimal-light.webp'),
-    minimalDark: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
-} as const;
+const ARENA_HERO_BACKGROUND_FADE_MS = 980;
+const ARENA_HERO_BACKGROUND_FADE_OUT_DELAY_MS = 80;
 const ARENA_TICKET_ICONS = {
     dark: require('../assets/images/arena_tickets/ticket-dark.webp'),
     neon: require('../assets/images/arena_tickets/ticket-neon.webp'),
@@ -69,14 +64,14 @@ type IdleQueueHintCache = {
     night: boolean;
 };
 let idleQueueHintCache: IdleQueueHintCache | null = null;
-function alphaColor(color: string, alpha: number, fallback = '255,255,255'): string {
+function alphaColor(color: string, alpha: number, defaultRgb = '255,255,255'): string {
     if (/^#[0-9a-f]{6}$/i.test(color)) {
         const r = parseInt(color.slice(1, 3), 16);
         const g = parseInt(color.slice(3, 5), 16);
         const b = parseInt(color.slice(5, 7), 16);
         return `rgba(${r},${g},${b},${alpha})`;
     }
-    return `rgba(${fallback},${alpha})`;
+    return `rgba(${defaultRgb},${alpha})`;
 }
 /** 20:00–08:00 за локальним часом пристрою — показуємо не більше 2 «у пошуку». */
 function isNightArenaIdleQueueHint(): boolean {
@@ -306,12 +301,16 @@ export default function DuelLobbyScreen({ isTab = false }: {
                         await updateQueueWithPushToken(tokenData.data);
                 }
                 catch {
-                    emitAppEvent('action_toast', {
-                        type: 'info',
-                        messageRu: 'Уведомления недоступны. Поиск матча работает без них.',
-                        messageUk: 'Сповіщення недоступні. Пошук матчу працює без них.',
-                        messageEs: 'Las notificaciones no están disponibles. Puedes buscar partida sin ellas.',
-                    });
+                    emitAppEvent('action_toast', actionToastTri('info', {
+                        ru: 'Уведомления недоступны. Поиск матча работает без них.',
+                        uk: 'Сповіщення недоступні. Пошук матчу працює без них.',
+                        es: 'Las notificaciones no están disponibles. Puedes buscar partida sin ellas.',
+                        'pt-BR': 'As notificações não estão disponíveis. Você ainda pode buscar uma partida.',
+                        vi: 'Thông báo không khả dụng. Bạn vẫn có thể tìm trận đấu.',
+                        id: 'Notifikasi tidak tersedia. Pencarian pertandingan tetap berjalan.',
+                        tr: 'Bildirimler kullanılamıyor. Yine de maç arayabilirsin.',
+                        pl: 'Powiadomienia są niedostępne. Nadal możesz szukać meczu.',
+                    }));
                 }
             })();
         }
@@ -580,12 +579,16 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 setPhase('idle');
                 setLobbyAcceptDeadlineAt(null);
                 if (reason !== 'accept_timeout' && reason !== 'stale_cleanup') {
-                    emitAppEvent('action_toast', {
-                        type: 'info',
-                        messageRu: 'Матч отменён (соперник отказался или вышел).',
-                        messageUk: 'Матч скасовано (суперник відмовився або вийшов).',
-                        messageEs: 'Partida cancelada: tu rival rechazó o salió.',
-                    });
+                    emitAppEvent('action_toast', actionToastTri('info', {
+                        ru: 'Матч отменён (соперник отказался или вышел).',
+                        uk: 'Матч скасовано (суперник відмовився або вийшов).',
+                        es: 'Partida cancelada: tu rival rechazó o salió.',
+                        'pt-BR': 'Partida cancelada: o rival recusou ou saiu.',
+                        vi: 'Trận đấu đã hủy: đối thủ từ chối hoặc đã rời đi.',
+                        id: 'Pertandingan dibatalkan: lawan menolak atau keluar.',
+                        tr: 'Maç iptal edildi: rakip reddetti veya çıktı.',
+                        pl: 'Mecz anulowany: rywal odmówił albo wyszedł.',
+                    }));
                 }
                 logEvent('arena_match_lobby_abort', { reason: reason ?? 'unknown' });
                 await resumeSearchAfterLobbyAbort();
@@ -657,12 +660,16 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     await setSessionLobbyChoice(sessionId, userId, 'accept');
                 }
                 catch {
-                    emitAppEvent('action_toast', {
-                        type: 'error',
-                        messageRu: 'Не удалось подтвердить матч. Проверь сеть и попробуй снова.',
-                        messageUk: 'Не вдалося підтвердити матч. Перевір мережу і спробуй знову.',
-                        messageEs: 'No se ha podido confirmar la partida. Revisa la conexión e inténtalo de nuevo.',
-                    });
+                    emitAppEvent('action_toast', actionToastTri('error', {
+                        ru: 'Не удалось подтвердить матч. Проверь сеть и попробуй снова.',
+                        uk: 'Не вдалося підтвердити матч. Перевір мережу і спробуй знову.',
+                        es: 'No se ha podido confirmar la partida. Revisa la conexión e inténtalo de nuevo.',
+                        'pt-BR': 'Não foi possível confirmar a partida. Verifique a conexão e tente novamente.',
+                        vi: 'Không thể xác nhận trận đấu. Kiểm tra kết nối rồi thử lại.',
+                        id: 'Tidak dapat mengonfirmasi pertandingan. Periksa koneksi dan coba lagi.',
+                        tr: 'Maç onaylanamadı. Bağlantını kontrol edip tekrar dene.',
+                        pl: 'Nie udało się potwierdzić meczu. Sprawdź połączenie i spróbuj ponownie.',
+                    }));
                     return;
                 }
             }
@@ -726,12 +733,16 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     setFriendRoomReady(false);
                     setArenaFriendPickUid(null);
                     friendMatchNavRef.current = false;
-                    emitAppEvent('action_toast', {
-                        type: 'error',
-                        messageRu: 'Облако недоступно (синхронизация выключена). Друг не сможет войти в комнату.',
-                        messageUk: 'Хмара недоступна (синхронізація вимкнена). Друг не зможе зайти в кімнату.',
-                        messageEs: 'La nube no está disponible (sincronización desactivada). Tu amigo no podrá entrar en la sala.',
-                    });
+                    emitAppEvent('action_toast', actionToastTri('error', {
+                        ru: 'Облако недоступно (синхронизация выключена). Друг не сможет войти в комнату.',
+                        uk: 'Хмара недоступна (синхронізація вимкнена). Друг не зможе зайти в кімнату.',
+                        es: 'La nube no está disponible (sincronización desactivada). Tu amigo no podrá entrar en la sala.',
+                        'pt-BR': 'A nuvem está indisponível (sincronização desligada). Seu amigo não poderá entrar na sala.',
+                        vi: 'Đám mây không khả dụng (đồng bộ hóa đang tắt). Bạn của bạn sẽ không thể vào phòng.',
+                        id: 'Cloud tidak tersedia (sinkronisasi mati). Temanmu tidak bisa masuk ke room.',
+                        tr: 'Bulut kullanılamıyor (senkronizasyon kapalı). Arkadaşın odaya giremeyecek.',
+                        pl: 'Chmura jest niedostępna (synchronizacja wyłączona). Znajomy nie będzie mógł wejść do pokoju.',
+                    }));
                     return;
                 }
                 await createRoom(uid, name, id);
@@ -756,20 +767,28 @@ export default function DuelLobbyScreen({ isTab = false }: {
                             });
                             if (!charge.ok) {
                                 friendMatchNavRef.current = false;
-                                emitAppEvent('action_toast', {
-                                    type: 'error',
-                                    messageRu: 'Недостаточно энергии для старта матча.',
-                                    messageUk: 'Недостатньо енергії для старту матчу.',
-                                    messageEs: 'No tienes suficiente energía para empezar la partida.',
-                                });
+                                emitAppEvent('action_toast', actionToastTri('error', {
+                                    ru: 'Недостаточно энергии для старта матча.',
+                                    uk: 'Недостатньо енергії для старту матчу.',
+                                    es: 'No tienes suficiente energía para empezar la partida.',
+                                    'pt-BR': 'Energia insuficiente para iniciar a partida.',
+                                    vi: 'Không đủ năng lượng để bắt đầu trận đấu.',
+                                    id: 'Energi tidak cukup untuk memulai pertandingan.',
+                                    tr: 'Maçı başlatmak için yeterli enerji yok.',
+                                    pl: 'Za mało energii, aby rozpocząć mecz.',
+                                }));
                                 return;
                             }
-                            emitAppEvent('action_toast', {
-                                type: 'success',
-                                messageRu: 'Друг подключился. Начинаем матч!',
-                                messageUk: 'Друг підключився. Починаємо матч!',
-                                messageEs: 'Tu amigo se ha unido. ¡Empezamos el duelo!',
-                            });
+                            emitAppEvent('action_toast', actionToastTri('success', {
+                                ru: 'Друг подключился. Начинаем матч!',
+                                uk: 'Друг підключився. Починаємо матч!',
+                                es: 'Tu amigo se ha unido. ¡Empezamos el duelo!',
+                                'pt-BR': 'Seu amigo entrou. Vamos começar a partida!',
+                                vi: 'Bạn của bạn đã tham gia. Bắt đầu trận đấu!',
+                                id: 'Temanmu bergabung. Pertandingan dimulai!',
+                                tr: 'Arkadaşın katıldı. Maçı başlatıyoruz!',
+                                pl: 'Znajomy dołączył. Zaczynamy mecz!',
+                            }));
                             friendUnsubRef.current?.();
                             friendUnsubRef.current = null;
                             setFriendRoomId(null);
@@ -786,12 +805,16 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 setFriendRoomReady(false);
                 setArenaFriendPickUid(null);
                 friendMatchNavRef.current = false;
-                emitAppEvent('action_toast', {
-                    type: 'error',
-                    messageRu: 'Не удалось создать комнату в облаке. Проверьте сеть — если друг не заходит, пригласите ещё раз.',
-                    messageUk: 'Не вдалося створити кімнату в хмарі. Перевірте мережу — якщо друг не заходить, запросіть ще раз.',
-                    messageEs: 'No se pudo crear la sala en la nube. Revisa la conexión: si tu amigo no puede entrar, vuelve a invitarlo.',
-                });
+                emitAppEvent('action_toast', actionToastTri('error', {
+                    ru: 'Не удалось создать комнату в облаке. Проверьте сеть — если друг не заходит, пригласите ещё раз.',
+                    uk: 'Не вдалося створити кімнату в хмарі. Перевірте мережу — якщо друг не заходить, запросіть ще раз.',
+                    es: 'No se pudo crear la sala en la nube. Revisa la conexión: si tu amigo no puede entrar, vuelve a invitarlo.',
+                    'pt-BR': 'Não foi possível criar a sala na nuvem. Verifique a conexão; se seu amigo não entrar, envie outro convite.',
+                    vi: 'Không thể tạo phòng trên đám mây. Kiểm tra kết nối; nếu bạn của bạn không vào được, hãy mời lại.',
+                    id: 'Tidak dapat membuat room di cloud. Periksa koneksi; jika temanmu tidak bisa masuk, undang lagi.',
+                    tr: 'Bulutta oda oluşturulamadı. Bağlantını kontrol et; arkadaşın giremezse yeniden davet et.',
+                    pl: 'Nie udało się utworzyć pokoju w chmurze. Sprawdź połączenie; jeśli znajomy nie wejdzie, zaproś ponownie.',
+                }));
             }
         };
         void runFirestore();
@@ -822,42 +845,81 @@ export default function DuelLobbyScreen({ isTab = false }: {
             if (!res.ok) {
                 const msg = res.reason === 'friend_no_session'
                     ? {
-                        messageRu: effectiveOs === 'ios'
+                        ru: effectiveOs === 'ios'
                             ? 'У друга нет активной сессии. Пусть откроет приложение или выберите его в списке ниже.'
                             : 'У друга нет активной сессии в облаке. Пусть откроет приложение и попробуйте ещё раз.',
-                        messageUk: effectiveOs === 'ios'
+                        uk: effectiveOs === 'ios'
                             ? 'У друга немає активної сесії. Нехай відкриє застосунок або обери його в списку нижче.'
                             : 'У друга немає активної сесії в хмарі. Нехай відкриє застосунок і спробуйте ще раз.',
-                        messageEs: effectiveOs === 'ios'
+                        es: effectiveOs === 'ios'
                             ? 'Tu amigo no tiene sesión activa. Pídele que abra la app o elígelo en la lista de abajo.'
                             : 'Tu amigo no tiene sesión en la nube. Pídele que abra la app e inténtalo otra vez.',
+                        'pt-BR': effectiveOs === 'ios'
+                            ? 'Seu amigo não tem sessão ativa. Peça para abrir o app ou escolha na lista abaixo.'
+                            : 'Seu amigo não tem sessão na nuvem. Peça para abrir o app e tente outra vez.',
+                        vi: effectiveOs === 'ios'
+                            ? 'Bạn của bạn chưa có phiên hoạt động. Hãy nhờ họ mở ứng dụng hoặc chọn trong danh sách bên dưới.'
+                            : 'Bạn của bạn chưa có phiên trên đám mây. Hãy nhờ họ mở ứng dụng rồi thử lại.',
+                        id: effectiveOs === 'ios'
+                            ? 'Temanmu tidak punya sesi aktif. Minta mereka membuka app atau pilih dari daftar di bawah.'
+                            : 'Temanmu tidak punya sesi cloud. Minta mereka membuka app lalu coba lagi.',
+                        tr: effectiveOs === 'ios'
+                            ? 'Arkadaşının aktif oturumu yok. Uygulamayı açmasını iste veya aşağıdaki listeden seç.'
+                            : 'Arkadaşının bulut oturumu yok. Uygulamayı açmasını iste ve tekrar dene.',
+                        pl: effectiveOs === 'ios'
+                            ? 'Znajomy nie ma aktywnej sesji. Poproś o otwarcie aplikacji albo wybierz go z listy poniżej.'
+                            : 'Znajomy nie ma sesji w chmurze. Poproś o otwarcie aplikacji i spróbuj ponownie.',
                     }
                     : res.reason === 'not_friend'
                         ? {
-                            messageRu: 'Этот пользователь не в списке друзей.',
-                            messageUk: 'Цей користувач не у списку друзів.',
-                            messageEs: 'Este usuario no está en tu lista de amigos.',
+                            ru: 'Этот пользователь не в списке друзей.',
+                            uk: 'Цей користувач не у списку друзів.',
+                            es: 'Este usuario no está en tu lista de amigos.',
+                            'pt-BR': 'Este usuário não está na sua lista de amigos.',
+                            vi: 'Người dùng này không có trong danh sách bạn bè của bạn.',
+                            id: 'Pengguna ini tidak ada di daftar temanmu.',
+                            tr: 'Bu kullanıcı arkadaş listende değil.',
+                            pl: 'Tego użytkownika nie ma na liście znajomych.',
                         }
                         : {
-                            messageRu: effectiveOs === 'ios'
+                            ru: effectiveOs === 'ios'
                                 ? 'Пригласить не получилось. Проверь сеть или выбери друга из списка ниже.'
                                 : 'Пригласить не получилось. Проверь сеть и попробуй ещё раз.',
-                            messageUk: effectiveOs === 'ios'
+                            uk: effectiveOs === 'ios'
                                 ? 'Не вдалося запросити. Перевір мережу або обери друга зі списку нижче.'
                                 : 'Не вдалося запросити. Перевір мережу і спробуй ще раз.',
-                            messageEs: effectiveOs === 'ios'
+                            es: effectiveOs === 'ios'
                                 ? 'No se pudo enviar la invitación. Revisa la conexión o elige a un amigo en la lista.'
                                 : 'No se pudo enviar la invitación. Revisa la conexión e inténtalo otra vez.',
+                            'pt-BR': effectiveOs === 'ios'
+                                ? 'Não foi possível convidar. Verifique a conexão ou escolha um amigo na lista.'
+                                : 'Não foi possível convidar. Verifique a conexão e tente novamente.',
+                            vi: effectiveOs === 'ios'
+                                ? 'Không thể gửi lời mời. Kiểm tra kết nối hoặc chọn một người bạn trong danh sách.'
+                                : 'Không thể gửi lời mời. Kiểm tra kết nối rồi thử lại.',
+                            id: effectiveOs === 'ios'
+                                ? 'Tidak dapat mengundang. Periksa koneksi atau pilih teman dari daftar.'
+                                : 'Tidak dapat mengundang. Periksa koneksi dan coba lagi.',
+                            tr: effectiveOs === 'ios'
+                                ? 'Davet gönderilemedi. Bağlantını kontrol et veya listeden bir arkadaş seç.'
+                                : 'Davet gönderilemedi. Bağlantını kontrol edip tekrar dene.',
+                            pl: effectiveOs === 'ios'
+                                ? 'Nie udało się zaprosić. Sprawdź połączenie albo wybierz znajomego z listy.'
+                                : 'Nie udało się zaprosić. Sprawdź połączenie i spróbuj ponownie.',
                         };
-                emitAppEvent('action_toast', { type: 'error', ...msg });
+                emitAppEvent('action_toast', actionToastTri('error', msg));
                 return;
             }
-            emitAppEvent('action_toast', {
-                type: 'success',
-                messageRu: 'Приглашение отправлено.',
-                messageUk: 'Запрошення надіслано.',
-                messageEs: 'Invitación enviada.',
-            });
+            emitAppEvent('action_toast', actionToastTri('success', {
+                ru: 'Приглашение отправлено.',
+                uk: 'Запрошення надіслано.',
+                es: 'Invitación enviada.',
+                'pt-BR': 'Convite enviado.',
+                vi: 'Đã gửi lời mời.',
+                id: 'Undangan terkirim.',
+                tr: 'Davet gönderildi.',
+                pl: 'Zaproszenie wysłane.',
+            }));
             setArenaFriendPickUid(null);
             // Subscribe to invite status changes so we can notify sender when declined
             sentInviteUnsubRef.current?.();
@@ -866,18 +928,32 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     sentInviteUnsubRef.current?.();
                     sentInviteUnsubRef.current = null;
                     const friendName = arenaFriendProfiles[friendStableUid]?.name;
-                    emitAppEvent('action_toast', {
-                        type: 'info',
-                        messageRu: friendName
+                    emitAppEvent('action_toast', actionToastTri('info', {
+                        ru: friendName
                             ? `${friendName} отклонил вызов.`
                             : 'Друг отклонил вызов.',
-                        messageUk: friendName
+                        uk: friendName
                             ? `${friendName} відхилив виклик.`
                             : 'Друг відхилив виклик.',
-                        messageEs: friendName
+                        es: friendName
                             ? `${friendName} rechazó el reto.`
                             : 'Tu amigo rechazó el reto.',
-                    });
+                        'pt-BR': friendName
+                            ? `${friendName} recusou o desafio.`
+                            : 'Seu amigo recusou o desafio.',
+                        vi: friendName
+                            ? `${friendName} đã từ chối lời thách đấu.`
+                            : 'Bạn của bạn đã từ chối lời thách đấu.',
+                        id: friendName
+                            ? `${friendName} menolak tantangan.`
+                            : 'Temanmu menolak tantangan.',
+                        tr: friendName
+                            ? `${friendName} meydan okumayı reddetti.`
+                            : 'Arkadaşın meydan okumayı reddetti.',
+                        pl: friendName
+                            ? `${friendName} odrzucił wyzwanie.`
+                            : 'Znajomy odrzucił wyzwanie.',
+                    }));
                 }
                 else if (status === 'accepted') {
                     sentInviteUnsubRef.current?.();
@@ -1301,20 +1377,26 @@ export default function DuelLobbyScreen({ isTab = false }: {
         inputRange: [0, 1],
         outputRange: [8, 0],
     });
-    const arenaBackdropSource = ARENA_THEME_BACKDROPS[themeMode] ?? ARENA_THEME_BACKDROPS.dark;
-    const { activeValue: activeArenaBackdropSource } = useBackgroundBlurSwitch({
+    const arenaBackdropSource = getAppArtBackdropSource('arena', themeMode);
+    const { layers: arenaBackdropLayers } = usePersistentBackgroundLayers({
         value: arenaBackdropSource,
         transitionKey: `${themeMode}:${backgroundTransitionKey(arenaBackdropSource)}`,
+        fadeInDuration: ARENA_HERO_BACKGROUND_FADE_MS,
+        fadeOutDuration: ARENA_HERO_BACKGROUND_FADE_MS,
+        fadeOutDelay: ARENA_HERO_BACKGROUND_FADE_OUT_DELAY_MS,
+        maxLayers: 1,
     });
     return (<ScreenGradient>
       {!isTab && <View pointerEvents="none" style={styles.arenaScreenHeroLayer}>
-        <Animated.Image source={activeArenaBackdropSource} resizeMode="cover" style={[
-            styles.arenaScreenHeroImage,
-            {
-                opacity: arenaScreenHeroOpacity,
-                transform: [{ scale: arenaScreenHeroScale }],
-            },
-        ]}/>
+        {arenaBackdropLayers.map(layer => (<Animated.View key={`screen-hero-${layer.id}`} pointerEvents="none" style={[styles.arenaScreenHeroImage, { opacity: layer.opacity }]}>
+          <Animated.Image source={layer.value as any} resizeMode="cover" fadeDuration={0} style={[
+              styles.arenaScreenHeroImage,
+              {
+                  opacity: arenaScreenHeroOpacity,
+                  transform: [{ scale: arenaScreenHeroScale }],
+              },
+          ]}/>
+        </Animated.View>))}
         <LinearGradient colors={arenaGlass.screenHeroScrimColors as [
             string,
             string,
@@ -1622,13 +1704,15 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 themeMode === 'gold' ? goldShadow(3) : null,
                 null,
             ]}>
-                <Animated.Image source={activeArenaBackdropSource} resizeMode="cover" style={[
-                styles.arenaHeroImage,
-                {
-                    opacity: arenaHeroOpacity,
-                    transform: [{ scale: arenaHeroScale }, { translateY: arenaHeroTranslateY }],
-                },
-            ]}/>
+                {arenaBackdropLayers.map(layer => (<Animated.View key={`card-hero-${layer.id}`} pointerEvents="none" style={[styles.arenaHeroImage, { opacity: layer.opacity }]}>
+                  <Animated.Image source={layer.value as any} resizeMode="cover" fadeDuration={0} style={[
+                    styles.arenaHeroImage,
+                    {
+                        opacity: arenaHeroOpacity,
+                        transform: [{ scale: arenaHeroScale }, { translateY: arenaHeroTranslateY }],
+                    },
+                ]}/>
+                </Animated.View>))}
                 <LinearGradient pointerEvents="none" colors={arenaGlass.heroScrimColors as [
             string,
             string,

@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-05-20T06:31:27.691Z",
+  "mode": "semantic-audit",
+  "strict": true,
+  "summary": {
+    "findings": 1,
+    "blockers": 0,
+    "warnings": 1,
+    "reviewGroups": 1,
+    "byCode": {
+      "diagnosis-training-es-not-ready": 1
+    },
+    "bySurface": {
+      "diagnosis_training": 1
+    }
+  },
+  "reviewGroups": [
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "noun_possessive_apostrophe_s",
+      "field": "noun_possessive_apostrophe_s.shortTitle",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 2 placeholder(s), 175 English-looking learner-facing item(s) need translation review.",
+      "sample": "This training is available for this interface language.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "noun_possessive_apostrophe_s",
+      "field": "noun_possessive_apostrophe_s.shortTitle",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 2 placeholder(s), 175 English-looking learner-facing item(s) need translation review.",
+      "sample": "This training is available for this interface language."
+    }
+  ]
+}

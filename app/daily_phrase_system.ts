@@ -6,8 +6,10 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { dailyPhraseContentAvailableForTarget } from './daily_phrase_target_gate';
 import { IDIOMS, Idiom, type IdiomSourceLocaleMap } from './idioms_data';
 import type { SourceLocale } from './source_locales';
+import type { RuntimeStudyTarget } from './target_storage_keys';
 
 export interface DailyPhrase {
   id: string;
@@ -259,6 +261,11 @@ export function getTodayPhraseSync(): DailyPhrase {
   return phraseFromIdiom(idiom);
 }
 
+export function getTodayPhraseSyncForTarget(studyTarget?: RuntimeStudyTarget): DailyPhrase | null {
+  if (!dailyPhraseContentAvailableForTarget(studyTarget)) return null;
+  return getTodayPhraseSync();
+}
+
 export const getTodayPhrase = async (): Promise<DailyPhrase> => {
   const today = todayKey();
   try {
@@ -284,6 +291,11 @@ export const getTodayPhrase = async (): Promise<DailyPhrase> => {
   } catch {
     return getDefaultPhrase();
   }
+};
+
+export const getTodayPhraseForTarget = async (studyTarget?: RuntimeStudyTarget): Promise<DailyPhrase | null> => {
+  if (!dailyPhraseContentAvailableForTarget(studyTarget)) return null;
+  return getTodayPhrase();
 };
 
 const getDefaultPhrase = (): DailyPhrase => {
@@ -327,6 +339,14 @@ export function subscribeTodayPhrase(onPhrase: (phrase: DailyPhrase) => void): (
   };
 }
 
+export function subscribeTodayPhraseForTarget(
+  onPhrase: (phrase: DailyPhrase) => void,
+  studyTarget?: RuntimeStudyTarget,
+): () => void {
+  if (!dailyPhraseContentAvailableForTarget(studyTarget)) return () => {};
+  return subscribeTodayPhrase(onPhrase);
+}
+
 export async function setDailyPhraseSavedOnServer(phraseId: string | undefined, saved: boolean): Promise<void> {
   const id = String(phraseId || '').trim();
   if (!id || id.startsWith('local-')) return;
@@ -338,6 +358,15 @@ export async function setDailyPhraseSavedOnServer(phraseId: string | undefined, 
   } catch {
     // Count sync is best-effort; local flashcard save must never fail because of analytics.
   }
+}
+
+export async function setDailyPhraseSavedOnServerForTarget(
+  phraseId: string | undefined,
+  saved: boolean,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> {
+  if (!dailyPhraseContentAvailableForTarget(studyTarget)) return;
+  await setDailyPhraseSavedOnServer(phraseId, saved);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

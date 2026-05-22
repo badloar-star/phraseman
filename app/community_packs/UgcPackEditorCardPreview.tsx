@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
@@ -31,6 +31,13 @@ type Props = {
   ru: string;
   uk: string;
   es?: string;
+  sourceLocales?: {
+    'pt-BR'?: string;
+    vi?: string;
+    id?: string;
+    tr?: string;
+    pl?: string;
+  };
   frontGradient: GradPair;
   backGradient: GradPair;
   borderAccent: string;
@@ -64,6 +71,7 @@ export default function UgcPackEditorCardPreview({
   ru,
   uk,
   es,
+  sourceLocales,
   frontGradient,
   backGradient,
   borderAccent,
@@ -81,8 +89,12 @@ export default function UgcPackEditorCardPreview({
 
   const cardH = usePackCardPreviewHeight();
   const hasDescription = uk.trim().length > 0;
-  const backText = lang === 'es' ? (es?.trim() || ru.trim()) : ru.trim();
-  const backLabel = lang === 'es' && es?.trim() ? 'ES' : 'RU';
+  const plannedBackText =
+    lang === 'pt-BR' || lang === 'vi' || lang === 'id' || lang === 'tr' || lang === 'pl'
+      ? sourceLocales?.[lang]?.trim()
+      : '';
+  const backText = plannedBackText || (lang === 'es' ? (es?.trim() || ru.trim()) : ru.trim());
+  const backLabel = plannedBackText ? lang.toUpperCase() : lang === 'es' && es?.trim() ? 'ES' : 'RU';
   const canScrollFront = (en.trim() || '').length > 72;
   const canScrollBack = (backText || '').length > 72;
   const textInsetTop = 32;
@@ -100,7 +112,7 @@ export default function UgcPackEditorCardPreview({
     setDetailsExpanded(false);
     flipDrivingAnim.setValue(0);
     chevronRotAnim.setValue(0);
-  }, [en, ru, uk, es, flipDrivingAnim, chevronRotAnim]);
+  }, [en, ru, uk, es, sourceLocales, flipDrivingAnim, chevronRotAnim]);
 
   useEffect(() => {
     Animated.timing(flipDrivingAnim, {

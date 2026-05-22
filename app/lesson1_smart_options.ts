@@ -21,6 +21,16 @@ const SPANISH_FALLBACK_POOL = [
   'el', 'la', 'los', 'las', 'un', 'una', 'su', 'sus', 'esto', 'eso', 'así', 'algo',
 ].filter((w, i, a) => a.indexOf(w) === i);
 
+const FRENCH_FALLBACK_POOL = [
+  'je', 'tu', 'il', 'elle', 'nous', 'vous', 'ils', 'elles',
+  'suis', 'es', 'est', 'sommes', 'êtes', 'sont',
+  'ai', 'as', 'a', 'avons', 'avez', 'ont',
+  'ici', 'là', 'bien', 'mal', 'prêt', 'prête', 'calme', 'content',
+  'contente', 'important', 'importante', 'cher', 'chère', 'ami', 'amie',
+  'amis', 'amies', 'avec', 'dans', 'sur', 'pour', 'de', 'en',
+  'pas', 'très', 'aussi', 'mais', 'parce', 'que', 'quand', 'où',
+].filter((w, i, a) => a.indexOf(w) === i);
+
 const shuffle = <T>(arr: T[]): T[] => {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -511,9 +521,10 @@ const getPerWordDistracts = (
     return [];
   }
   const enSurface = String(phrase?.english ?? '').trim();
+  const isFrenchTarget = ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'fr';
   const blockLoudAsDistractorForStrangeNoise =
     /\bstrange\s+noise\b/i.test(enSurface) &&
-    !(ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es');
+    !(ENABLE_DEV_STUDY_TARGET_LANG && (studyTarget === 'es' || studyTarget === 'fr'));
   const isConfusingVolumeDistractor = (w: string): boolean => {
     if (!blockLoudAsDistractorForStrangeNoise) return false;
     const k = w.toLowerCase();
@@ -523,6 +534,8 @@ const getPerWordDistracts = (
   const globalFallbackPool =
     ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es'
       ? SPANISH_FALLBACK_POOL.filter((w: string) => !w.includes(' '))
+      : isFrenchTarget
+      ? FRENCH_FALLBACK_POOL.filter((w: string) => !w.includes(' '))
       : [...WORD_POOLS_L1.nouns, ...WORD_POOLS_L1.verbs, ...WORD_POOLS_L1.adjectives].filter(
           (w: string) => !w.includes(' ') && !isConfusingVolumeDistractor(w),
         );
@@ -542,6 +555,18 @@ const getPerWordDistracts = (
       if (cat.includes('adj')) return ['bueno', 'nuevo', 'grande', 'pequeño', 'importante', 'fácil', 'difícil', 'listo', 'ocupado'];
       if (cat.includes('puntuacion')) return [',', '?', '!', ';', ':'];
       return SPANISH_FALLBACK_POOL;
+    }
+    if (isFrenchTarget) {
+      if (cat.includes('article')) return ['le', 'la', 'les', 'un', 'une', 'des', 'du', 'de'];
+      if (cat.includes('pronom') || cat === 'pronoun') return ['je', 'tu', 'il', 'elle', 'nous', 'vous', 'ils', 'elles', 'me', 'te', 'se'];
+      if (cat.includes('prepos')) return ['à', 'de', 'en', 'dans', 'sur', 'pour', 'avec', 'sans', 'chez'];
+      if (cat.includes('neg')) return ['ne', 'pas', 'jamais', 'rien', 'personne', 'plus'];
+      if (cat.includes('verbe')) return ['suis', 'es', 'est', 'sommes', 'êtes', 'sont', 'ai', 'as', 'a', 'avons', 'avez', 'ont'];
+      if (cat.includes('adverb')) return ['ici', 'là', 'maintenant', "aujourd'hui", 'toujours', 'jamais', 'aussi', 'bien', 'mal'];
+      if (cat.includes('nom') || cat === 'noun') return ['maison', 'jour', 'temps', 'travail', 'personne', 'lieu', 'livre', 'téléphone'];
+      if (cat.includes('adj')) return ['bon', 'bonne', 'nouveau', 'nouvelle', 'grand', 'grande', 'important', 'facile', 'difficile', 'prêt'];
+      if (cat.includes('puntuacion') || cat === 'punctuation') return [',', '?', '!', ';', ':'];
+      return FRENCH_FALLBACK_POOL;
     }
 
     if (cat.includes('articulo') || cat === 'article') return ['a', 'an', 'the', 'this', 'that', 'these', 'those', 'my', 'your'];
@@ -599,7 +624,7 @@ const getPerWordDistracts = (
       ...currentDistractors.map((value: string) => ({ value, source: 'manual' as const })),
       ...nextDistractors.map((value: string) => ({ value, source: 'nextWord' as const })),
       ...categoryFallbackPool.map((value: string) => ({ value, category: cat, source: 'category' as const })),
-      ...globalFallbackPool.map((value: string) => ({ value, source: 'fallback' as const })),
+      ...globalFallbackPool.map((value: string) => ({ value, source: 'reserve' as const })),
     ].filter((candidate) => {
       if (isConfusingVolumeDistractor(candidate.value)) return false;
       const k = optionIdentity(candidate.value);
@@ -625,13 +650,13 @@ const getPerWordDistracts = (
     return true;
   });
   const protectedValues = contractionExpansion ? [contractionExpansion[0]] : [];
-  const fallback = [...categoryFallbackPool, ...globalFallbackPool].filter(
+  const reserveFillers = [...categoryFallbackPool, ...globalFallbackPool].filter(
     (w: string) => !seenLast.has(optionIdentity(w)) && !isConfusingVolumeDistractor(w),
   );
   const lastWordPool = [
     ...protectedValues.map((value) => ({ value, category: cat, source: 'manual' as const })),
     ...uniqueDistractors.map((value: string) => ({ value, source: 'manual' as const })),
-    ...fallback.map((value: string) => ({ value, source: 'fallback' as const })),
+    ...reserveFillers.map((value: string) => ({ value, source: 'reserve' as const })),
     ...categoryFallbackPool.map((value: string) => ({ value, category: cat, source: 'category' as const })),
   ];
   return buildSmartPhraseOptions(String(currentCorrect), lastWordPool, {
@@ -2918,7 +2943,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
   const topicCats = LESSON_TOPIC_POOLS[lessonId] || LESSON_TOPIC_POOLS[1];
 
   // Пул дистракторов из категорий темы урока
-  // CHANGE v4: singleWord guard added to topic and fallback pools.
+  // CHANGE v4: singleWord guard added to topic and reserve pools.
   const topicPool = topicCats.flatMap(cat => WORD_POOLS_L1[cat])
     .map(normalizePool)
     .filter((w, i, arr) => w !== correctWord && singleWord(w) && arr.indexOf(w) === i);
@@ -2927,13 +2952,13 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
 
   // Если мало — добираем из общего пула
   if (distractors.length < 5) {
-    const fallback = [
+    const reserveFillers = [
       ...WORD_POOLS_L1.verbs,
       ...WORD_POOLS_L1.nouns,
       ...WORD_POOLS_L1.adjectives,
       ...WORD_POOLS_L1.adverbs,
     ].map(normalizePool).filter(w => singleWord(w) && w !== correctWord && !distractors.includes(w));
-    distractors = [...distractors, ...shuffle(fallback)].slice(0, 5);
+    distractors = [...distractors, ...shuffle(reserveFillers)].slice(0, 5);
   }
 
   // 1 правильное + 5 дистракторов = ровно 6
@@ -2947,13 +2972,13 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     }
   }
   if (unique.length < 6) {
-    // CHANGE v4: singleWord guard in final fallback.
-    const fallback = [
+    // CHANGE v4: singleWord guard in final reserve fill.
+    const reserveFillers = [
       ...WORD_POOLS_L1.verbs,
       ...WORD_POOLS_L1.nouns,
       ...WORD_POOLS_L1.adjectives,
     ].map(normalizePool).filter(w => singleWord(w) && !seen.has(w.toLowerCase()));
-    for (const w of shuffle(fallback)) {
+    for (const w of shuffle(reserveFillers)) {
       if (unique.length >= 6) break;
       const key = w.toLowerCase();
       if (!seen.has(key)) {

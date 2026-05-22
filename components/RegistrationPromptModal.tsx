@@ -14,8 +14,9 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { Modal, View, Text, Pressable, StyleSheet, Platform, Linking, Image } from 'react-native';
+import { Modal, View, Text, Pressable, StyleSheet, Platform, Linking } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Image as ExpoImage } from 'expo-image';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { GoogleSignInButton, AppleSignInButton } from './AuthProviderButtons';
@@ -365,10 +366,11 @@ export default function RegistrationPromptModal({
           ]}
         >
           {context === 'onboarding' ? (
-            <Image
+            <ExpoImage
               source={AUTH_QUICK_START_ICON}
               style={styles.authIcon}
-              resizeMode="contain"
+              contentFit="contain"
+              cachePolicy="memory-disk"
               accessible={false}
             />
           ) : (

@@ -4,6 +4,7 @@
  * штраф за ячейки «wrong» в индикаторе урока.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { lessonProgressKey, type RuntimeStudyTarget } from './target_storage_keys';
 
 const PHRASE_SLOTS = 50;
 /** Как в diagnostic_test / главной: урок «сдан» для экзамена. */
@@ -43,8 +44,8 @@ function normalizeProgress(val: string | null): string[] {
  * пользователь их ещё не «должен» закрывать. Делитель всегда 32.
  * Штраф: сумма wrong только в уроках 1…currentLesson.
  */
-export async function loadExamReadinessSnapshot(): Promise<ExamReadinessSnapshot> {
-  const keys = Array.from({ length: LESSON_COUNT }, (_, i) => `lesson${i + 1}_progress`);
+export async function loadExamReadinessSnapshot(studyTarget?: RuntimeStudyTarget): Promise<ExamReadinessSnapshot> {
+  const keys = Array.from({ length: LESSON_COUNT }, (_, i) => lessonProgressKey(i + 1, studyTarget));
   const rows = await AsyncStorage.multiGet(keys);
   const progresses = rows.map(([, v]) => normalizeProgress(v));
 

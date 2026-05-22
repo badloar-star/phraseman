@@ -58,5 +58,7 @@ const THEME_ICON_PALETTES: Record<ThemeMode, TrainerThemeIconPalette> = {
 export function trainerThemeIconPalette(
   themeMode: ThemeMode,
 ): TrainerThemeIconPalette {
-  return THEME_ICON_PALETTES[themeMode] ?? THEME_ICON_PALETTES.dark;
+  const selectedPalette = THEME_ICON_PALETTES[themeMode];
+  const darkPalette = THEME_ICON_PALETTES.dark;
+  return selectedPalette ?? darkPalette;
 }

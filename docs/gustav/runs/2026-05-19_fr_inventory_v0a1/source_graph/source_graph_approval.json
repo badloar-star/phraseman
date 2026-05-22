@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "gustav-source-graph-approval-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "status": "PASS",
+  "generatedAt": "2026-05-19T19:42:21.493Z",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_source_graph_approval_audit.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "sourceGraphPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/source_graph.json",
+  "dependencyArtifacts": {
+    "generatedSourceTruthAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/generated_source_truth_audit.json",
+    "generatedSupportIsolationAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/generated_support_isolation_audit.json",
+    "lesson916ApprovalAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/lesson_9_16_source_truth_approval_audit.json"
+  },
+  "summary": {
+    "checks": 2944,
+    "blockers": 0,
+    "highRisks": 0,
+    "lessons": 32,
+    "phrases": 1600,
+    "introScreens": 147,
+    "quizzes": 829,
+    "flashcards": 155,
+    "dailyPhrases": 176,
+    "personalPracticeNodes": 56,
+    "runtimeGeneratedPhraseRefs": 0,
+    "sourceLocaleTargetConfusions": 0,
+    "unsupportedUnresolvedBlockers": 0,
+    "unsupportedHighRisks": 0,
+    "lessonCoveragePass": true,
+    "ruUkPromptCoveragePass": true,
+    "generatedSourceTruthPass": true,
+    "generatedSupportIsolationPass": true,
+    "lesson916ApprovalPass": true,
+    "canApproveSourceGraphForFrenchGenerationInput": true,
+    "mayStartFrenchGeneration": false,
+    "mayModifyProductionAppFiles": false
+  },
+  "approval": {
+    "approved": true,
+    "scope": "source_graph_input_only",
+    "approvedBy": "Gustav Source Graph Agent",
+    "allowedUse": [
+      "Use the extracted English source graph as read-only source input for future French planning.",
+      "Use RU and UK source prompts as sourceLocale prompts only.",
+      "Use approved lesson 9-16 clean canonical draft entries as canonical source graph entries."
+    ],
+    "forbiddenUse": [
+      "Do not start French generation until the full readiness gate permits it.",
+      "Do not modify production app files from this approval.",
+      "Do not treat generated ES support files as French curriculum structure."
+    ],
+    "stillRequiredBeforeFrenchGeneration": [
+      "Resolve target-safe storage and cloud sync blockers.",
+      "Implement or approve target architecture/migration adapters.",
+      "Create a generated-content audit and explicit apply plan before production app writes."
+    ]
+  },
+  "findings": [
+    {
+      "id": "SGA-000",
+      "severity": "info",
+      "title": "Source graph approved as generation input",
+      "detail": "The English source graph is approved as read-only source input for future French generation, while production generation remains blocked by broader architecture gates.",
+      "sourceRefs": [
+        {
+          "file": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/source_graph.json",
+          "line": 1,
+          "provenance": "audit"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "This approval resolves SG-008 only inside the Gustav run container.",
+    "It is not approval to generate or apply French content."
+  ]
+}

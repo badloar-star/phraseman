@@ -1,0 +1,200 @@
+{
+  "schemaVersion": "gustav-french-reviewer-approval-record-scaffold-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "lessonId": 1,
+  "batchId": "lesson1_rows_1_10_reviewer_approval_scaffold",
+  "studyTarget": "fr",
+  "sourceLocales": ["ru", "uk"],
+  "parentPackets": [
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_row_review_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_3_lexical_evidence_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows4_10_lexical_evidence_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_10_grammar_form_review_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_10_source_locale_meaning_review_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_10_curriculum_placement_packet.json"
+  ],
+  "activationStatus": "blocked",
+  "containsFrenchTargetText": false,
+  "containsWordsFr": false,
+  "mayWriteAppSeed": false,
+  "mayWriteIntroExamples": false,
+  "mayWriteQuizOrExam": false,
+  "approvedForApply": false,
+  "approvalRecordStatus": "scaffold_only_not_approved",
+  "requiredBeforeAnyFrenchTargetText": [
+    "lexical_evidence_review_accepted",
+    "grammar_form_review_accepted",
+    "ru_meaning_review_accepted",
+    "uk_meaning_review_accepted",
+    "curriculum_placement_accepted",
+    "reviewer_identity_recorded",
+    "approval_timestamp_recorded"
+  ],
+  "lessonLevelDecision": {
+    "candidateKeepRows": [
+      "lesson1_phrase_1",
+      "lesson1_phrase_2",
+      "lesson1_phrase_3",
+      "lesson1_phrase_4"
+    ],
+    "candidateDeferredRows": [
+      "lesson1_phrase_5",
+      "lesson1_phrase_6",
+      "lesson1_phrase_7",
+      "lesson1_phrase_8",
+      "lesson1_phrase_9",
+      "lesson1_phrase_10"
+    ],
+    "status": "not_approved",
+    "reason": "Curriculum placement is drafted but still lacks reviewer acceptance and approved target-language wording."
+  },
+  "approvalFieldsToFillLater": {
+    "reviewerId": null,
+    "reviewerRole": null,
+    "reviewedAt": null,
+    "acceptedEvidenceClaimIds": [],
+    "acceptedRows": [],
+    "deferredRows": [],
+    "approvalNotes": null
+  },
+  "rows": [
+    {
+      "phraseId": "lesson1_phrase_1",
+      "englishBase": "I am here",
+      "provisionalPlacement": "keep_candidate_after_location_structure_review",
+      "missingAcceptances": [
+        "lexical_evidence_review_accepted",
+        "grammar_form_review_accepted",
+        "ru_meaning_review_accepted",
+        "uk_meaning_review_accepted",
+        "curriculum_placement_accepted"
+      ],
+      "approvedForApply": false,
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_2",
+      "englishBase": "You are ready",
+      "provisionalPlacement": "keep_candidate_after_register_and_agreement_review",
+      "missingAcceptances": [
+        "tu_vous_policy_accepted",
+        "adjective_agreement_review_accepted",
+        "ru_meaning_review_accepted",
+        "uk_meaning_review_accepted",
+        "curriculum_placement_accepted"
+      ],
+      "approvedForApply": false,
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_3",
+      "englishBase": "He is busy",
+      "provisionalPlacement": "keep_candidate_after_masculine_state_review",
+      "missingAcceptances": [
+        "personal_state_sense_accepted",
+        "masculine_singular_agreement_review_accepted",
+        "ru_meaning_review_accepted",
+        "uk_meaning_review_accepted",
+        "curriculum_placement_accepted"
+      ],
+      "approvedForApply": false,
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_4",
+      "englishBase": "She is calm",
+      "provisionalPlacement": "keep_candidate_after_feminine_agreement_review",
+      "missingAcceptances": [
+        "feminine_singular_agreement_review_accepted",
+        "personal_state_sense_accepted",
+        "ru_meaning_review_accepted",
+        "uk_meaning_review_accepted",
+        "curriculum_placement_accepted"
+      ],
+      "approvedForApply": false,
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_5",
+      "englishBase": "We are together",
+      "provisionalPlacement": "defer_candidate_unless_adverbial_complement_is_in_scope",
+      "missingAcceptances": [
+        "adverbial_complement_scope_review_accepted",
+        "lesson_order_review_accepted",
+        "ru_meaning_review_accepted",
+        "uk_meaning_review_accepted"
+      ],
+      "approvedForApply": false,
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_6",
+      "englishBase": "They are happy",
+      "provisionalPlacement": "defer_candidate_until_plural_and_mixed_group_policy",
+      "missingAcceptances": [
+        "plural_agreement_review_accepted",
+        "mixed_group_policy_review_accepted",
+        "ru_meaning_review_accepted",
+        "uk_meaning_review_accepted"
+      ],
+      "approvedForApply": false,
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_7",
+      "englishBase": "It is important",
+      "provisionalPlacement": "defer_candidate_impersonal_structure",
+      "missingAcceptances": [
+        "impersonal_structure_source_review_accepted",
+        "non_calque_structure_review_accepted",
+        "later_lesson_mapping_review_accepted",
+        "ru_meaning_review_accepted",
+        "uk_meaning_review_accepted"
+      ],
+      "approvedForApply": false,
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_8",
+      "englishBase": "I am okay",
+      "provisionalPlacement": "defer_candidate_idiomatic_register",
+      "missingAcceptances": [
+        "idiomatic_state_structure_review_accepted",
+        "register_naturalness_review_accepted",
+        "ru_meaning_review_accepted",
+        "uk_meaning_review_accepted"
+      ],
+      "approvedForApply": false,
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_9",
+      "englishBase": "You are right",
+      "provisionalPlacement": "defer_candidate_until_register_policy",
+      "missingAcceptances": [
+        "tu_vous_policy_accepted",
+        "judgment_correctness_structure_review_accepted",
+        "register_policy_review_accepted",
+        "ru_meaning_review_accepted",
+        "uk_meaning_review_accepted"
+      ],
+      "approvedForApply": false,
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_10",
+      "englishBase": "We are safe",
+      "provisionalPlacement": "defer_candidate_until_safety_status_naturalness_review",
+      "missingAcceptances": [
+        "safety_status_structure_review_accepted",
+        "naturalness_review_accepted",
+        "lesson_order_review_accepted",
+        "ru_meaning_review_accepted",
+        "uk_meaning_review_accepted"
+      ],
+      "approvedForApply": false,
+      "activationStatus": "blocked"
+    }
+  ],
+  "nextRequiredAction": "Reviewer must either accept the evidence chain or revise the placement packet before any French target text is drafted."
+}

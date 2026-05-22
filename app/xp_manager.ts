@@ -10,7 +10,7 @@ import { pushMyScore } from './firestore_leaderboard';
 import { loadLeagueState } from './league_engine';
 import { consumeGiftXpBank, readGiftMultiplier, readGiftMultiplierForBaseXp } from './level_gift_system';
 import { getLeagueBoostMultiplier } from './league_personal_boosts';
-import { getVerifiedPremiumStatus } from './premium_guard';
+import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
 import { recordActivityForRepair } from './streak_repair';
 import { getLevelFromXP, TOTAL_XP_FOR_LEVEL } from '../constants/theme';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
@@ -270,7 +270,10 @@ export const registerXP = async (
       const lsRaw = await storageGetString('league_state_v3');
       let leagueId: number | undefined;
       try { if (lsRaw) leagueId = JSON.parse(lsRaw).leagueId; } catch {}
-      const premiumStatus = await getVerifiedPremiumStatus().catch(() => false);
+      const [premiumStatus, vipStatus] = await Promise.all([
+        getVerifiedRealPremiumStatus().catch(() => false),
+        getVerifiedVipStatus().catch(() => false),
+      ]);
       pushMyScore(
         resolvedName,
         newTotal,
@@ -281,6 +284,8 @@ export const registerXP = async (
         leagueId,
         frameId ?? undefined,
         premiumStatus,
+        undefined,
+        vipStatus,
       ).catch(() => {});
     }
 

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "skyler-run-v1",
+  "runId": "2026-05-21T10-11-09-752Z_en_brief",
+  "mode": "brief",
+  "target": "en",
+  "category": "kitchen-and-cooking",
+  "generatedAt": "2026-05-21T10:11:09.753Z",
+  "activeInterfaceLocales": [
+    "ru",
+    "uk",
+    "es",
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "outputDir": "docs/skyler/runs/2026-05-21T10-11-09-752Z_en_brief"
+}

@@ -27,6 +27,7 @@ export interface ArenaLbRow {
   levelRoman: RankLevel;
   totalXp: number;
   isPremium: boolean;
+  isVip?: boolean;
   frame?: string;
   aura?: string;
   profileCardLevel?: number;
@@ -39,7 +40,7 @@ export interface ArenaLbRow {
 }
 
 /** Снимок списка (как leaderboard_cache в Зале славы).
- *  v7: fallback-дедуп старых arena_profiles по уникальному displayName.
+ *  v7: резервный дедуп старых arena_profiles по уникальному displayName.
  *  v6: строки несут friendUid = stable users id для заявок в друзья из карточки.
  *  v5: чтение leaderboard по полю firebaseAuthUid (ключ документа = stableId).
  *  v4: дедуп по stable users id.
@@ -85,6 +86,7 @@ interface LbExtras {
   aura?: string;
   leagueCrown?: LeagueCrown;
   isPremium: boolean;
+  isVip?: boolean;
   avatarEmoji?: string;
   profileCardLevel?: number;
   profileCardTheme?: string;
@@ -101,6 +103,7 @@ function mergeLbExtras(prev: LbExtras | undefined, next: LbExtras): LbExtras {
       aura: next.aura ?? prev.aura,
       leagueCrown: next.leagueCrown ?? prev.leagueCrown,
       isPremium: prev.isPremium || next.isPremium,
+      isVip: prev.isVip || next.isVip,
       avatarEmoji: next.avatarEmoji ?? prev.avatarEmoji,
       profileCardLevel: next.profileCardLevel ?? prev.profileCardLevel,
       profileCardTheme: next.profileCardTheme ?? prev.profileCardTheme,
@@ -115,6 +118,7 @@ function mergeLbExtras(prev: LbExtras | undefined, next: LbExtras): LbExtras {
       aura: prev.aura ?? next.aura,
       leagueCrown: prev.leagueCrown ?? next.leagueCrown,
       isPremium: prev.isPremium || next.isPremium,
+      isVip: prev.isVip || next.isVip,
       avatarEmoji: prev.avatarEmoji ?? next.avatarEmoji,
       profileCardLevel: prev.profileCardLevel ?? next.profileCardLevel,
       profileCardTheme: prev.profileCardTheme ?? next.profileCardTheme,
@@ -128,6 +132,7 @@ function mergeLbExtras(prev: LbExtras | undefined, next: LbExtras): LbExtras {
     aura: prev.aura ?? next.aura,
     leagueCrown: prev.leagueCrown ?? next.leagueCrown,
     isPremium: prev.isPremium || next.isPremium,
+    isVip: prev.isVip || next.isVip,
     avatarEmoji: prev.avatarEmoji ?? next.avatarEmoji,
     profileCardLevel: prev.profileCardLevel ?? next.profileCardLevel,
     profileCardTheme: prev.profileCardTheme ?? next.profileCardTheme,
@@ -143,6 +148,7 @@ function parseLeaderboardDoc(data: Record<string, unknown> | undefined): LbExtra
     frame?: string | null;
     aura?: string | null;
     isPremium?: boolean;
+    isVip?: boolean;
     avatar?: string | null;
     profileCardLevel?: unknown;
     profileCardTheme?: unknown;
@@ -155,6 +161,7 @@ function parseLeaderboardDoc(data: Record<string, unknown> | undefined): LbExtra
     frame: typeof d.frame === 'string' && d.frame.trim() ? d.frame : undefined,
     aura: normalizeAvatarAuraId(d.aura) ?? undefined,
     isPremium: !!d.isPremium,
+    isVip: !!d.isVip,
     avatarEmoji: typeof d.avatar === 'string' && d.avatar.trim() ? d.avatar.trim() : undefined,
     profileCardLevel: normalizeProfileCardLevel(d.profileCardLevel),
     profileCardTheme: normalizeProfileCardTheme(d.profileCardTheme),
@@ -215,14 +222,16 @@ function courseExtrasFromProfileData(d: Record<string, unknown>): LbExtras | und
   const fr = typeof d.courseFrame === 'string' ? d.courseFrame.trim() : '';
   const aura = normalizeAvatarAuraId(typeof d.courseAura === 'string' ? d.courseAura.trim() : '');
   const isP = !!d.courseIsPremium;
+  const isVip = !!d.courseIsVip;
   const profileCardLevel = normalizeProfileCardLevel(d.courseProfileCardLevel);
-  if (xp <= 0 && !av && !fr && !aura && !isP && profileCardLevel <= 0) return undefined;
+  if (xp <= 0 && !av && !fr && !aura && !isP && !isVip && profileCardLevel <= 0) return undefined;
   return {
     points: xp > 0 ? xp : 0,
     avatarEmoji: av || undefined,
     frame: fr || undefined,
     aura,
     isPremium: isP,
+    isVip,
     profileCardLevel,
     profileCardTheme: normalizeProfileCardTheme(d.courseProfileCardTheme),
     profileCardMotion: normalizeProfileCardMotion(d.courseProfileCardMotion),
@@ -248,6 +257,7 @@ function mergeRemoteAndProfileExtras(
     leagueCrown: pri?.leagueCrown ?? sec?.leagueCrown,
     avatarEmoji: pri?.avatarEmoji ?? sec?.avatarEmoji,
     isPremium: (remote?.isPremium ?? false) || (profile?.isPremium ?? false),
+    isVip: (remote?.isVip ?? false) || (profile?.isVip ?? false),
     profileCardLevel: pri?.profileCardLevel ?? sec?.profileCardLevel,
     profileCardTheme: pri?.profileCardTheme ?? sec?.profileCardTheme,
     profileCardMotion: pri?.profileCardMotion ?? sec?.profileCardMotion,
@@ -285,7 +295,7 @@ function foldMergedExtrasForUids(
     const row = mergeRemoteAndProfileExtras(extras.get(uid), profileCourse.get(uid));
     acc = acc ? mergeLbExtras(acc, row) : row;
   }
-  return acc ?? { points: 0, isPremium: false };
+  return acc ?? { points: 0, isPremium: false, isVip: false };
 }
 
 type ArenaCandidate = {
@@ -352,7 +362,7 @@ async function fetchLeaderboardExtras(uids: string[]): Promise<Map<string, LbExt
 
   const needFallback = uids.filter((uid) => (map.get(uid)?.points ?? 0) <= 0);
   needFallback.forEach((uid) => {
-    if (!map.has(uid)) map.set(uid, { points: 0, isPremium: false });
+    if (!map.has(uid)) map.set(uid, { points: 0, isPremium: false, isVip: false });
   });
 
   return map;
@@ -369,7 +379,7 @@ function parseRank(raw: { tier?: string; level?: string } | undefined): { tier: 
   return { tier, levelRoman: lv };
 }
 
-/** Имена-плейсхолдеры от старых билдов / из CF fallback\'ов — НЕ показываем в лидерборде.
+/** Имена-плейсхолдеры от старых билдов / из CF резервных ответов — НЕ показываем в лидерборде.
  *  Используется для фильтра как при свежем fetch из Firestore, так и при чтении кеша. */
 const PLACEHOLDER_NAMES = new Set([
   'Игрок', 'Гравець', 'Player', 'Гость', 'Guest',
@@ -477,6 +487,7 @@ async function queryArenaProfilesTop100(): Promise<ArenaLbRow[]> {
       levelRoman: win.levelRoman,
       totalXp: ex.points,
       isPremium: ex.isPremium,
+      isVip: ex.isVip,
       frame: ex.frame,
       aura: ex.aura,
       avatarEmoji: ex.avatarEmoji,

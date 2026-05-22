@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';

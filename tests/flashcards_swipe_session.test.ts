@@ -1,4 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import fs from 'fs';
+import path from 'path';
 import {
   FLASHCARDS_SWIPE_SESSION_DRAFT_TTL_MS,
   clearFlashcardsSwipeSessionDraft,
@@ -7,8 +9,13 @@ import {
   type FlashcardsSwipeSessionDraft,
   type FlashcardsSwipeSessionScope,
 } from '../app/flashcards_swipe_session';
+import { flashcardsSwipeSessionDraftKey } from '../app/target_storage_keys';
 
 const storage = AsyncStorage as typeof AsyncStorage & { __reset?: () => void };
+const sourcePath = path.join(__dirname, '../app/flashcards_swipe_session.ts');
+
+const LEGACY_RUNTIME_RE =
+  /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
 const scope: FlashcardsSwipeSessionScope = {
   sourceIds: ['official:western'],
@@ -67,6 +74,12 @@ beforeEach(async () => {
 });
 
 describe('flashcards swipe session draft', () => {
+  it('keeps runtime parsing free of legacy locale fallback markers', () => {
+    const source = fs.readFileSync(sourcePath, 'utf8');
+
+    expect(source).not.toMatch(LEGACY_RUNTIME_RE);
+  });
+
   it('restores an unfinished session draft for the same training scope', async () => {
     const draft = buildDraft({ sourceIds: ['official:western'] });
 
@@ -100,5 +113,16 @@ describe('flashcards swipe session draft', () => {
 
     expect(restored).toBeNull();
     expect(AsyncStorage.removeItem).toHaveBeenCalled();
+  });
+
+  it('keeps French swipe drafts out of the legacy English draft key', async () => {
+    const draft = buildDraft({ sourceIds: ['official:western'] });
+
+    await saveFlashcardsSwipeSessionDraft(draft, 'fr');
+
+    await expect(loadFlashcardsSwipeSessionDraft(scope, draft.savedAt + 1000, 'en')).resolves.toBeNull();
+    await expect(loadFlashcardsSwipeSessionDraft(scope, draft.savedAt + 1000, 'fr')).resolves.toEqual(draft);
+    await expect(AsyncStorage.getItem(flashcardsSwipeSessionDraftKey('en'))).resolves.toBeNull();
+    await expect(AsyncStorage.getItem(flashcardsSwipeSessionDraftKey('fr'))).resolves.toContain('official:western');
   });
 });

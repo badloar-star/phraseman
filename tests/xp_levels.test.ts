@@ -7,25 +7,26 @@ import {
 import { getTitleForLevel } from '../constants/titles';
 
 describe('XP level thresholds', () => {
-  it('keeps the existing 50-level curve intact', () => {
-    expect(TOTAL_XP_FOR_LEVEL(50)).toBe(297918);
-    expect(LEVEL_XP(49)).toBe(10973);
+  it('keeps the slower 50-level curve intact', () => {
+    expect(TOTAL_XP_FOR_LEVEL(2)).toBe(400);
+    expect(TOTAL_XP_FOR_LEVEL(50)).toBe(476669);
+    expect(LEVEL_XP(49)).toBe(17557);
     expect(getLevelFromXP(TOTAL_XP_FOR_LEVEL(50))).toBe(50);
     expect(getLevelFromXP(TOTAL_XP_FOR_LEVEL(50) - 1)).toBe(49);
   });
 
   it('uses legendary post-50 thresholds with 150K growing steps', () => {
     const expected = [
-      [51, 150000, 447918],
-      [52, 300000, 747918],
-      [53, 450000, 1197918],
-      [54, 600000, 1797918],
-      [55, 750000, 2547918],
-      [56, 900000, 3447918],
-      [57, 1050000, 4497918],
-      [58, 1200000, 5697918],
-      [59, 1350000, 7047918],
-      [60, 1500000, 8547918],
+      [51, 150000, 626669],
+      [52, 300000, 926669],
+      [53, 450000, 1376669],
+      [54, 600000, 1976669],
+      [55, 750000, 2726669],
+      [56, 900000, 3626669],
+      [57, 1050000, 4676669],
+      [58, 1200000, 5876669],
+      [59, 1350000, 7226669],
+      [60, 1500000, 8726669],
     ] as const;
 
     expect(MAX_LEVEL).toBe(60);

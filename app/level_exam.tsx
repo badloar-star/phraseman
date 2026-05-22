@@ -1,12 +1,13 @@
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
@@ -21,7 +22,7 @@ import { addShards, awardOneTime } from './shards_system';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import GoldBevel from '../components/GoldBevel';
 import { buildLevelExamEnglish, buildLevelExamHintPair, recordMistake } from './active_recall';
-import { trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
+import { trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { logMistake } from './mistake_log';
 import { resolveChoiceMistakeToken, resolvePhraseMistakeToken } from './mistake_token_resolver';
 import { isUserFacingCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
@@ -29,6 +30,9 @@ import { getCourseLevelIndex, getFirstLessonForLevel, getNextCourseLevel, getPre
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { lessonPaywallContext } from './monetization_policy';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
+import { levelExamKey } from './target_storage_keys';
+import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
+import { recordLevelExamAttempt } from './level_exam_attempts';
 
 const MEDAL_IMAGES_EXAM: Record<string, any> = {
   bronze:  require('../assets/images/levels/bronza.webp'),
@@ -276,8 +280,17 @@ const LEVEL_TOPIC_PLANNED: Record<string, Record<PlannedInterfaceLang, string>> 
   },
 };
 
+const LEVEL_TOPIC_UNAVAILABLE: Record<PlannedInterfaceLang, string> = {
+  'pt-BR': 'Tópico do teste de nível indisponível',
+  vi: 'Chưa có chủ đề bài kiểm tra trình độ',
+  id: 'Topik ujian level belum tersedia',
+  tr: 'Seviye sınavı konusu kullanılamıyor',
+  pl: 'Temat testu poziomu jest niedostępny',
+};
+
 function levelTopicPlanned(q: LevelQ, locale: PlannedInterfaceLang): string {
-  return LEVEL_TOPIC_PLANNED[q.topicES]?.[locale] ?? q.topicES;
+  const planned = LEVEL_TOPIC_PLANNED[q.topicES]?.[locale];
+  return planned && planned.trim().length > 0 ? planned : LEVEL_TOPIC_UNAVAILABLE[locale];
 }
 
 function levelExamCategory(q: LevelQ, token?: string): WordCategory | undefined {
@@ -442,6 +455,60 @@ const LX = {
 
 const INTRO_Q_COUNT = 30;
 
+function FrenchLevelExamUnavailable({
+  lang,
+  onBack,
+  onLessons,
+  f,
+}: {
+  lang: string;
+  onBack: () => void;
+  onLessons: () => void;
+  f: ReturnType<typeof useTheme>['f'];
+}) {
+  const copy = frenchExamGateCopy('level', lang);
+  return (
+    <ScreenGradient artBackdrop="exam">
+      <SafeAreaView style={{ flex: 1 }}>
+        <ContentWrap>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingHorizontal: 16,
+              paddingVertical: 12,
+              borderBottomWidth: StyleSheet.hairlineWidth,
+              borderBottomColor: LX.cardLine,
+            }}
+          >
+            <TouchableOpacity onPress={onBack} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+              <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
+            </TouchableOpacity>
+          </View>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
+            <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: LX.card, borderWidth: 1, borderColor: LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
+              <Ionicons name="shield-checkmark-outline" size={38} color={LX.gold} />
+            </View>
+            <Text style={{ color: '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
+              {copy.title}
+            </Text>
+            <Text style={{ color: 'rgba(255,255,255,0.74)', fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center', marginBottom: 26 }}>
+              {copy.body}
+            </Text>
+            <TouchableOpacity
+              activeOpacity={0.86}
+              onPress={onLessons}
+              style={{ backgroundColor: LX.gold, paddingHorizontal: 22, paddingVertical: 13, borderRadius: 14 }}
+            >
+              <Text style={{ color: LX.ink, fontSize: f.body, fontWeight: '900' }}>{copy.cta}</Text>
+            </TouchableOpacity>
+          </View>
+        </ContentWrap>
+      </SafeAreaView>
+    </ScreenGradient>
+  );
+}
+
 // ── Главный компонент ─────────────────────────────────────────────────────────
 export default function LevelExam() {
   const router = useRouter();
@@ -449,6 +516,8 @@ export default function LevelExam() {
   const isGoldTheme = themeMode === 'gold';
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
+  const frenchExamBlocked = !examContentAvailableForTarget(studyTarget);
   const { level } = useLocalSearchParams<{ level: string }>();
   const validLevels = ['A1', 'A2', 'B1', 'B2'];
   const lvl = validLevels.includes(level) ? level : 'A1';
@@ -458,7 +527,8 @@ export default function LevelExam() {
   const [choices, setChoices] = useState<(number | null)[]>([]);
   const [showAnswer, setShowAnswer] = useState(false);
   const [examMedalTier, setExamMedalTier] = useState<MedalTier>('none');
-  const [examPassCount, setExamPassCount] = useState(0);
+  const [, setExamPassCount] = useState(0);
+  const [examAttemptNumber, setExamAttemptNumber] = useState(1);
   const [medalImproved, setMedalImproved] = useState(false);
   const [exitExamConfirm, setExitExamConfirm] = useState(false);
   const [accessState, setAccessState] = useState<'checking' | 'allowed' | 'blocked'>('checking');
@@ -466,9 +536,10 @@ export default function LevelExam() {
   const [accessBlockKind, setAccessBlockKind] = useState<'premium' | 'level' | 'error'>('level');
 
   const questions = useMemo(() => {
+    if (frenchExamBlocked) return [];
     const [from, to] = LEVEL_RANGES[lvl] ?? [1, 8];
     return QUESTION_POOL.filter(q => q.lessonNum >= from && q.lessonNum <= to);
-  }, [lvl]);
+  }, [frenchExamBlocked, lvl]);
 
   useEffect(() => {
     let cancelled = false;
@@ -476,6 +547,13 @@ export default function LevelExam() {
     setBlockedText('');
     setAccessBlockKind('level');
     void (async () => {
+      if (frenchExamBlocked) {
+        if (!cancelled) {
+          setAccessState('blocked');
+          setBlockedText(frenchExamGateCopy('level', lang).body);
+        }
+        return;
+      }
       const noLimits = await AsyncStorage.getItem('tester_no_limits');
       if (noLimits === 'true') {
         if (!cancelled) setAccessState('allowed');
@@ -501,7 +579,7 @@ export default function LevelExam() {
         return;
       }
 
-      const reachedLevel = await getPremiumCourseLevel();
+      const reachedLevel = await getPremiumCourseLevel(studyTarget);
       const examLevel = lvl as CourseLevel;
       if (getCourseLevelIndex(examLevel) <= getCourseLevelIndex(reachedLevel)) {
         if (!cancelled) setAccessState('allowed');
@@ -551,7 +629,7 @@ export default function LevelExam() {
       }
     });
     return () => { cancelled = true; };
-  }, [lang, lvl]);
+  }, [frenchExamBlocked, lang, lvl, studyTarget]);
 
   const levelLabel = LEVEL_LABELS[lvl];
   const title = levelLabel
@@ -580,12 +658,16 @@ export default function LevelExam() {
   const chosen = choices[idx] ?? null;
 
   const startExam = useCallback(() => {
+    if (frenchExamBlocked) {
+      void trackFeatureBlocked('level_exam', 'start', 'french_exam_source_gate', { level: lvl, studyTarget }, 'level_exam');
+      return;
+    }
     void trackFeatureStart('level_exam', 'start', { level: lvl, total: questions.length }, 'level_exam');
     setChoices(new Array(questions.length).fill(null));
     setIdx(0);
     setShowAnswer(false);
     setPhase('quiz');
-  }, [questions.length, lvl]);
+  }, [frenchExamBlocked, questions.length, lvl, studyTarget]);
 
   const handlePick = (ci: number) => {
     if (chosen !== null) return;
@@ -614,6 +696,7 @@ export default function LevelExam() {
         'exam',
         undefined,
         tokenMeta,
+        studyTarget,
       );
       logMistake(
         phrase,
@@ -621,6 +704,7 @@ export default function LevelExam() {
         'exam',
         'wrong_pick',
         tokenMeta,
+        studyTarget,
       );
     }
     setChoices(prev => { const n = [...prev]; n[idx] = ci; return n; });
@@ -640,27 +724,29 @@ export default function LevelExam() {
     const noLimits = await AsyncStorage.getItem('tester_no_limits');
     const passed = noLimits === 'true' || pct >= PASS_PCT;
     try {
-      await AsyncStorage.setItem(`level_exam_${lvl}_pct`, String(pct));
-      await AsyncStorage.setItem(`level_exam_${lvl}_passed`, passed ? '1' : '0');
+      const attemptNumber = await recordLevelExamAttempt(lvl, studyTarget);
+      setExamAttemptNumber(attemptNumber);
+      await AsyncStorage.setItem(levelExamKey(lvl, 'pct', studyTarget), String(pct));
+      await AsyncStorage.setItem(levelExamKey(lvl, 'passed', studyTarget), passed ? '1' : '0');
       // При сдаче зачёта открываем следующий уровень.
       if (passed) {
         const nextLevel = getNextCourseLevel(lvl as CourseLevel);
         if (nextLevel) {
-          await markPremiumCourseLevelReached(nextLevel);
-          await unlockLesson(getFirstLessonForLevel(nextLevel));
+          await markPremiumCourseLevelReached(nextLevel, studyTarget);
+          await unlockLesson(getFirstLessonForLevel(nextLevel), studyTarget);
         }
         addShards('lesson_quiz_passed').catch(() => {});
       }
       if (pct >= 90) awardOneTime('exam_excellent').catch(() => {});
-      const { newTier, prevTier, newPassCount } = await saveExamProgress(lvl, pct);
+      const { newTier, prevTier, newPassCount } = await saveExamProgress(lvl, pct, studyTarget);
       setExamMedalTier(newTier);
       setExamPassCount(newPassCount);
       setMedalImproved(newTier !== prevTier && newTier !== 'none');
       // Gem achievements for exam
       const gemMap: Record<number, 'ruby' | 'emerald' | 'diamond'> = { 2: 'ruby', 3: 'emerald', 4: 'diamond' };
       const gem = gemMap[newPassCount];
-      if (gem) checkAchievements({ type: 'gem', level: lvl, gem } as any).catch(() => {});
-      checkAchievements({ type: 'exam', pct }).catch(() => {});
+      if (gem) checkAchievements({ type: 'gem', level: lvl, gem, studyTarget }).catch(() => {});
+      checkAchievements({ type: 'exam', pct, studyTarget }).catch(() => {});
       void trackFeatureSuccess('level_exam', 'complete', { level: lvl, correct, total, pct, passed }, 'level_exam');
     } catch (e) {
       void trackFeatureError('level_exam', 'complete', e, { level: lvl, correct, total, pct, passed }, 'level_exam');
@@ -672,10 +758,22 @@ export default function LevelExam() {
   const pct = total > 0 ? Math.round(correctCount / total * 100) : 0;
   const passed = pct >= PASS_PCT;
 
+  if (frenchExamBlocked) {
+    return (
+      <FrenchLevelExamUnavailable
+        lang={lang}
+        onBack={() => { hapticTap(); router.back(); }}
+        onLessons={() => { hapticTap(); router.replace('/(tabs)/lessons' as any); }}
+        f={f}
+      />
+    );
+  }
+
   if (accessState !== 'allowed') {
     const checking = accessState === 'checking';
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: LX.screen }}>
+      <ScreenGradient artBackdrop="exam">
+      <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
           <View
             style={{
@@ -770,6 +868,7 @@ export default function LevelExam() {
           </View>
         </ContentWrap>
       </SafeAreaView>
+      </ScreenGradient>
     );
   }
 
@@ -853,7 +952,8 @@ export default function LevelExam() {
         : null;
 
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: LX.screen }}>
+      <ScreenGradient artBackdrop="exam">
+      <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
           <View
             style={{
@@ -1012,6 +1112,7 @@ export default function LevelExam() {
           </ScrollView>
         </ContentWrap>
       </SafeAreaView>
+      </ScreenGradient>
     );
   }
 
@@ -1096,14 +1197,14 @@ export default function LevelExam() {
               </Text>
               <Text style={{ color: sx.muted, fontSize: f.sub }}>
                 {triLang(lang, {
-                  ru: `Попытка №${examPassCount}`,
-                  uk: `Спроба №${examPassCount}`,
-                  es: `Intento n.º ${examPassCount}`,
-                  'pt-BR': `Tentativa nº ${examPassCount}`,
-                  vi: `Lần thứ ${examPassCount}`,
-                  id: `Percobaan ke-${examPassCount}`,
-                  tr: `${examPassCount}. deneme`,
-                  pl: `Podejście nr ${examPassCount}`,
+                  ru: `Попытка №${examAttemptNumber}`,
+                  uk: `Спроба №${examAttemptNumber}`,
+                  es: `Intento n.º ${examAttemptNumber}`,
+                  'pt-BR': `Tentativa nº ${examAttemptNumber}`,
+                  vi: `Lần thứ ${examAttemptNumber}`,
+                  id: `Percobaan ke-${examAttemptNumber}`,
+                  tr: `${examAttemptNumber}. deneme`,
+                  pl: `Podejście nr ${examAttemptNumber}`,
                 })}
               </Text>
             </View>

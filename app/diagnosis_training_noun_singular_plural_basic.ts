@@ -9,37 +9,282 @@ const tri = (
   uk = ru,
   es = ru,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (planned[locale]) copy[locale] = planned[locale];
+  }
+  return copy;
+};
 
 const CONTRAST_SET = ['singular noun', 'plural noun', '-s plural', '-es plural', '-ies plural', 'irregular plural', 'uncountable noun'];
 
 const option = (text: string) => ({ id: text, text });
 
-const retry = (line: string): [TriText, TriText, TriText, TriText] => [
-  tri(line, line, 'Check the quantity signal and choose the word form.'),
+const NOUN_STEP_TRANSLATIONS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  noun_plural_easy_001: {
+    'pt-BR': 'Eu tenho um livro.',
+    vi: 'Tôi có một quyển sách.',
+    id: 'Saya punya sebuah buku.',
+    tr: 'Bir kitabım var.',
+    pl: 'Mam książkę.',
+  },
+  noun_plural_easy_002: {
+    'pt-BR': 'Eu tenho dois livros.',
+    vi: 'Tôi có hai quyển sách.',
+    id: 'Saya punya dua buku.',
+    tr: 'İki kitabım var.',
+    pl: 'Mam dwie książki.',
+  },
+  noun_plural_easy_003: {
+    'pt-BR': 'Há muitas perguntas.',
+    vi: 'Có nhiều câu hỏi.',
+    id: 'Ada banyak pertanyaan.',
+    tr: 'Çok soru var.',
+    pl: 'Jest dużo pytań.',
+  },
+  noun_plural_contrast_001: {
+    'pt-BR': 'Esta lição é importante.',
+    vi: 'Bài học này quan trọng.',
+    id: 'Pelajaran ini penting.',
+    tr: 'Bu ders önemli.',
+    pl: 'Ta lekcja jest ważna.',
+  },
+  noun_plural_contrast_002: {
+    'pt-BR': 'Estas lições são importantes.',
+    vi: 'Những bài học này quan trọng.',
+    id: 'Pelajaran-pelajaran ini penting.',
+    tr: 'Bu dersler önemli.',
+    pl: 'Te lekcje są ważne.',
+  },
+  noun_plural_contrast_003: {
+    'pt-BR': 'Há poucos erros neste texto.',
+    vi: 'Có ít lỗi trong văn bản này.',
+    id: 'Ada sedikit kesalahan dalam teks ini.',
+    tr: 'Bu metinde az hata var.',
+    pl: 'W tym tekście jest mało błędów.',
+  },
+  noun_plural_contrast_004: {
+    'pt-BR': 'Há três caixas na mesa.',
+    vi: 'Có ba cái hộp trên bàn.',
+    id: 'Ada tiga kotak di atas meja.',
+    tr: 'Masanın üzerinde üç kutu var.',
+    pl: 'Na stole są trzy pudełka.',
+  },
+  noun_plural_contrast_005: {
+    'pt-BR': 'Eu conheço duas histórias interessantes.',
+    vi: 'Tôi biết hai câu chuyện thú vị.',
+    id: 'Saya tahu dua cerita menarik.',
+    tr: 'İki ilginç hikaye biliyorum.',
+    pl: 'Znam dwie ciekawe historie.',
+  },
+  noun_plural_contrast_006: {
+    'pt-BR': 'Ela tem dois relógios caros.',
+    vi: 'Cô ấy có hai chiếc đồng hồ đắt tiền.',
+    id: 'Dia punya dua jam tangan mahal.',
+    tr: 'Onun iki pahalı saati var.',
+    pl: 'Ona ma dwa drogie zegarki.',
+  },
+  noun_plural_mixed_001: {
+    'pt-BR': 'Há muitas crianças no parque.',
+    vi: 'Có nhiều trẻ em trong công viên.',
+    id: 'Ada banyak anak di taman.',
+    tr: 'Parkta birçok çocuk var.',
+    pl: 'W parku jest dużo dzieci.',
+  },
+  noun_plural_mixed_002: {
+    'pt-BR': 'Conheci três pessoas interessantes.',
+    vi: 'Tôi đã gặp ba người thú vị.',
+    id: 'Saya bertemu tiga orang menarik.',
+    tr: 'Üç ilginç insanla tanıştım.',
+    pl: 'Spotkałem trzy ciekawe osoby.',
+  },
+  noun_plural_mixed_003: {
+    'pt-BR': 'Preciso de mais informação.',
+    vi: 'Tôi cần thêm thông tin.',
+    id: 'Saya butuh lebih banyak informasi.',
+    tr: 'Daha fazla bilgiye ihtiyacım var.',
+    pl: 'Potrzebuję więcej informacji.',
+  },
+  noun_plural_mixed_004: {
+    'pt-BR': 'Escolha o par correto.',
+    vi: 'Chọn cặp đúng.',
+    id: 'Pilih pasangan yang benar.',
+    tr: 'Doğru çifti seç.',
+    pl: 'Wybierz poprawną parę.',
+  },
+  noun_plural_mixed_005: {
+    'pt-BR': 'Escolha o par correto.',
+    vi: 'Chọn cặp đúng.',
+    id: 'Pilih pasangan yang benar.',
+    tr: 'Doğru çifti seç.',
+    pl: 'Wybierz poprawną parę.',
+  },
+  noun_plural_mixed_006: {
+    'pt-BR': 'Escolha a frase correta.',
+    vi: 'Chọn câu đúng.',
+    id: 'Pilih kalimat yang benar.',
+    tr: 'Doğru cümleyi seç.',
+    pl: 'Wybierz poprawne zdanie.',
+  },
+};
+
+const NOUN_SKILL_HINTS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  one_after_a: {
+    'pt-BR': 'A indica uma coisa; use a forma singular.',
+    vi: 'A chỉ một thứ; dùng dạng số ít.',
+    id: 'A menunjukkan satu benda; gunakan bentuk tunggal.',
+    tr: 'A tek şeyi gösterir; tekil biçimi kullan.',
+    pl: 'A wskazuje jedną rzecz; użyj liczby pojedynczej.',
+  },
+  many_after_two: {
+    'pt-BR': 'Two indica várias coisas; use plural.',
+    vi: 'Two chỉ nhiều thứ; dùng số nhiều.',
+    id: 'Two menunjukkan beberapa benda; gunakan jamak.',
+    tr: 'Two birden fazlayı gösterir; çoğul kullan.',
+    pl: 'Two wskazuje kilka rzeczy; użyj liczby mnogiej.',
+  },
+  many_questions: {
+    'pt-BR': 'Many pede plural.',
+    vi: 'Many cần số nhiều.',
+    id: 'Many meminta bentuk jamak.',
+    tr: 'Many çoğul ister.',
+    pl: 'Many wymaga liczby mnogiej.',
+  },
+  this_one_lesson: {
+    'pt-BR': 'This combina com uma coisa.',
+    vi: 'This đi với một thứ.',
+    id: 'This cocok dengan satu benda.',
+    tr: 'This tek şeyle kullanılır.',
+    pl: 'This łączy się z jedną rzeczą.',
+  },
+  these_lessons: {
+    'pt-BR': 'These combina com várias coisas.',
+    vi: 'These đi với nhiều thứ.',
+    id: 'These cocok dengan beberapa benda.',
+    tr: 'These birden fazla şeyle kullanılır.',
+    pl: 'These łączy się z kilkoma rzeczami.',
+  },
+  few_mistakes: {
+    'pt-BR': 'Few ainda significa várias coisas; use plural.',
+    vi: 'Few vẫn nghĩa là nhiều hơn một; dùng số nhiều.',
+    id: 'Few tetap berarti beberapa; gunakan jamak.',
+    tr: 'Few yine birkaç şey demektir; çoğul kullan.',
+    pl: 'Few nadal oznacza kilka; użyj liczby mnogiej.',
+  },
+  boxes_es: {
+    'pt-BR': 'Depois de x, box vira boxes.',
+    vi: 'Sau x, box thành boxes.',
+    id: 'Setelah x, box menjadi boxes.',
+    tr: 'x sonrasında box, boxes olur.',
+    pl: 'Po x słowo box zmienia się w boxes.',
+  },
+  stories_ies: {
+    'pt-BR': 'Story muda y para ies: stories.',
+    vi: 'Story đổi y thành ies: stories.',
+    id: 'Story mengubah y menjadi ies: stories.',
+    tr: 'Story y harfini ies yapar: stories.',
+    pl: 'Story zmienia y na ies: stories.',
+  },
+  watches_es: {
+    'pt-BR': 'Depois de ch, watch vira watches.',
+    vi: 'Sau ch, watch thành watches.',
+    id: 'Setelah ch, watch menjadi watches.',
+    tr: 'ch sonrasında watch, watches olur.',
+    pl: 'Po ch słowo watch zmienia się w watches.',
+  },
+  children_irregular: {
+    'pt-BR': 'Child é irregular: children.',
+    vi: 'Child bất quy tắc: children.',
+    id: 'Child tidak beraturan: children.',
+    tr: 'Child düzensizdir: children.',
+    pl: 'Child jest nieregularne: children.',
+  },
+  people_irregular: {
+    'pt-BR': 'No uso comum, person vira people.',
+    vi: 'Trong cách dùng thường, person thành people.',
+    id: 'Dalam penggunaan umum, person menjadi people.',
+    tr: 'Günlük kullanımda person, people olur.',
+    pl: 'W zwykłym użyciu person zmienia się w people.',
+  },
+  information_uncountable: {
+    'pt-BR': 'Information normalmente não recebe -s.',
+    vi: 'Information thường không nhận -s.',
+    id: 'Information biasanya tidak mendapat -s.',
+    tr: 'Information genellikle -s almaz.',
+    pl: 'Information zwykle nie dostaje -s.',
+  },
+};
+
+const NOUN_GENERIC_HINTS: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'Olhe para o sinal de quantidade antes da palavra.',
+  vi: 'Hãy nhìn tín hiệu số lượng trước từ.',
+  id: 'Lihat tanda jumlah sebelum kata.',
+  tr: 'Kelimenin önündeki miktar işaretine bak.',
+  pl: 'Spójrz na sygnał ilości przed słowem.',
+};
+
+function fillPlanned(copy: TriText, planned: Partial<Record<PlannedTrainingLocale, string>>): TriText {
+  const next: TriText = { ...copy };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] && planned[locale]) next[locale] = planned[locale];
+  }
+  return next;
+}
+
+function plannedNounFeedback(input: {
+  targetSkill: string;
+  correctAnswerId: string;
+  focusWords: string[];
+}): Record<PlannedTrainingLocale, string> {
+  const focus = input.focusWords.join(' / ');
+  const hints = NOUN_SKILL_HINTS[input.targetSkill] ?? NOUN_GENERIC_HINTS;
+  return {
+    'pt-BR': `Use "${input.correctAnswerId}"${focus ? ` com ${focus}` : ''}. ${hints['pt-BR']}`,
+    vi: `Dùng "${input.correctAnswerId}"${focus ? ` với ${focus}` : ''}. ${hints.vi}`,
+    id: `Gunakan "${input.correctAnswerId}"${focus ? ` dengan ${focus}` : ''}. ${hints.id}`,
+    tr: `"${input.correctAnswerId}" kullan${focus ? ` (${focus})` : ''}. ${hints.tr}`,
+    pl: `Użyj "${input.correctAnswerId}"${focus ? ` z ${focus}` : ''}. ${hints.pl}`,
+  };
+}
+
+const retry = (line: string, planned: Partial<Record<PlannedTrainingLocale, string>> = {}): [TriText, TriText, TriText, TriText] => [
+  tri(line, line, 'Check the quantity signal and choose the word form.', planned),
   tri(
     'Сначала смотри на сигнал перед словом: a/one/this или two/many/these?',
     'Спочатку дивись на сигнал перед словом: a/one/this чи two/many/these?',
     'Primero mira la señal antes de la palabra: a/one/this o two/many/these?',
+    {
+      'pt-BR': 'Primeiro olhe para o sinal antes da palavra: a/one/this ou two/many/these?',
+      vi: 'Trước tiên nhìn tín hiệu trước từ: a/one/this hay two/many/these?',
+      id: 'Pertama lihat tanda sebelum kata: a/one/this atau two/many/these?',
+      tr: 'Önce kelimeden önceki işarete bak: a/one/this mi, two/many/these mi?',
+      pl: 'Najpierw spójrz na sygnał przed słowem: a/one/this czy two/many/these?',
+    },
   ),
   tri(
     'Опора не в слове, а в сигнале количества: один предмет, несколько предметов или слово без счета по штукам.',
     'Опора не в слові, а в сигналі кількості: один предмет, кілька предметів або слово без рахунку по штуках.',
     'Apoyos: a book, two books, this lesson, these lessons.',
+    {
+      'pt-BR': 'A pista não está só na palavra, mas no sinal de quantidade: uma coisa, várias coisas ou palavra sem contagem por unidades.',
+      vi: 'Điểm tựa không chỉ nằm ở từ, mà ở tín hiệu số lượng: một thứ, nhiều thứ, hoặc từ không đếm từng cái.',
+      id: 'Petunjuknya bukan hanya pada kata, tetapi pada tanda jumlah: satu benda, beberapa benda, atau kata yang tidak dihitung per unit.',
+      tr: 'Dayanak sadece kelimede değil, miktar işaretindedir: tek şey, birkaç şey ya da parça parça sayılmayan kelime.',
+      pl: 'Oparcie jest nie w samym słowie, tylko w sygnale ilości: jedna rzecz, kilka rzeczy albo słowo nieliczone na sztuki.',
+    },
   ),
   tri(
     'Если слово не считаем по штукам, как information, обычно не добавляем -s.',
     'Якщо слово не рахуємо по штуках, як information, зазвичай не додаємо -s.',
     'Si la palabra no se cuenta por unidades, como information, normalmente no añadimos -s.',
+    {
+      'pt-BR': 'Se a palavra não é contada por unidades, como information, normalmente não acrescentamos -s.',
+      vi: 'Nếu từ không đếm từng cái, như information, thường không thêm -s.',
+      id: 'Jika kata tidak dihitung per unit, seperti information, biasanya tidak ditambah -s.',
+      tr: 'Kelime information gibi parça parça sayılmıyorsa genelde -s eklemeyiz.',
+      pl: 'Jeśli słowa nie liczymy na sztuki, jak information, zwykle nie dodajemy -s.',
+    },
   ),
 ];
 
@@ -47,6 +292,13 @@ const defaultWrong = (correctAnswer: string): TriText => tri(
   `Не эта форма. Здесь нужно "${correctAnswer}": сигнал перед словом подсказывает, одна вещь или несколько.`,
   `Не ця форма. Тут потрібно "${correctAnswer}": сигнал перед словом підказує, одна річ чи кілька.`,
   `No es esta forma. Aquí necesitamos "${correctAnswer}": la señal antes de la palabra marca una cosa o varias.`,
+  {
+    'pt-BR': `Não é esta forma. Aqui precisamos de "${correctAnswer}": o sinal antes da palavra mostra uma coisa ou várias.`,
+    vi: `Không phải dạng này. Ở đây cần "${correctAnswer}": tín hiệu trước từ cho biết một thứ hay nhiều thứ.`,
+    id: `Bukan bentuk ini. Di sini perlu "${correctAnswer}": tanda sebelum kata menunjukkan satu benda atau beberapa.`,
+    tr: `Bu biçim değil. Burada "${correctAnswer}" gerekir: kelimenin önündeki işaret tek şey mi birkaç şey mi gösterir.`,
+    pl: `To nie ta forma. Tutaj potrzebujemy "${correctAnswer}": sygnał przed słowem pokazuje jedną rzecz albo kilka.`,
+  },
 );
 
 function step(input: {
@@ -66,37 +318,53 @@ function step(input: {
   fallbackExplanation?: TriText;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const plannedFeedback = plannedNounFeedback(input);
+  const plannedTranslation = NOUN_STEP_TRANSLATIONS[input.id] ?? plannedFeedback;
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
-    explanationBlock: input.explanationBlock,
+    translation: fillPlanned(input.translation, plannedTranslation),
+    explanationBlock: fillPlanned(input.explanationBlock, plannedFeedback),
     microTask: input.microTask ?? tri(
       'Выбери форму слова, которая нормально звучит в этой фразе.',
       'Обери форму слова, яка нормально звучить у цій фразі.',
       'Elige la forma de la palabra que suena natural en esta frase.',
+      {
+        'pt-BR': 'Escolha a forma da palavra que soa natural nesta frase.',
+        vi: 'Chọn dạng từ nghe tự nhiên trong câu này.',
+        id: 'Pilih bentuk kata yang terdengar alami dalam frasa ini.',
+        tr: 'Bu ifadede doğal gelen kelime biçimini seç.',
+        pl: 'Wybierz formę słowa, która brzmi naturalnie w tej frazie.',
+      },
     ),
     sentence: input.sentence,
     answerOptions: input.options.map(option),
     correctAnswerId: input.correctAnswerId,
     correctIndex: input.options.findIndex((item) => item === input.correctAnswerId),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: fillPlanned(input.correctFeedback, plannedFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((item) => item !== input.correctAnswerId)
         .map((item) => [
           item,
-          input.wrongFeedbackByOption?.[item] ?? defaultWrong(input.correctAnswerId),
+          fillPlanned(input.wrongFeedbackByOption?.[item] ?? defaultWrong(input.correctAnswerId), plannedFeedback),
         ]),
     ),
-    retryFeedback: retry(input.retryLine),
+    retryFeedback: retry(input.retryLine, plannedFeedback),
     fallbackExplanation: input.fallbackExplanation ?? tri(
       'A/one/this - про одну вещь. Two/many/few/these - про несколько. Information/money/advice/water обычно без -s.',
       'A/one/this - про одну річ. Two/many/few/these - про кілька. Information/money/advice/water зазвичай без -s.',
       'A/one/this hablan de una cosa. Two/many/few/these hablan de varias. Information/money/advice/water normalmente van sin -s.',
+      {
+        'pt-BR': 'A/one/this indicam uma coisa. Two/many/few/these indicam várias. Information/money/advice/water normalmente ficam sem -s.',
+        vi: 'A/one/this nói về một thứ. Two/many/few/these nói về nhiều thứ. Information/money/advice/water thường không có -s.',
+        id: 'A/one/this menunjukkan satu benda. Two/many/few/these menunjukkan beberapa. Information/money/advice/water biasanya tanpa -s.',
+        tr: 'A/one/this tek şeyi gösterir. Two/many/few/these birden fazlayı gösterir. Information/money/advice/water genellikle -s almaz.',
+        pl: 'A/one/this mówią o jednej rzeczy. Two/many/few/these mówią o kilku. Information/money/advice/water zwykle są bez -s.',
+      },
     ),
     focusWords: input.focusWords,
   };
@@ -109,28 +377,68 @@ export const NOUN_SINGULAR_PLURAL_BASIC_TRAINING: DiagnosisTraining = {
   status: 'active',
   priority: 21,
   supportedLocales: ['ru', 'uk', 'es'],
-  title: tri('Book / Books: одна вещь или несколько', 'Book / Books: одна річ чи кілька', 'Book / Books: una cosa o varias'),
-  shortTitle: tri('Book / Books', 'Book / Books', 'Book / Books'),
+  title: tri('Book / Books: одна вещь или несколько', 'Book / Books: одна річ чи кілька', 'Book / Books: una cosa o varias', {
+    'pt-BR': 'Book / Books: uma coisa ou várias',
+    vi: 'Book / Books: một thứ hay nhiều thứ',
+    id: 'Book / Books: satu benda atau beberapa',
+    tr: 'Book / Books: tek şey mi birkaç şey mi',
+    pl: 'Book / Books: jedna rzecz czy kilka',
+  }),
+  shortTitle: tri('Book / Books', 'Book / Books', 'Book / Books: singular o plural', {
+    'pt-BR': 'Book / Books: singular ou plural',
+    vi: 'Book / Books: số ít hay số nhiều',
+    id: 'Book / Books: tunggal atau jamak',
+    tr: 'Book / Books: tekil mi çoğul mu',
+    pl: 'Book / Books: liczba pojedyncza czy mnoga',
+  }),
   shortDiagnosis: tri(
     'Ты ставишь одну форму слова там, где английский просит другую.',
     'Ти ставиш одну форму слова там, де англійська просить іншу.',
     'Usas una forma cuando el inglés pide otra.',
+    {
+      'pt-BR': 'Você usa uma forma quando o inglês pede outra.',
+      vi: 'Bạn dùng một dạng từ khi tiếng Anh cần dạng khác.',
+      id: 'Kamu memakai satu bentuk kata saat bahasa Inggris meminta bentuk lain.',
+      tr: 'İngilizce başka biçim isterken sen farklı bir kelime biçimi koyuyorsun.',
+      pl: 'Używasz jednej formy słowa tam, gdzie angielski prosi o inną.',
+    },
   ),
   diagnosisText: tri(
     'Проблема не в том, что ты не знаешь слово book. Проблема в сигнале вокруг него: a book, two books, these lessons, more information.',
     'Проблема не в тому, що ти не знаєш слово book. Проблема в сигналі навколо нього: a book, two books, these lessons, more information.',
     'El problema no es que no sepas book. El problema está en la señal alrededor: a book, two books, these lessons, more information.',
+    {
+      'pt-BR': 'O problema não é você não saber a palavra book. O problema está no sinal ao redor: a book, two books, these lessons, more information.',
+      vi: 'Vấn đề không phải là bạn không biết từ book. Vấn đề nằm ở tín hiệu xung quanh nó: a book, two books, these lessons, more information.',
+      id: 'Masalahnya bukan kamu tidak tahu kata book. Masalahnya ada pada tanda di sekitarnya: a book, two books, these lessons, more information.',
+      tr: 'Sorun book kelimesini bilmemen değil. Sorun çevresindeki işarette: a book, two books, these lessons, more information.',
+      pl: 'Problem nie polega na tym, że nie znasz słowa book. Problem jest w sygnale wokół niego: a book, two books, these lessons, more information.',
+    },
   ),
   mentalModel: tri(
     'Английский каждый раз заставляет выбрать: одна вещь, несколько вещей или слово, которое не считаем по штукам.',
     'Англійська щоразу змушує обрати: одна річ, кілька речей або слово, яке не рахуємо по штуках.',
     'El inglés te obliga a elegir: una cosa, varias cosas o una palabra que no contamos por unidades.',
+    {
+      'pt-BR': 'O inglês sempre força uma escolha: uma coisa, várias coisas ou uma palavra que não contamos por unidades.',
+      vi: 'Tiếng Anh luôn buộc bạn chọn: một thứ, nhiều thứ, hoặc từ không đếm từng cái.',
+      id: 'Bahasa Inggris selalu memaksa memilih: satu benda, beberapa benda, atau kata yang tidak dihitung per unit.',
+      tr: 'İngilizce her seferinde seçim yaptırır: tek şey, birkaç şey ya da parça parça sayılmayan kelime.',
+      pl: 'Angielski za każdym razem każe wybrać: jedna rzecz, kilka rzeczy albo słowo, którego nie liczymy na sztuki.',
+    },
   ),
   contrastSet: CONTRAST_SET,
   coreRule: tri(
     'A/one/this обычно просит одну форму. Two/many/these просит форму для нескольких. Некоторые слова вроде information не считаем по штукам и не добавляем им обычное -s.',
     'A/one/this зазвичай просить одну форму. Two/many/these просить форму для кількох. Деякі слова на кшталт information не рахуємо по штуках і не додаємо їм звичайне -s.',
     'A book, one question, this lesson. Two books, many questions, these lessons. Information stays information.',
+    {
+      'pt-BR': 'A book, one question, this lesson. Two books, many questions, these lessons. Information continua information.',
+      vi: 'A book, one question, this lesson. Two books, many questions, these lessons. Information vẫn là information.',
+      id: 'A book, one question, this lesson. Two books, many questions, these lessons. Information tetap information.',
+      tr: 'A book, one question, this lesson. Two books, many questions, these lessons. Information, information kalır.',
+      pl: 'A book, one question, this lesson. Two books, many questions, these lessons. Information zostaje information.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -223,19 +531,19 @@ export const NOUN_SINGULAR_PLURAL_BASIC_TRAINING: DiagnosisTraining = {
     ],
   },
   examples: [
-    { en: 'I have a book.', ru: 'У меня есть книга.', uk: 'У мене є книжка.', es: 'Tengo un libro.', 'pt-BR': 'Tenho um livro.', vi: 'Tôi có một quyển sách.', id: 'Saya punya sebuah buku.', tr: 'Bir kitabım var.', pl: 'Mam książkę.', why: tri('A подсказывает: одна книга, a book.', 'A підказує: одна книжка, a book.', 'A indica una cosa: a book.') },
-    { en: 'I have two books.', ru: 'У меня две книги.', uk: 'У мене дві книжки.', es: 'Tengo dos libros.', 'pt-BR': 'Tenho dois livros.', vi: 'Tôi có hai quyển sách.', id: 'Saya punya dua buku.', tr: 'İki kitabım var.', pl: 'Mam dwie książki.', why: tri('Two подсказывает: книг несколько, books.', 'Two підказує: книжок кілька, books.', 'Two indica varias: books.') },
-    { en: 'This lesson is useful.', ru: 'Этот урок полезный.', uk: 'Цей урок корисний.', es: 'Esta lección es útil.', 'pt-BR': 'Esta lição é útil.', vi: 'Bài học này hữu ích.', id: 'Pelajaran ini berguna.', tr: 'Bu ders faydalı.', pl: 'Ta lekcja jest przydatna.', why: tri('This идет с одной вещью: this lesson.', 'This іде з однією річчю: this lesson.', 'This va con una cosa: this lesson.') },
-    { en: 'These lessons are useful.', ru: 'Эти уроки полезные.', uk: 'Ці уроки корисні.', es: 'Estas lecciones son útiles.', 'pt-BR': 'Estas lições são úteis.', vi: 'Những bài học này hữu ích.', id: 'Pelajaran-pelajaran ini berguna.', tr: 'Bu dersler faydalı.', pl: 'Te lekcje są przydatne.', why: tri('These идет с несколькими: these lessons.', 'These іде з кількома: these lessons.', 'These va con varias: these lessons.') },
-    { en: 'There are three boxes on the table.', ru: 'На столе три коробки.', uk: 'На столі три коробки.', es: 'Hay tres cajas en la mesa.', 'pt-BR': 'Há três caixas na mesa.', vi: 'Có ba cái hộp trên bàn.', id: 'Ada tiga kotak di atas meja.', tr: 'Masanın üzerinde üç kutu var.', pl: 'Na stole są trzy pudełka.', why: tri('Box после -x получает -es: boxes.', 'Box після -x отримує -es: boxes.', 'Box después de -x recibe -es: boxes.') },
-    { en: 'She told me two stories.', ru: 'Она рассказала мне две истории.', uk: 'Вона розповіла мені дві історії.', es: 'Me contó dos historias.', 'pt-BR': 'Ela me contou duas histórias.', vi: 'Cô ấy kể cho tôi hai câu chuyện.', id: 'Dia menceritakan dua cerita kepada saya.', tr: 'Bana iki hikaye anlattı.', pl: 'Opowiedziała mi dwie historie.', why: tri('Story превращается в stories.', 'Story стає stories.', 'Story cambia a stories.') },
-    { en: 'There are many children in the park.', ru: 'В парке много детей.', uk: 'У парку багато дітей.', es: 'Hay muchos niños en el parque.', 'pt-BR': 'Há muitas crianças no parque.', vi: 'Có nhiều trẻ em trong công viên.', id: 'Ada banyak anak di taman.', tr: 'Parkta birçok çocuk var.', pl: 'W parku jest dużo dzieci.', why: tri('Child не превращается в childs. Нормально: children.', 'Child не стає childs. Нормально: children.', 'Child no cambia a childs. Natural: children.') },
-    { en: 'I need more information.', ru: 'Мне нужно больше информации.', uk: 'Мені потрібно більше інформації.', es: 'Necesito más información.', 'pt-BR': 'Preciso de mais informação.', vi: 'Tôi cần thêm thông tin.', id: 'Saya butuh lebih banyak informasi.', tr: 'Daha fazla bilgiye ihtiyacım var.', pl: 'Potrzebuję więcej informacji.', why: tri('Information остается без -s.', 'Information залишається без -s.', 'Information se queda sin -s.') },
+    { en: 'I have a book.', ru: 'У меня есть книга.', uk: 'У мене є книжка.', es: 'Tengo un libro.', 'pt-BR': 'Tenho um livro.', vi: 'Tôi có một quyển sách.', id: 'Saya punya sebuah buku.', tr: 'Bir kitabım var.', pl: 'Mam książkę.', why: tri('A подсказывает: одна книга, a book.', 'A підказує: одна книжка, a book.', 'A indica una cosa: a book.', { 'pt-BR': 'A indica uma coisa: a book.', vi: 'A chỉ một thứ: a book.', id: 'A menunjukkan satu benda: a book.', tr: 'A tek şeyi gösterir: a book.', pl: 'A wskazuje jedną rzecz: a book.' }) },
+    { en: 'I have two books.', ru: 'У меня две книги.', uk: 'У мене дві книжки.', es: 'Tengo dos libros.', 'pt-BR': 'Tenho dois livros.', vi: 'Tôi có hai quyển sách.', id: 'Saya punya dua buku.', tr: 'İki kitabım var.', pl: 'Mam dwie książki.', why: tri('Two подсказывает: книг несколько, books.', 'Two підказує: книжок кілька, books.', 'Two indica varias: books.', { 'pt-BR': 'Two indica várias coisas: books.', vi: 'Two chỉ nhiều thứ: books.', id: 'Two menunjukkan beberapa benda: books.', tr: 'Two birden fazlayı gösterir: books.', pl: 'Two wskazuje kilka rzeczy: books.' }) },
+    { en: 'This lesson is useful.', ru: 'Этот урок полезный.', uk: 'Цей урок корисний.', es: 'Esta lección es útil.', 'pt-BR': 'Esta lição é útil.', vi: 'Bài học này hữu ích.', id: 'Pelajaran ini berguna.', tr: 'Bu ders faydalı.', pl: 'Ta lekcja jest przydatna.', why: tri('This идет с одной вещью: this lesson.', 'This іде з однією річчю: this lesson.', 'This va con una cosa: this lesson.', { 'pt-BR': 'This combina com uma coisa: this lesson.', vi: 'This đi với một thứ: this lesson.', id: 'This cocok dengan satu benda: this lesson.', tr: 'This tek şeyle gider: this lesson.', pl: 'This idzie z jedną rzeczą: this lesson.' }) },
+    { en: 'These lessons are useful.', ru: 'Эти уроки полезные.', uk: 'Ці уроки корисні.', es: 'Estas lecciones son útiles.', 'pt-BR': 'Estas lições são úteis.', vi: 'Những bài học này hữu ích.', id: 'Pelajaran-pelajaran ini berguna.', tr: 'Bu dersler faydalı.', pl: 'Te lekcje są przydatne.', why: tri('These идет с несколькими: these lessons.', 'These іде з кількома: these lessons.', 'These va con varias: these lessons.', { 'pt-BR': 'These combina com várias coisas: these lessons.', vi: 'These đi với nhiều thứ: these lessons.', id: 'These cocok dengan beberapa benda: these lessons.', tr: 'These birden fazla şeyle gider: these lessons.', pl: 'These idzie z kilkoma rzeczami: these lessons.' }) },
+    { en: 'There are three boxes on the table.', ru: 'На столе три коробки.', uk: 'На столі три коробки.', es: 'Hay tres cajas en la mesa.', 'pt-BR': 'Há três caixas na mesa.', vi: 'Có ba cái hộp trên bàn.', id: 'Ada tiga kotak di atas meja.', tr: 'Masanın üzerinde üç kutu var.', pl: 'Na stole są trzy pudełka.', why: tri('Box после -x получает -es: boxes.', 'Box після -x отримує -es: boxes.', 'Box después de -x recibe -es: boxes.', { 'pt-BR': 'Box depois de -x recebe -es: boxes.', vi: 'Box sau -x nhận -es: boxes.', id: 'Box setelah -x mendapat -es: boxes.', tr: 'Box, -x sonrasında -es alır: boxes.', pl: 'Box po -x dostaje -es: boxes.' }) },
+    { en: 'She told me two stories.', ru: 'Она рассказала мне две истории.', uk: 'Вона розповіла мені дві історії.', es: 'Me contó dos historias.', 'pt-BR': 'Ela me contou duas histórias.', vi: 'Cô ấy kể cho tôi hai câu chuyện.', id: 'Dia menceritakan dua cerita kepada saya.', tr: 'Bana iki hikaye anlattı.', pl: 'Opowiedziała mi dwie historie.', why: tri('Story превращается в stories.', 'Story стає stories.', 'Story cambia a stories.', { 'pt-BR': 'Story vira stories.', vi: 'Story thành stories.', id: 'Story menjadi stories.', tr: 'Story, stories olur.', pl: 'Story zmienia się w stories.' }) },
+    { en: 'There are many children in the park.', ru: 'В парке много детей.', uk: 'У парку багато дітей.', es: 'Hay muchos niños en el parque.', 'pt-BR': 'Há muitas crianças no parque.', vi: 'Có nhiều trẻ em trong công viên.', id: 'Ada banyak anak di taman.', tr: 'Parkta birçok çocuk var.', pl: 'W parku jest dużo dzieci.', why: tri('Child не превращается в childs. Нормально: children.', 'Child не стає childs. Нормально: children.', 'Child no cambia a childs. Natural: children.', { 'pt-BR': 'Child não vira childs. A forma natural é children.', vi: 'Child không thành childs. Dạng tự nhiên là children.', id: 'Child tidak menjadi childs. Bentuk alami: children.', tr: 'Child, childs olmaz. Doğal biçim: children.', pl: 'Child nie zmienia się w childs. Naturalnie: children.' }) },
+    { en: 'I need more information.', ru: 'Мне нужно больше информации.', uk: 'Мені потрібно більше інформації.', es: 'Necesito más información.', 'pt-BR': 'Preciso de mais informação.', vi: 'Tôi cần thêm thông tin.', id: 'Saya butuh lebih banyak informasi.', tr: 'Daha fazla bilgiye ihtiyacım var.', pl: 'Potrzebuję więcej informacji.', why: tri('Information остается без -s.', 'Information залишається без -s.', 'Information se queda sin -s.', { 'pt-BR': 'Information fica sem -s.', vi: 'Information giữ nguyên, không có -s.', id: 'Information tetap tanpa -s.', tr: 'Information -s almaz.', pl: 'Information zostaje bez -s.' }) },
   ],
   introBlocks: [
-    { id: 'intro_problem', type: 'diagnosis', text: tri('В русском такая ошибка может проскочить незаметно. В английском book и books - это две разные команды.', 'В українській така помилка може проскочити непомітно. В англійській book і books - це дві різні команди.', 'En inglés book y books son dos señales distintas.') },
-    { id: 'intro_rule', type: 'rule', text: tri('Спроси себя: одна вещь, несколько вещей или слово без счета по штукам?', 'Запитай себе: одна річ, кілька речей або слово без підрахунку по штуках?', 'Pregúntate: ¿una cosa, varias cosas o una palabra que no se cuenta por unidades?') },
-    { id: 'intro_warning', type: 'warning', text: tri('Не смешивай сигналы: артикль про одну вещь, числительные и many про несколько, this про одну, these про несколько.', 'Не змішуй сигнали: артикль про одну річ, числівники і many про кілька, this про одну, these про кілька.', 'No mezcles señales: a books, two book, these lesson, many question.') },
+    { id: 'intro_problem', type: 'diagnosis', text: tri('В русском такая ошибка может проскочить незаметно. В английском book и books - это две разные команды.', 'В українській така помилка може проскочити непомітно. В англійській book і books - це дві різні команди.', 'En inglés book y books son dos señales distintas.', { 'pt-BR': 'Em inglês, book e books são dois sinais diferentes.', vi: 'Trong tiếng Anh, book và books là hai tín hiệu khác nhau.', id: 'Dalam bahasa Inggris, book dan books adalah dua tanda yang berbeda.', tr: 'İngilizcede book ve books iki farklı işarettir.', pl: 'Po angielsku book i books to dwa różne sygnały.' }) },
+    { id: 'intro_rule', type: 'rule', text: tri('Спроси себя: одна вещь, несколько вещей или слово без счета по штукам?', 'Запитай себе: одна річ, кілька речей або слово без підрахунку по штуках?', 'Pregúntate: ¿una cosa, varias cosas o una palabra que no se cuenta por unidades?', { 'pt-BR': 'Pergunte a si mesmo: uma coisa, várias coisas ou uma palavra que não se conta por unidades?', vi: 'Hãy tự hỏi: một thứ, nhiều thứ, hay từ không đếm từng cái?', id: 'Tanyakan pada diri sendiri: satu benda, beberapa benda, atau kata yang tidak dihitung per unit?', tr: 'Kendine sor: tek şey mi, birkaç şey mi, yoksa parça parça sayılmayan kelime mi?', pl: 'Zapytaj siebie: jedna rzecz, kilka rzeczy czy słowo, którego nie liczymy na sztuki?' }) },
+    { id: 'intro_warning', type: 'warning', text: tri('Не смешивай сигналы: артикль про одну вещь, числительные и many про несколько, this про одну, these про несколько.', 'Не змішуй сигнали: артикль про одну річ, числівники і many про кілька, this про одну, these про кілька.', 'No mezcles señales: a books, two book, these lesson, many question.', { 'pt-BR': 'Não misture sinais: artigo indica uma coisa; números e many indicam várias; this indica uma; these indica várias.', vi: 'Đừng trộn tín hiệu: mạo từ cho một thứ, số và many cho nhiều thứ, this cho một, these cho nhiều.', id: 'Jangan campur tanda: artikel untuk satu benda, angka dan many untuk beberapa, this untuk satu, these untuk beberapa.', tr: 'İşaretleri karıştırma: artikel tek şey için, sayılar ve many birkaç şey için, this tek şey için, these birkaç şey için.', pl: 'Nie mieszaj sygnałów: rodzajnik dla jednej rzeczy, liczby i many dla kilku, this dla jednej, these dla kilku.' }) },
   ],
   steps: [
     step({
@@ -556,13 +864,20 @@ export const NOUN_SINGULAR_PLURAL_BASIC_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Показываем сигнал перед словом: a, two, many, this, these.', 'Показуємо сигнал перед словом: a, two, many, this, these.', 'Mostramos la señal antes de la palabra: a, two, many, this, these.'),
-    depth2: tri('Спроси: это одна вещь или несколько?', 'Запитай: це одна річ чи кілька?', 'Pregunta: ¿es una cosa o varias?'),
-    depth3: tri('Опоры по смыслу: один сигнал, сигнал множества, this для одной вещи, these для нескольких.', 'Опори за сенсом: один сигнал, сигнал множини, this для однієї речі, these для кількох.', 'Apoyos: a book / two books / this lesson / these lessons.'),
+    depth1: tri('Показываем сигнал перед словом: a, two, many, this, these.', 'Показуємо сигнал перед словом: a, two, many, this, these.', 'Mostramos la señal antes de la palabra: a, two, many, this, these.', { 'pt-BR': 'Mostramos o sinal antes da palavra: a, two, many, this, these.', vi: 'Hiển thị tín hiệu trước từ: a, two, many, this, these.', id: 'Tampilkan tanda sebelum kata: a, two, many, this, these.', tr: 'Kelimenin önündeki işareti gösteririz: a, two, many, this, these.', pl: 'Pokazujemy sygnał przed słowem: a, two, many, this, these.' }),
+    depth2: tri('Спроси: это одна вещь или несколько?', 'Запитай: це одна річ чи кілька?', 'Pregunta: ¿es una cosa o varias?', { 'pt-BR': 'Pergunte: é uma coisa ou várias?', vi: 'Hãy hỏi: đây là một thứ hay nhiều thứ?', id: 'Tanyakan: ini satu benda atau beberapa?', tr: 'Sor: tek şey mi birkaç şey mi?', pl: 'Zapytaj: to jedna rzecz czy kilka?' }),
+    depth3: tri('Опоры по смыслу: один сигнал, сигнал множества, this для одной вещи, these для нескольких.', 'Опори за сенсом: один сигнал, сигнал множини, this для однієї речі, these для кількох.', 'Apoyos: a book / two books / this lesson / these lessons.', { 'pt-BR': 'Pistas de sentido: sinal de uma coisa, sinal de plural, this para uma coisa, these para várias.', vi: 'Điểm tựa theo nghĩa: tín hiệu một thứ, tín hiệu số nhiều, this cho một thứ, these cho nhiều thứ.', id: 'Petunjuk makna: tanda satu benda, tanda jamak, this untuk satu benda, these untuk beberapa.', tr: 'Anlam dayanakları: tekil işaret, çoğul işaret, tek şey için this, birkaç şey için these.', pl: 'Podpory znaczeniowe: sygnał jednej rzeczy, sygnał mnogości, this dla jednej rzeczy, these dla kilku.' }),
     depth4: tri(
       'Почти подсказка: a/this = одна форма; two/many/these = форма для нескольких; information без -s.',
       'Майже підказка: a/this = одна форма; two/many/these = форма для кількох; information без -s.',
       'Casi pista: a/this = una forma; two/many/these = forma para varias; information sin -s.',
+      {
+        'pt-BR': 'Quase uma dica: a/this = uma forma; two/many/these = forma plural; information sem -s.',
+        vi: 'Gần như gợi ý: a/this = dạng số ít; two/many/these = dạng số nhiều; information không có -s.',
+        id: 'Hampir petunjuk: a/this = satu bentuk; two/many/these = bentuk jamak; information tanpa -s.',
+        tr: 'Neredeyse ipucu: a/this = tekil biçim; two/many/these = çoğul biçim; information -s almaz.',
+        pl: 'Prawie podpowiedź: a/this = forma pojedyncza; two/many/these = forma mnoga; information bez -s.',
+      },
     ),
   },
   failureRecovery: {
@@ -572,6 +887,13 @@ export const NOUN_SINGULAR_PLURAL_BASIC_TRAINING: DiagnosisTraining = {
         'A/this про одну вещь. Two/many/these про несколько. Information обычно без -s.',
         'A/this про одну річ. Two/many/these про кілька. Information зазвичай без -s.',
         'A/this para una cosa. Two/many/these para varias. Information normalmente sin -s.',
+        {
+          'pt-BR': 'A/this indicam uma coisa. Two/many/these indicam várias. Information normalmente fica sem -s.',
+          vi: 'A/this cho một thứ. Two/many/these cho nhiều thứ. Information thường không có -s.',
+          id: 'A/this untuk satu benda. Two/many/these untuk beberapa. Information biasanya tanpa -s.',
+          tr: 'A/this tek şey içindir. Two/many/these birkaç şey içindir. Information genellikle -s almaz.',
+          pl: 'A/this dla jednej rzeczy. Two/many/these dla kilku. Information zwykle bez -s.',
+        },
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -580,6 +902,13 @@ export const NOUN_SINGULAR_PLURAL_BASIC_TRAINING: DiagnosisTraining = {
         'Мы подсветим сигнал перед словом, но форму выберешь ты.',
         'Ми підсвітимо сигнал перед словом, але форму обереш ти.',
         'Marcamos la señal antes de la palabra, pero tú eliges la forma.',
+        {
+          'pt-BR': 'Vamos destacar o sinal antes da palavra, mas você escolhe a forma.',
+          vi: 'Hệ thống sẽ tô sáng tín hiệu trước từ, nhưng bạn tự chọn dạng.',
+          id: 'Kami akan menyorot tanda sebelum kata, tetapi kamu memilih bentuknya.',
+          tr: 'Kelimenin önündeki işareti vurgulayacağız, ama biçimi sen seçeceksin.',
+          pl: 'Podświetlimy sygnał przed słowem, ale formę wybierasz ty.',
+        },
       ),
     },
     afterFourWrongInSameExercise: {
@@ -588,6 +917,13 @@ export const NOUN_SINGULAR_PLURAL_BASIC_TRAINING: DiagnosisTraining = {
         'Guided mode: сначала одна вещь или несколько, потом форма слова.',
         'Guided mode: спочатку одна річ чи кілька, потім форма слова.',
         'Modo guiado: primero una cosa o varias, luego la forma de la palabra.',
+        {
+          'pt-BR': 'Modo guiado: primeiro uma coisa ou várias, depois a forma da palavra.',
+          vi: 'Chế độ gợi ý: trước tiên một thứ hay nhiều thứ, sau đó là dạng từ.',
+          id: 'Mode terpandu: satu benda atau beberapa dulu, lalu bentuk kata.',
+          tr: 'Rehberli mod: önce tek şey mi birkaç şey mi, sonra kelime biçimi.',
+          pl: 'Tryb prowadzony: najpierw jedna rzecz czy kilka, potem forma słowa.',
+        },
       ),
     },
   },
@@ -595,10 +931,10 @@ export const NOUN_SINGULAR_PLURAL_BASIC_TRAINING: DiagnosisTraining = {
     enabled: true,
     triggerAfterWrongAttempts: 4,
     tasks: [
-      { id: 'guided_noun_plural_001', prompt: tri('After a: одна вещь или несколько?', 'After a: одна річ чи кілька?', 'After a: ¿una cosa o varias?'), options: ['one', 'several'], correctIndex: 0, thenReturnToExerciseId: 'noun_plural_easy_001' },
-      { id: 'guided_noun_plural_002', prompt: tri('After two: одна вещь или несколько?', 'After two: одна річ чи кілька?', 'After two: ¿una cosa o varias?'), options: ['one', 'several'], correctIndex: 1, thenReturnToExerciseId: 'noun_plural_easy_002' },
-      { id: 'guided_noun_plural_003', prompt: tri('These работает с одной вещью или с несколькими?', 'These працює з однією річчю чи з кількома?', 'These funciona con una cosa o con varias?'), options: ['one', 'several'], correctIndex: 1, thenReturnToExerciseId: 'noun_plural_contrast_002' },
-      { id: 'guided_noun_plural_004', prompt: tri('Information обычно получает -s?', 'Information зазвичай отримує -s?', 'Information normalmente recibe -s?'), options: ['yes', 'no'], correctIndex: 1, thenReturnToExerciseId: 'noun_plural_mixed_003' },
+      { id: 'guided_noun_plural_001', prompt: tri('After a: одна вещь или несколько?', 'After a: одна річ чи кілька?', 'After a: ¿una cosa o varias?', { 'pt-BR': 'After a: uma coisa ou várias?', vi: 'After a: một thứ hay nhiều thứ?', id: 'After a: satu benda atau beberapa?', tr: 'After a: tek şey mi birkaç şey mi?', pl: 'After a: jedna rzecz czy kilka?' }), options: ['one', 'several'], correctIndex: 0, thenReturnToExerciseId: 'noun_plural_easy_001' },
+      { id: 'guided_noun_plural_002', prompt: tri('After two: одна вещь или несколько?', 'After two: одна річ чи кілька?', 'After two: ¿una cosa o varias?', { 'pt-BR': 'After two: uma coisa ou várias?', vi: 'After two: một thứ hay nhiều thứ?', id: 'After two: satu benda atau beberapa?', tr: 'After two: tek şey mi birkaç şey mi?', pl: 'After two: jedna rzecz czy kilka?' }), options: ['one', 'several'], correctIndex: 1, thenReturnToExerciseId: 'noun_plural_easy_002' },
+      { id: 'guided_noun_plural_003', prompt: tri('These работает с одной вещью или с несколькими?', 'These працює з однією річчю чи з кількома?', 'These funciona con una cosa o con varias?', { 'pt-BR': 'These funciona com uma coisa ou com várias?', vi: 'These dùng với một thứ hay nhiều thứ?', id: 'These dipakai dengan satu benda atau beberapa?', tr: 'These tek şeyle mi birkaç şeyle mi kullanılır?', pl: 'These działa z jedną rzeczą czy z kilkoma?' }), options: ['one', 'several'], correctIndex: 1, thenReturnToExerciseId: 'noun_plural_contrast_002' },
+      { id: 'guided_noun_plural_004', prompt: tri('Information обычно получает -s?', 'Information зазвичай отримує -s?', 'Information normalmente recibe -s?', { 'pt-BR': 'Information normalmente recebe -s?', vi: 'Information thường có -s không?', id: 'Apakah information biasanya mendapat -s?', tr: 'Information genellikle -s alır mı?', pl: 'Czy information zwykle dostaje -s?' }), options: ['yes', 'no'], correctIndex: 1, thenReturnToExerciseId: 'noun_plural_mixed_003' },
     ],
   },
   smartTrainerConfig: {
@@ -606,7 +942,13 @@ export const NOUN_SINGULAR_PLURAL_BASIC_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'noun',
     microDiagnosisId: 'noun_singular_plural_basic',
-    diagnosisLabel: tri('Book / Books', 'Book / Books', 'Book / Books'),
+    diagnosisLabel: tri('Book / Books', 'Book / Books', 'Book / Books: singular o plural', {
+      'pt-BR': 'Book / Books: singular ou plural',
+      vi: 'Book / Books: số ít hay số nhiều',
+      id: 'Book / Books: tunggal atau jamak',
+      tr: 'Book / Books: tekil mi çoğul mu',
+      pl: 'Book / Books: liczba pojedyncza czy mnoga',
+    }),
     contrastSet: CONTRAST_SET,
     focusWords: ['book', 'books', 'questions', 'lessons', 'boxes', 'stories', 'children', 'people', 'information'],
     focusPatterns: [
@@ -642,7 +984,7 @@ export const NOUN_SINGULAR_PLURAL_BASIC_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_noun_singular_plural_basic_start',
     answer: 'diagnosis_training_noun_singular_plural_basic_answer',
     mastery: 'diagnosis_training_noun_singular_plural_basic_mastery',
-    fallback: 'diagnosis_training_noun_singular_plural_basic_fallback',
+    recovery: 'diagnosis_training_noun_singular_plural_basic_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

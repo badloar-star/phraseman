@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "gustav-lesson-9-16-canonical-source-draft-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "status": "PASS",
+  "generatedAt": "2026-05-19T19:13:10.914Z",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_lesson_9_16_canonical_draft_builder.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "summary": {
+    "lessons": 8,
+    "phrases": 400,
+    "words": 1837,
+    "missingEnglish": 0,
+    "missingRussian": 0,
+    "missingUkrainian": 0,
+    "invalidIds": 0,
+    "duplicateIds": 0,
+    "spanishFieldLeaks": 0,
+    "spanishTokenLeakSuspects": 0,
+    "runtimeGeneratedOrigins": 400,
+    "structurallyClean": true,
+    "approvalGranted": true,
+    "runtimeGeneratedOriginRiskAccepted": true,
+    "blockers": 0,
+    "highRisks": 0,
+    "canUseAsFrenchSourceTruth": true
+  },
+  "draftPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_canonical_source_draft.json",
+  "draftTsPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_canonical_source_draft.ts",
+  "findings": [
+    {
+      "id": "L916D-004",
+      "severity": "info",
+      "title": "Runtime-generated origin risk is accepted by source-truth approval",
+      "detail": "400 draft phrases originate from runtime_generated source graph refs, but the approved source-truth artifact accepts this risk for the clean EN/RU/UK draft.",
+      "files": [
+        "app/lesson_data_9_16_phrases_es.gen.ts",
+        "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_source_truth_approval.json"
+      ]
+    }
+  ],
+  "requiredBeforeFrenchGeneration": [
+    "Review and approve the canonical source draft or reject it in favor of another source-truth strategy.",
+    "If approved, create a production apply plan that extracts a non-generated source file for lessons 9-16.",
+    "Rerun source graph, source graph quality, generated source-truth, reconciliation, canonical draft, validator and readiness gates."
+  ],
+  "notes": [
+    "The draft intentionally omits Spanish runtime fields and keeps only EN/RU/UK source material plus English word tokens.",
+    "The draft does not modify app files.",
+    "Structurally clean does not mean approved source truth."
+  ]
+}

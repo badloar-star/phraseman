@@ -10,10 +10,11 @@ try {
   ts = null;
 }
 
-const ACTIVE_APP_LOCALES = ['ru', 'uk', 'es'];
-const PLANNED_APP_LOCALES = ['pt-BR', 'vi', 'id', 'tr', 'pl'];
+const ACTIVE_APP_LOCALES = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+const PLANNED_APP_LOCALES = [];
 const REGISTERED_INTERFACE_SOURCE_LOCALES = [...ACTIVE_APP_LOCALES, ...PLANNED_APP_LOCALES];
 const KNOWN_APP_LOCALES = ACTIVE_APP_LOCALES;
+const LEGACY_INLINE_APP_LOCALES = ['ru', 'uk', 'es'];
 const DEFAULT_SOURCE_LOCALES = ['ru', 'uk', 'es'];
 const HEISENBERG_BATCH_SOURCE_LOCALES = ['es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 const STRUCTURED_BATCH_SOURCE_LOCALES = HEISENBERG_BATCH_SOURCE_LOCALES.filter((locale) => locale !== 'es');
@@ -331,6 +332,69 @@ const RESEARCH_SOURCES = [
   },
 ];
 
+const HEISENBERG_AGENT_REVIEW_BOARD = [
+  {
+    id: 'chief-editor',
+    title: 'Chief Editor',
+    prompt:
+      'You are the Chief Editor for a Heisenberg localization block. Check that every translated string is natural for the target-language learner, keeps the intended product tone, and avoids literal source-language phrasing. Return blockers first, then suggested rewrites.',
+    mustCheck: [
+      'natural target-language wording',
+      'tone consistency by surface: lesson, quiz, reward, admin, legal',
+      'no Russian/Ukrainian/Spanish fallback in planned locales',
+      'no over-translation of protected English grammar terms',
+    ],
+  },
+  {
+    id: 'grammar-pedagogy',
+    title: 'Grammar Pedagogy Reviewer',
+    prompt:
+      'You are the Grammar Pedagogy Reviewer. Verify that explanations teach English to speakers of the target language, not merely translate the RU/UK/ES explanation. Preserve protected English examples and call out grammar drift, wrong learner-error framing, and CEFR-level mismatch.',
+    mustCheck: [
+      'English examples and answer choices stay in English',
+      'explanations match the learner error for this target language',
+      'lesson level and vocabulary difficulty stay appropriate',
+      'grammar terminology is either intentionally translated or intentionally bilingual',
+    ],
+  },
+  {
+    id: 'runtime-integrity',
+    title: 'Runtime Integrity Reviewer',
+    prompt:
+      'You are the Runtime Integrity Reviewer. Inspect the code/data shape after localization. Confirm IDs, indexes, placeholders, sourceLocales maps, field names, and object keys are stable. Treat any runtime-shape change as a blocker unless it is explicitly required.',
+    mustCheck: [
+      'correct indexes, answer choices, IDs, lesson IDs, and order fields unchanged',
+      'placeholders, URLs, product names, counters, and interpolation syntax preserved',
+      'locale keys use the canonical contract, especially pt-BR instead of ptBr unless the local API explicitly requires ptBr',
+      'no target text written into ru, uk, or es fields accidentally',
+    ],
+  },
+  {
+    id: 'surface-owner',
+    title: 'Surface Owner',
+    prompt:
+      'You are the Surface Owner for this block. Review the localized copy in the context of its app surface. Check that UI strings fit, admin text remains operational, quiz/training content remains pedagogically useful, and legal/support copy stays precise.',
+    mustCheck: [
+      'surface-specific intent preserved',
+      'short UI labels remain short enough for mobile',
+      'admin/dev copy remains unambiguous for operators',
+      'legal/support wording is not softened or embellished',
+    ],
+  },
+  {
+    id: 'activation-gate',
+    title: 'Activation Gate Reviewer',
+    prompt:
+      'You are the Activation Gate Reviewer. Decide whether this block can move toward UI activation. Cross-check Heisenberg coverage, semantic audit risk, and UI audit findings. Return GO only when no blocker remains; otherwise return HOLD with the smallest next fix.',
+    mustCheck: [
+      'heisenberg:batch:audit and heisenberg:ui-audit backlog status',
+      'semantic audit warnings that need human triage',
+      'activationReady must not be treated as yes until every planned locale is structurally present',
+      'new locale exposure is blocked unless research notes and reviewer notes are complete',
+    ],
+  },
+];
+
 const PRODUCT_SURFACES = new Set([
   'admin-site',
   'app-other',
@@ -348,18 +412,22 @@ const PRODUCT_SURFACES = new Set([
 const SPANISH_STUDY_TARGET_ISOLATED_FILES = new Set([
   'app/(tabs)/settings.tsx',
   'app/config.ts',
+  'app/french_lesson_curriculum.ts',
   'app/flashcards_collection.tsx',
   'app/flashcards_swipe.tsx',
+  'app/home_screen_hydration.ts',
   'app/lesson1.tsx',
   'app/lesson1_smart_options.ts',
   'app/lesson_data_all.ts',
   'app/lesson_intro_screens.tsx',
   'app/lesson_locale_utils.ts',
+  'app/lesson_titles_for_study_target.ts',
   'app/pack_opening.tsx',
   'app/phrase_target_utils.ts',
   'app/review.tsx',
   'app/spanish_content_gate.ts',
   'app/study_target_lang_dev.ts',
+  'components/MasteryReplayModal.tsx',
   'components/StudyTargetContext.tsx',
 ]);
 
@@ -459,6 +527,10 @@ function isCodeFile(rel) {
   return CODE_EXTENSIONS.has(path.extname(rel).toLowerCase());
 }
 
+function isHtmlFile(rel) {
+  return path.extname(rel).toLowerCase() === '.html';
+}
+
 function listRepoFiles(root) {
   const out = [];
   function walk(absDir, relDir) {
@@ -535,6 +607,18 @@ function inferLocaleContainerKey(name, rel, parentKeyPath) {
   if (locale === 'id' && normalizePath(rel || '') === 'constants/i18n.ts' && !parentKeyPath) return locale;
   if (/sourceLocales|source_locale|quiz_source_locale_payloads/i.test(context)) return locale;
   return null;
+}
+
+function hasLocaleContainerSiblings(prop) {
+  if (!ts || !prop?.parent || !ts.isObjectLiteralExpression(prop.parent)) return false;
+  let localeSiblingCount = 0;
+  for (const sibling of prop.parent.properties) {
+    if (sibling === prop || !ts.isPropertyAssignment(sibling)) continue;
+    const siblingLocale = inferExactLocaleKey(propertyName(sibling.name));
+    if (!siblingLocale || AMBIGUOUS_EXACT_LOCALE_KEYS.has(siblingLocale)) continue;
+    if (ts.isObjectLiteralExpression(sibling.initializer)) localeSiblingCount += 1;
+  }
+  return localeSiblingCount >= 2;
 }
 
 function inferDirectLocaleFieldKey(name, rel, parentKeyPath) {
@@ -636,6 +720,12 @@ function makeStableId(rel, line, fieldPath, index) {
   return `${normalizePath(rel)}:${line}:${fieldPath}${suffix}`;
 }
 
+function lineColumnAt(text, index) {
+  const before = text.slice(0, Math.max(0, index));
+  const lines = before.split(/\r?\n/);
+  return { line: lines.length, column: lines[lines.length - 1].length + 1 };
+}
+
 function addLocalizedItem(items, seen, rel, surface, sf, node, fieldPath, value, locale, sourceKind) {
   if (typeof value !== 'string') return;
   if (!value.trim()) return;
@@ -655,6 +745,193 @@ function addLocalizedItem(items, seen, rel, surface, sf, node, fieldPath, value,
     text: value,
     textLength: value.length,
   });
+}
+
+function decodeHtmlEntities(value) {
+  return String(value)
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&middot;/g, '·')
+    .replace(/&#(\d+);/g, (_m, code) => {
+      const point = Number(code);
+      return Number.isFinite(point) ? String.fromCodePoint(point) : _m;
+    })
+    .replace(/&#x([0-9a-f]+);/gi, (_m, code) => {
+      const point = Number.parseInt(code, 16);
+      return Number.isFinite(point) ? String.fromCodePoint(point) : _m;
+    });
+}
+
+function htmlDocumentLocale(text) {
+  const match = text.match(/<html\b[^>]*\blang=(["'])(.*?)\1/i);
+  if (!match) return null;
+  const lang = normalizeLocale(match[2]);
+  const base = lang.split('-')[0].toLowerCase();
+  return KNOWN_APP_LOCALES.includes(base) ? base : null;
+}
+
+function htmlLocaleFromLangValue(value) {
+  if (!value) return null;
+  const lang = normalizeLocale(value);
+  const base = lang.split('-')[0].toLowerCase();
+  return REGISTERED_INTERFACE_SOURCE_LOCALES.includes(lang)
+    ? lang
+    : REGISTERED_INTERFACE_SOURCE_LOCALES.includes(base)
+      ? base
+      : null;
+}
+
+function htmlLocaleFromI18nAttr(attrName) {
+  const match = String(attrName || '').match(/^data-i18n-([a-z]{2}(?:-[a-z]{2})?)(?:-.+)?$/i);
+  return match ? htmlLocaleFromLangValue(match[1]) : null;
+}
+
+function htmlLocaleFromTagSegment(segment) {
+  const match = String(segment || '').match(/\blang=(["'])(.*?)\1/i);
+  return match ? htmlLocaleFromLangValue(match[2]) : null;
+}
+
+function inferHtmlTextLocale(value, fallbackLocale) {
+  if (fallbackLocale) return fallbackLocale;
+  if (/[\u0400-\u04FF]/.test(value)) {
+    return /[іїєґІЇЄҐ]/.test(value) ? 'uk' : 'ru';
+  }
+  if (/[¿¡ñáéíóúüÑÁÉÍÓÚÜ]/.test(value)) return 'es';
+  return null;
+}
+
+function addHtmlLocalizedItem(items, seen, rel, surface, text, index, fieldPath, value, locale, sourceKind) {
+  const normalizedValue = decodeHtmlEntities(value).replace(/\s+/g, ' ').trim();
+  if (!normalizedValue) return;
+  if (sourceKind === 'html-text' && normalizedValue.length < 2) return;
+  const inferredLocale = inferHtmlTextLocale(normalizedValue, locale);
+  if (!inferredLocale) return;
+  const pos = lineColumnAt(text, index);
+  const id = makeStableId(rel, pos.line, fieldPath);
+  if (seen.has(id)) return;
+  seen.add(id);
+  items.push({
+    id,
+    file: normalizePath(rel),
+    surface,
+    line: pos.line,
+    column: pos.column,
+    keyPath: fieldPath,
+    locale: inferredLocale,
+    sourceKind,
+    text: normalizedValue,
+    textLength: normalizedValue.length,
+  });
+}
+
+function htmlTranslatedSubtreeRanges(text) {
+  const ranges = [];
+  const startRe = /<([a-z][\w:-]*)\b(?=[^>]*\bdata-i18n-[a-z]{2}(?:-[a-z]{2})?=)[^>]*>/gi;
+  let match;
+  while ((match = startRe.exec(text)) !== null) {
+    const tagName = match[1].toLowerCase();
+    const contentStart = match.index + match[0].length;
+    const closeRe = new RegExp(`<\\/?${tagName}\\b[^>]*>`, 'gi');
+    closeRe.lastIndex = contentStart;
+    let depth = 1;
+    let closeMatch;
+    while ((closeMatch = closeRe.exec(text)) !== null) {
+      const closing = /^<\//.test(closeMatch[0]);
+      depth += closing ? -1 : 1;
+      if (depth === 0) {
+        const contentEnd = closeMatch.index;
+        const inner = text.slice(contentStart, contentEnd);
+        if (/<[a-z][\w:-]*\b/i.test(inner)) {
+          ranges.push([contentStart, contentEnd]);
+        }
+        break;
+      }
+    }
+  }
+  return ranges;
+}
+
+function isInsideHtmlRange(index, ranges) {
+  return ranges.some(([start, end]) => index >= start && index < end);
+}
+
+function extractHtmlItemsFromText(rel, text) {
+  const items = [];
+  const seen = new Set();
+  const surface = classifySurface(rel);
+  const fallbackLocale = htmlDocumentLocale(text);
+  const searchable = text
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<script\b[\s\S]*?<\/script>/gi, '')
+    .replace(/<style\b[\s\S]*?<\/style>/gi, '')
+    .replace(/<(?:code|pre|kbd|samp)\b[\s\S]*?<\/(?:code|pre|kbd|samp)>/gi, '');
+  const translatedSubtreeRanges = htmlTranslatedSubtreeRanges(searchable);
+
+  let textIndex = 0;
+  const textNodeRe = />\s*([^<]+?)\s*</g;
+  let textMatch;
+  while ((textMatch = textNodeRe.exec(searchable)) !== null) {
+    const raw = textMatch[1];
+    const rawIndex = textMatch.index + textMatch[0].indexOf(raw);
+    if (isInsideHtmlRange(rawIndex, translatedSubtreeRanges)) continue;
+    if (!raw || !/[A-Za-zА-Яа-яЁёІіЇїЄєҐґÁÉÍÓÚÜÑáéíóúüñ¿¡]/.test(raw)) continue;
+    const absoluteIndex = text.indexOf(raw, Math.max(0, rawIndex - 20));
+    const previousTagStart = searchable.lastIndexOf('<', textMatch.index);
+    const previousTagEnd = searchable.indexOf('>', previousTagStart);
+    const tagLocale =
+      previousTagStart >= 0 && previousTagEnd >= 0 && previousTagEnd <= textMatch.index
+        ? htmlLocaleFromTagSegment(searchable.slice(previousTagStart, previousTagEnd + 1))
+        : null;
+    addHtmlLocalizedItem(
+      items,
+      seen,
+      rel,
+      surface,
+      text,
+      absoluteIndex >= 0 ? absoluteIndex : textMatch.index,
+      `html.text[${textIndex}]`,
+      raw,
+      tagLocale || fallbackLocale,
+      'html-text',
+    );
+    textIndex += 1;
+  }
+
+  let attrIndex = 0;
+  const attrRe = /\b(title|placeholder|aria-label|alt|data-i18n-[a-z]{2}(?:-[a-z]{2})?(?:-[a-z]+)?)=("([^"]*)"|'([^']*)')/gi;
+  let attrMatch;
+  while ((attrMatch = attrRe.exec(searchable)) !== null) {
+    const attrName = attrMatch[1].toLowerCase();
+    const raw = attrMatch[3] ?? attrMatch[4] ?? '';
+    if (!raw || !/[A-Za-zА-Яа-яЁёІіЇїЄєҐґÁÉÍÓÚÜÑáéíóúüñ¿¡]/.test(raw)) continue;
+    const tagStart = searchable.lastIndexOf('<', attrMatch.index);
+    const tagEnd = searchable.indexOf('>', attrMatch.index);
+    const tagLocale =
+      tagStart >= 0 && tagEnd >= 0
+        ? htmlLocaleFromTagSegment(searchable.slice(tagStart, tagEnd + 1))
+        : null;
+    const attrLocale = htmlLocaleFromI18nAttr(attrName);
+    const valueOffset = attrMatch[0].indexOf(raw);
+    addHtmlLocalizedItem(
+      items,
+      seen,
+      rel,
+      surface,
+      text,
+      attrMatch.index + Math.max(0, valueOffset),
+      `html.attr.${attrName}[${attrIndex}]`,
+      raw,
+      attrLocale || tagLocale || fallbackLocale,
+      'html-attribute',
+    );
+    attrIndex += 1;
+  }
+
+  return items.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line || a.keyPath.localeCompare(b.keyPath));
 }
 
 function collectObjectStrings(items, seen, rel, surface, sf, node, locale, prefix) {
@@ -773,7 +1050,9 @@ function extractLocalizedItemsFromText(rel, text) {
       const key = propertyName(node.name);
       const nextPathParts = key ? [...pathParts, key] : pathParts;
       const fieldPath = nextPathParts.join('.');
-      const keyLocale = inferLocaleContainerKey(key, rel, pathParts.join('.'));
+      const keyLocale =
+        inferLocaleContainerKey(key, rel, pathParts.join('.')) ||
+        (inferExactLocaleKey(key) === 'id' && hasLocaleContainerSiblings(node) ? 'id' : null);
       if (keyLocale && ts.isObjectLiteralExpression(node.initializer)) {
         collectObjectStrings(items, seen, rel, surface, sf, node.initializer, keyLocale, fieldPath);
         return;
@@ -925,6 +1204,8 @@ function inventoryFiles(root, files) {
     let items = [];
     if (ext === '.json') {
       items = extractJsonItemsFromText(rel, text);
+    } else if (isHtmlFile(rel)) {
+      items = extractHtmlItemsFromText(rel, text);
     } else if (isCodeFile(rel)) {
       items = extractLocalizedItemsFromText(rel, text);
     }
@@ -1073,6 +1354,10 @@ function isIsolatedSpanishStudyTargetFile(file) {
   return SPANISH_STUDY_TARGET_ISOLATED_FILES.has(normalizePath(file.file || file));
 }
 
+function isExistingLocaleCoverageIsolatedFile(file, baseLang) {
+  return baseLang === 'es' && isIsolatedSpanishStudyTargetFile(file);
+}
+
 function countItemsBySurface(items, locale) {
   const out = {};
   for (const item of items) {
@@ -1088,6 +1373,28 @@ function countItemsByFileAndLocale(items) {
     if (!out[item.file]) out[item.file] = {};
     const locale = item.locale || 'unknown';
     out[item.file][locale] = (out[item.file][locale] || 0) + 1;
+  }
+  return out;
+}
+
+function countItemsByFileAndSourceKind(items) {
+  const out = {};
+  for (const item of items) {
+    if (!out[item.file]) out[item.file] = {};
+    const sourceKind = item.sourceKind || 'unknown';
+    out[item.file][sourceKind] = (out[item.file][sourceKind] || 0) + 1;
+  }
+  return out;
+}
+
+function countItemsByFileLocaleAndSourceKind(items) {
+  const out = {};
+  for (const item of items) {
+    if (!out[item.file]) out[item.file] = {};
+    const locale = item.locale || 'unknown';
+    if (!out[item.file][locale]) out[item.file][locale] = {};
+    const sourceKind = item.sourceKind || 'unknown';
+    out[item.file][locale][sourceKind] = (out[item.file][locale][sourceKind] || 0) + 1;
   }
   return out;
 }
@@ -1288,7 +1595,7 @@ function buildBatchLocaleCoverageAudit(inventory, locales = STRUCTURED_BATCH_SOU
 function missingTargetSourceItems(inventory, targetLocale) {
   const canonical = normalizeLocale(targetLocale);
   const baseLang = canonical.split('-')[0].toLowerCase();
-  const sourceLocales = KNOWN_APP_LOCALES.filter((locale) => locale !== baseLang);
+  const sourceLocales = LEGACY_INLINE_APP_LOCALES.filter((locale) => locale !== baseLang);
   const byFileLocale = countItemsByFileAndLocale(inventory.items || []);
   const productionFiles = inventory.files.filter((file) => PRODUCT_SURFACES.has(file.surface));
   const gapFiles = new Set();
@@ -1313,12 +1620,15 @@ function missingTargetSourceItems(inventory, targetLocale) {
 function buildExistingLocaleAudit(inventory, targetLocale) {
   const canonical = normalizeLocale(targetLocale);
   const baseLang = canonical.split('-')[0].toLowerCase();
-  const targetIsKnownAppLocale = KNOWN_APP_LOCALES.includes(baseLang);
-  const sourceLocales = KNOWN_APP_LOCALES.filter((locale) => locale !== baseLang);
+  const targetIsKnownAppLocale = KNOWN_APP_LOCALES.includes(canonical) || KNOWN_APP_LOCALES.includes(baseLang);
+  const shouldRunLegacyInlineCoverage = LEGACY_INLINE_APP_LOCALES.includes(baseLang);
+  const sourceLocales = LEGACY_INLINE_APP_LOCALES.filter((locale) => locale !== baseLang);
   const fieldMarkerByLocale = { ru: 'ruFields', uk: 'ukFields', es: 'esFields' };
   const targetFieldMarker = fieldMarkerByLocale[baseLang];
   const sourceFieldMarkers = sourceLocales.map((locale) => fieldMarkerByLocale[locale]).filter(Boolean);
   const byFileLocale = countItemsByFileAndLocale(inventory.items || []);
+  const byFileSourceKind = countItemsByFileAndSourceKind(inventory.items || []);
+  const byFileLocaleSourceKind = countItemsByFileLocaleAndSourceKind(inventory.items || []);
   const productionFiles = inventory.files.filter((file) => PRODUCT_SURFACES.has(file.surface));
   const filesByPath = new Map(inventory.files.map((file) => [normalizePath(file.file), file]));
   const sidecarCoverageByFile = new Map(
@@ -1328,7 +1638,7 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
       .map((coverage) => [coverage.file, coverage]),
   );
 
-  const fieldCoverageGaps = productionFiles
+  const fieldCoverageGaps = shouldRunLegacyInlineCoverage ? productionFiles
     .map((file) => {
       const sourceFieldCount = sourceFieldMarkers.reduce((sum, marker) => sum + (file.markers[marker] || 0), 0);
       const targetFieldCount = targetFieldMarker ? file.markers[targetFieldMarker] || 0 : 0;
@@ -1338,31 +1648,96 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
       ({ file, sourceFieldCount, targetFieldCount }) =>
         sourceFieldCount > 0 &&
         targetFieldCount === 0 &&
+        !isExistingLocaleCoverageIsolatedFile(file, baseLang) &&
         !sidecarCoverageByFile.has(normalizePath(file.file)),
     )
     .sort((a, b) => b.sourceFieldCount - a.sourceFieldCount || a.file.file.localeCompare(b.file.file))
     .map(({ file, sourceFieldCount }) =>
       summarizeFileRisk(file, `Has ${sourceFieldCount} localized source-language field marker(s), but no ${baseLang.toUpperCase()} field marker.`),
-    );
+    ) : [];
 
-  const itemCoverageGaps = productionFiles
+  const itemCoverageGaps = shouldRunLegacyInlineCoverage ? productionFiles
     .map((file) => {
       const counts = byFileLocale[file.file] || {};
       const sourceItemCount = sourceLocales.reduce((sum, locale) => sum + (counts[locale] || 0), 0);
       const targetItemCount = counts[baseLang] || 0;
-      return { file, counts, sourceItemCount, targetItemCount };
+      const sourceKindCounts = byFileSourceKind[file.file] || {};
+      const htmlSourceItemCount = (sourceKindCounts['html-text'] || 0) + (sourceKindCounts['html-attribute'] || 0);
+      const nonHtmlSourceItemCount = Math.max(0, sourceItemCount - htmlSourceItemCount);
+      return { file, counts, sourceItemCount, targetItemCount, htmlSourceItemCount, nonHtmlSourceItemCount };
     })
     .filter(
-      ({ file, sourceItemCount, targetItemCount }) =>
-        sourceItemCount > 0 &&
+      ({ file, nonHtmlSourceItemCount, targetItemCount }) =>
+        nonHtmlSourceItemCount > 0 &&
         targetItemCount === 0 &&
+        !isExistingLocaleCoverageIsolatedFile(file, baseLang) &&
         !sidecarCoverageByFile.has(normalizePath(file.file)),
     )
-    .sort((a, b) => b.sourceItemCount - a.sourceItemCount || a.file.file.localeCompare(b.file.file))
-    .map(({ file, counts, sourceItemCount }) =>
-      summarizeFileRisk(file, `Extracted ${sourceItemCount} source localized item(s), but no ${baseLang} extracted items.`, {
+    .sort((a, b) => b.nonHtmlSourceItemCount - a.nonHtmlSourceItemCount || a.file.file.localeCompare(b.file.file))
+    .map(({ file, counts, nonHtmlSourceItemCount }) =>
+      summarizeFileRisk(file, `Extracted ${nonHtmlSourceItemCount} non-HTML source localized item(s), but no ${baseLang} extracted items.`, {
         localizedItemLocales: counts,
       }),
+    ) : [];
+
+  const htmlCoverageBacklogFiles = productionFiles
+    .map((file) => {
+      const counts = byFileLocale[file.file] || {};
+      const targetItemCount = counts[baseLang] || 0;
+      const sourceKindCounts = byFileSourceKind[file.file] || {};
+      const allHtmlItemCount = (sourceKindCounts['html-text'] || 0) + (sourceKindCounts['html-attribute'] || 0);
+      const localeKindCounts = byFileLocaleSourceKind[file.file] || {};
+      const sourceHtmlItemCount = sourceLocales.reduce(
+        (sum, locale) =>
+          sum + ((localeKindCounts[locale] || {})['html-text'] || 0) + ((localeKindCounts[locale] || {})['html-attribute'] || 0),
+        0,
+      );
+      const nonHtmlSourceItemCount = Math.max(0, Object.values(counts).reduce((sum, count) => sum + count, 0) - allHtmlItemCount);
+      return { file, counts, targetItemCount, sourceHtmlItemCount, nonHtmlSourceItemCount };
+    })
+    .filter(
+      ({ targetItemCount, sourceHtmlItemCount, nonHtmlSourceItemCount }) =>
+        sourceHtmlItemCount > 0 &&
+        nonHtmlSourceItemCount === 0 &&
+        targetItemCount === 0,
+    )
+    .sort((a, b) => b.sourceHtmlItemCount - a.sourceHtmlItemCount || a.file.file.localeCompare(b.file.file))
+    .map(({ file, counts, sourceHtmlItemCount }) =>
+      summarizeFileRisk(file, `Extracted ${sourceHtmlItemCount} HTML source localized item(s), but no ${baseLang} HTML items.`, {
+        localizedItemLocales: counts,
+      }),
+    );
+
+  const htmlPartialCoverageFiles = productionFiles
+    .map((file) => {
+      const counts = byFileLocale[file.file] || {};
+      const localeKindCounts = byFileLocaleSourceKind[file.file] || {};
+      const sourceHtmlItemCount = sourceLocales.reduce(
+        (sum, locale) =>
+          sum + ((localeKindCounts[locale] || {})['html-text'] || 0) + ((localeKindCounts[locale] || {})['html-attribute'] || 0),
+        0,
+      );
+      const targetHtmlItemCount =
+        ((localeKindCounts[baseLang] || {})['html-text'] || 0) +
+        ((localeKindCounts[baseLang] || {})['html-attribute'] || 0);
+      return { file, counts, sourceHtmlItemCount, targetHtmlItemCount };
+    })
+    .filter(
+      ({ sourceHtmlItemCount, targetHtmlItemCount }) =>
+        sourceHtmlItemCount > 0 && targetHtmlItemCount > 0 && targetHtmlItemCount < sourceHtmlItemCount,
+    )
+    .sort(
+      (a, b) =>
+        (b.sourceHtmlItemCount - b.targetHtmlItemCount) -
+          (a.sourceHtmlItemCount - a.targetHtmlItemCount) ||
+        a.file.file.localeCompare(b.file.file),
+    )
+    .map(({ file, counts, sourceHtmlItemCount, targetHtmlItemCount }) =>
+      summarizeFileRisk(
+        file,
+        `Partial HTML ${baseLang} coverage: ${targetHtmlItemCount}/${sourceHtmlItemCount} source item(s).`,
+        { localizedItemLocales: counts },
+      ),
     );
 
   const russianOnlyReports = productionFiles
@@ -1423,6 +1798,8 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
       targetItemsBySurface: countItemsBySurface(inventory.items || [], baseLang),
       fieldCoverageGapFiles: fieldCoverageGaps.length,
       itemCoverageGapFiles: itemCoverageGaps.length,
+      htmlCoverageBacklogFiles: htmlCoverageBacklogFiles.length,
+      htmlPartialCoverageFiles: htmlPartialCoverageFiles.length,
       sidecarCoverageFiles: sidecarCoverageFiles.length,
       russianOnlyReportFiles: russianOnlyReports.length,
       fallbackRiskFiles: fallbackRiskFiles.length,
@@ -1449,6 +1826,8 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
     risks: {
       fieldCoverageGaps: topFiles(fieldCoverageGaps),
       itemCoverageGaps: topFiles(itemCoverageGaps),
+      htmlCoverageBacklogFiles: topFiles(htmlCoverageBacklogFiles),
+      htmlPartialCoverageFiles: topFiles(htmlPartialCoverageFiles),
       sidecarCoverageFiles: topFiles(sidecarCoverageFiles),
       russianOnlyReports: topFiles(russianOnlyReports),
       fallbackRiskFiles: topFiles(fallbackRiskFiles),
@@ -1480,6 +1859,8 @@ function buildExistingLocaleAuditMarkdown(audit) {
     ['Target item share', audit.summary.targetLocalizedItemShare],
     ['Field coverage gap files', audit.summary.fieldCoverageGapFiles],
     ['Item coverage gap files', audit.summary.itemCoverageGapFiles],
+    ['HTML coverage backlog files', audit.summary.htmlCoverageBacklogFiles],
+    ['HTML partial coverage files', audit.summary.htmlPartialCoverageFiles],
     ['Resolved sidecar coverage files', audit.summary.sidecarCoverageFiles],
     ['Russian-only report files', audit.summary.russianOnlyReportFiles],
     ['Fallback risk files', audit.summary.fallbackRiskFiles],
@@ -1509,6 +1890,8 @@ function buildExistingLocaleAuditMarkdown(audit) {
   const riskSections = [
     ['Field Coverage Gaps', audit.risks.fieldCoverageGaps],
     ['Item Coverage Gaps', audit.risks.itemCoverageGaps],
+    ['HTML Coverage Backlog', audit.risks.htmlCoverageBacklogFiles],
+    ['HTML Partial Coverage', audit.risks.htmlPartialCoverageFiles],
     ['Resolved Sidecar Coverage', audit.risks.sidecarCoverageFiles],
     ['Russian-Only Reports', audit.risks.russianOnlyReports],
     ['Fallback Risk Files', audit.risks.fallbackRiskFiles],
@@ -1606,6 +1989,7 @@ function buildResearchChecklist(targetLocale, inventory) {
   lines.push('- [ ] Define tone rules for rewards, mistakes, admin warnings, legal copy, and child-safe wording.');
   lines.push('- [ ] Check punctuation, quotation marks, spacing around symbols, decimal/group separators, and capitalization conventions.');
   lines.push('- [ ] Write reviewer notes for each lesson cluster before generating translations.');
+  lines.push('- [ ] Run the mandatory Agent Review Board for every translation block and record each role verdict.');
   lines.push('- [ ] Cite every grammar/pedagogy decision in the language report before integration.');
   lines.push('');
   lines.push('## Repo inventory summary');
@@ -1620,6 +2004,47 @@ function buildResearchChecklist(targetLocale, inventory) {
   lines.push('- [ ] Answer choices still align with explanations and correct indexes.');
   lines.push('- [ ] Lesson intro examples match the target-language explanation.');
   lines.push('- [ ] Personal training rules explain the English mistake for this target-language learner, not just a literal translation.');
+  lines.push('- [ ] Agent Review Board verdicts are all GO, or every HOLD has a linked follow-up fix.');
+  return lines.join('\n');
+}
+
+function buildAgentReviewBoardMarkdown(targetLocale) {
+  const canonical = normalizeLocale(targetLocale);
+  const lines = [];
+  lines.push(`# Heisenberg Agent Review Board: ${canonical}`);
+  lines.push('');
+  lines.push('This board is mandatory for every translation block before integration. Treat it like an office with departments: each role owns a different risk area, and a block moves forward only when every role returns GO or a documented HOLD has been fixed.');
+  lines.push('');
+  lines.push('## Operating Rules');
+  lines.push('- Run every role on each translation block, not just on the final diff.');
+  lines.push('- Each role must return `GO`, `HOLD`, or `BLOCKED`.');
+  lines.push('- `BLOCKED` means do not integrate the block.');
+  lines.push('- `HOLD` means fix or explicitly document the tradeoff before continuing.');
+  lines.push('- Keep verdict notes next to the language report or PR notes so later audits can trace the decision.');
+  lines.push('');
+  for (const agent of HEISENBERG_AGENT_REVIEW_BOARD) {
+    lines.push(`## ${agent.title}`);
+    lines.push(`ID: \`${agent.id}\``);
+    lines.push('');
+    lines.push('Prompt:');
+    lines.push('```text');
+    lines.push(agent.prompt);
+    lines.push('```');
+    lines.push('');
+    lines.push('Must check:');
+    for (const check of agent.mustCheck) lines.push(`- ${check}`);
+    lines.push('');
+    lines.push('Verdict format:');
+    lines.push('```text');
+    lines.push(`Role: ${agent.title}`);
+    lines.push('Verdict: GO | HOLD | BLOCKED');
+    lines.push('Findings:');
+    lines.push('- file/path:line - issue or confirmation');
+    lines.push('Required fixes:');
+    lines.push('- smallest actionable fix, or "none"');
+    lines.push('```');
+    lines.push('');
+  }
   return lines.join('\n');
 }
 
@@ -1637,12 +2062,16 @@ function buildRunbook(targetLocale, outDir) {
   lines.push('- `inventory.json`: repo file inventory and marker counts.');
   lines.push('- `localized_items.jsonl`: extracted localizable strings and source fields (`localized_items_sample.jsonl` in audit-only runs).');
   lines.push('- `translation_blocks/*.jsonl`: bounded translation/rewrite batches.');
+  lines.push('- `agent_review_board.md`: mandatory reviewer roles, prompts, and verdict format.');
   lines.push('- `research_checklist.md`: source-based research gates.');
   lines.push('- `guard_report.json`: overwrite/mixing safety report.');
   lines.push('- `existing_locale_audit.md/json`: generated when the target already exists as an app locale.');
   lines.push('');
   lines.push('## Integration gate');
   lines.push('Do not integrate target text into app code until all translation blocks, language research notes, and tests are green. The current app has many hard-coded ru/uk/es contracts; Heisenberg keeps the new language isolated first.');
+  lines.push('');
+  lines.push('## Mandatory agent board');
+  lines.push('Before integration, run every role from `agent_review_board.md` on each translation block: Chief Editor, Grammar Pedagogy Reviewer, Runtime Integrity Reviewer, Surface Owner, and Activation Gate Reviewer. A block cannot move forward with an unresolved `BLOCKED` verdict.');
   lines.push('');
   lines.push('## Suggested verification');
   lines.push('- `npm run heisenberg -- --lang <locale> --audit-only`');
@@ -1663,6 +2092,7 @@ module.exports = {
   REGISTERED_INTERFACE_SOURCE_LOCALES,
   DEFAULT_SOURCE_LOCALES,
   HEISENBERG_BATCH_SOURCE_LOCALES,
+  HEISENBERG_AGENT_REVIEW_BOARD,
   STRUCTURED_BATCH_SOURCE_LOCALES,
   STRUCTURED_BATCH_COVERAGE_CONTRACTS,
   DAILY_PHRASE_SOURCE_LOCALE_COVERAGE_CONTRACTS,
@@ -1678,11 +2108,13 @@ module.exports = {
   RESEARCH_SOURCES,
   buildBatchLocaleCoverageAudit,
   buildResearchChecklist,
+  buildAgentReviewBoardMarkdown,
   buildExistingLocaleAudit,
   buildExistingLocaleAuditMarkdown,
   buildRunbook,
   buildTranslationBlocks,
   classifySurface,
+  extractHtmlItemsFromText,
   extractJsonItemsFromText,
   extractLocalizedItemsFromText,
   guardReport,

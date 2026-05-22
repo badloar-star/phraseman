@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
@@ -43,12 +43,15 @@ import ReportPackModal from '../../components/ReportPackModal';
 import { hideCommunityPackOnDevice, loadHiddenCommunityPackIds } from '../community_packs/communityPackHiddenStorage';
 import { getEffectivePlatformOS } from '../platform_ui_preview';
 import { hapticTap } from '../../hooks/use-haptics';
+import type { RuntimeStudyTarget } from '../target_storage_keys';
+import { frenchFlashcardsGateCopy } from '../flashcards_target_gate';
 
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
 type Props = {
   lang: Lang;
   t: Theme;
+  studyTarget?: RuntimeStudyTarget;
   marketPacks: FlashcardMarketPack[];
   ownedPackIds: string[];
   shardBalance: number;
@@ -60,6 +63,7 @@ type Props = {
   /** Stable id автора — кнопка «редагувати» на своїх UGC. */
   hubAuthorStableId?: string | null;
   onTrainingPress: () => void;
+  onAudioPress: () => void;
   /** Для контрасту підписей / сегментів на `ScreenGradient` (Океан / Сакура). */
   themeMode: ThemeMode;
 };
@@ -337,6 +341,7 @@ function UnownedMarketPackCard({
 export default function FlashcardsCategoryHub({
   lang,
   t,
+  studyTarget,
   marketPacks,
   ownedPackIds,
   shardBalance,
@@ -346,6 +351,7 @@ export default function FlashcardsCategoryHub({
   ownedCommunityPackIds = [],
   hubAuthorStableId = null,
   onTrainingPress,
+  onAudioPress,
   themeMode,
 }: Props) {
   const router = useRouter();
@@ -359,26 +365,27 @@ export default function FlashcardsCategoryHub({
   const [reportModalPack, setReportModalPack] = useState<FlashcardMarketPack | null>(null);
 
   const refreshHiddenCommunityPacks = useCallback(async () => {
-    const ids = await loadHiddenCommunityPackIds();
+    const ids = await loadHiddenCommunityPackIds(studyTarget);
     setHiddenCommunityPackIds(new Set(ids));
-  }, []);
+  }, [studyTarget]);
 
   useFocusEffect(
     useCallback(() => {
       let cancelled = false;
       void (async () => {
-        const ok = await hasMeaningfulCommunityPackCreateDraft();
+        const ok = await hasMeaningfulCommunityPackCreateDraft(studyTarget, lang);
         if (!cancelled) setHasUnfinishedPackDraft(ok);
       })();
       void refreshHiddenCommunityPacks();
       return () => {
         cancelled = true;
       };
-    }, [refreshHiddenCommunityPacks]),
+    }, [lang, refreshHiddenCommunityPacks, studyTarget]),
   );
 
   const { openPaywall, CardPackPaywallModalEl } = useCardPackShardPaywall({
     balance: shardBalance,
+    studyTarget,
     lang,
     router,
     onAfterPurchase: onMarketRefresh,
@@ -464,7 +471,7 @@ export default function FlashcardsCategoryHub({
   const openOwnedPack = async (pack: FlashcardMarketPack) => {
     setUgcReportHintPackId(null);
     if (pack.isCommunityUgc) {
-      const ok = await stageCommunityPackCardsForNavigation(pack.id);
+      const ok = await stageCommunityPackCardsForNavigation(pack.id, studyTarget);
       if (!ok) {
         emitAppEvent(
           'action_toast',
@@ -472,12 +479,33 @@ export default function FlashcardsCategoryHub({
             ru: 'Не удалось загрузить карточки набора.',
             uk: 'Не вдалося завантажити картки набору.',
             es: 'No se pudieron cargar las tarjetas del pack.',
+            'pt-BR': 'Não foi possível carregar os cartões do pack.',
+            vi: 'Không thể tải thẻ của pack.',
+            id: 'Gagal memuat kartu dari pack.',
+            tr: 'Paket kartları yüklenemedi.',
+            pl: 'Nie udało się załadować kart pakietu.',
           }),
         );
         return;
       }
     } else {
-      stageOwnedPackCardsForNavigation(pack.id);
+      const staged = stageOwnedPackCardsForNavigation(pack.id, studyTarget);
+      if (!staged) {
+        emitAppEvent(
+          'action_toast',
+          actionToastTri('info', {
+            ru: frenchFlashcardsGateCopy('ru').body,
+            uk: frenchFlashcardsGateCopy('uk').body,
+            es: frenchFlashcardsGateCopy('ru').body,
+            'pt-BR': frenchFlashcardsGateCopy('ru').body,
+            vi: frenchFlashcardsGateCopy('ru').body,
+            id: frenchFlashcardsGateCopy('ru').body,
+            tr: frenchFlashcardsGateCopy('ru').body,
+            pl: frenchFlashcardsGateCopy('ru').body,
+          }),
+        );
+        return;
+      }
     }
     router.push({ pathname: '/flashcards_collection', params: { pack: pack.id } } as any);
   };
@@ -673,7 +701,7 @@ export default function FlashcardsCategoryHub({
                   void hapticTap();
                   setUgcReportHintPackId(null);
                   try {
-                    await hideCommunityPackOnDevice(pack.id);
+                    await hideCommunityPackOnDevice(pack.id, studyTarget);
                     await refreshHiddenCommunityPacks();
                   } catch {
                     // no-op: AsyncStorage unavailable
@@ -837,6 +865,58 @@ export default function FlashcardsCategoryHub({
     );
   };
 
+  const renderAudioTile = () => {
+    const i = tileAnimIndex++;
+    const label = triLang(lang, {
+      ru: 'Слушать',
+      uk: 'Слухати',
+      es: 'Escuchar',
+      'pt-BR': 'Ouvir',
+      vi: 'Nghe',
+      id: 'Dengar',
+      tr: 'Dinle',
+      pl: 'Słuchaj',
+    });
+
+    return (
+      <Reanimated.View
+        key="audio"
+        {...(!reduceMotion ? { entering: enteringForIndex(i) } : {})}
+        style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
+      >
+        <HubTileShell
+          testID="flashcards-hub-tile-audio"
+          a11y="qa-flashcards-hub-tile-audio"
+          width={tileW}
+          reduceMotion={reduceMotion}
+          onPress={onAudioPress}
+        >
+          <View
+            style={[
+              {
+                width: tileW,
+                height: tileW,
+                borderRadius: TILE_RADIUS,
+                borderWidth: 1,
+                borderColor: t.border,
+                backgroundColor: t.bgSurface,
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+              },
+              shadowForTile(t, 'base'),
+            ]}
+          >
+            <Ionicons name="headset-outline" size={iconSize} color={t.textPrimary} />
+          </View>
+        </HubTileShell>
+        <Text style={labelStyle(true)} numberOfLines={2}>
+          {label}
+        </Text>
+      </Reanimated.View>
+    );
+  };
+
   const hubSegmentTabs = cloudCommunityEnabled ? (
     <View
       style={{
@@ -869,6 +949,7 @@ export default function FlashcardsCategoryHub({
           >
             {renderHubCategoryTiles()}
             {renderTrainingTile()}
+            {renderAudioTile()}
             {renderPackTiles(mineTabPacksOnlyOwned, isPackInMineOwned, false)}
           </View>
         ) : hubPackSegment === 'showcase' ? (
@@ -973,6 +1054,7 @@ export default function FlashcardsCategoryHub({
         >
           {renderHubCategoryTiles()}
           {renderTrainingTile()}
+          {renderAudioTile()}
           {renderPackTiles(marketPacks, (p) => ownedPackIds.includes(p.id), false)}
         </View>
       )}
@@ -1030,6 +1112,7 @@ export default function FlashcardsCategoryHub({
           packTitle={packTitleForInterface(reportModalPack, lang)}
           authorStableId={reportModalPack.authorStableId ?? null}
           lang={lang}
+          studyTarget={studyTarget}
           onClose={() => setReportModalPack(null)}
           onPackHiddenOnDevice={refreshHiddenCommunityPacks}
         />

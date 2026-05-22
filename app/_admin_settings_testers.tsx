@@ -5,7 +5,9 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated,
+  Modal,
   Platform,
+  Pressable,
   ScrollView,
   Switch,
   Text, TouchableOpacity,
@@ -15,6 +17,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { useEnergy } from '../components/EnergyContext';
 import { useTheme } from '../components/ThemeContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang } from '../constants/i18n';
 import { configureAccordionLayout } from '../constants/layoutAnimation';
 import { AVATARS, unlockAllFrames } from '../constants/avatars';
@@ -80,14 +83,18 @@ import type { MedalTier } from './medal_utils';
 import { DEV_MODE, STORE_URL } from './config';
 import { setPlatformUiPreviewMode, usePlatformUiPreviewMode } from './platform_ui_preview';
 import { QUIZ_E2E_OPEN_RESULTS_KEY } from './quizzes/constants';
+import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
 import { useMatchmakingContext } from '../contexts/MatchmakingContext';
 import { seedAdminTestReviewSession } from './active_recall';
 import { requestNotificationPermissionWithFallback } from './notifications';
 import type { GlobalBroadcastModalPayload } from './global_broadcast_modal';
+import { seedLocalVipSurveyTestMessage } from './app_messages';
 import PremiumCelebrationModal from '../components/PremiumCelebrationModal';
+import VipCelebrationModal from '../components/VipCelebrationModal';
 import MasteryReplayModal from '../components/MasteryReplayModal';
 import StreakReviveModal from '../components/StreakReviveModal';
 import { markCelebrationPending } from './premium_celebration_state';
+import { consumeVipCelebration, markVipCelebrationPending } from './vip_celebration_state';
 import { markStreakLost, getReviveOffer, type StreakReviveOffer } from './streak_revive';
 import {
   ENERGY_ZERO_COUNT_KEY, STREAK_LOST_COUNT_KEY, HARD_PAYWALL_BLOCKS_KEY,
@@ -97,6 +104,7 @@ import {
 import {
   DAILY_FREE_SESSION_KEY,
 } from './trainer_session';
+import { lessonCycleEndIntroShownKey } from './target_storage_keys';
 import { clearTrainerStore, devSeedTrainerScenario } from './trainer_store';
 import { devSeedActivity365Scenario } from './activity_365_analytics';
 import { getTopMistakePhrases, clearMistakeLog, logMistake, getMistakeLogDebugSnapshot } from './mistake_log';
@@ -107,7 +115,21 @@ import { injectMockLeaderboardStats, clearMockLeaderboardStats } from './leaderb
 import ThroneRewardModal from '../components/ThroneRewardModal';
 import { AVATAR_AURAS, USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
 import { getCanonicalUserId } from './user_id_policy';
-import { ensureAnonUser } from './cloud_sync';
+import { accountLocalDataKeysForToday, ensureAnonUser, ensureStableAuthLinkForStableId, FRENCH_TARGET_SYNC_KEYS } from './cloud_sync';
+import {
+  levelExamKey,
+  lastOpenedLessonKey,
+  lessonBestScoreKey,
+  lessonIntroShownKey,
+  lessonPassCountKey,
+  lessonProgressKey,
+  lessonSessionKey,
+  lessonWordsKey,
+  masteryFinishedOnceKey,
+  quizAchievementCounterKey,
+  unlockedLessonsKey,
+} from './target_storage_keys';
+import { updateMyVipInLeaderboard } from './firestore_leaderboard';
 import {
   LEAGUE_BONUS_ADMIN_PREVIEW_KEY,
   LEAGUE_CHEST_BASE_GOAL,
@@ -116,6 +138,10 @@ import {
   type LeagueBonusAvailability,
   type LeagueChestRewardDrop,
 } from './services/league_chest_rewards';
+import {
+  frenchPersonalPracticeGateCopy,
+  personalPracticeCoachEnabledForTarget,
+} from './personal_practice_target_gate';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -123,7 +149,16 @@ const AppInfoDialog = {
   },
 };
 
-const CYCLE_END_SHOWN_KEY = 'lesson_cycle_end_intro_shown';
+const ADMIN_PROFILE_VIP_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
+
+function getAdminFirestoreDb(): any | null {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return require('@react-native-firebase/firestore').default();
+  } catch {
+    return null;
+  }
+}
 
 const RED = '#FF2020';
 const RED_DIM = '#CC0000';
@@ -141,6 +176,68 @@ const RED_BG = '#190000';
 const RED_BORDER = 'rgba(255,32,32,0.58)';
 const RED_BORDER_SOFT = 'rgba(255,32,32,0.34)';
 const DAILY_TASK_QA_PACKS = getDailyTaskAdminPacks(3);
+const ADMIN_RESET_LESSON_IDS = Array.from({ length: 32 }, (_, i) => i + 1);
+const ADMIN_RESET_EXAM_LEVEL_IDS = ['A1', 'A2', 'B1', 'B2'] as const;
+const ADMIN_RESET_LEGACY_NUMERIC_EXAM_IDS = ['1', '2', '3', '4'] as const;
+const ADMIN_RESET_EXAM_FIELDS = ['pct', 'passed', 'best_pct', 'medal_tier', 'pass_count', 'attempt_count'] as const;
+const ADMIN_RESET_ACHIEVEMENT_KEYS = [
+  'achievement_states',
+  'achievement_progress',
+  'medal_states',
+  'medal_tiers',
+  'achievements_v1',
+  quizAchievementCounterKey('achievement_quiz_total_count', 'en'),
+  quizAchievementCounterKey('achievement_quiz_total_count', 'fr'),
+  quizAchievementCounterKey('quiz_hard_count', 'en'),
+  quizAchievementCounterKey('quiz_hard_count', 'fr'),
+  quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'en'),
+  quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'fr'),
+];
+const ADMIN_RESET_FRAME_KEYS = ['user_frame', 'user_avatar', 'unlocked_frames'];
+const ADMIN_RESET_SHARED_SYSTEM_KEYS = ['user_total_xp', 'current_energy', 'last_energy_recovery'];
+const ADMIN_RESET_SHARED_STATS_KEYS = ['streak_count', 'login_bonus_v1', 'daily_stats', 'streak_freeze'];
+const ADMIN_RESET_LEAGUE_KEYS = ['league_state_v3', 'league_result_pending', 'week_leaderboard', 'my_week_points'];
+const ADMIN_RESET_TESTER_KEYS = ['tester_no_limits', 'tester_energy_disabled', 'tester_no_premium'];
+
+function buildAdminResetEnglishLessonKeys(): string[] {
+  return ADMIN_RESET_LESSON_IDS.flatMap((id) => [
+    lessonProgressKey(id, 'en'),
+    lessonSessionKey(id, 'cellIndex', 'en'),
+    `lesson${id}_score`,
+    lessonWordsKey(id, 'en'),
+    `lesson${id}_listening_progress`,
+    lessonBestScoreKey(id, 'en'),
+    lessonPassCountKey(id, 'en'),
+    lessonIntroShownKey(id, 'en'),
+  ]);
+}
+
+function buildAdminResetEnglishExamKeys(): string[] {
+  const activeExamKeys = ADMIN_RESET_EXAM_LEVEL_IDS.flatMap((lvl) => (
+    ADMIN_RESET_EXAM_FIELDS.map((field) => levelExamKey(lvl, field, 'en'))
+  ));
+  const legacyNumericExamKeys = ADMIN_RESET_LEGACY_NUMERIC_EXAM_IDS.flatMap((lvl) => (
+    ADMIN_RESET_EXAM_FIELDS.map((field) => levelExamKey(lvl, field, 'en'))
+  ));
+  return [...activeExamKeys, ...legacyNumericExamKeys];
+}
+
+function buildAdminResetAllDataKeys(): string[] {
+  return Array.from(new Set([
+    ...accountLocalDataKeysForToday(),
+    ...buildAdminResetEnglishLessonKeys(),
+    ...ADMIN_RESET_ACHIEVEMENT_KEYS,
+    ...ADMIN_RESET_FRAME_KEYS,
+    ...ADMIN_RESET_SHARED_SYSTEM_KEYS,
+    unlockedLessonsKey('en'),
+    ...ADMIN_RESET_SHARED_STATS_KEYS,
+    lastOpenedLessonKey('en'),
+    ...ADMIN_RESET_LEAGUE_KEYS,
+    ...buildAdminResetEnglishExamKeys(),
+    ...ADMIN_RESET_TESTER_KEYS,
+    ...FRENCH_TARGET_SYNC_KEYS,
+  ]));
+}
 
 function getIsoWeekIdForDate(d: Date): string {
   const date = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
@@ -312,15 +409,16 @@ const ToggleRow = ({ icon, label, sub, value, onToggle, t, f }: {
   </View>
 );
 
-const ButtonRow = ({ icon, label, sub, onPress, danger, testID, t, f, doHaptic }: {
+const ButtonRow = ({ icon, label, sub, onPress, danger, testID, t, f, doHaptic, pressInStarts }: {
   icon: string; label: string; sub?: string; onPress: () => void; danger?: boolean; testID?: string;
-  t: any; f: any; doHaptic: () => void;
+  t: any; f: any; doHaptic: () => void; pressInStarts?: boolean;
 }) => (
   <TouchableOpacity
     testID={testID}
     accessibilityLabel={testID ? `qa-${testID}` : undefined}
     accessible={!!testID}
     style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: RED_BORDER_SOFT, backgroundColor: danger ? ADMIN_SURFACE_DANGER : ADMIN_SURFACE }}
+    onPressIn={pressInStarts ? () => { doHaptic(); onPress(); } : undefined}
     onPress={() => { doHaptic(); onPress(); }}
     activeOpacity={0.6}
   >
@@ -450,8 +548,48 @@ export default function SettingsTestersFunctions() {
   }>();
   const { theme: t, f, themeMode, setThemeMode } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const isLightTheme = themeMode === 'minimalLight';
   const platformUiPreview = usePlatformUiPreviewMode();
+  const vipSurveyPreviewBusyRef = useRef(false);
+
+  const navigateHomeAfterVipSurveySeed = () => {
+    const nav = router as unknown as {
+      canDismiss?: () => boolean;
+      dismiss?: (count?: number) => void;
+      dismissTo?: (target: unknown) => void;
+      dismissAll?: () => void;
+    };
+    const homeTarget = { pathname: '/(tabs)/home' };
+    const goHome = () => {
+      try {
+        nav.dismissTo?.(homeTarget);
+      } catch {
+        // best-effort navigation recovery for dev-only deep links
+      }
+      try {
+        router.replace('/(tabs)/home' as any);
+      } catch {
+        // ignore: a delayed retry below will run after stack transitions settle
+      }
+    };
+    try {
+      if (typeof nav.dismissTo === 'function') {
+        nav.dismissTo(homeTarget);
+      } else if (typeof nav.dismissAll === 'function') {
+        nav.dismissAll();
+      } else if (typeof nav.canDismiss === 'function' && nav.canDismiss()) {
+        nav.dismiss?.(1);
+      } else if (router.canGoBack()) {
+        router.back();
+      }
+    } catch {
+      // keep going to the replace retries
+    }
+    setTimeout(goHome, 40);
+    setTimeout(goHome, 180);
+    setTimeout(goHome, 420);
+  };
 
   /** У продакшн-збірці пункт у меню прихований; без цього екран лишався доступним через deep link. */
   useEffect(() => {
@@ -517,13 +655,15 @@ export default function SettingsTestersFunctions() {
     updateModal: false,
     releaseNotes: false,
     globalBroadcast: false,
+    vipSurvey: false,
     matchFoundToast: false,
   });
 
   // Preview-флаги для активных soft-monetization сценариев.
   const [softMonetizationPreview, setSoftMonetizationPreview] = useState<
-    null | 'celebration' | 'mastery' | 'streak_revive'
+    null | 'celebration' | 'vip_celebration' | 'mastery' | 'streak_revive'
   >(null);
+  const [activatedVipPreviewMarker, setActivatedVipPreviewMarker] = useState<string | null>(null);
   const [previewReviveOffer, setPreviewReviveOffer] = useState<StreakReviveOffer | null>(null);
   const [throneRewardPreview, setThroneRewardPreview] = useState(false);
 
@@ -753,45 +893,184 @@ export default function SettingsTestersFunctions() {
       const today = new Date().toISOString().split('T')[0];
       setFreeSessionsLeft(d.date === today ? Math.max(0, 1 - d.count) : 1);
     }
-    const top = await getTopMistakePhrases(10);
+    const top = await getTopMistakePhrases(10, studyTarget);
     setMistakeLogPreview(top);
   };
 
   const ensureQaPremiumAccess = async () => {
+    const grantAt = String(Date.now());
     await AsyncStorage.multiSet([
       ['tester_no_limits', 'true'],
-      ['tester_no_premium', 'false'],
-      ['premium_active', 'true'],
-      ['premium_plan', 'admin_grant'],
-      ['premium_expiry', '0'],
-      ['admin_premium_override', 'true'],
+      ['vip_active', 'true'],
+      ['vip_plan', 'admin_vip'],
+      ['vip_from', grantAt],
+      ['vip_until', '0'],
+      ['vip_admin_override', 'true'],
+      ['vip_admin_grant_at', grantAt],
     ]);
     setNoLimitsEnabled(true);
-    setNoPremiumEnabled(false);
     invalidatePremiumCache();
-    emitAppEvent('premium_activated');
+    await markVipCelebrationPending(grantAt);
+    emitAppEvent('vip_activated');
+    emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
     await reloadEnergy().catch(() => {});
   };
 
-  const prepareWeakTrainerQa = async () => {
+  const activateVipOnCurrentProfile = async () => {
+    doHaptic();
+    const grantAt = String(Date.now());
+    const until = String(Date.now() + ADMIN_PROFILE_VIP_DURATION_MS);
+    const vipPairs: [string, string][] = [
+      ['vip_active', 'true'],
+      ['vip_plan', 'admin_vip'],
+      ['vip_from', grantAt],
+      ['vip_until', until],
+      ['vip_admin_override', 'true'],
+      ['vip_admin_grant_at', grantAt],
+    ];
+
+    try {
+      await AsyncStorage.multiSet(vipPairs);
+      invalidatePremiumCache();
+      await markVipCelebrationPending(grantAt);
+      emitAppEvent('vip_activated');
+      emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
+      void updateMyVipInLeaderboard(true);
+
+      const uid = await ensureAnonUser().catch(() => null);
+      if (uid) {
+        await ensureStableAuthLinkForStableId(uid).catch(() => false);
+        const db = getAdminFirestoreDb();
+        if (db) {
+          await db.collection('users').doc(uid).set({
+            progress: {
+              vip_active: 'true',
+              vip_plan: 'admin_vip',
+              vip_from: grantAt,
+              vip_until: until,
+              vip_admin_override: 'true',
+              vip_admin_grant_at: grantAt,
+            },
+            updatedAt: Date.now(),
+          }, { merge: true });
+        }
+      }
+
+      await reloadEnergy().catch(() => {});
+      setActivatedVipPreviewMarker(grantAt);
+      setSoftMonetizationPreview('vip_celebration');
+      emitAppEvent('action_toast', actionToastTri('success', {
+        ru: 'VIP включён на профиле. Premium-подписка не тронута.',
+        uk: 'VIP увімкнено на профілі. Premium-підписку не змінено.',
+        es: 'VIP activado en el perfil. La suscripción Premium no se tocó.',
+        'pt-BR': 'VIP ativado no perfil. A assinatura Premium não foi alterada.',
+        vi: 'Đã bật VIP trên hồ sơ. Gói Premium không bị thay đổi.',
+        id: 'VIP aktif di profil. Langganan Premium tidak diubah.',
+        tr: 'Profilde VIP açıldı. Premium abonelik değiştirilmedi.',
+        pl: 'VIP włączony w profilu. Subskrypcja Premium nie została zmieniona.',
+      }));
+    } catch {
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось включить VIP на профиле',
+        uk: 'Не вдалося увімкнути VIP на профілі',
+        es: 'No se pudo activar VIP en el perfil',
+        'pt-BR': 'Não foi possível ativar VIP no perfil',
+        vi: 'Không thể bật VIP trên hồ sơ',
+        id: 'Tidak dapat mengaktifkan VIP di profil',
+        tr: 'Profilde VIP açılamadı',
+        pl: 'Nie udało się włączyć VIP w profilu',
+      }));
+    }
+  };
+
+  const emitFrenchDevSeedBlockedToast = () => {
+    emitAppEvent('action_toast', actionToastTri('info', {
+      ru: 'French не засеян English-dev фикстурами: нужны отдельные source-gated данные',
+      uk: 'French не засіяно English-dev фікстурами: потрібні окремі source-gated дані',
+      es: 'French no se rellenó con fixtures dev de English: hacen falta datos source-gated propios',
+      'pt-BR': 'French não foi preenchido com fixtures dev de English: precisa de dados próprios com source gate',
+      vi: 'French chưa được nạp bằng fixture dev của English: cần dữ liệu riêng có source gate',
+      id: 'French tidak diisi dengan fixture dev English: perlu data sendiri dengan source gate',
+      tr: 'French, English-dev fixture verileriyle doldurulmadı: source gate altında ayrı veri gerekiyor',
+      pl: 'French nie został zasilony fixture dev z English: potrzebne są osobne dane z source gate',
+    }));
+  };
+
+  const allowEnglishDevMistakeSeed = () => {
+    if (studyTarget === 'fr') {
+      emitFrenchDevSeedBlockedToast();
+      return false;
+    }
+    return true;
+  };
+
+  const allowLegacyReviewModePreview = () => {
+    if (studyTarget === 'fr') {
+      emitAppEvent('action_toast', actionToastTri('info', {
+        ru: 'French legacy /review preview заблокирован: нужны source-gated French SRS данные',
+        uk: 'French legacy /review preview заблоковано: потрібні source-gated French SRS дані',
+        es: 'French legacy /review preview bloqueado: faltan datos French SRS source-gated',
+        'pt-BR': 'Preview legacy de /review para French bloqueado: faltam dados French SRS com source gate',
+        vi: 'Preview /review legacy cho French bị chặn: thiếu dữ liệu French SRS có source gate',
+        id: 'Preview legacy /review untuk French diblokir: data French SRS dengan source gate belum ada',
+        tr: 'French legacy /review önizlemesi engellendi: source gate altında French SRS verileri gerekiyor',
+        pl: 'Podgląd legacy /review dla French zablokowany: brakuje danych French SRS z source gate',
+      }));
+      return false;
+    }
+    return true;
+  };
+
+  const personalPracticeCoachEnabled = personalPracticeCoachEnabledForTarget(studyTarget);
+  const frenchPersonalPracticeGate = frenchPersonalPracticeGateCopy(lang);
+  const diagnosisDevBlocked = !personalPracticeCoachEnabled;
+  const emitFrenchPersonalPracticeBlockedToast = () => {
+    const ruCopy = frenchPersonalPracticeGateCopy('ru');
+    const ukCopy = frenchPersonalPracticeGateCopy('uk');
+    emitAppEvent('action_toast', actionToastTri('info', {
+      ru: ruCopy.toast,
+      uk: ukCopy.toast,
+      es: ruCopy.toast,
+      'pt-BR': 'French personal practice bloqueado: precisa de materiais com source gate.',
+      vi: 'French personal practice bị chặn: cần tài liệu có source gate.',
+      id: 'French personal practice diblokir: perlu materi dengan source gate.',
+      tr: 'French personal practice engellendi: source gate altında materyal gerekiyor.',
+      pl: 'French personal practice zablokowany: potrzebne są materiały z source gate.',
+    }));
+  };
+  const openDiagnosisDevRoute = (category: string, microDiagnosisId: string) => {
+    if (diagnosisDevBlocked) {
+      emitFrenchPersonalPracticeBlockedToast();
+      return;
+    }
+    router.push((`/problem_coach?category=${category}&microDiagnosisId=${microDiagnosisId}`) as any);
+  };
+
+  const prepareWeakTrainerQa = async (): Promise<boolean> => {
+    const seeded = await devSeedTrainerScenario('weak', studyTarget);
+    await loadTrainerDebugState();
+    if (!seeded) {
+      emitFrenchDevSeedBlockedToast();
+      return false;
+    }
     await ensureQaPremiumAccess();
     await AsyncStorage.removeItem(DAILY_FREE_SESSION_KEY);
-    await devSeedTrainerScenario('weak');
     await loadTrainerDebugState();
+    return true;
   };
 
   const openTrainerQaHub = async () => {
-    await prepareWeakTrainerQa();
+    if (!(await prepareWeakTrainerQa())) return;
     router.push('/trainer' as any);
   };
 
   const openTrainerReportPreview = async () => {
-    await prepareWeakTrainerQa();
+    if (!(await prepareWeakTrainerQa())) return;
     router.push({ pathname: '/trainer_smart_session', params: { mode: 'weak', preview: 'report' } } as any);
   };
 
   const openTrainerMistakePreview = async () => {
-    await prepareWeakTrainerQa();
+    if (!(await prepareWeakTrainerQa())) return;
     router.push({ pathname: '/trainer_smart_session', params: { mode: 'weak', preview: 'mistake' } } as any);
   };
 
@@ -834,6 +1113,35 @@ export default function SettingsTestersFunctions() {
     // Сразу status=found, без Firestore: dev-бот есть только при __DEV__ / DEV_MODE.
     showMatchFoundForTesterPreview();
     markQa('matchFoundToast');
+  };
+
+  const showVipSurveyNotificationPreview = async () => {
+    if (vipSurveyPreviewBusyRef.current) return;
+    vipSurveyPreviewBusyRef.current = true;
+    try {
+      await seedLocalVipSurveyTestMessage();
+      markQa('vipSurvey');
+      emitAppEvent(
+        'action_toast',
+        actionToastTri('success', {
+          ru: 'Тестовый VIP survey добавлен в inbox. Завершение будет настоящим.',
+          uk: 'Тестовий VIP survey додано в inbox. Завершення буде справжнім.',
+          es: 'Test VIP survey added to the home inbox. Finishing it is real.',
+          'pt-BR': 'Test VIP survey added to the home inbox. Finishing it is real.',
+          vi: 'Test VIP survey added to the home inbox. Finishing it is real.',
+          id: 'Test VIP survey added to the home inbox. Finishing it is real.',
+          tr: 'Test VIP survey added to the home inbox. Finishing it is real.',
+          pl: 'Test VIP survey added to the home inbox. Finishing it is real.',
+        }),
+      );
+      navigateHomeAfterVipSurveySeed();
+    } catch {
+      AppInfoDialog.alert('VIP survey', 'Не удалось добавить тестовое уведомление в inbox.');
+    } finally {
+      setTimeout(() => {
+        vipSurveyPreviewBusyRef.current = false;
+      }, 900);
+    }
   };
 
   /** QA checklist rows: same previews as section «Активные core-модалки (QA)» */
@@ -921,6 +1229,9 @@ export default function SettingsTestersFunctions() {
         setGlobalBroadcastPreview(ADMIN_GLOBAL_BROADCAST_PREVIEW);
         markQa('globalBroadcast');
         break;
+      case 'vipSurvey':
+        showVipSurveyNotificationPreview();
+        break;
       case 'matchFoundToast':
         void triggerMatchFoundToastPreview();
         break;
@@ -964,10 +1275,10 @@ export default function SettingsTestersFunctions() {
       await AsyncStorage.removeItem('tester_no_premium');
       setNoPremiumEnabled(false);
       invalidatePremiumCache();
-      // Уведомляем PremiumContext — isPremium сразу станет true
+      // Уведомляем PremiumContext — доступ сразу пересчитается
       emitAppEvent('premium_activated');
     } else {
-      await recomputeEarnedUnlocks();
+      await recomputeEarnedUnlocks(studyTarget);
       invalidatePremiumCache();
       emitAppEvent('premium_deactivated');
     }
@@ -975,6 +1286,10 @@ export default function SettingsTestersFunctions() {
 
     // When enabling No Limits, award all medals on lessons and exams
     if (val) {
+      if (studyTarget === 'fr') {
+        emitFrenchDevSeedBlockedToast();
+        return;
+      }
       try {
         const keysToSet: [string, string][] = [];
 
@@ -982,26 +1297,26 @@ export default function SettingsTestersFunctions() {
         for (let i = 1; i <= 32; i++) {
           // Set all necessary lesson data for gold medal
           keysToSet.push([`lesson${i}_score`, '5']);
-          keysToSet.push([`lesson${i}_best_score`, '5']); // Gold medal requires best_score = 5
-          keysToSet.push([`lesson${i}_pass_count`, '1']);
+          keysToSet.push([lessonBestScoreKey(i, studyTarget), '5']); // Gold medal requires best_score = 5
+          keysToSet.push([lessonPassCountKey(i, studyTarget), '1']);
           // Create full progress array (all 50 answers marked as correct)
           const progressArray = new Array(50).fill('correct');
-          keysToSet.push([`lesson${i}_progress`, JSON.stringify(progressArray)]);
-          keysToSet.push([`lesson${i}_cellIndex`, '0']);
+          keysToSet.push([lessonProgressKey(i, studyTarget), JSON.stringify(progressArray)]);
+          keysToSet.push([lessonSessionKey(i, 'cellIndex', studyTarget), '0']);
         }
 
         // Unlock all lessons
         const unlockedLessons = Array.from({ length: 32 }, (_, i) => i + 1);
-        keysToSet.push(['unlocked_lessons', JSON.stringify(unlockedLessons)]);
+        keysToSet.push([unlockedLessonsKey(studyTarget), JSON.stringify(unlockedLessons)]);
 
         // Award gold medals on all 4 exams (90%+ = gold)
         // Use string level IDs ('A1','A2','B1','B2') to match level_exam.tsx format
         const examLevels = ['A1', 'A2', 'B1', 'B2'];
         for (const lvl of examLevels) {
-          keysToSet.push([`level_exam_${lvl}_pct`, '100']);
-          keysToSet.push([`level_exam_${lvl}_best_pct`, '100']); // Gold medal requires best_pct >= 90
-          keysToSet.push([`level_exam_${lvl}_passed`, '1']);
-          keysToSet.push([`level_exam_${lvl}_pass_count`, '1']);
+          keysToSet.push([levelExamKey(lvl, 'pct', studyTarget), '100']);
+          keysToSet.push([levelExamKey(lvl, 'best_pct', studyTarget), '100']); // Gold medal requires best_pct >= 90
+          keysToSet.push([levelExamKey(lvl, 'passed', studyTarget), '1']);
+          keysToSet.push([levelExamKey(lvl, 'pass_count', studyTarget), '1']);
         }
 
         // Set all keys at once
@@ -1223,7 +1538,7 @@ export default function SettingsTestersFunctions() {
 
   const seedDailyTaskPackForQa = async (pack: DailyTaskAdminPack) => {
     doHaptic();
-    const seeded = await seedDailyTasksAdminPack(pack.taskIds, dailyTaskSeedMode);
+    const seeded = await seedDailyTasksAdminPack(pack.taskIds, dailyTaskSeedMode, studyTarget);
     emitAppEvent(
       'action_toast',
       actionToastTri(seeded.length ? 'success' : 'error', {
@@ -1258,7 +1573,7 @@ export default function SettingsTestersFunctions() {
 
   const clearDailyTaskQaOverride = async () => {
     doHaptic();
-    await clearDailyTasksAdminOverride();
+    await clearDailyTasksAdminOverride(studyTarget);
     emitAppEvent(
       'action_toast',
       actionToastTri('success', {
@@ -1379,7 +1694,7 @@ export default function SettingsTestersFunctions() {
   const performStripPremium = async () => {
     try {
       await AsyncStorage.multiSet([['premium_active', 'false'], ['premium_plan', ''], ['tester_no_limits', 'false'], ['tester_energy_disabled', 'false'], ['tester_no_premium', 'true']]);
-      await recomputeEarnedUnlocks();
+      await recomputeEarnedUnlocks(studyTarget);
       invalidatePremiumCache();
       setNoLimitsEnabled(false);
       setEnergyDisabled(false);
@@ -1418,71 +1733,7 @@ export default function SettingsTestersFunctions() {
 
   const performResetAllData = async () => {
     try {
-      const lessonKeys = Array.from({ length: 32 }, (_, i) => [
-        `lesson${i + 1}_progress`,
-        `lesson${i + 1}_cellIndex`,
-        `lesson${i + 1}_score`,
-        `lesson${i + 1}_words`,
-        `lesson${i + 1}_listening_progress`,
-        `lesson${i + 1}_best_score`,
-        `lesson${i + 1}_pass_count`,
-        `lesson${i + 1}_intro_shown`,
-      ]).flat();
-
-      const achievementKeys = [
-        'achievement_states',
-        'achievement_progress',
-        'medal_states',
-        'medal_tiers',
-        'achievements_v1',
-        'quiz_hard_count',
-      ];
-
-      const frameKeys = ['user_frame', 'user_avatar', 'unlocked_frames'];
-
-      const systemKeys = ['user_total_xp', 'current_energy', 'last_energy_recovery', 'unlocked_lessons'];
-
-      const statsKeys = [
-        'streak_count', 'login_bonus_v1', 'daily_stats',
-        'streak_freeze', 'last_opened_lesson',
-      ];
-
-      const leagueKeys = [
-        'league_state_v3',
-        'league_result_pending',
-        'week_leaderboard',
-        'my_week_points',
-      ];
-
-      const examLevelIds = ['A1', 'A2', 'B1', 'B2'];
-      const examKeys = [
-        ...examLevelIds.flatMap(lvl => [
-          `level_exam_${lvl}_pct`,
-          `level_exam_${lvl}_passed`,
-          `level_exam_${lvl}_best_pct`,
-          `level_exam_${lvl}_medal_tier`,
-          `level_exam_${lvl}_pass_count`,
-        ]),
-        ...Array.from({ length: 4 }, (_, i) => [
-          `level_exam_${i + 1}_pct`,
-          `level_exam_${i + 1}_passed`,
-          `level_exam_${i + 1}_best_pct`,
-          `level_exam_${i + 1}_medal_tier`,
-          `level_exam_${i + 1}_pass_count`,
-        ]).flat(),
-      ];
-
-      const testerKeys = [
-        'tester_no_limits',
-        'tester_energy_disabled',
-        'tester_no_premium',
-      ];
-
-      const allKeys = [
-        ...lessonKeys, ...achievementKeys, ...frameKeys,
-        ...systemKeys, ...statsKeys, ...leagueKeys,
-        ...examKeys, ...testerKeys,
-      ];
+      const allKeys = buildAdminResetAllDataKeys();
 
       await withStorageLock(() => AsyncStorage.multiRemove(allKeys));
       invalidatePremiumCache();
@@ -1554,7 +1805,20 @@ export default function SettingsTestersFunctions() {
 
   const runAdminReviewTestBench = async () => {
     try {
-      await seedAdminTestReviewSession();
+      const seeded = await seedAdminTestReviewSession(studyTarget);
+      if (!seeded) {
+        emitAppEvent('action_toast', actionToastTri('info', {
+          ru: 'French review test bench заблокирован: нет source-gated French SRS фикстур',
+          uk: 'French review test bench заблоковано: немає source-gated French SRS фікстур',
+          es: 'French review test bench bloqueado: faltan fixtures French SRS source-gated',
+          'pt-BR': 'Test bench de review para French bloqueado: faltam fixtures French SRS com source gate',
+          vi: 'Test bench review cho French bị chặn: thiếu fixture French SRS có source gate',
+          id: 'Test bench review untuk French diblokir: fixture French SRS dengan source gate belum ada',
+          tr: 'French review test bench engellendi: source gate altında French SRS fixture verileri yok',
+          pl: 'Test bench review dla French zablokowany: brakuje fixture French SRS z source gate',
+        }));
+        return;
+      }
       router.push('/review' as any);
     } catch {
       emitAppEvent(
@@ -1593,7 +1857,7 @@ export default function SettingsTestersFunctions() {
           </View>
         </View>
 
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 60, paddingTop: 12 }} style={{ backgroundColor: ADMIN_BG }}>
+        <ScrollView testID="screen-settings-testers" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 60, paddingTop: 12 }} style={{ backgroundColor: ADMIN_BG }}>
           <View style={{ marginHorizontal: 12, marginBottom: 10, borderRadius: 14, borderWidth: 1.5, borderColor: RED, backgroundColor: ADMIN_SURFACE, overflow: 'hidden' }}>
             <View style={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 6 }}>
               <Text style={{ color: ADMIN_TEXT, fontSize: 13, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
@@ -1603,6 +1867,37 @@ export default function SettingsTestersFunctions() {
                 Stable entry points for live admin flows
               </Text>
             </View>
+            <ButtonRow
+              testID="admin-activate-vip-profile"
+              icon="sparkles-outline"
+              label="💚 Активировать VIP на моём профиле"
+              sub="30 дней VIP-доступа + зелёная анимация. Пишет только vip_* и не трогает реальный Premium."
+              onPress={activateVipOnCurrentProfile}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-preview-vip-celebration-top"
+              icon="sparkles-outline"
+              label="💚 Показать VIP-анимацию"
+              sub="Быстрый предпросмотр зелёного VIP unlock-экрана из админ-панели."
+              onPress={() => setSoftMonetizationPreview('vip_celebration')}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-preview-vip-survey-notification"
+              icon="chatbubbles-outline"
+              label="💚 VIP survey тестовое уведомление"
+              sub="Добавляет inbox-уведомление на главную. Завершение опроса отправляет реальные ответы в админку и активирует VIP через callable."
+              onPress={showVipSurveyNotificationPreview}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+              pressInStarts
+            />
             <ButtonRow
               testID="trainer-quick-seed-weak-open"
               icon="barbell-outline"
@@ -1755,6 +2050,7 @@ export default function SettingsTestersFunctions() {
           <AccordionSection id="account" icon="settings-outline" title="Состояние аккаунта" badge={6}
             open={openSection === 'account'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             <ButtonRow
+              testID="testers-no-limits"
               icon={noLimitsEnabled ? "lock-open-outline" : "lock-outline"}
               label={noLimitsEnabled ? 'Без ограничений ✓' : 'Без ограничений'}
               sub="Все уроки и экзамены доступны"
@@ -1816,12 +2112,16 @@ export default function SettingsTestersFunctions() {
             <ButtonRow
               icon="refresh-circle-outline"
               label="Mastery: уроки «завершены» (Перепройти)"
-              sub="Ставит lesson_finished_once для 1–32. Перепройти видно только без премиума — выключи «Без ограничений» или включи «Снять премиум»"
+              sub="Ставит target-aware lesson_finished_once для 1–32. Перепройти видно только без премиума — выключи «Без ограничений» или включи «Снять премиум»"
               t={t} f={f} doHaptic={doHaptic}
               onPress={async () => {
                 doHaptic();
+                if (studyTarget === 'fr') {
+                  emitFrenchDevSeedBlockedToast();
+                  return;
+                }
                 const pairs: [string, string][] = Array.from({ length: 32 }, (_, i) => [
-                  `lesson_finished_once_v1_${i + 1}`,
+                  masteryFinishedOnceKey(i + 1, studyTarget),
                   '1',
                 ]);
                 await AsyncStorage.multiSet(pairs);
@@ -2112,7 +2412,7 @@ export default function SettingsTestersFunctions() {
             <ButtonRow icon="refresh-circle-outline" label="↺ Сбросить флаг модалки цикла"
               sub="Чтобы модалка показалась снова при следующем завершении"
               onPress={async () => {
-                await AsyncStorage.removeItem(CYCLE_END_SHOWN_KEY);
+                await AsyncStorage.multiRemove([lessonCycleEndIntroShownKey('en'), lessonCycleEndIntroShownKey('fr')]);
                 emitAppEvent(
                   'action_toast',
                   actionToastTri('success', {
@@ -2215,6 +2515,22 @@ export default function SettingsTestersFunctions() {
               label="🧪 Maestro: квиз — экран результата"
               sub="Открыть quizzes_screen → «На главную» (без прохождения вопросов)"
               onPress={async () => {
+                if (!quizContentAvailableForTarget(studyTarget)) {
+                  const ruCopy = frenchQuizGateCopy('ru');
+                  const ukCopy = frenchQuizGateCopy('uk');
+                  emitAppEvent('action_toast', actionToastTri('info', {
+                    ru: ruCopy.title,
+                    uk: ukCopy.title,
+                    es: 'French quiz preview is blocked until approved quiz sources exist.',
+                    'pt-BR': 'Preview de quiz French bloqueado até haver fontes aprovadas.',
+                    vi: 'Preview quiz French bị chặn cho đến khi có nguồn đã duyệt.',
+                    id: 'Preview kuis French diblokir sampai sumber yang disetujui tersedia.',
+                    tr: 'French quiz önizlemesi onaylı kaynaklar gelene kadar engellendi.',
+                    pl: 'Podgląd quizów French jest zablokowany do czasu zatwierdzenia źródeł.',
+                  }));
+                  router.push('/quizzes_screen' as any);
+                  return;
+                }
                 await AsyncStorage.setItem(QUIZ_E2E_OPEN_RESULTS_KEY, '1');
                 router.push('/quizzes_screen' as any);
               }}
@@ -2241,7 +2557,7 @@ export default function SettingsTestersFunctions() {
             id="soft_monetization"
             icon="sparkles-outline"
             title="Монетизация: активные сценарии"
-            badge={5}
+            badge={6}
             open={openSection === 'soft_monetization'}
             onToggle={(id) => setOpenSection(openSection === id ? null : id)}
           >
@@ -2250,6 +2566,16 @@ export default function SettingsTestersFunctions() {
               label="👑 Premium celebration (5 сек анимация)"
               sub="Particle-spiral, корона, 6 замочков unlock, golden CTA. Без реальной IAP."
               onPress={() => setSoftMonetizationPreview('celebration')}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-preview-vip-celebration"
+              icon="sparkles-outline"
+              label="💚 VIP celebration (зелёная анимация)"
+              sub="Тот же unlock-экран, но VIP: зелёный стиль, без золотого Premium-статуса."
+              onPress={() => setSoftMonetizationPreview('vip_celebration')}
               t={t}
               f={f}
               doHaptic={doHaptic}
@@ -2484,11 +2810,10 @@ export default function SettingsTestersFunctions() {
               icon="sparkles-outline"
               testID="trainer-qa-seed-weak"
               label="🌱 Засеять текущую «Мою практику»"
-              sub="devSeedTrainerScenario('weak') + QA premium для Maestro"
+              sub="target-aware devSeedTrainerScenario('weak') + QA premium для Maestro"
               onPress={async () => {
                 doHaptic();
-                await prepareWeakTrainerQa();
-                await loadTrainerDebugState();
+                if (!(await prepareWeakTrainerQa())) return;
                 emitAppEvent('action_toast', actionToastTri('success', {
                   ru: 'TrainerStore засеян: открой /trainer или текущие сессии ниже',
                   uk: 'TrainerStore засіяно: відкрий /trainer або поточні сесії нижче',
@@ -2505,11 +2830,11 @@ export default function SettingsTestersFunctions() {
             <ButtonRow
               icon="trash-outline"
               label="🧹 Очистить текущую «Мою практику»"
-              sub="clearTrainerStore() — только новый TrainerStore, не legacy active_recall"
+              sub="target-aware clearTrainerStore — только новый TrainerStore, не legacy active_recall"
               danger
               onPress={async () => {
                 doHaptic();
-                await clearTrainerStore();
+                await clearTrainerStore(studyTarget);
                 await loadTrainerDebugState();
                 emitAppEvent('action_toast', actionToastTri('success', {
                   ru: 'TrainerStore очищен',
@@ -2593,7 +2918,8 @@ export default function SettingsTestersFunctions() {
               sub="active_recall + mistake_log для старого /review trainerMode"
               onPress={async () => {
                 doHaptic();
-                const seed: Array<[string, number, string]> = [
+                if (!allowEnglishDevMistakeSeed()) return;
+                const seed: Array<[string, number, 'lesson' | 'quiz']> = [
                   ['pick up', 5, 'quiz'], ['pick up', 5, 'lesson'], ['pick up', 5, 'quiz'],
                   ['pick up', 5, 'lesson'], ['pick up', 5, 'quiz'],
                   ['let down', 3, 'lesson'], ['let down', 3, 'quiz'], ['let down', 3, 'lesson'],
@@ -2602,7 +2928,7 @@ export default function SettingsTestersFunctions() {
                   ['set off', 2, 'quiz'], ['set off', 2, 'lesson'],
                 ];
                 for (const [phrase, lessonId, mode] of seed) {
-                  logMistake(phrase, lessonId, mode as 'lesson' | 'quiz', 'wrong_pick');
+                  logMistake(phrase, lessonId, mode, 'wrong_pick', {}, studyTarget);
                   await new Promise<void>(r => setTimeout(r, 15));
                 }
                 await loadTrainerDebugState();
@@ -2622,11 +2948,11 @@ export default function SettingsTestersFunctions() {
             <ButtonRow
               icon="trash-outline"
               label="🗑 Очистить лог ошибок"
-              sub="clearMistakeLog() → AsyncStorage"
+              sub="clearMistakeLog(studyTarget) → AsyncStorage"
               danger
               onPress={async () => {
                 doHaptic();
-                await clearMistakeLog();
+                await clearMistakeLog(studyTarget);
                 await loadTrainerDebugState();
                 emitAppEvent('action_toast', actionToastTri('success', {
                   ru: 'Лог ошибок очищен',
@@ -2683,6 +3009,7 @@ export default function SettingsTestersFunctions() {
                 label={label}
                 sub={free ? 'Legacy active_recall режим' : 'Legacy premium mode из active_recall'}
                 onPress={() => {
+                  if (!allowLegacyReviewModePreview()) return;
                   const params: Record<string, string> = { trainerMode: mode };
                   if (mode === 'by_topic') params.lessonId = '5';
                   if (mode === 'mistakes') params.category = 'article';
@@ -2822,6 +3149,19 @@ export default function SettingsTestersFunctions() {
                 Diagnosis trainer — экран тренировки:
               </Text>
             </View>
+            {diagnosisDevBlocked ? (
+              <View
+                testID="admin-french-personal-practice-source-gate"
+                style={{ marginHorizontal: 16, marginBottom: 8, padding: 12, borderRadius: 12, borderWidth: 1, borderColor: RED_BORDER_SOFT, backgroundColor: ADMIN_SURFACE_DANGER }}
+              >
+                <Text style={{ color: '#FF8A8A', fontSize: f.body, fontWeight: '800', marginBottom: 4 }}>
+                  {frenchPersonalPracticeGate.title}
+                </Text>
+                <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.35) }}>
+                  {frenchPersonalPracticeGate.body}
+                </Text>
+              </View>
+            ) : null}
             {([
               { category: 'article', id: 'article_a_an' },
               { category: 'article', id: 'article_the_specific' },
@@ -2864,10 +3204,9 @@ export default function SettingsTestersFunctions() {
                 key={microDiagnosisId}
                 icon="git-compare-outline"
                 label={`Open diagnosis: ${microDiagnosisId}`}
-                sub={`/problem_coach?category=${category}&microDiagnosisId=${microDiagnosisId}`}
+                sub={diagnosisDevBlocked ? frenchPersonalPracticeGate.body : `/problem_coach?category=${category}&microDiagnosisId=${microDiagnosisId}`}
                 onPress={() => {
-                  doHaptic();
-                  router.push((`/problem_coach?category=${category}&microDiagnosisId=${microDiagnosisId}`) as any);
+                  openDiagnosisDevRoute(category, microDiagnosisId);
                 }}
                 t={t} f={f} doHaptic={doHaptic}
               />
@@ -2998,7 +3337,7 @@ export default function SettingsTestersFunctions() {
               sub="Берёт exact POS события из mistake_log и persistent analytics"
               onPress={async () => {
                 doHaptic();
-                const snapshot = await getMistakeLogDebugSnapshot(60);
+                const snapshot = await getMistakeLogDebugSnapshot(60, studyTarget);
                 const exactMistakes = snapshot.events
                   .filter(event => event.exactSignal && event.resolvedCategory)
                   .map(event => ({
@@ -3010,7 +3349,7 @@ export default function SettingsTestersFunctions() {
                     category: event.resolvedCategory!,
                     grammarTag: event.grammarTag,
                   }));
-                const decision = await checkCoachToastNeededWithAnalytics(exactMistakes);
+                const decision = await checkCoachToastNeededWithAnalytics(exactMistakes, studyTarget, lang === 'uk' ? 'uk' : 'ru');
                 if (decision.show) {
                   setCoachToastPreview(decision);
                 } else {
@@ -3025,6 +3364,7 @@ export default function SettingsTestersFunctions() {
               sub="Артикли, предлоги и do/does с token/category метаданными"
               onPress={async () => {
                 doHaptic();
+                if (!allowEnglishDevMistakeSeed()) return;
                 const testMistakes = [
                   { phrase: 'I am an engineer', lessonId: 7, tokenText: 'an', picked: 'a', rawCategory: 'article_a_an', category: 'article' as const },
                   { phrase: 'She is an artist', lessonId: 7, tokenText: 'an', picked: 'a', rawCategory: 'article_a_an', category: 'article' as const },
@@ -3046,7 +3386,7 @@ export default function SettingsTestersFunctions() {
                   logMistake(phrase, lessonId, 'lesson', 'wrong_pick', {
                     ...meta,
                     expected: meta.tokenText,
-                  });
+                  }, studyTarget);
                   await new Promise((r) => setTimeout(r, 5));
                 }
                 emitAppEvent('action_toast', actionToastTri('success', {
@@ -3065,11 +3405,11 @@ export default function SettingsTestersFunctions() {
             <ButtonRow
               icon="trash-outline"
               label="🗑 Очистить лог (аналитика → пустая)"
-              sub="clearMistakeLog() + invalidatePhraseIndex()"
+              sub="clearMistakeLog(studyTarget) + invalidatePhraseIndex()"
               danger
               onPress={async () => {
                 doHaptic();
-                await clearMistakeLog();
+                await clearMistakeLog(studyTarget);
                 emitAppEvent('action_toast', actionToastTri('success', {
                   ru: 'Лог очищен — аналитика пустая',
                   uk: 'Лог очищено',
@@ -3411,6 +3751,7 @@ export default function SettingsTestersFunctions() {
               ['updateModal', 'UpdateModal'],
               ['releaseNotes', 'ReleaseNotesModal'],
               ['globalBroadcast', 'GlobalBroadcastModal preview-only'],
+              ['vipSurvey', 'VIP survey test notification'],
               ['matchFoundToast', 'MatchFoundToast'],
             ] as const).map(([key, label]) => (
               <TouchableOpacity
@@ -3450,6 +3791,7 @@ export default function SettingsTestersFunctions() {
                 updateModal: false,
                 releaseNotes: false,
                 globalBroadcast: false,
+                vipSurvey: false,
                 matchFoundToast: false,
               })}
               t={t}
@@ -3500,7 +3842,7 @@ export default function SettingsTestersFunctions() {
   uk: 'Скинути ВСЕ дані',
   ru: 'Сбросить ВСЕ данные',
   es: 'Restablecer TODOS los datos',
-  "pt-BR": 'Restablecer TODOS os dados',
+  "pt-BR": 'Redefinir TODOS os dados',
   vi: 'Đặt lại TẤT CẢ dữ liệu',
   id: 'Reset SEMUA data',
   tr: 'TÜM verileri sıfırla',
@@ -3529,7 +3871,7 @@ export default function SettingsTestersFunctions() {
   uk: 'Скинути статистику',
   ru: 'Сбросить статистику',
   es: 'Restablecer estadísticas',
-  "pt-BR": 'Restablecer estatísticas',
+  "pt-BR": 'Redefinir estatísticas',
   vi: 'Đặt lại thống kê',
   id: 'Reset statistik',
   tr: 'İstatistikleri sıfırla',
@@ -3622,7 +3964,7 @@ export default function SettingsTestersFunctions() {
               : 'Тестовый пользователь'
         }
         screen="leaderboard"
-        lang={lang}
+        lang={lang === 'uk' || lang === 'es' ? lang : 'ru'}
         previewOnly
         onClose={() => setReportUserPreviewVisible(false)}
       />
@@ -3855,7 +4197,7 @@ export default function SettingsTestersFunctions() {
   uk: 'Скинути все?',
   ru: 'Сбросить все?',
   es: '¿Restablecer todo?',
-  "pt-BR": 'Restablecer tudo?',
+  "pt-BR": 'Redefinir tudo?',
   vi: 'Đặt lại tất cả?',
   id: 'Reset semuanya?',
   tr: 'Her şey sıfırlansın mı?',
@@ -3885,7 +4227,7 @@ export default function SettingsTestersFunctions() {
   uk: 'Скинути',
   ru: 'Сбросить',
   es: 'Restablecer',
-  "pt-BR": 'Restablecer',
+  "pt-BR": 'Redefinir',
   vi: 'Đặt lại',
   id: 'Reset',
   tr: 'Sıfırla',
@@ -3904,7 +4246,7 @@ export default function SettingsTestersFunctions() {
   uk: 'Скинути статистику?',
   ru: 'Сбросить статистику?',
   es: '¿Restablecer estadísticas?',
-  "pt-BR": 'Restablecer estatísticas?',
+  "pt-BR": 'Redefinir estatísticas?',
   vi: 'Đặt lại thống kê?',
   id: 'Reset statistik?',
   tr: 'İstatistikler sıfırlansın mı?',
@@ -3934,7 +4276,7 @@ export default function SettingsTestersFunctions() {
   uk: 'Скинути',
   ru: 'Сбросить',
   es: 'Restablecer',
-  "pt-BR": 'Restablecer',
+  "pt-BR": 'Redefinir',
   vi: 'Đặt lại',
   id: 'Reset',
   tr: 'Sıfırla',
@@ -3973,6 +4315,15 @@ export default function SettingsTestersFunctions() {
       <PremiumCelebrationModal
         visible={softMonetizationPreview === 'celebration'}
         onClose={() => setSoftMonetizationPreview(null)}
+      />
+      <VipCelebrationModal
+        visible={softMonetizationPreview === 'vip_celebration'}
+        onClose={() => {
+          setSoftMonetizationPreview(null);
+          const marker = activatedVipPreviewMarker;
+          setActivatedVipPreviewMarker(null);
+          if (marker) void consumeVipCelebration(marker);
+        }}
       />
       <MasteryReplayModal
         visible={softMonetizationPreview === 'mastery'}
@@ -4028,4 +4379,3 @@ export default function SettingsTestersFunctions() {
     </View>
   );
 }
-

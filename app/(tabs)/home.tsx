@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { tabSwipeLock } from '../tabSwipeLock';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
 import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
 import { useTabNav } from '../TabContext';
@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
+import { useStudyTarget } from '../../components/StudyTargetContext';
 import ScreenGradient from '../../components/ScreenGradient';
 import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName } from '../league_engine';
 import LeagueResultModal from '../LeagueResultModal';
@@ -21,18 +22,20 @@ import { getReviveOffer, type StreakReviveOffer } from '../streak_revive';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import StreakReviveModal from '../../components/StreakReviveModal';
 import { consumeCelebration, getPendingCelebrationMarker, isCelebrationPending, } from '../premium_celebration_state';
+import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
+import VipCelebrationModal from '../../components/VipCelebrationModal';
 import { getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
 import { getLeagueBonusPalette } from '../../constants/leagueBonusPalette';
 import { getLeagueBonusGiftImage } from '../../constants/leagueBonusGiftImages';
 import { getTitleString } from '../../constants/titles';
-import { lessonNamesForLang } from '../../constants/lessons';
 import { GREETINGS_ES } from '../../constants/greetings_es';
 import { triLang, type Lang } from '../../constants/i18n';
 import { BRAND_SHARDS_ES } from '../../constants/terms_es';
 import PremiumCard from '../../components/PremiumCard';
+import VipGreenUserName from '../../components/VipGreenUserName';
 import { hapticTap } from '../../hooks/use-haptics';
 import CircularProgress from '../../components/CircularProgress';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
@@ -69,6 +72,10 @@ import { fetchActiveLeagueCrowns, getLeagueChestGoal } from '../services/league_
 import { shouldShowLeagueRace } from '../league_race_visibility';
 import { getHomeMenuImages } from '../home_menu_icons';
 import { isStreakFreezeActiveToday } from '../streak_freeze';
+import { lessonNameForStudyTarget, lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
+import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
+import { formatLeagueChatUnreadBadge } from '../league_chat_unread';
+import { useLeagueChatUnread } from '../use_league_chat_unread';
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
 const ENERGY_TOOLTIP_W = 220;
@@ -117,6 +124,56 @@ const GREETINGS_UK = [
     'Готовий до нових завдань?', 'Світ заграє барвами', 'На крок ближче до мрії', 'Вільніше з кожним словом',
     'Прогрес надихає', 'Слова зближують людей',
 ];
+const GREETINGS_PT_BR = [
+    'Seu inglês ganha força hoje', 'Um passo mais perto da fluência', 'Aprenda uma frase, abra uma porta',
+    'Sua rotina também ensina', 'Mais confiança a cada palavra', 'Hoje é dia de avançar',
+    'Pequenos treinos, grandes saltos', 'Seu progresso está vivo', 'Fale com mais leveza',
+    'O próximo insight está aqui', 'Seu cérebro adora constância', 'Mais claro do que ontem',
+];
+const GREETINGS_VI = [
+    'Tiếng Anh của bạn mạnh hơn hôm nay', 'Gần sự tự tin hơn một bước', 'Một câu mới, một cánh cửa mới',
+    'Thói quen nhỏ cũng tạo tiến bộ', 'Tự tin hơn qua từng từ', 'Hôm nay là ngày để tiến lên',
+    'Luyện tập nhỏ, bước nhảy lớn', 'Tiến bộ của bạn đang sống động', 'Nói nhẹ nhàng và rõ hơn',
+    'Gợi ý tiếp theo ở ngay đây', 'Não bạn thích sự đều đặn', 'Rõ hơn hôm qua',
+];
+const GREETINGS_ID = [
+    'Bahasa Inggrismu makin kuat hari ini', 'Selangkah lebih dekat ke percaya diri', 'Satu frasa baru, satu pintu baru',
+    'Rutinitas kecil juga membangun kemajuan', 'Lebih yakin di setiap kata', 'Hari ini waktunya maju',
+    'Latihan kecil, lompatan besar', 'Progresmu tetap bergerak', 'Bicara lebih ringan dan jelas',
+    'Insight berikutnya ada di sini', 'Otakmu suka konsistensi', 'Lebih jelas daripada kemarin',
+];
+const GREETINGS_TR = [
+    'İngilizcen bugün güçleniyor', 'Özgüvene bir adım daha yakın', 'Yeni bir ifade, yeni bir kapı',
+    'Küçük alışkanlıklar da ilerleme getirir', 'Her kelimeyle daha emin', 'Bugün ilerleme günü',
+    'Küçük pratikler, büyük sıçramalar', 'İlerlemen canlı kalıyor', 'Daha rahat ve net konuş',
+    'Sıradaki içgörü burada', 'Beynin sürekliliği sever', 'Dünden daha net',
+];
+const GREETINGS_PL = [
+    'Twój angielski dziś rośnie w siłę', 'O krok bliżej pewności', 'Nowa fraza, nowe drzwi',
+    'Małe nawyki też budują postęp', 'Więcej pewności z każdym słowem', 'Dziś jest dobry dzień na ruch',
+    'Małe ćwiczenia, duże skoki', 'Twój postęp żyje', 'Mów swobodniej i jaśniej',
+    'Następny wgląd jest tutaj', 'Twój mózg lubi regularność', 'Jaśniej niż wczoraj',
+];
+const HOME_GREETING_POOLS: Record<Lang, readonly string[]> = {
+    ru: GREETINGS_RU,
+    uk: GREETINGS_UK,
+    es: GREETINGS_ES,
+    'pt-BR': GREETINGS_PT_BR,
+    vi: GREETINGS_VI,
+    id: GREETINGS_ID,
+    tr: GREETINGS_TR,
+    pl: GREETINGS_PL,
+};
+const HOME_WEEK_DAYS: Record<Lang, readonly string[]> = {
+    ru: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+    uk: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'],
+    es: ['L', 'M', 'X', 'J', 'V', 'S', 'D'],
+    'pt-BR': ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+    vi: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'],
+    id: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
+    tr: ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'],
+    pl: ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb', 'Nd'],
+};
 const HOME_DAILY_GREETING_KEY = 'home_daily_greeting_v1';
 const STATS_PULSE_HINT_DONE_KEY = 'phraseman_home_stats_pulse_hint_done_v1';
 const STATS_PULSE_MIN_USAGE_MS = 3 * 60 * 60 * 1000;
@@ -167,6 +224,19 @@ type LightSketchMenuImageProps = Omit<React.ComponentProps<typeof Image>, 'style
     height: number;
     lighten: boolean;
 };
+type StableTouchableOpacityProps = Omit<PressableProps, 'style'> & {
+    activeOpacity?: number;
+    style?: StyleProp<ViewStyle> | ((state: PressableStateCallbackType) => StyleProp<ViewStyle>);
+};
+function TouchableOpacity({ activeOpacity = 0.2, disabled, style, ...props }: StableTouchableOpacityProps) {
+    return (<Pressable
+      {...props}
+      disabled={disabled}
+      style={(state) => [
+          typeof style === 'function' ? style(state) : style,
+          state.pressed && !disabled ? { opacity: activeOpacity } : null,
+      ]}/>);
+}
 function LightSketchMenuImage({ width, height, lighten, ...props }: LightSketchMenuImageProps) {
     const boxStyle = { width, height };
     if (!lighten) {
@@ -223,9 +293,10 @@ export default function HomeScreen() {
     const router = useRouter();
     const { theme: t, isDark, f, themeMode } = useTheme();
     const { s, lang } = useLang();
+    const { studyTarget } = useStudyTarget();
     const insets = useSafeAreaInsets();
     const { goToTab, activeIdx, focusTick } = useTabNav();
-    const hh = homeStatsLoadedOnce ? peekHomeScreenHydration() : null;
+    const hh = homeStatsLoadedOnce ? peekHomeScreenHydration(studyTarget) : null;
     const [userName, setUserName] = useState(() => hh?.userName ?? '');
     const [streak, setStreak] = useState(() => hh?.streak ?? 0);
     const [displayStreak, setDisplayStreak] = useState(() => hh?.displayStreak ?? hh?.streak ?? 0);
@@ -243,7 +314,7 @@ export default function HomeScreen() {
         name: string;
         progress: number;
         score: string;
-    } | null>(() => buildLastLessonFromHydration(lang) ?? null);
+    } | null>(() => buildLastLessonFromHydration(lang, studyTarget) ?? null);
     // Початкове значення підбираємо за поточною мовою інтерфейсу,
     // щоб юзер з UK не бачив миготливе російське «Привет,» до завантаження `loadData`.
     const [greeting, setGreeting] = useState(() => triLang(lang, {
@@ -261,14 +332,14 @@ export default function HomeScreen() {
     /** Сколько сегментов на плитке «Задания» — как на экране заданий (тот же getTodayTasksSafe). */
     const [dailyTaskBarCount, setDailyTaskBarCount] = useState(3);
     const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
-    const { isPremium } = usePremium();
+    const { isPremium, isVip, hasPremiumAccess } = usePremium();
     // [SRS] Количество фраз, готовых к повторению сегодня.
     // Временно: только __DEV__ (в стор-сборках карточка скрыта, запрос не делаем).
     // >0 = карточка над «Тест/Экзамен», ведёт на /trainer.
     const [dueCount, setDueCount] = useState(0);
     const [userAvatar, setUserAvatar] = useState(() => hh?.userAvatar ?? '🐣');
     const [userAvatarAura, setUserAvatarAura] = useState<string | null>(null);
-    const effectiveUserAvatarAura = getEffectiveAvatarAuraId(userAvatarAura, isPremium);
+    const effectiveUserAvatarAura = getEffectiveAvatarAuraId(userAvatarAura, isPremium, isVip);
     const [userFrame, setUserFrame] = useState(() => hh?.userFrame ?? 'plain');
     // Бонусные баннеры
     const [loginBonus, setLoginBonus] = useState<{
@@ -287,6 +358,10 @@ export default function HomeScreen() {
     const [celebrationVisible, setCelebrationVisible] = useState(false);
     const [celebrationMarker, setCelebrationMarker] = useState<string | null>(null);
     const celebrationOverlayVisible = useOverlayVisible('premiumCelebration', celebrationVisible);
+    const [vipCelebrationVisible, setVipCelebrationVisible] = useState(false);
+    const [vipCelebrationMarker, setVipCelebrationMarker] = useState<string | null>(null);
+    const vipCelebrationQueuedMarkerRef = useRef<string | null>(null);
+    const vipCelebrationOverlayVisible = useOverlayVisible('vipCelebration', vipCelebrationVisible);
     const [premiumFreezeUsed, setPremiumFreezeUsed] = useState(() => hh?.premiumFreezeUsed ?? false);
     const [pageScrollEnabled, setPageScrollEnabled] = useState(true);
     const [medalCounts, setMedalCounts] = useState({ bronze: 0, silver: 0, gold: 0 });
@@ -355,6 +430,7 @@ export default function HomeScreen() {
         leaderName: string;
         leaderPoints: number;
     } | null>(() => hh?.homeLeagueChest ?? buildFallbackHomeLeagueChest(lang));
+    const homeLeagueChatUnreadCount = useLeagueChatUnread({ active: false });
     const shardsAnim = useRef(new Animated.Value(1)).current;
     const shardsBonusAnim = useRef(new Animated.Value(0)).current;
     const [shardsBonusText, setShardsBonusText] = useState('');
@@ -421,7 +497,7 @@ export default function HomeScreen() {
         loadData();
         fadeAnim.setValue(0);
         Animated.timing(fadeAnim, { toValue: 1, duration: 380, useNativeDriver: true }).start();
-    }, [lang]);
+    }, [lang, studyTarget]);
     useEffect(() => {
         if (!USE_ELITE_HOME_STATUS)
             return;
@@ -453,7 +529,7 @@ export default function HomeScreen() {
             }
             await AsyncStorage.setItem('xp_migration_v2', '1');
         })();
-    }, []);
+    }, [studyTarget]);
     useEffect(() => {
         mountedRef.current = true;
         perfScreenMount('home');
@@ -536,9 +612,9 @@ export default function HomeScreen() {
     // needsReloadRef: если вызов был пропущен во время загрузки — повторим после завершения.
     const loadingRef = useRef(false);
     const needsReloadRef = useRef(false);
-    useEffect(() => { loadData(); }, [focusTick]);
+    useEffect(() => { loadData(); }, [focusTick, studyTarget]);
     useEffect(() => { if (activeIdx === 0)
-        loadData(); }, [activeIdx]);
+        loadData(); }, [activeIdx, studyTarget]);
     useEffect(() => {
         let cancelled = false;
         void ensureAnonUser()
@@ -717,14 +793,14 @@ export default function HomeScreen() {
                 }
             }
             setWeekPoints(weekPts);
-            const pool = lang === 'uk' ? GREETINGS_UK : lang === 'es' ? GREETINGS_ES : GREETINGS_RU;
+            const pool = HOME_GREETING_POOLS[lang] ?? HOME_GREETING_POOLS.ru;
             if (pool.length > 0) {
                 const phrase = await resolveDailyGreeting(pool, lang);
                 if (mountedRef.current)
                     setGreeting(phrase);
             }
             let done = 0;
-            const lessonKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`);
+            const lessonKeys = Array.from({ length: 32 }, (_, i) => lessonProgressKey(i + 1, studyTarget));
             const lessonEntries = await AsyncStorage.multiGet(lessonKeys);
             for (const [, saved] of lessonEntries) {
                 if (saved) {
@@ -737,11 +813,11 @@ export default function HomeScreen() {
             let snapLastLessonId: number | null = null;
             let snapLastLessonProgress = 0;
             let snapLastLessonScore = '0.0';
-            const lastLessonIdKey = await AsyncStorage.getItem('last_opened_lesson');
+            const lastLessonIdKey = await AsyncStorage.getItem(lastOpenedLessonKey(studyTarget));
             const lastId = lastLessonIdKey ? parseInt(lastLessonIdKey, 10) : null;
             if (lastId && lastId >= 1 && lastId <= 32) {
-                const lessonNames = lessonNamesForLang(lang);
-                const saved = await AsyncStorage.getItem(`lesson${lastId}_progress`);
+                const lessonNames = lessonNamesForStudyTarget(lang, studyTarget);
+                const saved = await AsyncStorage.getItem(lessonProgressKey(lastId, studyTarget));
                 snapLastLessonId = lastId;
                 if (saved) {
                     const p: string[] = JSON.parse(saved);
@@ -791,11 +867,11 @@ export default function HomeScreen() {
                 homeLeagueRaceVisible,
                 homeLeagueCrownExpiresAt,
                 homeLeagueChest,
-            });
+            }, studyTarget);
             if (mountedRef.current)
                 setHomeStatsReady(true);
-            const taskList = await getTodayTasksSafe();
-            // Имя для лиги: либо настоящее, либо аноним-fallback на основе уровня (как в club_screen.tsx),
+            const taskList = await getTodayTasksSafe(studyTarget);
+            // Имя для лиги: либо настоящее, либо анонимная подстановка на основе уровня (как в club_screen.tsx),
             // чтобы checkLeagueOnAppOpen не записал в Firestore "пустого" пользователя.
             const leagueName = (name && name.trim())
                 || (() => {
@@ -804,19 +880,19 @@ export default function HomeScreen() {
                     return `${getTitleString(lvl, lang ?? 'ru')} #${Math.floor(1000 + Math.random() * 9000)}`;
                 })();
             const [tp, leagueOpenResult, dueItems, allMedals, repairEligible, bonusRaw, comebackRaw, pbRaw] = await Promise.all([
-                loadTodayProgress(taskList),
+                loadTodayProgress(taskList, studyTarget),
                 // Полный расчёт: при смене ISO-недели создаст pending и сохранит state.
-                // Если remote недоступен — функция сама фолбэкнется на локальный state.
+                // Если remote недоступен — функция сама перейдет на локальный state.
                 checkLeagueOnAppOpen(leagueName, weekPts).catch(() => null),
-                __DEV__ ? getTrainerTotalDue().then(n => Array(n).fill(null)) : Promise.resolve([]),
-                loadAllMedals(),
+                __DEV__ ? getTrainerTotalDue(studyTarget).then(n => Array(n).fill(null)) : Promise.resolve([]),
+                loadAllMedals(studyTarget),
                 isRepairEligible(),
                 AsyncStorage.getItem('login_bonus_pending'),
                 AsyncStorage.getItem('comeback_pending'),
                 AsyncStorage.getItem('weekly_pb_v1'),
             ]);
             const leagueState = leagueOpenResult?.state ?? null;
-            // Если checkLeagueOnAppOpen упал/таймаутнул — fallback на чтение pending напрямую,
+            // Если checkLeagueOnAppOpen упал/таймаутнул — читаем pending напрямую,
             // чтобы при следующем открытии (когда state уже сохранён) модалка всё равно вылезла.
             const leaguePending: LeagueResult | null = leagueOpenResult?.needShowResult
                 ? leagueOpenResult.result
@@ -906,7 +982,7 @@ export default function HomeScreen() {
                 if (!alreadyFrozen) {
                     setStreakAtRisk(true);
                 }
-                if (!isPremium) {
+                if (!hasPremiumAccess) {
                     const today = new Date().toISOString().split('T')[0];
                     const shownToday = await AsyncStorage.getItem('streak_paywall_shown');
                     if (shownToday !== today) {
@@ -936,6 +1012,23 @@ export default function HomeScreen() {
                     setTimeout(() => setCelebrationVisible(true), 600);
                 }
             }
+            const vipPending = await isVipCelebrationPending();
+            if (vipPending && mountedRef.current) {
+                const marker = await getPendingVipCelebrationMarker();
+                const queueKey = marker ?? 'vip_pending';
+                if (vipCelebrationQueuedMarkerRef.current !== queueKey) {
+                    vipCelebrationQueuedMarkerRef.current = queueKey;
+                    setVipCelebrationMarker(marker);
+                    if (!offer && !pending)
+                        setVipCelebrationVisible(true);
+                    else {
+                        setTimeout(() => {
+                            if (vipCelebrationQueuedMarkerRef.current === queueKey)
+                                setVipCelebrationVisible(true);
+                        }, pending ? 1200 : 600);
+                    }
+                }
+            }
         }
         catch (error) {
             DebugLogger.error('home.tsx:checkDailyReward', error, 'warning');
@@ -957,8 +1050,8 @@ export default function HomeScreen() {
     const handleFreezeStreak = async () => {
         hapticTap();
         const today = new Date().toISOString().split('T')[0];
-        const freeAvailable = isPremium && !premiumFreezeUsed;
-        if (!isPremium) {
+        const freeAvailable = hasPremiumAccess && !premiumFreezeUsed;
+        if (!hasPremiumAccess) {
             router.push({ pathname: '/premium_modal', params: { context: 'streak', streak: String(streak) } } as any);
             return;
         }
@@ -998,11 +1091,7 @@ export default function HomeScreen() {
         setStreakAtRisk(false);
         void checkAchievements({ type: 'streak_freeze_used' });
     };
-    const weekDays = lang === 'uk'
-        ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд']
-        : lang === 'es'
-            ? ['L', 'M', 'X', 'J', 'V', 'S', 'D']
-            : ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+    const weekDays = HOME_WEEK_DAYS[lang] ?? HOME_WEEK_DAYS.ru;
     const todayIdx = (new Date().getDay() + 6) % 7;
     /** Индексы табов: 0 home, 1 lessons, 2 arena, 3 friends, 4 settings — см. app/(tabs)/_layout.tsx */
     const TAB_IDX: Record<string, number> = {
@@ -1170,6 +1259,9 @@ export default function HomeScreen() {
                     pl: "Twoje fiszki",
                 }), path: '/flashcards' },
         ];
+        const visibleQuickItems = studyTarget === 'fr'
+            ? quickItems.filter((item) => item.key !== 'quizzes')
+            : quickItems;
         const themedClubIcon = menuImages.league;
         /** Второй ряд быстрых плиток — тот же визуал, что «Уроки / Квизы / Карточки». */
         const activityQuickItems = [
@@ -1212,6 +1304,9 @@ export default function HomeScreen() {
                 img: menuImages.test,
             },
         ];
+        const visibleActivityQuickItems = studyTarget === 'fr'
+            ? activityQuickItems.filter((item) => item.key !== 'attest')
+            : activityQuickItems;
         const xpPct = Math.min(100, Math.max(0, Math.round(progress * 100)));
         const eliteStatsCompact = CONTENT_W < 370;
         const eliteAvatarSize = eliteStatsCompact ? 54 : 60;
@@ -1221,8 +1316,8 @@ export default function HomeScreen() {
             ? (eliteStatsCompact ? 29 : 31)
             : (eliteStatsCompact ? 33 : 36);
         const eliteLabelFontSize = Math.max(11, f.label - 1);
-        const eliteLevelValueSize = Math.max(eliteStatsCompact ? 24 : 26, f.h2 + (eliteStatsCompact ? 2 : 3));
-        const eliteTitleFontSize = Math.max(16, f.sub);
+        const eliteLevelBadgeFontSize = Math.max(14, f.body);
+        const eliteTitleFontSize = Math.max(17, f.sub + 1);
         const eliteMetaFontSize = Math.max(13, f.label);
         const eliteXpBadgeFontSize = Math.max(12, f.label - 1);
         const eliteWeekDotSize = eliteStatsCompact ? 25 : 27;
@@ -1260,7 +1355,7 @@ export default function HomeScreen() {
               <Text style={{ color: t.heroTextMuted, fontSize: f.caption }}>{greeting}</Text>
               {homeLeagueRaceVisible && homeLeagueCrownExpiresAt > Date.now() ? (<View style={{ marginTop: 2, alignSelf: 'flex-start', maxWidth: '100%' }}>
                   <LeagueCrownName text={userName || 'Phraseman'} fontSize={f.h1}/>
-                </View>) : isPremium ? (<PremiumGoldUserName text={userName || 'Phraseman'} fontSize={f.h1} onGradient/>) : (<Text style={{ color: t.heroTextPrimary, fontSize: f.h1, fontWeight: '700', marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.62}>{userName || 'Phraseman'}</Text>)}
+                </View>) : isPremium ? (<PremiumGoldUserName text={userName || 'Phraseman'} fontSize={f.h1} onGradient/>) : isVip ? (<VipGreenUserName text={userName || 'Phraseman'} fontSize={f.h1}/>) : (<Text style={{ color: t.heroTextPrimary, fontSize: f.h1, fontWeight: '700', marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.62}>{userName || 'Phraseman'}</Text>)}
               {/* Анимация начисления осколков */}
               <Animated.Text style={{
                 position: 'absolute', top: -18, right: 0,
@@ -1341,7 +1436,7 @@ export default function HomeScreen() {
                 }} accessibilityRole="button" accessibilityLabel="Avatar" style={{ marginRight: eliteStatsCompact ? 10 : 12 }}>
                         <AvatarView avatar={userAvatar} level={level} size={eliteAvatarSize} auraId={effectiveUserAvatarAura}/>
                       </TouchableOpacity>
-                      <View style={{ flex: 1, minWidth: 0 }}>
+                      <View style={{ flex: 1, minWidth: eliteStatsCompact ? 74 : 112 }}>
                         <Text allowFontScaling={false} style={{ color: t.textMuted, fontSize: eliteLabelFontSize, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 5 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
                           {triLang(lang, {
                     ru: 'Статус игрока',
@@ -1354,19 +1449,32 @@ export default function HomeScreen() {
                     pl: "Status gracza",
                 })}
                         </Text>
-                        <Text allowFontScaling={false} style={{ color: t.textPrimary, fontSize: eliteLevelValueSize, fontWeight: '900', lineHeight: eliteLevelValueSize + 5 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.88}>
-                          {triLang(lang, {
-                    ru: 'Ур.',
-                    uk: 'Рів.',
-                    es: 'Nv.',
-                    'pt-BR': "Nv.",
+                        <View style={{
+                    alignSelf: 'flex-start',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    borderRadius: 999,
+                    paddingHorizontal: 9,
+                    paddingVertical: 3,
+                    marginBottom: 4,
+                    backgroundColor: isGoldTheme ? 'rgba(246, 201, 92, 0.16)' : (isLightTheme ? 'rgba(64, 102, 190, 0.10)' : 'rgba(125, 174, 255, 0.14)'),
+                    borderWidth: 1,
+                    borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : (isLightTheme ? 'rgba(64, 102, 190, 0.22)' : 'rgba(125, 174, 255, 0.24)'),
+                }}>
+                          <Text allowFontScaling={false} style={{ color: isGoldTheme ? GOLD_RICH.paleGold : t.textPrimary, fontSize: eliteLevelBadgeFontSize, fontWeight: '900', lineHeight: eliteLevelBadgeFontSize + 4, letterSpacing: 0 }} numberOfLines={1}>
+                            {triLang(lang, {
+                    ru: 'Уровень',
+                    uk: 'Рівень',
+                    es: 'Nivel',
+                    'pt-BR': "Nível",
                     vi: "Cấp",
-                    id: "Lv.",
-                    tr: "Sv.",
-                    pl: "Poz.",
+                    id: "Level",
+                    tr: "Seviye",
+                    pl: "Poziom",
                 })} {level}
-                        </Text>
-                        <Text allowFontScaling={false} style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize: eliteTitleFontSize, fontWeight: '800', lineHeight: eliteTitleFontSize + 4, marginTop: 1 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.86}>
+                          </Text>
+                        </View>
+                        <Text allowFontScaling={false} style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize: eliteTitleFontSize, fontWeight: '900', lineHeight: eliteTitleFontSize + 4, marginTop: 0, minWidth: eliteStatsCompact ? 74 : 96, maxWidth: '100%', includeFontPadding: false }} numberOfLines={1}>
                           {getTitleString(level, lang)}
                         </Text>
                       </View>
@@ -1433,7 +1541,7 @@ export default function HomeScreen() {
                     </View>
                   </View>
 
-                  {isPremium && homeXpPercentile !== null && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 13 }}>
+                  {hasPremiumAccess && homeXpPercentile !== null && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 13 }}>
                       <LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.metallicFill : [t.gold, '#FFF2B0']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 12, paddingHorizontal: 9, paddingVertical: 4, flexDirection: 'row', alignItems: 'center', gap: 5 }}>
                         <Ionicons name="trophy" size={14} color={t.textOnGold}/>
                         <Text style={{ color: t.textOnGold, fontSize: eliteXpBadgeFontSize, fontWeight: '800' }}>
@@ -1551,7 +1659,7 @@ export default function HomeScreen() {
               </View>
 
               {/* МИНИ-БЕЙДЖ XP-ПЕРЦЕНТИЛЯ */}
-              {isPremium && homeXpPercentile !== null && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 12 }}>
+              {hasPremiumAccess && homeXpPercentile !== null && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 12 }}>
                   <View style={{ backgroundColor: t.gold, borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                     <Text style={{ fontSize: 12 }}>🏆</Text>
                     <Text style={{ color: t.textOnGold, fontSize: 11, fontWeight: '700' }}>
@@ -1630,7 +1738,7 @@ export default function HomeScreen() {
                     })}
                 </Text>
                 <Text style={{ color: isGoldTheme ? t.textMuted : '#90CAF9', fontSize: 12, marginTop: 2 }}>
-                  {!isPremium
+                  {!hasPremiumAccess
                         ? triLang(lang, {
                             ru: 'Доступно только для Premium',
                             uk: 'Доступно лише для Premium',
@@ -1665,9 +1773,9 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <View style={{ alignItems: 'flex-end', gap: 2 }}>
-                {!isPremium
+                {!hasPremiumAccess
                         ? <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : '#FFB74D', fontSize: 11, fontWeight: '700' }}>Premium</Text>
-                        : isPremium && !premiumFreezeUsed
+                        : hasPremiumAccess && !premiumFreezeUsed
                             ? <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : '#4FC3F7', fontSize: 12, fontWeight: '700' }}>
                         {triLang(lang, {
                                     ru: 'Бесплатно',
@@ -1720,7 +1828,7 @@ export default function HomeScreen() {
                     })} ${lastLesson.id}`}
                       </Text>
                       <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }} numberOfLines={1}>
-                        {lessonNamesForLang(lang)[lastLesson.id - 1] ?? lastLesson.name}
+                        {lessonNameForStudyTarget(lang, studyTarget, lastLesson.id) ?? lastLesson.name}
                       </Text>
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 8 }}>
                         <Text style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize: 12, fontWeight: '800' }}>★ {lastLesson.score}</Text>
@@ -1748,7 +1856,7 @@ export default function HomeScreen() {
                         id: "Pelajaran",
                         tr: "Ders",
                         pl: "Lekcja",
-                    })} ${lastLesson.id} — ${lessonNamesForLang(lang)[lastLesson.id - 1] ?? lastLesson.name}`}
+                    })} ${lastLesson.id} — ${lessonNameForStudyTarget(lang, studyTarget, lastLesson.id) ?? lastLesson.name}`}
                   </Text>
                   <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>★ {lastLesson.score} · {lastLesson.progress}/50</Text>
                 </View>
@@ -1766,7 +1874,7 @@ export default function HomeScreen() {
           <Animated.View style={sectionStyle(3)}>
           <View onTouchStart={() => { tabSwipeLock.blocked = true; }} onTouchEnd={() => { tabSwipeLock.blocked = false; }} onTouchCancel={() => { tabSwipeLock.blocked = false; }}>
           <View style={{ marginBottom: 12, paddingHorizontal: 16, gap: 10, flexDirection: 'row' }}>
-              {quickItems.map((item, index) => {
+              {visibleQuickItems.map((item, index) => {
                 const tileOpacity = eliteQuickTileEntrance[index] ?? eliteStatusEntrance;
                 const tileY = tileOpacity.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
                 const tileBorderColor = isGoldTheme ? goldHairline : isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)';
@@ -1926,7 +2034,7 @@ export default function HomeScreen() {
 
           <View onTouchStart={() => { tabSwipeLock.blocked = true; }} onTouchEnd={() => { tabSwipeLock.blocked = false; }} onTouchCancel={() => { tabSwipeLock.blocked = false; }}>
             <View style={{ marginBottom: 12, paddingHorizontal: 16, gap: 10, flexDirection: 'row' }}>
-              {activityQuickItems.map((item, index) => {
+              {visibleActivityQuickItems.map((item, index) => {
                 const tileOpacity = eliteActivityTileEntrance[index] ?? eliteStatusEntrance;
                 const tileY = tileOpacity.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
                 const tileBorderColor = isGoldTheme ? goldHairline : isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)';
@@ -1960,6 +2068,26 @@ export default function HomeScreen() {
                             backgroundColor: tileIconBg,
                         }}>
                       {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>)}
+                      {item.kind === 'league' && homeLeagueChatUnreadCount > 0 ? (<View
+                        testID="home-league-chat-unread-badge"
+                        style={{
+                            position: 'absolute',
+                            top: -7,
+                            right: -7,
+                            minWidth: 21,
+                            height: 21,
+                            paddingHorizontal: 6,
+                            borderRadius: 11,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backgroundColor: '#E9505F',
+                            borderWidth: 1.5,
+                            borderColor: tileIconBg,
+                        }}>
+                        <Text style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '900' }}>
+                          {formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)}
+                        </Text>
+                      </View>) : null}
                     </View>
                     <Text style={{ color: t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={2}>
                       {item.label}
@@ -1978,6 +2106,26 @@ export default function HomeScreen() {
                       {isGoldTheme && <GoldBevel radius={14} intensity="normal"/>}
                       <View style={{ position: 'relative', height: homeQuickIconLegacySize, justifyContent: 'center', alignItems: 'center' }}>
                         {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>)}
+                        {item.kind === 'league' && homeLeagueChatUnreadCount > 0 ? (<View
+                          testID="home-league-chat-unread-badge"
+                          style={{
+                              position: 'absolute',
+                              top: -7,
+                              right: -7,
+                              minWidth: 21,
+                              height: 21,
+                              paddingHorizontal: 6,
+                              borderRadius: 11,
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              backgroundColor: '#E9505F',
+                              borderWidth: 1.5,
+                              borderColor: t.bgCard,
+                          }}>
+                          <Text style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '900' }}>
+                            {formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)}
+                          </Text>
+                        </View>) : null}
                       </View>
                       <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700', textAlign: 'center' }} numberOfLines={2}>
                         {item.label}
@@ -2012,24 +2160,24 @@ export default function HomeScreen() {
                     tr: "Lig bonusu",
                     pl: "Bonus ligi",
                 })}>
-              <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 14 : 18, borderWidth: isGoldTheme ? 1 : 0.5, borderColor: leagueBonusPalette.border, padding: 14, overflow: 'hidden', ...({}) }}>
+              <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 14 : 18, borderWidth: isGoldTheme ? 1 : 0.5, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, padding: 14, overflow: 'hidden', ...({}) }}>
                 <Image
                   pointerEvents="none"
                   source={leagueBonusGiftImage}
                   style={{
                     position: 'absolute',
-                    right: -24,
-                    top: -22,
-                    width: 136,
-                    height: 136,
-                    opacity: homeLeagueChestReady ? 0.20 : 0.12,
+                    right: -8,
+                    top: -16,
+                    width: 120,
+                    height: 120,
+                    opacity: homeLeagueChestReady ? 0.22 : 0.14,
                     transform: [{ rotate: '-8deg' }],
                   }}
                   contentFit="contain"
                 />
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 10 }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 9, flex: 1, minWidth: 0 }}>
-                    <View style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: leagueBonusPalette.iconBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: leagueBonusPalette.iconBorder, shadowColor: homeLeagueChestAccent, shadowOpacity: homeLeagueChestReady ? 0.42 : 0.24, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 7 }}>
+                    <View style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: leagueBonusPalette.iconBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: leagueBonusPalette.iconBorder, shadowColor: homeLeagueChestAccent, shadowOpacity: homeLeagueChestReady ? 0.42 : 0.24, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 7, overflow: 'visible' }}>
                       <Image source={leagueBonusGiftImage} style={{ width: 66, height: 66, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain"/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
@@ -2064,7 +2212,7 @@ export default function HomeScreen() {
 
           {/* ── ФРАЗА ДНЯ + ПОДВАЛ ── */}
           <Animated.View style={sectionStyle(5)}>
-          <DailyPhraseCard />
+          {studyTarget !== 'fr' && <DailyPhraseCard />}
 
           {/* Подвал */}
           <View style={{ alignItems: 'center', paddingVertical: 24, marginTop: 12, borderTopWidth: 0.5, borderTopColor: t.border }}>
@@ -2223,6 +2371,24 @@ export default function HomeScreen() {
             const marker = celebrationMarker;
             setCelebrationMarker(null);
             void consumeCelebration(marker);
+            void isVipCelebrationPending().then((pending) => {
+                if (!pending)
+                    return;
+                return getPendingVipCelebrationMarker().then((vipMarker) => {
+                    const queueKey = vipMarker ?? 'vip_pending';
+                    if (vipCelebrationQueuedMarkerRef.current !== queueKey)
+                        vipCelebrationQueuedMarkerRef.current = queueKey;
+                    setVipCelebrationMarker(vipMarker);
+                    setVipCelebrationVisible(true);
+                });
+            });
+        }}/>
+      <VipCelebrationModal visible={vipCelebrationOverlayVisible} onClose={() => {
+            setVipCelebrationVisible(false);
+            const marker = vipCelebrationMarker;
+            setVipCelebrationMarker(null);
+            vipCelebrationQueuedMarkerRef.current = null;
+            void consumeVipCelebration(marker);
         }}/>
       {pendingLeagueResult && (<LeagueResultModal visible={leagueResultVisible} result={pendingLeagueResult} onClose={() => {
                 const sig = JSON.stringify({

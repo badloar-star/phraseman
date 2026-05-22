@@ -7,6 +7,7 @@ import { useRouter } from 'expo-router';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { bundleLang, triLang } from '../constants/i18n';
 import { getShardsBalance } from './shards_system';
 import {
@@ -22,6 +23,7 @@ import {
 import { logFeatureOpened } from './firebase';
 import { actionToastTri, emitAppEvent } from './events';
 import { DEV_MODE, IS_BETA_TESTER } from './config';
+import { flashcardsOfficialPacksAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
 
 import { oskolokImageForPackShards } from './oskolok';
 
@@ -38,7 +40,10 @@ export default function FlashcardsMarketDevScreen() {
   const router = useRouter();
   const { theme: t, f, isDark, statusBarLight } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const ifaceLang = bundleLang(lang);
+  const frenchPacksBlocked = !flashcardsOfficialPacksAvailableForTarget(studyTarget);
+  const frenchGateCopy = frenchFlashcardsGateCopy(lang);
   const [packs, setPacks] = useState<FlashcardMarketPack[]>([]);
   const [loading, setLoading] = useState(true);
   const [shards, setShards] = useState(0);
@@ -53,16 +58,24 @@ export default function FlashcardsMarketDevScreen() {
 
   const loadData = useCallback(async () => {
     setLoading(true);
+    if (frenchPacksBlocked) {
+      const balance = await getShardsBalance().catch(() => 0);
+      setShards(balance);
+      setPacks([]);
+      setOwnedPackIds([]);
+      setLoading(false);
+      return;
+    }
     const [balance, list, owned] = await Promise.all([
       getShardsBalance(),
       loadMarketplacePacks(),
-      loadDevOwnedPackIds(),
+      loadDevOwnedPackIds(studyTarget),
     ]);
     setShards(balance);
     setPacks(list);
     setOwnedPackIds(owned);
     setLoading(false);
-  }, []);
+  }, [frenchPacksBlocked, studyTarget]);
 
   useEffect(() => {
     loadData();
@@ -106,6 +119,11 @@ export default function FlashcardsMarketDevScreen() {
           ru: 'Этот пак уже отмечен как купленный (DEV).',
           uk: 'Цей пак вже позначений як придбаний (DEV).',
           es: 'Este pack ya está marcado como comprado (DEV).',
+          'pt-BR': 'Este pack já está marcado como comprado (DEV).',
+          vi: 'Pack này đã được đánh dấu là đã mua (DEV).',
+          id: 'Pack ini sudah ditandai sebagai dibeli (DEV).',
+          tr: 'Bu paket zaten satın alındı olarak işaretlenmiş (DEV).',
+          pl: 'Ten pakiet jest już oznaczony jako kupiony (DEV).',
         }),
       );
       return;
@@ -117,6 +135,11 @@ export default function FlashcardsMarketDevScreen() {
           ru: 'Недостаточно осколков для покупки.',
           uk: 'Недостатньо осколків для купівлі.',
           es: 'No tienes suficientes fragmentos para comprar.',
+          'pt-BR': 'Você não tem fragmentos suficientes para comprar.',
+          vi: 'Bạn không có đủ mảnh để mua.',
+          id: 'Shard tidak cukup untuk membeli.',
+          tr: 'Satın almak için yeterli parçan yok.',
+          pl: 'Masz za mało odłamków, aby kupić.',
         }),
       );
       return;
@@ -125,14 +148,19 @@ export default function FlashcardsMarketDevScreen() {
     const updated = [...ownedPackIds, pack.id];
     setOwnedPackIds(updated);
     try {
-      await saveDevOwnedPackIds(updated);
-      await primeMarketplaceBuiltCardsCacheFromOwnedStorage();
+      await saveDevOwnedPackIds(updated, studyTarget);
+      await primeMarketplaceBuiltCardsCacheFromOwnedStorage(studyTarget);
       emitAppEvent(
         'action_toast',
         actionToastTri('success', {
           ru: `DEV: пак "${packTitleForInterface(pack, 'ru')}" помечен как купленный (без списания).`,
           uk: `DEV: пак "${packTitleForInterface(pack, 'uk')}" позначено як придбаний (без списання).`,
           es: `DEV: el pack «${packTitleForInterface(pack, 'es')}» ha quedado marcado como comprado (sin cargo).`,
+          'pt-BR': `DEV: o pack "${packTitleForInterface(pack, 'pt-BR')}" foi marcado como comprado (sem cobrança).`,
+          vi: `DEV: pack "${packTitleForInterface(pack, 'vi')}" đã được đánh dấu là đã mua (không trừ mảnh).`,
+          id: `DEV: pack "${packTitleForInterface(pack, 'id')}" ditandai sebagai dibeli (tanpa pemotongan).`,
+          tr: `DEV: "${packTitleForInterface(pack, 'tr')}" paketi satın alındı olarak işaretlendi (kesinti yok).`,
+          pl: `DEV: pakiet "${packTitleForInterface(pack, 'pl')}" oznaczono jako kupiony (bez potrącenia).`,
         }),
       );
     } catch {
@@ -142,23 +170,56 @@ export default function FlashcardsMarketDevScreen() {
           ru: 'Не удалось сохранить DEV-покупку.',
           uk: 'Не вдалося зберегти DEV-покупку.',
           es: 'No se pudo guardar la compra DEV.',
+          'pt-BR': 'Não foi possível salvar a compra DEV.',
+          vi: 'Không thể lưu giao dịch mua DEV.',
+          id: 'Gagal menyimpan pembelian DEV.',
+          tr: 'DEV satın alma kaydedilemedi.',
+          pl: 'Nie udało się zapisać zakupu DEV.',
         }),
       );
       setOwnedPackIds((prev) => prev.filter((id) => id !== pack.id));
     } finally {
       setBuyingPackId(null);
     }
-  }, [buyingPackId, ownedPackIds, shards]);
+  }, [buyingPackId, ownedPackIds, shards, studyTarget]);
 
   const handleOpenInFlashcards = useCallback(async (packId: string) => {
-    await setDevActivePack(packId);
+    await setDevActivePack(packId, studyTarget);
     router.push('/flashcards' as any);
-  }, [router]);
+  }, [router, studyTarget]);
 
   if (!isDevMarketEnabled) {
     return (
       <ScreenGradient artBackdrop="flashcards">
         <SafeAreaView style={{ flex: 1 }} />
+      </ScreenGradient>
+    );
+  }
+
+  if (frenchPacksBlocked) {
+    return (
+      <ScreenGradient artBackdrop="flashcards">
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
+          <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingTop: 10, paddingBottom: 8, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+            <TouchableOpacity onPress={() => router.back()} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+              <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
+            </TouchableOpacity>
+            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>{title}</Text>
+            <View style={{ minWidth: 72, borderRadius: 12, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgSurface, paddingHorizontal: 10, paddingVertical: 5, flexDirection: 'row', alignItems: 'center', gap: 6, justifyContent: 'center' }}>
+              <Image source={oskolokImageForPackShards(shards)} style={{ width: 18, height: 18 }} contentFit="contain" />
+              <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '700' }}>{shards}</Text>
+            </View>
+          </View>
+          <View style={{ flex: 1, justifyContent: 'center', padding: 24 }}>
+            <View style={{ backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border, borderRadius: 14, padding: 16 }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>{frenchGateCopy.title}</Text>
+              <Text style={{ marginTop: 8, color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.35) }}>
+                {frenchGateCopy.body}
+              </Text>
+            </View>
+          </View>
+        </SafeAreaView>
       </ScreenGradient>
     );
   }
@@ -324,4 +385,3 @@ export default function FlashcardsMarketDevScreen() {
     </ScreenGradient>
   );
 }
-

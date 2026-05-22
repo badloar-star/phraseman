@@ -1,5 +1,9 @@
 // Shared static config for quizzes UI and level mapping.
+import type { ThemeMode } from '../../constants/theme';
+
 export type Level = 'easy' | 'medium' | 'hard';
+type LegacyQuizThemeMode = 'light' | 'ocean' | 'sakura';
+type QuizVisualThemeMode = ThemeMode | LegacyQuizThemeMode;
 
 export const LEVEL_IMAGES: Record<string, number> = {
   easy: require('../../assets/images/levels/easy.webp'),
@@ -7,7 +11,7 @@ export const LEVEL_IMAGES: Record<string, number> = {
   hard: require('../../assets/images/levels/hard.webp'),
 };
 
-export const QUIZ_LEVEL_CARD_BACKGROUNDS: Record<string, Record<Level, number>> = {
+export const QUIZ_LEVEL_CARD_BACKGROUNDS: Record<ThemeMode, Record<Level, number>> = {
   dark: {
     easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-dark.webp'),
     medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-dark.webp'),
@@ -40,7 +44,7 @@ export const QUIZ_LEVEL_CARD_BACKGROUNDS: Record<string, Record<Level, number>> 
   },
 };
 
-export const QUIZ_LEVEL_LOGOS: Record<string, Record<Level, number>> = {
+export const QUIZ_LEVEL_LOGOS: Record<ThemeMode, Record<Level, number>> = {
   dark: {
     easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-dark.webp'),
     medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-dark.webp'),
@@ -74,7 +78,7 @@ export const QUIZ_LEVEL_LOGOS: Record<string, Record<Level, number>> = {
 };
 
 // Card palette by theme and level.
-export const THEME_PALETTES: Record<string, Record<Level, { gradA: string; gradB: string; accent: string }>> = {
+export const THEME_PALETTES: Record<QuizVisualThemeMode, Record<Level, { gradA: string; gradB: string; accent: string }>> = {
   dark: {
     easy: { gradA: '#0A2840', gradB: '#040F1A', accent: '#38BDF8' },
     medium: { gradA: '#3A0A14', gradB: '#180508', accent: '#F87171' },
@@ -123,7 +127,7 @@ export const THEME_PALETTES: Record<string, Record<Level, { gradA: string; gradB
 };
 
 // DEPRECATED: Use theme.textPrimary and theme.textMuted directly.
-export const THEME_TEXT: Record<string, { primary: string; secondary: string }> = {
+export const THEME_TEXT: Record<QuizVisualThemeMode, { primary: string; secondary: string }> = {
   dark: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   light: { primary: '#0F172A', secondary: 'rgba(15,23,42,0.6)' },
   neon: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },

@@ -1,11 +1,11 @@
 # Детальный аудит объяснений предлогов
 
-Всего заданий: **315**
+Всего заданий: **314**
 С проблемами: **0**
 
 ## Уровни объяснений
 - context: 185
-- specific: 130
+- specific: 129
 
 ## Все задания
 
@@ -41,7 +41,6 @@
 | 4 | for | specific | He does not ask for help | "For" нужен после глаголов ask/wait/look/hope: они требуют именно "for" для указания того, чего просят, ждут или ищут. |
 | 4 | to | specific | You do not listen to advice | "Listen to" - фиксированное сочетание: глагол listen всегда требует "to" перед объектом. Без "to" фраза будет неграмотной. |
 | 5 | inside | context | Do we go inside? | "Inside" здесь прямо подчёркивает нахождение во внутренней части объекта или помещения. Сильнее, чем "in". |
-| 5 | in | specific | Does she believe in luck? | "In" нужен в устойчивой конструкции с глаголом/прилагательным: "in luck". Например: believe in, interested in, succeed in. |
 | 5 | for | specific | Does she look for a job? | "For" нужен после глаголов ask/wait/look/hope: они требуют именно "for" для указания того, чего просят, ждут или ищут. |
 | 6 | to | specific | Why does she want to leave? | "To" перед глаголом "leave" - инфинитивная частица, а не предлог места. Конструкция "to leave" означает цель или соединяет два действия. |
 | 6 | for | specific | Why do they ask for help? | "For" нужен после глаголов ask/wait/look/hope: они требуют именно "for" для указания того, чего просят, ждут или ищут. |

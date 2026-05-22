@@ -52,6 +52,15 @@ async function assertStableOwner(
   if (userAuthUid && userAuthUid === authUid) return;
   if (!userSnap?.exists || !userAuthUid) return;
 
+  const linkedAuth = userSnap.data()?.linkedAuth;
+  const linkedAuthUid =
+    linkedAuth != null &&
+    typeof linkedAuth === 'object' &&
+    typeof (linkedAuth as { providerUid?: unknown }).providerUid === 'string'
+      ? String((linkedAuth as { providerUid?: unknown }).providerUid ?? '').trim()
+      : '';
+  if (linkedAuthUid === authUid) return;
+
   const linkedStableId = String(linkSnap?.data()?.stable_id ?? '').trim();
   if (linkedStableId && linkedStableId === stableId) return;
 

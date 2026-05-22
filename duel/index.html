@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>PhraseMan Дуэль</title>
+  <title data-i18n-key="title">PhraseMan Дуэль</title>
   <script>
     const path = window.location.pathname;
     const roomId = path.split('/').pop();
@@ -12,6 +12,51 @@
     setTimeout(() => {
       window.location = 'https://play.google.com/store/apps/details?id=app.phraseman';
     }, 2000);
+    document.addEventListener('DOMContentLoaded', () => {
+      const translations = {
+        title: {
+          es: 'Duelo PhraseMan',
+          'pt-BR': 'Duelo PhraseMan',
+          vi: 'Trận đấu PhraseMan',
+          id: 'Duel PhraseMan',
+          tr: 'PhraseMan Düellosu',
+          pl: 'Pojedynek PhraseMan',
+        },
+        opening: {
+          es: 'Abriendo el duelo...',
+          'pt-BR': 'Abrindo o duelo...',
+          vi: 'Đang mở trận đấu...',
+          id: 'Membuka duel...',
+          tr: 'Düello açılıyor...',
+          pl: 'Otwieramy pojedynek...',
+        },
+        fallback: {
+          es: 'Si la app no se abrió, descarga PhraseMan',
+          'pt-BR': 'Se o app não abriu, baixe o PhraseMan',
+          vi: 'Nếu ứng dụng không mở, hãy tải PhraseMan',
+          id: 'Jika aplikasi tidak terbuka, unduh PhraseMan',
+          tr: 'Uygulama açılmadıysa PhraseMan’i indir',
+          pl: 'Jeśli aplikacja się nie otworzyła, pobierz PhraseMan',
+        },
+      };
+      const locale = new URLSearchParams(window.location.search).get('lang') || navigator.language || '';
+      const normalized = String(locale).toLowerCase();
+      const lang =
+        normalized.startsWith('pt') ? 'pt-BR' :
+        normalized.startsWith('vi') ? 'vi' :
+        normalized.startsWith('id') ? 'id' :
+        normalized.startsWith('tr') ? 'tr' :
+        normalized.startsWith('pl') ? 'pl' :
+        normalized.startsWith('es') ? 'es' :
+        '';
+      if (!lang) return;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n-key]').forEach((node) => {
+        const key = node.getAttribute('data-i18n-key');
+        const value = key && translations[key] && translations[key][lang];
+        if (value) node.textContent = value;
+      });
+    });
   </script>
   <style>
     body { font-family: -apple-system, sans-serif; background: #0f0f13; color: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; text-align: center; }
@@ -22,8 +67,8 @@
 <body>
   <div>
     <div class="logo">⚔️</div>
-    <h2>Открываем дуэль...</h2>
-    <p>Если приложение не открылось — скачай PhraseMan</p>
+    <h2 data-i18n-key="opening">Открываем дуэль...</h2>
+    <p data-i18n-key="fallback">Если приложение не открылось — скачай PhraseMan</p>
   </div>
 </body>
 </html>

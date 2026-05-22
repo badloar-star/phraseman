@@ -37,6 +37,7 @@ exports.lookupPercentile = lookupPercentile;
 exports.computeLeaderboardStats = computeLeaderboardStats;
 const admin = __importStar(require("firebase-admin"));
 const db = admin.firestore();
+const MIN_PERCENTILE_SAMPLE_XP = 5000;
 function readProgressInt(value) {
     const n = Math.trunc(Number(value));
     return Number.isFinite(n) ? n : 0;
@@ -107,7 +108,7 @@ async function computeLeaderboardStats() {
         for (const doc of snap.docs) {
             const progress = doc.data()?.progress ?? {};
             const xp = readProgressInt(progress.user_total_xp);
-            if (xp >= 50)
+            if (xp >= MIN_PERCENTILE_SAMPLE_XP)
                 xpVals.push(xp);
         }
         lastUserDoc = snap.docs[snap.docs.length - 1] ?? null;
@@ -121,7 +122,7 @@ async function computeLeaderboardStats() {
     let lastLbDoc = null;
     while (true) {
         let q = db.collection('leaderboard')
-            .where('points', '>=', 50)
+            .where('points', '>=', MIN_PERCENTILE_SAMPLE_XP)
             .orderBy('points')
             .limit(500);
         if (lastLbDoc)
@@ -177,6 +178,7 @@ async function computeLeaderboardStats() {
     const stats = {
         totalUsers: xpVals.length,
         updatedAt: Date.now(),
+        minimumSampleXp: MIN_PERCENTILE_SAMPLE_XP,
         xpThresholds: buildPercentileThresholds(xpVals),
         streakThresholds: buildPercentileThresholds(streakVals),
         weekXpThresholds: buildPercentileThresholds(weekXpVals),
@@ -185,7 +187,7 @@ async function computeLeaderboardStats() {
         arenaXpThresholds: buildPercentileThresholds(arenaXpVals),
     };
     await db.collection('leaderboard_stats').doc('global').set(stats);
-    console.log(`[computeLeaderboardStats] done. xpUsers=${xpVals.length}, ` +
+    console.log(`[computeLeaderboardStats] done. minSampleXp=${MIN_PERCENTILE_SAMPLE_XP}, xpUsers=${xpVals.length}, ` +
         `streak=${streakVals.length}, daily7xp=${daily7xpVals.length}, ` +
         `arenaXp=${arenaXpVals.length}`);
 }

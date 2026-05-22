@@ -1,0 +1,77 @@
+{
+  "pipeline": "heisenberg",
+  "mode": "new-locale-preflight",
+  "runId": "2026-05-20T06-55-40-069Z",
+  "generatedAt": "2026-05-20T06:55:44.016Z",
+  "targetLocale": "id",
+  "targetSlug": "id",
+  "auditOnly": true,
+  "repositoryRoot": "/Users/maksymbabiev/Documents/phraseman",
+  "outputDir": "docs/heisenberg/id/2026-05-20T06-55-40-069Z",
+  "filesScanned": 2176,
+  "localizedItems": 138822,
+  "surfaces": {
+    "app-other": 965,
+    "daily-phrase": 2,
+    "admin-site": 5,
+    "personal-training": 182,
+    "arena": 22,
+    "progression-daily-rewards": 11,
+    "lessons": 39,
+    "quizzes": 18,
+    "ui-locale": 4,
+    "docs": 436,
+    "public-web": 14,
+    "legal": 5,
+    "scripts-tools": 328,
+    "tests": 145
+  },
+  "sourceLocales": {
+    "es": 26129,
+    "uk": 42292,
+    "pt-BR": 5753,
+    "vi": 5747,
+    "id": 5768,
+    "tr": 5762,
+    "pl": 5759,
+    "ru": 41612
+  },
+  "localizedItemsAll": 138822,
+  "localizedItemsForBlocks": 80549,
+  "includeSupporting": false,
+  "blockSize": 40,
+  "translationBlocks": 0,
+  "guard": {
+    "knownLocaleConflict": false,
+    "targetInterfaceStatus": "planned",
+    "targetRegisteredAsAppLocale": true,
+    "pathCollisions": 5,
+    "integrationBlockers": 0
+  },
+  "batchLocaleCoverage": {
+    "localizedItemsChecked": 46961,
+    "expectedUnits": 2212,
+    "completeUnits": 19151,
+    "partialUnits": 0,
+    "missingAllLocaleUnits": 0,
+    "partialFiles": 0,
+    "missingByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 0,
+      "tr": 0,
+      "pl": 0,
+      "es": 0
+    },
+    "missingAllByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 0,
+      "tr": 0,
+      "pl": 0,
+      "es": 0
+    }
+  },
+  "existingLocaleAudit": null,
+  "checks": []
+}

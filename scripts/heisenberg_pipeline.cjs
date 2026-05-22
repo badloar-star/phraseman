@@ -9,6 +9,7 @@ const {
   buildBatchLocaleCoverageAudit,
   buildExistingLocaleAudit,
   buildExistingLocaleAuditMarkdown,
+  buildAgentReviewBoardMarkdown,
   buildResearchChecklist,
   buildRunbook,
   buildTranslationBlocks,
@@ -303,6 +304,7 @@ function main() {
     writeText(path.join(outDir, 'SUPPORTING_SURFACES_INCLUDED.txt'), 'This run includes docs/tests/scripts-tools localized items in translation blocks.');
   }
   writeText(path.join(outDir, 'research_checklist.md'), buildResearchChecklist(locale, inventory));
+  writeText(path.join(outDir, 'agent_review_board.md'), buildAgentReviewBoardMarkdown(locale));
 
   if (!args.auditOnly) {
     const blocksDir = path.join(outDir, 'translation_blocks');

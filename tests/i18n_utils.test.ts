@@ -10,6 +10,11 @@ const SAMPLE = {
   ru: 'Проверка RU',
   uk: 'Перевірка UK',
   es: 'Comprobación ES',
+  'pt-BR': 'Verificação PT',
+  vi: 'Kiểm tra VI',
+  id: 'Pemeriksaan ID',
+  tr: 'TR kontrolü',
+  pl: 'Sprawdzenie PL',
 };
 
 describe('triLang', () => {
@@ -27,11 +32,16 @@ describe('triLang', () => {
 });
 
 describe('actionToastTri', () => {
-  it('fills messageRu, messageUk and messageEs', () => {
+  it('fills legacy and planned locale toast fields', () => {
     const payload = actionToastTri('success', SAMPLE);
     expect(payload.type).toBe('success');
     expect(payload.messageRu).toBe(SAMPLE.ru);
     expect(payload.messageUk).toBe(SAMPLE.uk);
     expect(payload.messageEs).toBe(SAMPLE.es);
+    expect(payload.messagePtBr).toBe(SAMPLE['pt-BR']);
+    expect(payload.messageVi).toBe(SAMPLE.vi);
+    expect(payload.messageId).toBe(SAMPLE.id);
+    expect(payload.messageTr).toBe(SAMPLE.tr);
+    expect(payload.messagePl).toBe(SAMPLE.pl);
   });
 });

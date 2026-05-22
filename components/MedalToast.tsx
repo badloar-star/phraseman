@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Animated, Text, View, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import Svg, {
   Defs,
   RadialGradient,
@@ -11,7 +11,7 @@ import Svg, {
   G,
 } from 'react-native-svg';
 import type { MedalTier } from '../app/medal_utils';
-import type { Lang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 
 interface MedalPalette {
   primary: string;
@@ -158,7 +158,7 @@ interface MedalToastProps {
   promoted: boolean;
   /** Animated value 0→1 controlling opacity, lift and scale */
   anim: Animated.Value;
-  /** Theme background colour (used as solid fallback under the gradient) */
+  /** Theme background colour (used as a solid base under the gradient) */
   bg: string;
   /** Whether the active theme is light (drives text colors) */
   isLightTheme: boolean;
@@ -227,7 +227,92 @@ function pickLabels(
     },
   };
 
-  const set = spanishUiActive ? ES : lang === 'uk' ? UK : RU;
+  const PT_BR: Record<Exclude<MedalTier, 'none'>, { up: Labels; down: Labels }> = {
+    bronze: {
+      up:   { title: 'Medalha de bronze', subtitle: 'Bom começo, continue assim' },
+      down: { title: 'Bronze perdido',    subtitle: 'Algumas respostas certas e ela volta' },
+    },
+    silver: {
+      up:   { title: 'Medalha de prata',  subtitle: 'Ótimo resultado, você está quase no ouro' },
+      down: { title: 'Prata perdida',     subtitle: 'Um pouco mais de precisão e ela volta' },
+    },
+    gold: {
+      up:   { title: 'Medalha de ouro',   subtitle: 'Rodada perfeita, lição concluída muito bem' },
+      down: { title: 'Ouro perdido',      subtitle: 'Complete outra rodada sem erros' },
+    },
+  };
+
+  const VI: Record<Exclude<MedalTier, 'none'>, { up: Labels; down: Labels }> = {
+    bronze: {
+      up:   { title: 'Huy chương đồng', subtitle: 'Khởi đầu tốt, hãy tiếp tục như vậy' },
+      down: { title: 'Mất huy chương đồng', subtitle: 'Trả lời đúng thêm vài câu là sẽ lấy lại' },
+    },
+    silver: {
+      up:   { title: 'Huy chương bạc', subtitle: 'Kết quả rất tốt, bạn gần chạm tới vàng rồi' },
+      down: { title: 'Mất huy chương bạc', subtitle: 'Chính xác hơn một chút là sẽ lấy lại' },
+    },
+    gold: {
+      up:   { title: 'Huy chương vàng', subtitle: 'Một vòng hoàn hảo, bài học rất xuất sắc' },
+      down: { title: 'Mất huy chương vàng', subtitle: 'Hoàn thành thêm một vòng không lỗi' },
+    },
+  };
+
+  const ID: Record<Exclude<MedalTier, 'none'>, { up: Labels; down: Labels }> = {
+    bronze: {
+      up:   { title: 'Medali perunggu', subtitle: 'Awal yang bagus, teruskan seperti ini' },
+      down: { title: 'Perunggu hilang', subtitle: 'Beberapa jawaban benar lagi dan medali ini kembali' },
+    },
+    silver: {
+      up:   { title: 'Medali perak', subtitle: 'Hasil bagus, kamu hampir mencapai emas' },
+      down: { title: 'Perak hilang', subtitle: 'Sedikit lebih akurat dan medali ini kembali' },
+    },
+    gold: {
+      up:   { title: 'Medali emas', subtitle: 'Ronde sempurna, pelajaran diselesaikan dengan sangat baik' },
+      down: { title: 'Emas hilang', subtitle: 'Selesaikan satu ronde lagi tanpa kesalahan' },
+    },
+  };
+
+  const TR: Record<Exclude<MedalTier, 'none'>, { up: Labels; down: Labels }> = {
+    bronze: {
+      up:   { title: 'Bronz madalya', subtitle: 'Güzel başlangıç, böyle devam et' },
+      down: { title: 'Bronz kaybedildi', subtitle: 'Birkaç doğru cevapla geri gelir' },
+    },
+    silver: {
+      up:   { title: 'Gümüş madalya', subtitle: 'Harika sonuç, altına çok yaklaştın' },
+      down: { title: 'Gümüş kaybedildi', subtitle: 'Biraz daha doğrulukla geri gelir' },
+    },
+    gold: {
+      up:   { title: 'Altın madalya', subtitle: 'Kusursuz tur, dersi çok iyi tamamladın' },
+      down: { title: 'Altın kaybedildi', subtitle: 'Bir turu daha hatasız tamamla' },
+    },
+  };
+
+  const PL: Record<Exclude<MedalTier, 'none'>, { up: Labels; down: Labels }> = {
+    bronze: {
+      up:   { title: 'Brązowy medal', subtitle: 'Dobry początek, tak trzymaj' },
+      down: { title: 'Utracono brąz', subtitle: 'Kilka poprawnych odpowiedzi i medal wróci' },
+    },
+    silver: {
+      up:   { title: 'Srebrny medal', subtitle: 'Świetny wynik, jesteś prawie przy złocie' },
+      down: { title: 'Utracono srebro', subtitle: 'Trochę więcej dokładności i medal wróci' },
+    },
+    gold: {
+      up:   { title: 'Złoty medal', subtitle: 'Perfekcyjna runda, lekcja ukończona znakomicie' },
+      down: { title: 'Utracono złoto', subtitle: 'Ukończ jeszcze jedną rundę bez błędów' },
+    },
+  };
+
+  const displayLang: Lang = spanishUiActive ? 'es' : lang;
+  const set = triLang(displayLang, {
+    ru: RU,
+    uk: UK,
+    es: ES,
+    'pt-BR': PT_BR,
+    vi: VI,
+    id: ID,
+    tr: TR,
+    pl: PL,
+  });
   return promoted ? set[tier].up : set[tier].down;
 }
 
@@ -341,10 +426,17 @@ function tierBadgeText(
   spanishUiActive: boolean,
 ): string {
   if (tier === 'none') return '';
-  const RU = { up: 'НОВЫЙ РАНГ', down: 'РАНГ ПОНИЖЕН' };
-  const UK = { up: 'НОВИЙ РАНГ', down: 'РАНГ ЗНИЖЕНО' };
-  const ES = { up: 'NUEVO RANGO', down: 'RANGO BAJADO' };
-  const set = spanishUiActive ? ES : lang === 'uk' ? UK : RU;
+  const displayLang: Lang = spanishUiActive ? 'es' : lang;
+  const set = triLang(displayLang, {
+    ru: { up: 'НОВЫЙ РАНГ', down: 'РАНГ ПОНИЖЕН' },
+    uk: { up: 'НОВИЙ РАНГ', down: 'РАНГ ЗНИЖЕНО' },
+    es: { up: 'NUEVO RANGO', down: 'RANGO BAJADO' },
+    'pt-BR': { up: 'NOVO RANK', down: 'RANK REDUZIDO' },
+    vi: { up: 'HẠNG MỚI', down: 'GIẢM HẠNG' },
+    id: { up: 'RANK BARU', down: 'RANK TURUN' },
+    tr: { up: 'YENİ RÜTBE', down: 'RÜTBE DÜŞTÜ' },
+    pl: { up: 'NOWA RANGA', down: 'RANGA OBNIŻONA' },
+  });
   return promoted ? set.up : set.down;
 }
 

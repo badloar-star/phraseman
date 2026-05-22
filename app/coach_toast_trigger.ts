@@ -6,12 +6,15 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { computePhraseAnalytics, getTopCategoryForPhrases, type PhraseMistakeInput, type WordCategory } from './phrase_analytics';
+import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
+import { personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
 import { isCategory, normalizeTokenKey, normalizeWordCategory } from './pos_taxonomy';
 import {
   getMicroDiagnosisLabel,
   inferMicroDiagnosisForMistakes,
   type PosMicroDiagnosisId,
 } from './pos_micro_diagnosis';
+import { storageStudyTarget, type RuntimeSourceLocale, type RuntimeStudyTarget } from './target_storage_keys';
 
 type CoachToastLabel = {
   ru: string;
@@ -369,7 +372,11 @@ function focusWordsForCategory(
  * Анализирует фразы-ошибки сессии.
  * wrongPhrases — английские фразы, в которых пользователь ошибся.
  */
-export function checkCoachToastNeeded(wrongMistakes: PhraseMistakeInput[]): CoachToastDecision {
+export function checkCoachToastNeeded(
+  wrongMistakes: PhraseMistakeInput[],
+  studyTarget?: RuntimeStudyTarget,
+): CoachToastDecision {
+  if (!personalPracticeCoachEnabledForTarget(studyTarget)) return { show: false };
   if (wrongMistakes.length < MIN_SESSION_MISTAKES) return { show: false };
 
   try {
@@ -414,8 +421,11 @@ export function checkCoachToastNeeded(wrongMistakes: PhraseMistakeInput[]): Coac
 
 export async function checkCoachToastNeededWithAnalytics(
   wrongMistakes: PhraseMistakeInput[],
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
 ): Promise<CoachToastDecision> {
-  const sessionDecision = checkCoachToastNeeded(wrongMistakes);
+  if (!personalPracticeCoachEnabledForTarget(studyTarget)) return { show: false };
+  const sessionDecision = checkCoachToastNeeded(wrongMistakes, studyTarget);
   if (sessionDecision.show) return sessionDecision;
   if (wrongMistakes.length === 0) return { show: false };
 
@@ -423,7 +433,9 @@ export async function checkCoachToastNeededWithAnalytics(
     const top = getTopCategoryForPhrases(wrongMistakes, 1);
     if (!top || top.exactCount < 1) return { show: false };
 
-    const analytics = await computePhraseAnalytics();
+    const analytics = storageStudyTarget(studyTarget) === 'fr'
+      ? await computeFrenchPhraseAnalytics({ sourceLocale })
+      : await computePhraseAnalytics();
     const stat = analytics.categoryStats.find((item) => item.category === top.category);
     if (!stat || stat.priorityScore < MIN_ANALYTICS_PRIORITY_SCORE) return { show: false };
     if (stat.exactMistakeCount < MIN_ANALYTICS_EXACT_MISTAKES) return { show: false };

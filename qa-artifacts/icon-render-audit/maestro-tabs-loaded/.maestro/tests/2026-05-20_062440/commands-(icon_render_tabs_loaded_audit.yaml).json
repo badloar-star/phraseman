@@ -1,0 +1,316 @@
+[ {
+  "command" : {
+    "waitForAnimationToEndCommand" : {
+      "timeout" : "8000",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254705244,
+    "duration" : 8990,
+    "sequenceNumber" : 10,
+    "evaluatedCommand" : {
+      "waitForAnimationToEndCommand" : {
+        "timeout" : "8000",
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "applyConfigurationCommand" : {
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254689835,
+    "duration" : 3,
+    "sequenceNumber" : 1,
+    "evaluatedCommand" : {
+      "applyConfigurationCommand" : {
+        "config" : {
+          "appId" : "app.phraseman"
+        },
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "tapOnPointV2Command" : {
+      "point" : "69%,95%",
+      "retryIfNoChange" : false,
+      "longPress" : false,
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254703892,
+    "duration" : 1352,
+    "sequenceNumber" : 9,
+    "evaluatedCommand" : {
+      "tapOnPointV2Command" : {
+        "point" : "69%,95%",
+        "retryIfNoChange" : false,
+        "longPress" : false,
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "tapOnPointV2Command" : {
+      "point" : "31%,95%",
+      "retryIfNoChange" : false,
+      "longPress" : false,
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254690032,
+    "duration" : 9634,
+    "sequenceNumber" : 3,
+    "evaluatedCommand" : {
+      "tapOnPointV2Command" : {
+        "point" : "31%,95%",
+        "retryIfNoChange" : false,
+        "longPress" : false,
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "tapOnPointV2Command" : {
+      "point" : "50%,95%",
+      "retryIfNoChange" : false,
+      "longPress" : false,
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254700555,
+    "duration" : 2293,
+    "sequenceNumber" : 6,
+    "evaluatedCommand" : {
+      "tapOnPointV2Command" : {
+        "point" : "50%,95%",
+        "retryIfNoChange" : false,
+        "longPress" : false,
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "tapOnPointV2Command" : {
+      "point" : "88%,95%",
+      "retryIfNoChange" : false,
+      "longPress" : false,
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254714433,
+    "duration" : 11642,
+    "sequenceNumber" : 12,
+    "evaluatedCommand" : {
+      "tapOnPointV2Command" : {
+        "point" : "88%,95%",
+        "retryIfNoChange" : false,
+        "longPress" : false,
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "waitForAnimationToEndCommand" : {
+      "timeout" : "8000",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254702848,
+    "duration" : 819,
+    "sequenceNumber" : 7,
+    "evaluatedCommand" : {
+      "waitForAnimationToEndCommand" : {
+        "timeout" : "8000",
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "defineVariablesCommand" : {
+      "env" : {
+        "MAESTRO_FILENAME" : "icon_render_tabs_loaded_audit",
+        "MAESTRO_DEVICE_UDID" : "4BDF4A55-6A84-4499-BD9E-13825AB77B3D",
+        "MAESTRO_SHARD_ID" : "1",
+        "MAESTRO_SHARD_INDEX" : "0"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254689828,
+    "duration" : 7,
+    "sequenceNumber" : 0,
+    "evaluatedCommand" : {
+      "defineVariablesCommand" : {
+        "env" : {
+          "MAESTRO_FILENAME" : "icon_render_tabs_loaded_audit",
+          "MAESTRO_DEVICE_UDID" : "4BDF4A55-6A84-4499-BD9E-13825AB77B3D",
+          "MAESTRO_SHARD_ID" : "1",
+          "MAESTRO_SHARD_INDEX" : "0"
+        },
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "takeScreenshotCommand" : {
+      "path" : "icon-audit-loaded-arena",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254703667,
+    "duration" : 224,
+    "sequenceNumber" : 8,
+    "evaluatedCommand" : {
+      "takeScreenshotCommand" : {
+        "path" : "icon-audit-loaded-arena",
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "takeScreenshotCommand" : {
+      "path" : "icon-audit-loaded-settings",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254727181,
+    "duration" : 461,
+    "sequenceNumber" : 14,
+    "evaluatedCommand" : {
+      "takeScreenshotCommand" : {
+        "path" : "icon-audit-loaded-settings",
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "waitForAnimationToEndCommand" : {
+      "timeout" : "8000",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254699666,
+    "duration" : 761,
+    "sequenceNumber" : 4,
+    "evaluatedCommand" : {
+      "waitForAnimationToEndCommand" : {
+        "timeout" : "8000",
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "takeScreenshotCommand" : {
+      "path" : "icon-audit-loaded-home",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254689838,
+    "duration" : 193,
+    "sequenceNumber" : 2,
+    "evaluatedCommand" : {
+      "takeScreenshotCommand" : {
+        "path" : "icon-audit-loaded-home",
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "takeScreenshotCommand" : {
+      "path" : "icon-audit-loaded-lessons",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254700428,
+    "duration" : 127,
+    "sequenceNumber" : 5,
+    "evaluatedCommand" : {
+      "takeScreenshotCommand" : {
+        "path" : "icon-audit-loaded-lessons",
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "takeScreenshotCommand" : {
+      "path" : "icon-audit-loaded-friends",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254714234,
+    "duration" : 198,
+    "sequenceNumber" : 11,
+    "evaluatedCommand" : {
+      "takeScreenshotCommand" : {
+        "path" : "icon-audit-loaded-friends",
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "waitForAnimationToEndCommand" : {
+      "timeout" : "8000",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779254726075,
+    "duration" : 1105,
+    "sequenceNumber" : 13,
+    "evaluatedCommand" : {
+      "waitForAnimationToEndCommand" : {
+        "timeout" : "8000",
+        "optional" : false
+      }
+    }
+  }
+} ]

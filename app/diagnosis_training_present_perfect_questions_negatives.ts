@@ -5,16 +5,25 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
-const tri = (ru: string, uk: string, es: string): TriText => {
-  const plannedFallback = {
-    'pt-BR': es,
-    vi: es,
-    id: es,
-    tr: es,
-    pl: es,
-  } satisfies Record<PlannedTrainingLocale, string>;
+const PP_QN_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre perguntas e negações no Present Perfect ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về câu hỏi và phủ định trong Present Perfect này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan pertanyaan dan negatif Present Perfect ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu Present Perfect soru ve olumsuzluk açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie pytań i przeczeń w Present Perfect nadal wymaga przeglądu po polsku.',
+};
 
-  return { ru, uk, es, ...plannedFallback };
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? PP_QN_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
 };
 
 const CONTRAST = [
@@ -31,30 +40,79 @@ const CONTRAST = [
 const MODEL = tri(
   'Держи три решения. В вопросе служебное слово выходит вперед. В отрицании к нему добавляется not. После этого нужен третий вид глагола: сделал, видел, закончил.',
   'Тримай три рішення. У питанні службове слово виходить уперед. У запереченні до нього додається not. Після цього потрібна третя форма дієслова: зробив, бачив, закінчив.',
-  "Present Perfect questions start with have or has: Have you finished? Has she called? Negatives use haven't or hasn't: I haven't finished. She hasn't seen it. After these words, use V3: finished, called, seen, done.",
+  "Las preguntas en Present Perfect empiezan con have o has: Have you finished? Has she called? Las negativas usan haven't o hasn't: I haven't finished. She hasn't seen it. Despues de estas palabras usa V3: finished, called, seen, done.",
+  {
+    'pt-BR': 'Guarde três decisões. Na pergunta, a palavra auxiliar vai para a frente. Na negativa, acrescentamos not a ela. Depois disso, precisamos da terceira forma do verbo: done, seen, finished, called.',
+    vi: 'Hãy nhớ ba quyết định. Trong câu hỏi, trợ động từ đi lên đầu. Trong câu phủ định, thêm not vào trợ động từ đó. Sau đó cần dạng thứ ba của động từ: done, seen, finished, called.',
+    id: 'Ingat tiga keputusan. Dalam pertanyaan, kata bantu maju ke depan. Dalam negatif, not ditambahkan ke kata bantu itu. Setelah itu perlu bentuk ketiga kata kerja: done, seen, finished, called.',
+    tr: 'Üç kararı aklında tut. Soruda yardımcı kelime başa çıkar. Olumsuzda ona not eklenir. Bundan sonra fiilin üçüncü hali gerekir: done, seen, finished, called.',
+    pl: 'Zapamiętaj trzy decyzje. W pytaniu słowo pomocnicze wychodzi na początek. W przeczeniu dodajemy do niego not. Potem potrzebna jest trzecia forma czasownika: done, seen, finished, called.',
+  },
 );
+
+const PP_QN_SKILL_ES: Record<string, string> = {
+  have_you_finished: 'La pregunta empieza con Have, y finished se queda en V3.',
+  have_they_left: 'Con they usa have; yet suele ir al final de la pregunta.',
+  question_order_have: 'En una pregunta neutral, have va antes de you.',
+  has_she_called: 'Con she usa has, no have ni did.',
+  has_he_seen: 'Despues de has necesitas seen, no saw ni see.',
+  has_it_started: 'Con it usa has al principio de la pregunta.',
+  haven_t_finished: "Con I usa haven't; despues va V3.",
+  hasn_t_called: "Con she usa hasn't; called se mantiene como V3.",
+  haven_t_seen: "Despues de haven't necesitas seen.",
+  yet_question: 'En la pregunta neutral de ya?, yet suele ir al final.',
+  ever_question: 'Ever pregunta por experiencia.',
+  never_no_double_negative: "Never ya da sentido negativo; no anadas haven't.",
+  mixed_question_negative_pair: "Pregunta con Have; negativa con haven't + V3.",
+  mixed_has_question_negative: "Con she usa has / hasn't y luego V3.",
+  mixed_sentence_correction: "Ever pregunta experiencia; haven't seen yet significa que aun no lo has visto.",
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = PP_QN_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? PP_QN_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function ppQnEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = PP_QN_SKILL_ES[input.targetSkill] ?? 'Comprueba have/has, el orden de pregunta y la forma V3.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retry(correct: string): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала реши: это вопрос или отрицание.',
       'Спочатку виріши: це питання чи заперечення.',
-      'First decide: question or negative.',
+      'Primero decide si es pregunta o negativa.',
     ),
     tri(
       'В вопросе have или has выходит в начало. В отрицании not приклеивается к have или has.',
       'У питанні have або has виходить на початок. У запереченні not приклеюється до have або has.',
-      'In a question, have or has comes first. In a negative, not attaches to have or has.',
+      'En una pregunta, have o has va primero. En una negativa, not se une a have o has.',
     ),
     tri(
       'После этих слов нужен третий вид глагола: не простая форма и не прошедшее время из Past Simple.',
       'Після цих слів потрібна третя форма дієслова: не проста форма і не минулий час із Past Simple.',
-      "After have, has, haven't, or hasn't, use V3: done, seen, finished, called.",
+      "Despues de have, has, haven't o hasn't usa V3: done, seen, finished, called.",
     ),
     tri(
       `Нужный вариант здесь: ${correct}.`,
       `Потрібний варіант тут: ${correct}.`,
-      `The answer here is: ${correct}.`,
+      `La respuesta aqui es: ${correct}.`,
     ),
   ];
 }
@@ -63,7 +121,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Проверь have/has, порядок вопроса и V3. Здесь нужно: ${correct}.`,
     `Майже. Перевір have/has, порядок питання і V3. Тут потрібно: ${correct}.`,
-    `Almost. Check have/has, question order, and V3. Use: ${correct}.`,
+    `Casi. Revisa have/has, el orden de pregunta y V3. Usa: ${correct}.`,
   );
 }
 
@@ -80,35 +138,36 @@ function qnStep(input: {
   wrong: Record<string, TriText>;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = ppQnEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
-    teachingText: MODEL,
-    explanationBlock: MODEL,
+    translation: withEs(input.translation, esFeedback),
+    teachingText: withEs(MODEL, esFeedback),
+    explanationBlock: withEs(MODEL, esFeedback),
     microTask: tri(
       'Выбери правильный вопрос или отрицание в Present Perfect.',
       'Обери правильне питання або заперечення в Present Perfect.',
-      'Choose the correct Present Perfect question or negative.',
+      'Elige la pregunta o negativa correcta en Present Perfect.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(input.correctAnswer),
+    retryFeedback: retry(input.correctAnswer).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Скелет такой: сначала have или has для вопроса; not для отрицания; затем третий вид глагола. Did здесь не нужен.',
       'Скелет такий: спочатку have або has для питання; not для заперечення; потім третя форма дієслова. Did тут не потрібен.',
-      "Pattern: Have you finished? Has she called? I haven't finished. She hasn't seen it. Do not use did here.",
+      "Patron: Have you finished? Has she called? I haven't finished. She hasn't seen it. Aqui no uses did.",
     ),
     focusWords: input.focusWords,
   };
@@ -120,29 +179,63 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 40,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Present Perfect: вопросы и отрицания',
     'Present Perfect: питання і заперечення',
-    "Present Perfect: questions and haven't / hasn't",
+    "Present Perfect: preguntas y haven't / hasn't",
+    {
+      'pt-BR': 'Present Perfect: perguntas e negações',
+      vi: 'Present Perfect: câu hỏi và phủ định',
+      id: 'Present Perfect: pertanyaan dan negatif',
+      tr: 'Present Perfect: sorular ve olumsuzlar',
+      pl: 'Present Perfect: pytania i przeczenia',
+    },
   ),
-  shortTitle: tri('Perfect вопрос', 'Perfect питання', 'Perfect Q/N'),
+  shortTitle: tri('Perfect вопрос', 'Perfect питання', 'Perfect pregunta/negativa', {
+    'pt-BR': 'Perfect: pergunta',
+    vi: 'Perfect: câu hỏi',
+    id: 'Perfect: pertanyaan',
+    tr: 'Perfect: soru',
+    pl: 'Perfect: pytanie',
+  }),
   shortDiagnosis: tri(
     'Ты строишь вопрос как Past Simple, забываешь вынести служебное слово вперед или берешь не ту форму глагола.',
     'Ти будуєш питання як Past Simple, забуваєш винести службове слово вперед або береш не ту форму дієслова.',
-    "You use did, forget to put have/has first, or use see after haven't instead of seen.",
+    "Usas did, olvidas poner have/has al principio o pones see despues de haven't en vez de seen.",
+    {
+      'pt-BR': 'Você monta a pergunta como Past Simple, esquece de colocar o auxiliar no começo ou usa a forma errada do verbo.',
+      vi: 'Bạn tạo câu hỏi như Past Simple, quên đưa trợ động từ lên đầu hoặc chọn sai dạng động từ.',
+      id: 'Kamu membangun pertanyaan seperti Past Simple, lupa menaruh kata bantu di depan, atau memakai bentuk kata kerja yang salah.',
+      tr: 'Soruyu Past Simple gibi kuruyorsun, yardımcı kelimeyi başa almayı unutuyorsun ya da fiilin yanlış halini seçiyorsun.',
+      pl: 'Budujesz pytanie jak Past Simple, zapominasz wynieść słowo pomocnicze na początek albo bierzesz złą formę czasownika.',
+    },
   ),
   diagnosisText: tri(
     'Здесь нужна одна привычка. В вопросе сначала ставим служебное слово. В отрицании добавляем not. А слово действия оставляем в третьем виде: закончил, видел, позвонил, сделал.',
     'Тут потрібна одна звичка. У питанні спочатку ставимо службове слово. У запереченні додаємо not. А слово дії залишаємо в третій формі: закінчив, бачив, подзвонив, зробив.',
-    "Here you need one habit. A Present Perfect question starts with have or has. In a negative, not is inside haven't or hasn't. The action word stays in V3: finished, seen, called, done.",
+    "Aqui necesitas un habito: la pregunta empieza con have o has. En la negativa, not va dentro de haven't o hasn't. El verbo de accion queda en V3: finished, seen, called, done.",
+    {
+      'pt-BR': 'Aqui você precisa de um hábito. Na pergunta, colocamos primeiro a palavra auxiliar. Na negativa, acrescentamos not. E o verbo da ação fica na terceira forma: finished, seen, called, done.',
+      vi: 'Ở đây bạn cần một thói quen. Trong câu hỏi, đặt trợ động từ trước. Trong câu phủ định, thêm not. Còn động từ hành động giữ ở dạng thứ ba: finished, seen, called, done.',
+      id: 'Di sini kamu perlu satu kebiasaan. Dalam pertanyaan, kata bantu diletakkan lebih dulu. Dalam negatif, tambahkan not. Kata kerja aksinya tetap dalam bentuk ketiga: finished, seen, called, done.',
+      tr: 'Burada tek bir alışkanlık gerekir. Soruda önce yardımcı kelimeyi koyarız. Olumsuzda not ekleriz. Eylem fiili üçüncü halde kalır: finished, seen, called, done.',
+      pl: 'Tutaj potrzebny jest jeden nawyk. W pytaniu najpierw stawiamy słowo pomocnicze. W przeczeniu dodajemy not. A czasownik czynności zostaje w trzeciej formie: finished, seen, called, done.',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     'В вопросе служебное слово выходит в начало. В отрицании not прячется внутри короткой отрицательной формы. Yet обычно ставим в конце, когда смысл "уже?" или "еще не". Ever спрашивает про опыт.',
     'У питанні службове слово виходить на початок. У запереченні not ховається всередині короткої заперечної форми. Yet зазвичай ставимо в кінці, коли сенс "вже?" або "ще не". Ever питає про досвід.',
-    "Question: Have you finished? Has she seen it? Negative: I haven’t finished. She hasn’t seen it. Yet often comes at the end. Ever asks about experience.",
+    "Pregunta: Have you finished? Has she seen it? Negativa: I haven't finished. She hasn't seen it. Yet suele ir al final. Ever pregunta por experiencia.",
+    {
+      'pt-BR': 'Na pergunta, a palavra auxiliar vai para o começo. Na negativa, not fica dentro da forma negativa curta. Yet geralmente vai no fim quando o sentido é "já?" ou "ainda não". Ever pergunta sobre experiência.',
+      vi: 'Trong câu hỏi, trợ động từ đi lên đầu. Trong câu phủ định, not nằm trong dạng phủ định rút gọn. Yet thường đứng cuối câu khi nghĩa là "đã chưa?" hoặc "vẫn chưa". Ever hỏi về trải nghiệm.',
+      id: 'Dalam pertanyaan, kata bantu maju ke awal. Dalam negatif, not tersembunyi di dalam bentuk negatif pendek. Yet biasanya berada di akhir ketika maknanya "sudah?" atau "belum". Ever menanyakan pengalaman.',
+      tr: 'Soruda yardımcı kelime başa çıkar. Olumsuzda not kısa olumsuz biçimin içine girer. Yet, anlam "çoktan mı?" ya da "henüz değil" olduğunda genellikle sona gelir. Ever deneyim sorar.',
+      pl: 'W pytaniu słowo pomocnicze wychodzi na początek. W przeczeniu not ukrywa się w krótkiej formie przeczącej. Yet zwykle stawiamy na końcu, gdy sens to "już?" albo "jeszcze nie". Ever pyta o doświadczenie.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -170,16 +263,16 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       'Already можливе в питанні, але нейтральне "вже?" часто будується з yet.',
     ],
     es: [
-      'In a question, have/has comes first: Have you finished?',
-      'He, she, it use has: Has she called?',
-      'After have or has, use V3: done, seen, finished, called.',
-      'Do not say Did you finished? For Present Perfect, use Have you finished?',
-      "Negatives use haven't or hasn't.",
-      "After haven't and hasn't, use V3: haven't seen, hasn't called.",
-      'Yet often comes at the end of questions or negatives.',
-      'Ever usually asks about experience: Have you ever been there?',
-      "Never already makes the meaning negative: don't usually say haven't never.",
-      'Already can appear in questions, but neutral already? often uses yet.',
+      'En una pregunta, have/has va primero: Have you finished?',
+      'Con he, she, it usa has: Has she called?',
+      'Despues de have o has usa V3: done, seen, finished, called.',
+      'No digas Did you finished? Para Present Perfect usa Have you finished?',
+      "Las negativas usan haven't o hasn't.",
+      "Despues de haven't y hasn't usa V3: haven't seen, hasn't called.",
+      'Yet suele ir al final de preguntas o negativas.',
+      'Ever normalmente pregunta por experiencia: Have you ever been there?',
+      "Never ya da sentido negativo: normalmente no digas haven't never.",
+      'Already puede aparecer en preguntas, pero la pregunta neutral de ya? muchas veces usa yet.',
     ],
     'pt-BR': [
       'Em perguntas, have/has vem no começo: Have you finished?',
@@ -247,97 +340,97 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       en: 'Have you finished the lesson?',
       ru: 'Ты закончил урок?',
       uk: 'Ти закінчив урок?',
-      es: 'Have you finished the lesson?',
+      es: 'Terminaste la leccion?',
       'pt-BR': 'Você terminou a lição?',
       vi: 'Bạn đã hoàn thành bài học chưa?',
       id: 'Apakah kamu sudah menyelesaikan pelajaran?',
       tr: 'Dersi bitirdin mi?',
       pl: 'Czy skończyłeś lekcję?',
-      why: tri('В вопросе have выходит в начало, а finished остается V3.', 'У питанні have виходить на початок, а finished залишається V3.', 'Have comes first in the question, and finished stays V3.'),
+      why: tri('В вопросе have выходит в начало, а finished остается V3.', 'У питанні have виходить на початок, а finished залишається V3.', 'Have va primero en la pregunta, y finished se queda en V3.'),
     },
     {
       en: 'Has she called you?',
       ru: 'Она тебе позвонила?',
       uk: 'Вона тобі подзвонила?',
-      es: 'Has she called you?',
+      es: 'Ella te llamo?',
       'pt-BR': 'Ela ligou para você?',
       vi: 'Cô ấy đã gọi cho bạn chưa?',
       id: 'Apakah dia sudah meneleponmu?',
       tr: 'Seni aradı mı?',
       pl: 'Czy ona do ciebie zadzwoniła?',
-      why: tri('С she нужен has. Called уже правильная форма после has.', 'З she потрібен has. Called уже правильна форма після has.', 'She needs has. Called is the right form after has.'),
+      why: tri('С she нужен has. Called уже правильная форма после has.', 'З she потрібен has. Called уже правильна форма після has.', 'Con she necesitas has. Called es la forma correcta despues de has.'),
     },
     {
       en: "I haven't finished yet.",
       ru: 'Я еще не закончил.',
       uk: 'Я ще не закінчив.',
-      es: "I haven't finished yet.",
+      es: 'Todavia no he terminado.',
       'pt-BR': 'Ainda não terminei.',
       vi: 'Tôi vẫn chưa hoàn thành.',
       id: 'Saya belum selesai.',
       tr: 'Henüz bitirmedim.',
       pl: 'Jeszcze nie skończyłem.',
-      why: tri("Haven't finished yet дает смысл 'еще не закончил'.", "Haven't finished yet дає зміст 'ще не закінчив'.", "Haven't finished yet means not finished yet."),
+      why: tri("Haven't finished yet дает смысл 'еще не закончил'.", "Haven't finished yet дає зміст 'ще не закінчив'.", "Haven't finished yet significa todavia no he terminado."),
     },
     {
       en: "She hasn't seen the message.",
       ru: 'Она не видела сообщение.',
       uk: 'Вона не бачила повідомлення.',
-      es: "She hasn't seen the message.",
+      es: 'Ella no ha visto el mensaje.',
       'pt-BR': 'Ela não viu a mensagem.',
       vi: 'Cô ấy chưa xem tin nhắn.',
       id: 'Dia belum melihat pesannya.',
       tr: 'Mesajı görmedi.',
       pl: 'Ona nie widziała wiadomości.',
-      why: tri("С she берем hasn't. После hasn't нужен seen, не see и не saw.", "З she беремо hasn't. Після hasn't потрібен seen, не see і не saw.", "With she, use hasn't. After hasn't, use seen, not see or saw."),
+      why: tri("С she берем hasn't. После hasn't нужен seen, не see и не saw.", "З she беремо hasn't. Після hasn't потрібен seen, не see і не saw.", "Con she usa hasn't. Despues de hasn't necesitas seen, no see ni saw."),
     },
     {
       en: 'Have you ever tried it?',
       ru: 'Ты когда-нибудь это пробовал?',
       uk: 'Ти коли-небудь це пробував?',
-      es: 'Have you ever tried it?',
+      es: 'Alguna vez lo has probado?',
       'pt-BR': 'Você já experimentou isso?',
       vi: 'Bạn đã từng thử nó chưa?',
       id: 'Apakah kamu pernah mencobanya?',
       tr: 'Bunu hiç denedin mi?',
       pl: 'Czy kiedykolwiek tego próbowałeś?',
-      why: tri('Ever удобно спрашивает об опыте.', 'Ever зручно питає про досвід.', 'Ever naturally asks about experience.'),
+      why: tri('Ever удобно спрашивает об опыте.', 'Ever зручно питає про досвід.', 'Ever pregunta naturalmente por experiencia.'),
     },
     {
       en: 'I have never tried it.',
       ru: 'Я никогда этого не пробовал.',
       uk: 'Я ніколи цього не пробував.',
-      es: 'I have never tried it.',
+      es: 'Nunca lo he probado.',
       'pt-BR': 'Nunca experimentei isso.',
       vi: 'Tôi chưa bao giờ thử nó.',
       id: 'Saya belum pernah mencobanya.',
       tr: 'Bunu hiç denemedim.',
       pl: 'Nigdy tego nie próbowałem.',
-      why: tri("Never уже дает отрицательный смысл, поэтому не нужно haven't never.", "Never уже дає заперечний зміст, тому не потрібно haven't never.", "Never already makes the meaning negative, so do not use haven't never."),
+      why: tri("Never уже дает отрицательный смысл, поэтому не нужно haven't never.", "Never уже дає заперечний зміст, тому не потрібно haven't never.", "Never ya da sentido negativo, asi que no uses haven't never."),
     },
     {
       en: 'Have they left yet?',
       ru: 'Они уже ушли?',
       uk: 'Вони вже пішли?',
-      es: 'Have they left yet?',
+      es: 'Ya se fueron?',
       'pt-BR': 'Eles já foram embora?',
       vi: 'Họ đã rời đi chưa?',
       id: 'Apakah mereka sudah pergi?',
       tr: 'Onlar ayrıldı mı?',
       pl: 'Czy oni już wyszli?',
-      why: tri('В нейтральном вопросе "уже?" yet часто стоит в конце.', 'У нейтральному питанні "вже?" yet часто стоїть у кінці.', 'In a neutral already? question, yet often comes at the end.'),
+      why: tri('В нейтральном вопросе "уже?" yet часто стоит в конце.', 'У нейтральному питанні "вже?" yet часто стоїть у кінці.', 'En una pregunta neutral de ya?, yet suele ir al final.'),
     },
     {
       en: "They haven't left yet.",
       ru: 'Они еще не ушли.',
       uk: 'Вони ще не пішли.',
-      es: "They haven't left yet.",
+      es: 'Todavia no se han ido.',
       'pt-BR': 'Eles ainda não foram embora.',
       vi: 'Họ vẫn chưa rời đi.',
       id: 'Mereka belum pergi.',
       tr: 'Henüz ayrılmadılar.',
       pl: 'Oni jeszcze nie wyszli.',
-      why: tri("Haven't left yet значит, что до текущего момента они еще не ушли.", "Haven't left yet означає, що до поточного моменту вони ще не пішли.", "Haven't left yet means they have not left up to now."),
+      why: tri("Haven't left yet значит, что до текущего момента они еще не ушли.", "Haven't left yet означає, що до поточного моменту вони ще не пішли.", "Haven't left yet significa que hasta ahora todavia no se han ido."),
     },
   ],
   introBlocks: [
@@ -347,7 +440,7 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты строишь вопрос как обычное прошедшее время или как обычное утверждение. В этой теме так не работает: сначала ставим служебное слово.',
         'Схоже, ти будуєш питання як звичайний минулий час або як звичайне твердження. У цій темі так не працює: спочатку ставимо службове слово.',
-        'It looks like you build the question like Past Simple or like a statement: Did you finished? You have finished? Here the question starts with have or has.',
+        'Parece que construyes la pregunta como Past Simple o como una afirmacion: Did you finished? You have finished? Aqui la pregunta empieza con have o has.',
       ),
     },
     {
@@ -356,7 +449,7 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       text: tri(
         'Схема простая: в вопросе служебное слово впереди, потом человек, потом третий вид глагола. В отрицании человек идет первым, потом отрицательная форма, потом третий вид.',
         'Схема проста: у питанні службове слово попереду, потім людина, потім третя форма дієслова. У запереченні людина йде першою, потім заперечна форма, потім третя форма.',
-        "Question: Have/Has + person + V3? Negative: person + haven't/hasn't + V3.",
+        "Pregunta: Have/Has + persona + V3? Negativa: persona + haven't/hasn't + V3.",
       ),
     },
     {
@@ -365,7 +458,7 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       text: tri(
         'Главные ошибки тут три: ставить did, забывать has с he/she/it и брать обычный глагол после отрицания. Проверяй порядок вопроса и третий вид глагола.',
         'Головні помилки тут три: ставити did, забувати has з he/she/it і брати звичайне дієслово після заперечення. Перевіряй порядок питання і третю форму дієслова.',
-        "Main mistakes: Did you finished? She haven't seen. I haven't saw. Correct: Have you finished? Has she seen? She hasn't seen. I haven't seen.",
+        "Errores principales: Did you finished? She haven't seen. I haven't saw. Correcto: Have you finished? Has she seen? She hasn't seen. I haven't seen.",
       ),
     },
   ],
@@ -664,10 +757,10 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Показываем have/has и V3.', 'Показуємо have/has і V3.', 'Show have/has and V3.'),
-    depth2: tri('Проще: вопрос начинается с have/has, отрицание строится через haven’t/hasn’t.', 'Простіше: питання починається з have/has, заперечення будується через haven’t/hasn’t.', "Simpler: question starts with have/has; negative uses haven't/hasn't."),
-    depth3: tri("Даем пару: вопрос через Have и отрицание через hasn't.", "Даємо пару: питання через Have і заперечення через hasn't.", "Use the pair: Have you done? / She hasn't done."),
-    depth4: tri("Почти подсказка: прямо указываем have/has/haven't/hasn't и нужный V3.", "Майже підказка: прямо вказуємо have/has/haven't/hasn't і потрібний V3.", "Almost a hint: directly point to have/has/haven't/hasn't and the right V3."),
+    depth1: tri('Показываем have/has и V3.', 'Показуємо have/has і V3.', 'Mostramos have/has y V3.'),
+    depth2: tri('Проще: вопрос начинается с have/has, отрицание строится через haven’t/hasn’t.', 'Простіше: питання починається з have/has, заперечення будується через haven’t/hasn’t.', "Mas simple: la pregunta empieza con have/has; la negativa usa haven't/hasn't."),
+    depth3: tri("Даем пару: вопрос через Have и отрицание через hasn't.", "Даємо пару: питання через Have і заперечення через hasn't.", "Usa el par: Have you done? / She hasn't done."),
+    depth4: tri("Почти подсказка: прямо указываем have/has/haven't/hasn't и нужный V3.", "Майже підказка: прямо вказуємо have/has/haven't/hasn't і потрібний V3.", "Casi una pista: senala directamente have/has/haven't/hasn't y el V3 correcto."),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -675,7 +768,7 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       card: tri(
         'Стоп. В вопросе служебное слово выходит вперед. В отрицании человек идет первым, потом короткая отрицательная форма. Did здесь не нужен. После служебного слова держим третий вид глагола.',
         'Стоп. У питанні службове слово виходить уперед. У запереченні людина йде першою, потім коротка заперечна форма. Did тут не потрібен. Після службового слова тримаємо третю форму дієслова.',
-        "Stop. Question: Have/Has + person + V3? Negative: person + haven't/hasn't + V3. Do not use did here. After have/has/haven't/hasn't, use V3.",
+        "Alto. Pregunta: Have/Has + persona + V3? Negativa: persona + haven't/hasn't + V3. Aqui no uses did. Despues de have/has/haven't/hasn't usa V3.",
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -683,7 +776,7 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       card: tri(
         'Система подсветит, это вопрос или отрицание, и напомнит have/has. Ответ она не выбирает.',
         'Система підсвітить, це питання чи заперечення, і нагадає have/has. Відповідь вона не обирає.',
-        'The system highlights question or negative and reminds you about have/has. It does not choose the answer.',
+        'El sistema resalta si es pregunta o negativa y recuerda have/has. No elige la respuesta.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -691,7 +784,7 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
       card: tri(
         "Режим подсказки: сначала вопрос или отрицание. Потом have/has/haven't/hasn't. Потом V3.",
         "Режим підказки: спочатку питання чи заперечення. Потім have/has/haven't/hasn't. Потім V3.",
-        "Guided mode: first question or negative. Then have/has/haven't/hasn't. Then V3.",
+        "Modo guiado: primero pregunta o negativa. Luego have/has/haven't/hasn't. Luego V3.",
       ),
     },
   },
@@ -701,28 +794,28 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_pp_qn_001',
-        prompt: tri('В вопросе Present Perfect have стоит в начале или после you?', 'У питанні Present Perfect have стоїть на початку чи після you?', 'In a Present Perfect question, does have come first or after you?'),
+        prompt: tri('В вопросе Present Perfect have стоит в начале или после you?', 'У питанні Present Perfect have стоїть на початку чи після you?', 'En una pregunta de Present Perfect, have va primero o despues de you?'),
         options: ['в начале', 'после you'],
         correctIndex: 0,
         thenReturnToExerciseId: 'pp_qn_easy_001',
       },
       {
         id: 'guided_pp_qn_002',
-        prompt: tri('С she в Present Perfect нужен has или have?', 'З she у Present Perfect потрібен has чи have?', 'With she, do you need has or have?'),
+        prompt: tri('С she в Present Perfect нужен has или have?', 'З she у Present Perfect потрібен has чи have?', 'Con she, necesitas has o have?'),
         options: ['has', 'have'],
         correctIndex: 0,
         thenReturnToExerciseId: 'pp_qn_contrast_001',
       },
       {
         id: 'guided_pp_qn_003',
-        prompt: tri("После haven't правильно seen или see?", "Після haven't правильно seen чи see?", "After haven't, is seen or see correct?"),
+        prompt: tri("После haven't правильно seen или see?", "Після haven't правильно seen чи see?", "Despues de haven't, es correcto seen o see?"),
         options: ['seen', 'see'],
         correctIndex: 0,
         thenReturnToExerciseId: 'pp_qn_contrast_006',
       },
       {
         id: 'guided_pp_qn_004',
-        prompt: tri('В вопросе об опыте "когда-нибудь" обычно ever или yet?', 'У питанні про досвід "коли-небудь" зазвичай ever чи yet?', 'In an experience question, is "ever" or "yet" usual?'),
+        prompt: tri('В вопросе об опыте "когда-нибудь" обычно ever или yet?', 'У питанні про досвід "коли-небудь" зазвичай ever чи yet?', 'En una pregunta de experiencia, se usa normalmente ever o yet?'),
         options: ['ever', 'yet'],
         correctIndex: 0,
         thenReturnToExerciseId: 'pp_qn_mixed_002',
@@ -734,7 +827,7 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'verb',
     microDiagnosisId: 'present_perfect_questions_negatives',
-    diagnosisLabel: tri('Present Perfect: вопросы и отрицания', 'Present Perfect: питання і заперечення', 'Present Perfect: questions and negatives'),
+    diagnosisLabel: tri('Present Perfect: вопросы и отрицания', 'Present Perfect: питання і заперечення', 'Present Perfect: preguntas y negativas'),
     contrastSet: CONTRAST,
     difficultyLevel: 2,
     focusWords: ['have you', 'has she', "haven't", "hasn't", 'seen', 'finished', 'yet', 'ever'],
@@ -772,7 +865,7 @@ export const PRESENT_PERFECT_QUESTIONS_NEGATIVES_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_present_perfect_questions_negatives_start',
     answer: 'diagnosis_training_present_perfect_questions_negatives_answer',
     mastery: 'diagnosis_training_present_perfect_questions_negatives_mastery',
-    fallback: 'diagnosis_training_present_perfect_questions_negatives_fallback',
+    recovery: 'diagnosis_training_present_perfect_questions_negatives_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

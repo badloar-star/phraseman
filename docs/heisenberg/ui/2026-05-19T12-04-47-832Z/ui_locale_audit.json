@@ -1,0 +1,287 @@
+{
+  "generatedAt": "2026-05-19T12:04:47.831Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 615,
+    "triLangCalls": 1548,
+    "staticTriLangCalls": 1548,
+    "dynamicTriLangCalls": 0,
+    "legacyLangHelperCalls": 0,
+    "localeObjectFindings": 15,
+    "triLangMissingLocaleUnits": 0,
+    "triLangMissingAllPlannedUnits": 0,
+    "helperMissingLocaleUnits": 0,
+    "localeObjectMissingLocaleUnits": 72,
+    "localeObjectMissingAllPlannedUnits": 12,
+    "bundleMissingLocaleUnits": 0,
+    "findings": 15,
+    "byCode": {
+      "locale-object-missing-planned-locales": 3,
+      "locale-object-missing-all-planned-locales": 12
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/quiz_data.ts",
+      "findings": 6,
+      "missingLocaleUnits": 30
+    },
+    {
+      "file": "app/quiz_data_es_l2.ts",
+      "findings": 5,
+      "missingLocaleUnits": 25
+    },
+    {
+      "file": "app/community_pack_create.tsx",
+      "findings": 4,
+      "missingLocaleUnits": 17
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-planned-locales",
+      "file": "app/community_pack_create.tsx",
+      "line": 264,
+      "column": 32,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ id: c.id, en: c.en, ru: c.ru, uk: c.uk, es: c.es, }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/community_pack_create.tsx",
+      "line": 450,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ...row, en, ru, es: es || undefined, uk: note }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-planned-locales",
+      "file": "app/community_pack_create.tsx",
+      "line": 456,
+      "column": 29,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ id: `c${r.length + 1}`, en, ru, es: es || undefined, uk: note }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-planned-locales",
+      "file": "app/community_pack_create.tsx",
+      "line": 517,
+      "column": 38,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ id: row.id, en: row.en.trim(), ru: row.ru.trim() || undefined, uk: row.uk.trim() || undefined, es: row.es?.trim() || undefined, }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 75,
+      "column": 10,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: r.ru, uk: r.uk, es: r.es, choices: [...r.choices], correct: r.correct, explanations: [...r.explanations], explanationsUK: [...r.explanationsUK], explanationsES: [...r.explana"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24346,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Как только мы вышли, пошел дождь`, uk: `Як тільки ми вийшли, пішов дощ`, es: `Apenas nos pusimos en marcha, empezó a llover`, choices: [ `No sooner had we set off than it st"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24378,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Терпеть не могу, когда мне говорят, что делать`, uk: `Терпіти не можу, коли мені кажуть, що робити`, es: `No soporto que me digan qué hacer`, choices: [ `I resent being told"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24410,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Мне кажется, что это решение весьма сомнительное`, uk: `Мені здається, що це рішення досить сумнівне`, es: `Al parecer, esta decisión es bastante dudosa`, choices: [ `Seemin"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 25059,
+      "column": 57,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ordinal: index + 1, ru: entry.ru, uk: entry.uk, es: entry.es, choices: [...entry.choices], correct: Array.isArray(entry.correct) ? [...entry.correct] : entry.correct, explanation"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 25295,
+      "column": 12,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: entry.ru, uk: entry.uk, es: entry.es ?? entry.ru, choices: shuffledChoices, correct: newCorrect, answer: primaryAnswer, answerAlternatives, explanations: shuffledExplanations"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data_es_l2.ts",
+      "line": 158,
+      "column": 12,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Верно: испанская формулировка соответствует подсказке и уроку.', uk: 'Вірно: іспанська формулювання відповідає підказці й уроку.', es: 'Correcto: la opción encaja con el enu"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data_es_l2.ts",
+      "line": 167,
+      "column": 12,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Ошибка: проверьте, нужен ser (идентичность, классификация) или estar (состояние, место).', uk: 'Помилка: перевірте ser проти estar (ідентичність чи стан/місце).', es: 'No en"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data_es_l2.ts",
+      "line": 174,
+      "column": 12,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Ошибка: отрицание — слово no и форма глагола должны согласоваться с образцом.', uk: 'Помилка: заперечення — no і форма дієслова мають відповідати зразку.', es: 'No encaja: l"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data_es_l2.ts",
+      "line": 180,
+      "column": 10,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Ошибка: смотрите согласование, артикль или время глагола в этом уроке.', uk: 'Помилка: перевірте узгодження, артикль або час дієслова.', es: 'No encaja: revisa concordancia,"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data_es_l2.ts",
+      "line": 230,
+      "column": 36,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ questionId: `es-l2|L${lessonId}|id${phrase.id}|s${slot}`, skillTag: LESSON_SKILL_TAG[lessonId] ?? 'gramatica', reviewerFlag: null, difficultyStars: starsForSlot(slot), type: 'MCQ"
+    }
+  ]
+}

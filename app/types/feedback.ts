@@ -15,7 +15,7 @@ export interface PhraseErrorTraps {
   readonly phraseIndex: number;
   /** Per-word подсказки — основная система */
   readonly wordTraps?: readonly WordTrap[];
-  /** Устаревшие триггеры (fallback) */
+  /** Устаревшие триггеры */
   readonly traps: readonly ErrorTrap[];
   /** Основное объяснение (RU) */
   readonly generalRule?: string;

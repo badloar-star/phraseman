@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useMemo } from 'react';
 import { Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import BonusXPCard from '../../components/BonusXPCard';
 import ContentWrap from '../../components/ContentWrap';
 import LevelBadge from '../../components/LevelBadge';

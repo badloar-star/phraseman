@@ -1,0 +1,122 @@
+{
+  "generatedAt": "2026-05-19T12:32:39.925Z",
+  "mode": "semantic-audit",
+  "strict": true,
+  "summary": {
+    "findings": 4,
+    "blockers": 0,
+    "warnings": 4,
+    "reviewGroups": 4,
+    "byCode": {
+      "protected-english-term-missing": 3,
+      "possible-distractor-index-drift": 1
+    },
+    "bySurface": {
+      "quiz": 4
+    }
+  },
+  "reviewGroups": [
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 165,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): told.",
+      "sample": "En esta tarea usamos el cambio típico del reported speech: he is tired pasa a he was tired; por eso no usamos is aquí.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 290,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): reads books every day.",
+      "sample": "Correcto. Con she en present simple usamos reads.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 115,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): wasn't.",
+      "sample": "En inglés estándar evitamos doble negación: wasn\\'t nobody.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 157,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): none him since childhood.",
+      "sample": "None significa ninguno o nada. Aquí necesitas known, participio de know.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 290,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): reads books every day.",
+      "sample": "Correcto. Con she en present simple usamos reads."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 115,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): wasn't.",
+      "sample": "En inglés estándar evitamos doble negación: wasn\\'t nobody."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 157,
+      "locale": "es",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): none him since childhood.",
+      "sample": "None significa ninguno o nada. Aquí necesitas known, participio de know."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 165,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): told.",
+      "sample": "En esta tarea usamos el cambio típico del reported speech: he is tired pasa a he was tired; por eso no usamos is aquí."
+    }
+  ]
+}

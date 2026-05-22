@@ -2,7 +2,7 @@
  * Анимации при раскрытии сундука: искры (common), конфетти (rare), эпик / премиум.
  */
 
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import React, { useEffect, useRef } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 

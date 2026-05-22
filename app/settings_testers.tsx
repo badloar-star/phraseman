@@ -17,8 +17,8 @@
 //   зависимости, заведённые только ради админки) в выходной бандл.
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
-import { Redirect } from 'expo-router';
 import { IS_STORE_RELEASE } from './config';
+import { DeferredRedirect } from '../components/DeferredRedirect';
 
 export default function SettingsTestersGate() {
   if (__DEV__ && !IS_STORE_RELEASE) {
@@ -26,5 +26,5 @@ export default function SettingsTestersGate() {
     const Real = require('./_admin_settings_testers').default;
     return <Real />;
   }
-  return <Redirect href={'/(tabs)/' as any} />;
+  return <DeferredRedirect href={'/(tabs)/' as any} />;
 }

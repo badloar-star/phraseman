@@ -1,4 +1,4 @@
-export type SmartDistractorSource = 'manual' | 'lesson' | 'crossLesson' | 'category' | 'fallback' | 'nextWord';
+export type SmartDistractorSource = 'manual' | 'lesson' | 'crossLesson' | 'category' | 'reserve' | 'nextWord';
 
 export interface SmartDistractorCandidate {
   value: string;
@@ -316,7 +316,7 @@ function scoreCandidate(
       reasons.push(`closed:${correctClosed}`);
     } else if (correctPos && candPos === correctPos) {
       score += 25;
-      reasons.push('same-pos-closed-fallback');
+      reasons.push('same-pos-closed-reserve');
     } else {
       score -= 120;
       reasons.push('wrong-closed-class');

@@ -65,6 +65,7 @@ __pycache__/
 
 # Tooling / session noise (not app source)
 .claude-flow/
+.codex-tools/
 
 # Local clone for syncing legal pages to gh-pages repo phraseman-privacy (never commit)
 .cache-phraseman-privacy/

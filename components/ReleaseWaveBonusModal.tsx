@@ -1,7 +1,7 @@
 // Модалка разового бонуса осколков за волну релиза (см. config RELEASE_WAVE_BONUS_VERSION).
 // Без анимации opacity на оверлее; у осколка — только transform (useNativeDriver), без сбоев на Fabric.
 import React, { useEffect, useRef, useState } from 'react';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { Animated, Easing, Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
@@ -61,7 +61,69 @@ const TEXTS = {
     cta: 'Reclamar',
     ctaPreview: 'Cerrar',
   },
+  'pt-BR': {
+    title: 'Lista de tarefas:',
+    body:
+      '✅ Corrigir a Arena\n' +
+      '✅ Adicionar bônus por amigos\n' +
+      '✅ Melhorar o treino de preposições\n' +
+      '⏳ Entregar fragmentos para todos\n' +
+      '← é exatamente disso que estamos cuidando agora.',
+    sub: (n: number) => `+${n} fragmentos de conhecimento`,
+    cta: 'Resgatar',
+    ctaPreview: 'Fechar',
+  },
+  vi: {
+    title: 'Danh sách việc cần làm:',
+    body:
+      '✅ Sửa Arena\n' +
+      '✅ Thêm thưởng khi mời bạn bè\n' +
+      '✅ Nâng cấp luyện giới từ\n' +
+      '⏳ Phát mảnh kiến thức cho mọi người\n' +
+      '← đây chính là việc chúng tôi đang làm lúc này.',
+    sub: (n: number) => `+${n} mảnh kiến thức`,
+    cta: 'Nhận',
+    ctaPreview: 'Đóng',
+  },
+  'id': {
+    title: 'Daftar tugas:',
+    body:
+      '✅ Memperbaiki Arena\n' +
+      '✅ Menambahkan bonus teman\n' +
+      '✅ Meningkatkan latihan preposisi\n' +
+      '⏳ Membagikan shard untuk semua\n' +
+      '← ini yang sedang kami kerjakan sekarang.',
+    sub: (n: number) => `+${n} shard pengetahuan`,
+    cta: 'Ambil',
+    ctaPreview: 'Tutup',
+  },
+  tr: {
+    title: 'Yapılacaklar:',
+    body:
+      '✅ Arena’yı düzelt\n' +
+      '✅ Arkadaş bonusları ekle\n' +
+      '✅ Edat antrenmanını güçlendir\n' +
+      '⏳ Herkese parça dağıt\n' +
+      '← tam şu anda bununla ilgileniyoruz.',
+    sub: (n: number) => `+${n} bilgi parçası`,
+    cta: 'Al',
+    ctaPreview: 'Kapat',
+  },
+  pl: {
+    title: 'Lista zadań:',
+    body:
+      '✅ Naprawić Arenę\n' +
+      '✅ Dodać bonusy za znajomych\n' +
+      '✅ Ulepszyć trening przyimków\n' +
+      '⏳ Rozdać wszystkim odłamki\n' +
+      '← właśnie tym się teraz zajmujemy.',
+    sub: (n: number) => `+${n} odłamków wiedzy`,
+    cta: 'Odbierz',
+    ctaPreview: 'Zamknij',
+  },
 } as const;
+
+const pickReleaseWaveText = (lang: string) => TEXTS[lang as keyof typeof TEXTS] ?? TEXTS.ru;
 
 type Props = {
   visible: boolean;
@@ -73,7 +135,7 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const insets = useSafeAreaInsets();
-  const tx = lang === 'es' ? TEXTS.es : TEXTS[lang === 'uk' ? 'uk' : 'ru'];
+  const tx = pickReleaseWaveText(lang);
   const [busy, setBusy] = useState(false);
   const amount = getReleaseWaveBonusLabelAmount();
   const oskolokImage = oskolokImageForPackShards(amount);

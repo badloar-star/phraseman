@@ -5,20 +5,18 @@ import {
   TouchableOpacity,
   Pressable,
   Animated,
-  ImageBackground,
   StyleSheet,
   ScrollView,
   Easing,
   useWindowDimensions,
-  type ImageSourcePropType,
   type LayoutChangeEvent,
 } from 'react-native';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import type { ThemeMode } from '../constants/theme';
 import ScreenGradient from '../components/ScreenGradient';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import { hapticTap } from '../hooks/use-haptics';
@@ -28,6 +26,36 @@ import type { StudyTargetLang } from './study_target_lang_dev';
 import { spanishLessonUiStringsActive, spanishStudyActive } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
 
+type PlannedIntroLang = Extract<Lang, 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl'>;
+
+const PLANNED_INTRO_LANGS = new Set<Lang>(['pt-BR', 'vi', 'id', 'tr', 'pl']);
+
+function isPlannedIntroLang(lang: Lang): lang is PlannedIntroLang {
+  return PLANNED_INTRO_LANGS.has(lang);
+}
+
+function firstDefined<T>(...values: Array<T | undefined>): T | undefined {
+  for (const value of values) {
+    if (value !== undefined) return value;
+  }
+  return undefined;
+}
+
+function legacyIntroValue<T>(
+  lang: Lang,
+  studyTarget: StudyTargetLang,
+  ruValue?: T,
+  ukValue?: T,
+  esValue?: T,
+): T | undefined {
+  switch (lang) {
+    case 'uk':
+      return firstDefined(ukValue, ruValue);
+  }
+  if (spanishLessonUiStringsActive(lang, studyTarget)) return firstDefined(esValue, ruValue);
+  return ruValue;
+}
+
 /**
  * Разбивает текст на сегменты: обычный текст и английские вставки.
  * Английская вставка — последовательность ASCII-символов (латиница, цифры,
@@ -35,9 +63,9 @@ import { useStudyTarget } from '../components/StudyTargetContext';
  * не-ASCII символами или границами строки. Односимвольные ASCII (I, a)
  * внутри кириллического текста тоже выделяются если стоят отдельным словом.
  */
-function splitEnglish(text: string): Array<{ value: string; isEn: boolean }> {
+function splitEnglish(text: string): { value: string; isEn: boolean }[] {
   // Паттерн: блок ASCII-слов (мин 1 ASCII-буква) отделённый от кириллицы
-  const segments: Array<{ value: string; isEn: boolean }> = [];
+  const segments: { value: string; isEn: boolean }[] = [];
   // Разбиваем по границам ASCII/не-ASCII
   const re = /([A-Za-z][A-Za-z0-9 '\-\/.,→↔]*)/g;
   let last = 0;
@@ -87,12 +115,17 @@ function lessonIntroExampleLines(
   studyTarget: StudyTargetLang,
 ): { primary: string; secondary: string } {
   const primary = spanishStudyActive(studyTarget) && ex.trES ? ex.trES : ex.en;
-  let secondary =
-    lang === 'uk'
-      ? ex.trUK
-      : spanishLessonUiStringsActive(lang, studyTarget)
-        ? (ex.trES ?? ex.trRU)
-        : ex.trRU;
+  const plannedSecondary: Record<PlannedIntroLang, string | undefined> = {
+    'pt-BR': ex.trPtBr,
+    vi: ex.trVi,
+    id: ex.trId,
+    tr: ex.trTr,
+    pl: ex.trPl,
+  };
+  let secondary = isPlannedIntroLang(lang)
+    ? plannedSecondary[lang]
+    : legacyIntroValue(lang, studyTarget, ex.trRU, ex.trUK, ex.trES);
+  secondary = secondary ?? primary;
   if (primary === secondary && ex.en !== primary) {
     secondary = ex.en;
   }
@@ -100,19 +133,61 @@ function lessonIntroExampleLines(
 }
 
 function hasRichIntroLines(screen: LessonIntroScreen): boolean {
-  return !!(screen.linesRU?.length || screen.linesUK?.length || screen.linesES?.length);
+  const legacyLineSets = [screen.linesRU, screen.linesUK, screen.linesES];
+  return legacyLineSets.some((lines) => !!lines?.length);
 }
 
 function richIntroLines(screen: LessonIntroScreen, lang: Lang, studyTarget: StudyTargetLang): IntroLine[] {
-  if (lang === 'uk') return screen.linesUK ?? screen.linesRU ?? [];
-  if (spanishLessonUiStringsActive(lang, studyTarget)) return screen.linesES ?? screen.linesRU ?? [];
-  return screen.linesRU ?? [];
+  const plannedLines: Record<PlannedIntroLang, IntroLine[] | undefined> = {
+    'pt-BR': screen.linesPtBr,
+    vi: screen.linesVi,
+    id: screen.linesId,
+    tr: screen.linesTr,
+    pl: screen.linesPl,
+  };
+  const selected = isPlannedIntroLang(lang)
+    ? plannedLines[lang]
+    : legacyIntroValue(lang, studyTarget, screen.linesRU, screen.linesUK, screen.linesES);
+  return selected ?? [];
 }
 
 function richSubtitle(screen: LessonIntroScreen, lang: Lang, studyTarget: StudyTargetLang): string | undefined {
-  if (lang === 'uk') return screen.subtitleUK ?? screen.subtitleRU;
-  if (spanishLessonUiStringsActive(lang, studyTarget)) return screen.subtitleES ?? screen.subtitleRU;
-  return screen.subtitleRU;
+  const plannedSubtitles: Record<PlannedIntroLang, string | undefined> = {
+    'pt-BR': screen.subtitlePtBr,
+    vi: screen.subtitleVi,
+    id: screen.subtitleId,
+    tr: screen.subtitleTr,
+    pl: screen.subtitlePl,
+  };
+  return isPlannedIntroLang(lang)
+    ? plannedSubtitles[lang]
+    : legacyIntroValue(lang, studyTarget, screen.subtitleRU, screen.subtitleUK, screen.subtitleES);
+}
+
+function richTitle(screen: LessonIntroScreen, lang: Lang, studyTarget: StudyTargetLang): string | undefined {
+  const plannedTitles: Record<PlannedIntroLang, string | undefined> = {
+    'pt-BR': screen.titlePtBr,
+    vi: screen.titleVi,
+    id: screen.titleId,
+    tr: screen.titleTr,
+    pl: screen.titlePl,
+  };
+  return isPlannedIntroLang(lang)
+    ? plannedTitles[lang]
+    : legacyIntroValue(lang, studyTarget, screen.titleRU, screen.titleUK, screen.titleES);
+}
+
+function plainIntroText(screen: LessonIntroScreen, lang: Lang, studyTarget: StudyTargetLang): string | undefined {
+  const plannedText: Record<PlannedIntroLang, string | undefined> = {
+    'pt-BR': screen.textPtBr,
+    vi: screen.textVi,
+    id: screen.textId,
+    tr: screen.textTr,
+    pl: screen.textPl,
+  };
+  return isPlannedIntroLang(lang)
+    ? plannedText[lang]
+    : legacyIntroValue(lang, studyTarget, screen.textRU, screen.textUK, screen.textES);
 }
 
 function richKindToLegacyKind(kind: LessonIntroScreen['kind']): LessonIntroBlockKind {
@@ -130,11 +205,61 @@ function isRichExample(ex: LessonIntroExample | any): ex is {
   labelRU?: string;
   labelUK?: string;
   labelES?: string;
+  labelPtBr?: string;
+  labelVi?: string;
+  labelId?: string;
+  labelTr?: string;
+  labelPl?: string;
   noteRU?: string;
   noteUK?: string;
   noteES?: string;
+  notePtBr?: string;
+  noteVi?: string;
+  noteId?: string;
+  noteTr?: string;
+  notePl?: string;
 } {
   return Array.isArray(ex?.en);
+}
+
+function richExampleText(ex: unknown, lang: Lang, studyTarget: StudyTargetLang): string {
+  const value = ex as any;
+  const plannedText: Record<PlannedIntroLang, string | undefined> = {
+    'pt-BR': value['pt-BR'],
+    vi: value.vi,
+    id: value.id,
+    tr: value.tr,
+    pl: value.pl,
+  };
+  return isPlannedIntroLang(lang)
+    ? plannedText[lang] ?? ''
+    : legacyIntroValue(lang, studyTarget, value.ru, value.uk, value.es) ?? '';
+}
+
+function plannedExampleMeta(ex: any, base: 'label' | 'note', lang: Lang): string | undefined {
+  const plannedMeta: Record<PlannedIntroLang, string | undefined> = {
+    'pt-BR': ex[`${base}PtBr`],
+    vi: ex[`${base}Vi`],
+    id: ex[`${base}Id`],
+    tr: ex[`${base}Tr`],
+    pl: ex[`${base}Pl`],
+  };
+  return isPlannedIntroLang(lang) ? plannedMeta[lang] : undefined;
+}
+
+function legacyExampleMeta(
+  ex: any,
+  base: 'label' | 'note',
+  lang: Lang,
+  studyTarget: StudyTargetLang,
+): string | undefined {
+  return legacyIntroValue(
+    lang,
+    studyTarget,
+    ex[`${base}RU`],
+    ex[`${base}UK`],
+    ex[`${base}ES`],
+  );
 }
 
 function toneStyle(tone: IntroTextTone | undefined, t: any, accent: string, isLight: boolean) {
@@ -206,43 +331,41 @@ function RichIntroLineView({
 }) {
   if (line.type === 'spacer') return <View style={{ height: 8 }} />;
 
-  const borderColor =
+  const semanticColor =
     line.type === 'wrong'
-      ? `${t.wrong}55`
+      ? t.wrong
       : line.type === 'correct'
-        ? `${t.correct}55`
+        ? t.correct
         : line.type === 'formula'
-          ? `${accent}55`
+          ? accent
           : line.type === 'step'
-            ? `${accent}33`
-            : 'transparent';
-  const bg =
-    line.type === 'wrong'
-      ? `${t.wrong}16`
-      : line.type === 'correct'
-        ? `${t.correct}16`
-        : line.type === 'formula'
-          ? `${accent}18`
-          : line.type === 'step'
-            ? isLight ? '#FFFFFFB8' : '#00000020'
+            ? accent
             : line.type === 'tip'
-              ? `${t.gold}14`
+              ? t.gold
               : 'transparent';
   const isFramed = line.type === 'wrong' || line.type === 'correct' || line.type === 'formula' || line.type === 'step' || line.type === 'tip';
+  const semanticLineBg = isLight ? '#FFFFFFD9' : 'rgba(0,0,0,0.20)';
 
   return (
     <View
       style={[
         styles.richLine,
         isFramed && {
-          backgroundColor: bg,
-          borderColor,
+          backgroundColor: semanticLineBg,
+          borderColor: `${semanticColor}40`,
           borderWidth: 1,
-          paddingHorizontal: 12,
+          paddingLeft: 16,
+          paddingRight: 12,
           paddingVertical: line.type === 'formula' ? 12 : 10,
         },
       ]}
     >
+      {isFramed && (
+        <View
+          pointerEvents="none"
+          style={[styles.richLineStripe, { backgroundColor: semanticColor }]}
+        />
+      )}
       <RichTextParts
         parts={line.parts}
         text={line.text}
@@ -282,42 +405,6 @@ const INTRO_CTA_ZONE_PX = 88;
 const INTRO_STARS_ABOVE_CTA_PX = INTRO_CTA_BOTTOM_OFFSET + INTRO_CTA_ZONE_PX;
 const KIND_BY_INDEX: LessonIntroBlockKind[] = ['why', 'how', 'tip'];
 
-const INTRO_CTA_IMAGES: Record<ThemeMode, ImageSourcePropType> = {
-  dark: require('../assets/images/lesson_intro/intro-cta-dark.webp'),
-  neon: require('../assets/images/lesson_intro/intro-cta-neon.webp'),
-  gold: require('../assets/images/lesson_intro/intro-cta-gold.webp'),
-  coral: require('../assets/images/lesson_intro/intro-cta-coral.webp'),
-  minimalLight: require('../assets/images/lesson_intro/intro-cta-minimal-light.webp'),
-  minimalDark: require('../assets/images/lesson_intro/intro-cta-minimal-dark.webp'),
-};
-
-const INTRO_CTA_TEXT_COLORS: Record<ThemeMode, string> = {
-  dark: '#F3FFF5',
-  neon: '#172100',
-  gold: '#FFF6DD',
-  coral: '#FFFFFF',
-  minimalLight: '#242424',
-  minimalDark: '#F5F7FA',
-};
-
-const INTRO_CTA_ICON_BACKGROUNDS: Record<ThemeMode, string> = {
-  dark: 'rgba(255,255,255,0.16)',
-  neon: 'rgba(0,0,0,0.12)',
-  gold: 'rgba(255,246,221,0.16)',
-  coral: 'rgba(255,255,255,0.18)',
-  minimalLight: 'rgba(0,0,0,0.08)',
-  minimalDark: 'rgba(255,255,255,0.14)',
-};
-
-const INTRO_CTA_SCRIMS: Record<ThemeMode, string> = {
-  dark: 'rgba(0,0,0,0.10)',
-  neon: 'rgba(255,255,255,0.05)',
-  gold: 'rgba(0,0,0,0.12)',
-  coral: 'rgba(0,0,0,0.03)',
-  minimalLight: 'rgba(255,255,255,0.14)',
-  minimalDark: 'rgba(0,0,0,0.12)',
-};
-
 /**
  * Очень мягкая «expo-out» кривая (a-la Material expressive / iOS spring без bounce).
  * Сильно тормозит к концу — глаз видит долгое, дорогое появление.
@@ -333,6 +420,11 @@ interface KindStyle {
   defaultTitleRU: string;
   defaultTitleUK: string;
   defaultTitleES: string;
+  defaultTitlePtBr: string;
+  defaultTitleVi: string;
+  defaultTitleId: string;
+  defaultTitleTr: string;
+  defaultTitlePl: string;
   /** Возвращает основной акцентный цвет блока из темы */
   color: (t: any) => string;
 }
@@ -343,6 +435,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Зачем эта тема',
     defaultTitleUK: 'Навіщо ця тема',
     defaultTitleES: '¿Para qué sirve este tema?',
+    defaultTitlePtBr: 'Para que serve este tema?',
+    defaultTitleVi: 'Chủ đề này dùng để làm gì?',
+    defaultTitleId: 'Untuk apa topik ini?',
+    defaultTitleTr: 'Bu konu ne işe yarar?',
+    defaultTitlePl: 'Po co ten temat?',
     color: (t) => t.accent,
   },
   how: {
@@ -350,6 +447,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Как строится фраза',
     defaultTitleUK: 'Як будується фраза',
     defaultTitleES: '¿Cómo se forma la frase?',
+    defaultTitlePtBr: 'Como a frase é formada?',
+    defaultTitleVi: 'Câu được tạo như thế nào?',
+    defaultTitleId: 'Bagaimana frasa dibentuk?',
+    defaultTitleTr: 'Cümle nasıl kurulur?',
+    defaultTitlePl: 'Jak zbudować zdanie?',
     color: (t) => t.correct,
   },
   tip: {
@@ -357,6 +459,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Полезно знать',
     defaultTitleUK: 'Корисно знати',
     defaultTitleES: 'Dato útil',
+    defaultTitlePtBr: 'Bom saber',
+    defaultTitleVi: 'Điều hữu ích cần biết',
+    defaultTitleId: 'Perlu diketahui',
+    defaultTitleTr: 'Bilmekte fayda var',
+    defaultTitlePl: 'Warto wiedzieć',
     color: (t) => t.gold,
   },
   trap: {
@@ -364,6 +471,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Главная ловушка',
     defaultTitleUK: 'Головна пастка',
     defaultTitleES: 'Trampa principal',
+    defaultTitlePtBr: 'Armadilha principal',
+    defaultTitleVi: 'Bẫy chính',
+    defaultTitleId: 'Jebakan utama',
+    defaultTitleTr: 'Ana tuzak',
+    defaultTitlePl: 'Główna pułapka',
     color: (t) => t.wrong,
   },
   mechanic: {
@@ -371,6 +483,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Как это работает',
     defaultTitleUK: 'Як це працює',
     defaultTitleES: '¿Cómo funciona esto?',
+    defaultTitlePtBr: 'Como isso funciona?',
+    defaultTitleVi: 'Cách hoạt động',
+    defaultTitleId: 'Cara kerjanya',
+    defaultTitleTr: 'Nasıl çalışır?',
+    defaultTitlePl: 'Jak to działa?',
     color: (t) => t.accent,
   },
   core_idea: {
@@ -378,6 +495,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Ключевая идея',
     defaultTitleUK: 'Ключова ідея',
     defaultTitleES: 'Idea clave',
+    defaultTitlePtBr: 'Ideia principal',
+    defaultTitleVi: 'Ý chính',
+    defaultTitleId: 'Ide utama',
+    defaultTitleTr: 'Ana fikir',
+    defaultTitlePl: 'Główna myśl',
     color: (t) => t.accent,
   },
   main_formula: {
@@ -385,6 +507,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Формула урока',
     defaultTitleUK: 'Формула уроку',
     defaultTitleES: 'Fórmula de la lección',
+    defaultTitlePtBr: 'Fórmula da lição',
+    defaultTitleVi: 'Công thức của bài học',
+    defaultTitleId: 'Rumus pelajaran',
+    defaultTitleTr: 'Ders formülü',
+    defaultTitlePl: 'Wzór lekcji',
     color: (t) => t.gold,
   },
   be_choice: {
@@ -392,6 +519,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Как выбрать форму',
     defaultTitleUK: 'Як обрати форму',
     defaultTitleES: 'Cómo elegir la forma',
+    defaultTitlePtBr: 'Como escolher a forma',
+    defaultTitleVi: 'Cách chọn dạng đúng',
+    defaultTitleId: 'Cara memilih bentuk',
+    defaultTitleTr: 'Biçim nasıl seçilir?',
+    defaultTitlePl: 'Jak wybrać formę',
     color: (t) => t.correct,
   },
   description_logic: {
@@ -399,6 +531,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Что идёт после глагола',
     defaultTitleUK: 'Що йде після дієслова',
     defaultTitleES: 'Qué va después del verbo',
+    defaultTitlePtBr: 'O que vem depois do verbo',
+    defaultTitleVi: 'Đi sau động từ là gì',
+    defaultTitleId: 'Apa yang datang setelah kata kerja',
+    defaultTitleTr: 'Fiilden sonra ne gelir?',
+    defaultTitlePl: 'Co idzie po czasowniku',
     color: (t) => t.gold,
   },
   memory_tip: {
@@ -406,6 +543,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Приём сборки',
     defaultTitleUK: 'Прийом складання',
     defaultTitleES: 'Truco de construcción',
+    defaultTitlePtBr: 'Truque de montagem',
+    defaultTitleVi: 'Mẹo ghép câu',
+    defaultTitleId: 'Trik menyusun',
+    defaultTitleTr: 'Kurma ipucu',
+    defaultTitlePl: 'Sposób składania',
     color: (t) => t.gold,
   },
   negative_formula: {
@@ -413,6 +555,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Отрицание',
     defaultTitleUK: 'Заперечення',
     defaultTitleES: 'Negación',
+    defaultTitlePtBr: 'Negação',
+    defaultTitleVi: 'Phủ định',
+    defaultTitleId: 'Negasi',
+    defaultTitleTr: 'Olumsuz',
+    defaultTitlePl: 'Przeczenie',
     color: (t) => t.wrong,
   },
   question_formula: {
@@ -420,6 +567,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Вопрос',
     defaultTitleUK: 'Питання',
     defaultTitleES: 'Pregunta',
+    defaultTitlePtBr: 'Pergunta',
+    defaultTitleVi: 'Câu hỏi',
+    defaultTitleId: 'Pertanyaan',
+    defaultTitleTr: 'Soru',
+    defaultTitlePl: 'Pytanie',
     color: (t) => t.accent,
   },
   after_be: {
@@ -427,6 +579,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Что идёт после To Be',
     defaultTitleUK: 'Що йде після To Be',
     defaultTitleES: 'Qué va después de To Be',
+    defaultTitlePtBr: 'O que vem depois de To Be',
+    defaultTitleVi: 'Đi sau To Be là gì',
+    defaultTitleId: 'Apa yang datang setelah To Be',
+    defaultTitleTr: 'To Be sonrasında ne gelir?',
+    defaultTitlePl: 'Co idzie po To Be',
     color: (t) => t.gold,
   },
   negative_questions: {
@@ -434,6 +591,11 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Вопросы с not',
     defaultTitleUK: 'Питання з not',
     defaultTitleES: 'Preguntas con not',
+    defaultTitlePtBr: 'Perguntas com not',
+    defaultTitleVi: 'Câu hỏi với not',
+    defaultTitleId: 'Pertanyaan dengan not',
+    defaultTitleTr: 'not ile sorular',
+    defaultTitlePl: 'Pytania z not',
     color: (t) => t.accent,
   },
   mistakes: {
@@ -441,9 +603,33 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleRU: 'Главные ошибки',
     defaultTitleUK: 'Головні помилки',
     defaultTitleES: 'Errores principales',
+    defaultTitlePtBr: 'Erros principais',
+    defaultTitleVi: 'Lỗi chính',
+    defaultTitleId: 'Kesalahan utama',
+    defaultTitleTr: 'Başlıca hatalar',
+    defaultTitlePl: 'Główne błędy',
     color: (t) => t.wrong,
   },
 };
+
+function defaultKindTitle(km: KindStyle, lang: Lang, studyTarget: StudyTargetLang): string {
+  const plannedTitles: Record<PlannedIntroLang, string> = {
+    'pt-BR': km.defaultTitlePtBr,
+    vi: km.defaultTitleVi,
+    id: km.defaultTitleId,
+    tr: km.defaultTitleTr,
+    pl: km.defaultTitlePl,
+  };
+  return isPlannedIntroLang(lang)
+    ? plannedTitles[lang]
+    : legacyIntroValue(
+      lang,
+      studyTarget,
+      km.defaultTitleRU,
+      km.defaultTitleUK,
+      km.defaultTitleES,
+    ) ?? km.defaultTitleRU;
+}
 
 function lessonLevelLabel(lessonId: number): 'A1' | 'A2' | 'B1' | 'B2' {
   if (lessonId <= 8) return 'A1';
@@ -470,6 +656,7 @@ interface IntroBlockCardProps {
   themeMode: any;
   f: any;
   onLayout: (index: number, y: number) => void;
+  onRevealComplete?: (index: number) => void;
 }
 
 function IntroBlockCard({
@@ -483,6 +670,7 @@ function IntroBlockCard({
   themeMode,
   f,
   onLayout,
+  onRevealComplete,
 }: IntroBlockCardProps) {
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(SLIDE_DISTANCE_PX)).current;
@@ -494,13 +682,10 @@ function IntroBlockCard({
   const accent = km.color(t);
   const isLight = themeMode === 'minimalLight';
 
-  const defaultTitle =
-    lang === 'uk' ? km.defaultTitleUK : spanishLessonUiStringsActive(lang, studyTarget) ? km.defaultTitleES : km.defaultTitleRU;
-  const localizedTitle =
-    lang === 'uk' ? data.titleUK : spanishLessonUiStringsActive(lang, studyTarget) ? data.titleES : data.titleRU;
+  const defaultTitle = defaultKindTitle(km, lang, studyTarget);
+  const localizedTitle = richTitle(data, lang, studyTarget);
   const title = localizedTitle ?? defaultTitle;
-  const text =
-    lang === 'uk' ? data.textUK : spanishLessonUiStringsActive(lang, studyTarget) ? (data.textES ?? data.textRU) : data.textRU;
+  const text = plainIntroText(data, lang, studyTarget);
   const rich = hasRichIntroLines(data);
   const lines = richIntroLines(data, lang, studyTarget);
   const subtitle = richSubtitle(data, lang, studyTarget);
@@ -511,7 +696,7 @@ function IntroBlockCard({
     // никаких пружин — иначе блок «прыгает» и кажется резким.
     // Лёгкий каскад: opacity стартует мгновенно, slide/scale — с микро-задержкой,
     // чтобы появление воспринималось не как «один взмах», а как мягкое всплытие.
-    Animated.parallel([
+    const reveal = Animated.parallel([
       Animated.timing(opacity, {
         toValue: 1,
         duration: FADE_DURATION_MS,
@@ -551,8 +736,12 @@ function IntroBlockCard({
           useNativeDriver: true,
         }),
       ]),
-    ]).start();
-  }, [visible, opacity, translateY, scale, iconPulse]);
+    ]);
+    reveal.start(({ finished }) => {
+      if (finished) onRevealComplete?.(index);
+    });
+    return () => reveal.stop();
+  }, [visible, index, opacity, translateY, scale, iconPulse, onRevealComplete]);
 
   const iconScale = iconPulse.interpolate({
     inputRange: [0, 1],
@@ -670,27 +859,18 @@ function IntroBlockCard({
                 const { primary, secondary } = richExample
                   ? {
                       primary: '',
-                      secondary:
-                        lang === 'uk'
-                          ? ex.uk
-                          : spanishLessonUiStringsActive(lang, studyTarget)
-                            ? ex.es
-                            : ex.ru,
+                      secondary: richExampleText(ex, lang, studyTarget),
                     }
                   : lessonIntroExampleLines(ex as LessonIntroExample, lang, studyTarget);
                 const label = richExample
-                  ? lang === 'uk'
-                    ? ex.labelUK
-                    : spanishLessonUiStringsActive(lang, studyTarget)
-                      ? ex.labelES
-                      : ex.labelRU
+                  ? isPlannedIntroLang(lang)
+                    ? plannedExampleMeta(ex, 'label', lang)
+                    : legacyExampleMeta(ex, 'label', lang, studyTarget)
                   : undefined;
                 const note = richExample
-                  ? lang === 'uk'
-                    ? ex.noteUK
-                    : spanishLessonUiStringsActive(lang, studyTarget)
-                      ? ex.noteES
-                      : ex.noteRU
+                  ? isPlannedIntroLang(lang)
+                    ? plannedExampleMeta(ex, 'note', lang)
+                    : legacyExampleMeta(ex, 'note', lang, studyTarget)
                   : undefined;
                 return (
                 <View key={i} style={[styles.exampleRow, i > 0 && { marginTop: 6 }]}>
@@ -726,7 +906,7 @@ function IntroBlockCard({
                     {secondary}
                   </Text>
                   {!!note && (
-                    <Text style={[styles.exampleTR, { color: t.gold, fontSize: f.caption, marginTop: 2 }]}>
+                    <Text style={[styles.exampleNote, { color: t.textMuted, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.35), marginTop: 3 }]}>
                       {note}
                     </Text>
                   )}
@@ -756,7 +936,9 @@ export default function LessonIntroScreens({
 
   const totalBlocks = introScreens.length;
   const [revealedCount, setRevealedCount] = useState(1); // первый блок виден сразу
+  const [settledRevealCount, setSettledRevealCount] = useState(0);
   const allRevealed = revealedCount >= totalBlocks;
+  const ctaReady = allRevealed && settledRevealCount >= totalBlocks;
 
   const fadeBtn = useRef(new Animated.Value(0)).current;
   const btnScale = useRef(new Animated.Value(0.85)).current;
@@ -774,6 +956,9 @@ export default function LessonIntroScreens({
 
   const handleBlockLayout = useCallback((index: number, y: number) => {
     blockYRef.current[index] = y;
+  }, []);
+  const handleBlockRevealComplete = useCallback((index: number) => {
+    setSettledRevealCount((current) => Math.max(current, index + 1));
   }, []);
 
   // Появление header + лёгкое «оживление» контейнера на mount — медленный, дорогой фейд
@@ -860,7 +1045,12 @@ export default function LessonIntroScreens({
 
   // CTA «Начать урок» — длинный плавный fade-in + долгий expo-out scale + breathing pulse
   useEffect(() => {
-    if (!allRevealed) return;
+    if (!ctaReady) {
+      fadeBtn.setValue(0);
+      btnScale.setValue(0.85);
+      btnPulse.setValue(1);
+      return;
+    }
     Animated.parallel([
       Animated.timing(fadeBtn, {
         toValue: 1,
@@ -894,7 +1084,7 @@ export default function LessonIntroScreens({
     );
     pulse.start();
     return () => pulse.stop();
-  }, [allRevealed, fadeBtn, btnScale, btnPulse]);
+  }, [ctaReady, fadeBtn, btnScale, btnPulse]);
 
   const handleTapAnywhere = () => {
     if (revealedCount < totalBlocks) {
@@ -953,11 +1143,6 @@ export default function LessonIntroScreens({
     tr: 'Devam etmek için dokun',
     pl: 'Dotknij, aby kontynuować',
   });
-
-  const ctaImage = INTRO_CTA_IMAGES[themeMode] ?? INTRO_CTA_IMAGES.minimalDark;
-  const ctaTextColor = INTRO_CTA_TEXT_COLORS[themeMode] ?? t.correctText;
-  const ctaIconBackground = INTRO_CTA_ICON_BACKGROUNDS[themeMode] ?? 'rgba(255,255,255,0.16)';
-  const ctaScrim = INTRO_CTA_SCRIMS[themeMode] ?? 'transparent';
 
   return (
     <ScreenGradient>
@@ -1050,6 +1235,7 @@ export default function LessonIntroScreens({
                   themeMode={themeMode}
                   f={f}
                   onLayout={handleBlockLayout}
+                  onRevealComplete={handleBlockRevealComplete}
                 />
               ))}
 
@@ -1084,12 +1270,12 @@ export default function LessonIntroScreens({
               {/* Доп. отступ снизу, чтобы под кнопкой CTA не упирался последний блок.
                   Растёт вместе с safe-area inset, чтобы на Android с 3-кнопочной навигацией
                   последняя карточка не оказывалась под CTA. */}
-              <View style={{ height: (allRevealed ? 175 : 130) + insets.bottom }} />
+              <View style={{ height: (ctaReady ? 175 : 130) + insets.bottom }} />
             </Pressable>
           </ScrollView>
         </Animated.View>
 
-        {allRevealed ? (
+        {ctaReady ? (
           <View
             pointerEvents="box-none"
             style={{
@@ -1106,7 +1292,7 @@ export default function LessonIntroScreens({
             bottom учитывает safe-area inset, иначе кнопка налезает на Android-навигацию
             (position:absolute в RN отсчитывается от padding-edge SafeAreaView). */}
         <Animated.View
-          pointerEvents={allRevealed ? 'auto' : 'none'}
+          pointerEvents={ctaReady ? 'auto' : 'none'}
           style={[
             styles.ctaWrap,
             {
@@ -1119,38 +1305,26 @@ export default function LessonIntroScreens({
           ]}
         >
           <Animated.View style={{ transform: [{ scale: btnPulse }] }}>
-            <TouchableOpacity
-              testID="lesson-intro-start"
-              accessibilityRole="button"
-              accessibilityLabel={startLabel}
-              activeOpacity={0.88}
-              onPress={handleStart}
-              style={[styles.ctaTouchable, { shadowColor: t.accent }]}
-            >
-              <ImageBackground
-                source={ctaImage}
-                resizeMode="stretch"
-                imageStyle={styles.ctaImage}
+            <TouchableOpacity testID="lesson-intro-start" accessibilityRole="button" accessibilityLabel={startLabel} activeOpacity={0.88} onPress={handleStart}>
+              <LinearGradient
+                colors={[`${t.accent}`, `${t.correct}`]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
                 style={[
                   styles.ctaBtn,
                   {
                     borderColor: t.borderHighlight,
+                    shadowColor: t.accent,
                   },
                 ]}
               >
-                <View pointerEvents="none" style={[styles.ctaScrim, { backgroundColor: ctaScrim }]} />
-                <Text
-                  numberOfLines={1}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.78}
-                  style={[styles.ctaText, { color: ctaTextColor, fontSize: f.bodyLg }]}
-                >
+                <Text style={[styles.ctaText, { color: t.correctText, fontSize: f.bodyLg }]}>
                   {startLabel}
                 </Text>
-                <View style={[styles.ctaIconWrap, { backgroundColor: ctaIconBackground }]}>
-                  <Ionicons name="arrow-forward" size={18} color={ctaTextColor} />
+                <View style={styles.ctaIconWrap}>
+                  <Ionicons name="arrow-forward" size={18} color={t.correctText} />
                 </View>
-              </ImageBackground>
+              </LinearGradient>
             </TouchableOpacity>
           </Animated.View>
         </Animated.View>
@@ -1256,6 +1430,16 @@ const styles = StyleSheet.create({
   },
   richLine: {
     borderRadius: 12,
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  richLineStripe: {
+    bottom: 0,
+    left: 0,
+    opacity: 0.9,
+    position: 'absolute',
+    top: 0,
+    width: 4,
   },
   richLineText: {
     fontWeight: '500',
@@ -1278,6 +1462,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontStyle: 'italic',
   },
+  exampleNote: {
+    fontStyle: 'normal',
+    fontWeight: '600',
+  },
   tapHintRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1298,13 +1486,6 @@ const styles = StyleSheet.create({
     right: 18,
     // bottom выставляется инлайн с учётом safe-area inset
   },
-  ctaTouchable: {
-    borderRadius: 999,
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.42,
-    shadowRadius: 16,
-    elevation: 10,
-  },
   ctaBtn: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1312,22 +1493,16 @@ const styles = StyleSheet.create({
     gap: 12,
     paddingVertical: 16,
     paddingHorizontal: 22,
-    minHeight: 60,
-    borderRadius: 999,
+    borderRadius: 18,
     borderWidth: 0.5,
-    overflow: 'hidden',
-  },
-  ctaImage: {
-    borderRadius: 999,
-  },
-  ctaScrim: {
-    ...StyleSheet.absoluteFillObject,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.45,
+    shadowRadius: 16,
+    elevation: 10,
   },
   ctaText: {
     fontWeight: '800',
     letterSpacing: 0.4,
-    flexShrink: 1,
-    textAlign: 'center',
   },
   ctaIconWrap: {
     width: 26,
@@ -1335,5 +1510,6 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.18)',
   },
 });

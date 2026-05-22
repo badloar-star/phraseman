@@ -1,5 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
+import {
+  flashcardsSavedKey,
+  storageStudyTarget,
+  type RuntimeStudyTarget,
+} from '../app/target_storage_keys';
+import type { StudyTarget } from '../app/study_target';
 
 export interface Flashcard {
   id: string;
@@ -7,6 +13,7 @@ export interface Flashcard {
   ru: string;
   uk: string;
   es?: string;
+  sourceLocales?: Record<string, string | undefined>;
   transcription?: string;
   source: 'lesson' | 'word' | 'verb' | 'dialog' | 'daily_phrase';
   sourceId?: string;
@@ -27,13 +34,14 @@ export interface Flashcard {
   usageNoteEs?: string;
   register?: string;
   level?: string;
+  studyTarget?: StudyTarget;
 }
 
 export const FLASHCARDS_KEY = 'flashcards_v1';
 
 /** In-memory list after first read or any save — avoids 50× AsyncStorage on vocabulary screen. */
-let cardsInMemory: Flashcard[] | null = null;
-let loadInFlight: Promise<Flashcard[]> | null = null;
+let cardsInMemoryByTarget: Partial<Record<StudyTarget, Flashcard[]>> = {};
+let loadInFlightByTarget: Partial<Record<StudyTarget, Promise<Flashcard[]>>> = {};
 
 /** All read-modify-write must run one at a time, or rapid taps drop cards (last save overwrote previous). */
 let writeQueue: Promise<unknown> = Promise.resolve();
@@ -63,56 +71,104 @@ function hasEnInCards(en: string, cards: Flashcard[]) {
   return cards.some(c => normalizeEn(c.en) === n);
 }
 
-export const loadFlashcards = async (): Promise<Flashcard[]> => {
-  if (cardsInMemory !== null) {
-    return cardsInMemory.map(c => ({ ...c }));
+const SAVED_FLASHCARD_CONTENT_REPAIRS: Record<string, Partial<Pick<Flashcard, 'ru' | 'uk' | 'es'>>> = {
+  shower: {
+    ru: 'Душ',
+    uk: 'Душ',
+    es: 'ducha',
+  },
+  'they cleaned their room last sunday': {
+    ru: 'Они убрали свою комнату в прошлое воскресенье',
+    uk: 'Вони прибрали свою кімнату минулої неділі',
+    es: 'Limpiaron su habitación el domingo pasado.',
+  },
+  'we cleaned up rooms yesterday': {
+    ru: 'Мы убрали комнаты вчера',
+    uk: 'Ми прибрали кімнати вчора',
+    es: 'Ayer limpiamos las habitaciones.',
+  },
+};
+
+export function repairSavedFlashcardContent(card: Flashcard): Flashcard {
+  const repair = SAVED_FLASHCARD_CONTENT_REPAIRS[normalizeEn(card.en)];
+  if (!repair) return card;
+  return {
+    ...card,
+    ru: repair.ru ?? card.ru,
+    uk: repair.uk ?? card.uk,
+    es: repair.es ?? card.es,
+  };
+}
+
+export const loadFlashcards = async (studyTarget?: RuntimeStudyTarget): Promise<Flashcard[]> => {
+  const target = cacheTarget(studyTarget);
+  const cached = cardsInMemoryByTarget[target];
+  if (cached !== undefined) {
+    return cached.map(c => ({ ...repairSavedFlashcardContent(c) }));
   }
-  if (!loadInFlight) {
-    loadInFlight = (async () => {
+  if (!loadInFlightByTarget[target]) {
+    loadInFlightByTarget[target] = (async () => {
       try {
-        const raw = await AsyncStorage.getItem(FLASHCARDS_KEY);
-        cardsInMemory = parseStored(raw);
-        return cardsInMemory;
+        const raw = await AsyncStorage.getItem(flashcardsSavedKey(target));
+        const parsed = parseStored(raw);
+        const repaired = parsed.map(repairSavedFlashcardContent);
+        cardsInMemoryByTarget[target] = repaired;
+        if (JSON.stringify(parsed) !== JSON.stringify(repaired)) {
+          await AsyncStorage.setItem(flashcardsSavedKey(target), JSON.stringify(repaired));
+        }
+        return cardsInMemoryByTarget[target] ?? [];
       } catch {
-        cardsInMemory = [];
-        return cardsInMemory;
+        cardsInMemoryByTarget[target] = [];
+        return cardsInMemoryByTarget[target] ?? [];
       } finally {
-        loadInFlight = null;
+        delete loadInFlightByTarget[target];
       }
     })();
   }
-  const base = await loadInFlight;
-  return base.map(c => ({ ...c }));
+  const base = await loadInFlightByTarget[target]!;
+  return base.map(c => ({ ...repairSavedFlashcardContent(c) }));
 };
 
-export const peekFlashcardsCache = (): Flashcard[] | null => {
-  if (cardsInMemory === null) return null;
-  return cardsInMemory.map(c => ({ ...c }));
+export const peekFlashcardsCache = (studyTarget?: RuntimeStudyTarget): Flashcard[] | null => {
+  const target = cacheTarget(studyTarget);
+  const cached = cardsInMemoryByTarget[target];
+  if (cached === undefined) return null;
+  return cached.map(c => ({ ...repairSavedFlashcardContent(c) }));
 };
 
-async function persistFlashcards(cards: Flashcard[]): Promise<void> {
+async function persistFlashcards(cards: Flashcard[], studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const target = cacheTarget(studyTarget);
   const snapshot = cards.map(c => ({ ...c }));
-  cardsInMemory = snapshot;
+  cardsInMemoryByTarget[target] = snapshot;
   try {
-    await AsyncStorage.setItem(FLASHCARDS_KEY, JSON.stringify(snapshot));
+    await AsyncStorage.setItem(flashcardsSavedKey(target), JSON.stringify(snapshot));
   } catch {
     // silently fail
   }
 }
 
-export const saveFlashcards = async (cards: Flashcard[]): Promise<void> => {
-  return withWriteLock(() => persistFlashcards(cards));
+export const saveFlashcards = async (
+  cards: Flashcard[],
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> => {
+  return withWriteLock(() => persistFlashcards(cards, studyTarget));
 };
 
 export const FREE_FLASHCARD_LIMIT = 20;
 
 export type AddFlashcardResult = 'added' | 'duplicate' | 'limit_reached';
 
+function cacheTarget(studyTarget?: RuntimeStudyTarget): StudyTarget {
+  return storageStudyTarget(studyTarget);
+}
+
 export const addFlashcard = async (
   card: Omit<Flashcard, 'id' | 'addedAt'>,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<AddFlashcardResult> => {
   return withWriteLock(async () => {
-    const cards = await loadFlashcards();
+    const target = cacheTarget(studyTarget);
+    const cards = await loadFlashcards(target);
     const normalizedEn = card.en.trim().toLowerCase();
     const duplicate = cards.some(c => c.en.trim().toLowerCase() === normalizedEn);
     if (duplicate) return 'duplicate';
@@ -121,49 +177,62 @@ export const addFlashcard = async (
     if (!isPremium && cards.length >= FREE_FLASHCARD_LIMIT) return 'limit_reached';
 
     const id = `${card.source}_${normalizedEn.replace(/\s+/g, '_').slice(0, 40)}_${Date.now()}`;
-    const newCard: Flashcard = { ...card, id, addedAt: Date.now() };
-    await persistFlashcards([...cards, newCard]);
+    const newCard: Flashcard = { ...card, id, addedAt: Date.now(), studyTarget: target };
+    await persistFlashcards([...cards, newCard], target);
     return 'added';
   });
 };
 
-export const removeFlashcard = async (id: string): Promise<void> => {
+export const removeFlashcard = async (id: string, studyTarget?: RuntimeStudyTarget): Promise<void> => {
   return withWriteLock(async () => {
-    const cards = await loadFlashcards();
-    await persistFlashcards(cards.filter(c => c.id !== id));
+    const target = cacheTarget(studyTarget);
+    const cards = await loadFlashcards(target);
+    await persistFlashcards(cards.filter(c => c.id !== id), target);
   });
 };
 
-export const removeFlashcardByEnglish = async (en: string): Promise<boolean> => {
+export const removeFlashcardByEnglish = async (
+  en: string,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<boolean> => {
   return withWriteLock(async () => {
-    const cards = await loadFlashcards();
+    const target = cacheTarget(studyTarget);
+    const cards = await loadFlashcards(target);
     const normalizedEn = en.trim().toLowerCase();
     const card = cards.find(c => c.en.trim().toLowerCase() === normalizedEn);
     if (!card) return false;
-    await persistFlashcards(cards.filter(c => c.id !== card.id));
+    await persistFlashcards(cards.filter(c => c.id !== card.id), target);
     return true;
   });
 };
 
 /** Sync — only correct after the cache is loaded. Before load, returns false. */
-export const isEnSavedInCacheSync = (en: string): boolean => {
-  if (cardsInMemory === null) return false;
-  return hasEnInCards(en, cardsInMemory);
+export const isEnSavedInCacheSync = (en: string, studyTarget?: RuntimeStudyTarget): boolean => {
+  const target = cacheTarget(studyTarget);
+  const cached = cardsInMemoryByTarget[target];
+  if (cached === undefined) return false;
+  return hasEnInCards(en, cached);
 };
 
-export const isFlashcardSaved = async (en: string): Promise<boolean> => {
-  if (cardsInMemory !== null) {
-    return hasEnInCards(en, cardsInMemory);
+export const isFlashcardSaved = async (
+  en: string,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<boolean> => {
+  const target = cacheTarget(studyTarget);
+  const cached = cardsInMemoryByTarget[target];
+  if (cached !== undefined) {
+    return hasEnInCards(en, cached);
   }
-  const cards = await loadFlashcards();
+  const cards = await loadFlashcards(target);
   return hasEnInCards(en, cards);
 };
 
-export const clearAllFlashcards = async (): Promise<void> => {
+export const clearAllFlashcards = async (studyTarget?: RuntimeStudyTarget): Promise<void> => {
   return withWriteLock(async () => {
-    cardsInMemory = [];
+    const target = cacheTarget(studyTarget);
+    cardsInMemoryByTarget[target] = [];
     try {
-      await AsyncStorage.removeItem(FLASHCARDS_KEY);
+      await AsyncStorage.removeItem(flashcardsSavedKey(target));
     } catch {
       // fail-soft
     }

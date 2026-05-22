@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": "gustav-local-cloud-decision-table-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-19T16:02:33.861Z",
+  "status": "HOLD",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/Users/maksymbabiev/Documents/phraseman/scripts/gustav_local_cloud_decision_table.ts",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "summary": {
+    "entries": 28,
+    "syncUnderTarget": 15,
+    "keepLocalTargetScoped": 7,
+    "coveredByExistingCloudPattern": 6,
+    "blockUnknown": 0,
+    "blockers": 22,
+    "highRisks": 6
+  },
+  "entries": [
+    {
+      "key": "lesson1_progress",
+      "action": "covered_by_existing_cloud_pattern",
+      "risk": "high",
+      "confidence": "medium",
+      "targetPath": "progress/targets/{studyTarget}/lesson${...}_progress",
+      "reason": "Literal lesson progress key is covered by the existing lesson progress cloud family.",
+      "requiredBeforeFrench": [
+        "Verify the cloud mapping expands this family under studyTarget.",
+        "Verify storage migration maps legacy values only to English target."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/lesson_complete.tsx",
+          "line": 554,
+          "operation": "get"
+        }
+      ]
+    },
+    {
+      "key": "lesson1_words",
+      "action": "covered_by_existing_cloud_pattern",
+      "risk": "high",
+      "confidence": "medium",
+      "targetPath": "progress/targets/{studyTarget}/lesson${...}_words",
+      "reason": "Literal lesson words key is covered by the existing lesson words cloud family.",
+      "requiredBeforeFrench": [
+        "Verify the cloud mapping expands this family under studyTarget.",
+        "Verify storage migration maps legacy values only to English target."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/lesson_menu.tsx",
+          "line": 348,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "level_exam_${...}_best_pct",
+      "action": "covered_by_existing_cloud_pattern",
+      "risk": "high",
+      "confidence": "medium",
+      "reason": "Dynamic level exam key family is represented in cloud sync by explicit A1/A2/B1/B2 keys.",
+      "requiredBeforeFrench": [
+        "Verify the cloud mapping expands this family under studyTarget.",
+        "Verify storage migration maps legacy values only to English target."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/_admin_settings_testers.tsx",
+          "line": 1008,
+          "operation": "multiSet"
+        },
+        {
+          "sourcePath": "app/_admin_settings_testers.tsx",
+          "line": 1487,
+          "operation": "multiRemove"
+        },
+        {
+          "sourcePath": "app/(tabs)/lessons.tsx",
+          "line": 293,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/lessons_tab_state.ts",
+          "line": 42,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/medal_utils.ts",
+          "line": 268,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/medal_utils.ts",
+          "line": 277,
+          "operation": "multiSet"
+        },
+        {
+          "sourcePath": "app/medal_utils.ts",
+          "line": 294,
+          "operation": "multiGet"
+        }
+      ]
+    },
+    {
+      "key": "level_exam_${...}_pass_count",
+      "action": "covered_by_existing_cloud_pattern",
+      "risk": "high",
+      "confidence": "medium",
+      "reason": "Dynamic level exam key family is represented in cloud sync by explicit A1/A2/B1/B2 keys.",
+      "requiredBeforeFrench": [
+        "Verify the cloud mapping expands this family under studyTarget.",
+        "Verify storage migration maps legacy values only to English target."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/_admin_settings_testers.tsx",
+          "line": 1008,
+          "operation": "multiSet"
+        },
+        {
+          "sourcePath": "app/_admin_settings_testers.tsx",
+          "line": 1487,
+          "operation": "multiRemove"
+        },
+        {
+          "sourcePath": "app/(tabs)/lessons.tsx",
+          "line": 294,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/lessons_tab_state.ts",
+          "line": 42,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/medal_utils.ts",
+          "line": 268,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/medal_utils.ts",
+          "line": 294,
+          "operation": "multiGet"
+        }
+      ]
+    },
+    {
+      "key": "level_exam_${...}_passed",
+      "action": "covered_by_existing_cloud_pattern",
+      "risk": "high",
+      "confidence": "medium",
+      "reason": "Dynamic level exam key family is represented in cloud sync by explicit A1/A2/B1/B2 keys.",
+      "requiredBeforeFrench": [
+        "Verify the cloud mapping expands this family under studyTarget.",
+        "Verify storage migration maps legacy values only to English target."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/_admin_settings_testers.tsx",
+          "line": 1008,
+          "operation": "multiSet"
+        },
+        {
+          "sourcePath": "app/_admin_settings_testers.tsx",
+          "line": 1487,
+          "operation": "multiRemove"
+        },
+        {
+          "sourcePath": "app/(tabs)/lessons.tsx",
+          "line": 292,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/lessons_tab_state.ts",
+          "line": 42,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/level_exam.tsx",
+          "line": 644,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "level_exam_${...}_pct",
+      "action": "covered_by_existing_cloud_pattern",
+      "risk": "high",
+      "confidence": "medium",
+      "reason": "Dynamic level exam key family is represented in cloud sync by explicit A1/A2/B1/B2 keys.",
+      "requiredBeforeFrench": [
+        "Verify the cloud mapping expands this family under studyTarget.",
+        "Verify storage migration maps legacy values only to English target."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/_admin_settings_testers.tsx",
+          "line": 1008,
+          "operation": "multiSet"
+        },
+        {
+          "sourcePath": "app/_admin_settings_testers.tsx",
+          "line": 1487,
+          "operation": "multiRemove"
+        },
+        {
+          "sourcePath": "app/(tabs)/lessons.tsx",
+          "line": 291,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/lessons_tab_state.ts",
+          "line": 42,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/level_exam.tsx",
+          "line": 643,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "lesson${...}_cellIndex",
+      "action": "keep_local_target_scoped",
+      "risk": "blocker",
+      "confidence": "high",
+      "localKeyShape": "lesson${...}_cellIndex_v2::{studyTarget}",
+      "reason": "Navigation/session/replay state should not roam across devices, but it must be isolated per study target.",
+      "requiredBeforeFrench": [
+        "Keep this state out of cloud sync by explicit allowlist decision.",
+        "Add target-scoped local key shape.",
+        "Verify switching studyTarget cannot resume another target session."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/_admin_settings_testers.tsx",
+          "line": 1008,
+          "operation": "multiSet"
+        },
+        {
+          "sourcePath": "app/lesson_screen_bootstrap.ts",
+          "line": 56,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/lesson_screen_bootstrap.ts",
+          "line": 74,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1150,
+          "operation": "constant"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1576,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1964,
+          "operation": "set"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 2111,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "lesson${...}_errorReplayOverride",
+      "action": "keep_local_target_scoped",
+      "risk": "blocker",
+      "confidence": "high",
+      "localKeyShape": "lesson${...}_errorReplayOverride_v2::{studyTarget}",
+      "reason": "Navigation/session/replay state should not roam across devices, but it must be isolated per study target.",
+      "requiredBeforeFrench": [
+        "Keep this state out of cloud sync by explicit allowlist decision.",
+        "Add target-scoped local key shape.",
+        "Verify switching studyTarget cannot resume another target session."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1154,
+          "operation": "constant"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1580,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1596,
+          "operation": "multiRemove"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1984,
+          "operation": "multiRemove"
+        }
+      ]
+    },
+    {
+      "key": "lesson${...}_errorReplayQueue",
+      "action": "keep_local_target_scoped",
+      "risk": "blocker",
+      "confidence": "high",
+      "localKeyShape": "lesson${...}_errorReplayQueue_v2::{studyTarget}",
+      "reason": "Navigation/session/replay state should not roam across devices, but it must be isolated per study target.",
+      "requiredBeforeFrench": [
+        "Keep this state out of cloud sync by explicit allowlist decision.",
+        "Add target-scoped local key shape.",
+        "Verify switching studyTarget cannot resume another target session."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1152,
+          "operation": "constant"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1257,
+          "operation": "multiSet"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1578,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1596,
+          "operation": "multiRemove"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1984,
+          "operation": "multiRemove"
+        }
+      ]
+    },
+    {
+      "key": "lesson${...}_errorReplaySince",
+      "action": "keep_local_target_scoped",
+      "risk": "blocker",
+      "confidence": "high",
+      "localKeyShape": "lesson${...}_errorReplaySince_v2::{studyTarget}",
+      "reason": "Navigation/session/replay state should not roam across devices, but it must be isolated per study target.",
+      "requiredBeforeFrench": [
+        "Keep this state out of cloud sync by explicit allowlist decision.",
+        "Add target-scoped local key shape.",
+        "Verify switching studyTarget cannot resume another target session."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1153,
+          "operation": "constant"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1579,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1596,
+          "operation": "multiRemove"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1984,
+          "operation": "multiRemove"
+        }
+      ]
+    },
+    {
+      "key": "lesson${...}_phraseOrder",
+      "action": "keep_local_target_scoped",
+      "risk": "blocker",
+      "confidence": "high",
+      "localKeyShape": "lesson${...}_phraseOrder_v2::{studyTarget}",
+      "reason": "Navigation/session/replay state should not roam across devices, but it must be isolated per study target.",
+      "requiredBeforeFrench": [
+        "Keep this state out of cloud sync by explicit allowlist decision.",
+        "Add target-scoped local key shape.",
+        "Verify switching studyTarget cannot resume another target session."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/lesson_screen_bootstrap.ts",
+          "line": 56,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/lesson_screen_bootstrap.ts",
+          "line": 74,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1151,
+          "operation": "constant"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1577,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1677,
+          "operation": "set"
+        },
+        {
+          "sourcePath": "app/lesson1.tsx",
+          "line": 1981,
+          "operation": "remove"
+        }
+      ]
+    },
+    {
+      "key": "open_diagnostic",
+      "action": "keep_local_target_scoped",
+      "risk": "blocker",
+      "confidence": "high",
+      "localKeyShape": "open_diagnostic_v2::{studyTarget}",
+      "reason": "Navigation/session/replay state should not roam across devices, but it must be isolated per study target.",
+      "requiredBeforeFrench": [
+        "Keep this state out of cloud sync by explicit allowlist decision.",
+        "Add target-scoped local key shape.",
+        "Verify switching studyTarget cannot resume another target session."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/diagnostic_test.tsx",
+          "line": 1086,
+          "operation": "remove"
+        }
+      ]
+    },
+    {
+      "key": "quiz_nav_level",
+      "action": "keep_local_target_scoped",
+      "risk": "blocker",
+      "confidence": "high",
+      "localKeyShape": "quiz_nav_level_v2::{studyTarget}",
+      "reason": "Navigation/session/replay state should not roam across devices, but it must be isolated per study target.",
+      "requiredBeforeFrench": [
+        "Keep this state out of cloud sync by explicit allowlist decision.",
+        "Add target-scoped local key shape.",
+        "Verify switching studyTarget cannot resume another target session."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/(tabs)/quizzes.tsx",
+          "line": 1893,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/(tabs)/quizzes.tsx",
+          "line": 1899,
+          "operation": "remove"
+        },
+        {
+          "sourcePath": "app/(tabs)/quizzes.tsx",
+          "line": 1904,
+          "operation": "remove"
+        },
+        {
+          "sourcePath": "app/(tabs)/quizzes.tsx",
+          "line": 1910,
+          "operation": "remove"
+        },
+        {
+          "sourcePath": "app/(tabs)/quizzes.tsx",
+          "line": 1922,
+          "operation": "remove"
+        },
+        {
+          "sourcePath": "app/(tabs)/quizzes.tsx",
+          "line": 1927,
+          "operation": "remove"
+        },
+        {
+          "sourcePath": "app/daily_tasks_screen.tsx",
+          "line": 1992,
+          "operation": "set"
+        },
+        {
+          "sourcePath": "app/daily_tasks_screen.tsx",
+          "line": 1997,
+          "operation": "set"
+        },
+        {
+          "sourcePath": "app/daily_tasks_screen.tsx",
+          "line": 2001,
+          "operation": "set"
+        },
+        {
+          "sourcePath": "app/daily_tasks_screen.tsx",
+          "line": 2005,
+          "operation": "set"
+        },
+        {
+          "sourcePath": "app/daily_tasks_screen.tsx",
+          "line": 2009,
+          "operation": "set"
+        },
+        {
+          "sourcePath": "app/quizzes.tsx",
+          "line": 1526,
+          "operation": "get"
+        }
+      ]
+    },
+    {
+      "key": "achievement_daily_phrase_read_count",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/achievement_daily_phrase_read_count",
+      "localKeyShape": "achievement_daily_phrase_read_count_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/achievements_screen.tsx",
+          "line": 170,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1300,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1677,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "achievement_daily_phrase_save_count",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/achievement_daily_phrase_save_count",
+      "localKeyShape": "achievement_daily_phrase_save_count_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/achievements_screen.tsx",
+          "line": 171,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1302,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1682,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "achievement_lesson_${...}_perfect_passes_v1",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/achievement_lesson_${...}_perfect_passes_v1",
+      "localKeyShape": "achievement_lesson_${...}_perfect_passes_v1_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/achievements_screen.tsx",
+          "line": 224,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1094,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1104,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1120,
+          "operation": "multiGet"
+        }
+      ]
+    },
+    {
+      "key": "achievement_quiz_hard_perfect_count",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/achievement_quiz_hard_perfect_count",
+      "localKeyShape": "achievement_quiz_hard_perfect_count_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/achievements_screen.tsx",
+          "line": 165,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1281,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1560,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "achievement_quiz_perfect_levels_today_v1",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/achievement_quiz_perfect_levels_today_v1",
+      "localKeyShape": "achievement_quiz_perfect_levels_today_v1_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1536,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1546,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "achievement_quiz_perfect_streak_v1",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/achievement_quiz_perfect_streak_v1",
+      "localKeyShape": "achievement_quiz_perfect_streak_v1_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/achievements_screen.tsx",
+          "line": 166,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1550,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "achievement_quiz_total_count",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/achievement_quiz_total_count",
+      "localKeyShape": "achievement_quiz_total_count_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/(tabs)/quizzes.tsx",
+          "line": 748,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/(tabs)/quizzes.tsx",
+          "line": 750,
+          "operation": "set"
+        },
+        {
+          "sourcePath": "app/achievements_screen.tsx",
+          "line": 163,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1270,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/quizzes.tsx",
+          "line": 646,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/quizzes.tsx",
+          "line": 648,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "achievement_trainer_perfect_session_count",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/achievement_trainer_perfect_session_count",
+      "localKeyShape": "achievement_trainer_perfect_session_count_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/achievements_screen.tsx",
+          "line": 181,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1346,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1864,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "lesson${...}_bonus_granted",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/lesson${...}_bonus_granted",
+      "localKeyShape": "lesson${...}_bonus_granted_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/lesson_complete.tsx",
+          "line": 450,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/lesson_complete.tsx",
+          "line": 472,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "lesson${...}_irregular_shards_granted",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/lesson${...}_irregular_shards_granted",
+      "localKeyShape": "lesson${...}_irregular_shards_granted_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/lesson_irregular_verbs.tsx",
+          "line": 358,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/lesson_irregular_verbs.tsx",
+          "line": 361,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "lesson${...}_preposition_progress",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/lesson${...}_preposition_progress",
+      "localKeyShape": "lesson${...}_preposition_progress_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/lesson_menu.tsx",
+          "line": 133,
+          "operation": "multiGet"
+        },
+        {
+          "sourcePath": "app/lesson_menu.tsx",
+          "line": 366,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/preposition_drill.tsx",
+          "line": 158,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/preposition_drill.tsx",
+          "line": 185,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "mistake_log_v1",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/mistake_log_v1",
+      "localKeyShape": "mistake_log_v1_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/mistake_log.ts",
+          "line": 18,
+          "operation": "constant"
+        },
+        {
+          "sourcePath": "app/mistake_log.ts",
+          "line": 150,
+          "operation": "set"
+        },
+        {
+          "sourcePath": "app/mistake_log.ts",
+          "line": 165,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/mistake_log.ts",
+          "line": 175,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/mistake_log.ts",
+          "line": 230,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/mistake_log.ts",
+          "line": 454,
+          "operation": "remove"
+        }
+      ]
+    },
+    {
+      "key": "prep_drill_perfect_${...}",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/prep_drill_perfect_${...}",
+      "localKeyShape": "prep_drill_perfect_${...}_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/preposition_drill.tsx",
+          "line": 200,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/preposition_drill.tsx",
+          "line": 206,
+          "operation": "set"
+        }
+      ]
+    },
+    {
+      "key": "quiz_hard_count",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/quiz_hard_count",
+      "localKeyShape": "quiz_hard_count_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/_admin_settings_testers.tsx",
+          "line": 1487,
+          "operation": "multiRemove"
+        },
+        {
+          "sourcePath": "app/achievements_screen.tsx",
+          "line": 164,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1276,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1554,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/achievements.ts",
+          "line": 1555,
+          "operation": "set"
+        },
+        {
+          "sourcePath": "app/lifetime_profile_stats.ts",
+          "line": 59,
+          "operation": "get"
+        }
+      ]
+    },
+    {
+      "key": "trainer_store_v1",
+      "action": "sync_under_target",
+      "risk": "blocker",
+      "confidence": "high",
+      "targetPath": "progress/targets/{studyTarget}/trainer_store_v1",
+      "localKeyShape": "trainer_store_v1_v2::{studyTarget}",
+      "reason": "Target-sensitive progress, practice, reward idempotency or achievement counter must not remain flat/local-only without a reviewed decision.",
+      "requiredBeforeFrench": [
+        "Add target-scoped local key shape.",
+        "Add target-scoped cloud mapping or explicit server-side idempotency.",
+        "Map legacy flat values to English only.",
+        "Add target switch and cloud restore tests."
+      ],
+      "evidence": [
+        {
+          "sourcePath": "app/trainer_store.ts",
+          "line": 22,
+          "operation": "constant"
+        },
+        {
+          "sourcePath": "app/trainer_store.ts",
+          "line": 126,
+          "operation": "get"
+        },
+        {
+          "sourcePath": "app/trainer_store.ts",
+          "line": 135,
+          "operation": "set"
+        },
+        {
+          "sourcePath": "app/trainer_store.ts",
+          "line": 591,
+          "operation": "remove"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "This table resolves target-sensitive local keys that were absent from cloud mapping comparison.",
+    "covered_by_existing_cloud_pattern means the missing entry is a literal or dynamic family already represented by a broader cloud mapping.",
+    "French generation remains blocked while sync_under_target and keep_local_target_scoped keys do not have implemented target namespaces and tests."
+  ]
+}

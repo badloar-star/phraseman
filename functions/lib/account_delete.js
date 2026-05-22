@@ -35,6 +35,8 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.__accountDeleteTestHooks = exports.accountDeleteMine = void 0;
 exports.accountDeleteQueryPlan = accountDeleteQueryPlan;
+exports.accountDeleteCollectionGroupPlan = accountDeleteCollectionGroupPlan;
+exports.accountDeleteCollectionGroupDocumentIdPlan = accountDeleteCollectionGroupDocumentIdPlan;
 const admin = __importStar(require("firebase-admin"));
 const crypto_1 = require("crypto");
 const https_1 = require("firebase-functions/v2/https");
@@ -62,6 +64,8 @@ const FIELD_QUERY_SPECS = [
     { collection: 'arena_profiles', field: 'mirrorStableId', values: 'stable' },
     { collection: 'arena_profiles', field: 'userId', values: 'both' },
     { collection: 'matchmaking_queue', field: 'userId', values: 'auth' },
+    { collection: 'arena_rooms', field: 'hostId', values: 'auth' },
+    { collection: 'arena_rooms', field: 'guestId', values: 'auth' },
     { collection: 'arena_sessions', field: 'playerIds', values: 'both', op: 'array-contains' },
     { collection: 'session_players', field: 'playerId', values: 'both' },
     { collection: 'arena_session_results', field: 'userId', values: 'both' },
@@ -85,10 +89,13 @@ const FIELD_QUERY_SPECS = [
     { collection: 'arena_hill_thrones', field: 'championUid', values: 'stable' },
     { collection: 'arena_hill_thrones', field: 'championAuthUid', values: 'auth' },
     { collection: 'arena_club_contributions', field: 'arenaUid', values: 'auth' },
+    { collection: 'arena_club_contributions', field: 'stableUid', values: 'stable' },
     { collection: 'league_chat_messages', field: 'authorUid', values: 'stable' },
     { collection: 'league_chat_messages', field: 'authUid', values: 'auth' },
+    { collection: 'league_chat_messages', field: 'authorAuthUid', values: 'auth' },
     { collection: 'league_chat_moderation_queue', field: 'authorUid', values: 'stable' },
     { collection: 'league_chat_moderation_queue', field: 'authUid', values: 'auth' },
+    { collection: 'league_chat_moderation_queue', field: 'authorAuthUid', values: 'auth' },
     { collection: 'league_chat_reports', field: 'authorUid', values: 'stable' },
     { collection: 'league_chat_reports', field: 'reporterUid', values: 'stable' },
     { collection: 'league_chat_reports', field: 'reporterAuthUid', values: 'auth' },
@@ -111,6 +118,9 @@ const FIELD_QUERY_SPECS = [
     { collection: 'friend_code_index', field: 'ownerStableId', values: 'stable' },
     { collection: 'app_activity', field: 'uid', values: 'stable' },
     { collection: 'app_errors', field: 'uid', values: 'stable' },
+    { collection: 'error_reports', field: 'uid', values: 'stable' },
+    { collection: 'review_promo_claims', field: 'uid', values: 'stable' },
+    { collection: 'vip_survey_responses', field: 'uid', values: 'stable' },
     { collection: 'subscription_cancel_surveys', field: 'uid', values: 'stable' },
     { collection: 'revenuecat_premium_events', field: 'uid', values: 'both' },
     { collection: 'revenuecat_premium_events', field: 'candidates', values: 'both', op: 'array-contains' },
@@ -119,6 +129,28 @@ const FIELD_QUERY_SPECS = [
     { collection: 'league_chest_claims', field: 'uid', values: 'stable' },
     { collection: 'league_chest_claims', field: 'authUid', values: 'auth' },
     { collection: 'league_crowns', field: 'uid', values: 'stable' },
+    { collection: 'daily_phrase_saves', field: 'uid', values: 'stable' },
+    { collection: 'daily_phrase_saves', field: 'authUid', values: 'auth' },
+];
+const COLLECTION_GROUP_QUERY_SPECS = [
+    { collectionGroup: 'messages', field: 'authorUid', values: 'both' },
+    { collectionGroup: 'messages', field: 'authorStableUid', values: 'both' },
+    { collectionGroup: 'reactions', field: 'userId', values: 'stable' },
+    { collectionGroup: 'poll_votes', field: 'userId', values: 'stable' },
+    { collectionGroup: 'activity_likes_received', field: 'fromUid', values: 'stable' },
+    { collectionGroup: 'friend_activity_like_daily_limits', field: 'targetUid', values: 'stable' },
+    { collectionGroup: 'friend_gifts_received', field: 'fromUid', values: 'stable' },
+    { collectionGroup: 'friend_gifts_sent', field: 'toUid', values: 'stable' },
+    { collectionGroup: 'friend_gift_history', field: 'peerUid', values: 'stable' },
+    { collectionGroup: 'shard_rewards', field: 'fromUid', values: 'stable' },
+    { collectionGroup: 'shard_log', field: 'targetUid', values: 'stable' },
+    { collectionGroup: 'my_events', field: 'payload.fromUid', values: 'stable' },
+    { collectionGroup: 'my_events', field: 'payload.targetUid', values: 'stable' },
+    { collectionGroup: 'boosts', field: 'activatedBy', values: 'stable' },
+];
+const COLLECTION_GROUP_DOCUMENT_ID_SPECS = [
+    { collectionGroup: 'friends', values: 'both' },
+    { collectionGroup: 'friend_requests', values: 'both' },
 ];
 function cleanId(value) {
     return String(value ?? '').trim().slice(0, MAX_ID_LEN);
@@ -135,6 +167,24 @@ function accountDeleteQueryPlan(stableUid, authUid) {
     for (const spec of FIELD_QUERY_SPECS) {
         for (const value of queryValues(spec, stableUid, authUid)) {
             out.push({ ...spec, value, op: spec.op ?? '==' });
+        }
+    }
+    return out;
+}
+function accountDeleteCollectionGroupPlan(stableUid, authUid) {
+    const out = [];
+    for (const spec of COLLECTION_GROUP_QUERY_SPECS) {
+        for (const value of queryValues({ collection: spec.collectionGroup, field: spec.field, values: spec.values, op: spec.op }, stableUid, authUid)) {
+            out.push({ ...spec, value, op: spec.op ?? '==' });
+        }
+    }
+    return out;
+}
+function accountDeleteCollectionGroupDocumentIdPlan(stableUid, authUid) {
+    const out = [];
+    for (const spec of COLLECTION_GROUP_DOCUMENT_ID_SPECS) {
+        for (const value of queryValues({ collection: spec.collectionGroup, field: '__name__', values: spec.values }, stableUid, authUid)) {
+            out.push({ collectionGroup: spec.collectionGroup, value });
         }
     }
     return out;
@@ -260,22 +310,26 @@ async function resolveStableUidForDelete(db, authUid, requestedStableId) {
 }
 async function deleteDocTree(ctx, ref) {
     if (ctx.seen.has(ref.path))
-        return;
+        return false;
     ctx.seen.add(ref.path);
     await ctx.db.recursiveDelete(ref, ctx.writer);
+    return true;
 }
 async function deleteQuery(query, ctx, stats) {
     for (;;) {
-        const docsDeletedBefore = stats.docsDeleted;
         stats.queriesRun += 1;
         const snap = await query.limit(DELETE_BATCH_LIMIT).get();
         if (snap.empty)
             return;
+        let scheduledDeletes = 0;
         for (const doc of snap.docs) {
-            await deleteDocTree(ctx, doc.ref);
+            if (await deleteDocTree(ctx, doc.ref))
+                scheduledDeletes += 1;
         }
-        if (stats.docsDeleted === docsDeletedBefore) {
-            throw new https_1.HttpsError('internal', 'account_delete_no_progress');
+        if (scheduledDeletes === 0)
+            return;
+        if (typeof ctx.writer.flush === 'function') {
+            await ctx.writer.flush();
         }
     }
 }
@@ -287,7 +341,10 @@ async function deleteDirectDocs(db, stableUid, authUid, ctx) {
         'arena_profiles',
         'matchmaking_queue',
         'arena_room_chat_rate',
+        'league_chat_rate_limits',
+        'league_chat_report_rate_limits',
         'league_chat_bans',
+        'league_chat_members',
         'referral_owners',
         'referral_attributions',
         'auth_links',
@@ -297,7 +354,6 @@ async function deleteDirectDocs(db, stableUid, authUid, ctx) {
             await deleteDocTree(ctx, db.collection(collection).doc(id));
         }
     }
-    await deleteDocTree(ctx, db.collection('league_chat_members').doc(authUid));
 }
 async function deleteFieldMatches(db, stableUid, authUid, ctx, stats) {
     for (const spec of accountDeleteQueryPlan(stableUid, authUid)) {
@@ -312,10 +368,82 @@ async function deleteEmailMatches(db, emails, ctx, stats) {
     }
 }
 async function deleteCollectionGroupMatches(db, stableUid, authUid, ctx, stats) {
+    for (const spec of accountDeleteCollectionGroupPlan(stableUid, authUid)) {
+        const q = db.collectionGroup(spec.collectionGroup).where(spec.field, spec.op, spec.value);
+        await deleteQuery(q, ctx, stats);
+    }
+    for (const spec of accountDeleteCollectionGroupDocumentIdPlan(stableUid, authUid)) {
+        const q = db
+            .collectionGroup(spec.collectionGroup)
+            .where(admin.firestore.FieldPath.documentId(), '==', spec.value);
+        await deleteQuery(q, ctx, stats);
+    }
+}
+async function deleteArenaSessionsAndMatchHistory(db, stableUid, authUid, ctx, stats) {
     const values = Array.from(new Set([stableUid, authUid].filter(Boolean)));
     for (const value of values) {
-        await deleteQuery(db.collectionGroup('messages').where('authorUid', '==', value), ctx, stats);
-        await deleteQuery(db.collectionGroup('messages').where('authorStableUid', '==', value), ctx, stats);
+        for (;;) {
+            stats.queriesRun += 1;
+            const snap = await db
+                .collection('arena_sessions')
+                .where('playerIds', 'array-contains', value)
+                .limit(DELETE_BATCH_LIMIT)
+                .get();
+            if (snap.empty)
+                break;
+            let scheduledDeletes = 0;
+            for (const doc of snap.docs) {
+                await deleteQuery(db.collectionGroup('match_history').where('sessionId', '==', doc.id), ctx, stats);
+                if (await deleteDocTree(ctx, doc.ref))
+                    scheduledDeletes += 1;
+            }
+            if (scheduledDeletes === 0)
+                break;
+            if (typeof ctx.writer.flush === 'function') {
+                await ctx.writer.flush();
+            }
+        }
+    }
+}
+async function anonymizeActivityLikeStats(db, stableUid, stats) {
+    for (;;) {
+        stats.queriesRun += 1;
+        const snap = await db
+            .collectionGroup('activity_like_stats')
+            .where('lastFromUid', '==', stableUid)
+            .limit(DELETE_BATCH_LIMIT)
+            .get();
+        if (snap.empty)
+            return;
+        const batch = db.batch();
+        for (const doc of snap.docs) {
+            batch.update(doc.ref, {
+                lastFromUid: admin.firestore.FieldValue.delete(),
+                lastFromName: admin.firestore.FieldValue.delete(),
+                updatedAt: Date.now(),
+            });
+            stats.docsUpdated += 1;
+        }
+        await batch.commit();
+    }
+}
+async function removeFromFriendGiftDailyLimits(db, stableUid, stats) {
+    const recipientPath = new admin.firestore.FieldPath('recipients', stableUid);
+    for (;;) {
+        stats.queriesRun += 1;
+        const snap = await db
+            .collectionGroup('friend_gift_daily_limits')
+            .where(recipientPath, '>', 0)
+            .limit(DELETE_BATCH_LIMIT)
+            .get();
+        if (snap.empty)
+            return;
+        const batch = db.batch();
+        for (const doc of snap.docs) {
+            batch.update(doc.ref, recipientPath, admin.firestore.FieldValue.delete(), 'updatedAt', Date.now());
+            stats.docsUpdated += 1;
+        }
+        await batch.commit();
     }
 }
 async function removeFromLeagueGroups(db, stableUid, stats) {
@@ -350,6 +478,29 @@ async function removeFromLeagueGroups(db, stableUid, stats) {
         await batch.commit();
     }
 }
+async function removeFromArenaClubEvents(db, stableUid, stats) {
+    const path = new admin.firestore.FieldPath('members', stableUid, 'uid');
+    for (;;) {
+        stats.queriesRun += 1;
+        const snap = await db.collection('arena_club_events').where(path, '==', stableUid).limit(DELETE_BATCH_LIMIT).get();
+        if (snap.empty)
+            return;
+        const batch = db.batch();
+        let madeProgress = false;
+        for (const doc of snap.docs) {
+            const data = doc.data() || {};
+            const members = data.members && typeof data.members === 'object' ? data.members : {};
+            if (!Object.prototype.hasOwnProperty.call(members, stableUid))
+                continue;
+            batch.update(doc.ref, new admin.firestore.FieldPath('members', stableUid), admin.firestore.FieldValue.delete(), 'updatedAt', Date.now());
+            stats.docsUpdated += 1;
+            madeProgress = true;
+        }
+        if (!madeProgress)
+            return;
+        await batch.commit();
+    }
+}
 async function markAccountDeletionTombstone(db, stableUid, authUid, stats) {
     const stableHash = (0, crypto_1.createHash)('sha256').update(stableUid).digest('hex');
     const authHash = (0, crypto_1.createHash)('sha256').update(authUid).digest('hex');
@@ -373,10 +524,14 @@ exports.accountDeleteMine = (0, https_1.onCall)(ACCOUNT_DELETE_OPTIONS, async (r
     try {
         accountDeleteLog(ctx, 'start', stats, { emailCount: emails.length });
         await runDeleteStage(ctx, stats, 'direct_docs', () => deleteDirectDocs(db, stableUid, authUid, ctx));
+        await runDeleteStage(ctx, stats, 'arena_sessions_and_match_history', () => deleteArenaSessionsAndMatchHistory(db, stableUid, authUid, ctx, stats));
         await runDeleteStage(ctx, stats, 'field_matches', () => deleteFieldMatches(db, stableUid, authUid, ctx, stats));
         await runDeleteStage(ctx, stats, 'collection_group_matches', () => deleteCollectionGroupMatches(db, stableUid, authUid, ctx, stats));
         await runDeleteStage(ctx, stats, 'email_matches', () => deleteEmailMatches(db, emails, ctx, stats));
         await runDeleteStage(ctx, stats, 'league_groups', () => removeFromLeagueGroups(db, stableUid, stats));
+        await runDeleteStage(ctx, stats, 'arena_club_events', () => removeFromArenaClubEvents(db, stableUid, stats));
+        await runDeleteStage(ctx, stats, 'activity_like_stats', () => anonymizeActivityLikeStats(db, stableUid, stats));
+        await runDeleteStage(ctx, stats, 'friend_gift_daily_limits', () => removeFromFriendGiftDailyLimits(db, stableUid, stats));
         await closeDeleteWriter(ctx);
         await runDeleteStage(ctx, stats, 'tombstone', () => markAccountDeletionTombstone(db, stableUid, authUid, stats));
         try {
@@ -414,7 +569,11 @@ exports.accountDeleteMine = (0, https_1.onCall)(ACCOUNT_DELETE_OPTIONS, async (r
 });
 exports.__accountDeleteTestHooks = {
     accountDeleteQueryPlan,
+    accountDeleteCollectionGroupPlan,
+    accountDeleteCollectionGroupDocumentIdPlan,
     FIELD_QUERY_SPECS,
+    COLLECTION_GROUP_QUERY_SPECS,
+    COLLECTION_GROUP_DOCUMENT_ID_SPECS,
     resolveStableUidForDelete,
     deleteQuery,
     ACCOUNT_DELETE_OPTIONS,

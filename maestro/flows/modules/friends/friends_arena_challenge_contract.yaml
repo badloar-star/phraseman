@@ -6,12 +6,12 @@ appId: app.phraseman
 - waitForAnimationToEnd:
     timeout: 5000
 - tapOn:
-    point: "50%,92%"
+    point: "10%,95%"
 - waitForAnimationToEnd:
     timeout: 3000
 - runFlow: ../../_precondition.yaml
 - tapOn:
-    id: "tab-friends"
+    point: "70%,95%"
 - extendedWaitUntil:
     visible:
       id: "screen-friends"
@@ -19,7 +19,7 @@ appId: app.phraseman
 - assertVisible:
     id: "friends-row-.*"
 - tapOn:
-    id: "tab-arena"
+    point: "50%,95%"
 - extendedWaitUntil:
     visible:
       id: "screen-arena-lobby"

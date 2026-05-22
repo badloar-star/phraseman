@@ -13,7 +13,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import Animated, {
   Easing,
   interpolate,
@@ -28,6 +28,7 @@ import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import Purchases, { PurchasesPackage } from 'react-native-purchases';
 import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { useScreen } from '../hooks/use-screen';
 import { bundleLang, triLang } from '../constants/i18n';
 import { BRAND_SHARDS_ES } from '../constants/terms_es';
@@ -37,7 +38,7 @@ import ContentWrap from '../components/ContentWrap';
 import PressableScale from '../components/PressableScale';
 import GoldBevel from '../components/GoldBevel';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
-import { addShardsRaw, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
+import { addShardsRaw, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { SHARDS_PACKS, totalShardsFromPack, type ShardsPack } from './shards_shop_catalog';
 import {
   getWarmShardsPackagesMap,
@@ -48,7 +49,7 @@ import {
   type ShardsPriceCache,
 } from './shards_shop_cache';
 import {
-  fallbackBundledMarketPacks,
+  reserveBundledMarketPacks,
   loadAccessiblePackIds,
   loadMarketplacePacks,
   packCategoryIonIcon,
@@ -60,6 +61,7 @@ import {
 import { packTileImageForPack } from './flashcards/packMarketplaceIcons';
 import { getPackGiftTrial, getPackTrialHoursLeft } from './flashcards/pack_trial_gift';
 import { useCardPackShardPaywall } from './flashcards/useCardPackShardPaywall';
+import { flashcardsOfficialPacksAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
 import { DEV_IAP_BYPASS, IS_EXPO_GO } from './config';
 import { initRevenueCat } from './revenuecat_init';
 import { useEffectivePlatformOS } from './platform_ui_preview';
@@ -364,9 +366,10 @@ export default function ShardsShopScreen() {
   const isGoldTheme = themeMode === 'gold';
   const { width: winW, contentMaxW, insets } = useScreen();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const lb = bundleLang(lang);
-  const isUK = lang === 'uk';
-  const isES = lang === 'es';
+  const officialCardPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
+  const frenchCardPacksGateCopy = frenchFlashcardsGateCopy(lang);
   const effectiveOs = useEffectivePlatformOS();
   const shardsEsLc = BRAND_SHARDS_ES.toLowerCase();
   const storePaymentCopy = useMemo<{
@@ -378,38 +381,107 @@ export default function ShardsShopScreen() {
     if (effectiveOs === 'ios') {
       return {
         icon: 'logo-apple-appstore',
-        cardPurchase: isUK ? 'Покупка — в App Store' : isES ? 'Compra — App Store' : 'Покупка — в App Store',
-        footerPayment: isUK ? 'Оплата в App Store' : isES ? 'Pago en App Store' : 'Оплата в App Store',
-        notReady: isUK
-          ? 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в App Store Connect.'
-          : isES
-            ? 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en App Store Connect.'
-            : 'Магазин ещё не готов: проверь Offering «shards» в RevenueCat и активные товары в App Store Connect.',
+        cardPurchase: triLang(lang, {
+          ru: 'Покупка — в App Store',
+          uk: 'Покупка — в App Store',
+          es: 'Compra — App Store',
+          'pt-BR': 'Compra — App Store',
+          vi: 'Mua hàng — App Store',
+          id: 'Pembelian — App Store',
+          tr: 'Satın alma — App Store',
+          pl: 'Zakup — App Store',
+        }),
+        footerPayment: triLang(lang, {
+          ru: 'Оплата в App Store',
+          uk: 'Оплата в App Store',
+          es: 'Pago en App Store',
+          'pt-BR': 'Pagamento na App Store',
+          vi: 'Thanh toán trong App Store',
+          id: 'Pembayaran di App Store',
+          tr: 'App Store üzerinden ödeme',
+          pl: 'Płatność w App Store',
+        }),
+        notReady: triLang(lang, {
+          ru: 'Магазин ещё не готов: проверь Offering «shards» в RevenueCat и активные товары в App Store Connect.',
+          uk: 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в App Store Connect.',
+          es: 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en App Store Connect.',
+          'pt-BR': 'A loja ainda não está pronta: verifique o Offering «shards» no RevenueCat e os produtos ativos no App Store Connect.',
+          vi: 'Cửa hàng chưa sẵn sàng: kiểm tra Offering «shards» trong RevenueCat và các sản phẩm đang hoạt động trong App Store Connect.',
+          id: 'Toko belum siap: periksa Offering «shards» di RevenueCat dan produk aktif di App Store Connect.',
+          tr: 'Mağaza henüz hazır değil: RevenueCat içindeki «shards» Offering ve App Store Connect aktif ürünlerini kontrol et.',
+          pl: 'Sklep nie jest jeszcze gotowy: sprawdź Offering «shards» w RevenueCat oraz aktywne produkty w App Store Connect.',
+        }),
       };
     }
     if (effectiveOs === 'android') {
       return {
         icon: 'logo-google-playstore',
-        cardPurchase: isUK ? 'Покупка — у Google Play' : isES ? 'Compra — Google Play' : 'Покупка — в Google Play',
-        footerPayment: isUK ? 'Оплата в Google Play' : isES ? 'Pago en Google Play' : 'Оплата в Google Play',
-        notReady: isUK
-          ? 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в Google Play.'
-          : isES
-            ? 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en Google Play.'
-            : 'Магазин ещё не готов: проверь Offering «shards» в RevenueCat и активные товары в Google Play.',
+        cardPurchase: triLang(lang, {
+          ru: 'Покупка — в Google Play',
+          uk: 'Покупка — у Google Play',
+          es: 'Compra — Google Play',
+          'pt-BR': 'Compra — Google Play',
+          vi: 'Mua hàng — Google Play',
+          id: 'Pembelian — Google Play',
+          tr: 'Satın alma — Google Play',
+          pl: 'Zakup — Google Play',
+        }),
+        footerPayment: triLang(lang, {
+          ru: 'Оплата в Google Play',
+          uk: 'Оплата в Google Play',
+          es: 'Pago en Google Play',
+          'pt-BR': 'Pagamento no Google Play',
+          vi: 'Thanh toán trong Google Play',
+          id: 'Pembayaran di Google Play',
+          tr: 'Google Play üzerinden ödeme',
+          pl: 'Płatność w Google Play',
+        }),
+        notReady: triLang(lang, {
+          ru: 'Магазин ещё не готов: проверь Offering «shards» в RevenueCat и активные товары в Google Play.',
+          uk: 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в Google Play.',
+          es: 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en Google Play.',
+          'pt-BR': 'A loja ainda não está pronta: verifique o Offering «shards» no RevenueCat e os produtos ativos no Google Play.',
+          vi: 'Cửa hàng chưa sẵn sàng: kiểm tra Offering «shards» trong RevenueCat và các sản phẩm đang hoạt động trong Google Play.',
+          id: 'Toko belum siap: periksa Offering «shards» di RevenueCat dan produk aktif di Google Play.',
+          tr: 'Mağaza henüz hazır değil: RevenueCat içindeki «shards» Offering ve Google Play aktif ürünlerini kontrol et.',
+          pl: 'Sklep nie jest jeszcze gotowy: sprawdź Offering «shards» w RevenueCat oraz aktywne produkty w Google Play.',
+        }),
       };
     }
     return {
       icon: 'shield-checkmark',
-      cardPurchase: isUK ? 'Покупка — у магазині застосунків' : isES ? 'Compra — tienda de apps' : 'Покупка — в магазине приложений',
-      footerPayment: isUK ? 'Оплата в магазині застосунків' : isES ? 'Pago en la tienda de apps' : 'Оплата в магазине приложений',
-      notReady: isUK
-        ? 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в магазині застосунків.'
-        : isES
-          ? 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en la tienda de apps.'
-          : 'Магазин ещё не готов: проверь Offering «shards» в RevenueCat и активные товары в магазине приложений.',
+      cardPurchase: triLang(lang, {
+        ru: 'Покупка — в магазине приложений',
+        uk: 'Покупка — у магазині застосунків',
+        es: 'Compra — tienda de apps',
+        'pt-BR': 'Compra — loja de apps',
+        vi: 'Mua hàng — cửa hàng ứng dụng',
+        id: 'Pembelian — toko aplikasi',
+        tr: 'Satın alma — uygulama mağazası',
+        pl: 'Zakup — sklep z aplikacjami',
+      }),
+      footerPayment: triLang(lang, {
+        ru: 'Оплата в магазине приложений',
+        uk: 'Оплата в магазині застосунків',
+        es: 'Pago en la tienda de apps',
+        'pt-BR': 'Pagamento na loja de apps',
+        vi: 'Thanh toán trong cửa hàng ứng dụng',
+        id: 'Pembayaran di toko aplikasi',
+        tr: 'Uygulama mağazası üzerinden ödeme',
+        pl: 'Płatność w sklepie z aplikacjami',
+      }),
+      notReady: triLang(lang, {
+        ru: 'Магазин ещё не готов: проверь Offering «shards» в RevenueCat и активные товары в магазине приложений.',
+        uk: 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в магазині застосунків.',
+        es: 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en la tienda de apps.',
+        'pt-BR': 'A loja ainda não está pronta: verifique o Offering «shards» no RevenueCat e os produtos ativos na loja de apps.',
+        vi: 'Cửa hàng chưa sẵn sàng: kiểm tra Offering «shards» trong RevenueCat và các sản phẩm đang hoạt động trong cửa hàng ứng dụng.',
+        id: 'Toko belum siap: periksa Offering «shards» di RevenueCat dan produk aktif di toko aplikasi.',
+        tr: 'Mağaza henüz hazır değil: RevenueCat içindeki «shards» Offering ve uygulama mağazası aktif ürünlerini kontrol et.',
+        pl: 'Sklep nie jest jeszcze gotowy: sprawdź Offering «shards» w RevenueCat oraz aktywne produkty w sklepie z aplikacjami.',
+      }),
     };
-  }, [effectiveOs, isUK, isES]);
+  }, [effectiveOs, lang]);
   const params = useLocalSearchParams<{ need?: string; source?: string; tab?: string }>();
   /** Снимок нехватки из маршрута; сам по себе не обновляется после покупки. */
   const needFromRoute = useMemo(() => {
@@ -432,8 +504,8 @@ export default function ShardsShopScreen() {
     () => isDevStoreBypass || isCompleteShardsPackageMap(getWarmShardsPackagesMap() ?? undefined),
   );
   const [pricesFromDisk, setPricesFromDisk] = useState<ShardsPriceCache>(() => peekShardsPriceCacheSync());
-  const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(
-    () => peekWarmMarketplacePacks() ?? fallbackBundledMarketPacks(),
+  const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(() =>
+    officialCardPacksEnabled ? peekWarmMarketplacePacks() ?? reserveBundledMarketPacks() : [],
   );
   const [ownedPackIds, setOwnedPackIds] = useState<string[]>([]);
   /** true только при первом запросе списка наборов (вкладка «Карточки»); вкладка «Осколки» не ждёт этот сетевой round-trip. */
@@ -468,9 +540,9 @@ export default function ShardsShopScreen() {
   }, []);
 
   const refreshPackTrial = useCallback(async () => {
-    const tr = await getPackGiftTrial();
+    const tr = await getPackGiftTrial(studyTarget);
     setPackTrialHours(tr ? getPackTrialHoursLeft(tr.expiresAt) : null);
-  }, []);
+  }, [studyTarget]);
 
   useEffect(() => {
     const key = params.need == null || params.need === '' ? '' : String(params.need);
@@ -491,18 +563,27 @@ export default function ShardsShopScreen() {
   const lastCardMarketFetchRef = useRef<number>(0);
 
   const loadCardMarket = useCallback(async (opts?: { background?: boolean; force?: boolean }) => {
+    if (!officialCardPacksEnabled) {
+      setMarketPacks([]);
+      setOwnedPackIds([]);
+      marketPacksFingerprintRef.current = '';
+      ownedFingerprintRef.current = '';
+      cardMarketFetchedOnce.current = true;
+      setCardMarketLoading(false);
+      return;
+    }
     const now = Date.now();
     if (!opts?.force && now - lastCardMarketFetchRef.current < 30_000 && cardMarketFetchedOnce.current) return;
     lastCardMarketFetchRef.current = now;
 
-    const hasBundledCatalog = fallbackBundledMarketPacks().length > 0;
+    const hasBundledCatalog = reserveBundledMarketPacks().length > 0;
     /** Якщо в бандлі вже є каталог — не ховаємо список за спінером під час Firestore. */
     const background = opts?.background === true || hasBundledCatalog;
     if (!background) setCardMarketLoading(true);
     try {
-      const [packsRes, ownedRes] = await Promise.allSettled([loadMarketplacePacks(), loadAccessiblePackIds()]);
-      const packsRaw = packsRes.status === 'fulfilled' ? packsRes.value : fallbackBundledMarketPacks();
-      const packs = packsRaw.length > 0 ? packsRaw : fallbackBundledMarketPacks();
+      const [packsRes, ownedRes] = await Promise.allSettled([loadMarketplacePacks(), loadAccessiblePackIds(studyTarget)]);
+      const packsRaw = packsRes.status === 'fulfilled' ? packsRes.value : reserveBundledMarketPacks();
+      const packs = packsRaw.length > 0 ? packsRaw : reserveBundledMarketPacks();
       const owned = ownedRes.status === 'fulfilled' ? ownedRes.value : [];
 
       const nextFp = computeMarketFingerprint(packs);
@@ -517,16 +598,16 @@ export default function ShardsShopScreen() {
       }
       cardMarketFetchedOnce.current = true;
     } catch {
-      const fb = fallbackBundledMarketPacks();
-      const nextFp = computeMarketFingerprint(fb);
+      const reserve = reserveBundledMarketPacks();
+      const nextFp = computeMarketFingerprint(reserve);
       if (nextFp !== marketPacksFingerprintRef.current) {
         marketPacksFingerprintRef.current = nextFp;
-        setMarketPacks(fb);
+        setMarketPacks(reserve);
       }
     } finally {
       if (!background) setCardMarketLoading(false);
     }
-  }, []);
+  }, [officialCardPacksEnabled, studyTarget]);
 
   const syncAfterStoreAction = useCallback(async () => {
     await loadShardsFromCloud();
@@ -555,6 +636,7 @@ export default function ShardsShopScreen() {
   const { openPaywall: openCardPackPaywall, CardPackPaywallModalEl: cardPackPaywallModal } = useCardPackShardPaywall({
     balance,
     hasVoucher: hasActiveVoucher,
+    studyTarget,
     lang: lb,
     router,
     onAfterPurchase: syncAfterStoreAction,
@@ -670,12 +752,36 @@ export default function ShardsShopScreen() {
     };
   }, []);
 
-  const heroTitle = isUK ? 'Осколки знань' : isES ? `${BRAND_SHARDS_ES} de conocimiento` : 'Осколки знаний';
-  const heroSub = isUK
-    ? 'Один пакет — більше дій: енергія, бонуси, клуб і швидкі покупки в застосунку.'
-    : isES
-      ? 'Un paquete, más acciones: energía, bonificaciones, club y compras rápidas en la app.'
-      : 'Один пакет — больше действий: энергия, бонусы, клуб и быстрые покупки в приложении.';
+  const shardTerm = triLang(lang, {
+    ru: 'осколков',
+    uk: 'осколків',
+    es: shardsEsLc,
+    'pt-BR': 'fragmentos',
+    vi: 'mảnh',
+    id: 'shard',
+    tr: 'parça',
+    pl: 'odłamków',
+  });
+  const heroTitle = triLang(lang, {
+    ru: 'Осколки знаний',
+    uk: 'Осколки знань',
+    es: `${BRAND_SHARDS_ES} de conocimiento`,
+    'pt-BR': 'Fragmentos de conhecimento',
+    vi: 'Mảnh kiến thức',
+    id: 'Shard pengetahuan',
+    tr: 'Bilgi parçaları',
+    pl: 'Odłamki wiedzy',
+  });
+  const heroSub = triLang(lang, {
+    ru: 'Один пакет — больше действий: энергия, бонусы, клуб и быстрые покупки в приложении.',
+    uk: 'Один пакет — більше дій: енергія, бонуси, клуб і швидкі покупки в застосунку.',
+    es: 'Un paquete, más acciones: energía, bonificaciones, club y compras rápidas en la app.',
+    'pt-BR': 'Um pacote, mais ações: energia, bônus, clube e compras rápidas no app.',
+    vi: 'Một gói, thêm nhiều hành động: năng lượng, thưởng, câu lạc bộ và mua nhanh trong ứng dụng.',
+    id: 'Satu paket, lebih banyak aksi: energi, bonus, klub, dan pembelian cepat di aplikasi.',
+    tr: 'Tek paket, daha fazla aksiyon: enerji, bonuslar, kulüp ve uygulamada hızlı satın almalar.',
+    pl: 'Jeden pakiet, więcej akcji: energia, bonusy, klub i szybkie zakupy w aplikacji.',
+  });
 
   const remainingNeed = useMemo(() => {
     if (needFromRoute <= 0) return 0;
@@ -686,12 +792,17 @@ export default function ShardsShopScreen() {
 
   const needLine = useMemo(() => {
     if (remainingNeed <= 0) return null;
-    return isUK
-      ? `Не вистачає ще ${remainingNeed} осколків — обери пакет нижче.`
-      : isES
-        ? `Te faltan ${remainingNeed} ${shardsEsLc} — elige un paquete abajo.`
-        : `Не хватает ещё ${remainingNeed} осколков — выбери пакет ниже.`;
-  }, [isUK, isES, remainingNeed]);
+    return triLang(lang, {
+      ru: `Не хватает ещё ${remainingNeed} осколков — выбери пакет ниже.`,
+      uk: `Не вистачає ще ${remainingNeed} осколків — обери пакет нижче.`,
+      es: `Te faltan ${remainingNeed} ${shardsEsLc} — elige un paquete abajo.`,
+      'pt-BR': `Faltam mais ${remainingNeed} fragmentos — escolha um pacote abaixo.`,
+      vi: `Bạn còn thiếu ${remainingNeed} mảnh — hãy chọn một gói bên dưới.`,
+      id: `Masih kurang ${remainingNeed} shard — pilih paket di bawah.`,
+      tr: `${remainingNeed} parça daha gerekiyor — aşağıdan bir paket seç.`,
+      pl: `Brakuje jeszcze ${remainingNeed} odłamków — wybierz pakiet poniżej.`,
+    });
+  }, [lang, remainingNeed, shardsEsLc]);
 
   const paidListY = useMemo(
     () => paidListEnt.interpolate({ inputRange: [0, 1], outputRange: [20, 0] }),
@@ -717,6 +828,11 @@ export default function ShardsShopScreen() {
             messageRu: `DEV: начислено ${shards} осколков.`,
             messageUk: `DEV: нараховано ${shards} осколків.`,
             messageEs: `DEV: se añadieron ${shards} ${BRAND_SHARDS_ES.toLowerCase()}.`,
+            messagePtBr: `DEV: ${shards} fragmentos adicionados.`,
+            messageVi: `DEV: đã cộng ${shards} mảnh.`,
+            messageId: `DEV: ${shards} shard ditambahkan.`,
+            messageTr: `DEV: ${shards} parça eklendi.`,
+            messagePl: `DEV: dodano ${shards} odłamków.`,
           });
           return;
         }
@@ -727,6 +843,11 @@ export default function ShardsShopScreen() {
             messageRu: 'Платежи временно недоступны. Подождите несколько секунд и попробуйте снова.',
             messageUk: 'Платежі тимчасово недоступні. Зачекайте кілька секунд і спробуйте знову.',
             messageEs: 'Pagos no disponibles. Espera unos segundos e inténtalo de nuevo.',
+            messagePtBr: 'Pagamentos temporariamente indisponíveis. Aguarde alguns segundos e tente novamente.',
+            messageVi: 'Thanh toán tạm thời không khả dụng. Hãy chờ vài giây rồi thử lại.',
+            messageId: 'Pembayaran sementara tidak tersedia. Tunggu beberapa detik lalu coba lagi.',
+            messageTr: 'Ödemeler geçici olarak kullanılamıyor. Birkaç saniye bekleyip tekrar dene.',
+            messagePl: 'Płatności są tymczasowo niedostępne. Poczekaj kilka sekund i spróbuj ponownie.',
           });
           return;
         }
@@ -738,6 +859,11 @@ export default function ShardsShopScreen() {
             messageUk: 'Магазин недоступний. Перевірте Offering «shards» у RevenueCat.',
             messageEs:
               'Tienda no disponible. Revisa la oferta «shards» en RevenueCat.',
+            messagePtBr: 'Loja indisponível. Verifique o Offering «shards» no RevenueCat.',
+            messageVi: 'Cửa hàng không khả dụng. Hãy kiểm tra Offering «shards» trong RevenueCat.',
+            messageId: 'Toko tidak tersedia. Periksa Offering «shards» di RevenueCat.',
+            messageTr: 'Mağaza kullanılamıyor. RevenueCat içindeki «shards» Offering kontrol et.',
+            messagePl: 'Sklep niedostępny. Sprawdź Offering «shards» w RevenueCat.',
           });
           return;
         }
@@ -750,16 +876,31 @@ export default function ShardsShopScreen() {
           messageRu: 'Покупка подтверждена.',
           messageUk: 'Покупку підтверджено.',
           messageEs: 'Compra confirmada.',
+          messagePtBr: 'Compra confirmada.',
+          messageVi: 'Đã xác nhận giao dịch mua.',
+          messageId: 'Pembelian dikonfirmasi.',
+          messageTr: 'Satın alma onaylandı.',
+          messagePl: 'Zakup potwierdzony.',
         });
         const nextBalance = await waitForServerShardGrant(beforePurchaseBalance, shards);
         await syncAfterStoreAction();
-        emitAppEvent('shards_balance_updated', { balance: nextBalance });
+        emitAppEvent('shards_balance_updated', {
+          balance: nextBalance,
+          op: 'earn',
+          reason: 'shards_store_purchase',
+          eligibleAchievementBalance: await getShardAchievementEligibleBalance(nextBalance),
+        });
         if (nextBalance >= beforePurchaseBalance + shards) {
           emitAppEvent('action_toast', {
             type: 'success',
             messageRu: `Готово: +${shards} осколков`,
             messageUk: `Готово: +${shards} осколків`,
             messageEs: `Listo: +${shards} ${BRAND_SHARDS_ES.toLowerCase()}`,
+            messagePtBr: `Pronto: +${shards} fragmentos`,
+            messageVi: `Xong: +${shards} mảnh`,
+            messageId: `Selesai: +${shards} shard`,
+            messageTr: `Tamam: +${shards} parça`,
+            messagePl: `Gotowe: +${shards} odłamków`,
           });
         } else {
           emitAppEvent('action_toast', {
@@ -767,6 +908,11 @@ export default function ShardsShopScreen() {
             messageRu: 'Покупка принята. Осколки появятся после webhook RevenueCat.',
             messageUk: 'Покупку прийнято. Осколки з\'являться після webhook RevenueCat.',
             messageEs: 'Compra recibida. Los fragmentos aparecerán tras el webhook de RevenueCat.',
+            messagePtBr: 'Compra recebida. Os fragmentos aparecerão após o webhook do RevenueCat.',
+            messageVi: 'Đã nhận giao dịch mua. Mảnh sẽ xuất hiện sau webhook RevenueCat.',
+            messageId: 'Pembelian diterima. Shard akan muncul setelah webhook RevenueCat.',
+            messageTr: 'Satın alma alındı. Parçalar RevenueCat webhook sonrasında görünecek.',
+            messagePl: 'Zakup przyjęty. Odłamki pojawią się po webhooku RevenueCat.',
           });
         }
       } catch (e: any) {
@@ -776,6 +922,11 @@ export default function ShardsShopScreen() {
           messageRu: e?.message || 'Ошибка покупки. Попробуйте еще раз.',
           messageUk: e?.message || 'Помилка покупки. Спробуйте ще раз.',
           messageEs: e?.message || 'Error en la compra. Inténtalo de nuevo.',
+          messagePtBr: e?.message || 'Erro na compra. Tente novamente.',
+          messageVi: e?.message || 'Lỗi khi mua. Hãy thử lại.',
+          messageId: e?.message || 'Terjadi kesalahan pembelian. Coba lagi.',
+          messageTr: e?.message || 'Satın alma hatası. Tekrar dene.',
+          messagePl: e?.message || 'Błąd zakupu. Spróbuj ponownie.',
         });
       } finally {
         setProcessingPackId(null);
@@ -814,21 +965,31 @@ export default function ShardsShopScreen() {
     const canPurchase = isDevStoreBypass || !!pkg;
     const disabled = busy || anotherBusy || !canPurchase;
 
-    const shardsLabel = isUK ? 'осколків' : isES ? shardsEsLc : 'осколков';
+    const shardsLabel = shardTerm;
     /** Короткие строки + фиксированная высота блока — без «прыгающих» карточек из‑за переносов. */
     const subtitle =
       pack.id === 'starter'
-        ? isUK
-          ? 'Стартовий набір'
-          : isES
-            ? 'Paquete inicial'
-            : 'Стартовый набор'
+        ? triLang(lang, {
+          ru: 'Стартовый набор',
+          uk: 'Стартовий набір',
+          es: 'Paquete inicial',
+          'pt-BR': 'Pacote inicial',
+          vi: 'Gói khởi đầu',
+          id: 'Paket awal',
+          tr: 'Başlangıç paketi',
+          pl: 'Pakiet startowy',
+        })
         : savings != null
-          ? isUK
-            ? `Вигідніше ${totalShardsFromPack(SHARDS_PACKS[0])} шт. на ${savings}%`
-            : isES
-              ? `-${savings}% frente al pack de ${totalShardsFromPack(SHARDS_PACKS[0])} uds.`
-              : `Выгоднее ${totalShardsFromPack(SHARDS_PACKS[0])} шт. на ${savings}%`
+          ? triLang(lang, {
+            ru: `Выгоднее ${totalShardsFromPack(SHARDS_PACKS[0])} шт. на ${savings}%`,
+            uk: `Вигідніше ${totalShardsFromPack(SHARDS_PACKS[0])} шт. на ${savings}%`,
+            es: `-${savings}% frente al pack de ${totalShardsFromPack(SHARDS_PACKS[0])} uds.`,
+            'pt-BR': `-${savings}% em relação ao pacote de ${totalShardsFromPack(SHARDS_PACKS[0])} un.`,
+            vi: `Tiết kiệm hơn gói ${totalShardsFromPack(SHARDS_PACKS[0])} mảnh ${savings}%`,
+            id: `Lebih hemat ${savings}% dibanding paket ${totalShardsFromPack(SHARDS_PACKS[0])} shard`,
+            tr: `${totalShardsFromPack(SHARDS_PACKS[0])} parçalık pakete göre %${savings} daha avantajlı`,
+            pl: `O ${savings}% korzystniej niż pakiet ${totalShardsFromPack(SHARDS_PACKS[0])} szt.`,
+          })
           : '';
 
     const hasSubtitle = subtitle.trim().length > 0;
@@ -845,22 +1006,37 @@ export default function ShardsShopScreen() {
     const hasRevenuePackage = !!pkg;
     const hasStorePrice = !!(pkg?.product?.priceString || priceHint?.priceString);
     const ctaLabel = isDevStoreBypass
-        ? isUK
-          ? 'Купити (DEV)'
-          : isES
-            ? 'Comprar (DEV)'
-            : 'Купить (DEV)'
+        ? triLang(lang, {
+          ru: 'Купить (DEV)',
+          uk: 'Купити (DEV)',
+          es: 'Comprar (DEV)',
+          'pt-BR': 'Comprar (DEV)',
+          vi: 'Mua (DEV)',
+          id: 'Beli (DEV)',
+          tr: 'Satın al (DEV)',
+          pl: 'Kup (DEV)',
+        })
         : hasRevenuePackage || hasStorePrice
-          ? isUK
-            ? `Купити за ${priceLabel}`
-            : isES
-              ? `Comprar por ${priceLabel}`
-              : `Купить за ${priceLabel}`
-          : isUK
-            ? 'Недоступно'
-            : isES
-              ? 'No disponible'
-              : 'Недоступно';
+          ? triLang(lang, {
+            ru: `Купить за ${priceLabel}`,
+            uk: `Купити за ${priceLabel}`,
+            es: `Comprar por ${priceLabel}`,
+            'pt-BR': `Comprar por ${priceLabel}`,
+            vi: `Mua với ${priceLabel}`,
+            id: `Beli seharga ${priceLabel}`,
+            tr: `${priceLabel} ile satın al`,
+            pl: `Kup za ${priceLabel}`,
+          })
+          : triLang(lang, {
+            ru: 'Недоступно',
+            uk: 'Недоступно',
+            es: 'No disponible',
+            'pt-BR': 'Indisponível',
+            vi: 'Không khả dụng',
+            id: 'Tidak tersedia',
+            tr: 'Kullanılamıyor',
+            pl: 'Niedostępne',
+          });
 
     const ctaOnAccent = t.correctText;
     const accentSoft =
@@ -917,7 +1093,27 @@ export default function ShardsShopScreen() {
                   }}
                 >
                   <Text style={{ color: isBest ? '#1a1208' : ctaOnAccent, fontSize: 9, fontWeight: '900', letterSpacing: 0.4 }}>
-                    {isBest ? (isUK ? 'ВИГІДНО' : isES ? 'OFERTA' : 'ВЫГОДНО') : isUK ? 'ХІТ' : isES ? 'TOP' : 'ХИТ'}
+                    {isBest
+                      ? triLang(lang, {
+                        ru: 'ВЫГОДНО',
+                        uk: 'ВИГІДНО',
+                        es: 'OFERTA',
+                        'pt-BR': 'OFERTA',
+                        vi: 'HỜI',
+                        id: 'HEMAT',
+                        tr: 'AVANTAJLI',
+                        pl: 'OKAZJA',
+                      })
+                      : triLang(lang, {
+                        ru: 'ХИТ',
+                        uk: 'ХІТ',
+                        es: 'TOP',
+                        'pt-BR': 'TOP',
+                        vi: 'NỔI BẬT',
+                        id: 'TOP',
+                        tr: 'POPÜLER',
+                        pl: 'TOP',
+                      })}
                   </Text>
                 </HitBadgeShell>
               </View>
@@ -972,7 +1168,16 @@ export default function ShardsShopScreen() {
                       }}
                       numberOfLines={1}
                     >
-                      {isUK ? `+${pack.bonusShards} у подарунок` : isES ? `+${pack.bonusShards} de regalo` : `+${pack.bonusShards} в подарок`}
+                      {triLang(lang, {
+                        ru: `+${pack.bonusShards} в подарок`,
+                        uk: `+${pack.bonusShards} у подарунок`,
+                        es: `+${pack.bonusShards} de regalo`,
+                        'pt-BR': `+${pack.bonusShards} de presente`,
+                        vi: `Tặng +${pack.bonusShards}`,
+                        id: `Bonus +${pack.bonusShards}`,
+                        tr: `+${pack.bonusShards} hediye`,
+                        pl: `+${pack.bonusShards} w prezencie`,
+                      })}
                     </Text>
                   ) : null}
                   {hasSubtitle ? (
@@ -994,7 +1199,18 @@ export default function ShardsShopScreen() {
               </View>
 
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: hasSubtitle ? 8 : 6, gap: 8 }}>
-                <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700' }}>{isUK ? 'У магазині' : isES ? 'En la tienda' : 'В магазине'}</Text>
+                <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700' }}>
+                  {triLang(lang, {
+                    ru: 'В магазине',
+                    uk: 'У магазині',
+                    es: 'En la tienda',
+                    'pt-BR': 'Na loja',
+                    vi: 'Trong cửa hàng',
+                    id: 'Di toko',
+                    tr: 'Mağazada',
+                    pl: 'W sklepie',
+                  })}
+                </Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                   <Text style={{ color: t.textMuted, fontSize: f.numMd, fontWeight: '500', letterSpacing: 1 }}>—</Text>
                   <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }}>{priceLabel}</Text>
@@ -1058,7 +1274,16 @@ export default function ShardsShopScreen() {
             </PressableScale>
             <View style={{ flex: 1, alignItems: 'center', paddingHorizontal: 8 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '900', letterSpacing: 0.3 }} numberOfLines={1}>
-                {isUK ? 'Магазин' : isES ? 'Tienda' : 'Магазин'}
+                {triLang(lang, {
+                  ru: 'Магазин',
+                  uk: 'Магазин',
+                  es: 'Tienda',
+                  'pt-BR': 'Loja',
+                  vi: 'Cửa hàng',
+                  id: 'Toko',
+                  tr: 'Mağaza',
+                  pl: 'Sklep',
+                })}
               </Text>
             </View>
             <LinearGradient
@@ -1089,7 +1314,16 @@ export default function ShardsShopScreen() {
                 {/* Бейдж активного 48-год подарунка — лише на вкладці «Картки», бо тільки там його можна обміняти. */}
                 {hasActiveVoucher && shopTab === 'paid' && (
                   <Text style={{ color: t.gold, fontSize: 11, fontWeight: '800', marginLeft: 6 }} numberOfLines={1}>
-                    {lang === 'uk' ? `🎁 безкошт. ⏱${packTrialHours}год` : lang === 'es' ? `🎁 gratis ⏱${packTrialHours}h` : `🎁 беспл. ⏱${packTrialHours}ч`}
+                    {triLang(lang, {
+                      ru: `🎁 беспл. ⏱${packTrialHours}ч`,
+                      uk: `🎁 безкошт. ⏱${packTrialHours}год`,
+                      es: `🎁 gratis ⏱${packTrialHours}h`,
+                      'pt-BR': `🎁 grátis ⏱${packTrialHours}h`,
+                      vi: `🎁 miễn phí ⏱${packTrialHours}g`,
+                      id: `🎁 gratis ⏱${packTrialHours}j`,
+                      tr: `🎁 ücretsiz ⏱${packTrialHours}sa`,
+                      pl: `🎁 gratis ⏱${packTrialHours}godz.`,
+                    })}
                   </Text>
                 )}
               </View>
@@ -1109,14 +1343,26 @@ export default function ShardsShopScreen() {
               const active = shopTab === key;
               const label =
                 key === 'catalog'
-                  ? isES
-                    ? BRAND_SHARDS_ES
-                    : 'Осколки'
-                  : isUK
-                    ? 'Картки'
-                    : isES
-                      ? 'Tarjetas'
-                      : 'Карточки';
+                  ? triLang(lang, {
+                    ru: 'Осколки',
+                    uk: 'Осколки',
+                    es: BRAND_SHARDS_ES,
+                    'pt-BR': 'Fragmentos',
+                    vi: 'Mảnh',
+                    id: 'Shard',
+                    tr: 'Parçalar',
+                    pl: 'Odłamki',
+                  })
+                  : triLang(lang, {
+                    ru: 'Карточки',
+                    uk: 'Картки',
+                    es: 'Tarjetas',
+                    'pt-BR': 'Cartões',
+                    vi: 'Thẻ',
+                    id: 'Kartu',
+                    tr: 'Kartlar',
+                    pl: 'Fiszki',
+                  });
               return (
                 <View key={key} style={{ flex: 1, minWidth: 0, minHeight: 48, justifyContent: 'center' }}>
                   {/** Не flex:1 на Pressable — на Android ряд + stretch давали висоту ~0; ширина через батька flex:1 */}
@@ -1177,14 +1423,34 @@ export default function ShardsShopScreen() {
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 14 }}>
                   <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
                   <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}>
-                    {isUK ? 'Набори за осколки' : isES ? `Paquetes por ${shardsEsLc}` : 'Наборы за осколки'}
+                    {triLang(lang, {
+                      ru: 'Наборы за осколки',
+                      uk: 'Набори за осколки',
+                      es: `Paquetes por ${shardsEsLc}`,
+                      'pt-BR': 'Pacotes por fragmentos',
+                      vi: 'Gói đổi bằng mảnh',
+                      id: 'Paket dengan shard',
+                      tr: 'Parçalarla paketler',
+                      pl: 'Pakiety za odłamki',
+                    })}
                   </Text>
                   <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
                 </View>
 
                 {marketPacks.length === 0 ? (
                   <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center', marginBottom: 16 }}>
-                    {isUK ? 'Список наборів тимчасово недоступний.' : isES ? 'La lista de paquetes no está disponible.' : 'Список наборов временно недоступен.'}
+                    {!officialCardPacksEnabled
+                      ? frenchCardPacksGateCopy.body
+                        : triLang(lang, {
+                          ru: 'Список наборов временно недоступен.',
+                          uk: 'Список наборів тимчасово недоступний.',
+                          es: 'La lista de paquetes no está disponible.',
+                          'pt-BR': 'A lista de pacotes está temporariamente indisponível.',
+                          vi: 'Danh sách gói tạm thời không khả dụng.',
+                          id: 'Daftar paket sementara tidak tersedia.',
+                          tr: 'Paket listesi geçici olarak kullanılamıyor.',
+                          pl: 'Lista pakietów jest tymczasowo niedostępna.',
+                        })}
                   </Text>
                 ) : (
                   <RNAnim.View
@@ -1261,7 +1527,18 @@ export default function ShardsShopScreen() {
                                   <Image source={oskolokImageForPackShards(pack.priceShards)} style={{ width: 22, height: 22 }} contentFit="contain" />
                                 )}
                                 <Text style={{ color: voucherEligible ? t.gold : t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>
-                                  {voucherEligible ? (isUK ? 'безкошт.' : isES ? 'gratis' : 'беспл.') : pack.priceShards}
+                                  {voucherEligible
+                                    ? triLang(lang, {
+                                      ru: 'беспл.',
+                                      uk: 'безкошт.',
+                                      es: 'gratis',
+                                      'pt-BR': 'grátis',
+                                      vi: 'miễn phí',
+                                      id: 'gratis',
+                                      tr: 'ücretsiz',
+                                      pl: 'gratis',
+                                    })
+                                    : pack.priceShards}
                                 </Text>
                               </View>
                             </View>
@@ -1269,7 +1546,16 @@ export default function ShardsShopScreen() {
                               {desc}
                             </Text>
                             <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 6 }}>
-                              {pack.cardCount} {isUK ? 'карток' : isES ? 'tarjetas' : 'карточек'}
+                              {pack.cardCount} {triLang(lang, {
+                                ru: 'карточек',
+                                uk: 'карток',
+                                es: 'tarjetas',
+                                'pt-BR': 'cartões',
+                                vi: 'thẻ',
+                                id: 'kartu',
+                                tr: 'kart',
+                                pl: 'fiszek',
+                              })}
                             </Text>
                           </View>
                         </View>
@@ -1285,7 +1571,16 @@ export default function ShardsShopScreen() {
                             }}
                           >
                             <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '800' }}>
-                              {isUK ? 'Уже в картках' : isES ? 'Ya en Tarjetas' : 'Уже в карточках'}
+                              {triLang(lang, {
+                                ru: 'Уже в карточках',
+                                uk: 'Уже в картках',
+                                es: 'Ya en Tarjetas',
+                                'pt-BR': 'Já nos cartões',
+                                vi: 'Đã có trong thẻ',
+                                id: 'Sudah ada di Kartu',
+                                tr: 'Zaten Kartlarda',
+                                pl: 'Już w fiszkach',
+                              })}
                             </Text>
                           </View>
                         ) : (
@@ -1310,16 +1605,26 @@ export default function ShardsShopScreen() {
                                 busy={busy}
                                 label={
                                   voucherEligible
-                                    ? isUK
-                                      ? '🎁 Використати подарунок'
-                                      : isES
-                                        ? '🎁 Usar regalo'
-                                        : '🎁 Использовать подарок'
-                                    : isUK
-                                      ? `Купити за ${pack.priceShards} осколків`
-                                      : isES
-                                        ? `Comprar por ${pack.priceShards} ${shardsEsLc}`
-                                        : `Купить за ${pack.priceShards} осколков`
+                                    ? triLang(lang, {
+                                      ru: '🎁 Использовать подарок',
+                                      uk: '🎁 Використати подарунок',
+                                      es: '🎁 Usar regalo',
+                                      'pt-BR': '🎁 Usar presente',
+                                      vi: '🎁 Dùng quà tặng',
+                                      id: '🎁 Gunakan hadiah',
+                                      tr: '🎁 Hediyeyi kullan',
+                                      pl: '🎁 Użyj prezentu',
+                                    })
+                                    : triLang(lang, {
+                                      ru: `Купить за ${pack.priceShards} осколков`,
+                                      uk: `Купити за ${pack.priceShards} осколків`,
+                                      es: `Comprar por ${pack.priceShards} ${shardsEsLc}`,
+                                      'pt-BR': `Comprar por ${pack.priceShards} fragmentos`,
+                                      vi: `Mua với ${pack.priceShards} mảnh`,
+                                      id: `Beli dengan ${pack.priceShards} shard`,
+                                      tr: `${pack.priceShards} parça ile satın al`,
+                                      pl: `Kup za ${pack.priceShards} odłamków`,
+                                    })
                                 }
                                 useLockIcon={false}
                                 shadow={getVolumetricShadow(themeMode, t, 1)}
@@ -1431,7 +1736,16 @@ export default function ShardsShopScreen() {
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 14 }}>
               <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
               <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}>
-                {isUK ? 'Осколки (оплата)' : isES ? `${BRAND_SHARDS_ES} (pago)` : 'Осколки (оплата)'}
+                {triLang(lang, {
+                  ru: 'Осколки (оплата)',
+                  uk: 'Осколки (оплата)',
+                  es: `${BRAND_SHARDS_ES} (pago)`,
+                  'pt-BR': 'Fragmentos (pagamento)',
+                  vi: 'Mảnh (thanh toán)',
+                  id: 'Shard (pembayaran)',
+                  tr: 'Parçalar (ödeme)',
+                  pl: 'Odłamki (płatność)',
+                })}
               </Text>
               <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
             </View>

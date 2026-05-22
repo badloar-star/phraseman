@@ -5,21 +5,26 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
+const FUTURE_PC_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre Present Continuous para planos futuros ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về Present Continuous cho kế hoạch tương lai này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan Present Continuous untuk rencana masa depan ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu gelecek planları için Present Continuous açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie Present Continuous dla planów przyszłych nadal wymaga przeglądu po polsku.',
+};
+
 const tri = (
   ru: string,
   uk: string,
   es: string,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? FUTURE_PC_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'am/is/are + verb-ing',
@@ -47,30 +52,79 @@ const SMART_CONTRAST = [
 const MODEL = tri(
   'Present Continuous может говорить не только о действии прямо сейчас. Если рядом есть tomorrow, tonight, next week, on Monday или точное время, та же форма часто показывает уже договоренный план: I am meeting John tomorrow. Форма остается та же: am/is/are + действие с -ing.',
   'Present Continuous може говорити не тільки про дію прямо зараз. Якщо поруч є tomorrow, tonight, next week, on Monday або точний час, та сама форма часто показує вже домовлений план: I am meeting John tomorrow. Форма лишається та сама: am/is/are + дія з -ing.',
-  'Present Continuous can describe a future arrangement when a future time marker is present.',
+  'Present Continuous puede hablar no solo de una accion ahora. Si aparece tomorrow, tonight, next week, on Monday o una hora concreta, la misma forma suele mostrar un plan ya acordado: I am meeting John tomorrow. La forma sigue siendo am/is/are + -ing.',
+  {
+    'pt-BR': 'Present Continuous pode falar não só de uma ação acontecendo agora. Se aparecer tomorrow, tonight, next week, on Monday ou um horário exato, a mesma forma muitas vezes mostra um plano já combinado: I am meeting John tomorrow. A forma continua a mesma: am/is/are + verbo com -ing.',
+    vi: 'Present Continuous không chỉ nói về hành động đang xảy ra ngay bây giờ. Nếu có tomorrow, tonight, next week, on Monday hoặc một giờ cụ thể, cùng dạng này thường chỉ một kế hoạch đã được sắp xếp: I am meeting John tomorrow. Cấu trúc vẫn là am/is/are + động từ -ing.',
+    id: 'Present Continuous tidak hanya membicarakan tindakan yang sedang terjadi sekarang. Jika ada tomorrow, tonight, next week, on Monday, atau waktu yang jelas, bentuk yang sama sering menunjukkan rencana yang sudah diatur: I am meeting John tomorrow. Bentuknya tetap sama: am/is/are + kata kerja -ing.',
+    tr: 'Present Continuous yalnızca şu anda olan bir eylemi anlatmaz. Yanında tomorrow, tonight, next week, on Monday ya da kesin bir saat varsa, aynı yapı çoğu zaman önceden ayarlanmış bir planı gösterir: I am meeting John tomorrow. Biçim aynı kalır: am/is/are + -ing alan fiil.',
+    pl: 'Present Continuous może mówić nie tylko o czynności dziejącej się teraz. Jeśli obok jest tomorrow, tonight, next week, on Monday albo konkretna godzina, ta sama forma często pokazuje już ustalony plan: I am meeting John tomorrow. Forma zostaje taka sama: am/is/are + czasownik z -ing.',
+  },
 );
+
+const FUTURE_PC_SKILL_ES: Record<string, string> = {
+  future_arrangement_meeting: 'Tomorrow marca un plan ya acordado: am meeting.',
+  future_arrangement_tonight: 'Tonight marca un plan; con we usa are having.',
+  now_vs_tomorrow_pair: 'La forma es igual; now = ahora, tomorrow = plan futuro.',
+  she_is_flying: 'Con she usa is flying; on Monday marca futuro.',
+  they_are_coming: 'Con they usa are coming; next week marca futuro.',
+  i_am_leaving: 'At 8 tomorrow suena a plan concreto: am leaving.',
+  question_are_you_working: 'En pregunta, are va antes de you.',
+  negative_not_going_out: 'Negativa de Present Continuous: am not going out.',
+  question_pair: 'Pregunta: What are you doing tomorrow evening?',
+  arrangement_vs_will: 'Cita a las 3 = arreglo: am seeing.',
+  spontaneous_will: 'Decision en el momento: will answer.',
+  going_to_intention: 'Intencion = am going to start.',
+  mixed_now_future_pair: 'Now y on Monday cambian el tiempo, no la forma.',
+  mixed_arrangement_will_intention: 'Arreglo = am seeing; decision ahora = will; intencion = going to.',
+  mixed_sentence_correction: 'Planes personales: am working / am meeting.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = FUTURE_PC_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? FUTURE_PC_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function futurePcEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = FUTURE_PC_SKILL_ES[input.targetSkill] ?? 'Comprueba el marcador de tiempo y la forma am/is/are + -ing.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retry(correct: string): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала найди маркер времени: now, tomorrow, tonight, next week, on Monday, at 3.',
       'Спочатку знайди маркер часу: now, tomorrow, tonight, next week, on Monday, at 3.',
-      'First find the time marker.',
+      'Primero encuentra el marcador de tiempo.',
     ),
     tri(
       'Если это конкретная договоренность в будущем, часто нужна форма am/is/are + -ing.',
       'Якщо це конкретна домовленість у майбутньому, часто потрібна форма am/is/are + -ing.',
-      'Future arrangement often uses am/is/are + -ing.',
+      'Un arreglo futuro suele usar am/is/are + -ing.',
     ),
     tri(
       'Проверь маленькое слово перед действием: I am, she is, we/they are.',
       'Перевір маленьке слово перед дією: I am, she is, we/they are.',
-      'Check the small word before the action: am, is, or are.',
+      'Comprueba la palabra pequena antes de la accion: am, is o are.',
     ),
     tri(
       'Нужный вариант здесь тот, где договорённость, решение сейчас и план не смешаны.',
       'Потрібний варіант тут той, де домовленість, рішення зараз і план не змішані.',
-      `The answer here is: ${correct}.`,
+      `La respuesta aqui es: ${correct}.`,
     ),
   ];
 }
@@ -79,7 +133,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Проверь время и форму am/is/are + -ing. Здесь нужно: ${correct}.`,
     `Майже. Перевір час і форму am/is/are + -ing. Тут потрібно: ${correct}.`,
-    `Almost. Check the time marker and use: ${correct}.`,
+    `Casi. Revisa el marcador de tiempo y usa: ${correct}.`,
   );
 }
 
@@ -96,35 +150,36 @@ function futurePcStep(input: {
   wrong: Record<string, TriText>;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = futurePcEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
-    teachingText: MODEL,
-    explanationBlock: MODEL,
+    translation: withEs(input.translation, esFeedback),
+    teachingText: withEs(MODEL, esFeedback),
+    explanationBlock: withEs(MODEL, esFeedback),
     microTask: tri(
       'Выбери форму для будущей договоренности, действия сейчас, решения через will или намерения через going to.',
       'Обери форму для майбутньої домовленості, дії зараз, рішення через will або наміру через going to.',
-      'Choose the form for arrangement, now-action, will, or going to.',
+      'Elige la forma para arreglo futuro, accion ahora, decision con will o intencion con going to.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(input.correctAnswer),
+    retryFeedback: retry(input.correctAnswer).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Коротко: tomorrow, tonight, next week или on Monday могут делать Present Continuous будущим планом. I am meeting tomorrow = уже договорился. The phone is ringing. I will answer it = решение прямо сейчас.',
       'Коротко: tomorrow, tonight, next week або on Monday можуть робити Present Continuous майбутнім планом. I am meeting tomorrow = уже домовився. The phone is ringing. I will answer it = рішення прямо зараз.',
-      'Short version: future marker plus am/is/are + -ing can show an arrangement. Will often shows a decision now.',
+      'Version corta: un marcador futuro mas am/is/are + -ing puede mostrar un arreglo. Will suele mostrar decision ahora.',
     ),
     focusWords: input.focusWords,
   };
@@ -136,29 +191,63 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
   version: '1.0.0',
   status: 'active',
   priority: 45,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Present Continuous для будущих договоренностей',
     'Present Continuous для майбутніх домовленостей',
-    'Present Continuous for future arrangements',
+    'Present Continuous para planes acordados',
+    {
+      'pt-BR': 'Present Continuous para planos combinados',
+      vi: 'Present Continuous cho kế hoạch đã sắp xếp',
+      id: 'Present Continuous untuk rencana yang sudah diatur',
+      tr: 'Ayarlanmış planlar için Present Continuous',
+      pl: 'Present Continuous dla ustalonych planów',
+    },
   ),
-  shortTitle: tri('Future arrangements', 'Future arrangements', 'Future arrangements'),
+  shortTitle: tri('Future arrangements', 'Future arrangements', 'Planes acordados', {
+    'pt-BR': 'Planos combinados',
+    vi: 'Kế hoạch đã sắp xếp',
+    id: 'Rencana yang sudah diatur',
+    tr: 'Ayarlanmış planlar',
+    pl: 'Ustalone plany',
+  }),
   shortDiagnosis: tri(
     'Ты видишь am meeting и думаешь только “прямо сейчас”, хотя tomorrow может делать это будущим планом.',
     'Ти бачиш am meeting і думаєш тільки “прямо зараз”, хоча tomorrow може робити це майбутнім планом.',
-    'You treat am meeting only as now, even when tomorrow makes it future.',
+    'Lees am meeting solo como ahora, aunque tomorrow puede convertirlo en plan futuro.',
+    {
+      'pt-BR': 'Você vê am meeting e pensa só em "agora", embora tomorrow possa transformar isso em um plano futuro.',
+      vi: 'Bạn thấy am meeting và chỉ nghĩ là "ngay bây giờ", dù tomorrow có thể biến nó thành kế hoạch tương lai.',
+      id: 'Kamu melihat am meeting dan hanya berpikir "sekarang", padahal tomorrow bisa membuatnya menjadi rencana masa depan.',
+      tr: 'Am meeting görünce yalnızca "şu anda" diye düşünüyorsun, oysa tomorrow bunu gelecek planı yapabilir.',
+      pl: 'Widzisz am meeting i myślisz tylko "teraz", chociaż tomorrow może zmienić to w plan na przyszłość.',
+    },
   ),
   diagnosisText: tri(
     'Ошибка появляется, когда форма am/is/are + -ing автоматически воспринимается как действие сейчас. Но I am meeting John tomorrow не значит “я прямо сейчас его встречаю”. Это уже назначенная встреча в будущем.',
     'Помилка зʼявляється, коли форма am/is/are + -ing автоматично сприймається як дія зараз. Але I am meeting John tomorrow не означає “я прямо зараз його зустрічаю”. Це вже призначена зустріч у майбутньому.',
-    'The mistake appears when am/is/are + -ing is treated only as now. With tomorrow, it can be a future arrangement.',
+    'El error aparece cuando am/is/are + -ing se entiende solo como ahora. Con tomorrow, puede ser un plan ya acordado para el futuro.',
+    {
+      'pt-BR': 'O erro aparece quando am/is/are + -ing é entendido automaticamente como uma ação agora. Mas I am meeting John tomorrow não significa "estou encontrando John neste exato momento". É um encontro já marcado para o futuro.',
+      vi: 'Lỗi xuất hiện khi am/is/are + -ing tự động được hiểu là hành động đang xảy ra bây giờ. Nhưng I am meeting John tomorrow không có nghĩa là "tôi đang gặp John ngay lúc này". Đó là một cuộc hẹn đã được sắp xếp trong tương lai.',
+      id: 'Kesalahan muncul ketika am/is/are + -ing otomatis dipahami sebagai tindakan sekarang. Tetapi I am meeting John tomorrow bukan berarti "saya sedang bertemu John sekarang". Itu adalah janji yang sudah diatur untuk masa depan.',
+      tr: 'Hata, am/is/are + -ing yapısını otomatik olarak şu anda olan eylem diye anladığında ortaya çıkar. Ama I am meeting John tomorrow "John ile şu anda buluşuyorum" demek değildir. Bu, gelecekte ayarlanmış bir buluşmadır.',
+      pl: 'Błąd pojawia się, gdy forma am/is/are + -ing automatycznie kojarzy się z czynnością teraz. Ale I am meeting John tomorrow nie znaczy "spotykam Johna dokładnie teraz". To już umówione spotkanie w przyszłości.',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     'Для личной договоренности в будущем часто звучит Present Continuous: I am meeting him tomorrow. We are having dinner tonight. She is leaving next week. Для решения в момент речи часто звучит will: I will answer it.',
     'Для особистої домовленості в майбутньому часто звучить Present Continuous: I am meeting him tomorrow. We are having dinner tonight. She is leaving next week. Для рішення в момент мовлення часто звучить will: I will answer it.',
-    'Future arrangement: I am meeting him tomorrow. Decision now: I will answer it.',
+    'Plan acordado: I am meeting him tomorrow. Decision ahora: I will answer it.',
+    {
+      'pt-BR': 'Para um compromisso pessoal no futuro, muitas vezes usamos Present Continuous: I am meeting him tomorrow. We are having dinner tonight. She is leaving next week. Para uma decisão tomada no momento da fala, muitas vezes usamos will: I will answer it.',
+      vi: 'Với một sắp xếp cá nhân trong tương lai, tiếng Anh thường dùng Present Continuous: I am meeting him tomorrow. We are having dinner tonight. She is leaving next week. Với quyết định ngay lúc nói, thường dùng will: I will answer it.',
+      id: 'Untuk janji pribadi di masa depan, bahasa Inggris sering memakai Present Continuous: I am meeting him tomorrow. We are having dinner tonight. She is leaving next week. Untuk keputusan saat berbicara, sering dipakai will: I will answer it.',
+      tr: 'Gelecekteki kişisel bir düzenleme için çoğu zaman Present Continuous kullanılır: I am meeting him tomorrow. We are having dinner tonight. She is leaving next week. Konuşma anında alınan karar için çoğu zaman will kullanılır: I will answer it.',
+      pl: 'Dla osobistego ustalenia w przyszłości często używa się Present Continuous: I am meeting him tomorrow. We are having dinner tonight. She is leaving next week. Dla decyzji podjętej w chwili mówienia często używa się will: I will answer it.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -186,16 +275,16 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
       'Особисті домовленості часто звучать через Present Continuous.',
     ],
     es: [
-      'Present Continuous can describe a future arrangement.',
-      'Future meaning is often visible through tomorrow, tonight, next week, on Monday, or at 6.',
-      'Use am/is/are + -ing.',
-      'The time context decides now or future.',
-      'Will often fits a decision now, promise, or prediction.',
-      'Going to often shows intention.',
-      'Present Continuous for future sounds concrete.',
-      'Do not omit am/is/are.',
-      'Do not use am meet.',
-      'Personal arrangements often use Present Continuous.',
+      'Present Continuous puede describir un plan futuro ya acordado.',
+      'El sentido futuro suele verse con tomorrow, tonight, next week, on Monday o at 6.',
+      'Usa am/is/are + -ing.',
+      'El contexto de tiempo decide si es ahora o futuro.',
+      'Will suele encajar con decision ahora, promesa o prediccion.',
+      'Going to suele mostrar intencion.',
+      'Present Continuous para futuro suena concreto.',
+      'No omitas am/is/are.',
+      'No uses am meet.',
+      'Los planes personales suelen usar Present Continuous.',
     ],
     'pt-BR': [
       'Present Continuous pode descrever um compromisso futuro: I am meeting him tomorrow.',
@@ -263,97 +352,97 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
       en: 'I am meeting John tomorrow.',
       ru: 'Я завтра встречаюсь с Джоном.',
       uk: 'Я завтра зустрічаюся з Джоном.',
-      es: 'I am meeting John tomorrow.',
+      es: 'Manana me reuno con John.',
       'pt-BR': 'Vou me encontrar com John amanhã.',
       vi: 'Tôi sẽ gặp John vào ngày mai.',
       id: 'Saya akan bertemu John besok.',
       tr: 'Yarın John ile buluşuyorum.',
       pl: 'Jutro spotykam się z Johnem.',
-      why: tri('Tomorrow делает это будущей договоренностью.', 'Tomorrow робить це майбутньою домовленістю.', 'Tomorrow makes it a future arrangement.'),
+      why: tri('Tomorrow делает это будущей договоренностью.', 'Tomorrow робить це майбутньою домовленістю.', 'Tomorrow lo convierte en un plan futuro acordado.'),
     },
     {
       en: 'She is flying to London on Monday.',
       ru: 'Она летит в Лондон в понедельник.',
       uk: 'Вона летить до Лондона в понеділок.',
-      es: 'She is flying to London on Monday.',
+      es: 'Ella vuela a Londres el lunes.',
       'pt-BR': 'Ela voa para Londres na segunda-feira.',
       vi: 'Cô ấy bay đến London vào thứ Hai.',
       id: 'Dia terbang ke London pada hari Senin.',
       tr: "Pazartesi Londra'ya uçuyor.",
       pl: 'Ona leci do Londynu w poniedziałek.',
-      why: tri('On Monday показывает будущий план.', 'On Monday показує майбутній план.', 'On Monday marks a future plan.'),
+      why: tri('On Monday показывает будущий план.', 'On Monday показує майбутній план.', 'On Monday marca un plan futuro.'),
     },
     {
       en: 'We are having dinner tonight.',
       ru: 'Мы сегодня вечером ужинаем.',
       uk: 'Ми сьогодні ввечері вечеряємо.',
-      es: 'We are having dinner tonight.',
+      es: 'Cenamos esta noche.',
       'pt-BR': 'Nós vamos jantar hoje à noite.',
       vi: 'Tối nay chúng tôi sẽ ăn tối.',
       id: 'Kami akan makan malam nanti malam.',
       tr: 'Bu akşam akşam yemeği yiyoruz.',
       pl: 'Dziś wieczorem jemy kolację.',
-      why: tri('Tonight показывает договоренность на вечер.', 'Tonight показує домовленість на вечір.', 'Tonight marks an arranged evening plan.'),
+      why: tri('Tonight показывает договоренность на вечер.', 'Tonight показує домовленість на вечір.', 'Tonight marca un plan acordado para la noche.'),
     },
     {
       en: 'They are coming next week.',
       ru: 'Они приезжают на следующей неделе.',
       uk: 'Вони приїжджають наступного тижня.',
-      es: 'They are coming next week.',
+      es: 'Ellos vienen la semana que viene.',
       'pt-BR': 'Eles vêm na semana que vem.',
       vi: 'Họ sẽ đến vào tuần tới.',
       id: 'Mereka akan datang minggu depan.',
       tr: 'Gelecek hafta geliyorlar.',
       pl: 'Oni przyjeżdżają w przyszłym tygodniu.',
-      why: tri('Next week переносит форму в будущее.', 'Next week переносить форму в майбутнє.', 'Next week sets future time.'),
+      why: tri('Next week переносит форму в будущее.', 'Next week переносить форму в майбутнє.', 'Next week fija tiempo futuro.'),
     },
     {
       en: 'Are you working tomorrow?',
       ru: 'Ты завтра работаешь?',
       uk: 'Ти завтра працюєш?',
-      es: 'Are you working tomorrow?',
+      es: 'Trabajas manana?',
       'pt-BR': 'Você trabalha amanhã?',
       vi: 'Ngày mai bạn có làm việc không?',
       id: 'Apakah kamu bekerja besok?',
       tr: 'Yarın çalışıyor musun?',
       pl: 'Pracujesz jutro?',
-      why: tri('Вопрос про смену или план на завтра.', 'Питання про зміну або план на завтра.', 'A question about a planned shift.'),
+      why: tri('Вопрос про смену или план на завтра.', 'Питання про зміну або план на завтра.', 'Pregunta por un turno o plan de manana.'),
     },
     {
       en: 'I am not going out tonight.',
       ru: 'Я сегодня вечером никуда не иду.',
       uk: 'Я сьогодні ввечері нікуди не йду.',
-      es: 'I am not going out tonight.',
+      es: 'Esta noche no voy a salir.',
       'pt-BR': 'Eu não vou sair hoje à noite.',
       vi: 'Tối nay tôi không đi ra ngoài.',
       id: 'Saya tidak akan keluar malam ini.',
       tr: 'Bu gece dışarı çıkmıyorum.',
       pl: 'Nie wychodzę dziś wieczorem.',
-      why: tri('Tonight делает отрицание будущим планом.', 'Tonight робить заперечення майбутнім планом.', 'Tonight makes it a future plan.'),
+      why: tri('Tonight делает отрицание будущим планом.', 'Tonight робить заперечення майбутнім планом.', 'Tonight lo convierte en plan futuro.'),
     },
     {
       en: 'I am calling him now.',
       ru: 'Я звоню ему сейчас.',
       uk: 'Я дзвоню йому зараз.',
-      es: 'I am calling him now.',
+      es: 'Lo estoy llamando ahora.',
       'pt-BR': 'Estou ligando para ele agora.',
       vi: 'Tôi đang gọi cho anh ấy bây giờ.',
       id: 'Saya sedang menelepon dia sekarang.',
       tr: 'Onu şimdi arıyorum.',
       pl: 'Dzwonię do niego teraz.',
-      why: tri('Now показывает действие сейчас.', 'Now показує дію зараз.', 'Now means current action.'),
+      why: tri('Now показывает действие сейчас.', 'Now показує дію зараз.', 'Now significa accion actual.'),
     },
     {
       en: 'I am calling him tomorrow.',
       ru: 'Я позвоню ему завтра.',
       uk: 'Я зателефоную йому завтра.',
-      es: 'I am calling him tomorrow.',
+      es: 'Lo llamo manana.',
       'pt-BR': 'Vou ligar para ele amanhã.',
       vi: 'Tôi sẽ gọi cho anh ấy vào ngày mai.',
       id: 'Saya akan menelepon dia besok.',
       tr: 'Onu yarın arıyorum.',
       pl: 'Jutro do niego dzwonię.',
-      why: tri('Tomorrow меняет тот же шаблон на будущий план.', 'Tomorrow змінює той самий шаблон на майбутній план.', 'Tomorrow turns the same form into a future plan.'),
+      why: tri('Tomorrow меняет тот же шаблон на будущий план.', 'Tomorrow змінює той самий шаблон на майбутній план.', 'Tomorrow convierte la misma forma en un plan futuro.'),
     },
   ],
   introBlocks: [
@@ -363,7 +452,7 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
       text: tri(
         'Ты можешь увидеть am meeting и подумать: “это же сейчас”. Но завтра в предложении меняет сцену.',
         'Ти можеш побачити am meeting і подумати: “це ж зараз”. Але завтра в реченні змінює сцену.',
-        'A future marker changes the scene.',
+        'Un marcador futuro cambia la escena.',
       ),
     },
     {
@@ -372,7 +461,7 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
       text: tri(
         'Форма та же: am/is/are + -ing. Но с tomorrow, tonight или next week она часто значит: это уже договорено.',
         'Форма та сама: am/is/are + -ing. Але з tomorrow, tonight або next week вона часто означає: це вже домовлено.',
-        'Same form, future marker, arranged already.',
+        'Misma forma, marcador futuro, plan ya acordado.',
       ),
     },
     {
@@ -381,7 +470,7 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
       text: tri(
         'Не обрезай маленькое am/is/are: не I meeting tomorrow, а I am meeting tomorrow.',
         'Не обрізай маленьке am/is/are: не I meeting tomorrow, а I am meeting tomorrow.',
-        'Do not omit am/is/are.',
+        'No omitas am/is/are.',
       ),
     },
   ],
@@ -957,22 +1046,22 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
     depth1: tri(
       'Обычное объяснение: покажи маркер будущего времени и форму am/is/are + -ing.',
       'Звичайне пояснення: покажи маркер майбутнього часу і форму am/is/are + -ing.',
-      'Normal explanation: show the future marker and the am/is/are + -ing form.',
+      'Explicacion normal: muestra el marcador futuro y la forma am/is/are + -ing.',
     ),
     depth2: tri(
       'Проще: спроси, действие происходит сейчас или уже запланировано на будущее.',
       'Простіше: спитай, дія відбувається зараз чи вже запланована на майбутнє.',
-      'Simpler: ask now or future plan.',
+      'Mas simple: pregunta si es ahora o plan futuro.',
     ),
     depth3: tri(
       'Еще проще: сравни I am calling now и I am calling tomorrow.',
       'Ще простіше: порівняй I am calling now і I am calling tomorrow.',
-      'Even simpler: compare I am calling now and I am calling tomorrow.',
+      'Aun mas simple: compara I am calling now con I am calling tomorrow.',
     ),
     depth4: tri(
       'Почти подсказка: для будущей договоренности ищи am/is/are + -ing.',
       'Майже підказка: для майбутньої домовленості шукай am/is/are + -ing.',
-      'Almost a hint: future arrangement uses am/is/are + -ing.',
+      'Casi una pista: el plan futuro acordado usa am/is/are + -ing.',
     ),
   },
   failureRecovery: {
@@ -981,7 +1070,7 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
       card: tri(
         'Present Continuous может быть будущим планом, если рядом tomorrow, tonight, next week или точное время. I am meeting him tomorrow = встреча уже назначена.',
         'Present Continuous може бути майбутнім планом, якщо поруч tomorrow, tonight, next week або точний час. I am meeting him tomorrow = зустріч уже призначена.',
-        'Present Continuous can describe the future with a future marker.',
+        'Present Continuous puede describir el futuro con un marcador futuro.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -989,7 +1078,7 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
       card: tri(
         'Подсказка: сначала найди слово времени. Оно говорит, это сейчас или будущий план.',
         'Підказка: спочатку знайди слово часу. Воно говорить, це зараз чи майбутній план.',
-        'Hint: find the time marker first.',
+        'Pista: primero encuentra el marcador de tiempo.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -997,7 +1086,7 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
       card: tri(
         'Guided mode: сначала выбери now или будущий маркер. Потом собери am/is/are + -ing.',
         'Guided mode: спочатку обери now або майбутній маркер. Потім збери am/is/are + -ing.',
-        'Guided mode: choose now/future marker, then build am/is/are + -ing.',
+        'Modo guiado: elige now o marcador futuro, luego arma am/is/are + -ing.',
       ),
     },
   },
@@ -1010,7 +1099,7 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
         prompt: tri(
           'Tomorrow показывает действие сейчас или будущий план?',
           'Tomorrow показує дію зараз чи майбутній план?',
-          'Does tomorrow show now or a future plan?',
+          'Tomorrow muestra ahora o un plan futuro?',
         ),
         options: ['now', 'future plan'],
         correctIndex: 1,
@@ -1021,7 +1110,7 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
         prompt: tri(
           'После am здесь нужно meet или meeting?',
           'Після am тут потрібно meet чи meeting?',
-          'After am, meet or meeting?',
+          'Despues de am, meet o meeting?',
         ),
         options: ['meet', 'meeting'],
         correctIndex: 1,
@@ -1032,7 +1121,7 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
         prompt: tri(
           'С she нужно is flying или are flying?',
           'З she потрібно is flying чи are flying?',
-          'With she, is flying or are flying?',
+          'Con she, is flying o are flying?',
         ),
         options: ['is flying', 'are flying'],
         correctIndex: 0,
@@ -1043,7 +1132,7 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
         prompt: tri(
           'The phone is ringing. I will answer it: это договоренность или решение сейчас?',
           'The phone is ringing. I will answer it: це домовленість чи рішення зараз?',
-          'Arrangement or decision now?',
+          'Plan acordado o decision ahora?',
         ),
         options: ['arrangement', 'decision now'],
         correctIndex: 1,
@@ -1056,7 +1145,7 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
     source: 'diagnosis_training',
     category: 'verb',
     microDiagnosisId: 'future_present_continuous_arrangements',
-    diagnosisLabel: tri('Future arrangements', 'Future arrangements', 'Future arrangements'),
+    diagnosisLabel: tri('Future arrangements', 'Future arrangements', 'Planes acordados'),
     contrastSet: SMART_CONTRAST,
     difficultyLevel: 2,
     focusWords: [
@@ -1101,7 +1190,7 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
     start: 'diagnosis_training_started',
     answer: 'diagnosis_training_answer',
     mastery: 'diagnosis_training_mastered',
-    fallback: 'diagnosis_training_fallback',
+    recovery: 'diagnosis_training_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

@@ -1,0 +1,380 @@
+{
+  "generatedAt": "2026-05-21T10:07:22.174Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 648,
+    "triLangCalls": 1650,
+    "staticTriLangCalls": 1650,
+    "dynamicTriLangCalls": 0,
+    "legacyLangHelperCalls": 0,
+    "localeObjectFindings": 19,
+    "triLangMissingLocaleUnits": 5,
+    "triLangMissingAllPlannedUnits": 1,
+    "helperMissingLocaleUnits": 0,
+    "localeObjectMissingLocaleUnits": 95,
+    "localeObjectMissingAllPlannedUnits": 19,
+    "bundleMissingLocaleUnits": 0,
+    "findings": 20,
+    "byCode": {
+      "locale-object-missing-all-planned-locales": 19,
+      "trilang-missing-all-planned-locales": 1
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/lesson_intro_screens.tsx",
+      "findings": 8,
+      "missingLocaleUnits": 40
+    },
+    {
+      "file": "app/lesson_help.tsx",
+      "findings": 5,
+      "missingLocaleUnits": 25
+    },
+    {
+      "file": "app/_admin_settings_testers.tsx",
+      "findings": 4,
+      "missingLocaleUnits": 20
+    },
+    {
+      "file": "components/ReportErrorButton.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "app/league_engine.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/_admin_settings_testers.tsx",
+      "line": 946,
+      "column": 57,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'French не засеян English-dev фикстурами: нужны отдельные source-gated данные', uk: 'French не засіяно English-dev фікстурами: потрібні окремі source-gated дані', es: 'French"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/_admin_settings_testers.tsx",
+      "line": 963,
+      "column": 59,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'French legacy /review preview заблокирован: нужны source-gated French SRS данные', uk: 'French legacy /review preview заблоковано: потрібні source-gated French SRS дані', es"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/_admin_settings_testers.tsx",
+      "line": 979,
+      "column": 57,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: ruCopy.toast, uk: ukCopy.toast, es: ruCopy.toast, }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/_admin_settings_testers.tsx",
+      "line": 1736,
+      "column": 61,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'French review test bench заблокирован: нет source-gated French SRS фикстур', uk: 'French review test bench заблоковано: немає source-gated French SRS фікстур', es: 'French r"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/league_engine.ts",
+      "line": 315,
+      "column": 24,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: club.nameRU, uk: club.nameUK, es: club.nameES, ...plannedNames, }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/lesson_help.tsx",
+      "line": 468,
+      "column": 60,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: theory.titleRU, uk: theory.titleUK, es: spanishBackup, }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/lesson_help.tsx",
+      "line": 518,
+      "column": 66,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: screen.titleRU, uk: screen.titleUK ?? screen.titleRU, es: screen.titleES ?? screen.titleRU, }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/lesson_help.tsx",
+      "line": 537,
+      "column": 70,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: screen.linesRU, uk: screen.linesUK ?? screen.linesRU, es: screen.linesES ?? screen.linesRU, }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/lesson_help.tsx",
+      "line": 556,
+      "column": 66,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: screen.textRU ?? screen.textUK, uk: screen.textUK ?? screen.textRU, es: screen.textES ?? screen.textRU, }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/lesson_help.tsx",
+      "line": 586,
+      "column": 72,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: example?.ru ?? example?.trRU ?? example?.uk ?? example?.trUK, uk: example?.uk ?? example?.trUK ?? example?.ru ?? example?.trRU, es: example?.es ?? example?.trES ?? example?.r"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/lesson_intro_screens.tsx",
+      "line": 122,
+      "column": 43,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: ex.trRU, uk: ex.trUK, es: ex.trES }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/lesson_intro_screens.tsx",
+      "line": 145,
+      "column": 43,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: screen.linesRU, uk: screen.linesUK, es: screen.linesES }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/lesson_intro_screens.tsx",
+      "line": 159,
+      "column": 43,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: screen.subtitleRU, uk: screen.subtitleUK, es: screen.subtitleES }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/lesson_intro_screens.tsx",
+      "line": 172,
+      "column": 43,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: screen.titleRU, uk: screen.titleUK, es: screen.titleES }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/lesson_intro_screens.tsx",
+      "line": 185,
+      "column": 43,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: screen.textRU, uk: screen.textUK, es: screen.textES }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/lesson_intro_screens.tsx",
+      "line": 231,
+      "column": 43,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: value.ru, uk: value.uk, es: value.es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/lesson_intro_screens.tsx",
+      "line": 251,
+      "column": 46,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: ex[`${base}RU`], uk: ex[`${base}UK`], es: ex[`${base}ES`], }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/lesson_intro_screens.tsx",
+      "line": 618,
+      "column": 43,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: km.defaultTitleRU, uk: km.defaultTitleUK, es: km.defaultTitleES, }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "components/ReportErrorButton.tsx",
+      "line": 56,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Другое', uk: 'Інше', es: 'Otro', }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "components/ReportErrorButton.tsx",
+      "line": 305,
+      "column": 10,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: ruCopy || REPORT_CATEGORY_OTHER_LABEL.ru, uk: ukCopy || REPORT_CATEGORY_OTHER_LABEL.uk, es: esCopy || REPORT_CATEGORY_OTHER_LABEL.es, }"
+    }
+  ]
+}

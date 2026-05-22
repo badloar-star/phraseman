@@ -3,6 +3,7 @@ import { Image, Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
+import { useStudyTarget } from './StudyTargetContext';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import {
@@ -24,6 +25,7 @@ type Props = {
 export default function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const insets = useSafeAreaInsets();
   const [busy, setBusy] = useState(false);
 
@@ -71,7 +73,7 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
     }
     setBusy(true);
     try {
-      await claimAndDismissGlobalBroadcastModal(payload);
+      await claimAndDismissGlobalBroadcastModal(payload, studyTarget);
       if (reward) hapticSuccess();
     } finally {
       setBusy(false);
@@ -89,7 +91,7 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
     setBusy(true);
     try {
       await recordReviewPromoClick(payload);
-      await claimAndDismissGlobalBroadcastModal(payload);
+      await claimAndDismissGlobalBroadcastModal(payload, studyTarget);
       const url = getReviewPromoUrl(payload);
       if (url) await Linking.openURL(url);
     } finally {

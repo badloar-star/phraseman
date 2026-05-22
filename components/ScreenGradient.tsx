@@ -6,6 +6,7 @@ import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS } from '../constants/
 import { usePersistentBackgroundLayers } from './backgroundTransition';
 import AppArtBackdrop, { AppRouteArtBackdrop } from './AppArtBackdrop';
 import type { AppArtBackdropName } from './appArtBackdropRegistry';
+import type { ThemeMode } from '../constants/theme';
 
 const GradientActiveCtx = React.createContext(false);
 
@@ -21,7 +22,7 @@ type ScreenBgLayer = {
   orbs: OrbSpec[];
 };
 
-const ORBS: Record<string, OrbSpec[]> = {
+const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
   dark: [
     { x: W * 0.85, y: 80,       r: 200, color: '#47C870', opacity: 0.15 },
     { x: W * 0.1,  y: H * 0.42, r: 150, color: '#2A7A4A', opacity: 0.13 },
@@ -46,19 +47,6 @@ const ORBS: Record<string, OrbSpec[]> = {
     { x: W * 0.58, y: H * 0.80, r: 140, color: '#B86A62', opacity: 0.07 },
     { x: W * 0.30, y: H * 0.20, r:  82, color: '#6E3F3F', opacity: 0.07 },
   ],
-  ocean: [
-    { x: W * 0.8,  y: 80,       r: 200, color: '#00B8FF', opacity: 0.2 },
-    { x: W * 0.0,  y: H * 0.45, r: 170, color: '#0060A0', opacity: 0.16 },
-    { x: W * 0.55, y: H * 0.78, r: 140, color: '#20D0FF', opacity: 0.12 },
-    { x: W * 0.32, y: H * 0.2,  r:  85, color: '#A8E8FF', opacity: 0.1 },
-  ],
-  // Яркие пятна на тёмном (не тусклятина): малиновое свечение + блик
-  sakura: [
-    { x: W * 0.8,  y: 80,       r: 200, color: '#FF1A6A', opacity: 0.18 },
-    { x: W * 0.05, y: H * 0.40, r: 160, color: '#C01060', opacity: 0.14 },
-    { x: W * 0.55, y: H * 0.78, r: 150, color: '#FF4080', opacity: 0.10 },
-    { x: W * 0.3,  y: H * 0.18, r:  90, color: '#F8B8D0', opacity: 0.12 },
-  ],
   // Sketch (minimalLight): warm paper + graphite shading.
   minimalLight: [
     { x: W * 0.82, y: 84,       r: 210, color: '#8F8068', opacity: 0.20 },
@@ -75,21 +63,48 @@ const ORBS: Record<string, OrbSpec[]> = {
   ],
 };
 
-const BG_GRADIENTS: Record<string, string[]> = {
+const LEGACY_UNSUPPORTED_ORBS: Record<'ocean' | 'sakura', OrbSpec[]> = {
+  ocean: [
+    { x: W * 0.8,  y: 80,       r: 200, color: '#00B8FF', opacity: 0.2 },
+    { x: W * 0.0,  y: H * 0.45, r: 170, color: '#0060A0', opacity: 0.16 },
+    { x: W * 0.55, y: H * 0.78, r: 140, color: '#20D0FF', opacity: 0.12 },
+    { x: W * 0.32, y: H * 0.2,  r:  85, color: '#A8E8FF', opacity: 0.1 },
+  ],
+  sakura: [
+    { x: W * 0.8,  y: 80,       r: 200, color: '#FF1A6A', opacity: 0.18 },
+    { x: W * 0.05, y: H * 0.40, r: 160, color: '#C01060', opacity: 0.14 },
+    { x: W * 0.55, y: H * 0.78, r: 150, color: '#FF4080', opacity: 0.10 },
+    { x: W * 0.3,  y: H * 0.18, r:  90, color: '#F8B8D0', opacity: 0.12 },
+  ],
+};
+
+const ORBS: Record<ThemeMode | keyof typeof LEGACY_UNSUPPORTED_ORBS, OrbSpec[]> = {
+  ...THEME_ORBS,
+  ...LEGACY_UNSUPPORTED_ORBS,
+};
+
+const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
   dark:   ['#112318', '#09150E', '#030805'],
   neon:   ['#181818', '#0F0F0F', '#070707'],
   gold:   GOLD_GRADIENTS.appBackground,
   coral:  ['#342027', '#1C1012', '#070405'],
-  // Глубина: яркий верх, книзу почти ночной синий
-  ocean:  ['#2088D0', '#0C4A78', '#020A14'],
-  // Тёмно-винный, насыщенно; верх чуть светлее — шапка/приветствие с тёмным текстом читаемы
-  sakura: ['#B03062', '#581830', '#14040C'],
   // Sketch light paper tone
   minimalLight: ['#F1E8D7', '#E0D0B7', '#CDB99C'],
   // Graphite dark neutral tone
   minimalDark: ['#191B1F', '#121316', '#0C0D0F'],
 };
 
+const LEGACY_UNSUPPORTED_BG_GRADIENTS: Record<'ocean' | 'sakura', string[]> = {
+  // Глубина: яркий верх, книзу почти ночной синий
+  ocean:  ['#2088D0', '#0C4A78', '#020A14'],
+  // Тёмно-винный, насыщенно; верх чуть светлее — шапка/приветствие с тёмным текстом читаемы
+  sakura: ['#B03062', '#581830', '#14040C'],
+};
+
+const BG_GRADIENTS: Record<ThemeMode | keyof typeof LEGACY_UNSUPPORTED_BG_GRADIENTS, string[]> = {
+  ...THEME_BG_GRADIENTS,
+  ...LEGACY_UNSUPPORTED_BG_GRADIENTS,
+};
 /** Те же стопы, что у полного фона приложения — для интро-слоёв без дублирования палитры. */
 export const SCREEN_BG_GRADIENT_STOPS: Record<string, string[]> = BG_GRADIENTS;
 
@@ -405,10 +420,10 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
   const defaultEntranceY = useRef(new Animated.Value(0)).current;
 
   const isGold = themeMode === 'gold';
-  const orbs = ORBS[themeMode] ?? ORBS.dark;
+  const orbs = ORBS[themeMode];
   const gradColors = useMemo(
-    () => BG_GRADIENTS[themeMode] ?? [t.bgGradient[0], t.bgGradient[1]],
-    [themeMode, t.bgGradient],
+    () => BG_GRADIENTS[themeMode],
+    [themeMode],
   );
   const activeBgKey = `${themeMode}:${t.bgPrimary}:${t.accent}`;
   const targetBgLayer = useMemo<ScreenBgLayer>(() => ({
@@ -427,7 +442,6 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
   const childHasExplicitArtBackdrop = useMemo(() => hasExplicitArtBackdrop(children), [children]);
   const routeArtBackdropEnabled = artBackdrop === undefined && !childHasExplicitArtBackdrop;
   const fixedArtBackdrop = typeof artBackdrop === 'string' ? artBackdrop : null;
-
   // Nested tab content lets the parent gradient show through.
   if (isNested && !forceFullBleed) {
     return <View style={[{ flex: 1, backgroundColor: 'transparent' }, style]}>{children}</View>;

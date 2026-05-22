@@ -5,16 +5,25 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
-const tri = (ru: string, uk = ru, es = ru): TriText => {
-  const plannedFallback = {
-    'pt-BR': es,
-    vi: es,
-    id: es,
-    tr: es,
-    pl: es,
-  } satisfies Record<PlannedTrainingLocale, string>;
+const TOO_ENOUGH_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre too/enough ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về too/enough này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan too/enough ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu too/enough açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie too/enough nadal wymaga przeglądu po polsku.',
+};
 
-  return { ru, uk, es, ...plannedFallback };
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? TOO_ENOUGH_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
 };
 
 const CONTRAST = [
@@ -26,6 +35,48 @@ const CONTRAST = [
   'not enough',
   'too ... to',
 ];
+
+const TOO_ENOUGH_SKILL_ES: Record<string, string> = {
+  too_adjective_hot: 'Exceso de temperatura: too hot.',
+  too_adjective_expensive: 'Exceso de precio: too expensive.',
+  too_adverb_fast: 'Exceso de velocidad: too fast.',
+  adjective_enough_good: 'Enough va despues de good: good enough.',
+  adjective_enough_old: 'Enough va despues de old: old enough.',
+  adverb_enough_fast: 'Enough va despues de fast: fast enough.',
+  enough_before_noun_time: 'Enough va antes de time: enough time.',
+  enough_before_noun_money: 'Enough va antes de money: enough money.',
+  not_enough_quality: 'No alcanza la calidad: not good enough.',
+  too_many_plural: 'Con people usa too many people.',
+  too_much_uncountable: 'Con noise usa too much noise.',
+  too_to_structure: 'Demasiado para hacer algo: too tired to work.',
+  mixed_too_enough_position: 'Too expensive, pero good enough.',
+  mixed_enough_adjective_noun: 'Old enough, pero enough money.',
+  mixed_sentence_correction: 'Too small y enough chairs.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = TOO_ENOUGH_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? TOO_ENOUGH_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function tooEnoughEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = TOO_ENOUGH_SKILL_ES[input.targetSkill] ?? 'Decide si significa exceso o suficiente y revisa el orden.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function makeStep(input: {
   id: string;
@@ -42,59 +93,60 @@ function makeStep(input: {
   finalHint: TriText;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = tooEnoughEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: withEs(input.translation, esFeedback),
     explanationBlock: tri(
       'Too обычно значит “слишком”, то есть уже проблема: too hot, too expensive, too fast. Enough значит “достаточно”, но место меняется: good enough, old enough, enough time, enough chairs.',
       'Too зазвичай означає “занадто”, тобто вже проблема: too hot, too expensive, too fast. Enough означає “достатньо”, але місце змінюється: good enough, old enough, enough time, enough chairs.',
-      'Too means excessive: too hot. Enough means sufficient: good enough, enough time.',
+      'Too significa exceso: too hot. Enough significa suficiente: good enough, enough time.',
     ),
     microTask: tri(
       'Выбери живой кусок с too или enough.',
       'Обери живий шматок із too або enough.',
-      'Choose the natural too/enough chunk.',
+      'Elige el bloque natural con too o enough.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
         .map((option) => [
           option,
-          input.wrong[option] ??
+          withEs(input.wrong[option] ??
             tri(
               `Почти, но здесь нужен другой кусок: ${input.correctAnswer}.`,
               `Майже, але тут потрібен інший шматок: ${input.correctAnswer}.`,
-              `Almost. Use: ${input.correctAnswer}.`,
-            ),
+              `Casi. Usa: ${input.correctAnswer}.`,
+            ), esFeedback),
         ]),
     ),
     retryFeedback: [
-      input.clue,
+      withEs(input.clue, esFeedback),
       tri(
         'Сначала поймай смысл: too = перебор и обычно проблема, enough = хватает. Потом проверь место: too стоит перед словом, которое усиливает, а enough часто идет после качества, но перед вещью.',
         'Спочатку злови сенс: too = перебір і зазвичай проблема, enough = вистачає. Потім перевір місце: too стоїть перед словом, яке підсилює, а enough часто йде після якості, але перед річчю.',
-        'Too = too much and usually a problem. Enough = sufficient. Check the word order.',
+        'Too = demasiado y normalmente problema. Enough = suficiente. Revisa el orden.',
       ),
-      input.finalHint,
+      withEs(input.finalHint, esFeedback),
       tri(
         'Теперь выбери вариант, где смысл и место слова совпадают.',
         'Тепер обери варіант, де сенс і місце слова збігаються.',
-        `Answer: ${input.correctAnswer}.`,
+        `Respuesta: ${input.correctAnswer}.`,
       ),
     ],
     fallbackExplanation: tri(
       'Карта такая: too ставим перед качеством, когда есть перебор. Enough ставим после качества, но перед вещью. Much берем для массы, many - для отдельных штук.',
       'Карта така: too ставимо перед якістю, коли є перебір. Enough ставимо після якості, але перед річчю. Much беремо для маси, many - для окремих штук.',
-      'Chunks: too hot, good enough, enough time, too much noise, too many people.',
+      'Bloques: too hot, good enough, enough time, too much noise, too many people.',
     ),
     focusWords: input.focusWords,
   };
@@ -106,33 +158,74 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 34,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Too / Enough: слишком или достаточно',
     'Too / Enough: занадто чи достатньо',
     'Too / Enough',
+    {
+      'pt-BR': 'Too / Enough: demais ou suficiente',
+      vi: 'Too / Enough: quá mức hay đủ',
+      id: 'Too / Enough: terlalu atau cukup',
+      tr: 'Too / Enough: fazla mı yeterli mi',
+      pl: 'Too / Enough: za dużo czy wystarczająco',
+    },
   ),
-  shortTitle: tri('Too / Enough', 'Too / Enough', 'Too / Enough'),
+  shortTitle: tri('Too / Enough', 'Too / Enough', 'Too / Enough', {
+    'pt-BR': 'Too / Enough',
+    vi: 'Too / Enough',
+    id: 'Too / Enough',
+    tr: 'Too / Enough',
+    pl: 'Too / Enough',
+  }),
   shortDiagnosis: tri(
     'Ты смешиваешь “слишком” и “достаточно”, а еще ставишь enough не туда.',
     'Ти змішуєш “занадто” і “достатньо”, а ще ставиш enough не туди.',
-    'You mix too and enough, and place enough in the wrong spot.',
+    'Confundes demasiado y suficiente, y ademas pones enough en el lugar incorrecto.',
+    {
+      'pt-BR': 'Você mistura "demais" e "suficiente", e também coloca enough no lugar errado.',
+      vi: 'Bạn nhầm giữa "quá mức" và "đủ", và còn đặt enough sai vị trí.',
+      id: 'Kamu mencampuradukkan "terlalu" dan "cukup", dan juga meletakkan enough di posisi yang salah.',
+      tr: '"Fazla" ile "yeterli" anlamlarını karıştırıyorsun ve enough kelimesini de yanlış yere koyuyorsun.',
+      pl: 'Mylisz "za bardzo" z "wystarczająco", a do tego stawiasz enough w złym miejscu.',
+    },
   ),
   diagnosisText: tri(
     'Too и enough ломаются в двух местах. Первое: смысл. Too обычно значит перебор: кофе слишком горячий, телефон слишком дорогой. Enough значит хватает: достаточно хороший, достаточно времени. Второе: место в фразе. Говорим too hot, но good enough. Говорим enough time, а не time enough.',
     'Too і enough ламаються у двох місцях. Перше: сенс. Too зазвичай означає перебір: кава занадто гаряча, телефон занадто дорогий. Enough означає вистачає: достатньо хороший, достатньо часу. Друге: місце у фразі. Кажемо too hot, але good enough. Кажемо enough time, а не time enough.',
-    'Too and enough break in two places: meaning and word order.',
+    'Too y enough se rompen en dos sitios: sentido y orden de palabras.',
+    {
+      'pt-BR': 'Too e enough quebram em dois pontos. Primeiro: o sentido. Too geralmente marca excesso: o café está quente demais, o telefone é caro demais. Enough significa que basta: bom o suficiente, tempo suficiente. Segundo: a posição na frase. Dizemos too hot, mas good enough. Dizemos enough time, não time enough.',
+      vi: 'Too và enough thường sai ở hai chỗ. Thứ nhất: ý nghĩa. Too thường nghĩa là quá mức: cà phê quá nóng, điện thoại quá đắt. Enough nghĩa là đủ: đủ tốt, đủ thời gian. Thứ hai: vị trí trong câu. Ta nói too hot, nhưng good enough. Ta nói enough time, không phải time enough.',
+      id: 'Too dan enough sering rusak di dua tempat. Pertama: makna. Too biasanya berarti berlebihan: kopinya terlalu panas, ponselnya terlalu mahal. Enough berarti cukup: cukup bagus, cukup waktu. Kedua: posisi dalam frasa. Kita mengatakan too hot, tetapi good enough. Kita mengatakan enough time, bukan time enough.',
+      tr: 'Too ve enough iki yerde bozulur. Birincisi anlamdır. Too genellikle aşırılık demektir: kahve fazla sıcak, telefon fazla pahalı. Enough yeterli olduğunu gösterir: yeterince iyi, yeterince zaman. İkincisi cümledeki yerdir. Too hot deriz, ama good enough deriz. Enough time deriz, time enough değil.',
+      pl: 'Too i enough psują się w dwóch miejscach. Pierwsze to sens. Too zwykle oznacza nadmiar: kawa jest za gorąca, telefon za drogi. Enough znaczy, że wystarcza: wystarczająco dobry, wystarczająco dużo czasu. Drugie to miejsce w zdaniu. Mówimy too hot, ale good enough. Mówimy enough time, nie time enough.',
+    },
   ),
   mentalModel: tri(
     'Запомни четыре полки: too hot — перебор. good enough — качества хватает. enough time — времени хватает. too many people / too much noise — слишком много, но выбор зависит от слова после.',
     'Запамʼятай чотири полиці: too hot — перебір. good enough — якості вистачає. enough time — часу вистачає. too many people / too much noise — занадто багато, але вибір залежить від слова після.',
-    'Four chunks: too hot, good enough, enough time, too many people / too much noise.',
+    'Cuatro bloques: too hot, good enough, enough time, too many people / too much noise.',
+    {
+      'pt-BR': 'Guarde quatro prateleiras: too hot = excesso. good enough = a qualidade basta. enough time = o tempo basta. too many people / too much noise = demais, mas a escolha depende da palavra depois.',
+      vi: 'Hãy nhớ bốn nhóm: too hot = quá mức. good enough = chất lượng đã đủ. enough time = thời gian đã đủ. too many people / too much noise = quá nhiều, nhưng lựa chọn phụ thuộc vào từ phía sau.',
+      id: 'Ingat empat rak: too hot = berlebihan. good enough = kualitasnya cukup. enough time = waktunya cukup. too many people / too much noise = terlalu banyak, tetapi pilihannya bergantung pada kata setelahnya.',
+      tr: 'Dört rafı aklında tut: too hot = aşırılık. good enough = kalite yeterli. enough time = zaman yeterli. too many people / too much noise = çok fazla, ama seçim sonraki kelimeye bağlıdır.',
+      pl: 'Zapamiętaj cztery półki: too hot = nadmiar. good enough = jakość wystarcza. enough time = czasu wystarcza. too many people / too much noise = za dużo, ale wybór zależy od następnego słowa.',
+    },
   ),
   contrastSet: CONTRAST,
   coreRule: tri(
     'Too значит перебор и обычно стоит перед качеством. Enough значит хватает: после качества, но перед вещью. Для "слишком много" выбираем much или many по типу слова.',
     'Too означає перебір і зазвичай стоїть перед якістю. Enough означає вистачає: після якості, але перед річчю. Для "занадто багато" обираємо much або many за типом слова.',
     'Too hot. Good enough. Enough time. Too much noise. Too many people.',
+    {
+      'pt-BR': 'Too marca excesso e geralmente vem antes da qualidade. Enough significa que basta: depois da qualidade, mas antes da coisa. Para "demais", escolha much ou many pelo tipo da palavra.',
+      vi: 'Too chỉ sự quá mức và thường đứng trước tính chất. Enough nghĩa là đủ: đứng sau tính chất, nhưng trước sự vật. Với "quá nhiều", chọn much hoặc many theo loại từ.',
+      id: 'Too berarti berlebihan dan biasanya berada sebelum kualitas. Enough berarti cukup: setelah kualitas, tetapi sebelum benda. Untuk "terlalu banyak", pilih much atau many sesuai jenis katanya.',
+      tr: 'Too aşırılık gösterir ve genellikle niteliğin önünde durur. Enough yeterli demektir: nitelikten sonra, ama isimden önce. "Çok fazla" için kelimenin türüne göre much ya da many seç.',
+      pl: 'Too oznacza nadmiar i zwykle stoi przed cechą. Enough znaczy, że wystarcza: po cesze, ale przed rzeczą. Dla "za dużo" wybieramy much albo many według typu słowa.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -158,10 +251,10 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       'Не time enough у базовій фразі. Нормально: enough time.',
     ],
     es: [
-      'Too often means excessive: too hot, too expensive.',
-      'Enough after quality words: good enough, old enough.',
-      'Enough before things: enough time, enough chairs.',
-      'Not enough means insufficient.',
+      'Too suele significar exceso: too hot, too expensive.',
+      'Enough va despues de palabras de cualidad: good enough, old enough.',
+      'Enough va antes de cosas: enough time, enough chairs.',
+      'Not enough significa insuficiente.',
       'Too much: too much noise.',
       'Too many: too many people.',
     ],
@@ -211,43 +304,43 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       en: 'This coffee is too hot.',
       ru: 'Этот кофе слишком горячий.',
       uk: 'Ця кава занадто гаряча.',
-      es: 'This coffee is too hot.',
+      es: 'Este cafe esta demasiado caliente.',
       'pt-BR': 'Este café está quente demais.',
       vi: 'Cà phê này quá nóng.',
       id: 'Kopi ini terlalu panas.',
       tr: 'Bu kahve çok sıcak.',
       pl: 'Ta kawa jest za gorąca.',
-      why: tri('Too hot = перебор, пить неудобно.', 'Too hot = перебір, пити незручно.', 'Too hot means excessive.'),
+      why: tri('Too hot = перебор, пить неудобно.', 'Too hot = перебір, пити незручно.', 'Too hot significa exceso.'),
     },
     {
       en: 'This coffee is hot enough.',
       ru: 'Этот кофе достаточно горячий.',
       uk: 'Ця кава достатньо гаряча.',
-      es: 'This coffee is hot enough.',
+      es: 'Este cafe esta suficientemente caliente.',
       'pt-BR': 'Este café está quente o suficiente.',
       vi: 'Cà phê này đủ nóng.',
       id: 'Kopi ini cukup panas.',
       tr: 'Bu kahve yeterince sıcak.',
       pl: 'Ta kawa jest wystarczająco gorąca.',
-      why: tri('Enough стоит после hot: hot enough.', 'Enough стоїть після hot: hot enough.', 'Enough after hot.'),
+      why: tri('Enough стоит после hot: hot enough.', 'Enough стоїть після hot: hot enough.', 'Enough va despues de hot.'),
     },
     {
       en: "I don't have enough time.",
       ru: 'У меня недостаточно времени.',
       uk: 'У мене недостатньо часу.',
-      es: "I don't have enough time.",
+      es: 'No tengo suficiente tiempo.',
       'pt-BR': 'Não tenho tempo suficiente.',
       vi: 'Tôi không có đủ thời gian.',
       id: 'Saya tidak punya cukup waktu.',
       tr: 'Yeterince zamanım yok.',
       pl: 'Nie mam wystarczająco dużo czasu.',
-      why: tri('Enough стоит перед time: enough time.', 'Enough стоїть перед time: enough time.', 'Enough before time.'),
+      why: tri('Enough стоит перед time: enough time.', 'Enough стоїть перед time: enough time.', 'Enough va antes de time.'),
     },
     {
       en: 'She is old enough to drive.',
       ru: 'Она достаточно взрослая, чтобы водить.',
       uk: 'Вона достатньо доросла, щоб водити.',
-      es: 'She is old enough to drive.',
+      es: 'Ella tiene edad suficiente para conducir.',
       'pt-BR': 'Ela tem idade suficiente para dirigir.',
       vi: 'Cô ấy đủ tuổi để lái xe.',
       id: 'Dia cukup umur untuk mengemudi.',
@@ -259,49 +352,49 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       en: 'He is too tired to work.',
       ru: 'Он слишком устал, чтобы работать.',
       uk: 'Він занадто втомлений, щоб працювати.',
-      es: 'He is too tired to work.',
+      es: 'Esta demasiado cansado para trabajar.',
       'pt-BR': 'Ele está cansado demais para trabalhar.',
       vi: 'Anh ấy quá mệt để làm việc.',
       id: 'Dia terlalu lelah untuk bekerja.',
       tr: 'Çalışamayacak kadar yorgun.',
       pl: 'On jest zbyt zmęczony, żeby pracować.',
-      why: tri('Too tired to work = устал настолько, что работать не может.', 'Too tired to work = втомився настільки, що не може працювати.', 'Too tired to work.'),
+      why: tri('Too tired to work = устал настолько, что работать не может.', 'Too tired to work = втомився настільки, що не може працювати.', 'Too tired to work significa que esta tan cansado que no puede trabajar.'),
     },
     {
       en: 'There are too many people here.',
       ru: 'Здесь слишком много людей.',
       uk: 'Тут занадто багато людей.',
-      es: 'There are too many people here.',
+      es: 'Hay demasiada gente aqui.',
       'pt-BR': 'Há gente demais aqui.',
       vi: 'Ở đây có quá nhiều người.',
       id: 'Ada terlalu banyak orang di sini.',
       tr: 'Burada çok fazla insan var.',
       pl: 'Jest tu za dużo ludzi.',
-      why: tri('С people нужен блок too many people.', 'З people потрібен блок too many people.', 'Too many people.'),
+      why: tri('С people нужен блок too many people.', 'З people потрібен блок too many people.', 'Con people usa too many people.'),
     },
     {
       en: 'There is too much noise.',
       ru: 'Слишком много шума.',
       uk: 'Занадто багато шуму.',
-      es: 'There is too much noise.',
+      es: 'Hay demasiado ruido.',
       'pt-BR': 'Há barulho demais.',
       vi: 'Có quá nhiều tiếng ồn.',
       id: 'Terlalu banyak suara bising.',
       tr: 'Çok fazla gürültü var.',
       pl: 'Jest za dużo hałasu.',
-      why: tri('С noise нужен блок too much noise.', 'З noise потрібен блок too much noise.', 'Too much noise.'),
+      why: tri('С noise нужен блок too much noise.', 'З noise потрібен блок too much noise.', 'Con noise usa too much noise.'),
     },
     {
       en: 'This answer is not good enough.',
       ru: 'Этот ответ недостаточно хороший.',
       uk: 'Ця відповідь недостатньо хороша.',
-      es: 'This answer is not good enough.',
+      es: 'Esta respuesta no es suficientemente buena.',
       'pt-BR': 'Esta resposta não é boa o suficiente.',
       vi: 'Câu trả lời này chưa đủ tốt.',
       id: 'Jawaban ini tidak cukup baik.',
       tr: 'Bu cevap yeterince iyi değil.',
       pl: 'Ta odpowiedź nie jest wystarczająco dobra.',
-      why: tri('Not good enough = качества не хватает.', 'Not good enough = якості не вистачає.', 'Not good enough.'),
+      why: tri('Not good enough = качества не хватает.', 'Not good enough = якості не вистачає.', 'Not good enough significa que falta calidad.'),
     },
   ],
   introBlocks: [
@@ -311,7 +404,7 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты видишь смысл, но путаешь два разных вопроса: это слишком много или этого хватает?',
         'Схоже, ти бачиш сенс, але плутаєш два різні питання: цього занадто багато чи цього вистачає?',
-        'You mix excessive and sufficient.',
+        'Mezclas dos preguntas distintas: si algo es demasiado o si ya es suficiente.',
       ),
     },
     {
@@ -320,7 +413,7 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       text: tri(
         'Главная карта: too перед качеством, enough после качества, enough перед вещью.',
         'Головна карта: too перед якістю, enough після якості, enough перед річчю.',
-        'Map: too hot, good enough, enough time.',
+        'Mapa principal: too antes de la cualidad; enough despues de la cualidad, pero antes del objeto.',
       ),
     },
     {
@@ -329,7 +422,7 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       text: tri(
         'Проверка в два шага: сначала смысл - перебор или хватает. Потом место: too перед качеством, enough после качества, но перед вещью.',
         'Перевірка у два кроки: спочатку сенс - перебір чи вистачає. Потім місце: too перед якістю, enough після якості, але перед річчю.',
-        'Two-step check: meaning first, then position. Too goes before an adjective; enough goes after an adjective but before a noun.',
+        'Comprueba en dos pasos: primero el sentido, despues la posicion. Too va antes de la cualidad; enough va despues de la cualidad, pero antes del sustantivo.',
       ),
     },
   ],
@@ -645,10 +738,10 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Сначала отделяем смысл: перебор или хватает.', 'Спочатку відділяємо сенс: перебір чи вистачає.', 'Meaning first.'),
-    depth2: tri('Потом порядок: too перед качеством, enough после качества или перед вещью.', 'Потім порядок: too перед якістю, enough після якості або перед річчю.', 'Then order: too hot, good enough, enough time.'),
-    depth3: tri('Для “слишком много” выбираем much для массы и many для отдельных штук.', 'Для “занадто багато” обираємо much для маси і many для окремих штук.', 'Too much noise, too many people.'),
-    depth4: tri('Почти подсказка: держи готовую пару из задания.', 'Майже підказка: тримай готову пару із завдання.', 'Use the chunk from the task.'),
+    depth1: tri('Сначала отделяем смысл: перебор или хватает.', 'Спочатку відділяємо сенс: перебір чи вистачає.', 'Primero separa el sentido: exceso o suficiente.'),
+    depth2: tri('Потом порядок: too перед качеством, enough после качества или перед вещью.', 'Потім порядок: too перед якістю, enough після якості або перед річчю.', 'Despues revisa el orden: too hot, good enough, enough time.'),
+    depth3: tri('Для “слишком много” выбираем much для массы и many для отдельных штук.', 'Для “занадто багато” обираємо much для маси і many для окремих штук.', 'Para demasiado: too much noise, too many people.'),
+    depth4: tri('Почти подсказка: держи готовую пару из задания.', 'Майже підказка: тримай готову пару із завдання.', 'Usa el bloque que ya aparece en la tarea.'),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -656,7 +749,7 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       card: tri(
         'Карта: too перед качеством; enough после качества, но перед вещью; much для массы, many для отдельных штук.',
         'Карта: too перед якістю; enough після якості, але перед річчю; much для маси, many для окремих штук.',
-        'Map: too hot, good enough, enough time, too much noise, too many people.',
+        'Mapa: too hot, good enough, enough time, too much noise, too many people.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -664,7 +757,7 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       card: tri(
         'Подсказка покажет, что стоит рядом с too/enough, но ответ все равно выбираешь ты.',
         'Підказка покаже, що стоїть поруч із too/enough, але відповідь усе одно обираєш ти.',
-        'The hint shows the neighbor word, but you still choose.',
+        'La pista muestra la palabra vecina, pero la respuesta la eliges tu.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -672,7 +765,7 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
       card: tri(
         'Включаем пошаговый режим: сначала смысл, потом порядок.',
         'Вмикаємо покроковий режим: спочатку сенс, потім порядок.',
-        'Guided mode: meaning first, then order.',
+        'Modo guiado: primero el sentido, despues el orden.',
       ),
     },
   },
@@ -682,28 +775,28 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_too_enough_001',
-        prompt: tri('Too hot значит “слишком горячий”?', 'Too hot означає “занадто гарячий”?', 'Does too hot mean excessively hot?'),
+        prompt: tri('Too hot значит “слишком горячий”?', 'Too hot означає “занадто гарячий”?', 'Too hot significa demasiado caliente?'),
         options: ['yes', 'no'],
         correctIndex: 0,
         thenReturnToExerciseId: 'too_enough_easy_001',
       },
       {
         id: 'guided_too_enough_002',
-        prompt: tri('Достаточно хороший: good enough или enough good?', 'Достатньо хороший: good enough чи enough good?', 'Good enough or enough good?'),
+        prompt: tri('Достаточно хороший: good enough или enough good?', 'Достатньо хороший: good enough чи enough good?', 'Para suficientemente bueno: good enough o enough good?'),
         options: ['good enough', 'enough good'],
         correctIndex: 0,
         thenReturnToExerciseId: 'too_enough_contrast_001',
       },
       {
         id: 'guided_too_enough_003',
-        prompt: tri('Достаточно времени: enough time или time enough?', 'Достатньо часу: enough time чи time enough?', 'Enough time or time enough?'),
+        prompt: tri('Достаточно времени: enough time или time enough?', 'Достатньо часу: enough time чи time enough?', 'Para suficiente tiempo: enough time o time enough?'),
         options: ['enough time', 'time enough'],
         correctIndex: 0,
         thenReturnToExerciseId: 'too_enough_contrast_004',
       },
       {
         id: 'guided_too_enough_004',
-        prompt: tri('С people звучит too many people?', 'З people звучить too many people?', 'With people, do we say too many people?'),
+        prompt: tri('С people звучит too many people?', 'З people звучить too many people?', 'Con people decimos too many people?'),
         options: ['yes', 'no'],
         correctIndex: 0,
         thenReturnToExerciseId: 'too_enough_mixed_001',
@@ -753,7 +846,7 @@ export const TOO_ENOUGH_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_too_enough_start',
     answer: 'diagnosis_training_too_enough_answer',
     mastery: 'diagnosis_training_too_enough_mastery',
-    fallback: 'diagnosis_training_too_enough_fallback',
+    recovery: 'diagnosis_training_too_enough_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

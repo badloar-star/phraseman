@@ -1,10 +1,5 @@
 import { sampleUniqueRandomIndices, shuffle } from './utils_shuffle';
-import {
-  ES_L2_EASY_POOL,
-  ES_L2_HARD_POOL,
-  ES_L2_MEDIUM_POOL,
-  type QuizPoolEntryEsL2,
-} from './quiz_data_es_l2';
+import type { QuizPoolEntryEsL2 } from './quiz_data_es_l2';
 import {
   getStructuredQuizSourceLocalePayload,
   type QuizSourceLocalePayload,
@@ -21,8 +16,8 @@ export type QuizSourceLocaleCopy = {
 };
 export type QuizSourceLocaleMap = Partial<Record<QuizExtraSourceLocale, QuizSourceLocaleCopy>>;
 
-/** Цель изучения для выбора пула квиза (испанский L2 — отдельный пул уроков 1–16). */
-export type QuizStudyTargetLang = 'en' | 'es';
+/** Цель изучения для выбора пула квиза (испанский L2 — отдельный пул уроков 1–16; French gated). */
+export type QuizStudyTargetLang = 'en' | 'es' | 'fr';
 
 export interface QuizPhrase {
   ru: string;
@@ -39,6 +34,7 @@ export interface QuizPhrase {
   explanationsUK: string[];
   /** Пояснения на ES (shuffle синхронен с вариантами); до перевода — копия RU */
   explanationsES: string[];
+  sourceLocales?: QuizSourceLocaleMap;
   sourceLocale?: QuizSourceLocale;
   sourceText?: string;
   sourceExplanations?: string[];
@@ -71,11 +67,18 @@ type QuizPoolEntry = {
   quizItemType?: string;
 };
 
-function esL2RowToPoolEntry(r: import('./quiz_data_es_l2').QuizPoolEntryEsL2): QuizPoolEntry {
+export function esL2RowToPoolEntry(r: QuizPoolEntryEsL2): QuizPoolEntry {
   return {
     ru: r.ru,
     uk: r.uk,
     es: r.es,
+    sourceLocales: {
+      'pt-BR': r.sourceLocales?.['pt-BR'],
+      vi: r.sourceLocales?.vi,
+      id: r.sourceLocales?.id,
+      tr: r.sourceLocales?.tr,
+      pl: r.sourceLocales?.pl,
+    },
     choices: [...r.choices],
     correct: r.correct,
     explanations: [...r.explanations],
@@ -7716,9 +7719,9 @@ const EASY_POOL: QuizPoolEntry[] = [
     ],
     explanationsES: [
       'Finded no es el pasado correcto. Find es irregular: found.',
-      'Correcto. Found es el past simple de find.',
+      'Correcto. I found money usa found, el past simple de find.',
       'Find está en presente. Aquí hace falta pasado: found.',
-      'Have find no funciona. En present perfect sería have found.',
+      'Have find money no funciona. En present perfect sería have found money.',
     ],
     lessonNum: 0,
     level: 'A1',
@@ -7742,7 +7745,7 @@ const EASY_POOL: QuizPoolEntry[] = [
       'Помилка! Fast — це початкова форма прикметника. Потрібна порівняльна: faster.',
     ],
     explanationsES: [
-      'Correcto. Faster than es la forma comparativa de fast.',
+      'Correcto. I am faster than usa faster than, la forma comparativa de fast.',
       'More fast no es natural para este adjetivo corto; usamos faster.',
       'Fastest es superlativo. Para comparar dos personas usamos faster.',
       'Fast es la forma base. Con than necesitas comparativo: faster.',
@@ -7851,7 +7854,7 @@ const EASY_POOL: QuizPoolEntry[] = [
     ],
     explanationsES: [
       'Are no se usa para un hábito. Con present simple usamos do.',
-      'Correcto. Do you drink...? pregunta por un hábito.',
+      'Correcto. Do you drink coffee...? pregunta por un hábito; drink coffee queda en forma base después de do.',
       'Does va con he/she/it. Con you usamos do.',
       'Después de do el verbo va en forma base: drink, no drinks.',
     ],
@@ -7877,10 +7880,10 @@ const EASY_POOL: QuizPoolEntry[] = [
       'Помилка! Have buy — неправильно. Present Perfect: I have bought a new shirt.',
     ],
     explanationsES: [
-      'Correcto. Bought es el past simple de buy.',
+      'Correcto. I bought a new shirt usa bought, el past simple de buy.',
       'Buyed no es el pasado correcto. Buy es irregular: bought.',
       'Buy está en presente. Aquí hace falta pasado: bought.',
-      'Have buy no funciona. En present perfect sería have bought.',
+      'Have buy a new shirt no funciona. En present perfect sería have bought a new shirt.',
     ],
     lessonNum: 0,
     level: 'A1',
@@ -7904,7 +7907,7 @@ const EASY_POOL: QuizPoolEntry[] = [
       'Помилка! У Present Continuous після is використовується дієприкметник speaking, а не інфінітив speak.',
     ],
     explanationsES: [
-      'Correcto. He is speaking usa is + speaking para una acción en curso.',
+      'Correcto. He is speaking on the phone usa is + speaking para una acción en curso.',
       'Falta is. Speaking necesita el verbo be para formar present continuous.',
       'Speaks suele hablar de hábito. Aquí se necesita present continuous.',
       'Después de is usamos la forma -ing: speaking, no speak.',
@@ -7931,7 +7934,7 @@ const EASY_POOL: QuizPoolEntry[] = [
       'Помилка! Reades — неправильне написання. Правильно: reads.',
     ],
     explanationsES: [
-      'Correcto. Con she en present simple usamos reads.',
+      'Correcto. She reads books every day usa reads con she en present simple.',
       'Con she/he/it el verbo lleva -s en present simple: reads.',
       'Every day marca hábito, así que usamos present simple, no continuous.',
       'Reades no existe. La forma correcta es reads.',
@@ -11911,7 +11914,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
     ],
     explanationsES: [
       `Correcto. Nobody ya contiene la negación, así que no necesitas otra.`,
-      `En inglés estándar evitamos doble negación: wasn\\'t nobody.`,
+      `En inglés estándar evitamos doble negación: wasn't nobody. Nobody ya niega la frase.`,
       `Here significa aquí. La frase original habla de allí: there.`,
       `No body separado habla de ningún cuerpo físico. Para nadie usamos nobody.`,
     ],
@@ -13257,7 +13260,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
       `Con since y una relación que sigue hasta ahora necesitamos present perfect: have known.`,
       `For es para duración. Childhood funciona como punto de inicio, así que usamos since.`,
       `Correcto. Have known him since childhood conecta el pasado con el presente.`,
-      `None significa ninguno o nada. Aquí necesitas known, participio de know.`,
+      `None significa ninguno o nada. I have none him since childhood no funciona; aquí necesitas known, participio de know.`,
     ],
     explanationsUK: [
       `Попередження! Якщо ти використовуєш слово «з» (since), звичайний час уже не справляється. Нам потрібно показати зв\'язок минулого з теперішнім через помічника have та третю форму дієслова. Додай їх!`,
@@ -13506,7 +13509,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
     explanationsES: [
       `Said me no funciona así. Con persona directa usamos told me, o said to me en otra estructura.`,
       `Correcto. Told me funciona cuando dices a quién se lo dijo.`,
-      `En esta tarea usamos el cambio típico del reported speech: is pasa a was.`,
+      `En esta tarea usamos el cambio típico del reported speech: he told me that he is tired pasa a he told me that he was tired.`,
       `Tolled se usa para una campana que suena. Aquí necesitas told.`,
     ],
     explanations: [
@@ -13824,7 +13827,7 @@ const MEDIUM_POOL: QuizPoolEntry[] = [
     ],
     correct: 1,
     explanationsES: [
-      `Después de be used to usamos un sustantivo o -ing. Por eso necesitamos getting.`,
+      `Después de am used to usamos un sustantivo o -ing. Por eso necesitamos getting.`,
       `Correcto. I am used to getting up early significa que estoy acostumbrado a levantarme temprano.`,
       `Use to no expresa estar acostumbrado. Además, para hábito pasado sería used to.`,
       `Cup significa taza. Aquí necesitamos get up, no get cup.`,
@@ -15971,7 +15974,7 @@ const HARD_POOL: QuizPoolEntry[] = [
     ],
     correct: 2,
     explanationsES: [
-      `Después de get him falta to. La estructura es get someone to do something.`,
+      `Después de get him sign falta to. La estructura es get someone to do something.`,
       `Make someone do something no lleva to, pero aquí la frase usa get, no make.`,
       `Correcto. Get him to sign significa lograr que él firme.`,
       `Sing significa cantar. Aquí necesitamos sign: firmar.`,
@@ -17092,7 +17095,7 @@ const HARD_POOL: QuizPoolEntry[] = [
     correct: 0,
     explanationsES: [
       `Correcto. Back out of significa echarse atrás o retirarse de un acuerdo.`,
-      `La expresión necesita of antes de aquello de lo que te retiras.`,
+      `La expresión back out necesita of antes de aquello de lo que te retiras.`,
       `Take back from no es la forma natural para retirarse de un acuerdo.`,
       `Bake significa hornear. Aquí necesitamos back.`,
     ],
@@ -17155,7 +17158,7 @@ const HARD_POOL: QuizPoolEntry[] = [
     ],
     correct: 2,
     explanationsES: [
-      `Esta opción deja el resultado en presente o futuro, pero la ofensa ya ocurrió en el pasado.`,
+      `Esta opción deja offend en presente o futuro, pero la ofensa ya ocurrió en el pasado.`,
       `Hadn't been habla más de una condición pasada concreta. Aquí la idea es una cualidad general.`,
       `Correcto. Es mixed conditional: condición general presente, resultado pasado.`,
       `Thin significa delgado. Aquí necesitamos then: entonces.`,
@@ -18564,7 +18567,7 @@ const HARD_POOL: QuizPoolEntry[] = [
     correct: 0,
     explanationsES: [
       `Correcto. Back down significa retirarse o dejar de defender una postura.`,
-      `Esta opción traduce la idea demasiado literal y no usa el phrasal verb correcto.`,
+      `Esta opción traduce la idea demasiado literal y no usa el phrasal verb correcto: back down.`,
       `Con last minute usamos at, no in.`,
       `Bake significa hornear. Aquí necesitamos back.`,
     ],
@@ -24347,6 +24350,53 @@ const HARD_POOL: QuizPoolEntry[] = [
     ru: `Как только мы вышли, пошел дождь`,
     uk: `Як тільки ми вийшли, пішов дощ`,
     es: `Apenas nos pusimos en marcha, empezó a llover`,
+    sourceLocales: {
+      'pt-BR': {
+        prompt: `Assim que saímos, começou a chover`,
+        explanations: [
+          `Correto. No sooner had we set off than it started to rain usa inversão com had e o par fixo no sooner... than.`,
+          `No sooner we set off than it started to rain perde a inversão. Depois de No sooner no início, precisamos de had we set off.`,
+          `No sooner had we set off when it started to rain usa when, mas o par correto é no sooner... than.`,
+          `No sooner had we sat off than it started to rain troca set por sat. Sat significa sentado; aqui você precisa de set off.`,
+        ],
+      },
+      vi: {
+        prompt: `Ngay khi chúng tôi khởi hành, trời bắt đầu mưa`,
+        explanations: [
+          `Đúng. No sooner had we set off than it started to rain dùng đảo ngữ với had và cặp cố định no sooner... than.`,
+          `No sooner we set off than it started to rain thiếu đảo ngữ. Sau No sooner ở đầu câu, cần had we set off.`,
+          `No sooner had we set off when it started to rain dùng when, nhưng cặp đúng là no sooner... than.`,
+          `No sooner had we sat off than it started to rain nhầm set thành sat. Sat nghĩa là đã ngồi; ở đây cần set off.`,
+        ],
+      },
+      id: {
+        prompt: `Begitu kami berangkat, hujan mulai turun`,
+        explanations: [
+          `Benar. No sooner had we set off than it started to rain memakai inversi dengan had dan pasangan tetap no sooner... than.`,
+          `No sooner we set off than it started to rain kehilangan inversi. Setelah No sooner di awal, perlu had we set off.`,
+          `No sooner had we set off when it started to rain memakai when, padahal pasangan yang benar adalah no sooner... than.`,
+          `No sooner had we sat off than it started to rain menukar set dengan sat. Sat berarti duduk; di sini perlu set off.`,
+        ],
+      },
+      tr: {
+        prompt: `Yola çıkar çıkmaz yağmur başladı`,
+        explanations: [
+          `Doğru. No sooner had we set off than it started to rain had ile devrik yapı ve sabit no sooner... than kalıbını kullanır.`,
+          `No sooner we set off than it started to rain devrik yapıyı kaçırıyor. Başta No sooner varsa had we set off gerekir.`,
+          `No sooner had we set off when it started to rain when kullanıyor, ama doğru kalıp no sooner... than.`,
+          `No sooner had we sat off than it started to rain set yerine sat kullanıyor. Sat oturdu demektir; burada set off gerekir.`,
+        ],
+      },
+      pl: {
+        prompt: `Gdy tylko wyruszyliśmy, zaczęło padać`,
+        explanations: [
+          `Poprawnie. No sooner had we set off than it started to rain używa inwersji z had i stałej pary no sooner... than.`,
+          `No sooner we set off than it started to rain traci inwersję. Po No sooner na początku potrzebne jest had we set off.`,
+          `No sooner had we set off when it started to rain używa when, ale poprawna para to no sooner... than.`,
+          `No sooner had we sat off than it started to rain zamienia set na sat. Sat znaczy siedział; tutaj potrzebne jest set off.`,
+        ],
+      },
+    },
     choices: [
       `No sooner had we set off than it started to rain.`,
       `No sooner we set off than it started to rain.`,
@@ -24379,6 +24429,53 @@ const HARD_POOL: QuizPoolEntry[] = [
     ru: `Терпеть не могу, когда мне говорят, что делать`,
     uk: `Терпіти не можу, коли мені кажуть, що робити`,
     es: `No soporto que me digan qué hacer`,
+    sourceLocales: {
+      'pt-BR': {
+        prompt: `Não suporto quando me dizem o que fazer`,
+        explanations: [
+          `Correto. I resent being told what to do usa resent e a forma passiva being told para mostrar que ordens dos outros te incomodam.`,
+          `I resent telling what to do inverte o sentido. Parece que você se incomoda em dizer aos outros o que fazer; precisa de being told.`,
+          `I hate when people say me what to do soa simples e say me não é natural aqui. A forma-alvo é I resent being told what to do.`,
+          `I resent being tolled what to do troca told por tolled. Tolled se relaciona a pedágios ou sinos; aqui é told.`,
+        ],
+      },
+      vi: {
+        prompt: `Tôi không chịu nổi khi bị bảo phải làm gì`,
+        explanations: [
+          `Đúng. I resent being told what to do dùng resent và bị động being told để nói bạn khó chịu khi người khác ra lệnh.`,
+          `I resent telling what to do đảo nghĩa. Nghe như bạn khó chịu vì tự mình bảo người khác làm gì; cần being told.`,
+          `I hate when people say me what to do quá đơn giản và say me không tự nhiên ở đây. Dạng đích là I resent being told what to do.`,
+          `I resent being tolled what to do nhầm told thành tolled. Tolled liên quan đến phí đường hoặc tiếng chuông; ở đây cần told.`,
+        ],
+      },
+      id: {
+        prompt: `Saya tidak tahan ketika diberi tahu harus melakukan apa`,
+        explanations: [
+          `Benar. I resent being told what to do memakai resent dan bentuk pasif being told untuk menunjukkan kamu kesal saat disuruh-suruh.`,
+          `I resent telling what to do membalik makna. Kedengarannya kamu kesal karena memberi tahu orang lain apa yang harus dilakukan; perlu being told.`,
+          `I hate when people say me what to do terdengar sederhana dan say me tidak alami di sini. Bentuk targetnya adalah I resent being told what to do.`,
+          `I resent being tolled what to do menukar told dengan tolled. Tolled berkaitan dengan tol atau lonceng; di sini perlu told.`,
+        ],
+      },
+      tr: {
+        prompt: `Bana ne yapacağımın söylenmesine katlanamıyorum`,
+        explanations: [
+          `Doğru. I resent being told what to do resent ve edilgen being told yapısıyla başkalarının emir vermesinden rahatsız olduğunu anlatır.`,
+          `I resent telling what to do anlamı tersine çeviriyor. Sanki başkalarına ne yapacağını söylemekten rahatsızsın; being told gerekir.`,
+          `I hate when people say me what to do basit kalıyor ve say me burada doğal değil. Hedef yapı I resent being told what to do.`,
+          `I resent being tolled what to do told yerine tolled kullanıyor. Tolled gişe ücreti veya çanla ilgilidir; burada told gerekir.`,
+        ],
+      },
+      pl: {
+        prompt: `Nie znoszę, gdy mówi mi się, co mam robić`,
+        explanations: [
+          `Poprawnie. I resent being told what to do używa resent i strony biernej being told, żeby pokazać niechęć do otrzymywania poleceń.`,
+          `I resent telling what to do odwraca sens. Brzmi, jakby przeszkadzało ci mówienie innym, co mają robić; potrzebne jest being told.`,
+          `I hate when people say me what to do brzmi zbyt prosto, a say me nie jest tu naturalne. Docelowa forma to I resent being told what to do.`,
+          `I resent being tolled what to do zamienia told na tolled. Tolled dotyczy opłat albo dzwonów; tutaj potrzebne jest told.`,
+        ],
+      },
+    },
     choices: [
       `I resent being told what to do.`,
       `I resent telling what to do.`,
@@ -24411,6 +24508,53 @@ const HARD_POOL: QuizPoolEntry[] = [
     ru: `Мне кажется, что это решение весьма сомнительное`,
     uk: `Мені здається, що це рішення досить сумнівне`,
     es: `Al parecer, esta decisión es bastante dudosa`,
+    sourceLocales: {
+      'pt-BR': {
+        prompt: `Parece-me que esta decisão é bastante duvidosa`,
+        explanations: [
+          `Correto. Seemingly suaviza a opinião, e quite dubious soa mais preciso do que simplesmente very bad.`,
+          `Seems, this decision is quite dubious não funciona como palavra introdutória. Você precisa do advérbio seemingly.`,
+          `I think that this decision is very bad é compreensível, mas simples demais. Seemingly e dubious deixam a frase mais profissional e nuançada.`,
+          `Seemingly, this decision is quite doobious escreve dubious errado. Depois de d vem u, não oo.`,
+        ],
+      },
+      vi: {
+        prompt: `Tôi thấy quyết định này khá đáng ngờ`,
+        explanations: [
+          `Đúng. Seemingly làm ý kiến mềm hơn, còn quite dubious chính xác hơn nhiều so với very bad.`,
+          `Seems, this decision is quite dubious không dùng được như từ mở đầu. Cần trạng từ seemingly.`,
+          `I think that this decision is very bad hiểu được nhưng quá đơn giản. Seemingly và dubious làm câu chuyên nghiệp và tinh tế hơn.`,
+          `Seemingly, this decision is quite doobious viết sai dubious. Sau d là u, không phải oo.`,
+        ],
+      },
+      id: {
+        prompt: `Menurut saya keputusan ini cukup meragukan`,
+        explanations: [
+          `Benar. Seemingly melembutkan opini, dan quite dubious terdengar lebih tepat daripada sekadar very bad.`,
+          `Seems, this decision is quite dubious tidak berfungsi sebagai kata pembuka. Yang dibutuhkan adalah adverbia seemingly.`,
+          `I think that this decision is very bad bisa dipahami, tetapi terlalu sederhana. Seemingly dan dubious membuatnya lebih profesional dan bernuansa.`,
+          `Seemingly, this decision is quite doobious salah mengeja dubious. Setelah d ada u, bukan oo.`,
+        ],
+      },
+      tr: {
+        prompt: `Bana göre bu karar oldukça şüpheli`,
+        explanations: [
+          `Doğru. Seemingly görüşü yumuşatır, quite dubious ise simply very bad demekten daha kesin ve profesyonel duyulur.`,
+          `Seems, this decision is quite dubious giriş sözcüğü gibi çalışmaz. Zarf olan seemingly gerekir.`,
+          `I think that this decision is very bad anlaşılır ama fazla basit. Seemingly ve dubious cümleyi daha profesyonel ve nüanslı yapar.`,
+          `Seemingly, this decision is quite doobious dubious kelimesini yanlış yazar. d harfinden sonra u gelir, oo değil.`,
+        ],
+      },
+      pl: {
+        prompt: `Wydaje mi się, że ta decyzja jest dość wątpliwa`,
+        explanations: [
+          `Poprawnie. Seemingly łagodzi opinię, a quite dubious brzmi precyzyjniej niż zwykłe very bad.`,
+          `Seems, this decision is quite dubious nie działa jako słowo wprowadzające. Potrzebny jest przysłówek seemingly.`,
+          `I think that this decision is very bad jest zrozumiałe, ale zbyt proste. Seemingly i dubious brzmią bardziej profesjonalnie i z niuansem.`,
+          `Seemingly, this decision is quite doobious błędnie zapisuje dubious. Po d jest u, nie oo.`,
+        ],
+      },
+    },
     choices: [
       `Seemingly, this decision is quite dubious.`,
       `Seems, this decision is quite dubious.`,
@@ -24442,6 +24586,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Если ты будешь халтурить (срезать углы), качество пострадает`,
     uk: `Якщо ти будеш халтурити (зрізати кути), якість постраждає`,
+    es: `Si haces las cosas a medias, la calidad sufrirá`,
+    explanationsES: [
+          `Correcto. Cut corners significa ahorrar esfuerzo o tiempo de una forma que perjudica la calidad.`,
+          `Cut coroners cambia corners por coroners. Coroners son forenses; la idiom correcta es cut corners.`,
+          `If you will cut corners usa will dentro de la parte con if. En esta condición usamos presente: if you cut corners.`,
+          `If you do corners cut tiene el orden roto. La idiom fija es cut corners.`,
+    ],
     choices: [
       `If you cut corners, the quality will suffer.`,
       `If you cut coroners, the quality will suffer.`,
@@ -24467,6 +24618,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Если бы я тогда больше учился, я бы сейчас был экспертом`,
     uk: `Якби я тоді більше вчився, я б зараз був експертом`,
+    es: `Si hubiera estudiado más entonces, ahora sería experto`,
+    explanationsES: [
+          `If I studied more then no marca bien el pasado irreal. Para algo que no ocurrió entonces, usa had studied.`,
+          `Correcto. If I had studied more then, I would be an expert now conecta un pasado irreal con un resultado presente.`,
+          `Would have been habla de un resultado pasado. Aquí el resultado es ahora, así que necesitamos would be.`,
+          `Export significa exportación. Aquí necesitas expert para hablar de una persona experta.`,
+    ],
     choices: [
       `If I studied more then, I would be an expert now.`,
       `If I had studied more then, I would be an expert now.`,
@@ -24492,6 +24650,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Мне нужно освежить свои знания английского`,
     uk: `Мені потрібно освіжити свої знання англійської`,
+    es: `Necesito repasar mi inglés`,
+    explanationsES: [
+          `Correcto. Brush up on my English es una forma natural de decir que quieres repasar o refrescar tus conocimientos.`,
+          `Fresh up no es la expresión natural para repasar una materia. Usa brush up on.`,
+          `Brush up my English pierde la partícula on. La expresión completa es brush up on something.`,
+          `Blush significa sonrojarse. Aquí necesitas brush, no blush.`,
+    ],
     choices: [
       `I need to brush up on my English.`,
       `I need to fresh up my English.`,
@@ -24517,6 +24682,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Что мне нужно, так это хороший отдых`,
     uk: `Що мені потрібно, так це гарний відпочинок`,
+    es: `Lo que necesito es un buen descanso`,
+    explanationsES: [
+          `Tedious significa aburrido. No encaja con un buen descanso.`,
+          `What I need it is añade un it innecesario. What I need ya funciona como sujeto.`,
+          `Correcto. What I need is a decent rest enfatiza exactamente lo que necesitas.`,
+          `That what I need mezcla dos inicios. La estructura natural empieza con What I need.`,
+    ],
     choices: [
       `What I need is a tedious rest.`,
       `What I need it is a good rest.`,
@@ -24542,6 +24714,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Мне нужно подстричься (чтобы кто-то это сделал)`,
     uk: `Мені потрібно підстригтися (щоб хтось це зробив)`,
+    es: `Necesito que me corten el pelo`,
+    explanationsES: [
+          `I need to cut my hair suena como si fueras a cortártelo tú mismo.`,
+          `Correcto. Have my hair cut muestra que otra persona hará el servicio.`,
+          `Cat significa gato. Aquí necesitas cut.`,
+          `I need to hair cut no tiene la estructura necesaria. Usa have my hair cut.`,
+    ],
     choices: [
       `I need to cut my hair.`,
       `I need to have my hair cut.`,
@@ -24567,13 +24746,20 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Хватит ходить вокруг да около`,
     uk: `Досить ходити навколо`,
+    es: `Deja de andarte con rodeos`,
+    explanationsES: [
+          `Stop walking around and about describe caminar, no evitar el punto principal.`,
+          `Brush significa cepillo. La idiom correcta usa bush.`,
+          `Correcto. Stop beating around the bush significa dejar de dar rodeos.`,
+          `Stop beating about the bush existe en algunas variantes, pero around es la forma más natural aquí.`,
+    ],
     choices: [
       `Stop walking around and about.`,
       `Stop beating around the brush.`,
       `Stop beating around the bush.`,
       `Stop beating about the bush.`,
     ],
-    correct: 0,
+    correct: 2,
     explanations: [
       `Это звучит как описание прогулки по парку. Англичане используют более образное выражение, когда кто-то не может перейти к сути дела. Попробуй найти вариант, где упоминаются кусты!`,
       `Ты был очень близок! Но в этой идиоме используется слово bush, которое означает куст, а не brush, которое означает щетку. Ты же не собираешься бить щетку? Замени одно слово на другое!`,
@@ -24592,6 +24778,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Важно, чтобы он присутствовал на встрече`,
     uk: `Важливо, щоб він був присутнім на зустрічі`,
+    es: `Es importante que él esté presente en la reunión`,
+    explanationsES: [
+          `Correcto. En estilo formal, después de essential usamos la base verbal: that he be present.`,
+          `That he is present se entiende, pero no es la forma subjuntiva formal que se practica aquí.`,
+          `Essential him to be present no es una estructura natural. Necesitas that he be present.`,
+          `Bee significa abeja. Aquí necesitas be.`,
+    ],
     choices: [
       `It is essential that he be present at the meeting.`,
       `It is essential that he is present at the meeting.`,
@@ -24617,6 +24810,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Он и не подозревал, что его ждет сюрприз`,
     uk: `Він і не підозрював, що на нього чекає сюрприз`,
+    es: `Él ni sospechaba que le esperaba una sorpresa`,
+    explanationsES: [
+          `Little he knew pierde la inversión. Con Little al inicio necesitamos did he know.`,
+          `Correcto. Little did he know... es una inversión enfática muy natural.`,
+          `Small no funciona como Little en esta expresión.`,
+          `No significa no. Aquí necesitas know.`,
+    ],
     choices: [
       `Little he knew that a surprise awaited him.`,
       `Little did he know that a surprise awaited him.`,
@@ -24642,6 +24842,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Ты попал в самую точку (сказал совершенно верно)`,
     uk: `Ти влучив у саму точку (сказав абсолютно правильно)`,
+    es: `Diste justo en el clavo`,
+    explanationsES: [
+          `Correcto. Hit the nail on the head significa acertar exactamente.`,
+          `Heart cambia head por corazón y rompe la idiom.`,
+          `Hit the point exactly se entiende, pero no es la idiom natural que buscamos.`,
+          `Snail significa caracol. La expresión correcta usa nail.`,
+    ],
     choices: [
       `You hit the nail on the head.`,
       `You hit the nail on the heart.`,
@@ -24667,6 +24874,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Я уговорил его починить мой компьютер`,
     uk: `Я вмовив його полагодити мій комп\'ютер`,
+    es: `Conseguí que él arreglara mi ordenador`,
+    explanationsES: [
+          `Correcto. Got him to fix significa que lograste que él lo hiciera.`,
+          `Got him fix pierde to. La estructura es get someone to do something.`,
+          `Spoke him to fix no es una estructura natural para persuadir.`,
+          `Fish significa pescar. Aquí necesitas fix.`,
+    ],
     choices: [
       `I got him to fix my computer.`,
       `I got him fix my computer.`,
@@ -24692,6 +24906,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Нет худа без добра (скрытое благословение)`,
     uk: `Немає лиха без добра (приховане благословення)`,
+    es: `No hay mal que por bien no venga`,
+    explanationsES: [
+          `Correcto. A blessing in disguise es algo bueno escondido dentro de una situación mala.`,
+          `The skies significa los cielos. La idiom correcta usa disguise.`,
+          `Good without bad es un calco y no suena natural como idiom inglesa.`,
+          `La expresión fija es in disguise, no on disguise.`,
+    ],
     choices: [
       `It is a blessing in disguise.`,
       `It is a blessing in the skies.`,
@@ -24717,6 +24938,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Он, как утверждают, совершил это преступление`,
     uk: `Він, як стверджують, скоїв цей злочин`,
+    es: `Presuntamente, él cometió este delito`,
+    explanationsES: [
+          `Correcto. Allegedly marca que es una acusación o información no confirmada.`,
+          `Allergicly significa de forma alérgica. Aquí necesitas allegedly.`,
+          `Alleged es adjetivo; para describir la acción necesitas allegedly.`,
+          `As people say es un calco largo. Allegedly es más preciso y natural.`,
+    ],
     choices: [
       `He allegedly committed this crime.`,
       `He allergicly committed this crime.`,
@@ -24742,6 +24970,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Не успел я выйти, как пошел дождь`,
     uk: `Не встиг я вийти, як пішов дощ`,
+    es: `Apenas había salido cuando empezó a llover`,
+    explanationsES: [
+          `No sooner I had left pierde la inversión. Después de No sooner va had I left.`,
+          `Correcto. No sooner had I left than... usa la inversión y el conector than.`,
+          `Con No sooner usamos than, no when.`,
+          `Then significa luego. En esta estructura necesitamos than.`,
+    ],
     choices: [
       `No sooner I had left than it started to rain.`,
       `No sooner had I left than it started to rain.`,
@@ -24767,6 +25002,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Ты не туда обратился (ищешь не там/ошибаешься адресом)`,
     uk: `Ти не туди звернувся (шукаєш не там/помиляєшся адресою)`,
+    es: `Estás buscando en el lugar equivocado`,
+    explanationsES: [
+          `Correcto. Barking up the wrong tree significa buscar la causa o la persona equivocada.`,
+          `Three es el número tres. La idiom necesita tree.`,
+          `La expresión fija es bark up the wrong tree, no at the wrong tree.`,
+          `You look in the wrong place se entiende, pero pierde la idiom que se practica aquí.`,
+    ],
     choices: [
       `You are barking up the wrong tree.`,
       `You are barking up the wrong three.`,
@@ -24792,6 +25034,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Я предлагаю ей пойти туда завтра`,
     uk: `Я пропоную їй піти туди завтра`,
+    es: `Sugiero que ella vaya allí mañana`,
+    explanationsES: [
+          `After suggest in this formal pattern, the verb stays in base form. Goes is not the target form here.`,
+          `Correcto. I suggest that she go... usa la base go después de suggest.`,
+          `Suggest her to go no es la estructura natural. Usa suggest that she go.`,
+          `Gow no es una palabra correcta; necesitas go.`,
+    ],
     choices: [
       `I suggest that she goes there tomorrow.`,
       `I suggest that she go there tomorrow.`,
@@ -24817,13 +25066,20 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Я редко видел такую изысканную красоту`,
     uk: `Я рідко бачив таку вишукану красу`,
+    es: `Rara vez he visto una belleza tan exquisita`,
+    explanationsES: [
+          `Las palabras son correctas, pero el ejercicio busca la inversión enfática con Seldom al inicio.`,
+          `Correcto. Seldom have I seen... usa inversión para un estilo elevado.`,
+          `Seldom I have seen pierde la inversión. Debe ser Seldom have I seen.`,
+          `Explicit significa explícita. Aquí necesitas exquisite.`,
+    ],
     choices: [
       `I have seldom seen such exquisite beauty.`,
       `Seldom have I seen such exquisite beauty.`,
       `Seldom I have seen such exquisite beauty.`,
       `Seldom have I seen such explicit beauty.`,
     ],
-    correct: 0,
+    correct: 1,
     explanations: [
       `Ты выбрал правильные слова, но для настоящего высокого стиля нам нужно поменять порядок слов. Когда мы начинаем с Seldom, помощник have должен выскочить перед буквой I. Попробуй переставить их!`,
       `Невероятно! Это высший пилотаж. Ты использовал обратный порядок слов, чтобы подчеркнуть редкость момента. Твоя речь звучит как у настоящего лорда. Потрясающе!`,
@@ -24842,6 +25098,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Мы отправились в путь на рассвете`,
     uk: `Ми вирушили в дорогу на світанку`,
+    es: `Partimos al amanecer`,
+    explanationsES: [
+          `Correcto. Set off at dawn es natural para empezar un viaje al amanecer.`,
+          `Set on no expresa iniciar un viaje. Necesitas set off.`,
+          `Started the way es un calco. Set off es la opción idiomática.`,
+          `Sat es pasado de sit. Aquí necesitas set.`,
+    ],
     choices: [
       `We set off at dawn.`,
       `We set on at dawn.`,
@@ -24867,6 +25130,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Мені неприємно (я обурююсь), коли мені кажуть, що робити`,
     uk: `Я обурений (мені неприємно), коли мені кажуть, що робити`,
+    es: `Me molesta que me digan qué hacer`,
+    explanationsES: [
+          `Correcto. I resent being told what to do expresa molestia con una forma pasiva de gerundio.`,
+          `I resent when people tell me... se entiende, pero es menos compacto y menos avanzado.`,
+          `After resent necesitas gerundio: being told, no be told.`,
+          `Recent significa reciente. Aquí necesitas resent.`,
+    ],
     choices: [
       `I resent being told what to do.`,
       `I resent when people tell me what to do.`,
@@ -24892,6 +25162,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Если бы я был умнее (вообще), я бы не купил ту машину (в прошлом)`,
     uk: `Якби я був розумнішим (взагалі), я б не купив ту машину (в минулому)`,
+    es: `Si fuera más listo, no habría comprado aquel coche`,
+    explanationsES: [
+          `Wouldn't buy apunta al presente o futuro, pero la compra ya ocurrió. Necesitas wouldn't have bought.`,
+          `Correcto. If I were smarter, I wouldn't have bought... mezcla una condición general con un resultado pasado.`,
+          `Boat significa barco. Aquí necesitas bought.`,
+          `En la parte con if no usamos would be. Usa If I were smarter.`,
+    ],
     choices: [
       `If I was smarter, I wouldn\'t buy that car.`,
       `If I were smarter, I wouldn\'t have bought that car.`,
@@ -24917,6 +25194,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Он, как утверждают, украл эти документы`,
     uk: `Він, як стверджують, украв ці документи`,
+    es: `Presuntamente, él robó estos documentos`,
+    explanationsES: [
+          `Correcto. Allegedly expresa distancia ante una acusación no confirmada.`,
+          `Allergicly significa de forma alérgica. Aquí necesitas allegedly.`,
+          `Alleged es adjetivo; para describir la acción necesitas allegedly.`,
+          `He as they say suena como calco. Allegedly es la palabra natural y precisa.`,
+    ],
     choices: [
       `He allegedly stole these documents.`,
       `He allergicly stole these documents.`,
@@ -24942,13 +25226,20 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Я настаиваю на том, чтобы он присутствовал на встрече`,
     uk: `Я наполягаю на тому, щоб він був присутнім на зустрічі`,
+    es: `Insisto en que él esté presente en la reunión`,
+    explanationsES: [
+          `I insist that he is present se entiende, pero aquí se practica la forma formal con be.`,
+          `I insist on him to be... no es la estructura natural. Usa insist that he be.`,
+          `Correcto. I insist that he be present usa la base be después de insist.`,
+          `Bee significa abeja. Aquí necesitas be.`,
+    ],
     choices: [
       `I insist that he is present at the meeting.`,
       `I insist on him to be present at the meeting.`,
       `I insist that he be present at the meeting.`,
       `I insist that he bee present at the meeting.`,
     ],
-    correct: 0,
+    correct: 2,
     explanations: [
       `Ты выбрал привычную форму, но после слов требования и настаивания нам нужно особое состояние глагола без окончаний. Убери букву s и используй начальную форму be!`,
       `Здесь получился перевод, который не совсем дружит с английской логикой. После глагола insist лучше всего строить фразу через слово that. Попробуй переделать структуру!`,
@@ -24967,6 +25258,13 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Мне нужно освежить свои знания английского перед поездкой`,
     uk: `Мені потрібно освіжити свої знання англійської перед поїздкою`,
+    es: `Necesito repasar mi inglés antes del viaje`,
+    explanationsES: [
+          `Correcto. Brush up on my English before the trip suena natural para repasar antes de viajar.`,
+          `Brush up my English pierde on. La expresión completa es brush up on something.`,
+          `Fresh my English es un calco. Para conocimientos usamos brush up on.`,
+          `Blush significa sonrojarse. Aquí necesitas brush.`,
+    ],
     choices: [
       `I need to brush up on my English before the trip.`,
       `I need to brush up my English before the trip.`,
@@ -25043,6 +25341,7 @@ export type QuizPoolAuditEntry = {
   ru: string;
   uk: string;
   es?: string;
+  sourceLocales?: QuizSourceLocaleMap;
   choices: string[];
   correct: number | number[];
   explanations: string[];
@@ -25061,6 +25360,13 @@ export function getQuizPoolAuditEntries(difficulty: QuizDifficulty): QuizPoolAud
     ru: entry.ru,
     uk: entry.uk,
     es: entry.es,
+    sourceLocales: {
+      'pt-BR': entry.sourceLocales?.['pt-BR'],
+      vi: entry.sourceLocales?.vi,
+      id: entry.sourceLocales?.id,
+      tr: entry.sourceLocales?.tr,
+      pl: entry.sourceLocales?.pl,
+    },
     choices: [...entry.choices],
     correct: Array.isArray(entry.correct) ? [...entry.correct] : entry.correct,
     explanations: [...entry.explanations],
@@ -25085,6 +25391,16 @@ const isHeisenbergQuizSourceLocale = (locale: QuizSourceLocale): locale is Heise
   locale === 'tr' ||
   locale === 'pl';
 
+const isPlannedQuizSourceLocale = (locale: QuizSourceLocale): locale is Exclude<HeisenbergSourceLocale, 'es'> =>
+  locale === 'pt-BR' ||
+  locale === 'vi' ||
+  locale === 'id' ||
+  locale === 'tr' ||
+  locale === 'pl';
+
+const isStructuredQuizPayloadRuntimeSafe = (difficulty: QuizDifficulty, ordinal: number): boolean =>
+  difficulty !== 'hard' || ordinal <= 297;
+
 const completeQuizSourceCopy = (
   payload: QuizSourceLocaleCopy | QuizSourceLocalePayload | undefined | null,
 ): QuizSourceLocaleCopy | null => {
@@ -25099,24 +25415,25 @@ const resolveQuizSourceLocaleCopy = (
   ordinal: number,
   locale: QuizSourceLocale,
 ): QuizSourceLocaleCopy | null => {
-  if (locale === 'ru') {
-    return { prompt: entry.ru, explanations: entry.explanations };
-  }
-  if (locale === 'uk') {
-    return { prompt: entry.uk, explanations: entry.explanationsUK };
-  }
+  const baseLocaleCopy: Partial<Record<QuizSourceLocale, QuizSourceLocaleCopy>> = {
+    ru: { prompt: entry.ru, explanations: entry.explanations },
+    uk: { prompt: entry.uk, explanations: entry.explanationsUK },
+  };
+  const baseCopy = baseLocaleCopy[locale];
+  if (baseCopy) return baseCopy;
 
   const inlinePayload = isExtraQuizSourceLocale(locale)
     ? completeQuizSourceCopy(entry.sourceLocales?.[locale])
     : null;
   if (inlinePayload) return inlinePayload;
 
-  const structuredPayload = isHeisenbergQuizSourceLocale(locale)
+  const structuredPayload = isHeisenbergQuizSourceLocale(locale) && isStructuredQuizPayloadRuntimeSafe(difficulty, ordinal)
     ? completeQuizSourceCopy(getStructuredQuizSourceLocalePayload(difficulty, ordinal, locale))
     : null;
   if (structuredPayload) return structuredPayload;
 
-  if (locale === 'es') {
+  const isSpanishLocale = locale === 'es';
+  if (isSpanishLocale) {
     return completeQuizSourceCopy(
       entry.es && entry.explanationsES
         ? { prompt: entry.es, explanations: entry.explanationsES }
@@ -25125,6 +25442,20 @@ const resolveQuizSourceLocaleCopy = (
   }
 
   return null;
+};
+
+const unresolvedQuizSourceLocaleCopy = (locale: QuizSourceLocale): QuizSourceLocaleCopy | null => {
+  if (!isPlannedQuizSourceLocale(locale)) return null;
+  const prompt = `needs-review: missing quiz prompt for ${locale}`;
+  return {
+    prompt,
+    explanations: [
+      `needs-review: missing quiz explanation 1 for ${locale}`,
+      `needs-review: missing quiz explanation 2 for ${locale}`,
+      `needs-review: missing quiz explanation 3 for ${locale}`,
+      `needs-review: missing quiz explanation 4 for ${locale}`,
+    ],
+  };
 };
 
 const SPANISH_QUIZ_SOURCE_BAD_RE = /[А-Яа-яЁёІіЇїЄєҐґ]|Ð|Ñ|�/u;
@@ -25174,10 +25505,10 @@ export function validateQuizSourceLocaleCoverage(
     copy.explanations.forEach((line, j) => {
       if (!line.trim()) issues.push(`${label} ${locale} explanations[${j}]: empty`);
       if (line === e.explanations[j] || line === e.explanationsUK[j]) {
-        issues.push(`${label} ${locale} explanations[${j}]: source fallback`);
+        issues.push(`${label} ${locale} explanations[${j}]: source locale copy reused`);
       }
       if (locale !== 'es' && e.explanationsES?.[j] && line === e.explanationsES[j]) {
-        issues.push(`${label} ${locale} explanations[${j}]: Spanish fallback`);
+        issues.push(`${label} ${locale} explanations[${j}]: Spanish copy reused`);
       }
       if (SOURCE_LOCALE_BAD_RE.test(line)) {
         issues.push(`${label} ${locale} explanations[${j}]: bad text`);
@@ -25249,8 +25580,13 @@ export function getEasyPoolDuplicatePrompts(): { ru: string; indices: number[] }
 export const getQuizPhrases = (
   difficulty: QuizDifficulty,
   count: number = 10,
-  _lang: QuizSourceLocale = 'ru'
+  _lang: QuizSourceLocale = 'ru',
+  studyTarget: QuizStudyTargetLang = 'en',
 ): QuizPhrase[] => {
+  if (studyTarget === 'fr') {
+    return [];
+  }
+
   const pool = difficulty === 'easy' ? EASY_POOL : difficulty === 'medium' ? MEDIUM_POOL : HARD_POOL;
 
   if (pool.length === 0) return [];
@@ -25266,7 +25602,9 @@ export const getQuizPhrases = (
     const correctAnswerStrings = rawCorrect.map(i => entry.choices[i]);
     const primaryAnswer = correctAnswerStrings[0];
     const answerAlternatives = correctAnswerStrings.length > 1 ? correctAnswerStrings.slice(1) : undefined;
-    const sourceCopy = resolveQuizSourceLocaleCopy(entry, difficulty, ordinal, _lang);
+    const sourceCopy =
+      resolveQuizSourceLocaleCopy(entry, difficulty, ordinal, _lang) ??
+      unresolvedQuizSourceLocaleCopy(_lang);
 
     const indices = shuffle([0, 1, 2, 3]);
     const shuffledChoices = indices.map(i => entry.choices[i]);
@@ -25278,24 +25616,38 @@ export const getQuizPhrases = (
         ? indices.map(i => explES[i]!)
         : indices.map(i => entry.explanations[i]);
     const sourceExplanations = sourceCopy?.explanations;
+    const defaultExplanationSets: Partial<Record<QuizSourceLocale, string[]>> = {
+      uk: shuffledExplanationsUK,
+      es: shuffledExplanationsES,
+    };
     const shuffledSourceExplanations =
       sourceExplanations && sourceExplanations.length === entry.explanations.length
         ? indices.map(i => sourceExplanations[i]!)
-        : _lang === 'uk'
-          ? shuffledExplanationsUK
-          : _lang === 'es'
-            ? shuffledExplanationsES
-            : shuffledExplanations;
+        : defaultExplanationSets[_lang] || shuffledExplanations;
     const newCorrectList = rawCorrect
       .map(ci => shuffledChoices.indexOf(entry.choices[ci]))
       .filter(i => i >= 0);
     const newCorrect = newCorrectList.length === 1 ? newCorrectList[0]! : newCorrectList;
-    const fallbackSourceText = _lang === 'uk' ? entry.uk : _lang === 'es' ? entry.es ?? entry.ru : entry.ru;
+    const defaultSourceTextByLocale: Partial<Record<QuizSourceLocale, string>> = {
+      uk: entry.uk,
+      es: entry.es !== undefined && entry.es !== null ? entry.es : entry.ru,
+    };
+    const mappedDefaultSourceText = defaultSourceTextByLocale[_lang];
+    const defaultSourceText = mappedDefaultSourceText !== undefined && mappedDefaultSourceText !== null
+      ? mappedDefaultSourceText
+      : entry.ru;
 
     return {
       ru:             entry.ru,
       uk:             entry.uk,
       es:             entry.es ?? entry.ru,
+      sourceLocales: {
+        'pt-BR': entry.sourceLocales?.['pt-BR'],
+        vi: entry.sourceLocales?.vi,
+        id: entry.sourceLocales?.id,
+        tr: entry.sourceLocales?.tr,
+        pl: entry.sourceLocales?.pl,
+      },
       choices:        shuffledChoices,
       correct:        newCorrect,
       answer:         primaryAnswer,
@@ -25304,7 +25656,7 @@ export const getQuizPhrases = (
       explanationsUK: shuffledExplanationsUK,
       explanationsES: shuffledExplanationsES,
       sourceLocale:   _lang,
-      sourceText:     sourceCopy?.prompt ?? fallbackSourceText,
+      sourceText:     sourceCopy?.prompt ?? defaultSourceText,
       sourceExplanations: shuffledSourceExplanations,
       lessonNum:      entry.lessonNum,
       level:          entry.level as PhraseLevel,

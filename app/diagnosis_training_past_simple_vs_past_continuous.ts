@@ -3,7 +3,28 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const PAST_SIMPLE_CONT_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre Past Simple vs Past Continuous ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về Past Simple vs Past Continuous này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan Past Simple vs Past Continuous ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu Past Simple vs Past Continuous açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie Past Simple vs Past Continuous nadal wymaga przeglądu po polsku.',
+};
+
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? PAST_SIMPLE_CONT_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'past simple',
@@ -21,30 +42,79 @@ const SMART_CONTRAST = CONTRAST;
 const MODEL = tri(
   'Здесь выбор не по русскому переводу. "Я работал" может быть фактом: I worked yesterday. А может быть процессом в момент прошлого: I was working at 8. Past Simple отвечает на "что произошло?" или "что сделал?". Past Continuous отвечает на "что происходило в тот момент?".',
   'Тут вибір не за українським перекладом. "Я працював" може бути фактом: I worked yesterday. А може бути процесом у момент минулого: I was working at 8. Past Simple відповідає на "що сталося?" або "що зробив?". Past Continuous відповідає на "що відбувалося в той момент?".',
-  'The choice is not based on translation. Past Simple answers "what happened?". Past Continuous answers "what was happening at that moment?".',
+  'La eleccion no depende de la traduccion. Past Simple responde que paso o que hizo alguien. Past Continuous responde que estaba pasando en ese momento.',
+  {
+    'pt-BR': 'A escolha não depende da tradução. "Eu trabalhei" pode ser um fato: I worked yesterday. Também pode ser um processo em um momento do passado: I was working at 8. Past Simple responde "o que aconteceu?" ou "o que alguém fez?". Past Continuous responde "o que estava acontecendo naquele momento?".',
+    vi: 'Lựa chọn không phụ thuộc vào bản dịch. "Tôi đã làm việc" có thể là một sự việc: I worked yesterday. Nó cũng có thể là một quá trình tại một thời điểm trong quá khứ: I was working at 8. Past Simple trả lời "đã xảy ra chuyện gì?" hoặc "ai đó đã làm gì?". Past Continuous trả lời "lúc đó đang diễn ra điều gì?".',
+    id: 'Pilihannya tidak bergantung pada terjemahan. "Saya bekerja" bisa menjadi fakta: I worked yesterday. Bisa juga menjadi proses pada momen masa lalu: I was working at 8. Past Simple menjawab "apa yang terjadi?" atau "apa yang dilakukan seseorang?". Past Continuous menjawab "apa yang sedang terjadi saat itu?".',
+    tr: 'Seçim çeviriye bağlı değildir. "Çalıştım" bir gerçek olabilir: I worked yesterday. Geçmişteki bir anda süren bir süreç de olabilir: I was working at 8. Past Simple "ne oldu?" ya da "ne yaptı?" sorusunu yanıtlar. Past Continuous "o anda ne oluyordu?" sorusunu yanıtlar.',
+    pl: 'Wybór nie zależy od tłumaczenia. "Pracowałem" może być faktem: I worked yesterday. Może też być procesem w konkretnym momencie przeszłości: I was working at 8. Past Simple odpowiada na "co się wydarzyło?" albo "co ktoś zrobił?". Past Continuous odpowiada na "co działo się w tamtym momencie?".',
+  },
 );
+
+const PAST_SIMPLE_CONT_SKILL_ES: Record<string, string> = {
+  past_simple_fact: 'Yesterday sin momento exacto suele ser un hecho: worked.',
+  past_continuous_at_time: 'At 8 yesterday pide proceso en ese momento: was working.',
+  fact_vs_process_pair: 'Hecho = worked; proceso en un momento = was working.',
+  background_when_event: 'Sleeping es fondo; called es evento corto.',
+  event_when_background: 'Rang es evento corto; was sleeping es fondo.',
+  arrived_interrupting_action: 'Watching ya estaba en progreso cuando llegaste.',
+  while_background: 'While suele introducir proceso de fondo.',
+  two_parallel_actions: 'Dos procesos paralelos usan were having / were watching.',
+  while_when_pair: 'While da fondo; when introduce evento.',
+  sequence_past_simple: 'Acciones en secuencia usan Past Simple.',
+  background_then_event: 'Cooking era el fondo; arrived fue el evento.',
+  event_during_background: 'Came in es evento corto sobre fondo.',
+  mixed_interruption_pair: 'Sleeping es fondo; called es evento o hecho.',
+  mixed_sequence_background: 'Entered es evento; were watching era fondo.',
+  mixed_sentence_correction: 'Came home es evento; cooking y sleeping son fondo.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = PAST_SIMPLE_CONT_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? PAST_SIMPLE_CONT_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function pastSimpleContEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = PAST_SIMPLE_CONT_SKILL_ES[input.targetSkill] ?? 'Decide si la accion es hecho, evento o proceso de fondo.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retry(correct: string): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала реши роль действия: это факт, короткое событие или процесс на фоне?',
       'Спочатку виріши роль дії: це факт, коротка подія чи процес на фоні?',
-      'First decide the action role: fact, short event, or background process.',
+      'Primero decide el papel de la accion: hecho, evento corto o proceso de fondo.',
     ),
     tri(
       'Если это факт или цепочка действий, чаще нужен Past Simple: worked, called, entered.',
       'Якщо це факт або ланцюжок дій, частіше потрібен Past Simple: worked, called, entered.',
-      'If it is a fact or sequence, use Past Simple.',
+      'Si es un hecho o una secuencia, usa Past Simple.',
     ),
     tri(
       'Если это процесс в тот момент или фон для другого события, чаще нужен was/were + -ing.',
       'Якщо це процес у той момент або фон для іншої події, частіше потрібен was/were + -ing.',
-      'If it is a process at that moment or background, use was/were + -ing.',
+      'Si es un proceso en ese momento o fondo, usa was/were + -ing.',
     ),
     tri(
       'Нужный вариант выбирается по роли действия: короткое событие отдельно, процесс в момент прошлого как фон.',
       'Потрібний варіант обирається за роллю дії: коротка подія окремо, процес у момент минулого як фон.',
-      `The answer here is: ${correct}.`,
+      `La respuesta aqui es: ${correct}.`,
     ),
   ];
 }
@@ -53,7 +123,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Проверь роль действия: факт, событие или процесс на фоне. Здесь нужно: ${correct}.`,
     `Майже. Перевір роль дії: факт, подія чи процес на фоні. Тут потрібно: ${correct}.`,
-    `Almost. Check the action role. Use: ${correct}.`,
+    `Casi. Revisa el papel de la accion. Usa: ${correct}.`,
   );
 }
 
@@ -70,35 +140,36 @@ function contrastStep(input: {
   wrong: Record<string, TriText>;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = pastSimpleContEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
-    teachingText: MODEL,
-    explanationBlock: MODEL,
+    translation: withEs(input.translation, esFeedback),
+    teachingText: withEs(MODEL, esFeedback),
+    explanationBlock: withEs(MODEL, esFeedback),
     microTask: tri(
       'Выбери Past Simple или Past Continuous по роли действия: факт, событие или процесс на фоне.',
       'Обери Past Simple або Past Continuous за роллю дії: факт, подія чи процес на фоні.',
-      'Choose Past Simple or Past Continuous by the action role.',
+      'Elige Past Simple o Past Continuous segun el papel de la accion.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(input.correctAnswer),
+    retryFeedback: retry(input.correctAnswer).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Коротко: worked = факт или событие. Was working = процесс в тот момент. Called/entered/rang часто короткое событие. Was sleeping/were watching часто фон.',
       'Коротко: worked = факт або подія. Was working = процес у той момент. Called/entered/rang часто коротка подія. Was sleeping/were watching часто фон.',
-      'Short version: worked is a fact/event. Was working is a process at that moment.',
+      'Version corta: worked = hecho o evento. Was working = proceso en ese momento. Called/entered/rang suelen ser eventos cortos. Was sleeping/were watching suelen ser fondo.',
     ),
     focusWords: input.focusWords,
   };
@@ -110,29 +181,63 @@ export const PAST_SIMPLE_VS_PAST_CONTINUOUS_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 43,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Past Simple vs Past Continuous: факт или процесс',
     'Past Simple vs Past Continuous: факт чи процес',
-    'Past Simple vs Past Continuous: fact or process',
+    'Past Simple vs Past Continuous: hecho o proceso',
+    {
+      'pt-BR': 'Past Simple vs Past Continuous: fato ou processo',
+      vi: 'Past Simple vs Past Continuous: sự việc hay quá trình',
+      id: 'Past Simple vs Past Continuous: fakta atau proses',
+      tr: 'Past Simple vs Past Continuous: gerçek mi süreç mi',
+      pl: 'Past Simple vs Past Continuous: fakt czy proces',
+    },
   ),
-  shortTitle: tri('Past: факт / процесс', 'Past: факт / процес', 'Past: fact / process'),
+  shortTitle: tri('Past: факт / процесс', 'Past: факт / процес', 'Past: hecho / proceso', {
+    'pt-BR': 'Past: fato / processo',
+    vi: 'Past: sự việc / quá trình',
+    id: 'Past: fakta / proses',
+    tr: 'Past: gerçek / süreç',
+    pl: 'Past: fakt / proces',
+  }),
   shortDiagnosis: tri(
     'Ты видишь один русский перевод в прошлом, но не решаешь роль действия: факт, событие или процесс на фоне.',
     'Ти бачиш один український переклад у минулому, але не вирішуєш роль дії: факт, подія чи процес на фоні.',
-    'You see a past translation, but do not decide the action role: fact, event, or background process.',
+    'Ves una traduccion en pasado, pero no decides el papel de la accion: hecho, evento o proceso de fondo.',
+    {
+      'pt-BR': 'Você vê uma tradução no passado, mas não decide o papel da ação: fato, evento ou processo de fundo.',
+      vi: 'Bạn thấy một bản dịch ở quá khứ, nhưng chưa quyết định vai trò của hành động: sự việc, sự kiện hay quá trình nền.',
+      id: 'Kamu melihat satu terjemahan lampau, tetapi belum menentukan peran aksinya: fakta, peristiwa, atau proses latar.',
+      tr: 'Geçmiş zamanlı bir çeviri görüyorsun, ama eylemin rolünü belirlemiyorsun: gerçek, olay ya da arka plan süreci.',
+      pl: 'Widzisz jedno tłumaczenie w przeszłości, ale nie ustalasz roli czynności: fakt, wydarzenie czy proces w tle.',
+    },
   ),
   diagnosisText: tri(
     'Ошибка появляется, когда ты выбираешь время по переводу. Английский спрашивает не "как это переводится?", а "что делает действие в сцене?". Если это факт или цепочка: I worked, I entered, the phone rang. Если это процесс, который уже шёл в тот момент: I was working, they were watching, she was sleeping.',
     'Помилка зʼявляється, коли ти обираєш час за перекладом. Англійська питає не "як це перекладається?", а "що робить дія в сцені?". Якщо це факт або ланцюжок: I worked, I entered, the phone rang. Якщо це процес, який уже тривав у той момент: I was working, they were watching, she was sleeping.',
-    'The mistake happens when you choose by translation. English asks what role the action has in the scene: fact/event or background process.',
+    'El error aparece cuando eliges el tiempo por traduccion. El ingles pregunta que papel tiene la accion en la escena: hecho/evento o proceso de fondo.',
+    {
+      'pt-BR': 'O erro aparece quando você escolhe o tempo verbal pela tradução. O inglês não pergunta "como isso se traduz?", mas "qual papel a ação tem na cena?". Se é fato ou sequência: I worked, I entered, the phone rang. Se é um processo que já estava acontecendo naquele momento: I was working, they were watching, she was sleeping.',
+      vi: 'Lỗi xuất hiện khi bạn chọn thì theo bản dịch. Tiếng Anh không hỏi "dịch thế nào?", mà hỏi "hành động có vai trò gì trong cảnh này?". Nếu là sự việc hoặc chuỗi hành động: I worked, I entered, the phone rang. Nếu là quá trình đã đang diễn ra lúc đó: I was working, they were watching, she was sleeping.',
+      id: 'Kesalahan muncul ketika kamu memilih tense berdasarkan terjemahan. Bahasa Inggris tidak bertanya "ini diterjemahkan bagaimana?", tetapi "apa peran aksi ini dalam adegan?". Jika itu fakta atau rangkaian: I worked, I entered, the phone rang. Jika itu proses yang sudah berlangsung saat itu: I was working, they were watching, she was sleeping.',
+      tr: 'Hata, zamanı çeviriye göre seçtiğinde ortaya çıkar. İngilizce "bu nasıl çevrilir?" diye değil, "eylem sahnede ne yapıyor?" diye sorar. Eğer gerçek ya da sıra halinde eylemse: I worked, I entered, the phone rang. Eğer o anda zaten süren bir süreçse: I was working, they were watching, she was sleeping.',
+      pl: 'Błąd pojawia się, gdy wybierasz czas według tłumaczenia. Angielski nie pyta "jak to się tłumaczy?", tylko "jaką rolę ma czynność w scenie?". Jeśli to fakt albo sekwencja: I worked, I entered, the phone rang. Jeśli to proces, który już trwał w tamtym momencie: I was working, they were watching, she was sleeping.',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     'Past Simple: факт, короткое событие или цепочка действий: I worked yesterday. The phone rang. I entered the room. Past Continuous: процесс в момент прошлого или фон: I was working at 8. They were watching TV when I entered.',
     'Past Simple: факт, коротка подія або ланцюжок дій: I worked yesterday. The phone rang. I entered the room. Past Continuous: процес у момент минулого або фон: I was working at 8. They were watching TV when I entered.',
-    'Past Simple: fact, event, or sequence. Past Continuous: process at a past moment or background.',
+    'Past Simple: hecho, evento o secuencia. Past Continuous: proceso en un momento pasado o fondo.',
+    {
+      'pt-BR': 'Past Simple: fato, evento curto ou sequência de ações: I worked yesterday. The phone rang. I entered the room. Past Continuous: processo em um momento do passado ou fundo: I was working at 8. They were watching TV when I entered.',
+      vi: 'Past Simple: sự việc, sự kiện ngắn hoặc chuỗi hành động: I worked yesterday. The phone rang. I entered the room. Past Continuous: quá trình tại một thời điểm quá khứ hoặc phần nền: I was working at 8. They were watching TV when I entered.',
+      id: 'Past Simple: fakta, peristiwa singkat, atau rangkaian tindakan: I worked yesterday. The phone rang. I entered the room. Past Continuous: proses pada momen masa lalu atau latar: I was working at 8. They were watching TV when I entered.',
+      tr: 'Past Simple: gerçek, kısa olay ya da eylem dizisi: I worked yesterday. The phone rang. I entered the room. Past Continuous: geçmişteki bir anda süren süreç ya da arka plan: I was working at 8. They were watching TV when I entered.',
+      pl: 'Past Simple: fakt, krótkie wydarzenie albo sekwencja czynności: I worked yesterday. The phone rang. I entered the room. Past Continuous: proces w momencie przeszłości albo tło: I was working at 8. They were watching TV when I entered.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -160,16 +265,76 @@ export const PAST_SIMPLE_VS_PAST_CONTINUOUS_TRAINING: DiagnosisTraining = {
       'Після was/were для процесу потрібен варіант з -ing: was working, were watching.',
     ],
     es: [
-      'Past Simple shows a fact, event, or sequence.',
-      'Past Continuous shows a process at a past moment.',
-      'At 8 yesterday and while often point to a process.',
-      'Yesterday without a precise moment often points to a fact.',
-      'When often introduces a short event.',
-      'While often introduces a background process.',
-      'Interrupted background often uses Past Continuous.',
-      'Sequences often use Past Simple.',
-      'Choose by role, not translation.',
-      'After was/were, use -ing for the process.',
+      'Past Simple muestra un hecho, evento o secuencia.',
+      'Past Continuous muestra un proceso en un momento pasado.',
+      'At 8 yesterday y while suelen apuntar a un proceso.',
+      'Yesterday sin momento preciso suele apuntar a un hecho.',
+      'When suele introducir un evento corto.',
+      'While suele introducir un proceso de fondo.',
+      'El fondo interrumpido suele usar Past Continuous.',
+      'Las secuencias suelen usar Past Simple.',
+      'Elige por papel de la accion, no por traduccion.',
+      'Despues de was/were, usa -ing para el proceso.',
+    ],
+    'pt-BR': [
+      'Past Simple mostra fato, evento ou sequência: I worked yesterday.',
+      'Past Continuous mostra um processo em um momento do passado: I was working at 8.',
+      'At 8 yesterday, at that moment e while muitas vezes apontam para um processo.',
+      'Yesterday sem momento exato muitas vezes soa como fato comum.',
+      'When muitas vezes introduz um evento curto: when he called.',
+      'While muitas vezes introduz um processo de fundo: while I was working.',
+      'Se uma ação interrompeu outra, o fundo costuma ficar no Past Continuous e o evento no Past Simple.',
+      'Se as ações vêm uma depois da outra, costuma-se usar Past Simple.',
+      'Não escolha Past Continuous só porque a tradução tem "trabalhava". Decida se é fato ou processo.',
+      'Depois de was/were, o processo precisa de -ing: was working, were watching.',
+    ],
+    vi: [
+      'Past Simple chỉ sự việc, sự kiện hoặc chuỗi hành động: I worked yesterday.',
+      'Past Continuous chỉ quá trình tại một thời điểm trong quá khứ: I was working at 8.',
+      'At 8 yesterday, at that moment và while thường gợi ý quá trình.',
+      'Yesterday không có thời điểm chính xác thường nghe như một sự việc bình thường.',
+      'When thường giới thiệu một sự kiện ngắn: when he called.',
+      'While thường giới thiệu quá trình nền: while I was working.',
+      'Nếu một hành động cắt ngang hành động khác, phần nền thường dùng Past Continuous, sự kiện dùng Past Simple.',
+      'Nếu các hành động diễn ra nối tiếp nhau, thường dùng Past Simple.',
+      'Đừng chọn Past Continuous chỉ vì bản dịch có "đã làm". Hãy quyết định đó là sự việc hay quá trình.',
+      'Sau was/were, quá trình cần dạng -ing: was working, were watching.',
+    ],
+    id: [
+      'Past Simple menunjukkan fakta, peristiwa, atau rangkaian: I worked yesterday.',
+      'Past Continuous menunjukkan proses pada momen masa lalu: I was working at 8.',
+      'At 8 yesterday, at that moment, dan while sering menunjuk proses.',
+      'Yesterday tanpa momen tepat sering terdengar seperti fakta biasa.',
+      'When sering memperkenalkan peristiwa singkat: when he called.',
+      'While sering memperkenalkan proses latar: while I was working.',
+      'Jika satu tindakan memotong tindakan lain, latarnya sering memakai Past Continuous dan peristiwanya Past Simple.',
+      'Jika tindakan terjadi berurutan, biasanya gunakan Past Simple.',
+      'Jangan memilih Past Continuous hanya karena terjemahannya terasa "sedang". Tentukan dulu fakta atau proses.',
+      'Setelah was/were, proses perlu bentuk -ing: was working, were watching.',
+    ],
+    tr: [
+      'Past Simple olgu, olay veya sıralı eylem gösterir: I worked yesterday.',
+      'Past Continuous geçmişteki bir andaki süreci gösterir: I was working at 8.',
+      'At 8 yesterday, at that moment ve while çoğu zaman süreci gösterir.',
+      'Kesin bir an olmadan yesterday çoğu zaman sıradan bir olgu gibi duyulur.',
+      'When çoğu zaman kısa bir olayı başlatır: when he called.',
+      'While çoğu zaman arka plan sürecini başlatır: while I was working.',
+      'Bir eylem başka bir eylemi böldüyse, arka plan çoğu zaman Past Continuous, olay Past Simple olur.',
+      'Eylemler peş peşe geliyorsa çoğu zaman Past Simple kullanılır.',
+      'Çeviride "çalışıyordu" hissi var diye otomatik Past Continuous seçme. Olgu mu süreç mi karar ver.',
+      'Was/were sonrasında süreç için -ing gerekir: was working, were watching.',
+    ],
+    pl: [
+      'Past Simple pokazuje fakt, wydarzenie albo sekwencję: I worked yesterday.',
+      'Past Continuous pokazuje proces w momencie przeszłości: I was working at 8.',
+      'At 8 yesterday, at that moment i while często wskazują proces.',
+      'Yesterday bez dokładnego momentu często brzmi jak zwykły fakt.',
+      'When często wprowadza krótkie wydarzenie: when he called.',
+      'While często wprowadza proces w tle: while I was working.',
+      'Jeśli jedno działanie przerwało drugie, tło często jest w Past Continuous, a wydarzenie w Past Simple.',
+      'Jeśli działania idą jedno po drugim, częściej używa się Past Simple.',
+      'Nie wybieraj Past Continuous tylko dlatego, że tłumaczenie ma "pracowałem". Zdecyduj, czy to fakt, czy proces.',
+      'Po was/were proces potrzebuje -ing: was working, were watching.',
     ],
   },
   examples: [
@@ -177,50 +342,85 @@ export const PAST_SIMPLE_VS_PAST_CONTINUOUS_TRAINING: DiagnosisTraining = {
       en: 'I worked yesterday.',
       ru: 'Я работал вчера.',
       uk: 'Я працював учора.',
-      es: 'I worked yesterday.',
-      why: tri('Это обычный факт о вчерашнем дне.', 'Це звичайний факт про вчорашній день.', 'This is a simple fact about yesterday.'),
+      es: 'Trabaje ayer.',
+      'pt-BR': 'Trabalhei ontem.',
+      vi: 'Hôm qua tôi đã làm việc.',
+      id: 'Saya bekerja kemarin.',
+      tr: 'Dün çalıştım.',
+      pl: 'Pracowałem wczoraj.',
+      why: tri('Это обычный факт о вчерашнем дне.', 'Це звичайний факт про вчорашній день.', 'Es un hecho simple sobre ayer.'),
     },
     {
       en: 'I was working at 8 yesterday.',
       ru: 'Я работал вчера в 8.',
       uk: 'Я працював учора о 8.',
-      es: 'I was working at 8 yesterday.',
-      why: tri('At 8 yesterday задаёт момент. Действие шло в этот момент.', 'At 8 yesterday задає момент. Дія тривала в цей момент.', 'At 8 yesterday gives a moment. The action was in progress.'),
+      es: 'Ayer a las 8 estaba trabajando.',
+      'pt-BR': 'Eu estava trabalhando às 8 ontem.',
+      vi: 'Hôm qua lúc 8 giờ tôi đang làm việc.',
+      id: 'Saya sedang bekerja jam 8 kemarin.',
+      tr: 'Dün saat 8’de çalışıyordum.',
+      pl: 'Pracowałem wczoraj o 8.',
+      why: tri('At 8 yesterday задаёт момент. Действие шло в этот момент.', 'At 8 yesterday задає момент. Дія тривала в цей момент.', 'At 8 yesterday da un momento. La accion estaba en progreso.'),
     },
     {
       en: 'She was sleeping when I called.',
       ru: 'Она спала, когда я позвонил.',
       uk: 'Вона спала, коли я подзвонив.',
-      es: 'She was sleeping when I called.',
-      why: tri('Sleeping - фон, called - короткое событие.', 'Sleeping - фон, called - коротка подія.', 'Sleeping is background; called is the short event.'),
+      es: 'Ella estaba durmiendo cuando llame.',
+      'pt-BR': 'Ela estava dormindo quando eu liguei.',
+      vi: 'Cô ấy đang ngủ khi tôi gọi.',
+      id: 'Dia sedang tidur ketika saya menelepon.',
+      tr: 'Ben aradığımda o uyuyordu.',
+      pl: 'Spała, kiedy zadzwoniłem.',
+      why: tri('Sleeping - фон, called - короткое событие.', 'Sleeping - фон, called - коротка подія.', 'Sleeping es el fondo; called es el evento corto.'),
     },
     {
       en: 'The phone rang while I was sleeping.',
       ru: 'Телефон зазвонил, пока я спал.',
       uk: 'Телефон задзвонив, поки я спав.',
-      es: 'The phone rang while I was sleeping.',
-      why: tri('Rang - событие, was sleeping - процесс на фоне.', 'Rang - подія, was sleeping - процес на фоні.', 'Rang is the event; was sleeping is background.'),
+      es: 'El telefono sono mientras yo dormia.',
+      'pt-BR': 'O telefone tocou enquanto eu estava dormindo.',
+      vi: 'Điện thoại reo khi tôi đang ngủ.',
+      id: 'Telepon berdering ketika saya sedang tidur.',
+      tr: 'Ben uyurken telefon çaldı.',
+      pl: 'Telefon zadzwonił, kiedy spałem.',
+      why: tri('Rang - событие, was sleeping - процесс на фоне.', 'Rang - подія, was sleeping - процес на фоні.', 'Rang es el evento; was sleeping es el fondo.'),
     },
     {
       en: 'While I was cooking, she was studying.',
       ru: 'Пока я готовил, она занималась.',
       uk: 'Поки я готував, вона навчалася.',
-      es: 'While I was cooking, she was studying.',
-      why: tri('Два процесса шли параллельно.', 'Два процеси тривали паралельно.', 'Two processes continued in parallel.'),
+      es: 'Mientras yo cocinaba, ella estudiaba.',
+      'pt-BR': 'Enquanto eu estava cozinhando, ela estava estudando.',
+      vi: 'Trong khi tôi đang nấu ăn, cô ấy đang học.',
+      id: 'Saat saya sedang memasak, dia sedang belajar.',
+      tr: 'Ben yemek yaparken o ders çalışıyordu.',
+      pl: 'Kiedy gotowałem, ona się uczyła.',
+      why: tri('Два процесса шли параллельно.', 'Два процеси тривали паралельно.', 'Dos procesos continuaban en paralelo.'),
     },
     {
       en: 'I came home, opened the door, and called her.',
       ru: 'Я пришёл домой, открыл дверь и позвонил ей.',
       uk: 'Я прийшов додому, відчинив двері й подзвонив їй.',
-      es: 'I came home, opened the door, and called her.',
-      why: tri('Это цепочка событий, поэтому came, opened, called.', 'Це ланцюжок подій, тому came, opened, called.', 'This is a sequence of events.'),
+      es: 'Llegue a casa, abri la puerta y la llame.',
+      'pt-BR': 'Cheguei em casa, abri a porta e liguei para ela.',
+      vi: 'Tôi về nhà, mở cửa và gọi cho cô ấy.',
+      id: 'Saya pulang, membuka pintu, lalu meneleponnya.',
+      tr: 'Eve geldim, kapıyı açtım ve onu aradım.',
+      pl: 'Wróciłem do domu, otworzyłem drzwi i zadzwoniłem do niej.',
+      why: tri('Это цепочка событий, поэтому came, opened, called.', 'Це ланцюжок подій, тому came, opened, called.', 'Es una secuencia de eventos.'),
     },
     {
       en: 'They were watching TV when I entered.',
       ru: 'Они смотрели телевизор, когда я вошёл.',
       uk: 'Вони дивилися телевізор, коли я увійшов.',
-      es: 'They were watching TV when I entered.',
-      why: tri('Watching уже шло, а entered - событие.', 'Watching уже тривало, а entered - подія.', 'Watching was already in progress; entered is the event.'),
+      es: 'Ellos estaban viendo television cuando entre.',
+      'pt-BR': 'Eles estavam assistindo TV quando eu entrei.',
+      vi: 'Họ đang xem TV khi tôi bước vào.',
+      id: 'Mereka sedang menonton TV ketika saya masuk.',
+      tr: 'Ben içeri girdiğimde televizyon izliyorlardı.',
+      pl: 'Oglądali telewizję, kiedy wszedłem.',
+      why: tri('Watching уже шло, а entered - событие.', 'Watching уже тривало, а entered - подія.', 'Watching ya estaba en progreso; entered es el evento.'),
     },
   ],
   introBlocks: [
@@ -230,7 +430,7 @@ export const PAST_SIMPLE_VS_PAST_CONTINUOUS_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, перевод мешает. По-русски всё звучит как прошлое, но английский спрашивает: это просто факт или процесс, который шёл в тот момент?',
         'Схоже, переклад заважає. Українською все звучить як минуле, але англійська питає: це просто факт чи процес, який тривав у той момент?',
-        'Translation can hide the difference: fact or process at that moment?',
+        'La traduccion puede esconder la diferencia: hecho o proceso en ese momento?',
       ),
     },
     {
@@ -239,7 +439,7 @@ export const PAST_SIMPLE_VS_PAST_CONTINUOUS_TRAINING: DiagnosisTraining = {
       text: tri(
         'Факт или событие: worked, called, entered. Процесс на фоне: was working, was sleeping, were watching.',
         'Факт або подія: worked, called, entered. Процес на фоні: was working, was sleeping, were watching.',
-        'Fact/event: worked, called, entered. Background process: was working, was sleeping, were watching.',
+        'Hecho/evento: worked, called, entered. Proceso de fondo: was working, was sleeping, were watching.',
       ),
     },
     {
@@ -248,7 +448,7 @@ export const PAST_SIMPLE_VS_PAST_CONTINUOUS_TRAINING: DiagnosisTraining = {
       text: tri(
         'Не ставь was/were везде. I worked yesterday и I was working at 8 yesterday отвечают на разные вопросы.',
         'Не став was/were всюди. I worked yesterday і I was working at 8 yesterday відповідають на різні питання.',
-        'Do not put was/were everywhere. I worked yesterday and I was working at 8 answer different questions.',
+        'No pongas was/were en todas partes. I worked yesterday y I was working at 8 responden preguntas distintas.',
       ),
     },
   ],
@@ -531,10 +731,10 @@ export const PAST_SIMPLE_VS_PAST_CONTINUOUS_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Обычное объяснение: определяем, действие является фактом, событием или процессом на фоне.', 'Звичайне пояснення: визначаємо, дія є фактом, подією чи процесом на фоні.', 'Normal explanation: identify whether the action is a fact, event, or background process.'),
-    depth2: tri('Проще: спроси "что случилось?" или "что происходило в тот момент?".', 'Простіше: запитай "що сталося?" або "що відбувалося в той момент?".', 'Simpler: ask what happened or what was happening.'),
-    depth3: tri('Ещё проще: если это просто факт за вчера - короткая форма. Если действие уже шло в момент звонка - форма с was или were.', 'Ще простіше: якщо це просто факт за вчора - коротка форма. Якщо дія вже тривала в момент дзвінка - форма з was або were.', 'Even simpler: I worked yesterday, but I was working when he called.'),
-    depth4: tri('Почти подсказка: прямо показываем нужную роль - факт или процесс.', 'Майже підказка: прямо показуємо потрібну роль - факт чи процес.', 'Almost a hint: point to the needed role.'),
+    depth1: tri('Обычное объяснение: определяем, действие является фактом, событием или процессом на фоне.', 'Звичайне пояснення: визначаємо, дія є фактом, подією чи процесом на фоні.', 'Explicacion normal: identificamos si la accion es hecho, evento o proceso de fondo.'),
+    depth2: tri('Проще: спроси "что случилось?" или "что происходило в тот момент?".', 'Простіше: запитай "що сталося?" або "що відбувалося в той момент?".', 'Mas simple: pregunta que paso o que estaba pasando.'),
+    depth3: tri('Ещё проще: если это просто факт за вчера - короткая форма. Если действие уже шло в момент звонка - форма с was или were.', 'Ще простіше: якщо це просто факт за вчора - коротка форма. Якщо дія вже тривала в момент дзвінка - форма з was або were.', 'Aun mas simple: I worked yesterday, pero I was working when he called.'),
+    depth4: tri('Почти подсказка: прямо показываем нужную роль - факт или процесс.', 'Майже підказка: прямо показуємо потрібну роль - факт чи процес.', 'Casi una pista: senalamos el papel necesario.'),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -542,7 +742,7 @@ export const PAST_SIMPLE_VS_PAST_CONTINUOUS_TRAINING: DiagnosisTraining = {
       card: tri(
         'Остановись. Past Simple = что случилось или что сделал. Past Continuous = что происходило в тот момент. Фон часто was/were + -ing, короткое событие часто Past Simple.',
         'Зупинись. Past Simple = що сталося або що зробив. Past Continuous = що відбувалося в той момент. Фон часто was/were + -ing, коротка подія часто Past Simple.',
-        'Pause. Past Simple = what happened. Past Continuous = what was happening at that moment.',
+        'Pausa. Past Simple = que paso. Past Continuous = que estaba pasando en ese momento.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -550,7 +750,7 @@ export const PAST_SIMPLE_VS_PAST_CONTINUOUS_TRAINING: DiagnosisTraining = {
       card: tri(
         'Система подсветит роль действия: факт, событие, фон или процесс. Форму всё равно выбираешь ты.',
         'Система підсвітить роль дії: факт, подія, фон або процес. Форму все одно обираєш ти.',
-        'The system highlights the action role; you still choose the form.',
+        'El sistema resalta el papel de la accion; la forma la eliges tu.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -558,7 +758,7 @@ export const PAST_SIMPLE_VS_PAST_CONTINUOUS_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим подсказки: сначала выбери "факт/событие" или "процесс", потом вернись к фразе.',
         'Режим підказки: спочатку обери "факт/подія" або "процес", потім повернись до фрази.',
-        'Guided mode: first choose fact/event or process, then return to the sentence.',
+        'Modo guiado: primero elige hecho/evento o proceso, luego vuelve a la frase.',
       ),
     },
   },
@@ -568,28 +768,28 @@ export const PAST_SIMPLE_VS_PAST_CONTINUOUS_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_past_simple_cont_001',
-        prompt: tri('At 8 yesterday чаще просит факт за день или процесс в точный момент?', 'At 8 yesterday частіше просить факт за день чи процес у точний момент?', 'At 8 yesterday asks for a fact or a process?'),
+        prompt: tri('At 8 yesterday чаще просит факт за день или процесс в точный момент?', 'At 8 yesterday частіше просить факт за день чи процес у точний момент?', 'At 8 yesterday pide un hecho o un proceso?'),
         options: ['факт за день', 'процесс в момент'],
         correctIndex: 1,
         thenReturnToExerciseId: 'past_simple_cont_easy_002',
       },
       {
         id: 'guided_past_simple_cont_002',
-        prompt: tri('В фразе про сон и звонок что является фоном, который уже продолжался?', 'У фразі про сон і дзвінок що є фоном, який уже тривав?', 'In this sentence, what is the background?'),
+        prompt: tri('В фразе про сон и звонок что является фоном, который уже продолжался?', 'У фразі про сон і дзвінок що є фоном, який уже тривав?', 'En esta frase, que es el fondo?'),
         options: ['was sleeping', 'called'],
         correctIndex: 0,
         thenReturnToExerciseId: 'past_simple_cont_contrast_001',
       },
       {
         id: 'guided_past_simple_cont_003',
-        prompt: tri('В "The phone rang while I was sleeping" что является коротким событием?', 'У "The phone rang while I was sleeping" що є короткою подією?', 'What is the short event?'),
+        prompt: tri('В "The phone rang while I was sleeping" что является коротким событием?', 'У "The phone rang while I was sleeping" що є короткою подією?', 'Cual es el evento corto?'),
         options: ['rang', 'was sleeping'],
         correctIndex: 0,
         thenReturnToExerciseId: 'past_simple_cont_contrast_002',
       },
       {
         id: 'guided_past_simple_cont_004',
-        prompt: tri('Если действия идут одно за другим, чаще нужен Past Simple или Past Continuous?', 'Якщо дії йдуть одна за одною, частіше потрібен Past Simple чи Past Continuous?', 'If actions happen one after another, which is more common?'),
+        prompt: tri('Если действия идут одно за другим, чаще нужен Past Simple или Past Continuous?', 'Якщо дії йдуть одна за одною, частіше потрібен Past Simple чи Past Continuous?', 'Si las acciones pasan una tras otra, cual es mas comun?'),
         options: ['Past Simple', 'Past Continuous'],
         correctIndex: 0,
         thenReturnToExerciseId: 'past_simple_cont_mixed_001',
@@ -639,7 +839,7 @@ export const PAST_SIMPLE_VS_PAST_CONTINUOUS_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_started',
     answer: 'diagnosis_training_answer',
     mastery: 'diagnosis_training_mastered',
-    fallback: 'diagnosis_training_fallback',
+    recovery: 'diagnosis_training_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

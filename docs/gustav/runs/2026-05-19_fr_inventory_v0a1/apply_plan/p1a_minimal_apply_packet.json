@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "gustav-p1a-minimal-apply-packet-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-19T20:53:20.024Z",
+  "status": "PASS",
+  "approvalStatus": "not_requested",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_p1a_minimal_apply_packet.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "sourceArtifacts": {
+    "p1aCoreContractSpec": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_core_contract_spec.json",
+    "p1aPreflightAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_preflight_audit.json",
+    "p1aTestExecutionAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_test_execution_audit.json",
+    "broadApplyPlan": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/file_changes.json"
+  },
+  "summary": {
+    "files": 4,
+    "productionFiles": 2,
+    "testFiles": 2,
+    "dirtyWorktreeOverlaps": 0,
+    "commands": 3,
+    "blockers": 0,
+    "warnings": 0,
+    "readyForApproval": true,
+    "mayStartFrenchGeneration": false,
+    "mayModifyProductionAppFiles": false
+  },
+  "requiredApprovalText": "User approved P1A minimal apply packet 2026-05-19_fr_inventory_v0a1 on 2026-05-19. Approved file list: docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_minimal_apply_packet.json.",
+  "files": [
+    {
+      "path": "app/study_target.ts",
+      "action": "add",
+      "role": "study_target_model",
+      "phase": "P1A",
+      "dirtyWorktreeOverlap": false,
+      "reason": "Add the production StudyTarget en/fr contract without touching the existing dev StudyTargetLang en/es path.",
+      "exitCriteria": [
+        "StudyTarget accepts en/fr only.",
+        "Default production target remains en.",
+        "sourceLocale ru/uk cannot change studyTarget.",
+        "dev StudyTargetLang es is not accepted as production French."
+      ],
+      "rollbackAction": "Remove the newly added P1A file; no existing production state is migrated or deleted in this packet."
+    },
+    {
+      "path": "app/target_storage_keys.ts",
+      "action": "add",
+      "role": "target_key_builder",
+      "phase": "P1A",
+      "dirtyWorktreeOverlap": false,
+      "reason": "Add target-safe storage key builders and raw key guard before any target-sensitive storage migration.",
+      "exitCriteria": [
+        "Every allowed target domain produces distinct en/fr keys.",
+        "sourceTargetKey includes both studyTarget and sourceLocale where required.",
+        "legacyEnglishKey cannot produce French keys.",
+        "assertTargetKey rejects raw target-sensitive v1 keys outside migration adapters."
+      ],
+      "rollbackAction": "Remove the newly added P1A file; no existing production state is migrated or deleted in this packet."
+    },
+    {
+      "path": "tests/gustav_surface_target_switch.test.ts",
+      "action": "add",
+      "role": "test_contract",
+      "phase": "P1A",
+      "dirtyWorktreeOverlap": false,
+      "reason": "Add direct P1A tests that prove target/sourceLocale separation, key distinctness, legacy English fallback limits and raw key rejection.",
+      "exitCriteria": [
+        "P1A direct Jest command passes.",
+        "P1A with dev target regression command passes.",
+        "No production route or storage consumer is modified in this packet."
+      ],
+      "rollbackAction": "Remove the newly added P1A file; no existing production state is migrated or deleted in this packet."
+    },
+    {
+      "path": "tests/gustav_target_storage_keys.test.ts",
+      "action": "add",
+      "role": "test_contract",
+      "phase": "P1A",
+      "dirtyWorktreeOverlap": false,
+      "reason": "Add direct P1A tests that prove target/sourceLocale separation, key distinctness, legacy English fallback limits and raw key rejection.",
+      "exitCriteria": [
+        "P1A direct Jest command passes.",
+        "P1A with dev target regression command passes.",
+        "No production route or storage consumer is modified in this packet."
+      ],
+      "rollbackAction": "Remove the newly added P1A file; no existing production state is migrated or deleted in this packet."
+    }
+  ],
+  "commands": [
+    {
+      "id": "P1A_DIRECT_TESTS",
+      "command": "npx jest --runTestsByPath tests/gustav_surface_target_switch.test.ts tests/gustav_target_storage_keys.test.ts --no-cache --runInBand"
+    },
+    {
+      "id": "P1A_WITH_DEV_TARGET_REGRESSION",
+      "command": "npx jest --runTestsByPath tests/gustav_surface_target_switch.test.ts tests/gustav_target_storage_keys.test.ts tests/study_target_lang_dev.test.ts tests/flashcard_content_lang.test.ts tests/storage.test.ts --no-cache --runInBand"
+    },
+    {
+      "id": "FULL_TEST_SUITE_AFTER_P1",
+      "command": "npm test"
+    }
+  ],
+  "blockers": [
+    "Approval has not been requested yet.",
+    "Production app files must not be modified until approvalStatus becomes approved."
+  ],
+  "findings": [],
+  "notes": [
+    "This packet narrows approval to the P1A first slice only.",
+    "It does not approve the broad 83-file apply plan.",
+    "It does not write product files, test files or French content.",
+    "After approval, only the four packet files may be edited for P1A."
+  ]
+}

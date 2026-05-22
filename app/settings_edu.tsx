@@ -8,11 +8,13 @@ import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import CustomSwitch from '../components/CustomSwitch';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useAudio } from '../hooks/use-audio';
 import { hapticTap } from '../hooks/use-haptics';
+import { triLang } from '../constants/i18n';
 import {
   applyUserSettingsNow,
   getUserSettingsSnapshot,
@@ -60,7 +62,7 @@ function formatVoiceLabel(voice: Voice): string {
     return `${accent} ${letter} · ${type}`;
   }
 
-  // fallback: use name as-is if it's already human-readable
+  // Backup: use name as-is if it's already human-readable
   const name = voice.name ?? '';
   if (name && !/^en-/i.test(name)) return `${name} · ${accent}`;
 
@@ -100,35 +102,42 @@ export default function SettingsEdu() {
     speakAudio('I speak English every day', s.speechRate, { language: 'en-US', voice: voiceId });
   };
 
-  const L = (ru: string, uk: string, es: string) => (
-    lang === 'uk' ? uk : lang === 'es' ? es : ru
-  );
+  const L = (
+    ru: string,
+    uk: string,
+    es: string,
+    ptBr: string,
+    vi: string,
+    id: string,
+    tr: string,
+    pl: string,
+  ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
   const rows: { key: RowKey; label: string; sub: string }[] = [
     {
       key: 'autoCheck',
-      label: L('Автопроверка', 'Автоперевірка', 'Comprobación automática'),
-      sub: L('Проверять при наборе последнего слова', 'Перевіряти при наборі останнього слова', 'Comprobar al escribir la última palabra'),
+      label: L('Автопроверка', 'Автоперевірка', 'Comprobación automática', 'Verificação automática', 'Tự động kiểm tra', 'Periksa otomatis', 'Otomatik kontrol', 'Automatyczne sprawdzanie'),
+      sub: L('Проверять при наборе последнего слова', 'Перевіряти при наборі останнього слова', 'Comprobar al escribir la última palabra', 'Verificar ao digitar a última palavra', 'Kiểm tra khi nhập từ cuối cùng', 'Periksa saat mengetik kata terakhir', 'Son kelime yazıldığında kontrol et', 'Sprawdzaj po wpisaniu ostatniego słowa'),
     },
     {
       key: 'voiceOut',
-      label: L('Озвучить ответ', 'Озвучити відповідь', 'Leer la respuesta'),
-      sub: L('Произносить фразу после ответа', 'Вимовляти фразу після відповіді', 'Leer la frase después de responder'),
+      label: L('Озвучить ответ', 'Озвучити відповідь', 'Leer la respuesta', 'Ler a resposta em voz alta', 'Đọc đáp án', 'Bacakan jawaban', 'Yanıtı seslendir', 'Odczytaj odpowiedź'),
+      sub: L('Произносить фразу после ответа', 'Вимовляти фразу після відповіді', 'Leer la frase después de responder', 'Pronunciar a frase depois da resposta', 'Phát âm cụm từ sau khi trả lời', 'Ucapkan frasa setelah menjawab', 'Yanıttan sonra ifadeyi seslendir', 'Wypowiadaj frazę po odpowiedzi'),
     },
     {
       key: 'autoAdvance',
-      label: L('Автопереход после ответа', 'Автоперехід після відповіді', 'Siguiente automático'),
-      sub: L('Переходить к следующему заданию при правильном ответе', 'Переходити до наступного завдання при правильній відповіді', 'Pasar a la siguiente pregunta cuando aciertas'),
+      label: L('Автопереход после ответа', 'Автоперехід після відповіді', 'Siguiente automático', 'Avanço automático', 'Tự động chuyển tiếp', 'Lanjut otomatis', 'Otomatik ilerleme', 'Automatyczne przejście'),
+      sub: L('Переходить к следующему заданию при правильном ответе', 'Переходити до наступного завдання при правильній відповіді', 'Pasar a la siguiente pregunta cuando aciertas', 'Ir para a próxima tarefa após uma resposta correta', 'Chuyển sang bài tiếp theo khi trả lời đúng', 'Pindah ke soal berikutnya saat jawaban benar', 'Doğru yanıttan sonra sonraki göreve geç', 'Przechodź do następnego zadania po poprawnej odpowiedzi'),
     },
     {
       key: 'hardMode',
-      label: L('Ввод с клавиатуры', 'Введення з клавіатури', 'Escribir con el teclado'),
-      sub: L('Вводить ответ вручную вместо выбора слов', 'Вводити відповідь вручну замість вибору слів', 'Escribir la respuesta completa con el teclado'),
+      label: L('Ввод с клавиатуры', 'Введення з клавіатури', 'Escribir con el teclado', 'Digitação pelo teclado', 'Nhập bằng bàn phím', 'Ketik dengan keyboard', 'Klavye ile yazma', 'Wpisywanie z klawiatury'),
+      sub: L('Вводить ответ вручную вместо выбора слов', 'Вводити відповідь вручну замість вибору слів', 'Escribir la respuesta completa con el teclado', 'Digitar a resposta manualmente em vez de escolher palavras', 'Nhập câu trả lời thủ công thay vì chọn từ', 'Ketik jawaban lengkap alih-alih memilih kata', 'Kelimeleri seçmek yerine yanıtı elle yaz', 'Wpisuj odpowiedź ręcznie zamiast wybierać słowa'),
     },
     {
       key: 'haptics',
-      label: L('Вибрация при ошибке', 'Вібрація при помилці', 'Vibración al fallar'),
-      sub: L('Тактильный сигнал при неправильном ответе', 'Тактильний сигнал при неправильній відповіді', 'Pequeño aviso háptico si la respuesta es incorrecta'),
+      label: L('Вибрация при ошибке', 'Вібрація при помилці', 'Vibración al fallar', 'Vibração ao errar', 'Rung khi sai', 'Getar saat salah', 'Hata yapınca titreşim', 'Wibracja przy błędzie'),
+      sub: L('Тактильный сигнал при неправильном ответе', 'Тактильний сигнал при неправильній відповіді', 'Pequeño aviso háptico si la respuesta es incorrecta', 'Sinal tátil quando a resposta estiver incorreta', 'Phản hồi rung nhẹ khi trả lời sai', 'Umpan balik haptik saat jawaban salah', 'Yanıt yanlışsa kısa dokunsal uyarı', 'Krótki sygnał haptyczny przy błędnej odpowiedzi'),
     },
   ];
 
@@ -158,8 +167,8 @@ export default function SettingsEdu() {
   }, [voices]);
 
   const currentVoiceName = s.speechVoiceId
-    ? englishVoices.find(v => v.identifier === s.speechVoiceId)?.name ?? L('Выбранный голос', 'Вибраний голос', 'Selected voice')
-    : L('Системный голос', 'Системний голос', 'System voice');
+    ? englishVoices.find(v => v.identifier === s.speechVoiceId)?.name ?? L('Выбранный голос', 'Вибраний голос', 'Selected voice', 'Voz selecionada', 'Giọng đã chọn', 'Suara terpilih', 'Seçili ses', 'Wybrany głos')
+    : L('Системный голос', 'Системний голос', 'System voice', 'Voz do sistema', 'Giọng hệ thống', 'Suara sistem', 'Sistem sesi', 'Głos systemowy');
 
   return (
     <ScreenGradient>
@@ -167,6 +176,7 @@ export default function SettingsEdu() {
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15, marginBottom: 8 }}>
             <TouchableOpacity
+              style={{ width: 38, height: 38, alignItems: 'center', justifyContent: 'center' }}
               onPress={() => {
                 hapticTap();
                 if (router.canGoBack()) router.back();
@@ -178,7 +188,14 @@ export default function SettingsEdu() {
             <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '600' }}>
               {loc.edu.title}
             </Text>
-            <View style={{ width: 28 }} />
+            <ReportErrorButton
+              screen="settings_edu"
+              dataId="settings_edu"
+              dataText={loc.edu.title}
+              variant="icon-flag"
+              accessibilityLabel="Сообщить о баге на экране обучения"
+              style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border }}
+            />
           </View>
 
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -234,7 +251,7 @@ export default function SettingsEdu() {
                   {/* Row: label + current voice + change button */}
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
                     <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
-                      {L('Голос', 'Голос', 'Voice')}
+                      {L('Голос', 'Голос', 'Voice', 'Voz', 'Giọng đọc', 'Suara', 'Ses', 'Głos')}
                     </Text>
                     <TouchableOpacity
                       onPress={() => { hapticTap(); setVoicePickerOpen(v => !v); }}
@@ -272,7 +289,7 @@ export default function SettingsEdu() {
                         }}
                       >
                         <Text style={{ color: !s.speechVoiceId ? t.accent : t.textPrimary, fontSize: 13, fontWeight: '700' }}>
-                          {L('Системный', 'Системний', 'System')}
+                          {L('Системный', 'Системний', 'System', 'Sistema', 'Hệ thống', 'Sistem', 'Sistem', 'Systemowy')}
                         </Text>
                       </TouchableOpacity>
                       {englishVoices.map(voice => {
@@ -298,7 +315,7 @@ export default function SettingsEdu() {
                       })}
                       {englishVoices.length === 0 ? (
                         <Text style={{ color: t.textMuted, fontSize: 12 }}>
-                          {L('Голосов не найдено. Попробуйте скачать английский язык в настройках телефона.', 'Голосів не знайдено. Спробуйте завантажити англійську мову в налаштуваннях телефону.', 'No voices found. Try downloading English in your phone settings.')}
+                          {L('Голосов не найдено. Попробуйте скачать английский язык в настройках телефона.', 'Голосів не знайдено. Спробуйте завантажити англійську мову в налаштуваннях телефону.', 'No voices found. Try downloading English in your phone settings.', 'Nenhuma voz encontrada. Tente baixar o inglês nas configurações do telefone.', 'Không tìm thấy giọng đọc. Hãy thử tải tiếng Anh trong cài đặt điện thoại.', 'Tidak ada suara ditemukan. Coba unduh bahasa Inggris di pengaturan ponsel.', 'Ses bulunamadı. Telefon ayarlarından İngilizce indirmeyi deneyin.', 'Nie znaleziono głosów. Spróbuj pobrać język angielski w ustawieniach telefonu.')}
                         </Text>
                       ) : null}
                     </View>
@@ -307,13 +324,18 @@ export default function SettingsEdu() {
                   {/* Fun disclaimer */}
                   <View style={{ marginTop: 4, backgroundColor: `${t.accent}12`, borderRadius: 12, padding: 14 }}>
                     <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '700', marginBottom: 6 }}>
-                      {L('🎙️ Почему голос звучит странно?', '🎙️ Чому голос звучить дивно?', '🎙️ Why does the voice sound odd?')}
+                      {L('🎙️ Почему голос звучит странно?', '🎙️ Чому голос звучить дивно?', '🎙️ Why does the voice sound odd?', '🎙️ Por que a voz soa estranha?', '🎙️ Vì sao giọng đọc nghe lạ?', '🎙️ Mengapa suaranya terdengar aneh?', '🎙️ Ses neden tuhaf geliyor?', '🎙️ Dlaczego głos brzmi dziwnie?')}
                     </Text>
                     <Text style={{ color: t.textSecond, fontSize: 13, lineHeight: 20 }}>
                       {L(
                         'У нас нет записанной озвучки — фразы произносит встроенный голосовой помощник вашего телефона (Android или iOS). Именно он отвечает за качество произношения.\n\nМы бы рады нанять настоящего британца с безупречным акцентом, но спонсора пока нет. Так что если ударение не там — спасибо телефону. 😅',
                         'У нас немає записаного озвучення — фрази вимовляє вбудований голосовий помічник вашого телефону (Android або iOS). Саме він відповідає за якість вимови.\n\nМи б раді найняти справжнього британця з бездоганним акцентом, але спонсора поки немає. Тож якщо наголос не там — дякуємо телефону. 😅',
                         'We have no recorded voice — phrases are spoken by your phone\'s built-in voice assistant (Android or iOS). It\'s fully responsible for pronunciation quality.\n\nWe\'d love to hire a real British actor with a flawless accent, but no sponsor yet. So if the stress sounds off — thank your phone. 😅',
+                        'Não temos narração gravada — as frases são faladas pelo assistente de voz integrado do seu telefone (Android ou iOS). Ele é responsável pela qualidade da pronúncia.\n\nAdoraríamos contratar um ator britânico de verdade com sotaque impecável, mas ainda não temos patrocinador. Então, se a tonicidade sair estranha, agradeça ao telefone. 😅',
+                        'Chúng tôi không có bản thu âm sẵn — các cụm từ được đọc bằng trợ lý giọng nói tích hợp trên điện thoại của bạn (Android hoặc iOS). Chính nó quyết định chất lượng phát âm.\n\nChúng tôi rất muốn thuê một diễn viên Anh thật với giọng chuẩn, nhưng hiện chưa có nhà tài trợ. Nên nếu trọng âm hơi lạ, hãy cảm ơn điện thoại nhé. 😅',
+                        'Kami tidak memiliki rekaman suara — frasa dibacakan oleh asisten suara bawaan ponsel Anda (Android atau iOS). Dialah yang menentukan kualitas pelafalan.\n\nKami ingin sekali menyewa aktor Inggris asli dengan aksen sempurna, tetapi belum ada sponsor. Jadi kalau tekanan katanya terdengar aneh, terima kasihlah pada ponsel Anda. 😅',
+                        'Kayıtlı sesimiz yok — ifadeler telefonunuzun yerleşik sesli asistanı (Android veya iOS) tarafından okunur. Telaffuz kalitesinden tamamen o sorumludur.\n\nKusursuz aksanlı gerçek bir İngiliz oyuncu tutmayı isterdik, ama henüz sponsor yok. Vurgu tuhafsa, telefonu suçlayın. 😅',
+                        'Nie mamy nagranego lektora — frazy czyta wbudowany asystent głosowy telefonu (Android lub iOS). To on odpowiada za jakość wymowy.\n\nChętnie zatrudnilibyśmy prawdziwego Brytyjczyka z perfekcyjnym akcentem, ale sponsora na razie brak. Jeśli więc akcent brzmi dziwnie, podziękuj telefonowi. 😅',
                       )}
                     </Text>
                   </View>

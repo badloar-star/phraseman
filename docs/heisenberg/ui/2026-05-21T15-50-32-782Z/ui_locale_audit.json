@@ -1,0 +1,54 @@
+{
+  "generatedAt": "2026-05-21T15:50:32.781Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 655,
+    "triLangCalls": 1688,
+    "staticTriLangCalls": 1688,
+    "dynamicTriLangCalls": 0,
+    "legacyLangHelperCalls": 0,
+    "localeObjectFindings": 1,
+    "triLangMissingLocaleUnits": 0,
+    "triLangMissingAllPlannedUnits": 0,
+    "helperMissingLocaleUnits": 0,
+    "localeObjectMissingLocaleUnits": 4,
+    "localeObjectMissingAllPlannedUnits": 0,
+    "bundleMissingLocaleUnits": 0,
+    "findings": 1,
+    "byCode": {
+      "locale-object-missing-planned-locales": 1
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/flashcards_collection.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 4
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-planned-locales",
+      "file": "app/flashcards_collection.tsx",
+      "line": 1234,
+      "column": 31,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ id: editingId ?? `custom_${Date.now()}`, en: draftEN.trim(), ru: localizedFields.baseRu, uk: localizedFields.baseUk, es: localizedFields.baseEs, sourceLocales: localizedFields.pl"
+    }
+  ]
+}

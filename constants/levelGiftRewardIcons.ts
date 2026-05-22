@@ -112,6 +112,11 @@ const LEVEL_GIFT_REWARD_ICONS: Record<LevelGiftRewardIconId, ImageSourcePropType
   xp_bank_600: require('../assets/images/level_gift_reward_icons/xp_bank_600.webp'),
 };
 
+export const LEVEL_GIFT_REWARD_ICON_SOURCES: readonly ImageSourcePropType[] = [
+  ...Object.values(LEVEL_GIFT_REWARD_ICONS),
+  ...Object.values(THEMED_SHARD_GIFT_ICONS),
+];
+
 export function getLevelGiftRewardIcon(
   giftId: string | null | undefined,
   themeMode: ThemeMode = DEFAULT_SHARD_ICON_THEME,

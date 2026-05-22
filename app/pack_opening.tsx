@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
+import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { getVolumetricShadow, useTheme } from '../components/ThemeContext';
 import { hapticSoftImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -23,21 +24,24 @@ import { triLang, type Lang } from '../constants/i18n';
 import {
   buildMarketplaceOwnedCards,
   bundledPacksForOwned,
-  fallbackBundledMarketPacks,
+  reserveBundledMarketPacks,
   loadMarketplacePacks,
   peekWarmMarketplacePacks,
   packTitleForInterface,
   type FlashcardMarketPack,
 } from './flashcards/marketplace';
 import {
-  isPackCeremoniallyOpened,
   markPackCeremoniallyOpened,
 } from './flashcards/openedPacksTracker';
 import { fetchCommunityPackCards, fetchCommunityPackMeta } from './community_packs/communityFirestore';
 import { packTileImageForPack } from './flashcards/packMarketplaceIcons';
-import type { CardItem } from './flashcards/types';
-import { resolveFlashcardBackText, type FlashcardContentLang } from './flashcards/types';
+import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './flashcards/types';
 import { flashcardContentLang } from './spanish_content_gate';
+import {
+  flashcardsCommunityPacksAvailableForTarget,
+  flashcardsOfficialPacksAvailableForTarget,
+  frenchFlashcardsGateCopy,
+} from './flashcards_target_gate';
 
 const { width: WIN_W, height: WIN_H } = Dimensions.get('window');
 
@@ -111,7 +115,7 @@ function ConfettiBurst({ count = 28 }: { count?: number }) {
 }
 
 // ────────────────────────────────────────────────────────────────────────────
-// FlippableCard — одна карточка з 3D flip-анімацією
+// FlippableCard — atomic reveal without separate front/back compositor layers
 // ────────────────────────────────────────────────────────────────────────────
 
 interface FlippableCardProps {
@@ -140,10 +144,13 @@ function FlippableCard({
   cardLang,
 }: FlippableCardProps) {
   const { theme: t, themeMode, f } = useTheme();
-  const rotate = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(1)).current;
+  const faceOpacity = useRef(new Animated.Value(1)).current;
+  const lift = useRef(new Animated.Value(0)).current;
   const glow = useRef(new Animated.Value(0)).current;
   const pulse = useRef(new Animated.Value(0)).current;
+  const previousFlipped = useRef(flipped);
+  const [showBack, setShowBack] = useState(flipped);
 
   // Idle pulse на «рубашці» — м’яке дихання
   useEffect(() => {
@@ -158,41 +165,118 @@ function FlippableCard({
     return () => loop.stop();
   }, [flipped, pulse]);
 
-  // Flip-анімація при зміні `flipped`
+  // Keep the card as one animated layer. Two rotating faces can desync on iOS
+  // and look like the card opens in separate pieces.
   useEffect(() => {
-    if (!flipped) return;
-    Animated.sequence([
-      Animated.parallel([
-        Animated.timing(scale, {
-          toValue: 1.12,
-          duration: 160,
-          easing: Easing.out(Easing.quad),
-          useNativeDriver: true,
-        }),
-        Animated.timing(rotate, {
-          toValue: 1,
-          duration: 420,
-          easing: Easing.inOut(Easing.cubic),
-          useNativeDriver: true,
-        }),
-        Animated.timing(glow, {
-          toValue: 1,
-          duration: 320,
-          useNativeDriver: true,
-        }),
-      ]),
+    const wasFlipped = previousFlipped.current;
+    previousFlipped.current = flipped;
+
+    scale.stopAnimation();
+    faceOpacity.stopAnimation();
+    lift.stopAnimation();
+    glow.stopAnimation();
+
+    if (!flipped) {
+      setShowBack(false);
+      scale.setValue(1);
+      faceOpacity.setValue(1);
+      lift.setValue(0);
+      glow.setValue(0);
+      return;
+    }
+
+    if (wasFlipped) {
+      setShowBack(true);
+      scale.setValue(1);
+      faceOpacity.setValue(1);
+      lift.setValue(0);
+      glow.setValue(0);
+      return;
+    }
+
+    setShowBack(false);
+    scale.setValue(1);
+    faceOpacity.setValue(1);
+    lift.setValue(0);
+    glow.setValue(0);
+
+    let cancelled = false;
+    let showFace: Animated.CompositeAnimation | null = null;
+    const hideFace = Animated.parallel([
       Animated.timing(scale, {
-        toValue: 1,
-        duration: 160,
+        toValue: 0.94,
+        duration: 130,
+        easing: Easing.out(Easing.quad),
+        useNativeDriver: true,
+      }),
+      Animated.timing(faceOpacity, {
+        toValue: 0.18,
+        duration: 120,
+        easing: Easing.out(Easing.quad),
+        useNativeDriver: true,
+      }),
+      Animated.timing(lift, {
+        toValue: -4,
+        duration: 130,
+        easing: Easing.out(Easing.quad),
         useNativeDriver: true,
       }),
       Animated.timing(glow, {
-        toValue: 0,
-        duration: 800,
+        toValue: 1,
+        duration: 150,
+        easing: Easing.out(Easing.quad),
         useNativeDriver: true,
       }),
-    ]).start();
-  }, [flipped, rotate, scale, glow]);
+    ]);
+
+    hideFace.start(({ finished }) => {
+      if (!finished || cancelled) return;
+      setShowBack(true);
+      faceOpacity.setValue(0.18);
+
+      showFace = Animated.sequence([
+        Animated.parallel([
+          Animated.timing(scale, {
+            toValue: 1.04,
+            duration: 150,
+            easing: Easing.out(Easing.cubic),
+            useNativeDriver: true,
+          }),
+          Animated.timing(faceOpacity, {
+            toValue: 1,
+            duration: 150,
+            easing: Easing.out(Easing.cubic),
+            useNativeDriver: true,
+          }),
+          Animated.timing(lift, {
+            toValue: 0,
+            duration: 150,
+            easing: Easing.out(Easing.cubic),
+            useNativeDriver: true,
+          }),
+        ]),
+        Animated.spring(scale, {
+          toValue: 1,
+          friction: 7,
+          tension: 120,
+          useNativeDriver: true,
+        }),
+        Animated.timing(glow, {
+          toValue: 0,
+          duration: 480,
+          easing: Easing.out(Easing.quad),
+          useNativeDriver: true,
+        }),
+      ]);
+      showFace.start();
+    });
+
+    return () => {
+      cancelled = true;
+      hideFace.stop();
+      showFace?.stop();
+    };
+  }, [flipped, scale, faceOpacity, lift, glow]);
 
   const onPress = useCallback(() => {
     if (flipped) return;
@@ -200,33 +284,14 @@ function FlippableCard({
     onFlip(index);
   }, [flipped, onFlip, index]);
 
-  const frontInterp = rotate.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '180deg'] });
-  const backInterp = rotate.interpolate({ inputRange: [0, 1], outputRange: ['180deg', '360deg'] });
-  const frontOpacity = rotate.interpolate({
-    inputRange: [0, 0.48, 0.5, 1],
-    outputRange: [1, 1, 0, 0],
-  });
-  const backOpacity = rotate.interpolate({
-    inputRange: [0, 0.5, 0.52, 1],
-    outputRange: [0, 0, 1, 1],
-  });
   const pulseScale = pulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.03] });
   const glowOpacity = glow.interpolate({ inputRange: [0, 1], outputRange: [0, 0.55] });
 
-  const frontTransform = {
-    opacity: frontOpacity,
+  const cardTransform = {
+    opacity: faceOpacity,
     transform: [
-      { perspective: 1000 },
       { scale: flipped ? scale : pulseScale },
-      { rotateY: frontInterp },
-    ],
-  };
-  const backTransform = {
-    opacity: backOpacity,
-    transform: [
-      { perspective: 1000 },
-      { scale },
-      { rotateY: backInterp },
+      { translateY: lift },
     ],
   };
 
@@ -247,11 +312,12 @@ function FlippableCard({
           ]}
         />
 
-        {/* Рубашка карточки */}
+        {/* One physical card surface; content swaps at the hidden midpoint. */}
         <Animated.View
           style={[
             styles.cardFace,
-            frontTransform,
+            showBack && styles.cardFaceFront,
+            cardTransform,
             {
               backgroundColor: t.bgCard,
               borderColor: accent,
@@ -259,58 +325,50 @@ function FlippableCard({
             },
           ]}
         >
-          <LinearGradient
-            colors={[accent, t.bgCard]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={[StyleSheet.absoluteFillObject, { borderRadius: 16, opacity: 0.35 }]}
-          />
-          {packIcon ? (
-            <Image source={packIcon} style={styles.cardBackIcon} resizeMode="contain" />
+          {showBack ? (
+            <>
+              <Text
+                style={[styles.cardEN, { color: t.textPrimary, fontSize: f.h3 }]}
+                numberOfLines={2}
+                adjustsFontSizeToFit
+              >
+                {card.en}
+              </Text>
+              <View style={[styles.cardSep, { backgroundColor: t.borderLight }]} />
+              <Text
+                style={[styles.cardRU, { color: t.textSecond, fontSize: f.body }]}
+                numberOfLines={3}
+              >
+                {resolveFlashcardBackText(card, cardLang)}
+              </Text>
+            </>
           ) : (
-            <Ionicons name="albums-outline" size={42} color={accent} />
+            <>
+              <LinearGradient
+                colors={[accent, t.bgCard]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={[StyleSheet.absoluteFillObject, { borderRadius: 16, opacity: 0.35 }]}
+              />
+              {packIcon ? (
+                <Image source={packIcon} style={styles.cardBackIcon} resizeMode="contain" />
+              ) : (
+                <Ionicons name="albums-outline" size={42} color={accent} />
+              )}
+              <Text style={[styles.cardBackHint, { color: t.textMuted, fontSize: f.label }]}>
+                {triLang(lang, {
+                  ru: 'Нажми, чтобы открыть',
+                  uk: 'Натисни, щоб відкрити',
+                  es: 'Toca para abrir',
+                  'pt-BR': 'Toque para abrir',
+                  vi: 'Chạm để mở',
+                  id: 'Ketuk untuk membuka',
+                  tr: 'Açmak için dokun',
+                  pl: 'Stuknij, aby otworzyć',
+                })}
+              </Text>
+            </>
           )}
-          <Text style={[styles.cardBackHint, { color: t.textMuted, fontSize: f.label }]}>
-            {triLang(lang, {
-              ru: 'Нажми, чтобы открыть',
-              uk: 'Натисни, щоб відкрити',
-              es: 'Toca para abrir',
-              'pt-BR': 'Toque para abrir',
-              vi: 'Chạm để mở',
-              id: 'Ketuk untuk membuka',
-              tr: 'Açmak için dokun',
-              pl: 'Stuknij, aby otworzyć',
-            })}
-          </Text>
-        </Animated.View>
-
-        {/* Лицевая сторона */}
-        <Animated.View
-          style={[
-            styles.cardFace,
-            backTransform,
-            styles.cardFaceFront,
-            {
-              backgroundColor: t.bgCard,
-              borderColor: accent,
-              ...getVolumetricShadow(themeMode, t, 2),
-            },
-          ]}
-        >
-          <Text
-            style={[styles.cardEN, { color: t.textPrimary, fontSize: f.h3 }]}
-            numberOfLines={2}
-            adjustsFontSizeToFit
-          >
-            {card.en}
-          </Text>
-          <View style={[styles.cardSep, { backgroundColor: t.borderLight }]} />
-          <Text
-            style={[styles.cardRU, { color: t.textSecond, fontSize: f.body }]}
-            numberOfLines={3}
-          >
-            {resolveFlashcardBackText(card, cardLang)}
-          </Text>
         </Animated.View>
       </View>
     </Pressable>
@@ -326,7 +384,7 @@ const H_PADDING = 16;
 const GRID_GAP = 12;
 
 export default function PackOpeningScreen() {
-  const { theme: t, themeMode, f } = useTheme();
+  const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const router = useRouter();
@@ -342,8 +400,10 @@ export default function PackOpeningScreen() {
   const [revealAll, setRevealAll] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
 
-  const packUiLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
+  const packUiLang: Parameters<typeof packTitleForInterface>[1] = lang;
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
+  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
+  const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
 
   useEffect(() => {
     const onBackPress = () => {
@@ -363,19 +423,24 @@ export default function PackOpeningScreen() {
         setLoading(false);
         return;
       }
+      if (!officialPacksEnabled && !communityPacksEnabled) {
+        setError(frenchFlashcardsGateCopy(lang).body);
+        setLoading(false);
+        return;
+      }
       try {
-        // 1) Спочатку перевіряємо bundled
-        const warm = peekWarmMarketplacePacks() ?? fallbackBundledMarketPacks();
+        // 1) Спочатку перевіряємо bundled, але тільки коли official packs дозволені для target.
+        const warm = officialPacksEnabled ? peekWarmMarketplacePacks() ?? reserveBundledMarketPacks() : [];
         let foundPack = warm.find((p) => p.id === packId) ?? null;
 
-        if (!foundPack) {
+        if (!foundPack && officialPacksEnabled) {
           const all = await loadMarketplacePacks();
           foundPack = all.find((p) => p.id === packId) ?? null;
         }
 
         // 2) UGC → дотягуємо метадані з Firestore
-        if (!foundPack) {
-          foundPack = await fetchCommunityPackMeta(packId);
+        if (!foundPack && communityPacksEnabled) {
+          foundPack = await fetchCommunityPackMeta(packId, studyTarget);
         }
 
         if (!foundPack) {
@@ -389,8 +454,18 @@ export default function PackOpeningScreen() {
         // 3) Картки
         let packCards: CardItem[] = [];
         if (foundPack.isCommunityUgc) {
-          packCards = await fetchCommunityPackCards(packId);
+          if (!communityPacksEnabled) {
+            setError(frenchFlashcardsGateCopy(lang).body);
+            setLoading(false);
+            return;
+          }
+          packCards = await fetchCommunityPackCards(packId, studyTarget);
         } else {
+          if (!officialPacksEnabled) {
+            setError(frenchFlashcardsGateCopy(lang).body);
+            setLoading(false);
+            return;
+          }
           const owned = bundledPacksForOwned([packId]);
           packCards =
             owned.length > 0 ? buildMarketplaceOwnedCards(owned) : buildMarketplaceOwnedCards([foundPack]);
@@ -410,7 +485,7 @@ export default function PackOpeningScreen() {
     return () => {
       cancelled = true;
     };
-  }, [packId, lang]);
+  }, [packId, lang, officialPacksEnabled, communityPacksEnabled, studyTarget]);
 
   // ── Конфетті + помітка про церемонію коли всі відкриті ─────────────────────
   useEffect(() => {
@@ -418,10 +493,10 @@ export default function PackOpeningScreen() {
     if (flippedSet.size < cards.length) return;
     setShowConfetti(true);
     void hapticSuccess();
-    void markPackCeremoniallyOpened(packId);
+    void markPackCeremoniallyOpened(packId, studyTarget);
     const timer = setTimeout(() => setShowConfetti(false), 3500);
     return () => clearTimeout(timer);
-  }, [flippedSet, cards.length, packId]);
+  }, [flippedSet, cards.length, packId, studyTarget]);
 
   const onFlipOne = useCallback((idx: number) => {
     setFlippedSet((prev) => {
@@ -465,35 +540,40 @@ export default function PackOpeningScreen() {
   // ── Loading / error ────────────────────────────────────────────────────────
   if (loading) {
     return (
-      <View style={[styles.fillCenter, { backgroundColor: t.bgPrimary }]}>
-        <Stack.Screen options={{ headerShown: false }} />
-      </View>
+      <ScreenGradient artBackdrop="flashcards">
+        <View style={styles.fillCenter}>
+          <Stack.Screen options={{ headerShown: false }} />
+        </View>
+      </ScreenGradient>
     );
   }
 
   if (error || !pack) {
     return (
-      <View style={[styles.fillCenter, { backgroundColor: t.bgPrimary }]}>
-        <Stack.Screen options={{ headerShown: false }} />
-        <Text style={{ color: t.textMuted, fontSize: f.body, marginBottom: 16 }}>
-          {error ?? triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', es: 'Paquete no encontrado', 'pt-BR': 'Pack não encontrado', vi: 'Không tìm thấy bộ', id: 'Pack tidak ditemukan', tr: 'Paket bulunamadı', pl: 'Nie znaleziono pakietu' })}
-        </Text>
-        <Pressable
-          onPress={() => router.replace('/(tabs)/home' as any)}
-          style={[styles.primaryBtn, { backgroundColor: accent }]}
-        >
-          <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
-            {triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+      <ScreenGradient artBackdrop="flashcards">
+        <View style={styles.fillCenter}>
+          <Stack.Screen options={{ headerShown: false }} />
+          <Text style={{ color: t.textMuted, fontSize: f.body, marginBottom: 16 }}>
+            {error ?? triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', es: 'Paquete no encontrado', 'pt-BR': 'Pack não encontrado', vi: 'Không tìm thấy bộ', id: 'Pack tidak ditemukan', tr: 'Paket bulunamadı', pl: 'Nie znaleziono pakietu' })}
           </Text>
-        </Pressable>
-      </View>
+          <Pressable
+            onPress={() => router.replace('/(tabs)/home' as any)}
+            style={[styles.primaryBtn, { backgroundColor: accent }]}
+          >
+            <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
+              {triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+            </Text>
+          </Pressable>
+        </View>
+      </ScreenGradient>
     );
   }
 
   const title = packTitleForInterface(pack, packUiLang);
 
   return (
-    <View style={{ flex: 1, backgroundColor: t.bgPrimary }}>
+    <ScreenGradient artBackdrop="flashcards">
+      <View style={{ flex: 1 }}>
       <Stack.Screen options={{ headerShown: false }} />
 
       {/* Заголовок */}
@@ -585,7 +665,6 @@ export default function PackOpeningScreen() {
         style={[
           styles.footer,
           {
-            backgroundColor: t.bgPrimary,
             borderTopColor: t.borderLight,
             paddingBottom: insets.bottom + 14,
           },
@@ -649,8 +728,9 @@ export default function PackOpeningScreen() {
         )}
       </View>
 
-      {showConfetti && <ConfettiBurst count={32} />}
-    </View>
+        {showConfetti && <ConfettiBurst count={32} />}
+      </View>
+    </ScreenGradient>
   );
 }
 
@@ -690,7 +770,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     borderRadius: 16,
     borderWidth: 1.5,
-    backfaceVisibility: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 12,

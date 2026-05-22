@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Image, View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView, Modal, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import XpGainBadge from '../components/XpGainBadge';
 import { subscribeSessionPlayers, subscribeSession, createRematchOffer, setRematchStatus } from './services/arena_db';
@@ -33,7 +34,7 @@ import { getRankImage, getRankImageDisplayScale } from '../hooks/use-arena-rank'
 import { RankChangeModal, TIER_COLORS } from './components/RankChangeModal';
 import { triLang, type Lang } from '../constants/i18n';
 import { arenaBilingualFirst } from '../constants/arena_i18n';
-import { pickRandomBotName, pickRandomBotNameEs } from './constants/bot_names';
+import { pickRandomBotNameForLang } from './constants/bot_names';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { writeFriendEvent } from './firestore_friend_activity';
 import { recordArenaHillAttempt, type ArenaHillAttemptResult } from './services/arena_hill';
@@ -218,6 +219,7 @@ export default function DuelResultsScreen() {
   const arenaFastAccent = '#38BDF8';
   const arenaStreakAccent = '#F97316';
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
 
   const [players, setPlayers] = React.useState<SessionPlayer[]>([]);
   const [resultSaved, setResultSaved] = useState(false);
@@ -272,7 +274,7 @@ export default function DuelResultsScreen() {
   const clubWarContributionRef = useRef(false);
   const roomRunRecordedRef = useRef(false);
   /** Стабильный ник бота, если в URL не передали mockOppName (старые билды / крайние случаи). */
-  const mockOppNameFallbackRef = useRef<string | null>(null);
+  const mockOppNameBackupRef = useRef<string | null>(null);
   const [roomLeaderboard, setRoomLeaderboard] = React.useState<ArenaRoomRun[]>([]);
   const DRAW_XP = 30;
 
@@ -315,8 +317,11 @@ export default function DuelResultsScreen() {
     const updates: { type: import('./daily_tasks').TaskType; increment?: number }[] = [{ type: 'arena_play', increment: 1 }];
     if (won) updates.push({ type: 'arena_win', increment: 1 });
     if (opts?.rankPromoted) updates.push({ type: 'arena_rank_promoted', increment: 1 });
-    updateMultipleTaskProgress(updates, { pvpArenaMatchFinished: { won } }).catch(() => {});
-  }, [isFriendMatch]);
+    updateMultipleTaskProgress(updates, {
+      pvpArenaMatchFinished: { won },
+      studyTarget,
+    }).catch(() => {});
+  }, [isFriendMatch, studyTarget]);
 
   const reviewItems: ArenaReviewItem[] = (() => {
     try { return mockReviewData ? JSON.parse(mockReviewData) : []; } catch {
@@ -362,11 +367,11 @@ export default function DuelResultsScreen() {
     }
     if (isMockSession) {
       const trimmed = mockOppName && String(mockOppName).trim();
-      if (trimmed) mockOppNameFallbackRef.current = trimmed;
-      else if (!mockOppNameFallbackRef.current) {
-        mockOppNameFallbackRef.current = lang === 'es' ? pickRandomBotNameEs() : pickRandomBotName();
+      if (trimmed) mockOppNameBackupRef.current = trimmed;
+      else if (!mockOppNameBackupRef.current) {
+        mockOppNameBackupRef.current = pickRandomBotNameForLang(lang);
       }
-      const oppDisplay = trimmed || mockOppNameFallbackRef.current || pickRandomBotName();
+      const oppDisplay = trimmed || mockOppNameBackupRef.current || pickRandomBotNameForLang(lang);
       setPlayers([
         { sessionId, playerId: userId, score: Number(mockMyScore ?? 0), answers: [], displayName: triLang(lang, {
           uk: 'Ти',
@@ -698,7 +703,7 @@ export default function DuelResultsScreen() {
     const oppPlayer = players.find(p => p.playerId !== uid);
     const oppScore = oppPlayer?.score ?? 0;
     const oppName = oppPlayer?.displayName?.trim()
-      || (lang === 'es' ? pickRandomBotNameEs() : pickRandomBotName());
+      || pickRandomBotNameForLang(lang);
 
     // Транзакция в arena_profiles: см. arena_bot_profile_write (ретраи + очередь при сбое).
     let oldStars = 0;

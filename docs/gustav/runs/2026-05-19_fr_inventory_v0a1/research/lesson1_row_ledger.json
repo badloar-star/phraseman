@@ -1,0 +1,815 @@
+{
+  "schemaVersion": "gustav-french-lesson-row-ledger-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "lessonId": 1,
+  "studyTarget": "fr",
+  "sourceLocales": [
+    "ru",
+    "uk"
+  ],
+  "sourceFile": "app/lesson_data_1_8.ts",
+  "activationStatus": "blocked_pending_source_review",
+  "activeAppSeedAllowed": false,
+  "rows": [
+    {
+      "phraseId": "lesson1_phrase_1",
+      "englishBase": "I am here",
+      "russianMeaning": "Я здесь",
+      "ukrainianMeaning": "Я тут",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_2",
+      "englishBase": "You are ready",
+      "russianMeaning": "Ты готов",
+      "ukrainianMeaning": "Ти готовий",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_3",
+      "englishBase": "He is busy",
+      "russianMeaning": "Он занят",
+      "ukrainianMeaning": "Він зайнятий",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_4",
+      "englishBase": "She is calm",
+      "russianMeaning": "Она спокойна",
+      "ukrainianMeaning": "Вона спокійна",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_5",
+      "englishBase": "We are together",
+      "russianMeaning": "Мы вместе",
+      "ukrainianMeaning": "Ми разом",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_6",
+      "englishBase": "They are happy",
+      "russianMeaning": "Они счастливы",
+      "ukrainianMeaning": "Вони щасливі",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_7",
+      "englishBase": "It is important",
+      "russianMeaning": "Это важно",
+      "ukrainianMeaning": "Це важливо",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_8",
+      "englishBase": "I am okay",
+      "russianMeaning": "Я в порядке",
+      "ukrainianMeaning": "Я в порядку",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_9",
+      "englishBase": "You are right",
+      "russianMeaning": "Вы правы",
+      "ukrainianMeaning": "Ви праві",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_10",
+      "englishBase": "We are safe",
+      "russianMeaning": "Мы в безопасности",
+      "ukrainianMeaning": "Ми в безпеці",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_11",
+      "englishBase": "He is sick",
+      "russianMeaning": "Он болен",
+      "ukrainianMeaning": "Він хворий",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_12",
+      "englishBase": "It is cheap",
+      "russianMeaning": "Это дешево",
+      "ukrainianMeaning": "Це дешево",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_13",
+      "englishBase": "We are friends",
+      "russianMeaning": "Мы друзья",
+      "ukrainianMeaning": "Ми друзі",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_14",
+      "englishBase": "She is sad",
+      "russianMeaning": "Она грустная",
+      "ukrainianMeaning": "Вона сумна",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_15",
+      "englishBase": "You are late",
+      "russianMeaning": "Ты опаздываешь",
+      "ukrainianMeaning": "Ти запізнюєшся",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_16",
+      "englishBase": "I am busy",
+      "russianMeaning": "Я занят",
+      "ukrainianMeaning": "Я зайнятий",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_17",
+      "englishBase": "We are here",
+      "russianMeaning": "Мы здесь",
+      "ukrainianMeaning": "Ми тут",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_18",
+      "englishBase": "They are outside",
+      "russianMeaning": "Они снаружи",
+      "ukrainianMeaning": "Вони зовні",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_19",
+      "englishBase": "She is tired",
+      "russianMeaning": "Она устала",
+      "ukrainianMeaning": "Вона втомлена",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_20",
+      "englishBase": "It is free",
+      "russianMeaning": "Это бесплатно",
+      "ukrainianMeaning": "Це безкоштовно",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_21",
+      "englishBase": "I am ready",
+      "russianMeaning": "Я готов",
+      "ukrainianMeaning": "Я готовий",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_22",
+      "englishBase": "We are inside",
+      "russianMeaning": "Мы внутри",
+      "ukrainianMeaning": "Ми всередині",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_23",
+      "englishBase": "He is strong",
+      "russianMeaning": "Он сильный",
+      "ukrainianMeaning": "Він сильний",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_24",
+      "englishBase": "You are kind",
+      "russianMeaning": "Ты добрый",
+      "ukrainianMeaning": "Ти добрий",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_25",
+      "englishBase": "It is serious",
+      "russianMeaning": "Это серьезно",
+      "ukrainianMeaning": "Це серйозно",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_26",
+      "englishBase": "I am tired",
+      "russianMeaning": "Я устал",
+      "ukrainianMeaning": "Я втомлений",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_27",
+      "englishBase": "We are ready",
+      "russianMeaning": "Мы готовы",
+      "ukrainianMeaning": "Ми готові",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_28",
+      "englishBase": "She is happy",
+      "russianMeaning": "Она счастлива",
+      "ukrainianMeaning": "Вона щаслива",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_29",
+      "englishBase": "You are fine",
+      "russianMeaning": "Ты в порядке",
+      "ukrainianMeaning": "Ти в порядку",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_30",
+      "englishBase": "They are calm",
+      "russianMeaning": "Они спокойны",
+      "ukrainianMeaning": "Вони спокійні",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_31",
+      "englishBase": "I am outside",
+      "russianMeaning": "Я снаружи",
+      "ukrainianMeaning": "Я зовні",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_32",
+      "englishBase": "We are calm",
+      "russianMeaning": "Мы спокойны",
+      "ukrainianMeaning": "Ми спокійні",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_33",
+      "englishBase": "He is inside",
+      "russianMeaning": "Он внутри",
+      "ukrainianMeaning": "Він всередині",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_34",
+      "englishBase": "She is smart",
+      "russianMeaning": "Она умная",
+      "ukrainianMeaning": "Вона розумна",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_35",
+      "englishBase": "They are ready",
+      "russianMeaning": "Они готовы",
+      "ukrainianMeaning": "Вони готові",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_36",
+      "englishBase": "I am strong",
+      "russianMeaning": "Я сильный",
+      "ukrainianMeaning": "Я сильний",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_37",
+      "englishBase": "We are late",
+      "russianMeaning": "Мы опаздываем",
+      "ukrainianMeaning": "Ми запізнюємося",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_38",
+      "englishBase": "It is near",
+      "russianMeaning": "Это близко",
+      "ukrainianMeaning": "Це близько",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_39",
+      "englishBase": "They are tired",
+      "russianMeaning": "Они устали",
+      "ukrainianMeaning": "Вони втомлені",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_40",
+      "englishBase": "You are safe",
+      "russianMeaning": "Ты в безопасности",
+      "ukrainianMeaning": "Ти в безпеці",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_41",
+      "englishBase": "I am sick",
+      "russianMeaning": "Я болен",
+      "ukrainianMeaning": "Я хворий",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_42",
+      "englishBase": "She is nervous",
+      "russianMeaning": "Она нервничает",
+      "ukrainianMeaning": "Вона нервує",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_43",
+      "englishBase": "We are okay",
+      "russianMeaning": "Мы в порядке",
+      "ukrainianMeaning": "Ми в порядку",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_44",
+      "englishBase": "They are hungry",
+      "russianMeaning": "Они голодны",
+      "ukrainianMeaning": "Вони голодні",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_45",
+      "englishBase": "It is broken",
+      "russianMeaning": "Это сломано",
+      "ukrainianMeaning": "Це зламано",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_46",
+      "englishBase": "He is angry",
+      "russianMeaning": "Он злой",
+      "ukrainianMeaning": "Він злий",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_47",
+      "englishBase": "They are together",
+      "russianMeaning": "Они вместе",
+      "ukrainianMeaning": "Вони разом",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_48",
+      "englishBase": "He is calm",
+      "russianMeaning": "Он спокоен",
+      "ukrainianMeaning": "Він спокійний",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_49",
+      "englishBase": "It is empty",
+      "russianMeaning": "Это пусто",
+      "ukrainianMeaning": "Це порожнє",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_50",
+      "englishBase": "She is ready",
+      "russianMeaning": "Она готова",
+      "ukrainianMeaning": "Вона готова",
+      "proposedFrench": null,
+      "wordsFr": null,
+      "evidenceClaimIds": [],
+      "requiredEvidence": [
+        "bilingual_dictionary_or_parallel_source",
+        "french_grammar_reference",
+        "ru_uk_meaning_review"
+      ],
+      "reviewerStatus": "blocked_pending_source_review",
+      "activationStatus": "blocked"
+    }
+  ]
+}

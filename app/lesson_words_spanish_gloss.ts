@@ -116,15 +116,15 @@ export const ES_PLURAL_WEEKDAY_GLOSS: Record<string, string> = {
   Sundays: 'Los domingos',
 };
 
-const SINGULAR_NOUN_PROMPT_OVERRIDES: Record<string, { ru: string; uk: string; es: string }> = {
-  book: { ru: 'Книга', uk: 'Книжка', es: 'libro' },
-  car: { ru: 'Машина', uk: 'Машина', es: 'carro' },
+const SINGULAR_NOUN_PROMPT_OVERRIDES: Record<string, { ru: string; uk: string; es: string; 'pt-BR': string; vi: string; id: string; tr: string; pl: string }> = {
+  book: { ru: 'Книга', uk: 'Книжка', es: 'libro', 'pt-BR': 'livro', vi: 'sách', id: 'buku', tr: 'kitap', pl: 'książka' },
+  car: { ru: 'Машина', uk: 'Машина', es: 'carro', 'pt-BR': 'carro', vi: 'xe hơi', id: 'mobil', tr: 'araba', pl: 'samochód' },
 };
 
-const VERB_PROMPT_OVERRIDES: Record<string, { ru: string; uk: string; es: string }> = {
-  bring: { ru: 'Приносить', uk: 'Приносити', es: 'traer' },
-  brush: { ru: 'Чистить щёткой; расчёсывать', uk: 'Чистити щіткою; розчісувати', es: 'cepillar' },
-  find: { ru: 'Находить', uk: 'Знаходити', es: 'encontrar' },
+const VERB_PROMPT_OVERRIDES: Record<string, { ru: string; uk: string; es: string; 'pt-BR': string; vi: string; id: string; tr: string; pl: string }> = {
+  bring: { ru: 'Приносить', uk: 'Приносити', es: 'traer', 'pt-BR': 'trazer', vi: 'mang đến', id: 'membawa', tr: 'getirmek', pl: 'przynosić' },
+  brush: { ru: 'Чистить щёткой; расчёсывать', uk: 'Чистити щіткою; розчісувати', es: 'cepillar', 'pt-BR': 'escovar', vi: 'chải', id: 'menyikat', tr: 'fırçalamak', pl: 'szczotkować; czesać' },
+  find: { ru: 'Находить', uk: 'Знаходити', es: 'encontrar', 'pt-BR': 'encontrar', vi: 'tìm thấy', id: 'menemukan', tr: 'bulmak', pl: 'znajdować' },
 };
 
 /**

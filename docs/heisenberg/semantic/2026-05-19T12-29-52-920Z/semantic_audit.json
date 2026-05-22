@@ -1,0 +1,432 @@
+{
+  "generatedAt": "2026-05-19T12:29:52.919Z",
+  "mode": "semantic-audit",
+  "strict": true,
+  "summary": {
+    "findings": 19,
+    "blockers": 0,
+    "warnings": 19,
+    "reviewGroups": 14,
+    "byCode": {
+      "protected-english-term-missing": 14,
+      "possible-distractor-index-drift": 5
+    },
+    "bySurface": {
+      "quiz": 19
+    }
+  },
+  "reviewGroups": [
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): drink coffee.",
+      "sample": "Correcto. Do you drink...? pregunta por un hábito.",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 165,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): told.",
+      "sample": "En esta tarea usamos el cambio típico del reported speech: is pasa a was.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 175,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): am used.",
+      "sample": "Después de be used to usamos un sustantivo o -ing. Por eso necesitamos getting.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 11,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): sign.",
+      "sample": "Después de get him falta to. La estructura es get someone to do something.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 46,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): back out.",
+      "sample": "La expresión necesita of antes de aquello de lo que te retiras.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 92,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): back.",
+      "sample": "Esta opción traduce la idea demasiado literal y no usa el phrasal verb correcto.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): found money.",
+      "sample": "Correcto. Found es el past simple de find.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 283,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): am faster than.",
+      "sample": "Correcto. Faster than es la forma comparativa de fast.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): bought a new shirt.",
+      "sample": "Correcto. Bought es el past simple de buy.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 289,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): speaking on the phone.",
+      "sample": "Correcto. He is speaking usa is + speaking para una acción en curso.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 290,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): reads books every day.",
+      "sample": "Correcto. Con she en present simple usamos reads.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 115,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): wasn't.",
+      "sample": "En inglés estándar evitamos doble negación: wasn\\'t nobody.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 157,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): none him since childhood.",
+      "sample": "None significa ninguno o nada. Aquí necesitas known, participio de know.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 48,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): offend.",
+      "sample": "Esta opción deja el resultado en presente o futuro, pero la ofensa ya ocurrió en el pasado.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): found money.",
+      "sample": "Correcto. Found es el past simple de find."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 283,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): am faster than.",
+      "sample": "Correcto. Faster than es la forma comparativa de fast."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): drink coffee.",
+      "sample": "Correcto. Do you drink...? pregunta por un hábito."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "pt-BR",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): drink coffee.",
+      "sample": "Correto. Do you drink...? pergunta por um hábito."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "vi",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): drink coffee.",
+      "sample": "Đúng. Do you drink...? hỏi về thói quen."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "id",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): drink coffee.",
+      "sample": "Benar. Do you drink...? bertanya tentang kebiasaan."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "tr",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): drink coffee.",
+      "sample": "Doğru. Do you drink...? bir alışkanlığı sorar."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "pl",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): drink coffee.",
+      "sample": "Dobrze. Do you drink...? pyta o nawyk."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): bought a new shirt.",
+      "sample": "Correcto. Bought es el past simple de buy."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 289,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): speaking on the phone.",
+      "sample": "Correcto. He is speaking usa is + speaking para una acción en curso."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 290,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): reads books every day.",
+      "sample": "Correcto. Con she en present simple usamos reads."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 115,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): wasn't.",
+      "sample": "En inglés estándar evitamos doble negación: wasn\\'t nobody."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 157,
+      "locale": "es",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): none him since childhood.",
+      "sample": "None significa ninguno o nada. Aquí necesitas known, participio de know."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 165,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): told.",
+      "sample": "En esta tarea usamos el cambio típico del reported speech: is pasa a was."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 175,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): am used.",
+      "sample": "Después de be used to usamos un sustantivo o -ing. Por eso necesitamos getting."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 11,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): sign.",
+      "sample": "Después de get him falta to. La estructura es get someone to do something."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 46,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): back out.",
+      "sample": "La expresión necesita of antes de aquello de lo que te retiras."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 48,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): offend.",
+      "sample": "Esta opción deja el resultado en presente o futuro, pero la ofensa ya ocurrió en el pasado."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 92,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): back.",
+      "sample": "Esta opción traduce la idea demasiado literal y no usa el phrasal verb correcto."
+    }
+  ]
+}

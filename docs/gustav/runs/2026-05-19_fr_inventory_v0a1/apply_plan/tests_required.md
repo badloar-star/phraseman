@@ -1,0 +1,35 @@
+# GUSTAV Target Isolation Tests Required
+
+- Route smoke matrix: ru/fr, uk/fr, ru/en and uk/en.
+- No user-facing French route displays English progress after target switch.
+- Key builder returns distinct keys for en/fr for every target-sensitive domain.
+- Raw storage guard fails on a new flat lesson/trainer/quiz key outside migration adapters.
+- Existing English user keeps lesson, quiz, trainer and flashcard state after migration.
+- French user sees empty target state even when legacy English progress exists.
+- English lesson completion does not mark French lesson complete.
+- French target does not reuse English unlocked_lessons.
+- Home and lessons tab render target-specific progress.
+- English A1 pass does not unlock French A1 certificate.
+- French exam state writes only to fr target bucket.
+- French quiz navigation does not resume English quiz level.
+- French quiz counters do not increment English quiz achievements.
+- Switch sourceLocale ru -> uk and assert studyTarget remains fr.
+- Enable French target and assert Spanish dev gates do not activate.
+- Target achievement unlocks independently for en and fr.
+- Global achievement remains shared only when taxonomy says global.
+- French trainer queue never reads English active_recall_items.
+- French mistake log survives ru/uk sourceLocale switch without duplicating target items.
+- Cloud restore for en does not write fr target keys.
+- Cloud restore for fr does not overwrite en target keys.
+- Empty local AsyncStorage cannot overwrite existing target cloud buckets.
+- French words/phrases/quizzes do not increment English target stats.
+- Global engagement counters remain shared after target switch.
+- fr:<id> and en:<id> diagnoses cannot collide.
+- Russian and Ukrainian feedback for French diagnosis do not overwrite each other.
+- English custom card does not appear in French unless explicitly copied.
+- French flashcard progress is independent from English progress.
+- French reward can be granted even if English reward marker exists.
+- Cloud restore does not double-grant target rewards.
+- Switch en -> fr does not resume English cell index, phrase order or replay queue.
+- Cloud sync does not export local session keys.
+- Run target-isolation test suite before any French generation.

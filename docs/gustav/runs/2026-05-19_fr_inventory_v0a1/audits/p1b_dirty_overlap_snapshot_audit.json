@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "gustav-p1b-dirty-overlap-snapshot-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-20T06:17:57.756Z",
+  "status": "PASS",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_p1b_dirty_overlap_snapshot_audit.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "sourceArtifacts": {
+    "p1bPreflightAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_preflight_audit.json",
+    "postP1ANextSliceAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/post_p1a_next_slice_audit.json"
+  },
+  "summary": {
+    "snapshotFiles": 1,
+    "dirtyOverlapFiles": 1,
+    "userOwnedDirtyFiles": 1,
+    "freshReadRequiredFiles": 1,
+    "filesWithHeadSnapshot": 1,
+    "filesWithWorkingTreeSnapshot": 1,
+    "filesWithHashChange": 1,
+    "diffAdditions": 17,
+    "diffDeletions": 9,
+    "exactApprovalReceiptsPresent": 0,
+    "blockers": 0,
+    "warnings": 0,
+    "snapshotPassed": true,
+    "dirtyOverlapPreserved": true,
+    "requiresFreshReadBeforeEdit": true,
+    "requiresExactP1BApproval": true,
+    "canStartP1BNow": false,
+    "canApplyNow": false,
+    "mayStartFrenchGeneration": false,
+    "mayModifyProductionAppFiles": false,
+    "productionFilesStillAbsent": true
+  },
+  "files": [
+    {
+      "filePath": "app/(tabs)/settings.tsx",
+      "gitStatus": " M",
+      "headExists": true,
+      "workingTreeExists": true,
+      "headSha256": "e4e73bd90716671180647406f8de63ca7562316d90201991dcb0a2c1c4a8992b",
+      "workingTreeSha256": "dbe48bc1b770f842fe50abae2fc400032cdc62977882ecaf75a1089b5a0f896f",
+      "hashChanged": true,
+      "additions": 17,
+      "deletions": 9,
+      "plannedDirtyOverlap": true,
+      "observedDirtyWorktree": true,
+      "userOwnedDirtyWorktree": true,
+      "requiresFreshReadBeforeEdit": true,
+      "preservationPolicy": "do_not_overwrite_without_exact_re_read_and_approval"
+    }
+  ],
+  "findings": [],
+  "notes": [
+    "This audit records metadata and hashes only; it does not copy or edit app/(tabs)/settings.tsx.",
+    "The dirty overlap is treated as user-owned worktree state and must not be overwritten by future P1B.",
+    "Future P1B may proceed only after P1A completion, exact P1B approval and a fresh re-read of settings.tsx.",
+    "French generation remains blocked."
+  ]
+}

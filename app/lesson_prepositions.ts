@@ -1,6 +1,7 @@
 import { LessonPrepositionPack, PrepositionKind, LessonPhrase, LessonWord } from './lesson_data_types';
 import { getLessonData } from './lesson_data_all';
 import { explainPrepositionChoice } from './preposition_explanations';
+import type { RuntimeStudyTarget } from './target_storage_keys';
 
 type PrepCandidate = {
   answer: string;
@@ -454,7 +455,7 @@ function pickFalsePrepDistractors(correct: string, seed: string, sentence: strin
     other: ['for', 'of', 'with', 'by', 'about', 'without', 'from', 'to'],
   };
   const pool = pools[classifyPreposition(c)] ?? pools.other;
-  return deterministicShuffle(uniqueOptions(pool.filter(p => p !== c)), `${seed}|fallback`).slice(0, 3);
+  return deterministicShuffle(uniqueOptions(pool.filter(p => p !== c)), `${seed}|reserve`).slice(0, 3);
 }
 
 function escapeRegExp(text: string): string {
@@ -521,7 +522,9 @@ function buildItemsForLesson(lessonId: number, lessonPrepositions: Set<string>) 
   return all.slice(0, ITEM_CAP);
 }
 
-export function getLessonPrepositionPack(lessonId: number): LessonPrepositionPack | null {
+export function getLessonPrepositionPack(lessonId: number, studyTarget?: RuntimeStudyTarget): LessonPrepositionPack | null {
+  if (studyTarget === 'fr') return null;
+
   const lessonPrepositions = buildLessonPrepositions(lessonId);
   if (!lessonPrepositions.length) return null;
 
@@ -548,7 +551,15 @@ export function hasLessonPrepositionDrill(lessonId: number): boolean {
   return getLessonPrepositionPack(lessonId) !== null;
 }
 
-export function getLessonPrepositionTexts(lessonId: number): string[] {
+export function hasLessonPrepositionDrillForTarget(
+  lessonId: number,
+  studyTarget?: RuntimeStudyTarget,
+): boolean {
+  return getLessonPrepositionPack(lessonId, studyTarget) !== null;
+}
+
+export function getLessonPrepositionTexts(lessonId: number, studyTarget?: RuntimeStudyTarget): string[] {
+  if (studyTarget === 'fr') return [];
   return buildLessonPrepositions(lessonId).map(p => `${p.text} (${p.kind})`);
 }
 

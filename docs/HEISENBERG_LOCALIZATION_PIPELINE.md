@@ -20,7 +20,9 @@ npm run heisenberg:semantic-audit
 - `manifest.json`: run summary, counts, surfaces, checks.
 - `inventory.json`: every scanned file with localization markers.
 - `localized_items.jsonl`: extracted localized strings from code/JSON surfaces (`localized_items_sample.jsonl` in `--audit-only` runs).
+- HTML inventory includes visible text plus selected localized attributes (`title`, `placeholder`, `aria-label`, `alt`) while skipping implementation-only `script`, `style`, `code`, `pre`, `kbd`, and `samp` content.
 - `translation_blocks/*.jsonl`: bounded work batches grouped by surface.
+- `agent_review_board.md`: mandatory "office" of reviewer roles, prompts, checks, and verdict format for each translation block.
 - `research_checklist.md`: required external-source research gates.
 - `guard_report.json`: language isolation and collision checks.
 - `batch_locale_coverage.json`: item-level coverage report for batch locales (`pt-BR`, `vi`, `id`, `tr`, `pl`), showing which language is missing from a partially localized unit and which expected units are missing from every batch language.
@@ -64,6 +66,39 @@ Each language run must document external sources before translation/rewrite:
 - English grammar references such as British Council LearnEnglish.
 - Language-specific learner-error research for speakers of the target language.
 
+## Mandatory Agent Review Board
+
+Every translation block must pass an agent-style review board before integration. Treat it like an office with departments: each role owns a different failure mode, and the block moves forward only when every role returns `GO` or an explicit `HOLD` has been fixed.
+
+The generated `agent_review_board.md` contains the exact prompts and verdict format. The mandatory roles are:
+
+- Chief Editor: checks natural target-language copy, product tone, and non-literal rewrites.
+- Grammar Pedagogy Reviewer: checks that explanations teach English to the target-language learner and preserve protected English examples.
+- Runtime Integrity Reviewer: checks IDs, placeholders, indexes, locale keys, source maps, and code/data shape.
+- Surface Owner: checks the surface context: lesson, quiz, training, rewards, admin, legal, or support.
+- Activation Gate Reviewer: checks coverage, semantic/UI audit risk, research notes, and whether the block can move toward UI activation.
+
+Verdicts are strict:
+
+- `GO`: no blocker for this role.
+- `HOLD`: fix or document a small issue before continuing.
+- `BLOCKED`: do not integrate the block.
+
+Suggested role prompt template:
+
+```text
+You are the <Role Name> for this Heisenberg localization block.
+Review only the provided block and the relevant surrounding context.
+Return blockers first. Preserve English study-target text, IDs, placeholders,
+answer choices, indexes, and locale contracts. End with:
+Role: <Role Name>
+Verdict: GO | HOLD | BLOCKED
+Findings:
+- file/path:line - issue or confirmation
+Required fixes:
+- smallest actionable fix, or "none"
+```
+
 ## Block Rules
 
 Each block must be reviewed independently:
@@ -73,6 +108,7 @@ Each block must be reviewed independently:
 - Preserve product names, URLs, and app-specific mechanics.
 - For existing app locales like Spanish, integrate into the matching locale fields (`es`, `titleEs`, `literal_es`, etc.) only.
 - Record grammar decisions and citations in the language report.
+- Record the Agent Review Board verdicts for the block.
 - Run tests after each integration stage.
 
 ## Integration Gate
@@ -83,11 +119,37 @@ No generated target language should be applied to production app files until:
 - `npm run heisenberg:batch:audit` passes without batch coverage gaps, including structured quiz payloads and Daily Phrase `sourceLocales`.
 - `npm run heisenberg:gate` passes when you need the release gate: strict batch coverage, strict existing-locale blockers, selected localization tests, TypeScript, and semantic audit.
 - `npm run heisenberg:semantic-audit:strict` has no semantic blockers.
+- Every mandatory Agent Review Board role has returned `GO`, or all `HOLD` items have been fixed and re-reviewed.
 - `npm run heisenberg:ui-audit` has been reviewed. It is allowed to report `activationReady=no` while planned locales are being prepared, but the report must be used as the backlog for UI/admin activation work.
+- The Heisenberg regression tests pass: `tests/heisenberg_pipeline.test.ts`, `tests/heisenberg_ui_locale_audit.test.ts`, and `tests/heisenberg_semantic_audit.test.ts`.
 - `guard_report.json` has no unresolved collision.
 - Language research notes are complete.
 - Existing localization tests still pass.
 - A new locale architecture is added instead of expanding ad hoc `ru` / `uk` / `es` triples in-place.
+- Existing-locale HTML-only gaps are reported as `HTML Coverage Backlog`; they are website/admin localization backlog, not app UI activation blockers.
+
+## Regression Contract
+
+When changing Heisenberg extraction, coverage, UI activation, semantic audit, or the Agent Review Board contract, run at least:
+
+```bash
+npm test -- --runTestsByPath tests/heisenberg_pipeline.test.ts tests/heisenberg_ui_locale_audit.test.ts tests/heisenberg_semantic_audit.test.ts --runInBand
+npm run heisenberg:ui-audit
+npm run heisenberg:semantic-audit:strict
+npm run heisenberg:gate
+npx tsc --noEmit --pretty false
+git diff --check
+```
+
+Before release, also run:
+
+```bash
+npm test -- --runInBand
+npm run audit:pre-release
+npm run lint
+```
+
+`npm run lint` currently has historical warnings, but must exit with code `0` and no errors.
 
 ## Batch Mode
 
@@ -161,10 +223,11 @@ It now scans:
 - direct `triLang(...)` calls;
 - local helper calls that still pass only `ru`, `uk`, and `es`;
 - direct object literals with `ru`, `uk`, and `es` keys but no planned locale keys.
+- structured `sourceLocales` maps, which count as planned-language coverage when they contain the required locale keys.
 
 The audit is intentionally report-only: it does not fail `heisenberg:gate`, because planned languages can be prepared gradually. The important signal is `activationReady`:
 
 - `activationReady=yes`: planned interface languages are structurally present in scanned UI/admin locale objects.
 - `activationReady=no`: do not enable the planned languages in production UI yet; use `topFiles` and `findings` as the translation backlog.
 
-Known nuance: some legacy content objects may be reported even when planned-language copy exists in a separate `sourceLocales` map. Treat those as audit-triage items, not automatic blockers.
+Known nuance: legacy content can still be reported when the planned-language copy lives in a surface-specific sidecar that the UI audit does not know how to resolve. `sourceLocales` maps are recognized directly; other sidecars need an explicit audit rule or a documented triage decision.

@@ -26,6 +26,7 @@ import {
 } from './flashcards/bundles/packIds';
 import { addOwnedPackId, loadOwnedPackIds, primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
+import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_gate';
 import { addShardsRaw, getShardsBalance } from './shards_system';
 import { registerXP } from './xp_manager';
 import { getVerifiedPremiumStatus } from './premium_guard';
@@ -42,6 +43,7 @@ import {
   AVATAR_AURAS,
   USER_AVATAR_AURA_KEY,
 } from '../constants/avatar_auras';
+import { lessonBonusHintsKey, type RuntimeStudyTarget } from './target_storage_keys';
 
 export type GiftRarity = 'common' | 'rare' | 'epic';
 
@@ -698,6 +700,20 @@ const PREMIUM_BLOCKED_F2P_IDS = new Set<GiftId>([
   'choice_3_level',
 ]);
 
+const FLASHCARD_PACK_LEVEL_GIFT_IDS = new Set<GiftId>([
+  'pack_voucher_48h',
+  'prem_pack_48h',
+  ...Object.keys(PREMIUM_LEVEL_GIFT_ID_TO_PACK),
+]);
+
+export function isFlashcardPackLevelGiftId(gid: string | undefined | null): boolean {
+  return !!gid && FLASHCARD_PACK_LEVEL_GIFT_IDS.has(gid);
+}
+
+function flashcardPackLevelGiftsAllowed(studyTarget?: RuntimeStudyTarget): boolean {
+  return flashcardsOfficialPacksAvailableForTarget(studyTarget);
+}
+
 const weightedPick = (pool: GiftDef[], level: number): GiftDef => {
   const isRound = ROUND_LEVELS.has(level);
   const rr = Math.random();
@@ -742,13 +758,39 @@ export function rollGift(level: number): GiftDef {
   return weightedPick(GIFT_F2P, level);
 }
 
-const getF2pPool = (premiumSafe: boolean): GiftDef[] =>
-  premiumSafe ? GIFT_F2P.filter(g => !PREMIUM_BLOCKED_F2P_IDS.has(g.id)) : GIFT_F2P;
+const getF2pPool = (premiumSafe: boolean, studyTarget?: RuntimeStudyTarget): GiftDef[] => {
+  const premiumFiltered = premiumSafe ? GIFT_F2P.filter(g => !PREMIUM_BLOCKED_F2P_IDS.has(g.id)) : GIFT_F2P;
+  return flashcardPackLevelGiftsAllowed(studyTarget)
+    ? premiumFiltered
+    : premiumFiltered.filter(g => !isFlashcardPackLevelGiftId(g.id));
+};
 
 const cloneGiftDef = (gift: GiftDef): GiftDef => ({
   ...gift,
   choices: gift.choices?.map(choice => ({ ...choice })),
 });
+
+function sourceGatedFallbackGiftId(id: GiftId): GiftId {
+  return id === 'pack_voucher_48h' ? 'shards_10' : 'prem_shards_20';
+}
+
+function sourceGatedFallbackGiftDef(gift: GiftDef): GiftDef {
+  const fallbackId = sourceGatedFallbackGiftId(gift.id);
+  const fallbackPool = fallbackId === 'shards_10' ? GIFT_F2P : GIFT_PREMIUM;
+  return cloneGiftDef(fallbackPool.find(g => g.id === fallbackId) ?? gift);
+}
+
+export function sanitizeLevelGiftForStudyTarget(gift: GiftDef, studyTarget?: RuntimeStudyTarget): GiftDef {
+  if (flashcardPackLevelGiftsAllowed(studyTarget)) return cloneGiftDef(gift);
+  if (isFlashcardPackLevelGiftId(gift.id)) return sourceGatedFallbackGiftDef(gift);
+  const cloned = cloneGiftDef(gift);
+  if (cloned.choices?.length) {
+    cloned.choices = cloned.choices.map(choice =>
+      isFlashcardPackLevelGiftId(choice.id) ? sourceGatedFallbackGiftDef(choice) : sanitizeLevelGiftForStudyTarget(choice, studyTarget),
+    );
+  }
+  return cloned;
+}
 
 export const LEVEL_GIFT_MILESTONE_LEVELS = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50] as const;
 
@@ -765,23 +807,24 @@ const LEVEL_GIFT_MILESTONE_IDS: Record<number, GiftId> = {
   50: 'choice_3_level',
 };
 
-export function getMilestoneLevelGift(level: number, opts?: { premiumSafe?: boolean }): GiftDef | null {
+export function getMilestoneLevelGift(level: number, opts?: { premiumSafe?: boolean; studyTarget?: RuntimeStudyTarget }): GiftDef | null {
   let id = LEVEL_GIFT_MILESTONE_IDS[level];
   if (!id) return null;
   if (opts?.premiumSafe && id === 'choice_3_level') id = 'xp_bank_600';
   const gift = GIFT_F2P.find(g => g.id === id);
-  return gift ? cloneGiftDef(gift) : null;
+  return gift ? sanitizeLevelGiftForStudyTarget(gift, opts?.studyTarget) : null;
 }
 
 /** F2P-пул: анти-triple-hint_1 на круглых уровнях; premiumSafe исключает бесполезные для премиум награды. */
-export async function rollF2pLevelGiftForUser(level: number, opts?: { premiumSafe?: boolean }): Promise<GiftDef> {
-  const milestone = getMilestoneLevelGift(level, { premiumSafe: !!opts?.premiumSafe });
+export async function rollF2pLevelGiftForUser(level: number, opts?: { premiumSafe?: boolean; studyTarget?: RuntimeStudyTarget }): Promise<GiftDef> {
+  const studyTarget = opts?.studyTarget;
+  const milestone = getMilestoneLevelGift(level, { premiumSafe: !!opts?.premiumSafe, studyTarget });
   if (milestone) {
     await pushGiftHistory(milestone.id);
     return milestone;
   }
   const isRound = ROUND_LEVELS.has(level);
-  const pool = getF2pPool(!!opts?.premiumSafe);
+  const pool = getF2pPool(!!opts?.premiumSafe, studyTarget);
   let attempts = 0;
   let g: GiftDef;
   do {
@@ -792,32 +835,37 @@ export async function rollF2pLevelGiftForUser(level: number, opts?: { premiumSaf
     if (!bad) break;
   } while (attempts < 12);
   await pushGiftHistory(g.id);
-  return g;
+  return sanitizeLevelGiftForStudyTarget(g, studyTarget);
 }
 
 /** Второй сундук — GIFT_PREMIUM + с шансом `PREMIUM_LEVEL_PACK_GIFT_DROP_CHANCE` навсегда один из пяти наборов (без повтора). */
-export async function rollPremiumLevelGiftForUser(level: number): Promise<GiftDef> {
-  const owned = await loadOwnedPackIds();
-  const granted = await loadPremiumPackUnlockGiftReceivedIds();
+export async function rollPremiumLevelGiftForUser(level: number, opts?: { studyTarget?: RuntimeStudyTarget }): Promise<GiftDef> {
+  const studyTarget = opts?.studyTarget;
+  const packGiftsAllowed = flashcardPackLevelGiftsAllowed(studyTarget);
+  const owned = packGiftsAllowed ? await loadOwnedPackIds(studyTarget) : [];
+  const granted = packGiftsAllowed ? await loadPremiumPackUnlockGiftReceivedIds() : new Set<string>();
 
-  const eligiblePackGifts = PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS.filter((g) => {
+  const eligiblePackGifts = packGiftsAllowed ? PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS.filter((g) => {
     const packId = PREMIUM_LEVEL_GIFT_ID_TO_PACK[g.id];
     if (!packId) return false;
     if (owned.includes(packId)) return false;
     if (granted.has(packId)) return false;
     return true;
-  });
+  }) : [];
 
   const tryPack = eligiblePackGifts.length > 0 && Math.random() < PREMIUM_LEVEL_PACK_GIFT_DROP_CHANCE;
   if (tryPack) {
     const g = eligiblePackGifts[Math.floor(Math.random() * eligiblePackGifts.length)]!;
     await pushGiftHistory(g.id);
-    return g;
+    return cloneGiftDef(g);
   }
 
-  const g = weightedPick(GIFT_PREMIUM, level);
+  const premiumPool = packGiftsAllowed
+    ? GIFT_PREMIUM
+    : GIFT_PREMIUM.filter(g => !isFlashcardPackLevelGiftId(g.id));
+  const g = weightedPick(premiumPool, level);
   await pushGiftHistory(g.id);
-  return g;
+  return sanitizeLevelGiftForStudyTarget(g, studyTarget);
 }
 
 /**
@@ -825,15 +873,18 @@ export async function rollPremiumLevelGiftForUser(level: number): Promise<GiftDe
  *  - `false` или `null` → F2P
  *  - `true` → только премиум-пул
  */
-export async function rollLevelGiftForUser(level: number, isPremium: boolean | null = null): Promise<GiftDef> {
-  if (isPremium === true) return rollPremiumLevelGiftForUser(level);
-  return rollF2pLevelGiftForUser(level);
+export async function rollLevelGiftForUser(
+  level: number,
+  isPremium: boolean | null = null,
+  opts?: { studyTarget?: RuntimeStudyTarget },
+): Promise<GiftDef> {
+  if (isPremium === true) return rollPremiumLevelGiftForUser(level, opts);
+  return rollF2pLevelGiftForUser(level, opts);
 }
 
 /** Storage */
 const GIFT_MULT_KEY = 'gift_xp_multiplier';
 const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
-const BONUS_HINTS_KEY = (date: string) => `bonus_hints_${date}`;
 const CHAIN_SHIELD_KEY = 'chain_shield';
 export const BONUS_ENERGY_KEY = 'energy_gift_bonus';
 export const COSMETIC_GIFT_OWNED_AVATAR_KEY = 'custom_avatar_gift_owned_v1';
@@ -1035,10 +1086,10 @@ export const unlockRandomAvatarAuraGift = async (): Promise<GiftCosmeticUnlock |
   }
 };
 
-export const getBonusHintsToday = async (): Promise<number> => {
+export const getBonusHintsToday = async (studyTarget?: RuntimeStudyTarget): Promise<number> => {
   try {
     const today = new Date().toISOString().split('T')[0];
-    return parseInt((await AsyncStorage.getItem(BONUS_HINTS_KEY(today))) || '0', 10) || 0;
+    return parseInt((await AsyncStorage.getItem(lessonBonusHintsKey(today, studyTarget))) || '0', 10) || 0;
   } catch { return 0; }
 };
 
@@ -1068,7 +1119,7 @@ export const applyGift = async (
   currentEnergy: number,
   maxEnergy: number,
   setEnergy: (n: number) => void,
-  opts?: { isPremium?: boolean },
+  opts?: { isPremium?: boolean; studyTarget?: RuntimeStudyTarget },
 ): Promise<ApplyGiftResult> => {
   try {
     const isPremium = opts?.isPremium ?? await getVerifiedPremiumStatus();
@@ -1077,6 +1128,9 @@ export const applyGift = async (
     // Safety-net: если старый/ручной подарок всё же попал премиуму, заменяем на осколки.
     if (isPremium && PREMIUM_BLOCKED_F2P_IDS.has(id)) {
       id = 'prem_shards_10';
+    }
+    if (!flashcardPackLevelGiftsAllowed(opts?.studyTarget) && isFlashcardPackLevelGiftId(id)) {
+      id = sourceGatedFallbackGiftId(id);
     }
 
     switch (id) {
@@ -1099,8 +1153,9 @@ export const applyGift = async (
       case 'hint_1':
       case 'hint_3': {
         const count = id === 'hint_1' ? 1 : 3;
-        const cur = parseInt((await AsyncStorage.getItem(BONUS_HINTS_KEY(today))) || '0', 10) || 0;
-        await AsyncStorage.setItem(BONUS_HINTS_KEY(today), String(cur + count));
+        const key = lessonBonusHintsKey(today, opts?.studyTarget);
+        const cur = parseInt((await AsyncStorage.getItem(key)) || '0', 10) || 0;
+        await AsyncStorage.setItem(key, String(cur + count));
         break;
       }
       case 'energy_plus1':
@@ -1196,13 +1251,15 @@ export const applyGift = async (
         break;
       }
       case 'prem_pack_48h': {
-        await setRandomPackGiftTrial48h();
-        await primeMarketplaceBuiltCardsCacheFromAccessibleStorage();
+        const trial = await setRandomPackGiftTrial48h(opts?.studyTarget);
+        if (!trial) return { success: false };
+        await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(opts?.studyTarget);
         break;
       }
       case 'pack_voucher_48h': {
-        await setRandomPackGiftTrial48h();
-        await primeMarketplaceBuiltCardsCacheFromAccessibleStorage();
+        const trial = await setRandomPackGiftTrial48h(opts?.studyTarget);
+        if (!trial) return { success: false };
+        await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(opts?.studyTarget);
         break;
       }
       case 'prem_level_unlock_negotiator':
@@ -1212,9 +1269,9 @@ export const applyGift = async (
       case 'prem_level_unlock_peaky_blinders': {
         const packIdGift = PREMIUM_LEVEL_GIFT_ID_TO_PACK[id];
         if (!packIdGift) break;
-        await addOwnedPackId(packIdGift);
+        await addOwnedPackId(packIdGift, opts?.studyTarget);
         await pushPremiumPackUnlockGiftReceivedPackId(packIdGift);
-        await primeMarketplaceBuiltCardsCacheFromAccessibleStorage();
+        await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(opts?.studyTarget);
         break;
       }
       default:

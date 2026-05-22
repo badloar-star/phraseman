@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "gustav-p1a-post-apply-guard-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-19T20:58:55.423Z",
+  "status": "PASS",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_p1a_post_apply_guard.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "sourceArtifacts": {
+    "p1aMinimalApplyPacket": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_minimal_apply_packet.json",
+    "p1aTestExecutionAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_test_execution_audit.json",
+    "readinessGate": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/gustav_readiness_gate.json"
+  },
+  "summary": {
+    "allowedFiles": 4,
+    "allowedProductionFiles": 2,
+    "allowedTestFiles": 2,
+    "forbiddenWriteZones": 10,
+    "guardRules": 5,
+    "guardCommands": 5,
+    "postApplyStatus": "not_run",
+    "blockers": 0,
+    "warnings": 0,
+    "guardReadyAfterApproval": true,
+    "mayStartFrenchGeneration": false,
+    "mayModifyProductionAppFiles": false
+  },
+  "allowedFiles": [
+    "app/study_target.ts",
+    "app/target_storage_keys.ts",
+    "tests/gustav_surface_target_switch.test.ts",
+    "tests/gustav_target_storage_keys.test.ts"
+  ],
+  "allowedProductionFiles": [
+    "app/study_target.ts",
+    "app/target_storage_keys.ts"
+  ],
+  "allowedTestFiles": [
+    "tests/gustav_surface_target_switch.test.ts",
+    "tests/gustav_target_storage_keys.test.ts"
+  ],
+  "forbiddenWriteZones": [
+    "generated/",
+    "curriculum/",
+    "research/",
+    "source_graph/",
+    "docs/gustav/runs/*/generated/",
+    "app/lesson*_v2*",
+    "app/lesson_words*",
+    "app/quiz_data*",
+    "app/cloud_sync.ts",
+    "components/StudyTargetContext.tsx"
+  ],
+  "guardRules": [
+    {
+      "id": "P1A-SCOPE-ONLY",
+      "severity": "blocker",
+      "rule": "A future P1A implementation may change only the four allowed packet files.",
+      "failureAction": "Stop apply, record unexpected file list, and do not continue to P1B/P1C."
+    },
+    {
+      "id": "P1A-NO-FRENCH-GENERATION",
+      "severity": "blocker",
+      "rule": "No generated French content, lesson data, quiz data, source graph output or curriculum files may be created by P1A.",
+      "failureAction": "Revert or isolate generated artifacts before any content workflow continues."
+    },
+    {
+      "id": "P1A-NO-DEV-BRIDGE",
+      "severity": "blocker",
+      "rule": "P1A may not modify StudyTargetContext, study_target_lang_dev, settings or spanish_content_gate; those belong to P1B.",
+      "failureAction": "Move bridge changes into a separate reviewed P1B packet."
+    },
+    {
+      "id": "P1A-TESTS-MUST-RUN",
+      "severity": "blocker",
+      "rule": "P1A direct tests and dev-target companion regressions must pass before any later slice starts.",
+      "failureAction": "Keep readiness HOLD and do not request generation approval."
+    },
+    {
+      "id": "P1A-BROAD-PLAN-STAYS-CLOSED",
+      "severity": "blocker",
+      "rule": "The broad 83-file apply plan remains unapproved; P1A approval cannot authorize it.",
+      "failureAction": "Reject the apply transition and regenerate the minimal packet."
+    }
+  ],
+  "commands": [
+    {
+      "id": "P1A_ALLOWED_STATUS",
+      "command": "git status --short -- app/study_target.ts app/target_storage_keys.ts tests/gustav_surface_target_switch.test.ts tests/gustav_target_storage_keys.test.ts",
+      "purpose": "Show status for the four allowed P1A files only."
+    },
+    {
+      "id": "P1A_UNEXPECTED_APP_TEST_CHANGES",
+      "command": "git status --short -- app tests components hooks constants",
+      "purpose": "List app/test/component changes; every returned path must be one of the four allowed P1A files before leaving the slice."
+    },
+    {
+      "id": "P1A_DIRECT_TESTS",
+      "command": "npx jest --runTestsByPath tests/gustav_surface_target_switch.test.ts tests/gustav_target_storage_keys.test.ts --no-cache --runInBand",
+      "purpose": "Run direct P1A contract tests."
+    },
+    {
+      "id": "P1A_WITH_DEV_TARGET_REGRESSION",
+      "command": "npx jest --runTestsByPath tests/gustav_surface_target_switch.test.ts tests/gustav_target_storage_keys.test.ts tests/study_target_lang_dev.test.ts tests/flashcard_content_lang.test.ts tests/storage.test.ts --no-cache --runInBand",
+      "purpose": "Run P1A tests with dev en/es target and storage regressions."
+    },
+    {
+      "id": "P1A_READINESS_RECHECK",
+      "command": "node /private/tmp/gustav-build/gustav_readiness_gate.js --run docs/gustav/runs/2026-05-19_fr_inventory_v0a1",
+      "purpose": "Recompute Gustav readiness after P1A implementation."
+    }
+  ],
+  "findings": [],
+  "notes": [
+    "This guard is ready for a future approved P1A implementation, but it does not run post-apply checks yet.",
+    "P1A implementation remains blocked until the minimal packet is explicitly approved.",
+    "The guard intentionally keeps French generation and broad production apply closed.",
+    "If the future implementation touches anything outside the four allowed files, Gustav must stop and audit the drift."
+  ]
+}

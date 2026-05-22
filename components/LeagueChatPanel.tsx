@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { moderateLeagueChatMessage } from '../app/league_chat_moderation';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from './ThemeContext';
@@ -25,7 +25,6 @@ import {
   subscribeLeagueChatMessages,
 } from '../app/firestore_league_chat';
 import { hapticTap } from '../hooks/use-haptics';
-import { checkAchievements } from '../app/achievements';
 import {
   getLeagueChatConnectionUi,
   getLeagueChatKeyboardAvoidingBehavior,
@@ -34,9 +33,9 @@ import {
 const HIDE_UNDO_MS = 10_000;
 const CHAT_RETRY_MS = 2_500;
 const REPORT_REASONS = [
-  { id: 'insult', ru: 'Оскорбления', uk: 'Образи', es: 'Insultos', ptBR: 'Insultos', vi: 'Lăng mạ', idText: 'Hinaan', tr: 'Hakaret', pl: 'Obelgi' },
-  { id: 'spam', ru: 'Спам', uk: 'Спам', es: 'Spam', ptBR: 'Spam', vi: 'Spam', idText: 'Spam', tr: 'Spam', pl: 'Spam' },
-  { id: 'unsafe', ru: 'Опасный контент', uk: 'Небезпечний контент', es: 'Contenido peligroso', ptBR: 'Conteúdo perigoso', vi: 'Nội dung nguy hiểm', idText: 'Konten berbahaya', tr: 'Tehlikeli içerik', pl: 'Niebezpieczne treści' },
+  { id: 'insult', ru: 'Оскорбления', uk: 'Образи', es: 'Insultos', 'pt-BR': 'Insultos', ptBR: 'Insultos', vi: 'Lăng mạ', idText: 'Hinaan', tr: 'Hakaret', pl: 'Obelgi' },
+  { id: 'spam', ru: 'Спам', uk: 'Спам', es: 'Spam', 'pt-BR': 'Spam', ptBR: 'Spam', vi: 'Spam', idText: 'Spam', tr: 'Spam', pl: 'Spam' },
+  { id: 'unsafe', ru: 'Опасный контент', uk: 'Небезпечний контент', es: 'Contenido peligroso', 'pt-BR': 'Conteúdo perigoso', ptBR: 'Conteúdo perigoso', vi: 'Nội dung nguy hiểm', idText: 'Konten berbahaya', tr: 'Tehlikeli içerik', pl: 'Niebezpieczne treści' },
 ]
 
 function sameRoom(a: LeagueChatRoom | null | undefined, b: LeagueChatRoom | null | undefined): boolean {
@@ -48,14 +47,14 @@ function roomKey(room: LeagueChatRoom | null | undefined): string {
 }
 
 export default function LeagueChatPanel({
-  fallbackRoom,
+  initialRoom,
   myUid,
   myAvatar,
   myAuraId,
   myTotalXP,
   onToast,
 }: {
-  fallbackRoom?: LeagueChatRoom | null;
+  initialRoom?: LeagueChatRoom | null;
   myUid?: string;
   myAvatar?: string | null;
   myAuraId?: string | null;
@@ -66,13 +65,13 @@ export default function LeagueChatPanel({
   const { lang } = useLang();
   const initialRoomRef = useRef<LeagueChatRoom | null | undefined>(undefined);
   if (initialRoomRef.current === undefined) {
-    initialRoomRef.current = fallbackRoom ?? getCachedLeagueChatRoomSync();
+    initialRoomRef.current = initialRoom ?? getCachedLeagueChatRoomSync();
   }
   const [room, setRoom] = useState<LeagueChatRoom | null>(initialRoomRef.current ?? null);
   const [roomReady, setRoomReady] = useState(() => !!initialRoomRef.current);
   const [messages, setMessages] = useState<LeagueChatMessage[]>(() => {
-    const initialRoom = initialRoomRef.current;
-    return initialRoom ? getCachedLeagueChatMessagesSync(initialRoom) : [];
+    const seedRoom = initialRoomRef.current;
+    return seedRoom ? getCachedLeagueChatMessagesSync(seedRoom) : [];
   });
   const [blockedUsers, setBlockedUsers] = useState<Record<string, boolean>>({});
   const [pendingHideUntilByUid, setPendingHideUntilByUid] = useState<Record<string, number>>({});
@@ -95,14 +94,31 @@ export default function LeagueChatPanel({
   const forbiddenRoomKeyRef = useRef('');
 
   useEffect(() => {
+    const showSub = Keyboard.addListener(
+      Platform.OS === 'ios' ? 'keyboardWillChangeFrame' : 'keyboardDidShow',
+      () => {
+        requestAnimationFrame(() => scrollRef.current?.scrollToEnd({ animated: true }));
+      },
+    );
+    const hideSub = Keyboard.addListener(
+      Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide',
+      () => requestAnimationFrame(() => scrollRef.current?.scrollToEnd({ animated: true })),
+    );
+    return () => {
+      showSub.remove();
+      hideSub.remove();
+    };
+  }, []);
+
+  useEffect(() => {
     let cancelled = false;
     void getBlockedLeagueChatUsers().then((blocked) => {
       if (!cancelled) setBlockedUsers(blocked);
     });
-    if (fallbackRoom && forbiddenRoomKeyRef.current !== roomKey(fallbackRoom)) {
-      setRoom((cur) => (sameRoom(cur, fallbackRoom) ? cur : fallbackRoom));
+    if (initialRoom && forbiddenRoomKeyRef.current !== roomKey(initialRoom)) {
+      setRoom((cur) => (sameRoom(cur, initialRoom) ? cur : initialRoom));
       setRoomReady(true);
-      void cacheLeagueChatRoom(fallbackRoom);
+      void cacheLeagueChatRoom(initialRoom);
     }
     void (async () => {
       const cached = await loadCachedLeagueChatRoom();
@@ -123,7 +139,7 @@ export default function LeagueChatPanel({
     return () => {
       cancelled = true;
     };
-  }, [fallbackRoom, roomRetryNonce]);
+  }, [initialRoom, roomRetryNonce]);
 
   useEffect(() => {
     if (room || !roomReady) return;
@@ -273,12 +289,11 @@ export default function LeagueChatPanel({
       return;
     }
     setSending(true);
+    setDraft('');
+    setDraftBlocked(false);
     try {
       const result = await sendLeagueChatMessage(room, text);
       if (result === 'sent') {
-        setDraft('');
-        setDraftBlocked(false);
-        void checkAchievements({ type: 'league_chat_message' });
         showToast(triLang(lang, {
   ru: 'Сообщение отправлено',
   uk: 'Повідомлення надіслано',
@@ -290,8 +305,6 @@ export default function LeagueChatPanel({
   pl: 'Wiadomość wysłana',
 }), 'success');
       } else if (result === 'review') {
-        setDraft('');
-        setDraftBlocked(false);
         showToast(triLang(lang, {
   ru: 'Сообщение ушло на проверку',
   uk: 'Повідомлення на перевірці',
@@ -303,6 +316,7 @@ export default function LeagueChatPanel({
   pl: 'Wiadomość trafiła do sprawdzenia',
 }));
       } else if (result === 'throttled') {
+        setDraft(text);
         showToast(triLang(lang, {
   ru: 'Слишком часто. Подожди немного.',
   uk: 'Занадто часто. Трохи зачекай.',
@@ -313,9 +327,21 @@ export default function LeagueChatPanel({
   tr: 'Çok sık. Biraz bekle.',
   pl: 'Za często. Poczekaj chwilę.',
 }), 'error');
+      } else if (result === 'offline') {
+        setDraft(text);
+        showToast(triLang(lang, {
+  ru: 'Нет соединения. Сообщение не отправлено.',
+  uk: 'Немає зʼєднання. Повідомлення не надіслано.',
+  es: 'Sin conexión. El mensaje no se envió.',
+  "pt-BR": 'Sem conexão. A mensagem não foi enviada.',
+  vi: 'Không có kết nối. Tin nhắn chưa được gửi.',
+  id: 'Tidak ada koneksi. Pesan tidak dikirim.',
+  tr: 'Bağlantı yok. Mesaj gönderilmedi.',
+  pl: 'Brak połączenia. Wiadomość nie została wysłana.',
+}), 'error');
       } else {
-        setDraft('');
-        setDraftBlocked(false);
+        setDraft(text);
+        setDraftBlocked(true);
         showToast(triLang(lang, {
   ru: 'Сообщение содержит запрещённые слова и не было отправлено.',
   uk: 'Повідомлення містить заборонені слова і не було надіслано.',

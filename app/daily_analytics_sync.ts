@@ -10,7 +10,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
 import { computeAllPercentiles, type AllPercentiles } from './leaderboard_stats';
 
@@ -88,7 +88,7 @@ export async function getLast7DaysTimeMs(): Promise<number> {
  */
 export async function syncDailyAnalyticsIfNeeded(): Promise<void> {
   if (!CLOUD_SYNC_ENABLED) return;
-  const fn = callable<{ daily7xp: number; daily7time_ms: number }, { ok: boolean }>('leaderboardUpdateDailyAnalytics');
+  const fn = callable<{ stableId?: string; daily7xp: number; daily7time_ms: number }, { ok: boolean }>('leaderboardUpdateDailyAnalytics');
   if (!fn) return;
 
   const today = todayDateStr();
@@ -101,10 +101,11 @@ export async function syncDailyAnalyticsIfNeeded(): Promise<void> {
 
   const uid = await ensureAnonUser();
   if (!uid) return;
+  await ensureStableAuthLinkForStableId(uid).catch(() => false);
 
   try {
     const [xp7, time7] = await Promise.all([getLast7DaysXp(), getLast7DaysTimeMs()]);
-    await fn({ daily7xp: xp7, daily7time_ms: time7 });
+    await fn({ stableId: uid, daily7xp: xp7, daily7time_ms: time7 });
     await AsyncStorage.setItem(SYNCED_DATE_KEY, today);
   } catch {
     // нет сети — попробуем завтра

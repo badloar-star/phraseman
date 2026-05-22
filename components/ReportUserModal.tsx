@@ -3,13 +3,14 @@ import { Modal, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { submitUserReport } from '../app/user_report';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { triLang, type Lang } from '../constants/i18n';
 
 interface Props {
   visible: boolean;
   reportedUid: string;
   reportedName: string;
   screen: 'leaderboard' | 'arena';
-  lang: 'ru' | 'uk' | 'es';
+  lang: Lang;
   onClose: () => void;
   previewOnly?: boolean;
 }
@@ -18,8 +19,58 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
   const { theme: t, themeMode, f } = useTheme();
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
-  const isUK = lang === 'uk';
-  const isES = lang === 'es';
+  const tx = {
+    preview: triLang(lang, {
+      ru: '✅ Превью: без отправки в Firestore',
+      uk: '✅ Прев\'ю: без відправки у Firestore',
+      es: '✅ Vista previa: sin enviar a Firestore',
+      'pt-BR': '✅ Prévia: sem enviar ao Firestore',
+      vi: '✅ Bản xem trước: không gửi lên Firestore',
+      id: '✅ Pratinjau: tidak dikirim ke Firestore',
+      tr: '✅ Önizleme: Firestore’a gönderilmedi',
+      pl: '✅ Podgląd: bez wysyłania do Firestore',
+    }),
+    sent: triLang(lang, {
+      ru: '✅ Жалоба отправлена',
+      uk: '✅ Скаргу надіслано',
+      es: '✅ Reporte enviado',
+      'pt-BR': '✅ Denúncia enviada',
+      vi: '✅ Đã gửi báo cáo',
+      id: '✅ Laporan terkirim',
+      tr: '✅ Şikayet gönderildi',
+      pl: '✅ Zgłoszenie wysłane',
+    }),
+    title: triLang(lang, {
+      ru: 'Пожаловаться на ник?',
+      uk: 'Поскаржитися на нік?',
+      es: '¿Denunciar el apodo?',
+      'pt-BR': 'Denunciar o apelido?',
+      vi: 'Báo cáo biệt danh?',
+      id: 'Laporkan nama panggilan?',
+      tr: 'Takma adı şikayet et?',
+      pl: 'Zgłosić nick?',
+    }),
+    cancel: triLang(lang, {
+      ru: 'Отмена',
+      uk: 'Скасувати',
+      es: 'Cancelar',
+      'pt-BR': 'Cancelar',
+      vi: 'Hủy',
+      id: 'Batal',
+      tr: 'İptal',
+      pl: 'Anuluj',
+    }),
+    send: triLang(lang, {
+      ru: 'Отправить',
+      uk: 'Надіслати',
+      es: 'Enviar',
+      'pt-BR': 'Enviar',
+      vi: 'Gửi',
+      id: 'Kirim',
+      tr: 'Gönder',
+      pl: 'Wyślij',
+    }),
+  };
 
   const handleSend = async () => {
     try {
@@ -71,8 +122,8 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
             {done ? (
               <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '700' }}>
                 {previewOnly
-                  ? (isES ? '✅ Vista previa: sin enviar a Firestore' : isUK ? '✅ Прев\'ю: без відправки у Firestore' : '✅ Превью: без отправки в Firestore')
-                  : (isES ? '✅ Reporte enviado' : isUK ? '✅ Скаргу надіслано' : '✅ Жалоба отправлена')}
+                  ? tx.preview
+                  : tx.sent}
               </Text>
             ) : (
               <>
@@ -89,7 +140,7 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
                     alignSelf: 'stretch',
                   }}
                 >
-                  {isES ? '¿Denunciar el apodo?' : isUK ? 'Поскаржитися на нік?' : 'Пожаловаться на ник?'}
+                  {tx.title}
                 </Text>
                 <Text style={{ color: t.textSecond, fontSize: f.body, marginBottom: 20, textAlign: 'center' }} numberOfLines={1}>
                   {reportedName}
@@ -106,7 +157,7 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
                     }}
                   >
                     <Text style={{ color: t.textSecond, textAlign: 'center', fontSize: f.body }}>
-                      {isES ? 'Cancelar' : isUK ? 'Скасувати' : 'Отмена'}
+                      {tx.cancel}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -116,7 +167,7 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
                   >
                     {false && loading ? <View />
                       : <Text style={{ color: t.correctText, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
-                          {isES ? 'Enviar' : isUK ? 'Надіслати' : 'Отправить'}
+                          {tx.send}
                         </Text>
                     }
                   </TouchableOpacity>

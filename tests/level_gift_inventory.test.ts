@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
+  getPendingLevelGiftInventoryCache,
   loadPendingLevelGiftCount,
   loadPendingLevelGiftInventory,
   markDualGiftClaimed,
@@ -11,7 +12,7 @@ import {
   saveUnclaimedGift,
   UNCLAIMED_GIFTS_KEY,
 } from '../app/level_gift_inventory';
-import type { GiftDef } from '../app/level_gift_system';
+import { isFlashcardPackLevelGiftId, type GiftDef } from '../app/level_gift_system';
 
 jest.mock('@react-native-async-storage/async-storage');
 
@@ -29,6 +30,9 @@ const makeGift = (id: string, rarity: GiftDef['rarity'] = 'common'): GiftDef => 
   descES: id,
   weight: 1,
 });
+
+const pendingGiftIds = (items: Awaited<ReturnType<typeof loadPendingLevelGiftInventory>>): string[] =>
+  items.flatMap((item) => item.kind === 'single' ? [item.gift.id] : [item.pair.f2p.id, item.pair.prem.id]);
 
 beforeEach(() => {
   Object.keys(mockStorage).forEach((key) => delete mockStorage[key]);
@@ -126,6 +130,35 @@ describe('level gift inventory', () => {
       { level: 9, gift: { id: 'shards_10' } },
       { level: 8, gift: { id: 'hint_3' } },
       { level: 7, gift: { id: 'xp_100' } },
+    ]);
+  });
+
+  it('sanitizes stale English pack gifts out of French pending inventory previews', async () => {
+    await saveUnclaimedGift(25, makeGift('pack_voucher_48h', 'epic'));
+    await saveUnclaimedDualGift(30, {
+      f2p: makeGift('pack_voucher_48h', 'epic'),
+      prem: makeGift('prem_level_unlock_negotiator', 'epic'),
+    });
+
+    const englishItems = await loadPendingLevelGiftInventory('en');
+    expect(pendingGiftIds(englishItems)).toEqual([
+      'pack_voucher_48h',
+      'prem_level_unlock_negotiator',
+      'pack_voucher_48h',
+    ]);
+    expect(getPendingLevelGiftInventoryCache('fr')).toEqual([]);
+
+    const frenchItems = await loadPendingLevelGiftInventory('fr');
+    expect(pendingGiftIds(frenchItems)).toEqual([
+      'shards_10',
+      'prem_shards_20',
+      'shards_10',
+    ]);
+    expect(pendingGiftIds(frenchItems).every((id) => !isFlashcardPackLevelGiftId(id))).toBe(true);
+    expect(pendingGiftIds(getPendingLevelGiftInventoryCache('fr'))).toEqual([
+      'shards_10',
+      'prem_shards_20',
+      'shards_10',
     ]);
   });
 });

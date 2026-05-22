@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "skyler-run-v1",
+  "runId": "2026-05-21T10-07-40-436Z_en_discover",
+  "mode": "discover",
+  "target": "en",
+  "category": null,
+  "generatedAt": "2026-05-21T10:07:40.437Z",
+  "activeInterfaceLocales": [
+    "ru",
+    "uk",
+    "es",
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "outputDir": "docs/skyler/runs/2026-05-21T10-07-40-436Z_en_discover",
+  "socialSignals": 0,
+  "distinctSocialSignals": 0,
+  "candidateIds": [
+    "conversation-repair",
+    "polite-but-not-weird",
+    "tiny-prepositions-big-meaning"
+  ]
+}

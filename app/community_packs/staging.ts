@@ -1,4 +1,5 @@
 import type { CardItem } from '../flashcards/types';
+import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { fetchCommunityPackCards } from './communityFirestore';
 
 let stagedCommunityPackMarketCards: CardItem[] | null = null;
@@ -8,10 +9,13 @@ let stagedNavigationPackId: string | null = null;
 /**
  * Підготувати картки UGC-набору перед `router.push` на колекцію з `?pack=`.
  */
-export async function stageCommunityPackCardsForNavigation(packId: string): Promise<boolean> {
+export async function stageCommunityPackCardsForNavigation(
+  packId: string,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<boolean> {
   stagedCommunityPackMarketCards = null;
   stagedNavigationPackId = packId;
-  const cards = await fetchCommunityPackCards(packId);
+  const cards = await fetchCommunityPackCards(packId, studyTarget);
   if (cards.length === 0) {
     stagedNavigationPackId = null;
     return false;

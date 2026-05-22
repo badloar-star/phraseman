@@ -3,7 +3,7 @@ import {
   Text, TextInput, TouchableOpacity, View, ScrollView,
   Modal, KeyboardAvoidingView, Platform, FlatList, Clipboard,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -1053,7 +1053,8 @@ export default function ArenaRoomScreen() {
 
       {/* ─── Модалка чата ─────────────────────────────────────────────────────── */}
       <Modal visible={showChat} animationType="slide" presentationStyle="pageSheet" onRequestClose={() => setShowChat(false)}>
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1, backgroundColor: t.bgPrimary }}>
+        <ScreenGradient artBackdrop="arenaMatch">
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
           {/* Шапка чата */}
           <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, paddingTop: 20, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
             <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>
@@ -1133,6 +1134,7 @@ export default function ArenaRoomScreen() {
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
+        </ScreenGradient>
       </Modal>
       <ThemedChoiceModal
         visible={confirmDialogVisible}

@@ -4,10 +4,11 @@ import {
   ACTIVE_INTERFACE_SOURCE_LOCALES,
   PLANNED_INTERFACE_SOURCE_LOCALES,
   type HeisenbergSourceLocale,
+  type RegisteredInterfaceSourceLocale,
 } from '../app/source_locales';
 
-export type Lang = 'ru' | 'uk' | 'es';
-export type PlannedInterfaceLang = Exclude<HeisenbergSourceLocale, Lang>;
+export type Lang = RegisteredInterfaceSourceLocale;
+export type PlannedInterfaceLang = Exclude<HeisenbergSourceLocale, 'es'>;
 export type InterfaceLanguageOptionCode = Lang | PlannedInterfaceLang;
 export type PlannedTriLangCopy = Partial<Record<PlannedInterfaceLang, string>>;
 
@@ -26,14 +27,15 @@ export const INTERFACE_LANGUAGE_OPTIONS = [
 ] as const satisfies readonly { code: InterfaceLanguageOptionCode; native: string }[];
 
 export function isInterfaceLangEnabled(lang: InterfaceLanguageOptionCode): lang is Lang {
-  if (lang === 'ru' || lang === 'uk') return true;
   if (lang === 'es') return SPANISH_UI_LOCALE_ENABLED;
-  return false;
+  return (INTERFACE_LANGS as readonly string[]).includes(lang);
 }
 
 export function coerceInterfaceLang(value: unknown): Lang | null {
-  if (value !== 'ru' && value !== 'uk' && value !== 'es') return null;
-  return isInterfaceLangEnabled(value) ? value : null;
+  if (typeof value !== 'string') return null;
+  const normalized = value === 'pt_BR' || value.toLowerCase() === 'pt-br' ? 'pt-BR' : value;
+  if (!(INTERFACE_LANGUAGE_OPTIONS as readonly { code: string; native: string }[]).some((item) => item.code === normalized)) return null;
+  return isInterfaceLangEnabled(normalized as InterfaceLanguageOptionCode) ? (normalized as Lang) : null;
 }
 
 export const T = {
@@ -836,12 +838,24 @@ export const T = {
 } as const;
 
 export type Strings = typeof T['ru'];
+type WidenTriLangValue<T> =
+  T extends string ? string :
+  T extends number ? number :
+  T extends boolean ? boolean :
+  T extends (...args: infer Args) => infer Return ? (...args: Args) => Return :
+  T extends readonly (infer Item)[] ? readonly WidenTriLangValue<Item>[] :
+  T extends object ? { [K in keyof T]: WidenTriLangValue<T[K]> } :
+  T;
 
-/** Интерфейс (RU / UK / ES в прод-пакетах; planned keys are stored for future activation). */
-export function triLang(lang: Lang, txt: { ru: string; uk: string; es: string } & PlannedTriLangCopy): string {
-  if (lang === 'uk') return txt.uk;
-  if (lang === 'es' && isInterfaceLangEnabled(lang)) return txt.es;
-  return txt.ru;
+/** Интерфейсные значения для всех активных языков. */
+export function triLang<const T extends { ru: unknown; uk: unknown; es: unknown } & Partial<Record<PlannedInterfaceLang, unknown>>>(
+  lang: Lang,
+  txt: T,
+): WidenTriLangValue<T[keyof T]> {
+  if (lang === 'uk') return txt.uk as WidenTriLangValue<T[keyof T]>;
+  if (lang === 'es' && isInterfaceLangEnabled(lang)) return txt.es as WidenTriLangValue<T[keyof T]>;
+  if (lang !== 'ru' && lang in txt) return (txt[lang as keyof T] ?? txt.es) as WidenTriLangValue<T[keyof T]>;
+  return txt.ru as WidenTriLangValue<T[keyof T]>;
 }
 
 /** Ключ строк в `T` для текущего языка интерфейса (RU / UK / ES). */

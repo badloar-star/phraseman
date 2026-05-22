@@ -20,6 +20,7 @@ import { usePremium } from '../components/PremiumContext';
 import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../components/PremiumGoldUserName';
+import VipGreenUserName from '../components/VipGreenUserName';
 import LeagueCrownName from '../components/LeagueCrownName';
 import PlayerProfileModal, { PlayerInfo } from '../components/PlayerProfileModal';
 import ReportUserModal from '../components/ReportUserModal';
@@ -80,10 +81,75 @@ const TIER_ES: Record<RankTier, string> = {
   legend: 'Leyenda',
 };
 
-function arenaLbTierName(tier: RankTier, lang: Lang): string {
-  if (lang === 'uk') return TIER_UK[tier];
-  if (lang === 'es') return TIER_ES[tier];
-  return TIER_RU[tier];
+const TIER_PTBR: Record<RankTier, string> = {
+  bronze: 'Bronze',
+  silver: 'Prata',
+  gold: 'Ouro',
+  platinum: 'Platina',
+  diamond: 'Diamante',
+  master: 'Mestre',
+  grandmaster: 'Grande mestre',
+  legend: 'Lenda',
+};
+
+const TIER_VI: Record<RankTier, string> = {
+  bronze: 'Đồng',
+  silver: 'Bạc',
+  gold: 'Vàng',
+  platinum: 'Bạch kim',
+  diamond: 'Kim cương',
+  master: 'Cao thủ',
+  grandmaster: 'Đại cao thủ',
+  legend: 'Huyền thoại',
+};
+
+const TIER_ID: Record<RankTier, string> = {
+  bronze: 'Perunggu',
+  silver: 'Perak',
+  gold: 'Emas',
+  platinum: 'Platinum',
+  diamond: 'Berlian',
+  master: 'Master',
+  grandmaster: 'Grandmaster',
+  legend: 'Legenda',
+};
+
+const TIER_TR: Record<RankTier, string> = {
+  bronze: 'Bronz',
+  silver: 'Gümüş',
+  gold: 'Altın',
+  platinum: 'Platin',
+  diamond: 'Elmas',
+  master: 'Usta',
+  grandmaster: 'Büyük usta',
+  legend: 'Efsane',
+};
+
+const TIER_PL: Record<RankTier, string> = {
+  bronze: 'Brąz',
+  silver: 'Srebro',
+  gold: 'Złoto',
+  platinum: 'Platyna',
+  diamond: 'Diament',
+  master: 'Mistrz',
+  grandmaster: 'Arcymistrz',
+  legend: 'Legenda',
+};
+
+const TIER_NAMES_BY_LANG: Record<Lang, Record<RankTier, string>> = {
+  ru: TIER_RU,
+  uk: TIER_UK,
+  es: TIER_ES,
+  'pt-BR': TIER_PTBR,
+  vi: TIER_VI,
+  id: TIER_ID,
+  tr: TIER_TR,
+  pl: TIER_PL,
+};
+
+export function arenaLbTierName(tier: RankTier, lang: Lang): string {
+  const tierNames = TIER_NAMES_BY_LANG[lang];
+  return tierNames[tier];
 }
 
 function rankLabelByLang(tier: RankTier, levelRoman: string, lang: Lang): string {
@@ -96,7 +162,7 @@ export default function ArenaLeaderboardScreen() {
   const arenaLeaderboardAccent = '#F59E0B';
   const { lang } = useLang();
   const insets = useSafeAreaInsets();
-  const { isPremium: myIsPremium } = usePremium();
+  const { isPremium: myIsPremium, isVip: myIsVip } = usePremium();
   const myArena = useArenaRank();
 
   const [rows, setRows] = useState<ArenaLbRow[]>([]);
@@ -384,7 +450,7 @@ export default function ArenaLeaderboardScreen() {
                 ref={listRef}
                 data={rows}
                 keyExtractor={(item) => item.uid}
-                extraData={`${myUid ?? ''}|${myStableUid ?? ''}|${myArenaPlace ?? ''}|${myAvatar}|${myAura}|${myIsPremium ? 1 : 0}`}
+                extraData={`${myUid ?? ''}|${myStableUid ?? ''}|${myArenaPlace ?? ''}|${myAvatar}|${myAura}|${myIsPremium ? 1 : 0}|${myIsVip ? 1 : 0}`}
                 getItemLayout={(_, index) => ({
                   length: ARENA_ROW_HEIGHT,
                   offset: ARENA_ROW_HEIGHT * index,
@@ -465,7 +531,8 @@ export default function ArenaLeaderboardScreen() {
                     : String(item.avatarEmoji?.trim() || getBestAvatarForLevel(lvl));
                   const rowAura = isMe ? myAura : item.aura;
                   const rowIsPremium = isMe ? myIsPremium : item.isPremium;
-                  const rowEffectiveAura = getEffectiveAvatarAuraId(rowAura, rowIsPremium);
+                  const rowIsVip = isMe ? myIsVip : item.isVip;
+                  const rowEffectiveAura = getEffectiveAvatarAuraId(rowAura, rowIsPremium, rowIsVip);
                   const rowUsesPremiumAura = rowEffectiveAura === PREMIUM_AVATAR_AURA_ID;
                   const hasLeagueCrown = !!item.leagueCrown && item.leagueCrown.expiresAt > Date.now();
                   const duelLabel = rankLabelByLang(item.tier, item.levelRoman, lang);
@@ -486,6 +553,7 @@ export default function ArenaLeaderboardScreen() {
                           uid: item.uid,
                           friendUid: item.friendUid ?? '',
                           isPremium: rowIsPremium,
+                          isVip: rowIsVip,
                           leagueCrownExpiresAt: item.leagueCrown?.expiresAt,
                           profileCardLevel: item.profileCardLevel,
                           profileCardTheme: item.profileCardTheme,
@@ -541,6 +609,8 @@ export default function ArenaLeaderboardScreen() {
                           <LeagueCrownName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
                         ) : rowIsPremium ? (
                           <PremiumGoldUserName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
+                        ) : rowIsVip ? (
+                          <VipGreenUserName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
                         ) : (
                           <Text
                             numberOfLines={1}
@@ -591,7 +661,7 @@ export default function ArenaLeaderboardScreen() {
 
             {showMyRankFooter && myArena && (
               (() => {
-                const myEffectiveAura = getEffectiveAvatarAuraId(myAura, myIsPremium);
+                const myEffectiveAura = getEffectiveAvatarAuraId(myAura, myIsPremium, myIsVip);
                 const myUsesPremiumAura = myEffectiveAura === PREMIUM_AVATAR_AURA_ID;
                 return (
               <View
@@ -651,6 +721,11 @@ export default function ArenaLeaderboardScreen() {
                   <View style={{ flex: 1, justifyContent: 'center', minWidth: 0 }}>
                     {myIsPremium ? (
                       <PremiumGoldUserName
+                        text={myName.trim() || triLang(lang, { uk: 'Ви', ru: 'Вы', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
+                        fontSize={15}
+                      />
+                    ) : myIsVip ? (
+                      <VipGreenUserName
                         text={myName.trim() || triLang(lang, { uk: 'Ви', ru: 'Вы', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
                         fontSize={15}
                       />

@@ -6,6 +6,10 @@ import {
   getDevStudyTargetLang,
   type StudyTargetLang,
 } from '../app/study_target_lang_dev';
+import {
+  getStoredStudyTarget,
+  STUDY_TARGET_CHANGED,
+} from '../app/study_target';
 import { useLang } from './LangContext';
 
 type Ctx = {
@@ -23,7 +27,18 @@ export function StudyTargetProvider({ children }: { children: React.ReactNode })
   const [studyTarget, setStudyTarget] = useState<StudyTargetLang>('en');
 
   const refresh = useCallback(async () => {
-    setStudyTarget(await getDevStudyTargetLang(lang));
+    if (ENABLE_DEV_STUDY_TARGET_LANG) {
+      const devTarget = await getDevStudyTargetLang(lang);
+      if (devTarget === 'es') {
+        setStudyTarget('es');
+        return;
+      }
+      if (devTarget === 'fr') {
+        setStudyTarget('fr');
+        return;
+      }
+    }
+    setStudyTarget(await getStoredStudyTarget(lang));
   }, [lang]);
 
   useEffect(() => {
@@ -33,6 +48,13 @@ export function StudyTargetProvider({ children }: { children: React.ReactNode })
   useEffect(() => {
     if (!ENABLE_DEV_STUDY_TARGET_LANG) return;
     const sub = DeviceEventEmitter.addListener(DEV_STUDY_TARGET_CHANGED, () => {
+      void refresh();
+    });
+    return () => sub.remove();
+  }, [refresh]);
+
+  useEffect(() => {
+    const sub = DeviceEventEmitter.addListener(STUDY_TARGET_CHANGED, () => {
       void refresh();
     });
     return () => sub.remove();

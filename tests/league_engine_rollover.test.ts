@@ -13,6 +13,11 @@ import {
   calculateResult,
   checkLeagueOnAppOpen,
   clearPendingResult,
+  CLUBS,
+  CLUB_DESC_PLANNED,
+  clubDescForLang,
+  CLUB_NAME_PLANNED,
+  clubTierShortName,
   getLeagueResultSignature,
   getWeekId,
   loadPendingResult,
@@ -52,6 +57,54 @@ const makeGroupWithMyRank = (total: number, myRank: number): { group: GroupMembe
 const saveState = async (state: LeagueState) => {
   await AsyncStorage.setItem('league_state_v3', JSON.stringify(state));
 };
+
+describe('league locale coverage', () => {
+  it('serves planned league descriptions without RU/UK/ES fallback', () => {
+    const plannedLocales = ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+
+    expect(Object.keys(CLUB_DESC_PLANNED)).toHaveLength(CLUBS.length);
+    for (const club of CLUBS) {
+      for (const locale of plannedLocales) {
+        const direct = CLUB_DESC_PLANNED[club.id]?.[locale];
+        const runtime = clubDescForLang(club, locale);
+
+        expect(direct).toBeTruthy();
+        expect(runtime).toBe(direct);
+        expect(runtime).not.toBe(club.descRU);
+        expect(runtime).not.toBe(club.descUK);
+        expect(/[А-Яа-яЁёІіЇїЄєҐґ]/.test(runtime)).toBe(false);
+      }
+    }
+  });
+
+  it('serves planned league tier names without RU/UK/ES fallback', () => {
+    const plannedLocales = ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+
+    expect(Object.keys(CLUB_NAME_PLANNED)).toHaveLength(CLUBS.length);
+    for (const club of CLUBS) {
+      for (const locale of plannedLocales) {
+        const direct = CLUB_NAME_PLANNED[club.id]?.[locale];
+        const runtime = clubTierShortName(club, locale);
+
+        expect(direct).toBeTruthy();
+        expect(runtime).toBe(direct);
+        expect(runtime).not.toBe(club.nameRU);
+        expect(runtime).not.toBe(club.nameUK);
+        expect(runtime).not.toBe(club.nameES);
+        expect(/[А-Яа-яЁёІіЇїЄєҐґ]/.test(runtime)).toBe(false);
+      }
+    }
+  });
+
+  it('keeps league engine planned runtime away from legacy language branches', () => {
+    const fs = require('fs') as typeof import('fs');
+    const path = require('path') as typeof import('path');
+    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'league_engine.ts'), 'utf8');
+    const legacyRuntimePattern = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
+
+    expect(source).not.toMatch(legacyRuntimePattern);
+  });
+});
 
 describe('league weekly rollover', () => {
   beforeEach(() => {

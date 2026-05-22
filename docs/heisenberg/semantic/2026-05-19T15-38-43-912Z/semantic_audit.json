@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-05-19T15:38:43.911Z",
+  "mode": "semantic-audit",
+  "strict": true,
+  "summary": {
+    "findings": 0,
+    "blockers": 0,
+    "warnings": 0,
+    "reviewGroups": 0,
+    "byCode": {},
+    "bySurface": {}
+  },
+  "reviewGroups": [],
+  "findings": []
+}

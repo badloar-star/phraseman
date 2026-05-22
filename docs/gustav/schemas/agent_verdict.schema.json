@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phraseman.local/gustav/agent_verdict.schema.json",
+  "title": "GUSTAV Agent Verdict",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "runId",
+    "agentId",
+    "agentRole",
+    "verdict",
+    "confidence",
+    "blockers",
+    "findings",
+    "requiredFixes",
+    "evidence",
+    "filesRead",
+    "filesWritten",
+    "unknowns"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "gustav-agent-verdict-v0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "agentId": { "type": "string", "minLength": 1 },
+    "agentRole": { "type": "string", "minLength": 1 },
+    "startedAt": { "type": "string" },
+    "completedAt": { "type": "string" },
+    "verdict": { "enum": ["GO", "HOLD", "BLOCK"] },
+    "confidence": { "enum": ["high", "medium", "low"] },
+    "blockers": { "$ref": "#/$defs/findings" },
+    "findings": { "$ref": "#/$defs/findings" },
+    "requiredFixes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "ownerAgent", "fixType", "detail", "blocksGeneration", "blocksApply"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "ownerAgent": { "type": "string", "minLength": 1 },
+          "fixType": { "enum": ["doc", "schema", "content", "audit", "runtime", "test", "research", "apply_plan"] },
+          "detail": { "type": "string", "minLength": 1 },
+          "blocksGeneration": { "type": "boolean" },
+          "blocksApply": { "type": "boolean" }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evidenceId", "claim", "confidence"],
+        "properties": {
+          "evidenceId": { "type": "string", "minLength": 1 },
+          "sourcePath": { "type": "string" },
+          "sourceUrl": { "type": "string" },
+          "claim": { "type": "string", "minLength": 1 },
+          "confidence": { "enum": ["high", "medium", "low"] }
+        }
+      }
+    },
+    "filesRead": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "filesWritten": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "nextRecommendedAgent": { "type": "string" }
+  },
+  "$defs": {
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "severity", "title", "detail", "affectedArtifacts"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "severity": { "enum": ["low", "medium", "high", "blocker"] },
+          "title": { "type": "string", "minLength": 1 },
+          "detail": { "type": "string", "minLength": 1 },
+          "affectedArtifacts": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "affectedProductFiles": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "evidenceIds": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

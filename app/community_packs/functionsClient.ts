@@ -34,11 +34,13 @@ export type CommunityPurchaseResponse = {
   priceShards?: number;
   authorNetShards?: number;
   buyerBalanceAfter?: number;
+  studyTarget?: 'en' | 'fr';
 };
 
 export async function callCommunityPurchasePack(data: {
   buyerStableId: string;
   packId: string;
+  studyTarget?: 'en' | 'fr';
   buyerDisplayName: string;
 }): Promise<CommunityPurchaseResponse> {
   return callFunction<typeof data, CommunityPurchaseResponse>('communityPurchasePack', data);
@@ -52,6 +54,7 @@ export type CommunitySellerInboxEvent = {
   result?: string;
   message?: string | null;
   submissionId?: string;
+  studyTarget?: 'en' | 'fr';
   /** UGC-набір (подія з адмінки) — у листі мають бути titleRu/titleUk; `packId` — для дозавантаження в клієнті. */
   packId?: string | null;
   titleRu?: string | null;
@@ -77,6 +80,7 @@ export async function callCommunityMarkSellerInboxSeen(data: {
 export async function callCommunityFetchPackCardsIfAccessible(data: {
   stableId: string;
   packId: string;
+  studyTarget?: 'en' | 'fr';
 }): Promise<{ ok: boolean; cards: unknown[] }> {
   return callFunction<typeof data, { ok: boolean; cards: unknown[] }>('communityFetchPackCardsIfAccessible', data);
 }

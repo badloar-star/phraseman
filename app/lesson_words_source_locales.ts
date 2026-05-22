@@ -1596,12 +1596,12 @@ export const LESSON_WORD_SOURCE_LOCALES_BY_EN: Record<string, LessonWordSourceLo
     pl: 'kierowca',
   },
   license: {
-    es: 'permiso de conducir / licencia',
-    'pt-BR': 'carteira de motorista / licença',
-    vi: 'bằng lái xe / giấy phép',
-    id: 'SIM / surat izin',
-    tr: 'ehliyet / lisans',
-    pl: 'prawo jazdy / licencja',
+    es: 'licencia / permiso',
+    'pt-BR': 'licença / autorização',
+    vi: 'giấy phép',
+    id: 'izin / lisensi',
+    tr: 'lisans / ruhsat',
+    pl: 'licencja / zezwolenie',
   },
   allergy: {
     es: 'alergia',

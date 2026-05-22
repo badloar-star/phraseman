@@ -2,25 +2,29 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { isLessonUnlockedByPremiumCourse } from './lesson_lock_system';
+import type { RuntimeStudyTarget } from './target_storage_keys';
 
 export type LessonRuntimeGate = 'available' | 'premium_required' | 'level_required';
 
-export async function resolveLessonRuntimeGate(lessonId: number): Promise<LessonRuntimeGate> {
+export async function resolveLessonRuntimeGate(
+  lessonId: number,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<LessonRuntimeGate> {
   const noLimitsRaw = await AsyncStorage.getItem('tester_no_limits').catch(() => null);
   if (noLimitsRaw === 'true') return 'available';
 
   const premium = await getVerifiedPremiumStatus().catch(() => false);
   if (!premium && requiresPremiumForLesson(lessonId)) return 'premium_required';
-  if (premium && !(await isLessonUnlockedByPremiumCourse(lessonId))) return 'level_required';
+  if (premium && !(await isLessonUnlockedByPremiumCourse(lessonId, studyTarget))) return 'level_required';
   return 'available';
 }
 
-export async function shouldBlockPremiumLesson(lessonId: number): Promise<boolean> {
-  return (await resolveLessonRuntimeGate(lessonId)) === 'premium_required';
+export async function shouldBlockPremiumLesson(lessonId: number, studyTarget?: RuntimeStudyTarget): Promise<boolean> {
+  return (await resolveLessonRuntimeGate(lessonId, studyTarget)) === 'premium_required';
 }
 
-export async function shouldBlockLessonAccess(lessonId: number): Promise<boolean> {
-  return (await resolveLessonRuntimeGate(lessonId)) !== 'available';
+export async function shouldBlockLessonAccess(lessonId: number, studyTarget?: RuntimeStudyTarget): Promise<boolean> {
+  return (await resolveLessonRuntimeGate(lessonId, studyTarget)) !== 'available';
 }
 
 export function openLessonAccessGate(

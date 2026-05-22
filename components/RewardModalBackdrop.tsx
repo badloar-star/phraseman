@@ -1,4 +1,4 @@
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import React from 'react';
 import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
 import type { Theme, ThemeMode } from '../constants/theme';
@@ -21,7 +21,7 @@ export function RewardModalBackdrop({ themeMode, intensity = 'regular' }: Reward
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
       <Image
-        source={REWARD_MODAL_BACKDROPS[themeMode] ?? REWARD_MODAL_BACKDROPS.dark}
+        source={REWARD_MODAL_BACKDROPS[themeMode]}
         resizeMode="cover"
         style={[
           StyleSheet.absoluteFill,

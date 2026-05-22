@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "gustav-p1b-narrow-write-transaction-contract-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-20T07:08:31.961Z",
+  "status": "PASS",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_p1b_narrow_write_transaction_contract_audit.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "sourceArtifacts": {
+    "p1bPreflightAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_preflight_audit.json",
+    "p1bApprovalReceiptContractAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_approval_receipt_contract_audit.json",
+    "p1bUnlockPrerequisiteMatrixAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_unlock_prerequisite_matrix_audit.json",
+    "p1bFreshReadReceiptContractAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_fresh_read_receipt_contract_audit.json",
+    "p1bSnapshotRefreshContractAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_dirty_overlap_snapshot_refresh_contract_audit.json"
+  },
+  "summary": {
+    "allowedFiles": 4,
+    "dirtyOverlapFiles": 1,
+    "requiredReceipts": 4,
+    "requiredReceiptsPresent": 0,
+    "transactionStages": 9,
+    "forbiddenScopes": 7,
+    "rollbackRules": 6,
+    "verificationCommands": 3,
+    "blockers": 0,
+    "warnings": 0,
+    "contractReady": true,
+    "onlyNarrowP1BAllowed": true,
+    "allRequiredReceiptsPresent": false,
+    "dirtyOverlapRequiresFreshRead": true,
+    "routeSurfaceDeferred": true,
+    "storageCloudDeferred": true,
+    "frenchGenerationBlocked": true,
+    "canStartP1BNow": false,
+    "canApplyNow": false,
+    "mayStartFrenchGeneration": false,
+    "mayModifyProductionAppFiles": false,
+    "productionFilesStillAbsent": true
+  },
+  "writeTransactionContract": {
+    "lockState": "locked_until_p1b_receipts_and_refresh_complete",
+    "approvedSlice": "P1B_DEV_TARGET_ISOLATION",
+    "allowedFiles": [
+      {
+        "filePath": "app/(tabs)/settings.tsx",
+        "action": "guarded_edit_after_receipts",
+        "dirtyOverlap": true,
+        "requiresFreshRead": true
+      },
+      {
+        "filePath": "app/spanish_content_gate.ts",
+        "action": "guarded_edit_after_receipts",
+        "dirtyOverlap": false,
+        "requiresFreshRead": false
+      },
+      {
+        "filePath": "app/study_target_lang_dev.ts",
+        "action": "guarded_edit_after_receipts",
+        "dirtyOverlap": false,
+        "requiresFreshRead": false
+      },
+      {
+        "filePath": "components/StudyTargetContext.tsx",
+        "action": "guarded_edit_after_receipts",
+        "dirtyOverlap": false,
+        "requiresFreshRead": false
+      }
+    ],
+    "requiredReceipts": [
+      {
+        "id": "p1a_apply_completion",
+        "filePath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_apply_completion_receipt.json",
+        "requiredBefore": "p1b_write",
+        "present": false
+      },
+      {
+        "id": "p1b_exact_approval",
+        "filePath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1b_dev_target_isolation_approval_receipt.json",
+        "requiredBefore": "p1b_write",
+        "present": false
+      },
+      {
+        "id": "p1b_snapshot_refresh",
+        "filePath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_dirty_overlap_snapshot_refresh_audit.json",
+        "requiredBefore": "p1b_write",
+        "present": false
+      },
+      {
+        "id": "p1b_fresh_read",
+        "filePath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1b_dirty_overlap_fresh_read_receipt.json",
+        "requiredBefore": "p1b_write",
+        "present": false
+      }
+    ],
+    "transactionStages": [
+      "Verify P1A completion receipt.",
+      "Verify exact P1B approval receipt and approved file list.",
+      "Verify dirty-overlap snapshot refresh audit.",
+      "Verify paired fresh-read receipt for app/(tabs)/settings.tsx.",
+      "Re-read the four allowed P1B files immediately before editing.",
+      "Apply only the P1B_DEV_TARGET_ISOLATION file changes.",
+      "Run TypeScript compile for touched modules.",
+      "Run focused target-isolation checks for dev target switching.",
+      "Write post-transaction report without generating French content."
+    ],
+    "forbiddenScopes": [
+      "French content generation",
+      "route surface integration",
+      "storage key migration",
+      "cloud sync migration",
+      "personal practice content generation",
+      "broad apply_plan/file_changes.json execution",
+      "any file outside the four-file P1B slice"
+    ],
+    "rollbackRules": [
+      "Capture pre-edit hashes for all four P1B files.",
+      "Abort if settings.tsx hash changes after fresh-read and before edit.",
+      "Revert only files modified by the P1B transaction.",
+      "Never revert user-owned dirty work outside the P1B transaction.",
+      "Keep rollback logs under docs/gustav run artifacts.",
+      "Leave French generation blocked after rollback."
+    ],
+    "verificationCommands": [
+      "npx tsc --target es2018 --module commonjs --moduleResolution node --outDir /private/tmp/gustav-build <P1B check scripts>",
+      "node /private/tmp/gustav-build/gustav_readiness_gate.js --run docs/gustav/runs/2026-05-19_fr_inventory_v0a1",
+      "node /private/tmp/gustav-build/gustav_validate_run.js --run docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ]
+  },
+  "findings": [],
+  "notes": [
+    "This audit defines the future narrow P1B write transaction contract; it does not edit production files.",
+    "P1B remains locked because P1A completion, exact approval, snapshot refresh and fresh-read receipts are absent.",
+    "The contract explicitly forbids French generation and broad architecture apply work.",
+    "The dirty settings.tsx overlap remains user-owned and must be freshly re-read before any future approved edit."
+  ]
+}

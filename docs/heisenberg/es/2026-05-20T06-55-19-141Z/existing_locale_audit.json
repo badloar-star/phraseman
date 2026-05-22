@@ -1,0 +1,1170 @@
+{
+  "targetLocale": "es",
+  "targetBaseLang": "es",
+  "mode": "existing-locale-production-audit",
+  "targetIsKnownAppLocale": true,
+  "targetIsInterfaceSourceLanguage": true,
+  "studyTargetMustRemain": "en",
+  "summary": {
+    "filesScanned": 2176,
+    "localizedItems": 138822,
+    "localizedItemsByLocale": {
+      "es": 26129,
+      "uk": 42292,
+      "pt-BR": 5753,
+      "vi": 5747,
+      "id": 5768,
+      "tr": 5762,
+      "pl": 5759,
+      "ru": 41612
+    },
+    "targetLocalizedItems": 26129,
+    "targetLocalizedItemShare": 0.1882,
+    "targetItemsBySurface": {
+      "admin-site": 699,
+      "app-other": 6571,
+      "arena": 200,
+      "daily-phrase": 1056,
+      "docs": 7512,
+      "lessons": 3666,
+      "personal-training": 1122,
+      "progression-daily-rewards": 468,
+      "public-web": 116,
+      "quizzes": 4179,
+      "scripts-tools": 257,
+      "tests": 34,
+      "ui-locale": 249
+    },
+    "fieldCoverageGapFiles": 0,
+    "itemCoverageGapFiles": 0,
+    "htmlCoverageBacklogFiles": 0,
+    "htmlPartialCoverageFiles": 0,
+    "sidecarCoverageFiles": 18,
+    "russianOnlyReportFiles": 0,
+    "fallbackRiskFiles": 0,
+    "verifiedFallbackFiles": 8,
+    "productionGateFiles": 0,
+    "isolatedStudyTargetFiles": 15,
+    "studyTargetRiskFiles": 0,
+    "studyTargetConfusionFiles": 15
+  },
+  "policy": [
+    "es is treated as an interface/explanation source language for learning English.",
+    "Do not switch, generate, or expose a studied Spanish course in this run.",
+    "The study target stays `en`; any `StudyTargetLang = es` code is a separate dev-only feature and must not drive this localization.",
+    "Generated audit output is isolated under docs/heisenberg/<locale>/<run>; no production content is overwritten.",
+    "Before enabling the locale in production, every UI surface must have an explicit target-language branch or an intentional fallback record."
+  ],
+  "blockers": [],
+  "risks": {
+    "fieldCoverageGaps": [],
+    "itemCoverageGaps": [],
+    "htmlCoverageBacklogFiles": [],
+    "htmlPartialCoverageFiles": [],
+    "sidecarCoverageFiles": [
+      {
+        "file": "app/achievements.ts",
+        "surface": "app-other",
+        "localizedItems": 908,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/achievements_es_locale.ts"
+        ],
+        "targetItemCount": 454
+      },
+      {
+        "file": "app/flashcards/bundles/dark_logic/dark_logic_part1.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/darkLogic.ts"
+        ],
+        "targetItemCount": 120
+      },
+      {
+        "file": "app/flashcards/bundles/dark_logic/dark_logic_part2.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/darkLogic.ts"
+        ],
+        "targetItemCount": 120
+      },
+      {
+        "file": "app/flashcards/bundles/dark_logic/dark_logic_part3.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/darkLogic.ts"
+        ],
+        "targetItemCount": 120
+      },
+      {
+        "file": "app/flashcards/bundles/dark_logic/dark_logic_part4.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/darkLogic.ts"
+        ],
+        "targetItemCount": 120
+      },
+      {
+        "file": "app/flashcards/bundles/negotiator/negotiator_part1.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/negotiator.ts"
+        ],
+        "targetItemCount": 90
+      },
+      {
+        "file": "app/flashcards/bundles/negotiator/negotiator_part2.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/negotiator.ts"
+        ],
+        "targetItemCount": 90
+      },
+      {
+        "file": "app/flashcards/bundles/negotiator/negotiator_part3.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/negotiator.ts"
+        ],
+        "targetItemCount": 90
+      },
+      {
+        "file": "app/flashcards/bundles/official_peaky_blinders_en.json",
+        "surface": "app-other",
+        "localizedItems": 184,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/peakyBlinders.ts",
+          "app/flashcards/bundles/bundled_marketplace_manifest.json"
+        ],
+        "targetItemCount": 110
+      },
+      {
+        "file": "app/flashcards/bundles/royal_tea/royal_tea_part1.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/royalTea.ts"
+        ],
+        "targetItemCount": 120
+      },
+      {
+        "file": "app/flashcards/bundles/royal_tea/royal_tea_part2.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/royalTea.ts"
+        ],
+        "targetItemCount": 120
+      },
+      {
+        "file": "app/flashcards/bundles/royal_tea/royal_tea_part3.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/royalTea.ts"
+        ],
+        "targetItemCount": 120
+      },
+      {
+        "file": "app/flashcards/bundles/royal_tea/royal_tea_part4.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/royalTea.ts"
+        ],
+        "targetItemCount": 120
+      },
+      {
+        "file": "app/flashcards/bundles/wild_west/wild_west_part1.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/wildWest.ts"
+        ],
+        "targetItemCount": 150
+      },
+      {
+        "file": "app/flashcards/bundles/wild_west/wild_west_part2.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/wildWest.ts"
+        ],
+        "targetItemCount": 150
+      },
+      {
+        "file": "app/flashcards/bundles/wild_west/wild_west_part3.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/wildWest.ts"
+        ],
+        "targetItemCount": 150
+      },
+      {
+        "file": "app/flashcards/bundles/wild_west/wild_west_part4.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/wildWest.ts"
+        ],
+        "targetItemCount": 150
+      },
+      {
+        "file": "app/flashcards/bundles/wild_west/wild_west_part5.ts",
+        "surface": "app-other",
+        "localizedItems": 60,
+        "reason": "Spanish es coverage is supplied by sidecar locale file(s), not inline fields.",
+        "sidecars": [
+          "app/flashcards/bundles/esOverlays/wildWest.ts"
+        ],
+        "targetItemCount": 150
+      }
+    ],
+    "russianOnlyReports": [],
+    "fallbackRiskFiles": [],
+    "verifiedFallbackFiles": [
+      {
+        "file": "app/exam.tsx",
+        "surface": "app-other",
+        "localizedItems": 200,
+        "reason": "Exam screen uses bundleLang/triLang with explicit ES copy; textFallback is a native share/export fallback, not a language fallback.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 12,
+          "triLang": 1,
+          "legacyRuUk": 0,
+          "bundleLang": 3,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/flashcards_market_dev.tsx",
+        "surface": "app-other",
+        "localizedItems": 72,
+        "reason": "DEV marketplace screen uses triLang/bundleLang with explicit ES copy; it is not part of production locale activation.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 75,
+          "triLang": 14,
+          "legacyRuUk": 0,
+          "bundleLang": 2,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/lesson_irregular_verbs.tsx",
+        "surface": "app-other",
+        "localizedItems": 33,
+        "reason": "Irregular verbs now carry ES rows in the lesson data; any final fallback stays non-Russian to avoid UI/source-locale mixing.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 37,
+          "triLang": 12,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 6,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/shards_shop.tsx",
+        "surface": "app-other",
+        "localizedItems": 21,
+        "reason": "Shard shop has explicit ES branches for store copy; marketplace data fallback is catalog availability fallback, not language fallback.",
+        "markers": {
+          "ruFields": 7,
+          "ukFields": 7,
+          "esFields": 7,
+          "localeTriples": 3,
+          "triLang": 1,
+          "legacyRuUk": 0,
+          "bundleLang": 2,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "components/ExamResultPreviewAdminModal.tsx",
+        "surface": "app-other",
+        "localizedItems": 70,
+        "reason": "Admin preview uses localized share-message builders; textFallback is a native share/export fallback, not a language fallback.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 33,
+          "triLang": 11,
+          "legacyRuUk": 0,
+          "bundleLang": 2,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "components/LangContext.tsx",
+        "surface": "ui-locale",
+        "localizedItems": 1144,
+        "reason": "Central UI string bundle explicitly returns ES when the Spanish interface locale is enabled; RU is only the disabled/default guard.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 4,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "components/ShardRewardModal.tsx",
+        "surface": "app-other",
+        "localizedItems": 102,
+        "reason": "Shard reward modal has an explicit ES text bundle and uses bundleLang only to choose the active UI bundle.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 3,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 2,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "constants/i18n.ts",
+        "surface": "ui-locale",
+        "localizedItems": 648,
+        "reason": "Central triLang/bundleLang helpers explicitly return ES when the Spanish interface locale is enabled; RU is only the disabled/default guard.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 6,
+          "triLang": 1,
+          "legacyRuUk": 1,
+          "bundleLang": 1,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 2
+        }
+      }
+    ],
+    "productionGateFiles": [],
+    "isolatedStudyTargetFiles": [
+      {
+        "file": "app/flashcards_swipe.tsx",
+        "surface": "app-other",
+        "localizedItems": 213,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 20,
+          "ukFields": 20,
+          "esFields": 20,
+          "localeTriples": 217,
+          "triLang": 71,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 2,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/review.tsx",
+        "surface": "app-other",
+        "localizedItems": 90,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 3,
+          "ukFields": 6,
+          "esFields": 5,
+          "localeTriples": 90,
+          "triLang": 30,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 2,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 2,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/lesson_data_all.ts",
+        "surface": "lessons",
+        "localizedItems": 82,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 49,
+          "ukFields": 47,
+          "esFields": 52,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 2,
+          "spanishStudyActive": 2,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/flashcards_collection.tsx",
+        "surface": "app-other",
+        "localizedItems": 80,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 10,
+          "ukFields": 12,
+          "esFields": 9,
+          "localeTriples": 79,
+          "triLang": 17,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 2,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/lesson_intro_screens.tsx",
+        "surface": "lessons",
+        "localizedItems": 57,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 16,
+          "ukFields": 10,
+          "esFields": 13,
+          "localeTriples": 17,
+          "triLang": 4,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 5,
+          "spanishStudyActive": 2,
+          "spanishLessonUiStringsActive": 10,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/pack_opening.tsx",
+        "surface": "app-other",
+        "localizedItems": 33,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 33,
+          "triLang": 11,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 2,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/(tabs)/settings.tsx",
+        "surface": "app-other",
+        "localizedItems": 24,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 34,
+          "triLang": 3,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 3,
+          "studyTargetLang": 2,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/lesson1.tsx",
+        "surface": "app-other",
+        "localizedItems": 9,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 15,
+          "ukFields": 11,
+          "esFields": 12,
+          "localeTriples": 3,
+          "triLang": 1,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 6,
+          "spanishStudyActive": 2,
+          "spanishLessonUiStringsActive": 3,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/config.ts",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 1,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/lesson_locale_utils.ts",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 2,
+          "ukFields": 2,
+          "esFields": 2,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 3,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 3,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/lesson1_smart_options.ts",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 4,
+          "studyTargetLang": 2,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/phrase_target_utils.ts",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 2,
+          "ukFields": 1,
+          "esFields": 4,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 5,
+          "studyTargetLang": 7,
+          "spanishStudyActive": 3,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/spanish_content_gate.ts",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 2,
+          "studyTargetLang": 5,
+          "spanishStudyActive": 2,
+          "spanishLessonUiStringsActive": 1,
+          "flashcardContentLang": 1,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/study_target_lang_dev.ts",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 5,
+          "studyTargetLang": 3,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "components/StudyTargetContext.tsx",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Known isolated Spanish-as-study-target file; verify it remains separated from UI/source-locale localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 2,
+          "studyTargetLang": 3,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      }
+    ],
+    "studyTargetRiskFiles": [],
+    "studyTargetConfusionFiles": [
+      {
+        "file": "app/flashcards_swipe.tsx",
+        "surface": "app-other",
+        "localizedItems": 213,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 20,
+          "ukFields": 20,
+          "esFields": 20,
+          "localeTriples": 217,
+          "triLang": 71,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 2,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/review.tsx",
+        "surface": "app-other",
+        "localizedItems": 90,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 3,
+          "ukFields": 6,
+          "esFields": 5,
+          "localeTriples": 90,
+          "triLang": 30,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 2,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 2,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/lesson_data_all.ts",
+        "surface": "lessons",
+        "localizedItems": 82,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 49,
+          "ukFields": 47,
+          "esFields": 52,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 2,
+          "spanishStudyActive": 2,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/flashcards_collection.tsx",
+        "surface": "app-other",
+        "localizedItems": 80,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 10,
+          "ukFields": 12,
+          "esFields": 9,
+          "localeTriples": 79,
+          "triLang": 17,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 2,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/lesson_intro_screens.tsx",
+        "surface": "lessons",
+        "localizedItems": 57,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 16,
+          "ukFields": 10,
+          "esFields": 13,
+          "localeTriples": 17,
+          "triLang": 4,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 5,
+          "spanishStudyActive": 2,
+          "spanishLessonUiStringsActive": 10,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/pack_opening.tsx",
+        "surface": "app-other",
+        "localizedItems": 33,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 33,
+          "triLang": 11,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 2,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/(tabs)/settings.tsx",
+        "surface": "app-other",
+        "localizedItems": 24,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 34,
+          "triLang": 3,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 3,
+          "studyTargetLang": 2,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/lesson1.tsx",
+        "surface": "app-other",
+        "localizedItems": 9,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 15,
+          "ukFields": 11,
+          "esFields": 12,
+          "localeTriples": 3,
+          "triLang": 1,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 6,
+          "spanishStudyActive": 2,
+          "spanishLessonUiStringsActive": 3,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/config.ts",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 1,
+          "studyTargetLang": 0,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/lesson_locale_utils.ts",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 2,
+          "ukFields": 2,
+          "esFields": 2,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 0,
+          "studyTargetLang": 3,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 3,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/lesson1_smart_options.ts",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 4,
+          "studyTargetLang": 2,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/phrase_target_utils.ts",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 2,
+          "ukFields": 1,
+          "esFields": 4,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 5,
+          "studyTargetLang": 7,
+          "spanishStudyActive": 3,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/spanish_content_gate.ts",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 2,
+          "studyTargetLang": 5,
+          "spanishStudyActive": 2,
+          "spanishLessonUiStringsActive": 1,
+          "flashcardContentLang": 1,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "app/study_target_lang_dev.ts",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 5,
+          "studyTargetLang": 3,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      },
+      {
+        "file": "components/StudyTargetContext.tsx",
+        "surface": "app-other",
+        "localizedItems": 0,
+        "reason": "Contains study-target Spanish logic; keep this separate from Spanish UI/explanation localization.",
+        "markers": {
+          "ruFields": 0,
+          "ukFields": 0,
+          "esFields": 0,
+          "localeTriples": 0,
+          "triLang": 0,
+          "legacyRuUk": 0,
+          "bundleLang": 0,
+          "reportRussianOnly": 0,
+          "enableSpanishLocale": 0,
+          "enableDevStudyTargetLang": 2,
+          "studyTargetLang": 3,
+          "spanishStudyActive": 0,
+          "spanishLessonUiStringsActive": 0,
+          "flashcardContentLang": 0,
+          "stringsForLang": 0,
+          "langTypeUnion": 0
+        }
+      }
+    ]
+  }
+}

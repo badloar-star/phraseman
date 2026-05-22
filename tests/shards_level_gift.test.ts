@@ -4,6 +4,7 @@ import {
   applyGift,
   GIFT_POOL,
   GiftDef,
+  getBonusHintsToday,
   giftLocaleStrings,
   giftRarityUiLabel,
 } from '../app/level_gift_system';
@@ -69,6 +70,21 @@ describe('level_gift_system — shards_3', () => {
     const balance = await getShardsBalance();
     expect(balance).toBe(8);
   });
+
+  it('keeps bonus lesson hints isolated between English legacy and French', async () => {
+    jest.spyOn(Date.prototype, 'toISOString').mockReturnValue('2026-05-20T12:00:00.000Z');
+    const gift = GIFT_POOL.find((g: GiftDef) => g.id === 'hint_1')!;
+
+    await applyGift(gift, 'TestUser', 3, 5, jest.fn(), { studyTarget: 'en' });
+    await applyGift(gift, 'TestUser', 3, 5, jest.fn(), { studyTarget: 'fr' });
+    await applyGift(gift, 'TestUser', 3, 5, jest.fn(), { studyTarget: 'fr' });
+
+    expect(mockStorage['bonus_hints_2026-05-20']).toBe('1');
+    expect(mockStorage['lesson_rewards_v2::fr::bonus_hints_2026-05-20']).toBe('2');
+    await expect(getBonusHintsToday('en')).resolves.toBe(1);
+    await expect(getBonusHintsToday('fr')).resolves.toBe(2);
+  });
+
   it('giftLocaleStrings возвращает ES для подарков с переводами', () => {
     const gift = GIFT_POOL.find((g: GiftDef) => g.id === 'hint_1')!;
     expect(giftLocaleStrings('es', gift).title).toContain('pista');

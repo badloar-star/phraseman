@@ -1,0 +1,1826 @@
+{
+  "schemaVersion": "gustav-french-research-work-order-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-20T07:55:32.348Z",
+  "status": "PASS",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_french_research_work_order_audit.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "sourceArtifacts": {
+    "frenchResearchPackContractAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/french_research_pack_contract_audit.json",
+    "frenchResearchPackFirewallAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/french_research_pack_firewall_audit.json",
+    "sourceGraphValidation": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/validation.json",
+    "researchPack": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/fr_research_pack.json"
+  },
+  "summary": {
+    "targetStudyLanguage": "fr",
+    "sourceLocales": 2,
+    "trustedSources": 8,
+    "grammarClusters": 12,
+    "workOrders": 12,
+    "tasks": 84,
+    "sourceGraphReferenceGroups": 10,
+    "minimumTrustedSourceChecks": 26,
+    "ruUkComparisonsRequired": 12,
+    "requiredSignoffs": 72,
+    "blockers": 0,
+    "warnings": 0,
+    "contractReady": true,
+    "firewallPassed": true,
+    "sourceGraphCountsLoaded": true,
+    "workOrderReady": true,
+    "researchPackPresent": false,
+    "realResearchPackStillMissing": true,
+    "mayStartResearchPackWritingNow": false,
+    "mayStartTranslationNow": false,
+    "mayStartFrenchGeneration": false,
+    "mayModifyProductionAppFiles": false,
+    "noFrenchContentGenerated": true
+  },
+  "sourceGraphReferenceGroups": [
+    {
+      "id": "lessons",
+      "count": 32,
+      "requiredForEveryWorkOrder": true
+    },
+    {
+      "id": "phrases",
+      "count": 1600,
+      "requiredForEveryWorkOrder": true
+    },
+    {
+      "id": "words",
+      "count": 8353,
+      "requiredForEveryWorkOrder": true
+    },
+    {
+      "id": "introScreens",
+      "count": 147,
+      "requiredForEveryWorkOrder": true
+    },
+    {
+      "id": "quizzes",
+      "count": 829,
+      "requiredForEveryWorkOrder": true
+    },
+    {
+      "id": "prepositionPacks",
+      "count": 12,
+      "requiredForEveryWorkOrder": true
+    },
+    {
+      "id": "flashcards",
+      "count": 155,
+      "requiredForEveryWorkOrder": true
+    },
+    {
+      "id": "dailyPhrases",
+      "count": 176,
+      "requiredForEveryWorkOrder": true
+    },
+    {
+      "id": "personalPractice",
+      "count": 56,
+      "requiredForEveryWorkOrder": true
+    },
+    {
+      "id": "surfaces",
+      "count": 129,
+      "requiredForEveryWorkOrder": true
+    }
+  ],
+  "workOrders": [
+    {
+      "id": "FR-RESEARCH-01",
+      "clusterId": "articles_gender_number",
+      "title": "Articles, gender and number",
+      "targetStudyLanguage": "fr",
+      "sourceLocales": [
+        "ru",
+        "uk"
+      ],
+      "requiredSourceIds": [
+        "larousse_fr_dictionary",
+        "le_robert_dictionary"
+      ],
+      "sourceGraphSlices": [
+        "lessons",
+        "phrases",
+        "words",
+        "introScreens",
+        "quizzes",
+        "prepositionPacks",
+        "flashcards",
+        "dailyPhrases",
+        "personalPractice",
+        "surfaces"
+      ],
+      "tasks": [
+        {
+          "id": "articles_gender_number:source_graph_review",
+          "title": "Review approved English source graph slice",
+          "requiredInputs": [
+            "source_graph/source_graph.json",
+            "source_graph/validation.json"
+          ],
+          "requiredOutputs": [
+            "sourceGraphRefs",
+            "englishSourceSummary"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "articles_gender_number:ru_uk_prompt_comparison",
+          "title": "Compare Russian and Ukrainian learner prompts",
+          "requiredInputs": [
+            "approved English source meaning",
+            "RU prompt text",
+            "UK prompt text"
+          ],
+          "requiredOutputs": [
+            "ruPromptSummary",
+            "ukPromptSummary",
+            "source-locale mismatch notes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "articles_gender_number:trusted_source_checks",
+          "title": "Check at least two trusted French references",
+          "requiredInputs": [
+            "requiredSourceIds",
+            "trusted source notes"
+          ],
+          "requiredOutputs": [
+            "trustedSourceChecks",
+            "translationRisks",
+            "falseFriendRisks"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "articles_gender_number:rule_decision",
+          "title": "Write research-only French rule decision",
+          "requiredInputs": [
+            "trustedSourceChecks",
+            "RU/UK comparison",
+            "English source summary"
+          ],
+          "requiredOutputs": [
+            "frenchRuleDecision",
+            "articleGenderNotes",
+            "conjugationNotes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "articles_gender_number:lesson_order_decision",
+          "title": "Decide lesson order impact",
+          "requiredInputs": [
+            "English lesson order",
+            "French grammar complexity",
+            "learner-level risk"
+          ],
+          "requiredOutputs": [
+            "lessonOrderDecision",
+            "unresolvedQuestions"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "articles_gender_number:practice_and_quiz_policy",
+          "title": "Define quiz and My Practice research policy",
+          "requiredInputs": [
+            "quiz source graph refs",
+            "personal practice source graph refs",
+            "target isolation blockers"
+          ],
+          "requiredOutputs": [
+            "quizDistractorPolicy",
+            "personalPracticePolicy"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "articles_gender_number:agent_signoff_packet",
+          "title": "Collect agent signoffs before any output",
+          "requiredInputs": [
+            "all research-only fields",
+            "unresolvedQuestions"
+          ],
+          "requiredOutputs": [
+            "agentSignoffs",
+            "batch may remain blocked decision"
+          ],
+          "canProduceFrenchOutput": false
+        }
+      ],
+      "requiredSignoffs": [
+        "translation_director",
+        "french_grammar_researcher",
+        "ru_source_locale_reviewer",
+        "uk_source_locale_reviewer",
+        "quiz_and_practice_reviewer",
+        "runtime_shape_auditor"
+      ],
+      "mustBlockIf": [
+        "less than two trusted sources support the decision",
+        "RU and UK prompt comparison is missing",
+        "source graph refs are missing",
+        "quiz distractor policy is not single-correct-answer safe",
+        "My Practice state cannot be target-scoped",
+        "French translated output appears during research"
+      ],
+      "canProduceFrenchOutput": false
+    },
+    {
+      "id": "FR-RESEARCH-02",
+      "clusterId": "present_tense_agreement",
+      "title": "Present tense and subject agreement",
+      "targetStudyLanguage": "fr",
+      "sourceLocales": [
+        "ru",
+        "uk"
+      ],
+      "requiredSourceIds": [
+        "bescherelle_conjugation",
+        "tv5monde_grammar"
+      ],
+      "sourceGraphSlices": [
+        "lessons",
+        "phrases",
+        "words",
+        "introScreens",
+        "quizzes",
+        "prepositionPacks",
+        "flashcards",
+        "dailyPhrases",
+        "personalPractice",
+        "surfaces"
+      ],
+      "tasks": [
+        {
+          "id": "present_tense_agreement:source_graph_review",
+          "title": "Review approved English source graph slice",
+          "requiredInputs": [
+            "source_graph/source_graph.json",
+            "source_graph/validation.json"
+          ],
+          "requiredOutputs": [
+            "sourceGraphRefs",
+            "englishSourceSummary"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "present_tense_agreement:ru_uk_prompt_comparison",
+          "title": "Compare Russian and Ukrainian learner prompts",
+          "requiredInputs": [
+            "approved English source meaning",
+            "RU prompt text",
+            "UK prompt text"
+          ],
+          "requiredOutputs": [
+            "ruPromptSummary",
+            "ukPromptSummary",
+            "source-locale mismatch notes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "present_tense_agreement:trusted_source_checks",
+          "title": "Check at least two trusted French references",
+          "requiredInputs": [
+            "requiredSourceIds",
+            "trusted source notes"
+          ],
+          "requiredOutputs": [
+            "trustedSourceChecks",
+            "translationRisks",
+            "falseFriendRisks"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "present_tense_agreement:rule_decision",
+          "title": "Write research-only French rule decision",
+          "requiredInputs": [
+            "trustedSourceChecks",
+            "RU/UK comparison",
+            "English source summary"
+          ],
+          "requiredOutputs": [
+            "frenchRuleDecision",
+            "articleGenderNotes",
+            "conjugationNotes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "present_tense_agreement:lesson_order_decision",
+          "title": "Decide lesson order impact",
+          "requiredInputs": [
+            "English lesson order",
+            "French grammar complexity",
+            "learner-level risk"
+          ],
+          "requiredOutputs": [
+            "lessonOrderDecision",
+            "unresolvedQuestions"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "present_tense_agreement:practice_and_quiz_policy",
+          "title": "Define quiz and My Practice research policy",
+          "requiredInputs": [
+            "quiz source graph refs",
+            "personal practice source graph refs",
+            "target isolation blockers"
+          ],
+          "requiredOutputs": [
+            "quizDistractorPolicy",
+            "personalPracticePolicy"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "present_tense_agreement:agent_signoff_packet",
+          "title": "Collect agent signoffs before any output",
+          "requiredInputs": [
+            "all research-only fields",
+            "unresolvedQuestions"
+          ],
+          "requiredOutputs": [
+            "agentSignoffs",
+            "batch may remain blocked decision"
+          ],
+          "canProduceFrenchOutput": false
+        }
+      ],
+      "requiredSignoffs": [
+        "translation_director",
+        "french_grammar_researcher",
+        "ru_source_locale_reviewer",
+        "uk_source_locale_reviewer",
+        "quiz_and_practice_reviewer",
+        "runtime_shape_auditor"
+      ],
+      "mustBlockIf": [
+        "less than two trusted sources support the decision",
+        "RU and UK prompt comparison is missing",
+        "source graph refs are missing",
+        "quiz distractor policy is not single-correct-answer safe",
+        "My Practice state cannot be target-scoped",
+        "French translated output appears during research"
+      ],
+      "canProduceFrenchOutput": false
+    },
+    {
+      "id": "FR-RESEARCH-03",
+      "clusterId": "negation",
+      "title": "Negation and negative adverbs",
+      "targetStudyLanguage": "fr",
+      "sourceLocales": [
+        "ru",
+        "uk"
+      ],
+      "requiredSourceIds": [
+        "academie_francaise_dire_ne_pas_dire",
+        "tv5monde_grammar"
+      ],
+      "sourceGraphSlices": [
+        "lessons",
+        "phrases",
+        "words",
+        "introScreens",
+        "quizzes",
+        "prepositionPacks",
+        "flashcards",
+        "dailyPhrases",
+        "personalPractice",
+        "surfaces"
+      ],
+      "tasks": [
+        {
+          "id": "negation:source_graph_review",
+          "title": "Review approved English source graph slice",
+          "requiredInputs": [
+            "source_graph/source_graph.json",
+            "source_graph/validation.json"
+          ],
+          "requiredOutputs": [
+            "sourceGraphRefs",
+            "englishSourceSummary"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "negation:ru_uk_prompt_comparison",
+          "title": "Compare Russian and Ukrainian learner prompts",
+          "requiredInputs": [
+            "approved English source meaning",
+            "RU prompt text",
+            "UK prompt text"
+          ],
+          "requiredOutputs": [
+            "ruPromptSummary",
+            "ukPromptSummary",
+            "source-locale mismatch notes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "negation:trusted_source_checks",
+          "title": "Check at least two trusted French references",
+          "requiredInputs": [
+            "requiredSourceIds",
+            "trusted source notes"
+          ],
+          "requiredOutputs": [
+            "trustedSourceChecks",
+            "translationRisks",
+            "falseFriendRisks"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "negation:rule_decision",
+          "title": "Write research-only French rule decision",
+          "requiredInputs": [
+            "trustedSourceChecks",
+            "RU/UK comparison",
+            "English source summary"
+          ],
+          "requiredOutputs": [
+            "frenchRuleDecision",
+            "articleGenderNotes",
+            "conjugationNotes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "negation:lesson_order_decision",
+          "title": "Decide lesson order impact",
+          "requiredInputs": [
+            "English lesson order",
+            "French grammar complexity",
+            "learner-level risk"
+          ],
+          "requiredOutputs": [
+            "lessonOrderDecision",
+            "unresolvedQuestions"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "negation:practice_and_quiz_policy",
+          "title": "Define quiz and My Practice research policy",
+          "requiredInputs": [
+            "quiz source graph refs",
+            "personal practice source graph refs",
+            "target isolation blockers"
+          ],
+          "requiredOutputs": [
+            "quizDistractorPolicy",
+            "personalPracticePolicy"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "negation:agent_signoff_packet",
+          "title": "Collect agent signoffs before any output",
+          "requiredInputs": [
+            "all research-only fields",
+            "unresolvedQuestions"
+          ],
+          "requiredOutputs": [
+            "agentSignoffs",
+            "batch may remain blocked decision"
+          ],
+          "canProduceFrenchOutput": false
+        }
+      ],
+      "requiredSignoffs": [
+        "translation_director",
+        "french_grammar_researcher",
+        "ru_source_locale_reviewer",
+        "uk_source_locale_reviewer",
+        "quiz_and_practice_reviewer",
+        "runtime_shape_auditor"
+      ],
+      "mustBlockIf": [
+        "less than two trusted sources support the decision",
+        "RU and UK prompt comparison is missing",
+        "source graph refs are missing",
+        "quiz distractor policy is not single-correct-answer safe",
+        "My Practice state cannot be target-scoped",
+        "French translated output appears during research"
+      ],
+      "canProduceFrenchOutput": false
+    },
+    {
+      "id": "FR-RESEARCH-04",
+      "clusterId": "questions_word_order",
+      "title": "Questions and word order",
+      "targetStudyLanguage": "fr",
+      "sourceLocales": [
+        "ru",
+        "uk"
+      ],
+      "requiredSourceIds": [
+        "tv5monde_grammar",
+        "oqlf_vitrine_linguistique"
+      ],
+      "sourceGraphSlices": [
+        "lessons",
+        "phrases",
+        "words",
+        "introScreens",
+        "quizzes",
+        "prepositionPacks",
+        "flashcards",
+        "dailyPhrases",
+        "personalPractice",
+        "surfaces"
+      ],
+      "tasks": [
+        {
+          "id": "questions_word_order:source_graph_review",
+          "title": "Review approved English source graph slice",
+          "requiredInputs": [
+            "source_graph/source_graph.json",
+            "source_graph/validation.json"
+          ],
+          "requiredOutputs": [
+            "sourceGraphRefs",
+            "englishSourceSummary"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "questions_word_order:ru_uk_prompt_comparison",
+          "title": "Compare Russian and Ukrainian learner prompts",
+          "requiredInputs": [
+            "approved English source meaning",
+            "RU prompt text",
+            "UK prompt text"
+          ],
+          "requiredOutputs": [
+            "ruPromptSummary",
+            "ukPromptSummary",
+            "source-locale mismatch notes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "questions_word_order:trusted_source_checks",
+          "title": "Check at least two trusted French references",
+          "requiredInputs": [
+            "requiredSourceIds",
+            "trusted source notes"
+          ],
+          "requiredOutputs": [
+            "trustedSourceChecks",
+            "translationRisks",
+            "falseFriendRisks"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "questions_word_order:rule_decision",
+          "title": "Write research-only French rule decision",
+          "requiredInputs": [
+            "trustedSourceChecks",
+            "RU/UK comparison",
+            "English source summary"
+          ],
+          "requiredOutputs": [
+            "frenchRuleDecision",
+            "articleGenderNotes",
+            "conjugationNotes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "questions_word_order:lesson_order_decision",
+          "title": "Decide lesson order impact",
+          "requiredInputs": [
+            "English lesson order",
+            "French grammar complexity",
+            "learner-level risk"
+          ],
+          "requiredOutputs": [
+            "lessonOrderDecision",
+            "unresolvedQuestions"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "questions_word_order:practice_and_quiz_policy",
+          "title": "Define quiz and My Practice research policy",
+          "requiredInputs": [
+            "quiz source graph refs",
+            "personal practice source graph refs",
+            "target isolation blockers"
+          ],
+          "requiredOutputs": [
+            "quizDistractorPolicy",
+            "personalPracticePolicy"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "questions_word_order:agent_signoff_packet",
+          "title": "Collect agent signoffs before any output",
+          "requiredInputs": [
+            "all research-only fields",
+            "unresolvedQuestions"
+          ],
+          "requiredOutputs": [
+            "agentSignoffs",
+            "batch may remain blocked decision"
+          ],
+          "canProduceFrenchOutput": false
+        }
+      ],
+      "requiredSignoffs": [
+        "translation_director",
+        "french_grammar_researcher",
+        "ru_source_locale_reviewer",
+        "uk_source_locale_reviewer",
+        "quiz_and_practice_reviewer",
+        "runtime_shape_auditor"
+      ],
+      "mustBlockIf": [
+        "less than two trusted sources support the decision",
+        "RU and UK prompt comparison is missing",
+        "source graph refs are missing",
+        "quiz distractor policy is not single-correct-answer safe",
+        "My Practice state cannot be target-scoped",
+        "French translated output appears during research"
+      ],
+      "canProduceFrenchOutput": false
+    },
+    {
+      "id": "FR-RESEARCH-05",
+      "clusterId": "prepositions_articles",
+      "title": "Prepositions and contracted articles",
+      "targetStudyLanguage": "fr",
+      "sourceLocales": [
+        "ru",
+        "uk"
+      ],
+      "requiredSourceIds": [
+        "larousse_fr_dictionary",
+        "oqlf_vitrine_linguistique"
+      ],
+      "sourceGraphSlices": [
+        "lessons",
+        "phrases",
+        "words",
+        "introScreens",
+        "quizzes",
+        "prepositionPacks",
+        "flashcards",
+        "dailyPhrases",
+        "personalPractice",
+        "surfaces"
+      ],
+      "tasks": [
+        {
+          "id": "prepositions_articles:source_graph_review",
+          "title": "Review approved English source graph slice",
+          "requiredInputs": [
+            "source_graph/source_graph.json",
+            "source_graph/validation.json"
+          ],
+          "requiredOutputs": [
+            "sourceGraphRefs",
+            "englishSourceSummary"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "prepositions_articles:ru_uk_prompt_comparison",
+          "title": "Compare Russian and Ukrainian learner prompts",
+          "requiredInputs": [
+            "approved English source meaning",
+            "RU prompt text",
+            "UK prompt text"
+          ],
+          "requiredOutputs": [
+            "ruPromptSummary",
+            "ukPromptSummary",
+            "source-locale mismatch notes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "prepositions_articles:trusted_source_checks",
+          "title": "Check at least two trusted French references",
+          "requiredInputs": [
+            "requiredSourceIds",
+            "trusted source notes"
+          ],
+          "requiredOutputs": [
+            "trustedSourceChecks",
+            "translationRisks",
+            "falseFriendRisks"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "prepositions_articles:rule_decision",
+          "title": "Write research-only French rule decision",
+          "requiredInputs": [
+            "trustedSourceChecks",
+            "RU/UK comparison",
+            "English source summary"
+          ],
+          "requiredOutputs": [
+            "frenchRuleDecision",
+            "articleGenderNotes",
+            "conjugationNotes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "prepositions_articles:lesson_order_decision",
+          "title": "Decide lesson order impact",
+          "requiredInputs": [
+            "English lesson order",
+            "French grammar complexity",
+            "learner-level risk"
+          ],
+          "requiredOutputs": [
+            "lessonOrderDecision",
+            "unresolvedQuestions"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "prepositions_articles:practice_and_quiz_policy",
+          "title": "Define quiz and My Practice research policy",
+          "requiredInputs": [
+            "quiz source graph refs",
+            "personal practice source graph refs",
+            "target isolation blockers"
+          ],
+          "requiredOutputs": [
+            "quizDistractorPolicy",
+            "personalPracticePolicy"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "prepositions_articles:agent_signoff_packet",
+          "title": "Collect agent signoffs before any output",
+          "requiredInputs": [
+            "all research-only fields",
+            "unresolvedQuestions"
+          ],
+          "requiredOutputs": [
+            "agentSignoffs",
+            "batch may remain blocked decision"
+          ],
+          "canProduceFrenchOutput": false
+        }
+      ],
+      "requiredSignoffs": [
+        "translation_director",
+        "french_grammar_researcher",
+        "ru_source_locale_reviewer",
+        "uk_source_locale_reviewer",
+        "quiz_and_practice_reviewer",
+        "runtime_shape_auditor"
+      ],
+      "mustBlockIf": [
+        "less than two trusted sources support the decision",
+        "RU and UK prompt comparison is missing",
+        "source graph refs are missing",
+        "quiz distractor policy is not single-correct-answer safe",
+        "My Practice state cannot be target-scoped",
+        "French translated output appears during research"
+      ],
+      "canProduceFrenchOutput": false
+    },
+    {
+      "id": "FR-RESEARCH-06",
+      "clusterId": "pronouns_order",
+      "title": "Pronouns and object order",
+      "targetStudyLanguage": "fr",
+      "sourceLocales": [
+        "ru",
+        "uk"
+      ],
+      "requiredSourceIds": [
+        "tv5monde_grammar",
+        "oqlf_vitrine_linguistique"
+      ],
+      "sourceGraphSlices": [
+        "lessons",
+        "phrases",
+        "words",
+        "introScreens",
+        "quizzes",
+        "prepositionPacks",
+        "flashcards",
+        "dailyPhrases",
+        "personalPractice",
+        "surfaces"
+      ],
+      "tasks": [
+        {
+          "id": "pronouns_order:source_graph_review",
+          "title": "Review approved English source graph slice",
+          "requiredInputs": [
+            "source_graph/source_graph.json",
+            "source_graph/validation.json"
+          ],
+          "requiredOutputs": [
+            "sourceGraphRefs",
+            "englishSourceSummary"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "pronouns_order:ru_uk_prompt_comparison",
+          "title": "Compare Russian and Ukrainian learner prompts",
+          "requiredInputs": [
+            "approved English source meaning",
+            "RU prompt text",
+            "UK prompt text"
+          ],
+          "requiredOutputs": [
+            "ruPromptSummary",
+            "ukPromptSummary",
+            "source-locale mismatch notes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "pronouns_order:trusted_source_checks",
+          "title": "Check at least two trusted French references",
+          "requiredInputs": [
+            "requiredSourceIds",
+            "trusted source notes"
+          ],
+          "requiredOutputs": [
+            "trustedSourceChecks",
+            "translationRisks",
+            "falseFriendRisks"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "pronouns_order:rule_decision",
+          "title": "Write research-only French rule decision",
+          "requiredInputs": [
+            "trustedSourceChecks",
+            "RU/UK comparison",
+            "English source summary"
+          ],
+          "requiredOutputs": [
+            "frenchRuleDecision",
+            "articleGenderNotes",
+            "conjugationNotes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "pronouns_order:lesson_order_decision",
+          "title": "Decide lesson order impact",
+          "requiredInputs": [
+            "English lesson order",
+            "French grammar complexity",
+            "learner-level risk"
+          ],
+          "requiredOutputs": [
+            "lessonOrderDecision",
+            "unresolvedQuestions"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "pronouns_order:practice_and_quiz_policy",
+          "title": "Define quiz and My Practice research policy",
+          "requiredInputs": [
+            "quiz source graph refs",
+            "personal practice source graph refs",
+            "target isolation blockers"
+          ],
+          "requiredOutputs": [
+            "quizDistractorPolicy",
+            "personalPracticePolicy"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "pronouns_order:agent_signoff_packet",
+          "title": "Collect agent signoffs before any output",
+          "requiredInputs": [
+            "all research-only fields",
+            "unresolvedQuestions"
+          ],
+          "requiredOutputs": [
+            "agentSignoffs",
+            "batch may remain blocked decision"
+          ],
+          "canProduceFrenchOutput": false
+        }
+      ],
+      "requiredSignoffs": [
+        "translation_director",
+        "french_grammar_researcher",
+        "ru_source_locale_reviewer",
+        "uk_source_locale_reviewer",
+        "quiz_and_practice_reviewer",
+        "runtime_shape_auditor"
+      ],
+      "mustBlockIf": [
+        "less than two trusted sources support the decision",
+        "RU and UK prompt comparison is missing",
+        "source graph refs are missing",
+        "quiz distractor policy is not single-correct-answer safe",
+        "My Practice state cannot be target-scoped",
+        "French translated output appears during research"
+      ],
+      "canProduceFrenchOutput": false
+    },
+    {
+      "id": "FR-RESEARCH-07",
+      "clusterId": "past_tenses",
+      "title": "Passe compose, imparfait and past contrast",
+      "targetStudyLanguage": "fr",
+      "sourceLocales": [
+        "ru",
+        "uk"
+      ],
+      "requiredSourceIds": [
+        "bescherelle_conjugation",
+        "oxford_french_usage_guide"
+      ],
+      "sourceGraphSlices": [
+        "lessons",
+        "phrases",
+        "words",
+        "introScreens",
+        "quizzes",
+        "prepositionPacks",
+        "flashcards",
+        "dailyPhrases",
+        "personalPractice",
+        "surfaces"
+      ],
+      "tasks": [
+        {
+          "id": "past_tenses:source_graph_review",
+          "title": "Review approved English source graph slice",
+          "requiredInputs": [
+            "source_graph/source_graph.json",
+            "source_graph/validation.json"
+          ],
+          "requiredOutputs": [
+            "sourceGraphRefs",
+            "englishSourceSummary"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "past_tenses:ru_uk_prompt_comparison",
+          "title": "Compare Russian and Ukrainian learner prompts",
+          "requiredInputs": [
+            "approved English source meaning",
+            "RU prompt text",
+            "UK prompt text"
+          ],
+          "requiredOutputs": [
+            "ruPromptSummary",
+            "ukPromptSummary",
+            "source-locale mismatch notes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "past_tenses:trusted_source_checks",
+          "title": "Check at least two trusted French references",
+          "requiredInputs": [
+            "requiredSourceIds",
+            "trusted source notes"
+          ],
+          "requiredOutputs": [
+            "trustedSourceChecks",
+            "translationRisks",
+            "falseFriendRisks"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "past_tenses:rule_decision",
+          "title": "Write research-only French rule decision",
+          "requiredInputs": [
+            "trustedSourceChecks",
+            "RU/UK comparison",
+            "English source summary"
+          ],
+          "requiredOutputs": [
+            "frenchRuleDecision",
+            "articleGenderNotes",
+            "conjugationNotes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "past_tenses:lesson_order_decision",
+          "title": "Decide lesson order impact",
+          "requiredInputs": [
+            "English lesson order",
+            "French grammar complexity",
+            "learner-level risk"
+          ],
+          "requiredOutputs": [
+            "lessonOrderDecision",
+            "unresolvedQuestions"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "past_tenses:practice_and_quiz_policy",
+          "title": "Define quiz and My Practice research policy",
+          "requiredInputs": [
+            "quiz source graph refs",
+            "personal practice source graph refs",
+            "target isolation blockers"
+          ],
+          "requiredOutputs": [
+            "quizDistractorPolicy",
+            "personalPracticePolicy"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "past_tenses:agent_signoff_packet",
+          "title": "Collect agent signoffs before any output",
+          "requiredInputs": [
+            "all research-only fields",
+            "unresolvedQuestions"
+          ],
+          "requiredOutputs": [
+            "agentSignoffs",
+            "batch may remain blocked decision"
+          ],
+          "canProduceFrenchOutput": false
+        }
+      ],
+      "requiredSignoffs": [
+        "translation_director",
+        "french_grammar_researcher",
+        "ru_source_locale_reviewer",
+        "uk_source_locale_reviewer",
+        "quiz_and_practice_reviewer",
+        "runtime_shape_auditor"
+      ],
+      "mustBlockIf": [
+        "less than two trusted sources support the decision",
+        "RU and UK prompt comparison is missing",
+        "source graph refs are missing",
+        "quiz distractor policy is not single-correct-answer safe",
+        "My Practice state cannot be target-scoped",
+        "French translated output appears during research"
+      ],
+      "canProduceFrenchOutput": false
+    },
+    {
+      "id": "FR-RESEARCH-08",
+      "clusterId": "future_conditionals",
+      "title": "Future, conditional and polite requests",
+      "targetStudyLanguage": "fr",
+      "sourceLocales": [
+        "ru",
+        "uk"
+      ],
+      "requiredSourceIds": [
+        "bescherelle_conjugation",
+        "cambridge_en_fr_dictionary"
+      ],
+      "sourceGraphSlices": [
+        "lessons",
+        "phrases",
+        "words",
+        "introScreens",
+        "quizzes",
+        "prepositionPacks",
+        "flashcards",
+        "dailyPhrases",
+        "personalPractice",
+        "surfaces"
+      ],
+      "tasks": [
+        {
+          "id": "future_conditionals:source_graph_review",
+          "title": "Review approved English source graph slice",
+          "requiredInputs": [
+            "source_graph/source_graph.json",
+            "source_graph/validation.json"
+          ],
+          "requiredOutputs": [
+            "sourceGraphRefs",
+            "englishSourceSummary"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "future_conditionals:ru_uk_prompt_comparison",
+          "title": "Compare Russian and Ukrainian learner prompts",
+          "requiredInputs": [
+            "approved English source meaning",
+            "RU prompt text",
+            "UK prompt text"
+          ],
+          "requiredOutputs": [
+            "ruPromptSummary",
+            "ukPromptSummary",
+            "source-locale mismatch notes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "future_conditionals:trusted_source_checks",
+          "title": "Check at least two trusted French references",
+          "requiredInputs": [
+            "requiredSourceIds",
+            "trusted source notes"
+          ],
+          "requiredOutputs": [
+            "trustedSourceChecks",
+            "translationRisks",
+            "falseFriendRisks"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "future_conditionals:rule_decision",
+          "title": "Write research-only French rule decision",
+          "requiredInputs": [
+            "trustedSourceChecks",
+            "RU/UK comparison",
+            "English source summary"
+          ],
+          "requiredOutputs": [
+            "frenchRuleDecision",
+            "articleGenderNotes",
+            "conjugationNotes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "future_conditionals:lesson_order_decision",
+          "title": "Decide lesson order impact",
+          "requiredInputs": [
+            "English lesson order",
+            "French grammar complexity",
+            "learner-level risk"
+          ],
+          "requiredOutputs": [
+            "lessonOrderDecision",
+            "unresolvedQuestions"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "future_conditionals:practice_and_quiz_policy",
+          "title": "Define quiz and My Practice research policy",
+          "requiredInputs": [
+            "quiz source graph refs",
+            "personal practice source graph refs",
+            "target isolation blockers"
+          ],
+          "requiredOutputs": [
+            "quizDistractorPolicy",
+            "personalPracticePolicy"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "future_conditionals:agent_signoff_packet",
+          "title": "Collect agent signoffs before any output",
+          "requiredInputs": [
+            "all research-only fields",
+            "unresolvedQuestions"
+          ],
+          "requiredOutputs": [
+            "agentSignoffs",
+            "batch may remain blocked decision"
+          ],
+          "canProduceFrenchOutput": false
+        }
+      ],
+      "requiredSignoffs": [
+        "translation_director",
+        "french_grammar_researcher",
+        "ru_source_locale_reviewer",
+        "uk_source_locale_reviewer",
+        "quiz_and_practice_reviewer",
+        "runtime_shape_auditor"
+      ],
+      "mustBlockIf": [
+        "less than two trusted sources support the decision",
+        "RU and UK prompt comparison is missing",
+        "source graph refs are missing",
+        "quiz distractor policy is not single-correct-answer safe",
+        "My Practice state cannot be target-scoped",
+        "French translated output appears during research"
+      ],
+      "canProduceFrenchOutput": false
+    },
+    {
+      "id": "FR-RESEARCH-09",
+      "clusterId": "subjunctive_modality",
+      "title": "Subjunctive and modality",
+      "targetStudyLanguage": "fr",
+      "sourceLocales": [
+        "ru",
+        "uk"
+      ],
+      "requiredSourceIds": [
+        "bescherelle_conjugation",
+        "academie_francaise_dire_ne_pas_dire"
+      ],
+      "sourceGraphSlices": [
+        "lessons",
+        "phrases",
+        "words",
+        "introScreens",
+        "quizzes",
+        "prepositionPacks",
+        "flashcards",
+        "dailyPhrases",
+        "personalPractice",
+        "surfaces"
+      ],
+      "tasks": [
+        {
+          "id": "subjunctive_modality:source_graph_review",
+          "title": "Review approved English source graph slice",
+          "requiredInputs": [
+            "source_graph/source_graph.json",
+            "source_graph/validation.json"
+          ],
+          "requiredOutputs": [
+            "sourceGraphRefs",
+            "englishSourceSummary"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "subjunctive_modality:ru_uk_prompt_comparison",
+          "title": "Compare Russian and Ukrainian learner prompts",
+          "requiredInputs": [
+            "approved English source meaning",
+            "RU prompt text",
+            "UK prompt text"
+          ],
+          "requiredOutputs": [
+            "ruPromptSummary",
+            "ukPromptSummary",
+            "source-locale mismatch notes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "subjunctive_modality:trusted_source_checks",
+          "title": "Check at least two trusted French references",
+          "requiredInputs": [
+            "requiredSourceIds",
+            "trusted source notes"
+          ],
+          "requiredOutputs": [
+            "trustedSourceChecks",
+            "translationRisks",
+            "falseFriendRisks"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "subjunctive_modality:rule_decision",
+          "title": "Write research-only French rule decision",
+          "requiredInputs": [
+            "trustedSourceChecks",
+            "RU/UK comparison",
+            "English source summary"
+          ],
+          "requiredOutputs": [
+            "frenchRuleDecision",
+            "articleGenderNotes",
+            "conjugationNotes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "subjunctive_modality:lesson_order_decision",
+          "title": "Decide lesson order impact",
+          "requiredInputs": [
+            "English lesson order",
+            "French grammar complexity",
+            "learner-level risk"
+          ],
+          "requiredOutputs": [
+            "lessonOrderDecision",
+            "unresolvedQuestions"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "subjunctive_modality:practice_and_quiz_policy",
+          "title": "Define quiz and My Practice research policy",
+          "requiredInputs": [
+            "quiz source graph refs",
+            "personal practice source graph refs",
+            "target isolation blockers"
+          ],
+          "requiredOutputs": [
+            "quizDistractorPolicy",
+            "personalPracticePolicy"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "subjunctive_modality:agent_signoff_packet",
+          "title": "Collect agent signoffs before any output",
+          "requiredInputs": [
+            "all research-only fields",
+            "unresolvedQuestions"
+          ],
+          "requiredOutputs": [
+            "agentSignoffs",
+            "batch may remain blocked decision"
+          ],
+          "canProduceFrenchOutput": false
+        }
+      ],
+      "requiredSignoffs": [
+        "translation_director",
+        "french_grammar_researcher",
+        "ru_source_locale_reviewer",
+        "uk_source_locale_reviewer",
+        "quiz_and_practice_reviewer",
+        "runtime_shape_auditor"
+      ],
+      "mustBlockIf": [
+        "less than two trusted sources support the decision",
+        "RU and UK prompt comparison is missing",
+        "source graph refs are missing",
+        "quiz distractor policy is not single-correct-answer safe",
+        "My Practice state cannot be target-scoped",
+        "French translated output appears during research"
+      ],
+      "canProduceFrenchOutput": false
+    },
+    {
+      "id": "FR-RESEARCH-10",
+      "clusterId": "register_and_naturalness",
+      "title": "Register, naturalness and false friends",
+      "targetStudyLanguage": "fr",
+      "sourceLocales": [
+        "ru",
+        "uk"
+      ],
+      "requiredSourceIds": [
+        "cambridge_en_fr_dictionary",
+        "le_robert_dictionary",
+        "oxford_french_usage_guide"
+      ],
+      "sourceGraphSlices": [
+        "lessons",
+        "phrases",
+        "words",
+        "introScreens",
+        "quizzes",
+        "prepositionPacks",
+        "flashcards",
+        "dailyPhrases",
+        "personalPractice",
+        "surfaces"
+      ],
+      "tasks": [
+        {
+          "id": "register_and_naturalness:source_graph_review",
+          "title": "Review approved English source graph slice",
+          "requiredInputs": [
+            "source_graph/source_graph.json",
+            "source_graph/validation.json"
+          ],
+          "requiredOutputs": [
+            "sourceGraphRefs",
+            "englishSourceSummary"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "register_and_naturalness:ru_uk_prompt_comparison",
+          "title": "Compare Russian and Ukrainian learner prompts",
+          "requiredInputs": [
+            "approved English source meaning",
+            "RU prompt text",
+            "UK prompt text"
+          ],
+          "requiredOutputs": [
+            "ruPromptSummary",
+            "ukPromptSummary",
+            "source-locale mismatch notes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "register_and_naturalness:trusted_source_checks",
+          "title": "Check at least two trusted French references",
+          "requiredInputs": [
+            "requiredSourceIds",
+            "trusted source notes"
+          ],
+          "requiredOutputs": [
+            "trustedSourceChecks",
+            "translationRisks",
+            "falseFriendRisks"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "register_and_naturalness:rule_decision",
+          "title": "Write research-only French rule decision",
+          "requiredInputs": [
+            "trustedSourceChecks",
+            "RU/UK comparison",
+            "English source summary"
+          ],
+          "requiredOutputs": [
+            "frenchRuleDecision",
+            "articleGenderNotes",
+            "conjugationNotes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "register_and_naturalness:lesson_order_decision",
+          "title": "Decide lesson order impact",
+          "requiredInputs": [
+            "English lesson order",
+            "French grammar complexity",
+            "learner-level risk"
+          ],
+          "requiredOutputs": [
+            "lessonOrderDecision",
+            "unresolvedQuestions"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "register_and_naturalness:practice_and_quiz_policy",
+          "title": "Define quiz and My Practice research policy",
+          "requiredInputs": [
+            "quiz source graph refs",
+            "personal practice source graph refs",
+            "target isolation blockers"
+          ],
+          "requiredOutputs": [
+            "quizDistractorPolicy",
+            "personalPracticePolicy"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "register_and_naturalness:agent_signoff_packet",
+          "title": "Collect agent signoffs before any output",
+          "requiredInputs": [
+            "all research-only fields",
+            "unresolvedQuestions"
+          ],
+          "requiredOutputs": [
+            "agentSignoffs",
+            "batch may remain blocked decision"
+          ],
+          "canProduceFrenchOutput": false
+        }
+      ],
+      "requiredSignoffs": [
+        "translation_director",
+        "french_grammar_researcher",
+        "ru_source_locale_reviewer",
+        "uk_source_locale_reviewer",
+        "quiz_and_practice_reviewer",
+        "runtime_shape_auditor"
+      ],
+      "mustBlockIf": [
+        "less than two trusted sources support the decision",
+        "RU and UK prompt comparison is missing",
+        "source graph refs are missing",
+        "quiz distractor policy is not single-correct-answer safe",
+        "My Practice state cannot be target-scoped",
+        "French translated output appears during research"
+      ],
+      "canProduceFrenchOutput": false
+    },
+    {
+      "id": "FR-RESEARCH-11",
+      "clusterId": "personal_practice_mapping",
+      "title": "My Practice diagnosis to French remediation",
+      "targetStudyLanguage": "fr",
+      "sourceLocales": [
+        "ru",
+        "uk"
+      ],
+      "requiredSourceIds": [
+        "tv5monde_grammar",
+        "oqlf_vitrine_linguistique"
+      ],
+      "sourceGraphSlices": [
+        "lessons",
+        "phrases",
+        "words",
+        "introScreens",
+        "quizzes",
+        "prepositionPacks",
+        "flashcards",
+        "dailyPhrases",
+        "personalPractice",
+        "surfaces"
+      ],
+      "tasks": [
+        {
+          "id": "personal_practice_mapping:source_graph_review",
+          "title": "Review approved English source graph slice",
+          "requiredInputs": [
+            "source_graph/source_graph.json",
+            "source_graph/validation.json"
+          ],
+          "requiredOutputs": [
+            "sourceGraphRefs",
+            "englishSourceSummary"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "personal_practice_mapping:ru_uk_prompt_comparison",
+          "title": "Compare Russian and Ukrainian learner prompts",
+          "requiredInputs": [
+            "approved English source meaning",
+            "RU prompt text",
+            "UK prompt text"
+          ],
+          "requiredOutputs": [
+            "ruPromptSummary",
+            "ukPromptSummary",
+            "source-locale mismatch notes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "personal_practice_mapping:trusted_source_checks",
+          "title": "Check at least two trusted French references",
+          "requiredInputs": [
+            "requiredSourceIds",
+            "trusted source notes"
+          ],
+          "requiredOutputs": [
+            "trustedSourceChecks",
+            "translationRisks",
+            "falseFriendRisks"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "personal_practice_mapping:rule_decision",
+          "title": "Write research-only French rule decision",
+          "requiredInputs": [
+            "trustedSourceChecks",
+            "RU/UK comparison",
+            "English source summary"
+          ],
+          "requiredOutputs": [
+            "frenchRuleDecision",
+            "articleGenderNotes",
+            "conjugationNotes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "personal_practice_mapping:lesson_order_decision",
+          "title": "Decide lesson order impact",
+          "requiredInputs": [
+            "English lesson order",
+            "French grammar complexity",
+            "learner-level risk"
+          ],
+          "requiredOutputs": [
+            "lessonOrderDecision",
+            "unresolvedQuestions"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "personal_practice_mapping:practice_and_quiz_policy",
+          "title": "Define quiz and My Practice research policy",
+          "requiredInputs": [
+            "quiz source graph refs",
+            "personal practice source graph refs",
+            "target isolation blockers"
+          ],
+          "requiredOutputs": [
+            "quizDistractorPolicy",
+            "personalPracticePolicy"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "personal_practice_mapping:agent_signoff_packet",
+          "title": "Collect agent signoffs before any output",
+          "requiredInputs": [
+            "all research-only fields",
+            "unresolvedQuestions"
+          ],
+          "requiredOutputs": [
+            "agentSignoffs",
+            "batch may remain blocked decision"
+          ],
+          "canProduceFrenchOutput": false
+        }
+      ],
+      "requiredSignoffs": [
+        "translation_director",
+        "french_grammar_researcher",
+        "ru_source_locale_reviewer",
+        "uk_source_locale_reviewer",
+        "quiz_and_practice_reviewer",
+        "runtime_shape_auditor"
+      ],
+      "mustBlockIf": [
+        "less than two trusted sources support the decision",
+        "RU and UK prompt comparison is missing",
+        "source graph refs are missing",
+        "quiz distractor policy is not single-correct-answer safe",
+        "My Practice state cannot be target-scoped",
+        "French translated output appears during research"
+      ],
+      "canProduceFrenchOutput": false
+    },
+    {
+      "id": "FR-RESEARCH-12",
+      "clusterId": "quiz_distractors",
+      "title": "Quiz distractors and answer validity",
+      "targetStudyLanguage": "fr",
+      "sourceLocales": [
+        "ru",
+        "uk"
+      ],
+      "requiredSourceIds": [
+        "larousse_fr_dictionary",
+        "bescherelle_conjugation",
+        "cambridge_en_fr_dictionary"
+      ],
+      "sourceGraphSlices": [
+        "lessons",
+        "phrases",
+        "words",
+        "introScreens",
+        "quizzes",
+        "prepositionPacks",
+        "flashcards",
+        "dailyPhrases",
+        "personalPractice",
+        "surfaces"
+      ],
+      "tasks": [
+        {
+          "id": "quiz_distractors:source_graph_review",
+          "title": "Review approved English source graph slice",
+          "requiredInputs": [
+            "source_graph/source_graph.json",
+            "source_graph/validation.json"
+          ],
+          "requiredOutputs": [
+            "sourceGraphRefs",
+            "englishSourceSummary"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "quiz_distractors:ru_uk_prompt_comparison",
+          "title": "Compare Russian and Ukrainian learner prompts",
+          "requiredInputs": [
+            "approved English source meaning",
+            "RU prompt text",
+            "UK prompt text"
+          ],
+          "requiredOutputs": [
+            "ruPromptSummary",
+            "ukPromptSummary",
+            "source-locale mismatch notes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "quiz_distractors:trusted_source_checks",
+          "title": "Check at least two trusted French references",
+          "requiredInputs": [
+            "requiredSourceIds",
+            "trusted source notes"
+          ],
+          "requiredOutputs": [
+            "trustedSourceChecks",
+            "translationRisks",
+            "falseFriendRisks"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "quiz_distractors:rule_decision",
+          "title": "Write research-only French rule decision",
+          "requiredInputs": [
+            "trustedSourceChecks",
+            "RU/UK comparison",
+            "English source summary"
+          ],
+          "requiredOutputs": [
+            "frenchRuleDecision",
+            "articleGenderNotes",
+            "conjugationNotes"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "quiz_distractors:lesson_order_decision",
+          "title": "Decide lesson order impact",
+          "requiredInputs": [
+            "English lesson order",
+            "French grammar complexity",
+            "learner-level risk"
+          ],
+          "requiredOutputs": [
+            "lessonOrderDecision",
+            "unresolvedQuestions"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "quiz_distractors:practice_and_quiz_policy",
+          "title": "Define quiz and My Practice research policy",
+          "requiredInputs": [
+            "quiz source graph refs",
+            "personal practice source graph refs",
+            "target isolation blockers"
+          ],
+          "requiredOutputs": [
+            "quizDistractorPolicy",
+            "personalPracticePolicy"
+          ],
+          "canProduceFrenchOutput": false
+        },
+        {
+          "id": "quiz_distractors:agent_signoff_packet",
+          "title": "Collect agent signoffs before any output",
+          "requiredInputs": [
+            "all research-only fields",
+            "unresolvedQuestions"
+          ],
+          "requiredOutputs": [
+            "agentSignoffs",
+            "batch may remain blocked decision"
+          ],
+          "canProduceFrenchOutput": false
+        }
+      ],
+      "requiredSignoffs": [
+        "translation_director",
+        "french_grammar_researcher",
+        "ru_source_locale_reviewer",
+        "uk_source_locale_reviewer",
+        "quiz_and_practice_reviewer",
+        "runtime_shape_auditor"
+      ],
+      "mustBlockIf": [
+        "less than two trusted sources support the decision",
+        "RU and UK prompt comparison is missing",
+        "source graph refs are missing",
+        "quiz distractor policy is not single-correct-answer safe",
+        "My Practice state cannot be target-scoped",
+        "French translated output appears during research"
+      ],
+      "canProduceFrenchOutput": false
+    }
+  ],
+  "findings": [],
+  "notes": [
+    "This audit creates research work orders only; it does not create fr_research_pack.json.",
+    "Every work order is research-only and explicitly forbids French translated output.",
+    "The work order binds each French grammar cluster to RU/UK prompt comparison, source graph refs, trusted references, quiz policy and My Practice policy.",
+    "French translation remains blocked until readiness generation blockers are removed and a real accepted research pack exists."
+  ]
+}

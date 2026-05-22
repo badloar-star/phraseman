@@ -1,0 +1,853 @@
+{
+  "generatedAt": "2026-05-19T12:28:41.671Z",
+  "mode": "semantic-audit",
+  "strict": true,
+  "summary": {
+    "findings": 40,
+    "blockers": 0,
+    "warnings": 40,
+    "reviewGroups": 27,
+    "byCode": {
+      "protected-english-term-missing": 17,
+      "possible-distractor-index-drift": 23
+    },
+    "bySurface": {
+      "quiz": 40
+    }
+  },
+  "reviewGroups": [
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, drink coffee.",
+      "sample": "Correcto. Do you drink...? pregunta por un hábito.",
+      "count": 6,
+      "locales": [
+        "es",
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): money.",
+      "sample": "Have find não funciona. No present perfect seria have found.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): new shirt.",
+      "sample": "Have buy não funciona. No present perfect seria have bought.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 112,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): asked.",
+      "sample": "Where I live puede ser posible si sigue siendo actual, pero este item busca reported speech con lived.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 165,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): told.",
+      "sample": "En esta tarea usamos el cambio típico del reported speech: is pasa a was.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 167,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): asked.",
+      "sample": "Where I live puede aparecer si el lugar sigue siendo actual, pero aquí practicamos el backshift estándar: lived.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 175,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): am used.",
+      "sample": "Después de be used to usamos un sustantivo o -ing. Por eso necesitamos getting.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 11,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): sign.",
+      "sample": "Después de get him falta to. La estructura es get someone to do something.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 17,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): vital.",
+      "sample": "Correcto. En subjuntivo mandativo usamos la forma base: she arrive.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 19,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): also.",
+      "sample": "Falta but y también falta inversión después de Not only.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 46,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): back out.",
+      "sample": "La expresión necesita of antes de aquello de lo que te retiras.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 59,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): imperative.",
+      "sample": "For him arrive mezcla estructuras; con for haría falta to arrive, pero aquí el patrón es that he arrive.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 80,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): rather.",
+      "sample": "Esta opción puede aparecer en inglés americano, pero aquí buscamos el patrón con pasado: didn't disclose.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 84,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): essential.",
+      "sample": "Correcto. En el mandative subjunctive usamos he arrive, sin s.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 84,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): essential.",
+      "sample": "For him arriving no es la estructura correcta para esta idea.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 92,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): back.",
+      "sample": "Esta opción traduce la idea demasiado literal y no usa el phrasal verb correcto.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): found money.",
+      "sample": "Correcto. Found es el past simple de find.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): money.",
+      "sample": "Have find no funciona. En present perfect sería have found.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): bought a new shirt.",
+      "sample": "Correcto. Bought es el past simple de buy.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): new shirt.",
+      "sample": "Have buy no funciona. En present perfect sería have bought.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 289,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): speaking on the phone.",
+      "sample": "Correcto. He is speaking usa is + speaking para una acción en curso.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 290,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): reads books every day.",
+      "sample": "Correcto. Con she en present simple usamos reads.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 115,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): wasn't.",
+      "sample": "En inglés estándar evitamos doble negación: wasn\\'t nobody.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 157,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): none him since childhood.",
+      "sample": "None significa ninguno o nada. Aquí necesitas known, participio de know.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 172,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): hotel which we stayed.",
+      "sample": "Which solo no completa la idea. Tendrías que decir which we stayed in, o usar where.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 43,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): scrap.",
+      "sample": "Correcto. To cut a long story short significa en resumen o para abreviar.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 48,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): offend.",
+      "sample": "Esta opción deja el resultado en presente o futuro, pero la ofensa ya ocurrió en el pasado.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): found money.",
+      "sample": "Correcto. Found es el past simple de find."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "es",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): money.",
+      "sample": "Have find no funciona. En present perfect sería have found."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): money.",
+      "sample": "Have find não funciona. No present perfect seria have found."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): money.",
+      "sample": "Have find không đúng. Trong present perfect sẽ là have found."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): money.",
+      "sample": "Have find tidak berfungsi. Dalam present perfect bentuknya have found."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): money.",
+      "sample": "Have find çalışmaz. Present perfect olsaydı have found olurdu."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 282,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): money.",
+      "sample": "Have find nie działa. W present perfect byłoby have found."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, drink coffee.",
+      "sample": "Correcto. Do you drink...? pregunta por un hábito."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "pt-BR",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, drink coffee.",
+      "sample": "Correto. Do you drink...? pergunta por um hábito."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "vi",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, drink coffee.",
+      "sample": "Đúng. Do you drink...? hỏi về thói quen."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "id",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, drink coffee.",
+      "sample": "Benar. Do you drink...? bertanya tentang kebiasaan."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "tr",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, drink coffee.",
+      "sample": "Doğru. Do you drink...? bir alışkanlığı sorar."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 287,
+      "locale": "pl",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): coffee in the mornings, drink coffee.",
+      "sample": "Dobrze. Do you drink...? pyta o nawyk."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): bought a new shirt.",
+      "sample": "Correcto. Bought es el past simple de buy."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "es",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): new shirt.",
+      "sample": "Have buy no funciona. En present perfect sería have bought."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): new shirt.",
+      "sample": "Have buy não funciona. No present perfect seria have bought."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): new shirt.",
+      "sample": "Have buy không đúng. Trong present perfect sẽ là have bought."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): new shirt.",
+      "sample": "Have buy tidak berfungsi. Dalam present perfect bentuknya have bought."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): new shirt.",
+      "sample": "Have buy çalışmaz. Present perfect olsaydı have bought olurdu."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 288,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): new shirt.",
+      "sample": "Have buy nie działa. W present perfect byłoby have bought."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 289,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): speaking on the phone.",
+      "sample": "Correcto. He is speaking usa is + speaking para una acción en curso."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "easy",
+      "ordinal": 290,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): reads books every day.",
+      "sample": "Correcto. Con she en present simple usamos reads."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 112,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): asked.",
+      "sample": "Where I live puede ser posible si sigue siendo actual, pero este item busca reported speech con lived."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 115,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): wasn't.",
+      "sample": "En inglés estándar evitamos doble negación: wasn\\'t nobody."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 157,
+      "locale": "es",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): none him since childhood.",
+      "sample": "None significa ninguno o nada. Aquí necesitas known, participio de know."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 165,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): told.",
+      "sample": "En esta tarea usamos el cambio típico del reported speech: is pasa a was."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 167,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): asked.",
+      "sample": "Where I live puede aparecer si el lugar sigue siendo actual, pero aquí practicamos el backshift estándar: lived."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 172,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): hotel which we stayed.",
+      "sample": "Which solo no completa la idea. Tendrías que decir which we stayed in, o usar where."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 175,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): am used.",
+      "sample": "Después de be used to usamos un sustantivo o -ing. Por eso necesitamos getting."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 11,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): sign.",
+      "sample": "Después de get him falta to. La estructura es get someone to do something."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 17,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): vital.",
+      "sample": "Correcto. En subjuntivo mandativo usamos la forma base: she arrive."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 19,
+      "locale": "es",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): also.",
+      "sample": "Falta but y también falta inversión después de Not only."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 43,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): scrap.",
+      "sample": "Correcto. To cut a long story short significa en resumen o para abreviar."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 46,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): back out.",
+      "sample": "La expresión necesita of antes de aquello de lo que te retiras."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 48,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): offend.",
+      "sample": "Esta opción deja el resultado en presente o futuro, pero la ofensa ya ocurrió en el pasado."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 59,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): imperative.",
+      "sample": "For him arrive mezcla estructuras; con for haría falta to arrive, pero aquí el patrón es that he arrive."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 80,
+      "locale": "es",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): rather.",
+      "sample": "Esta opción puede aparecer en inglés americano, pero aquí buscamos el patrón con pasado: didn't disclose."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 84,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): essential.",
+      "sample": "Correcto. En el mandative subjunctive usamos he arrive, sin s."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 84,
+      "locale": "es",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): essential.",
+      "sample": "For him arriving no es la estructura correcta para esta idea."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 92,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): back.",
+      "sample": "Esta opción traduce la idea demasiado literal y no usa el phrasal verb correcto."
+    }
+  ]
+}

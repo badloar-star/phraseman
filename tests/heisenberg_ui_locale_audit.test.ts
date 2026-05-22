@@ -1,3 +1,6 @@
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
 import {
   analyzeUiBundleSource,
   analyzeUiLocaleSource,
@@ -41,6 +44,28 @@ describe('heisenberg UI locale audit', () => {
           tr: 'Günün ifadesi',
           pl: 'Fraza dnia',
         });
+      `,
+    );
+
+    expect(result.findings).toEqual([]);
+  });
+
+  it('counts planned sourceLocales maps as locale coverage for structured copy objects', () => {
+    const result = analyzeUiLocaleSource(
+      'app/community_pack_create.tsx',
+      `
+        const row = {
+          ru: 'Привет',
+          uk: 'Привіт',
+          es: 'Hola',
+          sourceLocales: {
+            'pt-BR': 'Olá',
+            vi: 'Xin chào',
+            id: 'Halo',
+            tr: 'Merhaba',
+            pl: 'Cześć',
+          },
+        };
       `,
     );
 
@@ -116,6 +141,18 @@ describe('heisenberg UI locale audit', () => {
     });
   });
 
+  it('keeps lesson hint titles explicit for every planned interface locale', () => {
+    const source = readFileSync(join(__dirname, '../app/hint.tsx'), 'utf8');
+    const hintBody = source.slice(source.indexOf('const HINTS:'));
+    const lessonCount = (hintBody.match(/titleRU:/g) || []).length;
+
+    expect(lessonCount).toBeGreaterThanOrEqual(32);
+    for (const field of ['titlePtBr', 'titleVi', 'titleId', 'titleTr', 'titlePl']) {
+      expect((hintBody.match(new RegExp(`${field}:`, 'g')) || []).length).toBe(lessonCount);
+    }
+    expect(hintBody).not.toContain('HINT_TITLE_PLANNED');
+  });
+
   it('detects local triLang helper calls that only pass ru, uk, es', () => {
     const result = analyzeUiLocaleSource(
       'app/premium_modal.tsx',
@@ -148,6 +185,21 @@ describe('heisenberg UI locale audit', () => {
       code: 'locale-object-missing-all-planned-locales',
       missing: PLANNED_UI_LOCALES,
     });
+  });
+
+  it('does not flag TriText helper seed objects as learner-facing locale copy', () => {
+    const result = analyzeUiLocaleSource(
+      'app/diagnosis_training_sample.ts',
+      `
+        import type { TriText } from './diagnosis_training_types';
+        const tri = (ru: string, uk: string, es: string): TriText => {
+          const copy: TriText = { ru, uk, es };
+          return copy;
+        };
+      `,
+    );
+
+    expect(result.findings.some((finding) => finding.code === 'locale-object-missing-all-planned-locales')).toBe(false);
   });
 
   it('does not flag preposition explanation rule objects covered by planned runtime fallback', () => {

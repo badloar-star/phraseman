@@ -9,8 +9,8 @@ describe('admin app messages poll contract', () => {
     expect(html).toContain('id="am-poll-option-count"');
     expect(html).toContain('APP_MESSAGE_POLL_MIN_OPTIONS = 2');
     expect(html).toContain('APP_MESSAGE_POLL_MAX_OPTIONS = 6');
-    expect(html).toMatch(/<option value="2">2 варианта<\/option>/);
-    expect(html).toMatch(/<option value="6">6 вариантов<\/option>/);
+    expect(html).toMatch(/<option value="2"[^>]*>2 варианта<\/option>/);
+    expect(html).toMatch(/<option value="6"[^>]*>6 вариантов<\/option>/);
   });
 
   it('renders six reusable option rows but only saves the selected count', () => {

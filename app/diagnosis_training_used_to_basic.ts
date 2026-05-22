@@ -3,7 +3,28 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const USED_TO_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre used to ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về used to này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan used to ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu used to açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie used to nadal wymaga przeglądu po polsku.',
+};
+
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? USED_TO_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'used to + base verb',
@@ -29,30 +50,79 @@ const SMART_CONTRAST = [
 const MODEL = tri(
   'Used to показывает прошлую привычку или состояние, которое сейчас уже не так: I used to smoke = раньше курил, сейчас нет. После used to ставим обычную форму действия: used to smoke, used to live, used to work. В отрицании и вопросе прошлое уже держит did, поэтому форма становится use to: I did not use to smoke. Did you use to smoke?',
   'Used to показує минулу звичку або стан, який зараз уже не такий: I used to smoke = раніше курив, зараз ні. Після used to ставимо звичайну форму дії: used to smoke, used to live, used to work. У запереченні й питанні минуле вже тримає did, тому форма стає use to: I did not use to smoke. Did you use to smoke?',
-  'Used to shows an old habit or state that is different now. After used to, use the simple action form. After did or did not, use use to.',
+  'Used to muestra una costumbre o estado del pasado que ahora ya no es asi: I used to smoke = antes fumaba, ahora no. Despues de used to usa el verbo simple. Despues de did o did not, usa use to.',
+  {
+    'pt-BR': 'Used to mostra um hábito ou estado do passado que agora já não é assim: I used to smoke = antes eu fumava, agora não. Depois de used to, use a forma simples do verbo: used to smoke, used to live, used to work. Na negativa e na pergunta, did já carrega o passado, então a forma vira use to: I did not use to smoke. Did you use to smoke?',
+    vi: 'Used to chỉ một thói quen hoặc trạng thái trong quá khứ mà bây giờ không còn như vậy: I used to smoke = trước đây tôi hút thuốc, bây giờ thì không. Sau used to, dùng dạng động từ đơn giản: used to smoke, used to live, used to work. Trong phủ định và câu hỏi, did đã mang nghĩa quá khứ, nên dạng trở thành use to: I did not use to smoke. Did you use to smoke?',
+    id: 'Used to menunjukkan kebiasaan atau keadaan masa lalu yang sekarang sudah tidak begitu: I used to smoke = dulu saya merokok, sekarang tidak. Setelah used to, gunakan bentuk kata kerja dasar: used to smoke, used to live, used to work. Dalam negatif dan pertanyaan, did sudah membawa masa lalu, jadi bentuknya menjadi use to: I did not use to smoke. Did you use to smoke?',
+    tr: 'Used to, artık öyle olmayan geçmiş bir alışkanlık ya da durumu gösterir: I used to smoke = eskiden sigara içerdim, şimdi içmiyorum. Used to sonrasında fiilin yalın hali gelir: used to smoke, used to live, used to work. Olumsuzda ve soruda geçmiş anlamı did taşıdığı için biçim use to olur: I did not use to smoke. Did you use to smoke?',
+    pl: 'Used to pokazuje dawny nawyk albo stan, który teraz już nie jest aktualny: I used to smoke = kiedyś paliłem, teraz nie. Po used to używamy podstawowej formy czasownika: used to smoke, used to live, used to work. W przeczeniu i pytaniu przeszłość niesie już did, więc forma zmienia się na use to: I did not use to smoke. Did you use to smoke?',
+  },
 );
+
+const USED_TO_SKILL_ES: Record<string, string> = {
+  used_to_smoke: 'Costumbre antigua y ahora diferente: used to smoke.',
+  used_to_play: 'Despues de used to usa play, no playing ni played.',
+  used_to_work: 'Antes trabajaba, ahora no: used to work.',
+  used_to_live: 'Estado pasado que cambio: used to live.',
+  used_to_be: 'Para estado pasado usa used to be.',
+  past_state_no_longer_true: 'Era asi antes, ahora no: used to be.',
+  didnt_use_to: "Despues de didn't, usa use to.",
+  did_you_use_to: 'Despues de Did you, usa use to.',
+  negative_question_pair: "Con did/didn't siempre usa use to.",
+  be_used_to_working: 'Am used to working significa estar acostumbrado.',
+  used_to_vs_be_used_to: 'Used to work = antes trabajaba; am used to working = estoy acostumbrado.',
+  current_habit_present_simple: 'Now pide habito actual: usa present simple.',
+  mixed_statement_negative_question: "Afirmacion: used to; despues de did/didn't: use to.",
+  mixed_old_vs_now: 'Pasado diferente = used to live; ahora = live now.',
+  mixed_sentence_correction: "Negativo antiguo: didn't use to like; habito actual: I drink.",
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = USED_TO_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? USED_TO_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function usedToEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = USED_TO_SKILL_ES[input.targetSkill] ?? 'Decide si significa costumbre antigua, forma con did o costumbre actual.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retry(correct: string): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала спроси себя: это было раньше и сейчас уже не так, это привычка сейчас или это “я привык”?',
       'Спочатку спитай себе: це було раніше й зараз уже не так, це звичка зараз чи це “я звик”?',
-      'First decide the meaning: old and no longer true, current, or accustomed.',
+      'Primero decide el sentido: antiguo y ya no cierto, actual, o acostumbrado.',
     ),
     tri(
       'Если смысл “раньше, но теперь иначе”, чаще нужен used to: I used to smoke.',
       'Якщо зміст “раніше, але тепер інакше”, частіше потрібен used to: I used to smoke.',
-      'If the meaning is old and different now, use used to.',
+      'Si el sentido es antes, pero ahora diferente, usa used to.',
     ),
     tri(
       "После did или didn't не ставь used. Там нужно use to: Did you use to? I didn't use to.",
       "Після did або didn't не став used. Там потрібно use to: Did you use to? I didn't use to.",
-      "After did or didn't, use use to.",
+      "Despues de did o didn't, usa use to.",
     ),
     tri(
       'Нужный вариант держит смысл “раньше было, сейчас иначе” и не добавляет лишнее used после did.',
       'Потрібний варіант тримає зміст “раніше було, зараз інакше” і не додає зайве used після did.',
-      `The answer here is: ${correct}.`,
+      `La respuesta aqui es: ${correct}.`,
     ),
   ];
 }
@@ -61,7 +131,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Проверь смысл: прошлое уже не актуально, привычка сейчас или “я привык”. Здесь нужно: ${correct}.`,
     `Майже. Перевір зміст: минуле вже не актуальне, звичка зараз чи “я звик”. Тут потрібно: ${correct}.`,
-    `Almost. Check the meaning and use: ${correct}.`,
+    `Casi. Revisa el sentido y usa: ${correct}.`,
   );
 }
 
@@ -78,35 +148,36 @@ function usedToStep(input: {
   wrong: Record<string, TriText>;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = usedToEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
-    teachingText: MODEL,
-    explanationBlock: MODEL,
+    translation: withEs(input.translation, esFeedback),
+    teachingText: withEs(MODEL, esFeedback),
+    explanationBlock: withEs(MODEL, esFeedback),
     microTask: tri(
       'Выбери форму по смыслу: раньше и сейчас уже нет, вопрос/отрицание с did или привычка сейчас.',
       'Обери форму за змістом: раніше й зараз уже ні, питання/заперечення з did або звичка зараз.',
-      'Choose by meaning: old and not true now, did-form, or current habit.',
+      'Elige por sentido: antes y ya no, forma con did, o costumbre actual.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(input.correctAnswer),
+    retryFeedback: retry(input.correctAnswer).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       "Коротко: used to = раньше было, сейчас уже нет. После didn't и Did you ставим use to. Если речь о привычке сейчас, нужен обычный present: I work now. Если “я привык”, будет be used to + слово или действие с -ing.",
       "Коротко: used to = раніше було, зараз уже ні. Після didn't і Did you ставимо use to. Якщо йдеться про звичку зараз, потрібен звичайний present: I work now. Якщо “я звик”, буде be used to + слово або дія з -ing.",
-      "Short version: used to means old and different now. After did, use use to. Current habits use present. Accustomed uses be used to + word or -ing.",
+      "Version corta: used to = antes era asi, ahora no. Despues de didn't y Did you usa use to. Para costumbre actual usa present. Para estar acostumbrado usa be used to + palabra o -ing.",
     ),
     focusWords: input.focusWords,
   };
@@ -118,29 +189,63 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 44,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Used to: раньше было, сейчас уже нет',
     'Used to: раніше було, зараз уже ні',
-    'Used to: old habit, not true now',
+    'Used to: antes era asi, ahora no',
+    {
+      'pt-BR': 'Used to: antes era assim, agora não',
+      vi: 'Used to: trước đây như vậy, bây giờ thì không',
+      id: 'Used to: dulu begitu, sekarang tidak lagi',
+      tr: 'Used to: eskiden öyleydi, artık değil',
+      pl: 'Used to: kiedyś tak było, teraz już nie',
+    },
   ),
-  shortTitle: tri('Used to', 'Used to', 'Used to'),
+  shortTitle: tri('Used to', 'Used to', 'Used to', {
+    'pt-BR': 'Used to',
+    vi: 'Used to',
+    id: 'Used to',
+    tr: 'Used to',
+    pl: 'Used to',
+  }),
   shortDiagnosis: tri(
     'Ты смешиваешь used to, did use to, be used to и привычки, которые происходят сейчас.',
     'Ти змішуєш used to, did use to, be used to і звички, які відбуваються зараз.',
-    'You mix used to, did use to, be used to, and current habits.',
+    'Mezclas used to, did use to, be used to y costumbres actuales.',
+    {
+      'pt-BR': 'Você mistura used to, did use to, be used to e hábitos que acontecem agora.',
+      vi: 'Bạn nhầm lẫn used to, did use to, be used to và các thói quen đang diễn ra hiện tại.',
+      id: 'Kamu mencampur used to, did use to, be used to, dan kebiasaan yang terjadi sekarang.',
+      tr: 'Used to, did use to, be used to ve şu anda olan alışkanlıkları karıştırıyorsun.',
+      pl: 'Mylisz used to, did use to, be used to oraz nawyki, które dzieją się teraz.',
+    },
   ),
   diagnosisText: tri(
     'Ошибка появляется, когда ты переводишь “раньше” одним словом before или ставишь used to везде подряд. Английский различает три смысла: раньше было и теперь иначе, вопрос/отрицание с did, и “я привык”.',
     'Помилка зʼявляється, коли ти перекладаєш “раніше” одним словом before або ставиш used to всюди підряд. Англійська розрізняє три змісти: раніше було й тепер інакше, питання/заперечення з did, і “я звик”.',
-    'The mistake appears when every old habit becomes before or used to everywhere. English separates old-and-different-now, did-forms, and accustomed meaning.',
+    'El error aparece cuando cada antes se convierte en before o used to en todas partes. El ingles separa tres sentidos: antes y ahora diferente, formas con did, y estar acostumbrado.',
+    {
+      'pt-BR': 'O erro aparece quando você traduz "antes" apenas como before ou coloca used to em todos os lugares. O inglês separa três sentidos: antes era assim e agora mudou, pergunta/negativa com did, e "estou acostumado".',
+      vi: 'Lỗi xuất hiện khi bạn dịch "trước đây" chỉ bằng before hoặc đặt used to ở mọi chỗ. Tiếng Anh tách ba ý nghĩa: trước đây như vậy và bây giờ khác, câu hỏi/phủ định với did, và "tôi đã quen".',
+      id: 'Kesalahan muncul ketika kamu menerjemahkan "dulu" hanya dengan before atau memakai used to di mana-mana. Bahasa Inggris memisahkan tiga makna: dulu begitu dan sekarang berbeda, pertanyaan/negatif dengan did, dan "saya terbiasa".',
+      tr: 'Hata, "eskiden" anlamını sadece before ile çevirdiğinde ya da her yere used to koyduğunda ortaya çıkar. İngilizce üç anlamı ayırır: eskiden öyleydi ve şimdi farklı, did ile soru/olumsuz, ve "alışkınım".',
+      pl: 'Błąd pojawia się, gdy tłumaczysz "kiedyś" jednym słowem before albo wstawiasz used to wszędzie. Angielski rozróżnia trzy sensy: kiedyś tak było i teraz jest inaczej, pytanie/przeczenie z did oraz "jestem przyzwyczajony".',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     "Утверждение: I used to work at night. Отрицание: I didn't use to work at night. Вопрос: Did you use to work at night? Привычка сейчас: I work at night now. “Я привык”: I am used to working at night.",
     "Твердження: I used to work at night. Заперечення: I didn't use to work at night. Питання: Did you use to work at night? Звичка зараз: I work at night now. “Я звик”: I am used to working at night.",
-    "Statement: I used to work at night. Negative: I didn't use to work at night. Question: Did you use to work at night? Current: I work now. Accustomed: I am used to working.",
+    "Afirmacion: I used to work at night. Negativa: I didn't use to work at night. Pregunta: Did you use to work at night? Actual: I work now. Acostumbrado: I am used to working.",
+    {
+      'pt-BR': "Afirmação: I used to work at night. Negativa: I didn't use to work at night. Pergunta: Did you use to work at night? Hábito atual: I work at night now. “Estou acostumado”: I am used to working at night.",
+      vi: "Khẳng định: I used to work at night. Phủ định: I didn't use to work at night. Câu hỏi: Did you use to work at night? Thói quen hiện tại: I work at night now. “Tôi đã quen”: I am used to working at night.",
+      id: "Pernyataan: I used to work at night. Negatif: I didn't use to work at night. Pertanyaan: Did you use to work at night? Kebiasaan saat ini: I work at night now. “Saya terbiasa”: I am used to working at night.",
+      tr: "Olumlu: I used to work at night. Olumsuz: I didn't use to work at night. Soru: Did you use to work at night? Şimdiki alışkanlık: I work at night now. “Alışkınım”: I am used to working at night.",
+      pl: "Twierdzenie: I used to work at night. Przeczenie: I didn't use to work at night. Pytanie: Did you use to work at night? Obecny nawyk: I work at night now. „Jestem przyzwyczajony”: I am used to working at night.",
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -168,16 +273,76 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
       'Слово before саме по собі не замінює used to, коли треба показати “раніше, але тепер інакше”.',
     ],
     es: [
-      'Used to means old habit and different now.',
-      'Used to can describe an old state.',
-      'After used to, use the simple action form.',
-      'Used to adds “before, but different now”.',
-      "After didn't, use use to.",
-      'After Did you, use use to.',
-      'Do not use working after used to for old habit.',
-      'Do not mix used to work with am used to working.',
-      'Current habits use present.',
-      'Before alone does not replace used to.',
+      'Used to significa costumbre antigua y ahora diferente.',
+      'Used to tambien puede describir un estado antiguo.',
+      'Despues de used to usa la forma simple del verbo.',
+      'Used to anade el sentido antes, pero ahora diferente.',
+      "Despues de didn't, usa use to.",
+      'Despues de Did you, usa use to.',
+      'No uses working despues de used to para una costumbre antigua.',
+      'No mezcles used to work con am used to working.',
+      'Las costumbres actuales usan present.',
+      'Before solo no sustituye used to.',
+    ],
+    'pt-BR': [
+      'Used to significa hábito antigo e diferente agora.',
+      'Used to também pode descrever um estado antigo.',
+      'Depois de used to, use a forma simples da ação.',
+      'Used to acrescenta o sentido de “antes, mas agora diferente”.',
+      "Depois de didn't, use use to.",
+      'Depois de Did you, use use to.',
+      'Não use working depois de used to para hábito antigo.',
+      'Não misture used to work com am used to working.',
+      'Hábitos atuais usam present.',
+      'Before sozinho não substitui used to.',
+    ],
+    vi: [
+      'Used to nghĩa là thói quen cũ và bây giờ đã khác.',
+      'Used to cũng có thể mô tả một trạng thái cũ.',
+      'Sau used to, dùng dạng động từ đơn giản.',
+      'Used to thêm ý “trước đây, nhưng bây giờ khác”.',
+      "Sau didn't, dùng use to.",
+      'Sau Did you, dùng use to.',
+      'Đừng dùng working sau used to khi nói về thói quen cũ.',
+      'Đừng nhầm used to work với am used to working.',
+      'Thói quen hiện tại dùng present.',
+      'Before một mình không thay thế used to.',
+    ],
+    id: [
+      'Used to berarti kebiasaan lama dan sekarang sudah berbeda.',
+      'Used to juga bisa menggambarkan keadaan lama.',
+      'Setelah used to, gunakan bentuk aksi sederhana.',
+      'Used to menambahkan makna “dulu, tetapi sekarang berbeda”.',
+      "Setelah didn't, gunakan use to.",
+      'Setelah Did you, gunakan use to.',
+      'Jangan gunakan working setelah used to untuk kebiasaan lama.',
+      'Jangan campur used to work dengan am used to working.',
+      'Kebiasaan saat ini memakai present.',
+      'Before saja tidak menggantikan used to.',
+    ],
+    tr: [
+      'Used to eski alışkanlık ve şimdi farklı anlamına gelir.',
+      'Used to eski bir durumu da anlatabilir.',
+      'Used to sonrasında fiilin yalın biçimini kullan.',
+      'Used to “eskiden, ama şimdi farklı” anlamını ekler.',
+      "Didn't sonrasında use to kullan.",
+      'Did you sonrasında use to kullan.',
+      'Eski alışkanlık için used to sonrasında working kullanma.',
+      'Used to work ile am used to working yapılarını karıştırma.',
+      'Şimdiki alışkanlıklar present ile anlatılır.',
+      'Before tek başına used to yerine geçmez.',
+    ],
+    pl: [
+      'Used to oznacza dawny nawyk, który teraz jest już inny.',
+      'Used to może też opisywać dawny stan.',
+      'Po used to używamy prostej formy czynności.',
+      'Used to dodaje sens “kiedyś, ale teraz inaczej”.',
+      "Po didn't używamy use to.",
+      'Po Did you używamy use to.',
+      'Nie używaj working po used to, gdy chodzi o dawny nawyk.',
+      'Nie myl used to work z am used to working.',
+      'Obecne nawyki używają present.',
+      'Samo before nie zastępuje used to.',
     ],
   },
   examples: [
@@ -185,50 +350,85 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
       en: 'I used to smoke.',
       ru: 'Раньше я курил.',
       uk: 'Раніше я курив.',
-      es: 'I used to smoke.',
-      why: tri('Раньше курил, сейчас уже нет.', 'Раніше курив, зараз уже ні.', 'Old habit, not true now.'),
+      es: 'Antes fumaba.',
+      'pt-BR': 'Eu costumava fumar.',
+      vi: 'Trước đây tôi từng hút thuốc.',
+      id: 'Dulu saya biasa merokok.',
+      tr: 'Eskiden sigara içerdim.',
+      pl: 'Kiedyś paliłem.',
+      why: tri('Раньше курил, сейчас уже нет.', 'Раніше курив, зараз уже ні.', 'Costumbre antigua, ahora ya no.'),
     },
     {
       en: 'She used to live in Dublin.',
       ru: 'Раньше она жила в Дублине.',
       uk: 'Раніше вона жила в Дубліні.',
-      es: 'She used to live in Dublin.',
-      why: tri('Это прошлое состояние, которое изменилось.', 'Це минулий стан, який змінився.', 'Old state that changed.'),
+      es: 'Antes ella vivia en Dublin.',
+      'pt-BR': 'Ela costumava morar em Dublin.',
+      vi: 'Trước đây cô ấy từng sống ở Dublin.',
+      id: 'Dulu dia tinggal di Dublin.',
+      tr: 'Eskiden Dublin’de yaşardı.',
+      pl: 'Kiedyś mieszkała w Dublinie.',
+      why: tri('Это прошлое состояние, которое изменилось.', 'Це минулий стан, який змінився.', 'Estado antiguo que cambio.'),
     },
     {
       en: 'We used to play football after school.',
       ru: 'Раньше мы играли в футбол после школы.',
       uk: 'Раніше ми грали у футбол після школи.',
-      es: 'We used to play football after school.',
-      why: tri('Повторялась привычка в прошлом.', 'Повторювалася звичка в минулому.', 'Repeated old habit.'),
+      es: 'Antes jugabamos al futbol despues de la escuela.',
+      'pt-BR': 'Nós costumávamos jogar futebol depois da escola.',
+      vi: 'Trước đây chúng tôi thường chơi bóng đá sau giờ học.',
+      id: 'Dulu kami biasa bermain sepak bola setelah sekolah.',
+      tr: 'Eskiden okuldan sonra futbol oynardık.',
+      pl: 'Kiedyś graliśmy w piłkę po szkole.',
+      why: tri('Повторялась привычка в прошлом.', 'Повторювалася звичка в минулому.', 'Costumbre antigua repetida.'),
     },
     {
       en: "He didn't use to drink coffee.",
       ru: 'Раньше он не пил кофе.',
       uk: 'Раніше він не пив каву.',
-      es: "He didn't use to drink coffee.",
-      why: tri("После didn't форма становится use to.", "Після didn't форма стає use to.", "After didn't, use use to."),
+      es: 'Antes el no tomaba cafe.',
+      'pt-BR': 'Ele não costumava beber café.',
+      vi: 'Trước đây anh ấy không thường uống cà phê.',
+      id: 'Dulu dia tidak biasa minum kopi.',
+      tr: 'Eskiden kahve içmezdi.',
+      pl: 'Kiedyś nie pił kawy.',
+      why: tri("После didn't форма становится use to.", "Після didn't форма стає use to.", "Despues de didn't, usa use to."),
     },
     {
       en: 'Did you use to work at night?',
       ru: 'Ты раньше работал по ночам?',
       uk: 'Ти раніше працював ночами?',
-      es: 'Did you use to work at night?',
-      why: tri('После Did you тоже используем use to.', 'Після Did you теж використовуємо use to.', 'After Did you, use use to.'),
+      es: 'Antes trabajabas de noche?',
+      'pt-BR': 'Você costumava trabalhar à noite?',
+      vi: 'Trước đây bạn có từng làm việc ban đêm không?',
+      id: 'Dulu apakah kamu biasa bekerja pada malam hari?',
+      tr: 'Eskiden geceleri çalışır mıydın?',
+      pl: 'Czy kiedyś pracowałeś w nocy?',
+      why: tri('После Did you тоже используем use to.', 'Після Did you теж використовуємо use to.', 'Despues de Did you, usa use to.'),
     },
     {
       en: 'I am used to working at night.',
       ru: 'Я привык работать по ночам.',
       uk: 'Я звик працювати ночами.',
-      es: 'I am used to working at night.',
-      why: tri('Это не “раньше работал”, а “мне привычно”.', 'Це не “раніше працював”, а “мені звично”.', 'This means accustomed, not an old habit.'),
+      es: 'Estoy acostumbrado a trabajar de noche.',
+      'pt-BR': 'Estou acostumado a trabalhar à noite.',
+      vi: 'Tôi quen làm việc ban đêm.',
+      id: 'Saya terbiasa bekerja pada malam hari.',
+      tr: 'Geceleri çalışmaya alışkınım.',
+      pl: 'Jestem przyzwyczajony do pracy w nocy.',
+      why: tri('Это не “раньше работал”, а “мне привычно”.', 'Це не “раніше працював”, а “мені звично”.', 'Esto significa estar acostumbrado, no una costumbre antigua.'),
     },
     {
       en: 'I work at night now.',
       ru: 'Сейчас я работаю по ночам.',
       uk: 'Зараз я працюю ночами.',
-      es: 'I work at night now.',
-      why: tri('Now показывает привычку сейчас, не used to.', 'Now показує звичку зараз, не used to.', 'Now points to a current habit.'),
+      es: 'Ahora trabajo de noche.',
+      'pt-BR': 'Agora eu trabalho à noite.',
+      vi: 'Bây giờ tôi làm việc ban đêm.',
+      id: 'Sekarang saya bekerja pada malam hari.',
+      tr: 'Şimdi geceleri çalışıyorum.',
+      pl: 'Teraz pracuję w nocy.',
+      why: tri('Now показывает привычку сейчас, не used to.', 'Now показує звичку зараз, не used to.', 'Now apunta a una costumbre actual.'),
     },
   ],
   introBlocks: [
@@ -238,7 +438,7 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Если в русском есть “раньше”, хочется поставить before или просто Past Simple. Но часто теряется важный смысл: сейчас уже по-другому.',
         'Якщо українською є “раніше”, хочеться поставити before або просто Past Simple. Але часто губиться важливий зміст: зараз уже інакше.',
-        'The word before often loses the key idea: now it is different.',
+        'La palabra before a menudo pierde la idea clave: ahora es diferente.',
       ),
     },
     {
@@ -247,7 +447,7 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Used to = раньше было обычно или было правдой, а сейчас уже нет: I used to work there.',
         'Used to = раніше було зазвичай або було правдою, а зараз уже ні: I used to work there.',
-        'Used to means it was usually true before, but is not true now.',
+        'Used to significa que antes era normal o verdadero, pero ahora ya no.',
       ),
     },
     {
@@ -256,7 +456,7 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         "Три частые ловушки: после used to добавляют -ing, после didn't оставляют used, а в вопросе снова ставят used. Нужно помнить: после did идет use to.",
         "Три часті пастки: після used to додають -ing, після didn't лишають used, а в питанні знову ставлять used. Треба памʼятати: після did іде use to.",
-        "Three common traps: I used to working, I didn't used to, Did you used to.",
+        "Tres trampas comunes: I used to working, I didn't used to, Did you used to.",
       ),
     },
   ],
@@ -835,22 +1035,22 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
     depth1: tri(
       'Обычное объяснение: покажи, что это старая привычка или состояние, и сейчас уже иначе.',
       'Звичайне пояснення: покажи, що це стара звичка або стан, і зараз уже інакше.',
-      'Normal explanation: show old habit/state and different now.',
+      'Explicacion normal: muestra costumbre/estado antiguo y ahora diferente.',
     ),
     depth2: tri(
       'Проще: спроси, это было раньше или происходит сейчас.',
       'Простіше: спитай, це було раніше чи відбувається зараз.',
-      'Simpler: ask whether it happened before or happens now.',
+      'Mas simple: pregunta si pasaba antes o pasa ahora.',
     ),
     depth3: tri(
       'Еще проще: сравни I used to smoke и I smoke now.',
       'Ще простіше: порівняй I used to smoke і I smoke now.',
-      'Even simpler: compare I used to smoke and I smoke now.',
+      'Aun mas simple: compara I used to smoke con I smoke now.',
     ),
     depth4: tri(
       "Почти подсказка: выбери used to, didn't use to, Did you use to или обычный present.",
       "Майже підказка: обери used to, didn't use to, Did you use to або звичайний present.",
-      "Almost a hint: choose used to, didn't use to, Did you use to, or present.",
+      "Casi una pista: elige used to, didn't use to, Did you use to o present.",
     ),
   },
   failureRecovery: {
@@ -859,7 +1059,7 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
       card: tri(
         "Used to = раньше было, сейчас уже нет. Утверждение: used to work. Отрицание: didn't use to work. Вопрос: Did you use to work? “Я привык”: am used to working.",
         "Used to = раніше було, зараз уже ні. Твердження: used to work. Заперечення: didn't use to work. Питання: Did you use to work? “Я звик”: am used to working.",
-        "Used to = old and not true now. Statement: used to work. Negative: didn't use to work. Question: Did you use to work? Accustomed: am used to working.",
+        "Used to = antes era asi, ahora no. Afirmacion: used to work. Negativa: didn't use to work. Pregunta: Did you use to work? Acostumbrado: am used to working.",
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -867,7 +1067,7 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
       card: tri(
         'Подсказка: сначала выбери смысл: раньше и теперь иначе, сейчас, или “я привык”. Потом выбирай форму.',
         'Підказка: спочатку обери зміст: раніше й тепер інакше, зараз, або “я звик”. Потім обирай форму.',
-        'Hint: first choose the meaning, then choose the form.',
+        'Pista: primero elige el sentido, luego la forma.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -875,7 +1075,7 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
       card: tri(
         "Guided mode: сначала отдели used to work от am used to working. Потом проверь did/didn't.",
         "Guided mode: спочатку відділи used to work від am used to working. Потім перевір did/didn't.",
-        "Guided mode: separate used to work from am used to working, then check did/didn't.",
+        "Modo guiado: separa used to work de am used to working, luego comprueba did/didn't.",
       ),
     },
   },
@@ -888,7 +1088,7 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
         prompt: tri(
           'I used to smoke: это “курю сейчас” или “раньше курил”?',
           'I used to smoke: це “курю зараз” чи “раніше курив”?',
-          'I used to smoke: now or before?',
+          'I used to smoke: ahora o antes?',
         ),
         options: ['now', 'before'],
         correctIndex: 1,
@@ -899,7 +1099,7 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
         prompt: tri(
           'После used to здесь нужно work или working?',
           'Після used to тут потрібно work чи working?',
-          'After used to, work or working?',
+          'Despues de used to, work o working?',
         ),
         options: ['work', 'working'],
         correctIndex: 0,
@@ -910,7 +1110,7 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
         prompt: tri(
           "После didn't что звучит нормально?",
           "Після didn't що звучить нормально?",
-          "After didn't, which is correct?",
+          "Despues de didn't, cual es correcto?",
         ),
         options: ["didn't used to", "didn't use to"],
         correctIndex: 1,
@@ -921,7 +1121,7 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
         prompt: tri(
           'I am used to working: это “раньше работал” или “привык работать”?',
           'I am used to working: це “раніше працював” чи “звик працювати”?',
-          'I am used to working: old habit or accustomed?',
+          'I am used to working: costumbre antigua o acostumbrado?',
         ),
         options: ['old habit', 'accustomed'],
         correctIndex: 1,
@@ -972,7 +1172,7 @@ export const USED_TO_BASIC_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_started',
     answer: 'diagnosis_training_answer',
     mastery: 'diagnosis_training_mastered',
-    fallback: 'diagnosis_training_fallback',
+    recovery: 'diagnosis_training_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

@@ -1,0 +1,13 @@
+appId: app.phraseman
+clearState: false
+---
+- runFlow: ../_shared/open_dev_client_8083.yaml
+- runFlow: ../_dismiss_bug_hunt.yaml
+- runFlow: ../_precondition.yaml
+- waitForAnimationToEnd:
+    timeout: 3500
+- runFlow: ../_precondition.yaml
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 120000

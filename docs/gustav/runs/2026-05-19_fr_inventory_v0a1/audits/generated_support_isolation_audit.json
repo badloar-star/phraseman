@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "gustav-generated-support-isolation-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "status": "PASS",
+  "generatedAt": "2026-05-19T19:41:46.643Z",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_generated_support_isolation_audit.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "sourceGraphPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/source_graph.json",
+  "summary": {
+    "generatedSupportFiles": 5,
+    "referencedInSourceGraph": 0,
+    "listedAsSourceFiles": 0,
+    "isolatedSupportFiles": 5,
+    "blockers": 0,
+    "highRisks": 0,
+    "canExcludeFromFrenchSourceTruth": true
+  },
+  "decisions": [
+    {
+      "file": "app/lesson_intro_screens_es_l2.ts",
+      "purpose": "Generated ES L2 support file.",
+      "risk": "high_keep_out_of_fr_source_truth",
+      "sourceRefUses": [],
+      "listedAsSourceFile": false,
+      "isolatedFromSourceGraph": true,
+      "decision": "exclude_from_french_source_truth",
+      "severity": "info",
+      "notes": [
+        "Observed as app runtime evidence only; not used by extracted source graph nodes."
+      ]
+    },
+    {
+      "file": "app/quiz_data_es_l2.ts",
+      "purpose": "Generated ES L2 support file.",
+      "risk": "high_keep_out_of_fr_source_truth",
+      "sourceRefUses": [],
+      "listedAsSourceFile": false,
+      "isolatedFromSourceGraph": true,
+      "decision": "exclude_from_french_source_truth",
+      "severity": "info",
+      "notes": [
+        "Observed as app runtime evidence only; not used by extracted source graph nodes."
+      ]
+    },
+    {
+      "file": "app/lesson_prepositions_es_segment01.ts",
+      "purpose": "Generated ES L2 support file.",
+      "risk": "high_keep_out_of_fr_source_truth",
+      "sourceRefUses": [],
+      "listedAsSourceFile": false,
+      "isolatedFromSourceGraph": true,
+      "decision": "exclude_from_french_source_truth",
+      "severity": "info",
+      "notes": [
+        "Observed as app runtime evidence only; not used by extracted source graph nodes."
+      ]
+    },
+    {
+      "file": "app/lesson_prepositions_es_segment02.ts",
+      "purpose": "Generated ES L2 support file.",
+      "risk": "high_keep_out_of_fr_source_truth",
+      "sourceRefUses": [],
+      "listedAsSourceFile": false,
+      "isolatedFromSourceGraph": true,
+      "decision": "exclude_from_french_source_truth",
+      "severity": "info",
+      "notes": [
+        "Observed as app runtime evidence only; not used by extracted source graph nodes."
+      ]
+    },
+    {
+      "file": "app/lesson_prepositions_es_segment03.ts",
+      "purpose": "Generated ES L2 support file.",
+      "risk": "high_keep_out_of_fr_source_truth",
+      "sourceRefUses": [],
+      "listedAsSourceFile": false,
+      "isolatedFromSourceGraph": true,
+      "decision": "exclude_from_french_source_truth",
+      "severity": "info",
+      "notes": [
+        "Observed as app runtime evidence only; not used by extracted source graph nodes."
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "GSI-000",
+      "severity": "info",
+      "title": "Generated support files are isolated",
+      "detail": "5 generated support file(s) are observed only as runtime evidence and are not source graph inputs.",
+      "sourceRefs": [
+        {
+          "file": "app/lesson_intro_screens_es_l2.ts",
+          "line": 1,
+          "provenance": "runtime_generated"
+        },
+        {
+          "file": "app/quiz_data_es_l2.ts",
+          "line": 1,
+          "provenance": "runtime_generated"
+        },
+        {
+          "file": "app/lesson_prepositions_es_segment01.ts",
+          "line": 1,
+          "provenance": "runtime_generated"
+        },
+        {
+          "file": "app/lesson_prepositions_es_segment02.ts",
+          "line": 1,
+          "provenance": "runtime_generated"
+        },
+        {
+          "file": "app/lesson_prepositions_es_segment03.ts",
+          "line": 1,
+          "provenance": "runtime_generated"
+        }
+      ]
+    }
+  ],
+  "policy": {
+    "allowedUse": [
+      "Keep generated ES support files as observed runtime evidence for audits.",
+      "Use them only to prove what must not be copied into French target architecture."
+    ],
+    "forbiddenUse": [
+      "Do not derive French lesson order, intro screens, quizzes or preposition packs from generated ES support files.",
+      "Do not copy ES support text, tokenization or quiz distractors into French output."
+    ],
+    "requiredBeforeFrenchGeneration": [
+      "Use canonical English source graph nodes for French generation input.",
+      "Design French-specific support content through target-language research and generated-content audit later."
+    ]
+  },
+  "notes": [
+    "This audit closes the source-graph-specific SG-004 risk only when generated support files are not source graph inputs.",
+    "It does not approve French generation by itself."
+  ]
+}

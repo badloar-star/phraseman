@@ -10,15 +10,16 @@ import {
   View,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter, type Router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { ENABLE_DEV_TOOLS } from './config';
 import {
@@ -30,9 +31,13 @@ import {
   type PersonalInsight,
   type WordCategory,
 } from './phrase_analytics';
+import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
 import { getDiagnosisTraining } from './diagnosis_trainings';
 import { loadResolvedPersonalTrainings, type ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
+import { frenchPersonalPracticeGateCopy, personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
 import { choosePersonalTrainingCandidate } from './personal_training_taxonomy';
+import { lessonNameForStudyTarget } from './lesson_titles_for_study_target';
+import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_lang_dev';
 
 type IonName = ComponentProps<typeof Ionicons>['name'];
 
@@ -232,10 +237,12 @@ function CategoryRow({
   stat,
   router,
   resolvedPersonalTrainings,
+  personalTrainingEnabled,
 }: {
   stat: WordCategoryStat;
   router: Router;
   resolvedPersonalTrainings: ResolvedPersonalTrainingsState | null;
+  personalTrainingEnabled: boolean;
 }) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
@@ -254,7 +261,7 @@ function CategoryRow({
   const recoveryScore = stat.recoveryScore ?? 0;
   const isWeak = priorityScore >= 55 || (stat.pct >= 15 && recoveryScore < 25);
   const pctOpacity = priorityScore >= 70 ? 1 : priorityScore >= 45 || stat.pct >= 15 ? 0.75 : 0.45;
-  const diagnosisId = isWeak ? chooseDiagnosisForCategory(stat, resolvedPersonalTrainings) : null;
+  const diagnosisId = isWeak && personalTrainingEnabled ? chooseDiagnosisForCategory(stat, resolvedPersonalTrainings) : null;
   const openDiagnosis = () => {
     if (!diagnosisId) return;
     hapticTap();
@@ -321,10 +328,32 @@ function CategoryRow({
 
 // ── LessonRow ─────────────────────────────────────────────────────────────────
 
-function LessonRow({ stat }: { stat: LessonMistakeStat }) {
+const ANALYTICS_LESSON_TITLE_UNAVAILABLE: Record<PlannedInterfaceLang, string> = {
+  'pt-BR': 'Título da lição indisponível',
+  vi: 'Chưa có tiêu đề bài học',
+  id: 'Judul pelajaran belum tersedia',
+  tr: 'Ders başlığı kullanılamıyor',
+  pl: 'Tytuł lekcji jest niedostępny',
+};
+
+function isAnalyticsPlannedLang(lang: Lang): lang is PlannedInterfaceLang {
+  return lang === 'pt-BR' || lang === 'vi' || lang === 'id' || lang === 'tr' || lang === 'pl';
+}
+
+export function phraseAnalyticsLessonTitle(stat: LessonMistakeStat, lang: Lang, studyTarget: StudyTargetLang): string {
+  const localized = lessonNameForStudyTarget(lang, studyTarget, stat.lessonId)?.trim();
+  if (localized) return localized;
+  if (isAnalyticsPlannedLang(lang)) return ANALYTICS_LESSON_TITLE_UNAVAILABLE[lang];
+  let legacyTitle = stat.lessonNameRU;
+  if (lang === 'uk') legacyTitle = stat.lessonNameUK;
+  if (lang === 'es') legacyTitle = stat.lessonNameES;
+  return legacyTitle || `Lesson ${stat.lessonId}`;
+}
+
+function LessonRow({ stat, studyTarget }: { stat: LessonMistakeStat; studyTarget: StudyTargetLang }) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const name = lang === 'uk' ? stat.lessonNameUK : lang === 'es' ? stat.lessonNameES : stat.lessonNameRU;
+  const name = phraseAnalyticsLessonTitle(stat, lang, studyTarget);
   const pctOpacity = stat.pct >= 25 ? 1 : stat.pct >= 12 ? 0.75 : 0.45;
 
   return (
@@ -357,26 +386,35 @@ export default function PhraseAnalyticsScreen() {
   const { theme: t, f, themeMode } = useTheme();
   const isLightGate = false;
   const { lang } = useLang();
-  const { isPremium } = usePremium();
+  const { studyTarget } = useStudyTarget();
+  const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
+  const { hasPremiumAccess: isPremium } = usePremium();
   const [data, setData] = useState<PhraseAnalyticsResult | null>(null);
   const [resolvedPersonalTrainings, setResolvedPersonalTrainings] = useState<ResolvedPersonalTrainingsState | null>(null);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<'categories' | 'lessons' | 'phrases'>('categories');
-  const showDevAudit = ENABLE_DEV_TOOLS;
+  const personalPracticeCoachEnabled = personalPracticeCoachEnabledForTarget(studyTarget);
+  const analyticsSourceGateOpen = personalPracticeCoachEnabled;
+  const sourceGateCopy = frenchPersonalPracticeGateCopy(lang);
+  const showDevAudit = ENABLE_DEV_TOOLS && personalPracticeCoachEnabled;
 
   const load = useCallback(async () => {
     setLoading(true);
     try {
       const [result, resolved] = await Promise.all([
-        computePhraseAnalytics(),
-        loadResolvedPersonalTrainings(),
+        analyticsSourceGateOpen
+          ? studyTarget === 'fr'
+            ? computeFrenchPhraseAnalytics({ sourceLocale })
+            : computePhraseAnalytics()
+          : Promise.resolve(null),
+        personalPracticeCoachEnabled ? loadResolvedPersonalTrainings({ studyTarget, sourceLocale }) : Promise.resolve(null),
       ]);
       setData(result);
       setResolvedPersonalTrainings(resolved);
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [analyticsSourceGateOpen, personalPracticeCoachEnabled, sourceLocale, studyTarget]);
 
   useFocusEffect(useCallback(() => { void load(); }, [load]));
 
@@ -503,6 +541,19 @@ export default function PhraseAnalyticsScreen() {
             </ContentWrap>
           </ScrollView>
 
+        ) : !analyticsSourceGateOpen ? (
+          <View style={styles.center}>
+            <View style={[styles.emptyIconBox, { backgroundColor: t.accent + '18' }]}>
+              <Ionicons name="lock-closed-outline" size={40} color={t.accent} />
+            </View>
+            <Text style={[styles.emptyText, { color: t.textPrimary, fontSize: f.h2, fontWeight: '800' }]}>
+              {sourceGateCopy.title}
+            </Text>
+            <Text style={[styles.emptyText, { color: t.textSecond, fontSize: f.body }]}>
+              {sourceGateCopy.body}
+            </Text>
+          </View>
+
         ) : !data || data.totalMistakes === 0 ? (
           <View style={styles.center}>
             <View style={[styles.emptyIconBox, { backgroundColor: t.accent + '18' }]}>
@@ -596,6 +647,7 @@ export default function PhraseAnalyticsScreen() {
                         stat={stat}
                         router={router}
                         resolvedPersonalTrainings={resolvedPersonalTrainings}
+                        personalTrainingEnabled={personalPracticeCoachEnabled}
                       />
                     ))
                   )}
@@ -605,7 +657,7 @@ export default function PhraseAnalyticsScreen() {
               {tab === 'lessons' && (
                 <View style={styles.list}>
                   {data.lessonStats.slice(0, 10).map((stat) => (
-                    <LessonRow key={stat.lessonId} stat={stat} />
+                    <LessonRow key={stat.lessonId} stat={stat} studyTarget={studyTarget} />
                   ))}
                 </View>
               )}

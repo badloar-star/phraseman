@@ -1,0 +1,184 @@
+{
+  "scannedFiles": 672,
+  "oldFieldHits": [
+    {
+      "file": "app/(tabs)/quizzes.tsx",
+      "oldFieldCount": 24
+    },
+    {
+      "file": "app/club_boosts.ts",
+      "oldFieldCount": 6
+    },
+    {
+      "file": "app/daily_tasks.ts",
+      "oldFieldCount": 658
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "oldFieldCount": 27
+    },
+    {
+      "file": "app/flashcards/types.ts",
+      "oldFieldCount": 3
+    },
+    {
+      "file": "app/french_lesson_curriculum.ts",
+      "oldFieldCount": 66
+    },
+    {
+      "file": "app/hint.tsx",
+      "oldFieldCount": 99
+    },
+    {
+      "file": "app/league_engine.ts",
+      "oldFieldCount": 28
+    },
+    {
+      "file": "app/lesson_data_all.ts",
+      "oldFieldCount": 21
+    },
+    {
+      "file": "app/lesson_data_types.ts",
+      "oldFieldCount": 27
+    },
+    {
+      "file": "app/lesson_help.tsx",
+      "oldFieldCount": 68
+    },
+    {
+      "file": "app/lesson_intro_screens.tsx",
+      "oldFieldCount": 3
+    },
+    {
+      "file": "app/lesson_intro_screens_en_17_32.ts",
+      "oldFieldCount": 657
+    },
+    {
+      "file": "app/lesson_intro_screens_es_l2.ts",
+      "oldFieldCount": 318
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson10_v2.ts",
+      "oldFieldCount": 105
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson11_v2.ts",
+      "oldFieldCount": 81
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson12_v2.ts",
+      "oldFieldCount": 81
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson13_v2.ts",
+      "oldFieldCount": 75
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson14_v2.ts",
+      "oldFieldCount": 87
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson15_v2.ts",
+      "oldFieldCount": 75
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson16_v2.ts",
+      "oldFieldCount": 75
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson17_v2.ts",
+      "oldFieldCount": 75
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson18_v2.ts",
+      "oldFieldCount": 72
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson19_v2.ts",
+      "oldFieldCount": 75
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson1_v2.ts",
+      "oldFieldCount": 54
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson20_v2.ts",
+      "oldFieldCount": 78
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson21_v2.ts",
+      "oldFieldCount": 78
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson22_v2.ts",
+      "oldFieldCount": 75
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson2_v2.ts",
+      "oldFieldCount": 63
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson3_v2.ts",
+      "oldFieldCount": 63
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson4_v2.ts",
+      "oldFieldCount": 63
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson5_v2.ts",
+      "oldFieldCount": 63
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson6_v2.ts",
+      "oldFieldCount": 63
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson7_v2.ts",
+      "oldFieldCount": 75
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson8_v2.ts",
+      "oldFieldCount": 84
+    },
+    {
+      "file": "app/lesson_intro_screens_lesson9_v2.ts",
+      "oldFieldCount": 78
+    },
+    {
+      "file": "app/level_gift_system.ts",
+      "oldFieldCount": 264
+    },
+    {
+      "file": "app/quizzes/constants.ts",
+      "oldFieldCount": 9
+    },
+    {
+      "file": "app/quizzes/results.ts",
+      "oldFieldCount": 18
+    },
+    {
+      "file": "app/settings_themes.tsx",
+      "oldFieldCount": 21
+    }
+  ],
+  "runtimeFallbackHits": [],
+  "missingPlannedFieldFamilies": [],
+  "lessonSurfaceBlockers": [],
+  "levelGiftPlannedLocaleCoverage": {
+    "giftIds": 40,
+    "missing": []
+  },
+  "clubPlannedLocaleCoverage": {
+    "clubIds": 12,
+    "missing": []
+  },
+  "summary": {
+    "filesWithOldRuUkEsFields": 40,
+    "filesWithRuntimeFallbacks": 0,
+    "missingPlannedFieldFamilies": 0,
+    "lessonSurfaceBlockers": 0,
+    "missingPlannedFieldSlots": 0,
+    "lessonSurfaceBlockerSlots": 0
+  }
+}

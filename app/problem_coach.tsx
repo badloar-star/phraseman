@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getVolumetricShadow, useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import { triLang } from '../constants/i18n';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { logMistake } from './mistake_log';
-import { getDiagnosisTraining } from './diagnosis_trainings';
+import { getDiagnosisTrainingForTarget } from './diagnosis_trainings';
 import {
   applyDiagnosisAnswer,
   createDiagnosisTrainingState,
@@ -28,6 +29,8 @@ import {
 } from './diagnosis_training_progress';
 import { diagnosisCopy } from './diagnosis_training_copy';
 import { getVisibleIntroLearningBlocks } from './personal_training_intro_blocks';
+import { personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
+import { isStudyTargetSourceUiLang } from './study_target_lang_dev';
 import type { DiagnosisTrainingRuntimeState } from './diagnosis_training_types';
 
 type Stage = 'intro' | 'practice' | 'done';
@@ -39,9 +42,11 @@ export default function ProblemCoach() {
   const router = useRouter();
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
+  const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
   const copy = (value: { ru: string; uk: string; es: string }) => diagnosisCopy(lang, value);
 
-  const diagnosisTraining = getDiagnosisTraining(microDiagnosisId);
+  const diagnosisTraining = getDiagnosisTrainingForTarget(microDiagnosisId, studyTarget);
 
   const [accessChecked, setAccessChecked] = useState(false);
   const [stage, setStage] = useState<Stage>('intro');
@@ -61,12 +66,16 @@ export default function ProblemCoach() {
     void (async () => {
       const hasPremium = await getVerifiedPremiumStatus();
       if (cancelled) return;
+      if (!personalPracticeCoachEnabledForTarget(studyTarget)) {
+        router.replace('/trainer' as any);
+        return;
+      }
       if (!diagnosisTraining) {
         router.replace('/trainer' as any);
         return;
       }
       if (!hasPremium) {
-        const freeAllowed = await reserveFreeDiagnosisTraining(diagnosisTraining.id);
+        const freeAllowed = await reserveFreeDiagnosisTraining(diagnosisTraining.id, { studyTarget, sourceLocale });
         if (cancelled) return;
         if (!freeAllowed) {
           router.replace({ pathname: '/premium_modal', params: { context: 'diagnosis_training' } } as any);
@@ -76,7 +85,7 @@ export default function ProblemCoach() {
       setAccessChecked(true);
     })();
     return () => { cancelled = true; };
-  }, [diagnosisTraining, router]);
+  }, [diagnosisTraining, router, sourceLocale, studyTarget]);
 
   const handleBack = () => {
     hapticTap();
@@ -107,7 +116,7 @@ export default function ProblemCoach() {
         rawCategory: diagnosisTraining.category,
         category: diagnosisTraining.category,
         grammarTag: diagnosisTraining.id,
-      });
+      }, studyTarget);
     }
   };
 
@@ -117,10 +126,12 @@ export default function ProblemCoach() {
     const correct = selectedOptionId === step.correctAnswerId;
     const lastStep = state.stepIndex >= diagnosisTraining.steps.length - 1;
     if (mastered || (correct && lastStep)) {
-      void markFreeDiagnosisCoachCompleted(diagnosisTraining.id);
+      void markFreeDiagnosisCoachCompleted(diagnosisTraining.id, { studyTarget, sourceLocale });
       void markPersonalTrainingResolved({
         category: diagnosisTraining.category,
         microDiagnosisId: diagnosisTraining.id,
+        studyTarget,
+        sourceLocale,
       });
       setStage('done');
       return;
@@ -139,10 +150,12 @@ export default function ProblemCoach() {
       return;
     }
     hapticTap();
-    void markFreeDiagnosisCoachCompleted(diagnosisTraining.id);
+    void markFreeDiagnosisCoachCompleted(diagnosisTraining.id, { studyTarget, sourceLocale });
     void markPersonalTrainingResolved({
       category: diagnosisTraining.category,
       microDiagnosisId: diagnosisTraining.id,
+      studyTarget,
+      sourceLocale,
     });
     if (router.canGoBack()) router.back();
     else router.replace('/trainer' as any);

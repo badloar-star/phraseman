@@ -507,10 +507,10 @@ export const getNextLeague = (points: number) => {
 
 export const MAX_LEVEL = 60;
 
-// Total XP to reach level L = 250 * (L-1)^1.82
-// Level 2 = 250 XP, Level 50 ≈ 300 000 XP
-// Inverse: L = floor((xp/250)^(1/1.82)) + 1
-const XP_BASE = 250;
+// Total XP to reach level L = 400 * (L-1)^1.82
+// Level 2 = 400 XP, Level 50 ≈ 477 000 XP
+// Inverse: L = floor((xp/400)^(1/1.82)) + 1
+const XP_BASE = 400;
 const XP_EXP = 1.82;
 const XP_EXP_INV = 1 / XP_EXP; // ≈ 0.5495
 const LEGENDARY_BASE_LEVEL = 50;

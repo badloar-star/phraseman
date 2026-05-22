@@ -2,7 +2,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   applyGift,
   getMilestoneLevelGift,
+  isFlashcardPackLevelGiftId,
   rollF2pLevelGiftForUser,
+  rollPremiumLevelGiftForUser,
 } from '../app/level_gift_system';
 import {
   CUSTOM_AVATAR_GIFT_POOL,
@@ -61,6 +63,68 @@ describe('level gift milestone rewards', () => {
   it('uses a dual-modal safe replacement for choice milestones', () => {
     expect(getMilestoneLevelGift(30)?.id).toBe('choice_3_level');
     expect(getMilestoneLevelGift(30, { premiumSafe: true })?.id).toBe('xp_bank_600');
+  });
+
+  it('source-gates pack gift milestones for French while preserving English legacy rewards', async () => {
+    expect(getMilestoneLevelGift(25, { studyTarget: 'en' })?.id).toBe('pack_voucher_48h');
+    expect(getMilestoneLevelGift(25, { studyTarget: 'fr' })?.id).toBe('shards_10');
+
+    await expect(rollF2pLevelGiftForUser(25, { studyTarget: 'en' })).resolves.toMatchObject({ id: 'pack_voucher_48h' });
+    await expect(rollF2pLevelGiftForUser(25, { studyTarget: 'fr' })).resolves.toMatchObject({ id: 'shards_10' });
+  });
+
+  it('does not roll English flashcard pack gifts from the French premium level chest', async () => {
+    const randomSpy = jest.spyOn(Math, 'random').mockReturnValue(0.01);
+    try {
+      const gift = await rollPremiumLevelGiftForUser(30, { studyTarget: 'fr' });
+      expect(isFlashcardPackLevelGiftId(gift.id)).toBe(false);
+    } finally {
+      randomSpy.mockRestore();
+    }
+  });
+
+  it('converts stale French pack gifts to safe shard rewards instead of opening English packs', async () => {
+    const marketplace = jest.requireMock('../app/flashcards/marketplace') as {
+      addOwnedPackId: jest.Mock;
+    };
+    const packTrialGift = jest.requireMock('../app/flashcards/pack_trial_gift') as {
+      setRandomPackGiftTrial48h: jest.Mock;
+    };
+
+    const result = await applyGift({
+      id: 'prem_level_unlock_negotiator',
+      rarity: 'epic',
+      icon: '🎁',
+      weight: 1,
+      titleRU: 'Набор «Negotiator»',
+      titleUK: 'Набір «Negotiator»',
+      titleES: 'Pack «Negotiator»',
+      descRU: 'Полный набор добавлен к твоим карточкам — навсегда.',
+      descUK: 'Повний набір додано до твоїх карток — назавжди.',
+      descES: 'Todo el contenido ya está entre tus mazos, para siempre.',
+    }, 'TestUser', 3, 5, jest.fn(), { isPremium: true, studyTarget: 'fr' });
+
+    expect(result).toEqual({ success: true });
+    expect(marketplace.addOwnedPackId).not.toHaveBeenCalled();
+    expect(packTrialGift.setRandomPackGiftTrial48h).not.toHaveBeenCalled();
+  });
+
+  it('activates the one-time wager discount gift', async () => {
+    const result = await applyGift({
+      id: 'wager_discount_25',
+      rarity: 'epic',
+      icon: '🎲',
+      weight: 1,
+      titleRU: 'Скидка на пари −25%',
+      titleUK: 'Знижка на пари −25%',
+      titleES: '−25 % en la apuesta',
+      descRU: 'Следующее пари дешевле',
+      descUK: 'Наступне парі дешевше',
+      descES: 'La siguiente apuesta cuesta menos',
+    }, 'TestUser', 3, 5, jest.fn());
+
+    expect(result).toEqual({ success: true });
+    expect(mockStorage.wager_discount).toBe('0.25');
   });
 
   it('unlocks and activates an avatar aura gift', async () => {

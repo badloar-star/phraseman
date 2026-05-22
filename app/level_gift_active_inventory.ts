@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { triLang, type Lang } from '../constants/i18n';
 import type { LevelGiftRewardIconId } from '../constants/levelGiftRewardIcons';
+import { flashcardsPackTrialGiftKey, lessonBonusHintsKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_gate';
 
 export interface ActiveLevelGiftInventoryItem {
   key: string;
@@ -43,14 +45,12 @@ interface ChainShieldStorage {
 const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
 const GIFT_MULTIPLIER_KEY = 'gift_xp_multiplier';
 const BONUS_ENERGY_KEY = 'energy_gift_bonus';
-const PACK_TRIAL_KEY = 'flashcard_pack_trial_gift_v1';
 const ARENA_GIFT_BONUS_KEY = 'arena_daily_gift_bonus_v1';
 const CHAIN_SHIELD_KEY = 'chain_shield';
 const WAGER_DISCOUNT_KEY = 'wager_discount';
 const CLUB_GIFT_BOOST_KEY = 'club_gift_free_boost_v1';
 
 const todayIso = (nowMs: number): string => new Date(nowMs).toISOString().slice(0, 10);
-const bonusHintsKey = (nowMs: number): string => `bonus_hints_${todayIso(nowMs)}`;
 
 const parseJson = <T>(raw: string | null): T | null => {
   if (!raw) return null;
@@ -107,6 +107,7 @@ const energyRewardIconForAmount = (amount: number): LevelGiftRewardIconId => {
 export const loadActiveLevelGiftInventory = async (
   lang: Lang,
   nowMs: number = Date.now(),
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<ActiveLevelGiftInventoryItem[]> => {
   const [
     xpBankRaw,
@@ -122,9 +123,9 @@ export const loadActiveLevelGiftInventory = async (
     AsyncStorage.getItem(GIFT_XP_BANK_KEY),
     AsyncStorage.getItem(GIFT_MULTIPLIER_KEY),
     AsyncStorage.getItem(BONUS_ENERGY_KEY),
-    AsyncStorage.getItem(PACK_TRIAL_KEY),
+    AsyncStorage.getItem(flashcardsPackTrialGiftKey(studyTarget)),
     AsyncStorage.getItem(ARENA_GIFT_BONUS_KEY),
-    AsyncStorage.getItem(bonusHintsKey(nowMs)),
+    AsyncStorage.getItem(lessonBonusHintsKey(todayIso(nowMs), studyTarget)),
     AsyncStorage.getItem(CHAIN_SHIELD_KEY),
     AsyncStorage.getItem(WAGER_DISCOUNT_KEY),
     AsyncStorage.getItem(CLUB_GIFT_BOOST_KEY),
@@ -205,7 +206,7 @@ export const loadActiveLevelGiftInventory = async (
   }
 
   const packTrial = parseJson<PackTrialStorage>(packTrialRaw);
-  if (packTrial?.packId && Number(packTrial.expiresAt || 0) > nowMs) {
+  if (flashcardsOfficialPacksAvailableForTarget(studyTarget) && packTrial?.packId && Number(packTrial.expiresAt || 0) > nowMs) {
     active.push({
       key: 'pack_trial',
       iconGiftId: 'pack_voucher_48h',

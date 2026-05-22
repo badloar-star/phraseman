@@ -8,6 +8,8 @@ import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
 import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
 import { WAGER_DISCOUNT_KEY } from './level_gift_system';
+import { isPremiumAccessProgressActive } from './premium_progress';
+import type { RuntimeStudyTarget } from './target_storage_keys';
 
 const COLLECTION = 'global_broadcast_modals';
 
@@ -23,7 +25,7 @@ export interface GlobalBroadcastModalPayload {
   premiumRewardDays: number;
   titleRu: string;
   titleUk: string;
-  /** Испанский заголовок; при отсутствии в данных подставляется titleRu */
+  /** Испанский заголовок; при отсутствии в данных используется titleRu */
   titleEs: string;
   titlePtBr: string;
   titleVi: string;
@@ -67,9 +69,9 @@ function dismissKey(id: string): string {
   return `global_broadcast_modal_dismissed_${id}`;
 }
 
-function toSafePositiveInt(value: unknown, fallback = 0): number {
+function toSafePositiveInt(value: unknown, defaultValue = 0): number {
   const n = typeof value === 'number' ? value : Number(value);
-  if (!Number.isFinite(n)) return fallback;
+  if (!Number.isFinite(n)) return defaultValue;
   return Math.max(0, Math.floor(n));
 }
 
@@ -289,7 +291,7 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
   }
 }
 
-async function applyBroadcastReward(payload: GlobalBroadcastModalPayload): Promise<void> {
+async function applyBroadcastReward(payload: GlobalBroadcastModalPayload, studyTarget?: RuntimeStudyTarget): Promise<void> {
   const amount = toSafePositiveInt(payload.rewardAmount, 0);
   const today = new Date().toISOString().split('T')[0];
   switch (payload.rewardType) {
@@ -326,8 +328,9 @@ async function applyBroadcastReward(payload: GlobalBroadcastModalPayload): Promi
       await AsyncStorage.setItem(WAGER_DISCOUNT_KEY, '0.25');
       return;
     case 'pack_trial_48h':
-      await setRandomPackGiftTrial48h();
-      await primeMarketplaceBuiltCardsCacheFromAccessibleStorage();
+      if (await setRandomPackGiftTrial48h(studyTarget)) {
+        await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget);
+      }
       return;
   }
 }
@@ -397,14 +400,19 @@ export async function fetchPendingGlobalBroadcastModal(): Promise<GlobalBroadcas
 
     const payload = pickLatest(activeDocs);
     if (!payload) return null;
+    if (isRetiredLeagueSystemBroadcast(payload)) {
+      await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
+      return null;
+    }
+    if (payload.kind === 'review_promo') {
+      await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
+      return null;
+    }
 
     if (payload.premiumAudience !== 'all') {
       const userSnap = await db.collection('users').doc(uid).get();
       const progress = userSnap.data()?.progress ?? {};
-      const plan = String(progress.premium_plan ?? '').trim().toLowerCase();
-      const expiry = toSafePositiveInt(progress.premium_expiry, 0);
-      const hasPlan = !!plan && plan !== 'null';
-      const isPremium = hasPlan && !(expiry > 0 && expiry < Date.now());
+      const isPremium = isPremiumAccessProgressActive(progress);
       if (payload.premiumAudience === 'free' && isPremium) return null;
       if (payload.premiumAudience === 'premium' && !isPremium) return null;
     }
@@ -451,7 +459,10 @@ export async function recordReviewPromoClick(payload: GlobalBroadcastModalPayloa
   }
 }
 
-export async function claimAndDismissGlobalBroadcastModal(payload: GlobalBroadcastModalPayload): Promise<void> {
+export async function claimAndDismissGlobalBroadcastModal(
+  payload: GlobalBroadcastModalPayload,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> {
   if (!payload?.id) return;
   await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
 
@@ -460,7 +471,7 @@ export async function claimAndDismissGlobalBroadcastModal(payload: GlobalBroadca
   if (!uid) return;
 
   // Always try local reward application first (works for offline-safe gifts too).
-  await applyBroadcastReward(payload).catch(() => {});
+  await applyBroadcastReward(payload, studyTarget).catch(() => {});
 
   try {
     const firestoreModule = await import('@react-native-firebase/firestore');

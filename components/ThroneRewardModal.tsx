@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';

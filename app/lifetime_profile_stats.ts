@@ -9,6 +9,14 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureArenaAuthUid } from './user_id_policy';
 import type { ArenaProfile } from './types/arena';
 import { bumpStatsDaily } from './stats_daily_breakdown';
+import {
+  diagnosticLastKey,
+  lessonProgressKey,
+  lessonWordsKey,
+  quizAchievementCounterKey,
+  quizLifetimeCounterKey,
+  type RuntimeStudyTarget,
+} from './target_storage_keys';
 
 const WORD_REQUIRED = 3;
 const MIN_ACTIVE_MS = 60_000;
@@ -25,6 +33,7 @@ const K_SHARDS_SPENT = 'shards_lifetime_spent_v1';
 
 /** Сколько фраз в одном уроке по сетке прогресса (см. lesson1). */
 const LESSON_PHRASE_SLOTS_CAP = 50;
+const LIFETIME_STATS_TARGETS: readonly RuntimeStudyTarget[] = ['en', 'fr'];
 
 function parseIntSafe(v: string | null, def = 0): number {
   const n = parseInt(v ?? '', 10);
@@ -46,20 +55,27 @@ async function incCounter(key: string, delta: number): Promise<void> {
 }
 
 /** Одно полное прохождение квиза (лёгкий / средний / сложный). */
-export async function bumpQuizSessionCompleted(level: 'easy' | 'medium' | 'hard' | null | undefined): Promise<void> {
+export async function bumpQuizSessionCompleted(
+  level: 'easy' | 'medium' | 'hard' | null | undefined,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> {
   if (!level || (level !== 'easy' && level !== 'medium' && level !== 'hard')) return;
   const key = level === 'easy' ? K_QUIZ_EASY : level === 'medium' ? K_QUIZ_MEDIUM : K_QUIZ_HARD;
-  await incCounter(key, 1);
-  await bumpStatsDaily('quizzes_completed', 1);
+  await incCounter(quizLifetimeCounterKey(key, studyTarget), 1);
+  await bumpStatsDaily('quizzes_completed', 1, studyTarget);
 }
 
 async function ensureQuizCountersMigrated(): Promise<void> {
   try {
     if (await AsyncStorage.getItem(K_QUIZ_MIGRATED)) return;
-    const legacy = parseIntSafe(await AsyncStorage.getItem('quiz_hard_count'), 0);
+    const legacy = parseIntSafe(
+      await AsyncStorage.getItem(quizAchievementCounterKey('quiz_hard_count', 'en')),
+      0,
+    );
     if (legacy > 0) {
-      const cur = await readCounter(K_QUIZ_HARD);
-      if (cur < legacy) await AsyncStorage.setItem(K_QUIZ_HARD, String(legacy));
+      const hardKey = quizLifetimeCounterKey(K_QUIZ_HARD, 'en');
+      const cur = await readCounter(hardKey);
+      if (cur < legacy) await AsyncStorage.setItem(hardKey, String(legacy));
     }
     await AsyncStorage.setItem(K_QUIZ_MIGRATED, '1');
   } catch {
@@ -67,9 +83,9 @@ async function ensureQuizCountersMigrated(): Promise<void> {
   }
 }
 
-export async function bumpDailyTaskClaimed(): Promise<void> {
+export async function bumpDailyTaskClaimed(studyTarget?: RuntimeStudyTarget): Promise<void> {
   await incCounter(K_DAILY_CLAIMS, 1);
-  await bumpStatsDaily('daily_tasks_claimed', 1);
+  await bumpStatsDaily('daily_tasks_claimed', 1, studyTarget);
 }
 
 export async function bumpLifetimeShardsEarned(amount: number): Promise<void> {
@@ -88,7 +104,9 @@ export async function bumpLifetimeShardsSpent(amount: number): Promise<void> {
  * (защита от раздутых массивов в хранилище).
  */
 async function countPhrasesLearnedFromLessonProgress(): Promise<number> {
-  const keys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`);
+  const keys = Array.from({ length: 32 }, (_, i) => i + 1).flatMap(lessonId =>
+    LIFETIME_STATS_TARGETS.map(studyTarget => lessonProgressKey(lessonId, studyTarget)),
+  );
   const rows = await AsyncStorage.multiGet(keys);
   let sum = 0;
   for (const [, val] of rows) {
@@ -118,7 +136,9 @@ const extractPoints = (val: unknown): number => {
 async function countLearnedWordsTotal(): Promise<number> {
   const { LESSONS_WITH_WORDS } = await import('./lesson_words');
   const lessons = [...LESSONS_WITH_WORDS];
-  const keys = lessons.map(id => `lesson${id}_words`);
+  const keys = lessons.flatMap(id =>
+    LIFETIME_STATS_TARGETS.map(studyTarget => lessonWordsKey(id, studyTarget)),
+  );
   const rows = await AsyncStorage.multiGet(keys);
   let sum = 0;
   for (const [, val] of rows) {
@@ -140,6 +160,15 @@ async function countLearnedWordsTotal(): Promise<number> {
     }
   }
   return sum;
+}
+
+async function readQuizLifetimeCounterAcrossTargets(
+  rawEnglishKey: 'lifetime_quiz_easy_v1' | 'lifetime_quiz_medium_v1' | 'lifetime_quiz_hard_v1',
+): Promise<number> {
+  const rows = await AsyncStorage.multiGet(
+    LIFETIME_STATS_TARGETS.map(studyTarget => quizLifetimeCounterKey(rawEnglishKey, studyTarget)),
+  );
+  return rows.reduce((sum, [, raw]) => sum + parseIntSafe(raw, 0), 0);
 }
 
 async function loadArenaWinsLosses(): Promise<{ wins: number; losses: number }> {
@@ -222,6 +251,10 @@ async function persistLifetimeProfileStatsCache(s: LifetimeProfileStats): Promis
 
 export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> {
   await ensureQuizCountersMigrated();
+  const readAllCustomCards = async () => {
+    const lists = await Promise.all(LIFETIME_STATS_TARGETS.map(studyTarget => readCustomCards(studyTarget)));
+    return lists.flat();
+  };
 
   const [
     wordsLearned,
@@ -239,14 +272,14 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
     arena,
   ] = await Promise.all([
     countLearnedWordsTotal(),
-    AsyncStorage.getItem('diagnostic_last'),
+    AsyncStorage.getItem(diagnosticLastKey('en')),
     AsyncStorage.getItem('daily_stats'),
     getForegroundDailyMsMap(),
-    readCustomCards(),
+    readAllCustomCards(),
     countPhrasesLearnedFromLessonProgress(),
-    readCounter(K_QUIZ_EASY),
-    readCounter(K_QUIZ_MEDIUM),
-    readCounter(K_QUIZ_HARD),
+    readQuizLifetimeCounterAcrossTargets(K_QUIZ_EASY),
+    readQuizLifetimeCounterAcrossTargets(K_QUIZ_MEDIUM),
+    readQuizLifetimeCounterAcrossTargets(K_QUIZ_HARD),
     readCounter(K_DAILY_CLAIMS),
     readCounter(K_SHARDS_EARNED),
     readCounter(K_SHARDS_SPENT),

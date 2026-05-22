@@ -5,13 +5,14 @@ import { BackHandler, Platform, ScrollView, StatusBar, StyleSheet, Text, Touchab
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { CLOUD_SYNC_ENABLED, DEV_MODE, IS_BETA_TESTER, IS_EXPO_GO } from './config';
 import { primeCustomFlashcardsCache } from './flashcards_collection';
 import FlashcardsCategoryHub from './flashcards/FlashcardsCategoryHub';
 import {
-  fallbackBundledMarketPacks,
+  reserveBundledMarketPacks,
   loadMarketplacePacks,
   loadAccessiblePackIds,
   peekWarmMarketplacePacks,
@@ -26,20 +27,27 @@ import {
 } from './community_packs/communityFirestore';
 import { getCanonicalUserId } from './user_id_policy';
 import { getShardsBalance } from './shards_system';
+import {
+  flashcardsCommunityPacksAvailableForTarget,
+  flashcardsOfficialPacksAvailableForTarget,
+} from './flashcards_target_gate';
 
 export default function FlashcardsHubScreen() {
   const router = useRouter();
-  const { theme: t, f, isDark, statusBarLight, themeMode } = useTheme();
+  const { theme: t, f, statusBarLight, themeMode } = useTheme();
   const onColoredGradient = false;
   const gradHeaderInk = t.textPrimary;
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const hubCategoryLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
+  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
+  const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
   const insets = useSafeAreaInsets();
   const isDevMarketEnabled = DEV_MODE || IS_BETA_TESTER;
   const scrollBottomPadding = Math.max(insets.bottom, 16) + 12;
 
   const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(
-    () => peekWarmMarketplacePacks() ?? fallbackBundledMarketPacks(),
+    () => peekWarmMarketplacePacks() ?? reserveBundledMarketPacks(),
   );
   const [communityPacks, setCommunityPacks] = useState<FlashcardMarketPack[]>([]);
   const [ownedPackIds, setOwnedPackIds] = useState<string[]>([]);
@@ -70,10 +78,21 @@ export default function FlashcardsHubScreen() {
       .join('|');
 
   const loadHubMarket = useCallback(async (opts?: { force?: boolean }) => {
+    if (!officialPacksEnabled) {
+      const bal = await getShardsBalance().catch(() => 0);
+      setShardBalance((prev) => (prev === bal ? prev : bal));
+      setMarketPacks([]);
+      setCommunityPacks([]);
+      setOwnedPackIds([]);
+      setOwnedCommunityPackIds([]);
+      setHubAuthorStableId(null);
+      return;
+    }
+
     const now = Date.now();
 
     /** Всегда перечитываем локально купленное и баланс — магазин пишет AsyncStorage до перезахода. */
-    const [owned, bal] = await Promise.all([loadAccessiblePackIds(), getShardsBalance()]);
+    const [owned, bal] = await Promise.all([loadAccessiblePackIds(studyTarget), getShardsBalance()]);
     const nextOwnedFp = [...owned].sort().join('|');
     if (nextOwnedFp !== ownedFpRef.current) {
       ownedFpRef.current = nextOwnedFp;
@@ -82,8 +101,8 @@ export default function FlashcardsHubScreen() {
     setShardBalance((prev) => (prev === bal ? prev : bal));
 
     let commOwned: string[] = [];
-    if (cloudCommunityEnabled) {
-      commOwned = await loadCommunityOwnedPackIds().catch(() => [] as string[]);
+    if (cloudCommunityEnabled && communityPacksEnabled) {
+      commOwned = await loadCommunityOwnedPackIds(studyTarget).catch(() => [] as string[]);
       const nextCommOwnedFp = [...commOwned].sort().join('|');
       if (nextCommOwnedFp !== commOwnedFpRef.current) {
         commOwnedFpRef.current = nextCommOwnedFp;
@@ -97,10 +116,12 @@ export default function FlashcardsHubScreen() {
 
     const [packsRes, commPubRes] = await Promise.allSettled([
       loadMarketplacePacks(),
-      cloudCommunityEnabled ? loadPublishedCommunityMarketPacks() : Promise.resolve([] as FlashcardMarketPack[]),
+      cloudCommunityEnabled && communityPacksEnabled
+        ? loadPublishedCommunityMarketPacks(studyTarget)
+        : Promise.resolve([] as FlashcardMarketPack[]),
     ]);
-    const packsRaw = packsRes.status === 'fulfilled' ? packsRes.value : fallbackBundledMarketPacks();
-    const packs = packsRaw.length > 0 ? packsRaw : fallbackBundledMarketPacks();
+    const packsRaw = packsRes.status === 'fulfilled' ? packsRes.value : reserveBundledMarketPacks();
+    const packs = packsRaw.length > 0 ? packsRaw : reserveBundledMarketPacks();
 
     const nextMarketFp = computeMarketFp(packs);
     if (nextMarketFp !== marketFpRef.current) {
@@ -108,13 +129,13 @@ export default function FlashcardsHubScreen() {
       setMarketPacks(packs);
     }
 
-    if (cloudCommunityEnabled) {
+    if (cloudCommunityEnabled && communityPacksEnabled) {
       const published = commPubRes.status === 'fulfilled' ? commPubRes.value : [];
       const sid = await getCanonicalUserId().catch(() => null);
       setHubAuthorStableId((prev) => (prev === sid ? prev : sid));
-      const pendingAuthor = sid ? await loadAuthorCommunityPacksPendingUpdate(sid).catch(() => []) : [];
+      const pendingAuthor = sid ? await loadAuthorCommunityPacksPendingUpdate(sid, studyTarget).catch(() => []) : [];
       const missingMeta = commOwned.filter((id) => !published.some((p) => p.id === id));
-      const extras = await Promise.all(missingMeta.map((id) => fetchCommunityPackMeta(id).catch(() => null)));
+      const extras = await Promise.all(missingMeta.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(() => null)));
       const merged = [...published, ...pendingAuthor, ...(extras.filter(Boolean) as FlashcardMarketPack[])];
       const seen = new Set<string>();
       const dedup: FlashcardMarketPack[] = [];
@@ -139,7 +160,7 @@ export default function FlashcardsHubScreen() {
       setOwnedCommunityPackIds([]);
       setHubAuthorStableId(null);
     }
-  }, [cloudCommunityEnabled]);
+  }, [cloudCommunityEnabled, communityPacksEnabled, officialPacksEnabled, studyTarget]);
 
   /** Принудительное обновление после покупки (через `onMarketRefresh` в Hub). */
   const refreshHubMarketForce = useCallback(() => {
@@ -148,20 +169,31 @@ export default function FlashcardsHubScreen() {
 
   const openTraining = useCallback(() => {
     void hapticTap();
-    const owned = ownedPackIds.length > 0 ? ownedPackIds.join('|') : '';
+    const owned = officialPacksEnabled && ownedPackIds.length > 0 ? ownedPackIds.join('|') : '';
     router.push(
       owned
         ? ({ pathname: '/flashcards_swipe', params: { owned } } as any)
         : ('/flashcards_swipe' as any),
     );
-  }, [ownedPackIds, router]);
+  }, [officialPacksEnabled, ownedPackIds, router]);
+
+  const openAudioMode = useCallback(() => {
+    void hapticTap();
+    const owned = officialPacksEnabled && ownedPackIds.length > 0 ? ownedPackIds.join('|') : '';
+    router.push(
+      owned
+        ? ({ pathname: '/flashcards_audio', params: { owned } } as any)
+        : ('/flashcards_audio' as any),
+    );
+  }, [officialPacksEnabled, ownedPackIds, router]);
 
   useFocusEffect(
     useCallback(() => {
-      primeCustomFlashcardsCache();
+      primeCustomFlashcardsCache(studyTarget);
       void import('./flashcards_swipe').catch(() => {});
+      void import('./flashcards_audio').catch(() => {});
       void loadHubMarket();
-    }, [loadHubMarket]),
+    }, [loadHubMarket, studyTarget]),
   );
 
   useEffect(() => {
@@ -231,16 +263,18 @@ export default function FlashcardsHubScreen() {
             <FlashcardsCategoryHub
               lang={hubCategoryLang}
               t={t}
+              studyTarget={studyTarget}
               themeMode={themeMode}
-              marketPacks={marketPacks}
-              ownedPackIds={ownedPackIds}
+              marketPacks={officialPacksEnabled ? marketPacks : []}
+              ownedPackIds={officialPacksEnabled ? ownedPackIds : []}
               shardBalance={shardBalance}
               onMarketRefresh={refreshHubMarketForce}
-              cloudCommunityEnabled={cloudCommunityEnabled}
-              communityPacks={communityPacks}
-              ownedCommunityPackIds={ownedCommunityPackIds}
-              hubAuthorStableId={hubAuthorStableId}
+              cloudCommunityEnabled={cloudCommunityEnabled && communityPacksEnabled}
+              communityPacks={communityPacksEnabled ? communityPacks : []}
+              ownedCommunityPackIds={communityPacksEnabled ? ownedCommunityPackIds : []}
+              hubAuthorStableId={communityPacksEnabled ? hubAuthorStableId : null}
               onTrainingPress={openTraining}
+              onAudioPress={openAudioMode}
             />
           </ScrollView>
         </View>

@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
@@ -17,10 +18,11 @@ export default function SettingsLanguage() {
 
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView testID="settings-language-screen" style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
             <TouchableOpacity
+              testID="settings-language-back"
               onPress={() => {
                 hapticTap();
                 if (router.canGoBack()) router.back();
@@ -32,6 +34,15 @@ export default function SettingsLanguage() {
             <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '700', marginLeft: 8 }}>
               {s.settings.lang}
             </Text>
+            <View style={{ flex: 1 }} />
+            <ReportErrorButton
+              screen="settings_language"
+              dataId="settings_language"
+              dataText={s.settings.lang}
+              variant="icon-flag"
+              accessibilityLabel="Сообщить о баге на экране языка"
+              style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border }}
+            />
           </View>
 
           <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 36 }}>
@@ -42,6 +53,7 @@ export default function SettingsLanguage() {
               return (
                 <TouchableOpacity
                   key={item.code}
+                  testID={`settings-language-row-${item.code}`}
                   activeOpacity={enabled ? 0.85 : 1}
                   disabled={!enabled}
                   onPress={() => {

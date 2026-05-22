@@ -219,6 +219,11 @@ export const PROFILE_CARD_PUBLIC_FOCUSES: ProfileCardChoiceDef<ProfileCardPublic
   },
 ];
 
+const DEFAULT_PROFILE_CARD_LEVEL_DEF = PROFILE_CARD_LEVELS[0];
+const DEFAULT_PROFILE_CARD_THEME_DEF = PROFILE_CARD_THEMES[0];
+const DEFAULT_PROFILE_CARD_MOTION_DEF = PROFILE_CARD_MOTIONS[0];
+const DEFAULT_PROFILE_CARD_PUBLIC_FOCUS_DEF = PROFILE_CARD_PUBLIC_FOCUSES[0];
+
 export const PROFILE_CARD_SYNC_KEYS = [
   PROFILE_CARD_LEVEL_KEY,
   PROFILE_CARD_THEME_KEY,
@@ -232,19 +237,27 @@ export function normalizeProfileCardLevel(value: unknown): ProfileCardLevel {
 }
 
 export function getProfileCardLevelDef(level: ProfileCardLevel): ProfileCardLevelDef {
-  return PROFILE_CARD_LEVELS.find((item) => item.level === level) ?? PROFILE_CARD_LEVELS[0];
+  const match = PROFILE_CARD_LEVELS.find((item) => item.level === level);
+  if (match) return match;
+  return DEFAULT_PROFILE_CARD_LEVEL_DEF;
 }
 
 export function getProfileCardThemeDef(theme: ProfileCardTheme): ProfileCardChoiceDef<ProfileCardTheme> {
-  return PROFILE_CARD_THEMES.find((item) => item.id === theme) ?? PROFILE_CARD_THEMES[0];
+  const match = PROFILE_CARD_THEMES.find((item) => item.id === theme);
+  if (match) return match;
+  return DEFAULT_PROFILE_CARD_THEME_DEF;
 }
 
 export function getProfileCardMotionDef(motion: ProfileCardMotion): ProfileCardChoiceDef<ProfileCardMotion> {
-  return PROFILE_CARD_MOTIONS.find((item) => item.id === motion) ?? PROFILE_CARD_MOTIONS[0];
+  const match = PROFILE_CARD_MOTIONS.find((item) => item.id === motion);
+  if (match) return match;
+  return DEFAULT_PROFILE_CARD_MOTION_DEF;
 }
 
 export function getProfileCardPublicFocusDef(focus: ProfileCardPublicFocus): ProfileCardChoiceDef<ProfileCardPublicFocus> {
-  return PROFILE_CARD_PUBLIC_FOCUSES.find((item) => item.id === focus) ?? PROFILE_CARD_PUBLIC_FOCUSES[0];
+  const match = PROFILE_CARD_PUBLIC_FOCUSES.find((item) => item.id === focus);
+  if (match) return match;
+  return DEFAULT_PROFILE_CARD_PUBLIC_FOCUS_DEF;
 }
 
 export function getNextProfileCardLevel(level: ProfileCardLevel): ProfileCardLevel | null {

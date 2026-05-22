@@ -11,7 +11,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useLang } from './LangContext';
@@ -23,6 +23,7 @@ import { getShardsBalance } from '../app/shards_system';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import { emitAppEvent } from '../app/events';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
+import { triLang, type Lang } from '../constants/i18n';
 import {
   RewardModalBackdrop,
   rewardModalAccentColor,
@@ -38,21 +39,26 @@ interface StreakReviveModalProps {
   onRevived?: (restoredStreak: number) => void;
 }
 
-function formatRemaining(ms: number, lang: 'ru' | 'uk' | 'es'): string {
+function formatRemaining(ms: number, lang: Lang): string {
   const totalMin = Math.max(0, Math.floor(ms / 60_000));
   const h = Math.floor(totalMin / 60);
   const m = totalMin % 60;
-  if (lang === 'uk') return h > 0 ? `${h} год ${m} хв` : `${m} хв`;
-  if (lang === 'es') return h > 0 ? `${h} h ${m} min` : `${m} min`;
-  return h > 0 ? `${h} ч ${m} мин` : `${m} мин`;
+  return triLang(lang, {
+    ru: h > 0 ? `${h} ч ${m} мин` : `${m} мин`,
+    uk: h > 0 ? `${h} год ${m} хв` : `${m} хв`,
+    es: h > 0 ? `${h} h ${m} min` : `${m} min`,
+    'pt-BR': h > 0 ? `${h} h ${m} min` : `${m} min`,
+    vi: h > 0 ? `${h} giờ ${m} phút` : `${m} phút`,
+    id: h > 0 ? `${h} jam ${m} menit` : `${m} menit`,
+    tr: h > 0 ? `${h} sa ${m} dk` : `${m} dk`,
+    pl: h > 0 ? `${h} godz. ${m} min` : `${m} min`,
+  });
 }
 
 export default function StreakReviveModal({ visible, offer, onClose, onRevived }: StreakReviveModalProps) {
   const router = useRouter();
   const { lang } = useLang();
   const { f, theme: t, themeMode } = useTheme();
-  const isUK = lang === 'uk';
-  const isES = lang === 'es';
   const [busy, setBusy] = useState(false);
 
   const flameAnim = useRef(new Animated.Value(0)).current;
@@ -99,27 +105,62 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
 
   const cost = offer?.costShards ?? 0;
   const lostStreak = offer?.lostStreak ?? 0;
+  const remainingText = formatRemaining(remainingMs, lang);
 
   // ── Копирайт: пользовательское слово «цепочка» ─────────────────────────
-  const title = isUK
-    ? 'Ланцюжок обірвався'
-    : isES
-      ? 'Has perdido la racha'
-      : 'Цепочка оборвалась';
+  const title = triLang(lang, {
+    ru: 'Цепочка оборвалась',
+    uk: 'Ланцюжок обірвався',
+    es: 'Has perdido la racha',
+    'pt-BR': 'Sua sequência foi interrompida',
+    vi: 'Chuỗi của bạn đã bị ngắt',
+    id: 'Streak kamu terputus',
+    tr: 'Serin koptu',
+    pl: 'Twoja seria została przerwana',
+  });
 
-  const subtitle = isUK
-    ? `Твій ланцюжок із ${lostStreak} ${lostStreak === 1 ? 'дня' : 'днів'} обірвався. Є ще ${formatRemaining(remainingMs, 'uk')} — відновлюй і продовжуй з того ж місця.`
-    : isES
-      ? `Tu racha de ${lostStreak} días se rompió. Tienes ${formatRemaining(remainingMs, 'es')} para recuperarla y continuar desde donde lo dejaste.`
-      : `Твоя серия из ${lostStreak} ${lostStreak === 1 ? 'дня' : 'дней'} оборвалась. Ещё ${formatRemaining(remainingMs, 'ru')} — восстанови и продолжай с той же отметки.`;
+  const subtitle = triLang(lang, {
+    ru: `Твоя серия из ${lostStreak} ${lostStreak === 1 ? 'дня' : 'дней'} оборвалась. Ещё ${remainingText} — восстанови и продолжай с той же отметки.`,
+    uk: `Твій ланцюжок із ${lostStreak} ${lostStreak === 1 ? 'дня' : 'днів'} обірвався. Є ще ${remainingText} — відновлюй і продовжуй з того ж місця.`,
+    es: `Tu racha de ${lostStreak} días se rompió. Tienes ${remainingText} para recuperarla y continuar desde donde lo dejaste.`,
+    'pt-BR': `Sua sequência de ${lostStreak} dias foi interrompida. Você ainda tem ${remainingText} para restaurá-la e continuar de onde parou.`,
+    vi: `Chuỗi ${lostStreak} ngày của bạn đã bị ngắt. Bạn còn ${remainingText} để khôi phục và tiếp tục từ điểm cũ.`,
+    id: `Streak ${lostStreak} hari kamu terputus. Masih ada ${remainingText} untuk memulihkannya dan lanjut dari titik yang sama.`,
+    tr: `${lostStreak} günlük serin koptu. Yenileyip kaldığın yerden devam etmek için ${remainingText} süren var.`,
+    pl: `Twoja seria ${lostStreak} dni została przerwana. Masz jeszcze ${remainingText}, aby ją odnowić i kontynuować od tego miejsca.`,
+  });
 
-  const streakUnit = isUK
-    ? `${lostStreak === 1 ? 'день' : 'днів'} поспіль`
-    : isES ? 'días seguidos'
-    : `${lostStreak === 1 ? 'день' : 'дней'} подряд`;
+  const streakUnit = triLang(lang, {
+    ru: `${lostStreak === 1 ? 'день' : 'дней'} подряд`,
+    uk: `${lostStreak === 1 ? 'день' : 'днів'} поспіль`,
+    es: 'días seguidos',
+    'pt-BR': 'dias seguidos',
+    vi: 'ngày liên tiếp',
+    id: 'hari berturut-turut',
+    tr: 'gün üst üste',
+    pl: 'dni z rzędu',
+  });
 
-  const ctaLabel = isUK ? `Відновити · ${cost}` : isES ? `Recuperar · ${cost}` : `Восстановить · ${cost}`;
-  const dismissLabel = isUK ? 'Не зараз' : isES ? 'Ahora no' : 'Не сейчас';
+  const ctaLabel = triLang(lang, {
+    ru: `Восстановить · ${cost}`,
+    uk: `Відновити · ${cost}`,
+    es: `Recuperar · ${cost}`,
+    'pt-BR': `Restaurar · ${cost}`,
+    vi: `Khôi phục · ${cost}`,
+    id: `Pulihkan · ${cost}`,
+    tr: `Yenile · ${cost}`,
+    pl: `Odnów · ${cost}`,
+  });
+  const dismissLabel = triLang(lang, {
+    ru: 'Не сейчас',
+    uk: 'Не зараз',
+    es: 'Ahora no',
+    'pt-BR': 'Agora não',
+    vi: 'Để sau',
+    id: 'Nanti saja',
+    tr: 'Şimdi değil',
+    pl: 'Nie teraz',
+  });
 
   const onConfirm = useCallback(async () => {
     if (busy || !offer) return;
@@ -144,6 +185,11 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
           messageRu: `🔥 Цепочка восстановлена: ${r.restoredStreak} дн.`,
           messageUk: `🔥 Ланцюжок відновлено: ${r.restoredStreak} дн.`,
           messageEs: `🔥 Racha recuperada: ${r.restoredStreak} días`,
+          messagePtBr: `🔥 Sequência restaurada: ${r.restoredStreak} dias`,
+          messageVi: `🔥 Đã khôi phục chuỗi: ${r.restoredStreak} ngày`,
+          messageId: `🔥 Streak dipulihkan: ${r.restoredStreak} hari`,
+          messageTr: `🔥 Seri yenilendi: ${r.restoredStreak} gün`,
+          messagePl: `🔥 Seria odnowiona: ${r.restoredStreak} dni`,
         });
         onRevived?.(r.restoredStreak);
         onClose();
@@ -166,6 +212,11 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
           messageRu: 'Время восстановления уже истекло.',
           messageUk: 'Час відновлення вже минув.',
           messageEs: 'El tiempo de recuperación ya expiró.',
+          messagePtBr: 'O tempo para restaurar já acabou.',
+          messageVi: 'Thời gian khôi phục đã hết.',
+          messageId: 'Waktu pemulihan sudah habis.',
+          messageTr: 'Yenileme süresi doldu.',
+          messagePl: 'Czas na odnowienie już minął.',
         });
         onClose();
         return;
@@ -175,6 +226,11 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
         messageRu: 'Не удалось восстановить цепочку. Попробуй ещё раз.',
         messageUk: 'Не вдалося відновити ланцюжок. Спробуй ще раз.',
         messageEs: 'No se pudo recuperar la racha. Inténtalo de nuevo.',
+        messagePtBr: 'Não foi possível restaurar a sequência. Tente novamente.',
+        messageVi: 'Không thể khôi phục chuỗi. Hãy thử lại.',
+        messageId: 'Tidak dapat memulihkan streak. Coba lagi.',
+        messageTr: 'Seri yenilenemedi. Tekrar dene.',
+        messagePl: 'Nie udało się odnowić serii. Spróbuj ponownie.',
       });
     } finally {
       setBusy(false);

@@ -1,4 +1,5 @@
 // Pure derived-logic for card lists and filter structures.
+import type { Lang } from '../../constants/i18n';
 import { CardItem, CategoryId } from './types';
 
 export type FilterGroup = {
@@ -32,16 +33,16 @@ export function applyCardFilter(cards: CardItem[], activeFilter: string): CardIt
 export function buildFilterGroups(
   cards: CardItem[],
   activeCat: CategoryId,
-  lang: 'ru' | 'uk' | 'es',
+  lang: Lang,
 ): FilterGroup[] {
   if (activeCat !== 'saved' && activeCat !== 'custom') return [];
   const list = cards ?? [];
   const sourceLabels: Record<string, string> = {
-    word: lang === 'uk' ? 'Слова' : lang === 'es' ? 'Palabras' : 'Слова',
-    verb: lang === 'uk' ? 'Дієслова' : lang === 'es' ? 'Verbos' : 'Глаголы',
-    dialog: lang === 'uk' ? 'Діалоги' : lang === 'es' ? 'Diálogos' : 'Диалоги',
-    quiz: lang === 'uk' ? 'Квізи' : lang === 'es' ? 'Cuestionarios' : 'Квизы',
-    daily_phrase: lang === 'uk' ? 'Фраза дня' : lang === 'es' ? 'Frase del día' : 'Фраза дня',
+    word: FILTER_SOURCE_LABELS[lang].word,
+    verb: FILTER_SOURCE_LABELS[lang].verb,
+    dialog: FILTER_SOURCE_LABELS[lang].dialog,
+    quiz: FILTER_SOURCE_LABELS[lang].quiz,
+    daily_phrase: FILTER_SOURCE_LABELS[lang].daily_phrase,
   };
 
   const lessons = new Map<string, number>();
@@ -62,11 +63,11 @@ export function buildFilterGroups(
       .sort((a, b) => a[1] - b[1])
       .map(([id]) => ({
         key: `lesson:${id}`,
-        label: `${lang === 'es' ? 'Lección' : 'Урок'} ${id}`,
+        label: `${FILTER_LESSON_LABELS[lang]} ${id}`,
       }));
     groups.push({
       groupKey: 'lessons',
-      groupLabel: lang === 'es' ? 'Lecciones' : 'Уроки',
+      groupLabel: FILTER_LESSONS_GROUP_LABELS[lang],
       items: lessonItems,
     });
   }
@@ -76,7 +77,7 @@ export function buildFilterGroups(
       .map(([key, label]) => ({ key, label }));
     groups.push({
       groupKey: 'other',
-      groupLabel: lang === 'uk' ? 'Інше' : lang === 'es' ? 'Otros' : 'Прочее',
+      groupLabel: FILTER_OTHER_GROUP_LABELS[lang],
       items: otherItems,
     });
   }
@@ -85,11 +86,66 @@ export function buildFilterGroups(
 
 export function buildFilterOptions(
   filterGroups: FilterGroup[],
-  lang: 'ru' | 'uk' | 'es',
+  lang: Lang,
 ): { key: string; label: string }[] {
-  const all = { key: 'all', label: lang === 'uk' ? 'Всі' : lang === 'es' ? 'Todas' : 'Все' };
+  const all = { key: 'all', label: FILTER_ALL_LABELS[lang] };
   return [all, ...filterGroups.flatMap(g => g.items)];
 }
+
+const FILTER_SOURCE_LABELS: Record<Lang, Record<'word' | 'verb' | 'dialog' | 'quiz' | 'daily_phrase', string>> = {
+  ru: { word: 'Слова', verb: 'Глаголы', dialog: 'Диалоги', quiz: 'Квизы', daily_phrase: 'Фраза дня' },
+  uk: { word: 'Слова', verb: 'Дієслова', dialog: 'Діалоги', quiz: 'Квізи', daily_phrase: 'Фраза дня' },
+  es: { word: 'Palabras', verb: 'Verbos', dialog: 'Diálogos', quiz: 'Cuestionarios', daily_phrase: 'Frase del día' },
+  'pt-BR': { word: 'Palavras', verb: 'Verbos', dialog: 'Diálogos', quiz: 'Quizzes', daily_phrase: 'Frase do dia' },
+  vi: { word: 'Từ', verb: 'Động từ', dialog: 'Hội thoại', quiz: 'Quiz', daily_phrase: 'Cụm từ hôm nay' },
+  id: { word: 'Kata', verb: 'Verba', dialog: 'Dialog', quiz: 'Kuis', daily_phrase: 'Frasa harian' },
+  tr: { word: 'Kelimeler', verb: 'Fiiller', dialog: 'Diyaloglar', quiz: 'Quizler', daily_phrase: 'Günün ifadesi' },
+  pl: { word: 'Słowa', verb: 'Czasowniki', dialog: 'Dialogi', quiz: 'Quizy', daily_phrase: 'Fraza dnia' },
+};
+
+const FILTER_LESSON_LABELS: Record<Lang, string> = {
+  ru: 'Урок',
+  uk: 'Урок',
+  es: 'Lección',
+  'pt-BR': 'Aula',
+  vi: 'Bài',
+  id: 'Pelajaran',
+  tr: 'Ders',
+  pl: 'Lekcja',
+};
+
+const FILTER_LESSONS_GROUP_LABELS: Record<Lang, string> = {
+  ru: 'Уроки',
+  uk: 'Уроки',
+  es: 'Lecciones',
+  'pt-BR': 'Aulas',
+  vi: 'Bài học',
+  id: 'Pelajaran',
+  tr: 'Dersler',
+  pl: 'Lekcje',
+};
+
+const FILTER_OTHER_GROUP_LABELS: Record<Lang, string> = {
+  ru: 'Прочее',
+  uk: 'Інше',
+  es: 'Otros',
+  'pt-BR': 'Outros',
+  vi: 'Khác',
+  id: 'Lainnya',
+  tr: 'Diğer',
+  pl: 'Inne',
+};
+
+const FILTER_ALL_LABELS: Record<Lang, string> = {
+  ru: 'Все',
+  uk: 'Всі',
+  es: 'Todas',
+  'pt-BR': 'Todas',
+  vi: 'Tất cả',
+  id: 'Semua',
+  tr: 'Tümü',
+  pl: 'Wszystkie',
+};
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

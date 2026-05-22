@@ -16,13 +16,6 @@ appId: app.phraseman
     timeout: 45000
 - tapOn:
     id: "home-stats-card"
-- scrollUntilVisible:
-    element:
-      id: "wager-open"
-    direction: DOWN
-    timeout: 30000
-    speed: 80
-    visibilityPercentage: 40
 - runFlow:
     when:
       visible:
@@ -34,18 +27,41 @@ appId: app.phraseman
           visible:
             id: "wager-modal"
           timeout: 15000
-      - tapOn:
-          id: "wager-tier-0"
-      - tapOn:
-          id: "wager-place"
+- repeat:
+    times: 5
+    commands:
       - runFlow:
           when:
-            visible:
-              id: "wager-confirm-confirm"
+            notVisible:
+              id: "wager-modal"
           commands:
-            - tapOn:
-                id: "wager-confirm-confirm"
-      - extendedWaitUntil:
-          visible:
-            id: "wager-active-card"
-          timeout: 30000
+            - swipe:
+                direction: UP
+                duration: 450
+            - waitForAnimationToEnd:
+                timeout: 800
+            - runFlow:
+                when:
+                  visible:
+                    id: "wager-open"
+                commands:
+                  - tapOn:
+                      id: "wager-open"
+- extendedWaitUntil:
+    visible:
+      id: "wager-modal"
+    timeout: 15000
+- tapOn:
+    id: "wager-tier-0"
+- tapOn:
+    id: "wager-place"
+- extendedWaitUntil:
+    visible:
+      id: "wager-confirm-confirm"
+    timeout: 15000
+- tapOn:
+    id: "wager-confirm-confirm"
+- extendedWaitUntil:
+    visible:
+      id: "wager-active-card"
+    timeout: 30000

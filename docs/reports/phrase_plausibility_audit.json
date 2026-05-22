@@ -1,873 +1,443 @@
 {
   "totalPhrases": 1600,
-  "issues": [
+  "issues": [],
+  "summary": {
+    "high": [],
+    "med": [],
+    "low": []
+  },
+  "semanticNamed": [
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 1,
       "id": "lesson1_phrase_17",
       "en": "We are here",
       "ru": "Мы здесь",
       "uk": "Ми тут",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 1,
       "id": "lesson1_phrase_46",
       "en": "He is angry",
       "ru": "Он злой",
       "uk": "Він злий",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 4,
       "id": "lesson4_phrase_40",
       "en": "He does not ask for help",
       "ru": "Он не просит помощи",
       "uk": "Він не просить допомоги",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 6,
       "id": "lesson6_phrase_34",
       "en": "When does he check mail?",
       "ru": "Когда он проверяет почту?",
       "uk": "Коли він перевіряє пошту?",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 7,
       "id": "lesson7_phrase_44",
       "en": "I have a charger",
       "ru": "У меня есть зарядка",
       "uk": "Я маю зарядний пристрій",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 8,
       "id": "lesson8_phrase_14",
       "en": "He calls at night",
       "ru": "Он звонит ночью",
       "uk": "Він дзвонить вночі",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 9,
       "id": "lesson9_phrase_45",
-      "en": "Is there time?",
-      "ru": "Есть время?",
-      "uk": "Є час?",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "en": "Is there much time?",
+      "ru": "Есть много времени?",
+      "uk": "Є багато часу?",
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 10,
       "id": "lesson10_phrase_39",
       "en": "They must wait here",
       "ru": "Они должны ждать здесь",
       "uk": "Вони мусять чекати тут",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 11,
       "id": "lesson11_phrase_21",
       "en": "He used cash yesterday",
       "ru": "Он использовал наличные вчера",
       "uk": "Він використовував готівку вчора",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 11,
       "id": "lesson11_phrase_25",
       "en": "I booked tickets last week",
       "ru": "Я забронировал билеты на прошлой неделе",
       "uk": "Я забронював квитки минулого тижня",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 11,
       "id": "lesson11_phrase_36",
       "en": "They returned tickets yesterday",
       "ru": "Они вернули билеты вчера",
       "uk": "Вони повернули квитки вчора",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 13,
       "id": "lesson13_phrase_1",
       "en": "I will call you tomorrow",
       "ru": "Я позвоню тебе завтра",
       "uk": "Я зателефоную тобі завтра",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 13,
       "id": "lesson13_phrase_34",
       "en": "Will they work tomorrow?",
       "ru": "Они будут работать завтра?",
       "uk": "Вони будуть працювати завтра?",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 14,
       "id": "lesson14_phrase_20",
       "en": "That room is warmer",
       "ru": "Та комната теплее",
       "uk": "Та кімната тепліша",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 15,
       "id": "lesson15_phrase_1",
       "en": "This phone is mine",
       "ru": "Этот телефон мой",
       "uk": "Цей телефон мій",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 16,
       "id": "lesson16_phrase_46",
       "en": "They turned off phones at noon",
       "ru": "Они выключили телефоны в полдень",
       "uk": "Вони вимкнули телефони опівдні",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 17,
       "id": "lesson17_phrase_35",
       "en": "Are we waiting here?",
       "ru": "Мы ждём здесь?",
       "uk": "Ми тут чекаємо?",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 19,
       "id": "lesson19_phrase_17",
       "en": "Are the keys in the bag?",
       "ru": "Ключи в сумке?",
       "uk": "Ключі в сумці?",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 19,
       "id": "lesson19_phrase_42",
       "en": "My phone is on the desk",
       "ru": "Мой телефон на рабочем столе",
       "uk": "Мій телефон на робочому столі",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 21,
       "id": "lesson21_phrase_37",
       "en": "Everyone helped us",
       "ru": "Все помогли нам",
       "uk": "Всі допомогли нам",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 23,
       "id": "lesson23_phrase_10",
       "en": "The phones are charged here",
       "ru": "Телефоны заряжаются здесь",
       "uk": "Телефони заряджаються тут",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 23,
       "id": "lesson23_phrase_17",
       "en": "The plan is discussed every week",
       "ru": "План обсуждается каждую неделю",
       "uk": "План обговорюється щотижня",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 23,
       "id": "lesson23_phrase_19",
       "en": "The problem is solved quickly",
       "ru": "Проблема быстро решается",
       "uk": "Проблема швидко вирішується",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 23,
       "id": "lesson23_phrase_43",
       "en": "He is called every day",
       "ru": "Ему звонят каждый день",
       "uk": "Йому телефонують щодня",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 24,
       "id": "lesson24_phrase_4",
       "en": "They have just sent documents",
       "ru": "Они только что отправили документы",
       "uk": "Вони щойно надіслали документи",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 26,
       "id": "lesson26_phrase_1",
       "en": "If you help me, I will finish faster",
       "ru": "Если ты поможешь мне, я закончу быстрее",
       "uk": "Якщо ти допоможеш мені, я закінчу швидше",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 26,
       "id": "lesson26_phrase_13",
       "en": "If she studies every day, her English will improve",
       "ru": "Если она будет заниматься каждый день, ее английский улучшится",
       "uk": "Якщо вона займатиметься щодня, її англійська покращиться",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 27,
       "id": "lesson27_phrase_2",
       "en": "She said that she was busy",
       "ru": "Она сказала, что занята",
       "uk": "Вона сказала, що зайнята",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 27,
       "id": "lesson27_phrase_7",
       "en": "He said that he knew the answer",
       "ru": "Он сказал, что знал ответ",
       "uk": "Він сказав, що знав відповідь",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 27,
       "id": "lesson27_phrase_29",
       "en": "He said that he could not find the phone",
       "ru": "Он сказал, что не мог найти телефон",
       "uk": "Він сказав, що не міг знайти телефон",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 27,
       "id": "lesson27_phrase_43",
       "en": "I said that I had lost my phone",
       "ru": "Я сказал, что потерял свой телефон",
       "uk": "Я сказав, що загубив свій телефон",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 28,
       "id": "lesson28_phrase_22",
       "en": "Did he hurt himself?",
       "ru": "Он ушибся?",
       "uk": "Він забився?",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 29,
       "id": "lesson29_phrase_4",
       "en": "She used to study English",
       "ru": "Раньше она учила английский",
       "uk": "Раніше вона вчила англійську",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 29,
       "id": "lesson29_phrase_28",
       "en": "He did not use to call me",
       "ru": "Раньше он не звонил мне",
       "uk": "Раніше він не телефонував мені",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 29,
       "id": "lesson29_phrase_40",
       "en": "Did you use to wake up early?",
       "ru": "Ты раньше просыпался рано?",
       "uk": "Ти раніше прокидався рано?",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 30,
       "id": "lesson30_phrase_18",
       "en": "This is the problem that we solved",
       "ru": "Это проблема, которую мы решили",
       "uk": "Це проблема, яку ми вирішили",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 30,
       "id": "lesson30_phrase_34",
       "en": "They called a driver whose car was outside",
       "ru": "Они позвонили водителю, чья машина была снаружи",
       "uk": "Вони зателефонували водієві, чия машина була ззовні",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 31,
       "id": "lesson31_phrase_26",
       "en": "She felt that hot steam burn her right hand.",
       "ru": "Она почувствовала, как тот горячий пар обжег её правую руку.",
       "uk": "Вона відчула, як той гарячий пар обпік її праву руку.",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 31,
       "id": "lesson31_phrase_33",
       "en": "She felt that warm sunlight reach her tired eyes.",
       "ru": "Она почувствовала, как тот тёплый солнечный свет коснулся её усталых глаз.",
       "uk": "Вона відчула, як тепле сонячне світло торкнулося її втомлених очей.",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 31,
       "id": "lesson31_phrase_46",
       "en": "She let that helpful guide show that ancient map to that tourist group.",
       "ru": "Она разрешила тому готовому помочь гиду показать древнюю карту той группе туристов.",
       "uk": "Вона дозволила тому помічному гіду показати стародавню мапу тій групі туристів.",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 32,
       "id": "lesson32_phrase_23",
       "en": "They were told that the problem was solved.",
       "ru": "Им сказали, что проблема решена.",
       "uk": "Їм сказали, що проблему вирішили.",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 32,
       "id": "lesson32_phrase_29",
       "en": "If I had known, I would have helped.",
       "ru": "Если бы я знал, я бы помог.",
       "uk": "Якби я знав, я б допоміг.",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {
       "code": "SEMANTIC_AUDIT_NAMED",
-      "severity": "low",
+      "severity": "info",
       "lesson": 32,
       "id": "lesson32_phrase_35",
       "en": "We felt the phone vibrate.",
       "ru": "Мы почувствовали, как телефон завибрировал.",
       "uk": "Ми відчули, як телефон завібрував.",
-      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     }
   ],
-  "summary": {
-    "high": [],
-    "med": [],
-    "low": [
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 1,
-        "id": "lesson1_phrase_17",
-        "en": "We are here",
-        "ru": "Мы здесь",
-        "uk": "Ми тут",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 1,
-        "id": "lesson1_phrase_46",
-        "en": "He is angry",
-        "ru": "Он злой",
-        "uk": "Він злий",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 4,
-        "id": "lesson4_phrase_40",
-        "en": "He does not ask for help",
-        "ru": "Он не просит помощи",
-        "uk": "Він не просить допомоги",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 6,
-        "id": "lesson6_phrase_34",
-        "en": "When does he check mail?",
-        "ru": "Когда он проверяет почту?",
-        "uk": "Коли він перевіряє пошту?",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 7,
-        "id": "lesson7_phrase_44",
-        "en": "I have a charger",
-        "ru": "У меня есть зарядка",
-        "uk": "Я маю зарядний пристрій",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 8,
-        "id": "lesson8_phrase_14",
-        "en": "He calls at night",
-        "ru": "Он звонит ночью",
-        "uk": "Він дзвонить вночі",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 9,
-        "id": "lesson9_phrase_45",
-        "en": "Is there time?",
-        "ru": "Есть время?",
-        "uk": "Є час?",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 10,
-        "id": "lesson10_phrase_39",
-        "en": "They must wait here",
-        "ru": "Они должны ждать здесь",
-        "uk": "Вони мусять чекати тут",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 11,
-        "id": "lesson11_phrase_21",
-        "en": "He used cash yesterday",
-        "ru": "Он использовал наличные вчера",
-        "uk": "Він використовував готівку вчора",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 11,
-        "id": "lesson11_phrase_25",
-        "en": "I booked tickets last week",
-        "ru": "Я забронировал билеты на прошлой неделе",
-        "uk": "Я забронював квитки минулого тижня",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 11,
-        "id": "lesson11_phrase_36",
-        "en": "They returned tickets yesterday",
-        "ru": "Они вернули билеты вчера",
-        "uk": "Вони повернули квитки вчора",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 13,
-        "id": "lesson13_phrase_1",
-        "en": "I will call you tomorrow",
-        "ru": "Я позвоню тебе завтра",
-        "uk": "Я зателефоную тобі завтра",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 13,
-        "id": "lesson13_phrase_34",
-        "en": "Will they work tomorrow?",
-        "ru": "Они будут работать завтра?",
-        "uk": "Вони будуть працювати завтра?",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 14,
-        "id": "lesson14_phrase_20",
-        "en": "That room is warmer",
-        "ru": "Та комната теплее",
-        "uk": "Та кімната тепліша",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 15,
-        "id": "lesson15_phrase_1",
-        "en": "This phone is mine",
-        "ru": "Этот телефон мой",
-        "uk": "Цей телефон мій",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 16,
-        "id": "lesson16_phrase_46",
-        "en": "They turned off phones at noon",
-        "ru": "Они выключили телефоны в полдень",
-        "uk": "Вони вимкнули телефони опівдні",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 17,
-        "id": "lesson17_phrase_35",
-        "en": "Are we waiting here?",
-        "ru": "Мы ждём здесь?",
-        "uk": "Ми тут чекаємо?",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 19,
-        "id": "lesson19_phrase_17",
-        "en": "Are the keys in the bag?",
-        "ru": "Ключи в сумке?",
-        "uk": "Ключі в сумці?",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 19,
-        "id": "lesson19_phrase_42",
-        "en": "My phone is on the desk",
-        "ru": "Мой телефон на рабочем столе",
-        "uk": "Мій телефон на робочому столі",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 21,
-        "id": "lesson21_phrase_37",
-        "en": "Everyone helped us",
-        "ru": "Все помогли нам",
-        "uk": "Всі допомогли нам",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 23,
-        "id": "lesson23_phrase_10",
-        "en": "The phones are charged here",
-        "ru": "Телефоны заряжаются здесь",
-        "uk": "Телефони заряджаються тут",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 23,
-        "id": "lesson23_phrase_17",
-        "en": "The plan is discussed every week",
-        "ru": "План обсуждается каждую неделю",
-        "uk": "План обговорюється щотижня",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 23,
-        "id": "lesson23_phrase_19",
-        "en": "The problem is solved quickly",
-        "ru": "Проблема быстро решается",
-        "uk": "Проблема швидко вирішується",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 23,
-        "id": "lesson23_phrase_43",
-        "en": "He is called every day",
-        "ru": "Ему звонят каждый день",
-        "uk": "Йому телефонують щодня",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 24,
-        "id": "lesson24_phrase_4",
-        "en": "They have just sent documents",
-        "ru": "Они только что отправили документы",
-        "uk": "Вони щойно надіслали документи",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 26,
-        "id": "lesson26_phrase_1",
-        "en": "If you help me, I will finish faster",
-        "ru": "Если ты поможешь мне, я закончу быстрее",
-        "uk": "Якщо ти допоможеш мені, я закінчу швидше",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 26,
-        "id": "lesson26_phrase_13",
-        "en": "If she studies every day, her English will improve",
-        "ru": "Если она будет заниматься каждый день, ее английский улучшится",
-        "uk": "Якщо вона займатиметься щодня, її англійська покращиться",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 27,
-        "id": "lesson27_phrase_2",
-        "en": "She said that she was busy",
-        "ru": "Она сказала, что занята",
-        "uk": "Вона сказала, що зайнята",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 27,
-        "id": "lesson27_phrase_7",
-        "en": "He said that he knew the answer",
-        "ru": "Он сказал, что знал ответ",
-        "uk": "Він сказав, що знав відповідь",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 27,
-        "id": "lesson27_phrase_29",
-        "en": "He said that he could not find the phone",
-        "ru": "Он сказал, что не мог найти телефон",
-        "uk": "Він сказав, що не міг знайти телефон",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 27,
-        "id": "lesson27_phrase_43",
-        "en": "I said that I had lost my phone",
-        "ru": "Я сказал, что потерял свой телефон",
-        "uk": "Я сказав, що загубив свій телефон",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 28,
-        "id": "lesson28_phrase_22",
-        "en": "Did he hurt himself?",
-        "ru": "Он ушибся?",
-        "uk": "Він забився?",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 29,
-        "id": "lesson29_phrase_4",
-        "en": "She used to study English",
-        "ru": "Раньше она учила английский",
-        "uk": "Раніше вона вчила англійську",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 29,
-        "id": "lesson29_phrase_28",
-        "en": "He did not use to call me",
-        "ru": "Раньше он не звонил мне",
-        "uk": "Раніше він не телефонував мені",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 29,
-        "id": "lesson29_phrase_40",
-        "en": "Did you use to wake up early?",
-        "ru": "Ты раньше просыпался рано?",
-        "uk": "Ти раніше прокидався рано?",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 30,
-        "id": "lesson30_phrase_18",
-        "en": "This is the problem that we solved",
-        "ru": "Это проблема, которую мы решили",
-        "uk": "Це проблема, яку ми вирішили",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 30,
-        "id": "lesson30_phrase_34",
-        "en": "They called a driver whose car was outside",
-        "ru": "Они позвонили водителю, чья машина была снаружи",
-        "uk": "Вони зателефонували водієві, чия машина була ззовні",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 31,
-        "id": "lesson31_phrase_26",
-        "en": "She felt that hot steam burn her right hand.",
-        "ru": "Она почувствовала, как тот горячий пар обжег её правую руку.",
-        "uk": "Вона відчула, як той гарячий пар обпік її праву руку.",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 31,
-        "id": "lesson31_phrase_33",
-        "en": "She felt that warm sunlight reach her tired eyes.",
-        "ru": "Она почувствовала, как тот тёплый солнечный свет коснулся её усталых глаз.",
-        "uk": "Вона відчула, як тепле сонячне світло торкнулося її втомлених очей.",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 31,
-        "id": "lesson31_phrase_46",
-        "en": "She let that helpful guide show that ancient map to that tourist group.",
-        "ru": "Она разрешила тому готовому помочь гиду показать древнюю карту той группе туристов.",
-        "uk": "Вона дозволила тому помічному гіду показати стародавню мапу тій групі туристів.",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 32,
-        "id": "lesson32_phrase_23",
-        "en": "They were told that the problem was solved.",
-        "ru": "Им сказали, что проблема решена.",
-        "uk": "Їм сказали, що проблему вирішили.",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 32,
-        "id": "lesson32_phrase_29",
-        "en": "If I had known, I would have helped.",
-        "ru": "Если бы я знал, я бы помог.",
-        "uk": "Якби я знав, я б допоміг.",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      },
-      {
-        "code": "SEMANTIC_AUDIT_NAMED",
-        "severity": "low",
-        "lesson": 32,
-        "id": "lesson32_phrase_35",
-        "en": "We felt the phone vibrate.",
-        "ru": "Мы почувствовали, как телефон завибрировал.",
-        "uk": "Ми відчули, як телефон завібрував.",
-        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
-      }
-    ]
-  },
   "semanticAuditPhraseIds": [
     "lesson10_phrase_39",
     "lesson11_phrase_21",

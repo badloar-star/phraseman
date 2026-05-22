@@ -3,37 +3,107 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const WAS_WERE_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre was/were ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về was/were này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan was/were ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu was/were açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie was/were nadal wymaga przeglądu po polsku.',
+};
+
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? WAS_WERE_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = ['was', 'were', 'am/is/are', "wasn't", "weren't", 'was there', 'were there'];
 
 const MODEL = tri(
   'Was и were - это be в прошлом. Для I/he/she/it обычно нужен was: I was tired, she was at home. Для you/we/they нужен were: you were right, they were busy. Если есть yesterday, last night, last week или in 2020, не оставляй am/is/are.',
   'Was і were - це be у минулому. Для I/he/she/it зазвичай потрібен was: I was tired, she was at home. Для you/we/they потрібен were: you were right, they were busy. Якщо є yesterday, last night, last week або in 2020, не залишай am/is/are.',
-  'Was and were are past be. I/he/she/it usually take was. You/we/they take were.',
+  'Was y were son be en pasado. Con I/he/she/it normalmente necesitas was: I was tired, she was at home. Con you/we/they necesitas were: you were right, they were busy. Si ves yesterday, last night, last week o in 2020, no dejes am/is/are.',
+  {
+    'pt-BR': 'Was e were são be no passado. Com I/he/she/it, normalmente use was: I was tired, she was at home. Com you/we/they, use were: you were right, they were busy. Se houver yesterday, last night, last week ou in 2020, não deixe am/is/are.',
+    vi: 'Was và were là be ở quá khứ. Với I/he/she/it, thường dùng was: I was tired, she was at home. Với you/we/they, dùng were: you were right, they were busy. Nếu có yesterday, last night, last week hoặc in 2020, đừng giữ am/is/are.',
+    id: 'Was dan were adalah be di masa lalu. Untuk I/he/she/it, biasanya gunakan was: I was tired, she was at home. Untuk you/we/they, gunakan were: you were right, they were busy. Jika ada yesterday, last night, last week, atau in 2020, jangan biarkan am/is/are.',
+    tr: 'Was ve were, be fiilinin geçmiş biçimleridir. I/he/she/it ile genellikle was kullanılır: I was tired, she was at home. You/we/they ile were kullanılır: you were right, they were busy. Yesterday, last night, last week veya in 2020 varsa am/is/are bırakma.',
+    pl: 'Was i were to be w przeszłości. Z I/he/she/it zwykle użyj was: I was tired, she was at home. Z you/we/they użyj were: you were right, they were busy. Jeśli widzisz yesterday, last night, last week albo in 2020, nie zostawiaj am/is/are.',
+  },
 );
+
+const WAS_WERE_SKILL_ES: Record<string, string> = {
+  i_was: 'Con I en pasado usa was.',
+  she_was: 'Con she en pasado usa was.',
+  it_was: 'Para clima con it en pasado usa was.',
+  they_were: 'Con they en pasado usa were.',
+  we_were: 'Con we en pasado usa were.',
+  you_were: 'Con you en pasado usa were.',
+  past_marker_not_is: 'Yesterday pide pasado: he was.',
+  past_marker_not_are: 'Last week pide pasado; rooms es plural: were.',
+  singular_noun_was: 'The lesson es singular: was.',
+  wasnt_singular: 'Con he en negativo usa wasn’t.',
+  werent_plural: 'Con they en negativo usa weren’t.',
+  question_were_they: 'En pregunta con they, were va primero.',
+  mixed_was_were_pair: 'I usa was; they usa were.',
+  mixed_negative_pair: 'He usa wasn’t; we usa weren’t.',
+  mixed_sentence_correction: 'She usa was; they usa were.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = WAS_WERE_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? WAS_WERE_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function wasWereEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = WAS_WERE_SKILL_ES[input.targetSkill] ?? 'Comprueba la persona y el tiempo pasado.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retry(correct: string): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала найди, о ком или о чем фраза: I/he/she/it или you/we/they.',
       'Спочатку знайди, про кого або про що фраза: I/he/she/it або you/we/they.',
-      'First find who or what the sentence is about.',
+      'Primero encuentra de quien o de que habla la frase.',
     ),
     tri(
       'Если это I/he/she/it в прошлом, чаще нужен was.',
       'Якщо це I/he/she/it у минулому, частіше потрібен was.',
-      'I/he/she/it usually take was in the past.',
+      'I/he/she/it normalmente usan was en pasado.',
     ),
     tri(
       'Если это you/we/they в прошлом, чаще нужен were.',
       'Якщо це you/we/they у минулому, частіше потрібен were.',
-      'You/we/they usually take were in the past.',
+      'You/we/they normalmente usan were en pasado.',
     ),
     tri(
       `Нужный вариант здесь: ${correct}.`,
       `Потрібний варіант тут: ${correct}.`,
-      `The answer here is: ${correct}.`,
+      `La respuesta aqui es: ${correct}.`,
     ),
   ];
 }
@@ -42,7 +112,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Проверь, кто в фразе, и время. Здесь нужно: ${correct}.`,
     `Майже. Перевір, хто у фразі, і час. Тут потрібно: ${correct}.`,
-    `Almost. Check who the sentence is about and use: ${correct}.`,
+    `Casi. Revisa de quien habla la frase y usa: ${correct}.`,
   );
 }
 
@@ -59,35 +129,36 @@ function wasWereStep(input: {
   wrong: Record<string, TriText>;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = wasWereEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
-    teachingText: MODEL,
-    explanationBlock: MODEL,
+    translation: withEs(input.translation, esFeedback),
+    teachingText: withEs(MODEL, esFeedback),
+    explanationBlock: withEs(MODEL, esFeedback),
     microTask: tri(
       'Выбери was или were по тому, о ком фраза, и не оставляй am/is/are там, где речь о прошлом.',
       'Обери was або were за тим, про кого фраза, і не залишай am/is/are там, де йдеться про минуле.',
-      'Choose was or were, and do not keep am/is/are for past meaning.',
+      'Elige was o were segun la persona, y no dejes am/is/are cuando el sentido es pasado.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(input.correctAnswer),
+    retryFeedback: retry(input.correctAnswer).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       "Коротко: I/he/she/it was. You/we/they were. В отрицании: wasn't / weren't. В вопросе was/were выходит вперед: Were they at work? Не ставь was/were перед обычным действием: I was worked неверно, нужно I worked.",
       "Коротко: I/he/she/it was. You/we/they were. У запереченні: wasn't / weren't. У питанні was/were виходить уперед: Were they at work? Не став was/were перед звичайною дією: I was worked неправильно, потрібно I worked.",
-      "Short version: I/he/she/it was. You/we/they were. Negative: wasn't/weren't. Question: Was/Were first.",
+      "Version corta: I/he/she/it was. You/we/they were. Negativa: wasn't / weren't. Pregunta: was/were va primero. No pongas was/were antes de una accion normal: I was worked es incorrecto; usa I worked.",
     ),
     focusWords: input.focusWords,
   };
@@ -99,25 +170,58 @@ export const VERB_WAS_WERE_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 26,
-  supportedLocales: ['ru', 'uk'],
-  title: tri('Was / Were: был, была, были', 'Was / Were: був, була, були', 'Was / Were: past be'),
-  shortTitle: tri('Was / Were', 'Was / Were', 'Was / Were'),
+  supportedLocales: ['ru', 'uk', 'es'],
+  title: tri('Was / Were: был, была, были', 'Was / Were: був, була, були', 'Was / Were: be en pasado', {
+    'pt-BR': 'Was / Were: be no passado',
+    vi: 'Was / Were: be ở quá khứ',
+    id: 'Was / Were: be di masa lalu',
+    tr: 'Was / Were: geçmişte be',
+    pl: 'Was / Were: be w przeszłości',
+  }),
+  shortTitle: tri('Was / Were', 'Was / Were', 'Was / Were', {
+    'pt-BR': 'Was / Were',
+    vi: 'Was / Were',
+    id: 'Was / Were',
+    tr: 'Was / Were',
+    pl: 'Was / Were',
+  }),
   shortDiagnosis: tri(
     'Ты путаешь was и were или оставляешь am/is/are там, где фраза уже в прошлом.',
     'Ти плутаєш was і were або залишаєш am/is/are там, де фраза вже в минулому.',
-    'You mix was and were or keep am/is/are for past meaning.',
+    'Confundes was y were o dejas am/is/are donde la frase ya esta en pasado.',
+    {
+      'pt-BR': 'Você confunde was e were ou deixa am/is/are onde a frase já está no passado.',
+      vi: 'Bạn nhầm was và were hoặc giữ am/is/are ở nơi câu đã nói về quá khứ.',
+      id: 'Kamu mencampur was dan were atau membiarkan am/is/are saat kalimatnya sudah berada di masa lalu.',
+      tr: 'Was ve were biçimlerini karıştırıyor ya da cümle geçmişteyken am/is/are bırakıyorsun.',
+      pl: 'Mylisz was i were albo zostawiasz am/is/are tam, gdzie zdanie jest już w przeszłości.',
+    },
   ),
   diagnosisText: tri(
     'Ошибка появляется, когда ты переводишь “был/были” одним русским словом и не выбираешь английскую пару. В английском I was, he was, she was, it was, но you were, we were, they were.',
     'Помилка зʼявляється, коли ти перекладаєш “був/були” одним українським словом і не обираєш англійську пару. Англійською I was, he was, she was, it was, але you were, we were, they were.',
-    'The mistake appears when past be is translated as one word and the English pair is not chosen.',
+    'El error aparece cuando be en pasado se traduce como una sola palabra y no eliges la pareja inglesa: I was, he was, she was, it was, pero you were, we were, they were.',
+    {
+      'pt-BR': 'O erro aparece quando você trata “era/estava/foi” como uma única ideia e não escolhe o par em inglês. Em inglês: I was, he was, she was, it was, mas you were, we were, they were.',
+      vi: 'Lỗi xuất hiện khi bạn dịch ý “đã là/đã ở” như một dạng duy nhất và không chọn đúng cặp trong tiếng Anh. Trong tiếng Anh: I was, he was, she was, it was, nhưng you were, we were, they were.',
+      id: 'Kesalahan muncul saat kamu memperlakukan “dulu/berada/menjadi” sebagai satu bentuk saja dan tidak memilih pasangan bahasa Inggrisnya. Dalam bahasa Inggris: I was, he was, she was, it was, tetapi you were, we were, they were.',
+      tr: 'Hata, “idi/vardı” anlamını tek bir biçim gibi düşünüp İngilizcedeki doğru çifti seçmediğinde ortaya çıkar. İngilizcede I was, he was, she was, it was; ama you were, we were, they were.',
+      pl: 'Błąd pojawia się, gdy traktujesz „był/byli” jak jedną formę i nie wybierasz angielskiej pary. Po angielsku: I was, he was, she was, it was, ale you were, we were, they were.',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     "Was ставим с I/he/she/it в прошлом. Were ставим с you/we/they. В отрицании используем wasn't или weren't. В вопросе was/were выходит вперёд.",
     "Was ставимо з I/he/she/it у минулому. Were ставимо з you/we/they. У запереченні використовуємо wasn't або weren't. У питанні was/were виходить уперед.",
-    "I/he/she/it was. You/we/they were. Negative: wasn't/weren't. Question: Was/Were first.",
+    "I/he/she/it was. You/we/they were. Negativa: wasn't/weren't. Pregunta: Was/Were al principio.",
+    {
+      'pt-BR': "Use was com I/he/she/it no passado. Use were com you/we/they. Na negativa, use wasn't ou weren't. Em perguntas, was/were vai para a frente.",
+      vi: "Dùng was với I/he/she/it trong quá khứ. Dùng were với you/we/they. Trong câu phủ định, dùng wasn't hoặc weren't. Trong câu hỏi, was/were đứng lên đầu.",
+      id: "Gunakan was dengan I/he/she/it di masa lalu. Gunakan were dengan you/we/they. Dalam negatif, gunakan wasn't atau weren't. Dalam pertanyaan, was/were maju ke depan.",
+      tr: "Geçmişte I/he/she/it ile was kullan. You/we/they ile were kullan. Olumsuzda wasn't veya weren't kullan. Soruda was/were başa gelir.",
+      pl: "W przeszłości użyj was z I/he/she/it. Użyj were z you/we/they. W przeczeniu użyj wasn't albo weren't. W pytaniu was/were idzie na początek.",
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -145,16 +249,76 @@ export const VERB_WAS_WERE_TRAINING: DiagnosisTraining = {
       'Не став was/were перед звичайною дією: I was worked неправильно. Для дії потрібно I worked.',
     ],
     es: [
-      'I uses was in the past.',
-      'He/she/it use was in the past.',
-      'You uses were in the past.',
-      'We/they use were in the past.',
-      'Was/were describe past state, place, weather, or description.',
-      'Yesterday and last night often point to was/were.',
-      'Do not say they was.',
-      "Use wasn't and weren't in negatives.",
-      'Questions start with was/were.',
-      'Do not use was/were before normal past actions like worked.',
+      'Con I en pasado usa was.',
+      'Con he/she/it en pasado usa was.',
+      'Con you en pasado usa were.',
+      'Con we/they en pasado usa were.',
+      'Was/were describen estado, lugar, clima o descripcion en pasado.',
+      'Yesterday y last night suelen apuntar a was/were.',
+      'No digas they was.',
+      "Usa wasn't y weren't en negativas.",
+      'Las preguntas empiezan con was/were.',
+      'No uses was/were antes de acciones normales en pasado como worked.',
+    ],
+    'pt-BR': [
+      'I usa was no passado.',
+      'He/she/it usam was no passado.',
+      'You usa were no passado.',
+      'We/they usam were no passado.',
+      'Was/were descrevem estado, lugar, clima ou descrição no passado.',
+      'Yesterday e last night muitas vezes apontam para was/were.',
+      'Não diga they was.',
+      "Use wasn't e weren't em negativas.",
+      'Perguntas começam com was/were.',
+      'Não use was/were antes de ações normais no passado, como worked.',
+    ],
+    vi: [
+      'I dùng was trong quá khứ.',
+      'He/she/it dùng was trong quá khứ.',
+      'You dùng were trong quá khứ.',
+      'We/they dùng were trong quá khứ.',
+      'Was/were mô tả trạng thái, nơi chốn, thời tiết hoặc miêu tả trong quá khứ.',
+      'Yesterday và last night thường gợi ý was/were.',
+      'Đừng nói they was.',
+      "Dùng wasn't và weren't trong câu phủ định.",
+      'Câu hỏi bắt đầu bằng was/were.',
+      'Đừng dùng was/were trước hành động quá khứ bình thường như worked.',
+    ],
+    id: [
+      'I memakai was di masa lalu.',
+      'He/she/it memakai was di masa lalu.',
+      'You memakai were di masa lalu.',
+      'We/they memakai were di masa lalu.',
+      'Was/were menggambarkan keadaan, tempat, cuaca, atau deskripsi di masa lalu.',
+      'Yesterday dan last night sering menunjukkan was/were.',
+      'Jangan mengatakan they was.',
+      "Gunakan wasn't dan weren't dalam negatif.",
+      'Pertanyaan dimulai dengan was/were.',
+      'Jangan gunakan was/were sebelum aksi lampau biasa seperti worked.',
+    ],
+    tr: [
+      'I geçmişte was alır.',
+      'He/she/it geçmişte was alır.',
+      'You geçmişte were alır.',
+      'We/they geçmişte were alır.',
+      'Was/were geçmiş durum, yer, hava veya tanım anlatır.',
+      'Yesterday ve last night çoğu zaman was/were gösterir.',
+      'They was deme.',
+      "Olumsuzlarda wasn't ve weren't kullan.",
+      'Sorular was/were ile başlar.',
+      'Worked gibi normal geçmiş eylemlerden önce was/were kullanma.',
+    ],
+    pl: [
+      'I używa was w przeszłości.',
+      'He/she/it używają was w przeszłości.',
+      'You używa were w przeszłości.',
+      'We/they używają were w przeszłości.',
+      'Was/were opisują przeszły stan, miejsce, pogodę albo opis.',
+      'Yesterday i last night często wskazują was/were.',
+      'Nie mów they was.',
+      "W przeczeniach używaj wasn't i weren't.",
+      'Pytania zaczynają się od was/were.',
+      'Nie używaj was/were przed normalnymi przeszłymi czynnościami jak worked.',
     ],
   },
   examples: [
@@ -162,57 +326,97 @@ export const VERB_WAS_WERE_TRAINING: DiagnosisTraining = {
       en: 'I was tired yesterday.',
       ru: 'Я был уставшим вчера.',
       uk: 'Я був втомлений учора.',
-      es: 'I was tired yesterday.',
-      why: tri('I в прошлом с be дает was.', 'I у минулому з be дає was.', 'I takes was in the past.'),
+      es: 'Ayer estaba cansado.',
+      'pt-BR': 'Eu estava cansado ontem.',
+      vi: 'Hôm qua tôi đã mệt.',
+      id: 'Saya lelah kemarin.',
+      tr: 'Dün yorgundum.',
+      pl: 'Byłem zmęczony wczoraj.',
+      why: tri('I в прошлом с be дает was.', 'I у минулому з be дає was.', 'I usa was en pasado.'),
     },
     {
       en: 'She was at home last night.',
       ru: 'Она была дома вчера вечером.',
       uk: 'Вона була вдома вчора ввечері.',
-      es: 'She was at home last night.',
-      why: tri('She требует was, а last night показывает прошлое.', 'She потребує was, а last night показує минуле.', 'She takes was.'),
+      es: 'Ella estaba en casa anoche.',
+      'pt-BR': 'Ela estava em casa ontem à noite.',
+      vi: 'Tối qua cô ấy đã ở nhà.',
+      id: 'Dia ada di rumah tadi malam.',
+      tr: 'Dün gece evdeydi.',
+      pl: 'Ona była w domu wczoraj wieczorem.',
+      why: tri('She требует was, а last night показывает прошлое.', 'She потребує was, а last night показує минуле.', 'She usa was.'),
     },
     {
       en: 'They were busy yesterday.',
       ru: 'Они были заняты вчера.',
       uk: 'Вони були зайняті вчора.',
-      es: 'They were busy yesterday.',
-      why: tri('They в прошлом с be дает were.', 'They у минулому з be дає were.', 'They takes were in the past.'),
+      es: 'Ayer estaban ocupados.',
+      'pt-BR': 'Eles estavam ocupados ontem.',
+      vi: 'Hôm qua họ đã bận.',
+      id: 'Mereka sibuk kemarin.',
+      tr: 'Dün meşguldüler.',
+      pl: 'Oni byli zajęci wczoraj.',
+      why: tri('They в прошлом с be дает were.', 'They у минулому з be дає were.', 'They usa were en pasado.'),
     },
     {
       en: 'We were in Dublin in 2020.',
       ru: 'Мы были в Дублине в 2020 году.',
       uk: 'Ми були в Дубліні у 2020 році.',
-      es: 'We were in Dublin in 2020.',
-      why: tri('We требует were, а in 2020 показывает прошлое.', 'We потребує were, а in 2020 показує минуле.', 'We takes were.'),
+      es: 'Estuvimos en Dublin en 2020.',
+      'pt-BR': 'Nós estivemos em Dublin em 2020.',
+      vi: 'Chúng tôi đã ở Dublin vào năm 2020.',
+      id: 'Kami berada di Dublin pada tahun 2020.',
+      tr: '2020’de Dublin’deydik.',
+      pl: 'Byliśmy w Dublinie w 2020 roku.',
+      why: tri('We требует were, а in 2020 показывает прошлое.', 'We потребує were, а in 2020 показує минуле.', 'We usa were.'),
     },
     {
       en: 'It was cold this morning.',
       ru: 'Сегодня утром было холодно.',
       uk: 'Сьогодні вранці було холодно.',
-      es: 'It was cold this morning.',
-      why: tri('Для погоды часто используется it. В прошлом: it was.', 'Для погоди часто використовується it. У минулому: it was.', 'Weather often uses it was.'),
+      es: 'Esta manana hacia frio.',
+      'pt-BR': 'Estava frio esta manhã.',
+      vi: 'Sáng nay trời lạnh.',
+      id: 'Pagi ini dingin.',
+      tr: 'Bu sabah hava soğuktu.',
+      pl: 'Dziś rano było zimno.',
+      why: tri('Для погоды часто используется it. В прошлом: it was.', 'Для погоди часто використовується it. У минулому: it was.', 'El clima suele usar it was.'),
     },
     {
       en: 'You were right.',
       ru: 'Ты был прав.',
       uk: 'Ти мав рацію.',
-      es: 'You were right.',
-      why: tri('You в прошлом с be дает were, не was.', 'You у минулому з be дає were, не was.', 'You takes were.'),
+      es: 'Tenias razon.',
+      'pt-BR': 'Você estava certo.',
+      vi: 'Bạn đã đúng.',
+      id: 'Kamu benar.',
+      tr: 'Haklıydın.',
+      pl: 'Miałeś rację.',
+      why: tri('You в прошлом с be дает were, не was.', 'You у минулому з be дає were, не was.', 'You usa were.'),
     },
     {
       en: "He wasn't ready.",
       ru: 'Он не был готов.',
       uk: 'Він не був готовий.',
-      es: "He wasn't ready.",
-      why: tri("He требует was. В отрицании: wasn't.", "He потребує was. У запереченні: wasn't.", "He takes wasn't in the negative."),
+      es: 'El no estaba listo.',
+      'pt-BR': 'Ele não estava pronto.',
+      vi: 'Anh ấy chưa sẵn sàng.',
+      id: 'Dia belum siap.',
+      tr: 'Hazır değildi.',
+      pl: 'On nie był gotowy.',
+      why: tri("He требует was. В отрицании: wasn't.", "He потребує was. У запереченні: wasn't.", "He usa wasn't en negativa."),
     },
     {
       en: 'Were they at work?',
       ru: 'Они были на работе?',
       uk: 'Вони були на роботі?',
-      es: 'Were they at work?',
-      why: tri('В вопросе were выходит вперед.', 'У питанні were виходить уперед.', 'In a question, were comes first.'),
+      es: 'Estaban en el trabajo?',
+      'pt-BR': 'Eles estavam no trabalho?',
+      vi: 'Họ đã ở chỗ làm à?',
+      id: 'Apakah mereka ada di tempat kerja?',
+      tr: 'İşte miydiler?',
+      pl: 'Czy oni byli w pracy?',
+      why: tri('В вопросе were выходит вперед.', 'У питанні were виходить уперед.', 'En una pregunta, were va primero.'),
     },
   ],
   introBlocks: [
@@ -222,7 +426,7 @@ export const VERB_WAS_WERE_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты говоришь о прошлом состоянии, но выбираешь was/were наугад или оставляешь is/are.',
         'Схоже, ти говориш про минулий стан, але обираєш was/were навмання або залишаєш is/are.',
-        'You are choosing was/were randomly or keeping is/are for past meaning.',
+        'Parece que hablas de un estado pasado, pero eliges was/were al azar o dejas is/are.',
       ),
     },
     {
@@ -231,7 +435,7 @@ export const VERB_WAS_WERE_TRAINING: DiagnosisTraining = {
       text: tri(
         'Запомни готовые пары: I was, he was, she was, it was. You were, we were, they were.',
         'Запамʼятай готові пари: I was, he was, she was, it was. You were, we were, they were.',
-        'Memorize the pairs: I was, he was, she was, it was; you/we/they were.',
+        'Memoriza las parejas: I was, he was, she was, it was; you/we/they were.',
       ),
     },
     {
@@ -240,7 +444,7 @@ export const VERB_WAS_WERE_TRAINING: DiagnosisTraining = {
       text: tri(
         'Отдельная ловушка: I was worked неверно. Если это действие, нужно I worked.',
         'Окрема пастка: I was worked неправильно. Якщо це дія, потрібно I worked.',
-        'Trap: I was worked is wrong for a normal past action. Use I worked.',
+        'Trampa: I was worked es incorrecto para una accion normal en pasado. Usa I worked.',
       ),
     },
   ],
@@ -548,22 +752,22 @@ export const VERB_WAS_WERE_TRAINING: DiagnosisTraining = {
     depth1: tri(
       'Обычное объяснение: покажи, о ком фраза, и нужную форму was/were.',
       'Звичайне пояснення: покажи, про кого фраза, і потрібну форму was/were.',
-      'Normal explanation: show who the sentence is about and the correct was/were form.',
+      'Explicacion normal: muestra de quien habla la frase y la forma correcta was/were.',
     ),
     depth2: tri(
       'Проще: раздели на две группы: I/he/she/it или you/we/they.',
       'Простіше: розділи на дві групи: I/he/she/it або you/we/they.',
-      'Simpler: split into I/he/she/it or you/we/they.',
+      'Mas simple: separa en I/he/she/it o you/we/they.',
     ),
     depth3: tri(
       'Еще проще: готовые пары I was / they were.',
       'Ще простіше: готові пари I was / they were.',
-      'Even simpler: I was / they were.',
+      'Aun mas simple: I was / they were.',
     ),
     depth4: tri(
       'Почти подсказка: прямо укажи was или were.',
       'Майже підказка: прямо вкажи was або were.',
-      'Almost a hint: point directly to was or were.',
+      'Casi una pista: senala directamente was o were.',
     ),
   },
   failureRecovery: {
@@ -572,7 +776,7 @@ export const VERB_WAS_WERE_TRAINING: DiagnosisTraining = {
       card: tri(
         "Это be в прошлом. I/he/she/it = was. You/we/they = were. Отрицание: wasn't/weren't. Вопрос: Was he...? Were they...?",
         "Це be у минулому. I/he/she/it = was. You/we/they = were. Заперечення: wasn't/weren't. Питання: Was he...? Were they...?",
-        "Past be: I/he/she/it was. You/we/they were. Negative: wasn't/weren't. Question: Was/Were first.",
+        "Be en pasado: I/he/she/it was. You/we/they were. Negativa: wasn't/weren't. Pregunta: Was/Were primero.",
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -580,7 +784,7 @@ export const VERB_WAS_WERE_TRAINING: DiagnosisTraining = {
       card: tri(
         'Подсказка: система покажет, фраза относится к группе was или were, но не выберет ответ за тебя.',
         'Підказка: система покаже, фраза належить до групи was чи were, але не вибере відповідь за тебе.',
-        'Hint: the system shows the was/were group, but does not choose the answer.',
+        'Pista: el sistema muestra el grupo was/were, pero no elige la respuesta.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -588,7 +792,7 @@ export const VERB_WAS_WERE_TRAINING: DiagnosisTraining = {
       card: tri(
         'Guided mode: сначала выбери группу I/he/she/it или you/we/they. Потом проверь: утверждение, отрицание или вопрос.',
         'Guided mode: спочатку обери групу I/he/she/it або you/we/they. Потім перевір: твердження, заперечення чи питання.',
-        'Guided mode: first choose the group, then statement, negative, or question.',
+        'Modo guiado: primero elige el grupo, luego afirmacion, negativa o pregunta.',
       ),
     },
   },
@@ -598,21 +802,21 @@ export const VERB_WAS_WERE_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_was_were_001',
-        prompt: tri('I в прошлом с be дает was или were?', 'I у минулому з be дає was чи were?', 'I in past be: was or were?'),
+        prompt: tri('I в прошлом с be дает was или were?', 'I у минулому з be дає was чи were?', 'I con be en pasado: was o were?'),
         options: ['was', 'were'],
         correctIndex: 0,
         thenReturnToExerciseId: 'was_were_easy_001',
       },
       {
         id: 'guided_was_were_002',
-        prompt: tri('They в прошлом с be дает was или were?', 'They у минулому з be дає was чи were?', 'They in past be: was or were?'),
+        prompt: tri('They в прошлом с be дает was или were?', 'They у минулому з be дає was чи were?', 'They con be en pasado: was o were?'),
         options: ['was', 'were'],
         correctIndex: 1,
         thenReturnToExerciseId: 'was_were_contrast_001',
       },
       {
         id: 'guided_was_were_003',
-        prompt: tri('You в прошлом с be дает was или were?', 'You у минулому з be дає was чи were?', 'You in past be: was or were?'),
+        prompt: tri('You в прошлом с be дает was или were?', 'You у минулому з be дає was чи were?', 'You con be en pasado: was o were?'),
         options: ['was', 'were'],
         correctIndex: 1,
         thenReturnToExerciseId: 'was_were_contrast_003',
@@ -622,7 +826,7 @@ export const VERB_WAS_WERE_TRAINING: DiagnosisTraining = {
         prompt: tri(
           'В вопросе Were they at work? were стоит перед they или после they?',
           'У питанні Were they at work? were стоїть перед they чи після they?',
-          'In Were they at work?, is were before or after they?',
+          'En Were they at work?, were va antes o despues de they?',
         ),
         options: ['before they', 'after they'],
         correctIndex: 0,
@@ -673,7 +877,7 @@ export const VERB_WAS_WERE_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_verb_was_were_start',
     answer: 'diagnosis_training_verb_was_were_answer',
     mastery: 'diagnosis_training_verb_was_were_mastery',
-    fallback: 'diagnosis_training_verb_was_were_fallback',
+    recovery: 'diagnosis_training_verb_was_were_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

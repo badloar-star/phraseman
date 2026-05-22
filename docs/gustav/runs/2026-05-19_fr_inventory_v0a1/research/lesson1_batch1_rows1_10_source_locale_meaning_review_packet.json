@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "gustav-french-source-locale-meaning-review-packet-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "lessonId": 1,
+  "batchId": "lesson1_rows_1_10_source_locale_meaning_review",
+  "studyTarget": "fr",
+  "sourceLocales": ["ru", "uk"],
+  "parentPackets": [
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_row_review_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_10_grammar_form_review_packet.json"
+  ],
+  "activationStatus": "blocked",
+  "containsFrenchTargetText": false,
+  "containsWordsFr": false,
+  "mayWriteAppSeed": false,
+  "mayWriteIntroExamples": false,
+  "mayWriteQuizOrExam": false,
+  "meaningReviewStatus": "needs_reviewer_acceptance",
+  "approvalPolicy": {
+    "ruAndUkMustBeAcceptedSeparately": true,
+    "sourceLocaleMayNotChooseStudyTargetRegister": true,
+    "targetTextAllowedOnlyAfter": [
+      "ru_meaning_review_accepted",
+      "uk_meaning_review_accepted",
+      "grammar_form_review_accepted",
+      "curriculum_placement_accepted",
+      "reviewer_approval_record_written"
+    ]
+  },
+  "rows": [
+    {
+      "phraseId": "lesson1_phrase_1",
+      "englishBase": "I am here",
+      "meaningFunction": "first-person location/status statement",
+      "ruReviewFocus": ["location/status boundary", "location before identity adjectives"],
+      "ukReviewFocus": ["location/status boundary", "ukrainian тут/здесь distinction"],
+      "sourceLocaleRiskTags": ["location_adverb", "source_locale_word_choice"],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_2",
+      "englishBase": "You are ready",
+      "meaningFunction": "second-person readiness state",
+      "ruReviewFocus": ["informal ты may not decide target register", "readiness state"],
+      "ukReviewFocus": ["second-person meaning", "adjective gender note risk"],
+      "sourceLocaleRiskTags": ["tu_vous_policy", "gender_number_variant"],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_3",
+      "englishBase": "He is busy",
+      "meaningFunction": "third-person masculine personal state",
+      "ruReviewFocus": ["masculine personal state", "busy-state naturalness"],
+      "ukReviewFocus": ["masculine personal state", "separate uk review required"],
+      "sourceLocaleRiskTags": ["masculine_state", "adjective_agreement"],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_4",
+      "englishBase": "She is calm",
+      "meaningFunction": "third-person feminine personal state",
+      "ruReviewFocus": ["feminine personal state", "adjective agreement evidence"],
+      "ukReviewFocus": ["feminine personal state", "independent uk acceptance"],
+      "sourceLocaleRiskTags": ["feminine_state", "adjective_agreement"],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_5",
+      "englishBase": "We are together",
+      "meaningFunction": "first-person plural togetherness",
+      "ruReviewFocus": ["togetherness not same-time sense", "lesson placement"],
+      "ukReviewFocus": ["togetherness not same-time sense", "lesson placement"],
+      "sourceLocaleRiskTags": ["adverbial_complement", "lesson_order_balance"],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_6",
+      "englishBase": "They are happy",
+      "meaningFunction": "third-person plural emotional state",
+      "ruReviewFocus": ["emotional state not satisfaction/willingness", "plural agreement hidden by source meaning"],
+      "ukReviewFocus": ["emotional state", "plural adjective may not settle French gender policy"],
+      "sourceLocaleRiskTags": ["plural_agreement", "mixed_group_policy"],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_7",
+      "englishBase": "It is important",
+      "meaningFunction": "impersonal evaluation",
+      "ruReviewFocus": ["impersonal evaluation", "avoid direct English it-is template"],
+      "ukReviewFocus": ["impersonal evaluation", "non-calque review"],
+      "sourceLocaleRiskTags": ["impersonal_it", "evaluation_structure"],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_8",
+      "englishBase": "I am okay",
+      "meaningFunction": "idiomatic first-person well-being state",
+      "ruReviewFocus": ["personal well-being", "register/naturalness"],
+      "ukReviewFocus": ["personal well-being", "register/naturalness"],
+      "sourceLocaleRiskTags": ["idiomatic_state", "register_naturalness"],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_9",
+      "englishBase": "You are right",
+      "meaningFunction": "second-person judgment/correctness statement",
+      "ruReviewFocus": ["polite/plural вы may not decide target register", "judgment/correctness sense"],
+      "ukReviewFocus": ["polite/plural ви may not decide target register", "judgment/correctness sense"],
+      "sourceLocaleRiskTags": ["tu_vous_policy", "polite_or_plural_you", "judgment_correctness"],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_10",
+      "englishBase": "We are safe",
+      "meaningFunction": "first-person plural safety/status statement",
+      "ruReviewFocus": ["safety/status not reliability/no-risk sense", "target naturalness risk"],
+      "ukReviewFocus": ["safety/status not reliability/no-risk sense", "target naturalness risk"],
+      "sourceLocaleRiskTags": ["safety_status", "lexical_naturalness"],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    }
+  ],
+  "nextRequiredAction": "Collect reviewer acceptance for RU and UK meaning functions separately before French target text is drafted."
+}

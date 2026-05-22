@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "gustav-run-verdict-v0",
+  "runId": "YYYY-MM-DD_fr_inventory_shortHash",
+  "status": "HOLD",
+  "completedAt": "",
+  "blockers": [],
+  "warnings": [],
+  "producedArtifacts": [],
+  "nextAllowedModes": ["inventory", "source_graph", "english_audit", "architecture", "research"]
+}

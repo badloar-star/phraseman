@@ -1,15 +1,24 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { DiagnosisTrainingRuntimeState } from './diagnosis_training_types';
 import type { WordCategory } from './pos_taxonomy';
-
-const KEY_PREFIX = 'diagnosis_training_progress_v1:';
-const FREE_ACCESS_KEY = 'diagnosis_training_free_access_v1';
-const RESOLVED_PERSONAL_TRAININGS_KEY = 'resolved_personal_trainings_v1';
+import {
+  personalPracticeFreeAccessKey,
+  personalPracticeTrainingProgressKey,
+  resolvedPersonalTrainingsKey,
+  type RuntimeSourceLocale,
+  type RuntimeStudyTarget,
+} from './target_storage_keys';
+import { personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
 
 type FreeDiagnosisTrainingAccessState = {
   activeId?: string;
   coachCompletedAt?: number;
   completedAt?: number;
+};
+
+type PersonalPracticeStorageScope = {
+  studyTarget?: RuntimeStudyTarget;
+  sourceLocale?: RuntimeSourceLocale;
 };
 
 export type ResolvedPersonalTrainingsState = {
@@ -22,9 +31,15 @@ const emptyResolvedPersonalTrainingsState = (): ResolvedPersonalTrainingsState =
   diagnoses: {},
 });
 
-async function loadFreeDiagnosisTrainingAccessState(): Promise<FreeDiagnosisTrainingAccessState> {
+function personalPracticeMutationsAllowed(scope?: PersonalPracticeStorageScope): boolean {
+  return personalPracticeCoachEnabledForTarget(scope?.studyTarget);
+}
+
+async function loadFreeDiagnosisTrainingAccessState(
+  scope?: PersonalPracticeStorageScope,
+): Promise<FreeDiagnosisTrainingAccessState> {
   try {
-    const raw = await AsyncStorage.getItem(FREE_ACCESS_KEY);
+    const raw = await AsyncStorage.getItem(personalPracticeFreeAccessKey(scope?.studyTarget, scope?.sourceLocale));
     return raw ? JSON.parse(raw) : {};
   } catch {
     return {};
@@ -33,13 +48,16 @@ async function loadFreeDiagnosisTrainingAccessState(): Promise<FreeDiagnosisTrai
 
 async function saveFreeDiagnosisTrainingAccessState(
   state: FreeDiagnosisTrainingAccessState,
+  scope?: PersonalPracticeStorageScope,
 ): Promise<void> {
-  await AsyncStorage.setItem(FREE_ACCESS_KEY, JSON.stringify(state));
+  await AsyncStorage.setItem(personalPracticeFreeAccessKey(scope?.studyTarget, scope?.sourceLocale), JSON.stringify(state));
 }
 
-export async function loadResolvedPersonalTrainings(): Promise<ResolvedPersonalTrainingsState> {
+export async function loadResolvedPersonalTrainings(
+  scope?: PersonalPracticeStorageScope,
+): Promise<ResolvedPersonalTrainingsState> {
   try {
-    const raw = await AsyncStorage.getItem(RESOLVED_PERSONAL_TRAININGS_KEY);
+    const raw = await AsyncStorage.getItem(resolvedPersonalTrainingsKey(scope?.studyTarget, scope?.sourceLocale));
     if (!raw) return emptyResolvedPersonalTrainingsState();
     const parsed = JSON.parse(raw);
     return {
@@ -51,20 +69,24 @@ export async function loadResolvedPersonalTrainings(): Promise<ResolvedPersonalT
   }
 }
 
-async function saveResolvedPersonalTrainings(state: ResolvedPersonalTrainingsState): Promise<void> {
-  await AsyncStorage.setItem(RESOLVED_PERSONAL_TRAININGS_KEY, JSON.stringify(state));
+async function saveResolvedPersonalTrainings(
+  state: ResolvedPersonalTrainingsState,
+  scope?: PersonalPracticeStorageScope,
+): Promise<void> {
+  await AsyncStorage.setItem(resolvedPersonalTrainingsKey(scope?.studyTarget, scope?.sourceLocale), JSON.stringify(state));
 }
 
 export async function markPersonalTrainingResolved(params: {
   category?: WordCategory;
   microDiagnosisId?: string;
   resolvedAt?: number;
-}): Promise<void> {
+} & PersonalPracticeStorageScope): Promise<boolean> {
+  if (!personalPracticeMutationsAllowed(params)) return false;
   const resolvedAt = params.resolvedAt ?? Date.now();
   const microDiagnosisId = params.microDiagnosisId?.trim();
-  if (!params.category && !microDiagnosisId) return;
+  if (!params.category && !microDiagnosisId) return false;
 
-  const state = await loadResolvedPersonalTrainings();
+  const state = await loadResolvedPersonalTrainings(params);
   await saveResolvedPersonalTrainings({
     categories: params.category
       ? { ...state.categories, [params.category]: resolvedAt }
@@ -72,7 +94,8 @@ export async function markPersonalTrainingResolved(params: {
     diagnoses: microDiagnosisId
       ? { ...state.diagnoses, [microDiagnosisId]: resolvedAt }
       : state.diagnoses,
-  });
+  }, params);
+  return true;
 }
 
 export function getPersonalTrainingResolvedAt(
@@ -87,30 +110,36 @@ export function getPersonalTrainingResolvedAt(
 export async function saveDiagnosisTrainingProgress(
   id: string,
   state: DiagnosisTrainingRuntimeState,
+  scope?: PersonalPracticeStorageScope,
 ): Promise<void> {
-  await AsyncStorage.setItem(`${KEY_PREFIX}${id}`, JSON.stringify(state));
+  if (!personalPracticeMutationsAllowed(scope)) return;
+  await AsyncStorage.setItem(personalPracticeTrainingProgressKey(id, scope?.studyTarget, scope?.sourceLocale), JSON.stringify(state));
 }
 
 export async function loadDiagnosisTrainingProgress(
   id: string,
+  scope?: PersonalPracticeStorageScope,
 ): Promise<DiagnosisTrainingRuntimeState | null> {
+  if (!personalPracticeMutationsAllowed(scope)) return null;
   try {
-    const raw = await AsyncStorage.getItem(`${KEY_PREFIX}${id}`);
+    const raw = await AsyncStorage.getItem(personalPracticeTrainingProgressKey(id, scope?.studyTarget, scope?.sourceLocale));
     return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
   }
 }
 
-export async function clearDiagnosisTrainingProgress(id: string): Promise<void> {
-  await AsyncStorage.removeItem(`${KEY_PREFIX}${id}`);
+export async function clearDiagnosisTrainingProgress(id: string, scope?: PersonalPracticeStorageScope): Promise<void> {
+  if (!personalPracticeMutationsAllowed(scope)) return;
+  await AsyncStorage.removeItem(personalPracticeTrainingProgressKey(id, scope?.studyTarget, scope?.sourceLocale));
 }
 
-export async function reserveFreeDiagnosisTraining(id: string): Promise<boolean> {
+export async function reserveFreeDiagnosisTraining(id: string, scope?: PersonalPracticeStorageScope): Promise<boolean> {
+  if (!personalPracticeMutationsAllowed(scope)) return false;
   const normalizedId = id.trim();
   if (!normalizedId) return false;
 
-  const state = await loadFreeDiagnosisTrainingAccessState();
+  const state = await loadFreeDiagnosisTrainingAccessState(scope);
   if (state.completedAt) return false;
   if (state.activeId && state.activeId !== normalizedId) return false;
   if (state.coachCompletedAt && state.activeId !== normalizedId) return false;
@@ -118,15 +147,16 @@ export async function reserveFreeDiagnosisTraining(id: string): Promise<boolean>
   await saveFreeDiagnosisTrainingAccessState({
     ...state,
     activeId: normalizedId,
-  });
+  }, scope);
   return true;
 }
 
-export async function markFreeDiagnosisCoachCompleted(id: string): Promise<void> {
+export async function markFreeDiagnosisCoachCompleted(id: string, scope?: PersonalPracticeStorageScope): Promise<void> {
+  if (!personalPracticeMutationsAllowed(scope)) return;
   const normalizedId = id.trim();
   if (!normalizedId) return;
 
-  const state = await loadFreeDiagnosisTrainingAccessState();
+  const state = await loadFreeDiagnosisTrainingAccessState(scope);
   if (state.completedAt) return;
   if (state.activeId && state.activeId !== normalizedId) return;
 
@@ -134,22 +164,24 @@ export async function markFreeDiagnosisCoachCompleted(id: string): Promise<void>
     ...state,
     activeId: normalizedId,
     coachCompletedAt: state.coachCompletedAt ?? Date.now(),
-  });
+  }, scope);
 }
 
-export async function canUseFreeDiagnosisTrainingConsolidation(id: string): Promise<boolean> {
+export async function canUseFreeDiagnosisTrainingConsolidation(id: string, scope?: PersonalPracticeStorageScope): Promise<boolean> {
+  if (!personalPracticeMutationsAllowed(scope)) return false;
   const normalizedId = id.trim();
   if (!normalizedId) return false;
 
-  const state = await loadFreeDiagnosisTrainingAccessState();
+  const state = await loadFreeDiagnosisTrainingAccessState(scope);
   return !state.completedAt && state.activeId === normalizedId;
 }
 
-export async function markFreeDiagnosisTrainingCompleted(id: string): Promise<void> {
+export async function markFreeDiagnosisTrainingCompleted(id: string, scope?: PersonalPracticeStorageScope): Promise<void> {
+  if (!personalPracticeMutationsAllowed(scope)) return;
   const normalizedId = id.trim();
   if (!normalizedId) return;
 
-  const state = await loadFreeDiagnosisTrainingAccessState();
+  const state = await loadFreeDiagnosisTrainingAccessState(scope);
   if (state.activeId && state.activeId !== normalizedId) return;
 
   await saveFreeDiagnosisTrainingAccessState({
@@ -157,7 +189,5 @@ export async function markFreeDiagnosisTrainingCompleted(id: string): Promise<vo
     activeId: normalizedId,
     coachCompletedAt: state.coachCompletedAt ?? Date.now(),
     completedAt: state.completedAt ?? Date.now(),
-  });
+  }, scope);
 }
-
-

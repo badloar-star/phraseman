@@ -4,16 +4,25 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
-const tri = (ru: string, uk = ru, es = 'This training is available for this interface language.'): TriText => {
-  const plannedFallback = {
-    'pt-BR': es,
-    vi: es,
-    id: es,
-    tr: es,
-    pl: es,
-  } satisfies Record<PlannedTrainingLocale, string>;
+const RELATIVE_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre relative clauses ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về relative clauses này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan relative clauses ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu relative clauses açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie relative clauses nadal wymaga przeglądu po polsku.',
+};
 
-  return { ru, uk, es, ...plannedFallback };
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? RELATIVE_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
 };
 
 const CONTRAST = [
@@ -37,27 +46,69 @@ const SMART_CONTRAST = [
 
 const option = (text: string) => ({ id: text, text });
 
+const RELATIVE_SKILL_ES: Record<string, string> = {
+  who_person_called: 'Man es una persona, asi que who encaja.',
+  who_woman_helped: 'Woman es una persona; usa who.',
+  person_who_lives: 'Person pide who porque hablamos de una persona.',
+  which_book_helped: 'Book es una cosa, asi que which funciona.',
+  which_phone_broke: 'Phone es una cosa; usa which.',
+  which_idea_works: 'Idea no es persona; usa which o that.',
+  that_person_met: 'That puede unir person con I met en una aclaracion esencial.',
+  that_phone_bought: 'That puede unir phone con I bought.',
+  that_people_things_pair: 'That puede funcionar con personas y cosas en aclaraciones esenciales.',
+  no_duplicate_subject: 'No repitas he: who ya hace el papel de sujeto.',
+  object_relative_omission: 'En the phone I bought puedes omitir that y no repetir it.',
+  subject_relative_not_omit: 'Cuando book hace la accion helped, necesitas that/which.',
+  whose_possession: 'Whose muestra posesion: whose son.',
+  comma_who_not_that: 'Despues de coma, para persona, usa who en norma cuidada.',
+  mixed_sentence_correction: 'Une person/app sin repetir him/it.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = RELATIVE_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? RELATIVE_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function relativeEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = RELATIVE_SKILL_ES[input.targetSkill] ?? 'Mira la palabra antes del hueco: persona, cosa/idea o posesion.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
+
 function retry(_depth2: TriText, _depth3: TriText, _depth4: TriText): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала найди слово перед пропуском: человек, вещь, идея или принадлежность. Потом выбирай who, which, that или whose.',
       'Спочатку знайди слово перед пропуском: людина, річ, ідея або належність. Потім обирай who, which, that або whose.',
-      'First find the word before the gap: person, thing/idea, or possession. Then choose who, which, that, or whose.',
+      'Primero mira la palabra antes del hueco: persona, cosa/idea o posesion. Luego elige who, which, that o whose.',
     ),
     tri(
       'Если это человек, чаще всего подходит who или that. Если вещь или идея, чаще which или that.',
       'Якщо це людина, найчастіше підходить who або that. Якщо річ чи ідея, частіше which або that.',
-      'People often take who/that; things and ideas often take which/that.',
+      'Las personas suelen usar who/that; las cosas e ideas suelen usar which/that.',
     ),
     tri(
       'Если речь о принадлежности, нужен whose. Если связь уже закрыта, не добавляй лишние he или it.',
       'Якщо йдеться про належність, потрібен whose. Якщо звʼязок уже закритий, не додавай зайві he або it.',
-      'For possession, use whose. Do not repeat he/it when the role is already filled.',
+      'Para posesion, usa whose. No repitas he/it cuando el papel ya esta cubierto.',
     ),
     tri(
       'Выбирай связку по слову перед пропуском, а не по русскому переводу.',
       'Обирай звʼязку за словом перед пропуском, а не за перекладом.',
-      'Choose by the word before the gap, not by translation.',
+      'Elige por la palabra antes del hueco, no por la traduccion.',
     ),
   ];
 }
@@ -66,7 +117,7 @@ const DEFAULT_WRONG = (correctAnswer: string) =>
   tri(
     `Здесь нужен вариант ${correctAnswer}. Смотри не на русский перевод, а на слово перед пропуском.`,
     `Тут потрібен варіант ${correctAnswer}. Дивись не на переклад, а на слово перед пропуском.`,
-    `Use ${correctAnswer}; choose by person, thing, idea, or possession.`,
+    `Usa ${correctAnswer}; elige segun sea persona, cosa, idea o posesion.`,
   );
 
 function step(input: {
@@ -83,38 +134,39 @@ function step(input: {
   retryFeedback: [TriText, TriText, TriText];
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = relativeEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: withEs(input.translation, esFeedback),
     explanationBlock: tri(
       'Такие фразы добавляют уточнение к слову перед пропуском. Для людей часто берем who или that. Для вещей и идей - which или that. Для принадлежности - whose.',
       'Такі фрази додають уточнення до слова перед пропуском. Для людей часто беремо who або that. Для речей та ідей - which або that. Для належності - whose.',
-      'These phrases add extra detail to the word before the gap. People often take who/that, things and ideas take which/that, and possession takes whose.',
+      'Estas frases agregan detalle a la palabra antes del hueco. Las personas suelen usar who/that, las cosas e ideas which/that, y la posesion whose.',
     ),
     microTask: tri(
       'Выбери слово, которое нормально соединяет две части фразы.',
       'Обери слово, яке нормально поєднує дві частини фрази.',
-      'Choose the word or structure that connects the two parts correctly.',
+      'Elige la palabra o estructura que conecta bien las dos partes.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map(option),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((item) => item === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((item) => item !== input.correctAnswer)
-        .map((item) => [item, input.wrong[item] ?? DEFAULT_WRONG(input.correctAnswer)]),
+        .map((item) => [item, withEs(input.wrong[item] ?? DEFAULT_WRONG(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(...input.retryFeedback),
+    retryFeedback: retry(...input.retryFeedback).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Люди - who/that. Вещи и идеи - which/that. Принадлежность - whose. И не добавляй he или it, если эту роль уже закрыла первая часть фразы.',
       'Люди - who/that. Речі та ідеї - which/that. Належність - whose. І не додавай he або it, якщо цю роль уже закрила перша частина фрази.',
-      'People = who/that. Things/ideas = which/that. Possession = whose. Do not repeat he/it when the first part already fills that role.',
+      'Personas = who/that. Cosas/ideas = which/that. Posesion = whose. No repitas he/it cuando la primera parte ya cubre ese papel.',
     ),
     focusWords: input.focusWords,
   };
@@ -126,25 +178,69 @@ export const RELATIVE_CLAUSES_WHO_WHICH_THAT_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 52,
-  supportedLocales: ['ru', 'uk'],
-  title: tri('Who / Which / That: соединяем фразу', 'Who / Which / That: поєднуємо фразу'),
-  shortTitle: tri('Who / Which / That'),
+  supportedLocales: ['ru', 'uk', 'es'],
+  title: tri('Who / Which / That: соединяем фразу', 'Who / Which / That: поєднуємо фразу', 'Who / Which / That: conectar la frase', {
+    'pt-BR': 'Who / Which / That: conectando a frase',
+    vi: 'Who / Which / That: nối câu',
+    id: 'Who / Which / That: menghubungkan frasa',
+    tr: 'Who / Which / That: cümleyi bağlama',
+    pl: 'Who / Which / That: łączenie zdania',
+  }),
+  shortTitle: tri('Who / Which / That', 'Who / Which / That', 'Who / Which / That', {
+    'pt-BR': 'Who / Which / That',
+    vi: 'Who / Which / That',
+    id: 'Who / Which / That',
+    tr: 'Who / Which / That',
+    pl: 'Who / Which / That',
+  }),
   shortDiagnosis: tri(
     'Ты ставишь одно и то же слово везде. А английский смотрит: это человек, вещь, идея или принадлежность?',
     'Ти ставиш одне й те саме слово всюди. А англійська дивиться: це людина, річ, ідея чи належність?',
+    'Pones la misma palabra en todas partes. Pero el ingles mira si es persona, cosa, idea o posesion.',
+    {
+      'pt-BR': 'Você coloca a mesma palavra em todos os lugares. Mas o inglês olha: é pessoa, coisa, ideia ou posse?',
+      vi: 'Bạn đặt cùng một từ ở mọi chỗ. Nhưng tiếng Anh nhìn xem đó là người, đồ vật, ý tưởng hay sở hữu.',
+      id: 'Kamu memakai kata yang sama di semua tempat. Tetapi bahasa Inggris melihat: apakah itu orang, benda, ide, atau kepemilikan?',
+      tr: 'Her yere aynı kelimeyi koyuyorsun. Ama İngilizce şuna bakar: insan mı, şey mi, fikir mi, sahiplik mi?',
+      pl: 'Wstawiasz wszędzie to samo słowo. A angielski patrzy: czy to osoba, rzecz, idea czy posiadanie?',
+    },
   ),
   diagnosisText: tri(
     'Ты путаешь who, which и that, потому что перевод часто выглядит одинаково. В английском выбор зависит от слова перед пропуском: человек, вещь, животное, идея или принадлежность.',
     'Ти плутаєш who, which і that, бо переклад часто виглядає однаково. В англійській вибір залежить від слова перед пропуском: людина, річ, тварина, ідея або належність.',
+    'Confundes who, which y that porque la traduccion suele parecer igual. En ingles la eleccion depende de la palabra antes del hueco: persona, cosa, animal, idea o posesion.',
+    {
+      'pt-BR': 'Você confunde who, which e that porque a tradução muitas vezes parece igual. Em inglês, a escolha depende da palavra antes da lacuna: pessoa, coisa, animal, ideia ou posse.',
+      vi: 'Bạn nhầm who, which và that vì bản dịch thường trông giống nhau. Trong tiếng Anh, lựa chọn phụ thuộc vào từ đứng trước chỗ trống: người, đồ vật, con vật, ý tưởng hay sở hữu.',
+      id: 'Kamu mencampuradukkan who, which, dan that karena terjemahannya sering terlihat sama. Dalam bahasa Inggris, pilihannya bergantung pada kata sebelum bagian kosong: orang, benda, hewan, ide, atau kepemilikan.',
+      tr: 'Who, which ve that kelimelerini karıştırıyorsun çünkü çeviri çoğu zaman aynı görünür. İngilizcede seçim boşluktan önceki kelimeye bağlıdır: insan, şey, hayvan, fikir ya da sahiplik.',
+      pl: 'Mylisz who, which i that, bo tłumaczenie często wygląda tak samo. W angielskim wybór zależy od słowa przed luką: osoba, rzecz, zwierzę, idea albo posiadanie.',
+    },
   ),
   mentalModel: tri(
     'Who обычно про людей: the man who called. Which обычно про вещи и идеи: the phone which broke. That часто работает и с людьми, и с вещами, когда уточнение важно для смысла.',
     'Who зазвичай про людей: the man who called. Which зазвичай про речі та ідеї: the phone which broke. That часто працює і з людьми, і з речами, коли уточнення важливе для сенсу.',
+    'Who suele hablar de personas: the man who called. Which suele hablar de cosas e ideas: the phone which broke. That a menudo funciona con personas y cosas cuando el detalle es esencial.',
+    {
+      'pt-BR': 'Who geralmente fala de pessoas: the man who called. Which geralmente fala de coisas e ideias: the phone which broke. That muitas vezes funciona com pessoas e coisas quando o detalhe é essencial para o sentido.',
+      vi: 'Who thường nói về người: the man who called. Which thường nói về đồ vật và ý tưởng: the phone which broke. That thường dùng được với người và vật khi chi tiết đó cần thiết cho ý nghĩa.',
+      id: 'Who biasanya berbicara tentang orang: the man who called. Which biasanya berbicara tentang benda dan ide: the phone which broke. That sering berfungsi untuk orang dan benda ketika detailnya penting untuk makna.',
+      tr: 'Who genellikle insanlar içindir: the man who called. Which genellikle şeyler ve fikirler içindir: the phone which broke. That, ayrıntı anlam için önemli olduğunda çoğu zaman hem insanlarla hem şeylerle çalışır.',
+      pl: 'Who zwykle dotyczy ludzi: the man who called. Which zwykle dotyczy rzeczy i idei: the phone which broke. That często działa z ludźmi i rzeczami, gdy doprecyzowanie jest ważne dla sensu.',
+    },
   ),
   contrastSet: CONTRAST,
   coreRule: tri(
     'Люди: who или that. The woman who helped me. Вещи и идеи: which или that. The app which helps me. Whose показывает принадлежность.',
     'Люди: who або that. The woman who helped me. Речі та ідеї: which або that. The app which helps me. Whose показує належність.',
+    'Personas: who o that. The woman who helped me. Cosas e ideas: which o that. The app which helps me. Whose muestra posesion.',
+    {
+      'pt-BR': 'Pessoas: who ou that. The woman who helped me. Coisas e ideias: which ou that. The app which helps me. Whose mostra posse.',
+      vi: 'Người: who hoặc that. The woman who helped me. Đồ vật và ý tưởng: which hoặc that. The app which helps me. Whose chỉ sự sở hữu.',
+      id: 'Orang: who atau that. The woman who helped me. Benda dan ide: which atau that. The app which helps me. Whose menunjukkan kepemilikan.',
+      tr: 'İnsanlar: who ya da that. The woman who helped me. Şeyler ve fikirler: which ya da that. The app which helps me. Whose sahiplik gösterir.',
+      pl: 'Ludzie: who albo that. The woman who helped me. Rzeczy i idee: which albo that. The app which helps me. Whose pokazuje posiadanie.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -172,16 +268,16 @@ export const RELATIVE_CLAUSES_WHO_WHICH_THAT_TRAINING: DiagnosisTraining = {
       'Whose = чий / у якого.',
     ],
     es: [
-      'Who is often for people.',
-      'Which is often for things, animals, ideas, and situations.',
-      'That can work with people and things when the detail is essential.',
-      'Do not repeat he/it after who/which/that when the role is already filled.',
-      'In the phrase the book I bought, that can be left out.',
-      'If action comes right after the gap, the connector is usually needed.',
-      'Who is not the basic choice for ordinary things.',
-      'Which is not the basic choice for people.',
-      'That is usually not used after a comma in strict usage.',
-      'Whose means possession.',
+      'Who suele usarse para personas: the man who called.',
+      'Which suele usarse para cosas, animales, ideas y situaciones.',
+      'That puede funcionar con personas y cosas cuando el detalle es esencial.',
+      'No repitas he/it despues de who/which/that si el papel ya esta cubierto.',
+      'En la frase the book I bought, that se puede omitir.',
+      'Si la accion viene justo despues del hueco, normalmente necesitas conector.',
+      'Who no es la opcion basica para cosas comunes.',
+      'Which no es la opcion basica para personas.',
+      'That normalmente no se usa despues de coma en norma estricta.',
+      'Whose significa posesion.',
     ],
     'pt-BR': [
       'Who costuma ser usado para pessoas: the man who called.',
@@ -245,14 +341,14 @@ export const RELATIVE_CLAUSES_WHO_WHICH_THAT_TRAINING: DiagnosisTraining = {
     ],
   },
   examples: [
-    { en: 'The man who called you is here.', ru: 'The man who called you is here.', uk: 'The man who called you is here.', es: 'The man who called you is here.', 'pt-BR': 'O homem que ligou para você está aqui.', vi: 'Người đàn ông đã gọi cho bạn đang ở đây.', id: 'Pria yang meneleponmu ada di sini.', tr: 'Seni arayan adam burada.', pl: 'Mężczyzna, który do ciebie dzwonił, jest tutaj.', why: tri('Man - человек, поэтому who звучит естественно.', 'Man - людина, тому who звучить природно.') },
-    { en: 'The book which helped me is on the table.', ru: 'The book which helped me is on the table.', uk: 'The book which helped me is on the table.', es: 'The book which helped me is on the table.', 'pt-BR': 'O livro que me ajudou está na mesa.', vi: 'Cuốn sách đã giúp tôi đang ở trên bàn.', id: 'Buku yang membantu saya ada di atas meja.', tr: 'Bana yardımcı olan kitap masanın üzerinde.', pl: 'Książka, która mi pomogła, jest na stole.', why: tri('Book - вещь, поэтому which работает.', 'Book - річ, тому which працює.') },
-    { en: 'The book that helped me is on the table.', ru: 'The book that helped me is on the table.', uk: 'The book that helped me is on the table.', es: 'The book that helped me is on the table.', 'pt-BR': 'O livro que me ajudou está na mesa.', vi: 'Cuốn sách đã giúp tôi đang ở trên bàn.', id: 'Buku yang membantu saya ada di atas meja.', tr: 'Bana yardımcı olan kitap masanın üzerinde.', pl: 'Książka, która mi pomogła, jest na stole.', why: tri('That может заменить which в таком важном уточнении.', 'That може замінити which у такому важливому уточненні.') },
-    { en: 'The person that I met yesterday was very kind.', ru: 'The person that I met yesterday was very kind.', uk: 'The person that I met yesterday was very kind.', es: 'The person that I met yesterday was very kind.', 'pt-BR': 'A pessoa que conheci ontem foi muito gentil.', vi: 'Người mà tôi gặp hôm qua rất tử tế.', id: 'Orang yang saya temui kemarin sangat baik.', tr: 'Dün tanıştığım kişi çok nazikti.', pl: 'Osoba, którą wczoraj spotkałem, była bardzo miła.', why: tri('That соединяет person и I met yesterday.', 'That поєднує person та I met yesterday.') },
-    { en: 'The phone that I bought is expensive.', ru: 'The phone that I bought is expensive.', uk: 'The phone that I bought is expensive.', es: 'The phone that I bought is expensive.', 'pt-BR': 'O telefone que comprei é caro.', vi: 'Chiếc điện thoại mà tôi mua thì đắt.', id: 'Ponsel yang saya beli mahal.', tr: 'Satın aldığım telefon pahalı.', pl: 'Telefon, który kupiłem, jest drogi.', why: tri('Phone - вещь, и that здесь работает.', 'Phone - річ, і that тут працює.') },
-    { en: 'The phone I bought is expensive.', ru: 'The phone I bought is expensive.', uk: 'The phone I bought is expensive.', es: 'The phone I bought is expensive.', 'pt-BR': 'O telefone que comprei é caro.', vi: 'Chiếc điện thoại tôi mua thì đắt.', id: 'Ponsel yang saya beli mahal.', tr: 'Satın aldığım telefon pahalı.', pl: 'Telefon, który kupiłem, jest drogi.', why: tri('Здесь that можно не произносить.', 'Тут that можна не вимовляти.') },
-    { en: 'I know a woman whose son lives in Cork.', ru: 'I know a woman whose son lives in Cork.', uk: 'I know a woman whose son lives in Cork.', es: 'I know a woman whose son lives in Cork.', 'pt-BR': 'Conheço uma mulher cujo filho mora em Cork.', vi: 'Tôi biết một người phụ nữ có con trai sống ở Cork.', id: 'Saya kenal seorang wanita yang putranya tinggal di Cork.', tr: "Oğlu Cork'ta yaşayan bir kadın tanıyorum.", pl: 'Znam kobietę, której syn mieszka w Cork.', why: tri('Whose показывает связь: whose son.', 'Whose показує звʼязок: whose son.') },
-    { en: 'My brother, who lives in Dublin, is a doctor.', ru: 'My brother, who lives in Dublin, is a doctor.', uk: 'My brother, who lives in Dublin, is a doctor.', es: 'My brother, who lives in Dublin, is a doctor.', 'pt-BR': 'Meu irmão, que mora em Dublin, é médico.', vi: 'Anh trai tôi, người sống ở Dublin, là bác sĩ.', id: 'Saudara laki-laki saya, yang tinggal di Dublin, adalah dokter.', tr: "Dublin'de yaşayan kardeşim doktor.", pl: 'Mój brat, który mieszka w Dublinie, jest lekarzem.', why: tri('После запятой про человека в строгой норме берем who, не that.', 'Після коми про людину у строгій нормі беремо who, не that.') },
+    { en: 'The man who called you is here.', ru: 'The man who called you is here.', uk: 'The man who called you is here.', es: 'El hombre que te llamo esta aqui.', 'pt-BR': 'O homem que ligou para você está aqui.', vi: 'Người đàn ông đã gọi cho bạn đang ở đây.', id: 'Pria yang meneleponmu ada di sini.', tr: 'Seni arayan adam burada.', pl: 'Mężczyzna, który do ciebie dzwonił, jest tutaj.', why: tri('Man - человек, поэтому who звучит естественно.', 'Man - людина, тому who звучить природно.', 'Man es una persona, por eso who suena natural.') },
+    { en: 'The book which helped me is on the table.', ru: 'The book which helped me is on the table.', uk: 'The book which helped me is on the table.', es: 'El libro que me ayudo esta sobre la mesa.', 'pt-BR': 'O livro que me ajudou está na mesa.', vi: 'Cuốn sách đã giúp tôi đang ở trên bàn.', id: 'Buku yang membantu saya ada di atas meja.', tr: 'Bana yardımcı olan kitap masanın üzerinde.', pl: 'Książka, która mi pomogła, jest na stole.', why: tri('Book - вещь, поэтому which работает.', 'Book - річ, тому which працює.', 'Book es una cosa, por eso which funciona.') },
+    { en: 'The book that helped me is on the table.', ru: 'The book that helped me is on the table.', uk: 'The book that helped me is on the table.', es: 'El libro que me ayudo esta sobre la mesa.', 'pt-BR': 'O livro que me ajudou está na mesa.', vi: 'Cuốn sách đã giúp tôi đang ở trên bàn.', id: 'Buku yang membantu saya ada di atas meja.', tr: 'Bana yardımcı olan kitap masanın üzerinde.', pl: 'Książka, która mi pomogła, jest na stole.', why: tri('That может заменить which в таком важном уточнении.', 'That може замінити which у такому важливому уточненні.', 'That puede reemplazar which en una aclaracion esencial.') },
+    { en: 'The person that I met yesterday was very kind.', ru: 'The person that I met yesterday was very kind.', uk: 'The person that I met yesterday was very kind.', es: 'La persona que conoci ayer fue muy amable.', 'pt-BR': 'A pessoa que conheci ontem foi muito gentil.', vi: 'Người mà tôi gặp hôm qua rất tử tế.', id: 'Orang yang saya temui kemarin sangat baik.', tr: 'Dün tanıştığım kişi çok nazikti.', pl: 'Osoba, którą wczoraj spotkałem, była bardzo miła.', why: tri('That соединяет person и I met yesterday.', 'That поєднує person та I met yesterday.', 'That une person con I met yesterday.') },
+    { en: 'The phone that I bought is expensive.', ru: 'The phone that I bought is expensive.', uk: 'The phone that I bought is expensive.', es: 'El telefono que compre es caro.', 'pt-BR': 'O telefone que comprei é caro.', vi: 'Chiếc điện thoại mà tôi mua thì đắt.', id: 'Ponsel yang saya beli mahal.', tr: 'Satın aldığım telefon pahalı.', pl: 'Telefon, który kupiłem, jest drogi.', why: tri('Phone - вещь, и that здесь работает.', 'Phone - річ, і that тут працює.', 'Phone es una cosa, y that funciona aqui.') },
+    { en: 'The phone I bought is expensive.', ru: 'The phone I bought is expensive.', uk: 'The phone I bought is expensive.', es: 'El telefono que compre es caro.', 'pt-BR': 'O telefone que comprei é caro.', vi: 'Chiếc điện thoại tôi mua thì đắt.', id: 'Ponsel yang saya beli mahal.', tr: 'Satın aldığım telefon pahalı.', pl: 'Telefon, który kupiłem, jest drogi.', why: tri('Здесь that можно не произносить.', 'Тут that можна не вимовляти.', 'Aqui that se puede omitir.') },
+    { en: 'I know a woman whose son lives in Cork.', ru: 'I know a woman whose son lives in Cork.', uk: 'I know a woman whose son lives in Cork.', es: 'Conozco a una mujer cuyo hijo vive en Cork.', 'pt-BR': 'Conheço uma mulher cujo filho mora em Cork.', vi: 'Tôi biết một người phụ nữ có con trai sống ở Cork.', id: 'Saya kenal seorang wanita yang putranya tinggal di Cork.', tr: "Oğlu Cork'ta yaşayan bir kadın tanıyorum.", pl: 'Znam kobietę, której syn mieszka w Cork.', why: tri('Whose показывает связь: whose son.', 'Whose показує звʼязок: whose son.', 'Whose muestra la relacion: whose son.') },
+    { en: 'My brother, who lives in Dublin, is a doctor.', ru: 'My brother, who lives in Dublin, is a doctor.', uk: 'My brother, who lives in Dublin, is a doctor.', es: 'Mi hermano, que vive en Dublin, es medico.', 'pt-BR': 'Meu irmão, que mora em Dublin, é médico.', vi: 'Anh trai tôi, người sống ở Dublin, là bác sĩ.', id: 'Saudara laki-laki saya, yang tinggal di Dublin, adalah dokter.', tr: "Dublin'de yaşayan kardeşim doktor.", pl: 'Mój brat, który mieszka w Dublinie, jest lekarzem.', why: tri('После запятой про человека в строгой норме берем who, не that.', 'Після коми про людину у строгій нормі беремо who, не that.', 'Despues de coma, para persona, en norma estricta usa who, no that.') },
   ],
   introBlocks: [
     {
@@ -261,10 +357,11 @@ export const RELATIVE_CLAUSES_WHO_WHICH_THAT_TRAINING: DiagnosisTraining = {
       text: tri(
         'Возможно, ты переводишь все эти фразы одним словом. Но в английском сначала смотрим на слово перед пропуском: человек, вещь, идея или принадлежность.',
         'Можливо, ти перекладаєш усі ці фрази одним словом. Але в англійській спочатку дивимося на слово перед пропуском: людина, річ, ідея або належність.',
+        'Tal vez traduzcas todas estas frases con una sola palabra. Pero en ingles primero miramos la palabra antes del hueco: persona, cosa, idea o posesion.',
       ),
     },
-    { id: 'intro_rule', type: 'rule', text: tri('Люди - who/that. Вещи и идеи - which/that. Принадлежность - whose.', 'Люди - who/that. Речі та ідеї - which/that. Належність - whose.') },
-    { id: 'intro_warning', type: 'warning', text: tri('Главные ловушки: выбрать слово не по типу существительного или повторить лишнее местоимение после связки.', 'Головні пастки: вибрати слово не за типом іменника або повторити зайвий займенник після звʼязки.') },
+    { id: 'intro_rule', type: 'rule', text: tri('Люди - who/that. Вещи и идеи - which/that. Принадлежность - whose.', 'Люди - who/that. Речі та ідеї - which/that. Належність - whose.', 'Personas - who/that. Cosas e ideas - which/that. Posesion - whose.') },
+    { id: 'intro_warning', type: 'warning', text: tri('Главные ловушки: выбрать слово не по типу существительного или повторить лишнее местоимение после связки.', 'Головні пастки: вибрати слово не за типом іменника або повторити зайвий займенник після звʼязки.', 'Trampas principales: elegir sin mirar el tipo de sustantivo o repetir un pronombre innecesario despues del conector.') },
   ],
   steps: [
     step({ id: 'relative_easy_001', order: 1, difficulty: 'easy', targetSkill: 'who_person_called', sentence: 'The man ___ called you is here.', translation: tri('The man who called you is here.'), options: ['who', 'which', 'where', 'what'], correctAnswer: 'who', correctFeedback: tri('Да. Man - человек, поэтому who.', 'Так. Man - людина, тому who.'), wrong: { which: tri('Which не базовый выбор для человека. Здесь нужно who.', 'Which не базовий вибір для людини. Тут потрібно who.'), where: tri('Where для места. Здесь слово man, поэтому who.', 'Where для місця. Тут слово man, тому who.'), what: tri('What здесь не соединяет man и called you. Нужно who.', 'What тут не поєднує man і called you. Потрібно who.') }, retryFeedback: [tri('Man - человек. Значит, who.', 'Man - людина. Отже, who.'), tri('Кусок фразы: The man who called you.', 'Шматок фрази: The man who called you.'), tri('Подсказка: The man who called you is here.', 'Підказка: The man who called you is here.')], focusWords: ['man who'] }),
@@ -295,24 +392,24 @@ export const RELATIVE_CLAUSES_WHO_WHICH_THAT_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Обычное объяснение: смотрим на слово перед пропуском и выбираем who, which или that.', 'Звичайне пояснення: дивимося на слово перед пропуском і обираємо who, which або that.'),
-    depth2: tri('Проще: это человек или вещь/идея?', 'Простіше: це людина чи річ/ідея?'),
-    depth3: tri('Еще проще: человек просит одну группу связок, вещь или идея - другую, принадлежность - whose.', 'Ще простіше: людина просить одну групу звʼязок, річ або ідея - іншу, належність - whose.'),
-    depth4: tri('Почти подсказка: проговори нужную связку вслух.', 'Майже підказка: проговори потрібну звʼязку вголос.'),
+    depth1: tri('Обычное объяснение: смотрим на слово перед пропуском и выбираем who, which или that.', 'Звичайне пояснення: дивимося на слово перед пропуском і обираємо who, which або that.', 'Explicacion normal: mira la palabra antes del hueco y elige who, which o that.'),
+    depth2: tri('Проще: это человек или вещь/идея?', 'Простіше: це людина чи річ/ідея?', 'Mas simple: es persona o cosa/idea?'),
+    depth3: tri('Еще проще: человек просит одну группу связок, вещь или идея - другую, принадлежность - whose.', 'Ще простіше: людина просить одну групу звʼязок, річ або ідея - іншу, належність - whose.', 'Aun mas simple: persona pide un grupo, cosa/idea otro, y posesion pide whose.'),
+    depth4: tri('Почти подсказка: проговори нужную связку вслух.', 'Майже підказка: проговори потрібну звʼязку вголос.', 'Casi una pista: di en voz alta el conector que necesitas.'),
   },
   failureRecovery: {
-    afterTwoWrongInSameExercise: { action: 'show_simplified_rule_card', card: tri('Найди слово перед пропуском. Человек - who/that. Вещь или идея - which/that. Принадлежность - whose. Не повторяй he/it, если роль уже занята.', 'Знайди слово перед пропуском. Людина - who/that. Річ або ідея - which/that. Належність - whose. Не повторюй he/it, якщо роль уже зайнята.') },
-    afterThreeWrongInSameExercise: { action: 'show_noun_type_hint_then_retry', card: tri('Подсказка: система покажет, что перед пропуском - человек, вещь, идея или принадлежность. Но слово ты выбираешь сам.', 'Підказка: система покаже, що перед пропуском - людина, річ, ідея або належність. Але слово ти обираєш сам.') },
-    afterFourWrongInSameExercise: { action: 'switch_to_guided_mode', card: tri('Guided mode: сначала выбери тип слова перед пропуском. Потом вернемся к полной фразе.', 'Guided mode: спочатку обери тип слова перед пропуском. Потім повернемося до повної фрази.') },
+    afterTwoWrongInSameExercise: { action: 'show_simplified_rule_card', card: tri('Найди слово перед пропуском. Человек - who/that. Вещь или идея - which/that. Принадлежность - whose. Не повторяй he/it, если роль уже занята.', 'Знайди слово перед пропуском. Людина - who/that. Річ або ідея - which/that. Належність - whose. Не повторюй he/it, якщо роль уже зайнята.', 'Encuentra la palabra antes del hueco. Persona - who/that. Cosa o idea - which/that. Posesion - whose. No repitas he/it si el papel ya esta cubierto.') },
+    afterThreeWrongInSameExercise: { action: 'show_noun_type_hint_then_retry', card: tri('Подсказка: система покажет, что перед пропуском - человек, вещь, идея или принадлежность. Но слово ты выбираешь сам.', 'Підказка: система покаже, що перед пропуском - людина, річ, ідея або належність. Але слово ти обираєш сам.', 'Pista: el sistema mostrara si antes del hueco hay persona, cosa, idea o posesion. Pero la palabra la eliges tu.') },
+    afterFourWrongInSameExercise: { action: 'switch_to_guided_mode', card: tri('Guided mode: сначала выбери тип слова перед пропуском. Потом вернемся к полной фразе.', 'Guided mode: спочатку обери тип слова перед пропуском. Потім повернемося до повної фрази.', 'Modo guiado: primero elige el tipo de palabra antes del hueco. Luego volvemos a la frase completa.') },
   },
   guidedMode: {
     enabled: true,
     triggerAfterWrongAttempts: 4,
     tasks: [
-      { id: 'guided_relative_001', prompt: tri('Man: это человек или вещь?', 'Man: це людина чи річ?'), options: ['person', 'thing'], correctIndex: 0, thenReturnToExerciseId: 'relative_easy_001' },
-      { id: 'guided_relative_002', prompt: tri('Phone: это человек или вещь?', 'Phone: це людина чи річ?'), options: ['person', 'thing'], correctIndex: 1, thenReturnToExerciseId: 'relative_contrast_002' },
-      { id: 'guided_relative_003', prompt: tri('В the man who called нужно повторять he после who?', 'У the man who called треба повторювати he після who?'), options: ['yes', 'no'], correctIndex: 1, thenReturnToExerciseId: 'relative_mixed_001' },
-      { id: 'guided_relative_004', prompt: tri('Whose означает принадлежность?', 'Whose означає належність?'), options: ['yes', 'no'], correctIndex: 0, thenReturnToExerciseId: 'relative_mixed_004' },
+      { id: 'guided_relative_001', prompt: tri('Man: это человек или вещь?', 'Man: це людина чи річ?', 'Man: es persona o cosa?'), options: ['person', 'thing'], correctIndex: 0, thenReturnToExerciseId: 'relative_easy_001' },
+      { id: 'guided_relative_002', prompt: tri('Phone: это человек или вещь?', 'Phone: це людина чи річ?', 'Phone: es persona o cosa?'), options: ['person', 'thing'], correctIndex: 1, thenReturnToExerciseId: 'relative_contrast_002' },
+      { id: 'guided_relative_003', prompt: tri('В the man who called нужно повторять he после who?', 'У the man who called треба повторювати he після who?', 'En the man who called, hay que repetir he despues de who?'), options: ['yes', 'no'], correctIndex: 1, thenReturnToExerciseId: 'relative_mixed_001' },
+      { id: 'guided_relative_004', prompt: tri('Whose означает принадлежность?', 'Whose означає належність?', 'Whose significa posesion?'), options: ['yes', 'no'], correctIndex: 0, thenReturnToExerciseId: 'relative_mixed_004' },
     ],
   },
   smartTrainerConfig: {
@@ -320,7 +417,7 @@ export const RELATIVE_CLAUSES_WHO_WHICH_THAT_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'syntax',
     microDiagnosisId: 'relative_clauses_who_which_that',
-    diagnosisLabel: tri('Who / Which / That'),
+    diagnosisLabel: tri('Who / Which / That', 'Who / Which / That', 'Who / Which / That: relativos'),
     contrastSet: SMART_CONTRAST,
     difficultyLevel: 2,
     focusWords: ['who', 'which', 'that', 'whose', 'the man who', 'the phone that'],
@@ -336,7 +433,7 @@ export const RELATIVE_CLAUSES_WHO_WHICH_THAT_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_started',
     answer: 'diagnosis_training_answer',
     mastery: 'diagnosis_training_mastered',
-    fallback: 'diagnosis_training_fallback',
+    recovery: 'diagnosis_training_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

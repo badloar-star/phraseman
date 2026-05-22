@@ -8,7 +8,7 @@ import { loadWeekLeaderboard } from './hall_of_fame_utils';
 import { getOrCreateLeagueGroup, updateMyGroupPoints } from './firestore_leagues';
 import { getCanonicalUserId } from './user_id_policy';
 
-import type { Lang, PlannedInterfaceLang } from '../constants/i18n';
+import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 
 export interface ClubDef {
   id:         number;
@@ -18,7 +18,7 @@ export interface ClubDef {
   shortRU:    string;  // «Инициаторы»
   shortUK:    string;  // «Ініціатори»
   ionIcon:    string;
-  imageUri?:  any;  // PNG изображение клуба (require() asset)
+  imageUri?:  any;  // изображение клуба (require() asset)
   color:      string;
   frameId:    string;  // id рамки в FRAMES
   tagRU:      string;
@@ -32,7 +32,7 @@ export interface ClubDef {
 
 export const CLUBS: ClubDef[] = [
   {
-    id: 0, ionIcon: 'flag-outline', imageUri: require("../assets/images/levels/league-v4/LIG MED ASCENDANT.webp"), color: '#7B9BB5', frameId: 'club_initiator',
+    id: 0, ionIcon: 'flag-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-med-ascendant.webp"), color: '#7B9BB5', frameId: 'club_initiator',
     nameRU: 'Медная лига',  nameUK: 'Мідь', nameES: 'Cobre',
     shortRU: 'Медная лига', shortUK: 'Мідь',
     tagRU: 'Бонус: +0% XP', tagUK: 'Бонус: +0% XP', tagES: 'Bonificación: +0% XP',
@@ -42,7 +42,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ласкаво просимо, ініціаторе! Кожен експерт колись стояв на твоєму місці. Головне — почати.',
   },
   {
-    id: 1, ionIcon: 'flame', imageUri: require("../assets/images/levels/league-v4/LIG BRONZ ASCENDANT.webp"), color: '#5BA88B', frameId: 'club_adept',
+    id: 1, ionIcon: 'flame', imageUri: require("../assets/images/levels/league-v4-icons/lig-bronz-ascendant.webp"), color: '#5BA88B', frameId: 'club_adept',
     nameRU: 'Бронзовая лига', nameUK: 'Бронза', nameES: 'Bronce',
     shortRU: 'Бронзовая лига', shortUK: 'Бронза',
     tagRU: 'Бонус: +10% XP',  tagUK: 'Бонус: +10% XP', tagES: 'Bonificación: +10% XP',
@@ -52,7 +52,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Твою відданість помічено! Адепти знають: повторення — мати навчання. Продовжуй в тому ж дусі!',
   },
   {
-    id: 2, ionIcon: 'compass-outline', imageUri: require("../assets/images/levels/league-v4/LIG SEREBRO ASCENDANT.webp"), color: '#4A90A4', frameId: 'club_seeker',
+    id: 2, ionIcon: 'compass-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-serebro-ascendant.webp"), color: '#4A90A4', frameId: 'club_seeker',
     nameRU: 'Серебряная лига', nameUK: 'Срібло', nameES: 'Plata',
     shortRU: 'Серебряная лига', shortUK: 'Срібло',
     tagRU: 'Бонус: +20% XP', tagUK: 'Бонус: +20% XP', tagES: 'Bonificación: +20% XP',
@@ -62,7 +62,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти на вірному шляху, шукачу! Кожен новий урок — це відкриття нового горизонту.',
   },
   {
-    id: 3, ionIcon: 'hammer-outline', imageUri: require("../assets/images/levels/league-v4/LIG ZOLOTO ASCENDANT.webp"), color: '#7BA84A', frameId: 'club_practitioner',
+    id: 3, ionIcon: 'hammer-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-zoloto-ascendant.webp"), color: '#7BA84A', frameId: 'club_practitioner',
     nameRU: 'Золотая лига',   nameUK: 'Золото', nameES: 'Oro',
     shortRU: 'Золотая лига',  shortUK: 'Золото',
     tagRU: 'Бонус: +30% XP', tagUK: 'Бонус: +30% XP', tagES: 'Bonificación: +30% XP',
@@ -72,7 +72,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Справа майстра боїться! Практики будують знання цеглина за цеглиною. Ти у відмінній формі!',
   },
   {
-    id: 4, ionIcon: 'analytics-outline', imageUri: require("../assets/images/levels/league-v4/LIG PLATINA ASCENDANT.webp"), color: '#C8A84A', frameId: 'club_analyst',
+    id: 4, ionIcon: 'analytics-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-platina-ascendant.webp"), color: '#C8A84A', frameId: 'club_analyst',
     nameRU: 'Платиновая лига', nameUK: 'Платина', nameES: 'Platino',
     shortRU: 'Платиновая лига', shortUK: 'Платина',
     tagRU: 'Бонус: +40% XP', tagUK: 'Бонус: +40% XP', tagES: 'Bonificación: +40% XP',
@@ -82,7 +82,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Твій розум гостріший, ніж учора! Аналітики перетворюють складність на ясність. Ти мислиш системно!',
   },
   {
-    id: 5, ionIcon: 'library-outline', imageUri: require("../assets/images/levels/league-v4/LIG IZUMRUD ASCENDANT.webp"), color: '#CD7F32', frameId: 'club_erudite',
+    id: 5, ionIcon: 'library-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-izumrud-ascendant.webp"), color: '#CD7F32', frameId: 'club_erudite',
     nameRU: 'Изумрудная лига', nameUK: 'Смарагд', nameES: 'Esmeralda',
     shortRU: 'Изумрудная лига', shortUK: 'Смарагд',
     tagRU: 'Бонус: +50% XP', tagUK: 'Бонус: +50% XP', tagES: 'Bonificación: +50% XP',
@@ -92,7 +92,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Знання — твоя сила! Ерудити — люди, яким завжди є що сказати. Ти заслужено тут!',
   },
   {
-    id: 6, ionIcon: 'diamond', imageUri: require("../assets/images/levels/league-v4/LIG SAPFIR ASCENDANT.webp"), color: '#4A90D9', frameId: 'club_connoisseur',
+    id: 6, ionIcon: 'diamond', imageUri: require("../assets/images/levels/league-v4-icons/lig-sapfir-ascendant.webp"), color: '#4A90D9', frameId: 'club_connoisseur',
     nameRU: 'Сапфировая лига', nameUK: 'Сапфір', nameES: 'Zafiro',
     shortRU: 'Сапфировая лига', shortUK: 'Сапфір',
     tagRU: 'Бонус: +60% XP', tagUK: 'Бонус: +60% XP', tagES: 'Bonificación: +60% XP',
@@ -102,7 +102,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти знаєш мову зсередини! Знавці помічають те, що інші пропускають. Ти в еліті!',
   },
   {
-    id: 7, ionIcon: 'medal', imageUri: require("../assets/images/levels/league-v4/LIG RUBIN ASCENDANT.webp"), color: '#9B59B6', frameId: 'club_expert',
+    id: 7, ionIcon: 'medal', imageUri: require("../assets/images/levels/league-v4-icons/lig-rubin-ascendant.webp"), color: '#9B59B6', frameId: 'club_expert',
     nameRU: 'Рубиновая лига', nameUK: 'Рубін', nameES: 'Rubí',
     shortRU: 'Рубиновая лига', shortUK: 'Рубін',
     tagRU: 'Бонус: +70% XP', tagUK: 'Бонус: +70% XP', tagES: 'Bonificación: +70% XP',
@@ -112,7 +112,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Експертний рівень! Твої знання виходять за межі підручника. Ти говориш — всі слухають!',
   },
   {
-    id: 8, ionIcon: 'school-outline', imageUri: require("../assets/images/levels/league-v4/LIG ALMAZ ASCENDANT.webp"), color: '#A8B4C0', frameId: 'club_magister',
+    id: 8, ionIcon: 'school-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-almaz-ascendant.webp"), color: '#A8B4C0', frameId: 'club_magister',
     nameRU: 'Алмазная лига', nameUK: 'Діамант', nameES: 'Diamante',
     shortRU: 'Алмазная лига', shortUK: 'Діамант',
     tagRU: 'Бонус: +80% XP',  tagUK: 'Бонус: +80% XP', tagES: 'Bonificación: +80% XP',
@@ -122,7 +122,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Магістерська мантія тобі личить! Ти в абсолютній еліті тих, хто вивчає англійську. Капелюх долу!',
   },
   {
-    id: 9, ionIcon: 'bulb-outline', imageUri: require("../assets/images/levels/league-v4/LIG CHERNIY ALMAZ ASCENDANT.webp"), color: '#E87E30', frameId: 'club_thinker',
+    id: 9, ionIcon: 'bulb-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-cherniy-almaz-ascendant.webp"), color: '#E87E30', frameId: 'club_thinker',
     nameRU: 'Лига Черного Алмаза', nameUK: 'Чорний Діамант', nameES: 'Diamante negro',
     shortRU: 'Лига Черного Алмаза', shortUK: 'Чорний Діамант',
     tagRU: 'Бонус: +90% XP',   tagUK: 'Бонус: +90% XP', tagES: 'Bonificación: +90% XP',
@@ -132,7 +132,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти мислиш англійською! Це найвищий рівень занурення. Мислителі — рідкість і гордість ліги!',
   },
   {
-    id: 10, ionIcon: 'hammer', imageUri: require("../assets/images/levels/league-v4/LIG EFIR ASCENDANT.webp"), color: '#D4A017', frameId: 'club_master',
+    id: 10, ionIcon: 'hammer', imageUri: require("../assets/images/levels/league-v4-icons/lig-efir-ascendant.webp"), color: '#D4A017', frameId: 'club_master',
     nameRU: 'Эфирная лига',  nameUK: 'Ефір', nameES: 'Éter',
     shortRU: 'Эфирная лига', shortUK: 'Ефір',
     tagRU: 'Бонус: +100% XP',   tagUK: 'Бонус: +100% XP', tagES: 'Bonificación: +100% XP',
@@ -142,7 +142,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Майстер слова! Ти серед найкращих у додатку. Твоя англійська — це мистецтво. Ми пишаємось тобою!',
   },
   {
-    id: 11, ionIcon: 'trophy-outline', imageUri: require("../assets/images/levels/league-v4/LIG VISHAYA ASCENDANT.webp"), color: '#FFD700', frameId: 'club_professor',
+    id: 11, ionIcon: 'trophy-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-vishaya-ascendant.webp"), color: '#FFD700', frameId: 'club_professor',
     nameRU: 'Высшая лига',   nameUK: 'Вища Ліга', nameES: 'Liga suprema',
     shortRU: 'Высшая лига',  shortUK: 'Вища Ліга',
     tagRU: 'Бонус: +110% XP', tagUK: 'Бонус: +110% XP', tagES: 'Bonificación: +110% XP',
@@ -281,6 +281,19 @@ export function clubDescPlanned(leagueId: number, locale: PlannedInterfaceLang):
   return CLUB_DESC_PLANNED[leagueId]?.[locale] ?? '';
 }
 
+export function clubDescForLang(club: Pick<ClubDef, 'id' | 'descRU' | 'descUK'>, lang: Lang): string {
+  return triLang(lang, {
+    ru: club.descRU,
+    uk: club.descUK,
+    es: CLUB_DESC_ES[club.id] ?? club.descRU,
+    'pt-BR': clubDescPlanned(club.id, 'pt-BR'),
+    vi: clubDescPlanned(club.id, 'vi'),
+    id: clubDescPlanned(club.id, 'id'),
+    tr: clubDescPlanned(club.id, 'tr'),
+    pl: clubDescPlanned(club.id, 'pl'),
+  });
+}
+
 /** @deprecated использовать CLUBS */
 export const LEAGUES = CLUBS.map(c => ({
   id: c.id, nameRU: c.nameRU, nameUK: c.nameUK, nameES: c.nameES,
@@ -291,10 +304,17 @@ export const LEAGUES = CLUBS.map(c => ({
 }));
 
 /** Короткое имя яруса клуба на экране (металл / лига). */
-export function clubTierShortName(club: Pick<ClubDef, 'nameRU' | 'nameUK' | 'nameES'>, lang: Lang): string {
-  if (lang === 'uk') return club.nameUK;
-  if (lang === 'es') return club.nameES;
-  return club.nameRU;
+export function clubTierShortName(club: Pick<ClubDef, 'id' | 'nameRU' | 'nameUK' | 'nameES'>, lang: Lang): string {
+  return triLang(lang, {
+    ru: club.nameRU,
+    uk: club.nameUK,
+    es: club.nameES,
+    'pt-BR': clubNamePlanned(club.id, 'pt-BR'),
+    vi: clubNamePlanned(club.id, 'vi'),
+    id: clubNamePlanned(club.id, 'id'),
+    tr: clubNamePlanned(club.id, 'tr'),
+    pl: clubNamePlanned(club.id, 'pl'),
+  });
 }
 
 export interface GroupMember {
@@ -305,6 +325,7 @@ export interface GroupMember {
   botId?:    string;
   isBot?:    boolean;
   isPremium?: boolean;
+  isVip?: boolean;
   avatar?:   string;
   frame?:    string;
   aura?:     string;
@@ -349,9 +370,9 @@ export const getLeagueResultZoneSize = (total: number): number => (
 const normalizeMemberName = (name?: string | null): string =>
   String(name ?? '').replace(/\s+/g, ' ').trim().toLowerCase();
 
-const readMemberPoints = (member: GroupMember | undefined, fallback = 0): number => {
+const readMemberPoints = (member: GroupMember | undefined, backup = 0): number => {
   const points = Number(member?.points);
-  return Number.isFinite(points) ? points : fallback;
+  return Number.isFinite(points) ? points : backup;
 };
 
 const findCurrentMemberIndex = (
@@ -530,8 +551,8 @@ export const invalidateLeagueGroupCache = () => {
 
 /**
  * Возвращает группу из Firestore. null = remote недоступен / пуст —
- * вызывающий должен решить (использовать предыдущий state, fallback и т.д.).
- * Раньше при недоступности возвращался локальный fallback с одним пользователем,
+ * вызывающий должен решить (использовать предыдущий state, резервную группу и т.д.).
+ * Раньше при недоступности возвращалась локальная группа с одним пользователем,
  * который записывался в league_state_v3 и затирал ранее загруженных участников
  * группы (и блокировал их через 6-часовой throttle).
  */
@@ -563,7 +584,7 @@ const fetchGroupForUser = async (
 };
 
 /**
- * Локальный fallback (week_leaderboard) для самого первого запуска,
+ * Локальная резервная группа (week_leaderboard) для самого первого запуска,
  * когда state ещё не существует и Firestore недоступен.
  * Возвращает минимум одного пользователя — UI должен что-то показать.
  */
@@ -662,7 +683,7 @@ export const checkLeagueOnAppOpen = async (
     const group = remote ?? (await buildLocalFallbackGroup(myName, myWeekPoints));
     state = { leagueId: 0, weekId: currentWeekId, group };
     // Записываем в стабильный state только если получили реальную группу из Firestore.
-    // Иначе fallback (1 человек) затрёт настоящих участников при следующем открытии.
+    // Иначе локальная группа (1 человек) затрёт настоящих участников при следующем открытии.
     if (remote) await saveLeagueState(state);
     return { needShowResult: false, result: null, state };
   }
@@ -678,7 +699,7 @@ export const checkLeagueOnAppOpen = async (
     // remote следующий вызов checkLeagueOnAppOpen опять попадёт в эту ветку и
     // снова сгенерирует pending — модалка будет «отказываться закрываться»,
     // потому что сразу после close → loadData → новый pending. Группу не
-    // затираем (оставляем старую как fallback), её обновит remote ниже если ок.
+    // затираем (оставляем старую как резерв), её обновит remote ниже если ок.
     await saveLeagueState({
       leagueId: result.newLeagueId,
       weekId:   currentWeekId,

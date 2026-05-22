@@ -1,6 +1,6 @@
 /**
  * Offline English → IPA transcription.
- * Strategy: dictionary lookup first, rule-based fallback for unknown words.
+ * Strategy: dictionary lookup first, rule-based approximation for unknown words.
  * Guarantees a result for every non-empty English string.
  */
 
@@ -292,7 +292,7 @@ const DICT: Record<string, string> = {
   'sorry to keep you waiting': 'ˈsɒri tuː kiːp juː ˈweɪtɪŋ',
 };
 
-// ─── Rule-based IPA fallback ──────────────────────────────────────────────────
+// ─── Rule-based IPA approximation ─────────────────────────────────────────────
 // Converts unknown English words to approximate IPA using spelling rules.
 // Not perfect, but guarantees a result for every word.
 function ruleBasedIPA(word: string): string {
@@ -330,7 +330,7 @@ function ruleBasedIPA(word: string): string {
 
 /**
  * Returns IPA transcription for any English phrase.
- * Always returns a non-empty string (uses rule-based fallback for unknown words).
+ * Always returns a non-empty string (uses rule-based approximation for unknown words).
  */
 export function getTranscription(text: string): string {
   const cleaned = text.trim().replace(/[.,!?;:'"()[\]{}]/g, '').toLowerCase();
@@ -359,7 +359,7 @@ export function getTranscription(text: string): string {
       }
     }
     if (!matched) {
-      // Single word: dict or rule-based fallback
+      // Single word: dict or rule-based approximation
       parts.push(DICT[words[i]] ?? ruleBasedIPA(words[i]));
       i++;
     }

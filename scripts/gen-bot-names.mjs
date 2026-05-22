@@ -1,5 +1,5 @@
 /**
- * Генерирует пул ников для ботов (BOT_NAMES — RU/LAT mix, BOT_NAMES_ES — только латиница).
+ * Генерирует пул ников для ботов (BOT_NAMES — RU/LAT mix, BOT_NAMES_LATIN — только латиница).
  * Запуск: node scripts/gen-bot-names.mjs
  */
 import fs from 'node:fs';
@@ -166,8 +166,8 @@ const namesEs = generatePool(genOneEs, TARGET_ES);
 
 const content = `// ════════════════════════════════════════════════════════════════════════════
 // bot_names.ts — Пул ников для ботов (RU/LAT mix: автоген scripts/gen-bot-names.mjs).
-// BOT_NAMES_ES — только латиница / patrones neutros para interfaz es (español).
-// Para locale es usar pickRandomBotNameEs(); ru/uk siguen con pickRandomBotName().
+// BOT_NAMES_LATIN — только латиница / patrones neutros para planned locales.
+// Para locales es/pt-BR/vi/id/tr/pl usar pickRandomBotNameForLang(); ru/uk siguen con pickRandomBotName().
 // Перегенерация: node scripts/gen-bot-names.mjs
 // ════════════════════════════════════════════════════════════════════════════
 
@@ -175,8 +175,8 @@ export const BOT_NAMES: readonly string[] = [
 ${chunkLines(namesMain)}
 ];
 
-/** Nicks solo latinas (3–14): adecuados para usuarios con interfaz en español (sin cirilico). */
-export const BOT_NAMES_ES: readonly string[] = [
+/** Nicks solo latinas (3–14): adecuados para planned locales (sin cirilico). */
+export const BOT_NAMES_LATIN: readonly string[] = [
 ${chunkLines(namesEs)}
 ];
 
@@ -195,18 +195,25 @@ function assertBotPool(tag: string, pool: readonly string[], expectedLen: number
 
 if (__DEV__) {
   assertBotPool('bot_names', BOT_NAMES, ${TARGET_MAIN});
-  assertBotPool('bot_names_es', BOT_NAMES_ES, ${TARGET_ES}, true);
+  assertBotPool('bot_names_latin', BOT_NAMES_LATIN, ${TARGET_ES}, true);
 }
 
 export function pickRandomBotName(): string {
   if (BOT_NAMES.length === 0) return 'Player';
-  return BOT_NAMES[Math.floor(Math.random() * BOT_NAMES.length)];
+  const pool = BOT_NAMES;
+  return pool[Math.floor(Math.random() * pool.length)];
 }
 
-/** Pool español / latin-only; mismo contrato que pickRandomBotName. Fallback alineado con T.es.player (“Participante”). */
+/** Pool latin-only; mismo contrato que pickRandomBotName. Backup alineado con T.es.player (“Participante”). */
 export function pickRandomBotNameEs(): string {
-  if (BOT_NAMES_ES.length === 0) return 'Participante';
-  return BOT_NAMES_ES[Math.floor(Math.random() * BOT_NAMES_ES.length)];
+  if (BOT_NAMES_LATIN.length === 0) return 'Participante';
+  const pool = BOT_NAMES_LATIN;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+export function pickRandomBotNameForLang(lang: string): string {
+  if (lang === 'ru' || lang === 'uk') return pickRandomBotName();
+  return pickRandomBotNameEs();
 }
 
 /* expo-router route shim */
@@ -216,4 +223,4 @@ export default function __RouteShim() { return null; }
 fs.writeFileSync(OUT, content, 'utf8');
 console.log('OK', OUT);
 console.log('BOT_NAMES:', namesMain.length, 'sample:', namesMain.slice(0, 8).join(', '));
-console.log('BOT_NAMES_ES:', namesEs.length, 'sample:', namesEs.slice(0, 8).join(', '));
+console.log('BOT_NAMES_LATIN:', namesEs.length, 'sample:', namesEs.slice(0, 8).join(', '));

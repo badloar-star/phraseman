@@ -1,4 +1,6 @@
 import type { DiagnosisTraining } from './diagnosis_training_types';
+import { DIAGNOSIS_TRAINING_IDS } from './personal_practice_training_ids';
+import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { ARTICLE_A_AN_TRAINING } from './diagnosis_training_article_a_an';
 import { ARTICLE_THE_SPECIFIC_TRAINING } from './diagnosis_training_article_the_specific';
 import { ARTICLE_ZERO_TRAINING } from './diagnosis_training_article_zero';
@@ -119,65 +121,22 @@ export function getDiagnosisTraining(id?: string | null): DiagnosisTraining | nu
   return null;
 }
 
+export function getDiagnosisTrainingForTarget(
+  id?: string | null,
+  studyTarget?: RuntimeStudyTarget,
+): DiagnosisTraining | null {
+  if (storageStudyTarget(studyTarget) === 'fr') return null;
+  return getDiagnosisTraining(id);
+}
+
 export function getAllDiagnosisTrainings(): DiagnosisTraining[] {
-  const ids = [
-    'article_a_an',
-    'article_the_specific',
-    'article_zero',
-    'preposition_time_in_on_at',
-    'preposition_place_in_on_at',
-    'preposition_time_place',
-    'preposition_duration_for_since',
-    'preposition_direction_to_into_from',
-    'preposition_direction',
-    'preposition_common_verb_patterns',
-    'object_order_give_me_it',
-    'word_order_basic_statement',
-    'word_order_basic_question',
-    'imperative_basic',
-    'condition_zero_first',
-    'condition_second_basic',
-    'relative_clauses_who_which_that',
-    'reported_speech_basic',
-    'verb_present_simple_negative_question',
-    'verb_present_continuous_basic',
-    'verb_present_simple_vs_continuous',
-    'verb_past_simple_regular_irregular',
-    'verb_past_simple_negative_question',
-    'verb_present_perfect_basic',
-    'present_perfect_vs_past_simple',
-    'present_perfect_questions_negatives',
-    'present_perfect_for_since',
-    'past_continuous_basic',
-    'past_simple_vs_past_continuous',
-    'used_to_basic',
-    'future_present_continuous_arrangements',
-    'verb_was_were',
-    'future_will_going_to',
-    'infinitive_vs_gerund_basic',
-    'too_enough',
-    'modifier_very_really_quite',
-    'verb_present_simple_statement',
-    'verb_third_person',
-    'to_be_present_agreement',
-    'modal_may_might_probability',
-    'modal_can_could_ability_request',
-    'modal_should_must_have_to',
-    'modal_base_form',
-    'modal_force',
-    'pronoun_case',
-    'pronoun_possessive',
-    'adjective_comparison',
-    'adjective_vs_adverb',
-    'adverb_frequency_position',
-    'conjunction_logic',
-    'phrasal_particle_pair',
-    'quantifier_some_any',
-    'determiner_this_that_these_those',
-    'there_is_are',
-    'noun_singular_plural_basic',
-    'noun_possessive_apostrophe_s',
-  ];
-  const trainings = ids.map((id) => getDiagnosisTraining(id)).filter((item): item is DiagnosisTraining => Boolean(item));
+  const trainings = DIAGNOSIS_TRAINING_IDS
+    .map((id) => getDiagnosisTraining(id))
+    .filter((item): item is DiagnosisTraining => Boolean(item));
   return trainings;
+}
+
+export function getAllDiagnosisTrainingsForTarget(studyTarget?: RuntimeStudyTarget): DiagnosisTraining[] {
+  if (storageStudyTarget(studyTarget) === 'fr') return [];
+  return getAllDiagnosisTrainings();
 }

@@ -1,4 +1,4 @@
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { Animated, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import type { ImageSourcePropType } from 'react-native';

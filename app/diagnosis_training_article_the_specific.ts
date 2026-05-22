@@ -10,16 +10,13 @@ const tri = (
   uk: string,
   es: string,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (planned[locale]) copy[locale] = planned[locale];
+  }
+  return copy;
+};
 
 const ARTICLE_OPTIONS = [
   { id: 'a', text: 'a' },
@@ -29,6 +26,247 @@ const ARTICLE_OPTIONS = [
 ];
 
 type ArticleOptionId = 'a' | 'an' | 'the' | 'no article';
+
+const THE_STEP_TRANSLATIONS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  the_easy_001: {
+    'pt-BR': 'Eu vi um cachorro. O cachorro era muito pequeno.',
+    vi: 'Tôi đã thấy một con chó. Con chó đó rất nhỏ.',
+    id: 'Saya melihat seekor anjing. Anjing itu sangat kecil.',
+    tr: 'Bir köpek gördüm. Köpek çok küçüktü.',
+    pl: 'Zobaczyłem psa. Ten pies był bardzo mały.',
+  },
+  the_easy_002: {
+    'pt-BR': 'Preciso de uma caneta.',
+    vi: 'Tôi cần một cây bút.',
+    id: 'Saya butuh sebuah pena.',
+    tr: 'Bir kaleme ihtiyacım var.',
+    pl: 'Potrzebuję długopisu.',
+  },
+  the_easy_003: {
+    'pt-BR': 'Ela comprou um telefone ontem. O telefone era caro.',
+    vi: 'Hôm qua cô ấy đã mua một chiếc điện thoại. Chiếc điện thoại đó đắt.',
+    id: 'Dia membeli telepon kemarin. Telepon itu mahal.',
+    tr: 'Dün bir telefon aldı. Telefon pahalıydı.',
+    pl: 'Wczoraj kupiła telefon. Ten telefon był drogi.',
+  },
+  the_contrast_001: {
+    'pt-BR': 'Você pode fechar a porta?',
+    vi: 'Bạn có thể đóng cửa không?',
+    id: 'Bisakah kamu menutup pintu?',
+    tr: 'Kapıyı kapatabilir misin?',
+    pl: 'Możesz zamknąć drzwi?',
+  },
+  the_contrast_002: {
+    'pt-BR': 'Por favor, apague a luz.',
+    vi: 'Làm ơn tắt đèn.',
+    id: 'Tolong matikan lampunya.',
+    tr: 'Lütfen ışığı kapat.',
+    pl: 'Proszę, zgaś światło.',
+  },
+  the_contrast_003: {
+    'pt-BR': 'Quero comprar um laptop.',
+    vi: 'Tôi muốn mua một chiếc laptop.',
+    id: 'Saya ingin membeli laptop.',
+    tr: 'Bir dizüstü bilgisayar almak istiyorum.',
+    pl: 'Chcę kupić laptopa.',
+  },
+  the_contrast_004: {
+    'pt-BR': 'O sol está muito forte hoje.',
+    vi: 'Hôm nay mặt trời rất sáng.',
+    id: 'Matahari sangat terang hari ini.',
+    tr: 'Bugün güneş çok parlak.',
+    pl: 'Słońce jest dziś bardzo jasne.',
+  },
+  the_contrast_005: {
+    'pt-BR': 'Encontrei isso na internet.',
+    vi: 'Tôi tìm thấy nó trên internet.',
+    id: 'Saya menemukannya di internet.',
+    tr: 'Bunu internette buldum.',
+    pl: 'Znalazłem to w internecie.',
+  },
+  the_contrast_006: {
+    'pt-BR': 'Eu gosto de música.',
+    vi: 'Tôi thích âm nhạc.',
+    id: 'Saya suka musik.',
+    tr: 'Müziği severim.',
+    pl: 'Lubię muzykę.',
+  },
+  the_mixed_001: {
+    'pt-BR': 'Esta é a melhor opção.',
+    vi: 'Đây là lựa chọn tốt nhất.',
+    id: 'Ini pilihan terbaik.',
+    tr: 'Bu en iyi seçenek.',
+    pl: 'To najlepsza opcja.',
+  },
+  the_mixed_002: {
+    'pt-BR': 'Ela é a única pessoa que sabe a verdade.',
+    vi: 'Cô ấy là người duy nhất biết sự thật.',
+    id: 'Dia satu-satunya orang yang tahu kebenaran.',
+    tr: 'Gerçeği bilen tek kişi o.',
+    pl: 'Ona jest jedyną osobą, która zna prawdę.',
+  },
+  the_mixed_003: {
+    'pt-BR': 'Temos o mesmo problema.',
+    vi: 'Chúng ta có cùng một vấn đề.',
+    id: 'Kita punya masalah yang sama.',
+    tr: 'Aynı sorunumuz var.',
+    pl: 'Mamy ten sam problem.',
+  },
+  the_mixed_004: {
+    'pt-BR': 'Cachorros são animais amigáveis.',
+    vi: 'Chó là loài vật thân thiện.',
+    id: 'Anjing adalah hewan yang ramah.',
+    tr: 'Köpekler dost canlısı hayvanlardır.',
+    pl: 'Psy są przyjaznymi zwierzętami.',
+  },
+  the_mixed_005: {
+    'pt-BR': 'Onde estão as chaves que eu te dei?',
+    vi: 'Những chiếc chìa khóa tôi đưa bạn đâu rồi?',
+    id: 'Di mana kunci yang saya berikan kepadamu?',
+    tr: 'Sana verdiğim anahtarlar nerede?',
+    pl: 'Gdzie są klucze, które ci dałem?',
+  },
+  the_mixed_006: {
+    'pt-BR': 'Gostei do filme que assistimos ontem.',
+    vi: 'Tôi thích bộ phim chúng ta xem hôm qua.',
+    id: 'Saya suka film yang kita tonton kemarin.',
+    tr: 'Dün izlediğimiz filmi beğendim.',
+    pl: 'Podobał mi się film, który oglądaliśmy wczoraj.',
+  },
+};
+
+const THE_SKILL_HINTS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  first_second_mention: {
+    'pt-BR': 'Primeira menção é a/an; segunda menção já é conhecida, então the.',
+    vi: 'Lần đầu dùng a/an; lần thứ hai đã rõ rồi, nên dùng the.',
+    id: 'Penyebutan pertama memakai a/an; penyebutan kedua sudah diketahui, jadi gunakan the.',
+    tr: 'İlk bahiste a/an; ikinci bahiste nesne artık bilinir, bu yüzden the.',
+    pl: 'Pierwsza wzmianka to a/an; druga jest już znana, więc używamy the.',
+  },
+  first_mention_indefinite: {
+    'pt-BR': 'É um objeto novo qualquer, não um objeto específico; use a/an.',
+    vi: 'Đây là một vật mới bất kỳ, không phải vật cụ thể; dùng a/an.',
+    id: 'Ini objek baru yang mana saja, bukan objek spesifik; gunakan a/an.',
+    tr: 'Bu belirli değil, herhangi yeni bir nesne; a/an kullan.',
+    pl: 'To dowolny nowy obiekt, nie konkretny; użyj a/an.',
+  },
+  second_mention_specific: {
+    'pt-BR': 'O objeto já foi mencionado, então agora é específico: use the.',
+    vi: 'Vật đã được nhắc rồi, nên bây giờ là cụ thể: dùng the.',
+    id: 'Objek sudah disebutkan, jadi sekarang spesifik: gunakan the.',
+    tr: 'Nesne daha önce geçti, artık belirli: the kullan.',
+    pl: 'Obiekt był już wspomniany, więc jest konkretny: użyj the.',
+  },
+  known_from_situation: {
+    'pt-BR': 'A situação deixa claro qual objeto é; use the.',
+    vi: 'Tình huống làm rõ đó là vật nào; dùng the.',
+    id: 'Situasi sudah menjelaskan objek yang mana; gunakan the.',
+    tr: 'Durum hangi nesne olduğunu netleştiriyor; the kullan.',
+    pl: 'Sytuacja jasno pokazuje, o który obiekt chodzi; użyj the.',
+  },
+  not_specific_first_mention: {
+    'pt-BR': 'Não há objeto específico escolhido; é apenas um qualquer, então a/an.',
+    vi: 'Chưa có vật cụ thể được chọn; chỉ là một cái bất kỳ, nên dùng a/an.',
+    id: 'Belum ada objek spesifik yang dipilih; hanya satu yang mana saja, jadi a/an.',
+    tr: 'Belirli bir nesne seçilmedi; sadece herhangi biri, bu yüzden a/an.',
+    pl: 'Nie wybrano konkretnego obiektu; chodzi o dowolny, więc a/an.',
+  },
+  unique_object: {
+    'pt-BR': 'É único no contexto normal, então usamos the.',
+    vi: 'Nó là duy nhất trong ngữ cảnh bình thường, nên dùng the.',
+    id: 'Ini unik dalam konteks normal, jadi gunakan the.',
+    tr: 'Normal bağlamda benzersizdir, bu yüzden the kullanılır.',
+    pl: 'Jest wyjątkowy w normalnym kontekście, więc używamy the.',
+  },
+  shared_world_object: {
+    'pt-BR': 'É uma fonte compartilhada e conhecida; memorize como on the internet.',
+    vi: 'Đó là nguồn chung đã rõ; hãy nhớ cụm on the internet.',
+    id: 'Ini sumber bersama yang dikenal; hafalkan sebagai on the internet.',
+    tr: 'Ortak ve bilinen bir kaynak; on the internet kalıbı olarak hatırla.',
+    pl: 'To wspólne, znane źródło; zapamiętaj jako on the internet.',
+  },
+  general_meaning_no_the: {
+    'pt-BR': 'É uma ideia geral, não algo específico; não use artigo.',
+    vi: 'Đây là ý chung, không phải thứ cụ thể; không dùng mạo từ.',
+    id: 'Ini ide umum, bukan sesuatu yang spesifik; jangan pakai artikel.',
+    tr: 'Bu genel fikir, belirli bir şey değil; article kullanma.',
+    pl: 'To ogólna idea, nie coś konkretnego; nie używaj przedimka.',
+  },
+  superlative_the: {
+    'pt-BR': 'Best destaca uma opção como a melhor; normalmente pede the.',
+    vi: 'Best làm nổi bật một lựa chọn tốt nhất; thường cần the.',
+    id: 'Best menandai satu pilihan sebagai yang terbaik; biasanya perlu the.',
+    tr: 'Best bir seçeneği en iyi diye ayırır; genelde the ister.',
+    pl: 'Best wyróżnia jedną opcję jako najlepszą; zwykle wymaga the.',
+  },
+  only_the: {
+    'pt-BR': 'Only destaca uma pessoa/coisa única; quase sempre usamos the.',
+    vi: 'Only làm nổi bật một người/vật duy nhất; hầu như luôn dùng the.',
+    id: 'Only menandai satu orang/benda yang unik; hampir selalu gunakan the.',
+    tr: 'Only tek kişi/şeyi ayırır; neredeyse her zaman the kullanılır.',
+    pl: 'Only wyróżnia jedyną osobę/rzecz; prawie zawsze używamy the.',
+  },
+  same_the: {
+    'pt-BR': 'Same quase sempre funciona como bloco the same.',
+    vi: 'Same hầu như luôn đi thành cụm the same.',
+    id: 'Same hampir selalu menjadi frasa the same.',
+    tr: 'Same neredeyse her zaman the same kalıbıdır.',
+    pl: 'Same prawie zawsze działa jako blok the same.',
+  },
+  general_plural_no_the: {
+    'pt-BR': 'Plural geral fala da categoria inteira; normalmente sem the.',
+    vi: 'Số nhiều chung nói về cả nhóm; thường không dùng the.',
+    id: 'Jamak umum membicarakan seluruh kategori; biasanya tanpa the.',
+    tr: 'Genel çoğul tüm kategoriyi anlatır; genelde the kullanılmaz.',
+    pl: 'Ogólna liczba mnoga mówi o całej kategorii; zwykle bez the.',
+  },
+  specific_plural_the: {
+    'pt-BR': 'O plural é específico pela frase que vem depois; use the.',
+    vi: 'Danh từ số nhiều này cụ thể nhờ phần phía sau; dùng the.',
+    id: 'Bentuk jamak ini spesifik karena frasa setelahnya; gunakan the.',
+    tr: 'Çoğul isim sonraki ifadeyle belirli hale geliyor; the kullan.',
+    pl: 'Liczba mnoga jest konkretna dzięki frazie po rzeczowniku; użyj the.',
+  },
+  specific_from_phrase_after_noun: {
+    'pt-BR': 'A frase depois do substantivo torna o objeto específico; use the.',
+    vi: 'Cụm phía sau danh từ làm vật trở nên cụ thể; dùng the.',
+    id: 'Frasa setelah nomina membuat objek spesifik; gunakan the.',
+    tr: 'İsimden sonraki ifade nesneyi belirli yapar; the kullan.',
+    pl: 'Fraza po rzeczowniku czyni obiekt konkretnym; użyj the.',
+  },
+};
+
+const THE_GENERIC_HINTS: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'Pergunte se é um objeto novo qualquer ou aquele objeto específico.',
+  vi: 'Hãy hỏi đó là vật mới bất kỳ hay chính vật cụ thể đó.',
+  id: 'Tanyakan apakah ini objek baru yang mana saja atau objek spesifik itu.',
+  tr: 'Bunun herhangi yeni bir nesne mi, yoksa o belirli nesne mi olduğunu sor.',
+  pl: 'Zapytaj, czy to dowolny nowy obiekt, czy ten konkretny obiekt.',
+};
+
+function fillPlanned(copy: TriText, planned: Partial<Record<PlannedTrainingLocale, string>>): TriText {
+  const next: TriText = { ...copy };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] && planned[locale]) next[locale] = planned[locale];
+  }
+  return next;
+}
+
+function plannedTheFeedback(input: {
+  targetSkill: string;
+  correctAnswer: ArticleOptionId;
+  focusWords: string[];
+}): Record<PlannedTrainingLocale, string> {
+  const focus = input.focusWords.join(' / ');
+  const hints = THE_SKILL_HINTS[input.targetSkill] ?? THE_GENERIC_HINTS;
+  return {
+    'pt-BR': `A resposta correta é "${input.correctAnswer}"${focus ? ` para ${focus}` : ''}. ${hints['pt-BR']}`,
+    vi: `Đáp án đúng là "${input.correctAnswer}"${focus ? ` cho ${focus}` : ''}. ${hints.vi}`,
+    id: `Jawaban yang benar adalah "${input.correctAnswer}"${focus ? ` untuk ${focus}` : ''}. ${hints.id}`,
+    tr: `Doğru cevap "${input.correctAnswer}"${focus ? ` (${focus})` : ''}. ${hints.tr}`,
+    pl: `Poprawna odpowiedź to "${input.correctAnswer}"${focus ? ` dla ${focus}` : ''}. ${hints.pl}`,
+  };
+}
 
 function theStep(input: {
   id: string;
@@ -44,64 +282,94 @@ function theStep(input: {
   focusWords: string[];
 }): DiagnosisTrainingStep {
   const correctIndex = ARTICLE_OPTIONS.findIndex((option) => option.id === input.correctAnswer);
+  const plannedFeedback = plannedTheFeedback(input);
+  const plannedTranslation = THE_STEP_TRANSLATIONS[input.id] ?? plannedFeedback;
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: fillPlanned(input.translation, plannedTranslation),
     explanationBlock: tri(
       'Здесь главный вопрос не в переводе. Спроси: предмет новый и любой, или уже тот самый, понятный собеседнику?',
       'Тут головне питання не в перекладі. Запитай: предмет новий і будь-який, чи вже той самий, зрозумілий співрозмовнику?',
       'Aquí la pregunta principal no es la traducción. Pregunta: es algo nuevo cualquiera, o ya es ese objeto claro para la otra persona?',
+      {
+        'pt-BR': 'Aqui a pergunta principal não é a tradução. Pergunte: é algo novo qualquer ou já é aquele objeto claro para a outra pessoa?',
+        vi: 'Ở đây câu hỏi chính không phải là bản dịch. Hãy hỏi: đó là một vật mới bất kỳ hay chính vật đã rõ với người nghe?',
+        id: 'Di sini pertanyaan utamanya bukan terjemahan. Tanyakan: ini benda baru yang mana saja, atau sudah benda spesifik yang jelas bagi lawan bicara?',
+        tr: 'Burada ana soru çeviri değil. Sor: bu herhangi yeni bir nesne mi, yoksa karşı tarafın anladığı o belirli nesne mi?',
+        pl: 'Tutaj główne pytanie nie dotyczy tłumaczenia. Zapytaj: czy to dowolna nowa rzecz, czy już ta konkretna, jasna dla rozmówcy?',
+      },
     ),
     microTask: tri(
       'Выбери артикль по смыслу: какой-то новый предмет, тот самый предмет или общая идея.',
       'Обери артикль за змістом: якийсь новий предмет, той самий предмет або загальна ідея.',
       'Elige el artículo por sentido: algo nuevo, ese objeto específico o una idea general.',
+      {
+        'pt-BR': 'Escolha o artigo pelo sentido: algo novo, aquele objeto específico ou uma ideia geral.',
+        vi: 'Chọn mạo từ theo nghĩa: một vật mới, chính vật cụ thể đó hay ý tưởng chung.',
+        id: 'Pilih artikel berdasarkan makna: sesuatu yang baru, benda spesifik itu, atau ide umum.',
+        tr: 'Article seçimini anlama göre yap: yeni bir şey, o belirli nesne ya da genel fikir.',
+        pl: 'Wybierz przedimek według sensu: coś nowego, ten konkretny obiekt albo ogólna idea.',
+      },
     ),
     sentence: input.sentence,
     answerOptions: ARTICLE_OPTIONS,
     correctAnswerId: input.correctAnswer,
     correctIndex,
-    correctFeedback: input.correctFeedback,
+    correctFeedback: fillPlanned(input.correctFeedback, plannedFeedback),
     wrongFeedbackByOption: {
-      a: input.wrong.a ?? tri(
+      a: fillPlanned(input.wrong.a ?? tri(
         'a звучит как один новый или любой предмет. Здесь это не лучший смысл. Проверь, не говорит ли фраза о том самом объекте.',
         'a звучить як один новий або будь-який предмет. Тут це не найкращий зміст. Перевір, чи не йдеться про той самий об’єкт.',
         'a sounds like one new or any object. Here that is not the best meaning. Check if the phrase points to that specific object.',
-      ),
-      an: input.wrong.an ?? tri(
+      ), plannedFeedback),
+      an: fillPlanned(input.wrong.an ?? tri(
         'an работает как a, только перед гласным звуком. Здесь проблема не только в звуке: нужно понять, новый объект или уже конкретный.',
         'an працює як a, тільки перед голосним звуком. Тут проблема не лише у звуку: треба зрозуміти, об’єкт новий чи вже конкретний.',
         'an works like a, but before a vowel sound. Here the issue is not only sound: decide if the object is new or already specific.',
-      ),
-      the: input.wrong.the ?? tri(
+      ), plannedFeedback),
+      the: fillPlanned(input.wrong.the ?? tri(
         'the нужен, когда предмет уже конкретный или понятный. Здесь фраза не дает такого сигнала.',
         'the потрібен, коли предмет уже конкретний або зрозумілий. Тут фраза не дає такого сигналу.',
         'the is used when the object is already specific or clear. This phrase does not give that signal.',
-      ),
-      'no article': input.wrong['no article'] ?? tri(
+      ), plannedFeedback),
+      'no article': fillPlanned(input.wrong['no article'] ?? tri(
         'Без артикля здесь смысл ломается. Если это один предмет в единственном числе, английскому обычно нужен a/an или the.',
         'Без артикля тут зміст ламається. Якщо це один предмет в однині, англійській зазвичай потрібен a/an або the.',
         'Without an article the meaning breaks here. If this is one singular countable thing, English usually needs a/an or the.',
-      ),
+      ), plannedFeedback),
     },
     retryFeedback: [
-      input.retry[0],
-      input.retry[1],
-      input.retry[2],
+      fillPlanned(input.retry[0], plannedFeedback),
+      fillPlanned(input.retry[1], plannedFeedback),
+      fillPlanned(input.retry[2], plannedFeedback),
       tri(
         `Подсказка: правильный смысл здесь дает "${input.correctAnswer}".`,
         `Підказка: правильний зміст тут дає "${input.correctAnswer}".`,
         `Pista: the right meaning here is "${input.correctAnswer}".`,
+        {
+          'pt-BR': `Dica: o sentido correto aqui vem de "${input.correctAnswer}".`,
+          vi: `Gợi ý: nghĩa đúng ở đây do "${input.correctAnswer}" tạo ra.`,
+          id: `Petunjuk: makna yang benar di sini diberikan oleh "${input.correctAnswer}".`,
+          tr: `İpucu: burada doğru anlamı "${input.correctAnswer}" verir.`,
+          pl: `Wskazówka: właściwy sens daje tutaj "${input.correctAnswer}".`,
+        },
       ),
     ],
     fallbackExplanation: tri(
       'Сведи выбор к одному вопросу: это какой-то новый предмет или тот самый? Какой-то новый - a/an. Тот самый - the. Общая идея во множественном числе или неисчисляемое - часто без артикля.',
       'Зведи вибір до одного питання: це якийсь новий предмет чи той самий? Якийсь новий - a/an. Той самий - the. Загальна ідея в множині або незлічуване - часто без артикля.',
       'Reduce the choice to one question: is it a new object or that specific one? New object - a/an. Specific one - the. General plural or uncountable idea - often no article.',
+      {
+        'pt-BR': 'Reduza a escolha a uma pergunta: é um objeto novo qualquer ou aquele específico? Novo qualquer - a/an. Específico - the. Ideia geral no plural ou incontável - muitas vezes sem artigo.',
+        vi: 'Rút lựa chọn về một câu hỏi: đó là vật mới bất kỳ hay chính vật cụ thể đó? Vật mới - a/an. Vật cụ thể - the. Ý chung số nhiều hoặc không đếm được - thường không có mạo từ.',
+        id: 'Ringkas pilihan menjadi satu pertanyaan: ini objek baru yang mana saja atau objek spesifik itu? Baru yang mana saja - a/an. Spesifik - the. Ide umum jamak atau tak terhitung - sering tanpa artikel.',
+        tr: 'Seçimi tek soruya indir: bu herhangi yeni bir nesne mi, yoksa o belirli nesne mi? Yeni/herhangi - a/an. Belirli - the. Genel çoğul veya sayılamayan fikir - çoğu zaman article yok.',
+        pl: 'Sprowadź wybór do jednego pytania: czy to dowolny nowy obiekt, czy ten konkretny? Dowolny nowy - a/an. Konkretny - the. Ogólna idea w liczbie mnogiej lub niepoliczalna - często bez przedimka.',
+      },
     ),
     focusWords: input.focusWords,
   };
@@ -114,28 +382,68 @@ export const ARTICLE_THE_SPECIFIC_TRAINING: DiagnosisTraining = {
   status: 'active',
   priority: 2,
   supportedLocales: ['ru', 'uk', 'es'],
-  title: tri('The: когда предмет уже конкретный', 'The: коли предмет уже конкретний', 'The: cuando algo ya es específico'),
-  shortTitle: tri('The для конкретики', 'The для конкретності', 'The para algo específico'),
+  title: tri('The: когда предмет уже конкретный', 'The: коли предмет уже конкретний', 'The: cuando algo ya es específico', {
+    'pt-BR': 'The: quando algo já é específico',
+    vi: 'The: khi vật đã cụ thể',
+    id: 'The: ketika benda sudah spesifik',
+    tr: 'The: nesne artık belirliyken',
+    pl: 'The: gdy rzecz jest już konkretna',
+  }),
+  shortTitle: tri('The для конкретики', 'The для конкретності', 'The para algo específico', {
+    'pt-BR': 'The para algo definido',
+    vi: 'The cho vật cụ thể',
+    id: 'The untuk hal spesifik',
+    tr: 'Belirli şey için the',
+    pl: 'The dla konkretu',
+  }),
   shortDiagnosis: tri(
     'Ты путаешь the с a/an или пропускаешь артикль, когда предмет уже понятен собеседнику.',
     'Ти плутаєш the з a/an або пропускаєш артикль, коли предмет уже зрозумілий співрозмовнику.',
     'Confundes the con a/an u omites el artículo cuando el objeto ya está claro para la otra persona.',
+    {
+      'pt-BR': 'Você confunde the com a/an ou omite o artigo quando o objeto já está claro para a outra pessoa.',
+      vi: 'Bạn nhầm the với a/an hoặc bỏ mạo từ khi vật đã rõ với người nghe.',
+      id: 'Kamu mencampur the dengan a/an atau menghilangkan artikel ketika objek sudah jelas bagi lawan bicara.',
+      tr: 'Nesne karşı taraf için artık belliyken the ile a/an karışıyor ya da article atlanıyor.',
+      pl: 'Mylisz the z a/an albo pomijasz przedimek, gdy obiekt jest już jasny dla rozmówcy.',
+    },
   ),
   diagnosisText: tri(
     'Ты путаешь the с a/an или вообще пропускаешь артикль. Главная проблема здесь не в переводе, а в том, понимает ли собеседник, о каком именно предмете ты говоришь.',
     'Ти плутаєш the з a/an або взагалі пропускаєш артикль. Головна проблема тут не в перекладі, а в тому, чи розуміє співрозмовник, про який саме предмет ти говориш.',
     'Confundes the con a/an o simplemente omites el artículo. El problema principal aquí no es la traducción, sino si la otra persona entiende exactamente de qué cosa hablas.',
+    {
+      'pt-BR': 'Você confunde the com a/an ou simplesmente omite o artigo. O problema principal aqui não é a tradução, mas se a outra pessoa entende exatamente de que coisa você fala.',
+      vi: 'Bạn nhầm the với a/an hoặc đơn giản là bỏ mạo từ. Vấn đề chính ở đây không phải bản dịch, mà là người nghe có hiểu chính xác bạn đang nói về vật nào không.',
+      id: 'Kamu mencampur the dengan a/an atau sekadar menghilangkan artikel. Masalah utamanya bukan terjemahan, melainkan apakah lawan bicara tahu persis benda mana yang kamu maksud.',
+      tr: 'The ile a/an karışıyor ya da article tamamen atlanıyor. Buradaki ana sorun çeviri değil; karşı tarafın tam olarak hangi şeyden bahsettiğini anlayıp anlamaması.',
+      pl: 'Mylisz the z a/an albo po prostu pomijasz przedimek. Główny problem nie leży w tłumaczeniu, tylko w tym, czy rozmówca rozumie dokładnie, o której rzeczy mówisz.',
+    },
   ),
   mentalModel: tri(
     'A/an = один какой-то. The = тот самый, уже понятный, конкретный. Если собеседник может мысленно показать пальцем на объект - часто нужен the.',
     'A/an = один якийсь. The = той самий, уже зрозумілий, конкретний. Якщо співрозмовник може подумки показати пальцем на об’єкт - часто потрібен the.',
     'A/an = uno cualquiera. The = ese mismo, ya entendido, específico. Si la otra persona puede señalar mentalmente el objeto, muchas veces necesitas the.',
+    {
+      'pt-BR': 'A/an = um qualquer. The = aquele mesmo, já entendido, específico. Se a outra pessoa consegue apontar mentalmente para o objeto, muitas vezes você precisa de the.',
+      vi: 'A/an = một cái bất kỳ. The = chính cái đó, đã rõ, cụ thể. Nếu người nghe có thể chỉ ra trong đầu vật đó, thường cần the.',
+      id: 'A/an = satu yang mana saja. The = yang itu, sudah dipahami, spesifik. Jika lawan bicara bisa menunjuk objeknya secara mental, sering kali perlu the.',
+      tr: 'A/an = herhangi bir tane. The = o aynı, artık anlaşılan, belirli şey. Karşı taraf zihninde nesneyi gösterebiliyorsa çoğu zaman the gerekir.',
+      pl: 'A/an = jakiś jeden. The = ten konkretny, już zrozumiały. Jeśli rozmówca może mentalnie wskazać obiekt palcem, często potrzebne jest the.',
+    },
   ),
   contrastSet: ['a', 'an', 'the', 'no article'],
   coreRule: tri(
     'Используй the, когда объект уже известен, уже был упомянут, понятен из ситуации, уникален в контексте или выделен как самый/единственный.',
     'Використовуй the, коли об’єкт уже відомий, уже був згаданий, зрозумілий із ситуації, унікальний у контексті або виділений як най-/єдиний.',
     'Usa the cuando el objeto ya es conocido, ya fue mencionado, queda claro por la situación, es único en el contexto o está marcado como el más/el único.',
+    {
+      'pt-BR': 'Use the quando o objeto já é conhecido, já foi mencionado, fica claro pela situação, é único no contexto ou está marcado como o melhor/o único.',
+      vi: 'Dùng the khi vật đã được biết, đã được nhắc, rõ từ tình huống, là duy nhất trong ngữ cảnh hoặc được đánh dấu là nhất/duy nhất.',
+      id: 'Gunakan the ketika objek sudah dikenal, sudah disebutkan, jelas dari situasi, unik dalam konteks, atau ditandai sebagai paling/satu-satunya.',
+      tr: 'Nesne zaten biliniyorsa, daha önce geçtiyse, durumdan belliyse, bağlamda benzersizse veya en/tek olarak işaretlenmişse the kullan.',
+      pl: 'Użyj the, gdy obiekt jest już znany, był wspomniany, wynika z sytuacji, jest wyjątkowy w kontekście albo oznaczony jako najlepszy/jedyny.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -212,19 +520,19 @@ export const ARTICLE_THE_SPECIFIC_TRAINING: DiagnosisTraining = {
     ],
   },
   examples: [
-    { en: 'I saw a dog. The dog was angry.', ru: 'Я увидел собаку. Эта собака была злой.', uk: 'Я побачив собаку. Цей собака був злий.', es: 'Vi un perro. El perro estaba enfadado.', 'pt-BR': 'Eu vi um cachorro. O cachorro estava bravo.', vi: 'Tôi đã thấy một con chó. Con chó đó rất dữ.', id: 'Saya melihat seekor anjing. Anjing itu marah.', tr: 'Bir köpek gördüm. Köpek kızgındı.', pl: 'Zobaczyłem psa. Ten pies był zły.', why: tri('Сначала dog новый, поэтому a dog. Потом мы уже знаем, о какой собаке речь, поэтому the dog.', 'Спочатку dog новий, тому a dog. Потім ми вже знаємо, про якого собаку йдеться, тому the dog.', 'Primero dog es nuevo, por eso a dog. Luego ya sabemos de qué perro hablamos, por eso the dog.') },
-    { en: 'Can you close the window?', ru: 'Можешь закрыть окно?', uk: 'Можеш зачинити вікно?', es: 'Puedes cerrar la ventana?', 'pt-BR': 'Você pode fechar a janela?', vi: 'Bạn có thể đóng cửa sổ không?', id: 'Bisakah kamu menutup jendela itu?', tr: 'Pencereyi kapatabilir misin?', pl: 'Możesz zamknąć okno?', why: tri('Окно понятно из ситуации. Собеседник понимает, какое именно окно нужно закрыть.', 'Вікно зрозуміле із ситуації. Співрозмовник розуміє, яке саме вікно треба зачинити.', 'La ventana queda clara por la situación. La otra persona entiende exactamente qué ventana cerrar.') },
-    { en: 'The sun is bright today.', ru: 'Солнце сегодня яркое.', uk: 'Сонце сьогодні яскраве.', es: 'El sol brilla mucho hoy.', 'pt-BR': 'O sol está forte hoje.', vi: 'Hôm nay mặt trời rất sáng.', id: 'Matahari terang hari ini.', tr: 'Bugün güneş parlak.', pl: 'Słońce jest dziś jasne.', why: tri('В обычном контексте солнце одно и всем понятно, о чем речь. Поэтому the sun.', 'У звичайному контексті сонце одне і всім зрозуміло, про що йдеться. Тому the sun.', 'En el contexto normal, el sol es único y todos entienden de qué hablamos. Por eso the sun.') },
-    { en: 'This is the best answer.', ru: 'Это лучший ответ.', uk: 'Це найкраща відповідь.', es: 'Esta es la mejor respuesta.', 'pt-BR': 'Esta é a melhor resposta.', vi: 'Đây là câu trả lời tốt nhất.', id: 'Ini adalah jawaban terbaik.', tr: 'Bu en iyi cevap.', pl: 'To jest najlepsza odpowiedź.', why: tri('best выделяет один вариант как самый лучший. С superlative обычно нужен the.', 'best виділяє один варіант як найкращий. Із superlative зазвичай потрібен the.', 'best marca una opción como la mejor. Con superlativo normalmente usamos the.') },
-    { en: 'I need the same book.', ru: 'Мне нужна та же самая книга.', uk: 'Мені потрібна та сама книга.', es: 'Necesito el mismo libro.', 'pt-BR': 'Eu preciso do mesmo livro.', vi: 'Tôi cần cùng cuốn sách đó.', id: 'Saya perlu buku yang sama.', tr: 'Aynı kitaba ihtiyacım var.', pl: 'Potrzebuję tej samej książki.', why: tri('same почти всегда требует the, потому что мы говорим не о любой книге, а о той же самой.', 'same майже завжди потребує the, бо ми говоримо не про будь-яку книгу, а про ту саму.', 'same casi siempre necesita the porque no hablamos de cualquier libro, sino del mismo.') },
-    { en: 'She is the only person I trust.', ru: 'Она единственный человек, которому я доверяю.', uk: 'Вона єдина людина, якій я довіряю.', es: 'Ella es la única persona en quien confío.', 'pt-BR': 'Ela é a única pessoa em quem confio.', vi: 'Cô ấy là người duy nhất tôi tin tưởng.', id: 'Dia satu-satunya orang yang saya percayai.', tr: 'O güvendiğim tek kişi.', pl: 'Ona jest jedyną osobą, której ufam.', why: tri('only выделяет одного конкретного человека. Поэтому the only person.', 'only виділяє одну конкретну людину. Тому the only person.', 'only marca a una persona específica. Por eso the only person.') },
-    { en: 'I like music.', ru: 'Мне нравится музыка.', uk: 'Мені подобається музика.', es: 'Me gusta la música.', 'pt-BR': 'Eu gosto de música.', vi: 'Tôi thích âm nhạc.', id: 'Saya suka musik.', tr: 'Müziği severim.', pl: 'Lubię muzykę.', why: tri('В английском music здесь общая идея, не конкретная музыка. Поэтому без the.', 'В англійській music тут загальна ідея, не конкретна музика. Тому без the.', 'En inglés music aquí es una idea general, no música específica. Por eso va sin the.') },
-    { en: 'Dogs are friendly.', ru: 'Собаки дружелюбные.', uk: 'Собаки дружелюбні.', es: 'Los perros son amigables.', 'pt-BR': 'Cachorros são amigáveis.', vi: 'Chó rất thân thiện.', id: 'Anjing itu ramah.', tr: 'Köpekler dost canlısıdır.', pl: 'Psy są przyjazne.', why: tri('Dogs во множественном числе говорит о собаках вообще. Для общей идеи the не нужен.', 'Dogs у множині говорить про собак загалом. Для загальної ідеї the не потрібен.', 'Dogs en plural habla de perros en general. Para una idea general no usamos the.') },
+    { en: 'I saw a dog. The dog was angry.', ru: 'Я увидел собаку. Эта собака была злой.', uk: 'Я побачив собаку. Цей собака був злий.', es: 'Vi un perro. El perro estaba enfadado.', 'pt-BR': 'Eu vi um cachorro. O cachorro estava bravo.', vi: 'Tôi đã thấy một con chó. Con chó đó rất dữ.', id: 'Saya melihat seekor anjing. Anjing itu marah.', tr: 'Bir köpek gördüm. Köpek kızgındı.', pl: 'Zobaczyłem psa. Ten pies był zły.', why: tri('Сначала dog новый, поэтому a dog. Потом мы уже знаем, о какой собаке речь, поэтому the dog.', 'Спочатку dog новий, тому a dog. Потім ми вже знаємо, про якого собаку йдеться, тому the dog.', 'Primero dog es nuevo, por eso a dog. Luego ya sabemos de qué perro hablamos, por eso the dog.', { 'pt-BR': 'Primeiro dog é novo, por isso a dog. Depois já sabemos de qual cachorro falamos, por isso the dog.', vi: 'Ban đầu dog là mới, nên dùng a dog. Sau đó ta đã biết đang nói về con chó nào, nên dùng the dog.', id: 'Awalnya dog masih baru, jadi a dog. Setelah itu kita sudah tahu anjing yang mana, jadi the dog.', tr: 'Önce dog yenidir, bu yüzden a dog. Sonra hangi köpekten bahsettiğimizi biliriz, bu yüzden the dog.', pl: 'Najpierw dog jest nowy, więc a dog. Potem już wiemy, o którego psa chodzi, więc the dog.' }) },
+    { en: 'Can you close the window?', ru: 'Можешь закрыть окно?', uk: 'Можеш зачинити вікно?', es: 'Puedes cerrar la ventana?', 'pt-BR': 'Você pode fechar a janela?', vi: 'Bạn có thể đóng cửa sổ không?', id: 'Bisakah kamu menutup jendela itu?', tr: 'Pencereyi kapatabilir misin?', pl: 'Możesz zamknąć okno?', why: tri('Окно понятно из ситуации. Собеседник понимает, какое именно окно нужно закрыть.', 'Вікно зрозуміле із ситуації. Співрозмовник розуміє, яке саме вікно треба зачинити.', 'La ventana queda clara por la situación. La otra persona entiende exactamente qué ventana cerrar.', { 'pt-BR': 'A janela fica clara pela situação. A outra pessoa entende exatamente qual janela fechar.', vi: 'Cửa sổ đã rõ từ tình huống. Người nghe hiểu chính xác cần đóng cửa sổ nào.', id: 'Jendelanya jelas dari situasi. Lawan bicara tahu persis jendela mana yang perlu ditutup.', tr: 'Pencere durumdan bellidir. Karşı taraf tam olarak hangi pencerenin kapanacağını anlar.', pl: 'Okno jest jasne z sytuacji. Rozmówca rozumie dokładnie, które okno zamknąć.' }) },
+    { en: 'The sun is bright today.', ru: 'Солнце сегодня яркое.', uk: 'Сонце сьогодні яскраве.', es: 'El sol brilla mucho hoy.', 'pt-BR': 'O sol está forte hoje.', vi: 'Hôm nay mặt trời rất sáng.', id: 'Matahari terang hari ini.', tr: 'Bugün güneş parlak.', pl: 'Słońce jest dziś jasne.', why: tri('В обычном контексте солнце одно и всем понятно, о чем речь. Поэтому the sun.', 'У звичайному контексті сонце одне і всім зрозуміло, про що йдеться. Тому the sun.', 'En el contexto normal, el sol es único y todos entienden de qué hablamos. Por eso the sun.', { 'pt-BR': 'No contexto normal, o sol é único e todos entendem do que falamos. Por isso the sun.', vi: 'Trong ngữ cảnh bình thường, mặt trời là duy nhất và ai cũng hiểu ta nói về gì. Vì vậy dùng the sun.', id: 'Dalam konteks normal, matahari itu satu dan semua orang paham maksudnya. Jadi the sun.', tr: 'Normal bağlamda güneş tektir ve herkes neden bahsettiğimizi anlar. Bu yüzden the sun.', pl: 'W normalnym kontekście słońce jest jedno i wszyscy rozumieją, o czym mowa. Dlatego the sun.' }) },
+    { en: 'This is the best answer.', ru: 'Это лучший ответ.', uk: 'Це найкраща відповідь.', es: 'Esta es la mejor respuesta.', 'pt-BR': 'Esta é a melhor resposta.', vi: 'Đây là câu trả lời tốt nhất.', id: 'Ini adalah jawaban terbaik.', tr: 'Bu en iyi cevap.', pl: 'To jest najlepsza odpowiedź.', why: tri('best выделяет один вариант как самый лучший. С superlative обычно нужен the.', 'best виділяє один варіант як найкращий. Із superlative зазвичай потрібен the.', 'best marca una opción como la mejor. Con superlativo normalmente usamos the.', { 'pt-BR': 'Best destaca uma opção como a melhor. Com superlativo normalmente usamos the.', vi: 'Best làm nổi bật một lựa chọn là tốt nhất. Với so sánh nhất thường dùng the.', id: 'Best menandai satu pilihan sebagai yang terbaik. Dengan superlative biasanya gunakan the.', tr: 'Best bir seçeneği en iyi olarak ayırır. Superlative ile genelde the kullanılır.', pl: 'Best wyróżnia jedną opcję jako najlepszą. Ze stopniem najwyższym zwykle używamy the.' }) },
+    { en: 'I need the same book.', ru: 'Мне нужна та же самая книга.', uk: 'Мені потрібна та сама книга.', es: 'Necesito el mismo libro.', 'pt-BR': 'Eu preciso do mesmo livro.', vi: 'Tôi cần cùng cuốn sách đó.', id: 'Saya perlu buku yang sama.', tr: 'Aynı kitaba ihtiyacım var.', pl: 'Potrzebuję tej samej książki.', why: tri('same почти всегда требует the, потому что мы говорим не о любой книге, а о той же самой.', 'same майже завжди потребує the, бо ми говоримо не про будь-яку книгу, а про ту саму.', 'same casi siempre necesita the porque no hablamos de cualquier libro, sino del mismo.', { 'pt-BR': 'Same quase sempre precisa de the, porque não falamos de qualquer livro, mas do mesmo.', vi: 'Same hầu như luôn cần the, vì ta không nói về bất kỳ cuốn sách nào mà là cùng cuốn đó.', id: 'Same hampir selalu perlu the karena kita tidak membicarakan sembarang buku, tetapi buku yang sama.', tr: 'Same neredeyse her zaman the ister, çünkü herhangi bir kitaptan değil aynı kitaptan bahsederiz.', pl: 'Same prawie zawsze wymaga the, bo nie mówimy o dowolnej książce, tylko o tej samej.' }) },
+    { en: 'She is the only person I trust.', ru: 'Она единственный человек, которому я доверяю.', uk: 'Вона єдина людина, якій я довіряю.', es: 'Ella es la única persona en quien confío.', 'pt-BR': 'Ela é a única pessoa em quem confio.', vi: 'Cô ấy là người duy nhất tôi tin tưởng.', id: 'Dia satu-satunya orang yang saya percayai.', tr: 'O güvendiğim tek kişi.', pl: 'Ona jest jedyną osobą, której ufam.', why: tri('only выделяет одного конкретного человека. Поэтому the only person.', 'only виділяє одну конкретну людину. Тому the only person.', 'only marca a una persona específica. Por eso the only person.', { 'pt-BR': 'Only destaca uma pessoa específica. Por isso the only person.', vi: 'Only làm nổi bật một người cụ thể. Vì vậy dùng the only person.', id: 'Only menandai satu orang spesifik. Jadi the only person.', tr: 'Only belirli bir kişiyi ayırır. Bu yüzden the only person.', pl: 'Only wyróżnia jedną konkretną osobę. Dlatego the only person.' }) },
+    { en: 'I like music.', ru: 'Мне нравится музыка.', uk: 'Мені подобається музика.', es: 'Me gusta la música.', 'pt-BR': 'Eu gosto de música.', vi: 'Tôi thích âm nhạc.', id: 'Saya suka musik.', tr: 'Müziği severim.', pl: 'Lubię muzykę.', why: tri('В английском music здесь общая идея, не конкретная музыка. Поэтому без the.', 'В англійській music тут загальна ідея, не конкретна музика. Тому без the.', 'En inglés music aquí es una idea general, no música específica. Por eso va sin the.', { 'pt-BR': 'Em inglês, music aqui é uma ideia geral, não música específica. Por isso fica sem the.', vi: 'Trong tiếng Anh, music ở đây là ý chung, không phải bản nhạc cụ thể. Vì vậy không dùng the.', id: 'Dalam bahasa Inggris, music di sini adalah ide umum, bukan musik spesifik. Jadi tanpa the.', tr: 'İngilizcede music burada genel fikirdir, belirli müzik değil. Bu yüzden the yok.', pl: 'Po angielsku music to tutaj ogólna idea, nie konkretna muzyka. Dlatego bez the.' }) },
+    { en: 'Dogs are friendly.', ru: 'Собаки дружелюбные.', uk: 'Собаки дружелюбні.', es: 'Los perros son amigables.', 'pt-BR': 'Cachorros são amigáveis.', vi: 'Chó rất thân thiện.', id: 'Anjing itu ramah.', tr: 'Köpekler dost canlısıdır.', pl: 'Psy są przyjazne.', why: tri('Dogs во множественном числе говорит о собаках вообще. Для общей идеи the не нужен.', 'Dogs у множині говорить про собак загалом. Для загальної ідеї the не потрібен.', 'Dogs en plural habla de perros en general. Para una idea general no usamos the.', { 'pt-BR': 'Dogs no plural fala de cachorros em geral. Para uma ideia geral não usamos the.', vi: 'Dogs ở số nhiều nói về chó nói chung. Với ý chung không dùng the.', id: 'Dogs dalam bentuk jamak membicarakan anjing secara umum. Untuk ide umum tidak gunakan the.', tr: 'Dogs çoğul halde genel olarak köpeklerden bahseder. Genel fikir için the gerekmez.', pl: 'Dogs w liczbie mnogiej mówi o psach ogólnie. Dla ogólnej idei nie używamy the.' }) },
   ],
   introBlocks: [
-    { id: 'intro_problem', type: 'diagnosis', text: tri('Похоже, ты путаешь the. Это частая ошибка, потому что в русском нет такого же артикля. Но идея простая: the появляется, когда предмет уже не просто “какой-то”, а “тот самый”.', 'Схоже, ти плутаєш the. Це часта помилка, бо в українській немає такого самого артикля. Але ідея проста: the з’являється, коли предмет уже не просто “якийсь”, а “той самий”.', 'Parece que confundes the. Es un error común porque en español el sistema no funciona exactamente igual. Pero la idea es simple: the aparece cuando algo ya no es “uno cualquiera”, sino “ese mismo”.') },
-    { id: 'intro_rule', type: 'rule', text: tri('a/an открывает новый предмет. the возвращает нас к предмету, который уже понятен.', 'a/an відкриває новий предмет. the повертає нас до предмета, який уже зрозумілий.', 'a/an introduce algo nuevo. the nos devuelve a algo que ya está claro.') },
-    { id: 'intro_warning', type: 'warning', text: tri('Не пытайся переводить the одним русским словом. Лучше задавай вопрос: “Собеседник уже понимает, какой именно предмет я имею в виду?” Если да - часто нужен the.', 'Не намагайся перекладати the одним українським словом. Краще став питання: “Співрозмовник уже розуміє, який саме предмет я маю на увазі?” Якщо так - часто потрібен the.', 'No intentes traducir the con una sola palabra. Mejor pregunta: “La otra persona ya entiende exactamente qué cosa quiero decir?” Si sí - muchas veces necesitas the.') },
+    { id: 'intro_problem', type: 'diagnosis', text: tri('Похоже, ты путаешь the. Это частая ошибка, потому что в русском нет такого же артикля. Но идея простая: the появляется, когда предмет уже не просто “какой-то”, а “тот самый”.', 'Схоже, ти плутаєш the. Це часта помилка, бо в українській немає такого самого артикля. Але ідея проста: the з’являється, коли предмет уже не просто “якийсь”, а “той самий”.', 'Parece que confundes the. Es un error común porque en español el sistema no funciona exactamente igual. Pero la idea es simple: the aparece cuando algo ya no es “uno cualquiera”, sino “ese mismo”.', { 'pt-BR': 'Parece que você confunde the. É um erro comum porque em português o sistema não funciona exatamente igual. Mas a ideia é simples: the aparece quando algo já não é "um qualquer", e sim "aquele mesmo".', vi: 'Có vẻ bạn đang nhầm the. Đây là lỗi thường gặp vì tiếng Việt không có hệ mạo từ giống vậy. Nhưng ý tưởng đơn giản: the xuất hiện khi vật không còn là "một cái nào đó" mà là "chính cái đó".', id: 'Sepertinya kamu mencampur the. Ini kesalahan umum karena dalam bahasa Indonesia sistemnya tidak sama persis. Tapi idenya sederhana: the muncul ketika sesuatu bukan lagi "yang mana saja", melainkan "yang itu".', tr: 'The karışıyor gibi görünüyor. Türkçede aynı article sistemi olmadığı için bu yaygın bir hata. Ama fikir basit: the, nesne artık "herhangi biri" değil "o belirli şey" olduğunda gelir.', pl: 'Wygląda na to, że mylisz the. To częsty błąd, bo w polskim nie ma takiego samego przedimka. Idea jest prosta: the pojawia się, gdy rzecz nie jest już "jakaś", tylko "ta konkretna".' }) },
+    { id: 'intro_rule', type: 'rule', text: tri('a/an открывает новый предмет. the возвращает нас к предмету, который уже понятен.', 'a/an відкриває новий предмет. the повертає нас до предмета, який уже зрозумілий.', 'a/an introduce algo nuevo. the nos devuelve a algo que ya está claro.', { 'pt-BR': 'a/an introduz algo novo. the nos leva de volta a algo que já está claro.', vi: 'a/an giới thiệu một vật mới. the đưa ta quay lại vật đã rõ.', id: 'a/an memperkenalkan benda baru. the membawa kita kembali ke benda yang sudah jelas.', tr: 'a/an yeni bir nesne açar. the bizi artık belli olan nesneye geri götürür.', pl: 'a/an wprowadza nowy obiekt. the wraca do obiektu, który jest już jasny.' }) },
+    { id: 'intro_warning', type: 'warning', text: tri('Не пытайся переводить the одним русским словом. Лучше задавай вопрос: “Собеседник уже понимает, какой именно предмет я имею в виду?” Если да - часто нужен the.', 'Не намагайся перекладати the одним українським словом. Краще став питання: “Співрозмовник уже розуміє, який саме предмет я маю на увазі?” Якщо так - часто потрібен the.', 'No intentes traducir the con una sola palabra. Mejor pregunta: “La otra persona ya entiende exactamente qué cosa quiero decir?” Si sí - muchas veces necesitas the.', { 'pt-BR': 'Não tente traduzir the com uma só palavra. É melhor perguntar: "A outra pessoa já entende exatamente qual objeto eu quero dizer?" Se sim, muitas vezes você precisa de the.', vi: 'Đừng cố dịch the bằng một từ duy nhất. Tốt hơn hãy hỏi: "Người nghe đã hiểu chính xác mình muốn nói vật nào chưa?" Nếu có, thường cần the.', id: 'Jangan mencoba menerjemahkan the dengan satu kata. Lebih baik tanyakan: "Apakah lawan bicara sudah tahu persis benda mana yang saya maksud?" Jika ya, sering perlu the.', tr: 'The için tek kelimelik çeviri arama. Daha iyi soru şu: "Karşı taraf tam olarak hangi nesneyi kastettiğimi anlıyor mu?" Cevap evetse çoğu zaman the gerekir.', pl: 'Nie próbuj tłumaczyć the jednym słowem. Lepiej zapytaj: "Czy rozmówca już rozumie dokładnie, który obiekt mam na myśli?" Jeśli tak, często potrzebne jest the.' }) },
   ],
   steps: [
     theStep({
@@ -561,32 +869,32 @@ export const ARTICLE_THE_SPECIFIC_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Обычное объяснение: показываем, почему объект конкретный или неконкретный.', 'Звичайне пояснення: показуємо, чому об’єкт конкретний або неконкретний.', 'Explicación normal: mostramos por qué el objeto es específico o no específico.'),
-    depth2: tri('Проще: сводим выбор к вопросу “какой-то или тот самый?”', 'Простіше: зводимо вибір до питання “якийсь чи той самий?”', 'Más simple: reducimos la elección a “uno cualquiera o ese mismo?”'),
-    depth3: tri('Еще проще: показываем короткую пару a/an vs the.', 'Ще простіше: показуємо коротку пару a/an vs the.', 'Aún más simple: mostramos una pareja corta a/an vs the.'),
-    depth4: tri('Почти подсказка: прямо указываем, известен объект или нет.', 'Майже підказка: прямо вказуємо, відомий об’єкт чи ні.', 'Casi pista: indicamos directamente si el objeto ya es conocido o no.'),
+    depth1: tri('Обычное объяснение: показываем, почему объект конкретный или неконкретный.', 'Звичайне пояснення: показуємо, чому об’єкт конкретний або неконкретний.', 'Explicación normal: mostramos por qué el objeto es específico o no específico.', { 'pt-BR': 'Explicação normal: mostramos por que o objeto é específico ou não específico.', vi: 'Giải thích bình thường: cho thấy vì sao vật cụ thể hoặc không cụ thể.', id: 'Penjelasan biasa: tunjukkan mengapa objek spesifik atau tidak spesifik.', tr: 'Normal açıklama: nesnenin neden belirli ya da belirsiz olduğunu gösteririz.', pl: 'Zwykłe wyjaśnienie: pokazujemy, dlaczego obiekt jest konkretny albo niekonkretny.' }),
+    depth2: tri('Проще: сводим выбор к вопросу “какой-то или тот самый?”', 'Простіше: зводимо вибір до питання “якийсь чи той самий?”', 'Más simple: reducimos la elección a “uno cualquiera o ese mismo?”', { 'pt-BR': 'Mais simples: reduzimos a escolha a "um qualquer ou aquele mesmo?"', vi: 'Đơn giản hơn: rút lựa chọn về "một cái bất kỳ hay chính cái đó?"', id: 'Lebih sederhana: pilihan diringkas menjadi "yang mana saja atau yang itu?"', tr: 'Daha basit: seçimi "herhangi biri mi, o belirli şey mi?" sorusuna indiririz.', pl: 'Prościej: sprowadzamy wybór do pytania "jakiś czy ten konkretny?"' }),
+    depth3: tri('Еще проще: показываем короткую пару a/an vs the.', 'Ще простіше: показуємо коротку пару a/an vs the.', 'Aún más simple: mostramos una pareja corta a/an vs the.', { 'pt-BR': 'Ainda mais simples: mostramos o par curto a/an vs the.', vi: 'Đơn giản hơn nữa: hiển thị cặp ngắn a/an và the.', id: 'Lebih sederhana lagi: tampilkan pasangan singkat a/an vs the.', tr: 'Daha da basit: kısa a/an ve the çiftini gösteririz.', pl: 'Jeszcze prościej: pokazujemy krótką parę a/an vs the.' }),
+    depth4: tri('Почти подсказка: прямо указываем, известен объект или нет.', 'Майже підказка: прямо вказуємо, відомий об’єкт чи ні.', 'Casi pista: indicamos directamente si el objeto ya es conocido o no.', { 'pt-BR': 'Quase dica: indicamos diretamente se o objeto já é conhecido ou não.', vi: 'Gần như gợi ý: nói thẳng vật đã được biết hay chưa.', id: 'Hampir petunjuk: langsung tunjukkan apakah objek sudah dikenal atau belum.', tr: 'Neredeyse ipucu: nesnenin bilinir olup olmadığını doğrudan belirtiriz.', pl: 'Prawie podpowiedź: wskazujemy bezpośrednio, czy obiekt jest już znany.' }),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
       action: 'show_simplified_rule_card',
-      card: tri('Остановись. Не переводи the. Спроси проще: это “какой-то новый” предмет или “тот самый” предмет? Какой-то новый - a/an. Тот самый - the.', 'Зупинись. Не перекладай the. Запитай простіше: це “якийсь новий” предмет чи “той самий” предмет? Якийсь новий - a/an. Той самий - the.', 'Detente. No traduzcas the. Pregunta más simple: es algo “nuevo cualquiera” o “ese mismo” objeto? Nuevo cualquiera - a/an. Ese mismo - the.'),
+      card: tri('Остановись. Не переводи the. Спроси проще: это “какой-то новый” предмет или “тот самый” предмет? Какой-то новый - a/an. Тот самый - the.', 'Зупинись. Не перекладай the. Запитай простіше: це “якийсь новий” предмет чи “той самий” предмет? Якийсь новий - a/an. Той самий - the.', 'Detente. No traduzcas the. Pregunta más simple: es algo “nuevo cualquiera” o “ese mismo” objeto? Nuevo cualquiera - a/an. Ese mismo - the.', { 'pt-BR': 'Pare. Não traduza the. Pergunte de forma simples: é um objeto "novo qualquer" ou "aquele mesmo" objeto? Novo qualquer - a/an. Aquele mesmo - the.', vi: 'Dừng lại. Đừng dịch the. Hỏi đơn giản hơn: đây là vật "mới bất kỳ" hay "chính vật đó"? Vật mới - a/an. Chính vật đó - the.', id: 'Berhenti. Jangan menerjemahkan the. Tanyakan lebih sederhana: ini benda "baru yang mana saja" atau benda "yang itu"? Baru yang mana saja - a/an. Yang itu - the.', tr: 'Dur. The çevirisi arama. Daha basit sor: bu "herhangi yeni" bir nesne mi, yoksa "o belirli" nesne mi? Herhangi yeni - a/an. O belirli - the.', pl: 'Zatrzymaj się. Nie tłumacz the. Zapytaj prościej: czy to "jakiś nowy" przedmiot, czy "ten konkretny" przedmiot? Jakiś nowy - a/an. Ten konkretny - the.' }),
     },
     afterThreeWrongInSameExercise: {
       action: 'show_specificity_hint_then_retry',
-      card: tri('Подсказка по смыслу: система покажет, известен предмет или новый, но не выберет артикль за пользователя.', 'Підказка за змістом: система покаже, предмет відомий чи новий, але не вибере артикль за користувача.', 'Pista de significado: el sistema mostrará si el objeto es conocido o nuevo, pero no elegirá el artículo por el usuario.'),
+      card: tri('Подсказка по смыслу: система покажет, известен предмет или новый, но не выберет артикль за пользователя.', 'Підказка за змістом: система покаже, предмет відомий чи новий, але не вибере артикль за користувача.', 'Pista de significado: el sistema mostrará si el objeto es conocido o nuevo, pero no elegirá el artículo por el usuario.', { 'pt-BR': 'Dica de sentido: o sistema mostrará se o objeto é conhecido ou novo, mas não escolherá o artigo pelo usuário.', vi: 'Gợi ý về nghĩa: hệ thống sẽ cho biết vật đã biết hay mới, nhưng không chọn mạo từ thay người dùng.', id: 'Petunjuk makna: sistem akan menunjukkan apakah objek dikenal atau baru, tetapi tidak memilih artikel untuk pengguna.', tr: 'Anlam ipucu: sistem nesnenin bilinir mi yeni mi olduğunu gösterecek, ama article seçimini kullanıcı adına yapmayacak.', pl: 'Podpowiedź znaczenia: system pokaże, czy przedmiot jest znany czy nowy, ale nie wybierze przedimka za użytkownika.' }),
     },
     afterFourWrongInSameExercise: {
       action: 'switch_to_guided_mode',
-      card: tri('Режим подсказки: сначала выбери смысл - “новый предмет” или “уже понятный предмет”. Потом система вернет тебя к артиклю.', 'Режим підказки: спочатку обери зміст - “новий предмет” чи “уже зрозумілий предмет”. Потім система поверне тебе до артикля.', 'Modo guiado: primero elige el sentido - “objeto nuevo” u “objeto ya claro”. Luego el sistema te devuelve al artículo.'),
+      card: tri('Режим подсказки: сначала выбери смысл - “новый предмет” или “уже понятный предмет”. Потом система вернет тебя к артиклю.', 'Режим підказки: спочатку обери зміст - “новий предмет” чи “уже зрозумілий предмет”. Потім система поверне тебе до артикля.', 'Modo guiado: primero elige el sentido - “objeto nuevo” u “objeto ya claro”. Luego el sistema te devuelve al artículo.', { 'pt-BR': 'Modo guiado: primeiro escolha o sentido - "objeto novo" ou "objeto já claro". Depois o sistema devolve você ao artigo.', vi: 'Chế độ hướng dẫn: trước tiên chọn nghĩa - "vật mới" hay "vật đã rõ". Sau đó hệ thống đưa bạn quay lại mạo từ.', id: 'Mode terpandu: pilih dulu maknanya - "objek baru" atau "objek yang sudah jelas". Lalu sistem mengembalikanmu ke artikel.', tr: 'Rehberli mod: önce anlamı seç - "yeni nesne" mi, "artık belli nesne" mi. Sonra sistem seni article seçimine döndürür.', pl: 'Tryb prowadzenia: najpierw wybierz sens - "nowy przedmiot" czy "już jasny przedmiot". Potem system wróci z tobą do przedimka.' }),
     },
   },
   guidedMode: {
     enabled: true,
     triggerAfterWrongAttempts: 4,
     tasks: [
-      { id: 'guided_specificity_001', prompt: tri('В предложении I saw a dog. ___ dog was small. Собака новая или уже известная?', 'У реченні I saw a dog. ___ dog was small. Собака нова чи вже відома?', 'En I saw a dog. ___ dog was small. El perro es nuevo o ya conocido?'), options: ['новая', 'уже известная'], correctIndex: 1, thenReturnToExerciseId: 'the_easy_001' },
-      { id: 'guided_specificity_002', prompt: tri('В фразе I like ___ music речь о конкретной музыке или о музыке вообще?', 'У фразі I like ___ music йдеться про конкретну музику чи про музику загалом?', 'En I like ___ music hablamos de música específica o música en general?'), options: ['конкретная музыка', 'музыка вообще'], correctIndex: 1, thenReturnToExerciseId: 'the_contrast_006' },
-      { id: 'guided_specificity_003', prompt: tri('В фразе the movie we watched yesterday фильм конкретный?', 'У фразі the movie we watched yesterday фільм конкретний?', 'En the movie we watched yesterday, la película es específica?'), options: ['да', 'нет'], correctIndex: 0, thenReturnToExerciseId: 'the_mixed_006' },
+      { id: 'guided_specificity_001', prompt: tri('В предложении I saw a dog. ___ dog was small. Собака новая или уже известная?', 'У реченні I saw a dog. ___ dog was small. Собака нова чи вже відома?', 'En I saw a dog. ___ dog was small. El perro es nuevo o ya conocido?', { 'pt-BR': 'Em I saw a dog. ___ dog was small, o cachorro é novo ou já conhecido?', vi: 'Trong I saw a dog. ___ dog was small, con chó là mới hay đã biết?', id: 'Dalam I saw a dog. ___ dog was small, anjingnya baru atau sudah dikenal?', tr: 'I saw a dog. ___ dog was small cümlesinde köpek yeni mi, yoksa artık bilinen mi?', pl: 'W zdaniu I saw a dog. ___ dog was small pies jest nowy czy już znany?' }), options: ['новая', 'уже известная'], correctIndex: 1, thenReturnToExerciseId: 'the_easy_001' },
+      { id: 'guided_specificity_002', prompt: tri('В фразе I like ___ music речь о конкретной музыке или о музыке вообще?', 'У фразі I like ___ music йдеться про конкретну музику чи про музику загалом?', 'En I like ___ music hablamos de música específica o música en general?', { 'pt-BR': 'Em I like ___ music, falamos de música específica ou música em geral?', vi: 'Trong I like ___ music, ta nói về âm nhạc cụ thể hay âm nhạc nói chung?', id: 'Dalam I like ___ music, kita berbicara tentang musik spesifik atau musik secara umum?', tr: 'I like ___ music ifadesinde belirli müzikten mi, genel olarak müzikten mi bahsediyoruz?', pl: 'W I like ___ music mówimy o konkretnej muzyce czy o muzyce ogólnie?' }), options: ['конкретная музыка', 'музыка вообще'], correctIndex: 1, thenReturnToExerciseId: 'the_contrast_006' },
+      { id: 'guided_specificity_003', prompt: tri('В фразе the movie we watched yesterday фильм конкретный?', 'У фразі the movie we watched yesterday фільм конкретний?', 'En the movie we watched yesterday, la película es específica?', { 'pt-BR': 'Em the movie we watched yesterday, o filme é específico?', vi: 'Trong the movie we watched yesterday, bộ phim có cụ thể không?', id: 'Dalam the movie we watched yesterday, filmnya spesifik?', tr: 'the movie we watched yesterday ifadesinde film belirli mi?', pl: 'Czy w the movie we watched yesterday film jest konkretny?' }), options: ['да', 'нет'], correctIndex: 0, thenReturnToExerciseId: 'the_mixed_006' },
     ],
   },
   smartTrainerConfig: {
@@ -594,7 +902,13 @@ export const ARTICLE_THE_SPECIFIC_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'article',
     microDiagnosisId: 'article_the_specific',
-    diagnosisLabel: tri('The для конкретного объекта', 'The для конкретного об’єкта', 'The para objeto específico'),
+    diagnosisLabel: tri('The для конкретного объекта', 'The для конкретного об’єкта', 'The para objeto específico', {
+      'pt-BR': 'The para objeto definido',
+      vi: 'The cho vật cụ thể',
+      id: 'The untuk objek spesifik',
+      tr: 'Belirli nesne için the',
+      pl: 'The dla konkretnego obiektu',
+    }),
     contrastSet: ['a', 'an', 'the', 'no article'],
     focusWords: ['the', 'a', 'an'],
     focusPatterns: [
@@ -629,7 +943,7 @@ export const ARTICLE_THE_SPECIFIC_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_article_the_specific_start',
     answer: 'diagnosis_training_article_the_specific_answer',
     mastery: 'diagnosis_training_article_the_specific_mastery',
-    fallback: 'diagnosis_training_article_the_specific_fallback',
+    recovery: 'diagnosis_training_article_the_specific_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',
@@ -671,5 +985,3 @@ export const ARTICLE_THE_SPECIFIC_TRAINING: DiagnosisTraining = {
     hasFallbackRoute: true,
   },
 };
-
-

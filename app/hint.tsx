@@ -6,8 +6,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { T, type Lang, triLang } from '../constants/i18n';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
+import {
+  frenchLessonSupportGateCopy,
+  lessonSupportContentAvailableForTarget,
+} from './lesson_support_target_gate';
 
 function L(
   lang: Lang,
@@ -81,42 +86,12 @@ type HintContent = {
   titleRU: string;
   titleUK: string;
   titleES: string;
+  titlePtBr: string;
+  titleVi: string;
+  titleId: string;
+  titleTr: string;
+  titlePl: string;
   render: (t: any, lang: Lang, f: any) => React.ReactNode;
-};
-
-const HINT_TITLE_PLANNED: Record<number, { ptBr: string; vi: string; id: string; tr: string; pl: string }> = {
-  1: { ptBr: 'To be — am / is / are', vi: 'To be — am / is / are', id: 'To be — am / is / are', tr: 'To be — am / is / are', pl: 'To be — am / is / are' },
-  2: { ptBr: 'To be — negação e perguntas', vi: 'To be — phủ định và câu hỏi', id: 'To be — negasi dan pertanyaan', tr: 'To be — olumsuz ve sorular', pl: 'To be — przeczenie i pytania' },
-  3: { ptBr: 'Present Simple — afirmação', vi: 'Present Simple — câu khẳng định', id: 'Present Simple — pernyataan', tr: 'Present Simple — olumlu cümle', pl: 'Present Simple — zdanie twierdzące' },
-  4: { ptBr: 'Present Simple — negação e pergunta', vi: 'Present Simple — phủ định và câu hỏi', id: 'Present Simple — negasi dan pertanyaan', tr: 'Present Simple — olumsuz ve soru', pl: 'Present Simple — przeczenie i pytanie' },
-  5: { ptBr: 'Present Simple — perguntas', vi: 'Present Simple — câu hỏi', id: 'Present Simple — pertanyaan', tr: 'Present Simple — sorular', pl: 'Present Simple — pytania' },
-  6: { ptBr: 'Perguntas Wh-', vi: 'Câu hỏi Wh-', id: 'Pertanyaan Wh-', tr: 'Wh soruları', pl: 'Pytania Wh-' },
-  7: { ptBr: 'To have — ter', vi: 'To have — có', id: 'To have — memiliki', tr: 'To have — sahip olmak', pl: 'To have — mieć' },
-  8: { ptBr: 'Preposições de tempo: at / in / on', vi: 'Giới từ thời gian: at / in / on', id: 'Preposisi waktu: at / in / on', tr: 'Zaman edatları: at / in / on', pl: 'Przyimki czasu: at / in / on' },
-  9: { ptBr: 'There is / There are', vi: 'There is / There are', id: 'There is / There are', tr: 'There is / There are', pl: 'There is / There are' },
-  10: { ptBr: 'Verbos modais', vi: 'Động từ khuyết thiếu', id: 'Modal verbs', tr: 'Modal fiiller', pl: 'Czasowniki modalne' },
-  11: { ptBr: 'Past Simple — verbos regulares', vi: 'Past Simple — động từ có quy tắc', id: 'Past Simple — regular verbs', tr: 'Past Simple — düzenli fiiller', pl: 'Past Simple — czasowniki regularne' },
-  12: { ptBr: 'Past Simple — verbos irregulares', vi: 'Past Simple — động từ bất quy tắc', id: 'Past Simple — irregular verbs', tr: 'Past Simple — düzensiz fiiller', pl: 'Past Simple — czasowniki nieregularne' },
-  13: { ptBr: 'Future Simple — will', vi: 'Future Simple — will', id: 'Future Simple — will', tr: 'Future Simple — will', pl: 'Future Simple — will' },
-  14: { ptBr: 'Graus de comparação', vi: 'Dạng so sánh', id: 'Degrees of comparison', tr: 'Karşılaştırma dereceleri', pl: 'Stopniowanie' },
-  15: { ptBr: 'Pronomes possessivos', vi: 'Đại từ sở hữu', id: 'Possessive pronouns', tr: 'İyelik zamirleri', pl: 'Zaimki dzierżawcze' },
-  16: { ptBr: 'Phrasal verbs', vi: 'Phrasal verbs', id: 'Phrasal verbs', tr: 'Phrasal verbs', pl: 'Phrasal verbs' },
-  17: { ptBr: 'Present Continuous', vi: 'Present Continuous', id: 'Present Continuous', tr: 'Present Continuous', pl: 'Present Continuous' },
-  18: { ptBr: 'Modo imperativo', vi: 'Câu mệnh lệnh', id: 'Imperative mood', tr: 'Emir kipi', pl: 'Tryb rozkazujący' },
-  19: { ptBr: 'Preposições de lugar', vi: 'Giới từ nơi chốn', id: 'Preposisi tempat', tr: 'Yer edatları', pl: 'Przyimki miejsca' },
-  20: { ptBr: 'Artigos: a / an / the / —', vi: 'Mạo từ: a / an / the / —', id: 'Articles: a / an / the / —', tr: 'Articles: a / an / the / —', pl: 'Przedimki: a / an / the / —' },
-  21: { ptBr: 'Pronomes indefinidos', vi: 'Đại từ bất định', id: 'Indefinite pronouns', tr: 'Belirsiz zamirler', pl: 'Zaimki nieokreślone' },
-  22: { ptBr: 'Gerúndio (-ing)', vi: 'Gerund (-ing)', id: 'Gerund (-ing)', tr: 'Gerund (-ing)', pl: 'Gerundium (-ing)' },
-  23: { ptBr: 'Voz passiva', vi: 'Câu bị động', id: 'Passive Voice', tr: 'Passive Voice', pl: 'Strona bierna' },
-  24: { ptBr: 'Present Perfect', vi: 'Present Perfect', id: 'Present Perfect', tr: 'Present Perfect', pl: 'Present Perfect' },
-  25: { ptBr: 'Past Continuous', vi: 'Past Continuous', id: 'Past Continuous', tr: 'Past Continuous', pl: 'Past Continuous' },
-  26: { ptBr: 'Orações condicionais', vi: 'Câu điều kiện', id: 'Conditional sentences', tr: 'Koşul cümleleri', pl: 'Zdania warunkowe' },
-  27: { ptBr: 'Discurso indireto', vi: 'Câu tường thuật', id: 'Reported speech', tr: 'Dolaylı anlatım', pl: 'Mowa zależna' },
-  28: { ptBr: 'Pronomes reflexivos', vi: 'Đại từ phản thân', id: 'Reflexive pronouns', tr: 'Dönüşlülük zamirleri', pl: 'Zaimki zwrotne' },
-  29: { ptBr: 'Used to', vi: 'Used to', id: 'Used to', tr: 'Used to', pl: 'Used to' },
-  30: { ptBr: 'Relative clauses', vi: 'Mệnh đề quan hệ', id: 'Relative clauses', tr: 'Relative clauses', pl: 'Zdania względne' },
-  31: { ptBr: 'Objeto complexo + infinitivo', vi: 'Tân ngữ phức + nguyên mẫu', id: 'Complex object + infinitive', tr: 'Complex Object + infinitive', pl: 'Complex Object + bezokolicznik' },
-  32: { ptBr: 'Revisão de todos os temas', vi: 'Ôn lại tất cả chủ đề', id: 'Ulasan semua topik', tr: 'Tüm konuların tekrarı', pl: 'Powtórka wszystkich tematów' },
 };
 
 const HINTS: Record<number, HintContent> = {
@@ -124,6 +99,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'To Be — am / is / are',
     titleUK: 'To Be — am / is / are',
     titleES: 'To be — am / is / are',
+    titlePtBr: 'To be — am / is / are',
+    titleVi: 'To be — am / is / are',
+    titleId: 'To be — am / is / are',
+    titleTr: 'To be — am / is / are',
+    titlePl: 'To be — am / is / are',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Подлежащее", "Підмет", "Sujeto", "Sujeito", "Chủ ngữ", "Subjek", "Özne", "Podmiot"), L(lang, "Утверждение", "Ствердження", "Afirmación", "Afirmação", "Khẳng định", "Pernyataan", "Olumlu cümle", "Twierdzenie"), L(lang, "Отрицание", "Заперечення", "Negación", "Negação", "Phủ định", "Negasi", "Olumsuz", "Przeczenie"), L(lang, "Вопрос", "Питання", "Pregunta", "Pergunta", "Câu hỏi", "Pertanyaan", "Soru", "Pytanie")]}
@@ -143,6 +123,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'To Be — отрицание и вопросы',
     titleUK: 'To Be — заперечення і питання',
     titleES: 'To be — negación y preguntas',
+    titlePtBr: 'To be — negação e perguntas',
+    titleVi: 'To be — phủ định và câu hỏi',
+    titleId: 'To be — negasi dan pertanyaan',
+    titleTr: 'To be — olumsuz ve sorular',
+    titlePl: 'To be — przeczenie i pytania',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         label={L(lang, "Отрицание (нет «являться» у глагола)", "Заперечення (не є)", "Negación", "Negação", "Phủ định", "Negasi", "Olumsuz", "Przeczenie")}
@@ -168,6 +153,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Present Simple — утверждение',
     titleUK: 'Present Simple — ствердження',
     titleES: 'Present Simple — afirmación',
+    titlePtBr: 'Present Simple — afirmação',
+    titleVi: 'Present Simple — câu khẳng định',
+    titleId: 'Present Simple — kalimat afirmatif',
+    titleTr: 'Present Simple — olumlu cümle',
+    titlePl: 'Present Simple — zdanie twierdzące',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         label="I / You / We / They"
@@ -200,6 +190,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Present Simple — отрицание и вопрос',
     titleUK: 'Present Simple — заперечення і питання',
     titleES: 'Present Simple — negación e interrogación',
+    titlePtBr: 'Present Simple — negação e pergunta',
+    titleVi: 'Present Simple — phủ định và câu hỏi',
+    titleId: 'Present Simple — negasi dan pertanyaan',
+    titleTr: 'Present Simple — olumsuzluk ve soru',
+    titlePl: 'Present Simple — przeczenie i pytanie',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Подлежащее", "Підмет", "Sujeto", "Sujeito", "Chủ ngữ", "Subjek", "Özne", "Podmiot"), L(lang, "Отрицание", "Заперечення", "Negación", "Negação", "Phủ định", "Negasi", "Olumsuz", "Przeczenie"), L(lang, "Вопрос", "Питання", "Pregunta", "Pergunta", "Câu hỏi", "Pertanyaan", "Soru", "Pytanie")]}
@@ -223,6 +218,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Present Simple — вопросы',
     titleUK: 'Present Simple — питання',
     titleES: 'Present Simple — preguntas',
+    titlePtBr: 'Present Simple — perguntas',
+    titleVi: 'Present Simple — câu hỏi',
+    titleId: 'Present Simple — pertanyaan',
+    titleTr: 'Present Simple — sorular',
+    titlePl: 'Present Simple — pytania',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         label={L(lang, "Общие вопросы", "Загальні питання", "Preguntas generales", "Perguntas gerais", "Câu hỏi yes/no", "Pertanyaan umum", "Genel sorular", "Pytania ogólne")}
@@ -249,6 +249,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Специальные вопросы',
     titleUK: 'Спеціальні питання',
     titleES: 'Preguntas Wh-',
+    titlePtBr: 'Perguntas Wh-',
+    titleVi: 'Câu hỏi Wh-',
+    titleId: 'Pertanyaan Wh-',
+    titleTr: 'Wh soruları',
+    titlePl: 'Pytania Wh-',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={['Wh-', L(lang, "Значение", "Значення", "Significado", "Significado", "Nghĩa", "Arti", "Anlam", "Znaczenie"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -299,6 +304,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'To Have — иметь',
     titleUK: 'To Have — мати',
     titleES: 'To have — tener',
+    titlePtBr: 'To have — ter',
+    titleVi: 'To have — có',
+    titleId: 'To have — memiliki',
+    titleTr: 'To have — sahip olmak',
+    titlePl: 'To have — mieć',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Подлежащее", "Підмет", "Sujeto", "Sujeito", "Chủ ngữ", "Subjek", "Özne", "Podmiot"), L(lang, "Утверждение", "Ствердження", "Afirmación", "Afirmação", "Khẳng định", "Pernyataan", "Olumlu cümle", "Twierdzenie"), L(lang, "Отрицание", "Заперечення", "Negación", "Negação", "Phủ định", "Negasi", "Olumsuz", "Przeczenie"), L(lang, "Вопрос", "Питання", "Pregunta", "Pergunta", "Câu hỏi", "Pertanyaan", "Soru", "Pytanie")]}
@@ -321,6 +331,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Предлоги времени: at / in / on',
     titleUK: 'Прийменники часу: at / in / on',
     titleES: 'Preposiciones de tiempo: at / in / on',
+    titlePtBr: 'Preposições de tempo: at / in / on',
+    titleVi: 'Giới từ thời gian: at / in / on',
+    titleId: 'Preposisi waktu: at / in / on',
+    titleTr: 'Zaman edatları: at / in / on',
+    titlePl: 'Przyimki czasu: at / in / on',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Предлог", "Прийменник", "Preposición", "Preposição", "Giới từ", "Preposisi", "Edat", "Przyimek"), L(lang, "Употребляется с", "Вживається з", "Va con", "Combina com", "Đi với", "Dipakai dengan", "Şununla kullanılır", "Łączy się z"), L(lang, "Примеры", "Приклади", "Ejemplos", "Exemplos", "Ví dụ", "Contoh", "Örnekler", "Przykłady")]}
@@ -344,6 +359,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'There is / There are',
     titleUK: 'There is / There are',
     titleES: 'There is / There are',
+    titlePtBr: 'There is / There are',
+    titleVi: 'There is / There are',
+    titleId: 'There is / There are',
+    titleTr: 'There is / There are',
+    titlePl: 'There is / There are',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Число", "Число", "Número", "Número", "Số", "Jumlah", "Sayı", "Liczba"), L(lang, "Утверждение", "Ствердження", "Afirmación", "Afirmação", "Khẳng định", "Pernyataan", "Olumlu cümle", "Twierdzenie"), L(lang, "Отрицание", "Заперечення", "Negación", "Negação", "Phủ định", "Negasi", "Olumsuz", "Przeczenie"), L(lang, "Вопрос", "Питання", "Pregunta", "Pergunta", "Câu hỏi", "Pertanyaan", "Soru", "Pytanie")]}
@@ -390,6 +410,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Модальные глаголы',
     titleUK: 'Модальні дієслова',
     titleES: 'Verbos modales',
+    titlePtBr: 'Verbos modais',
+    titleVi: 'Động từ khuyết thiếu',
+    titleId: 'Verba modal',
+    titleTr: 'Kip fiilleri',
+    titlePl: 'Czasowniki modalne',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Глагол", "Дієслово", "Verbo", "Verbo", "Động từ", "Verba", "Fiil", "Czasownik"), L(lang, "Значение", "Значення", "Significado", "Significado", "Nghĩa", "Arti", "Anlam", "Znaczenie"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -428,6 +453,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Past Simple — правильные глаголы',
     titleUK: 'Past Simple — правильні дієслова',
     titleES: 'Past Simple — verbos regulares',
+    titlePtBr: 'Past Simple — verbos regulares',
+    titleVi: 'Past Simple — động từ có quy tắc',
+    titleId: 'Past Simple — verba beraturan',
+    titleTr: 'Past Simple — düzenli fiiller',
+    titlePl: 'Past Simple — czasowniki regularne',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Форма", "Форма", "Forma", "Forma", "Dạng", "Bentuk", "Biçim", "Forma"), L(lang, "Структура", "Структура", "Estructura", "Estrutura", "Cấu trúc", "Struktur", "Yapı", "Struktura"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -463,6 +493,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Past Simple — неправильные глаголы',
     titleUK: 'Past Simple — неправильні дієслова',
     titleES: 'Past Simple — verbos irregulares',
+    titlePtBr: 'Past Simple — verbos irregulares',
+    titleVi: 'Past Simple — động từ bất quy tắc',
+    titleId: 'Past Simple — verba tidak beraturan',
+    titleTr: 'Past Simple — düzensiz fiiller',
+    titlePl: 'Past Simple — czasowniki nieregularne',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Форма", "Форма", "Forma", "Forma", "Dạng", "Bentuk", "Biçim", "Forma"), L(lang, "Структура", "Структура", "Estructura", "Estrutura", "Cấu trúc", "Struktur", "Yapı", "Struktura"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -516,6 +551,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Future Simple — will',
     titleUK: 'Future Simple — will',
     titleES: 'Future Simple — will',
+    titlePtBr: 'Future Simple — will',
+    titleVi: 'Future Simple — will',
+    titleId: 'Future Simple — will',
+    titleTr: 'Future Simple — will',
+    titlePl: 'Future Simple — will',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Форма", "Форма", "Forma", "Forma", "Dạng", "Bentuk", "Biçim", "Forma"), L(lang, "Структура", "Структура", "Estructura", "Estrutura", "Cấu trúc", "Struktur", "Yapı", "Struktura"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -552,6 +592,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Степени сравнения',
     titleUK: 'Ступені порівняння',
     titleES: 'Grados de comparación',
+    titlePtBr: 'Graus de comparação',
+    titleVi: 'Các cấp so sánh',
+    titleId: 'Tingkat perbandingan',
+    titleTr: 'Karşılaştırma dereceleri',
+    titlePl: 'Stopniowanie',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         label={L(lang, "Короткие прилагательные", "Короткі прикметники", "Adjetivos cortos", "Adjetivos curtos", "Tính từ ngắn", "Kata sifat pendek", "Kısa sıfatlar", "Krótkie przymiotniki")}
@@ -589,6 +634,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Притяжательные местоимения',
     titleUK: 'Присвійні займенники',
     titleES: 'Pronombres y adjetivos posesivos',
+    titlePtBr: 'Pronomes possessivos',
+    titleVi: 'Đại từ sở hữu',
+    titleId: 'Pronomina posesif',
+    titleTr: 'İyelik zamirleri',
+    titlePl: 'Zaimki dzierżawcze',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Лицо", "Особа", "Persona", "Pessoa", "Ngôi", "Orang", "Kişi", "Osoba"), L(lang, "Перед сущ.", "Перед іменником", "Antes del sust.", "Antes do subst.", "Trước danh từ", "Sebelum nomina", "İsimden önce", "Przed rzecz."), L(lang, "Самостоятельно", "Самостійно", "Apartados", "Separados", "Đứng độc lập", "Berdiri sendiri", "Tek başına", "Samodzielnie"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -608,6 +658,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Фразовые глаголы',
     titleUK: 'Фразові дієслова',
     titleES: 'Verbos frasales (phrasal verbs)',
+    titlePtBr: 'Phrasal verbs',
+    titleVi: 'Phrasal verbs',
+    titleId: 'Phrasal verbs',
+    titleTr: 'Phrasal verbs',
+    titlePl: 'Phrasal verbs',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Глагол", "Дієслово", "Verbo", "Verbo", "Động từ", "Verba", "Fiil", "Czasownik"), L(lang, "Значение", "Значення", "Significado", "Significado", "Nghĩa", "Arti", "Anlam", "Znaczenie"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -652,6 +707,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Present Continuous',
     titleUK: 'Present Continuous',
     titleES: 'Present Continuous',
+    titlePtBr: 'Present Continuous',
+    titleVi: 'Present Continuous',
+    titleId: 'Present Continuous',
+    titleTr: 'Present Continuous',
+    titlePl: 'Present Continuous',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Форма", "Форма", "Forma", "Forma", "Dạng", "Bentuk", "Biçim", "Forma"), L(lang, "Структура", "Структура", "Estructura", "Estrutura", "Cấu trúc", "Struktur", "Yapı", "Struktura"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -687,6 +747,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Повелительное наклонение',
     titleUK: 'Наказовий спосіб',
     titleES: 'Modo imperativo',
+    titlePtBr: 'Modo imperativo',
+    titleVi: 'Câu mệnh lệnh',
+    titleId: 'Modus imperatif',
+    titleTr: 'Emir kipi',
+    titlePl: 'Tryb rozkazujący',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Форма", "Форма", "Forma", "Forma", "Dạng", "Bentuk", "Biçim", "Forma"), L(lang, "Структура", "Структура", "Estructura", "Estrutura", "Cấu trúc", "Struktur", "Yapı", "Struktura"), L(lang, "Примеры", "Приклади", "Ejemplos", "Exemplos", "Ví dụ", "Contoh", "Örnekler", "Przykłady")]}
@@ -713,6 +778,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Предлоги места',
     titleUK: 'Прийменники місця',
     titleES: 'Preposiciones de lugar',
+    titlePtBr: 'Preposições de lugar',
+    titleVi: 'Giới từ nơi chốn',
+    titleId: 'Preposisi tempat',
+    titleTr: 'Yer edatları',
+    titlePl: 'Przyimki miejsca',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Предлог", "Прийменник", "Prep.", "Prep.", "Giới từ", "Prep.", "Edat", "Przyim."), L(lang, "Значение", "Значення", "Significado", "Significado", "Nghĩa", "Arti", "Anlam", "Znaczenie"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -757,6 +827,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Артикли: a / an / the / —',
     titleUK: 'Артиклі: a / an / the / —',
     titleES: 'Artículos: a / an / the / —',
+    titlePtBr: 'Artigos: a / an / the / —',
+    titleVi: 'Mạo từ: a / an / the / —',
+    titleId: 'Artikel: a / an / the / —',
+    titleTr: 'Artikeller: a / an / the / —',
+    titlePl: 'Przedimki: a / an / the / —',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Артикль", "Артикль", "Art.", "Art.", "Mạo từ", "Artikel", "Artikel", "Przed."), L(lang, "Когда использовать", "Коли вживати", "Cuándo", "Quando", "Khi nào", "Kapan", "Ne zaman", "Kiedy"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -806,6 +881,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Неопределённые местоимения',
     titleUK: 'Неозначені займенники',
     titleES: 'Pronombres indefinidos',
+    titlePtBr: 'Pronomes indefinidos',
+    titleVi: 'Đại từ bất định',
+    titleId: 'Pronomina tak tentu',
+    titleTr: 'Belirsiz zamirler',
+    titlePl: 'Zaimki nieokreślone',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Корень", "Корінь", "Raíz", "Raiz", "Gốc", "Akar", "Kök", "Rdzeń"), L(lang, "Лицо", "Особа", "Personas", "Pessoas", "Ngôi", "Orang", "Kişiler", "Osoby"), L(lang, "Предмет", "Предмет", "Cosas", "Coisas", "Vật", "Benda", "Şeyler", "Rzeczy"), L(lang, "Место", "Місце", "Lugar", "Lugar", "Nơi chốn", "Tempat", "Yer", "Miejsce")]}
@@ -842,6 +922,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Герундий (-ing)',
     titleUK: 'Герундій (-ing)',
     titleES: 'Gerundio (-ing)',
+    titlePtBr: 'Gerúndio (-ing)',
+    titleVi: 'Danh động từ (-ing)',
+    titleId: 'Gerund (-ing)',
+    titleTr: 'Gerund (-ing)',
+    titlePl: 'Gerundium (-ing)',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         label={L(lang, "После этих слов — Герундий (-ing)", "Після цих слів — Герундій (-ing)", "Tras estos verbos — gerundio (-ing)", "Depois destes verbos — gerúndio (-ing)", "Sau các động từ này — gerund (-ing)", "Setelah verba ini — gerund (-ing)", "Bu fiillerden sonra — gerund (-ing)", "Po tych czasownikach — gerundium (-ing)")}
@@ -875,6 +960,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Passive Voice',
     titleUK: 'Passive Voice',
     titleES: 'Voz pasiva (Passive Voice)',
+    titlePtBr: 'Voz passiva',
+    titleVi: 'Câu bị động',
+    titleId: 'Kalimat pasif',
+    titleTr: 'Edilgen çatı',
+    titlePl: 'Strona bierna',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Время", "Час", "Tiempo", "Tempo", "Thời gian", "Waktu", "Zaman", "Czas"), L(lang, "Структура", "Структура", "Estructura", "Estrutura", "Cấu trúc", "Struktur", "Yapı", "Struktura"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -901,6 +991,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Present Perfect',
     titleUK: 'Present Perfect',
     titleES: 'Present Perfect',
+    titlePtBr: 'Present Perfect',
+    titleVi: 'Present Perfect',
+    titleId: 'Present Perfect',
+    titleTr: 'Present Perfect',
+    titlePl: 'Present Perfect',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Форма", "Форма", "Forma", "Forma", "Dạng", "Bentuk", "Biçim", "Forma"), L(lang, "Структура", "Структура", "Estructura", "Estrutura", "Cấu trúc", "Struktur", "Yapı", "Struktura"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -945,6 +1040,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Past Continuous',
     titleUK: 'Past Continuous',
     titleES: 'Past Continuous',
+    titlePtBr: 'Past Continuous',
+    titleVi: 'Past Continuous',
+    titleId: 'Past Continuous',
+    titleTr: 'Past Continuous',
+    titlePl: 'Past Continuous',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Форма", "Форма", "Forma", "Forma", "Dạng", "Bentuk", "Biçim", "Forma"), L(lang, "Структура", "Структура", "Estructura", "Estrutura", "Cấu trúc", "Struktur", "Yapı", "Struktura"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -977,6 +1077,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Условные предложения',
     titleUK: 'Умовні речення',
     titleES: 'Oraciones condicionales',
+    titlePtBr: 'Orações condicionais',
+    titleVi: 'Câu điều kiện',
+    titleId: 'Kalimat pengandaian',
+    titleTr: 'Koşul cümleleri',
+    titlePl: 'Zdania warunkowe',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Тип", "Тип", "Tipo", "Tipo", "Loại", "Jenis", "Tür", "Typ"), L(lang, "If-часть", "If-частина", "Parte en if", "Parte com if", "Mệnh đề if", "Bagian if", "If bölümü", "Część z if"), L(lang, "Результат", "Результат", "Resultado", "Resultado", "Kết quả", "Hasil", "Sonuç", "Wynik"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -1003,6 +1108,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Косвенная речь',
     titleUK: 'Непряма мова',
     titleES: 'Estilo indirecto',
+    titlePtBr: 'Discurso indireto',
+    titleVi: 'Câu tường thuật',
+    titleId: 'Kalimat tidak langsung',
+    titleTr: 'Dolaylı anlatım',
+    titlePl: 'Mowa zależna',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         label={L(lang, "Сдвиг времён", "Зміщення часів", "Retroceso de tiempos", "Mudança de tempos", "Lùi thì", "Pergeseran tense", "Zaman kayması", "Następstwo czasów")}
@@ -1032,6 +1142,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Возвратные местоимения',
     titleUK: 'Зворотні займенники',
     titleES: 'Pronombres reflexivos',
+    titlePtBr: 'Pronomes reflexivos',
+    titleVi: 'Đại từ phản thân',
+    titleId: 'Pronomina refleksif',
+    titleTr: 'Dönüşlülük zamirleri',
+    titlePl: 'Zaimki zwrotne',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Подлежащее", "Підмет", "Sujeto", "Sujeito", "Chủ ngữ", "Subjek", "Özne", "Podmiot"), L(lang, "Возвратное", "Зворотне", "Reflexivo", "Reflexivo", "Phản thân", "Refleksif", "Dönüşlü", "Zwrotny"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -1052,6 +1167,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Used to',
     titleUK: 'Used to',
     titleES: 'Used to',
+    titlePtBr: 'Used to',
+    titleVi: 'Used to',
+    titleId: 'Used to',
+    titleTr: 'Used to',
+    titlePl: 'Used to',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Форма", "Форма", "Forma", "Forma", "Dạng", "Bentuk", "Biçim", "Forma"), L(lang, "Структура", "Структура", "Estructura", "Estrutura", "Cấu trúc", "Struktur", "Yapı", "Struktura"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -1084,6 +1204,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Relative Clauses',
     titleUK: 'Relative Clauses',
     titleES: 'Oraciones de relativo',
+    titlePtBr: 'Orações relativas',
+    titleVi: 'Mệnh đề quan hệ',
+    titleId: 'Klausa relatif',
+    titleTr: 'İlgi cümlecikleri',
+    titlePl: 'Zdania względne',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang, "Слово", "Слово", "Palabra", "Palavra", "Từ", "Kata", "Kelime", "Słowo"), L(lang, "Для чего", "Для чого", "Sirve para", "Serve para", "Dùng để", "Digunakan untuk", "Ne işe yarar", "Do czego służy"), L(lang, "Пример", "Приклад", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
@@ -1116,6 +1241,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Complex Object',
     titleUK: 'Complex Object',
     titleES: 'Objeto directo + infinitivo',
+    titlePtBr: 'Objeto complexo + infinitivo',
+    titleVi: 'Tân ngữ phức + nguyên mẫu',
+    titleId: 'Objek kompleks + infinitif',
+    titleTr: 'Complex Object + mastar',
+    titlePl: 'Complex Object + bezokolicznik',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         label={L(lang, "Глагол + объект + to + V", "Дієслово + об'єкт + to + V", "Verbo + complemento + to + V", "Verbo + objeto + to + V", "Động từ + tân ngữ + to + V", "Verba + objek + to + V", "Fiil + nesne + to + V", "Czasownik + dopełnienie + to + V")}
@@ -1146,6 +1276,11 @@ const HINTS: Record<number, HintContent> = {
     titleRU: 'Повторение всех тем',
     titleUK: 'Повторення всіх тем',
     titleES: 'Repaso de todos los temas',
+    titlePtBr: 'Revisão de todos os temas',
+    titleVi: 'Ôn lại tất cả chủ đề',
+    titleId: 'Ulasan semua topik',
+    titleTr: 'Tüm konuların tekrarı',
+    titlePl: 'Powtórka wszystkich tematów',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         label={L(lang, "Времена — обзор", "Часи — огляд", "Tiempo verbal — panorama", "Tempos verbais — visão geral", "Tổng quan thì", "Ringkasan tense", "Zamanlar — genel bakış", "Czasy — przegląd")}
@@ -1182,8 +1317,11 @@ export default function HintScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { theme: t , f } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const lessonId = parseInt(id || '1', 10);
   const hint = HINTS[lessonId] || HINTS[1];
+  const frenchHintBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_hint', lessonId);
+  const frenchHintCopy = frenchHintBlocked ? frenchLessonSupportGateCopy('lesson_hint', lang, lessonId) : null;
 
   const hintSubtitle = triLang(lang, {
     ru: `${T.ru.lessonN(lessonId)} · Шпаргалка`,
@@ -1195,16 +1333,15 @@ export default function HintScreen() {
     tr: `Ders ${lessonId} · Hızlı rehber`,
     pl: `Lekcja ${lessonId} · Szybka ściąga`,
   });
-  const plannedHintTitle = HINT_TITLE_PLANNED[lessonId] ?? HINT_TITLE_PLANNED[1];
   const hintTitle = triLang(lang, {
     ru: hint.titleRU,
     uk: hint.titleUK,
     es: hint.titleES,
-    'pt-BR': plannedHintTitle.ptBr,
-    vi: plannedHintTitle.vi,
-    id: plannedHintTitle.id,
-    tr: plannedHintTitle.tr,
-    pl: plannedHintTitle.pl,
+    'pt-BR': hint.titlePtBr,
+    vi: hint.titleVi,
+    id: hint.titleId,
+    tr: hint.titleTr,
+    pl: hint.titlePl,
   });
   return (
     <ScreenGradient>
@@ -1219,18 +1356,30 @@ export default function HintScreen() {
             {hintSubtitle}
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
-            {hintTitle}
+            {frenchHintCopy?.title ?? hintTitle}
           </Text>
         </View>
       </View>
       <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
-        {hint.render(t, lang, f)}
+        {frenchHintCopy ? (
+          <View style={{ backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 1, borderColor: t.border, padding: 18, gap: 12 }}>
+            <View style={{ alignSelf: 'center', width: 64, height: 64, borderRadius: 32, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
+              <Ionicons name="shield-checkmark-outline" size={30} color={t.textSecond} />
+            </View>
+            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
+              {frenchHintCopy.title}
+            </Text>
+            <Text style={{ color: t.textSecond, fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center' }}>
+              {frenchHintCopy.body}
+            </Text>
+          </View>
+        ) : hint.render(t, lang, f)}
         <TouchableOpacity
           style={{ backgroundColor: t.bgSurface, borderRadius: 14, padding: 16, alignItems: 'center', marginTop: 8 }}
           onPress={() => { if (router.canGoBack()) router.back(); else router.replace('/'); }}
         >
           <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-            {triLang(lang, {
+            {frenchHintCopy?.action ?? triLang(lang, {
               ru: 'Закрыть',
               uk: 'Закрити',
               es: 'Cerrar',

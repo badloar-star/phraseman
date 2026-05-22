@@ -1,0 +1,3754 @@
+[ {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "applyConfigurationCommand" : {
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Понятно, буду искать!",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Понятно, буду искать!",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Зрозуміло, шукатиму!",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Зрозуміло, шукатиму!",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      } ],
+      "sourceDescription" : "../_dismiss_bug_hunt.yaml",
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314541558,
+    "duration" : 7828,
+    "sequenceNumber" : 26
+  }
+}, {
+  "command" : {
+    "waitForAnimationToEndCommand" : {
+      "timeout" : "8000",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314549387,
+    "duration" : 4266,
+    "sequenceNumber" : 30
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnPointV2Command" : {
+          "point" : "69%,54%",
+          "retryIfNoChange" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "8000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Open",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314522168,
+    "sequenceNumber" : 11
+  }
+}, {
+  "command" : {
+    "stopAppCommand" : {
+      "appId" : "app.phraseman",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314510664,
+    "duration" : 1016,
+    "sequenceNumber" : 4
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Go home",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "5000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Go home",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314539758,
+    "sequenceNumber" : 22
+  }
+}, {
+  "command" : {
+    "tapOnElement" : {
+      "selector" : {
+        "idRegex" : "tab-settings",
+        "optional" : false
+      },
+      "retryIfNoChange" : false,
+      "waitUntilVisible" : false,
+      "longPress" : false,
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314566109,
+    "duration" : 16952,
+    "sequenceNumber" : 33
+  }
+}, {
+  "command" : {
+    "assertConditionCommand" : {
+      "condition" : {
+        "visible" : {
+          "idRegex" : "settings-profile-row",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "FAILED",
+    "timestamp" : 1779314583346,
+    "duration" : 17344,
+    "error" : {
+      "message" : "Assertion is false: id: settings-profile-row is visible",
+      "hierarchyRoot" : {
+        "attributes" : {
+          "bounds" : "[0,0][0,0]",
+          "enabled" : "false",
+          "focused" : "false",
+          "selected" : "false",
+          "checked" : "false"
+        },
+        "children" : [ {
+          "attributes" : {
+            "accessibilityText" : "Phraseman",
+            "bounds" : "[0,0][440,956]",
+            "enabled" : "true",
+            "focused" : "false",
+            "selected" : "false",
+            "checked" : "false"
+          },
+          "children" : [ {
+            "attributes" : {
+              "bounds" : "[0,0][440,956]",
+              "enabled" : "true",
+              "focused" : "false",
+              "selected" : "false",
+              "checked" : "false"
+            },
+            "children" : [ {
+              "attributes" : {
+                "bounds" : "[0,0][440,956]",
+                "enabled" : "true",
+                "focused" : "false",
+                "selected" : "false",
+                "checked" : "false"
+              },
+              "children" : [ {
+                "attributes" : {
+                  "bounds" : "[0,0][440,956]",
+                  "enabled" : "true",
+                  "focused" : "false",
+                  "selected" : "false",
+                  "checked" : "false"
+                },
+                "children" : [ {
+                  "attributes" : {
+                    "bounds" : "[0,0][440,956]",
+                    "enabled" : "true",
+                    "focused" : "false",
+                    "selected" : "false",
+                    "checked" : "false"
+                  },
+                  "children" : [ {
+                    "attributes" : {
+                      "bounds" : "[0,0][440,956]",
+                      "enabled" : "true",
+                      "focused" : "false",
+                      "selected" : "false",
+                      "checked" : "false"
+                    },
+                    "children" : [ {
+                      "attributes" : {
+                        "bounds" : "[0,0][440,956]",
+                        "enabled" : "true",
+                        "focused" : "false",
+                        "selected" : "false",
+                        "checked" : "false"
+                      },
+                      "children" : [ {
+                        "attributes" : {
+                          "bounds" : "[0,0][440,956]",
+                          "enabled" : "true",
+                          "focused" : "false",
+                          "selected" : "false",
+                          "checked" : "false"
+                        },
+                        "children" : [ {
+                          "attributes" : {
+                            "bounds" : "[0,0][440,956]",
+                            "enabled" : "true",
+                            "focused" : "false",
+                            "selected" : "false",
+                            "checked" : "false"
+                          },
+                          "enabled" : true,
+                          "focused" : false,
+                          "checked" : false,
+                          "selected" : false
+                        }, {
+                          "attributes" : {
+                            "bounds" : "[0,0][440,956]",
+                            "enabled" : "true",
+                            "focused" : "false",
+                            "selected" : "false",
+                            "checked" : "false"
+                          },
+                          "children" : [ {
+                            "attributes" : {
+                              "bounds" : "[0,0][440,956]",
+                              "enabled" : "true",
+                              "focused" : "false",
+                              "selected" : "false",
+                              "checked" : "false"
+                            },
+                            "enabled" : true,
+                            "focused" : false,
+                            "checked" : false,
+                            "selected" : false
+                          }, {
+                            "attributes" : {
+                              "bounds" : "[0,0][440,956]",
+                              "enabled" : "true",
+                              "focused" : "false",
+                              "selected" : "false",
+                              "checked" : "false"
+                            },
+                            "children" : [ {
+                              "attributes" : {
+                                "bounds" : "[0,0][440,956]",
+                                "enabled" : "true",
+                                "focused" : "false",
+                                "selected" : "false",
+                                "checked" : "false"
+                              },
+                              "children" : [ {
+                                "attributes" : {
+                                  "bounds" : "[0,0][440,956]",
+                                  "enabled" : "true",
+                                  "focused" : "false",
+                                  "selected" : "false",
+                                  "checked" : "false"
+                                },
+                                "children" : [ {
+                                  "attributes" : {
+                                    "bounds" : "[0,0][440,956]",
+                                    "enabled" : "true",
+                                    "focused" : "false",
+                                    "selected" : "false",
+                                    "checked" : "false"
+                                  },
+                                  "children" : [ {
+                                    "attributes" : {
+                                      "bounds" : "[0,0][440,956]",
+                                      "enabled" : "true",
+                                      "focused" : "false",
+                                      "selected" : "false",
+                                      "checked" : "false"
+                                    },
+                                    "children" : [ {
+                                      "attributes" : {
+                                        "bounds" : "[0,0][440,956]",
+                                        "enabled" : "true",
+                                        "focused" : "false",
+                                        "selected" : "false",
+                                        "checked" : "false"
+                                      },
+                                      "children" : [ {
+                                        "attributes" : {
+                                          "bounds" : "[0,0][440,956]",
+                                          "enabled" : "true",
+                                          "focused" : "false",
+                                          "selected" : "false",
+                                          "checked" : "false"
+                                        },
+                                        "enabled" : true,
+                                        "focused" : false,
+                                        "checked" : false,
+                                        "selected" : false
+                                      }, {
+                                        "attributes" : {
+                                          "bounds" : "[0,0][440,956]",
+                                          "enabled" : "true",
+                                          "focused" : "false",
+                                          "selected" : "false",
+                                          "checked" : "false"
+                                        },
+                                        "children" : [ {
+                                          "attributes" : {
+                                            "bounds" : "[0,0][440,956]",
+                                            "enabled" : "true",
+                                            "focused" : "false",
+                                            "selected" : "false",
+                                            "checked" : "false"
+                                          },
+                                          "children" : [ {
+                                            "attributes" : {
+                                              "bounds" : "[-52,-86][466,1042]",
+                                              "enabled" : "true",
+                                              "focused" : "false",
+                                              "selected" : "false",
+                                              "checked" : "false"
+                                            },
+                                            "children" : [ {
+                                              "attributes" : {
+                                                "bounds" : "[-52,-86][466,1042]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            } ],
+                                            "enabled" : true,
+                                            "focused" : false,
+                                            "checked" : false,
+                                            "selected" : false
+                                          }, {
+                                            "attributes" : {
+                                              "bounds" : "[0,0][440,956]",
+                                              "enabled" : "true",
+                                              "focused" : "false",
+                                              "selected" : "false",
+                                              "checked" : "false"
+                                            },
+                                            "children" : [ {
+                                              "attributes" : {
+                                                "bounds" : "[0,0][440,956]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            }, {
+                                              "attributes" : {
+                                                "bounds" : "[0,0][440,956]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            } ],
+                                            "enabled" : true,
+                                            "focused" : false,
+                                            "checked" : false,
+                                            "selected" : false
+                                          } ],
+                                          "enabled" : true,
+                                          "focused" : false,
+                                          "checked" : false,
+                                          "selected" : false
+                                        }, {
+                                          "attributes" : {
+                                            "bounds" : "[0,62][440,858]",
+                                            "enabled" : "true",
+                                            "focused" : "false",
+                                            "selected" : "false",
+                                            "checked" : "false"
+                                          },
+                                          "children" : [ {
+                                            "attributes" : {
+                                              "bounds" : "[-1760,62][440,858]",
+                                              "enabled" : "true",
+                                              "focused" : "false",
+                                              "selected" : "false",
+                                              "checked" : "false"
+                                            },
+                                            "children" : [ {
+                                              "attributes" : {
+                                                "bounds" : "[0,62][440,858]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "children" : [ {
+                                                "attributes" : {
+                                                  "resource-id" : "screen-settings",
+                                                  "bounds" : "[0,62][440,858]",
+                                                  "enabled" : "true",
+                                                  "focused" : "false",
+                                                  "selected" : "false",
+                                                  "checked" : "false"
+                                                },
+                                                "children" : [ {
+                                                  "attributes" : {
+                                                    "bounds" : "[0,62][440,858]",
+                                                    "enabled" : "true",
+                                                    "focused" : "false",
+                                                    "selected" : "false",
+                                                    "checked" : "false"
+                                                  },
+                                                  "children" : [ {
+                                                    "attributes" : {
+                                                      "bounds" : "[0,62][440,1696]",
+                                                      "enabled" : "true",
+                                                      "focused" : "false",
+                                                      "selected" : "false",
+                                                      "checked" : "false"
+                                                    },
+                                                    "children" : [ {
+                                                      "attributes" : {
+                                                        "bounds" : "[0,62][440,1696]",
+                                                        "enabled" : "true",
+                                                        "focused" : "false",
+                                                        "selected" : "false",
+                                                        "checked" : "false"
+                                                      },
+                                                      "children" : [ {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "На главную",
+                                                          "bounds" : "[20,76][56,112]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "Настройки",
+                                                          "bounds" : "[68,77][420,110]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "Настройки",
+                                                            "bounds" : "[68,77][420,110]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "ИЗУЧАЕМЫЙ ЯЗЫК",
+                                                          "bounds" : "[20,122][420,140]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "ИЗУЧАЕМЫЙ ЯЗЫК",
+                                                            "bounds" : "[20,122][420,140]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "Английский",
+                                                          "bounds" : "[20,150][158,194]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "Испанский",
+                                                          "bounds" : "[166,150][287,194]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "Французский",
+                                                          "bounds" : "[20,202][162,243]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "French доступен только в DEV-режиме. В публичной версии открыт английский.",
+                                                          "bounds" : "[20,251][420,287]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "French доступен только в DEV-режиме. В публичной версии открыт английский.",
+                                                            "bounds" : "[20,251][420,287]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "ПРОФИЛЬ",
+                                                          "bounds" : "[0,293][440,339]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "ПРОФИЛЬ",
+                                                            "bounds" : "[0,293][440,339]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "bounds" : "[0,339][440,417]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "Имя / никнейм",
+                                                            "bounds" : "[56,355][402,379]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "children" : [ {
+                                                            "attributes" : {
+                                                              "accessibilityText" : "Имя / никнейм",
+                                                              "bounds" : "[56,355][402,379]",
+                                                              "enabled" : "true",
+                                                              "focused" : "false",
+                                                              "selected" : "false",
+                                                              "checked" : "false"
+                                                            },
+                                                            "enabled" : true,
+                                                            "focused" : false,
+                                                            "checked" : false,
+                                                            "selected" : false
+                                                          } ],
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        }, {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "",
+                                                            "bounds" : "[20,367][42,389]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "children" : [ {
+                                                            "attributes" : {
+                                                              "accessibilityText" : "",
+                                                              "bounds" : "[20,367][42,389]",
+                                                              "enabled" : "true",
+                                                              "focused" : "false",
+                                                              "selected" : "false",
+                                                              "checked" : "false"
+                                                            },
+                                                            "enabled" : true,
+                                                            "focused" : false,
+                                                            "checked" : false,
+                                                            "selected" : false
+                                                          } ],
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        }, {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "",
+                                                            "bounds" : "[402,369][420,387]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "children" : [ {
+                                                            "attributes" : {
+                                                              "accessibilityText" : "",
+                                                              "bounds" : "[402,369][420,387]",
+                                                              "enabled" : "true",
+                                                              "focused" : "false",
+                                                              "selected" : "false",
+                                                              "checked" : "false"
+                                                            },
+                                                            "enabled" : true,
+                                                            "focused" : false,
+                                                            "checked" : false,
+                                                            "selected" : false
+                                                          } ],
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        }, {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "Gamma9876",
+                                                            "bounds" : "[56,381][402,401]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "children" : [ {
+                                                            "attributes" : {
+                                                              "accessibilityText" : "Gamma9876",
+                                                              "bounds" : "[56,381][402,401]",
+                                                              "enabled" : "true",
+                                                              "focused" : "false",
+                                                              "selected" : "false",
+                                                              "checked" : "false"
+                                                            },
+                                                            "enabled" : true,
+                                                            "focused" : false,
+                                                            "checked" : false,
+                                                            "selected" : false
+                                                          } ],
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "bounds" : "[0,417][440,495]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "Аккаунт",
+                                                            "bounds" : "[56,433][402,457]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "children" : [ {
+                                                            "attributes" : {
+                                                              "accessibilityText" : "Аккаунт",
+                                                              "bounds" : "[56,433][402,457]",
+                                                              "enabled" : "true",
+                                                              "focused" : "false",
+                                                              "selected" : "false",
+                                                              "checked" : "false"
+                                                            },
+                                                            "enabled" : true,
+                                                            "focused" : false,
+                                                            "checked" : false,
+                                                            "selected" : false
+                                                          } ],
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        }, {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "",
+                                                            "bounds" : "[20,445][42,467]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "children" : [ {
+                                                            "attributes" : {
+                                                              "accessibilityText" : "",
+                                                              "bounds" : "[20,445][42,467]",
+                                                              "enabled" : "true",
+                                                              "focused" : "false",
+                                                              "selected" : "false",
+                                                              "checked" : "false"
+                                                            },
+                                                            "enabled" : true,
+                                                            "focused" : false,
+                                                            "checked" : false,
+                                                            "selected" : false
+                                                          } ],
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        }, {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "",
+                                                            "bounds" : "[402,447][420,465]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "children" : [ {
+                                                            "attributes" : {
+                                                              "accessibilityText" : "",
+                                                              "bounds" : "[402,447][420,465]",
+                                                              "enabled" : "true",
+                                                              "focused" : "false",
+                                                              "selected" : "false",
+                                                              "checked" : "false"
+                                                            },
+                                                            "enabled" : true,
+                                                            "focused" : false,
+                                                            "checked" : false,
+                                                            "selected" : false
+                                                          } ],
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        }, {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "Не привязан",
+                                                            "bounds" : "[56,459][402,478]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "children" : [ {
+                                                            "attributes" : {
+                                                              "accessibilityText" : "Не привязан",
+                                                              "bounds" : "[56,459][402,478]",
+                                                              "enabled" : "true",
+                                                              "focused" : "false",
+                                                              "selected" : "false",
+                                                              "checked" : "false"
+                                                            },
+                                                            "enabled" : true,
+                                                            "focused" : false,
+                                                            "checked" : false,
+                                                            "selected" : false
+                                                          } ],
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "qa-settings-language-row",
+                                                          "resource-id" : "settings-language-row",
+                                                          "bounds" : "[0,495][440,573]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "ВНЕШНИЙ ВИД",
+                                                          "bounds" : "[0,573][440,619]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "ВНЕШНИЙ ВИД",
+                                                            "bounds" : "[0,573][440,619]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "bounds" : "[0,619][440,697]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "Темы",
+                                                            "bounds" : "[56,635][402,659]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "children" : [ {
+                                                            "attributes" : {
+                                                              "accessibilityText" : "Темы",
+                                                              "bounds" : "[56,635][402,659]",
+                                                              "enabled" : "true",
+                                                              "focused" : "false",
+                                                              "selected" : "false",
+                                                              "checked" : "false"
+                                                            },
+                                                            "enabled" : true,
+                                                            "focused" : false,
+                                                            "checked" : false,
+                                                            "selected" : false
+                                                          } ],
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        }, {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "",
+                                                            "bounds" : "[20,646][42,669]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "children" : [ {
+                                                            "attributes" : {
+                                                              "accessibilityText" : "",
+                                                              "bounds" : "[20,646][42,669]",
+                                                              "enabled" : "true",
+                                                              "focused" : "false",
+                                                              "selected" : "false",
+                                                              "checked" : "false"
+                                                            },
+                                                            "enabled" : true,
+                                                            "focused" : false,
+                                                            "checked" : false,
+                                                            "selected" : false
+                                                          } ],
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        }, {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "",
+                                                            "bounds" : "[402,648][420,667]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "children" : [ {
+                                                            "attributes" : {
+                                                              "accessibilityText" : "",
+                                                              "bounds" : "[402,648][420,667]",
+                                                              "enabled" : "true",
+                                                              "focused" : "false",
+                                                              "selected" : "false",
+                                                              "checked" : "false"
+                                                            },
+                                                            "enabled" : true,
+                                                            "focused" : false,
+                                                            "checked" : false,
+                                                            "selected" : false
+                                                          } ],
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        }, {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "Графит",
+                                                            "bounds" : "[56,661][402,680]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "children" : [ {
+                                                            "attributes" : {
+                                                              "accessibilityText" : "Графит",
+                                                              "bounds" : "[56,661][402,680]",
+                                                              "enabled" : "true",
+                                                              "focused" : "false",
+                                                              "selected" : "false",
+                                                              "checked" : "false"
+                                                            },
+                                                            "enabled" : true,
+                                                            "focused" : false,
+                                                            "checked" : false,
+                                                            "selected" : false
+                                                          } ],
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "bounds" : "[0,697][440,852]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "Размер шрифта",
+                                                          "bounds" : "[56,713][420,737]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "Размер шрифта",
+                                                            "bounds" : "[56,713][420,737]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "",
+                                                          "bounds" : "[20,724][42,747]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "",
+                                                            "bounds" : "[20,724][42,747]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "Средний",
+                                                          "bounds" : "[56,739][420,758]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "Средний",
+                                                            "bounds" : "[56,739][420,758]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "A, Малый",
+                                                          "bounds" : "[20,772][147,835]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "A, Средний",
+                                                          "bounds" : "[155,772][285,835]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "A, Большой",
+                                                          "bounds" : "[293,772][420,835]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "bounds" : "[0,852][440,930]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "Тактильный отклик",
+                                                          "bounds" : "[56,868][369,892]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "Тактильный отклик",
+                                                            "bounds" : "[56,868][369,892]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "",
+                                                          "bounds" : "[20,879][42,902]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "",
+                                                            "bounds" : "[20,879][42,902]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "bounds" : "[369,875][420,906]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "Вибрация на каждом нажатии",
+                                                          "bounds" : "[56,894][369,913]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "Вибрация на каждом нажатии",
+                                                            "bounds" : "[56,894][369,913]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      }, {
+                                                        "attributes" : {
+                                                          "accessibilityText" : "ОБУЧЕНИЕ",
+                                                          "bounds" : "[0,930][440,976]",
+                                                          "enabled" : "true",
+                                                          "focused" : "false",
+                                                          "selected" : "false",
+                                                          "checked" : "false"
+                                                        },
+                                                        "children" : [ {
+                                                          "attributes" : {
+                                                            "accessibilityText" : "ОБУЧЕНИЕ",
+                                                            "bounds" : "[0,930][440,976]",
+                                                            "enabled" : "true",
+                                                            "focused" : "false",
+                                                            "selected" : "false",
+                                                            "checked" : "false"
+                                                          },
+                                                          "enabled" : true,
+                                                          "focused" : false,
+                                                          "checked" : false,
+                                                          "selected" : false
+                                                        } ],
+                                                        "enabled" : true,
+                                                        "focused" : false,
+                                                        "checked" : false,
+                                                        "selected" : false
+                                                      } ],
+                                                      "enabled" : true,
+                                                      "focused" : false,
+                                                      "checked" : false,
+                                                      "selected" : false
+                                                    } ],
+                                                    "enabled" : true,
+                                                    "focused" : false,
+                                                    "checked" : false,
+                                                    "selected" : false
+                                                  }, {
+                                                    "attributes" : {
+                                                      "accessibilityText" : "Horizontal scroll bar, 1 page",
+                                                      "value" : "0%",
+                                                      "text" : "0%",
+                                                      "bounds" : "[0,825][440,855]",
+                                                      "enabled" : "true",
+                                                      "focused" : "false",
+                                                      "selected" : "false",
+                                                      "checked" : "false"
+                                                    },
+                                                    "children" : [ {
+                                                      "attributes" : {
+                                                        "bounds" : "[3,852][434,855]",
+                                                        "enabled" : "true",
+                                                        "focused" : "false",
+                                                        "selected" : "false",
+                                                        "checked" : "false"
+                                                      },
+                                                      "enabled" : true,
+                                                      "focused" : false,
+                                                      "checked" : false,
+                                                      "selected" : false
+                                                    } ],
+                                                    "enabled" : true,
+                                                    "focused" : false,
+                                                    "checked" : false,
+                                                    "selected" : false
+                                                  }, {
+                                                    "attributes" : {
+                                                      "accessibilityText" : "Horizontal scroll bar, 1 page",
+                                                      "value" : "0%",
+                                                      "text" : "0%",
+                                                      "bounds" : "[0,825][440,855]",
+                                                      "enabled" : "true",
+                                                      "focused" : "false",
+                                                      "selected" : "false",
+                                                      "checked" : "false"
+                                                    },
+                                                    "children" : [ {
+                                                      "attributes" : {
+                                                        "bounds" : "[3,852][434,855]",
+                                                        "enabled" : "true",
+                                                        "focused" : "false",
+                                                        "selected" : "false",
+                                                        "checked" : "false"
+                                                      },
+                                                      "enabled" : true,
+                                                      "focused" : false,
+                                                      "checked" : false,
+                                                      "selected" : false
+                                                    } ],
+                                                    "enabled" : true,
+                                                    "focused" : false,
+                                                    "checked" : false,
+                                                    "selected" : false
+                                                  } ],
+                                                  "enabled" : true,
+                                                  "focused" : false,
+                                                  "checked" : false,
+                                                  "selected" : false
+                                                } ],
+                                                "enabled" : true,
+                                                "focused" : false,
+                                                "checked" : false,
+                                                "selected" : false
+                                              } ],
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            } ],
+                                            "enabled" : true,
+                                            "focused" : false,
+                                            "checked" : false,
+                                            "selected" : false
+                                          } ],
+                                          "enabled" : true,
+                                          "focused" : false,
+                                          "checked" : false,
+                                          "selected" : false
+                                        }, {
+                                          "attributes" : {
+                                            "bounds" : "[0,858][440,956]",
+                                            "enabled" : "true",
+                                            "focused" : "false",
+                                            "selected" : "false",
+                                            "checked" : "false"
+                                          },
+                                          "children" : [ {
+                                            "attributes" : {
+                                              "bounds" : "[0,858][440,922]",
+                                              "enabled" : "true",
+                                              "focused" : "false",
+                                              "selected" : "false",
+                                              "checked" : "false"
+                                            },
+                                            "children" : [ {
+                                              "attributes" : {
+                                                "bounds" : "[0,859][440,922]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "children" : [ {
+                                                "attributes" : {
+                                                  "bounds" : "[0,859][440,922]",
+                                                  "enabled" : "true",
+                                                  "focused" : "false",
+                                                  "selected" : "false",
+                                                  "checked" : "false"
+                                                },
+                                                "enabled" : true,
+                                                "focused" : false,
+                                                "checked" : false,
+                                                "selected" : false
+                                              } ],
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            }, {
+                                              "attributes" : {
+                                                "accessibilityText" : "qa-tab-home",
+                                                "resource-id" : "tab-home",
+                                                "bounds" : "[13,867][95,922]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            }, {
+                                              "attributes" : {
+                                                "accessibilityText" : "qa-tab-index",
+                                                "resource-id" : "tab-index",
+                                                "bounds" : "[95,867][178,922]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            }, {
+                                              "attributes" : {
+                                                "accessibilityText" : "qa-tab-arena",
+                                                "resource-id" : "tab-arena",
+                                                "bounds" : "[178,867][261,922]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            }, {
+                                              "attributes" : {
+                                                "accessibilityText" : "qa-tab-friends",
+                                                "resource-id" : "tab-friends",
+                                                "bounds" : "[261,867][344,922]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            }, {
+                                              "attributes" : {
+                                                "accessibilityText" : "qa-tab-settings",
+                                                "resource-id" : "tab-settings",
+                                                "bounds" : "[344,867][427,922]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            } ],
+                                            "enabled" : true,
+                                            "focused" : false,
+                                            "checked" : false,
+                                            "selected" : false
+                                          }, {
+                                            "attributes" : {
+                                              "bounds" : "[0,858][440,956]",
+                                              "enabled" : "true",
+                                              "focused" : "false",
+                                              "selected" : "false",
+                                              "checked" : "false"
+                                            },
+                                            "children" : [ {
+                                              "attributes" : {
+                                                "bounds" : "[0,858][440,956]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            } ],
+                                            "enabled" : true,
+                                            "focused" : false,
+                                            "checked" : false,
+                                            "selected" : false
+                                          }, {
+                                            "attributes" : {
+                                              "bounds" : "[0,922][440,956]",
+                                              "enabled" : "true",
+                                              "focused" : "false",
+                                              "selected" : "false",
+                                              "checked" : "false"
+                                            },
+                                            "children" : [ {
+                                              "attributes" : {
+                                                "bounds" : "[0,922][440,956]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "children" : [ {
+                                                "attributes" : {
+                                                  "bounds" : "[0,922][440,956]",
+                                                  "enabled" : "true",
+                                                  "focused" : "false",
+                                                  "selected" : "false",
+                                                  "checked" : "false"
+                                                },
+                                                "enabled" : true,
+                                                "focused" : false,
+                                                "checked" : false,
+                                                "selected" : false
+                                              } ],
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            } ],
+                                            "enabled" : true,
+                                            "focused" : false,
+                                            "checked" : false,
+                                            "selected" : false
+                                          } ],
+                                          "enabled" : true,
+                                          "focused" : false,
+                                          "checked" : false,
+                                          "selected" : false
+                                        } ],
+                                        "enabled" : true,
+                                        "focused" : false,
+                                        "checked" : false,
+                                        "selected" : false
+                                      }, {
+                                        "attributes" : {
+                                          "bounds" : "[0,9][440,965]",
+                                          "enabled" : "true",
+                                          "focused" : "false",
+                                          "selected" : "false",
+                                          "checked" : "false"
+                                        },
+                                        "children" : [ {
+                                          "attributes" : {
+                                            "bounds" : "[0,9][440,965]",
+                                            "enabled" : "true",
+                                            "focused" : "false",
+                                            "selected" : "false",
+                                            "checked" : "false"
+                                          },
+                                          "children" : [ {
+                                            "attributes" : {
+                                              "bounds" : "[0,9][440,965]",
+                                              "enabled" : "true",
+                                              "focused" : "false",
+                                              "selected" : "false",
+                                              "checked" : "false"
+                                            },
+                                            "children" : [ {
+                                              "attributes" : {
+                                                "bounds" : "[0,9][440,965]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            }, {
+                                              "attributes" : {
+                                                "bounds" : "[0,9][440,965]",
+                                                "enabled" : "true",
+                                                "focused" : "false",
+                                                "selected" : "false",
+                                                "checked" : "false"
+                                              },
+                                              "children" : [ {
+                                                "attributes" : {
+                                                  "bounds" : "[159,-107][561,293]",
+                                                  "enabled" : "true",
+                                                  "focused" : "false",
+                                                  "selected" : "false",
+                                                  "checked" : "false"
+                                                },
+                                                "enabled" : true,
+                                                "focused" : false,
+                                                "checked" : false,
+                                                "selected" : false
+                                              }, {
+                                                "attributes" : {
+                                                  "bounds" : "[145,-97][674,335]",
+                                                  "enabled" : "true",
+                                                  "focused" : "false",
+                                                  "selected" : "false",
+                                                  "checked" : "false"
+                                                },
+                                                "enabled" : true,
+                                                "focused" : false,
+                                                "checked" : false,
+                                                "selected" : false
+                                              }, {
+                                                "attributes" : {
+                                                  "bounds" : "[0,9][440,965]",
+                                                  "enabled" : "true",
+                                                  "focused" : "false",
+                                                  "selected" : "false",
+                                                  "checked" : "false"
+                                                },
+                                                "enabled" : true,
+                                                "focused" : false,
+                                                "checked" : false,
+                                                "selected" : false
+                                              }, {
+                                                "attributes" : {
+                                                  "bounds" : "[31,125][199,294]",
+                                                  "enabled" : "true",
+                                                  "focused" : "false",
+                                                  "selected" : "false",
+                                                  "checked" : "false"
+                                                },
+                                                "enabled" : true,
+                                                "focused" : false,
+                                                "checked" : false,
+                                                "selected" : false
+                                              }, {
+                                                "attributes" : {
+                                                  "bounds" : "[-145,289][196,631]",
+                                                  "enabled" : "true",
+                                                  "focused" : "false",
+                                                  "selected" : "false",
+                                                  "checked" : "false"
+                                                },
+                                                "enabled" : true,
+                                                "focused" : false,
+                                                "checked" : false,
+                                                "selected" : false
+                                              }, {
+                                                "attributes" : {
+                                                  "bounds" : "[118,636][392,910]",
+                                                  "enabled" : "true",
+                                                  "focused" : "false",
+                                                  "selected" : "false",
+                                                  "checked" : "false"
+                                                },
+                                                "enabled" : true,
+                                                "focused" : false,
+                                                "checked" : false,
+                                                "selected" : false
+                                              } ],
+                                              "enabled" : true,
+                                              "focused" : false,
+                                              "checked" : false,
+                                              "selected" : false
+                                            } ],
+                                            "enabled" : true,
+                                            "focused" : false,
+                                            "checked" : false,
+                                            "selected" : false
+                                          } ],
+                                          "enabled" : true,
+                                          "focused" : false,
+                                          "checked" : false,
+                                          "selected" : false
+                                        } ],
+                                        "enabled" : true,
+                                        "focused" : false,
+                                        "checked" : false,
+                                        "selected" : false
+                                      } ],
+                                      "enabled" : true,
+                                      "focused" : false,
+                                      "checked" : false,
+                                      "selected" : false
+                                    } ],
+                                    "enabled" : true,
+                                    "focused" : false,
+                                    "checked" : false,
+                                    "selected" : false
+                                  } ],
+                                  "enabled" : true,
+                                  "focused" : false,
+                                  "checked" : false,
+                                  "selected" : false
+                                } ],
+                                "enabled" : true,
+                                "focused" : false,
+                                "checked" : false,
+                                "selected" : false
+                              }, {
+                                "attributes" : {
+                                  "bounds" : "[0,0][440,956]",
+                                  "enabled" : "true",
+                                  "focused" : "false",
+                                  "selected" : "false",
+                                  "checked" : "false"
+                                },
+                                "children" : [ {
+                                  "attributes" : {
+                                    "bounds" : "[0,0][440,956]",
+                                    "enabled" : "true",
+                                    "focused" : "false",
+                                    "selected" : "false",
+                                    "checked" : "false"
+                                  },
+                                  "enabled" : true,
+                                  "focused" : false,
+                                  "checked" : false,
+                                  "selected" : false
+                                } ],
+                                "enabled" : true,
+                                "focused" : false,
+                                "checked" : false,
+                                "selected" : false
+                              } ],
+                              "enabled" : true,
+                              "focused" : false,
+                              "checked" : false,
+                              "selected" : false
+                            } ],
+                            "enabled" : true,
+                            "focused" : false,
+                            "checked" : false,
+                            "selected" : false
+                          } ],
+                          "enabled" : true,
+                          "focused" : false,
+                          "checked" : false,
+                          "selected" : false
+                        } ],
+                        "enabled" : true,
+                        "focused" : false,
+                        "checked" : false,
+                        "selected" : false
+                      }, {
+                        "attributes" : {
+                          "bounds" : "[0,0][440,956]",
+                          "enabled" : "true",
+                          "focused" : "false",
+                          "selected" : "false",
+                          "checked" : "false"
+                        },
+                        "children" : [ {
+                          "attributes" : {
+                            "bounds" : "[0,0][440,956]",
+                            "enabled" : "true",
+                            "focused" : "false",
+                            "selected" : "false",
+                            "checked" : "false"
+                          },
+                          "children" : [ {
+                            "attributes" : {
+                              "bounds" : "[0,0][440,956]",
+                              "enabled" : "true",
+                              "focused" : "false",
+                              "selected" : "false",
+                              "checked" : "false"
+                            },
+                            "enabled" : true,
+                            "focused" : false,
+                            "checked" : false,
+                            "selected" : false
+                          } ],
+                          "enabled" : true,
+                          "focused" : false,
+                          "checked" : false,
+                          "selected" : false
+                        } ],
+                        "enabled" : true,
+                        "focused" : false,
+                        "checked" : false,
+                        "selected" : false
+                      } ],
+                      "enabled" : true,
+                      "focused" : false,
+                      "checked" : false,
+                      "selected" : false
+                    } ],
+                    "enabled" : true,
+                    "focused" : false,
+                    "checked" : false,
+                    "selected" : false
+                  } ],
+                  "enabled" : true,
+                  "focused" : false,
+                  "checked" : false,
+                  "selected" : false
+                } ],
+                "enabled" : true,
+                "focused" : false,
+                "checked" : false,
+                "selected" : false
+              } ],
+              "enabled" : true,
+              "focused" : false,
+              "checked" : false,
+              "selected" : false
+            } ],
+            "enabled" : true,
+            "focused" : false,
+            "checked" : false,
+            "selected" : false
+          } ],
+          "enabled" : true,
+          "focused" : false,
+          "checked" : false,
+          "selected" : false
+        }, {
+          "attributes" : {
+            "bounds" : "[0,0][0,0]",
+            "enabled" : "false",
+            "focused" : "false",
+            "selected" : "false",
+            "checked" : "false"
+          },
+          "children" : [ {
+            "attributes" : {
+              "bounds" : "[0,0][440,54]",
+              "enabled" : "true",
+              "focused" : "false",
+              "selected" : "false",
+              "checked" : "false"
+            },
+            "enabled" : true,
+            "focused" : false,
+            "checked" : false,
+            "selected" : false
+          }, {
+            "attributes" : {
+              "bounds" : "[0,0][440,54]",
+              "enabled" : "true",
+              "focused" : "false",
+              "selected" : "false",
+              "checked" : "false"
+            },
+            "children" : [ {
+              "attributes" : {
+                "bounds" : "[0,0][440,54]",
+                "enabled" : "true",
+                "focused" : "false",
+                "selected" : "false",
+                "checked" : "false"
+              },
+              "children" : [ {
+                "attributes" : {
+                  "bounds" : "[0,0][440,54]",
+                  "enabled" : "true",
+                  "focused" : "false",
+                  "selected" : "false",
+                  "checked" : "false"
+                },
+                "children" : [ {
+                  "attributes" : {
+                    "accessibilityText" : "23:03",
+                    "bounds" : "[58,22][108,43]",
+                    "enabled" : "true",
+                    "focused" : "false",
+                    "selected" : "false",
+                    "checked" : "false"
+                  },
+                  "enabled" : true,
+                  "focused" : false,
+                  "checked" : false,
+                  "selected" : false
+                }, {
+                  "attributes" : {
+                    "accessibilityText" : "Mobile Service",
+                    "value" : "No signal",
+                    "text" : "No signal",
+                    "bounds" : "[312,25][334,39]",
+                    "enabled" : "true",
+                    "focused" : "false",
+                    "selected" : "false",
+                    "checked" : "false"
+                  },
+                  "enabled" : true,
+                  "focused" : false,
+                  "checked" : false,
+                  "selected" : false
+                }, {
+                  "attributes" : {
+                    "value" : "SSID, 3 of 3 Wi-Fi bars",
+                    "text" : "SSID, 3 of 3 Wi-Fi bars",
+                    "resource-id" : "3 of 3 Wi-Fi bars",
+                    "bounds" : "[341,25][361,39]",
+                    "enabled" : "true",
+                    "focused" : "false",
+                    "selected" : "false",
+                    "checked" : "false"
+                  },
+                  "enabled" : true,
+                  "focused" : false,
+                  "checked" : false,
+                  "selected" : false
+                }, {
+                  "attributes" : {
+                    "accessibilityText" : "100% battery power",
+                    "value" : "Not charging",
+                    "text" : "Not charging",
+                    "bounds" : "[368,25][399,39]",
+                    "enabled" : "true",
+                    "focused" : "false",
+                    "selected" : "false",
+                    "checked" : "false"
+                  },
+                  "enabled" : true,
+                  "focused" : false,
+                  "checked" : false,
+                  "selected" : false
+                } ],
+                "enabled" : true,
+                "focused" : false,
+                "checked" : false,
+                "selected" : false
+              } ],
+              "enabled" : true,
+              "focused" : false,
+              "checked" : false,
+              "selected" : false
+            } ],
+            "enabled" : true,
+            "focused" : false,
+            "checked" : false,
+            "selected" : false
+          } ],
+          "enabled" : false,
+          "focused" : false,
+          "checked" : false,
+          "selected" : false
+        } ],
+        "enabled" : false,
+        "focused" : false,
+        "checked" : false,
+        "selected" : false
+      },
+      "debugMessage" : "Assertion 'id: settings-profile-row is visible' failed. Check the UI hierarchy in debug artifacts to verify the element state and properties.\n\nPossible causes:\n- Element selector may be incorrect - check if there are similar elements with slightly different names/properties.\n- Element may be temporarily unavailable due to loading state\n- This could be a real regression that needs to be addressed",
+      "stackTrace" : [ {
+        "classLoaderName" : "app",
+        "methodName" : "assertConditionCommand",
+        "fileName" : "Orchestra.kt",
+        "lineNumber" : 432,
+        "className" : "maestro.orchestra.Orchestra",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "access$assertConditionCommand",
+        "fileName" : "Orchestra.kt",
+        "lineNumber" : 126,
+        "className" : "maestro.orchestra.Orchestra",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "invokeSuspend",
+        "fileName" : "Orchestra.kt",
+        "lineNumber" : -1,
+        "className" : "maestro.orchestra.Orchestra$assertConditionCommand$1",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "resumeWith",
+        "fileName" : "ContinuationImpl.kt",
+        "lineNumber" : 34,
+        "className" : "kotlin.coroutines.jvm.internal.BaseContinuationImpl",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "DispatchedTask.kt",
+        "lineNumber" : 100,
+        "className" : "kotlinx.coroutines.DispatchedTask",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "processNextEvent",
+        "fileName" : "EventLoop.common.kt",
+        "lineNumber" : 263,
+        "className" : "kotlinx.coroutines.EventLoopImplBase",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "joinBlocking",
+        "fileName" : "Builders.kt",
+        "lineNumber" : 94,
+        "className" : "kotlinx.coroutines.BlockingCoroutine",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runBlocking",
+        "fileName" : "Builders.kt",
+        "lineNumber" : 70,
+        "className" : "kotlinx.coroutines.BuildersKt__BuildersKt",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runBlocking",
+        "lineNumber" : 1,
+        "className" : "kotlinx.coroutines.BuildersKt",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runBlocking$default",
+        "fileName" : "Builders.kt",
+        "lineNumber" : 48,
+        "className" : "kotlinx.coroutines.BuildersKt__BuildersKt",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runBlocking$default",
+        "lineNumber" : 1,
+        "className" : "kotlinx.coroutines.BuildersKt",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runShardSuite$lambda$10",
+        "fileName" : "TestCommand.kt",
+        "lineNumber" : 501,
+        "className" : "maestro.cli.command.TestCommand",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "newSession",
+        "fileName" : "MaestroSessionManager.kt",
+        "lineNumber" : 132,
+        "className" : "maestro.cli.session.MaestroSessionManager",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "newSession$default",
+        "fileName" : "MaestroSessionManager.kt",
+        "lineNumber" : 66,
+        "className" : "maestro.cli.session.MaestroSessionManager",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runShardSuite",
+        "fileName" : "TestCommand.kt",
+        "lineNumber" : 476,
+        "className" : "maestro.cli.command.TestCommand",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "access$runShardSuite",
+        "fileName" : "TestCommand.kt",
+        "lineNumber" : 80,
+        "className" : "maestro.cli.command.TestCommand",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "invokeSuspend",
+        "fileName" : "TestCommand.kt",
+        "lineNumber" : 435,
+        "className" : "maestro.cli.command.TestCommand$handleSessions$1$results$1$1",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "resumeWith",
+        "fileName" : "ContinuationImpl.kt",
+        "lineNumber" : 34,
+        "className" : "kotlin.coroutines.jvm.internal.BaseContinuationImpl",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "DispatchedTask.kt",
+        "lineNumber" : 100,
+        "className" : "kotlinx.coroutines.DispatchedTask",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "LimitedDispatcher.kt",
+        "lineNumber" : 124,
+        "className" : "kotlinx.coroutines.internal.LimitedDispatcher$Worker",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "Tasks.kt",
+        "lineNumber" : 89,
+        "className" : "kotlinx.coroutines.scheduling.TaskImpl",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runSafely",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 586,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "executeTask",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 820,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runWorker",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 717,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker",
+        "nativeMethod" : false
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 704,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker",
+        "nativeMethod" : false
+      } ],
+      "localizedMessage" : "Assertion is false: id: settings-profile-row is visible"
+    },
+    "sequenceNumber" : 35
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Continue",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "5000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Continue",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314531836,
+    "sequenceNumber" : 20
+  }
+}, {
+  "command" : {
+    "applyConfigurationCommand" : {
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314510663,
+    "duration" : 0,
+    "sequenceNumber" : 3
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "applyConfigurationCommand" : {
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "stopAppCommand" : {
+          "appId" : "app.phraseman",
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "applyConfigurationCommand" : {
+              "config" : {
+                "appId" : "app.phraseman"
+              },
+              "optional" : false
+            }
+          }, {
+            "stopAppCommand" : {
+              "appId" : "app.phraseman",
+              "optional" : false
+            }
+          }, {
+            "openLinkCommand" : {
+              "link" : "exp+phraseman://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A8081",
+              "autoVerify" : false,
+              "browser" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "8000",
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Open",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "8000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Open",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnPointV2Command" : {
+                  "point" : "69%,54%",
+                  "retryIfNoChange" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "8000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Open",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Got it",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Got it",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Continue",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Continue",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Go home",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "5000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Go home",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnPointV2Command" : {
+                  "point" : "50%,26%",
+                  "retryIfNoChange" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "8000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "New development server",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "http://localhost:8081",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "12000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "DEVELOPMENT SERVERS",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnPointV2Command" : {
+                  "point" : "50%,28%",
+                  "retryIfNoChange" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "12000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "DEVELOPMENT SERVERS",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnPointV2Command" : {
+                  "point" : "50%,70%",
+                  "retryIfNoChange" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "12000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "RECENTLY OPENED",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "8000",
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Continue",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "5000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Continue",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnPointV2Command" : {
+                  "point" : "50%,85%",
+                  "retryIfNoChange" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "5000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "This is the developer menu",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Go home",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "5000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Go home",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "http://localhost:8081",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "15000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "DEVELOPMENT SERVERS",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnPointV2Command" : {
+                  "point" : "50%,50%",
+                  "retryIfNoChange" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "15000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "RECENTLY OPENED",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "assertConditionCommand" : {
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "screen-home",
+                  "optional" : false
+                }
+              },
+              "timeout" : "120000",
+              "optional" : false
+            }
+          } ],
+          "sourceDescription" : "open_dev_client.yaml",
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "applyConfigurationCommand" : {
+              "config" : {
+                "appId" : "app.phraseman"
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Понятно, буду искать!",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Понятно, буду искать!",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Зрозуміло, шукатиму!",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Зрозуміло, шукатиму!",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          } ],
+          "sourceDescription" : "../_dismiss_bug_hunt.yaml",
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "8000",
+          "optional" : false
+        }
+      }, {
+        "tapOnPointV2Command" : {
+          "point" : "10%,95%",
+          "retryIfNoChange" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "3000",
+          "optional" : false
+        }
+      } ],
+      "sourceDescription" : "../../maestro/flows/_shared/boot_to_home_fast.yaml",
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314510662,
+    "duration" : 55447,
+    "sequenceNumber" : 2
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnPointV2Command" : {
+          "point" : "50%,85%",
+          "retryIfNoChange" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "5000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "This is the developer menu",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314539273,
+    "sequenceNumber" : 21
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Зрозуміло, шукатиму!",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Зрозуміло, шукатиму!",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314548948,
+    "sequenceNumber" : 29
+  }
+}, {
+  "command" : {
+    "assertConditionCommand" : {
+      "condition" : {
+        "visible" : {
+          "idRegex" : "screen-settings",
+          "optional" : false
+        }
+      },
+      "timeout" : "30000",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314583061,
+    "duration" : 285,
+    "sequenceNumber" : 34
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Got it",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "3000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Got it",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314522418,
+    "sequenceNumber" : 12
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnPointV2Command" : {
+          "point" : "50%,28%",
+          "retryIfNoChange" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "12000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "DEVELOPMENT SERVERS",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314525224,
+    "sequenceNumber" : 17
+  }
+}, {
+  "command" : {
+    "openLinkCommand" : {
+      "link" : "exp+phraseman://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A8081",
+      "autoVerify" : false,
+      "browser" : false,
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314511695,
+    "duration" : 2529,
+    "sequenceNumber" : 8
+  }
+}, {
+  "command" : {
+    "waitForAnimationToEndCommand" : {
+      "timeout" : "8000",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314514224,
+    "duration" : 720,
+    "sequenceNumber" : 9
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Open",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "8000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Open",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314514944,
+    "sequenceNumber" : 10
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Go home",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "5000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Go home",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314523061,
+    "sequenceNumber" : 14
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnPointV2Command" : {
+          "point" : "50%,70%",
+          "retryIfNoChange" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "12000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "RECENTLY OPENED",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314525910,
+    "sequenceNumber" : 18
+  }
+}, {
+  "command" : {
+    "assertConditionCommand" : {
+      "condition" : {
+        "visible" : {
+          "idRegex" : "screen-home",
+          "optional" : false
+        }
+      },
+      "timeout" : "120000",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314541289,
+    "duration" : 268,
+    "sequenceNumber" : 25
+  }
+}, {
+  "command" : {
+    "applyConfigurationCommand" : {
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314541558,
+    "duration" : 0,
+    "sequenceNumber" : 27
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Понятно, буду искать!",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Понятно, буду искать!",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314541558,
+    "sequenceNumber" : 28
+  }
+}, {
+  "command" : {
+    "stopAppCommand" : {
+      "appId" : "app.phraseman",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314511681,
+    "duration" : 13,
+    "sequenceNumber" : 7
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnPointV2Command" : {
+          "point" : "50%,26%",
+          "retryIfNoChange" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "8000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "New development server",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314523399,
+    "sequenceNumber" : 15
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnPointV2Command" : {
+          "point" : "50%,50%",
+          "retryIfNoChange" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "15000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "RECENTLY OPENED",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314540794,
+    "sequenceNumber" : 24
+  }
+}, {
+  "command" : {
+    "applyConfigurationCommand" : {
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314510662,
+    "duration" : 0,
+    "sequenceNumber" : 1
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "http://localhost:8081",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "12000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "DEVELOPMENT SERVERS",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314524553,
+    "sequenceNumber" : 16
+  }
+}, {
+  "command" : {
+    "waitForAnimationToEndCommand" : {
+      "timeout" : "8000",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314526483,
+    "duration" : 5352,
+    "sequenceNumber" : 19
+  }
+}, {
+  "command" : {
+    "waitForAnimationToEndCommand" : {
+      "timeout" : "3000",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314562484,
+    "duration" : 3625,
+    "sequenceNumber" : 32
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "http://localhost:8081",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "15000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "DEVELOPMENT SERVERS",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314540305,
+    "sequenceNumber" : 23
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "applyConfigurationCommand" : {
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "stopAppCommand" : {
+          "appId" : "app.phraseman",
+          "optional" : false
+        }
+      }, {
+        "openLinkCommand" : {
+          "link" : "exp+phraseman://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A8081",
+          "autoVerify" : false,
+          "browser" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "8000",
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Open",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "8000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Open",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnPointV2Command" : {
+              "point" : "69%,54%",
+              "retryIfNoChange" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "8000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Open",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Got it",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Got it",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Continue",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Continue",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Go home",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "5000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Go home",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnPointV2Command" : {
+              "point" : "50%,26%",
+              "retryIfNoChange" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "8000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "New development server",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "http://localhost:8081",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "12000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "DEVELOPMENT SERVERS",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnPointV2Command" : {
+              "point" : "50%,28%",
+              "retryIfNoChange" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "12000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "DEVELOPMENT SERVERS",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnPointV2Command" : {
+              "point" : "50%,70%",
+              "retryIfNoChange" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "12000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "RECENTLY OPENED",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "8000",
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Continue",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "5000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Continue",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnPointV2Command" : {
+              "point" : "50%,85%",
+              "retryIfNoChange" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "5000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "This is the developer menu",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Go home",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "5000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Go home",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "http://localhost:8081",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "15000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "DEVELOPMENT SERVERS",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnPointV2Command" : {
+              "point" : "50%,50%",
+              "retryIfNoChange" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "15000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "RECENTLY OPENED",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "assertConditionCommand" : {
+          "condition" : {
+            "visible" : {
+              "idRegex" : "screen-home",
+              "optional" : false
+            }
+          },
+          "timeout" : "120000",
+          "optional" : false
+        }
+      } ],
+      "sourceDescription" : "open_dev_client.yaml",
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314511681,
+    "duration" : 29876,
+    "sequenceNumber" : 5
+  }
+}, {
+  "command" : {
+    "defineVariablesCommand" : {
+      "env" : {
+        "MAESTRO_FILENAME" : "settings_safe_contract",
+        "MAESTRO_DEVICE_UDID" : "5B31CAAD-5382-416C-ACCB-73E4F923E128",
+        "MAESTRO_SHARD_ID" : "1",
+        "MAESTRO_SHARD_INDEX" : "0"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314510660,
+    "duration" : 2,
+    "sequenceNumber" : 0
+  }
+}, {
+  "command" : {
+    "tapOnPointV2Command" : {
+      "point" : "10%,95%",
+      "retryIfNoChange" : false,
+      "longPress" : false,
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314553654,
+    "duration" : 8829,
+    "sequenceNumber" : 31
+  }
+}, {
+  "command" : {
+    "applyConfigurationCommand" : {
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779314511681,
+    "duration" : 0,
+    "sequenceNumber" : 6
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Continue",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "3000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Continue",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779314522685,
+    "sequenceNumber" : 13
+  }
+} ]

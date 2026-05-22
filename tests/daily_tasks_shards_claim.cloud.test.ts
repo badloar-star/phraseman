@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
-import { addShardsRaw, claimDailyTasksAllShardsReward, loadShardsFromCloud } from '../app/shards_system';
+import { addShardsRaw, claimDailyTasksAllShardsReward, getShardAchievementEligibleBalance, loadShardsFromCloud } from '../app/shards_system';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
@@ -40,10 +40,10 @@ describe('claimDailyTasksAllShardsReward (Firestore transaction)', () => {
 
     await expect(claimDailyTasksAllShardsReward('2026-08-10')).resolves.toBe(true);
     expect(mockStorage['daily_tasks_all_shards_2026-08-10']).toBe('1');
-    expect(mockStorage.shards_balance).toBe('9');
+    expect(mockStorage.shards_balance).toBe('5');
 
     await expect(claimDailyTasksAllShardsReward('2026-08-10')).resolves.toBe(false);
-    expect(mockStorage.shards_balance).toBe('9');
+    expect(mockStorage.shards_balance).toBe('5');
   });
 
   it('returns false when reward claim already exists on server', async () => {
@@ -102,6 +102,27 @@ describe('loadShardsFromCloud balance freshness', () => {
 
     expect(mockStorage.shards_balance).toBe('20');
     expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBe(3_000);
+  });
+
+  it('tracks webhook-granted store purchase shards as non-achievement balance', async () => {
+    const fs = firestore as any;
+    fs.__testState.userDocExists = true;
+    fs.__testState.userShards = 80;
+    fs.__testState.userShardsUpdatedAtMs = 3_000;
+    fs.__testState.userShardsUpdatedOp = 'earn';
+    fs.__testState.userShardsUpdatedReason = 'shards_store_purchase';
+
+    mockStorage.shards_balance = '0';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({
+      updatedAtMs: 2_000,
+      op: 'replace',
+      reason: 'server_replace',
+    });
+
+    await loadShardsFromCloud();
+
+    expect(mockStorage.shards_balance).toBe('80');
+    await expect(getShardAchievementEligibleBalance()).resolves.toBe(0);
   });
 });
 

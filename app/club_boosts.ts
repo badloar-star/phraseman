@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
 import { activateGroupBoost, getCachedGroupBoosts, invalidateGroupBoostsCache } from './firestore_boosts';
 import { emitAppEvent } from './events';
-import type { Lang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES & INTERFACES
@@ -18,9 +18,19 @@ export interface BoostDef {
   nameRU: string;
   nameUK: string;
   nameES: string;
+  namePtBr: string;
+  nameVi: string;
+  nameId: string;
+  nameTr: string;
+  namePl: string;
   descRU: string;
   descUK: string;
   descES: string;
+  descPtBr: string;
+  descVi: string;
+  descId: string;
+  descTr: string;
+  descPl: string;
   multiplier?: number; // для XP бустов (2.0, 1.5)
   durationMs: number; // длительность в миллисекундах
   cost: number; // стоимость
@@ -53,9 +63,19 @@ export const CLUB_BOOSTS: BoostDef[] = [
     nameRU: '+100% Опыта на 2 часа',
     nameUK: '+100% Досвіду на 2 години',
     nameES: '+100 % XP durante 2 horas',
+    namePtBr: '+100% de XP por 2 horas',
+    nameVi: '+100% XP trong 2 giờ',
+    nameId: '+100% XP selama 2 jam',
+    nameTr: '2 saat boyunca +%100 XP',
+    namePl: '+100% XP przez 2 godziny',
     descRU: 'Все члены клуба получают +100% XP в течение 2 часов',
     descUK: 'Всі члени клубу отримують +100% XP протягом 2 годин',
     descES: 'Todos los miembros del club obtienen +100 % XP durante 2 horas',
+    descPtBr: 'Todos os membros do clube recebem +100% XP por 2 horas',
+    descVi: 'Tất cả thành viên câu lạc bộ nhận +100% XP trong 2 giờ',
+    descId: 'Semua anggota klub mendapatkan +100% XP selama 2 jam',
+    descTr: 'Tüm kulüp üyeleri 2 saat boyunca +%100 XP alır',
+    descPl: 'Wszyscy członkowie klubu otrzymują +100% XP przez 2 godziny',
     multiplier: 2.0,
     durationMs: 2 * 60 * 60 * 1000, // 2 часа
     cost: 25,
@@ -368,27 +388,89 @@ export function formatBoostTimeRemainingUK(boost: ActiveBoost): string {
   }
 }
 
-/** Оставшееся время буста для языка интерфейса (RU / UK / ES). */
+/** Оставшееся время буста для языка интерфейса. */
 export function formatBoostTimeRemainingForLang(boost: ActiveBoost, lang: Lang): string {
-  if (lang === 'uk') return formatBoostTimeRemainingUK(boost);
-  if (lang === 'es') {
-    const ms = getBoostTimeRemaining(boost);
-    if (ms <= 0) return 'Terminado';
-    const totalSeconds = Math.floor(ms / 1000);
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-    if (hours > 0) return `${hours} h ${minutes} min`;
-    if (minutes > 0) return `${minutes} min ${seconds} s`;
-    return `${seconds} s`;
+  const ms = getBoostTimeRemaining(boost);
+  if (ms <= 0) {
+    return triLang(lang, {
+      ru: 'Истек',
+      uk: 'Вийшов',
+      es: 'Terminado',
+      'pt-BR': 'Encerrado',
+      vi: 'Đã kết thúc',
+      id: 'Berakhir',
+      tr: 'Bitti',
+      pl: 'Zakończono',
+    });
   }
-  return formatBoostTimeRemaining(boost);
+
+  const totalSeconds = Math.floor(ms / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  if (hours > 0) {
+    return triLang(lang, {
+      ru: `${hours}ч ${minutes}м`,
+      uk: `${hours}г ${minutes}м`,
+      es: `${hours} h ${minutes} min`,
+      'pt-BR': `${hours} h ${minutes} min`,
+      vi: `${hours} giờ ${minutes} phút`,
+      id: `${hours} j ${minutes} mnt`,
+      tr: `${hours} sa ${minutes} dk`,
+      pl: `${hours} godz. ${minutes} min`,
+    });
+  }
+
+  if (minutes > 0) {
+    return triLang(lang, {
+      ru: `${minutes}м ${seconds}s`,
+      uk: `${minutes}м ${seconds}s`,
+      es: `${minutes} min ${seconds} s`,
+      'pt-BR': `${minutes} min ${seconds} s`,
+      vi: `${minutes} phút ${seconds} giây`,
+      id: `${minutes} mnt ${seconds} dtk`,
+      tr: `${minutes} dk ${seconds} sn`,
+      pl: `${minutes} min ${seconds} s`,
+    });
+  }
+
+  return triLang(lang, {
+    ru: `${seconds}s`,
+    uk: `${seconds}s`,
+    es: `${seconds} s`,
+    'pt-BR': `${seconds} s`,
+    vi: `${seconds} giây`,
+    id: `${seconds} dtk`,
+    tr: `${seconds} sn`,
+    pl: `${seconds} s`,
+  });
 }
 
 export function boostNameForLang(def: BoostDef, lang: Lang): string {
-  if (lang === 'uk') return def.nameUK;
-  if (lang === 'es') return def.nameES;
-  return def.nameRU;
+  return triLang(lang, {
+    ru: def.nameRU,
+    uk: def.nameUK,
+    es: def.nameES,
+    'pt-BR': def.namePtBr,
+    vi: def.nameVi,
+    id: def.nameId,
+    tr: def.nameTr,
+    pl: def.namePl,
+  });
+}
+
+export function boostDescriptionForLang(def: BoostDef, lang: Lang): string {
+  return triLang(lang, {
+    ru: def.descRU,
+    uk: def.descUK,
+    es: def.descES,
+    'pt-BR': def.descPtBr,
+    vi: def.descVi,
+    id: def.descId,
+    tr: def.descTr,
+    pl: def.descPl,
+  });
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -411,9 +493,16 @@ export function getBoostNotification(
   if (!boost) return '';
 
   const name = boostNameForLang(boost, lang);
-  if (lang === 'uk') return `🎉 ${playerName} активував ${name}`;
-  if (lang === 'es') return `🎉 ${playerName} ha activado ${name}`;
-  return `🎉 ${playerName} активировал ${name}`;
+  return triLang(lang, {
+    ru: `🎉 ${playerName} активировал ${name}`,
+    uk: `🎉 ${playerName} активував ${name}`,
+    es: `🎉 ${playerName} ha activado ${name}`,
+    'pt-BR': `🎉 ${playerName} ativou ${name}`,
+    vi: `🎉 ${playerName} đã kích hoạt ${name}`,
+    id: `🎉 ${playerName} mengaktifkan ${name}`,
+    tr: `🎉 ${playerName}, ${name} etkinleştirdi`,
+    pl: `🎉 ${playerName} aktywował ${name}`,
+  });
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

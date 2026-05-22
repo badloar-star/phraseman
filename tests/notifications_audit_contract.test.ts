@@ -31,3 +31,18 @@ test('D+1 reminder is tracked, cleaned, and keeps Spanish locale', () => {
   const lessonCompleteSrc = appSource('app/lesson_complete.tsx');
   expect(lessonCompleteSrc).toContain("langRaw === 'es' ? 'es'");
 });
+
+test('notification runtime copy has planned locale branches', () => {
+  const src = appSource('app/notifications.ts');
+  for (const marker of ['MESSAGES_PT_BR', 'MESSAGES_VI', 'MESSAGES_ID', 'MESSAGES_TR', 'MESSAGES_PL']) {
+    expect(src).toContain(marker);
+  }
+  expect(src).toContain("const NOTIFICATION_LANGS: readonly Lang[] = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl']");
+  expect(src).toContain('function pickNotif<R>(lang: Lang | string, copy: NotificationCopy<R>): R');
+  expect(src).not.toMatch(/function pickNotif<R>\(lang: Lang \| string, ru: R, uk: R, es: R\)/);
+  const oldPickNotifCalls = src
+    .split('\n')
+    .filter(line => line.includes('pickNotif(lang,') && !line.includes('notificationCopy(') && !line.includes('function pickNotif'));
+  expect(oldPickNotifCalls).toEqual([]);
+  expect(src).not.toMatch(/lang === 'uk'|lang === 'es'|lang === 'ru'/);
+});

@@ -1,6 +1,6 @@
 # Lesson Prepositions Audit
 
-Generated: 2026-05-18T16:32:32.678Z
+Generated: 2026-05-20T07:05:40.766Z
 
 This report models the app generator: tagged preposition slots plus auto-detected drill-worthy prepositions, while ignoring infinitive `to`, phrasal particles, and sentence-final place adverbs.
 

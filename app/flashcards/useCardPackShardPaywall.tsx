@@ -5,6 +5,7 @@ import type { Lang } from '../../constants/i18n';
 import { purchaseCardPackWithShards, redeemPackGiftVoucher } from './cardPackShardPurchase';
 import { isPackCeremoniallyOpened } from './openedPacksTracker';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
+import type { RuntimeStudyTarget } from '../target_storage_keys';
 
 type Routerish = { push: (h: any) => void };
 
@@ -21,6 +22,7 @@ export function useCardPackShardPaywall(args: {
   balance: number;
   /** Чи активний зараз 48-год ваучер. Приходить з shards_shop / flashcards. */
   hasVoucher?: boolean;
+  studyTarget?: RuntimeStudyTarget;
   lang: Lang;
   router: Routerish;
   onAfterPurchase: () => void | Promise<void>;
@@ -35,6 +37,7 @@ export function useCardPackShardPaywall(args: {
   const {
     balance,
     hasVoucher = false,
+    studyTarget,
     lang,
     router,
     onAfterPurchase,
@@ -76,13 +79,13 @@ export function useCardPackShardPaywall(args: {
     try {
       const r =
         pw.mode === 'voucher'
-          ? await redeemPackGiftVoucher(pw.pack)
-          : await purchaseCardPackWithShards(pw.pack);
+          ? await redeemPackGiftVoucher(pw.pack, studyTarget)
+          : await purchaseCardPackWithShards(pw.pack, studyTarget);
       if (r === 'ok') {
         /** Не await: `shards_shop` тягне Firestore у `loadCardMarket` — зависший `.get()` вічно тримає «Подождите…». */
         void Promise.resolve(onAfterPurchase()).catch(() => {});
         // Hearthstone-стайл: показуємо церемонію відкриття лише першого разу
-        const alreadyOpened = await isPackCeremoniallyOpened(pw.pack.id);
+        const alreadyOpened = await isPackCeremoniallyOpened(pw.pack.id, studyTarget);
         if (!alreadyOpened) {
           navigateAfterModalClose(
             () => setPaywall(null),
@@ -96,7 +99,7 @@ export function useCardPackShardPaywall(args: {
       setPurchasing(false);
       onPurchaseEnd?.();
     }
-  }, [onAfterPurchase, onPurchaseStart, onPurchaseEnd, router]);
+  }, [onAfterPurchase, onPurchaseStart, onPurchaseEnd, router, studyTarget]);
 
   const onGoToShards = useCallback(() => {
     navigateAfterModalClose(
@@ -113,6 +116,7 @@ export function useCardPackShardPaywall(args: {
         pack={paywall.pack}
         balance={balance}
         lang={lang}
+        studyTarget={studyTarget}
         purchasing={purchasing}
         onClose={closePaywall}
         onConfirmPurchase={onConfirmPurchase}

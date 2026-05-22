@@ -1,0 +1,27 @@
+appId: app.phraseman
+---
+- stopApp
+- openLink: "exp+phraseman://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A8081"
+- waitForAnimationToEnd:
+    timeout: 10000
+- takeScreenshot: "icon-audit-tab-home"
+- tapOn:
+    point: "31%,95%"
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: "icon-audit-tab-lessons"
+- tapOn:
+    point: "50%,95%"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: "icon-audit-tab-arena"
+- tapOn:
+    point: "69%,95%"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: "icon-audit-tab-friends"
+- tapOn:
+    point: "88%,95%"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: "icon-audit-tab-settings"

@@ -31,6 +31,11 @@ type TabDef = {
   ru: string;
   uk: string;
   es: string;
+  'pt-BR': string;
+  vi: string;
+  id: string;
+  tr: string;
+  pl: string;
   icon: IconName;
   active: IconName;
 };
@@ -154,11 +159,11 @@ function routerShowsTab(pathnameRaw: string, segments: readonly string[], tabIdx
 }
 
 const TABS: TabDef[] = [
-  { key: 'home', ru: 'Главная', uk: 'Головна', es: 'Inicio', icon: 'home-outline', active: 'home' },
-  { key: 'index', ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', icon: 'book-outline', active: 'book' },
-  { key: 'arena', ru: 'Арена', uk: 'Арена', es: 'Arena', icon: 'flash-outline', active: 'flash' },
-  { key: 'friends', ru: 'Друзья', uk: 'Друзі', es: 'Amigos', icon: 'people-outline', active: 'people' },
-  { key: 'settings', ru: 'Настройки', uk: 'Налаштування', es: 'Ajustes', icon: 'settings-outline', active: 'settings' },
+  { key: 'home', ru: 'Главная', uk: 'Головна', es: 'Inicio', 'pt-BR': 'Início', vi: 'Trang chủ', id: 'Beranda', tr: 'Ana sayfa', pl: 'Start', icon: 'home-outline', active: 'home' },
+  { key: 'index', ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', 'pt-BR': 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje', icon: 'book-outline', active: 'book' },
+  { key: 'arena', ru: 'Арена', uk: 'Арена', es: 'Arena', 'pt-BR': 'Arena', vi: 'Đấu trường', id: 'Arena', tr: 'Arena', pl: 'Arena', icon: 'flash-outline', active: 'flash' },
+  { key: 'friends', ru: 'Друзья', uk: 'Друзі', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Znajomi', icon: 'people-outline', active: 'people' },
+  { key: 'settings', ru: 'Настройки', uk: 'Налаштування', es: 'Ajustes', 'pt-BR': 'Configurações', vi: 'Cài đặt', id: 'Pengaturan', tr: 'Ayarlar', pl: 'Ustawienia', icon: 'settings-outline', active: 'settings' },
 ];
 
 type TabScaffoldProps = { tabScreens: React.ReactNode[]; currentRouteIsTab: boolean };
@@ -216,7 +221,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
       : isSettingsBackdrop
         ? (SETTINGS_THEME_BACKDROPS[themeMode] ?? SETTINGS_THEME_BACKDROPS.dark)
         : null;
-  const showTabBackdrop = activeTabBackdropSource !== null;
+  const showTabBackdrop = currentRouteIsTab && activeTabBackdropSource !== null;
   const tabBackdropOpacity = isHomeBackdrop
     ? themeMode === 'minimalLight' ? 0.16 :
       themeMode === 'minimalDark' ? 0.18 :
@@ -572,7 +577,7 @@ export default function TabLayout() {
   // Начальный таб всегда в visited — чтобы первый рендер не был плейсхолдером.
   const [visitedTabs, setVisitedTabs] = useState(() => {
     const initial = tabIdxFromRouter(pathname, segments) ?? 0;
-    return new Set<number>([initial]);
+    return new Set<number>([0, 1, initial]);
   });
   const router = useRouter();
   /** Пока router.replace ещё не обновил pathname, useLayoutEffect не должен откатить вкладку по старому URL. */
@@ -598,11 +603,8 @@ export default function TabLayout() {
 
   useFocusEffect(useCallback(() => { setFocusTick(tick => tick + 1); }, []));
 
-  /** Вызывается в момент отпускания пальца (до анимации) — обновляем таббар и монтируем экран назначения.
-   *  Нативный driver изолирован от JS-потока, поэтому React-mount нового экрана не прерывает анимацию. */
-  const handleSwipeStart = useCallback((idx: number) => {
-    if (idx === activeIdxRef.current) return;
-    setActiveIdx(idx);
+  const rememberVisitedTab = useCallback((idx: number) => {
+    if (idx <= 1) return;
     setVisitedTabs((prev) => {
       if (prev.has(idx)) return prev;
       const next = new Set(prev);
@@ -611,13 +613,21 @@ export default function TabLayout() {
     });
   }, []);
 
+  /** Вызывается в момент отпускания пальца (до анимации) — обновляем таббар и монтируем экран назначения.
+   *  Нативный driver изолирован от JS-потока, поэтому React-mount нового экрана не прерывает анимацию. */
+  const handleSwipeStart = useCallback((idx: number) => {
+    if (idx === activeIdxRef.current) return;
+    setActiveIdx(idx);
+    rememberVisitedTab(idx);
+  }, [rememberVisitedTab]);
+
   const routerNavigateTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const navigateTo = useCallback((idx: number) => {
     const target = IDX_TO_TAB_ROUTE[idx];
     if (!target) return;
     if (routerShowsTab(pathname, segments, idx)) return;
-    // Откладываем router.replace на следующий frame после отрисовки UI — иначе
+    // Откладываем router.navigate на следующий frame после отрисовки UI — иначе
     // usePathname()-change → useLayoutEffect → React re-render вызывает белый кадр.
     if (routerNavigateTimerRef.current) clearTimeout(routerNavigateTimerRef.current);
     routerNavigateTimerRef.current = setTimeout(() => {
@@ -626,18 +636,17 @@ export default function TabLayout() {
     }, 0);
   }, [pathname, segments, router]);
 
+  useEffect(() => () => {
+    if (routerNavigateTimerRef.current) clearTimeout(routerNavigateTimerRef.current);
+  }, []);
+
   /** Тап по таббару — немедленно обновляем UI, URL обновляем асинхронно. */
   const handleTabChange = useCallback((idx: number) => {
     if (idx === activeIdxRef.current) return;
     setActiveIdx(idx);
-    setVisitedTabs((prev) => {
-      if (prev.has(idx)) return prev;
-      const next = new Set(prev);
-      next.add(idx);
-      return next;
-    });
+    rememberVisitedTab(idx);
     navigateTo(idx);
-  }, [navigateTo]);
+  }, [navigateTo, rememberVisitedTab]);
 
   /** Свайп завершён — обновляем URL асинхронно (UI уже обновлён в handleSwipeStart). */
   const handleSwipeComplete = useCallback((idx: number) => {

@@ -12,7 +12,10 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { usePathname } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import type { ThemeMode } from '../constants/theme';
-import { backgroundTransitionKey, usePersistentBackgroundLayers } from './backgroundTransition';
+import {
+  backgroundTransitionKey,
+  usePersistentBackgroundLayers,
+} from './backgroundTransition';
 import {
   getAppArtBackdropSource,
   resolveAppArtBackdropName,
@@ -37,7 +40,37 @@ type ActiveBackdrop = BackdropConfig & {
 const DEFAULT_MOTION_MS = 18000;
 const DEFAULT_SCALE_START = 1.18;
 const DEFAULT_SCALE_END = 1.14;
+const ART_VISIBILITY_BOOST = 1.22;
 let lastAppArtBackdrop: ActiveBackdrop | null = null;
+
+function boostedOpacity(opacity: number, name: AppArtBackdropName): number {
+  const cap =
+    name === 'lessonIntro' ? 0.48 :
+    name === 'arenaReady' ? 0.44 :
+    name === 'settings' || name === 'friends' || name === 'levelGifts' ? 0.42 :
+    0.40;
+
+  return Math.min(cap, opacity * ART_VISIBILITY_BOOST);
+}
+
+function softenScrimColor(color: string, factor: number): string {
+  return color.replace(/rgba\(([^,]+),([^,]+),([^,]+),([^)]+)\)/, (_match, r, g, b, a) => {
+    const alpha = Math.max(0, Math.min(1, Number.parseFloat(a) * factor));
+    return `rgba(${r.trim()},${g.trim()},${b.trim()},${Number(alpha.toFixed(3))})`;
+  });
+}
+
+function softenScrims<T extends readonly string[]>(colors: T, factor: number): T {
+  return colors.map(color => softenScrimColor(color, factor)) as unknown as T;
+}
+
+function scrimSofteningFactor(themeMode: ThemeMode, name: AppArtBackdropName): number {
+  if (name === 'lessonPractice') return 0.94;
+  if (themeMode === 'minimalLight') return 0.90;
+  if (name === 'arenaMatch') return 0.88;
+  if (name === 'exam' || name === 'diagnosticTest' || name === 'quizzes') return 0.86;
+  return 0.84;
+}
 
 function opacityFor(themeMode: ThemeMode, name: AppArtBackdropName): number {
   if (name === 'lessonPractice') {
@@ -77,6 +110,15 @@ function opacityFor(themeMode: ThemeMode, name: AppArtBackdropName): number {
       themeMode === 'gold' ? 0.30 :
       themeMode === 'coral' ? 0.26 :
       0.20;
+  }
+
+  if (name === 'levelGifts') {
+    return themeMode === 'minimalLight' ? 0.18 :
+      themeMode === 'minimalDark' ? 0.22 :
+      themeMode === 'neon' ? 0.27 :
+      themeMode === 'gold' ? 0.34 :
+      themeMode === 'coral' ? 0.28 :
+      0.26;
   }
 
   if (name === 'home') {
@@ -260,12 +302,19 @@ function configFor(themeMode: ThemeMode, name: AppArtBackdropName, viewportW: nu
   const scaleEnd = name === 'lessonPractice' ? 1.16 : DEFAULT_SCALE_END;
 
   return {
-    imageOpacity: opacityFor(themeMode, name),
+    imageOpacity: boostedOpacity(opacityFor(themeMode, name), name),
     imageTranslateX,
     scaleStart,
     scaleEnd,
     motionMs: name === 'statistics' ? 20000 : DEFAULT_MOTION_MS,
-    ...scrimsFor(themeMode, name),
+    ...(() => {
+      const scrims = scrimsFor(themeMode, name);
+      const factor = scrimSofteningFactor(themeMode, name);
+      return {
+        verticalScrim: softenScrims(scrims.verticalScrim, factor),
+        edgeScrim: softenScrims(scrims.edgeScrim, factor),
+      };
+    })(),
   };
 }
 
@@ -371,7 +420,7 @@ function AppArtBackdrop({ name }: { name: AppArtBackdropName }) {
         return (
           <React.Fragment key={layer.id}>
             <Animated.Image
-              source={backdrop.source}
+              source={backdrop.source as any}
               resizeMode="cover"
               fadeDuration={0}
               style={[

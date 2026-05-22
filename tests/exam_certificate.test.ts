@@ -9,6 +9,7 @@ import {
   saveLingmanCertificate,
   updateLingmanCertificateName,
 } from '../app/exam_certificate';
+import { lingmanCertificateKey } from '../app/target_storage_keys';
 
 describe('Lingman exam certificate', () => {
   const fixedNow = Date.UTC(2026, 4, 14, 10, 0, 0);
@@ -80,5 +81,21 @@ describe('Lingman exam certificate', () => {
     await AsyncStorage.setItem(LINGMAN_CERT_STORAGE_KEY, JSON.stringify({ pct: 90 }));
 
     await expect(loadLingmanCertificate()).resolves.toBeNull();
+  });
+
+  it('keeps French certificates out of the legacy English certificate slot', async () => {
+    const cert = buildLingmanCertificate({
+      name: 'Camille',
+      score: 45,
+      total: 50,
+      pct: 90,
+      lang: 'uk',
+    });
+
+    await saveLingmanCertificate(cert, 'fr');
+    await expect(loadLingmanCertificate('fr')).resolves.toEqual(cert);
+    await expect(loadLingmanCertificate('en')).resolves.toBeNull();
+    await expect(AsyncStorage.getItem(lingmanCertificateKey('fr'))).resolves.toBe(JSON.stringify(cert));
+    await expect(AsyncStorage.getItem(LINGMAN_CERT_STORAGE_KEY)).resolves.toBeNull();
   });
 });

@@ -2,7 +2,28 @@
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = 'This training is available for this interface language.'): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const SECOND_CONDITION_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre second conditional ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về second conditional này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan second conditional ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu second conditional açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie second conditional nadal wymaga przeglądu po polsku.',
+};
+
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? SECOND_CONDITION_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST_SET = [
   'if + past simple',
@@ -27,29 +48,71 @@ const SMART_CONTRAST_SET = [
 
 const option = (text: string) => ({ id: text, text });
 
+const SECOND_CONDITION_SKILL_ES: Record<string, string> = {
+  would_result_after_if_had: 'If I had marca una situacion imaginada; el resultado usa would study.',
+  would_buy_result: 'Con If he had money, el resultado imaginado es he would buy.',
+  would_tell_result: 'If she knew no habla de ayer; marca "si ella supiera".',
+  no_would_after_if: 'No pongas would justo despues de if; usa If I had money.',
+  if_i_could: 'Para "si pudiera", usa if I could.',
+  unlikely_future: 'Rained tomorrow suena menos real; por eso el resultado usa would.',
+  would_without_to: 'Despues de would va el verbo base, sin to.',
+  would_help: 'Despues de would no agregues -s ni pasado.',
+  wouldnt_result: 'El consejo negativo usa would not + verbo base.',
+  if_i_were_you: 'Para consejo, el bloque fuerte es If I were you.',
+  if_he_were: 'Para una situacion imaginada, usa If he were here.',
+  advice_sentence: 'Consejo: If I were you + I would...',
+  first_vs_second: 'Real: have/will. Imaginado: had/would.',
+  if_forms_set: 'En el if imaginado usa were, knew, had, no would.',
+  full_sentence_repair: 'Si no sabes el numero, usa If I knew... I would call.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = SECOND_CONDITION_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? SECOND_CONDITION_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function secondConditionEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = SECOND_CONDITION_SKILL_ES[input.targetSkill] ?? 'Usa if para la condicion imaginada y would para el resultado.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
+
 const retry = (line: string): [TriText, TriText, TriText, TriText] => [
-  tri(line, line, 'Real: If I have time, I will call. Imagined: If I had time, I would call.'),
+  tri(line, line, 'Real: If I have time, I will call. Imaginado: If I had time, I would call.'),
   tri(
     'Сначала реши: это реальный план или ситуация из серии "если бы"?',
     'Спочатку виріши: це реальний план чи ситуація з серії "якби"?',
-    'First decide: is this a real plan or an imagined situation?',
+    'Primero decide: es un plan real o una situacion imaginada?',
   ),
   tri(
     'Для "если бы" держи пару: If I had time, I would call.',
     'Для "якби" тримай пару: If I had time, I would call.',
-    'For an imagined situation: If I had time, I would call.',
+    'Para una situacion imaginada: If I had time, I would call.',
   ),
   tri(
     'Не ставь will или would сразу после if. После would действие идет без to: would go, would help.',
     'Не став will або would одразу після if. Після would дія йде без to: would go, would help.',
-    'Do not put will or would after if. After would, say the action without to: would go, would help.',
+    'No pongas will ni would despues de if. Despues de would, usa la accion sin to: would go, would help.',
   ),
 ];
 
 const defaultWrong = (correctAnswer: string): TriText => tri(
   `Не эта форма. Здесь нужен вариант "${correctAnswer}": if дает воображаемое условие, а would дает результат.`,
   `Не ця форма. Тут потрібен варіант "${correctAnswer}": if дає уявну умову, а would дає результат.`,
-  `Not this form. We need "${correctAnswer}": if gives the imagined condition, and would gives the result.`,
+  `No esta forma. Necesitamos "${correctAnswer}": if da la condicion imaginada y would da el resultado.`,
 );
 
 function step(input: {
@@ -66,38 +129,39 @@ function step(input: {
   retryLine: string;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = secondConditionEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: withEs(input.translation, esFeedback),
     explanationBlock: tri(
       'Смысл простой: это не реальный план, а воображаемая версия ситуации. If I had time, I would call.',
       'Сенс простий: це не реальний план, а уявна версія ситуації. If I had time, I would call.',
-      'The idea is: this is not a real plan, but an imagined version of life. If I had time, I would call.',
+      'La idea: no es un plan real, sino una version imaginada de la situacion. If I had time, I would call.',
     ),
     microTask: tri(
       'Выбери форму, которая звучит как "если бы" или как результат после "бы".',
       'Обери форму, яка звучить як "якби" або як результат після "би".',
-      'Choose the form that sounds like an imagined condition or its result.',
+      'Elige la forma que suena como condicion imaginada o como su resultado.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map(option),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((item) => item === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((item) => item !== input.correctAnswer)
-        .map((item) => [item, input.wrong[item] ?? defaultWrong(input.correctAnswer)]),
+        .map((item) => [item, withEs(input.wrong[item] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(input.retryLine),
+    retryFeedback: retry(input.retryLine).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Коротко: реально = If I have time, I will call. Воображаемо = If I had time, I would call.',
       'Коротко: реально = If I have time, I will call. Уявно = If I had time, I would call.',
-      'Short version: real option = If I have time, I will call. Imagined option = If I had time, I would call.',
+      'Version corta: opcion real = If I have time, I will call. Opcion imaginada = If I had time, I would call.',
     ),
     focusWords: input.focusWords,
   };
@@ -109,25 +173,69 @@ export const CONDITION_SECOND_BASIC_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 51,
-  supportedLocales: ['ru', 'uk'],
-  title: tri('If I had time, I would call', 'If I had time, I would call'),
-  shortTitle: tri('If I had / I would', 'If I had / I would'),
+  supportedLocales: ['ru', 'uk', 'es'],
+  title: tri('If I had time, I would call', 'If I had time, I would call', 'If I had time, I would call', {
+    'pt-BR': 'If I had time, I would call: situação imaginada',
+    vi: 'If I had time, I would call: tình huống tưởng tượng',
+    id: 'If I had time, I would call: situasi imajiner',
+    tr: 'If I had time, I would call: hayali durum',
+    pl: 'If I had time, I would call: sytuacja wyobrażona',
+  }),
+  shortTitle: tri('If I had / I would', 'If I had / I would', 'If I had / I would', {
+    'pt-BR': 'If I had / I would',
+    vi: 'If I had / I would',
+    id: 'If I had / I would',
+    tr: 'If I had / I would',
+    pl: 'If I had / I would',
+  }),
   shortDiagnosis: tri(
     'Ты смешиваешь реальный план и воображаемую ситуацию: If I have time, I will call vs If I had time, I would call.',
     'Ти змішуєш реальний план і уявну ситуацію: If I have time, I will call vs If I had time, I would call.',
+    'Mezclas un plan real y una situacion imaginada: If I have time, I will call vs If I had time, I would call.',
+    {
+      'pt-BR': 'Você mistura plano real e situação imaginada: If I have time, I will call vs If I had time, I would call.',
+      vi: 'Bạn trộn kế hoạch thật và tình huống tưởng tượng: If I have time, I will call với If I had time, I would call.',
+      id: 'Kamu mencampur rencana nyata dan situasi imajiner: If I have time, I will call vs If I had time, I would call.',
+      tr: 'Gerçek planla hayali durumu karıştırıyorsun: If I have time, I will call ile If I had time, I would call.',
+      pl: 'Mieszasz realny plan i sytuację wyobrażoną: If I have time, I will call kontra If I had time, I would call.',
+    },
   ),
   diagnosisText: tri(
     'Когда ты говоришь о ситуации "если бы", английский меняет две точки: после if ставит had, were или knew, а результат собирает через would.',
     'Коли ти говориш про ситуацію "якби", англійська змінює дві точки: після if ставить had, were або knew, а результат збирає через would.',
+    'Cuando hablas de una situacion tipo "si fuera asi", el ingles cambia dos puntos: despues de if usa had, were o knew, y arma el resultado con would.',
+    {
+      'pt-BR': 'Quando você fala de uma situação do tipo "se fosse assim", o inglês muda dois pontos: depois de if usa had, were ou knew, e monta o resultado com would.',
+      vi: 'Khi bạn nói về tình huống kiểu "nếu như vậy", tiếng Anh thay đổi hai điểm: sau if dùng had, were hoặc knew, và phần kết quả dùng would.',
+      id: 'Saat kamu berbicara tentang situasi "seandainya", bahasa Inggris mengubah dua titik: setelah if memakai had, were, atau knew, lalu hasilnya dibangun dengan would.',
+      tr: '"Öyle olsaydı" türü bir durumdan söz ettiğinde İngilizce iki noktayı değiştirir: if sonrasında had, were veya knew kullanır, sonucu ise would ile kurar.',
+      pl: 'Gdy mówisz o sytuacji typu "gdyby tak było", angielski zmienia dwa miejsca: po if daje had, were albo knew, a wynik składa przez would.',
+    },
   ),
   mentalModel: tri(
     'Думай не о прошлом времени, а о дистанции от реальности. If I had time здесь не значит "у меня было время". Это значит: "если бы у меня было время".',
     'Думай не про минулий час, а про дистанцію від реальності. If I had time тут не означає "у мене був час". Це означає: "якби у мене був час".',
+    'No pienses en pasado, piensa en distancia de la realidad. If I had time aqui no significa "tuve tiempo"; significa "si tuviera tiempo".',
+    {
+      'pt-BR': 'Não pense em passado, pense em distância da realidade. If I had time aqui não significa "eu tive tempo"; significa "se eu tivesse tempo".',
+      vi: 'Đừng nghĩ về thì quá khứ, hãy nghĩ về khoảng cách với thực tế. If I had time ở đây không có nghĩa là "tôi đã có thời gian"; nó nghĩa là "nếu tôi có thời gian".',
+      id: 'Jangan pikirkan masa lalu, pikirkan jarak dari kenyataan. If I had time di sini bukan berarti "saya dulu punya waktu"; artinya "seandainya saya punya waktu".',
+      tr: 'Geçmiş zamanı değil, gerçeklikten uzaklığı düşün. If I had time burada "zamanım vardı" demek değildir; "zamanım olsaydı" demektir.',
+      pl: 'Nie myśl o czasie przeszłym, tylko o dystansie od rzeczywistości. If I had time tutaj nie znaczy "miałem czas"; znaczy "gdybym miał czas".',
+    },
   ),
   contrastSet: CONTRAST_SET,
   coreRule: tri(
     'Воображаемое if: If I had time, I would call. Совет: If I were you, I would wait. После would не ставим to.',
     'Уявне if: If I had time, I would call. Порада: If I were you, I would wait. Після would не ставимо to.',
+    'If imaginado: If I had time, I would call. Consejo: If I were you, I would wait. Despues de would no uses to.',
+    {
+      'pt-BR': 'If imaginado: If I had time, I would call. Conselho: If I were you, I would wait. Depois de would, não use to.',
+      vi: 'If tưởng tượng: If I had time, I would call. Lời khuyên: If I were you, I would wait. Sau would, không dùng to.',
+      id: 'If imajiner: If I had time, I would call. Saran: If I were you, I would wait. Setelah would, jangan gunakan to.',
+      tr: 'Hayali if: If I had time, I would call. Tavsiye: If I were you, I would wait. Would sonrasında to kullanma.',
+      pl: 'Wyobrażone if: If I had time, I would call. Rada: If I were you, I would wait. Po would nie używaj to.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -147,26 +255,66 @@ export const CONDITION_SECOND_BASIC_TRAINING: DiagnosisTraining = {
       'If I had може говорити про зараз, не лише про минуле.',
     ],
     es: [
-      'Real plan: If I have time, I will call.',
-      'Imagined situation: If I had time, I would call.',
-      'Do not put will or would after if in this pattern.',
-      'Use would for the result: I would go, she would help.',
-      'For advice, use the block: If I were you.',
-      'If I had can talk about now, not only the past.',
+      'Plan real: If I have time, I will call.',
+      'Situacion imaginada: If I had time, I would call.',
+      'No pongas will ni would despues de if en este patron.',
+      'Usa would para el resultado: I would go, she would help.',
+      'Para dar consejo, usa el bloque: If I were you.',
+      'If I had puede hablar del presente, no solo del pasado.',
+    ],
+    'pt-BR': [
+      'Plano real: If I have time, I will call.',
+      'Situação imaginada: If I had time, I would call.',
+      'Não coloque will ou would depois de if neste padrão.',
+      'Use would para o resultado: I would go, she would help.',
+      'Para conselho, use o bloco: If I were you.',
+      'If I had pode falar do agora, não só do passado.',
+    ],
+    vi: [
+      'Kế hoạch thật: If I have time, I will call.',
+      'Tình huống tưởng tượng: If I had time, I would call.',
+      'Không đặt will hoặc would sau if trong mẫu này.',
+      'Dùng would cho kết quả: I would go, she would help.',
+      'Khi đưa lời khuyên, dùng cụm: If I were you.',
+      'If I had có thể nói về hiện tại, không chỉ quá khứ.',
+    ],
+    id: [
+      'Rencana nyata: If I have time, I will call.',
+      'Situasi imajiner: If I had time, I would call.',
+      'Jangan taruh will atau would setelah if dalam pola ini.',
+      'Gunakan would untuk hasilnya: I would go, she would help.',
+      'Untuk memberi saran, pakai blok: If I were you.',
+      'If I had bisa membicarakan sekarang, bukan hanya masa lalu.',
+    ],
+    tr: [
+      'Gerçek plan: If I have time, I will call.',
+      'Hayali durum: If I had time, I would call.',
+      'Bu kalıpta if sonrasına will veya would koyma.',
+      'Sonuç için would kullan: I would go, she would help.',
+      'Tavsiye için hazır blok: If I were you.',
+      'If I had sadece geçmişi değil, şu anı da anlatabilir.',
+    ],
+    pl: [
+      'Realny plan: If I have time, I will call.',
+      'Wyobrażona sytuacja: If I had time, I would call.',
+      'W tym wzorze nie stawiaj will ani would po if.',
+      'Do wyniku użyj would: I would go, she would help.',
+      'Do rady użyj gotowego bloku: If I were you.',
+      'If I had może mówić o teraźniejszości, nie tylko o przeszłości.',
     ],
   },
   examples: [
-    { en: 'If I had more time, I would study more.', ru: 'If I had more time, I would study more.', uk: 'If I had more time, I would study more.', es: 'If I had more time, I would study more.', why: tri('Had показывает воображаемое условие, would study дает результат.', 'Had показує уявну умову, would study дає результат.') },
-    { en: 'If I were you, I would wait.', ru: 'If I were you, I would wait.', uk: 'If I were you, I would wait.', es: 'If I were you, I would wait.', why: tri('If I were you - готовый блок для совета.', 'If I were you - готовий блок для поради.') },
-    { en: 'If she knew the answer, she would tell us.', ru: 'If she knew the answer, she would tell us.', uk: 'If she knew the answer, she would tell us.', es: 'If she knew the answer, she would tell us.', why: tri('Knew здесь не про вчера. Оно показывает ситуацию "если бы она знала".', 'Knew тут не про вчора. Воно показує ситуацію "якби вона знала".') },
-    { en: 'If he had money, he would buy a car.', ru: 'If he had money, he would buy a car.', uk: 'If he had money, he would buy a car.', es: 'If he had money, he would buy a car.', why: tri('Had money + would buy: условие и результат в воображаемой ситуации.', 'Had money + would buy: умова і результат в уявній ситуації.') },
-    { en: 'I would help you if I could.', ru: 'I would help you if I could.', uk: 'I would help you if I could.', es: 'I would help you if I could.', why: tri('Часть с if может стоять второй. Логика остается той же.', 'Частина з if може стояти другою. Логіка залишається тією самою.') },
-    { en: 'If it rained tomorrow, we would stay home.', ru: 'If it rained tomorrow, we would stay home.', uk: 'If it rained tomorrow, we would stay home.', es: 'If it rained tomorrow, we would stay home.', why: tri('Rained tomorrow звучит менее реально или как воображаемый вариант.', 'Rained tomorrow звучить менш реально або як уявний варіант.') },
+    { en: 'If I had more time, I would study more.', ru: 'If I had more time, I would study more.', uk: 'If I had more time, I would study more.', es: 'Si tuviera mas tiempo, estudiaria mas.', 'pt-BR': 'Se eu tivesse mais tempo, estudaria mais.', vi: 'Nếu tôi có nhiều thời gian hơn, tôi sẽ học nhiều hơn.', id: 'Jika saya punya lebih banyak waktu, saya akan belajar lebih banyak.', tr: 'Daha fazla zamanım olsaydı, daha çok çalışırdım.', pl: 'Gdybym miał więcej czasu, uczyłbym się więcej.', why: tri('Had показывает воображаемое условие, would study дает результат.', 'Had показує уявну умову, would study дає результат.', 'Had marca una condicion imaginada; would study da el resultado.') },
+    { en: 'If I were you, I would wait.', ru: 'If I were you, I would wait.', uk: 'If I were you, I would wait.', es: 'Si yo fuera tu, esperaria.', 'pt-BR': 'Se eu fosse você, eu esperaria.', vi: 'Nếu tôi là bạn, tôi sẽ chờ.', id: 'Jika saya jadi kamu, saya akan menunggu.', tr: 'Senin yerinde olsam beklerdim.', pl: 'Gdybym był tobą, poczekałbym.', why: tri('If I were you - готовый блок для совета.', 'If I were you - готовий блок для поради.', 'If I were you es un bloque fijo para dar consejo.') },
+    { en: 'If she knew the answer, she would tell us.', ru: 'If she knew the answer, she would tell us.', uk: 'If she knew the answer, she would tell us.', es: 'Si ella supiera la respuesta, nos lo diria.', 'pt-BR': 'Se ela soubesse a resposta, ela nos diria.', vi: 'Nếu cô ấy biết câu trả lời, cô ấy sẽ nói cho chúng ta.', id: 'Jika dia tahu jawabannya, dia akan memberi tahu kita.', tr: 'Cevabı bilseydi bize söylerdi.', pl: 'Gdyby znała odpowiedź, powiedziałaby nam.', why: tri('Knew здесь не про вчера. Оно показывает ситуацию "если бы она знала".', 'Knew тут не про вчора. Воно показує ситуацію "якби вона знала".', 'Knew aqui no habla de ayer; muestra "si ella supiera".') },
+    { en: 'If he had money, he would buy a car.', ru: 'If he had money, he would buy a car.', uk: 'If he had money, he would buy a car.', es: 'Si tuviera dinero, compraria un coche.', 'pt-BR': 'Se ele tivesse dinheiro, compraria um carro.', vi: 'Nếu anh ấy có tiền, anh ấy sẽ mua một chiếc xe.', id: 'Jika dia punya uang, dia akan membeli mobil.', tr: 'Parası olsaydı araba alırdı.', pl: 'Gdyby miał pieniądze, kupiłby samochód.', why: tri('Had money + would buy: условие и результат в воображаемой ситуации.', 'Had money + would buy: умова і результат в уявній ситуації.', 'Had money + would buy: condicion y resultado en una situacion imaginada.') },
+    { en: 'I would help you if I could.', ru: 'I would help you if I could.', uk: 'I would help you if I could.', es: 'Te ayudaria si pudiera.', 'pt-BR': 'Eu ajudaria você se pudesse.', vi: 'Tôi sẽ giúp bạn nếu tôi có thể.', id: 'Saya akan membantumu jika saya bisa.', tr: 'Yapabilsem sana yardım ederdim.', pl: 'Pomógłbym ci, gdybym mógł.', why: tri('Часть с if может стоять второй. Логика остается той же.', 'Частина з if може стояти другою. Логіка залишається тією самою.', 'La parte con if puede ir segunda; la logica no cambia.') },
+    { en: 'If it rained tomorrow, we would stay home.', ru: 'If it rained tomorrow, we would stay home.', uk: 'If it rained tomorrow, we would stay home.', es: 'Si lloviera manana, nos quedariamos en casa.', 'pt-BR': 'Se chovesse amanhã, ficaríamos em casa.', vi: 'Nếu ngày mai trời mưa, chúng tôi sẽ ở nhà.', id: 'Jika besok hujan, kami akan tinggal di rumah.', tr: 'Yarın yağmur yağsaydı evde kalırdık.', pl: 'Gdyby jutro padało, zostalibyśmy w domu.', why: tri('Rained tomorrow звучит менее реально или как воображаемый вариант.', 'Rained tomorrow звучить менш реально або як уявний варіант.', 'Rained tomorrow suena menos real o como una opcion imaginada.') },
   ],
   introBlocks: [
-    { id: 'intro_problem', type: 'diagnosis', text: tri('Ошибка обычно не в слове would. Ошибка в том, что ты смешиваешь реальное if I have и воображаемое if I had.', 'Помилка зазвичай не в слові would. Помилка в тому, що ти змішуєш реальне if I have і уявне if I had.') },
-    { id: 'intro_model', type: 'rule', text: tri('Запомни контраст: реальный план идет через have и will, а воображаемая ситуация идет через had и would.', 'Запамʼятай контраст: реальний план іде через have і will, а уявна ситуація іде через had і would.') },
-    { id: 'intro_warning', type: 'warning', text: tri('Две ловушки: If I would have money и I would to buy. Обе ломают фразу.', 'Дві пастки: If I would have money і I would to buy. Обидві ламають фразу.') },
+    { id: 'intro_problem', type: 'diagnosis', text: tri('Ошибка обычно не в слове would. Ошибка в том, что ты смешиваешь реальное if I have и воображаемое if I had.', 'Помилка зазвичай не в слові would. Помилка в тому, що ти змішуєш реальне if I have і уявне if I had.', 'El error normalmente no esta en would. Esta en mezclar el if real, if I have, con el if imaginado, if I had.') },
+    { id: 'intro_model', type: 'rule', text: tri('Запомни контраст: реальный план идет через have и will, а воображаемая ситуация идет через had и would.', 'Запамʼятай контраст: реальний план іде через have і will, а уявна ситуація іде через had і would.', 'Recuerda el contraste: un plan real usa have y will; una situacion imaginada usa had y would.') },
+    { id: 'intro_warning', type: 'warning', text: tri('Две ловушки: If I would have money и I would to buy. Обе ломают фразу.', 'Дві пастки: If I would have money і I would to buy. Обидві ламають фразу.', 'Dos trampas: If I would have money y I would to buy. Las dos rompen la frase.') },
   ],
   steps: [
     step({
@@ -485,24 +633,24 @@ export const CONDITION_SECOND_BASIC_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Покажи две половины: воображаемое if и результат с would.', 'Покажи дві половини: уявне if і результат з would.'),
-    depth2: tri('Спроси себя: это реальный план или "если бы"?', 'Запитай себе: це реальний план чи "якби"?'),
-    depth3: tri('Сравни смысл: реальный вариант сейчас берет have и will, а воображаемый вариант берет had и would.', 'Порівняй зміст: реальний варіант зараз бере have і will, а уявний варіант бере had і would.'),
-    depth4: tri('Собери почти готовый шаблон и оставь пропуск только в одном месте.', 'Збери майже готовий шаблон і залиш пропуск тільки в одному місці.'),
+    depth1: tri('Покажи две половины: воображаемое if и результат с would.', 'Покажи дві половини: уявне if і результат з would.', 'Muestra dos mitades: if imaginado y resultado con would.'),
+    depth2: tri('Спроси себя: это реальный план или "если бы"?', 'Запитай себе: це реальний план чи "якби"?', 'Preguntate: es un plan real o una situacion de "si fuera asi"?'),
+    depth3: tri('Сравни смысл: реальный вариант сейчас берет have и will, а воображаемый вариант берет had и would.', 'Порівняй зміст: реальний варіант зараз бере have і will, а уявний варіант бере had і would.', 'Compara el sentido: una opcion real usa have y will; una imaginada usa had y would.'),
+    depth4: tri('Собери почти готовый шаблон и оставь пропуск только в одном месте.', 'Збери майже готовий шаблон і залиш пропуск тільки в одному місці.', 'Arma casi todo el patron y deja el hueco solo en un lugar.'),
   },
   failureRecovery: {
-    afterTwoWrongInSameExercise: { action: 'show_simplified_rule_card', card: tri('Реально: есть шанс и план, поэтому have + will. Воображаемо: сейчас этого нет, поэтому had + would.', 'Реально: є шанс і план, тому have + will. Уявно: зараз цього немає, тому had + would.', 'Real: If I have time, I will call. Imagined: If I had time, I would call.') },
-    afterThreeWrongInSameExercise: { action: 'show_unreal_condition_hint_then_retry', card: tri('Подсказка: если смысл "если бы", не ставь will/would сразу после if.', 'Підказка: якщо сенс "якби", не став will/would одразу після if.', 'Hint: if the meaning is imagined, do not put will/would right after if.') },
-    afterFourWrongInSameExercise: { action: 'switch_to_guided_mode', card: tri('Guided mode: сначала выбери реальное или воображаемое. Потом собери if и результат.', 'Guided mode: спочатку обери реальне чи уявне. Потім збери if і результат.', 'Guided mode: first choose real or imagined, then build if and the result.') },
+    afterTwoWrongInSameExercise: { action: 'show_simplified_rule_card', card: tri('Реально: есть шанс и план, поэтому have + will. Воображаемо: сейчас этого нет, поэтому had + would.', 'Реально: є шанс і план, тому have + will. Уявно: зараз цього немає, тому had + would.', 'Real: If I have time, I will call. Imaginado: If I had time, I would call.') },
+    afterThreeWrongInSameExercise: { action: 'show_unreal_condition_hint_then_retry', card: tri('Подсказка: если смысл "если бы", не ставь will/would сразу после if.', 'Підказка: якщо сенс "якби", не став will/would одразу після if.', 'Pista: si el sentido es imaginado, no pongas will/would justo despues de if.') },
+    afterFourWrongInSameExercise: { action: 'switch_to_guided_mode', card: tri('Guided mode: сначала выбери реальное или воображаемое. Потом собери if и результат.', 'Guided mode: спочатку обери реальне чи уявне. Потім збери if і результат.', 'Modo guiado: primero elige real o imaginado, luego arma if y el resultado.') },
   },
   guidedMode: {
     enabled: true,
     triggerAfterWrongAttempts: 4,
     tasks: [
-      { id: 'guided_cond_second_001', prompt: tri('If I had more time, I would study more: это реальный план или воображаемая ситуация?', 'If I had more time, I would study more: це реальний план чи уявна ситуація?', 'If I had more time, I would study more: real plan or imagined situation?'), options: ['real plan', 'imagined situation'], correctIndex: 1, thenReturnToExerciseId: 'cond_second_easy_001' },
-      { id: 'guided_cond_second_002', prompt: tri('Для "если бы у меня были деньги" что нужно после if?', 'Для "якби у мене були гроші" що потрібно після if?', 'For "if I had money", what do we need after if?'), options: ['I had money', 'I would have money'], correctIndex: 0, thenReturnToExerciseId: 'cond_second_contrast_001' },
-      { id: 'guided_cond_second_003', prompt: tri('После would что звучит правильно?', 'Після would що звучить правильно?', 'After would, what sounds correct?'), options: ['go', 'to go'], correctIndex: 0, thenReturnToExerciseId: 'cond_second_contrast_004' },
-      { id: 'guided_cond_second_004', prompt: tri('Готовый блок для совета: какой?', 'Готовий блок для поради: який?', 'Ready-made advice block: which one?'), options: ['If I was you', 'If I were you'], correctIndex: 1, thenReturnToExerciseId: 'cond_second_mixed_001' },
+      { id: 'guided_cond_second_001', prompt: tri('If I had more time, I would study more: это реальный план или воображаемая ситуация?', 'If I had more time, I would study more: це реальний план чи уявна ситуація?', 'If I had more time, I would study more: plan real o situacion imaginada?'), options: ['real plan', 'imagined situation'], correctIndex: 1, thenReturnToExerciseId: 'cond_second_easy_001' },
+      { id: 'guided_cond_second_002', prompt: tri('Для "если бы у меня были деньги" что нужно после if?', 'Для "якби у мене були гроші" що потрібно після if?', 'Para "si tuviera dinero", que necesitamos despues de if?'), options: ['I had money', 'I would have money'], correctIndex: 0, thenReturnToExerciseId: 'cond_second_contrast_001' },
+      { id: 'guided_cond_second_003', prompt: tri('После would что звучит правильно?', 'Після would що звучить правильно?', 'Despues de would, que suena correcto?'), options: ['go', 'to go'], correctIndex: 0, thenReturnToExerciseId: 'cond_second_contrast_004' },
+      { id: 'guided_cond_second_004', prompt: tri('Готовый блок для совета: какой?', 'Готовий блок для поради: який?', 'Bloque fijo para consejo: cual?'), options: ['If I was you', 'If I were you'], correctIndex: 1, thenReturnToExerciseId: 'cond_second_mixed_001' },
     ],
   },
   smartTrainerConfig: {
@@ -510,7 +658,7 @@ export const CONDITION_SECOND_BASIC_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'syntax',
     microDiagnosisId: 'condition_second_basic',
-    diagnosisLabel: tri('If I had / I would', 'If I had / I would'),
+    diagnosisLabel: tri('If I had / I would', 'If I had / I would', 'If I had / I would: condicion imaginada'),
     contrastSet: SMART_CONTRAST_SET,
     difficultyLevel: 2,
     focusWords: ['If I had', 'would study', 'If I were you', 'would buy', 'would call'],
@@ -542,7 +690,7 @@ export const CONDITION_SECOND_BASIC_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_started',
     answer: 'diagnosis_training_answer',
     mastery: 'diagnosis_training_mastered',
-    fallback: 'diagnosis_training_fallback',
+    recovery: 'diagnosis_training_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

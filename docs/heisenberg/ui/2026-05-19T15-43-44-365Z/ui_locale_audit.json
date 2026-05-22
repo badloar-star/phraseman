@@ -1,0 +1,391 @@
+{
+  "generatedAt": "2026-05-19T15:43:44.364Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 615,
+    "triLangCalls": 1548,
+    "staticTriLangCalls": 1548,
+    "dynamicTriLangCalls": 0,
+    "legacyLangHelperCalls": 0,
+    "localeObjectFindings": 22,
+    "triLangMissingLocaleUnits": 0,
+    "triLangMissingAllPlannedUnits": 0,
+    "helperMissingLocaleUnits": 0,
+    "localeObjectMissingLocaleUnits": 110,
+    "localeObjectMissingAllPlannedUnits": 22,
+    "bundleMissingLocaleUnits": 0,
+    "findings": 22,
+    "byCode": {
+      "locale-object-missing-all-planned-locales": 22
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/quiz_data.ts",
+      "findings": 22,
+      "missingLocaleUnits": 110
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24585,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Если ты будешь халтурить (срезать углы), качество пострадает`, uk: `Якщо ти будеш халтурити (зрізати кути), якість постраждає`, es: `Si haces las cosas a medias, la calidad "
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24617,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Если бы я тогда больше учился, я бы сейчас был экспертом`, uk: `Якби я тоді більше вчився, я б зараз був експертом`, es: `Si hubiera estudiado más entonces, ahora sería expe"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24649,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Мне нужно освежить свои знания английского`, uk: `Мені потрібно освіжити свої знання англійської`, es: `Necesito repasar mi inglés`, explanationsES: [ `Correcto. Brush up on"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24681,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Что мне нужно, так это хороший отдых`, uk: `Що мені потрібно, так це гарний відпочинок`, es: `Lo que necesito es un buen descanso`, explanationsES: [ `Tedious significa abur"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24713,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Мне нужно подстричься (чтобы кто-то это сделал)`, uk: `Мені потрібно підстригтися (щоб хтось це зробив)`, es: `Necesito que me corten el pelo`, explanationsES: [ `I need to "
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24745,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Хватит ходить вокруг да около`, uk: `Досить ходити навколо`, es: `Deja de andarte con rodeos`, explanationsES: [ `Stop walking around and about describe caminar, no evitar e"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24777,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Важно, чтобы он присутствовал на встрече`, uk: `Важливо, щоб він був присутнім на зустрічі`, es: `Es importante que él esté presente en la reunión`, explanationsES: [ `Corre"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24809,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Он и не подозревал, что его ждет сюрприз`, uk: `Він і не підозрював, що на нього чекає сюрприз`, es: `Él ni sospechaba que le esperaba una sorpresa`, explanationsES: [ `Litt"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24841,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Ты попал в самую точку (сказал совершенно верно)`, uk: `Ти влучив у саму точку (сказав абсолютно правильно)`, es: `Diste justo en el clavo`, explanationsES: [ `Correcto. Hit"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24873,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Я уговорил его починить мой компьютер`, uk: `Я вмовив його полагодити мій комп\\'ютер`, es: `Conseguí que él arreglara mi ordenador`, explanationsES: [ `Correcto. Got him to "
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24905,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Нет худа без добра (скрытое благословение)`, uk: `Немає лиха без добра (приховане благословення)`, es: `No hay mal que por bien no venga`, explanationsES: [ `Correcto. A ble"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24937,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Он, как утверждают, совершил это преступление`, uk: `Він, як стверджують, скоїв цей злочин`, es: `Presuntamente, él cometió este delito`, explanationsES: [ `Correcto. Allege"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 24969,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Не успел я выйти, как пошел дождь`, uk: `Не встиг я вийти, як пішов дощ`, es: `Apenas había salido cuando empezó a llover`, explanationsES: [ `No sooner I had left pierde la"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 25001,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Ты не туда обратился (ищешь не там/ошибаешься адресом)`, uk: `Ти не туди звернувся (шукаєш не там/помиляєшся адресою)`, es: `Estás buscando en el lugar equivocado`, explanat"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 25033,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Я предлагаю ей пойти туда завтра`, uk: `Я пропоную їй піти туди завтра`, es: `Sugiero que ella vaya allí mañana`, explanationsES: [ `After suggest in this formal pattern, th"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 25065,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Я редко видел такую изысканную красоту`, uk: `Я рідко бачив таку вишукану красу`, es: `Rara vez he visto una belleza tan exquisita`, explanationsES: [ `Las palabras son corr"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 25097,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Мы отправились в путь на рассвете`, uk: `Ми вирушили в дорогу на світанку`, es: `Partimos al amanecer`, explanationsES: [ `Correcto. Set off at dawn es natural para empezar "
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 25129,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Мені неприємно (я обурююсь), коли мені кажуть, що робити`, uk: `Я обурений (мені неприємно), коли мені кажуть, що робити`, es: `Me molesta que me digan qué hacer`, explanati"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 25161,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Если бы я был умнее (вообще), я бы не купил ту машину (в прошлом)`, uk: `Якби я був розумнішим (взагалі), я б не купив ту машину (в минулому)`, es: `Si fuera más listo, no h"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 25193,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Он, как утверждают, украл эти документы`, uk: `Він, як стверджують, украв ці документи`, es: `Presuntamente, él robó estos documentos`, explanationsES: [ `Correcto. Allegedl"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 25225,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Я настаиваю на том, чтобы он присутствовал на встрече`, uk: `Я наполягаю на тому, щоб він був присутнім на зустрічі`, es: `Insisto en que él esté presente en la reunión`, ex"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_data.ts",
+      "line": 25257,
+      "column": 3,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Мне нужно освежить свои знания английского перед поездкой`, uk: `Мені потрібно освіжити свої знання англійської перед поїздкою`, es: `Necesito repasar mi inglés antes del vi"
+    }
+  ]
+}

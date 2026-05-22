@@ -1,0 +1,171 @@
+{
+  "schemaVersion": "gustav-french-row-lexical-evidence-packet-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "lessonId": 1,
+  "batchId": "lesson1_rows_4_10_lexical_evidence",
+  "studyTarget": "fr",
+  "sourceLocales": ["ru", "uk"],
+  "parentRowReviewPacket": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_row_review_packet.json",
+  "activationStatus": "blocked",
+  "containsFrenchTargetText": false,
+  "containsWordsFr": false,
+  "mayWriteAppSeed": false,
+  "mayWriteIntroExamples": false,
+  "rows": [
+    {
+      "phraseId": "lesson1_phrase_4",
+      "englishBase": "She is calm",
+      "lexicalFocus": ["be", "calm"],
+      "evidenceClaimIds": [
+        "fr-l1-be-lexical-risk-cambridge",
+        "fr-l1-row4-calm-cambridge"
+      ],
+      "sourceUrls": [
+        "https://dictionary.cambridge.org/us/dictionary/english-french/be",
+        "https://dictionary.cambridge.org/us/dictionary/english-french/calm"
+      ],
+      "rowDecision": "lexical_evidence_started",
+      "remainingBeforeTargetText": [
+        "feminine subject policy acceptance",
+        "adjective agreement review",
+        "RU meaning acceptance",
+        "UK meaning acceptance"
+      ],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_5",
+      "englishBase": "We are together",
+      "lexicalFocus": ["be", "together"],
+      "evidenceClaimIds": [
+        "fr-l1-be-lexical-risk-cambridge",
+        "fr-l1-row5-together-cambridge"
+      ],
+      "sourceUrls": [
+        "https://dictionary.cambridge.org/us/dictionary/english-french/be",
+        "https://dictionary.cambridge.org/dictionary/english-french/together"
+      ],
+      "rowDecision": "lexical_evidence_started",
+      "remainingBeforeTargetText": [
+        "adverbial complement review",
+        "curriculum placement acceptance",
+        "RU meaning acceptance",
+        "UK meaning acceptance"
+      ],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_6",
+      "englishBase": "They are happy",
+      "lexicalFocus": ["be", "happy"],
+      "evidenceClaimIds": [
+        "fr-l1-be-lexical-risk-cambridge",
+        "fr-l1-row6-happy-cambridge"
+      ],
+      "sourceUrls": [
+        "https://dictionary.cambridge.org/us/dictionary/english-french/be",
+        "https://dictionary.cambridge.org/dictionary/english-french/happy"
+      ],
+      "rowDecision": "lexical_evidence_started",
+      "remainingBeforeTargetText": [
+        "plural subject policy acceptance",
+        "mixed-group agreement policy acceptance",
+        "RU meaning acceptance",
+        "UK meaning acceptance"
+      ],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_7",
+      "englishBase": "It is important",
+      "lexicalFocus": ["be", "important"],
+      "evidenceClaimIds": [
+        "fr-l1-be-lexical-risk-cambridge",
+        "fr-l1-row7-important-cambridge"
+      ],
+      "sourceUrls": [
+        "https://dictionary.cambridge.org/us/dictionary/english-french/be",
+        "https://dictionary.cambridge.org/dictionary/english-french/important"
+      ],
+      "rowDecision": "lexical_evidence_started",
+      "remainingBeforeTargetText": [
+        "impersonal structure review",
+        "curriculum placement acceptance",
+        "RU meaning acceptance",
+        "UK meaning acceptance"
+      ],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_8",
+      "englishBase": "I am okay",
+      "lexicalFocus": ["be", "okay"],
+      "evidenceClaimIds": [
+        "fr-l1-be-lexical-risk-cambridge",
+        "fr-l1-row8-ok-cambridge"
+      ],
+      "sourceUrls": [
+        "https://dictionary.cambridge.org/us/dictionary/english-french/be",
+        "https://dictionary.cambridge.org/us/dictionary/english-french/ok"
+      ],
+      "rowDecision": "lexical_evidence_started",
+      "remainingBeforeTargetText": [
+        "personal well-being sense acceptance",
+        "register naturalness review",
+        "RU meaning acceptance",
+        "UK meaning acceptance"
+      ],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_9",
+      "englishBase": "You are right",
+      "lexicalFocus": ["be", "right"],
+      "evidenceClaimIds": [
+        "fr-l1-be-lexical-risk-cambridge",
+        "fr-l1-row9-right-cambridge"
+      ],
+      "sourceUrls": [
+        "https://dictionary.cambridge.org/us/dictionary/english-french/be",
+        "https://dictionary.cambridge.org/dictionary/english-french/right"
+      ],
+      "rowDecision": "lexical_evidence_started",
+      "remainingBeforeTargetText": [
+        "judgment/correctness sense acceptance",
+        "tu/vous policy acceptance",
+        "RU meaning acceptance",
+        "UK meaning acceptance"
+      ],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_10",
+      "englishBase": "We are safe",
+      "lexicalFocus": ["be", "safe"],
+      "evidenceClaimIds": [
+        "fr-l1-be-lexical-risk-cambridge",
+        "fr-l1-row10-safe-cambridge"
+      ],
+      "sourceUrls": [
+        "https://dictionary.cambridge.org/us/dictionary/english-french/be",
+        "https://dictionary.cambridge.org/dictionary/english-french/safe"
+      ],
+      "rowDecision": "lexical_evidence_started",
+      "remainingBeforeTargetText": [
+        "safety/status sense acceptance",
+        "first-person plural naturalness review",
+        "RU meaning acceptance",
+        "UK meaning acceptance"
+      ],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    }
+  ],
+  "nextRequiredAction": "Add acceptance work order for rows 4-10 before any French target text is written."
+}

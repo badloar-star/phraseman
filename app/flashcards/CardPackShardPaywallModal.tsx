@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReportPackModal from '../../components/ReportPackModal';
 import { hideCommunityPackOnDevice } from '../community_packs/communityPackHiddenStorage';
@@ -42,6 +42,7 @@ import {
 } from './marketplace';
 import { getCardPackPaywallTheme } from './cardPackPaywallTheme';
 import { packTileImageForPack } from './packMarketplaceIcons';
+import type { RuntimeStudyTarget } from '../target_storage_keys';
 
 export type CardPackPaywallMode = 'confirm' | 'insufficient' | 'voucher';
 
@@ -51,6 +52,7 @@ type Props = {
   pack: FlashcardMarketPack;
   balance: number;
   lang: Lang;
+  studyTarget?: RuntimeStudyTarget;
   purchasing: boolean;
   onClose: () => void;
   onConfirmPurchase: () => void | Promise<void>;
@@ -202,6 +204,7 @@ export default function CardPackShardPaywallModal({
   pack,
   balance,
   lang,
+  studyTarget,
   purchasing,
   onClose,
   onConfirmPurchase,
@@ -537,7 +540,7 @@ export default function CardPackShardPaywallModal({
                                   </Text>
                                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 6 }}>
                                     <Image
-                                      source={oskolokImageForPackShards(pack.priceShards)}
+                                      source={shardPriceImg}
                                       style={{ width: 28, height: 28 }}
                                       contentFit="contain"
                                     />
@@ -573,7 +576,7 @@ export default function CardPackShardPaywallModal({
                                   </Text>
                                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 6 }}>
                                     <Image
-                                      source={oskolokImageForPackShards(balance)}
+                                      source={shardPriceImg}
                                       style={{ width: 28, height: 28 }}
                                       contentFit="contain"
                                     />
@@ -878,7 +881,7 @@ export default function CardPackShardPaywallModal({
                                 }}
                               >
                                 <Image
-                                  source={oskolokImageForPackShards(180)}
+                                  source={shardPriceImg}
                                   style={{ width: 26, height: 26 }}
                                   contentFit="contain"
                                 />
@@ -1024,7 +1027,7 @@ export default function CardPackShardPaywallModal({
                           <Pressable
                             onPress={async () => {
                               try {
-                                await hideCommunityPackOnDevice(pack.id);
+                                await hideCommunityPackOnDevice(pack.id, studyTarget);
                                 onCommunityPackHiddenOnDevice?.();
                               } catch {
                                 // no-op: AsyncStorage unavailable
@@ -1057,6 +1060,7 @@ export default function CardPackShardPaywallModal({
           packTitle={title}
           authorStableId={pack.authorStableId ?? null}
           lang={lang}
+          studyTarget={studyTarget}
           onClose={() => setReportVisible(false)}
           onPackHiddenOnDevice={onCommunityPackHiddenOnDevice}
         />

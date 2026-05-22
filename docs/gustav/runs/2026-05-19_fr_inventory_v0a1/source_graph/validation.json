@@ -1,0 +1,23 @@
+{
+  "verdict": "PASS",
+  "totalLessons": 32,
+  "totalPhrases": 1600,
+  "totalWords": 8353,
+  "totalIntroScreens": 147,
+  "totalQuizzes": 829,
+  "totalPrepositionPacks": 12,
+  "totalFlashcards": 155,
+  "totalDailyPhrases": 176,
+  "totalPersonalPracticeNodes": 56,
+  "totalSurfaces": 129,
+  "unresolvedBlockers": 0,
+  "unresolvedHighRisks": 0,
+  "generatedFileUnknowns": 0,
+  "sourceLocaleTargetConfusions": 0,
+  "notes": [
+    "The graph is read-only and does not approve French generation.",
+    "RU and UK prompts are required source locales for the requested French target.",
+    "Generated ES L2 support files are approved as isolated runtime evidence only, not French source truth.",
+    "Source graph input approval is recorded in source_graph/source_graph_approval.json."
+  ]
+}

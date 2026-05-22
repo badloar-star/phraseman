@@ -6,7 +6,7 @@
  *   - быстро увидеть, у каких уроков уже есть intro-контент, а у каких пусто;
  *   - открыть тот же `LessonIntroScreens`, что увидит пользователь, и проверить
  *     анимацию/верстку не запуская сам урок и не сбрасывая флаги;
- *   - одной кнопкой сбросить флаги показа `lesson${id}_intro_shown` для всех уроков —
+ *   - одной кнопкой сбросить target-aware флаги показа intro для всех уроков —
  *     чтобы интро снова сработало при первом реальном входе.
  */
 import React, { useEffect, useMemo, useState } from 'react';
@@ -33,6 +33,7 @@ import { emitAppEvent } from './events';
 import LessonIntroScreens from './lesson_intro_screens';
 import { getLessonIntroScreens } from './lesson_data_all';
 import { DEV_MODE } from './config';
+import { lessonIntroShownKey } from './target_storage_keys';
 
 const SCREEN_W = Dimensions.get('window').width;
 
@@ -199,7 +200,7 @@ export default function AdminIntroPreview() {
 
   const loadMeta = async () => {
     const introShownPairs = await AsyncStorage.multiGet(
-      LESSON_IDS.map((id) => `lesson${id}_intro_shown`),
+      LESSON_IDS.map((id) => lessonIntroShownKey(id, studyTarget)),
     );
     const shownMap = new Map<number, boolean>();
     introShownPairs.forEach(([key, val], idx) => {
@@ -234,7 +235,7 @@ export default function AdminIntroPreview() {
 
   const handleResetAllFlags = async () => {
     hapticTap();
-    await AsyncStorage.multiRemove(LESSON_IDS.map((id) => `lesson${id}_intro_shown`));
+    await AsyncStorage.multiRemove(LESSON_IDS.map((id) => lessonIntroShownKey(id, studyTarget)));
     await loadMeta();
     emitAppEvent('action_toast', {
       type: 'success',
@@ -503,4 +504,3 @@ export default function AdminIntroPreview() {
     </View>
   );
 }
-

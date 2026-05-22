@@ -3,7 +3,28 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const PAST_CONT_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre Past Continuous ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về Past Continuous này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan Past Continuous ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu Past Continuous açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie Past Continuous nadal wymaga przeglądu po polsku.',
+};
+
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? PAST_CONT_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'was + verb-ing',
@@ -27,30 +48,79 @@ const SMART_CONTRAST = [
 const MODEL = tri(
   'Past Continuous нужен, когда ты показываешь процесс в конкретный момент прошлого: I was working at 8. She was sleeping when I called. С I, he, she, it обычно берем was. С you, we, they обычно берем were. После was или were действие получает -ing: was working, were waiting.',
   'Past Continuous потрібен, коли ти показуєш процес у конкретний момент минулого: I was working at 8. She was sleeping when I called. З I, he, she, it зазвичай беремо was. З you, we, they зазвичай беремо were. Після was або were дія отримує -ing: was working, were waiting.',
-  'Past Continuous shows a process at a past moment: I was working at 8. Use was with I/he/she/it and were with you/we/they. After was or were, use -ing.',
+  'Past Continuous muestra un proceso en un momento del pasado: I was working at 8. Usa was con I/he/she/it y were con you/we/they. Despues de was o were usa -ing.',
+  {
+    'pt-BR': 'Past Continuous é usado quando você mostra um processo em um momento específico do passado: I was working at 8. She was sleeping when I called. Com I, he, she, it, normalmente usamos was. Com you, we, they, normalmente usamos were. Depois de was ou were, a ação recebe -ing: was working, were waiting.',
+    vi: 'Past Continuous được dùng khi bạn diễn tả một quá trình tại một thời điểm cụ thể trong quá khứ: I was working at 8. She was sleeping when I called. Với I, he, she, it thường dùng was. Với you, we, they thường dùng were. Sau was hoặc were, động từ thêm -ing: was working, were waiting.',
+    id: 'Past Continuous dipakai saat kamu menunjukkan proses pada saat tertentu di masa lalu: I was working at 8. She was sleeping when I called. Dengan I, he, she, it biasanya gunakan was. Dengan you, we, they biasanya gunakan were. Setelah was atau were, kata kerja mendapat -ing: was working, were waiting.',
+    tr: 'Past Continuous geçmişte belirli bir anda süren bir süreci gösterirken gerekir: I was working at 8. She was sleeping when I called. I, he, she, it ile genelde was kullanırız. You, we, they ile genelde were kullanırız. Was veya were sonrasında eylem -ing alır: was working, were waiting.',
+    pl: 'Past Continuous jest potrzebny, gdy pokazujesz proces w konkretnym momencie przeszłości: I was working at 8. She was sleeping when I called. Z I, he, she, it zwykle używamy was. Z you, we, they zwykle używamy were. Po was albo were czynność dostaje -ing: was working, were waiting.',
+  },
 );
+
+const PAST_CONT_SKILL_ES: Record<string, string> = {
+  i_was_working: 'Con I usa was; at 8 yesterday pide proceso pasado.',
+  she_was_sleeping: 'Con she usa was; sleeping muestra el proceso.',
+  they_were_waiting: 'Con they usa were; waiting lleva -ing.',
+  we_were_watching: 'Con we usa were; at that moment pide proceso.',
+  were_with_they: 'Con they usa were, no was.',
+  it_was_raining: 'Con it usa was; raining muestra un proceso largo.',
+  was_having_at_time: 'At 9 last night pide proceso: was having.',
+  no_missing_was: 'No puede faltar was antes de working.',
+  no_base_after_were: 'Despues de were usa waiting, no wait.',
+  negative_wasnt_working: "Con I en negativo usa wasn't + -ing.",
+  question_were_you_working: 'En pregunta con you, were va primero.',
+  negative_werent_waiting: "Con they en negativo usa weren't + -ing.",
+  mixed_was_were_pair: 'I usa was; they usa were; ambos necesitan -ing.',
+  mixed_process_vs_completed: 'Hecho pasado = worked; proceso en un momento = was working.',
+  mixed_sentence_correction: 'She usa was sleeping; they usa were watching.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = PAST_CONT_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? PAST_CONT_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function pastContEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = PAST_CONT_SKILL_ES[input.targetSkill] ?? 'Comprueba was/were y la forma -ing.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retry(correct: string): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала найди момент прошлого: at 8 yesterday, at that moment, when I called.',
       'Спочатку знайди момент минулого: at 8 yesterday, at that moment, when I called.',
-      'First find the past moment: at 8 yesterday, at that moment, when I called.',
+      'Primero encuentra el momento pasado: at 8 yesterday, at that moment, when I called.',
     ),
     tri(
       'Потом реши, кто делает действие: I/she/he/it берут was, you/we/they берут were.',
       'Потім виріши, хто робить дію: I/she/he/it беруть was, you/we/they беруть were.',
-      'Then choose was or were.',
+      'Luego elige was o were segun la persona.',
     ),
     tri(
       'Если это процесс в тот момент, после was/were поставь действие с -ing.',
       'Якщо це процес у той момент, після was/were постав дію з -ing.',
-      'If it is a process at that moment, use -ing after was/were.',
+      'Si es un proceso en ese momento, usa -ing despues de was/were.',
     ),
     tri(
       `Нужный вариант здесь: ${correct}.`,
       `Потрібний варіант тут: ${correct}.`,
-      `The answer here is: ${correct}.`,
+      `La respuesta aqui es: ${correct}.`,
     ),
   ];
 }
@@ -59,7 +129,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Проверь was/were и -ing. Здесь нужно: ${correct}.`,
     `Майже. Перевір was/were і -ing. Тут потрібно: ${correct}.`,
-    `Almost. Check was/were and -ing. Use: ${correct}.`,
+    `Casi. Revisa was/were y -ing. Usa: ${correct}.`,
   );
 }
 
@@ -76,35 +146,36 @@ function pastContStep(input: {
   wrong: Record<string, TriText>;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = pastContEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
-    teachingText: MODEL,
-    explanationBlock: MODEL,
+    translation: withEs(input.translation, esFeedback),
+    teachingText: withEs(MODEL, esFeedback),
+    explanationBlock: withEs(MODEL, esFeedback),
     microTask: tri(
       'Выбери фразу, где процесс в прошлом собран через was/were + -ing.',
       'Обери фразу, де процес у минулому зібраний через was/were + -ing.',
-      'Choose the phrase where the past process uses was/were + -ing.',
+      'Elige la frase donde el proceso pasado usa was/were + -ing.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(input.correctAnswer),
+    retryFeedback: retry(input.correctAnswer).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Коротко: нужен момент прошлого, was или were, и действие с -ing. Без was/were фраза разваливается; без -ing тоже.',
       'Коротко: потрібен момент минулого, was або were, і дія з -ing. Без was/were фраза розвалюється; без -ing теж.',
-      'Short version: I was working. She was sleeping. They were waiting.',
+      'Version corta: hace falta un momento pasado, was o were, y el verbo con -ing: I was working, She was sleeping, They were waiting.',
     ),
     focusWords: input.focusWords,
   };
@@ -116,29 +187,63 @@ export const PAST_CONTINUOUS_BASIC_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 42,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Past Continuous: процесс в прошлом',
     'Past Continuous: процес у минулому',
     'Past Continuous: past process',
+    {
+      'pt-BR': 'Past Continuous: processo no passado',
+      vi: 'Past Continuous: quá trình trong quá khứ',
+      id: 'Past Continuous: proses di masa lalu',
+      tr: 'Past Continuous: geçmişte süren süreç',
+      pl: 'Past Continuous: proces w przeszłości',
+    },
   ),
-  shortTitle: tri('Was / Were + -ing', 'Was / Were + -ing', 'Was / Were + -ing'),
+  shortTitle: tri('Was / Were + -ing', 'Was / Were + -ing', 'Was / Were + -ing', {
+    'pt-BR': 'Was / Were + -ing',
+    vi: 'Was / Were + -ing',
+    id: 'Was / Were + -ing',
+    tr: 'Was / Were + -ing',
+    pl: 'Was / Were + -ing',
+  }),
   shortDiagnosis: tri(
     'Ты хочешь сказать, что действие шло в тот момент, но забываешь was/were или ставишь действие без -ing.',
     'Ти хочеш сказати, що дія тривала в той момент, але забуваєш was/were або ставиш дію без -ing.',
-    'You want to say an action was in progress, but you miss was/were or the -ing form.',
+    'Quieres decir que una accion estaba en progreso, pero olvidas was/were o la forma -ing.',
+    {
+      'pt-BR': 'Você quer dizer que a ação estava acontecendo naquele momento, mas esquece was/were ou usa o verbo sem -ing.',
+      vi: 'Bạn muốn nói rằng hành động đang diễn ra tại thời điểm đó, nhưng quên was/were hoặc dùng động từ không có -ing.',
+      id: 'Kamu ingin mengatakan bahwa tindakan sedang berlangsung saat itu, tetapi lupa was/were atau memakai kata kerja tanpa -ing.',
+      tr: 'Eylemin o anda sürdüğünü söylemek istiyorsun, ama was/were kısmını unutuyor ya da eylemi -ing olmadan koyuyorsun.',
+      pl: 'Chcesz powiedzieć, że czynność trwała w tamtym momencie, ale zapominasz was/were albo dajesz czasownik bez -ing.',
+    },
   ),
   diagnosisText: tri(
     'Здесь ломается не смысл, а сборка. По-русски "я работал вчера" и "я работал в 8 вечера" звучат почти одинаково. В английском второе часто требует процесса: I was working at 8. Нужны две детали: was или were, потом действие с -ing.',
     'Тут ламається не сенс, а збірка. Українською "я працював учора" і "я працював о 8 вечора" звучать майже однаково. В англійській друге часто потребує процесу: I was working at 8. Потрібні дві деталі: was або were, потім дія з -ing.',
-    'The idea is fine, but the build breaks. English often marks a past process with was/were plus -ing: I was working at 8.',
+    'La idea esta bien, pero se rompe la construccion. El ingles suele marcar un proceso pasado con was/were mas -ing: I was working at 8.',
+    {
+      'pt-BR': 'Aqui não quebra o sentido, mas a construção. Em português, "eu trabalhei ontem" e "eu estava trabalhando às 8" podem parecer próximos. Em inglês, o segundo geralmente pede processo: I was working at 8. São duas peças: was ou were, depois a ação com -ing.',
+      vi: 'Ở đây không sai về ý, mà sai ở cách dựng câu. Trong tiếng Việt, "tôi làm việc hôm qua" và "tôi đang làm việc lúc 8 giờ" có thể khá gần nhau. Trong tiếng Anh, câu thứ hai thường cần diễn tả quá trình: I was working at 8. Cần hai phần: was hoặc were, rồi động từ với -ing.',
+      id: 'Di sini bukan maknanya yang rusak, melainkan susunannya. Dalam bahasa Indonesia, "saya bekerja kemarin" dan "saya sedang bekerja jam 8" bisa terasa dekat. Dalam bahasa Inggris, yang kedua sering membutuhkan proses: I was working at 8. Perlu dua bagian: was atau were, lalu kata kerja dengan -ing.',
+      tr: 'Burada anlam değil, kurulum bozuluyor. Türkçede "dün çalıştım" ve "saat 8de çalışıyordum" yakın görünebilir. İngilizcede ikincisi çoğu zaman süreci ister: I was working at 8. İki parça gerekir: was veya were, sonra -ing alan eylem.',
+      pl: 'Tutaj psuje się nie sens, tylko konstrukcja. Po polsku "pracowałem wczoraj" i "pracowałem o 8" mogą brzmieć podobnie. W angielskim drugie często wymaga procesu: I was working at 8. Potrzebne są dwa elementy: was albo were, potem czynność z -ing.',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     'Если речь о процессе в конкретный момент прошлого, собираем фразу через was или were и действие с -ing. С I/he/she/it обычно was. С you/we/they обычно were.',
     'Якщо йдеться про процес у конкретний момент минулого, збираємо фразу через was або were і дію з -ing. З I/he/she/it зазвичай was. З you/we/they зазвичай were.',
-    'I/he/she/it + was + -ing. You/we/they + were + -ing. At 8 yesterday and at that moment often ask for a past process.',
+    'I/he/she/it + was + -ing. You/we/they + were + -ing. At 8 yesterday y at that moment suelen pedir un proceso pasado.',
+    {
+      'pt-BR': 'Se falamos de um processo em um momento específico do passado, montamos a frase com was ou were e a ação com -ing. Com I/he/she/it, normalmente was. Com you/we/they, normalmente were.',
+      vi: 'Nếu nói về một quá trình tại một thời điểm cụ thể trong quá khứ, hãy dựng câu bằng was hoặc were và động từ thêm -ing. Với I/he/she/it thường dùng was. Với you/we/they thường dùng were.',
+      id: 'Jika yang dibicarakan adalah proses pada saat tertentu di masa lalu, susun kalimat dengan was atau were dan kata kerja berakhiran -ing. Dengan I/he/she/it biasanya was. Dengan you/we/they biasanya were.',
+      tr: 'Geçmişte belirli bir andaki süreçten söz ediyorsak, cümleyi was veya were ve -ing alan eylemle kurarız. I/he/she/it ile genelde was. You/we/they ile genelde were.',
+      pl: 'Jeśli chodzi o proces w konkretnym momencie przeszłości, składamy frazę przez was albo were i czynność z -ing. Z I/he/she/it zwykle was. Z you/we/they zwykle were.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -166,16 +271,76 @@ export const PAST_CONTINUOUS_BASIC_TRAINING: DiagnosisTraining = {
       'Past Continuous показує процес у момент: I was working at 8 yesterday.',
     ],
     es: [
-      'Past Continuous uses was/were + -ing.',
-      'I, he, she, it usually use was.',
-      'You, we, they usually use were.',
-      'A process at a specific past moment often uses Past Continuous.',
-      'At 8 yesterday, at that moment, and while often point to a past process.',
-      'Do not say I working at 8.',
-      'Do not say I was work.',
-      'Do not say They were wait.',
-      'Past Simple shows a fact.',
-      'Past Continuous shows a process at a moment.',
+      'Past Continuous usa was/were + -ing.',
+      'I, he, she, it normalmente usan was.',
+      'You, we, they normalmente usan were.',
+      'Un proceso en un momento concreto del pasado suele usar Past Continuous.',
+      'At 8 yesterday, at that moment y while suelen apuntar a un proceso pasado.',
+      'No digas I working at 8.',
+      'No digas I was work.',
+      'No digas They were wait.',
+      'Past Simple muestra un hecho.',
+      'Past Continuous muestra un proceso en un momento.',
+    ],
+    'pt-BR': [
+      'Past Continuous usa was/were + -ing.',
+      'I, he, she, it geralmente usam was.',
+      'You, we, they geralmente usam were.',
+      'Um processo em um momento específico do passado costuma usar Past Continuous.',
+      'At 8 yesterday, at that moment e while muitas vezes apontam para um processo no passado.',
+      'Não diga I working at 8.',
+      'Não diga I was work.',
+      'Não diga They were wait.',
+      'Past Simple mostra um fato.',
+      'Past Continuous mostra um processo em um momento.',
+    ],
+    vi: [
+      'Past Continuous dùng was/were + -ing.',
+      'I, he, she, it thường dùng was.',
+      'You, we, they thường dùng were.',
+      'Một quá trình tại một thời điểm cụ thể trong quá khứ thường dùng Past Continuous.',
+      'At 8 yesterday, at that moment và while thường gợi ý quá trình trong quá khứ.',
+      'Không nói I working at 8.',
+      'Không nói I was work.',
+      'Không nói They were wait.',
+      'Past Simple chỉ một sự việc.',
+      'Past Continuous chỉ quá trình tại một thời điểm.',
+    ],
+    id: [
+      'Past Continuous memakai was/were + -ing.',
+      'I, he, she, it biasanya memakai was.',
+      'You, we, they biasanya memakai were.',
+      'Proses pada momen tertentu di masa lalu sering memakai Past Continuous.',
+      'At 8 yesterday, at that moment, dan while sering menunjuk proses di masa lalu.',
+      'Jangan katakan I working at 8.',
+      'Jangan katakan I was work.',
+      'Jangan katakan They were wait.',
+      'Past Simple menunjukkan fakta.',
+      'Past Continuous menunjukkan proses pada satu momen.',
+    ],
+    tr: [
+      'Past Continuous was/were + -ing kullanır.',
+      'I, he, she, it genelde was kullanır.',
+      'You, we, they genelde were kullanır.',
+      'Geçmişte belirli bir anda süren süreç çoğu zaman Past Continuous kullanır.',
+      'At 8 yesterday, at that moment ve while çoğu zaman geçmişteki süreci gösterir.',
+      'I working at 8 deme.',
+      'I was work deme.',
+      'They were wait deme.',
+      'Past Simple bir olguyu gösterir.',
+      'Past Continuous bir andaki süreci gösterir.',
+    ],
+    pl: [
+      'Past Continuous używa was/were + -ing.',
+      'I, he, she, it zwykle używają was.',
+      'You, we, they zwykle używają were.',
+      'Proces w konkretnym momencie przeszłości często używa Past Continuous.',
+      'At 8 yesterday, at that moment i while często wskazują proces w przeszłości.',
+      'Nie mów I working at 8.',
+      'Nie mów I was work.',
+      'Nie mów They were wait.',
+      'Past Simple pokazuje fakt.',
+      'Past Continuous pokazuje proces w danym momencie.',
     ],
   },
   examples: [
@@ -183,50 +348,85 @@ export const PAST_CONTINUOUS_BASIC_TRAINING: DiagnosisTraining = {
       en: 'I was working at 8 yesterday.',
       ru: 'Я работал вчера в 8.',
       uk: 'Я працював учора о 8.',
-      es: 'I was working at 8 yesterday.',
-      why: tri('At 8 yesterday задаёт момент прошлого. Важен процесс: was working.', 'At 8 yesterday задає момент минулого. Важливий процес: was working.', 'At 8 yesterday gives a past moment. Use was working.'),
+      es: 'Ayer a las 8 estaba trabajando.',
+      'pt-BR': 'Eu estava trabalhando às 8 ontem.',
+      vi: 'Hôm qua lúc 8 giờ tôi đang làm việc.',
+      id: 'Saya sedang bekerja jam 8 kemarin.',
+      tr: 'Dün saat 8’de çalışıyordum.',
+      pl: 'Pracowałem wczoraj o 8.',
+      why: tri('At 8 yesterday задаёт момент прошлого. Важен процесс: was working.', 'At 8 yesterday задає момент минулого. Важливий процес: was working.', 'At 8 yesterday da un momento pasado. Usa was working.'),
     },
     {
       en: 'She was sleeping when I called.',
       ru: 'Она спала, когда я позвонил.',
       uk: 'Вона спала, коли я подзвонив.',
-      es: 'She was sleeping when I called.',
-      why: tri('Сон был процессом, а звонок случился внутри него. She получает was.', 'Сон був процесом, а дзвінок стався всередині нього. She отримує was.', 'Sleeping was the background process. She uses was.'),
+      es: 'Ella estaba durmiendo cuando llame.',
+      'pt-BR': 'Ela estava dormindo quando eu liguei.',
+      vi: 'Cô ấy đang ngủ khi tôi gọi.',
+      id: 'Dia sedang tidur ketika saya menelepon.',
+      tr: 'Ben aradığımda o uyuyordu.',
+      pl: 'Spała, kiedy zadzwoniłem.',
+      why: tri('Сон был процессом, а звонок случился внутри него. She получает was.', 'Сон був процесом, а дзвінок стався всередині нього. She отримує was.', 'Sleeping era el proceso de fondo. She usa was.'),
     },
     {
       en: 'They were waiting outside.',
       ru: 'Они ждали снаружи.',
       uk: 'Вони чекали зовні.',
-      es: 'They were waiting outside.',
-      why: tri('They получает were, а wait превращается в waiting.', 'They отримує were, а wait перетворюється на waiting.', 'They uses were, and wait becomes waiting.'),
+      es: 'Ellos estaban esperando afuera.',
+      'pt-BR': 'Eles estavam esperando lá fora.',
+      vi: 'Họ đang chờ bên ngoài.',
+      id: 'Mereka sedang menunggu di luar.',
+      tr: 'Dışarıda bekliyorlardı.',
+      pl: 'Czekali na zewnątrz.',
+      why: tri('They получает were, а wait превращается в waiting.', 'They отримує were, а wait перетворюється на waiting.', 'They usa were, y wait se convierte en waiting.'),
     },
     {
       en: 'We were watching TV at that moment.',
       ru: 'В тот момент мы смотрели телевизор.',
       uk: 'У той момент ми дивилися телевізор.',
-      es: 'We were watching TV at that moment.',
-      why: tri('At that moment просит показать процесс в прошлом.', 'At that moment просить показати процес у минулому.', 'At that moment asks for a process in the past.'),
+      es: 'En ese momento estabamos viendo television.',
+      'pt-BR': 'Naquele momento, estávamos assistindo TV.',
+      vi: 'Lúc đó chúng tôi đang xem TV.',
+      id: 'Saat itu kami sedang menonton TV.',
+      tr: 'O anda televizyon izliyorduk.',
+      pl: 'W tamtym momencie oglądaliśmy telewizję.',
+      why: tri('At that moment просит показать процесс в прошлом.', 'At that moment просить показати процес у минулому.', 'At that moment pide un proceso en el pasado.'),
     },
     {
       en: "I wasn't listening.",
       ru: 'Я не слушал.',
       uk: 'Я не слухав.',
-      es: "I wasn't listening.",
-      why: tri('В отрицании not приклеивается к was: was not, wasn\'t.', 'У запереченні not приєднується до was: was not, wasn\'t.', 'In a negative, not attaches to was: wasn\'t.'),
+      es: 'Yo no estaba escuchando.',
+      'pt-BR': 'Eu não estava ouvindo.',
+      vi: 'Tôi đã không nghe.',
+      id: 'Saya tidak sedang mendengarkan.',
+      tr: 'Dinlemiyordum.',
+      pl: 'Nie słuchałem.',
+      why: tri('В отрицании not приклеивается к was: was not, wasn\'t.', 'У запереченні not приєднується до was: was not, wasn\'t.', "En negativa, not se une a was: wasn't."),
     },
     {
       en: 'Were you working yesterday evening?',
       ru: 'Ты работал вчера вечером?',
       uk: 'Ти працював учора ввечері?',
-      es: 'Were you working yesterday evening?',
-      why: tri('В вопросе were выходит в начало: Were you working?', 'У питанні were виходить на початок: Were you working?', 'In a question, were comes first.'),
+      es: 'Estabas trabajando ayer por la tarde?',
+      'pt-BR': 'Você estava trabalhando ontem à noite?',
+      vi: 'Tối qua bạn có đang làm việc không?',
+      id: 'Apakah kamu sedang bekerja kemarin malam?',
+      tr: 'Dün akşam çalışıyor muydun?',
+      pl: 'Czy pracowałeś wczoraj wieczorem?',
+      why: tri('В вопросе were выходит в начало: Were you working?', 'У питанні were виходить на початок: Were you working?', 'En una pregunta, were va primero.'),
     },
     {
       en: 'It was raining all morning.',
       ru: 'Всё утро шёл дождь.',
       uk: 'Увесь ранок ішов дощ.',
-      es: 'It was raining all morning.',
-      why: tri('Дождь был длительным процессом в прошлом: was raining.', 'Дощ був тривалим процесом у минулому: was raining.', 'Rain was a continuing process in the past.'),
+      es: 'Estuvo lloviendo toda la manana.',
+      'pt-BR': 'Choveu a manhã toda.',
+      vi: 'Trời mưa suốt buổi sáng.',
+      id: 'Hujan turun sepanjang pagi.',
+      tr: 'Bütün sabah yağmur yağıyordu.',
+      pl: 'Padało przez cały ranek.',
+      why: tri('Дождь был длительным процессом в прошлом: was raining.', 'Дощ був тривалим процесом у минулому: was raining.', 'La lluvia era un proceso continuo en el pasado.'),
     },
   ],
   introBlocks: [
@@ -236,7 +436,7 @@ export const PAST_CONTINUOUS_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты говоришь о процессе в прошлом, но собираешь фразу как обычный факт. Английский различает "I worked yesterday" и "I was working at 8".',
         'Схоже, ти говориш про процес у минулому, але збираєш фразу як звичайний факт. Англійська розрізняє "I worked yesterday" і "I was working at 8".',
-        'You may be talking about a past process but building it like a simple fact.',
+        'Puede que hables de un proceso pasado, pero construyas la frase como un hecho simple.',
       ),
     },
     {
@@ -245,7 +445,7 @@ export const PAST_CONTINUOUS_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Скелет простой: was или were плюс действие с -ing. I was working. They were waiting.',
         'Скелет простий: was або were плюс дія з -ing. I was working. They were waiting.',
-        'The pattern is simple: was or were plus -ing.',
+        'El patron es simple: was o were mas -ing.',
       ),
     },
     {
@@ -254,7 +454,7 @@ export const PAST_CONTINUOUS_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Главные поломки: I working, I was work, they were wait. Исправление: I was working, they were waiting.',
         'Головні поломки: I working, I was work, they were wait. Виправлення: I was working, they were waiting.',
-        'Main mistakes: I working, I was work, they were wait. Use I was working and they were waiting.',
+        'Errores principales: I working, I was work, they were wait. Usa I was working y they were waiting.',
       ),
     },
   ],
@@ -537,10 +737,10 @@ export const PAST_CONTINUOUS_BASIC_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Обычное объяснение: показываем момент прошлого, кто делает действие и блок was/were + -ing.', 'Звичайне пояснення: показуємо момент минулого, хто робить дію і блок was/were + -ing.', 'Normal explanation: show past moment, who does the action, and was/were + -ing.'),
-    depth2: tri('Проще: это факт в прошлом или процесс в тот момент?', 'Простіше: це факт у минулому чи процес у той момент?', 'Simpler: fact in the past, or process at that moment?'),
-    depth3: tri('Ещё проще: просто факт в прошлом и процесс в точный момент прошлого собираются по-разному.', 'Ще простіше: просто факт у минулому і процес у точний момент минулого збираються по-різному.', 'Even simpler: I worked yesterday, but I was working at 8.'),
-    depth4: tri('Почти подсказка: показываем правильный блок was working или were waiting.', 'Майже підказка: показуємо правильний блок was working або were waiting.', 'Almost a hint: show was working or were waiting.'),
+    depth1: tri('Обычное объяснение: показываем момент прошлого, кто делает действие и блок was/were + -ing.', 'Звичайне пояснення: показуємо момент минулого, хто робить дію і блок was/were + -ing.', 'Explicacion normal: mostramos el momento pasado, quien hace la accion y el bloque was/were + -ing.'),
+    depth2: tri('Проще: это факт в прошлом или процесс в тот момент?', 'Простіше: це факт у минулому чи процес у той момент?', 'Mas simple: hecho en el pasado o proceso en ese momento?'),
+    depth3: tri('Ещё проще: просто факт в прошлом и процесс в точный момент прошлого собираются по-разному.', 'Ще простіше: просто факт у минулому і процес у точний момент минулого збираються по-різному.', 'Aun mas simple: I worked yesterday, pero I was working at 8.'),
+    depth4: tri('Почти подсказка: показываем правильный блок was working или were waiting.', 'Майже підказка: показуємо правильний блок was working або were waiting.', 'Casi una pista: mostramos was working o were waiting.'),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -548,7 +748,7 @@ export const PAST_CONTINUOUS_BASIC_TRAINING: DiagnosisTraining = {
       card: tri(
         'Остановись. Процесс в прошлом собирается так: was или were плюс -ing. I was working. They were waiting.',
         'Зупинись. Процес у минулому збирається так: was або were плюс -ing. I was working. They were waiting.',
-        'Pause. A past process uses was or were plus -ing.',
+        'Pausa. Un proceso pasado usa was o were mas -ing.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -556,7 +756,7 @@ export const PAST_CONTINUOUS_BASIC_TRAINING: DiagnosisTraining = {
       card: tri(
         'Система подсветит, кто делает действие, и момент прошлого. Твоя задача - выбрать was/were и не забыть -ing.',
         'Система підсвітить, хто робить дію, і момент минулого. Твоє завдання - вибрати was/were і не забути -ing.',
-        'The system highlights the doer and the past moment. Choose was/were and remember -ing.',
+        'El sistema resalta quien hace la accion y el momento pasado. Elige was/were y recuerda -ing.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -564,7 +764,7 @@ export const PAST_CONTINUOUS_BASIC_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим подсказки: сначала выбери was или were, потом проверь, есть ли -ing после действия.',
         'Режим підказки: спочатку обери was або were, потім перевір, чи є -ing після дії.',
-        'Guided mode: first choose was or were, then check -ing.',
+        'Modo guiado: primero elige was o were, luego comprueba -ing.',
       ),
     },
   },
@@ -574,28 +774,28 @@ export const PAST_CONTINUOUS_BASIC_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_past_cont_001',
-        prompt: tri('С I в этой модели нужен was или were?', 'З I у цій моделі потрібен was чи were?', 'With I, choose was or were?'),
+        prompt: tri('С I в этой модели нужен was или were?', 'З I у цій моделі потрібен was чи were?', 'Con I, elige was o were?'),
         options: ['was', 'were'],
         correctIndex: 0,
         thenReturnToExerciseId: 'past_cont_easy_001',
       },
       {
         id: 'guided_past_cont_002',
-        prompt: tri('С they в этой модели нужен was или were?', 'З they у цій моделі потрібен was чи were?', 'With they, choose was or were?'),
+        prompt: tri('С they в этой модели нужен was или were?', 'З they у цій моделі потрібен was чи were?', 'Con they, elige was o were?'),
         options: ['was', 'were'],
         correctIndex: 1,
         thenReturnToExerciseId: 'past_cont_easy_003',
       },
       {
         id: 'guided_past_cont_003',
-        prompt: tri('После was/were лучше work или working?', 'Після was/were краще work чи working?', 'After was/were, choose work or working?'),
+        prompt: tri('После was/were лучше work или working?', 'Після was/were краще work чи working?', 'Despues de was/were, elige work o working?'),
         options: ['work', 'working'],
         correctIndex: 1,
         thenReturnToExerciseId: 'past_cont_contrast_004',
       },
       {
         id: 'guided_past_cont_004',
-        prompt: tri('At 8 yesterday чаще просит факт или процесс в тот момент?', 'At 8 yesterday частіше просить факт чи процес у той момент?', 'At 8 yesterday usually asks for a fact or a process?'),
+        prompt: tri('At 8 yesterday чаще просит факт или процесс в тот момент?', 'At 8 yesterday частіше просить факт чи процес у той момент?', 'At 8 yesterday normalmente pide un hecho o un proceso?'),
         options: ['факт', 'процесс'],
         correctIndex: 1,
         thenReturnToExerciseId: 'past_cont_mixed_005',
@@ -645,7 +845,7 @@ export const PAST_CONTINUOUS_BASIC_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_started',
     answer: 'diagnosis_training_answer',
     mastery: 'diagnosis_training_mastered',
-    fallback: 'diagnosis_training_fallback',
+    recovery: 'diagnosis_training_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

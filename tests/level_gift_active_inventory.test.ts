@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loadActiveLevelGiftInventory } from '../app/level_gift_active_inventory';
+import { flashcardsPackTrialGiftKey } from '../app/target_storage_keys';
 
 jest.mock('@react-native-async-storage/async-storage');
 
@@ -28,14 +29,14 @@ describe('active level gift inventory', () => {
     mockStorage.gift_xp_bank_v1 = JSON.stringify({ remaining: 300, grantedTotal: 300, updatedAt: nowMs });
     mockStorage.gift_xp_multiplier = JSON.stringify({ multiplier: 1.5, expiresAt: nowMs + 10 * 60 * 1000 });
     mockStorage.energy_gift_bonus = JSON.stringify({ amount: 2, expiresAt: nowMs + 60 * 60 * 1000 });
-    mockStorage.flashcard_pack_trial_gift_v1 = JSON.stringify({ packId: 'official_test', expiresAt: nowMs + 2 * 60 * 60 * 1000 });
+    mockStorage[flashcardsPackTrialGiftKey('en')] = JSON.stringify({ packId: 'official_test', expiresAt: nowMs + 2 * 60 * 60 * 1000 });
     mockStorage.arena_daily_gift_bonus_v1 = JSON.stringify({ date: '2026-05-18', extra: 5 });
     mockStorage['bonus_hints_2026-05-18'] = '3';
     mockStorage.chain_shield = JSON.stringify({ daysLeft: 2, grantedAt: '2026-05-18' });
     mockStorage.wager_discount = '0.25';
     mockStorage.club_gift_free_boost_v1 = '1';
 
-    const items = await loadActiveLevelGiftInventory('uk');
+    const items = await loadActiveLevelGiftInventory('uk', nowMs, 'en');
 
     expect(items.map((item) => item.key)).toEqual([
       'xp_bank',
@@ -76,10 +77,31 @@ describe('active level gift inventory', () => {
     mockStorage.gift_xp_bank_v1 = JSON.stringify({ remaining: 0, grantedTotal: 300, updatedAt: nowMs });
     mockStorage.gift_xp_multiplier = JSON.stringify({ multiplier: 2, expiresAt: nowMs - 1 });
     mockStorage.energy_gift_bonus = JSON.stringify({ amount: 2, expiresAt: nowMs - 1 });
-    mockStorage.flashcard_pack_trial_gift_v1 = JSON.stringify({ packId: 'official_test', expiresAt: nowMs - 1 });
+    mockStorage[flashcardsPackTrialGiftKey('en')] = JSON.stringify({ packId: 'official_test', expiresAt: nowMs - 1 });
     mockStorage.arena_daily_gift_bonus_v1 = JSON.stringify({ date: '2026-05-17', extra: 5 });
     mockStorage.chain_shield = JSON.stringify({ daysLeft: 1, grantedAt: '2026-05-16' });
 
     await expect(loadActiveLevelGiftInventory('uk')).resolves.toEqual([]);
+  });
+
+  it('keeps English legacy bonus hints separate from French bonus hints', async () => {
+    mockStorage['bonus_hints_2026-05-18'] = '2';
+    mockStorage['lesson_rewards_v2::fr::bonus_hints_2026-05-18'] = '5';
+
+    await expect(loadActiveLevelGiftInventory('uk', nowMs, 'en')).resolves.toEqual([
+      expect.objectContaining({ key: 'hints', desc: '2 на сьогодні' }),
+    ]);
+    await expect(loadActiveLevelGiftInventory('uk', nowMs, 'fr')).resolves.toEqual([
+      expect.objectContaining({ key: 'hints', desc: '5 на сьогодні' }),
+    ]);
+  });
+
+  it('hides French pack trial vouchers while flashcards source gate is closed', async () => {
+    mockStorage[flashcardsPackTrialGiftKey('fr')] = JSON.stringify({
+      packId: 'official_test',
+      expiresAt: nowMs + 2 * 60 * 60 * 1000,
+    });
+
+    await expect(loadActiveLevelGiftInventory('uk', nowMs, 'fr')).resolves.toEqual([]);
   });
 });

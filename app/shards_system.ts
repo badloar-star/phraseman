@@ -37,7 +37,7 @@ export type ShardSource =
   | 'arena_win'             // +1 Победа в Арене
   | 'arena_10_wins'         // +1 Каждые 10 побед в Арене
   | 'arena_rank_up_streak'  // +1 Повышение ранга при серии 3+ побед (только новый пик)
-  | 'daily_tasks_all'       // +5 Все 3 дневных задания (кнопка «Забрать» на экране заданий)
+  | 'daily_tasks_all'       // +1 Все 3 дневных задания (кнопка «Забрать» на экране заданий)
   | 'topic_completed'       // +3 Все уроки темы (разово)
   | 'league_1st'            // +3 1-е место в лиге
   | 'league_2nd'            // +2 2-е место в лиге
@@ -59,7 +59,7 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   arena_win: 1,
   arena_10_wins: 1,
   arena_rank_up_streak: 1,
-  daily_tasks_all: 5,
+  daily_tasks_all: 1,
   topic_completed: 3,
   league_1st: 3,
   league_2nd: 2,
@@ -74,6 +74,7 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
 
 const STORAGE_KEY = 'shards_balance';
 const BALANCE_META_KEY = 'shards_balance_meta_v1';
+const STORE_PURCHASED_SHARDS_KEY = 'shards_store_purchased_total_v1';
 const ONE_TIME_KEY = 'shards_one_time_events';
 const ARENA_WINS_KEY = 'shards_arena_wins_total';
 const ADMIN_OVERRIDE_APPLIED_KEY = 'shards_admin_override_applied_at';
@@ -101,6 +102,59 @@ const parseUpdatedAtMs = (value: unknown): number | null => {
   const n = typeof value === 'number' ? value : Number(value);
   if (!Number.isFinite(n) || n <= 0) return null;
   return Math.floor(n);
+};
+
+const isStorePurchaseReason = (reason: string | null | undefined): boolean =>
+  reason === 'shards_store_purchase';
+
+const readStorePurchasedShardsTotal = async (): Promise<number> => {
+  try {
+    const raw = await AsyncStorage.getItem(STORE_PURCHASED_SHARDS_KEY);
+    return parseShardBalance(raw) ?? 0;
+  } catch {
+    return 0;
+  }
+};
+
+const bumpStorePurchasedShardsTotal = async (amount: number): Promise<number> => {
+  const safe = Math.max(0, Math.floor(Number(amount) || 0));
+  if (safe <= 0) return readStorePurchasedShardsTotal();
+  try {
+    const current = await readStorePurchasedShardsTotal();
+    const next = current + safe;
+    await AsyncStorage.setItem(STORE_PURCHASED_SHARDS_KEY, String(next));
+    return next;
+  } catch {
+    return 0;
+  }
+};
+
+const consumeStorePurchasedShardsOnSpend = async (amount: number): Promise<number> => {
+  const safe = Math.max(0, Math.floor(Number(amount) || 0));
+  if (safe <= 0) return readStorePurchasedShardsTotal();
+  try {
+    const current = await readStorePurchasedShardsTotal();
+    const next = Math.max(0, current - safe);
+    await AsyncStorage.setItem(STORE_PURCHASED_SHARDS_KEY, String(next));
+    return next;
+  } catch {
+    return 0;
+  }
+};
+
+export const getShardAchievementEligibleBalance = async (balance?: number): Promise<number> => {
+  const total = balance === undefined ? await getShardsBalance() : Math.max(0, Math.floor(Number(balance) || 0));
+  const purchased = await readStorePurchasedShardsTotal();
+  return Math.max(0, total - purchased);
+};
+
+const emitShardsBalanceUpdated = async (balance: number, meta?: ShardBalanceMeta | null): Promise<void> => {
+  const safeBalance = Math.max(0, Math.floor(Number(balance) || 0));
+  emitAppEvent('shards_balance_updated', {
+    balance: safeBalance,
+    ...(meta ? { op: meta.op, reason: meta.reason } : {}),
+    eligibleAchievementBalance: await getShardAchievementEligibleBalance(safeBalance),
+  });
 };
 
 const readBalanceMeta = async (): Promise<ShardBalanceMeta | null> => {
@@ -163,7 +217,7 @@ export const replaceShardsBalanceLocal = async (next: number): Promise<void> => 
     return;
   }
   setShardsBalanceMemory(n);
-  emitAppEvent('shards_balance_updated', { balance: n });
+  await emitShardsBalanceUpdated(n, meta);
 };
 
 // ── Лог транзакций в Firestore ────────────────────────────────────────────
@@ -252,7 +306,7 @@ export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promi
       setShardsBalanceMemory(cloudApplied.balance);
       void bumpLifetimeShardsEarned(amount);
       logShardTransaction('earn', amount, source, cloudApplied.balance, cloudApplied.balanceBefore);
-      emitAppEvent('shards_balance_updated', { balance: cloudApplied.balance });
+      await emitShardsBalanceUpdated(cloudApplied.balance, meta);
       if (!opts?.suppressEarnEvent) {
         emitAppEvent('shards_earned', { amount, reasonKey: source });
       }
@@ -270,7 +324,7 @@ export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promi
     void bumpLifetimeShardsEarned(amount);
     await syncShardsToCloud(newBalance, meta);
     logShardTransaction('earn', amount, source, newBalance, newBalance - amount);
-    emitAppEvent('shards_balance_updated', { balance: newBalance });
+    await emitShardsBalanceUpdated(newBalance, meta);
     if (!opts?.suppressEarnEvent) {
       emitAppEvent('shards_earned', { amount, reasonKey: source });
     }
@@ -296,7 +350,7 @@ export const isDailyTasksAllShardsRewardClaimedForDay = async (dayKey: string): 
 };
 
 /**
- * +5 осколков за выполнение всех 3 ежедневных заданий за день (ручной «Забрать» на экране заданий).
+ * +1 осколок за выполнение всех 3 ежедневных заданий за день (ручной «Забрать» на экране заданий).
  * При включённом облаке: одна Firestore-транзакция (маркер + баланс) — без дублей между устройствами.
  * Иначе: локальный ключ AsyncStorage + addShards (как раньше).
  */
@@ -380,7 +434,7 @@ export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<bo
     setShardsBalanceMemory(newBalance);
     void bumpLifetimeShardsEarned(amount);
     logShardTransaction('earn', amount, 'daily_tasks_all', newBalance, newBalance - amount);
-    emitAppEvent('shards_balance_updated', { balance: newBalance });
+    await emitShardsBalanceUpdated(newBalance, { updatedAtMs, op: 'earn', reason: 'daily_tasks_all' });
     emitAppEvent('shards_earned', { amount, reasonKey: 'daily_tasks_all' });
     return true;
   } catch (error) {
@@ -430,10 +484,13 @@ export const addShardsRaw = async (
         return next;
       });
       setShardsBalanceMemory(newBalance);
+      if (isStorePurchaseReason(logReason)) {
+        await bumpStorePurchasedShardsTotal(amount);
+      }
       void bumpLifetimeShardsEarned(amount);
       void syncShardsToCloud(newBalance, meta);
       void logShardTransaction('earn', amount, logReason, newBalance, newBalance - amount);
-      emitAppEvent('shards_balance_updated', { balance: newBalance });
+      await emitShardsBalanceUpdated(newBalance, meta);
       if (options.showEarnModal) {
         const k = options.earnModalKey ?? logReason ?? 'generic_raw';
         emitAppEvent('shards_earned', { amount, reasonKey: k });
@@ -447,9 +504,12 @@ export const addShardsRaw = async (
       const meta: ShardBalanceMeta = { updatedAtMs: cloudApplied.updatedAtMs, op: 'earn', reason: logReason };
       await persistLocalBalance(cloudApplied.balance, meta);
       setShardsBalanceMemory(cloudApplied.balance);
+      if (isStorePurchaseReason(logReason)) {
+        await bumpStorePurchasedShardsTotal(amount);
+      }
       void bumpLifetimeShardsEarned(amount);
       logShardTransaction('earn', amount, logReason, cloudApplied.balance, cloudApplied.balanceBefore);
-      emitAppEvent('shards_balance_updated', { balance: cloudApplied.balance });
+      await emitShardsBalanceUpdated(cloudApplied.balance, meta);
       if (options?.showEarnModal) {
         const k = options.earnModalKey ?? logReason ?? 'generic_raw';
         emitAppEvent('shards_earned', { amount, reasonKey: k });
@@ -465,6 +525,9 @@ export const addShardsRaw = async (
       return next;
     });
     setShardsBalanceMemory(newBalance);
+    if (isStorePurchaseReason(logReason)) {
+      await bumpStorePurchasedShardsTotal(amount);
+    }
     void bumpLifetimeShardsEarned(amount);
     const runServerWrites = (): void => {
       void syncShardsToCloud(newBalance, meta);
@@ -476,7 +539,7 @@ export const addShardsRaw = async (
       await syncShardsToCloud(newBalance, meta);
       logShardTransaction('earn', amount, logReason, newBalance, newBalance - amount);
     }
-    emitAppEvent('shards_balance_updated', { balance: newBalance });
+    await emitShardsBalanceUpdated(newBalance, meta);
     if (options?.showEarnModal) {
       const k = options.earnModalKey ?? logReason ?? 'generic_raw';
       emitAppEvent('shards_earned', { amount, reasonKey: k });
@@ -510,9 +573,10 @@ export const spendShards = async (
       const meta: ShardBalanceMeta = { updatedAtMs: cloudApplied.updatedAtMs, op: 'spend', reason };
       await persistLocalBalance(cloudApplied.balance, meta);
       setShardsBalanceMemory(cloudApplied.balance);
+      await consumeStorePurchasedShardsOnSpend(spendAmount);
       void bumpLifetimeShardsSpent(spendAmount);
       logShardTransaction('spend', spendAmount, reason, cloudApplied.balance, cloudApplied.balanceBefore);
-      emitAppEvent('shards_balance_updated', { balance: cloudApplied.balance });
+      await emitShardsBalanceUpdated(cloudApplied.balance, meta);
       trackShardsSpentAchievement(spendAmount);
       return true;
     }
@@ -528,6 +592,7 @@ export const spendShards = async (
     });
     if (newBalance < 0) return false;
     setShardsBalanceMemory(newBalance);
+    await consumeStorePurchasedShardsOnSpend(spendAmount);
     void bumpLifetimeShardsSpent(spendAmount);
     const runServerWrites = (): void => {
       void syncShardsToCloud(newBalance, meta);
@@ -539,7 +604,7 @@ export const spendShards = async (
       await syncShardsToCloud(newBalance, meta);
       logShardTransaction('spend', spendAmount, reason, newBalance, newBalance + spendAmount);
     }
-    emitAppEvent('shards_balance_updated', { balance: newBalance });
+    await emitShardsBalanceUpdated(newBalance, meta);
     trackShardsSpentAchievement(spendAmount);
     return true;
   } catch {
@@ -650,7 +715,7 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
         setShardsBalanceMemory(newBalance);
         void bumpLifetimeShardsEarned(amount);
         logShardTransaction('earn', amount, source, newBalance, newBalance - amount);
-        emitAppEvent('shards_balance_updated', { balance: newBalance });
+        await emitShardsBalanceUpdated(newBalance, { updatedAtMs, op: 'earn', reason: source });
         emitAppEvent('shards_earned', { amount, reasonKey: source });
         return amount;
       }
@@ -675,7 +740,7 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
       void bumpLifetimeShardsEarned(amount);
       await syncShardsToCloud(result.balance, result.meta);
       logShardTransaction('earn', amount, source, result.balance, result.balance - amount);
-      emitAppEvent('shards_balance_updated', { balance: result.balance });
+      await emitShardsBalanceUpdated(result.balance, result.meta);
       emitAppEvent('shards_earned', { amount, reasonKey: source });
     }
     return result.awarded;
@@ -772,6 +837,7 @@ export const loadShardsFromCloud = async (): Promise<void> => {
     const localMeta = await readBalanceMeta();
     const appliedOverrideAt = await AsyncStorage.getItem(ADMIN_OVERRIDE_APPLIED_KEY);
     let changed = false;
+    let appliedMeta: ShardBalanceMeta | null = null;
     // Admin override has priority: force local balance to cloud value once per override marker.
     if (cloudOverrideAt && cloudOverrideAt !== appliedOverrideAt) {
       const meta = localWriteStamp('admin', 'admin_override');
@@ -782,6 +848,7 @@ export const loadShardsFromCloud = async (): Promise<void> => {
       ]);
       setShardsBalanceMemory(cloudShards);
       changed = true;
+      appliedMeta = meta;
     } else if (
       (cloudUpdatedAt !== null && (!localMeta || cloudUpdatedAt >= localMeta.updatedAtMs))
       || (cloudUpdatedAt === null && !localMeta && cloudShards > local)
@@ -797,13 +864,17 @@ export const loadShardsFromCloud = async (): Promise<void> => {
         [BALANCE_META_KEY, JSON.stringify(meta)],
       ]);
       setShardsBalanceMemory(cloudShards);
+      if (isStorePurchaseReason(meta.reason) && cloudShards > local) {
+        await bumpStorePurchasedShardsTotal(cloudShards - local);
+      }
       changed = true;
+      appliedMeta = meta;
     } else if (localMeta && (cloudUpdatedAt === null || localMeta.updatedAtMs > cloudUpdatedAt)) {
       await syncShardsToCloud(local, localMeta);
     }
     if (changed) {
       const b = await getShardsBalance();
-      emitAppEvent('shards_balance_updated', { balance: b });
+      await emitShardsBalanceUpdated(b, appliedMeta);
     }
   } catch {}
 };

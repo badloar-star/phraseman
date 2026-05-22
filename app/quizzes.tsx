@@ -1,8 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image as ExpoImage } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
+import { LinearGradient } from '../components/SafeLinearGradient';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { usePremium } from '../components/PremiumContext';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -23,13 +23,14 @@ import AddToFlashcard from '../components/AddToFlashcard';
 import ContentWrap from '../components/ContentWrap';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { isCorrectAnswer } from '../constants/contractions';
 import { getXPProgress, screenTextOnGradient } from '../constants/theme';
 import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING } from '../constants/motion';
-import { checkAchievements } from './achievements';
+import { bumpQuizAchievementCounter, checkAchievements } from './achievements';
 import { logEnergyLimitHit } from './firebase';
 import { trackEnergyHit } from './user_stats';
 import { DEV_MODE, STORE_URL } from './config';
@@ -70,6 +71,8 @@ import {
   hasFreeDailyQuizzesLeft,
   type QuizDailyLimitState,
 } from './quiz_daily_limit';
+import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
+import { quizNavLevelKey } from './target_storage_keys';
 import { buildQuizShareMessage, quizShareMessageLang } from './quizzes/results';
 import QuizResultView from './quizzes/result_view';
 import { buildQuizRestartState, buildReviewRetryState, clearQuizPendingTimers } from './quizzes/session';
@@ -77,6 +80,13 @@ import { MultBadge, StreakBreak } from './quizzes/ui';
 
 // Используем QuizPhrase из quiz_data.ts
 type Phrase = QuizPhrase;
+
+function quizExplanationIndexForAnswer(phrase: Phrase, chosen: number | null, typedOk: boolean | null): number {
+  if (chosen !== null) return chosen;
+  if (typedOk === true) return quizPrimaryCorrectIndex(phrase.correct);
+  const wrongIdx = phrase.explanations?.findIndex((_, idx) => !isQuizChoiceCorrect(idx, phrase.correct)) ?? -1;
+  return wrongIdx >= 0 ? wrongIdx : quizPrimaryCorrectIndex(phrase.correct);
+}
 
 const quizSourceTextForPlanned = (phrase: Phrase, locale: PlannedInterfaceLang): string =>
   phrase.sourceLocale === locale ? phrase.sourceText ?? '' : '';
@@ -102,7 +112,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
   const { s, lang } = useLang();
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const { isPremium } = usePremium();
+  const { hasPremiumAccess: isPremium } = usePremium();
   const { energy, bonusEnergy, isUnlimited: entryEnergyUnlimited } = useEnergy();
   const [selected, setSelected] = useState<Level | null>(null);
   const [freeQuizState, setFreeQuizState] = useState<QuizDailyLimitState>({
@@ -265,16 +275,16 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
           const lockedByLevel = !DEV_MODE && !isPremium && lv !== 'easy';
           const lockedByDailyLimit = !DEV_MODE && !isPremium && lv === 'easy' && freeQuizState.exhausted;
           const locked   = lockedByLevel || lockedByDailyLimit;
-          const palette  = (THEME_PALETTES[themeMode] ?? THEME_PALETTES.dark)[lv];
-          const txt      = THEME_TEXT[themeMode] ?? THEME_TEXT.dark;
+          const palette  = THEME_PALETTES[themeMode][lv];
+          const txt      = THEME_TEXT[themeMode];
           const gradA    = locked ? t.bgCard    : palette.gradA;
           const gradB    = locked ? t.bgSurface : palette.gradB;
           const accent   = locked ? t.textMuted : palette.accent;
           const textCol  = locked ? t.textSecond : txt.primary;
           const textCol2 = locked ? t.textMuted  : txt.secondary;
           const isSelected = selected === lv;
-          const cardBackground = (QUIZ_LEVEL_CARD_BACKGROUNDS[themeMode] ?? QUIZ_LEVEL_CARD_BACKGROUNDS.dark)[lv];
-          const levelLogo = (QUIZ_LEVEL_LOGOS[themeMode] ?? QUIZ_LEVEL_LOGOS.dark)[lv];
+          const cardBackground = QUIZ_LEVEL_CARD_BACKGROUNDS[themeMode][lv];
+          const levelLogo = QUIZ_LEVEL_LOGOS[themeMode][lv];
 
           return (
             <View key={lv} style={{ borderRadius: 20, overflow: 'hidden' }}>
@@ -467,9 +477,10 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   const effectiveOs = useEffectivePlatformOS();
   const { theme:t , f, themeMode } = useTheme();
   const { s, lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const { activeIdx } = useTabNav();
   const router = useRouter();
-  const { isPremium } = usePremium();
+  const { hasPremiumAccess: isPremium } = usePremium();
   const insets = useSafeAreaInsets();
   const isLightTheme = false;
   const onGradPrimary = t.textPrimary;
@@ -487,18 +498,22 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   tr: cfg.labelTR,
   pl: cfg.labelPL,
 });
+  const quizBankAvailable = quizContentAvailableForTarget(studyTarget);
 
   const [retryCount, setRetryCount] = useState(0);
 
   const { phrases, phrasesLoadFailed } = useMemo((): { phrases: Phrase[]; phrasesLoadFailed: boolean } => {
+    if (!quizBankAvailable) {
+      return { phrases: [], phrasesLoadFailed: false };
+    }
     try {
-      const result = getQuizPhrasesLoaded(level, 10, lang);
+      const result = getQuizPhrasesLoaded(level, 10, lang, studyTarget);
       return { phrases: result.length > 0 ? result : [], phrasesLoadFailed: false };
     } catch (e) {
       DebugLogger.error('quizzes.tsx:loadPhrases', e, 'warning');
       return { phrases: [], phrasesLoadFailed: true };
     }
-  }, [level, lang, retryCount]);
+  }, [level, lang, quizBankAvailable, retryCount, studyTarget]);
 
   useEffect(() => {
     if (!phrasesLoadFailed) return;
@@ -642,31 +657,28 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     if (!quizSessionCountedRef.current) {
       quizSessionCountedRef.current = true;
       void (async () => {
-        const totalKey = 'achievement_quiz_total_count';
-        const prev = parseInt((await AsyncStorage.getItem(totalKey)) ?? '0', 10) || 0;
-        const next = prev + 1;
-        await AsyncStorage.setItem(totalKey, String(next));
-        await checkAchievements({ type: 'quiz_session_count', count: next });
+        const next = await bumpQuizAchievementCounter('achievement_quiz_total_count', studyTarget);
+        await checkAchievements({ type: 'quiz_session_count', count: next, studyTarget });
       })();
     }
-    checkAchievements({ type: 'quiz', level, perfect }).catch(() => {});
+    checkAchievements({ type: 'quiz', level, perfect, studyTarget }).catch(() => {});
     const doneUpdates: Parameters<typeof updateMultipleTaskProgress>[0] = [];
     if (score > 0) doneUpdates.push({ type: 'quiz_score', increment: score });
     if (perfect) {
       doneUpdates.push({ type: 'quiz_perfect', increment: 1 });
       if (level === 'hard') doneUpdates.push({ type: 'quiz_hard_perfect', increment: 1 });
     }
-    if (doneUpdates.length > 0) updateMultipleTaskProgress(doneUpdates).catch(() => {});
-  }, [done, isPremium, level, results, score]);
+    if (doneUpdates.length > 0) updateMultipleTaskProgress(doneUpdates, { studyTarget }).catch(() => {});
+  }, [done, isPremium, level, results, score, studyTarget]);
 
   useEffect(() => {
     if (!done || reviewing) return;
     let cancelled = false;
-    void checkCoachToastNeededWithAnalytics(wrongMistakesRef.current).then((decision) => {
+    void checkCoachToastNeededWithAnalytics(wrongMistakesRef.current, studyTarget, lang === 'uk' ? 'uk' : 'ru').then((decision) => {
       if (!cancelled && decision.show) setCoachToast(decision);
     });
     return () => { cancelled = true; };
-  }, [done, reviewing]);
+  }, [done, lang, reviewing, studyTarget]);
 
   // Синхронизируем isTabActive — но таймер не останавливаем
   useEffect(() => {
@@ -858,6 +870,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         'quiz',
         current.es,
         tokenMeta,
+        studyTarget,
       );
       logMistake(
         current.answer,
@@ -865,6 +878,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         'quiz',
         'wrong_pick',
         tokenMeta,
+        studyTarget,
       );
       wrongMistakesRef.current.push(tokenMeta ? { phrase: current.answer, ...tokenMeta } : current.answer);
     }
@@ -891,7 +905,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         if (level === 'hard') updates.push({ type: 'quiz_hard' });
         if (level === 'easy') updates.push({ type: 'quiz_easy' });
         if (level === 'medium') updates.push({ type: 'quiz_medium' });
-        updateMultipleTaskProgress(updates);
+        updateMultipleTaskProgress(updates, { studyTarget });
       } else {
         const currentStreak = streakRef.current;
         streakRef.current = 0;
@@ -1225,7 +1239,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
                   </Text>
                 </View>
                 <View onStartShouldSetResponder={() => true}>
-                  <AddToFlashcard en={shownCorrectEnglish} ru={current.ru} uk={current.uk} es={current.es} source="lesson" sourceId="quiz" />
+                  <AddToFlashcard en={shownCorrectEnglish} ru={current.ru} uk={current.uk} es={current.es} source="lesson" sourceId="quiz" studyTarget={studyTarget} />
                 </View>
               </View>
               {(isRight === false || typedOk === false) && displayAnswer && (
@@ -1272,7 +1286,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
           )}
           {/* РАЗБОР ОТВЕТА */}
           {(chosen !== null || typedOk !== null) && current.explanations && (() => {
-            const explanationIdx = chosen !== null ? chosen : quizPrimaryCorrectIndex(current.correct);
+            const explanationIdx = quizExplanationIndexForAnswer(current, chosen, typedOk);
             const plannedSourceExplanations = isPlannedInterfaceLang(lang)
               ? quizSourceExplanationsForPlanned(current, lang)
               : undefined;
@@ -1511,34 +1525,97 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   );
 }
 
+function FrenchQuizUnavailable() {
+  const router = useRouter();
+  const { lang } = useLang();
+  const { theme: t, f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  const copy = frenchQuizGateCopy(lang);
+
+  return (
+    <ScreenGradient artBackdrop="quizzes">
+      <ContentWrap>
+        <View style={{ flex: 1, justifyContent: 'center', padding: 24 }}>
+          <View style={{
+            borderRadius: 18,
+            borderWidth: 1,
+            borderColor: t.border,
+            backgroundColor: t.bgCard,
+            padding: 18,
+            gap: 12,
+          }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <Ionicons name="lock-closed-outline" size={22} color={t.accent} />
+              <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', flex: 1 }}>
+                {copy.title}
+              </Text>
+            </View>
+            <Text style={{ color: t.textMuted, fontSize: f.body, lineHeight: f.body * 1.35 }}>
+              {copy.body}
+            </Text>
+            <TouchableOpacity
+              activeOpacity={0.86}
+              onPress={() => { hapticTap(); router.push('/(tabs)/lessons' as any); }}
+              style={{
+                minHeight: 46,
+                borderRadius: 14,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: t.accent,
+              }}
+            >
+              <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '900' }}>
+                {copy.cta}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ContentWrap>
+    </ScreenGradient>
+  );
+}
+
 // ── КОРНЕВОЙ КОМПОНЕНТ ───────────────────────────────────────────────────────
 export default function QuizzesScreen() {
   const [level, setLevel] = useState<Level|null>(null);
   const [gameKey, setGameKey] = useState(0);
-  const { isPremium } = usePremium();
+  const { hasPremiumAccess: isPremium } = usePremium();
   const router = useRouter();
+  const { studyTarget } = useStudyTarget();
+  const frenchQuizBlocked = !quizContentAvailableForTarget(studyTarget);
   const { energy, bonusEnergy, isUnlimited } = useEnergy();
   const energySnapRef = useRef({ e: 0, b: 0, u: false });
   energySnapRef.current = { e: energy, b: bonusEnergy, u: isUnlimited };
 
   useEffect(() => {
+    if (frenchQuizBlocked) setLevel(null);
+  }, [frenchQuizBlocked]);
+
+  useFocusEffect(useCallback(() => {
+    let cancelled = false;
     void (async () => {
-      const val = await AsyncStorage.getItem('quiz_nav_level');
+      const navKey = quizNavLevelKey(studyTarget);
+      const val = await AsyncStorage.getItem(navKey);
       if (val === 'hard' || val === 'medium' || val === 'easy') {
         await new Promise(r => setTimeout(r, 200));
+        if (cancelled) return;
+        if (frenchQuizBlocked) {
+          await AsyncStorage.removeItem(navKey);
+          return;
+        }
         if (!DEV_MODE && !isPremium && val !== 'easy') {
-          await AsyncStorage.removeItem('quiz_nav_level');
+          await AsyncStorage.removeItem(navKey);
           router.push({ pathname: '/premium_modal', params: { context: val === 'hard' ? 'quiz_hard' : 'quiz_medium' } } as any);
           return;
         }
         if (!DEV_MODE && !isPremium && val === 'easy' && !(await hasFreeDailyQuizzesLeft())) {
-          await AsyncStorage.removeItem('quiz_nav_level');
+          await AsyncStorage.removeItem(navKey);
           router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
           return;
         }
         const snap = energySnapRef.current;
         if (!snap.u && snap.e + snap.b <= 0) {
-          await AsyncStorage.removeItem('quiz_nav_level');
+          await AsyncStorage.removeItem(navKey);
           emitAppEvent('action_toast', {
             type: 'error',
             messageRu: 'Недостаточно энергии для квиза.',
@@ -1550,16 +1627,22 @@ export default function QuizzesScreen() {
         if (!DEV_MODE && !isPremium && val === 'easy') {
           const nextState = await consumeFreeDailyQuizStart();
           if (!nextState) {
-            await AsyncStorage.removeItem('quiz_nav_level');
+            await AsyncStorage.removeItem(navKey);
             router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
             return;
           }
         }
-        await AsyncStorage.removeItem('quiz_nav_level');
+        await AsyncStorage.removeItem(navKey);
+        setGameKey(k => k + 1);
         setLevel(val as Level);
       }
     })();
-  }, [isPremium, router]);
+    return () => { cancelled = true; };
+  }, [frenchQuizBlocked, isPremium, router, studyTarget]));
+
+  if (frenchQuizBlocked) {
+    return <FrenchQuizUnavailable />;
+  }
 
   return (
     <View style={{ flex: 1 }}>

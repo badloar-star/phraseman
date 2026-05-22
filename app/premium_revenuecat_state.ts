@@ -24,21 +24,21 @@ function activePremiumEntitlement(info: CustomerInfo | null | undefined): any | 
 
 export function inferPremiumPlanFromProductId(
   productId: unknown,
-  fallback: PremiumStorePlan = 'monthly',
+  defaultPlan: PremiumStorePlan = 'monthly',
 ): PremiumStorePlan {
   const id = clean(productId).toLowerCase();
   if (/year|yearly|annual|12.?month/.test(id)) return 'yearly';
   if (/month|monthly|1.?month/.test(id)) return 'monthly';
-  return fallback;
+  return defaultPlan;
 }
 
 export function revenueCatPremiumMetadata(
   info: CustomerInfo | null | undefined,
-  fallbackProductId?: string | null,
+  defaultProductId?: string | null,
 ): RevenueCatPremiumMetadata {
   const ent = activePremiumEntitlement(info);
   const productId =
-    clean(fallbackProductId) ||
+    clean(defaultProductId) ||
     clean(ent?.productIdentifier) ||
     clean(info?.activeSubscriptions?.[0]);
   const periodType = clean(ent?.periodType).toUpperCase();

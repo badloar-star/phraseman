@@ -10,6 +10,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
+import { useStudyTarget } from './StudyTargetContext';
 import { updateMultipleTaskProgress } from '../app/daily_tasks';
 import { checkAchievements } from '../app/achievements';
 import { logFlashcardAdded } from '../app/firebase';
@@ -22,13 +23,15 @@ import {
   Flashcard,
 } from '../hooks/use-flashcards';
 import { bumpStatsDaily } from '../app/stats_daily_breakdown';
-import { setDailyPhraseSavedOnServer } from '../app/daily_phrase_system';
+import { setDailyPhraseSavedOnServerForTarget } from '../app/daily_phrase_system';
+import type { RuntimeStudyTarget } from '../app/target_storage_keys';
 
 interface Props {
   en: string;
   ru: string;
   uk: string;
   es?: string;
+  sourceLocales?: Flashcard['sourceLocales'];
   source: Flashcard['source'];
   sourceId?: string;
   size?: number;
@@ -48,19 +51,22 @@ interface Props {
   usageNoteEs?: string;
   register?: string;
   level?: string;
+  studyTarget?: RuntimeStudyTarget;
 }
 
 export default function AddToFlashcard({
-  en, ru, uk, es, source, sourceId, size = 20,
+  en, ru, uk, es, sourceLocales, source, sourceId, size = 20,
   literalRu, literalUk, literalEs,
   explanationRu, explanationUk, explanationEs,
   exampleEn, exampleRu, exampleUk, exampleEs,
   usageNoteRu, usageNoteUk, usageNoteEs,
-  register, level,
+  register, level, studyTarget,
 }: Props) {
   const { theme: t } = useTheme();
+  const { studyTarget: contextStudyTarget } = useStudyTarget();
+  const activeStudyTarget = studyTarget ?? contextStudyTarget;
   const router = useRouter();
-  const [saved, setSaved] = useState(() => isEnSavedInCacheSync(en));
+  const [saved, setSaved] = useState(() => isEnSavedInCacheSync(en, activeStudyTarget));
   const inFlightRef = useRef(false);
   /** Stale isFlashcardSaved from useEffect can resolve after a save and overwrite the icon with a false. */
   const blockStaleStorageHydrationRef = useRef(false);
@@ -96,22 +102,22 @@ export default function AddToFlashcard({
   // Sync with storage: cache hit is instant; first cold load is single AsyncStorage (deduped in loadFlashcards).
   useEffect(() => {
     blockStaleStorageHydrationRef.current = false;
-    setSaved(isEnSavedInCacheSync(en));
+    setSaved(isEnSavedInCacheSync(en, activeStudyTarget));
     let cancelled = false;
-    isFlashcardSaved(en).then(result => {
+    isFlashcardSaved(en, activeStudyTarget).then(result => {
       if (cancelled) return;
       if (blockStaleStorageHydrationRef.current) return;
       setSaved(result);
     });
     return () => { cancelled = true; };
-  }, [en]);
+  }, [activeStudyTarget, en]);
 
   const applyStorageTruthFor = useCallback((enSnap: string) => {
-    isFlashcardSaved(enSnap).then(r => {
+    isFlashcardSaved(enSnap, activeStudyTarget).then(r => {
       if (enRef.current !== enSnap) return;
       setSaved(r);
     });
-  }, []);
+  }, [activeStudyTarget]);
 
   useFocusEffect(
     useCallback(() => {
@@ -136,10 +142,10 @@ export default function AddToFlashcard({
       runStorageWork(() => {
         void (async () => {
           try {
-            const ok = await removeFlashcardByEnglish(enSnap);
+            const ok = await removeFlashcardByEnglish(enSnap, activeStudyTarget);
             if (!ok) setSaved(true);
             else if (source === 'daily_phrase') {
-              void setDailyPhraseSavedOnServer(sourceId, false);
+              void setDailyPhraseSavedOnServerForTarget(sourceId, false, activeStudyTarget);
             }
           } catch {
             setSaved(true);
@@ -158,16 +164,29 @@ export default function AddToFlashcard({
           try {
             const transcription = getTranscription(enSnap);
             const result = await addFlashcard({
-              en: enSnap, ru, uk, es, transcription, source, sourceId,
+              en: enSnap,
+              ru,
+              uk,
+              es,
+              sourceLocales: {
+                'pt-BR': sourceLocales?.['pt-BR'],
+                vi: sourceLocales?.vi,
+                id: sourceLocales?.id,
+                tr: sourceLocales?.tr,
+                pl: sourceLocales?.pl,
+              },
+              transcription,
+              source,
+              sourceId,
               literalRu, literalUk, literalEs,
               explanationRu, explanationUk, explanationEs,
               exampleEn, exampleRu, exampleUk, exampleEs,
               usageNoteRu, usageNoteUk, usageNoteEs,
               register, level,
-            });
+            }, activeStudyTarget);
             if (result === 'added') {
               if (source === 'daily_phrase') {
-                void setDailyPhraseSavedOnServer(sourceId, true);
+                void setDailyPhraseSavedOnServerForTarget(sourceId, true, activeStudyTarget);
               }
               void bumpStatsDaily('flashcards_saved', 1);
               logFlashcardAdded();
@@ -176,10 +195,10 @@ export default function AddToFlashcard({
               ];
               if (source === 'daily_phrase') {
                 updates.push({ type: 'daily_phrase_save', increment: 1 });
-                checkAchievements({ type: 'daily_phrase', action: 'save' }).catch(() => {});
+                checkAchievements({ type: 'daily_phrase', action: 'save', studyTarget: activeStudyTarget }).catch(() => {});
               }
-              checkAchievements({ type: 'flashcard_saved', source }).catch(() => {});
-              updateMultipleTaskProgress(updates).catch(() => {});
+              checkAchievements({ type: 'flashcard_saved', source, studyTarget: activeStudyTarget }).catch(() => {});
+              updateMultipleTaskProgress(updates, { studyTarget: activeStudyTarget }).catch(() => {});
             } else if (result === 'limit_reached') {
               setSaved(false);
               router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', saved: '20' } } as any);

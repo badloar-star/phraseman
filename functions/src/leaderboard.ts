@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
+import { resolveStableUidForAuth } from './auth_identity';
 
 const MAX_POINTS = 1_000_000_000;
 const MAX_WEEK_POINTS = 50_000_000;
@@ -12,7 +13,7 @@ const NAME_INDEX = 'name_index';
 const MAX_PROFILE_CARD_LEVEL = 5;
 
 function sanitizeString(value: unknown, max: number): string {
-  return String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
+  return String(value ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim().slice(0, max);
 }
 
 function readInt(value: unknown, fallback = 0): number {
@@ -23,6 +24,11 @@ function readInt(value: unknown, fallback = 0): number {
 function normalizeName(value: unknown): { name: string; nameLower: string } {
   const name = sanitizeString(value, 32);
   return { name, nameLower: name.toLowerCase() };
+}
+
+function fallbackNameForUid(stableUid: string): { name: string; nameLower: string } {
+  const suffix = stableUid.replace(/[^A-Za-z0-9]/g, '').slice(0, 8) || 'user';
+  return normalizeName(`Player_${suffix}`);
 }
 
 function assertValidName(name: string): void {
@@ -43,12 +49,12 @@ function getWeekKey(date = new Date()): string {
   return `${d.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
 }
 
-async function resolveStableUid(db: FirebaseFirestore.Firestore, authUid: string): Promise<string> {
-  const direct = await db.collection('users').doc(authUid).get().catch(() => null);
-  if (direct?.exists) return authUid;
-  const byAuth = await db.collection('users').where('firebaseAuthUid', '==', authUid).limit(1).get();
-  if (!byAuth.empty) return byAuth.docs[0].id;
-  return authUid;
+async function resolveStableUid(
+  db: FirebaseFirestore.Firestore,
+  authUid: string,
+  requestedStableId?: unknown,
+): Promise<string> {
+  return resolveStableUidForAuth(db, authUid, requestedStableId, { requireKnownIdentity: true });
 }
 
 async function assertNotBanned(db: FirebaseFirestore.Firestore, stableUid: string): Promise<void> {
@@ -61,27 +67,86 @@ async function assertNotBanned(db: FirebaseFirestore.Firestore, stableUid: strin
   }
 }
 
+function leaderboardDocIsVisible(doc: FirebaseFirestore.QueryDocumentSnapshot | FirebaseFirestore.DocumentSnapshot): boolean {
+  return doc.exists && doc.data()?.identityHidden !== true;
+}
+
+async function nameOwnerIsActive(db: FirebaseFirestore.Firestore, uid: string): Promise<boolean> {
+  const cleanUid = sanitizeString(uid, 180);
+  if (!cleanUid) return false;
+  const [lbSnap, userSnap] = await Promise.all([
+    db.collection('leaderboard').doc(cleanUid).get().catch(() => null),
+    db.collection('users').doc(cleanUid).get().catch(() => null),
+  ]);
+  if (lbSnap?.exists && lbSnap.data()?.identityHidden !== true) return true;
+  if (userSnap?.exists && userSnap.data()?.identityHidden !== true) return true;
+  return false;
+}
+
+async function txNameOwnerIsActive(
+  tx: FirebaseFirestore.Transaction,
+  db: FirebaseFirestore.Firestore,
+  uid: string,
+): Promise<boolean> {
+  const cleanUid = sanitizeString(uid, 180);
+  if (!cleanUid) return false;
+  const [lbSnap, userSnap] = await Promise.all([
+    tx.get(db.collection('leaderboard').doc(cleanUid)),
+    tx.get(db.collection('users').doc(cleanUid)),
+  ]);
+  if (lbSnap.exists && lbSnap.data()?.identityHidden !== true) return true;
+  if (userSnap.exists && userSnap.data()?.identityHidden !== true) return true;
+  return false;
+}
+
 export const leaderboardPushMyScore = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid);
+  const stableUid = await resolveStableUid(db, authUid, request.data?.stableId);
   await assertNotBanned(db, stableUid);
 
-  const name = sanitizeString(request.data?.name, 48);
-  if (!name) throw new HttpsError('invalid-argument', 'name_required');
+  const requestedName = normalizeName(request.data?.name);
+  if (!requestedName.name) throw new HttpsError('invalid-argument', 'name_required');
 
   const requestedPoints = Math.max(0, Math.min(MAX_POINTS, readInt(request.data?.points, 0)));
   const requestedWeekPoints = Math.max(0, Math.min(MAX_WEEK_POINTS, readInt(request.data?.weekPoints, 0)));
   const weekKey = getWeekKey();
   const ref = db.collection('leaderboard').doc(stableUid);
   const now = Date.now();
+  const sameName = await db.collection('leaderboard').where('nameLower', '==', requestedName.nameLower).limit(8).get();
+  const requestedNameTakenByOther = sameName.docs.some((d) => d.id !== stableUid && leaderboardDocIsVisible(d));
 
   let written: Record<string, unknown> = {};
   await db.runTransaction(async (tx) => {
-    const snap = await tx.get(ref);
+    const nameRef = db.collection(NAME_INDEX).doc(requestedName.nameLower);
+    const [snap, nameSnap] = await Promise.all([
+      tx.get(ref),
+      tx.get(nameRef),
+    ]);
     const cur = snap.data() || {};
+    let safeName = requestedName;
+    const indexOwner = sanitizeString(nameSnap.data()?.uid, 180);
+    const requestedNameTaken =
+      requestedNameTakenByOther ||
+      (nameSnap.exists && indexOwner !== stableUid && await txNameOwnerIsActive(tx, db, indexOwner));
+    if (requestedNameTaken) {
+      const currentName = normalizeName(cur.name);
+      safeName = currentName.name && currentName.nameLower !== requestedName.nameLower
+        ? currentName
+        : fallbackNameForUid(stableUid);
+    }
+    const safeNameRef = safeName.nameLower === requestedName.nameLower
+      ? nameRef
+      : db.collection(NAME_INDEX).doc(safeName.nameLower);
+    if (safeName.nameLower !== requestedName.nameLower) {
+      const safeNameSnap = await tx.get(safeNameRef);
+      const safeIndexOwner = sanitizeString(safeNameSnap.data()?.uid, 180);
+      if (safeNameSnap.exists && safeIndexOwner !== stableUid && await txNameOwnerIsActive(tx, db, safeIndexOwner)) {
+        safeName = fallbackNameForUid(`${stableUid}${now}`);
+      }
+    }
     const oldPoints = Math.max(0, readInt(cur.points, 0));
     const oldWeekPoints = cur.weekKey === weekKey ? Math.max(0, readInt(cur.weekPoints, 0)) : 0;
     const points = snap.exists
@@ -90,8 +155,8 @@ export const leaderboardPushMyScore = onCall(HOT_CALLABLE_OPTIONS, async (reques
     const weekPoints = Math.max(oldWeekPoints, Math.min(requestedWeekPoints, oldWeekPoints + MAX_SINGLE_SCORE_JUMP));
 
     written = {
-      name,
-      nameLower: name.toLowerCase(),
+      name: safeName.name,
+      nameLower: safeName.nameLower,
       points,
       weekPoints,
       weekKey,
@@ -102,6 +167,7 @@ export const leaderboardPushMyScore = onCall(HOT_CALLABLE_OPTIONS, async (reques
       streak: Math.max(0, Math.min(100_000, readInt(request.data?.streak, 0))),
       leagueId: Math.max(0, Math.min(50, readInt(request.data?.leagueId, 0))),
       isPremium: request.data?.isPremium === true,
+      isVip: request.data?.isVip === true,
       profileCardLevel: Math.max(0, Math.min(MAX_PROFILE_CARD_LEVEL, readInt(request.data?.profileCardLevel, 0))),
       profileCardTheme: sanitizeString(request.data?.profileCardTheme, 32) || 'classic',
       profileCardMotion: sanitizeString(request.data?.profileCardMotion, 32) || 'none',
@@ -109,6 +175,13 @@ export const leaderboardPushMyScore = onCall(HOT_CALLABLE_OPTIONS, async (reques
       firebaseAuthUid: authUid,
       updatedAt: now,
     };
+    tx.set(db.collection(NAME_INDEX).doc(safeName.nameLower), {
+      uid: stableUid,
+      authUid,
+      name: safeName.name,
+      nameLower: safeName.nameLower,
+      updatedAt: now,
+    }, { merge: true });
     tx.set(ref, written, { merge: true });
   });
 
@@ -118,6 +191,7 @@ export const leaderboardPushMyScore = onCall(HOT_CALLABLE_OPTIONS, async (reques
     courseFrame: written.frame,
     courseAura: written.aura,
     courseIsPremium: written.isPremium,
+    courseIsVip: written.isVip,
     courseProfileCardLevel: written.profileCardLevel,
     courseProfileCardTheme: written.profileCardTheme,
     courseProfileCardMotion: written.profileCardMotion,
@@ -133,12 +207,21 @@ export const leaderboardUpdatePremium = onCall(HOT_CALLABLE_OPTIONS, async (requ
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid);
+  const stableUid = await resolveStableUid(db, authUid, request.data?.stableId);
   await assertNotBanned(db, stableUid);
-  const isPremium = request.data?.isPremium === true;
+  const updates: Record<string, unknown> = { firebaseAuthUid: authUid, updatedAt: Date.now() };
+  const arenaUpdates: Record<string, unknown> = { courseDisplayAt: Date.now() };
+  if (Object.prototype.hasOwnProperty.call(request.data ?? {}, 'isPremium')) {
+    updates.isPremium = request.data?.isPremium === true;
+    arenaUpdates.courseIsPremium = updates.isPremium;
+  }
+  if (Object.prototype.hasOwnProperty.call(request.data ?? {}, 'isVip')) {
+    updates.isVip = request.data?.isVip === true;
+    arenaUpdates.courseIsVip = updates.isVip;
+  }
   await Promise.all([
-    db.collection('leaderboard').doc(stableUid).set({ isPremium, firebaseAuthUid: authUid, updatedAt: Date.now() }, { merge: true }),
-    db.collection('arena_profiles').doc(authUid).set({ courseIsPremium: isPremium, courseDisplayAt: Date.now() }, { merge: true }),
+    db.collection('leaderboard').doc(stableUid).set(updates, { merge: true }),
+    db.collection('arena_profiles').doc(authUid).set(arenaUpdates, { merge: true }),
   ]);
   return { ok: true };
 });
@@ -147,7 +230,7 @@ export const leaderboardUpdateDailyAnalytics = onCall(HOT_CALLABLE_OPTIONS, asyn
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid);
+  const stableUid = await resolveStableUid(db, authUid, request.data?.stableId);
   await assertNotBanned(db, stableUid);
 
   const daily7xp = Math.max(0, Math.min(MAX_DAILY7_XP, readInt(request.data?.daily7xp, 0)));
@@ -164,17 +247,18 @@ export const leaderboardUpdateDailyAnalytics = onCall(HOT_CALLABLE_OPTIONS, asyn
 export const nameCheckAvailability = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
-  const stableUid = await resolveStableUid(db, request.auth.uid);
+  const stableUid = await resolveStableUid(db, request.auth.uid, request.data?.stableId);
   const { name, nameLower } = normalizeName(request.data?.name);
   assertValidName(name);
 
   const idxSnap = await db.collection(NAME_INDEX).doc(nameLower).get();
-  if (idxSnap.exists && idxSnap.data()?.uid !== stableUid) {
+  const indexOwner = sanitizeString(idxSnap.data()?.uid, 180);
+  if (idxSnap.exists && indexOwner !== stableUid && await nameOwnerIsActive(db, indexOwner)) {
     return { ok: true, available: false };
   }
 
   const sameName = await db.collection('leaderboard').where('nameLower', '==', nameLower).limit(8).get();
-  const takenByOther = sameName.docs.some((d) => d.id !== stableUid);
+  const takenByOther = sameName.docs.some((d) => d.id !== stableUid && leaderboardDocIsVisible(d));
   return { ok: true, available: !takenByOther };
 });
 
@@ -182,7 +266,7 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid);
+  const stableUid = await resolveStableUid(db, authUid, request.data?.stableId);
   await assertNotBanned(db, stableUid);
 
   const { name, nameLower } = normalizeName(request.data?.name);
@@ -190,7 +274,7 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   assertValidName(name);
 
   const sameName = await db.collection('leaderboard').where('nameLower', '==', nameLower).limit(8).get();
-  if (sameName.docs.some((d) => d.id !== stableUid)) {
+  if (sameName.docs.some((d) => d.id !== stableUid && leaderboardDocIsVisible(d))) {
     return { ok: true, status: 'taken' };
   }
 
@@ -199,7 +283,8 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
     const nameSnap = await tx.get(nameRef);
     const oldRef = oldNameLower && oldNameLower !== nameLower ? db.collection(NAME_INDEX).doc(oldNameLower) : null;
     const oldSnap = oldRef ? await tx.get(oldRef) : null;
-    if (nameSnap.exists && nameSnap.data()?.uid !== stableUid) {
+    const indexOwner = sanitizeString(nameSnap.data()?.uid, 180);
+    if (nameSnap.exists && indexOwner !== stableUid && await txNameOwnerIsActive(tx, db, indexOwner)) {
       throw new HttpsError('already-exists', 'name_taken');
     }
 
@@ -230,7 +315,7 @@ export const nameReleaseMine = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid);
+  const stableUid = await resolveStableUid(db, authUid, request.data?.stableId);
   const candidates = new Set<string>();
 
   const names = Array.isArray(request.data?.names) ? request.data.names : [];

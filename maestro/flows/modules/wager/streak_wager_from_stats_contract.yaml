@@ -1,15 +1,33 @@
 # Assumes the current screen is Streak Stats. Places tier 0 if no active wager exists.
 appId: app.phraseman
 ---
-- scrollUntilVisible:
-    element:
-      id: "wager-open"
-    direction: DOWN
-    timeout: 30000
-    speed: 80
-    visibilityPercentage: 40
-- tapOn:
-    id: "wager-open"
+- runFlow:
+    when:
+      visible:
+        id: "wager-open"
+    commands:
+      - tapOn:
+          id: "wager-open"
+- repeat:
+    times: 5
+    commands:
+      - runFlow:
+          when:
+            notVisible:
+              id: "wager-modal"
+          commands:
+            - swipe:
+                direction: UP
+                duration: 450
+            - waitForAnimationToEnd:
+                timeout: 800
+            - runFlow:
+                when:
+                  visible:
+                    id: "wager-open"
+                commands:
+                  - tapOn:
+                      id: "wager-open"
 - extendedWaitUntil:
     visible:
       id: "wager-modal"

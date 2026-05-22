@@ -34,6 +34,12 @@ import {
 import { addShardsRaw } from '../app/shards_system';
 import { ACHIEVEMENT_ES } from '../app/achievements_es_locale';
 import { MAX_LEVEL } from '../constants/theme';
+import {
+  achievementLessonPerfectPassesKey,
+  flashcardsSavedKey,
+  lessonPassCountKey,
+  lessonProgressKey,
+} from '../app/target_storage_keys';
 
 const idsOf = (items: { id: string }[]) => items.map(x => x.id);
 
@@ -136,8 +142,8 @@ describe('achievements', () => {
     const officialSource = fs.readFileSync(officialPurchasePath, 'utf8');
     const communitySource = fs.readFileSync(communityPurchasePath, 'utf8');
 
-    expect(officialSource).toContain('trackCardPackAcquiredAchievement()');
-    expect(communitySource).toContain('trackCardPackAcquiredAchievement()');
+    expect(officialSource).toContain('trackCardPackAcquiredAchievement(studyTarget)');
+    expect(communitySource).toContain('trackCardPackAcquiredAchievement(studyTarget)');
     expect(communitySource).toContain('trackExternalShardSpendAchievement(pack.priceShards)');
   });
 
@@ -362,6 +368,87 @@ describe('achievements', () => {
     expect(unlocked.has('shards_spent_100')).toBe(true);
     expect(unlocked.has('recall_50')).toBe(true);
     expect(unlocked.has('trainer_100_correct')).toBe(true);
+  });
+
+  it('backfills common achievements from isolated French target stores', async () => {
+    const frCards = Array.from({ length: 50 }, (_, i) => ({
+      id: `fr-${i}`,
+      en: `carte ${i}`,
+      source: ['lesson', 'word', 'verb', 'daily_phrase'][i % 4],
+    }));
+    const perfectProgress = JSON.stringify(new Array(50).fill('correct'));
+    await AsyncStorage.multiSet([
+      [flashcardsSavedKey('fr'), JSON.stringify(frCards)],
+      ...Array.from({ length: 32 }, (_, i): [string, string] => [
+        lessonPassCountKey(i + 1, 'fr'),
+        '2',
+      ]),
+      ...Array.from({ length: 4 }, (_, i): [string, string] => [
+        lessonProgressKey(29 + i, 'fr'),
+        perfectProgress,
+      ]),
+    ]);
+
+    await checkAchievements({ type: 'backfill' });
+
+    const unlocked = await unlockedIds();
+    expect(unlocked.has('flashcards_save_50')).toBe(true);
+    expect(unlocked.has('flashcards_sources_4')).toBe(true);
+    expect(unlocked.has('lesson_all_2x')).toBe(true);
+    expect(unlocked.has('lesson_b2_perfect')).toBe(true);
+  });
+
+  it('aggregates live lesson achievement events across English and French stores after backfill', async () => {
+    const perfectProgress = JSON.stringify(new Array(45).fill('correct'));
+    await AsyncStorage.multiSet([
+      ['achievements_progress_backfill_v3', '1'],
+      [lessonPassCountKey(1, 'en'), '1'],
+      [lessonPassCountKey(2, 'en'), '1'],
+      [lessonPassCountKey(3, 'fr'), '1'],
+      [lessonProgressKey(1, 'en'), perfectProgress],
+      [lessonProgressKey(2, 'en'), perfectProgress],
+      [lessonProgressKey(3, 'fr'), perfectProgress],
+    ]);
+
+    await checkAchievements({
+      type: 'lesson_complete',
+      lessonCount: 1,
+      wasPerfect: true,
+      perfectCount: 1,
+      lessonId: 3,
+      studyTarget: 'fr',
+    });
+
+    const unlocked = await unlockedIds();
+    expect(unlocked.has('lesson_3')).toBe(true);
+    expect(unlocked.has('lesson_perfect3')).toBe(true);
+  });
+
+  it('keeps French perfect-pass achievement evidence isolated while unlocking the shared achievement', async () => {
+    for (let lessonId = 1; lessonId <= 32; lessonId += 1) {
+      await checkAchievements({ type: 'lesson_perfect_pass', lessonId, passCount: 1, studyTarget: 'fr' });
+      await checkAchievements({ type: 'lesson_perfect_pass', lessonId, passCount: 2, studyTarget: 'fr' });
+    }
+
+    const unlocked = await unlockedIds();
+    expect(unlocked.has('lesson_all_perfect_2x')).toBe(true);
+    await expect(AsyncStorage.getItem('achievement_lesson_1_perfect_passes_v1')).resolves.toBeNull();
+    await expect(AsyncStorage.getItem(achievementLessonPerfectPassesKey(1, 'fr'))).resolves.toBe(JSON.stringify([1, 2]));
+  });
+
+  it('shows common achievement progress from English and French lesson stores', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'achievements_screen.tsx'), 'utf8');
+    const achievementSource = fs.readFileSync(path.join(process.cwd(), 'app', 'achievements.ts'), 'utf8');
+
+    expect(source).toContain("const ACHIEVEMENT_PROGRESS_TARGETS: readonly RuntimeStudyTarget[] = ['en', 'fr']");
+    expect(source).toContain('ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => lessonProgressKey(lessonId, studyTarget))');
+    expect(source).toContain('lessonPassCountKey(lessonId, studyTarget)');
+    expect(source).toContain('achievementLessonPerfectPassesKey(lessonId, studyTarget)');
+    expect(achievementSource).toContain('achievementLessonPerfectPassesKey(lessonId, event.studyTarget)');
+    expect(achievementSource).toContain('ACHIEVEMENT_PROGRESS_TARGETS.map(studyTarget =>');
+    expect(source).not.toContain('`lesson${i + 1}_progress`');
+    expect(source).not.toContain('`lesson${i + 1}_pass_count`');
+    expect(source).not.toContain('`achievement_lesson_${i + 1}_perfect_passes_v1`');
   });
 
   it('dev smoke seed opens all achievements and fills progress counters', async () => {

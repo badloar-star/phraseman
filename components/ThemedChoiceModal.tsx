@@ -1,5 +1,5 @@
 import React from 'react';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';

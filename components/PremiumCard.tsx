@@ -17,7 +17,7 @@
  */
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity, ViewStyle } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { hapticTap } from '../hooks/use-haptics';
 import { useTheme, getVolumetricShadow } from './ThemeContext';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS } from '../constants/goldTheme';

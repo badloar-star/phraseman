@@ -10,18 +10,235 @@ const tri = (
   uk = ru,
   es = ru,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (planned[locale]) copy[locale] = planned[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = ['adjective', 'adverb', 'good/well', '-ly adverbs', 'linking verbs'];
+
+const ADJ_ADV_STEP_TRANSLATIONS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  adj_adv_easy_001: {
+    'pt-BR': 'Ela é uma boa professora.',
+    vi: 'Cô ấy là một giáo viên giỏi.',
+    id: 'Dia adalah guru yang baik.',
+    tr: 'O iyi bir öğretmen.',
+    pl: 'Ona jest dobrą nauczycielką.',
+  },
+  adj_adv_easy_002: {
+    'pt-BR': 'Ela ensina muito bem.',
+    vi: 'Cô ấy dạy rất tốt.',
+    id: 'Dia mengajar dengan sangat baik.',
+    tr: 'O çok iyi öğretir.',
+    pl: 'Ona uczy bardzo dobrze.',
+  },
+  adj_adv_easy_003: {
+    'pt-BR': 'Ele é muito cuidadoso.',
+    vi: 'Anh ấy rất cẩn thận.',
+    id: 'Dia sangat berhati-hati.',
+    tr: 'O çok dikkatli.',
+    pl: 'On jest bardzo ostrożny.',
+  },
+  adj_adv_contrast_001: {
+    'pt-BR': 'Ele deu uma resposta rápida.',
+    vi: 'Anh ấy đưa ra một câu trả lời nhanh.',
+    id: 'Dia memberikan jawaban yang cepat.',
+    tr: 'O hızlı bir cevap verdi.',
+    pl: 'On dał szybką odpowiedź.',
+  },
+  adj_adv_contrast_002: {
+    'pt-BR': 'Ele respondeu muito rapidamente.',
+    vi: 'Anh ấy trả lời rất nhanh.',
+    id: 'Dia menjawab dengan sangat cepat.',
+    tr: 'O çok hızlı cevap verdi.',
+    pl: 'On odpowiedział bardzo szybko.',
+  },
+  adj_adv_contrast_003: {
+    'pt-BR': 'Ela é uma motorista cuidadosa.',
+    vi: 'Cô ấy là một tài xế cẩn thận.',
+    id: 'Dia pengemudi yang hati-hati.',
+    tr: 'O dikkatli bir sürücü.',
+    pl: 'Ona jest ostrożnym kierowcą.',
+  },
+  adj_adv_contrast_004: {
+    'pt-BR': 'Isto é um problema sério.',
+    vi: 'Đây là một vấn đề nghiêm trọng.',
+    id: 'Ini masalah serius.',
+    tr: 'Bu ciddi bir sorun.',
+    pl: 'To poważny problem.',
+  },
+  adj_adv_contrast_005: {
+    'pt-BR': 'Por favor, dirija com cuidado.',
+    vi: 'Vui lòng lái xe cẩn thận.',
+    id: 'Tolong mengemudi dengan hati-hati.',
+    tr: 'Lütfen dikkatli sür.',
+    pl: 'Proszę, jedź ostrożnie.',
+  },
+  adj_adv_mixed_001: {
+    'pt-BR': 'Isso soa estranho.',
+    vi: 'Điều đó nghe có vẻ lạ.',
+    id: 'Itu terdengar aneh.',
+    tr: 'Bu kulağa garip geliyor.',
+    pl: 'To brzmi dziwnie.',
+  },
+  adj_adv_mixed_002: {
+    'pt-BR': 'Eu me sinto mal.',
+    vi: 'Tôi thấy không khỏe.',
+    id: 'Saya merasa tidak enak.',
+    tr: 'Kendimi kötü hissediyorum.',
+    pl: 'Czuję się źle.',
+  },
+  adj_adv_mixed_003: {
+    'pt-BR': 'Ele olhou para mim de forma estranha.',
+    vi: 'Anh ấy nhìn tôi một cách kỳ lạ.',
+    id: 'Dia menatap saya dengan aneh.',
+    tr: 'Bana tuhaf bir şekilde baktı.',
+    pl: 'On spojrzał na mnie dziwnie.',
+  },
+  adj_adv_mixed_004: {
+    'pt-BR': 'Escolha o par natural.',
+    vi: 'Chọn cặp tự nhiên.',
+    id: 'Pilih pasangan yang alami.',
+    tr: 'Doğal çifti seç.',
+    pl: 'Wybierz naturalną parę.',
+  },
+  adj_adv_mixed_005: {
+    'pt-BR': 'Escolha o par natural.',
+    vi: 'Chọn cặp tự nhiên.',
+    id: 'Pilih pasangan yang alami.',
+    tr: 'Doğal çifti seç.',
+    pl: 'Wybierz naturalną parę.',
+  },
+  adj_adv_mixed_006: {
+    'pt-BR': 'Escolha o par natural.',
+    vi: 'Chọn cặp tự nhiên.',
+    id: 'Pilih pasangan yang alami.',
+    tr: 'Doğal çifti seç.',
+    pl: 'Wybierz naturalną parę.',
+  },
+  adj_adv_mixed_007: {
+    'pt-BR': 'Escolha a frase natural.',
+    vi: 'Chọn câu tự nhiên.',
+    id: 'Pilih kalimat yang alami.',
+    tr: 'Doğal cümleyi seç.',
+    pl: 'Wybierz naturalne zdanie.',
+  },
+};
+
+const ADJ_ADV_SKILL_HINTS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  good_before_person_word: {
+    'pt-BR': 'Teacher é pessoa; antes dela use good.',
+    vi: 'Teacher là người; trước nó dùng good.',
+    id: 'Teacher adalah orang; sebelumnya gunakan good.',
+    tr: 'Teacher bir kişidir; önünde good kullan.',
+    pl: 'Teacher to osoba; przed nim użyj good.',
+  },
+  well_after_teaches: {
+    'pt-BR': 'Teaches é ação; ação usa well.',
+    vi: 'Teaches là hành động; hành động dùng well.',
+    id: 'Teaches adalah aksi; aksi memakai well.',
+    tr: 'Teaches bir eylemdir; eylem well alır.',
+    pl: 'Teaches to czynność; czynność używa well.',
+  },
+  careful_after_is: {
+    'pt-BR': 'Depois de is descrevemos a pessoa; use careful.',
+    vi: 'Sau is ta mô tả người; dùng careful.',
+    id: 'Setelah is kita menjelaskan orang; gunakan careful.',
+    tr: 'Is sonrasında kişiyi anlatırız; careful kullan.',
+    pl: 'Po is opisujemy osobę; użyj careful.',
+  },
+  quick_before_thing: {
+    'pt-BR': 'Answer é coisa; antes dela use quick.',
+    vi: 'Answer là vật/ý; trước nó dùng quick.',
+    id: 'Answer adalah benda/hal; sebelumnya gunakan quick.',
+    tr: 'Answer bir şeydir; önünde quick kullan.',
+    pl: 'Answer to rzecz; przed nią użyj quick.',
+  },
+  quickly_after_answered: {
+    'pt-BR': 'Answered é ação; use quickly.',
+    vi: 'Answered là hành động; dùng quickly.',
+    id: 'Answered adalah aksi; gunakan quickly.',
+    tr: 'Answered bir eylemdir; quickly kullan.',
+    pl: 'Answered to czynność; użyj quickly.',
+  },
+  careful_before_driver: {
+    'pt-BR': 'Driver é pessoa; use careful.',
+    vi: 'Driver là người; dùng careful.',
+    id: 'Driver adalah orang; gunakan careful.',
+    tr: 'Driver bir kişidir; careful kullan.',
+    pl: 'Driver to osoba; użyj careful.',
+  },
+  serious_before_problem: {
+    'pt-BR': 'Problem é coisa; use serious.',
+    vi: 'Problem là sự việc; dùng serious.',
+    id: 'Problem adalah hal; gunakan serious.',
+    tr: 'Problem bir şeydir; serious kullan.',
+    pl: 'Problem to rzecz; użyj serious.',
+  },
+  carefully_after_drive: {
+    'pt-BR': 'Drive é ação; use carefully.',
+    vi: 'Drive là hành động; dùng carefully.',
+    id: 'Drive adalah aksi; gunakan carefully.',
+    tr: 'Drive bir eylemdir; carefully kullan.',
+    pl: 'Drive to czynność; użyj carefully.',
+  },
+  sounds_strange_state: {
+    'pt-BR': 'Sounds descreve estado; use strange.',
+    vi: 'Sounds mô tả trạng thái; dùng strange.',
+    id: 'Sounds menjelaskan keadaan; gunakan strange.',
+    tr: 'Sounds durumu anlatır; strange kullan.',
+    pl: 'Sounds opisuje stan; użyj strange.',
+  },
+  feel_bad_state: {
+    'pt-BR': 'Feel descreve estado; use bad.',
+    vi: 'Feel mô tả trạng thái; dùng bad.',
+    id: 'Feel menjelaskan keadaan; gunakan bad.',
+    tr: 'Feel durumu anlatır; bad kullan.',
+    pl: 'Feel opisuje stan; użyj bad.',
+  },
+  looked_at_strangely_action: {
+    'pt-BR': 'Looked at descreve ação; use strangely.',
+    vi: 'Looked at mô tả hành động; dùng strangely.',
+    id: 'Looked at menjelaskan aksi; gunakan strangely.',
+    tr: 'Looked at eylemi anlatır; strangely kullan.',
+    pl: 'Looked at opisuje czynność; użyj strangely.',
+  },
+};
+
+const ADJ_ADV_GENERIC_HINTS: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'Pergunte se a palavra descreve pessoa/coisa/estado ou ação.',
+  vi: 'Hãy hỏi từ đó mô tả người/vật/trạng thái hay hành động.',
+  id: 'Tanyakan apakah kata itu menjelaskan orang/benda/keadaan atau aksi.',
+  tr: 'Kelimenin kişi/şey/durum mu yoksa eylem mi anlattığını sor.',
+  pl: 'Zapytaj, czy słowo opisuje osobę/rzecz/stan, czy czynność.',
+};
+
+function fillPlanned(copy: TriText, planned: Partial<Record<PlannedTrainingLocale, string>>): TriText {
+  const next: TriText = { ...copy };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] && planned[locale]) next[locale] = planned[locale];
+  }
+  return next;
+}
+
+function plannedAdjAdvFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): Record<PlannedTrainingLocale, string> {
+  const focus = input.focusWords.join(' / ');
+  const hints = ADJ_ADV_SKILL_HINTS[input.targetSkill] ?? ADJ_ADV_GENERIC_HINTS;
+  return {
+    'pt-BR': `Use "${input.correctAnswer}"${focus ? ` com ${focus}` : ''}. ${hints['pt-BR']}`,
+    vi: `Dùng "${input.correctAnswer}"${focus ? ` với ${focus}` : ''}. ${hints.vi}`,
+    id: `Gunakan "${input.correctAnswer}"${focus ? ` dengan ${focus}` : ''}. ${hints.id}`,
+    tr: `"${input.correctAnswer}" kullan${focus ? ` (${focus})` : ''}. ${hints.tr}`,
+    pl: `Użyj "${input.correctAnswer}"${focus ? ` z ${focus}` : ''}. ${hints.pl}`,
+  };
+}
 
 function makeStep(input: {
   id: string;
@@ -38,59 +255,90 @@ function makeStep(input: {
   finalHint: TriText;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const plannedFeedback = plannedAdjAdvFeedback(input);
+  const plannedTranslation = ADJ_ADV_STEP_TRANSLATIONS[input.id] ?? plannedFeedback;
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: fillPlanned(input.translation, plannedTranslation),
     explanationBlock: tri(
       'Сначала спроси: мы описываем человека или вещь? Тогда часто нужен короткий вид слова: good, quick, careful, strange. Или мы описываем действие? Тогда часто нужен how-кусок: well, quickly, carefully, strangely.',
       'Спочатку спитай: ми описуємо людину або річ? Тоді часто потрібен короткий вид слова: good, quick, careful, strange. Або ми описуємо дію? Тоді часто потрібен how-шматок: well, quickly, carefully, strangely.',
       'First ask: are we describing a person/thing/state, or the action? Person/thing/state: good, quick, careful. Action: well, quickly, carefully.',
+      {
+        'pt-BR': 'Primeiro pergunte: descrevemos pessoa/coisa/estado ou a ação? Pessoa/coisa/estado: good, quick, careful. Ação: well, quickly, carefully.',
+        vi: 'Trước tiên hãy hỏi: ta mô tả người/vật/trạng thái hay hành động? Người/vật/trạng thái: good, quick, careful. Hành động: well, quickly, carefully.',
+        id: 'Tanyakan dulu: kita menjelaskan orang/benda/keadaan atau aksinya? Orang/benda/keadaan: good, quick, careful. Aksi: well, quickly, carefully.',
+        tr: 'Önce sor: kişi/şey/durum mu anlatıyoruz, yoksa eylemi mi? Kişi/şey/durum: good, quick, careful. Eylem: well, quickly, carefully.',
+        pl: 'Najpierw zapytaj: opisujemy osobę/rzecz/stan czy czynność? Osoba/rzecz/stan: good, quick, careful. Czynność: well, quickly, carefully.',
+      },
     ),
     microTask: tri(
       'Выбери слово, которое подходит к смыслу фразы.',
       'Обери слово, яке підходить до змісту фрази.',
       'Choose the word that fits the sentence.',
+      {
+        'pt-BR': 'Escolha a palavra que combina com o sentido da frase.',
+        vi: 'Chọn từ phù hợp với nghĩa của câu.',
+        id: 'Pilih kata yang cocok dengan makna kalimat.',
+        tr: 'Cümlenin anlamına uyan kelimeyi seç.',
+        pl: 'Wybierz słowo pasujące do sensu zdania.',
+      },
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: fillPlanned(input.correctFeedback, plannedFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
         .map((option) => [
           option,
-          input.wrong[option] ??
+          fillPlanned(input.wrong[option] ??
             tri(
               `Почти, но здесь нужен другой кусок. Нормально звучит: ${input.correctAnswer}.`,
               `Майже, але тут потрібен інший шматок. Нормально звучить: ${input.correctAnswer}.`,
               `Almost. Use: ${input.correctAnswer}.`,
-            ),
+            ), plannedFeedback),
         ]),
     ),
     retryFeedback: [
-      input.clue,
+      fillPlanned(input.clue, plannedFeedback),
       tri(
         'Если слово стоит рядом с человеком или вещью, чаще нужен обычный вид. Если слово говорит, как идет действие, часто нужен хвост -ly. Good отдельно: для действия обычно well.',
         'Якщо слово стоїть поруч із людиною або річчю, частіше потрібен звичайний вид. Якщо слово каже, як іде дія, часто потрібен хвіст -ly. Good окремо: для дії зазвичай well.',
         'If it describes a person/thing/state, use the plain word. If it describes how an action happens, often use -ly. Good becomes well for actions.',
+        {
+          'pt-BR': 'Se descreve pessoa/coisa/estado, use a palavra simples. Se descreve como uma ação acontece, muitas vezes use -ly. Good vira well para ações.',
+          vi: 'Nếu mô tả người/vật/trạng thái, dùng từ đơn giản. Nếu mô tả hành động diễn ra như thế nào, thường dùng -ly. Good thành well cho hành động.',
+          id: 'Jika menjelaskan orang/benda/keadaan, pakai kata biasa. Jika menjelaskan bagaimana aksi terjadi, sering pakai -ly. Good menjadi well untuk aksi.',
+          tr: 'Kişi/şey/durum anlatıyorsa yalın kelimeyi kullan. Eylemin nasıl olduğunu anlatıyorsa çoğu zaman -ly gerekir. Good, eylemler için well olur.',
+          pl: 'Jeśli opisuje osobę/rzecz/stan, użyj zwykłej formy. Jeśli opisuje, jak dzieje się czynność, często użyj -ly. Good dla czynności zmienia się w well.',
+        },
       ),
-      input.finalHint,
+      fillPlanned(input.finalHint, plannedFeedback),
       tri(
         'Теперь выбери вариант, где слово подходит к своей роли в фразе.',
         'Тепер обери варіант, де слово підходить до своєї ролі у фразі.',
         `Answer: ${input.correctAnswer}.`,
+        plannedFeedback,
       ),
     ],
     fallbackExplanation: tri(
       'Проверяй роль слова. Если оно описывает человека, вещь или состояние, чаще нужен обычный вид. Если оно описывает действие, нужен вид "как именно". Для good в действии используем well.',
       'Перевіряй роль слова. Якщо воно описує людину, річ або стан, частіше потрібен звичайний вид. Якщо воно описує дію, потрібен вид "як саме". Для good у дії використовуємо well.',
       'Remember the pairs: good teacher / teaches well, quick answer / answers quickly, careful driver / drives carefully.',
+      {
+        'pt-BR': 'Lembre dos pares: good teacher / teaches well, quick answer / answers quickly, careful driver / drives carefully.',
+        vi: 'Hãy nhớ các cặp: good teacher / teaches well, quick answer / answers quickly, careful driver / drives carefully.',
+        id: 'Ingat pasangannya: good teacher / teaches well, quick answer / answers quickly, careful driver / drives carefully.',
+        tr: 'Çiftleri hatırla: good teacher / teaches well, quick answer / answers quickly, careful driver / drives carefully.',
+        pl: 'Zapamiętaj pary: good teacher / teaches well, quick answer / answers quickly, careful driver / drives carefully.',
+      },
     ),
     focusWords: input.focusWords,
   };
@@ -107,28 +355,69 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
     'Good или well: где ломается выбор',
     'Good чи well: де ламається вибір',
     'Good or well: good teacher, but teaches well',
+    {
+      'pt-BR': 'Good ou well: good teacher, mas teaches well',
+      vi: 'Good hay well: good teacher, nhưng teaches well',
+      id: 'Good atau well: good teacher, tetapi teaches well',
+      tr: 'Good mu well mi: good teacher, ama teaches well',
+      pl: 'Good czy well: good teacher, ale teaches well',
+    },
   ),
-  shortTitle: tri('Good / Well', 'Good / Well', 'Good / Well'),
+  shortTitle: tri('Good / Well', 'Good / Well', 'Good / Well: adjetivo o adverbio', {
+    'pt-BR': 'Good / Well: adjetivo ou advérbio',
+    vi: 'Good / Well: tính từ hay trạng từ',
+    id: 'Good / Well: adjektiva atau adverbia',
+    tr: 'Good / Well: sıfat mı zarf mı',
+    pl: 'Good / Well: przymiotnik czy przysłówek',
+  }),
   shortDiagnosis: tri(
     'Ты выбираешь слово по русскому переводу, а английский смотрит на роль слова в фразе.',
     'Ти обираєш слово за перекладом, а англійська дивиться на роль слова у фразі.',
     'You choose by translation, but English checks what the word describes.',
+    {
+      'pt-BR': 'Você escolhe pela tradução, mas o inglês olha o que a palavra descreve.',
+      vi: 'Bạn chọn theo bản dịch, nhưng tiếng Anh kiểm tra từ đó mô tả gì.',
+      id: 'Kamu memilih berdasarkan terjemahan, tetapi bahasa Inggris melihat apa yang dijelaskan kata itu.',
+      tr: 'Kelimeyi çeviriye göre seçiyorsun, ama İngilizce kelimenin neyi anlattığına bakar.',
+      pl: 'Wybierasz według tłumaczenia, a angielski sprawdza, co słowo opisuje.',
+    },
   ),
   diagnosisText: tri(
     'Проблема обычно не в значении. Ты понимаешь “хороший” и “хорошо”, “осторожный” и “осторожно”. Ломается выбор куска: good teacher, но teaches well; careful driver, но drives carefully.',
     'Проблема зазвичай не у значенні. Ти розумієш “хороший” і “добре”, “обережний” і “обережно”. Ламається вибір шматка: good teacher, але teaches well; careful driver, але drives carefully.',
     'The meaning is usually clear. The chunk choice breaks: good teacher, but teaches well; careful driver, but drives carefully.',
+    {
+      'pt-BR': 'O sentido geralmente está claro. A escolha do bloco quebra: good teacher, mas teaches well; careful driver, mas drives carefully.',
+      vi: 'Nghĩa thường đã rõ. Lựa chọn cụm bị sai: good teacher, nhưng teaches well; careful driver, nhưng drives carefully.',
+      id: 'Maknanya biasanya jelas. Pilihan potongannya yang rusak: good teacher, tetapi teaches well; careful driver, tetapi drives carefully.',
+      tr: 'Anlam genelde nettir. Parça seçimi bozulur: good teacher, ama teaches well; careful driver, ama drives carefully.',
+      pl: 'Znaczenie zwykle jest jasne. Psuje się wybór kawałka: good teacher, ale teaches well; careful driver, ale drives carefully.',
+    },
   ),
   mentalModel: tri(
     'Смотри не на русский перевод, а на то, что описывает слово. Если описываем человека, вещь или состояние: good, quick, careful, strange. Если описываем действие: well, quickly, carefully, strangely.',
     'Дивись не на переклад, а на те, що описує слово. Якщо описуємо людину, річ або стан: good, quick, careful, strange. Якщо описуємо дію: well, quickly, carefully, strangely.',
     'Do not start from translation. Ask what the word describes: person/thing/state or action.',
+    {
+      'pt-BR': 'Não comece pela tradução. Pergunte o que a palavra descreve: pessoa/coisa/estado ou ação.',
+      vi: 'Đừng bắt đầu từ bản dịch. Hãy hỏi từ đó mô tả gì: người/vật/trạng thái hay hành động.',
+      id: 'Jangan mulai dari terjemahan. Tanyakan apa yang dijelaskan kata itu: orang/benda/keadaan atau aksi.',
+      tr: 'Çeviriden başlama. Kelimenin neyi anlattığını sor: kişi/şey/durum mu, eylem mi.',
+      pl: 'Nie zaczynaj od tłumaczenia. Zapytaj, co opisuje słowo: osobę/rzecz/stan czy czynność.',
+    },
   ),
   contrastSet: CONTRAST,
   coreRule: tri(
     'Обычный вид слова описывает человека, вещь или состояние. Вид с хвостом -ly обычно описывает действие. Отдельная ловушка: good для действия меняется на well.',
     'Звичайний вид слова описує людину, річ або стан. Вид із хвостом -ly зазвичай описує дію. Окрема пастка: good для дії змінюється на well.',
     'Pairs: good teacher / teaches well, quick answer / answers quickly, careful driver / drives carefully.',
+    {
+      'pt-BR': 'Pares: good teacher / teaches well, quick answer / answers quickly, careful driver / drives carefully.',
+      vi: 'Các cặp: good teacher / teaches well, quick answer / answers quickly, careful driver / drives carefully.',
+      id: 'Pasangan: good teacher / teaches well, quick answer / answers quickly, careful driver / drives carefully.',
+      tr: 'Çiftler: good teacher / teaches well, quick answer / answers quickly, careful driver / drives carefully.',
+      pl: 'Pary: good teacher / teaches well, quick answer / answers quickly, careful driver / drives carefully.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -199,7 +488,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       id: 'Dia adalah guru yang baik.',
       tr: 'O iyi bir öğretmen.',
       pl: 'Ona jest dobrą nauczycielką.',
-      why: tri('Good стоит рядом с teacher: описываем человека.', 'Good стоїть поруч із teacher: описуємо людину.', 'Good describes teacher.'),
+      why: tri('Good стоит рядом с teacher: описываем человека.', 'Good стоїть поруч із teacher: описуємо людину.', 'Good describes teacher.', { 'pt-BR': 'Good fica junto de teacher: descrevemos uma pessoa.', vi: 'Good đứng cạnh teacher: ta mô tả người.', id: 'Good berdiri dekat teacher: kita menjelaskan orang.', tr: 'Good, teacher yanında durur: kişiyi anlatıyoruz.', pl: 'Good stoi przy teacher: opisujemy osobę.' }),
     },
     {
       en: 'She teaches well.',
@@ -211,7 +500,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       id: 'Dia mengajar dengan baik.',
       tr: 'O iyi öğretir.',
       pl: 'Ona dobrze uczy.',
-      why: tri('Well говорит, как она teaches.', 'Well каже, як вона teaches.', 'Well describes how she teaches.'),
+      why: tri('Well говорит, как она teaches.', 'Well каже, як вона teaches.', 'Well describes how she teaches.', { 'pt-BR': 'Well diz como ela teaches.', vi: 'Well nói cô ấy teaches như thế nào.', id: 'Well menjelaskan bagaimana dia teaches.', tr: 'Well, onun nasıl teaches yaptığını anlatır.', pl: 'Well mówi, jak ona teaches.' }),
     },
     {
       en: 'He gave a quick answer.',
@@ -223,7 +512,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       id: 'Dia memberikan jawaban yang cepat.',
       tr: 'O hızlı bir cevap verdi.',
       pl: 'On dał szybką odpowiedź.',
-      why: tri('Quick стоит рядом с answer: описываем вещь.', 'Quick стоїть поруч із answer: описуємо річ.', 'Quick describes answer.'),
+      why: tri('Quick стоит рядом с answer: описываем вещь.', 'Quick стоїть поруч із answer: описуємо річ.', 'Quick describes answer.', { 'pt-BR': 'Quick fica junto de answer: descrevemos uma coisa.', vi: 'Quick đứng cạnh answer: ta mô tả vật/ý.', id: 'Quick berdiri dekat answer: kita menjelaskan benda/hal.', tr: 'Quick, answer yanında durur: bir şeyi anlatıyoruz.', pl: 'Quick stoi przy answer: opisujemy rzecz.' }),
     },
     {
       en: 'He answered quickly.',
@@ -235,7 +524,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       id: 'Dia menjawab dengan cepat.',
       tr: 'O hızlıca cevap verdi.',
       pl: 'On szybko odpowiedział.',
-      why: tri('Quickly говорит, как он answered.', 'Quickly каже, як він answered.', 'Quickly describes how he answered.'),
+      why: tri('Quickly говорит, как он answered.', 'Quickly каже, як він answered.', 'Quickly describes how he answered.', { 'pt-BR': 'Quickly diz como ele answered.', vi: 'Quickly nói anh ấy answered như thế nào.', id: 'Quickly menjelaskan bagaimana dia answered.', tr: 'Quickly, onun nasıl answered yaptığını anlatır.', pl: 'Quickly mówi, jak on answered.' }),
     },
     {
       en: 'Be careful.',
@@ -247,7 +536,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       id: 'Berhati-hatilah.',
       tr: 'Dikkatli ol.',
       pl: 'Bądź ostrożny.',
-      why: tri('После be описываем состояние человека: careful.', 'Після be описуємо стан людини: careful.', 'After be, use careful.'),
+      why: tri('После be описываем состояние человека: careful.', 'Після be описуємо стан людини: careful.', 'After be, use careful.', { 'pt-BR': 'Depois de be descrevemos o estado da pessoa: careful.', vi: 'Sau be ta mô tả trạng thái của người: careful.', id: 'Setelah be kita menjelaskan keadaan orang: careful.', tr: 'Be sonrasında kişinin durumunu anlatırız: careful.', pl: 'Po be opisujemy stan osoby: careful.' }),
     },
     {
       en: 'Drive carefully.',
@@ -259,7 +548,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       id: 'Mengemudilah dengan hati-hati.',
       tr: 'Dikkatli sür.',
       pl: 'Jedź ostrożnie.',
-      why: tri('Carefully говорит, как drive.', 'Carefully каже, як drive.', 'Carefully describes how you drive.'),
+      why: tri('Carefully говорит, как drive.', 'Carefully каже, як drive.', 'Carefully describes how you drive.', { 'pt-BR': 'Carefully diz como drive acontece.', vi: 'Carefully nói drive diễn ra như thế nào.', id: 'Carefully menjelaskan bagaimana drive dilakukan.', tr: 'Carefully, drive eyleminin nasıl olduğunu anlatır.', pl: 'Carefully mówi, jak odbywa się drive.' }),
     },
     {
       en: 'It sounds strange.',
@@ -271,7 +560,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       id: 'Itu terdengar aneh.',
       tr: 'Bu kulağa garip geliyor.',
       pl: 'To brzmi dziwnie.',
-      why: tri('Sounds здесь описывает состояние: strange.', 'Sounds тут описує стан: strange.', 'Sounds takes strange here.'),
+      why: tri('Sounds здесь описывает состояние: strange.', 'Sounds тут описує стан: strange.', 'Sounds takes strange here.', { 'pt-BR': 'Sounds aqui descreve estado: strange.', vi: 'Sounds ở đây mô tả trạng thái: strange.', id: 'Sounds di sini menjelaskan keadaan: strange.', tr: 'Sounds burada durumu anlatır: strange.', pl: 'Sounds tutaj opisuje stan: strange.' }),
     },
     {
       en: 'He looked at me strangely.',
@@ -283,7 +572,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
       id: 'Dia menatap saya dengan aneh.',
       tr: 'Bana tuhaf bir şekilde baktı.',
       pl: 'On spojrzał na mnie dziwnie.',
-      why: tri('Looked at me — действие, поэтому strangely.', 'Looked at me — дія, тому strangely.', 'Looked at me describes an action.'),
+      why: tri('Looked at me — действие, поэтому strangely.', 'Looked at me — дія, тому strangely.', 'Looked at me describes an action.', { 'pt-BR': 'Looked at me descreve uma ação, por isso strangely.', vi: 'Looked at me mô tả hành động, vì vậy dùng strangely.', id: 'Looked at me menjelaskan aksi, jadi gunakan strangely.', tr: 'Looked at me bir eylemi anlatır, bu yüzden strangely.', pl: 'Looked at me opisuje czynność, więc strangely.' }),
     },
   ],
   introBlocks: [
@@ -294,6 +583,13 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
         'Здесь не надо зубрить названия. Достаточно поймать вопрос: слово описывает человека/вещь или само действие?',
         'Тут не треба зубрити назви. Достатньо зловити питання: слово описує людину/річ чи саму дію?',
         'You do not need labels. Ask: person/thing/state, or action?',
+        {
+          'pt-BR': 'Você não precisa decorar nomes. Pergunte: a palavra descreve pessoa/coisa/estado ou a própria ação?',
+          vi: 'Bạn không cần học thuộc nhãn. Hãy hỏi: từ đó mô tả người/vật/trạng thái hay chính hành động?',
+          id: 'Kamu tidak perlu menghafal label. Tanyakan: kata itu menjelaskan orang/benda/keadaan atau aksinya sendiri?',
+          tr: 'Terimleri ezberlemene gerek yok. Sor: kelime kişi/şey/durum mu anlatıyor, yoksa eylemin kendisini mi?',
+          pl: 'Nie trzeba wkuwać nazw. Wystarczy złapać pytanie: słowo opisuje osobę/rzecz/stan czy samą czynność?',
+        },
       ),
     },
     {
@@ -303,6 +599,13 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
         'Главная пара: good teacher, но teaches well. Если держать эту пару в голове, половина ошибок исчезает.',
         'Головна пара: good teacher, але teaches well. Якщо тримати цю пару в голові, половина помилок зникає.',
         'Main pair: good teacher, but teaches well.',
+        {
+          'pt-BR': 'Par principal: good teacher, mas teaches well. Se guardar esse par, metade dos erros desaparece.',
+          vi: 'Cặp chính: good teacher, nhưng teaches well. Nếu nhớ cặp này, một nửa lỗi sẽ biến mất.',
+          id: 'Pasangan utama: good teacher, tetapi teaches well. Jika mengingat pasangan ini, separuh kesalahan hilang.',
+          tr: 'Ana çift: good teacher, ama teaches well. Bu çifti akılda tutarsan hataların yarısı kaybolur.',
+          pl: 'Główna para: good teacher, ale teaches well. Jeśli trzymasz ją w głowie, połowa błędów znika.',
+        },
       ),
     },
     {
@@ -312,6 +615,13 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
         'Быстрая проверка: если слово отвечает "какой человек или какая вещь?" - good, quick, careful. Если отвечает "как делает?" - well, quickly, carefully.',
         'Швидка перевірка: якщо слово відповідає "яка людина або яка річ?" - good, quick, careful. Якщо відповідає "як робить?" - well, quickly, carefully.',
         'Quick check: person or thing takes good/quick/careful. Action takes well/quickly/carefully.',
+        {
+          'pt-BR': 'Checagem rápida: pessoa/coisa usa good/quick/careful. Ação usa well/quickly/carefully.',
+          vi: 'Kiểm tra nhanh: người/vật dùng good/quick/careful. Hành động dùng well/quickly/carefully.',
+          id: 'Cek cepat: orang/benda memakai good/quick/careful. Aksi memakai well/quickly/carefully.',
+          tr: 'Hızlı kontrol: kişi/şey good/quick/careful alır. Eylem well/quickly/carefully alır.',
+          pl: 'Szybka kontrola: osoba/rzecz bierze good/quick/careful. Czynność bierze well/quickly/carefully.',
+        },
       ),
     },
   ],
@@ -624,10 +934,10 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Сначала найди, что описывает слово: человека/вещь/состояние или действие.', 'Спочатку знайди, що описує слово: людину/річ/стан чи дію.', 'First find what the word describes.'),
-    depth2: tri('Проще: “какой?” или “как делает?”', 'Простіше: “який?” або “як робить?”', 'Simpler: what kind, or how?'),
-    depth3: tri('Держи смысловые пары: человек или вещь отдельно, действие отдельно.', 'Тримай смислові пари: людина або річ окремо, дія окремо.', 'Use pairs: good teacher / teaches well.'),
-    depth4: tri('Почти подсказка: рядом с действием чаще нужен well/quickly/carefully.', 'Майже підказка: поруч із дією частіше потрібен well/quickly/carefully.', 'Near an action, use well/quickly/carefully.'),
+    depth1: tri('Сначала найди, что описывает слово: человека/вещь/состояние или действие.', 'Спочатку знайди, що описує слово: людину/річ/стан чи дію.', 'First find what the word describes.', { 'pt-BR': 'Primeiro encontre o que a palavra descreve: pessoa/coisa/estado ou ação.', vi: 'Trước tiên tìm xem từ đó mô tả gì: người/vật/trạng thái hay hành động.', id: 'Pertama cari apa yang dijelaskan kata itu: orang/benda/keadaan atau aksi.', tr: 'Önce kelimenin neyi anlattığını bul: kişi/şey/durum mu, eylem mi.', pl: 'Najpierw znajdź, co opisuje słowo: osobę/rzecz/stan czy czynność.' }),
+    depth2: tri('Проще: “какой?” или “как делает?”', 'Простіше: “який?” або “як робить?”', 'Simpler: what kind, or how?', { 'pt-BR': 'Mais simples: "que tipo?" ou "como faz?".', vi: 'Đơn giản hơn: "loại nào?" hay "làm như thế nào?".', id: 'Lebih sederhana: "seperti apa?" atau "bagaimana melakukannya?".', tr: 'Daha basit: "nasıl biri/şey?" mi, "nasıl yapıyor?" mu?', pl: 'Prościej: "jaki?" czy "jak robi?".' }),
+    depth3: tri('Держи смысловые пары: человек или вещь отдельно, действие отдельно.', 'Тримай смислові пари: людина або річ окремо, дія окремо.', 'Use pairs: good teacher / teaches well.', { 'pt-BR': 'Use pares de sentido: pessoa/coisa separada, ação separada.', vi: 'Giữ các cặp nghĩa: người/vật riêng, hành động riêng.', id: 'Gunakan pasangan makna: orang/benda terpisah, aksi terpisah.', tr: 'Anlam çiftlerini tut: kişi ya da şey ayrı, eylem ayrı.', pl: 'Trzymaj pary znaczeniowe: osoba/rzecz osobno, czynność osobno.' }),
+    depth4: tri('Почти подсказка: рядом с действием чаще нужен well/quickly/carefully.', 'Майже підказка: поруч із дією частіше потрібен well/quickly/carefully.', 'Near an action, use well/quickly/carefully.', { 'pt-BR': 'Quase uma dica: perto de uma ação, muitas vezes use well/quickly/carefully.', vi: 'Gần như gợi ý: cạnh hành động thường dùng well/quickly/carefully.', id: 'Hampir petunjuk: dekat aksi, sering gunakan well/quickly/carefully.', tr: 'Neredeyse ipucu: eylem yanında çoğu zaman well/quickly/carefully gerekir.', pl: 'Prawie podpowiedź: przy czynności często użyj well/quickly/carefully.' }),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -636,6 +946,13 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
         'Остановись и спроси: описываю кого-то/что-то или описываю действие?',
         'Зупинись і спитай: описую когось/щось чи описую дію?',
         'Pause and ask: person/thing/state, or action?',
+        {
+          'pt-BR': 'Pare e pergunte: estou descrevendo alguém/algo ou descrevendo uma ação?',
+          vi: 'Dừng lại và hỏi: mình đang mô tả ai/cái gì hay mô tả hành động?',
+          id: 'Berhenti dan tanyakan: aku menjelaskan seseorang/sesuatu atau menjelaskan aksi?',
+          tr: 'Dur ve sor: birini/bir şeyi mi anlatıyorum, yoksa eylemi mi?',
+          pl: 'Zatrzymaj się i zapytaj: opisuję kogoś/coś czy opisuję czynność?',
+        },
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -644,6 +961,13 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
         'Подсказка покажет, к чему относится слово, но выбор все равно за тобой.',
         'Підказка покаже, до чого належить слово, але вибір усе одно за тобою.',
         'The hint shows what the word describes, but you still choose.',
+        {
+          'pt-BR': 'A dica mostra a que a palavra se refere, mas a escolha ainda é sua.',
+          vi: 'Gợi ý sẽ cho biết từ đó gắn với gì, nhưng bạn vẫn tự chọn.',
+          id: 'Petunjuk menunjukkan kata itu merujuk ke apa, tetapi pilihan tetap milikmu.',
+          tr: 'İpucu kelimenin neye bağlı olduğunu gösterir, ama seçim yine sende.',
+          pl: 'Podpowiedź pokaże, do czego odnosi się słowo, ale wybór nadal należy do ciebie.',
+        },
       ),
     },
     afterFourWrongInSameExercise: {
@@ -652,6 +976,13 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
         'Включаем пошаговый режим: сначала смысл, потом слово.',
         'Вмикаємо покроковий режим: спочатку зміст, потім слово.',
         'Guided mode: meaning first, then the word.',
+        {
+          'pt-BR': 'Modo guiado: primeiro o sentido, depois a palavra.',
+          vi: 'Chế độ từng bước: trước tiên là nghĩa, sau đó là từ.',
+          id: 'Mode terpandu: makna dulu, lalu kata.',
+          tr: 'Rehberli mod: önce anlam, sonra kelime.',
+          pl: 'Tryb prowadzony: najpierw sens, potem słowo.',
+        },
       ),
     },
   },
@@ -661,28 +992,28 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_adj_adv_001',
-        prompt: tri('В good teacher слово good описывает teacher или teaches?', 'У good teacher слово good описує teacher чи teaches?', 'In good teacher, does good describe teacher or teaches?'),
+        prompt: tri('В good teacher слово good описывает teacher или teaches?', 'У good teacher слово good описує teacher чи teaches?', 'In good teacher, does good describe teacher or teaches?', { 'pt-BR': 'Em good teacher, good descreve teacher ou teaches?', vi: 'Trong good teacher, good mô tả teacher hay teaches?', id: 'Dalam good teacher, good menjelaskan teacher atau teaches?', tr: 'Good teacher ifadesinde good, teacher mı teaches mı anlatır?', pl: 'W good teacher słowo good opisuje teacher czy teaches?' }),
         options: ['teacher', 'teaches'],
         correctIndex: 0,
         thenReturnToExerciseId: 'adj_adv_easy_001',
       },
       {
         id: 'guided_adj_adv_002',
-        prompt: tri('В teaches well слово well говорит, как она учит?', 'У teaches well слово well каже, як вона вчить?', 'In teaches well, does well say how she teaches?'),
+        prompt: tri('В teaches well слово well говорит, как она учит?', 'У teaches well слово well каже, як вона вчить?', 'In teaches well, does well say how she teaches?', { 'pt-BR': 'Em teaches well, well diz como ela ensina?', vi: 'Trong teaches well, well nói cô ấy dạy như thế nào phải không?', id: 'Dalam teaches well, apakah well mengatakan bagaimana dia mengajar?', tr: 'Teaches well ifadesinde well, onun nasıl öğrettiğini mi söyler?', pl: 'W teaches well słowo well mówi, jak ona uczy?' }),
         options: ['yes', 'no'],
         correctIndex: 0,
         thenReturnToExerciseId: 'adj_adv_easy_002',
       },
       {
         id: 'guided_adj_adv_003',
-        prompt: tri('После is в He is ___ мы описываем человека?', 'Після is у He is ___ ми описуємо людину?', 'After is in He is ___, are we describing the person?'),
+        prompt: tri('После is в He is ___ мы описываем человека?', 'Після is у He is ___ ми описуємо людину?', 'After is in He is ___, are we describing the person?', { 'pt-BR': 'Depois de is em He is ___, descrevemos a pessoa?', vi: 'Sau is trong He is ___, ta đang mô tả người phải không?', id: 'Setelah is dalam He is ___, apakah kita menjelaskan orangnya?', tr: 'He is ___ içinde is sonrasında kişiyi mi anlatıyoruz?', pl: 'Po is w He is ___ opisujemy osobę?' }),
         options: ['yes', 'no'],
         correctIndex: 0,
         thenReturnToExerciseId: 'adj_adv_easy_003',
       },
       {
         id: 'guided_adj_adv_004',
-        prompt: tri('В drive ___ мы говорим, как водить?', 'У drive ___ ми кажемо, як водити?', 'In drive ___, do we say how to drive?'),
+        prompt: tri('В drive ___ мы говорим, как водить?', 'У drive ___ ми кажемо, як водити?', 'In drive ___, do we say how to drive?', { 'pt-BR': 'Em drive ___, dizemos como dirigir?', vi: 'Trong drive ___, ta nói lái xe như thế nào phải không?', id: 'Dalam drive ___, apakah kita mengatakan bagaimana mengemudi?', tr: 'Drive ___ içinde nasıl sürüldüğünü mü söylüyoruz?', pl: 'W drive ___ mówimy, jak prowadzić?' }),
         options: ['yes', 'no'],
         correctIndex: 0,
         thenReturnToExerciseId: 'adj_adv_contrast_005',
@@ -694,7 +1025,13 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'adverb',
     microDiagnosisId: 'adjective_vs_adverb',
-    diagnosisLabel: tri('Good / Well', 'Good / Well', 'Good / Well'),
+    diagnosisLabel: tri('Good / Well', 'Good / Well', 'Good / Well: adjetivo o adverbio', {
+      'pt-BR': 'Good / Well: adjetivo ou advérbio',
+      vi: 'Good / Well: tính từ hay trạng từ',
+      id: 'Good / Well: adjektiva atau adverbia',
+      tr: 'Good / Well: sıfat mı zarf mı',
+      pl: 'Good / Well: przymiotnik czy przysłówek',
+    }),
     contrastSet: CONTRAST,
     focusWords: ['good', 'well', 'quick', 'quickly', 'careful', 'carefully', 'strange', 'strangely'],
     focusPatterns: [
@@ -725,7 +1062,7 @@ export const ADJECTIVE_VS_ADVERB_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_adjective_vs_adverb_start',
     answer: 'diagnosis_training_adjective_vs_adverb_answer',
     mastery: 'diagnosis_training_adjective_vs_adverb_mastery',
-    fallback: 'diagnosis_training_adjective_vs_adverb_fallback',
+    recovery: 'diagnosis_training_adjective_vs_adverb_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

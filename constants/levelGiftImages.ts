@@ -64,6 +64,9 @@ const LEVEL_GIFT_IMAGES: Record<
   },
 };
 
+export const LEVEL_GIFT_IMAGE_SOURCES: readonly ImageSourcePropType[] = Object.values(LEVEL_GIFT_IMAGES)
+  .flatMap(themeImages => Object.values(themeImages));
+
 const isLevelGiftImageTheme = (theme: string | null | undefined): theme is LevelGiftImageTheme =>
   LEVEL_GIFT_IMAGE_THEMES.includes(theme as LevelGiftImageTheme);
 
@@ -77,5 +80,6 @@ export function getLevelGiftImage(
   const safeTheme = isLevelGiftImageTheme(theme) ? theme : DEFAULT_THEME;
   const safeVariant = isLevelGiftImageVariant(variant) ? variant : DEFAULT_VARIANT;
 
-  return LEVEL_GIFT_IMAGES[safeTheme][safeVariant];
+  const image = LEVEL_GIFT_IMAGES[safeTheme][safeVariant];
+  return image;
 }

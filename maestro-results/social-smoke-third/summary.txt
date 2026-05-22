@@ -1,0 +1,4 @@
+FAIL friends_open_and_search_contract exit=1
+FAIL league_chat_send_message exit=1
+FAIL league_chat_second_account_actions exit=1
+FAIL friends_arena_challenge_contract exit=1

@@ -11,7 +11,7 @@
 //
 // Принципы:
 //  - Только позитивные/мотивирующие формулировки. Никаких «ты хуже X».
-//  - Если активных тегов < 3 → дополняем generic-строками.
+//  - Если активных тегов < 3 → дополняем базовыми generic-строками.
 //  - All costs are computed on READ (не на записи), чтобы не блокировать UI.
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -98,7 +98,7 @@ export interface PersonalizedTag {
   weight: number;
 }
 
-/** Generic-теги — используются как fallback если активных тегов < 3. */
+/** Generic-теги — используются для заполнения, если активных тегов < 3. */
 const GENERIC_TAGS: PersonalizedTag[] = [
   {
     key: 'generic_energy',

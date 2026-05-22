@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "gustav-run-manifest-v0",
+  "runId": "YYYY-MM-DD_fr_inventory_shortHash",
+  "createdAt": "2026-05-19T00:00:00.000Z",
+  "mode": "inventory",
+  "repoRoot": "/Users/maksymbabiev/Documents/phraseman",
+  "inputRef": {
+    "gitCommit": "",
+    "gitStatusSummary": "",
+    "atlasPath": "docs/atlas/atlas.full.json",
+    "sourceGraphPath": "",
+    "sourceGraphHash": ""
+  },
+  "requestedStudyTarget": "fr",
+  "allowedSourceLocales": ["ru", "uk"],
+  "allowedWriteZones": ["docs/gustav/runs/YYYY-MM-DD_fr_inventory_shortHash"],
+  "forbiddenWriteZones": ["app", "constants", "scripts", "tests", "admin", "docs/heisenberg"],
+  "productWritePermission": false,
+  "explicitApprovalRef": "",
+  "agents": [],
+  "gates": [
+    {
+      "gateId": "reset",
+      "status": "pending",
+      "evidencePath": ""
+    }
+  ],
+  "notes": []
+}

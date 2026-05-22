@@ -36,7 +36,39 @@ const TEXTS = {
     update: 'Actualizar app',
     close: 'Cerrar',
   },
+  'pt-BR': {
+    title: 'Atualização disponível',
+    body: 'Uma nova versão do Phraseman saiu com melhorias e novos recursos.',
+    update: 'Atualizar aplicativo',
+    close: 'Fechar',
+  },
+  vi: {
+    title: 'Có bản cập nhật',
+    body: 'Phiên bản Phraseman mới đã ra mắt với các cải tiến và tính năng mới.',
+    update: 'Cập nhật ứng dụng',
+    close: 'Đóng',
+  },
+  'id': {
+    title: 'Pembaruan tersedia',
+    body: 'Versi baru Phraseman hadir dengan peningkatan dan fitur baru.',
+    update: 'Perbarui aplikasi',
+    close: 'Tutup',
+  },
+  tr: {
+    title: 'Güncelleme mevcut',
+    body: 'Phraseman uygulamasının iyileştirmeler ve yeni özellikler içeren yeni sürümü çıktı.',
+    update: 'Uygulamayı güncelle',
+    close: 'Kapat',
+  },
+  pl: {
+    title: 'Dostępna aktualizacja',
+    body: 'Pojawiła się nowa wersja Phraseman z usprawnieniami i nowymi funkcjami.',
+    update: 'Zaktualizuj aplikację',
+    close: 'Zamknij',
+  },
 } as const;
+
+const pickUpdateText = (lang: string) => TEXTS[lang as keyof typeof TEXTS] ?? TEXTS.ru;
 
 interface UpdateModalProps {
   visible: boolean;
@@ -52,7 +84,7 @@ interface UpdateModalProps {
 export default function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUrl, onExternalOpenFailed }: UpdateModalProps) {
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
-  const tx = lang === 'es' ? TEXTS.es : TEXTS[lang === 'uk' ? 'uk' : 'ru'];
+  const tx = pickUpdateText(lang);
 
   const handleUpdate = () => {
     hapticTap();

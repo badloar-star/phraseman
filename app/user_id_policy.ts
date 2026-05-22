@@ -39,7 +39,7 @@ export function clearArenaAuthUidCache(): void {
  * Auth uid для арены: matchmaking_queue, session_players, arena_sessions, arena_invites, arena_rooms.
  * firestore.rules для этих коллекций жёстко требуют request.auth.uid; stableId не подходит.
  * Дожидается signInAnonymously, чтобы не было PERMISSION_DENIED на холодном старте.
- * В Expo Go / при выключенном cloud sync возвращает stableId как fallback (для mock-сессий).
+ * В Expo Go / при выключенном cloud sync возвращает stableId для mock-сессий.
  *
  * ВАЖНО: нельзя отдавать кеш до проверки currentUser — после входа Google/Apple или после
  * signOut uid меняется, а старый кеш давал запись в очередь с чужим userId → PERMISSION_DENIED.

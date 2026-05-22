@@ -1,0 +1,42 @@
+{
+  "target": "en",
+  "signals": [],
+  "candidates": [
+    {
+      "categoryId": "conversation-repair",
+      "title": "Conversation repair moves",
+      "learnerPain": "Students do not know how to ask again, soften, or recover mid-talk.",
+      "curiosityHook": "A few repair phrases make real conversation feel possible.",
+      "firstPackShape": "12 MCQ items, A1-B1, repeat/clarify/soften/fix misunderstandings.",
+      "sourceNeeds": [
+        "ELT conversation reference",
+        "dictionary usage examples"
+      ],
+      "status": "needs_sources"
+    },
+    {
+      "categoryId": "polite-but-not-weird",
+      "title": "Polite but not weird",
+      "learnerPain": "Learners overuse direct translations and sound too blunt or too formal.",
+      "curiosityHook": "Politeness is a hidden grammar of social comfort.",
+      "firstPackShape": "12 MCQ items, A2-B1, requests, refusals, offers, thanks.",
+      "sourceNeeds": [
+        "Cambridge/Oxford usage examples",
+        "ELT pragmatics notes"
+      ],
+      "status": "needs_sources"
+    },
+    {
+      "categoryId": "tiny-prepositions-big-meaning",
+      "title": "Tiny prepositions, big meaning",
+      "learnerPain": "Learners keep mixing small fixed words in phrases they already know.",
+      "curiosityHook": "A small word can steer the whole sentence.",
+      "firstPackShape": "12 MCQ items, A1-B2, fixed phrases only, no regional edge cases.",
+      "sourceNeeds": [
+        "dictionary collocation examples",
+        "grammar reference"
+      ],
+      "status": "needs_sources"
+    }
+  ]
+}

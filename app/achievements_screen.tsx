@@ -13,6 +13,7 @@ import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import {
   ALL_ACHIEVEMENTS,
   loadAchievementStates,
@@ -30,9 +31,33 @@ import { STORE_URL, DEV_MODE, ENABLE_DEV_TOOLS } from './config';
 import { usePremium } from '../components/PremiumContext';
 import { oskolokImageForPackShards } from './oskolok';
 import { buildAchievementShareMessage } from './achievement_share';
+import {
+  achievementLessonPerfectPassesKey,
+  activeRecallAchievementCorrectCountKey,
+  comboAchievementCounterKey,
+  dailyPhraseAchievementReadCountKey,
+  dailyPhraseAchievementSaveCountKey,
+  dailyTasksAchievementAllDoneStreakKey,
+  dailyTasksAchievementNoRerollStreakKey,
+  flashcardsAchievementFlipCountKey,
+  flashcardsAchievementSavedCountKey,
+  flashcardsAchievementViewStreakKey,
+  flashcardsCommunityOwnedPacksKey,
+  flashcardsMarketDevOwnedPacksKey,
+  flashcardsOwnedPacksKey,
+  lessonPassCountKey,
+  lessonProgressKey,
+  quizAchievementCounterKey,
+  quizPerfectStreakKey,
+  shareAchievementCounterKey,
+  trainerAchievementCorrectCountKey,
+  trainerAchievementPerfectSessionCountKey,
+  type RuntimeStudyTarget,
+} from './target_storage_keys';
 
 const GRID_GAP = 10;
 const GRID_SIDE_PADDING = 36;
+const ACHIEVEMENT_PROGRESS_TARGETS: readonly RuntimeStudyTarget[] = ['en', 'fr'];
 
 function getAchievementGridMetrics(screenW: number) {
   const safeW = Math.max(1, screenW);
@@ -141,6 +166,96 @@ const readJsonStringListLength = (raw: string | null): number => {
   } catch { return 0; }
 };
 
+const readQuizAchievementCounterAcrossTargets = async (
+  rawEnglishKey: 'achievement_quiz_total_count' | 'quiz_hard_count' | 'achievement_quiz_hard_perfect_count',
+): Promise<string> => {
+  const rows = await AsyncStorage.multiGet(
+    ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => quizAchievementCounterKey(rawEnglishKey, studyTarget)),
+  );
+  const total = rows.reduce((sum, [, raw]) => sum + (parseInt(raw || '0', 10) || 0), 0);
+  return String(total);
+};
+
+const readQuizPerfectStreakAcrossTargets = async (): Promise<string> => {
+  const rows = await AsyncStorage.multiGet(
+    ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => quizPerfectStreakKey(studyTarget)),
+  );
+  const best = rows.reduce((max, [, raw]) => Math.max(max, readJsonStreak(raw)), 0);
+  return String(best);
+};
+
+const readComboBestAcrossTargets = async (): Promise<string> => {
+  const rows = await AsyncStorage.multiGet(
+    ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => comboAchievementCounterKey(studyTarget)),
+  );
+  const best = rows.reduce((max, [, raw]) => Math.max(max, parseInt(raw || '0', 10) || 0), 0);
+  return String(best);
+};
+
+const readFlashcardsCounterAcrossTargets = async (
+  keyForTarget: (studyTarget: RuntimeStudyTarget) => string,
+): Promise<string> => {
+  const rows = await AsyncStorage.multiGet(ACHIEVEMENT_PROGRESS_TARGETS.map(keyForTarget));
+  const total = rows.reduce((sum, [, raw]) => sum + (parseInt(raw || '0', 10) || 0), 0);
+  return String(total);
+};
+
+const readFlashcardsViewStreakAcrossTargets = async (): Promise<string> => {
+  const rows = await AsyncStorage.multiGet(
+    ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => flashcardsAchievementViewStreakKey(studyTarget)),
+  );
+  const best = rows.reduce((max, [, raw]) => Math.max(max, readJsonStreak(raw)), 0);
+  return String(best);
+};
+
+const readTrainerPracticeCorrectAcrossTargets = async (): Promise<string> => {
+  const rows = await AsyncStorage.multiGet(
+    ACHIEVEMENT_PROGRESS_TARGETS.flatMap((studyTarget) => [
+      activeRecallAchievementCorrectCountKey(studyTarget),
+      trainerAchievementCorrectCountKey(studyTarget),
+    ]),
+  );
+  const byTarget = new Map<RuntimeStudyTarget, { recall: number; trainer: number }>();
+  ACHIEVEMENT_PROGRESS_TARGETS.forEach((studyTarget) => byTarget.set(studyTarget, { recall: 0, trainer: 0 }));
+  for (const [key, raw] of rows) {
+    const value = parseInt(raw || '0', 10) || 0;
+    const studyTarget = ACHIEVEMENT_PROGRESS_TARGETS.find((target) =>
+      key === activeRecallAchievementCorrectCountKey(target) || key === trainerAchievementCorrectCountKey(target),
+    );
+    if (!studyTarget) continue;
+    const bucket = byTarget.get(studyTarget) ?? { recall: 0, trainer: 0 };
+    if (key === activeRecallAchievementCorrectCountKey(studyTarget)) bucket.recall = value;
+    if (key === trainerAchievementCorrectCountKey(studyTarget)) bucket.trainer = value;
+    byTarget.set(studyTarget, bucket);
+  }
+  const total = [...byTarget.values()].reduce((sum, bucket) => sum + Math.max(bucket.recall, bucket.trainer), 0);
+  return String(total);
+};
+
+const readTrainerPerfectSessionsAcrossTargets = async (): Promise<string> => {
+  const rows = await AsyncStorage.multiGet(
+    ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => trainerAchievementPerfectSessionCountKey(studyTarget)),
+  );
+  const total = rows.reduce((sum, [, raw]) => sum + (parseInt(raw || '0', 10) || 0), 0);
+  return String(total);
+};
+
+const readDailyPhraseCounterAcrossTargets = async (
+  keyForTarget: (studyTarget: RuntimeStudyTarget) => string,
+): Promise<string> => {
+  const rows = await AsyncStorage.multiGet(ACHIEVEMENT_PROGRESS_TARGETS.map(keyForTarget));
+  const total = rows.reduce((sum, [, raw]) => sum + (parseInt(raw || '0', 10) || 0), 0);
+  return String(total);
+};
+
+const readDailyTaskStreakAcrossTargets = async (
+  keyForTarget: (studyTarget: RuntimeStudyTarget) => string,
+): Promise<string> => {
+  const rows = await AsyncStorage.multiGet(ACHIEVEMENT_PROGRESS_TARGETS.map(keyForTarget));
+  const best = rows.reduce((max, [, raw]) => Math.max(max, readJsonStreak(raw)), 0);
+  return String(best);
+};
+
 async function loadAchievementStats(): Promise<AchievementStats> {
   try {
     const [
@@ -149,40 +264,44 @@ async function loadAchievementStats(): Promise<AchievementStats> {
       dailyAllStreakRaw, dailyNoRerollRaw, dailyPhraseReadsRaw, dailyPhraseSavesRaw,
       flashcardsSavedRaw, flashcardsFlipsRaw, flashcardsViewRaw, energyRefillsRaw,
       leagueTop3Raw, leagueChampionRaw, leagueDiamondWeeksRaw, giftsRaw, chatRaw,
-      trainerPerfectRaw, officialPacksRaw, legacyPacksRaw, communityPacksRaw, shareRaw,
+      trainerPerfectRaw, packStorageRows, shareRaw,
       weeklyRaw, weeklyPeakRaw,
     ] = await Promise.all([
       AsyncStorage.getItem('streak_count'),
       AsyncStorage.getItem('login_bonus_v1'),
       AsyncStorage.getItem('user_total_xp'),
-      AsyncStorage.getItem('achievement_active_recall_correct_count'),
-      AsyncStorage.getItem('achievement_trainer_correct_count'),
+      readTrainerPracticeCorrectAcrossTargets(),
+      '0',
       AsyncStorage.getItem('achievement_arena_win_count'),
       AsyncStorage.getItem('shards_balance'),
       AsyncStorage.getItem('achievement_shards_spent_total'),
-      AsyncStorage.getItem('achievement_quiz_total_count'),
-      AsyncStorage.getItem('quiz_hard_count'),
-      AsyncStorage.getItem('achievement_quiz_hard_perfect_count'),
-      AsyncStorage.getItem('achievement_quiz_perfect_streak_v1'),
-      AsyncStorage.getItem('achievement_combo_best_count'),
-      AsyncStorage.getItem('achievement_all_daily_streak_v1'),
-      AsyncStorage.getItem('achievement_daily_no_reroll_streak_v1'),
-      AsyncStorage.getItem('achievement_daily_phrase_read_count'),
-      AsyncStorage.getItem('achievement_daily_phrase_save_count'),
-      AsyncStorage.getItem('achievement_flashcards_saved_count'),
-      AsyncStorage.getItem('achievement_flashcards_flip_count'),
-      AsyncStorage.getItem('achievement_flashcards_view_streak_v1'),
+      readQuizAchievementCounterAcrossTargets('achievement_quiz_total_count'),
+      readQuizAchievementCounterAcrossTargets('quiz_hard_count'),
+      readQuizAchievementCounterAcrossTargets('achievement_quiz_hard_perfect_count'),
+      readQuizPerfectStreakAcrossTargets(),
+      readComboBestAcrossTargets(),
+      readDailyTaskStreakAcrossTargets(dailyTasksAchievementAllDoneStreakKey),
+      readDailyTaskStreakAcrossTargets(dailyTasksAchievementNoRerollStreakKey),
+      readDailyPhraseCounterAcrossTargets(dailyPhraseAchievementReadCountKey),
+      readDailyPhraseCounterAcrossTargets(dailyPhraseAchievementSaveCountKey),
+      readFlashcardsCounterAcrossTargets(flashcardsAchievementSavedCountKey),
+      readFlashcardsCounterAcrossTargets(flashcardsAchievementFlipCountKey),
+      readFlashcardsViewStreakAcrossTargets(),
       AsyncStorage.getItem('achievement_energy_refill_count'),
       AsyncStorage.getItem('achievement_league_top3_count'),
       AsyncStorage.getItem('achievement_league_champion_count'),
       AsyncStorage.getItem('achievement_league_diamond_week_streak_v1'),
       AsyncStorage.getItem('achievement_gift_sent_count'),
       AsyncStorage.getItem('achievement_league_chat_message_count'),
-      AsyncStorage.getItem('achievement_trainer_perfect_session_count'),
-      AsyncStorage.getItem('flashcards_owned_packs_v1'),
-      AsyncStorage.getItem('flashcards_market_dev_owned_v1'),
-      AsyncStorage.getItem('community_owned_pack_ids_v1'),
-      AsyncStorage.getItem('achievement_share_count'),
+      readTrainerPerfectSessionsAcrossTargets(),
+      AsyncStorage.multiGet(
+        ACHIEVEMENT_PROGRESS_TARGETS.flatMap((studyTarget) => [
+          flashcardsOwnedPacksKey(studyTarget),
+          flashcardsCommunityOwnedPacksKey(studyTarget),
+          flashcardsMarketDevOwnedPacksKey(studyTarget),
+        ]),
+      ),
+      readFlashcardsCounterAcrossTargets(shareAchievementCounterKey),
       AsyncStorage.getItem('week_points'),
       AsyncStorage.getItem('week_xp_peak_best_v1'),
     ]);
@@ -198,43 +317,72 @@ async function loadAchievementStats(): Promise<AchievementStats> {
     try { loginDays = loginRaw ? JSON.parse(loginRaw).consecutiveDays || 0 : 0; } catch {}
     let lessons = 0, perfectLessons = 0, b2PerfectLessons = 0;
     try {
-      const lessonKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`);
+      const lessonIds = Array.from({ length: 32 }, (_, i) => i + 1);
+      const lessonKeys = lessonIds.flatMap((lessonId) =>
+        ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => lessonProgressKey(lessonId, studyTarget)),
+      );
       const lessonEntries = await AsyncStorage.multiGet(lessonKeys);
-      for (let i = 0; i < lessonEntries.length; i++) {
-        const [, saved] = lessonEntries[i];
-        if (saved) {
+      const lessonMap = Object.fromEntries(lessonEntries);
+      for (const lessonId of lessonIds) {
+        let completed = false;
+        let perfect = false;
+        for (const studyTarget of ACHIEVEMENT_PROGRESS_TARGETS) {
+          const saved = lessonMap[lessonProgressKey(lessonId, studyTarget)];
+          if (!saved) continue;
           const p: string[] = JSON.parse(saved);
           const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
           if (correct >= 45) {
-            lessons++;
             if (p.filter(x => x === 'wrong').length === 0) {
-              perfectLessons++;
-              if (i >= 28 && i <= 31) b2PerfectLessons++;
+              perfect = true;
             }
+            completed = true;
           }
+        }
+        if (completed) lessons++;
+        if (perfect) {
+          perfectLessons++;
+          if (lessonId >= 29 && lessonId <= 32) b2PerfectLessons++;
         }
       }
     } catch {}
     let lessons2x = 0, lessons3x = 0, lessons5x = 0, perfectLessons2x = 0;
     try {
-      const passKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_pass_count`);
-      const perfectPassKeys = Array.from({ length: 32 }, (_, i) => `achievement_lesson_${i + 1}_perfect_passes_v1`);
+      const lessonIds = Array.from({ length: 32 }, (_, i) => i + 1);
+      const passKeys = lessonIds.flatMap((lessonId) =>
+        ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => lessonPassCountKey(lessonId, studyTarget)),
+      );
+      const perfectPassKeys = lessonIds.flatMap((lessonId) =>
+        ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) =>
+          achievementLessonPerfectPassesKey(lessonId, studyTarget),
+        ),
+      );
       const [passEntries, perfectPassEntries] = await Promise.all([
         AsyncStorage.multiGet(passKeys),
         AsyncStorage.multiGet(perfectPassKeys),
       ]);
-      for (const [, raw] of passEntries) {
-        const n = parseInt(raw || '0') || 0;
+      const passMap = Object.fromEntries(passEntries);
+      for (const lessonId of lessonIds) {
+        const n = Math.max(
+          ...ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) =>
+            parseInt(passMap[lessonPassCountKey(lessonId, studyTarget)] || '0', 10) || 0,
+          ),
+        );
         if (n >= 2) lessons2x++;
         if (n >= 3) lessons3x++;
         if (n >= 5) lessons5x++;
       }
-      for (const [, raw] of perfectPassEntries) {
-        if (readJsonStringListLength(raw) >= 2) perfectLessons2x++;
+      const perfectPassMap = Object.fromEntries(perfectPassEntries);
+      for (const lessonId of lessonIds) {
+        const n = Math.max(
+          ...ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) =>
+            readJsonStringListLength(perfectPassMap[achievementLessonPerfectPassesKey(lessonId, studyTarget)]),
+          ),
+        );
+        if (n >= 2) perfectLessons2x++;
       }
     } catch {}
     const packSet = new Set<string>();
-    [officialPacksRaw, legacyPacksRaw, communityPacksRaw].forEach(raw => {
+    packStorageRows.map(([, raw]) => raw).forEach(raw => {
       try {
         const parsed = raw ? JSON.parse(raw) : [];
         if (Array.isArray(parsed)) parsed.forEach(x => { if (typeof x === 'string') packSet.add(x); });
@@ -801,6 +949,16 @@ const CAT_LABEL_PL: Record<string, string> = {
 };
 
 const CATEGORIES = ['streak', 'lessons', 'xp', 'quiz', 'combo', 'special', 'medal'] as const;
+const ACHIEVEMENT_DATE_LOCALES: Record<Lang, string> = {
+  ru: 'ru-RU',
+  uk: 'uk-UA',
+  es: 'es-ES',
+  'pt-BR': 'pt-BR',
+  vi: 'vi-VN',
+  id: 'id-ID',
+  tr: 'tr-TR',
+  pl: 'pl-PL',
+};
 
 type AchievementGridRow = { rowKey: string; items: Achievement[] };
 
@@ -816,7 +974,17 @@ type AchievementListSection = {
 
 function achievementCountLabel(count: number, lang: Lang): string {
   const n = Math.max(0, count);
-  if (lang === 'uk') {
+  const pluralRu = () => {
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    const word = mod10 === 1 && mod100 !== 11
+      ? 'награда'
+      : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)
+        ? 'награды'
+        : 'наград';
+    return `${n} ${word}`;
+  };
+  const pluralUk = () => {
     const mod10 = n % 10;
     const mod100 = n % 100;
     const word = mod10 === 1 && mod100 !== 11
@@ -825,23 +993,43 @@ function achievementCountLabel(count: number, lang: Lang): string {
         ? 'нагороди'
         : 'нагород';
     return `${n} ${word}`;
-  }
-  if (lang === 'es') return `${n} recompensa${n === 1 ? '' : 's'}`;
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-  const word = mod10 === 1 && mod100 !== 11
-    ? 'награда'
-    : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)
-      ? 'награды'
-      : 'наград';
-  return `${n} ${word}`;
+  };
+  const pluralPl = () => {
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    const word = n === 1
+      ? 'nagroda'
+      : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)
+        ? 'nagrody'
+        : 'nagród';
+    return `${n} ${word}`;
+  };
+  const labels: Record<Lang, string> = {
+    ru: pluralRu(),
+    uk: pluralUk(),
+    es: `${n} recompensa${n === 1 ? '' : 's'}`,
+    'pt-BR': `${n} recompensa${n === 1 ? '' : 's'}`,
+    vi: `${n} phần thưởng`,
+    id: `${n} hadiah`,
+    tr: `${n} ödül`,
+    pl: pluralPl(),
+  };
+  return labels[lang];
 }
 
 function achievementCountPairLabel(unlocked: number, total: number, lang: Lang): string {
   if (unlocked === total) return achievementCountLabel(unlocked, lang);
-  if (lang === 'uk') return `${unlocked}/${total} нагород`;
-  if (lang === 'es') return `${unlocked}/${total} recompensas`;
-  return `${unlocked}/${total} наград`;
+  const labels: Record<Lang, string> = {
+    ru: `${unlocked}/${total} наград`,
+    uk: `${unlocked}/${total} нагород`,
+    es: `${unlocked}/${total} recompensas`,
+    'pt-BR': `${unlocked}/${total} recompensas`,
+    vi: `${unlocked}/${total} phần thưởng`,
+    id: `${unlocked}/${total} hadiah`,
+    tr: `${unlocked}/${total} ödül`,
+    pl: `${unlocked}/${total} nagród`,
+  };
+  return labels[lang];
 }
 
 type GridCellProps = {
@@ -849,7 +1037,7 @@ type GridCellProps = {
   state: AchievementState | undefined;
   stats: AchievementStats;
   color: string;
-  fallbackCatIcon: string;
+  categoryIconDefault: string;
   lang: Lang;
   t: any;
   f: any;
@@ -868,7 +1056,7 @@ const AchievementGridCell = memo(function AchievementGridCell({
   state,
   stats,
   color,
-  fallbackCatIcon,
+  categoryIconDefault,
   lang,
   t,
   f,
@@ -883,7 +1071,7 @@ const AchievementGridCell = memo(function AchievementGridCell({
   const unlocked = !!state?.unlockedAt;
   const isLocked = !unlocked && !!a.secret && !revealLockedDetails;
   const inProgress = !unlocked && (!a.secret || revealLockedDetails);
-  const iconName = ACHIEVEMENT_ICON[a.id] ?? fallbackCatIcon;
+  const iconName = ACHIEVEMENT_ICON[a.id] ?? categoryIconDefault;
   const prog = inProgress ? getAchievementProgress(a.id, stats) : null;
   const progPct = prog ? Math.round((prog[0] / (prog[1] || 1)) * 100) : 0;
 
@@ -1068,7 +1256,7 @@ export const BadgeShield = memo(BadgeShieldInner);
 
 // ── Модальное окно ────────────────────────────────────────────────────────────
 function AchievementModal({
-  achievement, state, stats, t, f, isDark, onClose, onShardClaimed, isPremium, revealLockedDetails,
+  achievement, state, stats, t, f, isDark, onClose, onShardClaimed, isPremium, revealLockedDetails, studyTarget,
 }: {
   achievement: Achievement;
   state: AchievementState | undefined;
@@ -1079,6 +1267,7 @@ function AchievementModal({
   onShardClaimed: (achievementId: string) => void;
   isPremium: boolean;
   revealLockedDetails: boolean;
+  studyTarget: RuntimeStudyTarget;
 }) {
   const router = useRouter();
   const [claiming, setClaiming] = useState(false);
@@ -1107,7 +1296,8 @@ function AchievementModal({
 
   const formatDate = (iso: string) => {
     const d = new Date(iso);
-    return d.toLocaleDateString(lang === 'uk' ? 'uk-UA' : lang === 'es' ? 'es-ES' : 'ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+    const dateLocale = ACHIEVEMENT_DATE_LOCALES[lang];
+    return d.toLocaleDateString(dateLocale, { day: 'numeric', month: 'long', year: 'numeric' });
   };
 
   return (
@@ -1287,7 +1477,7 @@ function AchievementModal({
                   const msg = buildAchievementShareMessage(lang, name, STORE_URL);
                   const result = await Share.share({ message: msg }).catch(() => null);
                   if (result?.action === 'sharedAction') {
-                    void checkAchievements({ type: 'achievement_shared' });
+                    void checkAchievements({ type: 'achievement_shared', studyTarget });
                   }
                 }}
               >
@@ -1403,7 +1593,7 @@ const AccordionSection = memo(function AccordionSection({
                   state={stateMap.get(a.id)}
                   stats={stats}
                   color={section.color}
-                  fallbackCatIcon={section.catIcon}
+                  categoryIconDefault={section.catIcon}
                   lang={lang}
                   t={t}
                   f={f}
@@ -1433,7 +1623,8 @@ export default function AchievementsScreen() {
   const router          = useRouter();
   const { theme: t, f, isDark, themeMode } = useTheme();
   const { lang }        = useLang();
-  const { isPremium }   = usePremium();
+  const { studyTarget } = useStudyTarget();
+  const { hasPremiumAccess: isPremium }   = usePremium();
   const { width: screenW } = useWindowDimensions();
   const gold            = t.gold;
   const premiumQuizHintDisabled = isPremium || DEV_MODE;
@@ -1446,7 +1637,7 @@ export default function AchievementsScreen() {
   const [devShowAllAchievements, setDevShowAllAchievements] = useState(false);
 
   useEffect(() => {
-    checkAchievements({ type: 'backfill' })
+    checkAchievements({ type: 'backfill', studyTarget })
       .then(() => loadAchievementStates())
       .then(setStates)
       .catch(() => {
@@ -1456,7 +1647,7 @@ export default function AchievementsScreen() {
       loadAchievementStats().then(setStats);
     });
     return () => interaction.cancel();
-  }, []);
+  }, [studyTarget]);
 
   const onSelectAchievement = useCallback((a: Achievement) => {
     setSelected(a);
@@ -1470,7 +1661,7 @@ export default function AchievementsScreen() {
   const showAllAchievements = ENABLE_DEV_TOOLS && devShowAllAchievements;
 
   const achievementSections = useMemo((): AchievementListSection[] => {
-    return CATEGORIES.flatMap(cat => {
+    const sections = CATEGORIES.flatMap(cat => {
       const color = achievementCategoryColor(cat, themeMode);
       const catIcon = CAT_ICON[cat];
       const title = triLang(lang, { ru: CAT_LABEL_RU[cat], uk: CAT_LABEL_UK[cat], es: CAT_LABEL_ES[cat], 'pt-BR': CAT_LABEL_PTBR[cat], vi: CAT_LABEL_VI[cat], id: CAT_LABEL_ID[cat], tr: CAT_LABEL_TR[cat], pl: CAT_LABEL_PL[cat] });
@@ -1493,6 +1684,7 @@ export default function AchievementsScreen() {
         data: rows,
       };
     });
+    return sections;
   }, [gridMetrics.cols, lang, showAllAchievements, stateMap, themeMode]);
 
   const handleToggle = useCallback((cat: string) => {
@@ -1626,6 +1818,7 @@ export default function AchievementsScreen() {
           onShardClaimed={onShardClaimedUpdate}
           isPremium={isPremium}
           revealLockedDetails={showAllAchievements}
+          studyTarget={studyTarget}
         />
       )}
     </SafeAreaView>

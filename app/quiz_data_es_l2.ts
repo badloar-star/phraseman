@@ -7,6 +7,11 @@ import type { LessonPhrase } from './lesson_data_types';
 import { LESSON_DATA } from './lesson_data_all';
 
 type PhraseLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+type QuizExtraSourceLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+type QuizSourceLocaleCopy = {
+  prompt: string;
+  explanations: [string, string, string, string];
+};
 
 export type QuizPoolEntryEsL2 = {
   questionId: string;
@@ -18,6 +23,7 @@ export type QuizPoolEntryEsL2 = {
   ru: string;
   uk: string;
   es: string;
+  sourceLocales?: Partial<Record<QuizExtraSourceLocale, QuizSourceLocaleCopy>>;
   choices: [string, string, string, string];
   correct: 0;
   explanations: [string, string, string, string];
@@ -153,12 +159,22 @@ function levelForSlot(slot: number): PhraseLevel {
   return 'B2';
 }
 
-function explainTriple(lessonId: number, choice: string, key: string, isCorrect: boolean): { ru: string; uk: string; es: string } {
+function explainTriple(
+  lessonId: number,
+  choice: string,
+  key: string,
+  isCorrect: boolean,
+): Record<'ru' | 'uk' | 'es' | QuizExtraSourceLocale, string> {
   if (isCorrect) {
     return {
       ru: 'Верно: испанская формулировка соответствует подсказке и уроку.',
       uk: 'Вірно: іспанська формулювання відповідає підказці й уроку.',
       es: 'Correcto: la opción encaja con el enunciado y el objetivo del tema.',
+      'pt-BR': 'Correto: a formulação em espanhol corresponde ao enunciado e ao objetivo do tema.',
+      vi: 'Đúng: câu tiếng Tây Ban Nha khớp với gợi ý và mục tiêu của chủ đề.',
+      id: 'Benar: formulasi Spanyol sesuai dengan petunjuk dan tujuan topik.',
+      tr: 'Doğru: İspanyolca ifade ipucu ve konunun hedefiyle uyumlu.',
+      pl: 'Poprawnie: hiszpańska forma pasuje do polecenia i celu tematu.',
     };
   }
   const skill = LESSON_SKILL_TAG[lessonId] ?? 'gramatica';
@@ -168,6 +184,11 @@ function explainTriple(lessonId: number, choice: string, key: string, isCorrect:
       ru: 'Ошибка: проверьте, нужен ser (идентичность, классификация) или estar (состояние, место).',
       uk: 'Помилка: перевірте ser проти estar (ідентичність чи стан/місце).',
       es: 'No encaja: repasa si toca ser (identidad) o estar (estado/ubicación).',
+      'pt-BR': 'Não encaixa: revise se deve ser ser (identidade) ou estar (estado/localização).',
+      vi: 'Chưa khớp: hãy kiểm tra cần ser (danh tính) hay estar (trạng thái/vị trí).',
+      id: 'Belum cocok: periksa apakah perlu ser (identitas) atau estar (keadaan/lokasi).',
+      tr: 'Uymuyor: ser (kimlik) mi yoksa estar (durum/konum) mu gerektiğini kontrol et.',
+      pl: 'Nie pasuje: sprawdź, czy potrzebne jest ser (tożsamość), czy estar (stan/położenie).',
     };
   }
   if (/\bno\b/i.test(key) !== /\bno\b/i.test(choice)) {
@@ -175,12 +196,22 @@ function explainTriple(lessonId: number, choice: string, key: string, isCorrect:
       ru: 'Ошибка: отрицание — слово no и форма глагола должны согласоваться с образцом.',
       uk: 'Помилка: заперечення — no і форма дієслова мають відповідати зразку.',
       es: 'No encaja: la negación con no debe armarse como en el modelo.',
+      'pt-BR': 'Não encaixa: a negação com no deve ser montada como no modelo.',
+      vi: 'Chưa khớp: phủ định với no phải được ghép như trong mẫu.',
+      id: 'Belum cocok: negasi dengan no harus dibentuk seperti pada model.',
+      tr: 'Uymuyor: no ile olumsuzluk modeldeki gibi kurulmalı.',
+      pl: 'Nie pasuje: przeczenie z no musi być złożone jak w modelu.',
     };
   }
   return {
     ru: 'Ошибка: смотрите согласование, артикль или время глагола в этом уроке.',
     uk: 'Помилка: перевірте узгодження, артикль або час дієслова.',
     es: 'No encaja: revisa concordancia, artículo o tiempo verbal del tema.',
+    'pt-BR': 'Não encaixa: revise concordância, artigo ou tempo verbal do tema.',
+    vi: 'Chưa khớp: hãy xem lại sự hòa hợp, mạo từ hoặc thì của chủ đề.',
+    id: 'Belum cocok: periksa kesesuaian, artikel, atau kala verba pada topik.',
+    tr: 'Uymuyor: konudaki uyum, artikel veya fiil zamanını gözden geçir.',
+    pl: 'Nie pasuje: sprawdź zgodność, rodzajnik albo czas gramatyczny w temacie.',
   };
 }
 
@@ -221,11 +252,21 @@ function buildEntry(
   const explRU: string[] = [];
   const explUK: string[] = [];
   const explES: string[] = [];
+  const explPTBR: string[] = [];
+  const explVI: string[] = [];
+  const explID: string[] = [];
+  const explTR: string[] = [];
+  const explPL: string[] = [];
   for (let i = 0; i < 4; i++) {
     const t = explainTriple(lessonId, choices[i]!, key, i === 0);
     explRU.push(t.ru);
     explUK.push(t.uk);
     explES.push(t.es);
+    explPTBR.push(t['pt-BR']);
+    explVI.push(t.vi);
+    explID.push(t.id);
+    explTR.push(t.tr);
+    explPL.push(t.pl);
   }
   const entry: QuizPoolEntryEsL2 = {
     questionId: `es-l2|L${lessonId}|id${phrase.id}|s${slot}`,
@@ -236,6 +277,13 @@ function buildEntry(
     ru: phrase.russian.trim(),
     uk: phrase.ukrainian.trim(),
     es: phrase.russian.trim(),
+    sourceLocales: {
+      'pt-BR': { prompt: phrase.russian.trim(), explanations: explPTBR as [string, string, string, string] },
+      vi: { prompt: phrase.russian.trim(), explanations: explVI as [string, string, string, string] },
+      id: { prompt: phrase.russian.trim(), explanations: explID as [string, string, string, string] },
+      tr: { prompt: phrase.russian.trim(), explanations: explTR as [string, string, string, string] },
+      pl: { prompt: phrase.russian.trim(), explanations: explPL as [string, string, string, string] },
+    },
     choices,
     correct: 0,
     explanations: explRU as [string, string, string, string],

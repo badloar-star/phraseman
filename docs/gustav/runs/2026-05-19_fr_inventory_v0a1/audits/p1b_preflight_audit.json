@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "gustav-p1b-preflight-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-20T05:20:29.856Z",
+  "status": "PASS",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_p1b_preflight_audit.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "sourceArtifacts": {
+    "postP1ANextSliceAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/post_p1a_next_slice_audit.json",
+    "postP1AReadinessProjectionAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/post_p1a_readiness_projection_audit.json",
+    "p1ExecutionSliceAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1_execution_slice_audit.json"
+  },
+  "summary": {
+    "p1bFiles": 4,
+    "existingFiles": 4,
+    "missingFiles": 0,
+    "dirtyOverlapsPlanned": 1,
+    "dirtyOverlapsObserved": 1,
+    "freshReadRequiredFiles": 1,
+    "exactApprovalReceiptCandidates": 1,
+    "exactApprovalReceiptsPresent": 0,
+    "blockers": 0,
+    "warnings": 0,
+    "preflightPassed": true,
+    "p1bPreflightReadyAfterP1AAndExactApproval": true,
+    "requiresP1ACompletion": true,
+    "requiresExactP1BApproval": true,
+    "canStartP1BNow": false,
+    "canApplyNow": false,
+    "mayStartFrenchGeneration": false,
+    "mayModifyProductionAppFiles": false,
+    "productionFilesStillAbsent": true
+  },
+  "approvalGate": {
+    "requiredApprovalText": "User approved P1B dev target isolation packet 2026-05-19_fr_inventory_v0a1 after successful P1A completion. Approved file list: app/(tabs)/settings.tsx, app/spanish_content_gate.ts, app/study_target_lang_dev.ts, components/StudyTargetContext.tsx.",
+    "approvalReceiptCandidates": [
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1b_dev_target_isolation_approval_receipt.json"
+    ],
+    "rejectedImplicitCommands": [
+      "дальше",
+      "давай",
+      "работа",
+      "approve",
+      "approved",
+      "go"
+    ]
+  },
+  "files": [
+    {
+      "filePath": "app/(tabs)/settings.tsx",
+      "exists": true,
+      "bytes": 58115,
+      "lineCount": 1006,
+      "plannedDirtyOverlap": true,
+      "observedGitStatus": " M",
+      "observedDirtyWorktree": true,
+      "requiresFreshReadBeforeEdit": true,
+      "allowedAction": "read_only_preflight"
+    },
+    {
+      "filePath": "app/spanish_content_gate.ts",
+      "exists": true,
+      "bytes": 1458,
+      "lineCount": 41,
+      "plannedDirtyOverlap": false,
+      "observedGitStatus": "",
+      "observedDirtyWorktree": false,
+      "requiresFreshReadBeforeEdit": false,
+      "allowedAction": "read_only_preflight"
+    },
+    {
+      "filePath": "app/study_target_lang_dev.ts",
+      "exists": true,
+      "bytes": 1947,
+      "lineCount": 52,
+      "plannedDirtyOverlap": false,
+      "observedGitStatus": "",
+      "observedDirtyWorktree": false,
+      "requiresFreshReadBeforeEdit": false,
+      "allowedAction": "read_only_preflight"
+    },
+    {
+      "filePath": "components/StudyTargetContext.tsx",
+      "exists": true,
+      "bytes": 1412,
+      "lineCount": 48,
+      "plannedDirtyOverlap": false,
+      "observedGitStatus": "",
+      "observedDirtyWorktree": false,
+      "requiresFreshReadBeforeEdit": false,
+      "allowedAction": "read_only_preflight"
+    }
+  ],
+  "findings": [],
+  "notes": [
+    "This audit is read-only preflight for the future P1B slice.",
+    "P1B cannot start until P1A is completed and an exact P1B approval receipt exists.",
+    "The observed dirty overlap is app/(tabs)/settings.tsx; it must be freshly re-read before any future approved edit.",
+    "French generation remains blocked."
+  ]
+}

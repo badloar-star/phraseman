@@ -33,7 +33,7 @@ import {
   coachToastDecisionFromRouteParams,
   coachToastDecisionToRouteParams,
 } from '../app/coach_toast_trigger';
-import { getDiagnosisTraining } from '../app/diagnosis_trainings';
+import { getAllDiagnosisTrainings, getDiagnosisTraining } from '../app/diagnosis_trainings';
 import {
   applyDiagnosisAnswer,
   createDiagnosisTrainingState,
@@ -66,6 +66,7 @@ jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 
 const NOW = Date.now();
 const mockStorage: Record<string, string> = {};
+const PLANNED_DIAGNOSIS_LOCALES = ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -130,6 +131,7 @@ const makeTrainerStoreItem = (override: Partial<TrainerItem>): TrainerItem => ({
   arenaQuestion: override.arenaQuestion,
   category: override.category,
   grammarTag: override.grammarTag,
+  sourceLocales: override.sourceLocales,
 });
 
 const seedTrainerStore = (items: TrainerItem[]) => {
@@ -166,6 +168,43 @@ describe('trainerTranslationForLang', () => {
     expect(trainerTranslationForLang(item, 'es')).toBe('ES copy');
     expect(trainerTranslationForLang(item, 'uk')).toBe('UK copy');
     expect(trainerTranslationForLang({ ...item, translationEs: undefined }, 'es')).toBe('RU copy');
+  });
+
+  it('uses explicit planned source copy for trainer prompts', () => {
+    const item = makeTrainerStoreItem({
+      translationRu: 'RU copy',
+      translationUk: 'UK copy',
+      translationEs: 'ES copy',
+      sourceLocales: {
+        'pt-BR': 'PT copy',
+        vi: 'VI copy',
+        id: 'ID copy',
+        tr: 'TR copy',
+        pl: 'PL copy',
+      },
+    });
+
+    expect(trainerTranslationForLang(item, 'pt-BR')).toBe('PT copy');
+    expect(trainerTranslationForLang(item, 'vi')).toBe('VI copy');
+    expect(trainerTranslationForLang(item, 'id')).toBe('ID copy');
+    expect(trainerTranslationForLang(item, 'tr')).toBe('TR copy');
+    expect(trainerTranslationForLang(item, 'pl')).toBe('PL copy');
+  });
+
+  it('marks missing planned trainer translations instead of falling back to RU/UK/ES', () => {
+    const item = makeTrainerStoreItem({
+      translationRu: 'RU copy',
+      translationUk: 'UK copy',
+      translationEs: 'ES copy',
+    });
+
+    for (const lang of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+      const copy = trainerTranslationForLang(item, lang);
+      expect(copy).toContain('needs-review:');
+      expect(copy).not.toBe('RU copy');
+      expect(copy).not.toBe('UK copy');
+      expect(copy).not.toBe('ES copy');
+    }
   });
 });
 
@@ -1798,6 +1837,30 @@ describe('mistake_log analytics', () => {
     expect(getStepDepth(afterSecondWrong, hourStep)).toBe(3);
   });
 
+  it('diagnosis guided prompts do not inherit Spanish into planned locales', () => {
+    const findings: string[] = [];
+
+    for (const training of getAllDiagnosisTrainings()) {
+      const tasks = (training.guidedMode as { tasks?: Array<{ id?: string; prompt?: Record<string, string> }> } | undefined)?.tasks;
+      if (!Array.isArray(tasks)) continue;
+
+      for (const task of tasks) {
+        if (!task.prompt) {
+          findings.push(`${training.id}.${task.id ?? 'unknown'}: missing prompt`);
+          continue;
+        }
+
+        for (const locale of PLANNED_DIAGNOSIS_LOCALES) {
+          const localized = task.prompt[locale];
+          if (!localized) findings.push(`${training.id}.${task.id ?? 'unknown'}.${locale}: missing`);
+          else if (localized === task.prompt.es) findings.push(`${training.id}.${task.id ?? 'unknown'}.${locale}: equals es`);
+        }
+      }
+    }
+
+    expect(findings).toEqual([]);
+  });
+
   it('article a/an diagnosis training follows the MVP content contract', () => {
     const training = getDiagnosisTraining('article_a_an')!;
 
@@ -2029,7 +2092,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 54,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual([
       'in + enclosed place',
       'on + surface',
@@ -2143,7 +2206,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 28,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['to', 'into', 'from', 'out of', 'towards', 'in', 'direction', 'source']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -2194,7 +2257,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 55,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual([
       'to + destination',
       'into + inside movement',
@@ -2262,7 +2325,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 29,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['listen to', 'wait for', 'depend on', 'look at', 'talk to', 'think about', 'ask for', 'believe in']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -2315,7 +2378,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 30,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['verb + person + thing', 'verb + thing + to + person', 'verb + thing + for + person', 'give it to me', 'send it to her', 'buy it for him']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -2366,7 +2429,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 31,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['subject', 'verb', 'object', 'place', 'time', 'adverb position', 'source-language flexible order']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -2417,7 +2480,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 32,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['do questions', 'does questions', 'did questions', 'be questions', 'modal questions', 'question words', 'subject-auxiliary inversion']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -2470,7 +2533,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 49,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['base verb imperative', "don't + base verb", 'please', "let's", 'negative imperative', 'instructions', 'commands', 'requests']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -2521,7 +2584,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 50,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['if + present simple, present simple', 'if + present simple, will + base verb', 'zero conditional', 'first conditional', 'general truth', 'real future possibility', 'if clause', 'main clause']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -2572,7 +2635,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 51,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['if + past simple', 'would + base verb', 'unreal present', 'unlikely future', 'if I were', 'if I had', "wouldn't", 'first vs second conditional']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -2623,7 +2686,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 52,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['who for people', 'which for things', 'that for people or things', 'subject relative clause', 'object relative clause', 'relative pronoun omission', 'defining relative clause']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -2674,7 +2737,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 53,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['said that', 'told someone that', 'asked if', 'asked what', 'pronoun shift', 'tense backshift', 'reported question', 'direct speech']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -2972,7 +3035,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 25,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['regular + ed', 'irregular past', 'y -> ied', 'double consonant + ed', 'past time marker', 'present simple']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3025,7 +3088,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 37,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['did + base verb', "didn't + base verb", 'past statement', 'past question', 'past negative', 'did vs do', 'base verb after did']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3076,7 +3139,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 38,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['have + V3', 'has + V3', 'past participle', 'already', 'yet', 'ever', 'never', 'result now', 'life experience', 'past simple']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3129,7 +3192,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 39,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['present perfect', 'past simple', 'result now', 'life experience', 'finished time', 'yesterday', 'last week', 'ago', 'ever', 'never']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3180,7 +3243,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 40,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['have you + V3', 'has she + V3', "haven't + V3", "hasn't + V3", 'yet', 'ever', 'already', 'did vs have']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3231,7 +3294,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 41,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['for + duration', 'since + starting point', 'have been', 'has lived', 'how long', 'started in past and continues now', 'present perfect', 'past simple']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3282,7 +3345,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 42,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['was + verb-ing', 'were + verb-ing', 'at 8 yesterday', 'while', 'past process', 'past simple', 'interrupted action']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3333,7 +3396,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 43,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['past simple', 'past continuous', 'completed action', 'background action', 'interrupted action', 'when', 'while', 'at that moment']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3384,7 +3447,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 44,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['used to + base verb', 'past habit', 'past state', 'not true now', "didn't use to", 'did you use to', 'be used to + noun/ing', 'past simple']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3435,7 +3498,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 45,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['am/is/are + verb-ing', 'future arrangement', 'tomorrow', 'on Monday', 'tonight', 'next week', 'going to', 'will', 'present continuous now']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3486,7 +3549,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 26,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['was', 'were', 'am/is/are', "wasn't", "weren't", 'was there', 'were there']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3541,7 +3604,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 27,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['will', 'going to', 'instant decision', 'promise', 'prediction', 'plan', 'intention', 'evidence']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3572,7 +3635,7 @@ describe('mistake_log analytics', () => {
     const evidenceStep = training.steps.find((step) => step.id === 'future_mixed_001')!;
     expect(feedbackForAnswer(evidenceStep, 'will', 1).feedback.ru).toContain('видимые признаки');
     const correctionStep = training.steps.find((step) => step.id === 'future_mixed_006')!;
-    expect(feedbackForAnswer(correctionStep, 'I will calling you later, but I am going to studying tonight.', 1).feedback.ru).toContain('base verb');
+    expect(feedbackForAnswer(correctionStep, 'I will calling you later, but I am going to studying tonight.', 1).feedback.ru).toContain('call / study');
 
     for (const step of training.steps) {
       for (const option of step.answerOptions) {
@@ -3594,7 +3657,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 33,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['to + base verb', 'verb-ing', 'want to', 'need to', 'decide to', 'enjoy doing', 'finish doing', 'avoid doing']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3739,7 +3802,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 46,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['should + base verb', 'must + base verb', 'have to + base verb', 'has to', "don't have to", "mustn't", 'advice', 'obligation', 'external necessity']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3790,7 +3853,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 47,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['can + base verb', 'could + base verb', 'present ability', 'past ability', 'polite request', 'permission', "can't", "couldn't"]);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -3841,7 +3904,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 48,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['may + base verb', 'might + base verb', 'possibility', 'probability', 'uncertainty', 'may not', 'might not', 'can vs may', 'will vs may']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -4130,7 +4193,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 34,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['too + adjective', 'adjective + enough', 'enough + noun', 'too much', 'too many', 'not enough', 'too ... to']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -4183,7 +4246,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 35,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(['very + adjective', 'really + adjective', 'quite + adjective', 'gradable adjective', 'strong adjective', 'intensifier position', 'too vs very']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
@@ -4484,7 +4547,7 @@ describe('mistake_log analytics', () => {
       status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 36,
     }));
-    expect(training.supportedLocales).toEqual(['ru', 'uk']);
+    expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
     expect(training.contrastSet).toEqual(["'s singular possessive", "plural possessive s'", 'of-phrase', 'apostrophe position', 'possessive adjective', 'is contraction']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);

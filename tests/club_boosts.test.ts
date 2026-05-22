@@ -11,12 +11,16 @@ import {
   hasEnergyBoost,
   getBoostTimeRemaining,
   formatBoostTimeRemaining,
+  formatBoostTimeRemainingForLang,
   getBoostDef,
   getBoostsHistory,
   clearAllBoosts,
   clearBoostHistory,
   CLUB_BOOSTS,
   ActiveBoost,
+  boostDescriptionForLang,
+  boostNameForLang,
+  getBoostNotification,
 } from '../app/club_boosts';
 
 // Mock AsyncStorage
@@ -55,6 +59,29 @@ describe('Club Boosts System', () => {
     test('should have correct durations', () => {
       const xp2x = CLUB_BOOSTS.find(b => b.id === 'xp_2x_2h_250xp');
       expect(xp2x?.durationMs).toBe(2 * 60 * 60 * 1000); // 2 hours
+    });
+
+    test('should have explicit planned-locale names and descriptions', () => {
+      const planned = [
+        ['pt-BR', 'namePtBr', 'descPtBr'],
+        ['vi', 'nameVi', 'descVi'],
+        ['id', 'nameId', 'descId'],
+        ['tr', 'nameTr', 'descTr'],
+        ['pl', 'namePl', 'descPl'],
+      ] as const;
+
+      for (const boost of CLUB_BOOSTS) {
+        for (const [lang, nameKey, descKey] of planned) {
+          expect(boost[nameKey]).toBeTruthy();
+          expect(boost[descKey]).toBeTruthy();
+          expect(boostNameForLang(boost, lang)).toBe(boost[nameKey]);
+          expect(boostDescriptionForLang(boost, lang)).toBe(boost[descKey]);
+          expect(boostNameForLang(boost, lang)).not.toBe(boost.nameRU);
+          expect(boostDescriptionForLang(boost, lang)).not.toBe(boost.descRU);
+          expect(/[А-Яа-яЁёІіЇїЄєҐґ]/u.test(boost[nameKey])).toBe(false);
+          expect(/[А-Яа-яЁёІіЇїЄєҐґ]/u.test(boost[descKey])).toBe(false);
+        }
+      }
     });
   });
 
@@ -403,6 +430,21 @@ describe('Club Boosts System', () => {
       expect(formatted).toBeTruthy();
       expect(subMinute || formatted.includes('м') || formatted.includes('ч')).toBe(true);
     });
+
+    test('should format expired boost time for planned locales without RU fallback', () => {
+      const expired: ActiveBoost = {
+        id: 'xp_2x_2h_250xp',
+        activatedBy: 'TestPlayer',
+        activatedAt: Date.now() - 3 * 60 * 60 * 1000,
+        durationMs: 2 * 60 * 60 * 1000,
+      };
+
+      expect(formatBoostTimeRemainingForLang(expired, 'pt-BR')).toBe('Encerrado');
+      expect(formatBoostTimeRemainingForLang(expired, 'vi')).toBe('Đã kết thúc');
+      expect(formatBoostTimeRemainingForLang(expired, 'id')).toBe('Berakhir');
+      expect(formatBoostTimeRemainingForLang(expired, 'tr')).toBe('Bitti');
+      expect(formatBoostTimeRemainingForLang(expired, 'pl')).toBe('Zakończono');
+    });
   });
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -420,6 +462,13 @@ describe('Club Boosts System', () => {
     test('should return undefined for unknown boost ID', () => {
       const boost = getBoostDef('unknown_boost');
       expect(boost).toBeUndefined();
+    });
+
+    test('should localize boost notifications for planned locales', () => {
+      const notification = getBoostNotification('xp_2x_2h_250xp', 'Ana', 'pt-BR');
+      expect(notification).toContain('Ana ativou');
+      expect(notification).toContain('+100% de XP por 2 horas');
+      expect(/[А-Яа-яЁёІіЇїЄєҐґ]/u.test(notification)).toBe(false);
     });
   });
 

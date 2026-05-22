@@ -23,6 +23,7 @@ import path from 'path';
 import { ALL_LEVEL_GIFT_DEFS } from '../app/level_gift_system';
 import {
   LEVEL_GIFT_REWARD_ICON_IDS,
+  LEVEL_GIFT_REWARD_ICON_SOURCES,
   getLevelGiftRewardIcon,
 } from '../constants/levelGiftRewardIcons';
 
@@ -47,5 +48,24 @@ describe('level gift reward icons', () => {
 
   it('falls back to the choice reward icon for unknown gifts', () => {
     expect(getLevelGiftRewardIcon('unknown_gift')).toBe(getLevelGiftRewardIcon('choice_3_level'));
+  });
+
+  it('exports reward icon sources for startup preloading', () => {
+    const preloadSources = new Set(LEVEL_GIFT_REWARD_ICON_SOURCES);
+
+    for (const iconId of LEVEL_GIFT_REWARD_ICON_IDS) {
+      expect(preloadSources.has(getLevelGiftRewardIcon(iconId))).toBe(true);
+    }
+  });
+
+  it('keeps reward icons in the global image preload pipeline', () => {
+    const preloadSource = fs.readFileSync(path.join(process.cwd(), 'app', 'image_preload.ts'), 'utf8');
+
+    expect(preloadSource).toContain('LEVEL_GIFT_IMAGE_SOURCES');
+    expect(preloadSource).toContain('LEVEL_GIFT_REWARD_ICON_SOURCES');
+    expect(preloadSource).toContain('OSKOLOK_IMAGE_SOURCES');
+    expect(preloadSource).toContain('...LEVEL_GIFT_IMAGE_SOURCES');
+    expect(preloadSource).toContain('...LEVEL_GIFT_REWARD_ICON_SOURCES');
+    expect(preloadSource).toContain('...OSKOLOK_IMAGE_SOURCES');
   });
 });

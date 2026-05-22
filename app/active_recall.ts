@@ -21,7 +21,7 @@
  *   3. Сессия /review: getDueItems(limit, { commitSessionOverflow: true })
  *   4. markReviewed после ответа в сессии
  *
- * Хранилище: AsyncStorage под ключом 'active_recall_items'
+ * Хранилище: AsyncStorage через activeRecallItemsKey(studyTarget).
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
@@ -30,6 +30,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { englishRecallSurface } from './phrase_target_utils';
 import { getTopMistakePhraseDetails, logMistake, type MistakeTokenMeta } from './mistake_log';
 import { isCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
+import { activeRecallItemsKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { srsReviewContentAvailableForTarget } from './trainer_target_gate';
 
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
@@ -75,7 +77,6 @@ export interface RecallItem {
 
 // ─── Константы ───────────────────────────────────────────────────────────────
 
-const STORAGE_KEY         = 'active_recall_items';
 const INITIAL_EASE_FACTOR = 2.5;
 const MIN_EASE_FACTOR     = 1.3;
 const MAX_EASE_FACTOR     = 2.5;
@@ -173,8 +174,9 @@ function countDueInList(items: RecallItem[]): number {
  * Сколько фраз просрочено на сегодня (nextDue ≤ конец календарного дня).
  * Без записи в AsyncStorage — для бейджа на главной и табе.
  */
-export async function countDueItemsToday(): Promise<number> {
-  const items = await loadItems();
+export async function countDueItemsToday(studyTarget?: RuntimeStudyTarget): Promise<number> {
+  if (!srsReviewContentAvailableForTarget(studyTarget)) return 0;
+  const items = await loadItems(studyTarget);
   return countDueInList(items);
 }
 
@@ -192,20 +194,21 @@ const PHRASE_CORRECTIONS: Record<string, string> = {
 
 // ─── Загрузка / сохранение ───────────────────────────────────────────────────
 
-async function loadItems(): Promise<RecallItem[]> {
+async function loadItems(studyTarget?: RuntimeStudyTarget): Promise<RecallItem[]> {
   try {
-    const raw = await AsyncStorage.getItem(STORAGE_KEY);
+    const raw = await AsyncStorage.getItem(activeRecallItemsKey(studyTarget));
     if (!raw) return [];
     const items = JSON.parse(raw) as RecallItem[];
-    return applyCorrections(items);
+    return applyCorrections(items, studyTarget);
   } catch {
     return [];
   }
 }
 
 /** Исправляет устаревшие фразы в хранилище (однократно при загрузке). */
-function applyCorrections(items: RecallItem[]): RecallItem[] {
+function applyCorrections(items: RecallItem[], studyTarget?: RuntimeStudyTarget): RecallItem[] {
   let changed = false;
+  const applyEnglishCorrections = storageStudyTarget(studyTarget) !== 'fr';
 
   const withoutArena = items.filter((i) => i.source !== 'arena');
   if (withoutArena.length !== items.length) {
@@ -213,7 +216,7 @@ function applyCorrections(items: RecallItem[]): RecallItem[] {
   }
 
   const afterTable = withoutArena.map(item => {
-    const correct = PHRASE_CORRECTIONS[item.phrase];
+    const correct = applyEnglishCorrections ? PHRASE_CORRECTIONS[item.phrase] : undefined;
     if (correct) {
       changed = true;
       return { ...item, phrase: correct };
@@ -240,13 +243,13 @@ function applyCorrections(items: RecallItem[]): RecallItem[] {
 
   const fixed = Array.from(byPhrase.values());
   if (changed) {
-    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(fixed)).catch(() => {});
+    AsyncStorage.setItem(activeRecallItemsKey(studyTarget), JSON.stringify(fixed)).catch(() => {});
   }
   return fixed;
 }
 
-async function saveItems(items: RecallItem[]): Promise<void> {
-  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+async function saveItems(items: RecallItem[], studyTarget?: RuntimeStudyTarget): Promise<void> {
+  await AsyncStorage.setItem(activeRecallItemsKey(studyTarget), JSON.stringify(items));
 }
 
 // ─── Публичный API ───────────────────────────────────────────────────────────
@@ -272,8 +275,9 @@ export async function recordMistake(
   source:           MistakeSource = 'lesson',
   correctAnswerES?: string,
   meta?:            MistakeTokenMeta,
+  studyTarget?:     RuntimeStudyTarget,
 ): Promise<void> {
-  const raw = await loadItems();
+  const raw = await loadItems(studyTarget);
 
   const phraseKey = recallPhraseKey(phrase);
   const mistakeMeta = resolveRecallMistakeMeta(phraseKey, meta);
@@ -331,7 +335,7 @@ export async function recordMistake(
     items.push(newItem);
   }
 
-  await saveItems(items);
+  await saveItems(items, studyTarget);
 }
 
 /** Режимы Тренера — влияют на фильтрацию/сортировку getTrainerItems. */
@@ -361,8 +365,10 @@ export type GetDueItemsOptions = {
 export async function getDueItems(
   limit = SESSION_LIMIT,
   options?: GetDueItemsOptions,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<RecallItem[]> {
-  const items = await loadItems();
+  if (!srsReviewContentAvailableForTarget(studyTarget)) return [];
+  const items = await loadItems(studyTarget);
   const endOfToday = endOfTodayMs();
   const commit = options?.commitSessionOverflow === true;
 
@@ -381,7 +387,7 @@ export async function getDueItems(
         item.nextDue = tomorrow;
       }
     }
-    await saveItems(items);
+    await saveItems(items, studyTarget);
   }
 
   return selected;
@@ -404,8 +410,10 @@ export async function getTrainerItems(
   limit = SESSION_LIMIT,
   lessonId?: number,
   category?: string,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<RecallItem[]> {
-  const all = await loadItems();
+  if (!srsReviewContentAvailableForTarget(studyTarget)) return [];
+  const all = await loadItems(studyTarget);
   const endOfToday = endOfTodayMs();
   const now = Date.now();
 
@@ -469,7 +477,7 @@ export async function getTrainerItems(
       return mixed.slice(0, limit);
     }
     case 'by_topic': {
-      if (!Number.isFinite(lessonId) || !lessonId) return getDueItems(limit);
+      if (!Number.isFinite(lessonId) || !lessonId) return getDueItems(limit, undefined, studyTarget);
       const byTopic = all
         .filter((i) => i.lessonId === lessonId)
         .sort((a, b) => b.errorCount - a.errorCount || a.nextDue - b.nextDue);
@@ -479,7 +487,7 @@ export async function getTrainerItems(
       // Фразы из mistake_log (топ по ошибкам за 30 дней), отсортированные по частоте.
       // Если фраза есть в SRS-базе — берём её оттуда (чтобы SM-2 метрики сохранялись).
       // Если нет в базе — пропускаем (фраза ещё не добавлена в повторение).
-      const weakDetails = await getTopMistakePhraseDetails(limit * 4, 1);
+      const weakDetails = await getTopMistakePhraseDetails(limit * 4, 1, studyTarget);
       const weakPhrases = weakDetails.map((detail) => detail.phrase);
       const byPhrase = new Map(all.map((i) => [i.phrase.toLowerCase(), i]));
 
@@ -525,7 +533,7 @@ export async function getTrainerItems(
       return result;
     }
     default:
-      return getDueItems(limit);
+      return getDueItems(limit, undefined, studyTarget);
   }
 }
 
@@ -533,8 +541,11 @@ export async function getTrainerItems(
  * Количество фраз доступных в каждом режиме Тренера (для главного экрана-хаба).
  * Не мутирует storage.
  */
-export async function getTrainerModeCounts(): Promise<Record<TrainerMode, number>> {
-  const all = await loadItems();
+export async function getTrainerModeCounts(studyTarget?: RuntimeStudyTarget): Promise<Record<TrainerMode, number>> {
+  if (!srsReviewContentAvailableForTarget(studyTarget)) {
+    return { due: 0, fresh: 0, weak: 0, hard: 0, smart_mix: 0, by_topic: 0, mistakes: 0 };
+  }
+  const all = await loadItems(studyTarget);
   const endOfToday = endOfTodayMs();
   const now = Date.now();
   const freshWindow = now - FRESH_WINDOW_MS;
@@ -547,7 +558,7 @@ export async function getTrainerModeCounts(): Promise<Record<TrainerMode, number
   const topic  = all.length;
 
   const { getWeakPhrases } = await import('./mistake_log');
-  const weakFromLog = await getWeakPhrases(SESSION_LIMIT * 2, 2);
+  const weakFromLog = await getWeakPhrases(SESSION_LIMIT * 2, 2, studyTarget);
   const byPhrase = new Map(all.map((i) => [i.phrase.toLowerCase(), i]));
   const mistakesCount = weakFromLog.filter((p) => byPhrase.has(p.toLowerCase())).length;
 
@@ -564,8 +575,9 @@ export async function markReviewed(
   phrase:      string,
   gotCorrect:  boolean,
   meta?:       MistakeTokenMeta,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
-  const items = await loadItems();
+  const items = await loadItems(studyTarget);
   const item  = items.find(i => i.phrase === phrase);
   if (!item) return;
 
@@ -604,37 +616,37 @@ export async function markReviewed(
   }
 
   item.nextDue = daysFromNow(item.interval);
-  await saveItems(items);
+  await saveItems(items, studyTarget);
 
   if (gotCorrect) {
     const { checkAchievements } = await import('./achievements');
-    void checkAchievements({ type: 'trainer_correct', correct: 1 });
+    void checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget });
   }
 }
 
 /**
  * Получить всё содержимое хранилища (для дебага и статистики).
  */
-export async function getAllItems(): Promise<RecallItem[]> {
-  return loadItems();
+export async function getAllItems(studyTarget?: RuntimeStudyTarget): Promise<RecallItem[]> {
+  return loadItems(studyTarget);
 }
 
 /**
  * Удалить конкретную фразу из хранилища (например, если пользователь
  * решил, что уже хорошо её знает).
  */
-export async function removeItem(phrase: string): Promise<void> {
-  const items  = await loadItems();
+export async function removeItem(phrase: string, studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const items  = await loadItems(studyTarget);
   const filtered = items.filter(i => i.phrase !== phrase);
-  await saveItems(filtered);
+  await saveItems(filtered, studyTarget);
 }
 
 /**
  * Сбросить всё хранилище (например, при сбросе прогресса пользователя).
  * ОСТОРОЖНО: необратимо.
  */
-export async function clearAllItems(): Promise<void> {
-  await AsyncStorage.removeItem(STORAGE_KEY);
+export async function clearAllItems(studyTarget?: RuntimeStudyTarget): Promise<void> {
+  await AsyncStorage.removeItem(activeRecallItemsKey(studyTarget));
 }
 
 /**
@@ -642,13 +654,21 @@ export async function clearAllItems(): Promise<void> {
  *
  * Считается «выученной» фраза с repetitions ≥ 5 (≈ 30+ дней без ошибок).
  */
-export async function getStats(): Promise<{
+export async function getStats(studyTarget?: RuntimeStudyTarget): Promise<{
   total:     number;
   dueTodayCount: number;
   learnedCount:  number;
   hardestPhrases: RecallItem[];
 }> {
-  const items       = await loadItems();
+  const items       = await loadItems(studyTarget);
+  if (!srsReviewContentAvailableForTarget(studyTarget)) {
+    return {
+      total: items.length,
+      dueTodayCount: 0,
+      learnedCount: 0,
+      hardestPhrases: [],
+    };
+  }
   const dueTodayCount  = countDueInList(items);
   const learnedCount   = items.filter(i => i.repetitions >= 5).length;
   // Самые трудные фразы — те, у которых больше всего ошибок
@@ -667,8 +687,9 @@ export async function getStats(): Promise<{
 /**
  * Получить фразы из конкретного урока (для preview в lesson_menu).
  */
-export async function getItemsByLesson(lessonId: number): Promise<RecallItem[]> {
-  const items = await loadItems();
+export async function getItemsByLesson(lessonId: number, studyTarget?: RuntimeStudyTarget): Promise<RecallItem[]> {
+  if (!srsReviewContentAvailableForTarget(studyTarget)) return [];
+  const items = await loadItems(studyTarget);
   return items
     .filter(i => i.lessonId === lessonId)
     .sort((a, b) => b.errorCount - a.errorCount);
@@ -762,20 +783,24 @@ export function buildDiagnosticEnglishPhrase(q: DiagnosticMistakeQ): string | nu
   return null;
 }
 
-export async function recordMistakeFromDiagnostic(q: DiagnosticMistakeQ): Promise<void> {
+export async function recordMistakeFromDiagnostic(
+  q: DiagnosticMistakeQ,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> {
   const phrase = buildDiagnosticEnglishPhrase(q);
   if (!phrase) return;
   const expected = q.answer || q.opts?.[q.correct];
   const tokenMeta = q.phrase.includes('___') && expected
     ? { tokenText: expected, expected, rawCategory: q.type }
     : undefined;
-  await recordMistake(phrase, q.hintRU, 0, q.hintUK, 'diagnostic', undefined, tokenMeta);
+  await recordMistake(phrase, q.hintRU, 0, q.hintUK, 'diagnostic', undefined, tokenMeta, studyTarget);
   logMistake(
     phrase,
     0,
     'diagnostic',
     'wrong_pick',
     tokenMeta,
+    studyTarget,
   );
 }
 
@@ -795,8 +820,12 @@ const ADMIN_TEST_BENCH: { phrase: string; correctAnswer: string; correctAnswerUK
   { phrase: 'The weather is nice today', correctAnswer: 'Сегодня хорошая погода', correctAnswerUK: 'Сьогодні гарна погода', correctAnswerES: 'Hoy hace buen tiempo' },
 ];
 
-export async function seedAdminTestReviewSession(): Promise<void> {
-  const existing = await loadItems();
+export async function seedAdminTestReviewSession(studyTarget?: RuntimeStudyTarget): Promise<boolean> {
+  if (storageStudyTarget(studyTarget) === 'fr') {
+    return false;
+  }
+
+  const existing = await loadItems(studyTarget);
   const rest = existing.filter(i => i.lessonId !== ADMIN_BENCH_LESSON_ID);
   const t0 = todayStart() - 1; // наступило «сегодня» для getDueItems
   const now = Date.now();
@@ -814,7 +843,8 @@ export async function seedAdminTestReviewSession(): Promise<void> {
     lastReviewed: now - 1,
     nextDue: t0,
   }));
-  await saveItems([...rest, ...seeded]);
+  await saveItems([...rest, ...seeded], studyTarget);
+  return true;
 }
 
 // ─── Хелпер для интеграции с lesson1.tsx (вызывается при checkAnswer) ────────

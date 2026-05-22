@@ -1,0 +1,362 @@
+{
+  "schemaVersion": "gustav-french-research-pack-contract-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-20T07:39:45.320Z",
+  "status": "PASS",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_french_research_pack_contract_audit.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "sourceArtifacts": {
+    "translationStartGate": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/translation_start_gate_audit.json",
+    "sourceGraphQualityAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/source_graph_quality_audit.json",
+    "sourceGraphApprovalAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/source_graph_approval_audit.json",
+    "readinessGate": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/gustav_readiness_gate.json",
+    "researchPack": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/fr_research_pack.json"
+  },
+  "summary": {
+    "targetStudyLanguage": "fr",
+    "sourceLocales": 2,
+    "trustedSources": 8,
+    "officialOrPublisherSources": 8,
+    "grammarClusters": 12,
+    "requiredResearchFields": 16,
+    "crossChecks": 6,
+    "rejectedShortcutPolicies": 7,
+    "blockers": 0,
+    "warnings": 0,
+    "translationStartGatePassed": true,
+    "sourceGraphApprovedForInput": true,
+    "researchPackPresent": false,
+    "researchPackRequiredBeforeFirstBatch": true,
+    "researchContractReady": true,
+    "everyClusterHasTwoSources": true,
+    "everyClusterRequiresRuUkComparison": true,
+    "shortcutsRejected": true,
+    "translationStartBlocked": true,
+    "mayStartTranslationNow": false,
+    "mayStartFrenchGeneration": false,
+    "mayModifyProductionAppFiles": false,
+    "noFrenchContentGenerated": true
+  },
+  "researchPackContract": {
+    "canonicalResearchPackPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/fr_research_pack.json",
+    "targetStudyLanguage": "fr",
+    "sourceLocales": [
+      "ru",
+      "uk"
+    ],
+    "trustedSources": [
+      {
+        "id": "cambridge_en_fr_dictionary",
+        "name": "Cambridge Dictionary English-French / French-English",
+        "url": "https://dictionary.cambridge.org/translate/english-french/",
+        "sourceType": "dictionary",
+        "requiredFor": [
+          "bilingual meaning check",
+          "false friend check",
+          "register hints"
+        ]
+      },
+      {
+        "id": "oxford_french_usage_guide",
+        "name": "Oxford Dictionaries Premium French usage guide",
+        "url": "https://premium.oxforddictionaries.com/media/words/assets/Oxford_Dictionaries_Premium_French_usage_guide.pdf",
+        "sourceType": "usage_guide",
+        "requiredFor": [
+          "usage notes",
+          "learner-facing comparison",
+          "translation traps"
+        ]
+      },
+      {
+        "id": "larousse_fr_dictionary",
+        "name": "Larousse Dictionnaire de francais",
+        "url": "https://www.larousse.fr/dictionnaires/francais",
+        "sourceType": "dictionary",
+        "requiredFor": [
+          "definition",
+          "gender",
+          "common usage",
+          "conjugation cross-check"
+        ]
+      },
+      {
+        "id": "le_robert_dictionary",
+        "name": "Dictionnaire Le Robert",
+        "url": "https://dictionnaire.lerobert.com/",
+        "sourceType": "dictionary",
+        "requiredFor": [
+          "definition",
+          "nuance",
+          "register",
+          "modern usage"
+        ]
+      },
+      {
+        "id": "bescherelle_conjugation",
+        "name": "Bescherelle conjugation reference",
+        "url": "https://conjugaison.bescherelle.com/",
+        "sourceType": "conjugation",
+        "requiredFor": [
+          "verb forms",
+          "tense tables",
+          "participle agreement"
+        ]
+      },
+      {
+        "id": "tv5monde_grammar",
+        "name": "TV5MONDE Apprendre le francais grammar",
+        "url": "https://apprendre.tv5monde.com/fr/aides/grammaire",
+        "sourceType": "grammar_learning",
+        "requiredFor": [
+          "FLE learner sequencing",
+          "exercise style",
+          "CEFR-friendly examples"
+        ]
+      },
+      {
+        "id": "oqlf_vitrine_linguistique",
+        "name": "OQLF Vitrine linguistique",
+        "url": "https://vitrinelinguistique.oqlf.gouv.qc.ca/",
+        "sourceType": "official_language_guidance",
+        "requiredFor": [
+          "syntax",
+          "punctuation",
+          "anglicism avoidance",
+          "terminology"
+        ]
+      },
+      {
+        "id": "academie_francaise_dire_ne_pas_dire",
+        "name": "Academie francaise Dire, Ne pas dire",
+        "url": "https://www.dictionnaire-academie.fr/",
+        "sourceType": "official_language_guidance",
+        "requiredFor": [
+          "normative usage warning",
+          "anglicism and misuse review"
+        ]
+      }
+    ],
+    "grammarClusters": [
+      {
+        "id": "articles_gender_number",
+        "title": "Articles, gender and number",
+        "requiredSourceIds": [
+          "larousse_fr_dictionary",
+          "le_robert_dictionary"
+        ],
+        "mustDecide": [
+          "article selection",
+          "noun gender",
+          "plural behavior",
+          "RU/UK explanation wording"
+        ]
+      },
+      {
+        "id": "present_tense_agreement",
+        "title": "Present tense and subject agreement",
+        "requiredSourceIds": [
+          "bescherelle_conjugation",
+          "tv5monde_grammar"
+        ],
+        "mustDecide": [
+          "verb endings",
+          "irregular forms",
+          "pronoun pairing",
+          "quiz distractors"
+        ]
+      },
+      {
+        "id": "negation",
+        "title": "Negation and negative adverbs",
+        "requiredSourceIds": [
+          "academie_francaise_dire_ne_pas_dire",
+          "tv5monde_grammar"
+        ],
+        "mustDecide": [
+          "ne placement",
+          "pas/jamais/rien/personne",
+          "formal vs spoken policy",
+          "learner warnings"
+        ]
+      },
+      {
+        "id": "questions_word_order",
+        "title": "Questions and word order",
+        "requiredSourceIds": [
+          "tv5monde_grammar",
+          "oqlf_vitrine_linguistique"
+        ],
+        "mustDecide": [
+          "intonation question",
+          "est-ce que",
+          "inversion",
+          "register tags"
+        ]
+      },
+      {
+        "id": "prepositions_articles",
+        "title": "Prepositions and contracted articles",
+        "requiredSourceIds": [
+          "larousse_fr_dictionary",
+          "oqlf_vitrine_linguistique"
+        ],
+        "mustDecide": [
+          "a/de contractions",
+          "place prepositions",
+          "country/city rules",
+          "English-calque rejection"
+        ]
+      },
+      {
+        "id": "pronouns_order",
+        "title": "Pronouns and object order",
+        "requiredSourceIds": [
+          "tv5monde_grammar",
+          "oqlf_vitrine_linguistique"
+        ],
+        "mustDecide": [
+          "direct object",
+          "indirect object",
+          "y/en",
+          "position before verb"
+        ]
+      },
+      {
+        "id": "past_tenses",
+        "title": "Passe compose, imparfait and past contrast",
+        "requiredSourceIds": [
+          "bescherelle_conjugation",
+          "oxford_french_usage_guide"
+        ],
+        "mustDecide": [
+          "auxiliary choice",
+          "participle agreement",
+          "aspect contrast",
+          "RU/UK explanation contrast"
+        ]
+      },
+      {
+        "id": "future_conditionals",
+        "title": "Future, conditional and polite requests",
+        "requiredSourceIds": [
+          "bescherelle_conjugation",
+          "cambridge_en_fr_dictionary"
+        ],
+        "mustDecide": [
+          "near future",
+          "simple future",
+          "conditional politeness",
+          "translation naturalness"
+        ]
+      },
+      {
+        "id": "subjunctive_modality",
+        "title": "Subjunctive and modality",
+        "requiredSourceIds": [
+          "bescherelle_conjugation",
+          "academie_francaise_dire_ne_pas_dire"
+        ],
+        "mustDecide": [
+          "trigger phrases",
+          "mood choice",
+          "learner level gating",
+          "quiz scope"
+        ]
+      },
+      {
+        "id": "register_and_naturalness",
+        "title": "Register, naturalness and false friends",
+        "requiredSourceIds": [
+          "cambridge_en_fr_dictionary",
+          "le_robert_dictionary",
+          "oxford_french_usage_guide"
+        ],
+        "mustDecide": [
+          "formal/informal tags",
+          "false friends",
+          "idiom replacement",
+          "paid-app quality bar"
+        ]
+      },
+      {
+        "id": "personal_practice_mapping",
+        "title": "My Practice diagnosis to French remediation",
+        "requiredSourceIds": [
+          "tv5monde_grammar",
+          "oqlf_vitrine_linguistique"
+        ],
+        "mustDecide": [
+          "diagnosis node mapping",
+          "personalized lesson trigger",
+          "target-scoped state",
+          "no cross-language leakage"
+        ]
+      },
+      {
+        "id": "quiz_distractors",
+        "title": "Quiz distractors and answer validity",
+        "requiredSourceIds": [
+          "larousse_fr_dictionary",
+          "bescherelle_conjugation",
+          "cambridge_en_fr_dictionary"
+        ],
+        "mustDecide": [
+          "one correct answer",
+          "plausible distractors",
+          "no duplicate answer",
+          "no grammar leak"
+        ]
+      }
+    ],
+    "requiredResearchFields": [
+      "clusterId",
+      "sourceGraphRefs",
+      "englishSourceSummary",
+      "ruPromptSummary",
+      "ukPromptSummary",
+      "trustedSourceChecks",
+      "frenchRuleDecision",
+      "lessonOrderDecision",
+      "translationRisks",
+      "falseFriendRisks",
+      "articleGenderNotes",
+      "conjugationNotes",
+      "quizDistractorPolicy",
+      "personalPracticePolicy",
+      "agentSignoffs",
+      "unresolvedQuestions"
+    ],
+    "crossChecks": [
+      "Every grammar cluster must cite at least two trusted sources.",
+      "Every batch must compare English source meaning against RU and UK prompts before French output.",
+      "Every French rule decision must include a learner-level note and a lesson-order decision.",
+      "Every quiz decision must prove one correct answer and plausible distractors.",
+      "Every My Practice decision must prove target-scoped diagnosis and remediation state.",
+      "Every uncertainty must block the translation batch until resolved or explicitly deferred."
+    ],
+    "rejectedShortcutPolicies": [
+      "Do not translate directly from English without French grammar research.",
+      "Do not use RU or UK text as target French content.",
+      "Do not rely on a single dictionary for grammar decisions.",
+      "Do not accept English word order as French structure without proof.",
+      "Do not generate quizzes before distractor policy is signed off.",
+      "Do not generate My Practice lessons before personal-practice mapping is target-safe.",
+      "Do not create production files or generated_content_audit.json during research."
+    ]
+  },
+  "findings": [],
+  "notes": [
+    "This audit defines the French research pack contract only; it does not write French translations.",
+    "The listed sources were selected as trusted references for grammar, usage, dictionaries, conjugation and FLE-style learner sequencing.",
+    "A real fr_research_pack.json remains absent until architecture gates permit translation preparation.",
+    "French generation remains blocked by readiness HOLD."
+  ]
+}

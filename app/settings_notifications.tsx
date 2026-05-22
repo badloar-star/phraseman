@@ -9,8 +9,10 @@ import CustomSwitch from '../components/CustomSwitch';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { hapticTap } from '../hooks/use-haptics';
 import {
   NotifSettings,
@@ -22,6 +24,21 @@ import { triLang, type Lang } from '../constants/i18n';
 const DAYS_RU = ['Понедельник','Вторник','Среда','Четвер','Пятница','Суббота','Воскресенье'];
 const DAYS_UK = ['Понеділок','Вівторок','Середа','Четвер','П\'ятниця','Субота','Неділя'];
 const DAYS_ES = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+const DAYS_PT_BR = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'];
+const DAYS_VI = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chủ Nhật'];
+const DAYS_ID = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+const DAYS_TR = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'];
+const DAYS_PL = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'];
+const DAYS_BY_LANG: Record<Lang, readonly string[]> = {
+  ru: DAYS_RU,
+  uk: DAYS_UK,
+  es: DAYS_ES,
+  'pt-BR': DAYS_PT_BR,
+  vi: DAYS_VI,
+  id: DAYS_ID,
+  tr: DAYS_TR,
+  pl: DAYS_PL,
+};
 const HOURS   = Array.from({ length: 24 }, (_, i) => i);
 const MINUTES = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 const ITEM_H  = 48;
@@ -116,6 +133,7 @@ export default function SettingsNotifications() {
   const router = useRouter();
   const { theme: t } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
 
   const [s, setS]         = useState<NotifSettings>(() => getNotifSettingsSnapshot());
   const [saved, setSaved] = useState(false);
@@ -132,12 +150,12 @@ export default function SettingsNotifications() {
   const persist = async (next: NotifSettings) => {
     setS(next);
     await saveNotifSettings(next);
-    await scheduleNotifications(next, lang as Lang, 0);
+    await scheduleNotifications(next, lang as Lang, 0, { studyTarget });
     setSaved(true);
     setTimeout(() => setSaved(false), 1400);
   };
 
-  const days = lang === 'uk' ? DAYS_UK : lang === 'es' ? DAYS_ES : DAYS_RU;
+  const days = DAYS_BY_LANG[lang as Lang] ?? DAYS_BY_LANG.ru;
   const timeModalTitle = triLang(lang as Lang, {
     ru: 'Время',
     uk: 'Час',
@@ -201,15 +219,23 @@ export default function SettingsNotifications() {
         }}>
           <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
         </TouchableOpacity>
-        <Text style={{ color:t.textPrimary, fontSize:18, fontWeight:'700', marginLeft:8 }}>
+        <Text style={{ color:t.textPrimary, fontSize:18, fontWeight:'700', marginLeft:8, flex:1 }} numberOfLines={1}>
           {screenTitle}
         </Text>
         {saved && (
-          <View style={{ marginLeft:'auto', flexDirection:'row', alignItems:'center', gap:4 }}>
+          <View style={{ flexDirection:'row', alignItems:'center', gap:4, marginRight: 8 }}>
             <Ionicons name="checkmark-circle" size={16} color={t.correct}/>
             <Text style={{ color:t.correct, fontSize:13 }}>{savedLabel}</Text>
           </View>
         )}
+        <ReportErrorButton
+          screen="settings_notifications"
+          dataId="settings_notifications"
+          dataText={screenTitle}
+          variant="icon-flag"
+          accessibilityLabel="Сообщить о баге на экране уведомлений"
+          style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border }}
+        />
       </View>
 
       <ScrollView contentContainerStyle={{ paddingBottom:40 }}>

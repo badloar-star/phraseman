@@ -50,6 +50,11 @@ import { peekCustomCardsCache, readCustomCards } from './flashcards/storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './flashcards/types';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getCanonicalUserId } from './user_id_policy';
+import { flashcardsSwipeMemoryKey, type RuntimeStudyTarget } from './target_storage_keys';
+import {
+  flashcardsCommunityPacksAvailableForTarget,
+  flashcardsOfficialPacksAvailableForTarget,
+} from './flashcards_target_gate';
 
 type SourceKind = 'saved' | 'custom' | 'official' | 'community';
 type Phase = 'select' | 'play';
@@ -131,7 +136,6 @@ type SessionBuild = {
   info: SessionInfo;
 };
 
-const SWIPE_MEMORY_KEY = 'flashcards_swipe_memory_v1';
 const HOUR_MS = 60 * 60 * 1000;
 const DAY_MS = 24 * HOUR_MS;
 
@@ -181,8 +185,8 @@ function parseMemory(raw: string | null): SwipeMemory {
   }
 }
 
-async function loadSwipeMemory(): Promise<SwipeMemory> {
-  return parseMemory(await AsyncStorage.getItem(SWIPE_MEMORY_KEY));
+async function loadSwipeMemory(studyTarget?: RuntimeStudyTarget): Promise<SwipeMemory> {
+  return parseMemory(await AsyncStorage.getItem(flashcardsSwipeMemoryKey(studyTarget)));
 }
 
 function compactMemory(memory: SwipeMemory): SwipeMemory {
@@ -195,8 +199,8 @@ function compactMemory(memory: SwipeMemory): SwipeMemory {
   );
 }
 
-async function saveSwipeMemory(memory: SwipeMemory): Promise<void> {
-  await AsyncStorage.setItem(SWIPE_MEMORY_KEY, JSON.stringify(compactMemory(memory)));
+async function saveSwipeMemory(memory: SwipeMemory, studyTarget?: RuntimeStudyTarget): Promise<void> {
+  await AsyncStorage.setItem(flashcardsSwipeMemoryKey(studyTarget), JSON.stringify(compactMemory(memory)));
 }
 
 function memoryFor(memory: SwipeMemory, key: string): CardMemory {
@@ -296,6 +300,13 @@ function flashcardToCardItem(card: Flashcard): CardItem {
     ru: card.ru,
     uk: card.uk,
     es: card.es,
+    sourceLocales: {
+      'pt-BR': card.sourceLocales?.['pt-BR'],
+      vi: card.sourceLocales?.vi,
+      id: card.sourceLocales?.id,
+      tr: card.sourceLocales?.tr,
+      pl: card.sourceLocales?.pl,
+    },
     transcription: card.transcription,
     categoryId: 'saved',
     isSystem: false,
@@ -345,6 +356,13 @@ function customRawToCardItems(rawCards: unknown[]): CardItem[] {
       ru,
       uk,
       es: es || undefined,
+      sourceLocales: {
+        'pt-BR': s(c.sourceLocales && typeof c.sourceLocales === 'object' ? (c.sourceLocales as Record<string, unknown>)['pt-BR'] : undefined) || undefined,
+        vi: s(c.sourceLocales && typeof c.sourceLocales === 'object' ? (c.sourceLocales as Record<string, unknown>).vi : undefined) || undefined,
+        id: s(c.sourceLocales && typeof c.sourceLocales === 'object' ? (c.sourceLocales as Record<string, unknown>).id : undefined) || undefined,
+        tr: s(c.sourceLocales && typeof c.sourceLocales === 'object' ? (c.sourceLocales as Record<string, unknown>).tr : undefined) || undefined,
+        pl: s(c.sourceLocales && typeof c.sourceLocales === 'object' ? (c.sourceLocales as Record<string, unknown>).pl : undefined) || undefined,
+      },
       description: s(c.description) || undefined,
       transcription: s(c.transcription) || undefined,
       categoryId: 'custom',
@@ -380,6 +398,7 @@ function localizedField(
 ): string {
   if (lang === 'uk') return s(uk) || s(ru) || s(es);
   if (lang === 'es') return s(es) || s(ru) || s(uk);
+  if (['pt-BR', 'vi', 'id', 'tr', 'pl'].includes(lang)) return '';
   return s(ru) || s(uk) || s(es);
 }
 
@@ -475,7 +494,12 @@ function manualCardsSubtitle(lang: Lang): string {
   });
 }
 
-function buildOfficialTrainingSourcesFromIds(ownedIds: string[], lang: Lang): TrainingSource[] {
+function buildOfficialTrainingSourcesFromIds(
+  ownedIds: string[],
+  lang: Lang,
+  studyTarget?: RuntimeStudyTarget,
+): TrainingSource[] {
+  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget)) return [];
   return bundledPacksForOwned(ownedIds)
     .map((pack) => {
       const cards = buildMarketplaceOwnedCards([pack]);
@@ -500,6 +524,7 @@ function buildCachedTrainingSources(
   officialOwnedIds: string[],
   requestedSourceId: string,
   requestedFilter: string,
+  studyTarget?: RuntimeStudyTarget,
 ): TrainingSource[] {
   const next: TrainingSource[] = [];
   if (savedRaw !== null) {
@@ -538,7 +563,7 @@ function buildCachedTrainingSources(
       });
     }
   }
-  next.push(...buildOfficialTrainingSourcesFromIds(officialOwnedIds, lang));
+  next.push(...buildOfficialTrainingSourcesFromIds(officialOwnedIds, lang, studyTarget));
   return next;
 }
 
@@ -559,12 +584,13 @@ function optimisticSessionInfoForSources(sources: TrainingSource[], selectedIds:
 async function buildCommunitySources(
   lang: Lang,
   inheritedOwnedPackIds: string[],
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<TrainingSource[]> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return [];
   try {
     const [ownedCommunityIds, published, stableId] = await Promise.all([
-      loadCommunityOwnedPackIds().catch(() => [] as string[]),
-      loadPublishedCommunityMarketPacks().catch(() => [] as FlashcardMarketPack[]),
+      loadCommunityOwnedPackIds(studyTarget).catch(() => [] as string[]),
+      loadPublishedCommunityMarketPacks(studyTarget).catch(() => [] as FlashcardMarketPack[]),
       getCanonicalUserId().catch(() => null as string | null),
     ]);
     const owned = new Set([...ownedCommunityIds, ...inheritedOwnedPackIds]);
@@ -572,11 +598,11 @@ async function buildCommunitySources(
       (p) => owned.has(p.id) || (!!stableId && !!p.authorStableId && p.authorStableId === stableId),
     );
     const pendingMine = stableId
-      ? await loadAuthorCommunityPacksPendingUpdate(stableId).catch(() => [] as FlashcardMarketPack[])
+      ? await loadAuthorCommunityPacksPendingUpdate(stableId, studyTarget).catch(() => [] as FlashcardMarketPack[])
       : [];
     const visibleIds = new Set([...minePublished, ...pendingMine].map((p) => p.id));
     const missingOwned = [...owned].filter((id) => !visibleIds.has(id));
-    const missingMeta = await Promise.all(missingOwned.map((id) => fetchCommunityPackMeta(id).catch(() => null)));
+    const missingMeta = await Promise.all(missingOwned.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(() => null)));
     const byId = new Map<string, FlashcardMarketPack>();
     for (const pack of [...minePublished, ...pendingMine, ...missingMeta]) {
       if (pack?.isCommunityUgc) byId.set(pack.id, pack);
@@ -598,7 +624,7 @@ async function buildCommunitySources(
       count: pack.cardCount,
       icon: 'people-outline',
       accent: SOURCE_ACCENTS.community,
-      loadCards: () => fetchCommunityPackCards(pack.id),
+      loadCards: () => fetchCommunityPackCards(pack.id, studyTarget),
     }));
   } catch {
     return [];
@@ -629,18 +655,18 @@ function insertLater(queue: Prompt[], makePromptAt: (insertAt: number) => Prompt
     if (before >= 0) order.push(before);
   }
 
-  let fallback: { insertAt: number; prompt: Prompt } | null = null;
+  let firstCandidate: { insertAt: number; prompt: Prompt } | null = null;
   for (const insertAt of order) {
     const prompt = makePromptAt(insertAt);
     const shown = shownAnswerNorm(prompt);
     const avoid = adjacentShownNorms(queue, insertAt);
-    if (!fallback) fallback = { insertAt, prompt };
+    if (!firstCandidate) firstCandidate = { insertAt, prompt };
     if (!shown || !avoid.has(shown)) {
       return [...queue.slice(0, insertAt), prompt, ...queue.slice(insertAt)];
     }
   }
 
-  const picked = fallback ?? { insertAt: queue.length, prompt: makePromptAt(queue.length) };
+  const picked = firstCandidate ?? { insertAt: queue.length, prompt: makePromptAt(queue.length) };
   return [...queue.slice(0, picked.insertAt), picked.prompt, ...queue.slice(picked.insertAt)];
 }
 
@@ -750,6 +776,8 @@ export default function FlashcardsSwipeScreen() {
   const audio = useAudio();
 
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
+  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
+  const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
   const requestedSourceId = useMemo(() => {
     const raw = Array.isArray(params.source) ? params.source[0] : params.source;
     return typeof raw === 'string' ? raw.trim() : '';
@@ -759,16 +787,21 @@ export default function FlashcardsSwipeScreen() {
     return typeof raw === 'string' ? raw.trim() : '';
   }, [params.filter]);
   const requestedOfficialOwnedIds = useMemo(() => parseRouteIdList(params.owned), [params.owned]);
+  const visibleRequestedOfficialOwnedIds = useMemo(
+    () => (officialPacksEnabled ? requestedOfficialOwnedIds : []),
+    [officialPacksEnabled, requestedOfficialOwnedIds],
+  );
   const initialSources = useMemo(
     () => buildCachedTrainingSources(
       lang,
-      peekFlashcardsCache(),
-      peekCustomCardsCache(),
-      requestedOfficialOwnedIds,
+      peekFlashcardsCache(studyTarget),
+      peekCustomCardsCache(studyTarget),
+      visibleRequestedOfficialOwnedIds,
       requestedSourceId,
       requestedFilter,
+      studyTarget,
     ),
-    [lang, requestedFilter, requestedOfficialOwnedIds, requestedSourceId],
+    [lang, requestedFilter, requestedSourceId, studyTarget, visibleRequestedOfficialOwnedIds],
   );
   const initialSelectedIds = useMemo(
     () => initialSelectionForSources(initialSources, requestedSourceId),
@@ -837,7 +870,7 @@ export default function FlashcardsSwipeScreen() {
         ru: 'Настройки',
         uk: 'Налаштування',
         es: 'Ajustes',
-        'pt-BR': "Ajustes",
+        'pt-BR': "Configurações",
         vi: "Cài đặt",
         id: "Pengaturan",
         tr: "Ayarlar",
@@ -1372,9 +1405,9 @@ export default function FlashcardsSwipeScreen() {
     setLoadError('');
     try {
       const [savedRaw, customRaw, officialOwnedIds] = await Promise.all([
-        loadFlashcards().catch(() => [] as Flashcard[]),
-        readCustomCards().catch(() => [] as unknown[]),
-        loadAccessiblePackIds().catch(() => [] as string[]),
+        loadFlashcards(studyTarget).catch(() => [] as Flashcard[]),
+        readCustomCards(studyTarget).catch(() => [] as unknown[]),
+        officialPacksEnabled ? loadAccessiblePackIds(studyTarget).catch(() => [] as string[]) : Promise.resolve([] as string[]),
       ]);
       const next: TrainingSource[] = [];
       const savedCards = filterCardsForRoute(
@@ -1428,9 +1461,13 @@ export default function FlashcardsSwipeScreen() {
         });
       }
 
-      next.push(...buildOfficialTrainingSourcesFromIds(officialOwnedIds, lang));
+      if (officialPacksEnabled) {
+        next.push(...buildOfficialTrainingSourcesFromIds(officialOwnedIds, lang, studyTarget));
+      }
 
-      next.push(...(await buildCommunitySources(lang, officialOwnedIds)));
+      if (communityPacksEnabled) {
+        next.push(...(await buildCommunitySources(lang, officialOwnedIds, studyTarget)));
+      }
       hasVisibleSourcesRef.current = next.length > 0;
       setSources(next);
       setSelectedIds((cur) => {
@@ -1455,7 +1492,7 @@ export default function FlashcardsSwipeScreen() {
     } finally {
       setLoadingSources(false);
     }
-  }, [lang, requestedFilter, requestedSourceId, text.custom, text.saved]);
+  }, [communityPacksEnabled, lang, officialPacksEnabled, requestedFilter, requestedSourceId, studyTarget, text.custom, text.saved]);
 
   useEffect(() => {
     void loadSources({ quiet: hasVisibleSourcesRef.current });
@@ -1478,7 +1515,7 @@ export default function FlashcardsSwipeScreen() {
   useEffect(() => {
     let cancelled = false;
     void (async () => {
-      const memory = await loadSwipeMemory().catch(() => ({} as SwipeMemory));
+      const memory = await loadSwipeMemory(studyTarget).catch(() => ({} as SwipeMemory));
       const now = Date.now();
       const localCards: TrainingCard[] = [];
       for (const source of selectedSources) {
@@ -1596,7 +1633,7 @@ export default function FlashcardsSwipeScreen() {
     setStarting(true);
     setLoadError('');
     try {
-      const memory = await loadSwipeMemory();
+      const memory = await loadSwipeMemory(studyTarget);
       memoryRef.current = memory;
       const { cards, info } = await buildSessionCards(selectedSources, memory);
       if (cards.length === 0) {
@@ -1627,7 +1664,7 @@ export default function FlashcardsSwipeScreen() {
     } finally {
       setStarting(false);
     }
-  }, [buildPromptQueue, buildSessionCards, lang, position, selectedSources, starting]);
+  }, [buildPromptQueue, buildSessionCards, lang, position, selectedSources, starting, studyTarget]);
 
   useEffect(() => {
     if (draftRestoreAttemptedRef.current) return;
@@ -1637,16 +1674,16 @@ export default function FlashcardsSwipeScreen() {
     let cancelled = false;
     draftRestoreAttemptedRef.current = true;
     void (async () => {
-      const draft = await loadFlashcardsSwipeSessionDraft(sessionDraftScope).catch(() => null);
+      const draft = await loadFlashcardsSwipeSessionDraft(sessionDraftScope, Date.now(), studyTarget).catch(() => null);
       if (!draft || cancelled) return;
 
-      const memory = await loadSwipeMemory().catch(() => ({} as SwipeMemory));
+      const memory = await loadSwipeMemory(studyTarget).catch(() => ({} as SwipeMemory));
       const { cards, info } = await buildSessionCards(selectedSources, memory);
       if (cancelled) return;
 
       const restored = restoreSessionDraft(draft, cards);
       if (!restored) {
-        await clearFlashcardsSwipeSessionDraft().catch(() => {});
+        await clearFlashcardsSwipeSessionDraft(studyTarget).catch(() => {});
         return;
       }
 
@@ -1664,7 +1701,7 @@ export default function FlashcardsSwipeScreen() {
     return () => {
       cancelled = true;
     };
-  }, [buildSessionCards, loadingSources, phase, position, selectedSources, sessionDraftScope, starting]);
+  }, [buildSessionCards, loadingSources, phase, position, selectedSources, sessionDraftScope, starting, studyTarget]);
 
   useEffect(() => {
     if (!quickStart || quickStartDoneRef.current || phase !== 'select') return;
@@ -1719,9 +1756,9 @@ export default function FlashcardsSwipeScreen() {
       }
 
       memoryRef.current = { ...memoryRef.current, [key]: next };
-      void saveSwipeMemory(memoryRef.current);
+      void saveSwipeMemory(memoryRef.current, studyTarget);
     },
-    [],
+    [studyTarget],
   );
 
   const progressPct = stats.total > 0 ? Math.min(100, Math.round((stats.mastered / stats.total) * 100)) : 0;
@@ -1731,7 +1768,7 @@ export default function FlashcardsSwipeScreen() {
   useEffect(() => {
     if (phase !== 'play' || trainingCards.length === 0) return;
     if (done || queue.length === 0) {
-      void clearFlashcardsSwipeSessionDraft().catch(() => {});
+      void clearFlashcardsSwipeSessionDraft(studyTarget).catch(() => {});
       return;
     }
 
@@ -1743,8 +1780,8 @@ export default function FlashcardsSwipeScreen() {
       stats,
       progress: progressRef.current,
     });
-    void saveFlashcardsSwipeSessionDraft(draft).catch(() => {});
-  }, [done, feedback, phase, queue, sessionDraftScope, stats, trainingCards]);
+    void saveFlashcardsSwipeSessionDraft(draft, studyTarget).catch(() => {});
+  }, [done, feedback, phase, queue, sessionDraftScope, stats, studyTarget, trainingCards]);
 
   useEffect(() => {
     if (!currentPrompt?.id) return;

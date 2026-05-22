@@ -8,9 +8,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
+import { useStudyTarget } from '../../components/StudyTargetContext';
 import ScreenGradient from '../../components/ScreenGradient';
-import { LinearGradient } from 'expo-linear-gradient';
-import { lessonNamesForLang } from '../../constants/lessons';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import { triLang } from '../../constants/i18n';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, goldCefrAccent, goldShadow } from '../../constants/goldTheme';
 import GoldBevel from '../../components/GoldBevel';
@@ -23,6 +23,16 @@ import ThemedChoiceModal from '../../components/ThemedChoiceModal';
 import { effectiveLessonStarScore } from '../lesson_star_score';
 import EnergyBar from '../../components/EnergyBar';
 import { getCourseLevelForLesson, getCourseLevelIndex, getPreviousCourseLevel, type CourseLevel, } from '../course_levels';
+import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
+import { examContentAvailableForTarget, frenchExamGateCopy } from '../exam_target_gate';
+import {
+    lessonBestScoreKey,
+    lessonPassCountKey,
+    lessonProgressKey,
+    levelExamKey,
+    storageStudyTarget,
+    unlockedLessonsKey,
+} from '../target_storage_keys';
 /** Снимок UI списку уроків: survives remount між сесіями таба (див. `_layout.tsx` lazy tabs). */
 type LessonsUiCache = {
     scores: number[];
@@ -37,7 +47,7 @@ type LessonsUiCache = {
     persistedUnlocked: number[];
     noLimits: boolean;
 };
-let lessonsUiSessionCache: LessonsUiCache | null = null;
+let lessonsUiSessionCacheByTarget: Partial<Record<string, LessonsUiCache>> = {};
 /**
  * Единый стиль карточек списка уроков (как «Туман» / «Графит»).
  * Объявлено на уровне модуля (не внутри компонента): имя начинается с `use` — внутри функции
@@ -205,11 +215,13 @@ export default function LessonsTab() {
     const goldSurface = GOLD_RICH.blackPiano;
     const screenTitleColor = t.textPrimary;
     const { lang, s } = useLang();
+    const { studyTarget } = useStudyTarget();
     const { height: SCREEN_H } = useWindowDimensions();
     const VIEWPORT_H = SCREEN_H - 90; // approx tab bar + status bar
-    const boot = lessonsUiSessionCache;
+    const lessonCacheTarget = storageStudyTarget(studyTarget);
+    const boot = lessonsUiSessionCacheByTarget[lessonCacheTarget] ?? null;
     const [noLimits, setNoLimits] = useState(() => boot?.noLimits ?? false);
-    const { isPremium } = usePremium();
+    const { hasPremiumAccess: isPremium } = usePremium();
     const [scores, setScores] = useState<number[]>(() => boot?.scores ?? new Array(32).fill(0));
     const [progCounts, setProgCounts] = useState<number[]>(() => boot?.progCounts ?? new Array(32).fill(0));
     const [passCounts, setPassCounts] = useState<number[]>(() => boot?.passCounts ?? new Array(32).fill(0));
@@ -239,6 +251,9 @@ export default function LessonsTab() {
         level: string;
         prevLevel: string;
     } | {
+        kind: 'frenchExam';
+        level: string;
+    } | {
         kind: 'premium';
         lessonNum: number;
     }>(null);
@@ -256,7 +271,7 @@ export default function LessonsTab() {
         try {
             const [noLimitsRaw, unlockedRaw] = await Promise.all([
                 AsyncStorage.getItem('tester_no_limits'),
-                AsyncStorage.getItem('unlocked_lessons'),
+                AsyncStorage.getItem(unlockedLessonsKey(studyTarget)),
             ]);
             const nextNoLimits = noLimitsRaw === 'true';
             let nextPersisted: number[] = [];
@@ -273,8 +288,8 @@ export default function LessonsTab() {
                 try {
                     const n = i + 1;
                     const [bestRaw, progRaw] = await Promise.all([
-                        AsyncStorage.getItem(`lesson${n}_best_score`),
-                        AsyncStorage.getItem(`lesson${n}_progress`),
+                        AsyncStorage.getItem(lessonBestScoreKey(n, studyTarget)),
+                        AsyncStorage.getItem(lessonProgressKey(n, studyTarget)),
                     ]);
                     const { score, correctCount } = effectiveLessonStarScore(bestRaw, progRaw);
                     return { score, correct: correctCount };
@@ -285,13 +300,13 @@ export default function LessonsTab() {
             }));
             const nextScores = lessonResults.map(r => r.score);
             const nextProg = lessonResults.map(r => r.correct);
-            const nextPass = await Promise.all(Array.from({ length: 32 }, (_, i) => AsyncStorage.getItem(`lesson${i + 1}_pass_count`).then(v => normalizeLessonPassCount(parseInt(v || '0', 10) || 0, nextScores[i] ?? 0))));
+            const nextPass = await Promise.all(Array.from({ length: 32 }, (_, i) => AsyncStorage.getItem(lessonPassCountKey(i + 1, studyTarget)).then(v => normalizeLessonPassCount(parseInt(v || '0', 10) || 0, nextScores[i] ?? 0))));
             const examRows = await Promise.all(['A1', 'A2', 'B1', 'B2'].map(async (lvl) => {
                 const [pctRaw, passedRaw, bestRaw, examPassRaw] = await Promise.all([
-                    AsyncStorage.getItem(`level_exam_${lvl}_pct`),
-                    AsyncStorage.getItem(`level_exam_${lvl}_passed`),
-                    AsyncStorage.getItem(`level_exam_${lvl}_best_pct`),
-                    AsyncStorage.getItem(`level_exam_${lvl}_pass_count`),
+                    AsyncStorage.getItem(levelExamKey(lvl, 'pct', studyTarget)),
+                    AsyncStorage.getItem(levelExamKey(lvl, 'passed', studyTarget)),
+                    AsyncStorage.getItem(levelExamKey(lvl, 'best_pct', studyTarget)),
+                    AsyncStorage.getItem(levelExamKey(lvl, 'pass_count', studyTarget)),
                 ]);
                 return {
                     lvl,
@@ -322,7 +337,7 @@ export default function LessonsTab() {
             setExamResults(nextExamResults);
             setExamBestPcts(nextBest);
             setExamPassCounts(nextExamPass);
-            lessonsUiSessionCache = {
+            lessonsUiSessionCacheByTarget[lessonCacheTarget] = {
                 scores: nextScores,
                 progCounts: nextProg,
                 passCounts: nextPass,
@@ -336,7 +351,7 @@ export default function LessonsTab() {
         catch {
             /* ignore */
         }
-    }, []);
+    }, [lessonCacheTarget, studyTarget]);
     useEffect(() => {
         void loadScores();
     }, [focusTick, loadScores]);
@@ -345,7 +360,7 @@ export default function LessonsTab() {
         if (activeIdx === 1)
             void loadScores();
     }, [activeIdx, loadScores]);
-    const lessons = lessonNamesForLang(lang);
+    const lessons = lessonNamesForStudyTarget(lang, studyTarget);
     const premiumReachableLevelIndex = useMemo(() => {
         let idx = getCourseLevelIndex('A1');
         if (examResults.A1?.passed)
@@ -536,36 +551,50 @@ export default function LessonsTab() {
                 const examLevelIdx = getCourseLevelIndex(examLevel);
                 const premiumExamAvailable = isPremium && examLevelIdx <= premiumReachableLevelIndex;
                 const examPremiumRequired = !isPremium && !DEV_MODE && !noLimits && requiresPremiumForLesson(to);
-                const allDone = !examPremiumRequired && (DEV_MODE || noLimits || premiumExamAvailable || scoreReady);
+                const examSourceAvailable = examContentAvailableForTarget(studyTarget);
+                const allDone = examSourceAvailable && !examPremiumRequired && (DEV_MODE || noLimits || premiumExamAvailable || scoreReady);
                 const prevExamLevel = getPreviousCourseLevel(examLevel);
                 const result = examResults[lvl];
                 const isB2 = lvl === 'B2';
                 const examMedal = getExamMedalTier(examBestPcts[lvl] ?? 0);
                 const examPass = examPassCounts[lvl] ?? 0;
                 const examDots = getEarnedDots(examMedal, examPass);
-                const label = lang === 'uk'
-                    ? (isB2 ? 'Екзамен' : `Залік ${lvl}`)
-                    : lang === 'es'
-                        ? (isB2 ? 'Examen' : `Examen de ${lvl}`)
-                        : (isB2 ? 'Экзамен' : `Экзамен ${lvl}`);
+                const label = triLang(lang, {
+                    ru: isB2 ? 'Экзамен' : `Экзамен ${lvl}`,
+                    uk: isB2 ? 'Екзамен' : `Залік ${lvl}`,
+                    es: isB2 ? 'Examen' : `Examen de ${lvl}`,
+                    'pt-BR': isB2 ? 'Exame' : `Exame ${lvl}`,
+                    vi: isB2 ? 'Bài kiểm tra' : `Bài kiểm tra ${lvl}`,
+                    id: isB2 ? 'Ujian' : `Ujian ${lvl}`,
+                    tr: isB2 ? 'Sınav' : `${lvl} sınavı`,
+                    pl: isB2 ? 'Egzamin' : `Egzamin ${lvl}`,
+                });
                 const subLine = result
                     ? (result.passed
-                        ? (lang === 'uk'
-                            ? `✅ Здано — ${result.pct}%`
-                            : lang === 'es'
-                                ? `✅ Superado — ${result.pct}%`
-                                : `✅ Сдан — ${result.pct}%`)
-                        : (lang === 'uk'
-                            ? `✗ ${result.pct}%`
-                            : lang === 'es'
-                                ? `✗ ${result.pct}%`
-                                : `✗ ${result.pct}%`))
+                        ? triLang(lang, {
+                            ru: `✅ Сдан — ${result.pct}%`,
+                            uk: `✅ Здано — ${result.pct}%`,
+                            es: `✅ Superado — ${result.pct}%`,
+                            'pt-BR': `✅ Aprovado — ${result.pct}%`,
+                            vi: `✅ Đã vượt qua — ${result.pct}%`,
+                            id: `✅ Lulus — ${result.pct}%`,
+                            tr: `✅ Geçildi — ${result.pct}%`,
+                            pl: `✅ Zdane — ${result.pct}%`,
+                        })
+                        : `✗ ${result.pct}%`)
+                    : !examSourceAvailable
+                        ? frenchExamGateCopy('level', lang).title
                     : allDone
-                        ? (lang === 'uk'
-                            ? 'Натисни щоб почати'
-                            : lang === 'es'
-                                ? 'Toca para empezar'
-                                : 'Нажми чтобы начать')
+                        ? triLang(lang, {
+                            ru: 'Нажми чтобы начать',
+                            uk: 'Натисни щоб почати',
+                            es: 'Toca para empezar',
+                            'pt-BR': 'Toque para começar',
+                            vi: 'Nhấn để bắt đầu',
+                            id: 'Ketuk untuk mulai',
+                            tr: 'Başlamak için dokun',
+                            pl: 'Dotknij, aby rozpocząć',
+                        })
                         : examPremiumRequired
                             ? triLang(lang, {
                                 ru: 'Откроется с Premium',
@@ -578,22 +607,35 @@ export default function LessonsTab() {
                                 pl: 'Otwiera się z Premium',
                             })
                             : isPremium && prevExamLevel
-                                ? (lang === 'uk'
-                                    ? `Спочатку залік ${prevExamLevel}`
-                                    : lang === 'es'
-                                        ? `Primero el examen ${prevExamLevel}`
-                                        : `Сначала зачёт ${prevExamLevel}`)
-                                : (lang === 'uk'
-                                    ? `Завершіть усі уроки ${lvl} на 4.5+`
-                                    : lang === 'es'
-                                        ? `Completa todas las lecciones de ${lvl} con nota mínima de 4,5`
-                                        : `Завершите все уроки ${lvl} на 4.5+`);
+                                ? triLang(lang, {
+                                    ru: `Сначала зачёт ${prevExamLevel}`,
+                                    uk: `Спочатку залік ${prevExamLevel}`,
+                                    es: `Primero el examen ${prevExamLevel}`,
+                                    'pt-BR': `Primeiro o exame ${prevExamLevel}`,
+                                    vi: `Trước tiên là bài kiểm tra ${prevExamLevel}`,
+                                    id: `Ujian ${prevExamLevel} dulu`,
+                                    tr: `Önce ${prevExamLevel} sınavı`,
+                                    pl: `Najpierw egzamin ${prevExamLevel}`,
+                                })
+                                : triLang(lang, {
+                                    ru: `Завершите все уроки ${lvl} на 4.5+`,
+                                    uk: `Завершіть усі уроки ${lvl} на 4.5+`,
+                                    es: `Completa todas las lecciones de ${lvl} con nota mínima de 4,5`,
+                                    'pt-BR': `Conclua todas as lições ${lvl} com 4,5+`,
+                                    vi: `Hoàn thành tất cả bài học ${lvl} với 4.5+`,
+                                    id: `Selesaikan semua pelajaran ${lvl} dengan 4,5+`,
+                                    tr: `${lvl} seviyesindeki tüm dersleri 4.5+ ile tamamla`,
+                                    pl: `Ukończ wszystkie lekcje ${lvl} na 4,5+`,
+                                });
                 return (<Animated.View key={`e-${lvl}`} style={{ marginTop: 8, transform: [{ scale: scaleAnim ?? 1 }], ...(isGoldTheme ? goldShadow(allDone ? 2 : 1) : {}), ...({}) }}>
                 <TouchableOpacity activeOpacity={0.82} onPress={() => {
                         hapticTap();
                         const firstLessonByLevel = lvl === 'A1' ? 1 : lvl === 'A2' ? 9 : lvl === 'B1' ? 19 : 29;
                         if (examPremiumRequired) {
                             setGateModal({ kind: 'premium', lessonNum: requiresPremiumForLesson(firstLessonByLevel) ? firstLessonByLevel : to });
+                        }
+                        else if (!examSourceAvailable) {
+                            setGateModal({ kind: 'frenchExam', level: lvl });
                         }
                         else if (allDone) {
                             router.push({ pathname: '/level_exam', params: { level: lvl } });
@@ -731,7 +773,7 @@ export default function LessonsTab() {
                     });
                     if (access === 'available') {
                         // Navigation must be instant; prefetch runs in background.
-                        void prefetchLessonMenuCache(num);
+                        void prefetchLessonMenuCache(num, studyTarget);
                         router.push({ pathname: '/lesson_menu', params: { id: num } });
                     }
                     else if (access === 'premium_required') {
@@ -889,7 +931,9 @@ export default function LessonsTab() {
         </View>
       </Animated.ScrollView>
     </ScreenGradient>
-    <ThemedChoiceModal visible={gateModal !== null} title={gateModal?.kind === 'exam'
+    <ThemedChoiceModal visible={gateModal !== null} title={gateModal?.kind === 'frenchExam'
+            ? frenchExamGateCopy('level', lang).title
+            : gateModal?.kind === 'exam'
             ? triLang(lang, { ru: 'Недоступно', uk: 'Недоступно', es: 'No disponible', 'pt-BR': 'Indisponível', vi: 'Không khả dụng', id: 'Tidak tersedia', tr: 'Kullanılamaz', pl: 'Niedostępne' })
             : gateModal?.kind === 'premium'
                 ? triLang(lang, {
@@ -924,24 +968,41 @@ export default function LessonsTab() {
                             tr: 'Ders kilitli',
                             pl: 'Lekcja zablokowana',
                         })
-                        : ''} message={gateModal?.kind === 'exam'
-            ? (lang === 'uk'
-                ? `Спочатку пройдіть всі уроки ${gateModal.level} з оцінкою 4.5+`
-                : lang === 'es'
-                    ? `Primero completa todas las lecciones de ${gateModal.level} con nota mínima de 4,5`
-                    : `Сначала пройдите все уроки ${gateModal.level} с оценкой 4.5+`)
+                        : ''} message={gateModal?.kind === 'frenchExam'
+            ? frenchExamGateCopy('level', lang).body
+            : gateModal?.kind === 'exam'
+            ? triLang(lang, {
+                ru: `Сначала пройдите все уроки ${gateModal.level} с оценкой 4.5+`,
+                uk: `Спочатку пройдіть всі уроки ${gateModal.level} з оцінкою 4.5+`,
+                es: `Primero completa todas las lecciones de ${gateModal.level} con nota mínima de 4,5`,
+                'pt-BR': `Primeiro conclua todas as lições ${gateModal.level} com nota 4,5+`,
+                vi: `Trước tiên hãy hoàn thành tất cả bài học ${gateModal.level} với điểm 4.5+`,
+                id: `Selesaikan dulu semua pelajaran ${gateModal.level} dengan nilai 4,5+`,
+                tr: `Önce tüm ${gateModal.level} derslerini 4.5+ puanla tamamla`,
+                pl: `Najpierw ukończ wszystkie lekcje ${gateModal.level} z wynikiem 4,5+`,
+            })
             : gateModal?.kind === 'levelGate'
-                ? (lang === 'uk'
-                    ? `Щоб відкрити рівень ${gateModal.level}, спочатку складіть залік ${gateModal.prevLevel}.`
-                    : lang === 'es'
-                        ? `Para abrir el nivel ${gateModal.level}, primero supera el examen de ${gateModal.prevLevel}.`
-                        : `Чтобы открыть уровень ${gateModal.level}, сначала сдайте зачёт ${gateModal.prevLevel}.`)
+                ? triLang(lang, {
+                    ru: `Чтобы открыть уровень ${gateModal.level}, сначала сдайте зачёт ${gateModal.prevLevel}.`,
+                    uk: `Щоб відкрити рівень ${gateModal.level}, спочатку складіть залік ${gateModal.prevLevel}.`,
+                    es: `Para abrir el nivel ${gateModal.level}, primero supera el examen de ${gateModal.prevLevel}.`,
+                    'pt-BR': `Para abrir o nível ${gateModal.level}, primeiro passe no exame ${gateModal.prevLevel}.`,
+                    vi: `Để mở cấp độ ${gateModal.level}, trước tiên hãy vượt qua bài kiểm tra ${gateModal.prevLevel}.`,
+                    id: `Untuk membuka level ${gateModal.level}, lulus dulu ujian ${gateModal.prevLevel}.`,
+                    tr: `${gateModal.level} seviyesini açmak için önce ${gateModal.prevLevel} sınavını geç.`,
+                    pl: `Aby odblokować poziom ${gateModal.level}, najpierw zdaj egzamin ${gateModal.prevLevel}.`,
+                })
                 : gateModal?.kind === 'lesson'
-                    ? (lang === 'uk'
-                        ? `Пройдіть урок ${gateModal.prevNum} з оцінкою 2.5+`
-                        : lang === 'es'
-                            ? `Completa la lección ${gateModal.prevNum} con nota mínima de 2,5`
-                            : `Пройдите урок ${gateModal.prevNum} с оценкой 2.5+`)
+                    ? triLang(lang, {
+                        ru: `Пройдите урок ${gateModal.prevNum} с оценкой 2.5+`,
+                        uk: `Пройдіть урок ${gateModal.prevNum} з оцінкою 2.5+`,
+                        es: `Completa la lección ${gateModal.prevNum} con nota mínima de 2,5`,
+                        'pt-BR': `Conclua a lição ${gateModal.prevNum} com nota 2,5+`,
+                        vi: `Hoàn thành bài học ${gateModal.prevNum} với điểm 2.5+`,
+                        id: `Selesaikan pelajaran ${gateModal.prevNum} dengan nilai 2,5+`,
+                        tr: `${gateModal.prevNum}. dersi 2.5+ puanla tamamla`,
+                        pl: `Ukończ lekcję ${gateModal.prevNum} z wynikiem 2,5+`,
+                    })
                     : gateModal?.kind === 'premium'
                         ? triLang(lang, {
                             ru: 'Этот урок входит в Premium.',

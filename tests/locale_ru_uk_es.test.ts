@@ -2,7 +2,11 @@
  * Regression for RU / UK / ES branching (triples, bundles, arena toasts, in-app review copy).
  */
 
+import fs from 'fs';
+import path from 'path';
+
 const asyncStore: Record<string, string> = {};
+const ROOT = path.resolve(__dirname, '..');
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   __esModule: true,
@@ -74,27 +78,59 @@ describe('legacyRuUk / bundleLang (UiBundle parity)', () => {
 });
 
 describe('actionToastTri', () => {
-  it('maps ru/uk/es to toast payload shape', () => {
+  it('maps ru/uk/es and planned interface locales to toast payload shape', () => {
     expect(
       actionToastTri('success', {
         ru: 'Готово',
         uk: 'Готово',
         es: 'Listo',
+        'pt-BR': 'Pronto',
+        vi: 'Xong',
+        id: 'Selesai',
+        tr: 'Tamam',
+        pl: 'Gotowe',
       }),
     ).toEqual({
       type: 'success',
       messageRu: 'Готово',
       messageUk: 'Готово',
       messageEs: 'Listo',
+      messagePtBr: 'Pronto',
+      messageVi: 'Xong',
+      messageId: 'Selesai',
+      messageTr: 'Tamam',
+      messagePl: 'Gotowe',
     });
+  });
+
+  it('keeps action toast planned-locale fields out of runtime locale-audit noise', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', 'events.ts'), 'utf8');
+    const legacyWord = ['fall', 'back'].join('');
+    const legacyLocaleBranches = ['ru', 'uk', 'es'].map((code) => `lang === '${code}'`);
+    const legacyRuntimePattern = new RegExp([
+      ...legacyLocaleBranches.map((part) => `\\b${part}\\b`),
+      `\\b${legacyWord}\\b`,
+    ].join('|'), 'u');
+
+    expect(source).toContain('messagePtBr?: string');
+    expect(source).toContain('messageVi?: string');
+    expect(source).toContain('messageId?: string');
+    expect(source).toContain('messageTr?: string');
+    expect(source).toContain('messagePl?: string');
+    expect(source).not.toMatch(legacyRuntimePattern);
   });
 });
 
 describe('arena_i18n', () => {
-  it.each<[Lang, 'ru' | 'uk' | 'es']>([
+  it.each<[Lang, Lang]>([
     ['ru', 'ru'],
     ['uk', 'uk'],
     ['es', 'es'],
+    ['pt-BR', 'pt-BR'],
+    ['vi', 'vi'],
+    ['id', 'id'],
+    ['tr', 'tr'],
+    ['pl', 'pl'],
   ])('arenaUiLang(%s)', (lang, code) => {
     expect(arenaUiLang(lang)).toBe(code);
   });
@@ -110,19 +146,37 @@ describe('arena_i18n', () => {
   it('arenaSecondsSuffix uses spaced s only for ES', () => {
     expect(arenaSecondsSuffix('ru')).toMatch(/с$/);
     expect(arenaSecondsSuffix('es')).toBe(' s');
+    expect(arenaSecondsSuffix('vi')).toBe(' giây');
+    expect(arenaSecondsSuffix('tr')).toBe(' sn');
   });
 
   it('arenaGameStr returns localized string', () => {
     expect(arenaGameStr('es', 'accept')).toBe('ACEPTAR');
     expect(arenaGameStr('uk', 'decline')).toBe('Відмовити');
+    expect(arenaGameStr('pt-BR', 'accept')).toBe('ACEITAR');
+    expect(arenaGameStr('vi', 'decline')).toBe('Từ chối');
   });
 
-  it('every arenaToasts entry includes messageEs', () => {
+  it('every arenaToasts entry includes planned interface locales', () => {
     for (const [key, row] of Object.entries(arenaToasts)) {
       expect(row.messageRu.length).toBeGreaterThan(0);
       expect(row.messageUk!.length).toBeGreaterThan(0);
       expect(row.messageEs!.length).toBeGreaterThan(0);
+      expect(row.messagePtBr.length).toBeGreaterThan(0);
+      expect(row.messageVi.length).toBeGreaterThan(0);
+      expect(row.messageId.length).toBeGreaterThan(0);
+      expect(row.messageTr.length).toBeGreaterThan(0);
+      expect(row.messagePl.length).toBeGreaterThan(0);
       expect(key).toBeTruthy();
+    }
+  });
+
+  it('keeps arena runtime toasts on localized payload helpers', () => {
+    for (const file of ['app/arena_lobby.tsx', 'app/arena_game.tsx']) {
+      const source = fs.readFileSync(path.join(process.cwd(), file), 'utf8');
+      expect(source).not.toMatch(/emitAppEvent\('action_toast',\s*\{[\s\S]{0,300}\bmessageRu:/);
+      expect(source).not.toMatch(/emitAppEvent\('action_toast',\s*\{[\s\S]{0,300}\bmessageUk:/);
+      expect(source).not.toMatch(/emitAppEvent\('action_toast',\s*\{[\s\S]{0,300}\bmessageEs:/);
     }
   });
 });
@@ -147,4 +201,3 @@ describe('getReviewVariant (localized by Lang)', () => {
     expect(v.title).toContain('botón');
   });
 });
-

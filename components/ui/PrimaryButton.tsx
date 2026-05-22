@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
 import { GOLD_GRADIENTS, GOLD_RICH, goldShadow } from '../../constants/goldTheme';
 import GoldBevel from '../GoldBevel';

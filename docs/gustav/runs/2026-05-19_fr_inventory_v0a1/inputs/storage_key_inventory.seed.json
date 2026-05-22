@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "gustav-storage-key-inventory-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "status": "HOLD",
+  "inventoryKind": "manual_seed",
+  "keys": [
+    {
+      "key": "trainer_store_v1",
+      "sourcePath": "app/trainer_store.ts",
+      "operation": "get/set",
+      "scope": "legacy_english",
+      "learningState": true,
+      "targetNamespaceRequired": true,
+      "cloudSyncKey": false,
+      "risk": "blocker",
+      "notes": ["Must migrate to trainer_store_v2::<studyTarget> before French trainer integration."]
+    },
+    {
+      "keyPattern": "lesson${i}_progress",
+      "sourcePath": "app/lessons_tab_state.ts",
+      "operation": "multiGet",
+      "scope": "legacy_english",
+      "learningState": true,
+      "targetNamespaceRequired": true,
+      "cloudSyncKey": true,
+      "risk": "blocker",
+      "notes": ["Must not be shared by French lessons."]
+    },
+    {
+      "keyPattern": "lesson${i}_best_score",
+      "sourcePath": "app/lessons_tab_state.ts",
+      "operation": "multiGet",
+      "scope": "legacy_english",
+      "learningState": true,
+      "targetNamespaceRequired": true,
+      "cloudSyncKey": true,
+      "risk": "blocker",
+      "notes": ["Must be target-scoped for multi-target lessons."]
+    },
+    {
+      "key": "unlocked_lessons",
+      "sourcePath": "app/lessons_tab_state.ts",
+      "operation": "multiGet",
+      "scope": "legacy_english",
+      "learningState": true,
+      "targetNamespaceRequired": true,
+      "cloudSyncKey": true,
+      "risk": "blocker",
+      "notes": ["French unlock state must not share English unlocks."]
+    },
+    {
+      "keyPattern": "level_exam_${level}_*",
+      "sourcePath": "app/lessons_tab_state.ts",
+      "operation": "multiGet",
+      "scope": "legacy_english",
+      "learningState": true,
+      "targetNamespaceRequired": true,
+      "cloudSyncKey": true,
+      "risk": "high",
+      "notes": ["English CEFR exam progress is not French CEFR exam progress."]
+    },
+    {
+      "key": "lang",
+      "sourcePath": "app/cloud_sync.ts",
+      "operation": "sync",
+      "scope": "source_locale",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "cloudSyncKey": true,
+      "risk": "high",
+      "notes": ["Must not be reused as study target."]
+    },
+    {
+      "key": "app_lang",
+      "sourcePath": "app/cloud_sync.ts",
+      "operation": "sync",
+      "scope": "source_locale",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "cloudSyncKey": true,
+      "risk": "high",
+      "notes": ["Must not be reused as study target."]
+    },
+    {
+      "key": "dev_study_target_lang",
+      "sourcePath": "app/study_target_lang_dev.ts",
+      "operation": "get/set",
+      "scope": "dev_only",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "cloudSyncKey": false,
+      "risk": "high",
+      "notes": ["Dev-only key cannot become production multi-target storage."]
+    }
+  ],
+  "unknowns": [
+    "Full AsyncStorage key extraction not performed",
+    "Cloud sync list not fully classified",
+    "Flashcards keys not fully classified",
+    "Quiz and exam write keys not fully classified",
+    "Arena keys not classified"
+  ]
+}

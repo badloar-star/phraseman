@@ -3,9 +3,11 @@ import path from 'path';
 import { getAllDiagnosisTrainings } from '../app/diagnosis_trainings';
 import {
   DIAGNOSIS_COPY_FORBIDDEN_RU_UK,
+  diagnosisCopy,
   sanitizeDiagnosisCopy,
 } from '../app/diagnosis_training_copy';
 import { getVisibleIntroLearningBlocks } from '../app/personal_training_intro_blocks';
+import type { PlannedInterfaceLang } from '../constants/i18n';
 
 type Tri = { ru: string; uk: string; es: string };
 
@@ -39,6 +41,40 @@ function collectLocalizedDisplayCopy(value: unknown, out: Array<{ path: string; 
 }
 
 describe('diagnosis training learner-facing copy', () => {
+  it('uses explicit planned-locale diagnosis copy when present', () => {
+    const value = {
+      ru: 'Русский текст',
+      uk: 'Український текст',
+      es: 'Texto español',
+      'pt-BR': 'Texto em português do Brasil',
+      vi: 'Nội dung tiếng Việt',
+      id: 'Teks bahasa Indonesia',
+      tr: 'Türkçe metin',
+      pl: 'Polski tekst',
+    };
+
+    for (const lang of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+      expect(diagnosisCopy(lang, value)).toBe(value[lang]);
+    }
+  });
+
+  it('marks missing planned-locale diagnosis copy instead of falling back to RU/UK/ES', () => {
+    const value = {
+      ru: 'Русский fallback',
+      uk: 'Український fallback',
+      es: 'Texto español fallback',
+    };
+
+    for (const lang of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as readonly PlannedInterfaceLang[]) {
+      const copy = diagnosisCopy(lang, value);
+
+      expect(copy).toContain('needs-review:');
+      expect(copy).not.toBe(value.ru);
+      expect(copy).not.toBe(value.uk);
+      expect(copy).not.toBe(value.es);
+    }
+  });
+
   it('removes internal English grammar jargon from Russian and Ukrainian UI text', () => {
     const failures: string[] = [];
 

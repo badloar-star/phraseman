@@ -1,15 +1,11 @@
 import type { Lang } from '../constants/i18n';
 
-function pickRandom<T>(values: T[]): T {
+function pickRandom<T>(values: readonly T[]): T {
   return values[Math.floor(Math.random() * values.length)]!;
 }
 
-/** Языки шеринговых подписей: совпадает с приложением ru / uk / es. */
-type ShareExamLang = Extract<Lang, 'ru' | 'uk' | 'es'>;
+type ShareExamLang = Lang;
 
-/**
- * Text fallback for exam share; pool matches previous inline copy in `exam.tsx`.
- */
 export function buildExamShareMessage(
   lang: ShareExamLang,
   score: number,
@@ -50,7 +46,42 @@ export function buildExamShareMessage(
     `Examen de Phraseman: ${score}/${total}. 🎓 ¡El esfuerzo mereció la pena! Un brindis (o un té). ☕️🥂`,
     `¡Barrera superada! 🎓 ${pct}% de aciertos en Phraseman: el nivel no para de subir. 🎯`,
   ];
-  const pool = lang === 'uk' ? variantsUk : lang === 'es' ? variantsEs : variantsRu;
+  const variantsPtBr = [
+    `Consegui! Passei no exame do Phraseman com ${score}/${total}. Agora meu inglês entrou em modo perigo! 🎓🔥`,
+    `${pct}% no exame! O Phraseman confirma: meu inglês não é mito, é realidade. 🎓🎯`,
+    `Exame do Phraseman concluído: ${score}/${total}. O esforço valeu a pena! ☕️🥂`,
+  ];
+  const variantsVi = [
+    `Mình làm được rồi! Vượt qua bài kiểm tra Phraseman với ${score}/${total}. Tiếng Anh lên cấp thật rồi! 🎓🔥`,
+    `${pct}% trong bài kiểm tra! Phraseman xác nhận: tiếng Anh của mình không còn là chuyện đùa. 🎓🎯`,
+    `Đã xong bài kiểm tra Phraseman (${score}/${total}). Nghỉ một chút rồi học tiếp! 🏆🥤`,
+  ];
+  const variantsId = [
+    `Aku berhasil! Ujian Phraseman lulus dengan ${score}/${total}. Bahasa Inggrisku naik level! 🎓🔥`,
+    `${pct}% di ujian! Phraseman membuktikan: bahasa Inggrisku bukan mitos. 🎓🎯`,
+    `Ujian Phraseman selesai: ${score}/${total}. Usahaku terbayar! ☕️🥂`,
+  ];
+  const variantsTr = [
+    `Başardım! Phraseman sınavını ${score}/${total} ile geçtim. İngilizcem resmen seviye atladı! 🎓🔥`,
+    `Sınavda %${pct}! Phraseman onayladı: İngilizcem artık efsane değil, gerçek. 🎓🎯`,
+    `Phraseman sınavı bitti: ${score}/${total}. Emekler karşılığını verdi! ☕️🥂`,
+  ];
+  const variantsPl = [
+    `Udało się! Egzamin w Phraseman zdany na ${score}/${total}. Mój angielski właśnie awansował! 🎓🔥`,
+    `${pct}% na egzaminie! Phraseman potwierdza: mój angielski to już nie mit. 🎓🎯`,
+    `Egzamin w Phraseman zakończony: ${score}/${total}. Wysiłek się opłacił! ☕️🥂`,
+  ];
+  const pools: Record<ShareExamLang, readonly string[]> = {
+    ru: variantsRu,
+    uk: variantsUk,
+    es: variantsEs,
+    'pt-BR': variantsPtBr,
+    vi: variantsVi,
+    id: variantsId,
+    tr: variantsTr,
+    pl: variantsPl,
+  };
+  const pool = pools[lang] ?? pools.ru;
   return `${pickRandom(pool)}\n${storeUrl}`;
 }
 
@@ -101,6 +132,71 @@ export function buildCertificateShareMessage(
       ? `${cleanName}: mi inglés está a nivel B2 según Phraseman. 🎯 Resultado: ${pct}%.`
       : `Mi inglés está a nivel B2 según Phraseman. 🎯 Resultado: ${pct}%.`,
   ];
-  const pool = lang === 'uk' ? variantsUk : lang === 'es' ? variantsEs : variantsRu;
+  const variantsPtBr = [
+    cleanName
+      ? `${cleanName} alcançou o nível B2 no Phraseman! 🎯 ${pct}% no teste final.`
+      : `Nível B2 no Phraseman desbloqueado! 🎯 ${pct}% no teste final.`,
+    cleanName
+      ? `${cleanName} completou o teste final do Phraseman com ${pct}%. 🏆 B2 garantido!`
+      : `Teste final do Phraseman concluído com ${pct}%. 🏆 B2 garantido!`,
+    cleanName
+      ? `${cleanName}: meu inglês está no nível B2 segundo o Phraseman. 🎯 Resultado: ${pct}%.`
+      : `Meu inglês está no nível B2 segundo o Phraseman. 🎯 Resultado: ${pct}%.`,
+  ];
+  const variantsVi = [
+    cleanName
+      ? `${cleanName} đã đạt cấp độ B2 trong Phraseman! 🎯 ${pct}% ở bài kiểm tra cuối.`
+      : `Đã mở cấp độ B2 trong Phraseman! 🎯 ${pct}% ở bài kiểm tra cuối.`,
+    cleanName
+      ? `${cleanName} hoàn thành bài kiểm tra cuối của Phraseman với ${pct}%. 🏆 B2 đây rồi!`
+      : `Bài kiểm tra cuối của Phraseman đạt ${pct}%. 🏆 B2 đây rồi!`,
+    cleanName
+      ? `${cleanName}: tiếng Anh của mình ở cấp độ B2 theo Phraseman. 🎯 Kết quả: ${pct}%.`
+      : `Tiếng Anh của mình ở cấp độ B2 theo Phraseman. 🎯 Kết quả: ${pct}%.`,
+  ];
+  const variantsId = [
+    cleanName
+      ? `${cleanName} mencapai level B2 di Phraseman! 🎯 ${pct}% di tes final.`
+      : `Level B2 di Phraseman tercapai! 🎯 ${pct}% di tes final.`,
+    cleanName
+      ? `${cleanName} menyelesaikan tes final Phraseman dengan ${pct}%. 🏆 B2 aman!`
+      : `Tes final Phraseman selesai dengan ${pct}%. 🏆 B2 aman!`,
+    cleanName
+      ? `${cleanName}: bahasa Inggrisku level B2 menurut Phraseman. 🎯 Hasil: ${pct}%.`
+      : `Bahasa Inggrisku level B2 menurut Phraseman. 🎯 Hasil: ${pct}%.`,
+  ];
+  const variantsTr = [
+    cleanName
+      ? `${cleanName} Phraseman'de B2 seviyesine ulaştı! 🎯 Final testinde %${pct}.`
+      : `Phraseman'de B2 seviyesi tamam! 🎯 Final testinde %${pct}.`,
+    cleanName
+      ? `${cleanName} Phraseman final testini %${pct} ile tamamladı. 🏆 B2 tamam!`
+      : `Phraseman final testi %${pct} ile tamamlandı. 🏆 B2 tamam!`,
+    cleanName
+      ? `${cleanName}: Phraseman'e göre İngilizcem B2 seviyesinde. 🎯 Sonuç: %${pct}.`
+      : `Phraseman'e göre İngilizcem B2 seviyesinde. 🎯 Sonuç: %${pct}.`,
+  ];
+  const variantsPl = [
+    cleanName
+      ? `${cleanName} osiągnął/osiągnęła poziom B2 w Phraseman! 🎯 ${pct}% w teście finałowym.`
+      : `Poziom B2 w Phraseman zdobyty! 🎯 ${pct}% w teście finałowym.`,
+    cleanName
+      ? `${cleanName} ukończył/ukończyła test finałowy Phraseman na ${pct}%. 🏆 B2 jest!`
+      : `Test finałowy Phraseman ukończony na ${pct}%. 🏆 B2 jest!`,
+    cleanName
+      ? `${cleanName}: mój angielski jest na poziomie B2 według Phraseman. 🎯 Wynik: ${pct}%.`
+      : `Mój angielski jest na poziomie B2 według Phraseman. 🎯 Wynik: ${pct}%.`,
+  ];
+  const pools: Record<ShareExamLang, readonly string[]> = {
+    ru: variantsRu,
+    uk: variantsUk,
+    es: variantsEs,
+    'pt-BR': variantsPtBr,
+    vi: variantsVi,
+    id: variantsId,
+    tr: variantsTr,
+    pl: variantsPl,
+  };
+  const pool = pools[lang] ?? pools.ru;
   return `${pickRandom(pool)}\n${storeUrl}`;
 }

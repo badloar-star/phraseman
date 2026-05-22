@@ -2,13 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import {
   View, Text, Animated, TouchableOpacity, StyleSheet, Modal, Pressable, Dimensions, Image, PanResponder, Share,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
 import { Ionicons } from '@expo/vector-icons';
 import { useAchievement } from './AchievementContext';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { markAchievementsNotified } from '../app/achievements';
+import { ACHIEVEMENT_ES } from '../app/achievements_es_locale';
 import { ACHIEVEMENT_ICON, ACHIEVEMENT_IMAGE, CAT_COLOR, BadgeShield } from '../app/achievements_screen';
 import { STORE_URL } from '../app/config';
 import { buildAchievementShareMessage } from '../app/achievement_share';
@@ -231,7 +232,7 @@ export default function AchievementToast() {
   const name = triLang(lang, {
     uk: displayedToast.nameUk,
     ru: displayedToast.nameRu,
-    es: displayedToast.nameEs ?? displayedToast.nameRu,
+    es: displayedToast.nameEs ?? ACHIEVEMENT_ES[displayedToast.id]?.nameEs ?? displayedToast.nameRu,
     'pt-BR': 'Conquista desbloqueada',
     vi: 'Thành tích đã mở khóa',
     id: 'Pencapaian terbuka',
@@ -241,7 +242,7 @@ export default function AchievementToast() {
   const desc = triLang(lang, {
     uk: displayedToast.descUk,
     ru: displayedToast.descRu,
-    es: displayedToast.descEs ?? displayedToast.descRu,
+    es: displayedToast.descEs ?? ACHIEVEMENT_ES[displayedToast.id]?.descEs ?? displayedToast.descRu,
     'pt-BR': 'Você desbloqueou uma conquista no app.',
     vi: 'Bạn đã mở khóa một thành tích trong ứng dụng.',
     id: 'Kamu membuka pencapaian di aplikasi.',
@@ -257,6 +258,26 @@ export default function AchievementToast() {
     id: 'Pencapaian terbuka!',
     tr: 'Başarım açıldı!',
     pl: 'Osiągnięcie odblokowane!',
+  });
+  const shareLabel = triLang(lang, {
+    uk: 'Поділитися',
+    ru: 'Поделиться',
+    es: 'Compartir',
+    'pt-BR': 'Compartilhar',
+    vi: 'Chia sẻ',
+    id: 'Bagikan',
+    tr: 'Paylaş',
+    pl: 'Udostępnij',
+  });
+  const closeLabel = triLang(lang, {
+    uk: 'Закрити',
+    ru: 'Закрыть',
+    es: 'Cerrar',
+    'pt-BR': 'Fechar',
+    vi: 'Đóng',
+    id: 'Tutup',
+    tr: 'Kapat',
+    pl: 'Zamknij',
   });
   const iconName = ACHIEVEMENT_ICON[displayedToast.id] ?? 'star';
   const color = CAT_COLOR[displayedToast.category] ?? '#888';
@@ -369,7 +390,7 @@ export default function AchievementToast() {
                 >
                   <Ionicons name="share-outline" size={16} color={modalAccent} />
                   <Text style={{ color: modalAccent, fontSize: f.sub, fontWeight: '700' }}>
-                    {lang === 'uk' ? 'Поділитися' : lang === 'es' ? 'Compartir' : 'Поделиться'}
+                    {shareLabel}
                   </Text>
                 </TouchableOpacity>
 
@@ -384,7 +405,7 @@ export default function AchievementToast() {
                   ]}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                    {lang === 'uk' ? 'Закрити' : lang === 'es' ? 'Cerrar' : 'Закрыть'}
+                    {closeLabel}
                   </Text>
                 </TouchableOpacity>
               </View>

@@ -13,6 +13,9 @@ export type AppEventMap = {
   energy_reload: undefined;
   premium_activated: undefined;
   premium_deactivated: undefined;
+  vip_activated: undefined;
+  vip_deactivated: undefined;
+  premium_access_changed: { active: boolean; source: 'premium' | 'vip' | 'none' };
   gold_theme_unlocked: { source: string };
   achievement_unlocked: undefined;
   account_deleted: undefined;
@@ -21,6 +24,10 @@ export type AppEventMap = {
   /** После первого сохранения league_state_v3 из облака — перечитать карточку клуба на главной. */
   league_local_state_updated: undefined;
   league_crown_updated: { uid: string; expiresAt: number };
+  /** Непрочитанные сообщения чата лиги изменились — обновить badge на главной/в клубе. */
+  league_chat_unread_changed: { roomKey: string; unreadCount: number };
+  /** Локальное dev/admin inbox-сообщение изменилось — перечитать inbox без Firestore. */
+  app_messages_local_changed: undefined;
   /** После успешного signInWithProvider — обновить секцию "Аккаунт" в Settings, etc. */
   auth_provider_linked: undefined;
   /** Начисление осколков: анимация на главной + глобальная ShardsEarnedModal (если есть reason). */
@@ -31,7 +38,12 @@ export type AppEventMap = {
     /** Готовая строка (например батч за урок) — приоритет над reasonKey */
     reasonText?: string;
   };
-  shards_balance_updated: { balance: number };
+  shards_balance_updated: {
+    balance: number;
+    op?: 'earn' | 'spend' | 'replace' | 'admin';
+    reason?: string;
+    eligibleAchievementBalance?: number;
+  };
   /** 48-год ваучер на безкоштовний паккарток виданий (з преміум-подарунка / broadcast) */
   pack_trial_gift_set: undefined;
   /** Ваучер «згорів» — використано для покупки набору або вийшов час; UI має повернути іконки осколків */
@@ -48,15 +60,20 @@ export type AppEventMap = {
   streak_revived: { restoredStreak: number; spent: number };
   streak_freeze_updated: { active: boolean };
   /** Урок впервые завершён (lesson_complete впервые). Используется mastery UI. */
-  lesson_finished_once: { lessonId: number };
+  lesson_finished_once: { lessonId: number; studyTarget?: string };
   /** Юзер запустил перепрохождение урока (mastery). lesson1.tsx должен перезагрузить прогресс. */
-  lesson_replay_started: { lessonId: number; spent: number };
+  lesson_replay_started: { lessonId: number; spent: number; studyTarget?: string };
   action_toast: {
     type: 'success' | 'error' | 'info';
     messageRu: string;
     messageUk?: string;
-    /** Испанский UX (например dev); если нет — см. fallback в ActionToast */
+    /** Испанский UX (например dev); если нет — ActionToast использует базовую строку */
     messageEs?: string;
+    messagePtBr?: string;
+    messageVi?: string;
+    messageId?: string;
+    messageTr?: string;
+    messagePl?: string;
   };
   /**
    * После онбординга отложенный тутор энергии / возврат с первого урока — главная может показать онбординг.
@@ -77,7 +94,17 @@ export function actionToastTri(
   type: AppEventMap['action_toast']['type'],
   m: { ru: string; uk: string; es: string } & PlannedTriLangCopy,
 ): AppEventMap['action_toast'] {
-  return { type, messageRu: m.ru, messageUk: m.uk, messageEs: m.es };
+  return {
+    type,
+    messageRu: m.ru,
+    messageUk: m.uk,
+    messageEs: m.es,
+    messagePtBr: m['pt-BR'],
+    messageVi: m.vi,
+    messageId: m.id,
+    messageTr: m.tr,
+    messagePl: m.pl,
+  };
 }
 
 export function emitAppEvent<K extends keyof AppEventMap>(

@@ -3,7 +3,28 @@
 
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const VRQ_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre very/really/quite ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về very/really/quite này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan very/really/quite ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu very/really/quite açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie very/really/quite nadal wymaga przeglądu po polsku.',
+};
+
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? VRQ_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'very + adjective',
@@ -14,6 +35,48 @@ const CONTRAST = [
   'intensifier position',
   'too vs very',
 ];
+
+const VRQ_SKILL_ES: Record<string, string> = {
+  very_useful_basic: 'Very da un refuerzo neutral: very useful.',
+  very_fast_basic: 'Very va antes de fast: very fast.',
+  very_important_basic: 'Very va antes de important: very important.',
+  really_tired_conversation: 'Really suena mas conversacional: really tired.',
+  really_interesting_conversation: 'Really da un tono vivo: really interesting.',
+  really_good_conversation: 'Really good es una opcion natural y fuerte.',
+  quite_good_moderate: 'Quite suaviza la evaluacion: quite good.',
+  quite_difficult_moderate: 'Quite difficult suena mas moderado que really difficult.',
+  quite_interesting_moderate: 'Quite interesting es positivo, pero suave.',
+  very_vs_too_hot: 'Very hot es fuerte pero tolerable; too hot ya es problema.',
+  too_hot_problem: 'Too hot to eat marca problema.',
+  quite_vs_really_tone: 'Not amazing pide quite good, no really good.',
+  mixed_very_really_quite: 'Los intensificadores van antes de la cualidad.',
+  mixed_very_too: 'Very hot puede ser tolerable; too hot to drink no.',
+  mixed_sentence_correction: 'Orden natural: really useful / quite difficult.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = VRQ_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? VRQ_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function vrqEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = VRQ_SKILL_ES[input.targetSkill] ?? 'Elige el intensificador por tono y posicion.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function makeStep(input: {
   id: string;
@@ -30,63 +93,64 @@ function makeStep(input: {
   finalHint: TriText;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = vrqEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: withEs(input.translation, esFeedback),
     explanationBlock: tri(
       'Эти слова стоят перед качеством, но дают разный тон. Very - нейтральное "очень". Really - сильнее и разговорнее. Quite - мягкое "довольно". Too - уже перебор или проблема.',
       'Ці слова стоять перед якістю, але дають різний тон. Very - нейтральне "дуже". Really - сильніше й розмовніше. Quite - мʼяке "доволі". Too - уже перебір або проблема.',
-      'Very, really, and quite intensify the next word, but with different tone. Too marks a problem.',
+      'Very, really y quite intensifican la palabra siguiente, pero con tonos distintos. Too marca un problema.',
     ),
     microTask: tri(
       'Выбери живой кусок: very, really, quite или too.',
       'Обери живий шматок: very, really, quite або too.',
-      'Choose the natural chunk: very, really, quite, or too.',
+      'Elige el bloque natural: very, really, quite o too.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
         .map((option) => [
           option,
-          input.wrong[option] ??
+          withEs(input.wrong[option] ??
             tri(
               `Почти, но здесь нужен другой кусок: ${input.correctAnswer}.`,
               `Майже, але тут потрiбен iнший шматок: ${input.correctAnswer}.`,
-              `Almost. Use: ${input.correctAnswer}.`,
-            ),
+              `Casi. Usa: ${input.correctAnswer}.`,
+            ), esFeedback),
         ]),
     ),
     retryFeedback: [
-      input.clue,
+      withEs(input.clue, esFeedback),
       tri(
         'Сначала поймай оттенок. Very = просто очень. Really = живее и сильнее в разговоре. Quite = довольно, часто мягче. Too = слишком, уже есть проблема.',
         'Спочатку злови вiдтiнок. Very = просто дуже. Really = живiше й сильнiше в розмовi. Quite = доволi, часто мʼякше. Too = занадто, вже є проблема.',
-        'Very = neutral strength. Really = stronger and more conversational. Quite = moderate. Too = excessive/problem.',
+        'Very = fuerza neutral. Really = mas conversacional. Quite = moderado. Too = exceso o problema.',
       ),
       tri(
         'Теперь проверь порядок: усилитель должен стоять перед словом, которое он усиливает.',
         'Тепер перевiр порядок: пiдсилювач має стояти перед словом, яке вiн пiдсилює.',
-        input.finalHint.es,
+        'Ahora revisa el orden: el intensificador va antes de la palabra que modifica.',
       ),
       tri(
         'Здесь решает не перевод, а оттенок и место усилителя.',
         'Тут вирiшує не переклад, а вiдтiнок i мiсце пiдсилювача.',
-        `Answer: ${input.correctAnswer}.`,
+        `Respuesta: ${input.correctAnswer}.`,
       ),
     ],
     fallbackExplanation: tri(
       'Сначала выбери тон: нейтрально, живее, мягче или слишком много. Потом ставь усилитель перед словом, которое он усиливает.',
       'Спочатку обери тон: нейтрально, живіше, мʼякше або занадто багато. Потім став підсилювач перед словом, яке він підсилює.',
-      'Chunks: very useful, really tired, quite good, quite difficult, very hot, too hot.',
+      'Bloques: very useful, really tired, quite good, quite difficult, very hot, too hot.',
     ),
     focusWords: input.focusWords,
   };
@@ -98,33 +162,74 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 35,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Very / Really / Quite: оттенки усиления',
     'Very / Really / Quite: відтінки підсилення',
     'Very / Really / Quite',
+    {
+      'pt-BR': 'Very / Really / Quite: tons de intensidade',
+      vi: 'Very / Really / Quite: sắc thái nhấn mạnh',
+      id: 'Very / Really / Quite: nuansa penekanan',
+      tr: 'Very / Really / Quite: vurgu tonları',
+      pl: 'Very / Really / Quite: odcienie wzmocnienia',
+    },
   ),
-  shortTitle: tri('Very / Really / Quite', 'Very / Really / Quite', 'Very / Really / Quite'),
+  shortTitle: tri('Very / Really / Quite', 'Very / Really / Quite', 'Very / Really / Quite', {
+    'pt-BR': 'Very / Really / Quite',
+    vi: 'Very / Really / Quite',
+    id: 'Very / Really / Quite',
+    tr: 'Very / Really / Quite',
+    pl: 'Very / Really / Quite',
+  }),
   shortDiagnosis: tri(
     'Ты знаешь very, really и quite, но выбираешь их как одно и то же "очень". Из-за этого фраза звучит либо слишком резко, либо неестественно.',
     'Ти знаєш very, really i quite, але обираєш їх як одне й те саме "дуже". Через це фраза звучить або занадто рiзко, або неприродно.',
-    'You treat very, really, and quite as the same word, so the tone breaks.',
+    'Tratas very, really y quite como si fueran la misma palabra, y por eso se rompe el tono.',
+    {
+      'pt-BR': 'Você conhece very, really e quite, mas escolhe todos como se fossem o mesmo "muito". Por isso a frase soa forte demais ou pouco natural.',
+      vi: 'Bạn biết very, really và quite, nhưng chọn chúng như cùng một từ "rất". Vì vậy câu nghe quá mạnh hoặc không tự nhiên.',
+      id: 'Kamu tahu very, really, dan quite, tetapi memilihnya seolah semuanya berarti "sangat". Akibatnya, kalimat terdengar terlalu keras atau tidak alami.',
+      tr: 'Very, really ve quite kelimelerini biliyorsun, ama hepsini aynı "çok" gibi seçiyorsun. Bu yüzden cümle ya fazla sert ya da doğal olmayan şekilde duyuluyor.',
+      pl: 'Znasz very, really i quite, ale wybierasz je jak jedno i to samo "bardzo". Przez to zdanie brzmi albo zbyt ostro, albo nienaturalnie.',
+    },
   ),
   diagnosisText: tri(
     'Проблема не в том, что ты не знаешь перевод. Проблема в оттенке. Very useful - спокойно и нейтрально. Really useful - живее, как в разговоре. Quite useful - положительно, но мягче. А too useful уже звучит как перебор, будто полезности стало слишком много.',
     'Проблема не в тому, що ти не знаєш переклад. Проблема у вiдтiнку. Very useful - спокiйно й нейтрально. Really useful - живiше, як у розмовi. Quite useful - позитивно, але мʼякше. А too useful вже звучить як перебiр, нiби корисностi стало забагато.',
-    'The issue is tone: very useful is neutral, really useful is conversational, quite useful is softer, and too useful sounds excessive.',
+    'El problema no es la traduccion, sino el matiz. Very useful es neutral. Really useful suena mas conversacional. Quite useful es positivo, pero mas suave. Too useful ya suena como exceso.',
+    {
+      'pt-BR': 'O problema não é saber a tradução. O problema é o tom. Very useful soa calmo e neutro. Really useful soa mais vivo, como numa conversa. Quite useful é positivo, mas mais suave. Too useful já soa como excesso, como se a utilidade fosse demais.',
+      vi: 'Vấn đề không phải là bạn không biết bản dịch. Vấn đề nằm ở sắc thái. Very useful nghe bình tĩnh và trung tính. Really useful nghe sinh động hơn, như trong hội thoại. Quite useful là tích cực nhưng nhẹ hơn. Too useful lại nghe như quá mức, như thể sự hữu ích đã quá nhiều.',
+      id: 'Masalahnya bukan kamu tidak tahu terjemahannya. Masalahnya ada pada nuansa. Very useful terdengar tenang dan netral. Really useful terdengar lebih hidup, seperti percakapan. Quite useful positif, tetapi lebih lembut. Too useful sudah terdengar berlebihan, seolah kegunaannya terlalu banyak.',
+      tr: 'Sorun çeviriyi bilmemek değil. Sorun tonda. Very useful sakin ve nötr duyulur. Really useful konuşmadaki gibi daha canlı duyulur. Quite useful olumlu ama daha yumuşaktır. Too useful ise artık aşırılık gibi, faydalılık fazla olmuş gibi duyulur.',
+      pl: 'Problem nie polega na tym, że nie znasz tłumaczenia. Problem tkwi w odcieniu. Very useful brzmi spokojnie i neutralnie. Really useful brzmi żywiej, jak w rozmowie. Quite useful jest pozytywne, ale łagodniejsze. Too useful brzmi już jak przesada, jakby użyteczności było za dużo.',
+    },
   ),
   mentalModel: tri(
     'Не переводи все как "очень". Выбирай настроение фразы. Very - обычное усиление. Really - живое усиление. Quite - осторожная положительная оценка. Too - проблема или перебор.',
     'Не перекладай усе як "дуже". Обирай настрiй фрази. Very - звичайне пiдсилення. Really - живе пiдсилення. Quite - обережна позитивна оцiнка. Too - проблема або перебiр.',
-    'Do not translate all of them as very. Choose the tone: neutral, conversational, softer, or excessive.',
+    'No traduzcas todo como "muy". Elige el tono: neutral, conversacional, mas suave o excesivo.',
+    {
+      'pt-BR': 'Não traduza tudo como "muito". Escolha o clima da frase. Very é intensificação comum. Really é intensificação mais viva. Quite é uma avaliação positiva cuidadosa. Too indica problema ou excesso.',
+      vi: 'Đừng dịch tất cả thành "rất". Hãy chọn cảm giác của câu. Very là nhấn mạnh thông thường. Really là nhấn mạnh sinh động. Quite là đánh giá tích cực nhưng dè dặt. Too là vấn đề hoặc quá mức.',
+      id: 'Jangan terjemahkan semuanya sebagai "sangat". Pilih suasana kalimatnya. Very adalah penekanan biasa. Really adalah penekanan yang lebih hidup. Quite adalah penilaian positif yang hati-hati. Too berarti masalah atau berlebihan.',
+      tr: 'Her şeyi "çok" diye çevirme. Cümlenin havasını seç. Very normal vurgu verir. Really canlı vurgu verir. Quite temkinli olumlu değerlendirmedir. Too sorun ya da aşırılık gösterir.',
+      pl: 'Nie tłumacz wszystkiego jako "bardzo". Wybieraj nastrój zdania. Very to zwykłe wzmocnienie. Really to żywe wzmocnienie. Quite to ostrożna pozytywna ocena. Too oznacza problem albo przesadę.',
+    },
   ),
   contrastSet: CONTRAST,
   coreRule: tri(
     'Very обычно просто усиливает. Really звучит живее. Quite часто смягчает оценку. Too показывает, что качества уже слишком много и появилась проблема.',
     'Very зазвичай просто підсилює. Really звучить живіше. Quite часто помʼякшує оцінку. Too показує, що якості вже занадто багато і зʼявилася проблема.',
-    'Chunks: very useful, really tired, quite good, quite difficult. Very hot is strong; too hot is a problem.',
+    'Bloques: very useful, really tired, quite good, quite difficult. Very hot es fuerte; too hot es un problema.',
+    {
+      'pt-BR': 'Very geralmente apenas intensifica. Really soa mais vivo. Quite muitas vezes suaviza a avaliação. Too mostra que a qualidade já passou do ponto e virou um problema.',
+      vi: 'Very thường chỉ nhấn mạnh. Really nghe sinh động hơn. Quite thường làm đánh giá nhẹ hơn. Too cho thấy mức độ đã quá nhiều và trở thành vấn đề.',
+      id: 'Very biasanya hanya memperkuat. Really terdengar lebih hidup. Quite sering melembutkan penilaian. Too menunjukkan bahwa kualitasnya sudah terlalu banyak dan menjadi masalah.',
+      tr: 'Very genellikle sadece güçlendirir. Really daha canlı duyulur. Quite çoğu zaman değerlendirmeyi yumuşatır. Too, özelliğin artık fazla olduğunu ve sorun oluştuğunu gösterir.',
+      pl: 'Very zwykle po prostu wzmacnia. Really brzmi żywiej. Quite często łagodzi ocenę. Too pokazuje, że cechy jest już za dużo i pojawił się problem.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -148,12 +253,52 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
       'Не став пiдсилювач пiсля слова: не useful very, а very useful.',
     ],
     es: [
-      'Very is neutral: very useful.',
-      'Really is more conversational: really tired.',
-      'Quite is often softer: quite good.',
-      'Very is not too: very hot vs too hot.',
-      'Use very useful, not very much useful.',
-      'Use really tired, not really much tired.',
+      'Very suena neutral: very useful.',
+      'Really suena mas conversacional: really tired.',
+      'Quite suele suavizar: quite good.',
+      'Very no es too: very hot frente a too hot.',
+      'Di very useful, no very much useful.',
+      'Di really tired, no really much tired.',
+    ],
+    'pt-BR': [
+      'Very é neutro: very useful.',
+      'Really é mais conversacional: really tired.',
+      'Quite costuma ser mais suave: quite good.',
+      'Very não é too: very hot vs too hot.',
+      'Use very useful, não very much useful.',
+      'Use really tired, não really much tired.',
+    ],
+    vi: [
+      'Very trung tính: very useful.',
+      'Really tự nhiên hơn trong hội thoại: really tired.',
+      'Quite thường nhẹ hơn: quite good.',
+      'Very không giống too: very hot và too hot.',
+      'Dùng very useful, không dùng very much useful.',
+      'Dùng really tired, không dùng really much tired.',
+    ],
+    id: [
+      'Very bersifat netral: very useful.',
+      'Really lebih percakapan: really tired.',
+      'Quite sering lebih lembut: quite good.',
+      'Very bukan too: very hot vs too hot.',
+      'Gunakan very useful, bukan very much useful.',
+      'Gunakan really tired, bukan really much tired.',
+    ],
+    tr: [
+      'Very nötrdür: very useful.',
+      'Really daha konuşma dilindedir: really tired.',
+      'Quite çoğu zaman daha yumuşaktır: quite good.',
+      'Very, too değildir: very hot vs too hot.',
+      'Very useful kullan, very much useful değil.',
+      'Really tired kullan, really much tired değil.',
+    ],
+    pl: [
+      'Very jest neutralne: very useful.',
+      'Really jest bardziej potoczne: really tired.',
+      'Quite często brzmi łagodniej: quite good.',
+      'Very to nie too: very hot vs too hot.',
+      'Używaj very useful, nie very much useful.',
+      'Używaj really tired, nie really much tired.',
     ],
   },
   examples: [
@@ -161,50 +306,85 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
       en: 'This lesson is very useful.',
       ru: 'Этот урок очень полезный.',
       uk: 'Цей урок дуже корисний.',
-      es: 'This lesson is very useful.',
-      why: tri('Very useful - нейтральное усиление.', 'Very useful - нейтральне пiдсилення.', 'Very useful is neutral.'),
+      es: 'Esta leccion es muy util.',
+      'pt-BR': 'Esta lição é muito útil.',
+      vi: 'Bài học này rất hữu ích.',
+      id: 'Pelajaran ini sangat berguna.',
+      tr: 'Bu ders çok faydalı.',
+      pl: 'Ta lekcja jest bardzo przydatna.',
+      why: tri('Very useful - нейтральное усиление.', 'Very useful - нейтральне пiдсилення.', 'Very useful es un refuerzo neutral.'),
     },
     {
       en: 'This lesson is really useful.',
       ru: 'Этот урок реально полезный.',
       uk: 'Цей урок реально корисний.',
-      es: 'This lesson is really useful.',
-      why: tri('Really useful звучит живее и разговорнее.', 'Really useful звучить живiше й розмовнiше.', 'Really useful is more conversational.'),
+      es: 'Esta leccion es realmente util.',
+      'pt-BR': 'Esta lição é realmente útil.',
+      vi: 'Bài học này thật sự hữu ích.',
+      id: 'Pelajaran ini benar-benar berguna.',
+      tr: 'Bu ders gerçekten faydalı.',
+      pl: 'Ta lekcja jest naprawdę przydatna.',
+      why: tri('Really useful звучит живее и разговорнее.', 'Really useful звучить живiше й розмовнiше.', 'Really useful suena mas conversacional.'),
     },
     {
       en: 'The lesson was quite good.',
       ru: 'Урок был довольно хорошим.',
       uk: 'Урок був доволi хорошим.',
-      es: 'The lesson was quite good.',
-      why: tri('Quite good - положительно, но без сильного восторга.', 'Quite good - позитивно, але без сильного захвату.', 'Quite good is positive but softer.'),
+      es: 'La leccion fue bastante buena.',
+      'pt-BR': 'A lição foi bem boa.',
+      vi: 'Bài học khá hay.',
+      id: 'Pelajarannya cukup bagus.',
+      tr: 'Ders oldukça iyiydi.',
+      pl: 'Lekcja była całkiem dobra.',
+      why: tri('Quite good - положительно, но без сильного восторга.', 'Quite good - позитивно, але без сильного захвату.', 'Quite good es positivo, pero mas suave.'),
     },
     {
       en: 'I am really tired.',
       ru: 'Я реально устал.',
       uk: 'Я реально втомився.',
-      es: 'I am really tired.',
-      why: tri('Really tired звучит естественно в живой речи.', 'Really tired звучить природно в живiй мовi.', 'Really tired is natural in conversation.'),
+      es: 'Estoy realmente cansado.',
+      'pt-BR': 'Estou realmente cansado.',
+      vi: 'Tôi thật sự mệt.',
+      id: 'Saya benar-benar lelah.',
+      tr: 'Gerçekten yorgunum.',
+      pl: 'Jestem naprawdę zmęczony.',
+      why: tri('Really tired звучит естественно в живой речи.', 'Really tired звучить природно в живiй мовi.', 'Really tired suena natural en conversacion.'),
     },
     {
       en: 'The test was quite difficult.',
       ru: 'Тест был довольно сложным.',
       uk: 'Тест був доволi складним.',
-      es: 'The test was quite difficult.',
-      why: tri('Quite difficult звучит мягче, чем really difficult.', 'Quite difficult звучить мʼякше, нiж really difficult.', 'Quite difficult is softer than really difficult.'),
+      es: 'El examen fue bastante dificil.',
+      'pt-BR': 'O teste foi bem difícil.',
+      vi: 'Bài kiểm tra khá khó.',
+      id: 'Tesnya cukup sulit.',
+      tr: 'Test oldukça zordu.',
+      pl: 'Test był dość trudny.',
+      why: tri('Quite difficult звучит мягче, чем really difficult.', 'Quite difficult звучить мʼякше, нiж really difficult.', 'Quite difficult suena mas suave que really difficult.'),
     },
     {
       en: 'The coffee is very hot, but I can drink it.',
       ru: 'Кофе очень горячий, но я могу его пить.',
       uk: 'Кава дуже гаряча, але я можу її пити.',
-      es: 'The coffee is very hot, but I can drink it.',
-      why: tri('Very hot - сильная оценка, но не обязательно проблема.', 'Very hot - сильна оцiнка, але не обовʼязково проблема.', 'Very hot is strong, not necessarily a problem.'),
+      es: 'El cafe esta muy caliente, pero puedo beberlo.',
+      'pt-BR': 'O café está muito quente, mas consigo beber.',
+      vi: 'Cà phê rất nóng, nhưng tôi vẫn uống được.',
+      id: 'Kopinya sangat panas, tetapi saya bisa meminumnya.',
+      tr: 'Kahve çok sıcak ama içebilirim.',
+      pl: 'Kawa jest bardzo gorąca, ale mogę ją pić.',
+      why: tri('Very hot - сильная оценка, но не обязательно проблема.', 'Very hot - сильна оцiнка, але не обовʼязково проблема.', 'Very hot es fuerte, pero no necesariamente un problema.'),
     },
     {
       en: 'The coffee is too hot to drink.',
       ru: 'Кофе слишком горячий, чтобы его пить.',
       uk: 'Кава занадто гаряча, щоб її пити.',
-      es: 'The coffee is too hot to drink.',
-      why: tri('Too hot - уже проблема.', 'Too hot - уже проблема.', 'Too hot is a problem.'),
+      es: 'El cafe esta demasiado caliente para beberlo.',
+      'pt-BR': 'O café está quente demais para beber.',
+      vi: 'Cà phê quá nóng để uống.',
+      id: 'Kopinya terlalu panas untuk diminum.',
+      tr: 'Kahve içilemeyecek kadar sıcak.',
+      pl: 'Kawa jest zbyt gorąca, żeby ją pić.',
+      why: tri('Too hot - уже проблема.', 'Too hot - уже проблема.', 'Too hot ya es un problema.'),
     },
   ],
   introBlocks: [
@@ -214,7 +394,7 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
       text: tri(
         'Здесь ломается не грамматика, а тон. Very, really, quite и too стоят рядом, но звучат по-разному.',
         'Тут ламається не граматика, а тон. Very, really, quite i too стоять поруч, але звучать по-рiзному.',
-        'This is about tone, not just grammar.',
+        'Aqui falla el tono, no solo la gramatica. Very, really, quite y too estan cerca, pero suenan distinto.',
       ),
     },
     {
@@ -223,7 +403,7 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
       text: tri(
         'Запомни четыре пары: very useful, really tired, quite good, too hot.',
         'Запамʼятай чотири пари: very useful, really tired, quite good, too hot.',
-        'Remember: very useful, really tired, quite good, too hot.',
+        'Recuerda cuatro pares: very useful, really tired, quite good, too hot.',
       ),
     },
     {
@@ -232,7 +412,7 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
       text: tri(
         'Держи шкалу тона: very просто усиливает, really звучит эмоциональнее, quite делает мягче или осторожнее, too уже показывает проблему.',
         'Тримай шкалу тону: very просто підсилює, really звучить емоційніше, quite робить мʼякше або обережніше, too вже показує проблему.',
-        'Tone scale: very strengthens, really feels more emotional, quite softens, and too usually shows a problem.',
+        'Escala de tono: very intensifica, really suena mas emocional, quite suaviza y too normalmente muestra un problema.',
       ),
     },
   ],
@@ -559,22 +739,22 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
     depth1: tri(
       'Сначала показываем разницу в оттенке: very, really, quite или too.',
       'Спочатку показуємо рiзницю у вiдтiнку: very, really, quite або too.',
-      'First show the tone difference.',
+      'Primero mira la diferencia de tono.',
     ),
     depth2: tri(
       'Если ошибка повторяется, даем готовые пары: very useful, really tired, quite good, too hot.',
       'Якщо помилка повторюється, даємо готовi пари: very useful, really tired, quite good, too hot.',
-      'Then show ready-made chunks.',
+      'Luego usa bloques ya preparados.',
     ),
     depth3: tri(
       'Еще проще: very = просто очень, really = живее, quite = мягче, too = проблема.',
       'Ще простiше: very = просто дуже, really = живiше, quite = мʼякше, too = проблема.',
-      'Simpler: neutral, conversational, softer, problem.',
+      'Mas simple: neutral, conversacional, mas suave, problema.',
     ),
     depth4: tri(
       'Почти подсказка: прямо возвращаем к нужному блоку.',
       'Майже пiдказка: прямо повертаємо до потрiбного блоку.',
-      'Near answer: return to the needed chunk.',
+      'Casi respuesta: vuelve al bloque necesario.',
     ),
   },
   failureRecovery: {
@@ -583,7 +763,7 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
       card: tri(
         'Остановись на секунду. Very useful. Really tired. Quite good. Too hot. Это четыре разных настроения фразы.',
         'Зупинись на секунду. Very useful. Really tired. Quite good. Too hot. Це чотири рiзнi настрої фрази.',
-        'Pause: very useful, really tired, quite good, too hot.',
+        'Pausa: very useful, really tired, quite good, too hot. Son cuatro tonos distintos.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -591,7 +771,7 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
       card: tri(
         'Система покажет, нужен ли нейтральный, живой, мягкий или проблемный оттенок, а потом вернет к полной фразе.',
         'Система покаже, потрiбен нейтральний, живий, мʼякий чи проблемний вiдтiнок, а потiм поверне до повної фрази.',
-        'Show tone hint, then retry.',
+        'La pista mostrara si necesitas tono neutral, vivo, suave o problematico, y luego volveras a la frase.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -599,7 +779,7 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим подсказки: сначала выбираем смысл, потом возвращаемся к фразе.',
         'Режим пiдказки: спочатку обираємо сенс, потiм повертаємося до фрази.',
-        'Guided mode: choose meaning, then return.',
+        'Modo guiado: primero eliges el sentido y despues vuelves a la frase.',
       ),
     },
   },
@@ -609,28 +789,28 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_modifier_vrq_001',
-        prompt: tri('Very usually means neutral strength or a problem?', 'Very usually means neutral strength or a problem?', 'Very usually means neutral strength or a problem?'),
+        prompt: tri('Very обычно значит нейтральное усиление или проблему?', 'Very зазвичай означає нейтральне підсилення чи проблему?', 'Very normalmente significa refuerzo neutral o problema?'),
         options: ['neutral strength', 'a problem'],
         correctIndex: 0,
         thenReturnToExerciseId: 'modifier_vrq_easy_001',
       },
       {
         id: 'guided_modifier_vrq_002',
-        prompt: tri('Фраза с really здесь звучит более книжно или более разговорно?', 'Фраза з really тут звучить бiльш книжно чи бiльш розмовно?', 'Really tired sounds more written or more conversational?'),
+        prompt: tri('Фраза с really здесь звучит более книжно или более разговорно?', 'Фраза з really тут звучить бiльш книжно чи бiльш розмовно?', 'Really tired suena mas escrito o mas conversacional?'),
         options: ['more written', 'more conversational'],
         correctIndex: 1,
         thenReturnToExerciseId: 'modifier_vrq_contrast_001',
       },
       {
         id: 'guided_modifier_vrq_003',
-        prompt: tri('Quite good is usually softer or stronger than really good?', 'Quite good is usually softer or stronger than really good?', 'Quite good is usually softer or stronger than really good?'),
+        prompt: tri('Quite good обычно мягче или сильнее, чем really good?', 'Quite good зазвичай мʼякше чи сильнiше, нiж really good?', 'Quite good normalmente es mas suave o mas fuerte que really good?'),
         options: ['softer', 'stronger'],
         correctIndex: 0,
         thenReturnToExerciseId: 'modifier_vrq_contrast_004',
       },
       {
         id: 'guided_modifier_vrq_004',
-        prompt: tri('Too hot usually means strong but okay, or already a problem?', 'Too hot usually means strong but okay, or already a problem?', 'Too hot usually means strong but okay, or already a problem?'),
+        prompt: tri('Too hot обычно значит сильно, но нормально, или уже проблема?', 'Too hot зазвичай означає сильно, але нормально, чи вже проблема?', 'Too hot normalmente significa fuerte pero tolerable, o ya un problema?'),
         options: ['strong but okay', 'already a problem'],
         correctIndex: 1,
         thenReturnToExerciseId: 'modifier_vrq_mixed_001',
@@ -673,7 +853,7 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_modifier_very_really_quite_start',
     answer: 'diagnosis_training_modifier_very_really_quite_answer',
     mastery: 'diagnosis_training_modifier_very_really_quite_mastery',
-    fallback: 'diagnosis_training_modifier_very_really_quite_fallback',
+    recovery: 'diagnosis_training_modifier_very_really_quite_recovery',
     smartTrainerUnlocked: 'diagnosis_training_modifier_very_really_quite_smart_trainer_unlocked',
     payload: {
       category: 'modifier',

@@ -118,6 +118,13 @@ const RAW_CATEGORY_ALIASES: Record<string, WordCategory> = {
   verbo_modal: 'modal',
   verbo_reflexivo: 'verb',
   verbo_continuo: 'verb',
+  verbe_avoir: 'verb',
+  verbe_aller: 'verb',
+  verb_present: 'verb',
+  reflexive_aux: 'verb',
+  object_aux: 'verb',
+  imperative: 'verb',
+  negative_imperative: 'verb',
   verb_continuous: 'verb',
   continuous_verb: 'verb',
   irregular_verb: 'verb',
@@ -143,7 +150,10 @@ const RAW_CATEGORY_ALIASES: Record<string, WordCategory> = {
   pronouns: 'pronoun',
   pronombre: 'pronoun',
   pronombres: 'pronoun',
+  object_pronoun: 'pronoun',
   posesivo: 'pronoun',
+  possessive: 'pronoun',
+  possessive_pronoun: 'pronoun',
   interrogativo: 'pronoun',
 
   adjective: 'adjective',
@@ -159,6 +169,7 @@ const RAW_CATEGORY_ALIASES: Record<string, WordCategory> = {
   adverbio: 'adverb',
   adverbios: 'adverb',
   negacion: 'adverb',
+  negation: 'adverb',
   negacion_afirmacion: 'adverb',
   lexico_temporal: 'adverb',
 
@@ -211,12 +222,18 @@ const RAW_CATEGORY_ALIASES: Record<string, WordCategory> = {
 
   'to-be': 'to-be',
   to_be: 'to-be',
+  verbe_être: 'to-be',
+  verbe_etre: 'to-be',
   be: 'to-be',
 
   modal: 'modal',
   modals: 'modal',
   modal_verb: 'modal',
   modal_verbs: 'modal',
+  modal_pouvoir: 'modal',
+  modal_savoir: 'modal',
+  modal_devoir: 'modal',
+  modal_devoir_conditionnel: 'modal',
 
   conjunction: 'conjunction',
   conjunctions: 'conjunction',
@@ -343,17 +360,17 @@ export function normalizeWordCategory(rawCategory?: string | null, word?: string
   const rawTextMatch = rawTextCategory(rawCategory);
   const rawMatch = RAW_CATEGORY_ALIASES[rawKey];
   const closed = closedClassCategory(wordKey);
-  if (rawTextMatch) {
-    if (rawTextMatch === 'verb' && (closed?.category === 'modal' || closed?.category === 'to-be')) {
-      return closed;
-    }
-    return { category: rawTextMatch, source: 'raw_category', confidence: 0.9 };
-  }
   if (rawMatch && rawMatch !== 'other') {
     if (rawMatch === 'verb' && (closed?.category === 'modal' || closed?.category === 'to-be')) {
       return closed;
     }
     return { category: rawMatch, source: 'raw_category', confidence: 0.94 };
+  }
+  if (rawTextMatch) {
+    if (rawTextMatch === 'verb' && (closed?.category === 'modal' || closed?.category === 'to-be')) {
+      return closed;
+    }
+    return { category: rawTextMatch, source: 'raw_category', confidence: 0.9 };
   }
   if (rawMatch === 'other') return { category: 'other', source: 'raw_category', confidence: 1 };
 

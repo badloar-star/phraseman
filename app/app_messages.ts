@@ -1,33 +1,55 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { emitAppEvent, onAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
+import { VIP_SURVEY_ID } from './vip_survey_content';
+import type { Lang } from '../constants/i18n';
 
 export type AppMessageReaction = 'like' | 'dislike';
 export type AppMessageAudience = 'all' | 'free' | 'premium';
-export type AppMessageLang = 'ru' | 'uk' | 'es';
-export type AppMessageKind = 'message' | 'poll';
+export type AppMessageLang = Lang;
+export type AppMessageKind = 'message' | 'poll' | 'vip_survey';
 
 export const APP_MESSAGES_COLLECTION = 'app_messages';
 export const APP_MESSAGE_STATES_COLLECTION = 'app_message_states';
 export const APP_MESSAGE_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
 const APP_MESSAGES_CACHE_KEY = 'app_messages_cache_v1';
+const LOCAL_APP_MESSAGES_KEY = 'app_messages_local_preview_v1';
+const LOCAL_APP_MESSAGE_STATES_KEY = 'app_message_local_preview_states_v1';
 
 export type AppMessagePollOption = {
   id: string;
   textRu: string;
   textUk: string;
   textEs: string;
+  textPtBr: string;
+  textVi: string;
+  textId: string;
+  textTr: string;
+  textPl: string;
 };
 
 export type AppMessagePoll = {
   questionRu: string;
   questionUk: string;
   questionEs: string;
+  questionPtBr: string;
+  questionVi: string;
+  questionId: string;
+  questionTr: string;
+  questionPl: string;
   options: AppMessagePollOption[];
   optionIds: string[];
   counts: Record<string, number>;
   voteCount: number;
+};
+
+export type AppMessageVipSurvey = {
+  surveyId: string;
+  rewardDays: number;
+  reviewUrlIos: string;
+  reviewUrlAndroid: string;
 };
 
 export type AppMessage = {
@@ -38,9 +60,19 @@ export type AppMessage = {
   titleRu: string;
   titleUk: string;
   titleEs: string;
+  titlePtBr: string;
+  titleVi: string;
+  titleId: string;
+  titleTr: string;
+  titlePl: string;
   messageRu: string;
   messageUk: string;
   messageEs: string;
+  messagePtBr: string;
+  messageVi: string;
+  messageId: string;
+  messageTr: string;
+  messagePl: string;
   createdAt: string;
   createdAtMs: number;
   updatedAt: string;
@@ -49,11 +81,13 @@ export type AppMessage = {
   expiresAtMs: number;
   priority: number;
   poll: AppMessagePoll | null;
+  vipSurvey: AppMessageVipSurvey | null;
 };
 
 export type AppMessageState = {
   messageId: string;
   readAtMs: number | null;
+  dismissedAtMs: number | null;
   reaction: AppMessageReaction | null;
   pollOptionId?: string | null;
   updatedAtMs: number;
@@ -61,6 +95,7 @@ export type AppMessageState = {
 
 export type AppMessageWithState = AppMessage & {
   readAtMs: number | null;
+  dismissedAtMs: number | null;
   reaction: AppMessageReaction | null;
   pollOptionId: string | null;
   unread: boolean;
@@ -78,32 +113,32 @@ type FirestoreFactory = {
   };
 };
 
-function toMs(value: unknown, fallback = 0): number {
+function toMs(value: unknown, backup = 0): number {
   if (typeof value === 'number' && Number.isFinite(value)) return Math.floor(value);
   if (typeof value === 'string') {
     const n = Number(value);
     if (Number.isFinite(n)) return Math.floor(n);
     const parsed = Date.parse(value);
-    return Number.isFinite(parsed) ? parsed : fallback;
+    return Number.isFinite(parsed) ? parsed : backup;
   }
   if (value && typeof (value as { toMillis?: () => number }).toMillis === 'function') {
     const n = (value as { toMillis: () => number }).toMillis();
-    return Number.isFinite(n) ? Math.floor(n) : fallback;
+    return Number.isFinite(n) ? Math.floor(n) : backup;
   }
   if (value && typeof (value as { toDate?: () => Date }).toDate === 'function') {
     const n = (value as { toDate: () => Date }).toDate().getTime();
-    return Number.isFinite(n) ? Math.floor(n) : fallback;
+    return Number.isFinite(n) ? Math.floor(n) : backup;
   }
-  return fallback;
+  return backup;
 }
 
-function cleanText(value: unknown, fallback = ''): string {
-  return String(value ?? fallback).trim();
+function cleanText(value: unknown, backup = ''): string {
+  return String(value ?? backup).trim();
 }
 
-function cleanPollOptionId(value: unknown, fallback: string): string {
-  const raw = cleanText(value, fallback).replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 40);
-  return raw || fallback;
+function cleanPollOptionId(value: unknown, backup: string): string {
+  const raw = cleanText(value, backup).replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 40);
+  return raw || backup;
 }
 
 function cleanPollCounts(value: unknown): Record<string, number> {
@@ -118,10 +153,25 @@ function cleanPollCounts(value: unknown): Record<string, number> {
   return out;
 }
 
+function normalizeAppMessageVipSurvey(data: Record<string, unknown>): AppMessageVipSurvey {
+  const rawVipSurvey = data.vipSurvey;
+  const vipSurveyData =
+    rawVipSurvey && typeof rawVipSurvey === 'object' && !Array.isArray(rawVipSurvey)
+      ? rawVipSurvey as Record<string, unknown>
+      : {};
+  const rewardDays = Math.floor(Number(vipSurveyData.rewardDays ?? data.vipSurveyRewardDays ?? 30));
+  return {
+    surveyId: cleanPollOptionId(vipSurveyData.surveyId ?? data.vipSurveyId, VIP_SURVEY_ID),
+    rewardDays: Number.isFinite(rewardDays) && rewardDays > 0 ? Math.min(365, rewardDays) : 30,
+    reviewUrlIos: cleanText(vipSurveyData.reviewUrlIos ?? data.reviewUrlIos, ''),
+    reviewUrlAndroid: cleanText(vipSurveyData.reviewUrlAndroid ?? data.reviewUrlAndroid, ''),
+  };
+}
+
 function normalizeAppMessagePoll(
   data: Record<string, unknown>,
-  titleFallback: string,
-  messageFallback: string,
+  titleBackup: string,
+  messageBackup: string,
 ): AppMessagePoll | null {
   const rawPoll = data.poll;
   if (!rawPoll || typeof rawPoll !== 'object' || Array.isArray(rawPoll)) return null;
@@ -135,14 +185,19 @@ function normalizeAppMessagePoll(
     const optionData = row as Record<string, unknown>;
     const textRu = cleanText(optionData.textRu ?? optionData.labelRu ?? optionData.text, '');
     if (!textRu) return;
-    const fallbackId = `opt_${options.length + 1}`;
-    const id = cleanPollOptionId(optionData.id, fallbackId);
+    const backupId = `opt_${options.length + 1}`;
+    const id = cleanPollOptionId(optionData.id, backupId);
     if (options.some((option) => option.id === id)) return;
     options.push({
       id,
       textRu,
       textUk: cleanText(optionData.textUk ?? optionData.labelUk, textRu),
       textEs: cleanText(optionData.textEs ?? optionData.labelEs, textRu),
+      textPtBr: cleanText(optionData.textPtBr ?? optionData.textPtBR ?? optionData.labelPtBr ?? optionData.labelPtBR, ''),
+      textVi: cleanText(optionData.textVi ?? optionData.labelVi, ''),
+      textId: cleanText(optionData.textId ?? optionData.labelId, ''),
+      textTr: cleanText(optionData.textTr ?? optionData.labelTr, ''),
+      textPl: cleanText(optionData.textPl ?? optionData.labelPl, ''),
     });
   });
 
@@ -154,13 +209,18 @@ function normalizeAppMessagePoll(
   const voteCount = Number.isFinite(rawVoteCount) && rawVoteCount > 0 ? rawVoteCount : countSum;
   const questionRu = cleanText(
     pollData.questionRu ?? pollData.question ?? data.pollQuestionRu,
-    titleFallback || messageFallback || 'Poll',
+    titleBackup || messageBackup || 'Poll',
   );
 
   return {
     questionRu,
     questionUk: cleanText(pollData.questionUk ?? data.pollQuestionUk, questionRu),
     questionEs: cleanText(pollData.questionEs ?? data.pollQuestionEs, questionRu),
+    questionPtBr: cleanText(pollData.questionPtBr ?? pollData.questionPtBR ?? data.pollQuestionPtBr ?? data.pollQuestionPtBR, ''),
+    questionVi: cleanText(pollData.questionVi ?? data.pollQuestionVi, ''),
+    questionId: cleanText(pollData.questionId ?? data.pollQuestionId, ''),
+    questionTr: cleanText(pollData.questionTr ?? data.pollQuestionTr, ''),
+    questionPl: cleanText(pollData.questionPl ?? data.pollQuestionPl, ''),
     options,
     optionIds: options.map((option) => option.id),
     counts,
@@ -173,8 +233,8 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
   const createdAtMs = toMs(data.createdAtMs ?? data.createdAt, Date.parse(createdAt) || nowMs);
   const updatedAt = cleanText(data.updatedAt, createdAt);
   const updatedAtMs = toMs(data.updatedAtMs ?? data.updatedAt, createdAtMs);
-  const fallbackExpiresMs = createdAtMs + APP_MESSAGE_TTL_MS;
-  const expiresAtMs = toMs(data.expiresAtMs ?? data.expiresAt, fallbackExpiresMs);
+  const backupExpiresMs = createdAtMs + APP_MESSAGE_TTL_MS;
+  const expiresAtMs = toMs(data.expiresAtMs ?? data.expiresAt, backupExpiresMs);
   const expiresAt = cleanText(data.expiresAt, new Date(expiresAtMs).toISOString());
   const audienceRaw = cleanText(data.audience, 'all') as AppMessageAudience;
   const audience: AppMessageAudience =
@@ -183,7 +243,9 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
   const messageRu = cleanText(data.messageRu, '');
   const poll = normalizeAppMessagePoll(data, titleRu, messageRu);
   const kindRaw = cleanText(data.kind, poll ? 'poll' : 'message');
-  const kind: AppMessageKind = kindRaw === 'poll' && poll ? 'poll' : 'message';
+  const kind: AppMessageKind =
+    kindRaw === 'poll' && poll ? 'poll' : kindRaw === 'vip_survey' ? 'vip_survey' : 'message';
+  const vipSurvey = kind === 'vip_survey' ? normalizeAppMessageVipSurvey(data) : null;
 
   return {
     id,
@@ -193,9 +255,19 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
     titleRu,
     titleUk: cleanText(data.titleUk, titleRu),
     titleEs: cleanText(data.titleEs, titleRu),
+    titlePtBr: cleanText(data.titlePtBr ?? data.titlePtBR, ''),
+    titleVi: cleanText(data.titleVi, ''),
+    titleId: cleanText(data.titleId, ''),
+    titleTr: cleanText(data.titleTr, ''),
+    titlePl: cleanText(data.titlePl, ''),
     messageRu,
     messageUk: cleanText(data.messageUk, messageRu),
     messageEs: cleanText(data.messageEs, messageRu),
+    messagePtBr: cleanText(data.messagePtBr ?? data.messagePtBR, ''),
+    messageVi: cleanText(data.messageVi, ''),
+    messageId: cleanText(data.messageId, ''),
+    messageTr: cleanText(data.messageTr, ''),
+    messagePl: cleanText(data.messagePl, ''),
     createdAt,
     createdAtMs,
     updatedAt,
@@ -204,6 +276,7 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
     expiresAtMs,
     priority: Math.max(0, Math.floor(Number(data.priority ?? 0) || 0)),
     poll,
+    vipSurvey,
   };
 }
 
@@ -213,6 +286,7 @@ export function normalizeAppMessageState(messageId: string, data: Record<string,
   return {
     messageId,
     readAtMs: toMs(data.readAtMs ?? data.readAt, 0) || null,
+    dismissedAtMs: toMs(data.dismissedAtMs ?? data.dismissedAt, 0) || null,
     reaction: reactionRaw === 'like' || reactionRaw === 'dislike' ? reactionRaw : null,
     pollOptionId: pollOptionId || null,
     updatedAtMs: toMs(data.updatedAtMs ?? data.updatedAt, 0),
@@ -224,37 +298,61 @@ export function isAppMessageVisible(message: AppMessage, nowMs = Date.now()): bo
 }
 
 export function isAppMessageAllowedForAudience(
-  message: Pick<AppMessage, 'audience'>,
-  isPremium: boolean,
+  message: Pick<AppMessage, 'audience'> & Partial<Pick<AppMessage, 'kind'>>,
+  hasPremiumAccess: boolean,
 ): boolean {
-  if (message.audience === 'premium') return isPremium;
-  if (message.audience === 'free') return !isPremium;
+  if (message.kind === 'vip_survey') return !hasPremiumAccess;
+  if (message.audience === 'premium') return hasPremiumAccess;
+  if (message.audience === 'free') return !hasPremiumAccess;
   return true;
 }
 
 export function pickAppMessageText(
-  message: Pick<AppMessage, 'titleRu' | 'titleUk' | 'titleEs' | 'messageRu' | 'messageUk' | 'messageEs'>,
+  message: Pick<AppMessage,
+    | 'titleRu' | 'titleUk' | 'titleEs' | 'titlePtBr' | 'titleVi' | 'titleId' | 'titleTr' | 'titlePl'
+    | 'messageRu' | 'messageUk' | 'messageEs' | 'messagePtBr' | 'messageVi' | 'messageId' | 'messageTr' | 'messagePl'
+  >,
   lang: AppMessageLang,
 ): { title: string; body: string } {
-  if (lang === 'uk') {
-    return { title: message.titleUk || message.titleRu, body: message.messageUk || message.messageRu };
-  }
-  if (lang === 'es') {
-    return { title: message.titleEs || message.titleRu, body: message.messageEs || message.messageRu };
-  }
-  return { title: message.titleRu, body: message.messageRu };
+  const byLang: Record<AppMessageLang, { title: string; body: string }> = {
+    ru: { title: message.titleRu, body: message.messageRu },
+    uk: { title: message.titleUk || message.titleRu, body: message.messageUk || message.messageRu },
+    es: { title: message.titleEs || message.titleRu, body: message.messageEs || message.messageRu },
+    'pt-BR': { title: message.titlePtBr, body: message.messagePtBr },
+    vi: { title: message.titleVi, body: message.messageVi },
+    id: { title: message.titleId, body: message.messageId },
+    tr: { title: message.titleTr, body: message.messageTr },
+    pl: { title: message.titlePl, body: message.messagePl },
+  };
+  return byLang[lang];
 }
 
 export function pickAppMessagePollQuestion(poll: AppMessagePoll, lang: AppMessageLang): string {
-  if (lang === 'uk') return poll.questionUk || poll.questionRu;
-  if (lang === 'es') return poll.questionEs || poll.questionRu;
-  return poll.questionRu;
+  const byLang: Record<AppMessageLang, string> = {
+    ru: poll.questionRu,
+    uk: poll.questionUk || poll.questionRu,
+    es: poll.questionEs || poll.questionRu,
+    'pt-BR': poll.questionPtBr,
+    vi: poll.questionVi,
+    id: poll.questionId,
+    tr: poll.questionTr,
+    pl: poll.questionPl,
+  };
+  return byLang[lang];
 }
 
 export function pickAppMessagePollOptionText(option: AppMessagePollOption, lang: AppMessageLang): string {
-  if (lang === 'uk') return option.textUk || option.textRu;
-  if (lang === 'es') return option.textEs || option.textRu;
-  return option.textRu;
+  const byLang: Record<AppMessageLang, string> = {
+    ru: option.textRu,
+    uk: option.textUk || option.textRu,
+    es: option.textEs || option.textRu,
+    'pt-BR': option.textPtBr,
+    vi: option.textVi,
+    id: option.textId,
+    tr: option.textTr,
+    pl: option.textPl,
+  };
+  return byLang[lang];
 }
 
 export function buildAppMessagePreview(body: string, maxChars = 120): string {
@@ -274,14 +372,19 @@ export function mergeAppMessagesWithStates(
 ): AppMessagesSnapshot {
   const stateByMessage = new Map(states.map((state) => [state.messageId, state]));
   const merged = messages
-    .filter((message) => isAppMessageVisible(message, nowMs))
+    .filter((message) => {
+      const state = stateByMessage.get(message.id);
+      return !state?.dismissedAtMs && isAppMessageVisible(message, nowMs);
+    })
     .sort((a, b) => (b.priority - a.priority) || (b.createdAtMs - a.createdAtMs))
     .map((message) => {
       const state = stateByMessage.get(message.id);
       const readAtMs = state?.readAtMs ?? null;
+      const dismissedAtMs = state?.dismissedAtMs ?? null;
       return {
         ...message,
         readAtMs,
+        dismissedAtMs,
         reaction: state?.reaction ?? null,
         pollOptionId: state?.pollOptionId ?? null,
         unread: !readAtMs,
@@ -295,13 +398,140 @@ export function mergeAppMessagesWithStates(
 
 export function filterAppMessagesSnapshotForAudience(
   snapshot: AppMessagesSnapshot,
-  isPremium: boolean,
+  hasPremiumAccess: boolean,
 ): AppMessagesSnapshot {
-  const messages = snapshot.messages.filter((message) => isAppMessageAllowedForAudience(message, isPremium));
+  const messages = snapshot.messages.filter((message) => isAppMessageAllowedForAudience(message, hasPremiumAccess));
   return {
     messages,
     unreadCount: messages.reduce((n, message) => n + (message.unread ? 1 : 0), 0),
   };
+}
+
+async function readJsonArray<T>(key: string): Promise<T[]> {
+  try {
+    const raw = await AsyncStorage.getItem(key);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed as T[] : [];
+  } catch {
+    return [];
+  }
+}
+
+async function readLocalPreviewMessages(): Promise<AppMessage[]> {
+  const rows = await readJsonArray<Record<string, unknown> & { id?: string }>(LOCAL_APP_MESSAGES_KEY);
+  return rows
+    .map((row) => {
+      const id = cleanPollOptionId(row.id, '');
+      return id ? normalizeAppMessage(id, row) : null;
+    })
+    .filter((row): row is AppMessage => !!row);
+}
+
+async function readLocalPreviewStates(): Promise<AppMessageState[]> {
+  const rows = await readJsonArray<Record<string, unknown> & { messageId?: string }>(LOCAL_APP_MESSAGE_STATES_KEY);
+  return rows
+    .map((row) => {
+      const messageId = cleanPollOptionId(row.messageId, '');
+      return messageId ? normalizeAppMessageState(messageId, row) : null;
+    })
+    .filter((row): row is AppMessageState => !!row);
+}
+
+async function writeLocalPreviewMessages(messages: AppMessage[]): Promise<void> {
+  try {
+    await AsyncStorage.setItem(LOCAL_APP_MESSAGES_KEY, JSON.stringify(messages));
+  } catch {
+    // Local preview is best-effort only.
+  }
+}
+
+async function writeLocalPreviewStates(states: AppMessageState[]): Promise<void> {
+  try {
+    await AsyncStorage.setItem(LOCAL_APP_MESSAGE_STATES_KEY, JSON.stringify(states));
+  } catch {
+    // Local preview is best-effort only.
+  }
+}
+
+async function updateLocalPreviewState(
+  messageId: string,
+  patch: Partial<AppMessageState>,
+): Promise<boolean> {
+  const cleanMessageId = cleanPollOptionId(messageId, '');
+  if (!cleanMessageId) return false;
+  const localMessages = await readLocalPreviewMessages();
+  if (!localMessages.some((message) => message.id === cleanMessageId)) return false;
+
+  const nowMs = Date.now();
+  const localStates = await readLocalPreviewStates();
+  const nextState: AppMessageState = {
+    messageId: cleanMessageId,
+    readAtMs: patch.readAtMs ?? null,
+    dismissedAtMs: patch.dismissedAtMs ?? null,
+    reaction: patch.reaction ?? null,
+    pollOptionId: patch.pollOptionId ?? null,
+    updatedAtMs: patch.updatedAtMs ?? nowMs,
+  };
+  const nextStates = [
+    ...localStates.filter((state) => state.messageId !== cleanMessageId),
+    nextState,
+  ];
+  await writeLocalPreviewStates(nextStates);
+  emitAppEvent('app_messages_local_changed');
+  return true;
+}
+
+function isLocalVipSurveyTestMessageId(id: string): boolean {
+  return id.startsWith('admin_test_vip_survey_') || id.startsWith('admin_preview_vip_survey_');
+}
+
+export async function seedLocalVipSurveyTestMessage(nowMs = Date.now()): Promise<string> {
+  const id = `admin_test_vip_survey_${nowMs}`;
+  const createdAt = new Date(nowMs).toISOString();
+  const expiresAtMs = nowMs + APP_MESSAGE_TTL_MS;
+  const preview = normalizeAppMessage(id, {
+    id,
+    active: true,
+    kind: 'vip_survey',
+    audience: 'free',
+    priority: 80,
+    titleRu: 'Хотите получить месяц VIP?',
+    titleUk: 'Хочете отримати місяць VIP?',
+    titleEs: 'Want one month of VIP?',
+    titlePtBr: 'Want one month of VIP?',
+    titleVi: 'Want one month of VIP?',
+    titleId: 'Want one month of VIP?',
+    titleTr: 'Want one month of VIP?',
+    titlePl: 'Want one month of VIP?',
+    messageRu: 'Пройдите короткий опрос о приложении и активируйте 30 дней VIP.',
+    messageUk: 'Пройдіть коротке опитування про застосунок і активуйте 30 днів VIP.',
+    messageEs: 'Take a short in-app survey and activate 30 days of VIP.',
+    messagePtBr: 'Take a short in-app survey and activate 30 days of VIP.',
+    messageVi: 'Take a short in-app survey and activate 30 days of VIP.',
+    messageId: 'Take a short in-app survey and activate 30 days of VIP.',
+    messageTr: 'Take a short in-app survey and activate 30 days of VIP.',
+    messagePl: 'Take a short in-app survey and activate 30 days of VIP.',
+    vipSurvey: {
+      surveyId: VIP_SURVEY_ID,
+      rewardDays: 30,
+    },
+    createdAt,
+    createdAtMs: nowMs,
+    updatedAt: createdAt,
+    updatedAtMs: nowMs,
+    expiresAt: new Date(expiresAtMs).toISOString(),
+    expiresAtMs,
+  }, nowMs);
+  const existing = await readLocalPreviewMessages();
+  await writeLocalPreviewMessages([
+    preview,
+    ...existing.filter((message) => !isLocalVipSurveyTestMessageId(message.id)),
+  ]);
+  const states = await readLocalPreviewStates();
+  await writeLocalPreviewStates(states.filter((state) => !isLocalVipSurveyTestMessageId(state.messageId)));
+  emitAppEvent('app_messages_local_changed');
+  return id;
 }
 
 async function getFirestoreModule(): Promise<FirestoreFactory | null> {
@@ -346,16 +576,29 @@ export function subscribeUserAppMessages(
   let unsubscribeStates: null | (() => void) = null;
   let messages: AppMessage[] = [];
   let states: AppMessageState[] = [];
+  let localMessages: AppMessage[] = [];
+  let localStates: AppMessageState[] = [];
 
   const emit = () => {
-    const snapshot = mergeAppMessagesWithStates(messages, states);
+    const snapshot = mergeAppMessagesWithStates([...messages, ...localMessages], [...states, ...localStates]);
     onChange(snapshot);
     void writeCachedSnapshot(snapshot);
+  };
+
+  const reloadLocal = () => {
+    void Promise.all([readLocalPreviewMessages(), readLocalPreviewStates()]).then(([nextMessages, nextStates]) => {
+      if (disposed) return;
+      localMessages = nextMessages;
+      localStates = nextStates;
+      emit();
+    });
   };
 
   void readCachedSnapshot().then((snapshot) => {
     if (!disposed && snapshot.messages.length) onChange(snapshot);
   });
+  reloadLocal();
+  const localSub = onAppEvent('app_messages_local_changed', reloadLocal);
 
   void (async () => {
     const firestoreFactory = await getFirestoreModule();
@@ -402,17 +645,46 @@ export function subscribeUserAppMessages(
   return {
     remove: () => {
       disposed = true;
+      localSub.remove();
       unsubscribeMessages?.();
       unsubscribeStates?.();
     },
   };
 }
 
-export async function markAppMessageRead(messageId: string): Promise<void> {
+export async function dismissAppMessage(messageId: string): Promise<void> {
+  const nowMs = Date.now();
+  const localHandled = await updateLocalPreviewState(messageId, {
+    readAtMs: nowMs,
+    dismissedAtMs: nowMs,
+    updatedAtMs: nowMs,
+  });
+  if (localHandled) return;
   const firestoreFactory = await getFirestoreModule();
   const uid = await getCanonicalUserId().catch(() => null);
   if (!firestoreFactory || !uid || !messageId) return;
+  const db = firestoreFactory();
+  await db.collection('users').doc(uid).collection(APP_MESSAGE_STATES_COLLECTION).doc(messageId).set(
+    {
+      messageId,
+      readAtMs: nowMs,
+      dismissedAtMs: nowMs,
+      updatedAtMs: nowMs,
+    },
+    { merge: true },
+  );
+}
+
+export async function markAppMessageRead(messageId: string): Promise<void> {
   const nowMs = Date.now();
+  const localHandled = await updateLocalPreviewState(messageId, {
+    readAtMs: nowMs,
+    updatedAtMs: nowMs,
+  });
+  if (localHandled) return;
+  const firestoreFactory = await getFirestoreModule();
+  const uid = await getCanonicalUserId().catch(() => null);
+  if (!firestoreFactory || !uid || !messageId) return;
   const db = firestoreFactory();
   await db.collection('users').doc(uid).collection(APP_MESSAGE_STATES_COLLECTION).doc(messageId).set(
     {

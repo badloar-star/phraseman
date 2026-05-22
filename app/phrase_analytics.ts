@@ -12,7 +12,7 @@
 
 import { loadMistakeLog } from './mistake_log';
 import { getLessonData } from './lesson_data_all';
-import { LESSON_NAMES_RU, LESSON_NAMES_UK, LESSON_NAMES_ES } from '../constants/lessons';
+import { LESSON_NAMES_RU, LESSON_NAMES_UK, LESSON_NAMES_ES, lessonNamesForLang } from '../constants/lessons';
 import { DebugLogger } from './debug-logger';
 import { isUserFacingCategory, normalizeTokenKey, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 import { getPosMasterySnapshot, type PosMasteryEntry } from './pos_workout_engine';
@@ -177,6 +177,21 @@ const CATEGORY_LABELS: Record<string, AnalyticsLocaleCopy> = {
   'determiner': { ru: 'Determiners', uk: 'Determiners', es: 'Determinantes', ptBR: 'Determinantes', 'pt-BR': 'Determinantes', vi: 'Từ hạn định', id: 'Determiner', tr: 'Belirleyiciler', pl: 'Określniki' },
   'other': { ru: 'Другое', uk: 'Інше', es: 'Otros', ptBR: 'Outros', 'pt-BR': 'Outros', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' },
 };
+
+function lessonTitleCopy(lessonId: number): AnalyticsLocaleCopy {
+  const ptBR = lessonNamesForLang('pt-BR')[lessonId - 1] ?? `Lição ${lessonId}`;
+  return {
+    ru: LESSON_NAMES_RU[lessonId - 1] ?? `Урок ${lessonId}`,
+    uk: LESSON_NAMES_UK[lessonId - 1] ?? `Урок ${lessonId}`,
+    es: LESSON_NAMES_ES[lessonId - 1] ?? `Lesson ${lessonId}`,
+    ptBR,
+    'pt-BR': ptBR,
+    vi: lessonNamesForLang('vi')[lessonId - 1] ?? `Bài ${lessonId}`,
+    id: lessonNamesForLang('id')[lessonId - 1] ?? `Pelajaran ${lessonId}`,
+    tr: lessonNamesForLang('tr')[lessonId - 1] ?? `Ders ${lessonId}`,
+    pl: lessonNamesForLang('pl')[lessonId - 1] ?? `Lekcja ${lessonId}`,
+  };
+}
 
 // ── Кэш фраз: phrase → categories[], tokens[], lessonId ─────────────────────
 
@@ -700,17 +715,18 @@ function buildInsights(
   // Топ-1 слабый урок
   const weakLesson = lessonStats[0];
   if (weakLesson && weakLesson.pct >= 20) {
+    const title = lessonTitleCopy(weakLesson.lessonId);
     insights.push({
       type: 'weak_lesson',
-      ru: `«${weakLesson.lessonNameRU}» — ${weakLesson.pct}% ошибок. Рекомендуем перепройти.`,
-      uk: `«${weakLesson.lessonNameUK}» — ${weakLesson.pct}% помилок. Рекомендуємо повторити.`,
-      es: `«${weakLesson.lessonNameES}» — ${weakLesson.pct}% de errores. Recomendamos repasar.`,
-      ptBR: `Lição ${weakLesson.lessonId} — ${weakLesson.pct}% de erros. Recomendamos revisar.`,
-      'pt-BR': `Lição ${weakLesson.lessonId} — ${weakLesson.pct}% de erros. Recomendamos revisar.`,
-      vi: `Bài ${weakLesson.lessonId} — ${weakLesson.pct}% lỗi. Bạn nên ôn lại.`,
-      id: `Pelajaran ${weakLesson.lessonId} — ${weakLesson.pct}% kesalahan. Sebaiknya diulang.`,
-      tr: `Ders ${weakLesson.lessonId} — %${weakLesson.pct} hata. Tekrar etmeni öneririz.`,
-      pl: `Lekcja ${weakLesson.lessonId} — ${weakLesson.pct}% błędów. Warto powtórzyć.`,
+      ru: `«${title.ru}» — ${weakLesson.pct}% ошибок. Рекомендуем перепройти.`,
+      uk: `«${title.uk}» — ${weakLesson.pct}% помилок. Рекомендуємо повторити.`,
+      es: `«${title.es}» — ${weakLesson.pct}% de errores. Recomendamos repasar.`,
+      ptBR: `«${title.ptBR}» — ${weakLesson.pct}% de erros. Recomendamos revisar.`,
+      'pt-BR': `«${title['pt-BR']}» — ${weakLesson.pct}% de erros. Recomendamos revisar.`,
+      vi: `«${title.vi}» — ${weakLesson.pct}% lỗi. Bạn nên ôn lại.`,
+      id: `«${title.id}» — ${weakLesson.pct}% kesalahan. Sebaiknya diulang.`,
+      tr: `«${title.tr}» — %${weakLesson.pct} hata. Tekrar etmeni öneririz.`,
+      pl: `«${title.pl}» — ${weakLesson.pct}% błędów. Warto powtórzyć.`,
       accent: 'red',
     });
   }
@@ -743,21 +759,19 @@ function buildInsights(
   const weakLessons = new Set(lessonStats.slice(0, 3).map((l) => l.lessonId));
   for (let id = 1; id <= 32; id++) {
     if (!weakLessons.has(id)) {
-      const name = LESSON_NAMES_RU[id - 1];
-      const nameUK = LESSON_NAMES_UK[id - 1];
-      const nameES = LESSON_NAMES_ES[id - 1];
-      if (name) {
+      const title = lessonTitleCopy(id);
+      if (title.ru) {
         insights.push({
           type: 'strong_lesson',
-          ru: `«${name}» — ошибок почти нет. Твоя сильная сторона.`,
-          uk: `«${nameUK}» — помилок майже немає. Твоя сильна сторона.`,
-          es: `«${nameES ?? name}» — casi sin errores. Tu punto fuerte.`,
-          ptBR: `Lição ${id} — quase sem erros. Um dos seus pontos fortes.`,
-          'pt-BR': `Lição ${id} — quase sem erros. Um dos seus pontos fortes.`,
-          vi: `Bài ${id} — gần như không có lỗi. Đây là điểm mạnh của bạn.`,
-          id: `Pelajaran ${id} — hampir tidak ada kesalahan. Ini salah satu kekuatanmu.`,
-          tr: `Ders ${id} — neredeyse hiç hata yok. Güçlü olduğun yerlerden biri.`,
-          pl: `Lekcja ${id} — prawie bez błędów. To twoja mocna strona.`,
+          ru: `«${title.ru}» — ошибок почти нет. Твоя сильная сторона.`,
+          uk: `«${title.uk}» — помилок майже немає. Твоя сильна сторона.`,
+          es: `«${title.es}» — casi sin errores. Tu punto fuerte.`,
+          ptBR: `«${title.ptBR}» — quase sem erros. Um dos seus pontos fortes.`,
+          'pt-BR': `«${title['pt-BR']}» — quase sem erros. Um dos seus pontos fortes.`,
+          vi: `«${title.vi}» — gần như không có lỗi. Đây là điểm mạnh của bạn.`,
+          id: `«${title.id}» — hampir tidak ada kesalahan. Ini salah satu kekuatanmu.`,
+          tr: `«${title.tr}» — neredeyse hiç hata yok. Güçlü olduğun yerlerden biri.`,
+          pl: `«${title.pl}» — prawie bez błędów. To twoja mocna strona.`,
           accent: 'green',
         });
         break;

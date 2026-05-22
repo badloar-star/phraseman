@@ -19,6 +19,11 @@ type ToastPayload = {
   messageUk?: string;
   /** ES (UI en español). Si falta y `lang === "es"`, se usa un texto breve según `type`. */
   messageEs?: string;
+  messagePtBr?: string;
+  messageVi?: string;
+  messageId?: string;
+  messageTr?: string;
+  messagePl?: string;
 };
 
 const AUTO_DISMISS_MS = 3200;
@@ -179,11 +184,14 @@ export default function ActionToast() {
         ? 'Hecho.'
         : 'Listo.';
   const message =
-    lang === 'uk'
-      ? (toast.messageUk ?? toast.messageRu)
-      : lang === 'es'
-        ? (toast.messageEs ?? esFallback)
-        : toast.messageRu;
+    lang === 'uk' ? (toast.messageUk ?? toast.messageRu)
+      : lang === 'es' ? (toast.messageEs ?? esFallback)
+        : lang === 'pt-BR' ? (toast.messagePtBr ?? toast.messageRu)
+          : lang === 'vi' ? (toast.messageVi ?? toast.messageRu)
+            : lang === 'id' ? (toast.messageId ?? toast.messageRu)
+              : lang === 'tr' ? (toast.messageTr ?? toast.messageRu)
+                : lang === 'pl' ? (toast.messagePl ?? toast.messageRu)
+                  : toast.messageRu;
 
   return (
     <Animated.View

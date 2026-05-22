@@ -1,0 +1,2935 @@
+[ {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "applyConfigurationCommand" : {
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Понятно, буду искать!",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Понятно, буду искать!",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Зрозуміло, шукатиму!",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Зрозуміло, шукатиму!",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "(Позже|Пізніше|Mas tarde|Más tarde)",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "(Позже|Пізніше|Mas tarde|Más tarde)",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "idRegex" : "first-lesson-later",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "idRegex" : "first-lesson-later",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "idRegex" : "onboarding-beta-continue",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "idRegex" : "onboarding-beta-continue",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "idRegex" : "onboarding-demo2-skip",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "idRegex" : "onboarding-demo2-skip",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "idRegex" : "onboarding-demo-option-0",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "2000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "idRegex" : "onboarding-demo-option-0",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "idRegex" : "onboarding-demo-continue",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "idRegex" : "onboarding-demo-continue",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "idRegex" : "onboarding-welcome-continue",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "idRegex" : "onboarding-welcome-continue",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "pressKeyCommand" : {
+              "code" : "BACK",
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "1500",
+              "optional" : false
+            }
+          }, {
+            "scrollUntilVisible" : {
+              "selector" : {
+                "idRegex" : "onboarding-name-skip",
+                "optional" : false
+              },
+              "direction" : "DOWN",
+              "scrollDuration" : "60",
+              "visibilityPercentage" : 30,
+              "timeout" : "10000",
+              "centerElement" : false,
+              "originalSpeedValue" : "60",
+              "optional" : false,
+              "visibilityPercentageNormalized" : 0.0
+            }
+          }, {
+            "tapOnElement" : {
+              "selector" : {
+                "idRegex" : "onboarding-name-skip",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "6000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "idRegex" : "onboarding-name-input",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "idRegex" : "onboarding-name-skip",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "6000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "idRegex" : "onboarding-name-skip",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "idRegex" : "onboarding-streak-continue",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "idRegex" : "onboarding-streak-continue",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "idRegex" : "onboarding-energy-continue",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "idRegex" : "onboarding-energy-continue",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "idRegex" : "onboarding-auth-later",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "8000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "idRegex" : "onboarding-auth-later",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "idRegex" : "level-up-dismiss",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "idRegex" : "level-up-dismiss",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      } ],
+      "sourceDescription" : "../_precondition.yaml",
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "FAILED",
+    "timestamp" : 1779184627550,
+    "duration" : 339,
+    "error" : {
+      "errorResponse" : "Request for viewHierarchy failed, code: 500, body: {\"code\":\"internal\",\"errorMessage\":\"Error getting element frame kAXErrorInvalidUIElement\"}",
+      "stackTrace" : [ {
+        "classLoaderName" : "app",
+        "methodName" : "handleExceptions",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 338,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "processResponse",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 283,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "executeJsonRequest$lambda$6",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 262,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "transportCall",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 66,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "executeJsonRequest",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 251,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 78,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy$lambda$1",
+        "fileName" : "XCTestIOSDevice.kt",
+        "lineNumber" : 39,
+        "nativeMethod" : false,
+        "className" : "ios.xctest.XCTestIOSDevice"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "execute",
+        "fileName" : "XCTestIOSDevice.kt",
+        "lineNumber" : 232,
+        "nativeMethod" : false,
+        "className" : "ios.xctest.XCTestIOSDevice"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy",
+        "fileName" : "XCTestIOSDevice.kt",
+        "lineNumber" : 37,
+        "nativeMethod" : false,
+        "className" : "ios.xctest.XCTestIOSDevice"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy",
+        "fileName" : "LocalIOSDevice.kt",
+        "lineNumber" : 49,
+        "nativeMethod" : false,
+        "className" : "ios.LocalIOSDevice"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 177,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "contentDescriptor$lambda$22$lambda$21",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 172,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runDeviceCall",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 546,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "contentDescriptor$lambda$22",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 172,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "measured",
+        "fileName" : "Metrics.kt",
+        "lineNumber" : 48,
+        "nativeMethod" : false,
+        "className" : "maestro.utils.Metrics"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "contentDescriptor",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 171,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "from-8JJjmZI",
+        "fileName" : "ViewHierarchy.kt",
+        "lineNumber" : 29,
+        "nativeMethod" : false,
+        "className" : "maestro.ViewHierarchy$Companion"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "invoke-prqvCes",
+        "fileName" : "Maestro.kt",
+        "lineNumber" : 441,
+        "nativeMethod" : false,
+        "className" : "maestro.Maestro$findElementWithTimeout$found$1$1"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "invoke",
+        "fileName" : "Maestro.kt",
+        "lineNumber" : 440,
+        "nativeMethod" : false,
+        "className" : "maestro.Maestro$findElementWithTimeout$found$1$1"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runInterruptibleInExpectedContext",
+        "fileName" : "Interruptible.kt",
+        "lineNumber" : 48,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.InterruptibleKt"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "access$runInterruptibleInExpectedContext",
+        "fileName" : "Interruptible.kt",
+        "lineNumber" : 1,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.InterruptibleKt"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "invokeSuspend",
+        "fileName" : "Interruptible.kt",
+        "lineNumber" : 40,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.InterruptibleKt$runInterruptible$2"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "resumeWith",
+        "fileName" : "ContinuationImpl.kt",
+        "lineNumber" : 34,
+        "nativeMethod" : false,
+        "className" : "kotlin.coroutines.jvm.internal.BaseContinuationImpl"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "DispatchedTask.kt",
+        "lineNumber" : 100,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.DispatchedTask"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "LimitedDispatcher.kt",
+        "lineNumber" : 124,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.internal.LimitedDispatcher$Worker"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "Tasks.kt",
+        "lineNumber" : 89,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.TaskImpl"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runSafely",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 586,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "executeTask",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 820,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runWorker",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 717,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 704,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+      } ]
+    },
+    "sequenceNumber" : 19
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "applyConfigurationCommand" : {
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Понятно, буду искать!",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Понятно, буду искать!",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Зрозуміло, шукатиму!",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Зрозуміло, шукатиму!",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      } ],
+      "sourceDescription" : "../_dismiss_bug_hunt.yaml",
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779184619556,
+    "duration" : 7994,
+    "sequenceNumber" : 15
+  }
+}, {
+  "command" : {
+    "defineVariablesCommand" : {
+      "env" : {
+        "CHAT_TEXT" : "maestro social smoke 105310",
+        "MAESTRO_CLI_ANALYSIS_NOTIFICATION_DISABLED" : "true",
+        "MAESTRO_CLI_NO_ANALYTICS" : "true",
+        "MAESTRO_FILENAME" : "arena_lobby_from_home",
+        "MAESTRO_DEVICE_UDID" : "4BDF4A55-6A84-4499-BD9E-13825AB77B3D",
+        "MAESTRO_SHARD_ID" : "1",
+        "MAESTRO_SHARD_INDEX" : "0"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779184602827,
+    "duration" : 1,
+    "sequenceNumber" : 0
+  }
+}, {
+  "command" : {
+    "applyConfigurationCommand" : {
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779184603911,
+    "duration" : 0,
+    "sequenceNumber" : 6
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "applyConfigurationCommand" : {
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "stopAppCommand" : {
+          "appId" : "app.phraseman",
+          "optional" : false
+        }
+      }, {
+        "openLinkCommand" : {
+          "link" : "exp+phraseman://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A8081",
+          "autoVerify" : false,
+          "browser" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "8000",
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Got it",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Got it",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Continue",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Continue",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "textRegex" : "Go home",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "5000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "Go home",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnPointV2Command" : {
+              "point" : "50%,26%",
+              "retryIfNoChange" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "8000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "New development server",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "assertConditionCommand" : {
+          "condition" : {
+            "visible" : {
+              "idRegex" : "screen-home",
+              "optional" : false
+            }
+          },
+          "timeout" : "120000",
+          "optional" : false
+        }
+      } ],
+      "sourceDescription" : "open_dev_client.yaml",
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779184603911,
+    "duration" : 15645,
+    "sequenceNumber" : 5
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Continue",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "3000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Continue",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779184613161,
+    "sequenceNumber" : 11
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnPointV2Command" : {
+          "point" : "50%,26%",
+          "retryIfNoChange" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "8000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "New development server",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779184613787,
+    "sequenceNumber" : 13
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Понятно, буду искать!",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Понятно, буду искать!",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "FAILED",
+    "timestamp" : 1779184627551,
+    "duration" : 144,
+    "error" : {
+      "errorResponse" : "Request for viewHierarchy failed, code: 500, body: {\"code\":\"internal\",\"errorMessage\":\"Error getting element frame kAXErrorInvalidUIElement\"}",
+      "stackTrace" : [ {
+        "classLoaderName" : "app",
+        "methodName" : "handleExceptions",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 338,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "processResponse",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 283,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "executeJsonRequest$lambda$6",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 262,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "transportCall",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 66,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "executeJsonRequest",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 251,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 78,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy$lambda$1",
+        "fileName" : "XCTestIOSDevice.kt",
+        "lineNumber" : 39,
+        "nativeMethod" : false,
+        "className" : "ios.xctest.XCTestIOSDevice"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "execute",
+        "fileName" : "XCTestIOSDevice.kt",
+        "lineNumber" : 232,
+        "nativeMethod" : false,
+        "className" : "ios.xctest.XCTestIOSDevice"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy",
+        "fileName" : "XCTestIOSDevice.kt",
+        "lineNumber" : 37,
+        "nativeMethod" : false,
+        "className" : "ios.xctest.XCTestIOSDevice"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy",
+        "fileName" : "LocalIOSDevice.kt",
+        "lineNumber" : 49,
+        "nativeMethod" : false,
+        "className" : "ios.LocalIOSDevice"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 177,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "contentDescriptor$lambda$22$lambda$21",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 172,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runDeviceCall",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 546,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "contentDescriptor$lambda$22",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 172,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "measured",
+        "fileName" : "Metrics.kt",
+        "lineNumber" : 48,
+        "nativeMethod" : false,
+        "className" : "maestro.utils.Metrics"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "contentDescriptor",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 171,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "from-8JJjmZI",
+        "fileName" : "ViewHierarchy.kt",
+        "lineNumber" : 29,
+        "nativeMethod" : false,
+        "className" : "maestro.ViewHierarchy$Companion"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "invoke-prqvCes",
+        "fileName" : "Maestro.kt",
+        "lineNumber" : 441,
+        "nativeMethod" : false,
+        "className" : "maestro.Maestro$findElementWithTimeout$found$1$1"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "invoke",
+        "fileName" : "Maestro.kt",
+        "lineNumber" : 440,
+        "nativeMethod" : false,
+        "className" : "maestro.Maestro$findElementWithTimeout$found$1$1"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runInterruptibleInExpectedContext",
+        "fileName" : "Interruptible.kt",
+        "lineNumber" : 48,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.InterruptibleKt"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "access$runInterruptibleInExpectedContext",
+        "fileName" : "Interruptible.kt",
+        "lineNumber" : 1,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.InterruptibleKt"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "invokeSuspend",
+        "fileName" : "Interruptible.kt",
+        "lineNumber" : 40,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.InterruptibleKt$runInterruptible$2"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "resumeWith",
+        "fileName" : "ContinuationImpl.kt",
+        "lineNumber" : 34,
+        "nativeMethod" : false,
+        "className" : "kotlin.coroutines.jvm.internal.BaseContinuationImpl"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "DispatchedTask.kt",
+        "lineNumber" : 100,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.DispatchedTask"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "LimitedDispatcher.kt",
+        "lineNumber" : 124,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.internal.LimitedDispatcher$Worker"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "Tasks.kt",
+        "lineNumber" : 89,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.TaskImpl"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runSafely",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 586,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "executeTask",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 820,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runWorker",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 717,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 704,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+      } ]
+    },
+    "sequenceNumber" : 21
+  }
+}, {
+  "command" : {
+    "applyConfigurationCommand" : {
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779184627550,
+    "duration" : 1,
+    "sequenceNumber" : 20
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Go home",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "5000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Go home",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779184613474,
+    "sequenceNumber" : 12
+  }
+}, {
+  "command" : {
+    "stopAppCommand" : {
+      "appId" : "app.phraseman",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779184603911,
+    "duration" : 9,
+    "sequenceNumber" : 7
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "applyConfigurationCommand" : {
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "stopAppCommand" : {
+          "appId" : "app.phraseman",
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "applyConfigurationCommand" : {
+              "config" : {
+                "appId" : "app.phraseman"
+              },
+              "optional" : false
+            }
+          }, {
+            "stopAppCommand" : {
+              "appId" : "app.phraseman",
+              "optional" : false
+            }
+          }, {
+            "openLinkCommand" : {
+              "link" : "exp+phraseman://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A8081",
+              "autoVerify" : false,
+              "browser" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "8000",
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Got it",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Got it",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Continue",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Continue",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Go home",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "5000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Go home",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnPointV2Command" : {
+                  "point" : "50%,26%",
+                  "retryIfNoChange" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "8000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "New development server",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "assertConditionCommand" : {
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "screen-home",
+                  "optional" : false
+                }
+              },
+              "timeout" : "120000",
+              "optional" : false
+            }
+          } ],
+          "sourceDescription" : "open_dev_client.yaml",
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "applyConfigurationCommand" : {
+              "config" : {
+                "appId" : "app.phraseman"
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Понятно, буду искать!",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Понятно, буду искать!",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Зрозуміло, шукатиму!",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Зрозуміло, шукатиму!",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          } ],
+          "sourceDescription" : "../_dismiss_bug_hunt.yaml",
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "applyConfigurationCommand" : {
+              "config" : {
+                "appId" : "app.phraseman"
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Понятно, буду искать!",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Понятно, буду искать!",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Зрозуміло, шукатиму!",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Зрозуміло, шукатиму!",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "(Позже|Пізніше|Mas tarde|Más tarde)",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "(Позже|Пізніше|Mas tarde|Más tarde)",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "first-lesson-later",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "first-lesson-later",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-beta-continue",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-beta-continue",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-demo2-skip",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-demo2-skip",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-demo-option-0",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "2000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-demo-option-0",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-demo-continue",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-demo-continue",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-welcome-continue",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-welcome-continue",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "pressKeyCommand" : {
+                  "code" : "BACK",
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "1500",
+                  "optional" : false
+                }
+              }, {
+                "scrollUntilVisible" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-name-skip",
+                    "optional" : false
+                  },
+                  "direction" : "DOWN",
+                  "scrollDuration" : "60",
+                  "visibilityPercentage" : 30,
+                  "timeout" : "10000",
+                  "centerElement" : false,
+                  "originalSpeedValue" : "60",
+                  "optional" : false,
+                  "visibilityPercentageNormalized" : 0.0
+                }
+              }, {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-name-skip",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "6000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-name-input",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-name-skip",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "6000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-name-skip",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-streak-continue",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-streak-continue",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-energy-continue",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-energy-continue",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-auth-later",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "8000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-auth-later",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "level-up-dismiss",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "level-up-dismiss",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          } ],
+          "sourceDescription" : "../_precondition.yaml",
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "10000",
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "applyConfigurationCommand" : {
+              "config" : {
+                "appId" : "app.phraseman"
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Понятно, буду искать!",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Понятно, буду искать!",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Зрозуміло, шукатиму!",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Зрозуміло, шукатиму!",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          } ],
+          "sourceDescription" : "../_dismiss_bug_hunt.yaml",
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "applyConfigurationCommand" : {
+              "config" : {
+                "appId" : "app.phraseman"
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Понятно, буду искать!",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Понятно, буду искать!",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "Зрозуміло, шукатиму!",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "Зрозуміло, шукатиму!",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "textRegex" : "(Позже|Пізніше|Mas tarde|Más tarde)",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "textRegex" : "(Позже|Пізніше|Mas tarde|Más tarde)",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "first-lesson-later",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "first-lesson-later",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-beta-continue",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-beta-continue",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-demo2-skip",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-demo2-skip",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-demo-option-0",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "2000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-demo-option-0",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-demo-continue",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-demo-continue",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-welcome-continue",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-welcome-continue",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "pressKeyCommand" : {
+                  "code" : "BACK",
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "1500",
+                  "optional" : false
+                }
+              }, {
+                "scrollUntilVisible" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-name-skip",
+                    "optional" : false
+                  },
+                  "direction" : "DOWN",
+                  "scrollDuration" : "60",
+                  "visibilityPercentage" : 30,
+                  "timeout" : "10000",
+                  "centerElement" : false,
+                  "originalSpeedValue" : "60",
+                  "optional" : false,
+                  "visibilityPercentageNormalized" : 0.0
+                }
+              }, {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-name-skip",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "6000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-name-input",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-name-skip",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "6000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-name-skip",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-streak-continue",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-streak-continue",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-energy-continue",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-energy-continue",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "onboarding-auth-later",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "8000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "onboarding-auth-later",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          }, {
+            "runFlowCommand" : {
+              "commands" : [ {
+                "tapOnElement" : {
+                  "selector" : {
+                    "idRegex" : "level-up-dismiss",
+                    "optional" : false
+                  },
+                  "retryIfNoChange" : false,
+                  "waitUntilVisible" : false,
+                  "longPress" : false,
+                  "optional" : false
+                }
+              }, {
+                "waitForAnimationToEndCommand" : {
+                  "timeout" : "3000",
+                  "optional" : false
+                }
+              } ],
+              "condition" : {
+                "visible" : {
+                  "idRegex" : "level-up-dismiss",
+                  "optional" : false
+                }
+              },
+              "optional" : false
+            }
+          } ],
+          "sourceDescription" : "../_precondition.yaml",
+          "config" : {
+            "appId" : "app.phraseman"
+          },
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "5000",
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "pressKeyCommand" : {
+              "code" : "BACK",
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "textRegex" : "(Задания дня|Завдання дня|Tareas del día)",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "tapOnPointV2Command" : {
+          "point" : "10%,95%",
+          "retryIfNoChange" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "5000",
+          "optional" : false
+        }
+      }, {
+        "runFlowCommand" : {
+          "commands" : [ {
+            "tapOnElement" : {
+              "selector" : {
+                "idRegex" : "first-lesson-later",
+                "optional" : false
+              },
+              "retryIfNoChange" : false,
+              "waitUntilVisible" : false,
+              "longPress" : false,
+              "optional" : false
+            }
+          }, {
+            "waitForAnimationToEndCommand" : {
+              "timeout" : "3000",
+              "optional" : false
+            }
+          } ],
+          "condition" : {
+            "visible" : {
+              "idRegex" : "first-lesson-later",
+              "optional" : false
+            }
+          },
+          "optional" : false
+        }
+      }, {
+        "assertConditionCommand" : {
+          "condition" : {
+            "visible" : {
+              "idRegex" : "screen-home",
+              "optional" : false
+            }
+          },
+          "timeout" : "120000",
+          "optional" : false
+        }
+      } ],
+      "sourceDescription" : "../../_shared/boot_to_home.yaml",
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "FAILED",
+    "timestamp" : 1779184602829,
+    "duration" : 25060,
+    "error" : {
+      "errorResponse" : "Request for viewHierarchy failed, code: 500, body: {\"code\":\"internal\",\"errorMessage\":\"Error getting element frame kAXErrorInvalidUIElement\"}",
+      "stackTrace" : [ {
+        "classLoaderName" : "app",
+        "methodName" : "handleExceptions",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 338,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "processResponse",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 283,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "executeJsonRequest$lambda$6",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 262,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "transportCall",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 66,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "executeJsonRequest",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 251,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy",
+        "fileName" : "XCTestDriverClient.kt",
+        "lineNumber" : 78,
+        "nativeMethod" : false,
+        "className" : "xcuitest.XCTestDriverClient"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy$lambda$1",
+        "fileName" : "XCTestIOSDevice.kt",
+        "lineNumber" : 39,
+        "nativeMethod" : false,
+        "className" : "ios.xctest.XCTestIOSDevice"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "execute",
+        "fileName" : "XCTestIOSDevice.kt",
+        "lineNumber" : 232,
+        "nativeMethod" : false,
+        "className" : "ios.xctest.XCTestIOSDevice"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy",
+        "fileName" : "XCTestIOSDevice.kt",
+        "lineNumber" : 37,
+        "nativeMethod" : false,
+        "className" : "ios.xctest.XCTestIOSDevice"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy",
+        "fileName" : "LocalIOSDevice.kt",
+        "lineNumber" : 49,
+        "nativeMethod" : false,
+        "className" : "ios.LocalIOSDevice"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "viewHierarchy",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 177,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "contentDescriptor$lambda$22$lambda$21",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 172,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runDeviceCall",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 546,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "contentDescriptor$lambda$22",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 172,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "measured",
+        "fileName" : "Metrics.kt",
+        "lineNumber" : 48,
+        "nativeMethod" : false,
+        "className" : "maestro.utils.Metrics"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "contentDescriptor",
+        "fileName" : "IOSDriver.kt",
+        "lineNumber" : 171,
+        "nativeMethod" : false,
+        "className" : "maestro.drivers.IOSDriver"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "from-8JJjmZI",
+        "fileName" : "ViewHierarchy.kt",
+        "lineNumber" : 29,
+        "nativeMethod" : false,
+        "className" : "maestro.ViewHierarchy$Companion"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "invoke-prqvCes",
+        "fileName" : "Maestro.kt",
+        "lineNumber" : 441,
+        "nativeMethod" : false,
+        "className" : "maestro.Maestro$findElementWithTimeout$found$1$1"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "invoke",
+        "fileName" : "Maestro.kt",
+        "lineNumber" : 440,
+        "nativeMethod" : false,
+        "className" : "maestro.Maestro$findElementWithTimeout$found$1$1"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runInterruptibleInExpectedContext",
+        "fileName" : "Interruptible.kt",
+        "lineNumber" : 48,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.InterruptibleKt"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "access$runInterruptibleInExpectedContext",
+        "fileName" : "Interruptible.kt",
+        "lineNumber" : 1,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.InterruptibleKt"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "invokeSuspend",
+        "fileName" : "Interruptible.kt",
+        "lineNumber" : 40,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.InterruptibleKt$runInterruptible$2"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "resumeWith",
+        "fileName" : "ContinuationImpl.kt",
+        "lineNumber" : 34,
+        "nativeMethod" : false,
+        "className" : "kotlin.coroutines.jvm.internal.BaseContinuationImpl"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "DispatchedTask.kt",
+        "lineNumber" : 100,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.DispatchedTask"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "LimitedDispatcher.kt",
+        "lineNumber" : 124,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.internal.LimitedDispatcher$Worker"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "Tasks.kt",
+        "lineNumber" : 89,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.TaskImpl"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runSafely",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 586,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "executeTask",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 820,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runWorker",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 717,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 704,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+      } ]
+    },
+    "sequenceNumber" : 2
+  }
+}, {
+  "command" : {
+    "assertConditionCommand" : {
+      "condition" : {
+        "visible" : {
+          "idRegex" : "screen-home",
+          "optional" : false
+        }
+      },
+      "timeout" : "120000",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779184614106,
+    "duration" : 5443,
+    "sequenceNumber" : 14
+  }
+}, {
+  "command" : {
+    "applyConfigurationCommand" : {
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779184602829,
+    "duration" : 0,
+    "sequenceNumber" : 1
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Got it",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      }, {
+        "waitForAnimationToEndCommand" : {
+          "timeout" : "3000",
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Got it",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779184605974,
+    "sequenceNumber" : 10
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Зрозуміло, шукатиму!",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Зрозуміло, шукатиму!",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779184626941,
+    "sequenceNumber" : 18
+  }
+}, {
+  "command" : {
+    "openLinkCommand" : {
+      "link" : "exp+phraseman://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A8081",
+      "autoVerify" : false,
+      "browser" : false,
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779184603920,
+    "duration" : 1429,
+    "sequenceNumber" : 8
+  }
+}, {
+  "command" : {
+    "applyConfigurationCommand" : {
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779184602830,
+    "duration" : 0,
+    "sequenceNumber" : 3
+  }
+}, {
+  "command" : {
+    "runFlowCommand" : {
+      "commands" : [ {
+        "tapOnElement" : {
+          "selector" : {
+            "textRegex" : "Понятно, буду искать!",
+            "optional" : false
+          },
+          "retryIfNoChange" : false,
+          "waitUntilVisible" : false,
+          "longPress" : false,
+          "optional" : false
+        }
+      } ],
+      "condition" : {
+        "visible" : {
+          "textRegex" : "Понятно, буду искать!",
+          "optional" : false
+        }
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "SKIPPED",
+    "timestamp" : 1779184619556,
+    "sequenceNumber" : 17
+  }
+}, {
+  "command" : {
+    "waitForAnimationToEndCommand" : {
+      "timeout" : "8000",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779184605350,
+    "duration" : 624,
+    "sequenceNumber" : 9
+  }
+}, {
+  "command" : {
+    "stopAppCommand" : {
+      "appId" : "app.phraseman",
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779184602830,
+    "duration" : 1081,
+    "sequenceNumber" : 4
+  }
+}, {
+  "command" : {
+    "applyConfigurationCommand" : {
+      "config" : {
+        "appId" : "app.phraseman"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1779184619556,
+    "duration" : 0,
+    "sequenceNumber" : 16
+  }
+} ]

@@ -1,15 +1,19 @@
 // AsyncStorage gateway for flashcards-only persistence keys and payloads.
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-export const FLASHCARDS_CUSTOM_KEY = 'custom_flashcards_v2';
-export const FLASHCARDS_PROGRESS_KEY = 'flashcards_progress_v1';
+import {
+  customFlashcardsKey,
+  flashcardsProgressKey,
+  storageStudyTarget,
+  type RuntimeStudyTarget,
+} from '../target_storage_keys';
+import type { StudyTarget } from '../study_target';
 
 export type FlashcardsProgress = {
   cat: string;
   idx: number;
 };
 
-let customCardsInMemory: unknown[] | null = null;
+let customCardsInMemoryByTarget: Partial<Record<StudyTarget, unknown[]>> = {};
 
 function cloneList(cards: unknown[]): unknown[] {
   return cards.map((card) => (
@@ -19,33 +23,46 @@ function cloneList(cards: unknown[]): unknown[] {
   ));
 }
 
-export function peekCustomCardsCache(): unknown[] | null {
-  return customCardsInMemory === null ? null : cloneList(customCardsInMemory);
+function cacheTarget(studyTarget?: RuntimeStudyTarget): StudyTarget {
+  return storageStudyTarget(studyTarget);
 }
 
-export async function readCustomCards(): Promise<unknown[]> {
-  const raw = await AsyncStorage.getItem(FLASHCARDS_CUSTOM_KEY);
+export function peekCustomCardsCache(studyTarget?: RuntimeStudyTarget): unknown[] | null {
+  const target = cacheTarget(studyTarget);
+  const cached = customCardsInMemoryByTarget[target];
+  return cached === undefined ? null : cloneList(cached);
+}
+
+export async function readCustomCards(studyTarget?: RuntimeStudyTarget): Promise<unknown[]> {
+  const target = cacheTarget(studyTarget);
+  const raw = await AsyncStorage.getItem(customFlashcardsKey(target));
   if (!raw) {
-    customCardsInMemory = [];
+    customCardsInMemoryByTarget[target] = [];
     return [];
   }
   try {
     const parsed = JSON.parse(raw);
-    customCardsInMemory = Array.isArray(parsed) ? parsed : [];
-    return cloneList(customCardsInMemory);
+    customCardsInMemoryByTarget[target] = Array.isArray(parsed) ? parsed : [];
+    return cloneList(customCardsInMemoryByTarget[target] ?? []);
   } catch {
-    customCardsInMemory = [];
+    customCardsInMemoryByTarget[target] = [];
     return [];
   }
 }
 
-export async function writeCustomCards(cards: unknown[]): Promise<void> {
-  customCardsInMemory = cloneList(cards);
-  await AsyncStorage.setItem(FLASHCARDS_CUSTOM_KEY, JSON.stringify(cards));
+export async function writeCustomCards(
+  cards: unknown[],
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> {
+  const target = cacheTarget(studyTarget);
+  customCardsInMemoryByTarget[target] = cloneList(cards);
+  await AsyncStorage.setItem(customFlashcardsKey(target), JSON.stringify(cards));
 }
 
-export async function readFlashcardsProgress(): Promise<FlashcardsProgress | null> {
-  const raw = await AsyncStorage.getItem(FLASHCARDS_PROGRESS_KEY);
+export async function readFlashcardsProgress(
+  studyTarget?: RuntimeStudyTarget,
+): Promise<FlashcardsProgress | null> {
+  const raw = await AsyncStorage.getItem(flashcardsProgressKey(studyTarget));
   if (!raw) return null;
   try {
     const parsed = JSON.parse(raw) as FlashcardsProgress;
@@ -56,8 +73,11 @@ export async function readFlashcardsProgress(): Promise<FlashcardsProgress | nul
   }
 }
 
-export async function writeFlashcardsProgress(progress: FlashcardsProgress): Promise<void> {
-  await AsyncStorage.setItem(FLASHCARDS_PROGRESS_KEY, JSON.stringify(progress));
+export async function writeFlashcardsProgress(
+  progress: FlashcardsProgress,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> {
+  await AsyncStorage.setItem(flashcardsProgressKey(studyTarget), JSON.stringify(progress));
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

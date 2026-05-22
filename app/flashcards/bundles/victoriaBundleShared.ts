@@ -82,9 +82,19 @@ export type VictoriaPackFile = {
     titleRu: string;
     titleUk: string;
     titleEs?: string;
+    titlePtBr?: string;
+    titleVi?: string;
+    titleId?: string;
+    titleTr?: string;
+    titlePl?: string;
     descriptionRu: string;
     descriptionUk: string;
     descriptionEs?: string;
+    descriptionPtBr?: string;
+    descriptionVi?: string;
+    descriptionId?: string;
+    descriptionTr?: string;
+    descriptionPl?: string;
     category: string;
     cardCount: number;
     priceShards: number;
@@ -104,9 +114,19 @@ export function victoriaMetaFromPackJson(p: VictoriaPackFile['pack']): Flashcard
     titleRu: p.titleRu,
     titleUk: p.titleUk,
     titleEs: String(p.titleEs ?? ''),
+    titlePtBr: String(p.titlePtBr ?? ''),
+    titleVi: String(p.titleVi ?? ''),
+    titleId: String(p.titleId ?? ''),
+    titleTr: String(p.titleTr ?? ''),
+    titlePl: String(p.titlePl ?? ''),
     descriptionRu: p.descriptionRu,
     descriptionUk: p.descriptionUk,
     descriptionEs: String(p.descriptionEs ?? ''),
+    descriptionPtBr: String(p.descriptionPtBr ?? ''),
+    descriptionVi: String(p.descriptionVi ?? ''),
+    descriptionId: String(p.descriptionId ?? ''),
+    descriptionTr: String(p.descriptionTr ?? ''),
+    descriptionPl: String(p.descriptionPl ?? ''),
     category: (p.category as FlashcardPackCategory) ?? 'daily',
     cardCount: p.cardCount,
     priceShards: p.priceShards,
@@ -127,6 +147,12 @@ export function mapVictoriaRowsToCardItems(packId: string, cards: VictoriaRow[])
       ru: c.ru,
       uk: c.uk,
       es: c.es ?? ov?.es,
+      sourceLocales: {
+        'pt-BR': c['pt-BR'],
+        vi: c.vi,
+        tr: c.tr,
+        pl: c.pl,
+      },
       transcription: c.transcription,
       categoryId: 'custom',
       isSystem: true,

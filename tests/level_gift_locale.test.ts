@@ -24,7 +24,9 @@ import {
   type GiftDef,
 } from '../app/level_gift_system';
 
-describe('level_gift_system — ES locale coverage', () => {
+const PLANNED_LANGS = ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+
+describe('level_gift_system — locale coverage', () => {
   it('each gift resolves non-empty Spanish title and description via accessors', () => {
     for (const g of ALL_LEVEL_GIFT_DEFS) {
       const title = giftTitleForLang(g, 'es').trim();
@@ -54,6 +56,19 @@ describe('level_gift_system — ES locale coverage', () => {
       expect(giftDescForLang(g, 'ru')).toBe(src.ru.d);
       expect(giftTitleForLang(g, 'uk')).toBe(src.uk.t);
       expect(giftDescForLang(g, 'uk')).toBe(src.uk.d);
+    }
+  });
+
+  it('each gift resolves planned locale title and description without Cyrillic fallback', () => {
+    for (const lang of PLANNED_LANGS) {
+      for (const g of ALL_LEVEL_GIFT_DEFS) {
+        const title = giftTitleForLang(g, lang).trim();
+        const desc = giftDescForLang(g, lang).trim();
+        expect(title.length).toBeGreaterThan(0);
+        expect(desc.length).toBeGreaterThan(0);
+        expect(title).not.toMatch(/[\u0400-\u04FF]/);
+        expect(desc).not.toMatch(/[\u0400-\u04FF]/);
+      }
     }
   });
 });

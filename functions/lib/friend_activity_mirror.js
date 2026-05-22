@@ -42,16 +42,9 @@ exports.mirrorFriendActivityOnUserWrite = void 0;
  */
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
+const xp_levels_1 = require("./xp_levels");
 const REGION = 'us-central1';
 const MAX_EVENTS_PER_FRIEND = 15;
-const XP_BASE = 250;
-const XP_EXP_INV = 1 / 1.82;
-const MAX_LEVEL = 50;
-function getLevelFromXP(totalXP) {
-    if (totalXP <= 0)
-        return 1;
-    return Math.min(MAX_LEVEL, Math.floor(Math.pow(totalXP / XP_BASE, XP_EXP_INV)) + 1);
-}
 function parseProgressInt(v) {
     if (typeof v === 'number' && Number.isFinite(v))
         return Math.max(0, Math.trunc(v));
@@ -111,8 +104,8 @@ exports.mirrorFriendActivityOnUserWrite = functions.firestore.onDocumentWritten(
         return;
     const db = admin.firestore();
     if (newXp !== oldXp) {
-        const oldLvl = getLevelFromXP(oldXp);
-        const newLvl = getLevelFromXP(newXp);
+        const oldLvl = (0, xp_levels_1.getLevelFromXP)(oldXp);
+        const newLvl = (0, xp_levels_1.getLevelFromXP)(newXp);
         if (newLvl > oldLvl) {
             await appendFriendEvent(db, userId, 'level_up', { level: newLvl });
         }

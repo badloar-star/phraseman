@@ -1,0 +1,125 @@
+{
+  "generatedAt": "2026-05-21T10:17:11.935Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 648,
+    "triLangCalls": 1650,
+    "staticTriLangCalls": 1650,
+    "dynamicTriLangCalls": 0,
+    "legacyLangHelperCalls": 0,
+    "localeObjectFindings": 4,
+    "triLangMissingLocaleUnits": 5,
+    "triLangMissingAllPlannedUnits": 1,
+    "helperMissingLocaleUnits": 0,
+    "localeObjectMissingLocaleUnits": 20,
+    "localeObjectMissingAllPlannedUnits": 4,
+    "bundleMissingLocaleUnits": 0,
+    "findings": 5,
+    "byCode": {
+      "locale-object-missing-all-planned-locales": 4,
+      "trilang-missing-all-planned-locales": 1
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/_admin_settings_testers.tsx",
+      "findings": 4,
+      "missingLocaleUnits": 20
+    },
+    {
+      "file": "app/league_engine.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/_admin_settings_testers.tsx",
+      "line": 946,
+      "column": 57,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'French не засеян English-dev фикстурами: нужны отдельные source-gated данные', uk: 'French не засіяно English-dev фікстурами: потрібні окремі source-gated дані', es: 'French"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/_admin_settings_testers.tsx",
+      "line": 963,
+      "column": 59,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'French legacy /review preview заблокирован: нужны source-gated French SRS данные', uk: 'French legacy /review preview заблоковано: потрібні source-gated French SRS дані', es"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/_admin_settings_testers.tsx",
+      "line": 979,
+      "column": 57,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: ruCopy.toast, uk: ukCopy.toast, es: ruCopy.toast, }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/_admin_settings_testers.tsx",
+      "line": 1736,
+      "column": 61,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'French review test bench заблокирован: нет source-gated French SRS фикстур', uk: 'French review test bench заблоковано: немає source-gated French SRS фікстур', es: 'French r"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/league_engine.ts",
+      "line": 315,
+      "column": 24,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: club.nameRU, uk: club.nameUK, es: club.nameES, ...plannedNames, }"
+    }
+  ]
+}

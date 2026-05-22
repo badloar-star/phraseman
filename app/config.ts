@@ -98,7 +98,8 @@ export const DEV_IAP_BYPASS = DEV_MODE && !IS_STORE_RELEASE;
 export const SPANISH_UI_LOCALE_ENABLED = true;
 
 /**
- * DEV-only: в настройках можно выбрать язык, который учишь (EN / ES).
+ * DEV-only: в настройках RU/UK можно выбрать язык, который учишь.
+ * ES оставлен как существующая dev-кнопка, FR добавляется отдельным target.
  * В production-бандле `__DEV__ === false` — код не активен. Не синкается в облако.
  */
 export const ENABLE_DEV_STUDY_TARGET_LANG =

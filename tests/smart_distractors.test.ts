@@ -5,6 +5,8 @@ import {
   type SmartDistractorCandidate,
 } from '../app/smart_distractors';
 import { buildLessonWordOptions } from '../app/lesson_word_options';
+import * as fs from 'fs';
+import * as path from 'path';
 
 const words: SmartDistractorCandidate[] = [
   { value: 'remember', pos: 'verbs', source: 'lesson' },
@@ -119,5 +121,12 @@ describe('smart distractor ranking', () => {
     expect(options).toContain('?');
     expect(options).toEqual(expect.arrayContaining([',', '!', ';', ':']));
     expect(options).not.toEqual(expect.arrayContaining(['ella', 'ayuda']));
+  });
+
+  it('keeps lesson 1 smart option source free of legacy locale runtime markers', () => {
+    const source = fs.readFileSync(path.join(__dirname, '../app/lesson1_smart_options.ts'), 'utf8');
+    const legacyRuntimePattern = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
+
+    expect(source).not.toMatch(legacyRuntimePattern);
   });
 });

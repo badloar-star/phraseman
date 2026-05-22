@@ -9,16 +9,19 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
+import { useIsFocused } from '@react-navigation/native';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
+import { triLang, type Lang } from '../constants/i18n';
 import {
   AppMessageWithState,
   buildAppMessagePreview,
+  dismissAppMessage,
   filterAppMessagesSnapshotForAudience,
   markAppMessageRead,
   pickAppMessagePollOptionText,
@@ -28,6 +31,10 @@ import {
   setAppMessagePollVote,
   subscribeUserAppMessages,
 } from '../app/app_messages';
+import VipSurveyModal from './VipSurveyModal';
+import VipCelebrationModal from './VipCelebrationModal';
+import VipSurveyReviewPromptModal from './VipSurveyReviewPromptModal';
+import type { SubmitVipSurveyResponse } from '../app/vip_survey';
 
 const MESSAGE_ICON_IMAGES = {
   dark: require('../assets/images/messages/message-forest.webp'),
@@ -38,54 +45,34 @@ const MESSAGE_ICON_IMAGES = {
   minimalDark: require('../assets/images/messages/message-minimal-dark.webp'),
 };
 
-function inboxText(lang: 'ru' | 'uk' | 'es') {
-  if (lang === 'uk') {
-    return {
-      title: 'Повідомлення',
-      emptyTitle: 'Повідомлень немає',
-      emptyBody: 'Тут зʼявлятимуться новини від команди.',
-      close: 'Закрити',
-      back: 'Назад',
-      unread: 'Нове',
-      like: 'Подобається',
-      dislike: 'Не подобається',
-      poll: 'Опитування',
-      pollVotes: 'голосів',
-      pollSelected: 'Ваш вибір',
-      pollResultsHint: 'Результати після вибору',
-    };
-  }
-  if (lang === 'es') {
-    return {
-      title: 'Mensajes',
-      emptyTitle: 'No hay mensajes',
-      emptyBody: 'Aqui veras las novedades del equipo.',
-      close: 'Cerrar',
-      back: 'Volver',
-      unread: 'Nuevo',
-      like: 'Me gusta',
-      dislike: 'No me gusta',
-      poll: 'Encuesta',
-      pollVotes: 'votos',
-      pollSelected: 'Tu eleccion',
-      pollResultsHint: 'Resultados despues de elegir',
-    };
-  }
+function inboxText(lang: Lang) {
   return {
-    title: 'Сообщения',
-    emptyTitle: 'Сообщений нет',
-    emptyBody: 'Здесь появятся новости от команды.',
-    close: 'Закрыть',
-    back: 'Назад',
-    unread: 'Новое',
-    like: 'Нравится',
-    dislike: 'Не нравится',
-    poll: 'Опрос',
-    pollVotes: 'голосов',
-    pollSelected: 'Ваш выбор',
-    pollResultsHint: 'Результаты после выбора',
+    title: triLang(lang, { ru: 'Сообщения', uk: 'Повідомлення', es: 'Mensajes', 'pt-BR': 'Mensagens', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesajlar', pl: 'Wiadomości' }),
+    emptyTitle: triLang(lang, { ru: 'Сообщений нет', uk: 'Повідомлень немає', es: 'No hay mensajes', 'pt-BR': 'Não há mensagens', vi: 'Chưa có tin nhắn', id: 'Belum ada pesan', tr: 'Mesaj yok', pl: 'Brak wiadomości' }),
+    emptyBody: triLang(lang, { ru: 'Здесь появятся новости от команды.', uk: 'Тут зʼявлятимуться новини від команди.', es: 'Aqui veras las novedades del equipo.', 'pt-BR': 'Aqui você verá as novidades da equipe.', vi: 'Tin tức từ đội ngũ sẽ xuất hiện tại đây.', id: 'Kabar dari tim akan muncul di sini.', tr: 'Ekipten gelen haberler burada görünecek.', pl: 'Tutaj pojawią się nowości od zespołu.' }),
+    close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
+    back: triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' }),
+    unread: triLang(lang, { ru: 'Новое', uk: 'Нове', es: 'Nuevo', 'pt-BR': 'Novo', vi: 'Mới', id: 'Baru', tr: 'Yeni', pl: 'Nowe' }),
+    like: triLang(lang, { ru: 'Нравится', uk: 'Подобається', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' }),
+    dislike: triLang(lang, { ru: 'Не нравится', uk: 'Не подобається', es: 'No me gusta', 'pt-BR': 'Não gostei', vi: 'Không thích', id: 'Tidak suka', tr: 'Beğenme', pl: 'Nie lubię' }),
+    poll: triLang(lang, { ru: 'Опрос', uk: 'Опитування', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),
+    vipSurvey: triLang(lang, { ru: 'VIP-опрос', uk: 'VIP-опитування', es: 'VIP survey', 'pt-BR': 'VIP survey', vi: 'VIP survey', id: 'VIP survey', tr: 'VIP survey', pl: 'VIP survey' }),
+    vipSurveyCta: triLang(lang, { ru: 'Пройти опрос', uk: 'Пройти опитування', es: 'Take survey', 'pt-BR': 'Take survey', vi: 'Take survey', id: 'Take survey', tr: 'Take survey', pl: 'Take survey' }),
+    vipSurveyHint: triLang(lang, {
+      ru: 'Ответьте на несколько вопросов и активируйте месяц VIP.',
+      uk: 'Дайте відповідь на кілька запитань і активуйте місяць VIP.',
+      es: 'Answer a few questions and activate one month of VIP.',
+      'pt-BR': 'Answer a few questions and activate one month of VIP.',
+      vi: 'Answer a few questions and activate one month of VIP.',
+      id: 'Answer a few questions and activate one month of VIP.',
+      tr: 'Answer a few questions and activate one month of VIP.',
+      pl: 'Answer a few questions and activate one month of VIP.',
+    }),
+    dismiss: triLang(lang, { ru: 'Убрать уведомление', uk: 'Прибрати сповіщення', es: 'Dismiss notification', 'pt-BR': 'Dismiss notification', vi: 'Dismiss notification', id: 'Dismiss notification', tr: 'Dismiss notification', pl: 'Dismiss notification' }),
+    pollVotes: triLang(lang, { ru: 'голосов', uk: 'голосів', es: 'votos', 'pt-BR': 'votos', vi: 'lượt bình chọn', id: 'suara', tr: 'oy', pl: 'głosów' }),
+    pollSelected: triLang(lang, { ru: 'Ваш выбор', uk: 'Ваш вибір', es: 'Tu eleccion', 'pt-BR': 'Sua escolha', vi: 'Lựa chọn của bạn', id: 'Pilihan Anda', tr: 'Seçiminiz', pl: 'Twój wybór' }),
+    pollResultsHint: triLang(lang, { ru: 'Результаты после выбора', uk: 'Результати після вибору', es: 'Resultados despues de elegir', 'pt-BR': 'Resultados após escolher', vi: 'Kết quả sau khi chọn', id: 'Hasil setelah memilih', tr: 'Sonuçlar seçimden sonra', pl: 'Wyniki po wyborze' }),
   };
-
 }
 
 function formatMessageDate(createdAtMs: number): string {
@@ -97,17 +84,35 @@ function formatMessageDate(createdAtMs: number): string {
 }
 
 export default function AppMessagesInbox() {
+  const isScreenFocused = useIsFocused();
   const { lang } = useLang();
-  const { isPremium } = usePremium();
+  const { hasPremiumAccess } = usePremium();
   const { theme: t, f, isDark, themeMode } = useTheme();
   const copy = inboxText(lang);
   const [messages, setMessages] = useState<AppMessageWithState[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [visible, setVisible] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [surveyTarget, setSurveyTarget] = useState<AppMessageWithState | null>(null);
+  const [vipCelebrationVisible, setVipCelebrationVisible] = useState(false);
+  const [vipSurveyReviewPromptVisible, setVipSurveyReviewPromptVisible] = useState(false);
   const fade = useRef(new Animated.Value(0)).current;
   const panel = useRef(new Animated.Value(18)).current;
   const badgePulse = useRef(new Animated.Value(1)).current;
+  const surveyOpenTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (isScreenFocused) return;
+    if (surveyOpenTimer.current) {
+      clearTimeout(surveyOpenTimer.current);
+      surveyOpenTimer.current = null;
+    }
+    setVisible(false);
+    setSelectedId(null);
+    setSurveyTarget(null);
+    setVipCelebrationVisible(false);
+    setVipSurveyReviewPromptVisible(false);
+  }, [isScreenFocused]);
 
   const selected = useMemo(
     () => messages.find((message) => message.id === selectedId) ?? null,
@@ -116,12 +121,21 @@ export default function AppMessagesInbox() {
 
   useEffect(() => {
     const sub = subscribeUserAppMessages((snapshot) => {
-      const filtered = filterAppMessagesSnapshotForAudience(snapshot, isPremium);
+      const filtered = filterAppMessagesSnapshotForAudience(snapshot, hasPremiumAccess);
       setMessages(filtered.messages);
       setUnreadCount(filtered.unreadCount);
     });
     return () => sub.remove();
-  }, [isPremium]);
+  }, [hasPremiumAccess]);
+
+  useEffect(() => {
+    if (!hasPremiumAccess || !surveyTarget) return;
+    const messageId = surveyTarget.id;
+    setSurveyTarget(null);
+    setVisible(false);
+    setSelectedId(null);
+    void dismissAppMessage(messageId);
+  }, [hasPremiumAccess, surveyTarget]);
 
   useEffect(() => {
     if (selectedId && !messages.some((message) => message.id === selectedId)) {
@@ -157,6 +171,10 @@ export default function AppMessagesInbox() {
     setUnreadCount((prev) => Math.max(0, prev - 1));
     void markAppMessageRead(selected.id);
   }, [selected]);
+
+  useEffect(() => () => {
+    if (surveyOpenTimer.current) clearTimeout(surveyOpenTimer.current);
+  }, []);
 
   const openInbox = () => {
     hapticTap();
@@ -207,6 +225,54 @@ export default function AppMessagesInbox() {
     );
     hapticTap();
     void setAppMessagePollVote(selected.id, optionId);
+  };
+
+  const hideMessage = (messageId: string) => {
+    hapticTap();
+    setMessages((prev) => prev.filter((message) => message.id !== messageId));
+    setUnreadCount((prev) => {
+      const target = messages.find((message) => message.id === messageId);
+      return target?.unread ? Math.max(0, prev - 1) : prev;
+    });
+    if (selectedId === messageId) setSelectedId(null);
+    if (surveyTarget?.id === messageId) setSurveyTarget(null);
+    void dismissAppMessage(messageId);
+  };
+
+  const openSurvey = (message: AppMessageWithState) => {
+    hapticTap();
+    if (hasPremiumAccess) {
+      hideMessage(message.id);
+      return;
+    }
+    if (message.unread) {
+      setMessages((prev) => prev.map((m) => (m.id === message.id ? { ...m, unread: false, readAtMs: Date.now() } : m)));
+      setUnreadCount((prev) => Math.max(0, prev - 1));
+      void markAppMessageRead(message.id);
+    }
+    setSelectedId(null);
+    setVisible(false);
+    if (surveyOpenTimer.current) clearTimeout(surveyOpenTimer.current);
+    surveyOpenTimer.current = setTimeout(() => {
+      setSurveyTarget(message);
+      surveyOpenTimer.current = null;
+    }, 180);
+  };
+
+  const handleSurveyCompleted = (result: SubmitVipSurveyResponse) => {
+    const messageId = surveyTarget?.id;
+    if (messageId) {
+      setMessages((prev) => prev.filter((message) => message.id !== messageId));
+      setSelectedId((current) => (current === messageId ? null : current));
+      void dismissAppMessage(messageId);
+    }
+    setSurveyTarget(null);
+    setVisible(false);
+    if (result.alreadyGranted) {
+      setVipSurveyReviewPromptVisible(true);
+    } else {
+      setVipCelebrationVisible(true);
+    }
   };
 
   const chrome = isDark
@@ -260,7 +326,9 @@ export default function AppMessagesInbox() {
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.listContent}>
           {messages.map((message) => {
             const text = pickAppMessageText(message, lang);
-            const preview = message.poll
+            const preview = message.kind === 'vip_survey'
+              ? copy.vipSurveyHint
+              : message.poll
               ? pickAppMessagePollQuestion(message.poll, lang)
               : buildAppMessagePreview(text.body, 160);
             return (
@@ -268,16 +336,36 @@ export default function AppMessagesInbox() {
                 key={message.id}
                 activeOpacity={0.82}
                 onPress={() => selectMessage(message)}
+                testID={message.kind === 'vip_survey' ? 'vip-survey-inbox-row' : undefined}
                 style={[styles.messageRow, { backgroundColor: chrome.card, borderColor: chrome.border }]}
               >
                 <View style={styles.messageRowTop}>
                   <View style={styles.messageTitleWrap}>
                     {message.unread ? <View style={styles.unreadDot} /> : <View style={styles.readDotSpace} />}
-                    <Text style={[styles.messageTitle, { color: chrome.text }]} numberOfLines={1}>
+                    <Text style={[styles.messageTitle, { color: chrome.text }]} numberOfLines={2}>
                       {text.title}
                     </Text>
                   </View>
-                  {message.poll ? (
+                  <TouchableOpacity
+                    accessibilityRole="button"
+                    accessibilityLabel={copy.dismiss}
+                    activeOpacity={0.72}
+                    onPress={(event) => {
+                      event.stopPropagation?.();
+                      hideMessage(message.id);
+                    }}
+                    style={[styles.rowDismiss, { borderColor: chrome.border }]}
+                  >
+                    <Ionicons name="close" size={14} color={chrome.soft} />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.messageMetaRow}>
+                  {message.kind === 'vip_survey' ? (
+                    <View style={[styles.vipSurveyBadge, { borderColor: 'rgba(100,116,139,0.32)' }]}>
+                      <Ionicons name="sparkles-outline" size={11} color="#64748B" />
+                      <Text style={styles.vipSurveyBadgeText}>{copy.vipSurvey}</Text>
+                    </View>
+                  ) : message.poll ? (
                     <View style={[styles.pollBadge, { borderColor: chrome.border }]}>
                       <Ionicons name="stats-chart-outline" size={11} color={chrome.soft} />
                       <Text style={[styles.pollBadgeText, { color: chrome.soft }]}>{copy.poll}</Text>
@@ -288,6 +376,24 @@ export default function AppMessagesInbox() {
                 <Text style={[styles.messagePreview, { color: chrome.muted }]} numberOfLines={2}>
                   {preview}
                 </Text>
+                {message.kind === 'vip_survey' ? (
+                  <View style={styles.messageRowActions}>
+                    <TouchableOpacity
+                      testID="vip-survey-inbox-cta"
+                      activeOpacity={0.86}
+                      accessibilityRole="button"
+                      accessibilityLabel={copy.vipSurveyCta}
+                      onPress={(event) => {
+                        event.stopPropagation?.();
+                        openSurvey(message);
+                      }}
+                      style={styles.messageRowCta}
+                    >
+                      <Ionicons name="chatbubbles-outline" size={15} color="#FFFFFF" />
+                      <Text style={styles.messageRowCtaText}>{copy.vipSurveyCta}</Text>
+                    </TouchableOpacity>
+                  </View>
+                ) : null}
               </TouchableOpacity>
             );
           })}
@@ -364,6 +470,34 @@ export default function AppMessagesInbox() {
     );
   };
 
+  const renderVipSurveyCta = (message: AppMessageWithState) => {
+    if (message.kind !== 'vip_survey') return null;
+    return (
+      <View style={[styles.vipSurveyCard, { backgroundColor: isDark ? '#182131' : '#F8FAFC', borderColor: 'rgba(100,116,139,0.26)' }]}>
+        <View style={styles.vipSurveyCardTop}>
+          <View style={styles.vipSurveyIcon}>
+            <Ionicons name="sparkles" size={18} color="#64748B" />
+          </View>
+          <View style={styles.vipSurveyTextWrap}>
+            <Text style={[styles.vipSurveyTitle, { color: chrome.text }]}>{copy.vipSurvey}</Text>
+            <Text style={[styles.vipSurveyBody, { color: chrome.muted }]}>{copy.vipSurveyHint}</Text>
+          </View>
+        </View>
+        <TouchableOpacity
+          testID="vip-survey-detail-cta"
+          activeOpacity={0.86}
+          accessibilityRole="button"
+          accessibilityLabel={copy.vipSurveyCta}
+          onPress={() => openSurvey(message)}
+          style={styles.vipSurveyButton}
+        >
+          <Ionicons name="chatbubbles-outline" size={17} color="#FFFFFF" />
+          <Text style={styles.vipSurveyButtonText}>{copy.vipSurveyCta}</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
   const renderDetail = () => {
     if (!selected) return null;
     const text = pickAppMessageText(selected, lang);
@@ -384,21 +518,22 @@ export default function AppMessagesInbox() {
           </TouchableOpacity>
           <TouchableOpacity
             accessibilityRole="button"
-            accessibilityLabel={copy.close}
+            accessibilityLabel={copy.dismiss}
             activeOpacity={0.75}
-            onPress={closeInbox}
+            onPress={() => hideMessage(selected.id)}
             style={[styles.roundIcon, { backgroundColor: chrome.card, borderColor: chrome.border }]}
           >
-            <Ionicons name="close" size={21} color={chrome.text} />
+            <Ionicons name="close-circle-outline" size={21} color={chrome.text} />
           </TouchableOpacity>
         </View>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.detailContent}>
           <Text style={[styles.detailDate, { color: chrome.soft }]}>{formatMessageDate(selected.createdAtMs)}</Text>
           <Text style={[styles.detailTitle, { color: chrome.text }]}>{text.title}</Text>
           <Text style={[styles.detailBody, { color: chrome.muted }]}>{text.body}</Text>
+          {renderVipSurveyCta(selected)}
           {renderPoll(selected)}
 
-          <View style={styles.reactions}>
+          {selected.kind === 'vip_survey' ? null : <View style={styles.reactions}>
             <TouchableOpacity
               activeOpacity={0.82}
               onPress={() => reactToSelected('like')}
@@ -427,11 +562,13 @@ export default function AppMessagesInbox() {
               <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? '#F87171' : chrome.muted} />
               <Text style={[styles.reactionText, { color: selected.reaction === 'dislike' ? '#F87171' : chrome.muted }]}>{copy.dislike}</Text>
             </TouchableOpacity>
-          </View>
+          </View>}
         </ScrollView>
       </>
     );
   };
+
+  if (!isScreenFocused) return null;
 
   return (
     <>
@@ -468,6 +605,23 @@ export default function AppMessagesInbox() {
           </Animated.View>
         </View>
       </Modal>
+      <VipSurveyModal
+        visible={!!surveyTarget}
+        messageId={surveyTarget?.id ?? ''}
+        onClose={() => setSurveyTarget(null)}
+        onCompleted={handleSurveyCompleted}
+      />
+      <VipCelebrationModal
+        visible={vipCelebrationVisible}
+        onClose={() => {
+          setVipCelebrationVisible(false);
+          setVipSurveyReviewPromptVisible(true);
+        }}
+      />
+      <VipSurveyReviewPromptModal
+        visible={vipSurveyReviewPromptVisible}
+        onClose={() => setVipSurveyReviewPromptVisible(false)}
+      />
     </>
   );
 }
@@ -560,9 +714,9 @@ const styles = StyleSheet.create({
   },
   messageRowTop: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: 10,
-    marginBottom: 7,
+    marginBottom: 5,
   },
   messageTitleWrap: {
     flex: 1,
@@ -585,7 +739,16 @@ const styles = StyleSheet.create({
     flex: 1,
     minWidth: 0,
     fontSize: 15,
+    lineHeight: 20,
     fontWeight: '900',
+  },
+  messageMetaRow: {
+    paddingLeft: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginBottom: 7,
   },
   messageDate: {
     fontSize: 11,
@@ -604,11 +767,54 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: '900',
   },
+  vipSurveyBadge: {
+    height: 22,
+    borderRadius: 11,
+    borderWidth: 0.5,
+    paddingHorizontal: 7,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: 'rgba(100,116,139,0.10)',
+  },
+  vipSurveyBadgeText: {
+    color: '#64748B',
+    fontSize: 10,
+    fontWeight: '900',
+  },
+  rowDismiss: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 0.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   messagePreview: {
     paddingLeft: 16,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: '600',
+  },
+  messageRowActions: {
+    marginTop: 10,
+    paddingLeft: 16,
+    alignItems: 'flex-start',
+  },
+  messageRowCta: {
+    minHeight: 34,
+    borderRadius: 12,
+    backgroundColor: '#475569',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 7,
+    paddingHorizontal: 12,
+  },
+  messageRowCtaText: {
+    color: '#FFFFFF',
+    fontSize: 12,
+    fontWeight: '900',
   },
   emptyState: {
     flex: 1,
@@ -647,6 +853,56 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 23,
     fontWeight: '600',
+  },
+  vipSurveyCard: {
+    marginTop: 18,
+    borderRadius: 16,
+    borderWidth: 1,
+    padding: 14,
+    gap: 14,
+  },
+  vipSurveyCardTop: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 10,
+  },
+  vipSurveyIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(100,116,139,0.14)',
+  },
+  vipSurveyTextWrap: {
+    flex: 1,
+    minWidth: 0,
+  },
+  vipSurveyTitle: {
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: '900',
+    marginBottom: 4,
+  },
+  vipSurveyBody: {
+    fontSize: 13,
+    lineHeight: 19,
+    fontWeight: '600',
+  },
+  vipSurveyButton: {
+    minHeight: 44,
+    borderRadius: 14,
+    backgroundColor: '#475569',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingHorizontal: 14,
+  },
+  vipSurveyButtonText: {
+    color: '#FFFFFF',
+    fontSize: 13,
+    fontWeight: '900',
   },
   pollCard: {
     marginTop: 18,

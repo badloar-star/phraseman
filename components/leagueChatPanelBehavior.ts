@@ -26,7 +26,7 @@ export function getLeagueChatConnectionUi(input: LeagueChatConnectionInput) {
 }
 
 export function getLeagueChatKeyboardAvoidingBehavior(
-  _platform: string,
-): 'padding' {
-  return 'padding';
+  platform: string,
+): 'padding' | 'height' {
+  return platform === 'ios' ? 'padding' : 'height';
 }

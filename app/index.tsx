@@ -1,6 +1,5 @@
-import React from 'react';
-import { Redirect } from 'expo-router';
+import { DeferredRedirect } from '../components/DeferredRedirect';
 
 export default function RootIndexRedirect() {
-  return <Redirect href="/(tabs)/home" />;
+  return <DeferredRedirect href="/(tabs)/home" />;
 }

@@ -24,7 +24,7 @@ import {
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -32,7 +32,7 @@ import { usePremium } from './PremiumContext';
 import AvatarView from './AvatarView';
 import PremiumAvatarHalo from './PremiumAvatarHalo';
 import LeagueCrownName from './LeagueCrownName';
-import { premiumMemberNameStyle } from './premiumMemberStyles';
+import { memberNameStatusStyle } from './premiumMemberStyles';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import { getTitleString } from '../constants/titles';
@@ -80,6 +80,7 @@ export interface PlayerInfo {
   uid?: string;
   friendUid?: string;
   isPremium?: boolean;
+  isVip?: boolean;
   leagueCrownExpiresAt?: number;
   profileCardLevel?: number;
   profileCardTheme?: string;
@@ -229,7 +230,7 @@ function PlayerProfileModalBody({
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const profileUpgradeAccent = '#FACC15';
-  const { isPremium: myIsPremium } = usePremium();
+  const { isPremium: myIsPremium, isVip: myIsVip } = usePremium();
   const insets = useSafeAreaInsets();
   const isMe = player.isMe;
   const [friendRequestBusy, setFriendRequestBusy] = useState(false);
@@ -256,8 +257,9 @@ function PlayerProfileModalBody({
     : (player.leagueId ?? 0);
   const club = CLUBS[Math.max(0, Math.min(leagueIdx, CLUBS.length - 1))];
   const showPremium = isMe ? myIsPremium : (player.isPremium ?? false);
+  const showVip = isMe ? myIsVip : (player.isVip ?? false);
   const storedAuraId = isMe ? myInfo.aura : player.aura;
-  const effectiveAuraId = getEffectiveAvatarAuraId(storedAuraId, showPremium);
+  const effectiveAuraId = getEffectiveAvatarAuraId(storedAuraId, showPremium, showVip);
   const usesPremiumAura = effectiveAuraId === PREMIUM_AVATAR_AURA_ID;
   const cardDef = getProfileCardLevelDef(profileCardLevel);
   const cardVisual = getProfileCardVisual(profileCardSnapshot);
@@ -879,10 +881,9 @@ function PlayerProfileModalBody({
                 </View>
               )}
               {!hasLeagueCrown && (
-              <Text style={premiumMemberNameStyle(
+              <Text style={memberNameStatusStyle(
                 { fontSize: f.h2, fontWeight: '700', color: t.textPrimary, marginTop: 10 },
-                showPremium,
-                themeMode,
+                { isPremium: showPremium, isVip: showVip, themeMode },
               )}>
                 {player.name}{isMe ? triLang(lang as Lang, {
                   ru: ' (ты)',
@@ -1393,7 +1394,7 @@ function PlayerProfileModalBody({
         ru: 'Удалить',
         uk: 'Видалити',
         es: 'Eliminar',
-        'pt-BR': "Eliminar",
+        'pt-BR': "Remover",
         vi: "Xóa",
         id: "Hapus",
         tr: "Sil",

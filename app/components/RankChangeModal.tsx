@@ -10,7 +10,7 @@ import {
   Animated, Dimensions, Easing, Image, Modal, Pressable,
   StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useModalBackdropFade } from '../../hooks/useModalBackdropFade';
 import { getRankImage, getRankImageDisplayScale } from '../../hooks/use-arena-rank';
 import type { RankTier } from '../types/arena';

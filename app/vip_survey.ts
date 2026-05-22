@@ -1,0 +1,274 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getApp } from '@react-native-firebase/app';
+import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
+import { Platform } from 'react-native';
+import { CLOUD_SYNC_ENABLED, ENABLE_DEV_TOOLS, IS_EXPO_GO } from './config';
+import { ensureAnonUser, ensureStableAuthLinkForStableId, resetAnonAuthCacheForSignOut } from './cloud_sync';
+import { emitAppEvent } from './events';
+import { updateMyVipInLeaderboard } from './firestore_leaderboard';
+import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { getVerifiedPremiumAccessStatus, invalidatePremiumCache } from './premium_guard';
+import { markVipCelebrationPending } from './vip_celebration_state';
+import {
+  normalizeVipSurveyAnswers,
+  VIP_SURVEY_ID,
+  VIP_SURVEY_REWARD_DAYS,
+  type VipSurveyAnswers,
+} from './vip_survey_content';
+
+const FUNCTIONS_REGION = 'us-central1';
+const VIP_SURVEY_DEV_AUTH_EMAIL_KEY = 'vip_survey_e2e_email';
+const VIP_SURVEY_DEV_AUTH_PASSWORD_KEY = 'vip_survey_e2e_password';
+const ADMIN_VIP_DEV_AUTH_EMAIL_KEY = 'admin_vip_e2e_email';
+const ADMIN_VIP_DEV_AUTH_PASSWORD_KEY = 'admin_vip_e2e_password';
+let vipCallableAuthPromise: Promise<string> | null = null;
+
+export type VipSurveyReviewIntent = 'yes' | 'no' | 'not_now';
+
+export type SubmitVipSurveyRequest = {
+  stableId: string;
+  messageId: string;
+  surveyId: string;
+  answers: VipSurveyAnswers;
+  reviewIntent: VipSurveyReviewIntent;
+  storeOpened: boolean;
+  platform: string;
+};
+
+export type SubmitVipSurveyResponse = {
+  ok: boolean;
+  alreadyGranted: boolean;
+  uid: string;
+  grantAt: string;
+  vipFrom: string;
+  vipUntil: string;
+  vipPlan: string;
+  rewardDays: number;
+};
+
+type RecordVipSurveyReviewClickRequest = {
+  stableId: string;
+  surveyId: string;
+  messageId: string;
+  storeOpened: boolean;
+  platform: string;
+};
+
+type RecordVipSurveyReviewClickResponse = {
+  ok: boolean;
+  uid: string;
+  storeOpened: boolean;
+};
+
+function callable<TReq, TRes>(name: string) {
+  return httpsCallable<TReq, TRes>(getFunctions(getApp(), FUNCTIONS_REGION), name);
+}
+
+function errorDetail(err: unknown): string {
+  return err instanceof Error ? err.message : String(err || 'unknown');
+}
+
+function credentialUid(credential: unknown, auth: any): string {
+  const row = credential as { user?: { uid?: unknown } } | null | undefined;
+  return String(row?.user?.uid || auth?.currentUser?.uid || '').trim();
+}
+
+async function readSavedDevCredential(): Promise<{ email: string; password: string } | null> {
+  if (!ENABLE_DEV_TOOLS) return null;
+  const pairs = await AsyncStorage.multiGet([
+    VIP_SURVEY_DEV_AUTH_EMAIL_KEY,
+    VIP_SURVEY_DEV_AUTH_PASSWORD_KEY,
+    ADMIN_VIP_DEV_AUTH_EMAIL_KEY,
+    ADMIN_VIP_DEV_AUTH_PASSWORD_KEY,
+  ]);
+  const get = (key: string) => String(pairs.find((pair) => pair[0] === key)?.[1] || '').trim();
+  const email = get(VIP_SURVEY_DEV_AUTH_EMAIL_KEY) || get(ADMIN_VIP_DEV_AUTH_EMAIL_KEY);
+  const password = get(VIP_SURVEY_DEV_AUTH_PASSWORD_KEY) || get(ADMIN_VIP_DEV_AUTH_PASSWORD_KEY);
+  return email && password ? { email, password } : null;
+}
+
+async function signInWithDevEmailCredential(auth: any, createIfMissing: boolean): Promise<string> {
+  if (!ENABLE_DEV_TOOLS) throw new Error('dev_auth_disabled');
+  const saved = await readSavedDevCredential();
+  const email = saved?.email || `vip-survey-e2e-${Date.now()}@phraseman.test`;
+  const password = saved?.password || `VipSurveyE2E-${Date.now()}-local`;
+  let credential: unknown = null;
+  if (saved && typeof auth?.signInWithEmailAndPassword === 'function') {
+    credential = await auth.signInWithEmailAndPassword(email, password);
+  } else if (createIfMissing && typeof auth?.createUserWithEmailAndPassword === 'function') {
+    credential = await auth.createUserWithEmailAndPassword(email, password);
+    await AsyncStorage.multiSet([
+      [VIP_SURVEY_DEV_AUTH_EMAIL_KEY, email],
+      [VIP_SURVEY_DEV_AUTH_PASSWORD_KEY, password],
+    ]);
+  } else {
+    throw new Error('dev_email_auth_unavailable');
+  }
+  const uid = credentialUid(credential, auth);
+  if (!uid) throw new Error('dev_email_auth_missing_uid');
+  return uid;
+}
+
+async function signInAnonymouslyForVipCallable(auth: any): Promise<string> {
+  if (ENABLE_DEV_TOOLS) {
+    const savedDevCredential = await readSavedDevCredential();
+    if (savedDevCredential) {
+      try {
+        return await signInWithDevEmailCredential(auth, false);
+      } catch (savedError) {
+        console.warn('[vip_survey] saved dev auth failed, falling back to anonymous', errorDetail(savedError));
+      }
+    }
+  }
+  try {
+    const credential = await auth?.signInAnonymously?.();
+    const uid = credentialUid(credential, auth);
+    if (!uid) throw new Error('anonymous_auth_missing_uid');
+    return uid;
+  } catch (firstError) {
+    const firstDetail = errorDetail(firstError);
+    if (/keychain|auth\/keychain|anonymous/i.test(firstDetail)) {
+      await auth?.signOut?.().catch(() => undefined);
+      resetAnonAuthCacheForSignOut();
+      await new Promise((resolve) => setTimeout(resolve, 250));
+      try {
+        const credential = await auth?.signInAnonymously?.();
+        const uid = credentialUid(credential, auth);
+        if (!uid) throw new Error('anonymous_auth_missing_uid_after_retry');
+        return uid;
+      } catch (retryError) {
+        if (ENABLE_DEV_TOOLS) {
+          return signInWithDevEmailCredential(auth, true);
+        }
+        throw retryError;
+      }
+    }
+    if (ENABLE_DEV_TOOLS && /too-many-requests|network|internal|unavailable|auth\//i.test(firstDetail)) {
+      return signInWithDevEmailCredential(auth, true);
+    }
+    throw firstError;
+  }
+}
+
+async function ensureFirebaseAuthUidForVipCallableInner(): Promise<string> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) throw new Error('cloud_unavailable');
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const authModule = require('@react-native-firebase/auth');
+    const getAuth = authModule.default || authModule;
+    const auth = typeof getAuth === 'function' ? getAuth() : getAuth;
+    let user = auth?.currentUser;
+    if (!user) {
+      await signInAnonymouslyForVipCallable(auth);
+      user = auth?.currentUser;
+    }
+    if (!user?.uid) throw new Error('missing_user');
+    if (typeof user.getIdToken === 'function') {
+      await user.getIdToken(true).catch(() => undefined);
+    }
+    return String(user.uid);
+  } catch (e) {
+    const detail = errorDetail(e);
+    throw new Error(`auth_unavailable:${detail}`);
+  }
+}
+
+async function ensureFirebaseAuthUidForVipCallable(): Promise<string> {
+  if (vipCallableAuthPromise) return vipCallableAuthPromise;
+  vipCallableAuthPromise = ensureFirebaseAuthUidForVipCallableInner().finally(() => {
+    vipCallableAuthPromise = null;
+  });
+  return vipCallableAuthPromise;
+}
+
+async function persistVipResult(result: SubmitVipSurveyResponse): Promise<void> {
+  const grantAt = String(result.grantAt || Date.now());
+  const vipUntilMs = Number(result.vipUntil || 0);
+  const active = vipUntilMs <= 0 || vipUntilMs > Date.now();
+  const storagePairs: [string, string][] = [
+    ['vip_active', active ? 'true' : 'false'],
+    ['vip_plan', result.vipPlan || 'survey_vip'],
+    ['vip_from', result.vipFrom || grantAt],
+    ['vip_until', result.vipUntil || '0'],
+    ['vip_admin_override', 'true'],
+    ['vip_admin_grant_at', grantAt],
+  ];
+  await AsyncStorage.multiSet(storagePairs);
+  invalidatePremiumCache();
+  if (active && !result.alreadyGranted) {
+    await markVipCelebrationPending(grantAt);
+  }
+  if (active) {
+    emitAppEvent('vip_activated');
+  } else {
+    emitAppEvent('vip_deactivated');
+  }
+  emitAppEvent('premium_access_changed', { active, source: active ? 'vip' : 'none' });
+  void updateMyVipInLeaderboard(active);
+}
+
+export async function submitVipSurveyFromApp(params: {
+  messageId: string;
+  answers: VipSurveyAnswers;
+  reviewIntent: VipSurveyReviewIntent;
+  storeOpened: boolean;
+}): Promise<SubmitVipSurveyResponse> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
+    throw new Error('cloud_unavailable');
+  }
+
+  const hasPremiumAccess = await getVerifiedPremiumAccessStatus().catch(() => false);
+  if (hasPremiumAccess) {
+    throw new Error('vip_survey_free_tier_required');
+  }
+
+  await ensureFirebaseAuthUidForVipCallable();
+  const stableId = await ensureAnonUser();
+  if (!stableId) throw new Error('user_unavailable');
+  await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+
+  const fn = callable<SubmitVipSurveyRequest, SubmitVipSurveyResponse>('submitVipSurvey');
+  const payload: SubmitVipSurveyRequest = {
+    stableId,
+    messageId: String(params.messageId || '').trim(),
+    surveyId: VIP_SURVEY_ID,
+    answers: normalizeVipSurveyAnswers(params.answers),
+    reviewIntent: params.reviewIntent,
+    storeOpened: !!params.storeOpened,
+    platform: Platform.OS,
+  };
+  const result = (await fn(payload)).data;
+  await persistVipResult(result);
+  return result;
+}
+
+export async function recordVipSurveyReviewClickFromApp(params: {
+  messageId?: string;
+  storeOpened: boolean;
+}): Promise<boolean> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return false;
+
+  await ensureFirebaseAuthUidForVipCallable();
+  const stableId = await ensureAnonUser();
+  if (!stableId) return false;
+  await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+
+  const fn = callable<RecordVipSurveyReviewClickRequest, RecordVipSurveyReviewClickResponse>('recordVipSurveyReviewClick');
+  const result = (await fn({
+    stableId,
+    surveyId: VIP_SURVEY_ID,
+    messageId: String(params.messageId || '').trim(),
+    storeOpened: !!params.storeOpened,
+    platform: Platform.OS,
+  })).data;
+  return result.ok === true;
+}
+
+export function getVipSurveyRewardDays(): number {
+  return VIP_SURVEY_REWARD_DAYS;
+}
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

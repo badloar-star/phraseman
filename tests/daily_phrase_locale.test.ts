@@ -108,6 +108,27 @@ describe('dailyPhraseCopyForLang', () => {
   });
 });
 
+describe('DailyPhraseCard runtime locale wiring', () => {
+  it('passes planned interface languages through to Daily Phrase copy instead of collapsing them to Russian', () => {
+    const componentPath = path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx');
+    const source = fs.readFileSync(componentPath, 'utf8');
+
+    expect(source).toContain('const phraseLang: DailyPhraseInterfaceLang = lang;');
+    expect(source).toContain('dailyPhraseCopyForLang(phrase, phraseLang)');
+    expect(source).not.toContain("const phraseLang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru'");
+  });
+
+  it('forwards planned Daily Phrase meanings when saving to flashcards', () => {
+    const componentPath = path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx');
+    const source = fs.readFileSync(componentPath, 'utf8');
+
+    expect(source).toContain("const flashcardSourceLocales = {");
+    expect(source).toContain("'pt-BR': phrase.sourceLocales?.['pt-BR']?.meaning");
+    expect(source).toContain('vi: phrase.sourceLocales?.vi?.meaning');
+    expect(source).toContain('sourceLocales={flashcardSourceLocales}');
+  });
+});
+
 describe('Spanish Daily Phrase content coverage', () => {
   const seedById = new Map(loadDailyPhraseSeed().map((item) => [item.id, item]));
   const idiomsById = new Map(IDIOMS.map((item) => [item.id, item]));

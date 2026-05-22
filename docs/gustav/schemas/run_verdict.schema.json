@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phraseman.local/gustav/run_verdict.schema.json",
+  "title": "GUSTAV Run Verdict",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "runId", "status", "blockers", "warnings", "producedArtifacts", "nextAllowedModes"],
+  "properties": {
+    "schemaVersion": { "const": "gustav-run-verdict-v0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["PASS", "HOLD", "BLOCK"] },
+    "completedAt": { "type": "string" },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "severity", "title", "detail"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "severity": { "enum": ["high", "blocker"] },
+          "title": { "type": "string", "minLength": 1 },
+          "detail": { "type": "string", "minLength": 1 },
+          "ownerAgent": { "type": "string" },
+          "artifactPath": { "type": "string" }
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "detail"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "detail": { "type": "string", "minLength": 1 },
+          "artifactPath": { "type": "string" }
+        }
+      }
+    },
+    "producedArtifacts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "nextAllowedModes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "inventory",
+          "source_graph",
+          "english_audit",
+          "architecture",
+          "research",
+          "curriculum",
+          "agent_contract",
+          "generate",
+          "audit_generated",
+          "apply_plan",
+          "apply"
+        ]
+      },
+      "uniqueItems": true
+    }
+  }
+}

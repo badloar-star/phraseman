@@ -120,6 +120,22 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toMatch(/poll_votes\/\{userId\} \{[\s\S]*?allow create, update: if appMessagePollVoteOk\(messageId, userId\);/);
     expect(rules).toMatch(/function appMessagePollVoteOk\(messageId, userId\) \{[\s\S]*?request\.resource\.data\.optionId in message\.poll\.optionIds/);
   });
+
+  test('auth_links are scoped to the signed-in provider uid and owned stable id', () => {
+    const authLinksBlock = rules.match(/match \/auth_links\/\{providerUid\} \{[\s\S]*?\n    \}/);
+    expect(authLinksBlock).not.toBeNull();
+    expect(authLinksBlock![0]).toContain('function ownsAuthLinkDoc()');
+    expect(authLinksBlock![0]).toContain('request.auth.uid == providerUid');
+    expect(authLinksBlock![0]).toContain('function stableIdOwnedByThisAuth(stableId)');
+    expect(authLinksBlock![0]).toContain('&& stableUserMatchesAuth(stableId);');
+    expect(authLinksBlock![0]).toContain('allow read: if isAdmin() || ownsAuthLinkDoc();');
+    expect(authLinksBlock![0]).toContain('allow create: if ownsAuthLinkDoc()');
+    expect(authLinksBlock![0]).toContain('&& stableIdOwnedByThisAuth(request.resource.data.stable_id);');
+    expect(authLinksBlock![0]).toContain('allow update: if ownsAuthLinkDoc()');
+    expect(authLinksBlock![0]).toContain('request.resource.data.stable_id == resource.data.stable_id');
+    expect(authLinksBlock![0]).not.toContain('allow read: if request.auth != null;');
+    expect(authLinksBlock![0]).not.toContain('allow update: if request.auth != null');
+  });
 });
 
 describe('firestore.rules friend system (Phase 1)', () => {
@@ -140,8 +156,10 @@ describe('firestore.rules friend system (Phase 1)', () => {
 
   test('friend_code_index write path is exported through callable function', () => {
     const functionsIndex = readFileSync(path.join(process.cwd(), 'functions/src/index.ts'), 'utf8');
+    const friendCodes = readFileSync(path.join(process.cwd(), 'functions/src/friend_codes.ts'), 'utf8');
     expect(functionsIndex).toContain("const { friendEnsureMyCode } = require('./friend_codes');");
     expect(functionsIndex).toContain('exports.friendEnsureMyCode = friendEnsureMyCode;');
+    expect(friendCodes).toContain('if (linkedAuthUid === authUid) return;');
   });
 
   test('friend_requests create requires senderUid to match the signed-in canonical user (anti-impersonation)', () => {

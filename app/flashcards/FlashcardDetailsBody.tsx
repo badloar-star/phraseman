@@ -39,18 +39,31 @@ type Props = {
   f: Record<string, number>;
 };
 
-type FlashcardDetailLabelLang = 'ru' | 'uk' | 'es';
+type FlashcardDetailLabelLang = FlashcardContentLang;
 
 function flashcardDetailLabelLang(lang: FlashcardContentLang): FlashcardDetailLabelLang {
-  if (lang === 'uk' || lang === 'es') return lang;
-  return 'ru';
+  return lang;
 }
 
-const LITERAL_LABEL: Record<FlashcardDetailLabelLang, string> = { ru: 'Дословно', uk: 'Дослівно', es: 'Literal' };
+const LITERAL_LABEL: Record<FlashcardDetailLabelLang, string> = {
+  ru: 'Дословно',
+  uk: 'Дослівно',
+  es: 'Literal',
+  'pt-BR': 'Literal',
+  vi: 'Nghĩa đen',
+  id: 'Harfiah',
+  tr: 'Kelimesi kelimesine',
+  pl: 'Dosłownie',
+};
 const CONTEXT_LABEL: Record<FlashcardDetailLabelLang, string> = {
   ru: 'Контекст',
   uk: 'Контекст',
   es: 'Contexto',
+  'pt-BR': 'Contexto',
+  vi: 'Ngữ cảnh',
+  id: 'Konteks',
+  tr: 'Bağlam',
+  pl: 'Kontekst',
 };
 
 /**

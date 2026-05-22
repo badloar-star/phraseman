@@ -4,13 +4,13 @@ import {
   TextInput, KeyboardAvoidingView, ScrollView,
   Animated, BackHandler, Keyboard, Easing,
   Platform,
-  Image,
   StatusBar,
   type ImageSourcePropType,
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { Image as ExpoImage } from 'expo-image';
+import { LinearGradient } from './SafeLinearGradient';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { generateReferralCode } from '../app/referral_system';
@@ -43,7 +43,6 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 import { GoogleSignInButton, AppleSignInButton } from './AuthProviderButtons';
-import { backgroundTransitionKey, useBackgroundBlurSwitch } from './backgroundTransition';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -75,13 +74,13 @@ const USE_ELITE_ONBOARDING_WELCOME = true;
 const ONBOARDING_ACCENT = '#F2B84B';
 const ONBOARDING_ACCENT_BG = 'rgba(242,184,75,0.16)';
 const ONBOARDING_TEXT_MUTED = '#D8CCB5';
-const ONBOARDING_BG_BETA = require('../assets/images/onboarding/onboarding-bg-beta-wide.webp');
 const ONBOARDING_BG_WELCOME = require('../assets/images/onboarding/onboarding-bg-welcome-wide.webp');
-const ONBOARDING_BG_NAME = require('../assets/images/onboarding/onboarding-bg-name-wide.webp');
-const ONBOARDING_BG_BUILDER = require('../assets/images/onboarding/onboarding-bg-builder-wide.webp');
-const ONBOARDING_BG_QUIZ = require('../assets/images/onboarding/onboarding-bg-quiz-wide.webp');
-const ONBOARDING_BG_STREAK = require('../assets/images/onboarding/onboarding-bg-streak-wide.webp');
-const ONBOARDING_BG_AUTH = require('../assets/images/onboarding/onboarding-bg-auth-wide.webp');
+const ONBOARDING_BG_BETA = ONBOARDING_BG_WELCOME;
+const ONBOARDING_BG_NAME = ONBOARDING_BG_WELCOME;
+const ONBOARDING_BG_BUILDER = ONBOARDING_BG_WELCOME;
+const ONBOARDING_BG_QUIZ = ONBOARDING_BG_WELCOME;
+const ONBOARDING_BG_STREAK = ONBOARDING_BG_WELCOME;
+const ONBOARDING_BG_AUTH = ONBOARDING_BG_WELCOME;
 const ONBOARDING_LINGMAN_ICON = require('../assets/images/onboarding/lingman-icon-transparent.webp');
 const ONBOARDING_AUTH_ICON = require('../assets/images/onboarding/auth-quick-start-icon.webp');
 const ONBOARDING_STREAK_ICONS: Record<StreakMilestoneIconKind, ImageSourcePropType> = {
@@ -126,22 +125,58 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   const { width: viewportW, height: viewportH, uiScale } = useScreen();
   const progressTopPadding = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0) + 8;
   const narrowViewport = Math.min(viewportW, viewportH);
-  const compactOnboarding = narrowViewport < 370 || viewportH < 700;
-  const onboardingScale = Math.min(1, Math.max(0.78, uiScale));
-  const onboardingHPad = compactOnboarding ? 18 : 28;
-  const onboardingScrollProps = {
-    keyboardShouldPersistTaps: 'handled' as const,
-    showsVerticalScrollIndicator: true,
+  const shortViewport = viewportH < 740;
+  const compactOnboarding = narrowViewport < 380 || shortViewport;
+  const extraCompactOnboarding = narrowViewport < 350 || viewportH < 640;
+  const onboardingScale = Math.min(1, Math.max(extraCompactOnboarding ? 0.68 : 0.74, uiScale * (shortViewport ? 0.94 : 1)));
+  const scaleOnboarding = (value: number, min = 0) => Math.max(min, Math.round(value * onboardingScale));
+  const onboardingHPad = compactOnboarding ? 16 : 28;
+  const onboardingTitleStyle = {
+    fontSize: scaleOnboarding(24, 20),
+    lineHeight: scaleOnboarding(34, 28),
+    marginBottom: compactOnboarding ? 24 : 40,
   };
-  const streakHeroIconSize = Math.round((compactOnboarding ? 76 : 92) * onboardingScale);
-  const streakMilestoneIconSize = Math.round((compactOnboarding ? 50 : 60) * onboardingScale);
+  const onboardingAppNameStyle = {
+    fontSize: scaleOnboarding(15, 13),
+    marginBottom: compactOnboarding ? 14 : 24,
+  };
+  const onboardingPrimaryButtonStyle = {
+    minHeight: scaleOnboarding(56, 48),
+    paddingVertical: scaleOnboarding(16, 13),
+    borderRadius: scaleOnboarding(18, 14),
+  };
+  const onboardingPrimaryButtonTextStyle = {
+    fontSize: scaleOnboarding(18, 16),
+  };
+  const onboardingInputStyle = {
+    minHeight: scaleOnboarding(58, 50),
+    fontSize: scaleOnboarding(20, 16),
+    paddingHorizontal: scaleOnboarding(16, 14),
+    paddingVertical: scaleOnboarding(16, 12),
+    marginBottom: compactOnboarding ? 14 : 24,
+  };
+  const onboardingKeyboardDismissMode = Platform.OS === 'ios' ? 'interactive' as const : 'on-drag' as const;
+  const onboardingScrollProps = {
+    style: styles.onboardingScroll,
+    keyboardShouldPersistTaps: 'handled' as const,
+    keyboardDismissMode: onboardingKeyboardDismissMode,
+    showsVerticalScrollIndicator: true,
+    nestedScrollEnabled: true,
+  };
+  const streakHeroIconSize = scaleOnboarding(compactOnboarding ? 52 : 76, 44);
+  const streakMilestoneIconSize = scaleOnboarding(compactOnboarding ? 38 : 52, 34);
 
-  // uk -> UA; es-* -> Spanish UI when the interface locale is enabled; otherwise RU.
+  // Device locale -> enabled interface locale; otherwise RU.
   const detectLang = (): Lang => {
     try {
-      const locale = Intl.DateTimeFormat().resolvedOptions().locale ?? '';
+      const locale = (Intl.DateTimeFormat().resolvedOptions().locale ?? '').toLowerCase();
       if (locale.startsWith('uk')) return 'uk';
-      if (locale.toLowerCase().startsWith('es') && isInterfaceLangEnabled('es')) return 'es';
+      if (locale.startsWith('es') && isInterfaceLangEnabled('es')) return 'es';
+      if ((locale.startsWith('pt-br') || locale === 'pt') && isInterfaceLangEnabled('pt-BR')) return 'pt-BR';
+      if (locale.startsWith('vi') && isInterfaceLangEnabled('vi')) return 'vi';
+      if (locale.startsWith('id') && isInterfaceLangEnabled('id')) return 'id';
+      if (locale.startsWith('tr') && isInterfaceLangEnabled('tr')) return 'tr';
+      if (locale.startsWith('pl') && isInterfaceLangEnabled('pl')) return 'pl';
       return 'ru';
     } catch {
       return 'ru';
@@ -192,22 +227,6 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     lang === 'es' ? es : isUK ? uk : ru;
   const triOb = (ru: string, uk: string, es: string) =>
     lang === 'es' ? es : isUK ? uk : ru;
-
-  const renderScreen = (
-    testID: string | undefined,
-    source: ImageSourcePropType,
-    children: React.ReactNode,
-    contentStyle?: StyleProp<ViewStyle>,
-  ) => (
-    <OnboardingScreenShell
-      testID={testID}
-      source={source}
-      screenFade={screenFade}
-      contentStyle={contentStyle}
-    >
-      {children}
-    </OnboardingScreenShell>
-  );
 
   // Плавный переход между экранами
   const goToStep = useCallback((next: typeof step) => {
@@ -507,6 +526,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   // Без него onDone() мог дёрнуться дважды → setTimeout в _layout повторно открывал
   // модалку «Начнём первый урок?» уже после нажатия «Поехали».
   const finishingRef = useRef(false);
+  const closingRef = useRef(false);
   const handleFinishOnboarding = async () => {
     if (finishingRef.current) return;
     finishingRef.current = true;
@@ -520,6 +540,51 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     scheduleDailyReminder(20, 0, lang, { requestPermission: false }).catch(() => {});
     onDone();
   };
+
+  const handleCloseOnboarding = async () => {
+    if (finishingRef.current || closingRef.current) return;
+    closingRef.current = true;
+    Keyboard.dismiss();
+    try {
+      let finalName = nameForProfileRef.current.trim();
+      const generatedName = !finalName;
+      if (generatedName) {
+        finalName = generateAutoName();
+        setName(finalName);
+      }
+      nameForProfileRef.current = finalName;
+      await AsyncStorage.multiSet([
+        ['app_lang', lang],
+        ['user_name', finalName],
+      ]);
+      if (generatedName) {
+        void reserveName(finalName, '').catch(() => {});
+        void import('../app/firestore_leagues')
+          .then((m) => m.registerInLeagueGroupSilently())
+          .catch(() => {});
+      }
+      await handleFinishOnboarding();
+    } finally {
+      closingRef.current = false;
+    }
+  };
+
+  const renderScreen = (
+    testID: string | undefined,
+    source: ImageSourcePropType,
+    children: React.ReactNode,
+    contentStyle?: StyleProp<ViewStyle>,
+  ) => (
+    <OnboardingScreenShell
+      testID={testID}
+      source={source}
+      screenFade={screenFade}
+      contentStyle={contentStyle}
+      onClose={handleCloseOnboarding}
+    >
+      {children}
+    </OnboardingScreenShell>
+  );
 
   // ── Шаг 0: Добро пожаловать в бета ─────────────────────────────────────────
   if (step === 'beta') {
@@ -646,10 +711,11 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
                   style={styles.eliteWelcomeMarkGlass}
                 >
                   <View pointerEvents="none" style={styles.eliteWelcomeGlassShine} />
-                  <Image
+                  <ExpoImage
                     source={ONBOARDING_LINGMAN_ICON}
                     style={styles.eliteWelcomeMarkLogo}
-                    resizeMode="contain"
+                    contentFit="contain"
+                    cachePolicy="memory-disk"
                   />
                 </LinearGradient>
               </Animated.View>
@@ -1054,6 +1120,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
 
   // ── Шаг 3: Имя ──────────────────────────────────────────────────────────────
   if (step === 'name') {
+    const keyboardVisible = keyboardPad > 0;
     return renderScreen(
       undefined,
       ONBOARDING_BG_NAME,
@@ -1062,26 +1129,39 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
           {renderProgressBar()}
         <KeyboardAvoidingView
           style={{ flex: 1 }}
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={Platform.OS === 'ios' ? 8 : 0}
         >
           <ScrollView
+            style={styles.onboardingScroll}
             contentContainerStyle={{
               flexGrow: 1,
-              justifyContent: 'center',
+              justifyContent: keyboardVisible ? 'flex-start' : 'center',
               alignItems: 'center',
               paddingHorizontal: onboardingHPad,
-              paddingVertical: 24,
-              paddingBottom: 24 + keyboardPad + insets.bottom,
+              paddingTop: keyboardVisible ? (compactOnboarding ? 10 : 18) : 24,
+              paddingBottom: (keyboardVisible ? 44 : 24) + keyboardPad + insets.bottom,
             }}
             keyboardShouldPersistTaps="handled"
+            keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
+            nestedScrollEnabled
             showsVerticalScrollIndicator
           >
-            <Text style={styles.appName}>Phraseman</Text>
-            <Text style={styles.title}>
+            <Text style={[styles.appName, onboardingAppNameStyle]} maxFontSizeMultiplier={1.05}>Phraseman</Text>
+            <Text style={[styles.title, onboardingTitleStyle]} maxFontSizeMultiplier={1.08}>
               {pick('Как тебя зовут?', 'Як тебе звати?', '¿Cómo te llamas?')}
             </Text>
-            <Text style={{ color: DARK.textMuted, fontSize: 14, textAlign: 'center', lineHeight: 22, marginBottom: 24, marginTop: -8 }}>
+            <Text
+              maxFontSizeMultiplier={1.08}
+              style={{
+                color: DARK.textMuted,
+                fontSize: scaleOnboarding(14, 12),
+                textAlign: 'center',
+                lineHeight: scaleOnboarding(22, 18),
+                marginBottom: compactOnboarding ? 14 : 24,
+                marginTop: compactOnboarding ? -2 : -8,
+              }}
+            >
               {pick(
                 'Чтобы в таблице лидеров не висело «Неизвестный герой» 😅',
                 'Щоб у таблиці лідерів не висіло «Невідомий герой» 😅',
@@ -1099,13 +1179,14 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
                   marginBottom: 10,
                   width: '100%',
                 }}
+                maxFontSizeMultiplier={1.08}
               >
                 {nameFieldError}
               </Text>
             ) : null}
             <TextInput
               testID="onboarding-name-input"
-              style={styles.input}
+              style={[styles.input, onboardingInputStyle]}
               value={name}
               onChangeText={(t) => {
                 setName(t);
@@ -1118,10 +1199,11 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               editable={!nameBusy}
               returnKeyType="done"
               onSubmitEditing={handleNameDone}
+              maxFontSizeMultiplier={1.08}
             />
             <TouchableOpacity
               testID="onboarding-name-continue"
-              style={[styles.continueBtn, nameBusy && { opacity: 0.75 }]}
+              style={[styles.continueBtn, onboardingPrimaryButtonStyle, nameBusy && { opacity: 0.75 }]}
               onPress={handleNameDone}
               activeOpacity={0.85}
               disabled={nameBusy}
@@ -1129,17 +1211,22 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               {false && nameBusy ? (
                 <View />
               ) : (
-                <Text style={styles.continueBtnText}>{pick('Продолжить', 'Продовжити', 'Continuar')}</Text>
+                <Text style={[styles.continueBtnText, onboardingPrimaryButtonTextStyle]} maxFontSizeMultiplier={1.05}>
+                  {pick('Продолжить', 'Продовжити', 'Continuar')}
+                </Text>
               )}
             </TouchableOpacity>
             <TouchableOpacity
               testID="onboarding-name-skip"
-              style={{ paddingVertical: 12, paddingHorizontal: 10, alignItems: 'center', marginTop: 8 }}
+              style={{ paddingVertical: compactOnboarding ? 8 : 12, paddingHorizontal: 10, alignItems: 'center', marginTop: compactOnboarding ? 4 : 8 }}
               onPress={handleSkipName}
               activeOpacity={0.8}
               disabled={nameBusy}
             >
-              <Text style={{ color: DARK.textGhost, fontSize: 14, fontWeight: '600', textAlign: 'center' }}>
+              <Text
+                maxFontSizeMultiplier={1.05}
+                style={{ color: DARK.textGhost, fontSize: scaleOnboarding(14, 12), fontWeight: '600', textAlign: 'center' }}
+              >
                 {pick(
                   'Пропустить (имя можно сменить позже)',
                   'Пропустити (ім\'я можна змінити пізніше)',
@@ -1191,22 +1278,34 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               flexGrow: 1,
               justifyContent: compactOnboarding ? 'flex-start' : 'center',
               paddingHorizontal: onboardingHPad,
-              paddingTop: compactOnboarding ? 8 : 0,
-              paddingBottom: 24 + insets.bottom,
+              paddingTop: compactOnboarding ? 6 : 0,
+              paddingBottom: (compactOnboarding ? 72 : 40) + insets.bottom,
             },
           ]}
         >
-          <View style={styles.streakHeroIconWrap}>
+          <View style={[styles.streakHeroIconWrap, compactOnboarding && styles.streakHeroIconWrapCompact]}>
             <OnboardingStreakIcon kind="flame" size={streakHeroIconSize} hero />
           </View>
-          <Text style={[styles.title, { marginBottom: 8 }]}>
+          <Text
+            style={[styles.title, onboardingTitleStyle, { marginBottom: compactOnboarding ? 6 : 8 }]}
+            maxFontSizeMultiplier={1.08}
+          >
             {pick(
               'Английский любит регулярность',
               'Щодня — і ти непереможний',
               'Cada día te hace invencible',
             )}
           </Text>
-          <Text style={{ color: DARK.textMuted, fontSize: 14, textAlign: 'center', lineHeight: 22, marginBottom: 28 }}>
+          <Text
+            maxFontSizeMultiplier={1.08}
+            style={{
+              color: DARK.textMuted,
+              fontSize: scaleOnboarding(14, 12),
+              textAlign: 'center',
+              lineHeight: scaleOnboarding(22, 18),
+              marginBottom: compactOnboarding ? 14 : 28,
+            }}
+          >
             {pick(
               'Лучше понемногу каждый день, чем редко и тяжело.',
               'Коротка практика щодня перетворюється на звичку.',
@@ -1266,11 +1365,11 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
 
           <TouchableOpacity
             testID="onboarding-streak-continue"
-            style={[styles.continueBtn, { width: '100%' }]}
+            style={[styles.continueBtn, onboardingPrimaryButtonStyle, { width: '100%' }]}
             onPress={() => goToStep('auth')}
             activeOpacity={0.85}
           >
-            <Text style={styles.continueBtnText}>
+            <Text style={[styles.continueBtnText, onboardingPrimaryButtonTextStyle]} maxFontSizeMultiplier={1.05}>
               {pick('Далее', 'Далі', 'Siguiente')}
             </Text>
           </TouchableOpacity>
@@ -1323,8 +1422,10 @@ function AuthOnboardingStep({
   const [loadingProvider, setLoadingProvider] = useState<AuthProviderId | null>(null);
   const [authBusy, setAuthBusy] = useState(false);
   const insets = useSafeAreaInsets();
-  const { width: viewportW, height: viewportH } = useScreen();
-  const compactOnboarding = Math.min(viewportW, viewportH) < 370 || viewportH < 700;
+  const { width: viewportW, height: viewportH, uiScale } = useScreen();
+  const compactOnboarding = Math.min(viewportW, viewportH) < 380 || viewportH < 740;
+  const authScale = Math.min(1, Math.max(0.74, uiScale * (viewportH < 740 ? 0.94 : 1)));
+  const scaleAuth = (value: number, min = 0) => Math.max(min, Math.round(value * authScale));
   const onboardingHPad = compactOnboarding ? 18 : 28;
 
   useEffect(() => {
@@ -1405,27 +1506,60 @@ function AuthOnboardingStep({
     <>
       {renderProgressBar()}
         <ScrollView
+          style={styles.onboardingScroll}
           keyboardShouldPersistTaps="handled"
+          keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
           showsVerticalScrollIndicator
+          nestedScrollEnabled
           contentContainerStyle={[
             styles.center,
             {
               flexGrow: 1,
+              justifyContent: compactOnboarding ? 'flex-start' : 'center',
               paddingHorizontal: onboardingHPad,
-              paddingBottom: 24 + insets.bottom,
+              paddingTop: compactOnboarding ? 10 : 0,
+              paddingBottom: (compactOnboarding ? 72 : 40) + insets.bottom,
             },
           ]}
         >
-          <Image
+          <ExpoImage
             source={ONBOARDING_AUTH_ICON}
-            style={styles.authQuickStartIcon}
-            resizeMode="contain"
+            style={[
+              styles.authQuickStartIcon,
+              {
+                width: scaleAuth(132, 94),
+                height: scaleAuth(132, 94),
+                marginBottom: compactOnboarding ? 8 : 12,
+              },
+            ]}
+            contentFit="contain"
+            cachePolicy="memory-disk"
             accessible={false}
           />
-          <Text style={[styles.title, { marginBottom: 8 }]}>
+          <Text
+            style={[
+              styles.title,
+              {
+                fontSize: scaleAuth(24, 20),
+                lineHeight: scaleAuth(34, 28),
+                marginBottom: 8,
+              },
+            ]}
+            maxFontSizeMultiplier={1.08}
+          >
             {authPick('Быстрый старт', 'Швидкий старт', 'Inicio rápido')}
           </Text>
-          <Text style={{ color: ONBOARDING_TEXT_MUTED, fontSize: 14, textAlign: 'center', lineHeight: 22, marginBottom: 28, fontWeight: '700' }}>
+          <Text
+            maxFontSizeMultiplier={1.08}
+            style={{
+              color: ONBOARDING_TEXT_MUTED,
+              fontSize: scaleAuth(14, 12),
+              textAlign: 'center',
+              lineHeight: scaleAuth(22, 18),
+              marginBottom: compactOnboarding ? 18 : 28,
+              fontWeight: '700',
+            }}
+          >
             {authPick(
               'Вход можно пропустить. Но если сменить телефон или случайно удалить приложение, есть риск потерять прогресс.',
               'Можна продовжити без входу, але якщо видалити застосунок без привʼязки акаунта, прогрес може загубитися. Привʼязати акаунт можна пізніше в налаштуваннях.',
@@ -1498,20 +1632,35 @@ function OnboardingScreenShell({
   source,
   screenFade,
   contentStyle,
+  onClose,
   children,
 }: {
   testID?: string;
   source: ImageSourcePropType;
   screenFade: Animated.Value;
   contentStyle?: StyleProp<ViewStyle>;
+  onClose: () => void | Promise<void>;
   children: React.ReactNode;
 }) {
+  const insets = useSafeAreaInsets();
+  const closeTop = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0) + 8;
   return (
     <SafeAreaView edges={[]} style={styles.container} testID={testID}>
       <OnboardingArtBackground source={source} motion="zoomOut" />
       <Animated.View style={[styles.onboardingContentLayer, contentStyle, { opacity: screenFade }]}>
         {children}
       </Animated.View>
+      <TouchableOpacity
+        testID="onboarding-close"
+        accessibilityRole="button"
+        accessibilityLabel="Закрыть онбординг"
+        onPress={onClose}
+        activeOpacity={0.76}
+        hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
+        style={[styles.onboardingCloseButton, { top: closeTop }]}
+      >
+        <Text style={styles.onboardingCloseText} maxFontSizeMultiplier={1}>×</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -1533,10 +1682,11 @@ function OnboardingStreakIcon({
         { width: size, height: size },
       ]}
     >
-      <Image
+      <ExpoImage
         source={ONBOARDING_STREAK_ICONS[kind]}
         style={{ width: size, height: size }}
-        resizeMode="contain"
+        contentFit="contain"
+        cachePolicy="memory-disk"
       />
     </View>
   );
@@ -1545,6 +1695,7 @@ function OnboardingStreakIcon({
 const styles = StyleSheet.create({
   container:       { flex: 1, backgroundColor: '#020304', overflow: 'hidden' },
   onboardingContentLayer: { flex: 1 },
+  onboardingScroll: { flex: 1 },
   center:          { flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 30 },
   appName:         { color: ONBOARDING_ACCENT, fontSize: 15, fontWeight: '800', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 },
   title:           { color: '#FFF8E8', fontSize: 24, fontWeight: '800', textAlign: 'center', marginBottom: 40, lineHeight: 34 },
@@ -1577,6 +1728,27 @@ const styles = StyleSheet.create({
     shadowColor: ONBOARDING_ACCENT,
     shadowOpacity: 0.5,
     shadowRadius: 8,
+  },
+  onboardingCloseButton: {
+    position: 'absolute',
+    right: 14,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 30,
+    elevation: 30,
+    backgroundColor: 'rgba(0,0,0,0.28)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.14)',
+  },
+  onboardingCloseText: {
+    color: '#D8CCB5',
+    fontSize: 27,
+    lineHeight: 31,
+    fontWeight: '500',
+    textAlign: 'center',
   },
   onboardingBg: {
     ...StyleSheet.absoluteFillObject,
@@ -1626,10 +1798,10 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
   },
   onboardingGlassCardCompact: {
-    minHeight: 78,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    borderRadius: 16,
+    minHeight: 68,
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    borderRadius: 14,
   },
   streakMilestoneIconSlot: {
     flexShrink: 0,
@@ -1660,6 +1832,9 @@ const styles = StyleSheet.create({
   },
   streakHeroIconWrap: {
     marginBottom: 12,
+  },
+  streakHeroIconWrapCompact: {
+    marginBottom: 6,
   },
   streakIconShadow: {
     shadowColor: ONBOARDING_ACCENT,
@@ -2010,10 +2185,6 @@ function OnboardingArtBackground({
   motion?: 'zoomIn' | 'zoomOut';
 }) {
   const progress = useRef(new Animated.Value(0)).current;
-  const { activeValue: activeSource } = useBackgroundBlurSwitch({
-    value: source,
-    transitionKey: backgroundTransitionKey(source),
-  });
   const particleAnims = useRef(ONBOARDING_BACKGROUND_PARTICLES.map(() => new Animated.Value(0))).current;
 
   useEffect(() => {
@@ -2066,7 +2237,7 @@ function OnboardingArtBackground({
       <View pointerEvents="none" style={styles.onboardingBg}>
         <View pointerEvents="none" style={styles.onboardingBgImageStack}>
           <Animated.Image
-            source={activeSource}
+            source={source}
             style={[styles.onboardingBgImage, { transform: [{ scale }] }]}
             resizeMode="cover"
             resizeMethod="resize"

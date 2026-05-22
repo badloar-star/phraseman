@@ -1,8 +1,24 @@
-import type { Lang } from '../constants/i18n';
+import type { Lang, PlannedInterfaceLang, PlannedTriLangCopy } from '../constants/i18n';
 
-type CopyLang = Lang | 'ru' | 'uk' | 'es';
+type CopyLang = Lang;
+type DiagnosisCopyValue = { ru: string; uk: string; es: string } & PlannedTriLangCopy;
 
 type Rule = [RegExp, string];
+
+const DIAGNOSIS_PLANNED_LOCALES = ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const satisfies readonly PlannedInterfaceLang[];
+
+const DIAGNOSIS_NEEDS_REVIEW_COPY: Record<PlannedInterfaceLang, string> = {
+  'pt-BR': 'needs-review: este texto de treino ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: nội dung luyện tập này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: teks latihan ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu alıştırma metni Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: ten tekst ćwiczenia nadal wymaga przeglądu po polsku.',
+};
+
+function isDiagnosisPlannedLocale(lang: CopyLang): lang is PlannedInterfaceLang {
+  const allowed = DIAGNOSIS_PLANNED_LOCALES as readonly string[];
+  return allowed.includes(lang);
+}
 
 const RU_RULES: Rule[] = [
   [/\bfrequency adverbs?\b/gi, 'наречия частоты'],
@@ -86,11 +102,17 @@ export const DIAGNOSIS_COPY_FORBIDDEN_RU_UK = [
 ] as const;
 
 export function sanitizeDiagnosisCopy(lang: CopyLang, value: string): string {
-  if (lang === 'es') return value;
+  if (lang !== 'ru' && lang !== 'uk') return value;
   const rules = lang === 'uk' ? UK_RULES : RU_RULES;
   return rules.reduce((text, [pattern, replacement]) => text.replace(pattern, replacement), value);
 }
 
-export function diagnosisCopy(lang: CopyLang, value: { ru: string; uk: string; es: string }): string {
-  return sanitizeDiagnosisCopy(lang, value[lang]);
+export function diagnosisCopy(lang: CopyLang, value: DiagnosisCopyValue): string {
+  if (isDiagnosisPlannedLocale(lang)) {
+    const selected = value[lang]?.trim();
+    return selected || DIAGNOSIS_NEEDS_REVIEW_COPY[lang];
+  }
+
+  const selected = lang === 'uk' ? value.uk : lang === 'es' ? value.es : value.ru;
+  return sanitizeDiagnosisCopy(lang, selected);
 }

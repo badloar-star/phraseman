@@ -2,7 +2,28 @@
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const CONDITION_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre zero/first conditional ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về zero/first conditional này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan zero/first conditional ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu zero/first conditional açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie zero/first conditional nadal wymaga przeglądu po polsku.',
+};
+
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? CONDITION_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST_SET = [
   'if + present simple, present simple',
@@ -26,29 +47,71 @@ const SMART_CONTRAST_SET = [
 
 const option = (text: string) => ({ id: text, text });
 
+const CONDITION_SKILL_ES: Record<string, string> = {
+  general_fact_water: 'Es una regla general: If you heat water, it boils.',
+  typical_result_tired: 'Es un resultado habitual: If I am tired, I go.',
+  machine_rule: 'Para una regla de maquina, usa presente simple en las dos partes.',
+  future_result_rain: 'Es un resultado futuro real: If it rains, I will stay.',
+  future_result_time: 'If I have time va sin will; el resultado es I will call.',
+  future_result_late: 'El resultado futuro usa will be late.',
+  no_will_after_if_rain: 'Despues de if usa rains; will va en I will stay.',
+  no_will_after_if_have: 'Despues de if usa have; will va en I will help.',
+  if_part_second: 'Aunque la parte con if vaya al final, usa if I finish.',
+  unless_meaning: 'Unless significa if not; el resultado usa will be.',
+  when_future_moment: 'Despues de when usa get; el resultado es I will text.',
+  if_vs_when: 'Cuando el momento es esperado, when suena mejor que if.',
+  fact_vs_future_pair: 'Compara regla general con resultado futuro real.',
+  if_when_unless_set: 'Despues de if/when/unless usa presente, no will.',
+  full_sentence_repair: 'En cada condicion usa presente; en cada resultado usa will.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = CONDITION_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? CONDITION_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function conditionEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = CONDITION_SKILL_ES[input.targetSkill] ?? 'No pongas will justo despues de if/when/unless; ponlo en el resultado.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
+
 const retry = (line: string): [TriText, TriText, TriText, TriText] => [
-  tri(line, line, 'Use the model sentence and choose the form without will after if/when/unless.'),
+  tri(line, line, 'Usa la frase modelo y elige la forma sin will despues de if/when/unless.'),
   tri(
     'Сначала реши: это общее правило или реальный вариант в будущем?',
     'Спочатку виріши: це загальне правило чи реальний варіант у майбутньому?',
-    'First decide: is this a general rule or a real future option?',
+    'Primero decide: es una regla general o una opcion real en el futuro?',
   ),
   tri(
     'Общее правило: If you heat water, it boils. Будущий результат: If it rains, I will stay.',
     'Загальне правило: If you heat water, it boils. Майбутній результат: If it rains, I will stay.',
-    'General rule: If you heat water, it boils. Future result: If it rains, I will stay.',
+    'Regla general: If you heat water, it boils. Resultado futuro: If it rains, I will stay.',
   ),
   tri(
     'Почти подсказка: после if, when и unless в этом значении не ставим will.',
     'Майже підказка: після if, when і unless у цьому значенні не ставимо will.',
-    'Almost a hint: after if, when, and unless in this meaning, do not use will.',
+    'Casi una pista: despues de if, when y unless en este sentido no uses will.',
   ),
 ];
 
 const defaultWrong = (correctAnswer: string): TriText => tri(
   `Не эта форма. Здесь нужно "${correctAnswer}": will ставим в результат, а не сразу после if/when/unless.`,
   `Не ця форма. Тут потрібно "${correctAnswer}": will ставимо в результат, а не одразу після if/when/unless.`,
-  `Not this form. Use "${correctAnswer}": put will in the result, not right after if/when/unless.`,
+  `No esta forma. Usa "${correctAnswer}": pon will en el resultado, no justo despues de if/when/unless.`,
 );
 
 function step(input: {
@@ -65,38 +128,39 @@ function step(input: {
   retryLine: string;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = conditionEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: withEs(input.translation, esFeedback),
     explanationBlock: tri(
       'Смысл решает форму. Для общего правила говорим: If you heat water, it boils. Для реального будущего варианта: If it rains, I will stay.',
       'Сенс вирішує форму. Для загального правила кажемо: If you heat water, it boils. Для реального майбутнього варіанта: If it rains, I will stay.',
-      'Meaning decides the form. General rule: If you heat water, it boils. Real future option: If it rains, I will stay.',
+      'El significado decide la forma. Regla general: If you heat water, it boils. Opcion futura real: If it rains, I will stay.',
     ),
     microTask: tri(
       'Выбери вариант, где will не стоит сразу после if, when или unless.',
       'Обери варіант, де will не стоїть одразу після if, when або unless.',
-      'Choose the option where will does not stand right after if, when, or unless.',
+      'Elige la opcion donde will no aparece justo despues de if, when o unless.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map(option),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((item) => item === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((item) => item !== input.correctAnswer)
-        .map((item) => [item, input.wrong?.[item] ?? defaultWrong(input.correctAnswer)]),
+        .map((item) => [item, withEs(input.wrong?.[item] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(input.retryLine),
+    retryFeedback: retry(input.retryLine).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Коротко: правило или привычка идет без will. В реальном будущем will обычно стоит во второй части: If I finish, I will call.',
       'Коротко: правило або звичка йде без will. У реальному майбутньому will зазвичай стоїть у другій частині: If I finish, I will call.',
-      'Short version: rule/habit has no will. In a real future sentence, will usually goes in the second part.',
+      'Version corta: una regla o habito no lleva will. En una frase de futuro real, will normalmente va en la segunda parte.',
     ),
     focusWords: input.focusWords,
   };
@@ -108,29 +172,69 @@ export const CONDITION_ZERO_FIRST_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 50,
-  supportedLocales: ['ru', 'uk'],
-  title: tri('If it rains, I will stay', 'If it rains, I will stay'),
-  shortTitle: tri('If / when / unless', 'If / when / unless'),
+  supportedLocales: ['ru', 'uk', 'es'],
+  title: tri('If it rains, I will stay', 'If it rains, I will stay', 'If it rains, I will stay', {
+    'pt-BR': 'If it rains, I will stay: sem will depois de if',
+    vi: 'If it rains, I will stay: không dùng will sau if',
+    id: 'If it rains, I will stay: tanpa will setelah if',
+    tr: 'If it rains, I will stay: if sonrası will yok',
+    pl: 'If it rains, I will stay: bez will po if',
+  }),
+  shortTitle: tri('If / when / unless', 'If / when / unless', 'If / when / unless', {
+    'pt-BR': 'If / when / unless',
+    vi: 'If / when / unless',
+    id: 'If / when / unless',
+    tr: 'If / when / unless',
+    pl: 'If / when / unless',
+  }),
   shortDiagnosis: tri(
     'Ты ставишь will сразу после if, хотя английский обычно держит will в результате.',
     'Ти ставиш will одразу після if, хоча англійська зазвичай тримає will у результаті.',
-    'You put will right after if, but English usually keeps will in the result.',
+    'Pones will justo despues de if, pero en ingles will normalmente va en el resultado.',
+    {
+      'pt-BR': 'Você coloca will logo depois de if, embora o inglês normalmente mantenha will no resultado.',
+      vi: 'Bạn đặt will ngay sau if, trong khi tiếng Anh thường giữ will ở phần kết quả.',
+      id: 'Kamu menaruh will langsung setelah if, padahal bahasa Inggris biasanya menaruh will di bagian hasil.',
+      tr: 'Will kelimesini if sonrasına hemen koyuyorsun, oysa İngilizce genelde will kısmını sonuçta tutar.',
+      pl: 'Stawiasz will zaraz po if, choć angielski zwykle trzyma will w części z wynikiem.',
+    },
   ),
   diagnosisText: tri(
     'Здесь важно разделить два смысла: общее правило и реальный вариант в будущем. В обоих случаях после if обычно не нужен will. Нормально: If it rains, I will stay. Не: If it will rain.',
     'Тут важливо розділити два сенси: загальне правило і реальний варіант у майбутньому. В обох випадках після if зазвичай не потрібен will. Нормально: If it rains, I will stay. Не: If it will rain.',
-    'Separate two meanings: a general rule and a real future option. In both, do not put will right after if.',
+    'Separa dos significados: una regla general y una opcion real en el futuro. En los dos, no pongas will justo despues de if.',
+    {
+      'pt-BR': 'Aqui é importante separar dois sentidos: regra geral e possibilidade real no futuro. Nos dois casos, depois de if normalmente não precisa de will. Natural: If it rains, I will stay. Não: If it will rain.',
+      vi: 'Ở đây cần tách hai ý: quy tắc chung và khả năng thật trong tương lai. Trong cả hai trường hợp, sau if thường không cần will. Tự nhiên: If it rains, I will stay. Không phải: If it will rain.',
+      id: 'Di sini penting membedakan dua makna: aturan umum dan kemungkinan nyata di masa depan. Dalam keduanya, setelah if biasanya tidak perlu will. Yang wajar: If it rains, I will stay. Bukan: If it will rain.',
+      tr: 'Burada iki anlamı ayırmak önemli: genel kural ve gelecekte gerçek olasılık. İkisinde de if sonrasında genelde will gerekmez. Doğal olan: If it rains, I will stay. Değil: If it will rain.',
+      pl: 'Tutaj trzeba rozdzielić dwa sensy: ogólną regułę i realną możliwość w przyszłości. W obu przypadkach po if zwykle nie potrzeba will. Naturalnie: If it rains, I will stay. Nie: If it will rain.',
+    },
   ),
   mentalModel: tri(
     'If не делает фразу будущей само по себе. Будущий результат обычно живет во второй части: If it rains, I will stay. Та же логика работает с when и unless.',
     'If не робить фразу майбутньою саме по собі. Майбутній результат зазвичай живе в другій частині: If it rains, I will stay. Та сама логіка працює з when і unless.',
-    'If does not carry future by itself. The future result usually lives in the second part: If it rains, I will stay.',
+    'If no marca el futuro por si solo. El resultado futuro normalmente vive en la segunda parte: If it rains, I will stay. La misma logica funciona con when y unless.',
+    {
+      'pt-BR': 'If não torna a frase futura sozinho. O resultado futuro normalmente fica na segunda parte: If it rains, I will stay. A mesma lógica funciona com when e unless.',
+      vi: 'If không tự làm cho câu thành tương lai. Kết quả trong tương lai thường nằm ở phần thứ hai: If it rains, I will stay. Logic này cũng dùng với when và unless.',
+      id: 'If tidak membuat kalimat menjadi masa depan dengan sendirinya. Hasil masa depan biasanya ada di bagian kedua: If it rains, I will stay. Logika yang sama berlaku untuk when dan unless.',
+      tr: 'If tek başına cümleyi gelecek yapmaz. Gelecek sonuç genelde ikinci bölümde yaşar: If it rains, I will stay. Aynı mantık when ve unless ile de çalışır.',
+      pl: 'If samo z siebie nie robi zdania przyszłym. Przyszły wynik zwykle mieszka w drugiej części: If it rains, I will stay. Ta sama logika działa z when i unless.',
+    },
   ),
   contrastSet: CONTRAST_SET,
   coreRule: tri(
     'Общее правило: If you heat water, it boils. Реальный будущий вариант: If it rains, I will stay. После if/when/unless не ставим will в этом значении.',
     'Загальне правило: If you heat water, it boils. Реальний майбутній варіант: If it rains, I will stay. Після if/when/unless не ставимо will у цьому значенні.',
-    'General rule: If you heat water, it boils. Real future option: If it rains, I will stay. No will right after if/when/unless.',
+    'Regla general: If you heat water, it boils. Opcion futura real: If it rains, I will stay. No uses will justo despues de if/when/unless.',
+    {
+      'pt-BR': 'Regra geral: If you heat water, it boils. Possibilidade real no futuro: If it rains, I will stay. Depois de if/when/unless, não use will nesse sentido.',
+      vi: 'Quy tắc chung: If you heat water, it boils. Khả năng thật trong tương lai: If it rains, I will stay. Sau if/when/unless, đừng dùng will trong nghĩa này.',
+      id: 'Aturan umum: If you heat water, it boils. Kemungkinan nyata di masa depan: If it rains, I will stay. Setelah if/when/unless, jangan gunakan will dalam makna ini.',
+      tr: 'Genel kural: If you heat water, it boils. Gelecekte gerçek olasılık: If it rains, I will stay. Bu anlamda if/when/unless sonrasında will kullanma.',
+      pl: 'Ogólna reguła: If you heat water, it boils. Realna możliwość w przyszłości: If it rains, I will stay. Po if/when/unless nie stawiaj will w tym znaczeniu.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -154,24 +258,74 @@ export const CONDITION_ZERO_FIRST_TRAINING: DiagnosisTraining = {
       'Unless означає if not: Unless you hurry, you will be late.',
     ],
     es: [
-      'Rule or fact: If you heat water, it boils.',
-      'Typical result: If I am tired, I go to bed early.',
-      'Real future option: If it rains, I will stay.',
-      'Do not put will after if in this pattern.',
-      'Put will in the result.',
-      'You can move the if-part to the end.',
-      'Use when for an expected moment.',
-      'Unless means if not.',
+      'Regla o hecho: If you heat water, it boils.',
+      'Resultado habitual: If I am tired, I go to bed early.',
+      'Opcion real en el futuro: If it rains, I will stay.',
+      'No pongas will despues de if en este patron.',
+      'Pon will en el resultado: I will stay, I will call, you will be late.',
+      'Puedes mover la parte con if al final: I will call you if I finish early.',
+      'Usa when para un momento esperado: When I get home, I will text you.',
+      'Unless significa if not: Unless you hurry, you will be late.',
+    ],
+    'pt-BR': [
+      'Regra ou fato: If you heat water, it boils.',
+      'Resultado típico: If I am tired, I go to bed early.',
+      'Possibilidade real no futuro: If it rains, I will stay.',
+      'Não coloque will depois de if neste padrão.',
+      'Coloque will no resultado.',
+      'Você pode mover a parte com if para o final.',
+      'Use when para um momento esperado.',
+      'Unless significa if not.',
+    ],
+    vi: [
+      'Quy tắc hoặc sự thật: If you heat water, it boils.',
+      'Kết quả thường gặp: If I am tired, I go to bed early.',
+      'Khả năng thật trong tương lai: If it rains, I will stay.',
+      'Không đặt will sau if trong mẫu này.',
+      'Đặt will ở phần kết quả.',
+      'Bạn có thể chuyển mệnh đề if xuống cuối câu.',
+      'Dùng when cho một thời điểm được chờ đợi.',
+      'Unless nghĩa là if not.',
+    ],
+    id: [
+      'Aturan atau fakta: If you heat water, it boils.',
+      'Hasil yang biasa terjadi: If I am tired, I go to bed early.',
+      'Kemungkinan nyata di masa depan: If it rains, I will stay.',
+      'Jangan taruh will setelah if dalam pola ini.',
+      'Taruh will pada bagian hasil.',
+      'Bagian if bisa dipindahkan ke akhir.',
+      'Gunakan when untuk momen yang diharapkan.',
+      'Unless berarti if not.',
+    ],
+    tr: [
+      'Kural veya gerçek: If you heat water, it boils.',
+      'Tipik sonuç: If I am tired, I go to bed early.',
+      'Gelecekte gerçek olasılık: If it rains, I will stay.',
+      'Bu kalıpta if sonrasına will koyma.',
+      'Will sonuc bölümünde kullanılır.',
+      'If bölümünü sona taşıyabilirsin.',
+      'Beklenen bir an için when kullan.',
+      'Unless, if not anlamına gelir.',
+    ],
+    pl: [
+      'Reguła albo fakt: If you heat water, it boils.',
+      'Typowy wynik: If I am tired, I go to bed early.',
+      'Realna możliwość w przyszłości: If it rains, I will stay.',
+      'W tym wzorze nie stawiaj will po if.',
+      'Will stawiaj w wyniku.',
+      'Część z if można przenieść na koniec.',
+      'Używaj when dla oczekiwanego momentu.',
+      'Unless oznacza if not.',
     ],
   },
   examples: [
-    { en: 'If you heat water, it boils.', ru: 'Если нагреть воду, она закипает.', uk: 'Якщо нагріти воду, вона закипає.', es: 'If you heat water, it boils.', why: tri('Это общее правило, не один будущий случай.', 'Це загальне правило, не один майбутній випадок.', 'This is a general rule, not one future case.') },
-    { en: 'If I am tired, I go to bed early.', ru: 'Если я устаю, я рано ложусь спать.', uk: 'Якщо я втомлююся, я рано лягаю спати.', es: 'If I am tired, I go to bed early.', why: tri('Это типичный результат, который повторяется.', 'Це типовий результат, який повторюється.', 'This is a typical result that repeats.') },
-    { en: 'If it rains, I will stay home.', ru: 'Если пойдет дождь, я останусь дома.', uk: 'Якщо піде дощ, я залишуся вдома.', es: 'If it rains, I will stay home.', why: tri('Rains стоит после if, а will stay стоит в результате.', 'Rains стоїть після if, а will stay стоїть у результаті.', 'Rains stands after if; will stay is in the result.') },
-    { en: 'If I have time, I will call you.', ru: 'Если у меня будет время, я тебе позвоню.', uk: 'Якщо в мене буде час, я тобі подзвоню.', es: 'If I have time, I will call you.', why: tri('Не If I will have time. Will нужен в I will call.', 'Не If I will have time. Will потрібен у I will call.', 'Not If I will have time. Will belongs in I will call.') },
-    { en: 'I will call you if I finish early.', ru: 'Я тебе позвоню, если закончу рано.', uk: 'Я тобі подзвоню, якщо закінчу рано.', es: 'I will call you if I finish early.', why: tri('If можно перенести в конец, правило не меняется.', 'If можна перенести в кінець, правило не змінюється.', 'The if-part can move to the end; the rule stays the same.') },
-    { en: "Unless you hurry, you will be late.", ru: 'Если ты не поторопишься, ты опоздаешь.', uk: 'Якщо ти не поквапишся, ти запізнишся.', es: "Unless you hurry, you will be late.", why: tri('Unless значит if not, результат идет с will.', 'Unless означає if not, результат іде з will.', 'Unless means if not; the result uses will.') },
-    { en: 'When I get home, I will text you.', ru: 'Когда я доберусь домой, я тебе напишу.', uk: 'Коли я дістануся додому, я тобі напишу.', es: 'When I get home, I will text you.', why: tri('When показывает ожидаемый момент, но will не ставится сразу после when.', 'When показує очікуваний момент, але will не ставиться одразу після when.', 'When shows an expected moment, but without will right after when.') },
+    { en: 'If you heat water, it boils.', ru: 'Если нагреть воду, она закипает.', uk: 'Якщо нагріти воду, вона закипає.', es: 'Si calientas agua, hierve.', 'pt-BR': 'Se você aquece água, ela ferve.', vi: 'Nếu bạn đun nước, nước sẽ sôi.', id: 'Jika kamu memanaskan air, air itu mendidih.', tr: 'Suyu ısıtırsan kaynar.', pl: 'Jeśli podgrzewasz wodę, ona wrze.', why: tri('Это общее правило, не один будущий случай.', 'Це загальне правило, не один майбутній випадок.', 'Es una regla general, no un caso futuro unico.') },
+    { en: 'If I am tired, I go to bed early.', ru: 'Если я устаю, я рано ложусь спать.', uk: 'Якщо я втомлююся, я рано лягаю спати.', es: 'Si estoy cansado, me acuesto temprano.', 'pt-BR': 'Se estou cansado, vou dormir cedo.', vi: 'Nếu tôi mệt, tôi đi ngủ sớm.', id: 'Jika saya lelah, saya tidur lebih awal.', tr: 'Yorgunsam erken yatarım.', pl: 'Jeśli jestem zmęczony, kładę się wcześnie spać.', why: tri('Это типичный результат, который повторяется.', 'Це типовий результат, який повторюється.', 'Es un resultado habitual que se repite.') },
+    { en: 'If it rains, I will stay home.', ru: 'Если пойдет дождь, я останусь дома.', uk: 'Якщо піде дощ, я залишуся вдома.', es: 'Si llueve, me quedare en casa.', 'pt-BR': 'Se chover, vou ficar em casa.', vi: 'Nếu trời mưa, tôi sẽ ở nhà.', id: 'Jika hujan, saya akan tinggal di rumah.', tr: 'Yağmur yağarsa evde kalacağım.', pl: 'Jeśli będzie padać, zostanę w domu.', why: tri('Rains стоит после if, а will stay стоит в результате.', 'Rains стоїть після if, а will stay стоїть у результаті.', 'Rains va despues de if; will stay va en el resultado.') },
+    { en: 'If I have time, I will call you.', ru: 'Если у меня будет время, я тебе позвоню.', uk: 'Якщо в мене буде час, я тобі подзвоню.', es: 'Si tengo tiempo, te llamare.', 'pt-BR': 'Se eu tiver tempo, vou ligar para você.', vi: 'Nếu tôi có thời gian, tôi sẽ gọi cho bạn.', id: 'Jika saya punya waktu, saya akan meneleponmu.', tr: 'Vaktim olursa seni arayacağım.', pl: 'Jeśli będę miał czas, zadzwonię do ciebie.', why: tri('Не If I will have time. Will нужен в I will call.', 'Не If I will have time. Will потрібен у I will call.', 'No es If I will have time. Will pertenece a I will call.') },
+    { en: 'I will call you if I finish early.', ru: 'Я тебе позвоню, если закончу рано.', uk: 'Я тобі подзвоню, якщо закінчу рано.', es: 'Te llamare si termino temprano.', 'pt-BR': 'Vou ligar para você se eu terminar cedo.', vi: 'Tôi sẽ gọi cho bạn nếu tôi xong sớm.', id: 'Saya akan meneleponmu jika selesai lebih awal.', tr: 'Erken bitirirsem seni arayacağım.', pl: 'Zadzwonię do ciebie, jeśli skończę wcześniej.', why: tri('If можно перенести в конец, правило не меняется.', 'If можна перенести в кінець, правило не змінюється.', 'La parte con if puede ir al final; la regla no cambia.') },
+    { en: "Unless you hurry, you will be late.", ru: 'Если ты не поторопишься, ты опоздаешь.', uk: 'Якщо ти не поквапишся, ти запізнишся.', es: 'Si no te das prisa, llegaras tarde.', 'pt-BR': 'A menos que você se apresse, vai se atrasar.', vi: 'Nếu bạn không nhanh lên, bạn sẽ bị muộn.', id: 'Kecuali kamu cepat-cepat, kamu akan terlambat.', tr: 'Acele etmezsen geç kalacaksın.', pl: 'Jeśli się nie pospieszysz, spóźnisz się.', why: tri('Unless значит if not, результат идет с will.', 'Unless означає if not, результат іде з will.', 'Unless significa if not; el resultado usa will.') },
+    { en: 'When I get home, I will text you.', ru: 'Когда я доберусь домой, я тебе напишу.', uk: 'Коли я дістануся додому, я тобі напишу.', es: 'Cuando llegue a casa, te escribire.', 'pt-BR': 'Quando eu chegar em casa, vou mandar mensagem para você.', vi: 'Khi tôi về đến nhà, tôi sẽ nhắn tin cho bạn.', id: 'Ketika saya sampai di rumah, saya akan mengirim pesan kepadamu.', tr: 'Eve varınca sana mesaj atacağım.', pl: 'Kiedy dotrę do domu, napiszę do ciebie.', why: tri('When показывает ожидаемый момент, но will не ставится сразу после when.', 'When показує очікуваний момент, але will не ставиться одразу після when.', 'When muestra un momento esperado, pero sin will justo despues de when.') },
   ],
   introBlocks: [
     {
@@ -180,7 +334,7 @@ export const CONDITION_ZERO_FIRST_TRAINING: DiagnosisTraining = {
       text: tri(
         'Частая ошибка: увидел if и сразу поставил will. Но английский говорит If it rains, I will stay, а не If it will rain.',
         'Часта помилка: побачив if і одразу поставив will. Але англійська каже If it rains, I will stay, а не If it will rain.',
-        'A common mistake: you see if and put will right after it.',
+        'Error frecuente: ves if y pones will justo despues. Pero el ingles dice If it rains, I will stay, no If it will rain.',
       ),
     },
     {
@@ -189,7 +343,7 @@ export const CONDITION_ZERO_FIRST_TRAINING: DiagnosisTraining = {
       text: tri(
         'Две модели: правило - If you heat water, it boils. Реальный будущий вариант - If it rains, I will stay.',
         'Дві моделі: правило - If you heat water, it boils. Реальний майбутній варіант - If it rains, I will stay.',
-        'Two models: rule and real future option.',
+        'Dos modelos: regla - If you heat water, it boils. Opcion futura real - If it rains, I will stay.',
       ),
     },
     {
@@ -198,7 +352,7 @@ export const CONDITION_ZERO_FIRST_TRAINING: DiagnosisTraining = {
       text: tri(
         'Та же логика работает с when и unless: when I get, unless you hurry. Will ставим в результат.',
         'Та сама логіка працює з when і unless: when I get, unless you hurry. Will ставимо в результат.',
-        'The same logic works with when and unless.',
+        'La misma logica funciona con when y unless: when I get, unless you hurry. Pon will en el resultado.',
       ),
     },
   ],
@@ -526,22 +680,22 @@ export const CONDITION_ZERO_FIRST_TRAINING: DiagnosisTraining = {
     depth1: tri(
       'Показываем смысл: правило, привычка или реальный будущий результат.',
       'Показуємо сенс: правило, звичка або реальний майбутній результат.',
-      'Show the meaning: rule, habit, or real future result.',
+      'Muestra el significado: regla, habito o resultado futuro real.',
     ),
     depth2: tri(
       'Проще: результат повторяется всегда или случится потом?',
       'Простіше: результат повторюється завжди чи станеться потім?',
-      'Simpler: does the result always repeat or happen later?',
+      'Mas simple: el resultado se repite siempre o pasara despues?',
     ),
     depth3: tri(
       'Сравни модели: If water boils? Нет: If you heat water, it boils. Если завтра дождь: If it rains, I will stay.',
       'Порівняй моделі: If water boils? Ні: If you heat water, it boils. Якщо завтра дощ: If it rains, I will stay.',
-      'Compare: rule = If you heat water, it boils. Future = If it rains, I will stay.',
+      'Compara: regla = If you heat water, it boils. Futuro = If it rains, I will stay.',
     ),
     depth4: tri(
       'Почти подсказка: после if/when/unless выбери форму без will.',
       'Майже підказка: після if/when/unless обери форму без will.',
-      'Almost a hint: after if/when/unless, choose a form without will.',
+      'Casi una pista: despues de if/when/unless, elige una forma sin will.',
     ),
   },
   failureRecovery: {
@@ -550,7 +704,7 @@ export const CONDITION_ZERO_FIRST_TRAINING: DiagnosisTraining = {
       card: tri(
         'Правило: If you heat water, it boils. Будущий вариант: If it rains, I will stay. После if/when/unless не ставь will.',
         'Правило: If you heat water, it boils. Майбутній варіант: If it rains, I will stay. Після if/when/unless не став will.',
-        'Rule: If you heat water, it boils. Future option: If it rains, I will stay. No will after if/when/unless.',
+        'Regla: If you heat water, it boils. Opcion futura: If it rains, I will stay. Sin will despues de if/when/unless.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -558,7 +712,7 @@ export const CONDITION_ZERO_FIRST_TRAINING: DiagnosisTraining = {
       card: tri(
         'Подсказка: сначала посмотри, это общее правило или будущий результат. Потом выбери форму.',
         'Підказка: спочатку подивись, це загальне правило чи майбутній результат. Потім обери форму.',
-        'Hint: first check whether this is a general rule or a future result.',
+        'Pista: primero mira si es una regla general o un resultado futuro.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -566,7 +720,7 @@ export const CONDITION_ZERO_FIRST_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим подсказки: сначала выбери смысл, потом if/when/unless и результат.',
         'Режим підказки: спочатку обери сенс, потім if/when/unless і результат.',
-        'Guided mode: choose the meaning first, then build if/when/unless and the result.',
+        'Modo guiado: elige primero el significado, luego arma if/when/unless y el resultado.',
       ),
     },
   },
@@ -576,28 +730,28 @@ export const CONDITION_ZERO_FIRST_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_cond_zero_first_001',
-        prompt: tri('If you heat water, it boils - это правило или будущий план?', 'If you heat water, it boils - це правило чи майбутній план?', 'If you heat water, it boils: rule or future plan?'),
+        prompt: tri('If you heat water, it boils - это правило или будущий план?', 'If you heat water, it boils - це правило чи майбутній план?', 'If you heat water, it boils: regla o plan futuro?'),
         options: ['правило', 'будущий план'],
         correctIndex: 0,
         thenReturnToExerciseId: 'cond_zero_first_easy_001',
       },
       {
         id: 'guided_cond_zero_first_002',
-        prompt: tri('После if в If it rains что лучше?', 'Після if в If it rains що краще?', 'After if in If it rains, what is better?'),
+        prompt: tri('После if в If it rains что лучше?', 'Після if в If it rains що краще?', 'Despues de if en If it rains, que es mejor?'),
         options: ['rains', 'will rain'],
         correctIndex: 0,
         thenReturnToExerciseId: 'cond_zero_first_contrast_004',
       },
       {
         id: 'guided_cond_zero_first_003',
-        prompt: tri('В фразе “я позвоню, если закончу рано” где стоит will?', 'У фразі “я подзвоню, якщо закінчу рано” де стоїть will?', 'Where does will stand in I will call you if I finish early?'),
+        prompt: tri('В фразе “я позвоню, если закончу рано” где стоит will?', 'У фразі “я подзвоню, якщо закінчу рано” де стоїть will?', 'Donde va will en I will call you if I finish early?'),
         options: ['в I will call', 'в if I finish'],
         correctIndex: 0,
         thenReturnToExerciseId: 'cond_zero_first_contrast_006',
       },
       {
         id: 'guided_cond_zero_first_004',
-        prompt: tri('Unless you hurry значит что?', 'Unless you hurry означає що?', 'What does Unless you hurry mean?'),
+        prompt: tri('Unless you hurry значит что?', 'Unless you hurry означає що?', 'Que significa Unless you hurry?'),
         options: ['if you hurry', "if you don't hurry"],
         correctIndex: 1,
         thenReturnToExerciseId: 'cond_zero_first_mixed_001',
@@ -609,7 +763,7 @@ export const CONDITION_ZERO_FIRST_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'syntax',
     microDiagnosisId: 'condition_zero_first',
-    diagnosisLabel: tri('If / when / unless', 'If / when / unless'),
+    diagnosisLabel: tri('If / when / unless', 'If / when / unless', 'If / when / unless: condicion'),
     contrastSet: SMART_CONTRAST_SET,
     difficultyLevel: 2,
     focusWords: ['If it rains', 'will stay', 'If I have time', 'unless you hurry', 'when I get'],
@@ -641,7 +795,7 @@ export const CONDITION_ZERO_FIRST_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_started',
     answer: 'diagnosis_training_answer',
     mastery: 'diagnosis_training_mastered',
-    fallback: 'diagnosis_training_fallback',
+    recovery: 'diagnosis_training_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

@@ -1,6 +1,6 @@
-import { Redirect } from 'expo-router';
+import { DeferredRedirect } from '../components/DeferredRedirect';
 
 /** Старый маршрут /league_screen → перенаправление на экран клуба. */
 export default function LegacyLeagueScreenRedirect() {
-  return <Redirect href="/club_screen" />;
+  return <DeferredRedirect href="/club_screen" />;
 }

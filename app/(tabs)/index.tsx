@@ -1,4 +1,4 @@
-import { Redirect } from 'expo-router';
+import { DeferredRedirect } from '../../components/DeferredRedirect';
 
 /**
  * Дефолтный маршрут группы (tabs) без сегмента = главная.
@@ -6,5 +6,5 @@ import { Redirect } from 'expo-router';
  * с корневым `app/index.tsx` и `Stack.Screen name="index"` в `app/_layout.tsx`.
  */
 export default function TabsGroupIndex() {
-  return <Redirect href="/(tabs)/home" />;
+  return <DeferredRedirect href="/(tabs)/home" />;
 }

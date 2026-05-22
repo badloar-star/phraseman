@@ -232,7 +232,8 @@ function auditLessonData(lessonData) {
         const distractors = w.distractors || [];
         const fp = distractorFingerprint(distractors);
 
-        if (PREP_FOR_CATEGORY_AUDIT.has(correct) && cat && cat !== 'preposition') {
+        const allowedPrepCategory = correct === 'to' && cat === 'infinitive_marker';
+        if (PREP_FOR_CATEGORY_AUDIT.has(correct) && cat && cat !== 'preposition' && !allowedPrepCategory) {
           issues.push({
             kind: 'D_PREP_CATEGORY',
             lesson: lessonId,
@@ -270,7 +271,16 @@ function auditLessonData(lessonData) {
     const uniqCorrect = [...new Set(rows.map((r) => normTok(r.correct)))];
     if (uniqCorrect.length <= 1) continue;
     const buckets = new Set(uniqCorrect.map((c) => coarseBucket(c)));
-    if (buckets.size < 2) continue;
+    const meaningfulBuckets = new Set([...buckets].filter((bucket) => bucket !== 'marker'));
+    if (meaningfulBuckets.size < 2) continue;
+    if (
+      meaningfulBuckets.size === 2
+      && meaningfulBuckets.has('article')
+      && meaningfulBuckets.has('open')
+      && rows[0].fp === 'con|de|en|para|por'
+    ) {
+      continue;
+    }
     const sample = rows
       .slice(0, 8)
       .map((r) => `L${r.lesson}:${r.phraseId}:${normTok(r.correct)}`)

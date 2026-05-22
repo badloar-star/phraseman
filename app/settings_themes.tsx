@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
@@ -52,7 +53,7 @@ export default function SettingsThemes() {
   const router = useRouter();
   const { theme: t, themeMode, setThemeMode, isGoldThemeUnlocked } = useTheme();
   const { lang } = useLang();
-  const { isPremium } = usePremium();
+  const { hasPremiumAccess: isPremium } = usePremium();
 
   return (
     <ScreenGradient>
@@ -78,6 +79,24 @@ export default function SettingsThemes() {
                 pl: 'Motywy',
               })}
             </Text>
+            <View style={{ flex: 1 }} />
+            <ReportErrorButton
+              screen="settings_themes"
+              dataId="settings_themes"
+              dataText={triLang(lang, {
+                ru: 'Экран выбора темы',
+                uk: 'Екран вибору теми',
+                es: 'Pantalla de selección de tema',
+                'pt-BR': 'Tela de seleção de tema',
+                vi: 'Màn hình chọn chủ đề',
+                id: 'Layar pemilihan tema',
+                tr: 'Tema seçme ekranı',
+                pl: 'Ekran wyboru motywu',
+              })}
+              variant="icon-flag"
+              accessibilityLabel="Сообщить о баге на экране темы"
+              style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border }}
+            />
           </View>
 
           <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 36 }}>

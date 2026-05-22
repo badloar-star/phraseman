@@ -43,10 +43,57 @@ describe('localizedDailyTaskStrings', () => {
     expect(missing).toEqual([]);
   });
 
-  it('falls back to Russian when ES map has no id', () => {
+  it('returns empty Spanish copy when no explicit ES source exists', () => {
     const t = dummyTask('__unknown_id__');
     const { title, desc } = localizedDailyTaskStrings('es', t);
-    expect(title).toBe('RU title');
-    expect(desc).toBe('RU desc');
+    expect(title).toBe('');
+    expect(desc).toBe('');
+  });
+
+  it.each([
+    ['pt-BR', 'titlePtBr', 'descPtBr'],
+    ['vi', 'titleVi', 'descVi'],
+    ['id', 'titleId', 'descId'],
+    ['tr', 'titleTr', 'descTr'],
+    ['pl', 'titlePl', 'descPl'],
+  ] as const)('returns only explicit planned daily-task copy for %s', (lang, titleField, descField) => {
+    const task = {
+      ...dummyTask('da1'),
+      [titleField]: `${lang} title`,
+      [descField]: `${lang} desc`,
+    };
+
+    expect(localizedDailyTaskStrings(lang, task).title).toBe(`${lang} title`);
+    expect(localizedDailyTaskStrings(lang, task).desc).toBe(`${lang} desc`);
+    expect(localizedDailyTaskStrings(lang, dummyTask('da1')).title).toBe('');
+  });
+
+  it('has planned locale copy for every production daily task id', () => {
+    const missing = ALL_TASKS.flatMap((task) => {
+      const fields = [
+        task.titlePtBr,
+        task.descPtBr,
+        task.titleVi,
+        task.descVi,
+        task.titleId,
+        task.descId,
+        task.titleTr,
+        task.descTr,
+        task.titlePl,
+        task.descPl,
+      ];
+      return fields.every((value) => typeof value === 'string' && value.trim()) ? [] : [task.id];
+    });
+
+    expect(missing).toEqual([]);
+  });
+
+  it('does not route daily task locale selection through legacy runtime markers', () => {
+    const fs = require('fs') as typeof import('fs');
+    const path = require('path') as typeof import('path');
+    const source = fs.readFileSync(path.join(__dirname, '../app/daily_tasks_es_locale.ts'), 'utf8');
+    const legacyRuntimePattern = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
+
+    expect(source).not.toMatch(legacyRuntimePattern);
   });
 });

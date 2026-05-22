@@ -1,4 +1,6 @@
-import { Redirect, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
+
+import { DeferredRedirect } from '../components/DeferredRedirect';
 
 import {
   IRREGULAR_VERB_COUNT_BY_LESSON,
@@ -11,5 +13,5 @@ export { LESSONS_WITH_IRREGULAR_VERBS };
 
 export default function LessonVerbsRedirect() {
   const params = useLocalSearchParams();
-  return <Redirect href={{ pathname: '/lesson_irregular_verbs', params }} />;
+  return <DeferredRedirect href={{ pathname: '/lesson_irregular_verbs', params }} />;
 }

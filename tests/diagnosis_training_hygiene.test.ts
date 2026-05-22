@@ -5,6 +5,7 @@ import {
   DIAGNOSIS_TRAININGS,
   getAllDiagnosisTrainings,
 } from '../app/diagnosis_trainings';
+import { DIAGNOSIS_TRAINING_IDS } from '../app/personal_practice_training_ids';
 
 const ROOT = path.resolve(__dirname, '..');
 const APP_DIR = path.join(ROOT, 'app');
@@ -46,5 +47,11 @@ describe('diagnosis training replacement hygiene', () => {
       expect(registry).toContain(`if (id === '${id}')`);
       expect(returnedIds.has(id)).toBe(true);
     }
+  });
+
+  it('keeps the lightweight personal-practice id contract aligned with the registry', () => {
+    expect([...DIAGNOSIS_TRAINING_IDS].sort()).toEqual(
+      getAllDiagnosisTrainings().map((training) => training.id).sort(),
+    );
   });
 });

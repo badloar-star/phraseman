@@ -8,6 +8,36 @@ import { emitAppEvent } from './events';
 import { withStorageLock } from './storage_mutex';
 import { writeFriendEvent } from './firestore_friend_activity';
 import { DEV_MODE, IS_STORE_RELEASE } from './config';
+import {
+  achievementStateKey,
+  achievementLessonMarathonDayKey,
+  activeRecallAchievementCorrectCountKey,
+  comboAchievementCounterKey,
+  achievementLessonPerfectPassesKey,
+  dailyPhraseAchievementReadCountKey,
+  dailyPhraseAchievementSaveCountKey,
+  dailyTasksAchievementAllDoneStreakKey,
+  dailyTasksAchievementNoRerollStreakKey,
+  flashcardsAchievementFlipCountKey,
+  flashcardsAchievementSavedCountKey,
+  flashcardsAchievementSourceSetKey,
+  flashcardsAchievementViewStreakKey,
+  flashcardsCommunityOwnedPacksKey,
+  flashcardsMarketDevOwnedPacksKey,
+  flashcardsOwnedPacksKey,
+  flashcardsSavedKey,
+  lessonPassCountKey,
+  lessonProgressKey,
+  quizAchievementCounterKey,
+  quizPerfectLevelsTodayKey,
+  quizPerfectStreakKey,
+  shareAchievementCounterKey,
+  storageStudyTarget,
+  trainerAchievementCorrectCountKey,
+  trainerAchievementCorrectStreakKey,
+  trainerAchievementPerfectSessionCountKey,
+  type RuntimeStudyTarget,
+} from './target_storage_keys';
 
 /**
  * Достижения: ru/uk здесь; es — achievements_es_locale.ts.
@@ -50,16 +80,1041 @@ export interface AchievementState {
   shardClaimed?: boolean;
 }
 
+type AchievementLocalePicker = (achievement: Achievement) => string | undefined;
+type PlannedAchievementLang = Extract<Lang, 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl'>;
+type PlannedAchievementCopy = Record<PlannedAchievementLang, { name: string; description: string }>;
+type PlannedAchievementField = 'name' | 'description';
+
+const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> = {
+  streak_3: {
+    'pt-BR': { name: 'Primeiros três', description: 'Ganhe XP no app por 3 dias seguidos na sequência de atividade.' },
+    vi: { name: 'Ba ngày đầu tiên', description: 'Nhận XP trong ứng dụng 3 ngày liên tiếp trong chuỗi hoạt động.' },
+    id: { name: 'Tiga pertama', description: 'Dapatkan XP di aplikasi selama 3 hari berturut-turut dalam streak aktivitas.' },
+    tr: { name: 'İlk üç', description: 'Etkinlik serisinde 3 gün üst üste uygulamada XP kazan.' },
+    pl: { name: 'Pierwsze trzy', description: 'Zdobywaj XP w aplikacji przez 3 dni z rzędu w serii aktywności.' },
+  },
+  streak_7: {
+    'pt-BR': { name: 'Uma semana seguida', description: '7 dias seguidos com XP; congelamento, reparo ou escudo podem preservar a sequência.' },
+    vi: { name: 'Một tuần liên tiếp', description: '7 ngày liên tiếp có XP; đóng băng, sửa chuỗi hoặc khiên có thể giữ chuỗi.' },
+    id: { name: 'Seminggu berturut-turut', description: '7 hari berturut-turut dengan XP; freeze, perbaikan, atau shield bisa menjaga streak.' },
+    tr: { name: 'Bir hafta üst üste', description: 'XP kazanılan 7 gün üst üste; dondurma, onarım veya kalkan seriyi koruyabilir.' },
+    pl: { name: 'Tydzień z rzędu', description: '7 dni z rzędu ze zdobytym XP; zamrożenie, naprawa lub tarcza mogą ochronić serię.' },
+  },
+  streak_14: {
+    'pt-BR': { name: 'Duas semanas', description: '14 dias seguidos com XP; isso não é o mesmo que entrar todos os dias.' },
+    vi: { name: 'Hai tuần', description: '14 ngày liên tiếp có XP; khác với việc chỉ đăng nhập hằng ngày.' },
+    id: { name: 'Dua minggu', description: '14 hari berturut-turut dengan XP; ini berbeda dari login harian.' },
+    tr: { name: 'İki hafta', description: 'XP kazanılan 14 gün üst üste; bu günlük giriş yapmakla aynı şey değildir.' },
+    pl: { name: 'Dwa tygodnie', description: '14 dni z rzędu ze zdobytym XP; to nie to samo co codzienne logowanie.' },
+  },
+  streak_30: {
+    'pt-BR': { name: 'Um mês firme', description: 'Ganhe XP pelo menos uma vez por dia durante 30 dias seguidos.' },
+    vi: { name: 'Một tháng bền bỉ', description: 'Nhận XP ít nhất một lần mỗi ngày trong 30 ngày liên tiếp.' },
+    id: { name: 'Sebulan konsisten', description: 'Dapatkan XP setidaknya sekali sehari selama 30 hari berturut-turut.' },
+    tr: { name: 'Bir ay ayakta', description: '30 gün üst üste her gün en az bir kez XP kazan.' },
+    pl: { name: 'Miesiąc w rytmie', description: 'Zdobywaj XP co najmniej raz dziennie przez 30 dni z rzędu.' },
+  },
+  streak_60: {
+    'pt-BR': { name: 'Dois meses', description: 'Mantenha a sequência de atividade por 60 dias seguidos.' },
+    vi: { name: 'Hai tháng', description: 'Duy trì chuỗi hoạt động trong 60 ngày liên tiếp.' },
+    id: { name: 'Dua bulan', description: 'Pertahankan streak aktivitas selama 60 hari berturut-turut.' },
+    tr: { name: 'İki ay', description: 'Etkinlik serisini 60 gün üst üste sürdür.' },
+    pl: { name: 'Dwa miesiące', description: 'Utrzymaj serię aktywności przez 60 dni z rzędu.' },
+  },
+  streak_100: {
+    'pt-BR': { name: 'Cem dias', description: '100 dias seguidos sem dias vazios na sequência.' },
+    vi: { name: 'Một trăm ngày', description: '100 ngày liên tiếp không có ngày trống trong chuỗi.' },
+    id: { name: 'Seratus hari', description: '100 hari berturut-turut tanpa hari kosong dalam streak.' },
+    tr: { name: 'Yüz gün', description: 'Seride boş gün bırakmadan 100 gün üst üste devam et.' },
+    pl: { name: 'Sto dni', description: '100 dni z rzędu bez pustych dni w serii.' },
+  },
+  streak_200: {
+    'pt-BR': { name: 'Duzentos dias', description: '200 dias seguidos com XP diário.' },
+    vi: { name: 'Hai trăm ngày', description: '200 ngày liên tiếp có XP mỗi ngày.' },
+    id: { name: 'Dua ratus hari', description: '200 hari berturut-turut dengan XP harian.' },
+    tr: { name: 'İki yüz gün', description: 'Günlük XP ile 200 gün üst üste devam et.' },
+    pl: { name: 'Dwieście dni', description: '200 dni z rzędu z codziennym XP.' },
+  },
+  streak_365: {
+    'pt-BR': { name: 'Um ano inteiro', description: 'Mantenha a sequência por 365 dias seguidos, como no contador.' },
+    vi: { name: 'Cả một năm', description: 'Duy trì chuỗi 365 ngày liên tiếp như trên bộ đếm.' },
+    id: { name: 'Setahun penuh', description: 'Pertahankan streak selama 365 hari berturut-turut seperti di penghitung.' },
+    tr: { name: 'Tam bir yıl', description: 'Sayaçtaki seri gibi 365 gün üst üste devam et.' },
+    pl: { name: 'Cały rok', description: 'Utrzymaj serię przez 365 dni z rzędu, tak jak pokazuje licznik.' },
+  },
+  streak_500: {
+    'pt-BR': { name: '500 dias', description: '500 dias seguidos com XP: uma persistência rara.' },
+    vi: { name: '500 ngày', description: '500 ngày liên tiếp có XP: sự bền bỉ hiếm có.' },
+    id: { name: '500 hari', description: '500 hari berturut-turut dengan XP: ketekunan yang langka.' },
+    tr: { name: '500 gün', description: 'XP ile 500 gün üst üste: nadir bir kararlılık.' },
+    pl: { name: '500 dni', description: '500 dni z rzędu ze zdobytym XP: rzadka wytrwałość.' },
+  },
+  streak_repair: {
+    'pt-BR': { name: 'Fênix', description: 'Use o reparo após exatamente um dia perdido e conclua uma lição no mesmo dia.' },
+    vi: { name: 'Phượng hoàng', description: 'Dùng sửa chuỗi sau đúng một ngày bỏ lỡ và hoàn thành bài học trong cùng ngày.' },
+    id: { name: 'Phoenix', description: 'Gunakan perbaikan setelah tepat satu hari terlewat dan selesaikan pelajaran di hari yang sama.' },
+    tr: { name: 'Anka kuşu', description: 'Tam bir günü kaçırdıktan sonra onarımı kullan ve aynı gün bir dersi bitir.' },
+    pl: { name: 'Feniks', description: 'Użyj naprawy po dokładnie jednym opuszczonym dniu i ukończ lekcję tego samego dnia.' },
+  },
+  perfect_week: {
+    'pt-BR': { name: 'Semana perfeita', description: 'Ganhe XP todos os dias, de segunda a domingo, na mesma semana do calendário.' },
+    vi: { name: 'Tuần hoàn hảo', description: 'Nhận XP mỗi ngày từ thứ Hai đến Chủ nhật trong cùng một tuần lịch.' },
+    id: { name: 'Minggu sempurna', description: 'Dapatkan XP setiap hari dari Senin sampai Minggu dalam satu minggu kalender.' },
+    tr: { name: 'Kusursuz hafta', description: 'Aynı takvim haftasında pazartesiden pazara her gün XP kazan.' },
+    pl: { name: 'Idealny tydzień', description: 'Zdobywaj XP codziennie od poniedziałku do niedzieli w jednym tygodniu kalendarzowym.' },
+  },
+  streak_150: {
+    'pt-BR': { name: 'Cento e cinquenta', description: '150 dias seguidos com XP, sem nenhum dia vazio.' },
+    vi: { name: 'Một trăm năm mươi', description: '150 ngày liên tiếp có XP, không có ngày trống.' },
+    id: { name: 'Seratus lima puluh', description: '150 hari berturut-turut dengan XP, tanpa hari kosong.' },
+    tr: { name: 'Yüz elli', description: 'Boş gün olmadan 150 gün üst üste XP kazan.' },
+    pl: { name: 'Sto pięćdziesiąt', description: '150 dni z rzędu ze zdobytym XP, bez pustego dnia.' },
+  },
+  streak_250: {
+    'pt-BR': { name: 'Um quarto de milhar', description: 'Mantenha a sequência de atividade por 250 dias seguidos.' },
+    vi: { name: 'Một phần tư nghìn', description: 'Duy trì chuỗi hoạt động trong 250 ngày liên tiếp.' },
+    id: { name: 'Seperempat ribu', description: 'Pertahankan streak aktivitas selama 250 hari berturut-turut.' },
+    tr: { name: 'Çeyrek bin', description: 'Etkinlik serisini 250 gün üst üste koru.' },
+    pl: { name: 'Ćwierć tysiąca', description: 'Utrzymaj serię aktywności przez 250 dni z rzędu.' },
+  },
+  streak_750: {
+    'pt-BR': { name: '750 dias', description: '750 dias seguidos com XP diário.' },
+    vi: { name: '750 ngày', description: '750 ngày liên tiếp có XP mỗi ngày.' },
+    id: { name: '750 hari', description: '750 hari berturut-turut dengan XP harian.' },
+    tr: { name: '750 gün', description: 'Günlük XP ile 750 gün üst üste devam et.' },
+    pl: { name: '750 dni', description: '750 dni z rzędu z codziennym XP.' },
+  },
+  streak_1000: {
+    'pt-BR': { name: 'Mil dias', description: 'Mantenha a sequência de atividade por 1000 dias seguidos.' },
+    vi: { name: 'Một nghìn ngày', description: 'Duy trì chuỗi hoạt động trong 1000 ngày liên tiếp.' },
+    id: { name: 'Seribu hari', description: 'Pertahankan streak aktivitas selama 1000 hari berturut-turut.' },
+    tr: { name: 'Bin gün', description: 'Etkinlik serisini 1000 gün üst üste sürdür.' },
+    pl: { name: 'Tysiąc dni', description: 'Utrzymaj serię aktywności przez 1000 dni z rzędu.' },
+  },
+  streak_clean_365: {
+    'pt-BR': { name: 'Ano limpo', description: '365 dias de sequência sem reparo ou congelamento nesse período.' },
+    vi: { name: 'Một năm sạch', description: '365 ngày chuỗi không dùng sửa chuỗi hoặc đóng băng trong giai đoạn đó.' },
+    id: { name: 'Setahun bersih', description: '365 hari streak tanpa perbaikan atau freeze selama periode itu.' },
+    tr: { name: 'Temiz yıl', description: 'Bu dönemde onarım veya dondurma olmadan 365 günlük seri.' },
+    pl: { name: 'Czysty rok', description: '365 dni serii bez naprawy ani zamrożenia w tym okresie.' },
+  },
+  perfect_month: {
+    'pt-BR': { name: 'Mês sem vazio', description: 'Ganhe XP todos os dias de um mesmo mês do calendário.' },
+    vi: { name: 'Tháng không bỏ trống', description: 'Nhận XP mỗi ngày trong cùng một tháng lịch.' },
+    id: { name: 'Sebulan tanpa kosong', description: 'Dapatkan XP setiap hari dalam satu bulan kalender.' },
+    tr: { name: 'Boşluksuz ay', description: 'Aynı takvim ayında her gün XP kazan.' },
+    pl: { name: 'Miesiąc bez pustki', description: 'Zdobywaj XP każdego dnia jednego miesiąca kalendarzowego.' },
+  },
+  night_week: {
+    'pt-BR': { name: 'Turno da noite', description: 'Ganhe XP à noite por 7 dias seguidos: das 23:00 às 5:00.' },
+    vi: { name: 'Ca đêm', description: 'Nhận XP ban đêm 7 ngày liên tiếp: từ 23:00 đến 5:00.' },
+    id: { name: 'Shift malam', description: 'Dapatkan XP malam hari selama 7 hari berturut-turut: pukul 23.00-05.00.' },
+    tr: { name: 'Gece vardiyası', description: '7 gün üst üste gece XP kazan: 23:00 ile 5:00 arasında.' },
+    pl: { name: 'Nocna zmiana', description: 'Zdobywaj XP nocą przez 7 dni z rzędu: od 23:00 do 5:00.' },
+  },
+  early_week: {
+    'pt-BR': { name: 'Modo cedo', description: 'Ganhe XP pela manhã por 7 dias seguidos: das 5:00 às 7:00.' },
+    vi: { name: 'Chế độ dậy sớm', description: 'Nhận XP buổi sáng 7 ngày liên tiếp: từ 5:00 đến 7:00.' },
+    id: { name: 'Mode pagi', description: 'Dapatkan XP pagi hari selama 7 hari berturut-turut: pukul 05.00-07.00.' },
+    tr: { name: 'Erken mod', description: '7 gün üst üste sabah XP kazan: 5:00 ile 7:00 arasında.' },
+    pl: { name: 'Tryb poranny', description: 'Zdobywaj XP rano przez 7 dni z rzędu: od 5:00 do 7:00.' },
+  },
+  lesson_1: {
+    'pt-BR': { name: 'Primeiro passo', description: 'Conclua uma lição: conta quando houver 45 ou mais respostas certas.' },
+    vi: { name: 'Bước đầu tiên', description: 'Hoàn thành một bài học: được tính khi có ít nhất 45 câu trả lời đúng.' },
+    id: { name: 'Langkah pertama', description: 'Selesaikan satu pelajaran: dihitung jika ada 45 jawaban benar atau lebih.' },
+    tr: { name: 'İlk adım', description: 'Bir dersi tamamla: 45 veya daha fazla doğru cevapla sayılır.' },
+    pl: { name: 'Pierwszy krok', description: 'Ukończ jedną lekcję: zaliczenie od co najmniej 45 poprawnych odpowiedzi.' },
+  },
+  lesson_3: {
+    'pt-BR': { name: 'Três lições', description: 'Complete três lições diferentes com crédito total.' },
+    vi: { name: 'Ba bài học', description: 'Hoàn thành tổng cộng ba bài học khác nhau với đủ điều kiện.' },
+    id: { name: 'Tiga pelajaran', description: 'Selesaikan total tiga pelajaran berbeda dengan kelulusan penuh.' },
+    tr: { name: 'Üç ders', description: 'Toplam üç farklı dersi tam geçişle tamamla.' },
+    pl: { name: 'Trzy lekcje', description: 'Ukończ łącznie trzy różne lekcje z pełnym zaliczeniem.' },
+  },
+  lesson_5: {
+    'pt-BR': { name: 'Cinco lições', description: 'Leve cinco lições até o crédito.' },
+    vi: { name: 'Năm bài học', description: 'Đưa năm bài học đến mức được tính hoàn thành.' },
+    id: { name: 'Lima pelajaran', description: 'Selesaikan lima pelajaran sampai lulus.' },
+    tr: { name: 'Beş ders', description: 'Beş dersi geçerli tamamlanma düzeyine getir.' },
+    pl: { name: 'Pięć lekcji', description: 'Doprowadź pięć lekcji do zaliczenia.' },
+  },
+  lesson_10: {
+    'pt-BR': { name: 'Dez lições', description: 'Tenha dez lições com crédito no seu progresso.' },
+    vi: { name: 'Mười bài học', description: 'Có mười bài học được tính hoàn thành trong tiến độ.' },
+    id: { name: 'Sepuluh pelajaran', description: 'Miliki sepuluh pelajaran yang sudah lulus dalam progresmu.' },
+    tr: { name: 'On ders', description: 'İlerlemede on dersi geçerli şekilde tamamla.' },
+    pl: { name: 'Dziesięć lekcji', description: 'Miej dziesięć lekcji z zaliczeniem w postępach.' },
+  },
+  lesson_15: {
+    'pt-BR': { name: 'Quinze', description: 'Conclua 15 lições pelas regras de crédito.' },
+    vi: { name: 'Mười lăm', description: 'Hoàn thành 15 bài học theo quy tắc được tính.' },
+    id: { name: 'Lima belas', description: 'Selesaikan 15 pelajaran sesuai aturan kelulusan.' },
+    tr: { name: 'On beş', description: '15 dersi geçiş kurallarına göre tamamla.' },
+    pl: { name: 'Piętnaście', description: 'Ukończ 15 lekcji zgodnie z zasadami zaliczenia.' },
+  },
+  lesson_20: {
+    'pt-BR': { name: 'Vinte lições', description: 'Complete 20 lições com crédito total.' },
+    vi: { name: 'Hai mươi bài học', description: 'Hoàn thành 20 bài học với đủ điều kiện.' },
+    id: { name: 'Dua puluh pelajaran', description: 'Selesaikan 20 pelajaran dengan kelulusan penuh.' },
+    tr: { name: 'Yirmi ders', description: '20 dersi tam geçişle tamamla.' },
+    pl: { name: 'Dwadzieścia lekcji', description: 'Ukończ 20 lekcji z pełnym zaliczeniem.' },
+  },
+  lesson_all: {
+    'pt-BR': { name: 'Curso completo', description: 'Complete todas as 32 lições pelo menos uma vez com crédito.' },
+    vi: { name: 'Trọn khóa học', description: 'Hoàn thành đủ 32 bài học ít nhất một lần với điều kiện được tính.' },
+    id: { name: 'Kursus lengkap', description: 'Selesaikan semua 32 pelajaran setidaknya sekali dengan kelulusan.' },
+    tr: { name: 'Tam kurs', description: '32 dersin tamamını en az bir kez geçerli şekilde tamamla.' },
+    pl: { name: 'Pełny kurs', description: 'Ukończ wszystkie 32 lekcje co najmniej raz z zaliczeniem.' },
+  },
+  lesson_perfect: {
+    'pt-BR': { name: 'Sem erros', description: 'Passe uma lição sem respostas marcadas como erro e com 45 ou mais acertos.' },
+    vi: { name: 'Không sai câu nào', description: 'Hoàn thành bài học không có câu bị đánh dấu sai và có ít nhất 45 câu đúng.' },
+    id: { name: 'Tanpa satu kesalahan', description: 'Selesaikan pelajaran tanpa jawaban salah dan dengan 45 jawaban benar atau lebih.' },
+    tr: { name: 'Hatasız', description: 'Bir dersi hata işaretli cevap olmadan ve 45 veya daha fazla doğruyla bitir.' },
+    pl: { name: 'Bez błędu', description: 'Przejdź lekcję bez odpowiedzi oznaczonych jako błąd i z co najmniej 45 poprawnymi.' },
+  },
+  lesson_perfect3: {
+    'pt-BR': { name: 'Três perfeitas', description: 'Três lições diferentes sem nenhum erro no progresso.' },
+    vi: { name: 'Ba bài hoàn hảo', description: 'Ba bài học khác nhau không có lỗi nào trong tiến độ.' },
+    id: { name: 'Tiga sempurna', description: 'Tiga pelajaran berbeda tanpa satu pun kesalahan dalam progres.' },
+    tr: { name: 'Üç kusursuz', description: 'İlerlemede hiç hata olmadan üç farklı dersi tamamla.' },
+    pl: { name: 'Trzy idealne', description: 'Trzy różne lekcje bez ani jednego błędu w postępach.' },
+  },
+  lesson_all_perfect: {
+    'pt-BR': { name: 'Absoluto', description: 'Todas as 32 lições perfeitas: sem erro em cada uma.' },
+    vi: { name: 'Tuyệt đối', description: 'Cả 32 bài học đều hoàn hảo: không có lỗi trong từng bài.' },
+    id: { name: 'Absolut', description: 'Semua 32 pelajaran sempurna: tanpa kesalahan di setiap pelajaran.' },
+    tr: { name: 'Mutlak', description: '32 dersin tamamı kusursuz: her birinde hata yok.' },
+    pl: { name: 'Absolut', description: 'Wszystkie 32 lekcje idealnie: bez błędu w każdej.' },
+  },
+  lesson_all_2x: {
+    'pt-BR': { name: 'Segunda volta', description: 'Todas as 32 lições concluídas pelo menos 2 vezes.' },
+    vi: { name: 'Vòng thứ hai', description: 'Hoàn thành cả 32 bài học ít nhất 2 lần.' },
+    id: { name: 'Putaran kedua', description: 'Semua 32 pelajaran diselesaikan setidaknya 2 kali.' },
+    tr: { name: 'İkinci tur', description: '32 dersin tamamı en az 2 kez tamamlandı.' },
+    pl: { name: 'Drugi obieg', description: 'Wszystkie 32 lekcje ukończone co najmniej 2 razy.' },
+  },
+  lesson_all_3x: {
+    'pt-BR': { name: 'Curso triplo', description: 'Todas as 32 lições concluídas pelo menos 3 vezes.' },
+    vi: { name: 'Khóa học ba lượt', description: 'Hoàn thành cả 32 bài học ít nhất 3 lần.' },
+    id: { name: 'Kursus tiga kali', description: 'Semua 32 pelajaran diselesaikan setidaknya 3 kali.' },
+    tr: { name: 'Üçlü kurs', description: '32 dersin tamamı en az 3 kez tamamlandı.' },
+    pl: { name: 'Potrójny kurs', description: 'Wszystkie 32 lekcje ukończone co najmniej 3 razy.' },
+  },
+  lesson_all_5x: {
+    'pt-BR': { name: 'Quinta volta', description: 'Todas as 32 lições concluídas pelo menos 5 vezes.' },
+    vi: { name: 'Vòng thứ năm', description: 'Hoàn thành cả 32 bài học ít nhất 5 lần.' },
+    id: { name: 'Putaran kelima', description: 'Semua 32 pelajaran diselesaikan setidaknya 5 kali.' },
+    tr: { name: 'Beşinci tur', description: '32 dersin tamamı en az 5 kez tamamlandı.' },
+    pl: { name: 'Piąty obieg', description: 'Wszystkie 32 lekcje ukończone co najmniej 5 razy.' },
+  },
+  lesson_perfect10: {
+    'pt-BR': { name: 'Dez perfeitas', description: '10 lições diferentes sem nenhum erro no progresso.' },
+    vi: { name: 'Mười bài hoàn hảo', description: '10 bài học khác nhau không có lỗi nào trong tiến độ.' },
+    id: { name: 'Sepuluh sempurna', description: '10 pelajaran berbeda tanpa satu pun kesalahan dalam progres.' },
+    tr: { name: 'On kusursuz', description: 'İlerlemede hiç hata olmadan 10 farklı dersi tamamla.' },
+    pl: { name: 'Dziesięć idealnych', description: '10 różnych lekcji bez ani jednego błędu w postępach.' },
+  },
+  lesson_b2_perfect: {
+    'pt-BR': { name: 'B2 sem erros', description: 'Lições 29-32 perfeitas: sem erro em cada uma.' },
+    vi: { name: 'B2 không lỗi', description: 'Bài 29-32 hoàn hảo: không có lỗi trong từng bài.' },
+    id: { name: 'B2 tanpa kesalahan', description: 'Pelajaran 29-32 sempurna: tanpa kesalahan di setiap pelajaran.' },
+    tr: { name: 'Hatasız B2', description: '29-32. dersler kusursuz: her birinde hata yok.' },
+    pl: { name: 'B2 bez błędów', description: 'Lekcje 29-32 idealnie: bez błędu w każdej.' },
+  },
+  lesson_marathon_day: {
+    'pt-BR': { name: 'Maratona de estudo', description: 'Conclua 10 lições diferentes com crédito em um único dia.' },
+    vi: { name: 'Marathon học tập', description: 'Hoàn thành 10 bài học khác nhau được tính trong một ngày.' },
+    id: { name: 'Maraton belajar', description: 'Selesaikan 10 pelajaran berbeda dengan kelulusan dalam satu hari.' },
+    tr: { name: 'Öğrenme maratonu', description: 'Bir günde 10 farklı dersi geçerli şekilde tamamla.' },
+    pl: { name: 'Maraton nauki', description: 'W jeden dzień ukończ 10 różnych lekcji z zaliczeniem.' },
+  },
+  lesson_all_perfect_2x: {
+    'pt-BR': { name: 'Absoluto II', description: 'Todas as 32 lições concluídas perfeitamente pelo menos 2 vezes.' },
+    vi: { name: 'Tuyệt đối II', description: 'Cả 32 bài học được hoàn thành hoàn hảo ít nhất 2 lần.' },
+    id: { name: 'Absolut II', description: 'Semua 32 pelajaran diselesaikan sempurna setidaknya 2 kali.' },
+    tr: { name: 'Mutlak II', description: '32 dersin tamamı en az 2 kez kusursuz tamamlandı.' },
+    pl: { name: 'Absolut II', description: 'Wszystkie 32 lekcje ukończone idealnie co najmniej 2 razy.' },
+  },
+  xp_100: {
+    'pt-BR': { name: 'Primeira centena', description: 'Acumule 100 XP no contador de experiência total.' },
+    vi: { name: 'Một trăm đầu tiên', description: 'Tích lũy 100 XP trong bộ đếm tổng kinh nghiệm.' },
+    id: { name: 'Seratus pertama', description: 'Kumpulkan 100 XP di penghitung total pengalaman.' },
+    tr: { name: 'İlk yüz', description: 'Toplam deneyim sayacında 100 XP biriktir.' },
+    pl: { name: 'Pierwsza setka', description: 'Zbierz 100 XP na liczniku całkowitego doświadczenia.' },
+  },
+  xp_250: {
+    'pt-BR': { name: '250 de XP', description: '250 XP no total, independentemente de como você ganhou.' },
+    vi: { name: '250 XP', description: '250 XP tổng cộng, không tính bạn kiếm được bằng cách nào.' },
+    id: { name: '250 XP', description: '250 XP total, tanpa memperhitungkan cara mendapatkannya.' },
+    tr: { name: '250 XP', description: 'Nasıl kazandığından bağımsız olarak toplam 250 XP.' },
+    pl: { name: '250 XP', description: '250 XP łącznie, bez względu na to, jak zostały zdobyte.' },
+  },
+  xp_500: {
+    'pt-BR': { name: 'Quinhentos', description: '500 XP no contador geral.' },
+    vi: { name: 'Năm trăm', description: '500 XP trên bộ đếm tổng.' },
+    id: { name: 'Lima ratus', description: '500 XP di penghitung umum.' },
+    tr: { name: 'Beş yüz', description: 'Genel sayaçta 500 XP.' },
+    pl: { name: 'Pięćset', description: '500 XP na głównym liczniku.' },
+  },
+  xp_1000: {
+    'pt-BR': { name: 'Mil XP', description: '1.000 XP no total.' },
+    vi: { name: 'Một nghìn XP', description: 'Tổng cộng 1.000 XP.' },
+    id: { name: 'Seribu XP', description: 'Total 1.000 XP.' },
+    tr: { name: 'Bin XP', description: 'Toplam 1.000 XP.' },
+    pl: { name: 'Tysiąc XP', description: 'Łącznie 1 000 XP.' },
+  },
+  xp_2500: {
+    'pt-BR': { name: '2.500 de XP', description: '2.500 XP no total.' },
+    vi: { name: '2.500 XP', description: 'Tổng cộng 2.500 XP.' },
+    id: { name: '2.500 XP', description: 'Total 2.500 XP.' },
+    tr: { name: '2.500 XP', description: 'Toplam 2.500 XP.' },
+    pl: { name: '2 500 XP', description: 'Łącznie 2 500 XP.' },
+  },
+  xp_5000: {
+    'pt-BR': { name: 'Cinco mil', description: '5.000 XP no total.' },
+    vi: { name: 'Năm nghìn', description: 'Tổng cộng 5.000 XP.' },
+    id: { name: 'Lima ribu', description: 'Total 5.000 XP.' },
+    tr: { name: 'Beş bin', description: 'Toplam 5.000 XP.' },
+    pl: { name: 'Pięć tysięcy', description: 'Łącznie 5 000 XP.' },
+  },
+  xp_10000: {
+    'pt-BR': { name: 'Dez mil', description: '10.000 XP no total.' },
+    vi: { name: 'Mười nghìn', description: 'Tổng cộng 10.000 XP.' },
+    id: { name: 'Sepuluh ribu', description: 'Total 10.000 XP.' },
+    tr: { name: 'On bin', description: 'Toplam 10.000 XP.' },
+    pl: { name: 'Dziesięć tysięcy', description: 'Łącznie 10 000 XP.' },
+  },
+  xp_20000: {
+    'pt-BR': { name: 'Vinte mil', description: '20.000 XP no total.' },
+    vi: { name: 'Hai mươi nghìn', description: 'Tổng cộng 20.000 XP.' },
+    id: { name: 'Dua puluh ribu', description: 'Total 20.000 XP.' },
+    tr: { name: 'Yirmi bin', description: 'Toplam 20.000 XP.' },
+    pl: { name: 'Dwadzieścia tysięcy', description: 'Łącznie 20 000 XP.' },
+  },
+  xp_50000: {
+    'pt-BR': { name: 'Cinquenta mil', description: '50.000 XP no total.' },
+    vi: { name: 'Năm mươi nghìn', description: 'Tổng cộng 50.000 XP.' },
+    id: { name: 'Lima puluh ribu', description: 'Total 50.000 XP.' },
+    tr: { name: 'Elli bin', description: 'Toplam 50.000 XP.' },
+    pl: { name: 'Pięćdziesiąt tysięcy', description: 'Łącznie 50 000 XP.' },
+  },
+  xp_75000: {
+    'pt-BR': { name: '75K e sem parar', description: '75.000 XP no total. O caminho para seis dígitos está aberto.' },
+    vi: { name: '75K và chưa dừng lại', description: 'Tổng cộng 75.000 XP. Con đường đến sáu chữ số đã mở.' },
+    id: { name: '75K dan terus lanjut', description: 'Total 75.000 XP. Jalan menuju enam digit terbuka.' },
+    tr: { name: '75K ve durmak yok', description: 'Toplam 75.000 XP. Altı haneye giden yol açıldı.' },
+    pl: { name: '75K i dalej', description: 'Łącznie 75 000 XP. Droga do sześciu cyfr jest otwarta.' },
+  },
+  xp_100000: {
+    'pt-BR': { name: 'Lenda', description: '100.000 XP no total.' },
+    vi: { name: 'Huyền thoại', description: 'Tổng cộng 100.000 XP.' },
+    id: { name: 'Legenda', description: 'Total 100.000 XP.' },
+    tr: { name: 'Efsane', description: 'Toplam 100.000 XP.' },
+    pl: { name: 'Legenda', description: 'Łącznie 100 000 XP.' },
+  },
+  xp_150000: {
+    'pt-BR': { name: '150K de XP', description: 'Acumule 150.000 XP no total.' },
+    vi: { name: '150K XP', description: 'Tích lũy tổng cộng 150.000 XP.' },
+    id: { name: '150K XP', description: 'Kumpulkan total 150.000 XP.' },
+    tr: { name: '150K XP', description: 'Toplam 150.000 XP biriktir.' },
+    pl: { name: '150K XP', description: 'Zbierz łącznie 150 000 XP.' },
+  },
+  xp_250000: {
+    'pt-BR': { name: 'Um quarto de milhão', description: 'Acumule 250.000 XP no total.' },
+    vi: { name: 'Một phần tư triệu', description: 'Tích lũy tổng cộng 250.000 XP.' },
+    id: { name: 'Seperempat juta', description: 'Kumpulkan total 250.000 XP.' },
+    tr: { name: 'Çeyrek milyon', description: 'Toplam 250.000 XP biriktir.' },
+    pl: { name: 'Ćwierć miliona', description: 'Zbierz łącznie 250 000 XP.' },
+  },
+  xp_500000: {
+    'pt-BR': { name: 'Meio milhão', description: 'Acumule 500.000 XP no total.' },
+    vi: { name: 'Nửa triệu', description: 'Tích lũy tổng cộng 500.000 XP.' },
+    id: { name: 'Setengah juta', description: 'Kumpulkan total 500.000 XP.' },
+    tr: { name: 'Yarım milyon', description: 'Toplam 500.000 XP biriktir.' },
+    pl: { name: 'Pół miliona', description: 'Zbierz łącznie 500 000 XP.' },
+  },
+  xp_750000: {
+    'pt-BR': { name: 'Três quartos', description: 'Acumule 750.000 XP no total.' },
+    vi: { name: 'Ba phần tư', description: 'Tích lũy tổng cộng 750.000 XP.' },
+    id: { name: 'Tiga perempat', description: 'Kumpulkan total 750.000 XP.' },
+    tr: { name: 'Üç çeyrek', description: 'Toplam 750.000 XP biriktir.' },
+    pl: { name: 'Trzy czwarte', description: 'Zbierz łącznie 750 000 XP.' },
+  },
+  xp_1000000: {
+    'pt-BR': { name: 'Milionário de XP', description: 'Acumule 1.000.000 XP no total.' },
+    vi: { name: 'Triệu phú XP', description: 'Tích lũy tổng cộng 1.000.000 XP.' },
+    id: { name: 'Jutawan XP', description: 'Kumpulkan total 1.000.000 XP.' },
+    tr: { name: 'XP milyoneri', description: 'Toplam 1.000.000 XP biriktir.' },
+    pl: { name: 'Milioner XP', description: 'Zbierz łącznie 1 000 000 XP.' },
+  },
+  xp_2000000: {
+    'pt-BR': { name: 'Dois milhões', description: 'Acumule 2.000.000 XP no total.' },
+    vi: { name: 'Hai triệu', description: 'Tích lũy tổng cộng 2.000.000 XP.' },
+    id: { name: 'Dua juta', description: 'Kumpulkan total 2.000.000 XP.' },
+    tr: { name: 'İki milyon', description: 'Toplam 2.000.000 XP biriktir.' },
+    pl: { name: 'Dwa miliony', description: 'Zbierz łącznie 2 000 000 XP.' },
+  },
+  weekly_xp_5000: {
+    'pt-BR': { name: 'Semana de 5K', description: 'Ganhe 5.000 XP em uma única semana do calendário.' },
+    vi: { name: 'Tuần 5K', description: 'Nhận 5.000 XP trong một tuần lịch.' },
+    id: { name: 'Minggu 5K', description: 'Dapatkan 5.000 XP dalam satu minggu kalender.' },
+    tr: { name: '5K haftası', description: 'Tek bir takvim haftasında 5.000 XP kazan.' },
+    pl: { name: 'Tydzień na 5K', description: 'Zdobądź 5 000 XP w jednym tygodniu kalendarzowym.' },
+  },
+  weekly_xp_10000: {
+    'pt-BR': { name: 'Semana de 10K', description: 'Ganhe 10.000 XP em uma única semana do calendário.' },
+    vi: { name: 'Tuần 10K', description: 'Nhận 10.000 XP trong một tuần lịch.' },
+    id: { name: 'Minggu 10K', description: 'Dapatkan 10.000 XP dalam satu minggu kalender.' },
+    tr: { name: '10K haftası', description: 'Tek bir takvim haftasında 10.000 XP kazan.' },
+    pl: { name: 'Tydzień na 10K', description: 'Zdobądź 10 000 XP w jednym tygodniu kalendarzowym.' },
+  },
+  wager_win: {
+    'pt-BR': { name: 'Arriscou e venceu', description: 'Ganhe uma aposta de sequência: mantenha a série até o fim sem cair abaixo do nível inicial.' },
+    vi: { name: 'Mạo hiểm và thắng', description: 'Thắng cược chuỗi: giữ chuỗi đến hết hạn mà không xuống dưới mức lúc đặt cược.' },
+    id: { name: 'Berani dan menang', description: 'Menangkan taruhan streak: pertahankan streak sampai akhir tanpa turun di bawah level awal.' },
+    tr: { name: 'Risk aldın, kazandın', description: 'Seri bahsini kazan: süre sonuna kadar başlangıç seviyesinin altına düşmeden seriyi koru.' },
+    pl: { name: 'Ryzyko i wygrana', description: 'Wygraj zakład o serię: utrzymaj ją do końca, nie spadając poniżej poziomu z chwili zakładu.' },
+  },
+  wager_win_3: {
+    'pt-BR': { name: 'Três apostas certas', description: 'Ganhe 3 apostas na Arena no total.' },
+    vi: { name: 'Ba cược thắng', description: 'Thắng tổng cộng 3 cược trong Arena.' },
+    id: { name: 'Tiga taruhan menang', description: 'Menangkan total 3 taruhan di Arena.' },
+    tr: { name: 'Üç başarılı bahis', description: 'Arena’da toplam 3 bahis kazan.' },
+    pl: { name: 'Trzy udane zakłady', description: 'Wygraj łącznie 3 zakłady na Arenie.' },
+  },
+  wager_win_10: {
+    'pt-BR': { name: 'Mão fria', description: 'Ganhe 10 apostas na Arena no total.' },
+    vi: { name: 'Tay lạnh', description: 'Thắng tổng cộng 10 cược trong Arena.' },
+    id: { name: 'Tangan dingin', description: 'Menangkan total 10 taruhan di Arena.' },
+    tr: { name: 'Soğukkanlı el', description: 'Arena’da toplam 10 bahis kazan.' },
+    pl: { name: 'Zimna ręka', description: 'Wygraj łącznie 10 zakładów na Arenie.' },
+  },
+  personal_best: {
+    'pt-BR': { name: 'Melhor semana', description: 'Bata seu recorde de XP semanal em uma semana do calendário.' },
+    vi: { name: 'Tuần tốt nhất', description: 'Phá kỷ lục XP theo tuần lịch của bạn.' },
+    id: { name: 'Minggu terbaik', description: 'Pecahkan rekor XP mingguanmu dalam satu minggu kalender.' },
+    tr: { name: 'En iyi hafta', description: 'Bir takvim haftasındaki haftalık XP rekorunu kır.' },
+    pl: { name: 'Najlepszy tydzień', description: 'Pobij swój rekord tygodniowego XP w tygodniu kalendarzowym.' },
+  },
+  level_50: {
+    'pt-BR': { name: 'Nível 50', description: 'Alcance o nível 50. Você já não é iniciante; é uma lenda.' },
+    vi: { name: 'Cấp 50', description: 'Đạt cấp 50. Bạn không còn là người mới nữa; bạn là huyền thoại.' },
+    id: { name: 'Level 50', description: 'Capai level 50. Kamu bukan pemula lagi; kamu legenda.' },
+    tr: { name: '50. seviye', description: '50. seviyeye ulaş. Artık yeni başlayan değil, efsanesin.' },
+    pl: { name: 'Poziom 50', description: 'Osiągnij poziom 50. Nie jesteś już nowicjuszem; jesteś legendą.' },
+  },
+  quiz_first: {
+    'pt-BR': { name: 'Primeiro quiz', description: 'Conclua qualquer quiz uma vez, em qualquer dificuldade.' },
+    vi: { name: 'Quiz đầu tiên', description: 'Hoàn thành bất kỳ quiz nào một lần, ở mọi độ khó.' },
+    id: { name: 'Kuis pertama', description: 'Selesaikan kuis apa pun satu kali, di tingkat kesulitan apa pun.' },
+    tr: { name: 'İlk quiz', description: 'Herhangi bir zorlukta bir quiz’i bir kez tamamla.' },
+    pl: { name: 'Pierwszy quiz', description: 'Ukończ dowolny quiz raz, na dowolnym poziomie trudności.' },
+  },
+  quiz_medium: {
+    'pt-BR': { name: 'Nível médio', description: 'Conclua um quiz no nível Medium.' },
+    vi: { name: 'Cấp trung bình', description: 'Hoàn thành một quiz cấp Medium.' },
+    id: { name: 'Level menengah', description: 'Selesaikan kuis level Medium.' },
+    tr: { name: 'Orta seviye', description: 'Medium seviyesinde bir quiz’i tamamla.' },
+    pl: { name: 'Poziom średni', description: 'Ukończ quiz na poziomie Medium.' },
+  },
+  quiz_hard: {
+    'pt-BR': { name: 'Aceitou o desafio', description: 'Conclua totalmente um quiz no nível Hard.' },
+    vi: { name: 'Nhận thử thách', description: 'Hoàn thành trọn vẹn một quiz cấp Hard.' },
+    id: { name: 'Menerima tantangan', description: 'Selesaikan sepenuhnya kuis level Hard.' },
+    tr: { name: 'Meydan okumayı kabul ettin', description: 'Hard seviyesinde bir quiz’i tamamen bitir.' },
+    pl: { name: 'Wyzwanie przyjęte', description: 'Ukończ w całości quiz na poziomie Hard.' },
+  },
+  quiz_all_levels: {
+    'pt-BR': { name: 'Conjunto completo', description: 'Passe por Easy, Medium e Hard pelo menos uma vez, em três sessões separadas.' },
+    vi: { name: 'Đủ bộ', description: 'Hoàn thành Easy, Medium và Hard ít nhất một lần, trong ba phiên riêng.' },
+    id: { name: 'Set lengkap', description: 'Selesaikan Easy, Medium, dan Hard setidaknya sekali dalam tiga sesi terpisah.' },
+    tr: { name: 'Tam set', description: 'Easy, Medium ve Hard seviyelerini en az bir kez, üç ayrı oturumda tamamla.' },
+    pl: { name: 'Pełny zestaw', description: 'Przejdź Easy, Medium i Hard co najmniej raz, w trzech osobnych sesjach.' },
+  },
+  quiz_perfect_easy: {
+    'pt-BR': { name: 'Ideal no Easy', description: 'Quiz Easy: todas as respostas desta tentativa estão corretas.' },
+    vi: { name: 'Hoàn hảo ở Easy', description: 'Quiz Easy: tất cả câu trả lời trong lượt này đều đúng.' },
+    id: { name: 'Easy sempurna', description: 'Kuis Easy: semua jawaban dalam sesi ini benar.' },
+    tr: { name: 'Easy kusursuz', description: 'Easy quiz: bu denemedeki tüm cevaplar doğru.' },
+    pl: { name: 'Idealny Easy', description: 'Quiz Easy: wszystkie odpowiedzi w tym podejściu są poprawne.' },
+  },
+  quiz_perfect: {
+    'pt-BR': { name: 'Nervos de aço', description: 'Conclua um quiz Hard sem nenhum erro.' },
+    vi: { name: 'Thần kinh thép', description: 'Hoàn thành quiz Hard không mắc lỗi nào.' },
+    id: { name: 'Saraf baja', description: 'Selesaikan kuis Hard tanpa satu pun kesalahan.' },
+    tr: { name: 'Çelik sinirler', description: 'Hard quiz’i tek hata yapmadan tamamla.' },
+    pl: { name: 'Stalowe nerwy', description: 'Ukończ quiz Hard bez ani jednego błędu.' },
+  },
+  quiz_perfect_medium: {
+    'pt-BR': { name: 'Mira certeira', description: 'Quiz Medium sem erros: todas as respostas da tentativa estão corretas.' },
+    vi: { name: 'Bắn chuẩn', description: 'Quiz Medium không lỗi: tất cả câu trả lời trong lượt này đều đúng.' },
+    id: { name: 'Tembakan tepat', description: 'Kuis Medium tanpa kesalahan: semua jawaban dalam sesi ini benar.' },
+    tr: { name: 'Keskin nişancı', description: 'Hatasız Medium quiz: bu denemedeki tüm cevaplar doğru.' },
+    pl: { name: 'Celny strzał', description: 'Quiz Medium bez błędów: wszystkie odpowiedzi w podejściu są poprawne.' },
+  },
+  quiz_triple_perfect: {
+    'pt-BR': { name: 'Três vezes ideal', description: 'Easy, Medium e Hard perfeitos: um quiz separado para cada nível.' },
+    vi: { name: 'Ba lần hoàn hảo', description: 'Hoàn hảo Easy, Medium và Hard: mỗi cấp một quiz riêng.' },
+    id: { name: 'Tiga kali sempurna', description: 'Easy, Medium, dan Hard sempurna: satu kuis terpisah untuk tiap level.' },
+    tr: { name: 'Üç kez kusursuz', description: 'Kusursuz Easy, Medium ve Hard: her seviye için ayrı bir quiz.' },
+    pl: { name: 'Trzykrotny ideał', description: 'Idealny Easy, Medium i Hard: osobny quiz na każdy poziom.' },
+  },
+  quiz_speed_demon: {
+    'pt-BR': { name: 'Na velocidade', description: 'Conclua totalmente um quiz Hard 5 vezes; o contador fica no app.' },
+    vi: { name: 'Tốc độ cao', description: 'Hoàn thành trọn vẹn quiz Hard 5 lần; bộ đếm được lưu trong ứng dụng.' },
+    id: { name: 'Dengan kecepatan', description: 'Selesaikan kuis Hard sepenuhnya 5 kali; penghitung disimpan di aplikasi.' },
+    tr: { name: 'Hız modunda', description: 'Hard quiz’i 5 kez tamamen bitir; sayaç uygulamada tutulur.' },
+    pl: { name: 'Na szybkości', description: 'Ukończ w całości quiz Hard 5 razy; licznik jest zapisany w aplikacji.' },
+  },
+  quiz_10_completed: {
+    'pt-BR': { name: 'Primeiros dez', description: '10 sessões de quiz concluídas. Siga em frente.' },
+    vi: { name: 'Mười lần đầu', description: 'Hoàn thành 10 phiên quiz. Cứ tiến lên.' },
+    id: { name: 'Sepuluh pertama', description: '10 sesi kuis selesai. Terus maju.' },
+    tr: { name: 'İlk on', description: '10 quiz oturumu tamamlandı. Devam et.' },
+    pl: { name: 'Pierwsze dziesięć', description: '10 sesji quizu ukończone. Naprzód.' },
+  },
+  quiz_25_completed: {
+    'pt-BR': { name: '25 quizzes', description: '25 sessões de quiz concluídas.' },
+    vi: { name: '25 quiz', description: 'Hoàn thành 25 phiên quiz.' },
+    id: { name: '25 kuis', description: '25 sesi kuis selesai.' },
+    tr: { name: '25 quiz', description: '25 quiz oturumu tamamlandı.' },
+    pl: { name: '25 quizów', description: '25 sesji quizu ukończone.' },
+  },
+  quiz_50_completed: {
+    'pt-BR': { name: '50 quizzes', description: '50 sessões de quiz concluídas.' },
+    vi: { name: '50 quiz', description: 'Hoàn thành 50 phiên quiz.' },
+    id: { name: '50 kuis', description: '50 sesi kuis selesai.' },
+    tr: { name: '50 quiz', description: '50 quiz oturumu tamamlandı.' },
+    pl: { name: '50 quizów', description: '50 sesji quizu ukończone.' },
+  },
+  quiz_100_completed: {
+    'pt-BR': { name: 'Cem quizzes', description: '100 sessões de quiz concluídas.' },
+    vi: { name: 'Một trăm quiz', description: 'Hoàn thành 100 phiên quiz.' },
+    id: { name: 'Seratus kuis', description: '100 sesi kuis selesai.' },
+    tr: { name: 'Yüz quiz', description: '100 quiz oturumu tamamlandı.' },
+    pl: { name: 'Sto quizów', description: '100 sesji quizu ukończone.' },
+  },
+  quiz_hard_10: {
+    'pt-BR': { name: 'Dez Hard', description: 'Conclua um quiz Hard 10 vezes.' },
+    vi: { name: 'Mười Hard', description: 'Hoàn thành quiz cấp Hard 10 lần.' },
+    id: { name: 'Sepuluh Hard', description: 'Selesaikan kuis level Hard 10 kali.' },
+    tr: { name: 'On Hard', description: 'Hard seviyesinde quiz’i 10 kez tamamla.' },
+    pl: { name: 'Dziesięć Hard', description: 'Ukończ quiz na poziomie Hard 10 razy.' },
+  },
+  quiz_hard_25: {
+    'pt-BR': { name: 'Morador do Hard', description: 'Conclua um quiz Hard 25 vezes.' },
+    vi: { name: 'Cư dân Hard', description: 'Hoàn thành quiz cấp Hard 25 lần.' },
+    id: { name: 'Penghuni Hard', description: 'Selesaikan kuis level Hard 25 kali.' },
+    tr: { name: 'Hard sakini', description: 'Hard seviyesinde quiz’i 25 kez tamamla.' },
+    pl: { name: 'Bywalec Hard', description: 'Ukończ quiz na poziomie Hard 25 razy.' },
+  },
+  quiz_hard_perfect_3: {
+    'pt-BR': { name: 'Três Hard sem erro', description: 'Passe 3 vezes por um quiz Hard sem nenhum erro.' },
+    vi: { name: 'Ba Hard không lỗi', description: 'Hoàn thành quiz Hard 3 lần không mắc lỗi nào.' },
+    id: { name: 'Tiga Hard tanpa salah', description: 'Selesaikan kuis Hard 3 kali tanpa satu pun kesalahan.' },
+    tr: { name: 'Üç hatasız Hard', description: 'Hard quiz’i 3 kez tek hata yapmadan tamamla.' },
+    pl: { name: 'Trzy Hard bez błędu', description: 'Przejdź quiz Hard 3 razy bez ani jednego błędu.' },
+  },
+  quiz_hard_perfect_10: {
+    'pt-BR': { name: 'Dez sem errar', description: 'Passe 10 vezes por um quiz Hard sem nenhum erro.' },
+    vi: { name: 'Mười lần không trượt', description: 'Hoàn thành quiz Hard 10 lần không mắc lỗi nào.' },
+    id: { name: 'Sepuluh tanpa meleset', description: 'Selesaikan kuis Hard 10 kali tanpa satu pun kesalahan.' },
+    tr: { name: 'On hatasız', description: 'Hard quiz’i 10 kez tek hata yapmadan tamamla.' },
+    pl: { name: 'Dziesięć bez pudła', description: 'Przejdź quiz Hard 10 razy bez ani jednego błędu.' },
+  },
+  quiz_perfect_7_days: {
+    'pt-BR': { name: 'Semana perfeita de quizzes', description: 'Por 7 dias seguidos, conclua pelo menos um quiz sem erro.' },
+    vi: { name: 'Tuần quiz hoàn hảo', description: '7 ngày liên tiếp hoàn thành ít nhất một quiz không lỗi.' },
+    id: { name: 'Minggu kuis sempurna', description: '7 hari berturut-turut selesaikan setidaknya satu kuis tanpa kesalahan.' },
+    tr: { name: 'Kusursuz quiz haftası', description: '7 gün üst üste en az bir quiz’i hatasız tamamla.' },
+    pl: { name: 'Idealny tydzień quizów', description: 'Przez 7 dni z rzędu ukończ co najmniej jeden quiz bez błędu.' },
+  },
+  quiz_all_levels_perfect_same_day: {
+    'pt-BR': { name: 'Três coroas em um dia', description: 'No mesmo dia, passe por Easy, Medium e Hard sem erros.' },
+    vi: { name: 'Ba vương miện trong ngày', description: 'Trong một ngày, hoàn thành Easy, Medium và Hard không lỗi.' },
+    id: { name: 'Tiga mahkota sehari', description: 'Dalam satu hari, selesaikan Easy, Medium, dan Hard tanpa kesalahan.' },
+    tr: { name: 'Bir günde üç taç', description: 'Bir günde Easy, Medium ve Hard seviyelerini hatasız tamamla.' },
+    pl: { name: 'Trzy korony w dzień', description: 'W jeden dzień przejdź Easy, Medium i Hard bez błędów.' },
+  },
+  combo_3: {
+    'pt-BR': { name: 'No fluxo', description: '3 respostas certas seguidas durante uma lição.' },
+    vi: { name: 'Đang vào guồng', description: '3 câu trả lời đúng liên tiếp trong bài học.' },
+    id: { name: 'Dalam alur', description: '3 jawaban benar berturut-turut selama pelajaran.' },
+    tr: { name: 'Akışta', description: 'Ders sırasında üst üste 3 doğru cevap.' },
+    pl: { name: 'W rytmie', description: '3 poprawne odpowiedzi z rzędu podczas lekcji.' },
+  },
+  combo_10: {
+    'pt-BR': { name: 'Atirador certeiro', description: '10 respostas certas seguidas nos passos da lição.' },
+    vi: { name: 'Xạ thủ', description: '10 câu đúng liên tiếp trong các bước bài học.' },
+    id: { name: 'Penembak jitu', description: '10 jawaban benar berturut-turut di langkah pelajaran.' },
+    tr: { name: 'Keskin nişancı', description: 'Ders adımlarında üst üste 10 doğru cevap.' },
+    pl: { name: 'Strzelec wyborowy', description: '10 poprawnych odpowiedzi z rzędu w krokach lekcji.' },
+  },
+  combo_20: {
+    'pt-BR': { name: 'Inabalável', description: '20 respostas certas seguidas sem errar.' },
+    vi: { name: 'Không thể phá vỡ', description: '20 câu trả lời đúng liên tiếp không trượt.' },
+    id: { name: 'Tak tergoyahkan', description: '20 jawaban benar berturut-turut tanpa meleset.' },
+    tr: { name: 'Sarsılmaz', description: 'Iska yapmadan üst üste 20 doğru cevap.' },
+    pl: { name: 'Niezłomny', description: '20 poprawnych odpowiedzi z rzędu bez pudła.' },
+  },
+  combo_50: {
+    'pt-BR': { name: 'Máquina', description: '50 respostas certas seguidas em uma série.' },
+    vi: { name: 'Cỗ máy', description: '50 câu trả lời đúng liên tiếp trong một chuỗi.' },
+    id: { name: 'Mesin', description: '50 jawaban benar berturut-turut dalam satu seri.' },
+    tr: { name: 'Makine', description: 'Tek bir seride üst üste 50 doğru cevap.' },
+    pl: { name: 'Maszyna', description: '50 poprawnych odpowiedzi z rzędu w jednej serii.' },
+  },
+  combo_100: {
+    'pt-BR': { name: 'Invencível', description: '100 respostas certas seguidas em uma série.' },
+    vi: { name: 'Bất bại', description: '100 câu trả lời đúng liên tiếp trong một chuỗi.' },
+    id: { name: 'Tak terkalahkan', description: '100 jawaban benar berturut-turut dalam satu seri.' },
+    tr: { name: 'Yenilmez', description: 'Tek bir seride üst üste 100 doğru cevap.' },
+    pl: { name: 'Niepokonany', description: '100 poprawnych odpowiedzi z rzędu w jednej serii.' },
+  },
+  combo_150: {
+    'pt-BR': { name: '150 seguidas', description: '150 respostas certas seguidas em uma série.' },
+    vi: { name: '150 liên tiếp', description: '150 câu trả lời đúng liên tiếp trong một chuỗi.' },
+    id: { name: '150 berturut-turut', description: '150 jawaban benar berturut-turut dalam satu seri.' },
+    tr: { name: 'Üst üste 150', description: 'Tek bir seride üst üste 150 doğru cevap.' },
+    pl: { name: '150 z rzędu', description: '150 poprawnych odpowiedzi z rzędu w jednej serii.' },
+  },
+  combo_250: {
+    'pt-BR': { name: 'Ritmo sobre-humano', description: '250 respostas certas seguidas em uma série.' },
+    vi: { name: 'Nhịp độ phi thường', description: '250 câu trả lời đúng liên tiếp trong một chuỗi.' },
+    id: { name: 'Ritme di luar manusia', description: '250 jawaban benar berturut-turut dalam satu seri.' },
+    tr: { name: 'İnsanüstü ritim', description: 'Tek bir seride üst üste 250 doğru cevap.' },
+    pl: { name: 'Nieludzki rytm', description: '250 poprawnych odpowiedzi z rzędu w jednej serii.' },
+  },
+  combo_500: {
+    'pt-BR': { name: 'Erro proibido', description: '500 respostas certas seguidas em uma série.' },
+    vi: { name: 'Cấm sai', description: '500 câu trả lời đúng liên tiếp trong một chuỗi.' },
+    id: { name: 'Kesalahan dilarang', description: '500 jawaban benar berturut-turut dalam satu seri.' },
+    tr: { name: 'Hata yasak', description: 'Tek bir seride üst üste 500 doğru cevap.' },
+    pl: { name: 'Błąd zakazany', description: '500 poprawnych odpowiedzi z rzędu w jednej serii.' },
+  },
+  daily_task_first: {
+    'pt-BR': { name: 'Primeira tarefa', description: 'Conclua uma das tarefas diárias na tela de tarefas.' },
+    vi: { name: 'Nhiệm vụ đầu tiên', description: 'Hoàn thành một nhiệm vụ hằng ngày trên màn hình nhiệm vụ.' },
+    id: { name: 'Tugas pertama', description: 'Selesaikan salah satu tugas harian di layar tugas.' },
+    tr: { name: 'İlk görev', description: 'Görevler ekranındaki günlük görevlerden birini tamamla.' },
+    pl: { name: 'Pierwsze zadanie', description: 'Wykonaj jedno z zadań dziennych na ekranie zadań.' },
+  },
+  all_daily: {
+    'pt-BR': { name: 'Tudo em um dia', description: 'Em um dia do calendário, conclua todas as três tarefas diárias.' },
+    vi: { name: 'Xong hết trong ngày', description: 'Trong một ngày lịch, hoàn thành cả ba nhiệm vụ hằng ngày.' },
+    id: { name: 'Semua dalam sehari', description: 'Dalam satu hari kalender, selesaikan ketiga tugas harian.' },
+    tr: { name: 'Bir günde hepsi', description: 'Bir takvim gününde üç günlük görevin tamamını bitir.' },
+    pl: { name: 'Wszystko w dzień', description: 'W jeden dzień kalendarzowy zamknij wszystkie trzy zadania dzienne.' },
+  },
+  daily_all_3: {
+    'pt-BR': { name: 'Três dias em ordem', description: 'Conclua todas as tarefas diárias por 3 dias seguidos.' },
+    vi: { name: 'Ba ngày gọn gàng', description: 'Hoàn thành tất cả nhiệm vụ hằng ngày trong 3 ngày liên tiếp.' },
+    id: { name: 'Tiga hari rapi', description: 'Selesaikan semua tugas harian selama 3 hari berturut-turut.' },
+    tr: { name: 'Üç gün düzen', description: '3 gün üst üste tüm günlük görevleri tamamla.' },
+    pl: { name: 'Trzy dni porządku', description: 'Przez 3 dni z rzędu zamykaj wszystkie zadania dzienne.' },
+  },
+  daily_all_7: {
+    'pt-BR': { name: 'Semana sem pendências', description: 'Conclua todas as tarefas diárias por 7 dias seguidos.' },
+    vi: { name: 'Tuần không nợ nhiệm vụ', description: 'Hoàn thành tất cả nhiệm vụ hằng ngày trong 7 ngày liên tiếp.' },
+    id: { name: 'Seminggu tanpa sisa', description: 'Selesaikan semua tugas harian selama 7 hari berturut-turut.' },
+    tr: { name: 'Eksiksiz hafta', description: '7 gün üst üste tüm günlük görevleri tamamla.' },
+    pl: { name: 'Tydzień bez zaległości', description: 'Przez 7 dni z rzędu zamykaj wszystkie zadania dzienne.' },
+  },
+  daily_all_14: {
+    'pt-BR': { name: 'Duas semanas em ordem', description: 'Conclua todas as tarefas diárias por 14 dias seguidos.' },
+    vi: { name: 'Hai tuần gọn gàng', description: 'Hoàn thành tất cả nhiệm vụ hằng ngày trong 14 ngày liên tiếp.' },
+    id: { name: 'Dua minggu rapi', description: 'Selesaikan semua tugas harian selama 14 hari berturut-turut.' },
+    tr: { name: 'İki hafta düzen', description: '14 gün üst üste tüm günlük görevleri tamamla.' },
+    pl: { name: 'Dwa tygodnie porządku', description: 'Przez 14 dni z rzędu zamykaj wszystkie zadania dzienne.' },
+  },
+  daily_all_30: {
+    'pt-BR': { name: '30 dias sem pendências', description: 'Conclua todas as tarefas diárias por 30 dias seguidos.' },
+    vi: { name: '30 ngày không nợ nhiệm vụ', description: 'Hoàn thành tất cả nhiệm vụ hằng ngày trong 30 ngày liên tiếp.' },
+    id: { name: '30 hari tanpa sisa', description: 'Selesaikan semua tugas harian selama 30 hari berturut-turut.' },
+    tr: { name: '30 gün eksiksiz', description: '30 gün üst üste tüm günlük görevleri tamamla.' },
+    pl: { name: '30 dni bez zaległości', description: 'Przez 30 dni z rzędu zamykaj wszystkie zadania dzienne.' },
+  },
+  daily_no_reroll: {
+    'pt-BR': { name: 'Sem trocas', description: 'Conclua todas as tarefas do dia sem substituir nenhuma delas.' },
+    vi: { name: 'Không đổi nhiệm vụ', description: 'Hoàn thành tất cả nhiệm vụ trong ngày mà không đổi nhiệm vụ nào.' },
+    id: { name: 'Tanpa ganti', description: 'Selesaikan semua tugas hari ini tanpa mengganti satu pun.' },
+    tr: { name: 'Değiştirmeden', description: 'Günün tüm görevlerini hiçbirini değiştirmeden tamamla.' },
+    pl: { name: 'Bez zamian', description: 'Zamknij wszystkie zadania dnia, nie wymieniając żadnego.' },
+  },
+  daily_no_reroll_7: {
+    'pt-BR': { name: 'Semana sem trocas', description: 'Por 7 dias seguidos, conclua todas as tarefas sem substituições.' },
+    vi: { name: 'Tuần không đổi nhiệm vụ', description: '7 ngày liên tiếp hoàn thành tất cả nhiệm vụ mà không đổi.' },
+    id: { name: 'Seminggu tanpa ganti', description: 'Selama 7 hari berturut-turut, selesaikan semua tugas tanpa mengganti.' },
+    tr: { name: 'Değişimsiz hafta', description: '7 gün üst üste tüm görevleri değiştirmeden tamamla.' },
+    pl: { name: 'Tydzień bez zamian', description: 'Przez 7 dni z rzędu zamykaj wszystkie zadania bez wymian.' },
+  },
+  daily_no_reroll_30: {
+    'pt-BR': { name: 'Sem negociação', description: 'Por 30 dias seguidos, conclua todas as tarefas sem substituições.' },
+    vi: { name: 'Không mặc cả', description: '30 ngày liên tiếp hoàn thành tất cả nhiệm vụ mà không đổi.' },
+    id: { name: 'Tanpa tawar-menawar', description: 'Selama 30 hari berturut-turut, selesaikan semua tugas tanpa mengganti.' },
+    tr: { name: 'Pazarlıksız', description: '30 gün üst üste tüm görevleri değiştirmeden tamamla.' },
+    pl: { name: 'Bez targowania', description: 'Przez 30 dni z rzędu zamykaj wszystkie zadania bez wymian.' },
+  },
+  daily_phrase_first: {
+    'pt-BR': { name: 'Frase do dia', description: 'Abra o cartão da frase do dia e leia a explicação.' },
+    vi: { name: 'Cụm từ trong ngày', description: 'Mở thẻ cụm từ trong ngày và đọc phần giải thích.' },
+    id: { name: 'Frasa hari ini', description: 'Buka kartu frasa harian dan baca penjelasannya.' },
+    tr: { name: 'Günün ifadesi', description: 'Günün ifadesi kartını aç ve açıklamayı oku.' },
+    pl: { name: 'Fraza dnia', description: 'Otwórz kartę frazy dnia i przeczytaj wyjaśnienie.' },
+  },
+  daily_phrase_save: {
+    'pt-BR': { name: 'Para a coleção', description: 'Salve a frase do dia nos cartões.' },
+    vi: { name: 'Cho vào kho', description: 'Lưu cụm từ trong ngày vào thẻ.' },
+    id: { name: 'Masuk koleksi', description: 'Simpan frasa harian ke kartu.' },
+    tr: { name: 'Koleksiyona', description: 'Günün ifadesini kartlara kaydet.' },
+    pl: { name: 'Do skarbca', description: 'Zapisz frazę dnia w kartach.' },
+  },
+  daily_phrase_read_30: {
+    'pt-BR': { name: '30 frases do dia', description: 'Abra e leia 30 frases do dia.' },
+    vi: { name: '30 cụm từ trong ngày', description: 'Mở và đọc 30 cụm từ trong ngày.' },
+    id: { name: '30 frasa harian', description: 'Buka dan baca 30 frasa harian.' },
+    tr: { name: '30 günün ifadesi', description: '30 günün ifadesini aç ve oku.' },
+    pl: { name: '30 fraz dnia', description: 'Otwórz i przeczytaj 30 fraz dnia.' },
+  },
+  daily_phrase_save_30: {
+    'pt-BR': { name: 'Frases em reserva', description: 'Salve 30 frases do dia nos cartões.' },
+    vi: { name: 'Cụm từ dự trữ', description: 'Lưu 30 cụm từ trong ngày vào thẻ.' },
+    id: { name: 'Frasa cadangan', description: 'Simpan 30 frasa harian ke kartu.' },
+    tr: { name: 'Yedek ifadeler', description: '30 günün ifadesini kartlara kaydet.' },
+    pl: { name: 'Frazy w zapasie', description: 'Zapisz 30 fraz dnia w kartach.' },
+  },
+  daily_phrase_save_100: {
+    'pt-BR': { name: 'Cem frases na coleção', description: 'Salve 100 frases do dia nos cartões.' },
+    vi: { name: 'Một trăm cụm từ trong kho', description: 'Lưu 100 cụm từ trong ngày vào thẻ.' },
+    id: { name: 'Seratus frasa di koleksi', description: 'Simpan 100 frasa harian ke kartu.' },
+    tr: { name: 'Koleksiyonda yüz ifade', description: '100 günün ifadesini kartlara kaydet.' },
+    pl: { name: 'Sto fraz w skarbcu', description: 'Zapisz 100 fraz dnia w kartach.' },
+  },
+  login_7: {
+    'pt-BR': { name: 'Aluno fiel', description: 'Abra o app por 7 dias seguidos na sequência de login.' },
+    vi: { name: 'Học viên trung thành', description: 'Mở ứng dụng 7 ngày liên tiếp trong chuỗi đăng nhập.' },
+    id: { name: 'Murid setia', description: 'Buka aplikasi selama 7 hari berturut-turut dalam streak login.' },
+    tr: { name: 'Sadık öğrenci', description: 'Giriş serisinde 7 gün üst üste uygulamayı aç.' },
+    pl: { name: 'Wierny uczeń', description: 'Otwieraj aplikację przez 7 dni z rzędu w serii logowania.' },
+  },
+  login_14: {
+    'pt-BR': { name: 'Duas semanas', description: 'Abra o app por 14 dias seguidos.' },
+    vi: { name: 'Hai tuần', description: 'Mở ứng dụng 14 ngày liên tiếp.' },
+    id: { name: 'Dua minggu', description: 'Buka aplikasi selama 14 hari berturut-turut.' },
+    tr: { name: 'İki hafta', description: 'Uygulamayı 14 gün üst üste aç.' },
+    pl: { name: 'Dwa tygodnie', description: 'Otwieraj aplikację przez 14 dni z rzędu.' },
+  },
+  login_30: {
+    'pt-BR': { name: 'Um mês no app', description: '30 dias seguidos com pelo menos um login por dia.' },
+    vi: { name: 'Một tháng trong ứng dụng', description: '30 ngày liên tiếp có ít nhất một lần mở ứng dụng mỗi ngày.' },
+    id: { name: 'Sebulan di aplikasi', description: '30 hari berturut-turut dengan setidaknya satu login per hari.' },
+    tr: { name: 'Uygulamada bir ay', description: '30 gün üst üste her gün en az bir giriş yap.' },
+    pl: { name: 'Miesiąc w aplikacji', description: '30 dni z rzędu z co najmniej jednym logowaniem dziennie.' },
+  },
+  login_60: {
+    'pt-BR': { name: 'Dois meses', description: 'Abra o app todos os dias por 60 dias seguidos.' },
+    vi: { name: 'Hai tháng', description: 'Mở ứng dụng mỗi ngày trong 60 ngày liên tiếp.' },
+    id: { name: 'Dua bulan', description: 'Buka aplikasi setiap hari selama 60 hari berturut-turut.' },
+    tr: { name: 'İki ay', description: '60 gün üst üste her gün uygulamaya gir.' },
+    pl: { name: 'Dwa miesiące', description: 'Wchodź do aplikacji codziennie przez 60 dni z rzędu.' },
+  },
+  login_100: {
+    'pt-BR': { name: '100 logins seguidos', description: 'Abra o app por 100 dias seguidos.' },
+    vi: { name: '100 lần mở liên tiếp', description: 'Mở ứng dụng 100 ngày liên tiếp.' },
+    id: { name: '100 login berturut-turut', description: 'Buka aplikasi selama 100 hari berturut-turut.' },
+    tr: { name: 'Üst üste 100 giriş', description: 'Uygulamayı 100 gün üst üste aç.' },
+    pl: { name: '100 logowań z rzędu', description: 'Otwieraj aplikację przez 100 dni z rzędu.' },
+  },
+  login_200: {
+    'pt-BR': { name: '200 logins seguidos', description: 'Abra o app por 200 dias seguidos.' },
+    vi: { name: '200 lần mở liên tiếp', description: 'Mở ứng dụng 200 ngày liên tiếp.' },
+    id: { name: '200 login berturut-turut', description: 'Buka aplikasi selama 200 hari berturut-turut.' },
+    tr: { name: 'Üst üste 200 giriş', description: 'Uygulamayı 200 gün üst üste aç.' },
+    pl: { name: '200 logowań z rzędu', description: 'Otwieraj aplikację przez 200 dni z rzędu.' },
+  },
+  login_365: {
+    'pt-BR': { name: 'Um ano inteiro no app', description: '365 dias seguidos com login diário.' },
+    vi: { name: 'Cả năm trong ứng dụng', description: '365 ngày liên tiếp có mở ứng dụng mỗi ngày.' },
+    id: { name: 'Setahun penuh di aplikasi', description: '365 hari berturut-turut dengan login harian.' },
+    tr: { name: 'Uygulamada tam bir yıl', description: '365 gün üst üste günlük giriş yap.' },
+    pl: { name: 'Cały rok w aplikacji', description: '365 dni z rzędu z codziennym logowaniem.' },
+  },
+  comeback: {
+    'pt-BR': { name: 'Retorno', description: 'Volte após cerca de 7 dias ou mais sem atividade para ativar o bônus de retorno.' },
+    vi: { name: 'Trở lại', description: 'Quay lại sau khoảng 7 ngày trở lên không hoạt động để nhận thưởng chào mừng trở lại.' },
+    id: { name: 'Kembali lagi', description: 'Kembali setelah sekitar 7 hari atau lebih tanpa aktivitas untuk memicu bonus kembali.' },
+    tr: { name: 'Geri dönüş', description: 'Yaklaşık 7 gün veya daha uzun süre etkinlik olmadan geri dön ve dönüş bonusunu tetikle.' },
+    pl: { name: 'Powrót', description: 'Wróć po około 7 lub więcej dniach bez aktywności, aby uruchomić bonus powrotu.' },
+  },
+  diagnosis: {
+    'pt-BR': { name: 'Diagnóstico feito', description: 'Conclua o teste diagnóstico de nível até o fim.' },
+    vi: { name: 'Đã chẩn đoán', description: 'Hoàn thành bài kiểm tra chẩn đoán trình độ đến cuối.' },
+    id: { name: 'Diagnosis selesai', description: 'Selesaikan tes diagnosis level sampai akhir.' },
+    tr: { name: 'Tanı kondu', description: 'Seviye tanılama testini sonuna kadar tamamla.' },
+    pl: { name: 'Diagnoza gotowa', description: 'Ukończ test diagnostyczny poziomu do końca.' },
+  },
+  night_owl: {
+    'pt-BR': { name: 'Coruja noturna', description: 'Ganhe XP no app das 23:00 às 5:00 no horário local.' },
+    vi: { name: 'Cú đêm', description: 'Nhận XP trong ứng dụng từ 23:00 đến 5:00 theo giờ địa phương.' },
+    id: { name: 'Burung malam', description: 'Dapatkan XP di aplikasi antara pukul 23.00 dan 05.00 waktu setempat.' },
+    tr: { name: 'Gece kuşu', description: 'Yerel saate göre 23:00 ile 5:00 arasında uygulamada XP kazan.' },
+    pl: { name: 'Nocny marek', description: 'Zdobądź XP w aplikacji między 23:00 a 5:00 czasu lokalnego.' },
+  },
+  early_bird: {
+    'pt-BR': { name: 'Madrugador', description: 'Ganhe XP entre 5:00 e 7:00 no horário local.' },
+    vi: { name: 'Chim dậy sớm', description: 'Nhận XP từ 5:00 đến 7:00 theo giờ địa phương.' },
+    id: { name: 'Bangun pagi', description: 'Dapatkan XP antara pukul 05.00 dan 07.00 waktu setempat.' },
+    tr: { name: 'Erkenci', description: 'Yerel saate göre 5:00 ile 7:00 arasında XP kazan.' },
+    pl: { name: 'Ranny ptaszek', description: 'Zdobądź XP między 5:00 a 7:00 czasu lokalnego.' },
+  },
+  exam_first: {
+    'pt-BR': { name: 'Exame aprovado', description: 'Passe no exame após uma lição pelo menos uma vez.' },
+    vi: { name: 'Đã qua kỳ thi', description: 'Vượt qua bài thi sau bài học ít nhất một lần.' },
+    id: { name: 'Ujian lulus', description: 'Lulus ujian setelah pelajaran setidaknya sekali.' },
+    tr: { name: 'Sınav geçildi', description: 'Bir dersten sonraki sınavı en az bir kez geç.' },
+    pl: { name: 'Egzamin zdany', description: 'Zdaj egzamin po lekcji co najmniej raz.' },
+  },
+  exam_ace: {
+    'pt-BR': { name: 'Aluno nota alta', description: 'Faça pelo menos 90% no exame da lição.' },
+    vi: { name: 'Học viên xuất sắc', description: 'Đạt ít nhất 90% trong bài thi của bài học.' },
+    id: { name: 'Siswa unggul', description: 'Raih minimal 90% pada ujian pelajaran.' },
+    tr: { name: 'Pekiyi', description: 'Ders sınavında en az %90 al.' },
+    pl: { name: 'Prymus', description: 'Zdobądź co najmniej 90% na egzaminie lekcji.' },
+  },
+  exam_ace_5: {
+    'pt-BR': { name: 'Cinco ótimos exames', description: 'Faça pelo menos 90% no exame 5 vezes.' },
+    vi: { name: 'Năm bài thi xuất sắc', description: 'Đạt ít nhất 90% trong bài thi 5 lần.' },
+    id: { name: 'Lima ujian unggul', description: 'Raih minimal 90% pada ujian sebanyak 5 kali.' },
+    tr: { name: 'Beş harika sınav', description: 'Sınavda 5 kez en az %90 al.' },
+    pl: { name: 'Pięć świetnych egzaminów', description: 'Zdobądź co najmniej 90% na egzaminie 5 razy.' },
+  },
+  exam_ace_10: {
+    'pt-BR': { name: 'Dez ótimos exames', description: 'Faça pelo menos 90% no exame 10 vezes.' },
+    vi: { name: 'Mười bài thi xuất sắc', description: 'Đạt ít nhất 90% trong bài thi 10 lần.' },
+    id: { name: 'Sepuluh ujian unggul', description: 'Raih minimal 90% pada ujian sebanyak 10 kali.' },
+    tr: { name: 'On harika sınav', description: 'Sınavda 10 kez en az %90 al.' },
+    pl: { name: 'Dziesięć świetnych egzaminów', description: 'Zdobądź co najmniej 90% na egzaminie 10 razy.' },
+  },
+  flashcards_session: {
+    'pt-BR': { name: 'Todas as cartas de uma vez', description: 'Em uma visita à coleção, veja cada cartão salvo.' },
+    vi: { name: 'Tất cả thẻ trong một lượt', description: 'Trong một lần vào màn hình bộ sưu tập, xem từng thẻ đã lưu.' },
+    id: { name: 'Semua kartu sekaligus', description: 'Dalam satu sesi di layar koleksi, lihat setiap kartu yang tersimpan.' },
+    tr: { name: 'Tüm kartlar tek seferde', description: 'Koleksiyon ekranına bir girişte kayıtlı her kartı görüntüle.' },
+    pl: { name: 'Wszystkie karty naraz', description: 'Podczas jednego wejścia do kolekcji obejrzyj każdą zapisaną kartę.' },
+  },
+  flashcards_save_25: {
+    'pt-BR': { name: 'Seu dicionário', description: 'Salve 25 cartões na coleção.' },
+    vi: { name: 'Từ điển của bạn', description: 'Lưu 25 thẻ vào bộ sưu tập.' },
+    id: { name: 'Kamusmu sendiri', description: 'Simpan 25 kartu ke koleksi.' },
+    tr: { name: 'Kendi sözlüğün', description: 'Koleksiyona 25 kart kaydet.' },
+    pl: { name: 'Własny słownik', description: 'Zapisz 25 kart w kolekcji.' },
+  },
+  flashcards_save_50: {
+    'pt-BR': { name: 'Arquivista', description: 'Salve 50 cartões na coleção.' },
+    vi: { name: 'Người lưu trữ', description: 'Lưu 50 thẻ vào bộ sưu tập.' },
+    id: { name: 'Arsiparis', description: 'Simpan 50 kartu ke koleksi.' },
+    tr: { name: 'Arşivci', description: 'Koleksiyona 50 kart kaydet.' },
+    pl: { name: 'Archiwista', description: 'Zapisz 50 kart w kolekcji.' },
+  },
+  flashcards_save_100: {
+    'pt-BR': { name: '100 cartões', description: 'Salve 100 cartões na coleção.' },
+    vi: { name: '100 thẻ', description: 'Lưu 100 thẻ vào bộ sưu tập.' },
+    id: { name: '100 kartu', description: 'Simpan 100 kartu ke koleksi.' },
+    tr: { name: '100 kart', description: 'Koleksiyona 100 kart kaydet.' },
+    pl: { name: '100 kart', description: 'Zapisz 100 kart w kolekcji.' },
+  },
+  flashcards_save_250: {
+    'pt-BR': { name: 'Grande arquivo', description: 'Salve 250 cartões na coleção.' },
+    vi: { name: 'Kho lưu trữ lớn', description: 'Lưu 250 thẻ vào bộ sưu tập.' },
+    id: { name: 'Arsip besar', description: 'Simpan 250 kartu ke koleksi.' },
+    tr: { name: 'Büyük arşiv', description: 'Koleksiyona 250 kart kaydet.' },
+    pl: { name: 'Wielkie archiwum', description: 'Zapisz 250 kart w kolekcji.' },
+  },
+  flashcards_flip_100: {
+    'pt-BR': { name: 'Cem viradas', description: 'Vire cartões 100 vezes durante a revisão.' },
+    vi: { name: 'Một trăm lần lật', description: 'Lật thẻ 100 lần khi ôn tập.' },
+    id: { name: 'Seratus balik', description: 'Balik kartu 100 kali saat mengulang.' },
+    tr: { name: 'Yüz çevirme', description: 'Tekrarda kartları 100 kez çevir.' },
+    pl: { name: 'Sto obrotów', description: 'Obróć karty 100 razy podczas powtórki.' },
+  },
+  flashcards_flip_500: {
+    'pt-BR': { name: '500 viradas', description: 'Vire cartões 500 vezes durante a revisão.' },
+    vi: { name: '500 lần lật', description: 'Lật thẻ 500 lần khi ôn tập.' },
+    id: { name: '500 balik', description: 'Balik kartu 500 kali saat mengulang.' },
+    tr: { name: '500 çevirme', description: 'Tekrarda kartları 500 kez çevir.' },
+    pl: { name: '500 obrotów', description: 'Obróć karty 500 razy podczas powtórki.' },
+  },
+  flashcards_flip_1000: {
+    'pt-BR': { name: 'Mil viradas', description: 'Vire cartões 1000 vezes durante a revisão.' },
+    vi: { name: 'Một nghìn lần lật', description: 'Lật thẻ 1000 lần khi ôn tập.' },
+    id: { name: 'Seribu balik', description: 'Balik kartu 1000 kali saat mengulang.' },
+    tr: { name: 'Bin çevirme', description: 'Tekrarda kartları 1000 kez çevir.' },
+    pl: { name: 'Tysiąc obrotów', description: 'Obróć karty 1000 razy podczas powtórki.' },
+  },
+  flashcards_view_7_days: {
+    'pt-BR': { name: 'Semana de cartões', description: 'Veja cartões na coleção por 7 dias seguidos.' },
+    vi: { name: 'Tuần thẻ học', description: 'Xem thẻ trong bộ sưu tập 7 ngày liên tiếp.' },
+    id: { name: 'Minggu kartu', description: 'Lihat kartu di koleksi selama 7 hari berturut-turut.' },
+    tr: { name: 'Kart haftası', description: 'Koleksiyonda 7 gün üst üste kartları görüntüle.' },
+    pl: { name: 'Tydzień kart', description: 'Przeglądaj karty w kolekcji przez 7 dni z rzędu.' },
+  },
+  flashcards_view_14_days: {
+    'pt-BR': { name: 'Duas semanas de cartões', description: 'Veja cartões na coleção por 14 dias seguidos.' },
+    vi: { name: 'Hai tuần thẻ học', description: 'Xem thẻ trong bộ sưu tập 14 ngày liên tiếp.' },
+    id: { name: 'Dua minggu kartu', description: 'Lihat kartu di koleksi selama 14 hari berturut-turut.' },
+    tr: { name: 'İki kart haftası', description: 'Koleksiyonda 14 gün üst üste kartları görüntüle.' },
+    pl: { name: 'Dwa tygodnie kart', description: 'Przeglądaj karty w kolekcji przez 14 dni z rzędu.' },
+  },
+  flashcards_view_30_days: {
+    'pt-BR': { name: 'Mês de cartões', description: 'Veja cartões na coleção por 30 dias seguidos.' },
+    vi: { name: 'Tháng thẻ học', description: 'Xem thẻ trong bộ sưu tập 30 ngày liên tiếp.' },
+    id: { name: 'Bulan kartu', description: 'Lihat kartu di koleksi selama 30 hari berturut-turut.' },
+    tr: { name: 'Kart ayı', description: 'Koleksiyonda 30 gün üst üste kartları görüntüle.' },
+    pl: { name: 'Miesiąc kart', description: 'Przeglądaj karty w kolekcji przez 30 dni z rzędu.' },
+  },
+  flashcards_sources_4: {
+    'pt-BR': { name: 'Quatro fontes', description: 'Salve cartões de uma lição ou quiz, palavras, verbos e frase do dia.' },
+    vi: { name: 'Bốn nguồn', description: 'Lưu thẻ từ bài học hoặc quiz, từ vựng, động từ và cụm từ trong ngày.' },
+    id: { name: 'Empat sumber', description: 'Simpan kartu dari pelajaran atau kuis, kata, verba, dan frasa harian.' },
+    tr: { name: 'Dört kaynak', description: 'Ders veya quiz, kelimeler, fiiller ve günün ifadesinden kart kaydet.' },
+    pl: { name: 'Cztery źródła', description: 'Zapisz karty z lekcji lub quizu, słów, czasowników i frazy dnia.' },
+  },
+};
+
+const ACHIEVEMENT_NAME_PICKERS: Record<Lang, AchievementLocalePicker> = {
+  ru: (achievement) => achievement.nameRu,
+  uk: (achievement) => achievement.nameUk,
+  es: (achievement) => achievement.nameEs ?? ACHIEVEMENT_ES[achievement.id]?.nameEs,
+  'pt-BR': (achievement) => plannedAchievementCopy(achievement, 'pt-BR', 'name'),
+  vi: (achievement) => plannedAchievementCopy(achievement, 'vi', 'name'),
+  id: (achievement) => plannedAchievementCopy(achievement, 'id', 'name'),
+  tr: (achievement) => plannedAchievementCopy(achievement, 'tr', 'name'),
+  pl: (achievement) => plannedAchievementCopy(achievement, 'pl', 'name'),
+};
+
+const ACHIEVEMENT_DESC_PICKERS: Record<Lang, AchievementLocalePicker> = {
+  ru: (achievement) => achievement.descRu,
+  uk: (achievement) => achievement.descUk,
+  es: (achievement) => achievement.descEs ?? ACHIEVEMENT_ES[achievement.id]?.descEs,
+  'pt-BR': (achievement) => plannedAchievementCopy(achievement, 'pt-BR', 'description'),
+  vi: (achievement) => plannedAchievementCopy(achievement, 'vi', 'description'),
+  id: (achievement) => plannedAchievementCopy(achievement, 'id', 'description'),
+  tr: (achievement) => plannedAchievementCopy(achievement, 'tr', 'description'),
+  pl: (achievement) => plannedAchievementCopy(achievement, 'pl', 'description'),
+};
+
+const MEDAL_BLOCK_LESSON_RANGES: Record<string, string> = {
+  a1: '1-8',
+  a2: '9-18',
+  b1: '19-28',
+  b2: '29-32',
+};
+
+const MEDAL_TIER_REQUIRED_PASSES: Record<string, number> = {
+  ruby: 2,
+  emerald: 3,
+  diamond: 4,
+  obsidian: 7,
+  mythic: 10,
+};
+
+const MEDAL_TIER_LABELS: Record<string, Record<PlannedAchievementLang, string>> = {
+  ruby: { 'pt-BR': 'rubi', vi: 'ruby', id: 'ruby', tr: 'yakut', pl: 'rubin' },
+  emerald: { 'pt-BR': 'esmeralda', vi: 'ngọc lục bảo', id: 'zamrud', tr: 'zümrüt', pl: 'szmaragd' },
+  diamond: { 'pt-BR': 'diamante', vi: 'kim cương', id: 'berlian', tr: 'elmas', pl: 'diament' },
+  obsidian: { 'pt-BR': 'obsidiana', vi: 'obsidian', id: 'obsidian', tr: 'obsidyen', pl: 'obsydian' },
+  mythic: { 'pt-BR': 'mítica', vi: 'thần thoại', id: 'mitis', tr: 'efsanevi', pl: 'mityczna' },
+};
+
+function plannedMedalAchievementCopy(
+  achievementId: string,
+  lang: PlannedAchievementLang,
+  field: PlannedAchievementField,
+): string | undefined {
+  if (achievementId === 'gem_all_complete') {
+    const copy: PlannedAchievementCopy = {
+      'pt-BR': { name: 'Colecionador de medalhas', description: 'Colete a medalha mais alta, diamante, nos quatro blocos: A1, A2, B1 e B2.' },
+      vi: { name: 'Nhà sưu tập huy chương', description: 'Sưu tầm huy chương cao nhất, kim cương, ở cả bốn khối: A1, A2, B1 và B2.' },
+      id: { name: 'Kolektor medali', description: 'Kumpulkan medali tertinggi, berlian, di keempat blok: A1, A2, B1, dan B2.' },
+      tr: { name: 'Madalya koleksiyoncusu', description: 'Dört blokta da en yüksek, elmas madalyayı topla: A1, A2, B1 ve B2.' },
+      pl: { name: 'Kolekcjoner medali', description: 'Zbierz najwyższy, diamentowy medal we wszystkich czterech blokach: A1, A2, B1 i B2.' },
+    };
+    return copy[lang][field];
+  }
+  if (achievementId === 'gem_all_obsidian') {
+    const copy: PlannedAchievementCopy = {
+      'pt-BR': { name: 'Todas as obsidianas', description: 'Colete a medalha de obsidiana em A1, A2, B1 e B2.' },
+      vi: { name: 'Tất cả obsidian', description: 'Sưu tầm huy chương obsidian ở A1, A2, B1 và B2.' },
+      id: { name: 'Semua obsidian', description: 'Kumpulkan medali obsidian di A1, A2, B1, dan B2.' },
+      tr: { name: 'Tüm obsidyenler', description: 'A1, A2, B1 ve B2 için obsidyen madalyayı topla.' },
+      pl: { name: 'Wszystkie obsydiany', description: 'Zbierz obsydianowy medal w A1, A2, B1 i B2.' },
+    };
+    return copy[lang][field];
+  }
+  if (achievementId === 'gem_all_mythic') {
+    const copy: PlannedAchievementCopy = {
+      'pt-BR': { name: 'Todas as míticas', description: 'Colete a medalha mítica em A1, A2, B1 e B2.' },
+      vi: { name: 'Tất cả thần thoại', description: 'Sưu tầm huy chương thần thoại ở A1, A2, B1 và B2.' },
+      id: { name: 'Semua mitis', description: 'Kumpulkan medali mitis di A1, A2, B1, dan B2.' },
+      tr: { name: 'Tüm efsaneviler', description: 'A1, A2, B1 ve B2 için efsanevi madalyayı topla.' },
+      pl: { name: 'Wszystkie mityczne', description: 'Zbierz mityczny medal w A1, A2, B1 i B2.' },
+    };
+    return copy[lang][field];
+  }
+
+  const match = achievementId.match(/^gem_(a1|a2|b1|b2)_(ruby|emerald|diamond|obsidian|mythic)$/u);
+  if (!match) return undefined;
+
+  const [, block, tier] = match;
+  const blockLabel = block.toUpperCase();
+  const tierLabel = MEDAL_TIER_LABELS[tier]?.[lang];
+  const lessonRange = MEDAL_BLOCK_LESSON_RANGES[block];
+  const requiredPasses = MEDAL_TIER_REQUIRED_PASSES[tier];
+  if (!tierLabel || !lessonRange || !requiredPasses) return undefined;
+
+  if (field === 'name') return `${blockLabel} ${tierLabel}`;
+
+  const descriptions: Record<PlannedAchievementLang, string> = {
+    'pt-BR': `Lições ${lessonRange}: cada uma concluída pelo menos ${requiredPasses} vezes.`,
+    vi: `Bài ${lessonRange}: mỗi bài hoàn thành ít nhất ${requiredPasses} lần.`,
+    id: `Pelajaran ${lessonRange}: masing-masing diselesaikan setidaknya ${requiredPasses} kali.`,
+    tr: `${lessonRange}. dersler: her biri en az ${requiredPasses} kez tamamlandı.`,
+    pl: `Lekcje ${lessonRange}: każda ukończona co najmniej ${requiredPasses} razy.`,
+  };
+  return descriptions[lang];
+}
+
+function plannedAchievementCopy(
+  achievement: Achievement,
+  lang: PlannedAchievementLang,
+  field: PlannedAchievementField,
+): string {
+  return (
+    ACHIEVEMENT_PLANNED_COPY[achievement.id]?.[lang][field] ??
+    plannedMedalAchievementCopy(achievement.id, lang, field) ??
+    plannedAchievementNeedsReview(lang, achievement.id, field)
+  );
+}
+
+function plannedAchievementNeedsReview(
+  lang: PlannedAchievementLang,
+  achievementId: string,
+  field: PlannedAchievementField,
+): string {
+  return `needs-review:${lang}:achievement.${achievementId}.${field}`;
+}
+
 export function achievementNameForLang(a: Achievement, lang: Lang): string {
-  if (lang === 'uk') return a.nameUk;
-  if (lang === 'es') return a.nameEs ?? ACHIEVEMENT_ES[a.id]?.nameEs ?? a.nameRu;
-  return a.nameRu;
+  const localized = ACHIEVEMENT_NAME_PICKERS[lang](a);
+  return localized ?? a.nameRu;
 }
 
 export function achievementDescForLang(a: Achievement, lang: Lang): string {
-  if (lang === 'uk') return a.descUk;
-  if (lang === 'es') return a.descEs ?? ACHIEVEMENT_ES[a.id]?.descEs ?? a.descRu;
-  return a.descRu;
+  const localized = ACHIEVEMENT_DESC_PICKERS[lang](a);
+  return localized ?? a.descRu;
 }
 
 // Список достижений пополняется без миграции: новые id подхватываются loadAchievementStates().
@@ -836,24 +1891,53 @@ const STORAGE_KEY = 'achievements_v1';
 /** Одноразовая миграция: сброс shardClaimed у уже открытых (старые версии могли оставить true по ошибке). */
 const SHARD_REOPEN_INTEGRITY_KEY = 'achievements_shard_reopen_mis_migrated_v1';
 
+const ACHIEVEMENT_TARGETS: readonly RuntimeStudyTarget[] = ['en', 'fr'];
+
+const isTargetAchievement = (id: string): boolean => {
+  const achievement = ALL_ACHIEVEMENTS.find(a => a.id === id);
+  if (!achievement) return false;
+  if (achievement.category === 'lessons' || achievement.category === 'quiz' || achievement.category === 'medal') return true;
+  return (
+    id.startsWith('lesson_') ||
+    id.startsWith('gem_') ||
+    id.startsWith('quiz_') ||
+    id.startsWith('combo_') ||
+    id.startsWith('exam_') ||
+    id.startsWith('flashcards_') ||
+    id.startsWith('recall_') ||
+    id.startsWith('trainer_') ||
+    id.startsWith('daily_phrase') ||
+    id.startsWith('daily_task') ||
+    id.startsWith('daily_all') ||
+    id.startsWith('daily_no_reroll') ||
+    id.startsWith('pack_') ||
+    id.startsWith('share_achievement') ||
+    id === 'all_daily' ||
+    id === 'diagnosis'
+  );
+};
+
 const normalizeAchievementState = (s: AchievementState): AchievementState => ({
   ...s,
   notified: s.notified ?? false,
   shardClaimed: s.unlockedAt === null ? true : (s.shardClaimed === undefined ? false : s.shardClaimed),
 });
 
-export const loadAchievementStates = async (): Promise<AchievementState[]> => {
+const loadAchievementStatesFromKey = async (
+  key: string,
+  ids: Set<string> = new Set(ALL_ACHIEVEMENTS.map(a => a.id)),
+): Promise<AchievementState[]> => {
   try {
-    const raw = await AsyncStorage.getItem(STORAGE_KEY);
+    const raw = await AsyncStorage.getItem(key);
     if (raw) {
       const parsed: AchievementState[] = JSON.parse(raw);
-      const validIds = new Set(ALL_ACHIEVEMENTS.map(a => a.id));
       const normalized = parsed.map(normalizeAchievementState);
-      let next = normalized.filter(s => validIds.has(s.id));
+      let next = normalized.filter(s => ids.has(s.id));
       const hadObsolete = next.length !== normalized.length;
       const knownIds = new Set(next.map(s => s.id));
       let addedNew = false;
       for (const a of ALL_ACHIEVEMENTS) {
+        if (!ids.has(a.id)) continue;
         if (!knownIds.has(a.id)) {
           next.push({ id: a.id, unlockedAt: null, notified: false, shardClaimed: true });
           knownIds.add(a.id);
@@ -861,7 +1945,7 @@ export const loadAchievementStates = async (): Promise<AchievementState[]> => {
         }
       }
       let shouldWrite = hadObsolete || addedNew || JSON.stringify(next) !== raw;
-      const integrity = await AsyncStorage.getItem(SHARD_REOPEN_INTEGRITY_KEY);
+      const integrity = await AsyncStorage.getItem(`${SHARD_REOPEN_INTEGRITY_KEY}:${key}`);
       if (integrity !== '1') {
         for (const s of next) {
           if (s.unlockedAt !== null) {
@@ -869,22 +1953,75 @@ export const loadAchievementStates = async (): Promise<AchievementState[]> => {
           }
         }
         shouldWrite = true;
-        await AsyncStorage.setItem(SHARD_REOPEN_INTEGRITY_KEY, '1');
+        await AsyncStorage.setItem(`${SHARD_REOPEN_INTEGRITY_KEY}:${key}`, '1');
       }
       if (shouldWrite) {
-        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+        await AsyncStorage.setItem(key, JSON.stringify(next));
       }
       return next;
     }
-    const initial: AchievementState[] = ALL_ACHIEVEMENTS.map(a => ({
-      id: a.id, unlockedAt: null, notified: false, shardClaimed: true,
-    }));
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
+    const initial: AchievementState[] = ALL_ACHIEVEMENTS
+      .filter(a => ids.has(a.id))
+      .map(a => ({ id: a.id, unlockedAt: null, notified: false, shardClaimed: true }));
+    await AsyncStorage.setItem(key, JSON.stringify(initial));
     return initial;
   } catch { return []; }
 };
 
-const saveStates = async (states: AchievementState[]) => {
+const targetAchievementIds = (): Set<string> =>
+  new Set(ALL_ACHIEVEMENTS.filter(a => isTargetAchievement(a.id)).map(a => a.id));
+
+const globalAchievementIds = (): Set<string> =>
+  new Set(ALL_ACHIEVEMENTS.filter(a => !isTargetAchievement(a.id)).map(a => a.id));
+
+export const loadAchievementStatesForTarget = async (
+  studyTarget?: RuntimeStudyTarget,
+): Promise<AchievementState[]> => {
+  const target = storageStudyTarget(studyTarget);
+  if (target === 'fr') {
+    const [globalStates, targetStates] = await Promise.all([
+      loadAchievementStatesFromKey(STORAGE_KEY, globalAchievementIds()),
+      loadAchievementStatesFromKey(achievementStateKey('fr'), targetAchievementIds()),
+    ]);
+    return [...globalStates, ...targetStates];
+  }
+  return loadAchievementStatesFromKey(STORAGE_KEY);
+};
+
+export const loadAchievementStates = async (): Promise<AchievementState[]> => {
+  const [legacyStates, frenchStates] = await Promise.all([
+    loadAchievementStatesFromKey(STORAGE_KEY),
+    loadAchievementStatesFromKey(achievementStateKey('fr'), targetAchievementIds()),
+  ]);
+  const byId = new Map<string, AchievementState>();
+  for (const state of legacyStates) byId.set(state.id, state);
+  for (const state of frenchStates) {
+    const existing = byId.get(state.id);
+    if (!existing || (existing.unlockedAt === null && state.unlockedAt !== null)) {
+      byId.set(state.id, state);
+    } else if (existing.unlockedAt !== null && state.unlockedAt !== null) {
+      byId.set(state.id, {
+        ...existing,
+        notified: existing.notified && state.notified,
+        shardClaimed: existing.shardClaimed && state.shardClaimed,
+      });
+    }
+  }
+  return ALL_ACHIEVEMENTS.map(a => byId.get(a.id)).filter(Boolean) as AchievementState[];
+};
+
+const saveStates = async (states: AchievementState[], studyTarget?: RuntimeStudyTarget) => {
+  const target = storageStudyTarget(studyTarget);
+  const targetIds = targetAchievementIds();
+  if (target === 'fr') {
+    const globalRows = states.filter(s => !targetIds.has(s.id));
+    const targetRows = states.filter(s => targetIds.has(s.id));
+    try {
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(globalRows));
+      await AsyncStorage.setItem(achievementStateKey('fr'), JSON.stringify(targetRows));
+    } catch {}
+    return;
+  }
   try { await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(states)); } catch {}
 };
 
@@ -1029,6 +2166,21 @@ const ACHIEVEMENT_BACKFILL_KEY = 'achievements_progress_backfill_v3';
 const readStoredCounter = async (key: string): Promise<number> =>
   parseInt((await AsyncStorage.getItem(key)) ?? '0', 10) || 0;
 
+const readQuizAchievementCounterAcrossTargets = async (
+  rawEnglishKey: 'achievement_quiz_total_count' | 'quiz_hard_count' | 'achievement_quiz_hard_perfect_count',
+): Promise<number> => {
+  const [englishLegacy, frenchScoped] = await Promise.all([
+    readStoredCounter(quizAchievementCounterKey(rawEnglishKey, 'en')),
+    readStoredCounter(quizAchievementCounterKey(rawEnglishKey, 'fr')),
+  ]);
+  return englishLegacy + frenchScoped;
+};
+
+export const bumpQuizAchievementCounter = (
+  rawEnglishKey: 'achievement_quiz_total_count' | 'quiz_hard_count' | 'achievement_quiz_hard_perfect_count',
+  studyTarget?: RuntimeStudyTarget,
+): Promise<number> => bumpStoredCounter(quizAchievementCounterKey(rawEnglishKey, studyTarget));
+
 const setStoredCounterAtLeast = async (key: string, value: number): Promise<number> => {
   const safe = Math.max(0, Math.floor(Number.isFinite(value) ? value : 0));
   const cur = await readStoredCounter(key);
@@ -1081,6 +2233,23 @@ const readStoredObjectList = async (key: string): Promise<Array<Record<string, u
   }
 };
 
+const ACHIEVEMENT_PROGRESS_TARGETS: readonly RuntimeStudyTarget[] = ['en', 'fr'];
+
+const achievementProgressTargetsForEvent = (studyTarget?: RuntimeStudyTarget): readonly RuntimeStudyTarget[] => {
+  if (studyTarget === null || studyTarget === undefined) return ACHIEVEMENT_PROGRESS_TARGETS;
+  return storageStudyTarget(studyTarget) === 'fr' ? ['fr'] : ['en'];
+};
+
+const readStoredObjectLists = async (keys: readonly string[]): Promise<Array<Record<string, unknown>>> => {
+  const lists = await Promise.all(keys.map(readStoredObjectList));
+  return lists.flat();
+};
+
+const readStoredStringLists = async (keys: readonly string[]): Promise<string[]> => {
+  const lists = await Promise.all(keys.map(readStoredStringList));
+  return lists.flat();
+};
+
 const COURSE_ACHIEVEMENT_RANGES: Record<string, [number, number]> = {
   a1: [1, 8],
   a2: [9, 18],
@@ -1089,41 +2258,70 @@ const COURSE_ACHIEVEMENT_RANGES: Record<string, [number, number]> = {
 };
 
 const readLessonPassCounts = async (): Promise<number[]> => {
-  const keys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_pass_count`);
+  const lessonIds = Array.from({ length: 32 }, (_, i) => i + 1);
+  const keys = lessonIds.flatMap(lessonId =>
+    ACHIEVEMENT_PROGRESS_TARGETS.map(studyTarget => lessonPassCountKey(lessonId, studyTarget)),
+  );
   try {
     const pairs = await AsyncStorage.multiGet(keys);
-    return pairs.map(([, raw]) => Math.max(0, parseInt(raw ?? '0', 10) || 0));
+    const map = Object.fromEntries(pairs);
+    return lessonIds.map(lessonId => Math.max(
+      ...ACHIEVEMENT_PROGRESS_TARGETS.map(studyTarget =>
+        Math.max(0, parseInt(map[lessonPassCountKey(lessonId, studyTarget)] ?? '0', 10) || 0),
+      ),
+    ));
   } catch {
     return Array.from({ length: 32 }, () => 0);
   }
 };
 
 const countPerfectLessonsInRange = async (from: number, to: number): Promise<number> => {
-  const keys = Array.from({ length: to - from + 1 }, (_, i) => `lesson${from + i}_progress`);
+  const lessonIds = Array.from({ length: to - from + 1 }, (_, i) => from + i);
+  const keys = lessonIds.flatMap(lessonId =>
+    ACHIEVEMENT_PROGRESS_TARGETS.map(studyTarget => lessonProgressKey(lessonId, studyTarget)),
+  );
   try {
     const pairs = await AsyncStorage.multiGet(keys);
+    const map = Object.fromEntries(pairs);
     let count = 0;
-    for (const [, raw] of pairs) {
-      if (!raw) continue;
-      const p: string[] = JSON.parse(raw);
-      const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-      const wrong = p.filter(x => x === 'wrong').length;
-      if (correct >= 45 && wrong === 0) count++;
+    for (const lessonId of lessonIds) {
+      const perfectForAnyTarget = ACHIEVEMENT_PROGRESS_TARGETS.some(studyTarget => {
+        const raw = map[lessonProgressKey(lessonId, studyTarget)];
+        if (!raw) return false;
+        try {
+          const p: string[] = JSON.parse(raw);
+          const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
+          const wrong = p.filter(x => x === 'wrong').length;
+          return correct >= 45 && wrong === 0;
+        } catch {
+          return false;
+        }
+      });
+      if (perfectForAnyTarget) count++;
     }
     return count;
   } catch { return 0; }
 };
 
 const readPerfectLessonPassCounts = async (): Promise<number[]> => {
-  const keys = Array.from({ length: 32 }, (_, i) => `achievement_lesson_${i + 1}_perfect_passes_v1`);
+  const lessonIds = Array.from({ length: 32 }, (_, i) => i + 1);
+  const keys = lessonIds.flatMap(lessonId =>
+    ACHIEVEMENT_PROGRESS_TARGETS.map(studyTarget =>
+      achievementLessonPerfectPassesKey(lessonId, studyTarget),
+    ),
+  );
   try {
     const pairs = await AsyncStorage.multiGet(keys);
-    return pairs.map(([, raw]) => {
-      try {
-        const parsed = raw ? JSON.parse(raw) : [];
-        return Array.isArray(parsed) ? parsed.length : 0;
-      } catch { return 0; }
-    });
+    const map = Object.fromEntries(pairs);
+    return lessonIds.map(lessonId => Math.max(
+      ...ACHIEVEMENT_PROGRESS_TARGETS.map(studyTarget => {
+        const raw = map[achievementLessonPerfectPassesKey(lessonId, studyTarget)];
+        try {
+          const parsed = raw ? JSON.parse(raw) : [];
+          return Array.isArray(parsed) ? parsed.length : 0;
+        } catch { return 0; }
+      }),
+    ));
   } catch {
     return Array.from({ length: 32 }, () => 0);
   }
@@ -1154,6 +2352,11 @@ const unlockLessonPassAchievements = async (unlock: (id: string) => void): Promi
   if (mythicLevels.length >= 4) unlock('gem_all_mythic');
 };
 
+const countCompletedLessonsAcrossAchievementTargets = async (): Promise<number> => {
+  const passCounts = await readLessonPassCounts();
+  return passCounts.filter(count => count >= 1).length;
+};
+
 const unlockWeeklyXpAchievements = async (unlock: (id: string) => void): Promise<void> => {
   const currentWeek = await readStoredCounter('week_points');
   const peak = await readStoredCounter('week_xp_peak_best_v1');
@@ -1173,18 +2376,19 @@ const markStreakSafetyUsed = async (): Promise<void> => {
 const backfillAchievementsFromLocalState = async (
   unlock: (id: string) => void,
   force = false,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<void> => {
   if (!force && (await AsyncStorage.getItem(ACHIEVEMENT_BACKFILL_KEY)) === '1') return;
 
   const [trainerCorrect, legacyRecallCorrect] = await Promise.all([
-    readStoredCounter('achievement_trainer_correct_count'),
-    readStoredCounter('achievement_active_recall_correct_count'),
+    readStoredCounter(trainerAchievementCorrectCountKey(studyTarget)),
+    readStoredCounter(activeRecallAchievementCorrectCountKey(studyTarget)),
   ]);
   const practiceCorrect = Math.max(trainerCorrect, legacyRecallCorrect);
   if (practiceCorrect > 0) {
     await Promise.all([
-      setStoredCounterAtLeast('achievement_trainer_correct_count', practiceCorrect),
-      setStoredCounterAtLeast('achievement_active_recall_correct_count', practiceCorrect),
+      setStoredCounterAtLeast(trainerAchievementCorrectCountKey(studyTarget), practiceCorrect),
+      setStoredCounterAtLeast(activeRecallAchievementCorrectCountKey(studyTarget), practiceCorrect),
     ]);
     if (practiceCorrect >= 1) unlock('recall_first');
     if (practiceCorrect >= 50) unlock('recall_50');
@@ -1195,9 +2399,10 @@ const backfillAchievementsFromLocalState = async (
     if (practiceCorrect >= 10000) unlock('trainer_10000_correct');
   }
 
-  const savedCards = await readStoredObjectList('flashcards_v1');
+  const eventTargets = achievementProgressTargetsForEvent(studyTarget);
+  const savedCards = await readStoredObjectLists(eventTargets.map(flashcardsSavedKey));
   if (savedCards.length > 0) {
-    await setStoredCounterAtLeast('achievement_flashcards_saved_count', savedCards.length);
+    await setStoredCounterAtLeast(flashcardsAchievementSavedCountKey(studyTarget), savedCards.length);
     if (savedCards.length >= 25) unlock('flashcards_save_25');
     if (savedCards.length >= 50) unlock('flashcards_save_50');
     if (savedCards.length >= 100) unlock('flashcards_save_100');
@@ -1208,18 +2413,19 @@ const backfillAchievementsFromLocalState = async (
       const source = typeof card.source === 'string' ? card.source : '';
       if (source) sources.add(source);
     }
-    const storedSources = await readStoredStringList('achievement_flashcards_source_set_v1');
+    const sourceSetKey = flashcardsAchievementSourceSetKey(studyTarget);
+    const storedSources = await readStoredStringList(sourceSetKey);
     storedSources.forEach(source => sources.add(source));
     if (sources.size > storedSources.length) {
-      await AsyncStorage.setItem('achievement_flashcards_source_set_v1', JSON.stringify([...sources]));
+      await AsyncStorage.setItem(sourceSetKey, JSON.stringify([...sources]));
     }
     if (sources.size >= 4) unlock('flashcards_sources_4');
   }
 
   const [officialPacks, legacyPacks, communityPacks] = await Promise.all([
-    readStoredStringList('flashcards_owned_packs_v1'),
-    readStoredStringList('flashcards_market_dev_owned_v1'),
-    readStoredStringList('community_owned_pack_ids_v1'),
+    readStoredStringLists(eventTargets.map(flashcardsOwnedPacksKey)),
+    readStoredStringLists(eventTargets.map(flashcardsMarketDevOwnedPacksKey)),
+    readStoredStringLists(eventTargets.map(flashcardsCommunityOwnedPacksKey)),
   ]);
   const packCount = new Set([...officialPacks, ...legacyPacks, ...communityPacks]).size;
   if (packCount >= 1) unlock('pack_purchased');
@@ -1267,39 +2473,39 @@ const backfillAchievementsFromLocalState = async (
   const perfectPasses = await readPerfectLessonPassCounts();
   if (perfectPasses.filter(count => count >= 2).length >= 32) unlock('lesson_all_perfect_2x');
 
-  const quizSessions = await readStoredCounter('achievement_quiz_total_count');
+  const quizSessions = await readQuizAchievementCounterAcrossTargets('achievement_quiz_total_count');
   if (quizSessions >= 10) unlock('quiz_10_completed');
   if (quizSessions >= 25) unlock('quiz_25_completed');
   if (quizSessions >= 50) unlock('quiz_50_completed');
   if (quizSessions >= 100) unlock('quiz_100_completed');
 
-  const hardQuizzes = await readStoredCounter('quiz_hard_count');
+  const hardQuizzes = await readQuizAchievementCounterAcrossTargets('quiz_hard_count');
   if (hardQuizzes >= 5) unlock('quiz_speed_demon');
   if (hardQuizzes >= 10) unlock('quiz_hard_10');
   if (hardQuizzes >= 25) unlock('quiz_hard_25');
 
-  const hardPerfect = await readStoredCounter('achievement_quiz_hard_perfect_count');
+  const hardPerfect = await readQuizAchievementCounterAcrossTargets('achievement_quiz_hard_perfect_count');
   if (hardPerfect >= 3) unlock('quiz_hard_perfect_3');
   if (hardPerfect >= 10) unlock('quiz_hard_perfect_10');
 
-  const comboBest = await readStoredCounter('achievement_combo_best_count');
+  const comboBest = await readStoredCounter(comboAchievementCounterKey(studyTarget));
   if (comboBest >= 150) unlock('combo_150');
   if (comboBest >= 250) unlock('combo_250');
   if (comboBest >= 500) unlock('combo_500');
 
-  const dailyAllStreak = await readConsecutiveDayStreakValue('achievement_all_daily_streak_v1');
+  const dailyAllStreak = await readConsecutiveDayStreakValue(dailyTasksAchievementAllDoneStreakKey(studyTarget));
   if (dailyAllStreak >= 3) unlock('daily_all_3');
   if (dailyAllStreak >= 7) unlock('daily_all_7');
   if (dailyAllStreak >= 14) unlock('daily_all_14');
   if (dailyAllStreak >= 30) unlock('daily_all_30');
 
-  const noRerollStreak = await readConsecutiveDayStreakValue('achievement_daily_no_reroll_streak_v1');
+  const noRerollStreak = await readConsecutiveDayStreakValue(dailyTasksAchievementNoRerollStreakKey(studyTarget));
   if (noRerollStreak >= 7) unlock('daily_no_reroll_7');
   if (noRerollStreak >= 30) unlock('daily_no_reroll_30');
 
-  const phraseReads = await readStoredCounter('achievement_daily_phrase_read_count');
+  const phraseReads = await readStoredCounter(dailyPhraseAchievementReadCountKey(studyTarget));
   if (phraseReads >= 30) unlock('daily_phrase_read_30');
-  const phraseSaves = await readStoredCounter('achievement_daily_phrase_save_count');
+  const phraseSaves = await readStoredCounter(dailyPhraseAchievementSaveCountKey(studyTarget));
   if (phraseSaves >= 30) unlock('daily_phrase_save_30');
   if (phraseSaves >= 100) unlock('daily_phrase_save_100');
 
@@ -1309,12 +2515,12 @@ const backfillAchievementsFromLocalState = async (
   if (shards >= 500) unlock('shards_500');
   if (shards >= 1000) unlock('shards_1000');
 
-  const flips = await readStoredCounter('achievement_flashcards_flip_count');
+  const flips = await readStoredCounter(flashcardsAchievementFlipCountKey(studyTarget));
   if (flips >= 100) unlock('flashcards_flip_100');
   if (flips >= 500) unlock('flashcards_flip_500');
   if (flips >= 1000) unlock('flashcards_flip_1000');
 
-  const flashViewStreak = await readConsecutiveDayStreakValue('achievement_flashcards_view_streak_v1');
+  const flashViewStreak = await readConsecutiveDayStreakValue(flashcardsAchievementViewStreakKey(studyTarget));
   if (flashViewStreak >= 7) unlock('flashcards_view_7_days');
   if (flashViewStreak >= 14) unlock('flashcards_view_14_days');
   if (flashViewStreak >= 30) unlock('flashcards_view_30_days');
@@ -1343,11 +2549,11 @@ const backfillAchievementsFromLocalState = async (
   if (chat >= 50) unlock('league_chat_50');
   if (chat >= 100) unlock('league_chat_100');
 
-  const perfectSessions = await readStoredCounter('achievement_trainer_perfect_session_count');
+  const perfectSessions = await readStoredCounter(trainerAchievementPerfectSessionCountKey(studyTarget));
   if (perfectSessions >= 10) unlock('trainer_perfect_10_sessions');
   if (perfectSessions >= 50) unlock('trainer_perfect_50_sessions');
 
-  const shares = await readStoredCounter('achievement_share_count');
+  const shares = await readStoredCounter(shareAchievementCounterKey(studyTarget));
   if (shares >= 10) unlock('share_achievement_10');
 
   await AsyncStorage.setItem(ACHIEVEMENT_BACKFILL_KEY, '1');
@@ -1356,34 +2562,34 @@ const backfillAchievementsFromLocalState = async (
 export type AchievementEvent =
   | { type: 'streak';         streak:    number }
   | { type: 'xp';             totalXP:   number }
-  | { type: 'lesson_complete'; lessonCount: number; wasPerfect?: boolean; perfectCount?: number; lessonId?: number }
-  | { type: 'lesson_perfect_pass'; lessonId: number; passCount: number }
-  | { type: 'quiz';           level: string; perfect?: boolean }
-  | { type: 'combo';          count: number }
-  | { type: 'daily_task';     allDone?: boolean; noReroll?: boolean }
+  | { type: 'lesson_complete'; lessonCount: number; wasPerfect?: boolean; perfectCount?: number; lessonId?: number; studyTarget?: RuntimeStudyTarget }
+  | { type: 'lesson_perfect_pass'; lessonId: number; passCount: number; studyTarget?: RuntimeStudyTarget }
+  | { type: 'quiz';           level: string; perfect?: boolean; studyTarget?: RuntimeStudyTarget }
+  | { type: 'combo';          count: number; studyTarget?: RuntimeStudyTarget }
+  | { type: 'daily_task';     allDone?: boolean; noReroll?: boolean; studyTarget?: RuntimeStudyTarget }
   | { type: 'login';          consecutiveDays: number }
   | { type: 'comeback' }
   | { type: 'wager_win' }
   | { type: 'personal_best' }
   | { type: 'streak_repair' }
   | { type: 'perfect_week' }
-  | { type: 'diagnosis' }
+  | { type: 'diagnosis'; studyTarget?: RuntimeStudyTarget }
   | { type: 'time_of_day' }
-  | { type: 'backfill' }
-  | { type: 'exam';            pct: number }
-  | { type: 'flashcards_session' }
-  | { type: 'flashcard_saved'; source?: string; count?: number }
-  | { type: 'flashcard_flipped'; count?: number }
-  | { type: 'flashcard_viewed'; count?: number }
-  | { type: 'daily_phrase'; action: 'read' | 'save' }
-  | { type: 'active_recall'; correct?: number }
+  | { type: 'backfill'; studyTarget?: RuntimeStudyTarget }
+  | { type: 'exam';            pct: number; studyTarget?: RuntimeStudyTarget }
+  | { type: 'flashcards_session'; studyTarget?: RuntimeStudyTarget }
+  | { type: 'flashcard_saved'; source?: string; count?: number; studyTarget?: RuntimeStudyTarget }
+  | { type: 'flashcard_flipped'; count?: number; studyTarget?: RuntimeStudyTarget }
+  | { type: 'flashcard_viewed'; count?: number; studyTarget?: RuntimeStudyTarget }
+  | { type: 'daily_phrase'; action: 'read' | 'save'; studyTarget?: RuntimeStudyTarget }
+  | { type: 'active_recall'; correct?: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'arena_win' }
   | { type: 'shards'; balance: number }
   | { type: 'shards_spent'; amount: number }
   | { type: 'energy_refill' }
   | { type: 'league_result'; myRank: number; totalInGroup: number; promoted?: boolean; newLeagueId?: number }
   | { type: 'league_boost'; multiplier: number }
-  | { type: 'gem'; level: string; gem: 'ruby' | 'emerald' | 'diamond' }
+  | { type: 'gem'; level: string; gem: 'ruby' | 'emerald' | 'diamond'; studyTarget?: RuntimeStudyTarget }
   // ── Новые события ────────────────────────────────────────────────────────
   | { type: 'friend_added';   totalFriends: number }
   | { type: 'gift_sent' }
@@ -1392,14 +2598,14 @@ export type AchievementEvent =
   | { type: 'arena_win_streak'; streak: number }
   | { type: 'arena_duel_friend_win' }
   | { type: 'arena_wager_win'; count?: number }
-  | { type: 'trainer_correct'; correct: number }
-  | { type: 'trainer_session_result'; correct: number; wrong: number; total: number }
+  | { type: 'trainer_correct'; correct: number; studyTarget?: RuntimeStudyTarget }
+  | { type: 'trainer_session_result'; correct: number; wrong: number; total: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'avatar_custom_set' }
   | { type: 'profile_theme_set' }
-  | { type: 'pack_purchased';  totalPacks: number }
-  | { type: 'achievement_shared' }
+  | { type: 'pack_purchased';  totalPacks: number; studyTarget?: RuntimeStudyTarget }
+  | { type: 'achievement_shared'; studyTarget?: RuntimeStudyTarget }
   | { type: 'level_reached';  level: number }
-  | { type: 'quiz_session_count'; count: number }
+  | { type: 'quiz_session_count'; count: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'streak_freeze_used' }
   | { type: 'wager_win_streak'; count: number };
 
@@ -1408,7 +2614,8 @@ let _achievementLock: Promise<unknown> = Promise.resolve();
 export const checkAchievements = async (event: AchievementEvent): Promise<Achievement[]> => {
   const result = _achievementLock.then(async () => {
   try {
-    const states = await loadAchievementStates();
+    const eventStudyTarget = 'studyTarget' in event ? event.studyTarget : undefined;
+    const states = await loadAchievementStatesForTarget(eventStudyTarget);
     const justUnlocked: Achievement[] = [];
 
     const u = (id: string) => {
@@ -1418,7 +2625,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       }
     };
 
-    await backfillAchievementsFromLocalState(u, event.type === 'backfill');
+    await backfillAchievementsFromLocalState(u, event.type === 'backfill', eventStudyTarget);
 
     switch (event.type) {
       case 'streak': {
@@ -1475,7 +2682,10 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         break;
       }
       case 'lesson_complete': {
-        const c = event.lessonCount;
+        const storedLessonCount = await countCompletedLessonsAcrossAchievementTargets();
+        const storedPerfectCount = await countPerfectLessonsInRange(1, 32);
+        const c = Math.max(event.lessonCount, storedLessonCount);
+        const perfectCount = Math.max(event.perfectCount ?? 0, storedPerfectCount);
         if (c >= 1)  u('lesson_1');
         if (c >= 3)  u('lesson_3');
         if (c >= 5)  u('lesson_5');
@@ -1485,14 +2695,14 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if (c >= 32) u('lesson_all');
         if (event.wasPerfect) {
           u('lesson_perfect');
-          if ((event.perfectCount ?? 0) >= 3)  u('lesson_perfect3');
-          if ((event.perfectCount ?? 0) >= 10) u('lesson_perfect10');
-          if ((event.perfectCount ?? 0) >= 32) u('lesson_all_perfect');
+          if (perfectCount >= 3)  u('lesson_perfect3');
+          if (perfectCount >= 10) u('lesson_perfect10');
+          if (perfectCount >= 32) u('lesson_all_perfect');
         }
-        if ((event.perfectCount ?? 0) >= 10) u('lesson_perfect10');
+        if (perfectCount >= 10) u('lesson_perfect10');
         if (await countPerfectLessonsInRange(29, 32) >= 4) u('lesson_b2_perfect');
         if (event.lessonId && event.lessonId >= 1 && event.lessonId <= 32) {
-          const dayKey = `achievement_lesson_marathon_day_${localDayKey()}`;
+          const dayKey = achievementLessonMarathonDayKey(localDayKey(), event.studyTarget);
           const completedToday = await addStoredSetValue(dayKey, String(Math.floor(event.lessonId)));
           if (completedToday >= 10) u('lesson_marathon_day');
         }
@@ -1502,7 +2712,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       case 'lesson_perfect_pass': {
         const lessonId = Math.floor(event.lessonId);
         if (lessonId >= 1 && lessonId <= 32) {
-          await addStoredNumberSetValue(`achievement_lesson_${lessonId}_perfect_passes_v1`, event.passCount);
+          await addStoredNumberSetValue(achievementLessonPerfectPassesKey(lessonId, event.studyTarget), event.passCount);
           const perfectPasses = await readPerfectLessonPassCounts();
           if (perfectPasses.filter(count => count >= 2).length >= 32) u('lesson_all_perfect_2x');
         }
@@ -1530,7 +2740,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
           if (allPerfect) u('quiz_triple_perfect');
         }
         if (event.perfect) {
-          const dayKey = 'achievement_quiz_perfect_levels_today_v1';
+          const dayKey = quizPerfectLevelsTodayKey(event.studyTarget);
           let daily: { day?: string; levels?: string[] } = {};
           try {
             const raw = await AsyncStorage.getItem(dayKey);
@@ -1547,17 +2757,24 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
           if (['easy', 'medium', 'hard'].every(level => levels.includes(level))) {
             u('quiz_all_levels_perfect_same_day');
           }
-          const perfectStreak = await bumpConsecutiveDayStreak('achievement_quiz_perfect_streak_v1');
+          const perfectStreak = await bumpConsecutiveDayStreak(quizPerfectStreakKey(event.studyTarget));
           if (perfectStreak >= 7) u('quiz_perfect_7_days');
         }
         if (event.level === 'hard') {
-          const hardCount = parseInt((await AsyncStorage.getItem('quiz_hard_count') ?? '0')) + 1;
-          await AsyncStorage.setItem('quiz_hard_count', String(hardCount));
+          const hardCountKey = quizAchievementCounterKey('quiz_hard_count', event.studyTarget);
+          const hardCountForTarget = await bumpStoredCounter(hardCountKey);
+          const hardCount = event.studyTarget === undefined
+            ? hardCountForTarget
+            : await readQuizAchievementCounterAcrossTargets('quiz_hard_count');
           if (hardCount >= 5) u('quiz_speed_demon');
           if (hardCount >= 10) u('quiz_hard_10');
           if (hardCount >= 25) u('quiz_hard_25');
           if (event.perfect) {
-            const hardPerfect = await bumpStoredCounter('achievement_quiz_hard_perfect_count');
+            const hardPerfectKey = quizAchievementCounterKey('achievement_quiz_hard_perfect_count', event.studyTarget);
+            const hardPerfectForTarget = await bumpStoredCounter(hardPerfectKey);
+            const hardPerfect = event.studyTarget === undefined
+              ? hardPerfectForTarget
+              : await readQuizAchievementCounterAcrossTargets('achievement_quiz_hard_perfect_count');
             if (hardPerfect >= 3) u('quiz_hard_perfect_3');
             if (hardPerfect >= 10) u('quiz_hard_perfect_10');
           }
@@ -1565,7 +2782,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         break;
       }
       case 'combo': {
-        await setStoredCounterAtLeast('achievement_combo_best_count', event.count);
+        await setStoredCounterAtLeast(comboAchievementCounterKey(event.studyTarget), event.count);
         if (event.count >= 3)  u('combo_3');
         if (event.count >= 10) u('combo_10');
         if (event.count >= 20) u('combo_20');
@@ -1580,14 +2797,14 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         u('daily_task_first');
         if (event.allDone) {
           u('all_daily');
-          const streak = await bumpConsecutiveDayStreak('achievement_all_daily_streak_v1');
+          const streak = await bumpConsecutiveDayStreak(dailyTasksAchievementAllDoneStreakKey(event.studyTarget));
           if (streak >= 3) u('daily_all_3');
           if (streak >= 7) u('daily_all_7');
           if (streak >= 14) u('daily_all_14');
           if (streak >= 30) u('daily_all_30');
           if (event.noReroll) {
             u('daily_no_reroll');
-            const noRerollStreak = await bumpConsecutiveDayStreak('achievement_daily_no_reroll_streak_v1');
+            const noRerollStreak = await bumpConsecutiveDayStreak(dailyTasksAchievementNoRerollStreakKey(event.studyTarget));
             if (noRerollStreak >= 7) u('daily_no_reroll_7');
             if (noRerollStreak >= 30) u('daily_no_reroll_30');
           }
@@ -1643,19 +2860,19 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       }
       case 'flashcards_session': u('flashcards_session'); break;
       case 'flashcard_saved': {
-        const saved = await bumpStoredCounter('achievement_flashcards_saved_count', event.count ?? 1);
+        const saved = await bumpStoredCounter(flashcardsAchievementSavedCountKey(event.studyTarget), event.count ?? 1);
         if (saved >= 25) u('flashcards_save_25');
         if (saved >= 50) u('flashcards_save_50');
         if (saved >= 100) u('flashcards_save_100');
         if (saved >= 250) u('flashcards_save_250');
         if (event.source) {
-          const sources = await addStoredSetValue('achievement_flashcards_source_set_v1', event.source);
+          const sources = await addStoredSetValue(flashcardsAchievementSourceSetKey(event.studyTarget), event.source);
           if (sources >= 4) u('flashcards_sources_4');
         }
         break;
       }
       case 'flashcard_flipped': {
-        const flips = await bumpStoredCounter('achievement_flashcards_flip_count', event.count ?? 1);
+        const flips = await bumpStoredCounter(flashcardsAchievementFlipCountKey(event.studyTarget), event.count ?? 1);
         if (flips >= 100) u('flashcards_flip_100');
         if (flips >= 500) u('flashcards_flip_500');
         if (flips >= 1000) u('flashcards_flip_1000');
@@ -1664,7 +2881,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       case 'flashcard_viewed': {
         const count = Math.max(0, Math.floor(event.count ?? 1));
         if (count > 0) {
-          const streak = await bumpConsecutiveDayStreak('achievement_flashcards_view_streak_v1');
+          const streak = await bumpConsecutiveDayStreak(flashcardsAchievementViewStreakKey(event.studyTarget));
           if (streak >= 7) u('flashcards_view_7_days');
           if (streak >= 14) u('flashcards_view_14_days');
           if (streak >= 30) u('flashcards_view_30_days');
@@ -1674,19 +2891,19 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       case 'daily_phrase': {
         if (event.action === 'read') {
           u('daily_phrase_first');
-          const reads = await bumpStoredCounter('achievement_daily_phrase_read_count');
+          const reads = await bumpStoredCounter(dailyPhraseAchievementReadCountKey(event.studyTarget));
           if (reads >= 30) u('daily_phrase_read_30');
         }
         if (event.action === 'save') {
           u('daily_phrase_save');
-          const saves = await bumpStoredCounter('achievement_daily_phrase_save_count');
+          const saves = await bumpStoredCounter(dailyPhraseAchievementSaveCountKey(event.studyTarget));
           if (saves >= 30) u('daily_phrase_save_30');
           if (saves >= 100) u('daily_phrase_save_100');
         }
         break;
       }
       case 'active_recall': {
-        const key = 'achievement_active_recall_correct_count';
+        const key = activeRecallAchievementCorrectCountKey(event.studyTarget);
         const add = Math.max(1, Math.floor(event.correct ?? 1));
         const current = parseInt((await AsyncStorage.getItem(key)) ?? '0', 10) || 0;
         const next = current + add;
@@ -1838,12 +3055,12 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         break;
       }
       case 'trainer_correct': {
-        const trainerKey = 'achievement_trainer_correct_count';
+        const trainerKey = trainerAchievementCorrectCountKey(event.studyTarget);
         const cur = parseInt((await AsyncStorage.getItem(trainerKey)) ?? '0', 10) || 0;
         const add = Math.max(1, Math.floor(event.correct));
         const next = cur + add;
         await AsyncStorage.setItem(trainerKey, String(next));
-        await setStoredCounterAtLeast('achievement_active_recall_correct_count', next);
+        await setStoredCounterAtLeast(activeRecallAchievementCorrectCountKey(event.studyTarget), next);
         if (next >= 1)   u('recall_first');
         if (next >= 50)  u('recall_50');
         if (next >= 100) u('trainer_100_correct');
@@ -1852,7 +3069,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if (next >= 2500) u('trainer_2500_correct');
         if (next >= 10000) u('trainer_10000_correct');
         {
-          const streak = await bumpConsecutiveDayStreak('achievement_trainer_correct_streak_v1');
+          const streak = await bumpConsecutiveDayStreak(trainerAchievementCorrectStreakKey(event.studyTarget));
           if (streak >= 7) u('trainer_7_days');
         }
         break;
@@ -1861,7 +3078,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if (event.total > 0) u('trainer_session');
         if (event.total >= 5 && event.wrong <= 0 && event.correct >= event.total) {
           u('trainer_perfect_session');
-          const perfectSessions = await bumpStoredCounter('achievement_trainer_perfect_session_count');
+          const perfectSessions = await bumpStoredCounter(trainerAchievementPerfectSessionCountKey(event.studyTarget));
           if (perfectSessions >= 10) u('trainer_perfect_10_sessions');
           if (perfectSessions >= 50) u('trainer_perfect_50_sessions');
         }
@@ -1885,7 +3102,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       }
       case 'achievement_shared': {
         u('share_achievement');
-        const shares = await bumpStoredCounter('achievement_share_count');
+        const shares = await bumpStoredCounter(shareAchievementCounterKey(event.studyTarget));
         if (shares >= 10) u('share_achievement_10');
         break;
       }
@@ -1894,10 +3111,13 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         break;
       }
       case 'quiz_session_count': {
-        if (event.count >= 10) u('quiz_10_completed');
-        if (event.count >= 25) u('quiz_25_completed');
-        if (event.count >= 50) u('quiz_50_completed');
-        if (event.count >= 100) u('quiz_100_completed');
+        const count = event.studyTarget === undefined
+          ? event.count
+          : Math.max(event.count, await readQuizAchievementCounterAcrossTargets('achievement_quiz_total_count'));
+        if (count >= 10) u('quiz_10_completed');
+        if (count >= 25) u('quiz_25_completed');
+        if (count >= 50) u('quiz_50_completed');
+        if (count >= 100) u('quiz_100_completed');
         break;
       }
       case 'streak_freeze_used': {
@@ -1913,7 +3133,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
     }
 
     if (justUnlocked.length > 0) {
-      await saveStates(states);
+      await saveStates(states, eventStudyTarget);
       emitAppEvent('achievement_unlocked');
 
       const userName = await AsyncStorage.getItem('user_name').catch(() => null);

@@ -9015,31 +9015,31 @@ export const QUIZ_SOURCE_LOCALE_PAYLOADS: Partial<
         'Finded não é o passado correto. Find é irregular: found.',
         'Correto. I found money usa found, o past simple de find.',
         'Find está no presente. Aqui precisamos de passado: found.',
-        'Have find não funciona. No present perfect seria have found.',
+        'Have find money não funciona. No present perfect seria have found money.',
       ]),
       vi: p('Tôi đã tìm thấy tiền', [
         'Finded không phải quá khứ đúng. Find là bất quy tắc: found.',
         'Đúng. I found money dùng found, past simple của find.',
         'Find ở hiện tại. Ở đây cần quá khứ: found.',
-        'Have find không đúng. Trong present perfect sẽ là have found.',
+        'Have find money không đúng. Trong present perfect sẽ là have found money.',
       ]),
       id: p('Saya menemukan uang', [
         'Finded bukan past tense yang benar. Find irregular: found.',
         'Benar. I found money memakai found, past simple dari find.',
         'Find adalah bentuk present. Di sini perlu past: found.',
-        'Have find tidak berfungsi. Dalam present perfect bentuknya have found.',
+        'Have find money tidak berfungsi. Dalam present perfect bentuknya have found money.',
       ]),
       tr: p('Para buldum', [
         'Finded doğru geçmiş zaman değildir. Find düzensizdir: found.',
         'Doğru. I found money, find fiilinin past simple biçimi found kullanır.',
         'Find şimdiki/genel biçimdedir. Burada geçmiş gerekir: found.',
-        'Have find çalışmaz. Present perfect olsaydı have found olurdu.',
+        'Have find money çalışmaz. Present perfect olsaydı have found money olurdu.',
       ]),
       pl: p('Znalazłem pieniądze', [
         'Finded nie jest poprawną formą przeszłą. Find jest nieregularne: found.',
         'Dobrze. I found money używa found, czyli past simple od find.',
         'Find jest w teraźniejszości. Tutaj potrzebna jest przeszłość: found.',
-        'Have find nie działa. W present perfect byłoby have found.',
+        'Have find money nie działa. W present perfect byłoby have found money.',
       ]),
     },
     '283': {
@@ -9173,31 +9173,31 @@ export const QUIZ_SOURCE_LOCALE_PAYLOADS: Partial<
     '287': {
       'pt-BR': p('Você toma café de manhã?', [
         'Are não se usa para um hábito. Com present simple, usamos do.',
-        'Correto. Do you drink...? pergunta por um hábito.',
+        'Correto. Do you drink coffee...? pergunta por um hábito; drink coffee fica na forma base depois de do.',
         'Does combina com he/she/it. Com you usamos do.',
         'Depois de do, o verbo vai na forma base: drink, não drinks.',
       ]),
       vi: p('Bạn uống cà phê vào buổi sáng không?', [
         'Are không dùng cho thói quen. Với present simple, dùng do.',
-        'Đúng. Do you drink...? hỏi về thói quen.',
+        'Đúng. Do you drink coffee...? hỏi về thói quen; drink coffee ở dạng gốc sau do.',
         'Does đi với he/she/it. Với you, dùng do.',
         'Sau do, động từ ở dạng gốc: drink, không phải drinks.',
       ]),
       id: p('Apakah kamu minum kopi pada pagi hari?', [
         'Are tidak dipakai untuk kebiasaan. Dengan present simple, gunakan do.',
-        'Benar. Do you drink...? bertanya tentang kebiasaan.',
+        'Benar. Do you drink coffee...? bertanya tentang kebiasaan; drink coffee tetap bentuk dasar setelah do.',
         'Does dipakai dengan he/she/it. Dengan you, gunakan do.',
         'Setelah do, verb memakai bentuk dasar: drink, bukan drinks.',
       ]),
       tr: p('Sabahları kahve içer misin?', [
         'Are alışkanlık için kullanılmaz. Present simple ile do kullanırız.',
-        'Doğru. Do you drink...? bir alışkanlığı sorar.',
+        'Doğru. Do you drink coffee...? bir alışkanlığı sorar; drink coffee do sonrasında yalın kalır.',
         'Does he/she/it ile kullanılır. You ile do kullanırız.',
         'Do sonrasında fiil yalın hâle döner: drink, drinks değil.',
       ]),
       pl: p('Czy pijesz kawę rano?', [
         'Are nie używa się dla nawyku. Z present simple używamy do.',
-        'Dobrze. Do you drink...? pyta o nawyk.',
+        'Dobrze. Do you drink coffee...? pyta o nawyk; drink coffee zostaje w formie podstawowej po do.',
         'Does pasuje do he/she/it. Z you używamy do.',
         'Po do czasownik jest w formie podstawowej: drink, nie drinks.',
       ]),
@@ -9207,31 +9207,31 @@ export const QUIZ_SOURCE_LOCALE_PAYLOADS: Partial<
         'Correto. I bought a new shirt usa bought, o past simple de buy.',
         'Buyed não é o passado correto. Buy é irregular: bought.',
         'Buy está no presente. Aqui precisamos de passado: bought.',
-        'Have buy não funciona. No present perfect seria have bought.',
+        'Have buy a new shirt não funciona. No present perfect seria have bought a new shirt.',
       ]),
       vi: p('Tôi đã mua một chiếc áo sơ mi mới', [
         'Đúng. I bought a new shirt dùng bought, past simple của buy.',
         'Buyed không phải quá khứ đúng. Buy là bất quy tắc: bought.',
         'Buy ở hiện tại. Ở đây cần quá khứ: bought.',
-        'Have buy không đúng. Trong present perfect sẽ là have bought.',
+        'Have buy a new shirt không đúng. Trong present perfect sẽ là have bought a new shirt.',
       ]),
       id: p('Saya membeli kemeja baru', [
         'Benar. I bought a new shirt memakai bought, past simple dari buy.',
         'Buyed bukan past tense yang benar. Buy irregular: bought.',
         'Buy adalah bentuk present. Di sini perlu past: bought.',
-        'Have buy tidak berfungsi. Dalam present perfect bentuknya have bought.',
+        'Have buy a new shirt tidak berfungsi. Dalam present perfect bentuknya have bought a new shirt.',
       ]),
       tr: p('Yeni bir gömlek aldım', [
         'Doğru. I bought a new shirt buy fiilinin past simple biçimi bought kullanır.',
         'Buyed doğru geçmiş zaman değildir. Buy düzensizdir: bought.',
         'Buy şimdiki/genel biçimdedir. Burada geçmiş gerekir: bought.',
-        'Have buy çalışmaz. Present perfect olsaydı have bought olurdu.',
+        'Have buy a new shirt çalışmaz. Present perfect olsaydı have bought a new shirt olurdu.',
       ]),
       pl: p('Kupiłem nową koszulę', [
         'Dobrze. I bought a new shirt używa bought, czyli past simple od buy.',
         'Buyed nie jest poprawną formą przeszłą. Buy jest nieregularne: bought.',
         'Buy jest w teraźniejszości. Tutaj potrzebna jest przeszłość: bought.',
-        'Have buy nie działa. W present perfect byłoby have bought.',
+        'Have buy a new shirt nie działa. W present perfect byłoby have bought a new shirt.',
       ]),
     },
     '289': {
@@ -31411,240 +31411,869 @@ export const QUIZ_SOURCE_LOCALE_PAYLOADS: Partial<
       }
     },
     '268': {
-      'pt-BR': {
-        prompt: 'Só então percebi a gravidade da situação',
-        explanations: [
-          'Only then I realized the gravity of the situation perde a estrutura enfática. Aqui usamos It was only then that... para marcar “só então”.',
-          'Correto. It was only then that I realized the gravity of the situation enfatiza o momento exato em que você entendeu a gravidade.',
-          'Only then did I realized the gravity of the situation usa did e realized juntos. Depois de did, o verbo deve voltar para realize.',
-          'It was only then that I realized the gravy of the situation troca gravity por gravy. Gravy é molho; aqui você precisa de gravity.'
-        ]
-      },
-      vi: {
-        prompt: 'Chỉ lúc đó tôi mới nhận ra mức độ nghiêm trọng của tình huống',
-        explanations: [
-          'Only then I realized the gravity of the situation mất cấu trúc nhấn mạnh. Ở đây dùng It was only then that... để nhấn “chỉ lúc đó”.',
-          'Đúng. It was only then that I realized the gravity of the situation nhấn mạnh chính xác thời điểm bạn hiểu mức độ nghiêm trọng.',
-          'Only then did I realized the gravity of the situation dùng did và realized cùng lúc. Sau did, động từ phải trở về realize.',
-          'It was only then that I realized the gravy of the situation đổi gravity thành gravy. Gravy là nước sốt; ở đây cần gravity.'
-        ]
-      },
-      id: {
-        prompt: 'Baru saat itu saya menyadari seriusnya situasi',
-        explanations: [
-          'Only then I realized the gravity of the situation kehilangan struktur penekanan. Di sini kita memakai It was only then that... untuk menandai “baru saat itu”.',
-          'Benar. It was only then that I realized the gravity of the situation menekankan momen tepat saat kamu memahami keseriusan situasinya.',
-          'Only then did I realized the gravity of the situation memakai did dan realized sekaligus. Setelah did, verb harus kembali ke realize.',
-          'It was only then that I realized the gravy of the situation mengganti gravity dengan gravy. Gravy berarti saus; di sini perlu gravity.'
-        ]
-      },
-      tr: {
-        prompt: 'Ancak o zaman durumun ciddiyetini fark ettim',
-        explanations: [
-          'Only then I realized the gravity of the situation vurgulu yapıyı kaybeder. Burada “ancak o zaman” vurgusu için It was only then that... kullanılır.',
-          'Doğru. It was only then that I realized the gravity of the situation durumun ciddiyetini fark ettiğin tam anı vurgular.',
-          'Only then did I realized the gravity of the situation did ve realized yapısını birlikte kullanıyor. Did sonrasında fiil realize olmalıdır.',
-          'It was only then that I realized the gravy of the situation gravity yerine gravy kullanıyor. Gravy sos demektir; burada gravity gerekir.'
-        ]
-      },
-      pl: {
-        prompt: 'Dopiero wtedy uświadomiłem sobie powagę sytuacji',
-        explanations: [
-          'Only then I realized the gravity of the situation gubi strukturę emfatyczną. Tutaj używamy It was only then that..., żeby podkreślić “dopiero wtedy”.',
-          'Dobrze. It was only then that I realized the gravity of the situation podkreśla dokładny moment, w którym zrozumiałeś powagę sytuacji.',
-          'Only then did I realized the gravity of the situation używa did i realized jednocześnie. Po did czasownik wraca do realize.',
-          'It was only then that I realized the gravy of the situation zamienia gravity na gravy. Gravy to sos; tutaj potrzebujesz gravity.'
-        ]
-      }
+      'pt-BR': p("Vou à academia muito raramente", [
+        "Correto. I go to the gym once in a blue moon. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "I go to the gym once in a blue sun. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I go to the gym very few. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I go to the gym once at a blue moon. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Tôi rất hiếm khi đi phòng tập", [
+        "Đúng. I go to the gym once in a blue moon. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "I go to the gym once in a blue sun. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I go to the gym very few. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I go to the gym once at a blue moon. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Saya sangat jarang pergi ke gym", [
+        "Benar. I go to the gym once in a blue moon. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "I go to the gym once in a blue sun. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I go to the gym very few. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I go to the gym once at a blue moon. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Spor salonuna çok nadiren giderim", [
+        "Doğru. I go to the gym once in a blue moon. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "I go to the gym once in a blue sun. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I go to the gym very few. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I go to the gym once at a blue moon. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Bardzo rzadko chodzę na siłownię", [
+        "Dobrze. I go to the gym once in a blue moon. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "I go to the gym once in a blue sun. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I go to the gym very few. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I go to the gym once at a blue moon. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
     },
     '269': {
-      'pt-BR': {
-        prompt: 'Raramente vi uma injustiça tão flagrante',
-        explanations: [
-          'Correto. Rarely have I witnessed... usa inversão depois de Rarely no início e such blatant injustice para uma injustiça muito evidente.',
-          'Rarely I have witnessed... mantém a ordem normal. Depois de Rarely no início, precisamos de inversão: Rarely have I...',
-          'I rarely witnessed so blatant injustice soa mais plano e também falta such antes de blatant injustice.',
-          'Rarely have I witnessed such blanket injustice troca blatant por blanket. Blanket significa cobertor; aqui você precisa de blatant.'
-        ]
-      },
-      vi: {
-        prompt: 'Hiếm khi tôi chứng kiến sự bất công trắng trợn như vậy',
-        explanations: [
-          'Đúng. Rarely have I witnessed... dùng inversion sau Rarely ở đầu câu và such blatant injustice cho một sự bất công rất rõ ràng.',
-          'Rarely I have witnessed... giữ thứ tự bình thường. Sau Rarely ở đầu câu, cần inversion: Rarely have I...',
-          'I rarely witnessed so blatant injustice nghe phẳng hơn và còn thiếu such trước blatant injustice.',
-          'Rarely have I witnessed such blanket injustice đổi blatant thành blanket. Blanket là chăn; ở đây cần blatant.'
-        ]
-      },
-      id: {
-        prompt: 'Jarang sekali saya menyaksikan ketidakadilan seterang-terangan itu',
-        explanations: [
-          'Benar. Rarely have I witnessed... memakai inversion setelah Rarely di awal, dan such blatant injustice untuk ketidakadilan yang sangat nyata.',
-          'Rarely I have witnessed... mempertahankan urutan biasa. Setelah Rarely di awal, perlu inversion: Rarely have I...',
-          'I rarely witnessed so blatant injustice terdengar lebih datar dan juga kurang such sebelum blatant injustice.',
-          'Rarely have I witnessed such blanket injustice mengganti blatant dengan blanket. Blanket berarti selimut; di sini perlu blatant.'
-        ]
-      },
-      tr: {
-        prompt: 'Nadiren bu kadar bariz bir haksızlığa tanık oldum',
-        explanations: [
-          'Doğru. Rarely have I witnessed... baştaki Rarely sonrasında inversion kullanır ve such blatant injustice çok açık bir haksızlığı anlatır.',
-          'Rarely I have witnessed... normal kelime sırasını koruyor. Başta Rarely varsa inversion gerekir: Rarely have I...',
-          'I rarely witnessed so blatant injustice daha düz duyulur ve blatant injustice öncesinde such eksiktir.',
-          'Rarely have I witnessed such blanket injustice blatant yerine blanket kullanıyor. Blanket battaniye demektir; burada blatant gerekir.'
-        ]
-      },
-      pl: {
-        prompt: 'Rzadko widziałem tak rażącą niesprawiedliwość',
-        explanations: [
-          'Dobrze. Rarely have I witnessed... używa inwersji po Rarely na początku, a such blatant injustice mówi o bardzo oczywistej niesprawiedliwości.',
-          'Rarely I have witnessed... zachowuje normalny szyk. Po Rarely na początku potrzebujesz inwersji: Rarely have I...',
-          'I rarely witnessed so blatant injustice brzmi bardziej płasko i brakuje such przed blatant injustice.',
-          'Rarely have I witnessed such blanket injustice zamienia blatant na blanket. Blanket to koc; tutaj potrzebujesz blatant.'
-        ]
-      }
+      'pt-BR': p("Ele insistiu que ela saísse imediatamente", [
+        "He insisted that she goes immediately. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. He insisted that she leave immediately. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "He insisted on her leave immediately. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "He insisted that she leaf immediately. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Anh ấy khăng khăng rằng cô ấy phải rời đi ngay lập tức", [
+        "He insisted that she goes immediately. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. He insisted that she leave immediately. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "He insisted on her leave immediately. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "He insisted that she leaf immediately. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Dia bersikeras agar dia pergi segera", [
+        "He insisted that she goes immediately. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. He insisted that she leave immediately. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "He insisted on her leave immediately. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "He insisted that she leaf immediately. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Onun hemen gitmesinde ısrar etti", [
+        "He insisted that she goes immediately. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. He insisted that she leave immediately. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "He insisted on her leave immediately. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "He insisted that she leaf immediately. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Nalegał, aby natychmiast wyszła", [
+        "He insisted that she goes immediately. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. He insisted that she leave immediately. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "He insisted on her leave immediately. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "He insisted that she leaf immediately. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
     },
     '270': {
-      'pt-BR': {
-        prompt: 'Mal saímos, começou a chover',
-        explanations: [
-          'Correto. No sooner had we set off than it started to rain usa inversão com had e o par fixo no sooner... than.',
-          'No sooner we set off than it started to rain perde a inversão. Depois de No sooner no início, precisamos de had we set off.',
-          'No sooner had we set off when it started to rain usa when, mas o par correto é no sooner... than.',
-          'No sooner had we sat off than it started to rain troca set por sat. Sat significa sentado; aqui você precisa de set off.'
-        ]
-      },
-      vi: {
-        prompt: 'Chúng tôi vừa khởi hành thì trời bắt đầu mưa',
-        explanations: [
-          'Đúng. No sooner had we set off than it started to rain dùng inversion với had và cặp cố định no sooner... than.',
-          'No sooner we set off than it started to rain mất inversion. Sau No sooner ở đầu câu, cần had we set off.',
-          'No sooner had we set off when it started to rain dùng when, nhưng cặp đúng là no sooner... than.',
-          'No sooner had we sat off than it started to rain đổi set thành sat. Sat nghĩa là đã ngồi; ở đây cần set off.'
-        ]
-      },
-      id: {
-        prompt: 'Begitu kami berangkat, hujan mulai turun',
-        explanations: [
-          'Benar. No sooner had we set off than it started to rain memakai inversion dengan had dan pasangan tetap no sooner... than.',
-          'No sooner we set off than it started to rain kehilangan inversion. Setelah No sooner di awal, perlu had we set off.',
-          'No sooner had we set off when it started to rain memakai when, tetapi pasangan yang benar adalah no sooner... than.',
-          'No sooner had we sat off than it started to rain mengganti set dengan sat. Sat berarti duduk; di sini perlu set off.'
-        ]
-      },
-      tr: {
-        prompt: 'Yola çıkar çıkmaz yağmur yağmaya başladı',
-        explanations: [
-          'Doğru. No sooner had we set off than it started to rain had ile inversion ve sabit no sooner... than çiftini kullanır.',
-          'No sooner we set off than it started to rain inversion kullanmıyor. Başta No sooner varsa had we set off gerekir.',
-          'No sooner had we set off when it started to rain when kullanıyor, ama doğru çift no sooner... than olur.',
-          'No sooner had we sat off than it started to rain set yerine sat kullanıyor. Sat oturdu demektir; burada set off gerekir.'
-        ]
-      },
-      pl: {
-        prompt: 'Ledwie ruszyliśmy, zaczęło padać',
-        explanations: [
-          'Dobrze. No sooner had we set off than it started to rain używa inwersji z had i stałej pary no sooner... than.',
-          'No sooner we set off than it started to rain gubi inwersję. Po No sooner na początku potrzebujesz had we set off.',
-          'No sooner had we set off when it started to rain używa when, ale poprawna para to no sooner... than.',
-          'No sooner had we sat off than it started to rain zamienia set na sat. Sat znaczy siedział; tutaj potrzebujesz set off.'
-        ]
-      }
+      'pt-BR': p("Pode-se dizer que este é o jantar mais requintado que já provei", [
+        "This is argue the most exquisite dinner I have ever tasted. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. Arguably, this is the most exquisite dinner I have ever tasted. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "Arguably, this is the most exquisite dinner I ever tasted. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Arguably, this is the most excruciating dinner I have ever tasted. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Có thể nói đây là bữa tối tinh tế nhất tôi từng nếm", [
+        "This is argue the most exquisite dinner I have ever tasted. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. Arguably, this is the most exquisite dinner I have ever tasted. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "Arguably, this is the most exquisite dinner I ever tasted. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Arguably, this is the most excruciating dinner I have ever tasted. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Bisa dibilang, ini makan malam paling istimewa yang pernah saya cicipi", [
+        "This is argue the most exquisite dinner I have ever tasted. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. Arguably, this is the most exquisite dinner I have ever tasted. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "Arguably, this is the most exquisite dinner I ever tasted. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Arguably, this is the most excruciating dinner I have ever tasted. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Muhtemelen tattığım en zarif akşam yemeği bu", [
+        "This is argue the most exquisite dinner I have ever tasted. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. Arguably, this is the most exquisite dinner I have ever tasted. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "Arguably, this is the most exquisite dinner I ever tasted. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Arguably, this is the most excruciating dinner I have ever tasted. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Można powiedzieć, że to najbardziej wykwintna kolacja, jakiej kiedykolwiek próbowałem", [
+        "This is argue the most exquisite dinner I have ever tasted. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. Arguably, this is the most exquisite dinner I have ever tasted. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "Arguably, this is the most exquisite dinner I ever tasted. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Arguably, this is the most excruciating dinner I have ever tasted. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
     },
     '271': {
-      'pt-BR': {
-        prompt: 'Não suporto que me digam o que fazer',
-        explanations: [
-          'Correto. I resent being told what to do usa resent e a forma passiva being told para dizer que você se incomoda quando outros dão ordens.',
-          'I resent telling what to do inverte o sentido. Soa como se você se incomodasse em dizer aos outros o que fazer. Precisa de being told.',
-          'I hate when people say me what to do soa simples e say me não é natural aqui. A forma-alvo é I resent being told what to do.',
-          'I resent being tolled what to do troca told por tolled. Tolled se relaciona a pedágio ou sino; aqui você precisa de told.'
-        ]
-      },
-      vi: {
-        prompt: 'Tôi không chịu được việc bị bảo phải làm gì',
-        explanations: [
-          'Đúng. I resent being told what to do dùng resent và dạng bị động being told để nói bạn khó chịu khi người khác ra lệnh cho mình.',
-          'I resent telling what to do đảo ngược nghĩa. Nghe như bạn khó chịu khi bảo người khác phải làm gì. Cần being told.',
-          'I hate when people say me what to do nghe đơn giản và say me không tự nhiên ở đây. Cấu trúc mục tiêu là I resent being told what to do.',
-          'I resent being tolled what to do đổi told thành tolled. Tolled liên quan đến thu phí hoặc tiếng chuông; ở đây cần told.'
-        ]
-      },
-      id: {
-        prompt: 'Saya tidak tahan diberi tahu harus melakukan apa',
-        explanations: [
-          'Benar. I resent being told what to do memakai resent dan bentuk pasif being told untuk mengatakan kamu kesal saat orang lain memberi perintah.',
-          'I resent telling what to do membalik makna. Terdengar seperti kamu kesal saat menyuruh orang lain melakukan sesuatu. Perlu being told.',
-          'I hate when people say me what to do terdengar sederhana dan say me tidak natural di sini. Bentuk targetnya adalah I resent being told what to do.',
-          'I resent being tolled what to do mengganti told dengan tolled. Tolled berkaitan dengan biaya tol atau bunyi lonceng; di sini perlu told.'
-        ]
-      },
-      tr: {
-        prompt: 'Bana ne yapacağımın söylenmesine dayanamıyorum',
-        explanations: [
-          'Doğru. I resent being told what to do başkaları sana emir verdiğinde rahatsız olduğunu anlatmak için resent ve edilgen being told kullanır.',
-          'I resent telling what to do anlamı tersine çevirir. Başkalarına ne yapacağını söylemekten rahatsız oluyormuşsun gibi duyulur. Being told gerekir.',
-          'I hate when people say me what to do basit duyulur ve say me burada doğal değildir. Hedef yapı I resent being told what to do olur.',
-          'I resent being tolled what to do told yerine tolled kullanıyor. Tolled ücret alınması veya çan çalmasıyla ilgilidir; burada told gerekir.'
-        ]
-      },
-      pl: {
-        prompt: 'Nie znoszę, gdy ktoś mi mówi, co mam robić',
-        explanations: [
-          'Dobrze. I resent being told what to do używa resent i strony biernej being told, żeby powiedzieć, że drażni cię, gdy inni wydają ci polecenia.',
-          'I resent telling what to do odwraca sens. Brzmi, jakby przeszkadzało ci mówienie innym, co mają robić. Potrzebujesz being told.',
-          'I hate when people say me what to do brzmi prosto, a say me nie jest tu naturalne. Forma docelowa to I resent being told what to do.',
-          'I resent being tolled what to do zamienia told na tolled. Tolled wiąże się z opłatą albo biciem dzwonu; tutaj potrzebujesz told.'
-        ]
-      }
+      'pt-BR': p("Só então percebi a gravidade da situação", [
+        "Only then I realized the gravity of the situation. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. It was only then that I realized the gravity of the situation. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "Only then did I realized the gravity of the situation. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "It was only then that I realized the gravy of the situation. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Chỉ khi đó tôi mới nhận ra mức độ nghiêm trọng của tình hình", [
+        "Only then I realized the gravity of the situation. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. It was only then that I realized the gravity of the situation. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "Only then did I realized the gravity of the situation. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "It was only then that I realized the gravy of the situation. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Baru saat itu saya menyadari seriusnya situasi", [
+        "Only then I realized the gravity of the situation. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. It was only then that I realized the gravity of the situation. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "Only then did I realized the gravity of the situation. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "It was only then that I realized the gravy of the situation. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Durumun ciddiyetini ancak o zaman fark ettim", [
+        "Only then I realized the gravity of the situation. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. It was only then that I realized the gravity of the situation. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "Only then did I realized the gravity of the situation. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "It was only then that I realized the gravy of the situation. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Dopiero wtedy uświadomiłem sobie powagę sytuacji", [
+        "Only then I realized the gravity of the situation. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. It was only then that I realized the gravity of the situation. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "Only then did I realized the gravity of the situation. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "It was only then that I realized the gravy of the situation. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
     },
     '272': {
-      'pt-BR': {
-        prompt: 'Aparentemente, essa decisão é bastante duvidosa',
-        explanations: [
-          'Correto. Seemingly suaviza a opinião, e quite dubious soa mais preciso do que simplesmente very bad.',
-          'Seems, this decision is quite dubious não funciona como palavra introdutória. Você precisa do advérbio seemingly.',
-          'I think that this decision is very bad é compreensível, mas simples demais. Seemingly e dubious deixam a frase mais profissional e matizada.',
-          'Seemingly, this decision is quite doobious escreve dubious errado. Depois de d vem u, não oo.'
-        ]
-      },
-      vi: {
-        prompt: 'Có vẻ như quyết định này khá đáng ngờ',
-        explanations: [
-          'Đúng. Seemingly làm ý kiến mềm hơn, và quite dubious chính xác hơn nhiều so với simply very bad.',
-          'Seems, this decision is quite dubious không hoạt động như từ mở đầu. Cần trạng từ seemingly.',
-          'I think that this decision is very bad có thể hiểu được, nhưng quá đơn giản. Seemingly và dubious làm câu chuyên nghiệp và có sắc thái hơn.',
-          'Seemingly, this decision is quite doobious viết sai dubious. Sau d là u, không phải oo.'
-        ]
-      },
-      id: {
-        prompt: 'Tampaknya, keputusan ini cukup meragukan',
-        explanations: [
-          'Benar. Seemingly melembutkan opini, dan quite dubious terdengar lebih tepat daripada sekadar very bad.',
-          'Seems, this decision is quite dubious tidak berfungsi sebagai kata pembuka. Kamu perlu adverb seemingly.',
-          'I think that this decision is very bad bisa dipahami, tetapi terlalu sederhana. Seemingly dan dubious membuatnya lebih profesional dan bernuansa.',
-          'Seemingly, this decision is quite doobious salah mengeja dubious. Setelah d ada u, bukan oo.'
-        ]
-      },
-      tr: {
-        prompt: 'Görünüşe göre bu karar oldukça şüpheli',
-        explanations: [
-          'Doğru. Seemingly görüşü yumuşatır; quite dubious ise sadece very bad demekten daha kesin ve profesyonel duyulur.',
-          'Seems, this decision is quite dubious giriş sözü gibi çalışmaz. Zarf olan seemingly gerekir.',
-          'I think that this decision is very bad anlaşılır, ama fazla basittir. Seemingly ve dubious cümleyi daha profesyonel ve nüanslı yapar.',
-          'Seemingly, this decision is quite doobious dubious kelimesini yanlış yazar. d sonrasında u gelir, çift o değil.'
-        ]
-      },
-      pl: {
-        prompt: 'Wygląda na to, że ta decyzja jest dość wątpliwa',
-        explanations: [
-          'Dobrze. Seemingly łagodzi opinię, a quite dubious brzmi precyzyjniej niż zwykłe very bad.',
-          'Seems, this decision is quite dubious nie działa jako wyraz wprowadzający. Potrzebujesz przysłówka seemingly.',
-          'I think that this decision is very bad jest zrozumiałe, ale zbyt proste. Seemingly i dubious brzmią bardziej profesjonalnie i z niuansem.',
-          'Seemingly, this decision is quite doobious błędnie zapisuje dubious. Po d jest u, nie oo.'
-        ]
-      }
-    }
+      'pt-BR': p("Raramente presenciei uma injustiça tão descarada", [
+        "Correto. Rarely have I witnessed such blatant injustice. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "Rarely I have witnessed such blatant injustice. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I rarely witnessed so blatant injustice. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Rarely have I witnessed such blanket injustice. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Hiếm khi tôi chứng kiến một sự bất công trắng trợn như vậy", [
+        "Đúng. Rarely have I witnessed such blatant injustice. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "Rarely I have witnessed such blatant injustice. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I rarely witnessed so blatant injustice. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Rarely have I witnessed such blanket injustice. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Jarang sekali saya menyaksikan ketidakadilan sejelas itu", [
+        "Benar. Rarely have I witnessed such blatant injustice. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "Rarely I have witnessed such blatant injustice. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I rarely witnessed so blatant injustice. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Rarely have I witnessed such blanket injustice. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Böylesine apaçık bir adaletsizliğe nadiren tanık oldum", [
+        "Doğru. Rarely have I witnessed such blatant injustice. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "Rarely I have witnessed such blatant injustice. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I rarely witnessed so blatant injustice. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Rarely have I witnessed such blanket injustice. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Rzadko widziałem tak jawną niesprawiedliwość", [
+        "Dobrze. Rarely have I witnessed such blatant injustice. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "Rarely I have witnessed such blatant injustice. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I rarely witnessed so blatant injustice. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Rarely have I witnessed such blanket injustice. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '276': {
+      'pt-BR': p("Se você fizer as coisas pela metade, a qualidade vai sofrer", [
+        "Correto. If you cut corners, the quality will suffer. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "If you cut coroners, the quality will suffer. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "If you will cut corners, the quality will suffer. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "If you do corners cut, the quality will suffer. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Nếu bạn làm qua loa, chất lượng sẽ bị ảnh hưởng", [
+        "Đúng. If you cut corners, the quality will suffer. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "If you cut coroners, the quality will suffer. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "If you will cut corners, the quality will suffer. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "If you do corners cut, the quality will suffer. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Jika kamu mengerjakan secara asal-asalan, kualitasnya akan turun", [
+        "Benar. If you cut corners, the quality will suffer. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "If you cut coroners, the quality will suffer. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "If you will cut corners, the quality will suffer. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "If you do corners cut, the quality will suffer. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("İşi kestirmeden yaparsan kalite zarar görür", [
+        "Doğru. If you cut corners, the quality will suffer. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "If you cut coroners, the quality will suffer. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "If you will cut corners, the quality will suffer. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "If you do corners cut, the quality will suffer. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Jeśli pójdziesz na skróty, ucierpi jakość", [
+        "Dobrze. If you cut corners, the quality will suffer. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "If you cut coroners, the quality will suffer. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "If you will cut corners, the quality will suffer. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "If you do corners cut, the quality will suffer. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '277': {
+      'pt-BR': p("Se eu tivesse estudado mais naquela época, agora seria especialista", [
+        "If I studied more then, I would be an expert now. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. If I had studied more then, I would be an expert now. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "If I had studied more then, I would have been an expert now. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "If I had studied more then, I would be an export now. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Nếu hồi đó tôi học nhiều hơn, bây giờ tôi đã là chuyên gia", [
+        "If I studied more then, I would be an expert now. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. If I had studied more then, I would be an expert now. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "If I had studied more then, I would have been an expert now. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "If I had studied more then, I would be an export now. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Jika dulu saya belajar lebih banyak, sekarang saya akan menjadi ahli", [
+        "If I studied more then, I would be an expert now. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. If I had studied more then, I would be an expert now. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "If I had studied more then, I would have been an expert now. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "If I had studied more then, I would be an export now. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("O zaman daha çok çalışsaydım, şimdi uzman olurdum", [
+        "If I studied more then, I would be an expert now. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. If I had studied more then, I would be an expert now. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "If I had studied more then, I would have been an expert now. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "If I had studied more then, I would be an export now. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Gdybym wtedy więcej się uczył, teraz byłbym ekspertem", [
+        "If I studied more then, I would be an expert now. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. If I had studied more then, I would be an expert now. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "If I had studied more then, I would have been an expert now. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "If I had studied more then, I would be an export now. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '278': {
+      'pt-BR': p("Preciso revisar meu inglês", [
+        "Correto. I need to brush up on my English. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "I need to fresh up my English. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I need to brush up my English. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I need to blush up on my English. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Tôi cần ôn lại tiếng Anh của mình", [
+        "Đúng. I need to brush up on my English. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "I need to fresh up my English. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I need to brush up my English. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I need to blush up on my English. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Saya perlu menyegarkan kembali bahasa Inggris saya", [
+        "Benar. I need to brush up on my English. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "I need to fresh up my English. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I need to brush up my English. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I need to blush up on my English. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("İngilizcemi tazelemem gerekiyor", [
+        "Doğru. I need to brush up on my English. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "I need to fresh up my English. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I need to brush up my English. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I need to blush up on my English. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Muszę odświeżyć swój angielski", [
+        "Dobrze. I need to brush up on my English. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "I need to fresh up my English. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I need to brush up my English. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I need to blush up on my English. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '279': {
+      'pt-BR': p("O que eu preciso é de um bom descanso", [
+        "What I need is a tedious rest. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "What I need it is a good rest. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. What I need is a decent rest. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "That what I need is a good rest. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Điều tôi cần là một kỳ nghỉ ngơi tốt", [
+        "What I need is a tedious rest. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "What I need it is a good rest. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. What I need is a decent rest. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "That what I need is a good rest. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Yang saya butuhkan adalah istirahat yang baik", [
+        "What I need is a tedious rest. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "What I need it is a good rest. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. What I need is a decent rest. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "That what I need is a good rest. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("İhtiyacım olan şey iyi bir dinlenme", [
+        "What I need is a tedious rest. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "What I need it is a good rest. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. What I need is a decent rest. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "That what I need is a good rest. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("To, czego potrzebuję, to porządny odpoczynek", [
+        "What I need is a tedious rest. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "What I need it is a good rest. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. What I need is a decent rest. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "That what I need is a good rest. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '280': {
+      'pt-BR': p("Preciso mandar cortar o cabelo", [
+        "I need to cut my hair. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. I need to have my hair cut. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "I need to have my hair cat. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I need to hair cut. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Tôi cần đi cắt tóc", [
+        "I need to cut my hair. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. I need to have my hair cut. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "I need to have my hair cat. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I need to hair cut. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Saya perlu memotong rambut di tukang cukur", [
+        "I need to cut my hair. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. I need to have my hair cut. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "I need to have my hair cat. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I need to hair cut. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Saçımı kestirmem gerekiyor", [
+        "I need to cut my hair. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. I need to have my hair cut. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "I need to have my hair cat. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I need to hair cut. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Muszę dać sobie obciąć włosy", [
+        "I need to cut my hair. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. I need to have my hair cut. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "I need to have my hair cat. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I need to hair cut. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '281': {
+      'pt-BR': p("Pare de ficar enrolando", [
+        "Stop walking around and about. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Stop beating around the brush. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. Stop beating around the bush. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "Stop beating about the bush. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Đừng vòng vo nữa", [
+        "Stop walking around and about. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Stop beating around the brush. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. Stop beating around the bush. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "Stop beating about the bush. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Berhentilah berputar-putar", [
+        "Stop walking around and about. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Stop beating around the brush. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. Stop beating around the bush. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "Stop beating about the bush. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Lafı dolandırmayı bırak", [
+        "Stop walking around and about. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Stop beating around the brush. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. Stop beating around the bush. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "Stop beating about the bush. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Przestań owijać w bawełnę", [
+        "Stop walking around and about. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Stop beating around the brush. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. Stop beating around the bush. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "Stop beating about the bush. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '282': {
+      'pt-BR': p("É importante que ele esteja presente na reunião", [
+        "Correto. It is important that he be present at the meeting. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "It is important that he is present at the meeting. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "It is important him to be present at the meeting. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "It is important that he bee present at the meeting. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Điều quan trọng là anh ấy có mặt tại cuộc họp", [
+        "Đúng. It is important that he be present at the meeting. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "It is important that he is present at the meeting. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "It is important him to be present at the meeting. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "It is important that he bee present at the meeting. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Penting agar dia hadir di rapat", [
+        "Benar. It is important that he be present at the meeting. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "It is important that he is present at the meeting. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "It is important him to be present at the meeting. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "It is important that he bee present at the meeting. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Toplantıda hazır bulunması önemlidir", [
+        "Doğru. It is important that he be present at the meeting. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "It is important that he is present at the meeting. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "It is important him to be present at the meeting. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "It is important that he bee present at the meeting. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Ważne jest, aby był obecny na spotkaniu", [
+        "Dobrze. It is important that he be present at the meeting. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "It is important that he is present at the meeting. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "It is important him to be present at the meeting. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "It is important that he bee present at the meeting. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '283': {
+      'pt-BR': p("Ele nem suspeitava que uma surpresa o aguardava", [
+        "Little he knew that a surprise awaited him. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. Little did he know that a surprise awaited him. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "Small did he know that a surprise awaited him. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Little did he no that a surprise awaited him. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Anh ấy thậm chí không nghi ngờ rằng một bất ngờ đang chờ mình", [
+        "Little he knew that a surprise awaited him. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. Little did he know that a surprise awaited him. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "Small did he know that a surprise awaited him. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Little did he no that a surprise awaited him. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Dia bahkan tidak menduga bahwa ada kejutan menantinya", [
+        "Little he knew that a surprise awaited him. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. Little did he know that a surprise awaited him. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "Small did he know that a surprise awaited him. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Little did he no that a surprise awaited him. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Kendisini bir sürprizin beklediğinden haberi bile yoktu", [
+        "Little he knew that a surprise awaited him. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. Little did he know that a surprise awaited him. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "Small did he know that a surprise awaited him. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Little did he no that a surprise awaited him. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Nawet nie podejrzewał, że czeka go niespodzianka", [
+        "Little he knew that a surprise awaited him. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. Little did he know that a surprise awaited him. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "Small did he know that a surprise awaited him. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Little did he no that a surprise awaited him. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '284': {
+      'pt-BR': p("Você acertou em cheio", [
+        "Correto. You hit the nail on the head. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "You hit the nail on the heart. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "You hit the point exactly. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "You hit the snail on the head. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Bạn đã nói trúng trọng tâm", [
+        "Đúng. You hit the nail on the head. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "You hit the nail on the heart. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "You hit the point exactly. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "You hit the snail on the head. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Kamu tepat sekali", [
+        "Benar. You hit the nail on the head. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "You hit the nail on the heart. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "You hit the point exactly. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "You hit the snail on the head. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Tam isabet ettirdin", [
+        "Doğru. You hit the nail on the head. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "You hit the nail on the heart. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "You hit the point exactly. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "You hit the snail on the head. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Trafiłeś w samo sedno", [
+        "Dobrze. You hit the nail on the head. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "You hit the nail on the heart. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "You hit the point exactly. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "You hit the snail on the head. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '285': {
+      'pt-BR': p("Consegui fazer com que ele consertasse meu computador", [
+        "Correto. I got him to fix my computer. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "I got him fix my computer. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I spoke him to fix my computer. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I got him to fish my computer. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Tôi đã nhờ được anh ấy sửa máy tính của mình", [
+        "Đúng. I got him to fix my computer. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "I got him fix my computer. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I spoke him to fix my computer. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I got him to fish my computer. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Saya berhasil membuat dia memperbaiki komputer saya", [
+        "Benar. I got him to fix my computer. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "I got him fix my computer. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I spoke him to fix my computer. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I got him to fish my computer. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Bilgisayarımı tamir etmesini sağladım", [
+        "Doğru. I got him to fix my computer. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "I got him fix my computer. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I spoke him to fix my computer. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I got him to fish my computer. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Udało mi się skłonić go do naprawy mojego komputera", [
+        "Dobrze. I got him to fix my computer. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "I got him fix my computer. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I spoke him to fix my computer. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I got him to fish my computer. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '286': {
+      'pt-BR': p("Há males que vêm para o bem", [
+        "Correto. It is a blessing in disguise. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "It is a blessing in the skies. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "It is good without bad. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "It is a blessing on disguise. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Trong cái rủi có cái may", [
+        "Đúng. It is a blessing in disguise. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "It is a blessing in the skies. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "It is good without bad. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "It is a blessing on disguise. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Setiap hal buruk bisa membawa kebaikan", [
+        "Benar. It is a blessing in disguise. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "It is a blessing in the skies. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "It is good without bad. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "It is a blessing on disguise. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Her şerde bir hayır vardır", [
+        "Doğru. It is a blessing in disguise. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "It is a blessing in the skies. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "It is good without bad. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "It is a blessing on disguise. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Nie ma tego złego, co by na dobre nie wyszło", [
+        "Dobrze. It is a blessing in disguise. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "It is a blessing in the skies. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "It is good without bad. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "It is a blessing on disguise. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '287': {
+      'pt-BR': p("Supostamente, ele cometeu esse crime", [
+        "Correto. He allegedly committed this crime. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "He allergicly committed this crime. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "He alleged committed this crime. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "He as they say committed this crime. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Được cho là anh ấy đã phạm tội này", [
+        "Đúng. He allegedly committed this crime. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "He allergicly committed this crime. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "He alleged committed this crime. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "He as they say committed this crime. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Diduga, dia melakukan kejahatan ini", [
+        "Benar. He allegedly committed this crime. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "He allergicly committed this crime. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "He alleged committed this crime. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "He as they say committed this crime. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("İddiaya göre bu suçu işledi", [
+        "Doğru. He allegedly committed this crime. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "He allergicly committed this crime. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "He alleged committed this crime. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "He as they say committed this crime. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Podobno popełnił to przestępstwo", [
+        "Dobrze. He allegedly committed this crime. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "He allergicly committed this crime. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "He alleged committed this crime. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "He as they say committed this crime. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '288': {
+      'pt-BR': p("Mal eu tinha saído quando começou a chover", [
+        "No sooner I had left than it started to rain. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. No sooner had I left than it started to rain. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "No sooner had I left when it started to rain. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "No sooner had I left then it started to rain. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Tôi vừa mới ra khỏi nhà thì trời bắt đầu mưa", [
+        "No sooner I had left than it started to rain. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. No sooner had I left than it started to rain. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "No sooner had I left when it started to rain. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "No sooner had I left then it started to rain. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Baru saja saya pergi, hujan mulai turun", [
+        "No sooner I had left than it started to rain. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. No sooner had I left than it started to rain. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "No sooner had I left when it started to rain. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "No sooner had I left then it started to rain. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Daha yeni çıkmıştım ki yağmur başladı", [
+        "No sooner I had left than it started to rain. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. No sooner had I left than it started to rain. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "No sooner had I left when it started to rain. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "No sooner had I left then it started to rain. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Ledwie wyszedłem, gdy zaczęło padać", [
+        "No sooner I had left than it started to rain. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. No sooner had I left than it started to rain. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "No sooner had I left when it started to rain. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "No sooner had I left then it started to rain. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '289': {
+      'pt-BR': p("Você está procurando no lugar errado", [
+        "You are barking at the wrong tree. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "You are barking up the wrong three. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. You are barking up the wrong tree. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "You are barking on the wrong tree. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Bạn đang tìm sai chỗ", [
+        "You are barking at the wrong tree. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "You are barking up the wrong three. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. You are barking up the wrong tree. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "You are barking on the wrong tree. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Kamu mencari di tempat yang salah", [
+        "You are barking at the wrong tree. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "You are barking up the wrong three. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. You are barking up the wrong tree. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "You are barking on the wrong tree. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Yanlış yerde arıyorsun", [
+        "You are barking at the wrong tree. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "You are barking up the wrong three. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. You are barking up the wrong tree. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "You are barking on the wrong tree. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Szukasz w złym miejscu", [
+        "You are barking at the wrong tree. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "You are barking up the wrong three. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. You are barking up the wrong tree. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "You are barking on the wrong tree. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '290': {
+      'pt-BR': p("Sugiro que ela vá lá amanhã", [
+        "I suggest that she goes there tomorrow. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. I suggest that she go there tomorrow. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "I suggest her to go there tomorrow. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I suggest that she goed there tomorrow. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Tôi đề nghị cô ấy đến đó vào ngày mai", [
+        "I suggest that she goes there tomorrow. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. I suggest that she go there tomorrow. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "I suggest her to go there tomorrow. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I suggest that she goed there tomorrow. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Saya menyarankan agar dia pergi ke sana besok", [
+        "I suggest that she goes there tomorrow. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. I suggest that she go there tomorrow. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "I suggest her to go there tomorrow. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I suggest that she goed there tomorrow. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Yarın oraya gitmesini öneriyorum", [
+        "I suggest that she goes there tomorrow. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. I suggest that she go there tomorrow. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "I suggest her to go there tomorrow. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I suggest that she goed there tomorrow. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Sugeruję, żeby pojechała tam jutro", [
+        "I suggest that she goes there tomorrow. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. I suggest that she go there tomorrow. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "I suggest her to go there tomorrow. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I suggest that she goed there tomorrow. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '291': {
+      'pt-BR': p("Raramente vi uma beleza tão requintada", [
+        "I have seldom seen such exquisite beauty. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. Seldom have I seen such exquisite beauty. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "Seldom I have seen such exquisite beauty. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Seldom have I seen such explicit beauty. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Hiếm khi tôi thấy vẻ đẹp tinh tế đến vậy", [
+        "I have seldom seen such exquisite beauty. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. Seldom have I seen such exquisite beauty. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "Seldom I have seen such exquisite beauty. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Seldom have I seen such explicit beauty. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Jarang sekali saya melihat keindahan seanggun itu", [
+        "I have seldom seen such exquisite beauty. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. Seldom have I seen such exquisite beauty. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "Seldom I have seen such exquisite beauty. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Seldom have I seen such explicit beauty. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Böylesine zarif bir güzelliği nadiren gördüm", [
+        "I have seldom seen such exquisite beauty. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. Seldom have I seen such exquisite beauty. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "Seldom I have seen such exquisite beauty. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Seldom have I seen such explicit beauty. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Rzadko widziałem tak wyszukane piękno", [
+        "I have seldom seen such exquisite beauty. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. Seldom have I seen such exquisite beauty. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "Seldom I have seen such exquisite beauty. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Seldom have I seen such explicit beauty. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '292': {
+      'pt-BR': p("Partimos ao amanhecer", [
+        "Correto. We set off at dawn. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "We set on at dawn. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "We started at dawn. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "We sat off at dawn. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Chúng tôi khởi hành lúc bình minh", [
+        "Đúng. We set off at dawn. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "We set on at dawn. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "We started at dawn. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "We sat off at dawn. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Kami berangkat saat fajar", [
+        "Benar. We set off at dawn. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "We set on at dawn. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "We started at dawn. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "We sat off at dawn. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Şafakta yola çıktık", [
+        "Doğru. We set off at dawn. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "We set on at dawn. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "We started at dawn. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "We sat off at dawn. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Wyruszyliśmy o świcie", [
+        "Dobrze. We set off at dawn. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "We set on at dawn. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "We started at dawn. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "We sat off at dawn. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '293': {
+      'pt-BR': p("Fico incomodado quando me dizem o que fazer", [
+        "Correto. I resent being told what to do. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "I resent when people tell me what to do. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I resent be told what to do. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I recent being told what to do. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Tôi khó chịu khi bị bảo phải làm gì", [
+        "Đúng. I resent being told what to do. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "I resent when people tell me what to do. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I resent be told what to do. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I recent being told what to do. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Saya kesal ketika diberi tahu harus melakukan apa", [
+        "Benar. I resent being told what to do. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "I resent when people tell me what to do. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I resent be told what to do. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I recent being told what to do. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Bana ne yapacağımın söylenmesinden rahatsız olurum", [
+        "Doğru. I resent being told what to do. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "I resent when people tell me what to do. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I resent be told what to do. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I recent being told what to do. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Drażni mnie, gdy ktoś mówi mi, co mam robić", [
+        "Dobrze. I resent being told what to do. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "I resent when people tell me what to do. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I resent be told what to do. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I recent being told what to do. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '294': {
+      'pt-BR': p("Se eu fosse mais esperto, não teria comprado aquele carro", [
+        "If I was smarter, I wouldn't buy that car. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. If I were smarter, I wouldn't have bought that car. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "If I were smarter, I wouldn't have boat that car. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "If I would be smarter, I wouldn't have bought that car. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Nếu tôi thông minh hơn, tôi đã không mua chiếc xe đó", [
+        "If I was smarter, I wouldn't buy that car. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. If I were smarter, I wouldn't have bought that car. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "If I were smarter, I wouldn't have boat that car. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "If I would be smarter, I wouldn't have bought that car. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Jika saya lebih pintar, saya tidak akan membeli mobil itu", [
+        "If I was smarter, I wouldn't buy that car. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. If I were smarter, I wouldn't have bought that car. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "If I were smarter, I wouldn't have boat that car. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "If I would be smarter, I wouldn't have bought that car. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Daha akıllı olsaydım o arabayı almazdım", [
+        "If I was smarter, I wouldn't buy that car. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. If I were smarter, I wouldn't have bought that car. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "If I were smarter, I wouldn't have boat that car. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "If I would be smarter, I wouldn't have bought that car. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Gdybym był mądrzejszy, nie kupiłbym tamtego samochodu", [
+        "If I was smarter, I wouldn't buy that car. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. If I were smarter, I wouldn't have bought that car. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "If I were smarter, I wouldn't have boat that car. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "If I would be smarter, I wouldn't have bought that car. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '295': {
+      'pt-BR': p("Supostamente, ele roubou estes documentos", [
+        "Correto. He allegedly stole these documents. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "He allergicly stole these documents. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "He alleged stole these documents. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "He as they say stole these documents. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Được cho là anh ấy đã lấy cắp những tài liệu này", [
+        "Đúng. He allegedly stole these documents. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "He allergicly stole these documents. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "He alleged stole these documents. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "He as they say stole these documents. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Diduga, dia mencuri dokumen-dokumen ini", [
+        "Benar. He allegedly stole these documents. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "He allergicly stole these documents. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "He alleged stole these documents. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "He as they say stole these documents. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("İddiaya göre bu belgeleri çaldı", [
+        "Doğru. He allegedly stole these documents. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "He allergicly stole these documents. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "He alleged stole these documents. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "He as they say stole these documents. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Podobno ukradł te dokumenty", [
+        "Dobrze. He allegedly stole these documents. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "He allergicly stole these documents. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "He alleged stole these documents. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "He as they say stole these documents. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '296': {
+      'pt-BR': p("Insisto que ele esteja presente na reunião", [
+        "I insist that he is present at the meeting. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I insist on him to be present at the meeting. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "Correto. I insist that he be present at the meeting. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "I insist that he bee present at the meeting. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Tôi khăng khăng rằng anh ấy phải có mặt tại cuộc họp", [
+        "I insist that he is present at the meeting. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I insist on him to be present at the meeting. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "Đúng. I insist that he be present at the meeting. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "I insist that he bee present at the meeting. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Saya bersikeras agar dia hadir di rapat", [
+        "I insist that he is present at the meeting. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I insist on him to be present at the meeting. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "Benar. I insist that he be present at the meeting. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "I insist that he bee present at the meeting. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Toplantıda hazır bulunmasında ısrar ediyorum", [
+        "I insist that he is present at the meeting. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I insist on him to be present at the meeting. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "Doğru. I insist that he be present at the meeting. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "I insist that he bee present at the meeting. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Nalegam, aby był obecny na spotkaniu", [
+        "I insist that he is present at the meeting. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I insist on him to be present at the meeting. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "Dobrze. I insist that he be present at the meeting. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "I insist that he bee present at the meeting. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
+    '297': {
+      'pt-BR': p("Preciso revisar meu inglês antes da viagem", [
+        "Correto. I need to brush up on my English before the trip. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+        "I need to brush up my English before the trip. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I need to fresh my English before the trip. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+        "I need to blush up on my English before the trip. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      ]),
+      vi: p("Tôi cần ôn lại tiếng Anh trước chuyến đi", [
+        "Đúng. I need to brush up on my English before the trip. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết.",
+        "I need to brush up my English before the trip. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I need to fresh my English before the trip. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+        "I need to blush up on my English before the trip. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn.",
+      ]),
+      id: p("Saya perlu menyegarkan kembali bahasa Inggris sebelum perjalanan", [
+        "Benar. I need to brush up on my English before the trip. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan.",
+        "I need to brush up my English before the trip. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I need to fresh my English before the trip. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+        "I need to blush up on my English before the trip. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih.",
+      ]),
+      tr: p("Yolculuktan önce İngilizcemi tazelemem gerekiyor", [
+        "Doğru. I need to brush up on my English before the trip. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır.",
+        "I need to brush up my English before the trip. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I need to fresh my English before the trip. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+        "I need to blush up on my English before the trip. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır.",
+      ]),
+      pl: p("Muszę odświeżyć angielski przed podróżą", [
+        "Dobrze. I need to brush up on my English before the trip. zachowuje sens zdania i używa potrzebnej angielskiej struktury.",
+        "I need to brush up my English before the trip. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I need to fresh my English before the trip. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+        "I need to blush up on my English before the trip. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem.",
+      ]),
+    },
   }
 };
 

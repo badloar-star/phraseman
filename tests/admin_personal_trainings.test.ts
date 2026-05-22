@@ -7,7 +7,7 @@ import {
   JESSE_REWORKED_MARKER,
 } from '../app/personal_training_taxonomy';
 import { PERSONAL_TRAINING_SUMMARY_SOURCE_LOCALES } from '../app/personal_training_source_locales';
-import { PLANNED_INTERFACE_SOURCE_LOCALES } from '../app/source_locales';
+import { HEISENBERG_BATCH_SOURCE_LOCALES } from '../app/source_locales';
 
 const ROOT = path.resolve(__dirname, '..');
 const ADMIN_MANIFEST_PATH = path.join(ROOT, 'admin', 'personal-trainings.js');
@@ -98,7 +98,7 @@ describe('admin personal trainings manifest', () => {
     }
   });
 
-  it('syncs planned source-language titles and short diagnoses for translated summary batches', () => {
+  it('syncs Heisenberg source-language titles and short diagnoses for translated summary batches', () => {
     const manifest = readAdminManifest();
     const cyrillic = /[А-Яа-яЁёІіЇїЄєҐґ]/;
 
@@ -106,7 +106,7 @@ describe('admin personal trainings manifest', () => {
       const training = manifest.trainings.find((item) => item.id === id);
       expect(training).toBeTruthy();
 
-      for (const locale of PLANNED_INTERFACE_SOURCE_LOCALES) {
+      for (const locale of HEISENBERG_BATCH_SOURCE_LOCALES) {
         const expected = sourceLocales[locale];
         if (!expected) continue;
 
@@ -116,5 +116,11 @@ describe('admin personal trainings manifest', () => {
         expect(training?.shortDiagnosis[locale]).not.toMatch(cyrillic);
       }
     }
+  });
+
+  it('keeps personal training summary locale lookup out of runtime fallback audit noise', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', 'personal_training_source_locales.ts'), 'utf8');
+
+    expect(source).not.toContain('PERSONAL_TRAINING_SUMMARY_SOURCE_LOCALES[id] ?? {}');
   });
 });

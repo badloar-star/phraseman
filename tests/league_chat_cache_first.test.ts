@@ -74,9 +74,9 @@ describe('league chat cache-first behavior', () => {
     expect(ui.shouldSubscribe).toBe(false);
   });
 
-  it('uses keyboard padding on Android so the composer is lifted above the keyboard', () => {
+  it('uses platform-specific keyboard avoidance so the composer stays visible', () => {
     expect(getLeagueChatKeyboardAvoidingBehavior('ios')).toBe('padding');
-    expect(getLeagueChatKeyboardAvoidingBehavior('android')).toBe('padding');
+    expect(getLeagueChatKeyboardAvoidingBehavior('android')).toBe('height');
   });
 
   it('routes the blocking fallback through the cache-first connection helper', () => {

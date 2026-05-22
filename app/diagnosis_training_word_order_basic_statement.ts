@@ -3,7 +3,28 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const WORD_ORDER_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre ordem básica em afirmações ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về trật tự từ trong câu khẳng định này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan urutan kata dasar dalam pernyataan ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu temel olumlu cümle kelime sırası açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie podstawowego szyku słów w zdaniu twierdzącym nadal wymaga przeglądu po polsku.',
+};
+
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? WORD_ORDER_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'subject',
@@ -17,17 +38,65 @@ const CONTRAST = [
 
 const SMART_CONTRAST = ['subject', 'verb', 'object', 'place', 'time', 'adverb position'];
 
+const WORD_ORDER_SKILL_ES: Record<string, string> = {
+  subject_verb_object: 'La frase neutra mantiene sujeto + accion + objeto.',
+  subject_verb_place: 'Mantén sujeto y verbo juntos, y deja el lugar despues.',
+  object_place_order: 'Primero va lo que haces; despues, donde lo haces.',
+  object_place_time_order: 'Orden seguro: sujeto, accion, objeto, lugar y tiempo.',
+  past_object_time_order: 'El tiempo puede ir al final sin romper sujeto + verbo.',
+  time_beginning_core_order: 'Si el tiempo va al principio, despues no inviertas sujeto y verbo.',
+  time_beginning_past: 'Despues de Yesterday, conserva el orden normal: she bought.',
+  time_beginning_place: 'Despues de After work, conserva el orden normal: we went home.',
+  frequency_before_main_verb: 'Usually/often suelen ir cerca del verbo principal.',
+  frequency_after_be: 'Con is/are, always suele ir despues de be.',
+  frequency_question_not_target_but_statement: 'No dejes que often rompa la accion y el objeto.',
+  mixed_svo_place_time: 'Construye primero el marco principal; despues lugar y tiempo.',
+  mixed_time_beginning_core: 'Con tiempo al inicio, el resto sigue en orden normal.',
+  mixed_sentence_correction: 'Evita que lugar o tiempo separen sujeto y verbo.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = WORD_ORDER_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? WORD_ORDER_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function wordOrderEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = WORD_ORDER_SKILL_ES[input.targetSkill] ?? 'Usa el marco neutro: quien, accion, que, donde y cuando.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
+
 const CORE_MODEL = tri(
   'В обычной английской фразе сначала говорим, кто делает действие. Потом само действие. Потом что, где и когда. Русский может двигать куски свободнее, а английскому чаще нужен ровный каркас.',
   'У звичайній англійській фразі спочатку кажемо, хто робить дію. Потім сама дія. Потім що, де і коли. Українська може рухати шматки вільніше, а англійській частіше потрібен рівний каркас.',
-  'A normal English statement usually keeps a fixed frame: who, action, what, where, when.',
+  'Una afirmacion normal en ingles suele mantener un marco fijo: quien, accion, que, donde y cuando.',
+  {
+    'pt-BR': 'Uma afirmação normal em inglês costuma manter uma estrutura fixa: quem faz a ação, a ação, o quê, onde e quando.',
+    vi: 'Một câu khẳng định bình thường trong tiếng Anh thường giữ khung cố định: ai làm, hành động, cái gì, ở đâu và khi nào.',
+    id: 'Pernyataan normal dalam bahasa Inggris biasanya memakai kerangka tetap: siapa, aksi, apa, di mana, dan kapan.',
+    tr: 'Normal bir İngilizce olumlu cümle genellikle sabit bir çerçeve kullanır: kim, eylem, ne, nerede ve ne zaman.',
+    pl: 'Zwykłe zdanie twierdzące po angielsku zwykle trzyma stały układ: kto, czynność, co, gdzie i kiedy.',
+  },
 );
 
 function fallbackWrong(correct: string): TriText {
   return tri(
     `Почти. Здесь безопаснее собрать фразу так: ${correct}`,
     `Майже. Тут безпечніше зібрати фразу так: ${correct}`,
-    `Almost. Safer order: ${correct}`,
+    `Casi. El orden mas seguro es: ${correct}`,
   );
 }
 
@@ -46,41 +115,43 @@ function statementStep(input: {
   fallbackExplanation: TriText;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = wordOrderEsFeedback(input);
+
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    teachingText: CORE_MODEL,
-    explanationBlock: CORE_MODEL,
+    teachingText: withEs(CORE_MODEL, esFeedback),
+    explanationBlock: withEs(CORE_MODEL, esFeedback),
     microTask: tri(
       'Выбери фразу, которая звучит как обычное английское утверждение.',
       'Обери фразу, яка звучить як звичайне англійське твердження.',
-      'Choose the sentence with natural English statement order.',
+      'Elige la frase que suena como una afirmacion normal en ingles.',
     ),
     sentence: input.sentence,
-    translation: input.translation,
+    translation: withEs(input.translation, esFeedback),
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? fallbackWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong[option] ?? fallbackWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: input.retryFeedback,
-    fallbackExplanation: input.fallbackExplanation,
+    retryFeedback: input.retryFeedback.map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
+    fallbackExplanation: withEs(input.fallbackExplanation, esFeedback),
     focusWords: input.focusWords,
   };
 }
 
 const frameRetry = (answer: string): [TriText, TriText, TriText, TriText] => [
-  tri('Сначала спроси: кто делает действие?', 'Спочатку спитай: хто робить дію?', 'First ask: who does it?'),
-  tri('Потом поставь действие.', 'Потім постав дію.', 'Then put the action.'),
-  tri('После этого добавь что, где или когда.', 'Після цього додай що, де або коли.', 'Then add what, where, or when.'),
-  tri('В конце проверь, не разорвали ли место или время связку "кто + действие".', 'Наприкiнцi перевiр, чи не розiрвали мiсце або час звʼязку "хто + дiя".', `Answer: ${answer}`),
+  tri('Сначала спроси: кто делает действие?', 'Спочатку спитай: хто робить дію?', 'Primero pregunta: quien hace la accion?'),
+  tri('Потом поставь действие.', 'Потім постав дію.', 'Despues pon la accion.'),
+  tri('После этого добавь что, где или когда.', 'Після цього додай що, де або коли.', 'Despues agrega que, donde o cuando.'),
+  tri('В конце проверь, не разорвали ли место или время связку "кто + действие".', 'Наприкiнцi перевiр, чи не розiрвали мiсце або час звʼязку "хто + дiя".', `Respuesta: ${answer}`),
 ];
 
 export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
@@ -89,33 +160,74 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 31,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'I like coffee: ровный порядок слов',
     'I like coffee: рівний порядок слів',
-    'I like coffee: basic statement order',
+    'I like coffee: orden basico de afirmacion',
+    {
+      'pt-BR': 'I like coffee: ordem básica em afirmações',
+      vi: 'I like coffee: trật tự từ cơ bản trong câu khẳng định',
+      id: 'I like coffee: urutan kata dasar dalam pernyataan',
+      tr: 'I like coffee: olumlu cümlede temel kelime sırası',
+      pl: 'I like coffee: podstawowy szyk słów w zdaniu twierdzącym',
+    },
   ),
-  shortTitle: tri('I like coffee', 'I like coffee', 'I like coffee'),
+  shortTitle: tri('I like coffee', 'I like coffee', 'I like coffee', {
+    'pt-BR': 'I like coffee',
+    vi: 'I like coffee',
+    id: 'I like coffee',
+    tr: 'I like coffee',
+    pl: 'I like coffee',
+  }),
   shortDiagnosis: tri(
     'Ты знаешь все слова, но двигаешь их как в русском. В английском обычная фраза чаще держится на каркасе: кто + действие + что.',
     'Ти знаєш усі слова, але рухаєш їх як в українській. В англійській звичайна фраза частіше тримається на каркасі: хто + дія + що.',
-    'You know the words, but move them too freely. English statements usually keep who + action + what.',
+    'Conoces las palabras, pero las mueves demasiado libremente. Las afirmaciones en ingles suelen mantener quien + accion + que.',
+    {
+      'pt-BR': 'Você conhece as palavras, mas as move livremente demais. Em inglês, afirmações normais costumam manter quem + ação + o quê.',
+      vi: 'Bạn biết tất cả các từ, nhưng di chuyển chúng quá tự do. Trong tiếng Anh, câu khẳng định thường giữ khung ai + hành động + cái gì.',
+      id: 'Kamu tahu semua katanya, tetapi memindahkannya terlalu bebas. Dalam bahasa Inggris, pernyataan biasa biasanya mempertahankan siapa + aksi + apa.',
+      tr: 'Kelimeleri biliyorsun ama onları fazla serbest taşıyorsun. İngilizcede normal olumlu cümleler genellikle kim + eylem + ne düzenini korur.',
+      pl: 'Znasz słowa, ale przesuwasz je zbyt swobodnie. W angielskim zwykłe zdania twierdzące zwykle trzymają układ kto + czynność + co.',
+    },
   ),
   diagnosisText: tri(
     'Проблема не в словах. Coffee, I, like понятны по отдельности. Но Coffee I like звучит как перенос русской логики. Нейтрально: I like coffee. То же самое с местом и временем: не I read at home books, а I read books at home.',
     'Проблема не в словах. Coffee, I, like зрозумілі окремо. Але Coffee I like звучить як перенесення української логіки. Нейтрально: I like coffee. Так само з місцем і часом: не I read at home books, а I read books at home.',
-    'The words are clear, but the order is not. Use I like coffee and I read books at home.',
+    'Las palabras estan claras, pero el orden no. Usa I like coffee y I read books at home.',
+    {
+      'pt-BR': 'O problema não está nas palavras. Coffee, I e like são claros separadamente. Mas Coffee I like soa como transferência da lógica de outro idioma. A forma neutra é I like coffee. Com lugar e tempo acontece o mesmo: não I read at home books, mas I read books at home.',
+      vi: 'Vấn đề không nằm ở từng từ. Coffee, I và like đều rõ khi đứng riêng. Nhưng Coffee I like nghe như chuyển trật tự từ ngôn ngữ khác sang tiếng Anh. Câu trung tính là I like coffee. Với nơi chốn và thời gian cũng vậy: không dùng I read at home books, mà dùng I read books at home.',
+      id: 'Masalahnya bukan pada kata-katanya. Coffee, I, dan like jelas jika berdiri sendiri. Tetapi Coffee I like terdengar seperti memindahkan logika bahasa lain. Bentuk netralnya adalah I like coffee. Sama juga dengan tempat dan waktu: bukan I read at home books, tetapi I read books at home.',
+      tr: 'Sorun kelimelerde değil. Coffee, I ve like ayrı ayrı anlaşılır. Ama Coffee I like başka bir dilin mantığını İngilizceye taşımış gibi duyulur. Nötr biçim I like coffee. Yer ve zamanda da aynı şey geçerli: I read at home books değil, I read books at home.',
+      pl: 'Problem nie leży w słowach. Coffee, I i like są osobno jasne. Ale Coffee I like brzmi jak przeniesienie logiki innego języka. Neutralnie mówimy I like coffee. Z miejscem i czasem jest podobnie: nie I read at home books, tylko I read books at home.',
+    },
   ),
   mentalModel: tri(
     'Держи короткий тест. Кто? I. Что делаю? like. Что? coffee. Получается I like coffee. Если есть место, оно часто идет после того, что делают: I read books at home. Если есть время, оно часто идет в конец или начало: I work every day / Every day, I work.',
     'Тримай короткий тест. Хто? I. Що роблю? like. Що? coffee. Виходить I like coffee. Якщо є місце, воно часто йде після того, що роблять: I read books at home. Якщо є час, він часто йде в кінець або на початок: I work every day / Every day, I work.',
-    'Use the frame: who + action + what. Place often follows what. Time often goes at the end or beginning.',
+    'Usa el marco: quien + accion + que. El lugar suele ir despues de lo que haces. El tiempo suele ir al final o al principio.',
+    {
+      'pt-BR': 'Use o teste curto. Quem? I. O que faço? like. O quê? coffee. Fica I like coffee. Se houver lugar, ele muitas vezes vem depois do que a pessoa faz: I read books at home. Se houver tempo, ele muitas vezes vai ao fim ou ao início: I work every day / Every day, I work.',
+      vi: 'Dùng bài kiểm tra ngắn. Ai? I. Làm gì? like. Cái gì? coffee. Thành I like coffee. Nếu có nơi chốn, nó thường đứng sau việc được làm: I read books at home. Nếu có thời gian, nó thường đứng cuối hoặc đầu câu: I work every day / Every day, I work.',
+      id: 'Gunakan tes singkat. Siapa? I. Melakukan apa? like. Apa? coffee. Hasilnya I like coffee. Jika ada tempat, biasanya datang setelah hal yang dilakukan: I read books at home. Jika ada waktu, biasanya di akhir atau awal: I work every day / Every day, I work.',
+      tr: 'Kısa testi kullan. Kim? I. Ne yapıyor? like. Neyi? coffee. Sonuç I like coffee. Yer bilgisi varsa çoğu zaman yapılan şeyden sonra gelir: I read books at home. Zaman bilgisi varsa çoğu zaman sona veya başa gelir: I work every day / Every day, I work.',
+      pl: 'Użyj krótkiego testu. Kto? I. Co robi? like. Co? coffee. Powstaje I like coffee. Jeśli jest miejsce, często idzie po tym, co ktoś robi: I read books at home. Jeśli jest czas, często idzie na koniec albo początek: I work every day / Every day, I work.',
+    },
   ),
   contrastSet: CONTRAST,
   coreRule: tri(
     'Базовый каркас: кто + действие + что. Потом место. Потом время. I like coffee. I read books at home. I work every day. Время можно поставить в начало, но внутри основной части порядок остается ровным: Every day, I work.',
     'Базовий каркас: хто + дія + що. Потім місце. Потім час. I like coffee. I read books at home. I work every day. Час можна поставити на початок, але всередині основної частини порядок лишається рівним: Every day, I work.',
-    'Basic frame: who + action + what, then place, then time.',
+    'Marco basico: quien + accion + que. Despues lugar. Despues tiempo.',
+    {
+      'pt-BR': 'Estrutura básica: quem + ação + o quê. Depois lugar. Depois tempo. I like coffee. I read books at home. I work every day. O tempo pode ir no início, mas dentro da parte principal a ordem continua estável: Every day, I work.',
+      vi: 'Khung cơ bản: ai + hành động + cái gì. Sau đó nơi chốn. Sau đó thời gian. I like coffee. I read books at home. I work every day. Thời gian có thể đứng đầu câu, nhưng bên trong phần chính trật tự vẫn giữ nguyên: Every day, I work.',
+      id: 'Kerangka dasar: siapa + aksi + apa. Lalu tempat. Lalu waktu. I like coffee. I read books at home. I work every day. Waktu bisa diletakkan di awal, tetapi di bagian utama urutannya tetap stabil: Every day, I work.',
+      tr: 'Temel çerçeve: kim + eylem + ne. Sonra yer. Sonra zaman. I like coffee. I read books at home. I work every day. Zaman başa gelebilir, ama ana bölümün içinde sıra düz kalır: Every day, I work.',
+      pl: 'Podstawowy układ: kto + czynność + co. Potem miejsce. Potem czas. I like coffee. I read books at home. I work every day. Czas można dać na początek, ale w głównej części szyk pozostaje prosty: Every day, I work.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -139,21 +251,55 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
       'Не перенось напряму порядок "Каву я люблю" у Coffee I like.',
     ],
     es: [
-      'Start with who does the action.',
-      'Then put the action.',
-      'Then put what, where, and when.',
-      'Do not move pieces as freely as in your source language.',
+      'Una afirmacion normal en ingles suele empezar con quien hace la accion.',
+      'Despues va la accion.',
+      'Despues de la accion va lo que haces: I like coffee, She reads books.',
+      'El lugar suele ir despues: I read books at home.',
+      'El tiempo suele ir al final o al principio: I work every day / Every day, I work.',
+      'Palabras como usually y often suelen ir antes del verbo principal: I usually work.',
+      'Con is/are, esas palabras suelen ir despues de is/are: She is always busy.',
+      'No lleves directamente el orden flexible de tu idioma a Coffee I like.',
+    ],
+    'pt-BR': [
+      'Comece com quem faz a ação.',
+      'Depois coloque a ação.',
+      'Depois coloque o quê, onde e quando.',
+      'Não mova os blocos tão livremente quanto na sua língua de origem.',
+    ],
+    vi: [
+      'Bắt đầu với người làm hành động.',
+      'Sau đó đặt hành động.',
+      'Sau đó đặt cái gì, ở đâu và khi nào.',
+      'Đừng di chuyển các phần tự do như trong tiếng mẹ đẻ của bạn.',
+    ],
+    id: [
+      'Mulailah dengan siapa yang melakukan aksi.',
+      'Lalu letakkan aksinya.',
+      'Lalu letakkan apa, di mana, dan kapan.',
+      'Jangan memindahkan bagian-bagian sebebas dalam bahasa sumbermu.',
+    ],
+    tr: [
+      'Eylemi kimin yaptığıyla başla.',
+      'Sonra eylemi koy.',
+      'Sonra neyi, nerede ve ne zaman bilgilerini ekle.',
+      'Parçaları kendi ana dilindeki kadar serbest taşıma.',
+    ],
+    pl: [
+      'Zacznij od tego, kto wykonuje czynność.',
+      'Potem postaw czynność.',
+      'Potem dodaj co, gdzie i kiedy.',
+      'Nie przesuwaj części tak swobodnie jak w swoim języku źródłowym.',
     ],
   },
   examples: [
-    { en: 'I like coffee.', ru: 'Я люблю кофе.', uk: 'Я люблю каву.', es: 'I like coffee.', why: tri('Сначала I, потом like, потом coffee.', 'Спочатку I, потім like, потім coffee.', 'Who + action + what.') },
-    { en: 'She reads books at home.', ru: 'Она читает книги дома.', uk: 'Вона читає книжки вдома.', es: 'She reads books at home.', why: tri('Сначала кто и что делает. Потом books. Потом at home.', 'Спочатку хто і що робить. Потім books. Потім at home.', 'Who + action + what + where.') },
-    { en: 'They live in Dublin.', ru: 'Они живут в Дублине.', uk: 'Вони живуть у Дубліні.', es: 'They live in Dublin.', why: tri('They live держится вместе, место идет после.', 'They live тримається разом, місце йде після.', 'Who + action + where.') },
-    { en: 'My friend works every day.', ru: 'Мой друг работает каждый день.', uk: 'Мій друг працює щодня.', es: 'My friend works every day.', why: tri('Время every day стоит в конце.', 'Час every day стоїть у кінці.', 'Time is at the end.') },
-    { en: 'We usually study in the evening.', ru: 'Мы обычно учимся вечером.', uk: 'Ми зазвичай вчимося ввечері.', es: 'We usually study in the evening.', why: tri('Usually стоит рядом с study, а не разрывает всю фразу.', 'Usually стоїть поруч зі study, а не розриває всю фразу.', 'Usually stays near the action.') },
-    { en: 'She is always busy.', ru: 'Она всегда занята.', uk: 'Вона завжди зайнята.', es: 'She is always busy.', why: tri('С is слово always чаще идет после is.', 'З is слово always частіше йде після is.', 'With is, always often follows is.') },
-    { en: 'I watched a film yesterday.', ru: 'Я посмотрел фильм вчера.', uk: 'Я подивився фільм учора.', es: 'I watched a film yesterday.', why: tri('Время yesterday спокойно стоит в конце.', 'Час yesterday спокійно стоїть у кінці.', 'Time can go at the end.') },
-    { en: 'Every morning, he drinks tea.', ru: 'Каждое утро он пьет чай.', uk: "Щоранку він п'є чай.", es: 'Every morning, he drinks tea.', why: tri('Время можно поставить первым, но дальше остается he drinks tea.', 'Час можна поставити першим, але далі лишається he drinks tea.', 'Time first, then normal order.') },
+    { en: 'I like coffee.', ru: 'Я люблю кофе.', uk: 'Я люблю каву.', es: 'Me gusta el cafe.', 'pt-BR': 'Eu gosto de café.', vi: 'Tôi thích cà phê.', id: 'Saya suka kopi.', tr: 'Kahveyi severim.', pl: 'Lubię kawę.', why: tri('Сначала I, потом like, потом coffee.', 'Спочатку I, потім like, потім coffee.', 'Primero I, despues like, despues coffee.') },
+    { en: 'She reads books at home.', ru: 'Она читает книги дома.', uk: 'Вона читає книжки вдома.', es: 'Ella lee libros en casa.', 'pt-BR': 'Ela lê livros em casa.', vi: 'Cô ấy đọc sách ở nhà.', id: 'Dia membaca buku di rumah.', tr: 'Evde kitap okur.', pl: 'Ona czyta książki w domu.', why: tri('Сначала кто и что делает. Потом books. Потом at home.', 'Спочатку хто і що робить. Потім books. Потім at home.', 'Quien + accion + que + donde.') },
+    { en: 'They live in Dublin.', ru: 'Они живут в Дублине.', uk: 'Вони живуть у Дубліні.', es: 'Viven en Dublin.', 'pt-BR': 'Eles moram em Dublin.', vi: 'Họ sống ở Dublin.', id: 'Mereka tinggal di Dublin.', tr: 'Dublin’de yaşıyorlar.', pl: 'Oni mieszkają w Dublinie.', why: tri('They live держится вместе, место идет после.', 'They live тримається разом, місце йде після.', 'They live se mantiene junto; el lugar va despues.') },
+    { en: 'My friend works every day.', ru: 'Мой друг работает каждый день.', uk: 'Мій друг працює щодня.', es: 'Mi amigo trabaja todos los dias.', 'pt-BR': 'Meu amigo trabalha todos os dias.', vi: 'Bạn tôi làm việc mỗi ngày.', id: 'Teman saya bekerja setiap hari.', tr: 'Arkadaşım her gün çalışır.', pl: 'Mój przyjaciel pracuje codziennie.', why: tri('Время every day стоит в конце.', 'Час every day стоїть у кінці.', 'El tiempo every day va al final.') },
+    { en: 'We usually study in the evening.', ru: 'Мы обычно учимся вечером.', uk: 'Ми зазвичай вчимося ввечері.', es: 'Normalmente estudiamos por la tarde.', 'pt-BR': 'Normalmente estudamos à noite.', vi: 'Chúng tôi thường học vào buổi tối.', id: 'Kami biasanya belajar pada malam hari.', tr: 'Genellikle akşamları ders çalışırız.', pl: 'Zwykle uczymy się wieczorem.', why: tri('Usually стоит рядом с study, а не разрывает всю фразу.', 'Usually стоїть поруч зі study, а не розриває всю фразу.', 'Usually se queda cerca de la accion.') },
+    { en: 'She is always busy.', ru: 'Она всегда занята.', uk: 'Вона завжди зайнята.', es: 'Ella siempre esta ocupada.', 'pt-BR': 'Ela está sempre ocupada.', vi: 'Cô ấy luôn bận.', id: 'Dia selalu sibuk.', tr: 'O her zaman meşguldür.', pl: 'Ona zawsze jest zajęta.', why: tri('С is слово always чаще идет после is.', 'З is слово always частіше йде після is.', 'Con is, always suele ir despues de is.') },
+    { en: 'I watched a film yesterday.', ru: 'Я посмотрел фильм вчера.', uk: 'Я подивився фільм учора.', es: 'Vi una pelicula ayer.', 'pt-BR': 'Assisti a um filme ontem.', vi: 'Hôm qua tôi đã xem một bộ phim.', id: 'Saya menonton film kemarin.', tr: 'Dün bir film izledim.', pl: 'Obejrzałem film wczoraj.', why: tri('Время yesterday спокойно стоит в конце.', 'Час yesterday спокійно стоїть у кінці.', 'El tiempo yesterday puede ir al final.') },
+    { en: 'Every morning, he drinks tea.', ru: 'Каждое утро он пьет чай.', uk: "Щоранку він п'є чай.", es: 'Cada manana, el bebe te.', 'pt-BR': 'Todas as manhãs, ele bebe chá.', vi: 'Mỗi sáng, anh ấy uống trà.', id: 'Setiap pagi, dia minum teh.', tr: 'Her sabah çay içer.', pl: 'Każdego ranka on pije herbatę.', why: tri('Время можно поставить первым, но дальше остается he drinks tea.', 'Час можна поставити першим, але далі лишається he drinks tea.', 'El tiempo puede ir primero; despues queda he drinks tea.') },
   ],
   introBlocks: [
     {
@@ -162,7 +308,7 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
       text: tri(
         'Ты можешь знать все слова и все равно получить фразу, которую тяжело понять. Не потому что слова неправильные. А потому что английский хуже терпит свободную перестановку.',
         'Ти можеш знати всі слова і все одно отримати фразу, яку важко зрозуміти. Не тому що слова неправильні. А тому що англійська гірше терпить вільну перестановку.',
-        'You can know all the words and still make a hard-to-follow sentence.',
+        'Puedes conocer todas las palabras y aun asi crear una frase dificil de seguir.',
       ),
     },
     {
@@ -176,7 +322,7 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
       text: tri(
         'Главная ловушка: начинать обычную фразу с того, что хочется подчеркнуть по-русски. Для тренировки держим нейтральный вариант: I like coffee.',
         'Головна пастка: починати звичайну фразу з того, що хочеться підкреслити українською. Для тренування тримаємо нейтральний варіант: I like coffee.',
-        'Main trap: starting a normal sentence with the piece you would emphasize in your source language.',
+        'Trampa principal: empezar una frase normal con la parte que enfatizarias en tu idioma.',
       ),
     },
   ],
@@ -488,10 +634,10 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Показываем простую рамку: кто + действие + что.', 'Показуємо просту рамку: хто + дія + що.', 'Show the simple frame.'),
-    depth2: tri('Если есть место, чаще ставим его после того, что делают.', 'Якщо є місце, частіше ставимо його після того, що роблять.', 'Place usually follows what.'),
-    depth3: tri('Если есть время, оно часто идет в конец или начало.', 'Якщо є час, він часто йде в кінець або на початок.', 'Time often goes at the end or beginning.'),
-    depth4: tri('Почти подсказка: система покажет готовую правильную фразу.', 'Майже підказка: система покаже готову правильну фразу.', 'Almost a hint: show the ready sentence.'),
+    depth1: tri('Показываем простую рамку: кто + действие + что.', 'Показуємо просту рамку: хто + дія + що.', 'Mostramos el marco simple: quien + accion + que.'),
+    depth2: tri('Если есть место, чаще ставим его после того, что делают.', 'Якщо є місце, частіше ставимо його після того, що роблять.', 'Si hay lugar, suele ir despues de lo que haces.'),
+    depth3: tri('Если есть время, оно часто идет в конец или начало.', 'Якщо є час, він часто йде в кінець або на початок.', 'Si hay tiempo, suele ir al final o al principio.'),
+    depth4: tri('Почти подсказка: система покажет готовую правильную фразу.', 'Майже підказка: система покаже готову правильну фразу.', 'Casi una pista: el sistema muestra la frase correcta lista.'),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -499,7 +645,7 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
       card: tri(
         'Стоп. Сначала кто. Потом действие. Потом что. Место чаще после этого. Время чаще в конце или начале.',
         'Стоп. Спочатку хто. Потім дія. Потім що. Місце частіше після цього. Час частіше в кінці або на початку.',
-        'Stop. Who, action, what, then place/time.',
+        'Para. Primero quien. Despues accion. Despues que. El lugar suele ir despues; el tiempo al final o al principio.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -507,7 +653,7 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
       card: tri(
         'Подсказка: система выделит главный каркас, но фразу ты соберешь сам.',
         'Підказка: система виділить головний каркас, але фразу ти збереш сам.',
-        'Hint: the system highlights the core frame.',
+        'Pista: el sistema marcara el marco principal, pero tu montaras la frase.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -515,7 +661,7 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим подсказки: сначала выбираем, кто действует, потом действие, потом остальной кусок.',
         'Режим підказки: спочатку обираємо, хто діє, потім дію, потім решту шматка.',
-        'Guided mode: choose who, action, then the rest.',
+        'Modo guiado: primero elegimos quien actua, despues la accion y despues el resto.',
       ),
     },
   },
@@ -525,28 +671,28 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_word_order_001',
-        prompt: tri('В I like coffee кто стоит первым?', 'У I like coffee хто стоїть першим?', 'In I like coffee, who comes first?'),
+        prompt: tri('В I like coffee кто стоит первым?', 'У I like coffee хто стоїть першим?', 'En I like coffee, quien va primero?'),
         options: ['I', 'coffee'],
         correctIndex: 0,
         thenReturnToExerciseId: 'word_order_easy_001',
       },
       {
         id: 'guided_word_order_002',
-        prompt: tri('В She reads books что идет сразу после She?', 'У She reads books що йде одразу після She?', 'What comes right after She?'),
+        prompt: tri('В She reads books что идет сразу после She?', 'У She reads books що йде одразу після She?', 'Que va justo despues de She?'),
         options: ['reads', 'books'],
         correctIndex: 0,
         thenReturnToExerciseId: 'word_order_easy_002',
       },
       {
         id: 'guided_word_order_003',
-        prompt: tri('В I read books at home что идет раньше: books или at home?', 'У I read books at home що йде раніше: books чи at home?', 'What comes first: books or at home?'),
+        prompt: tri('В I read books at home что идет раньше: books или at home?', 'У I read books at home що йде раніше: books чи at home?', 'Que va antes: books o at home?'),
         options: ['books', 'at home'],
         correctIndex: 0,
         thenReturnToExerciseId: 'word_order_contrast_001',
       },
       {
         id: 'guided_word_order_004',
-        prompt: tri('Если Every morning стоит в начале, надо говорить drinks he tea?', 'Якщо Every morning стоїть на початку, треба казати drinks he tea?', 'After Every morning, do we say drinks he tea?'),
+        prompt: tri('Если Every morning стоит в начале, надо говорить drinks he tea?', 'Якщо Every morning стоїть на початку, треба казати drinks he tea?', 'Despues de Every morning, decimos drinks he tea?'),
         options: ['да', 'нет'],
         correctIndex: 1,
         thenReturnToExerciseId: 'word_order_contrast_004',
@@ -558,7 +704,7 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'syntax',
     microDiagnosisId: 'word_order_basic_statement',
-    diagnosisLabel: tri('I like coffee', 'I like coffee', 'Statement order'),
+    diagnosisLabel: tri('I like coffee', 'I like coffee', 'Orden de afirmacion'),
     contrastSet: SMART_CONTRAST,
     difficultyLevel: 2,
     focusWords: SMART_CONTRAST,
@@ -595,7 +741,7 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_word_order_basic_statement_start',
     answer: 'diagnosis_training_word_order_basic_statement_answer',
     mastery: 'diagnosis_training_word_order_basic_statement_mastery',
-    fallback: 'diagnosis_training_word_order_basic_statement_fallback',
+    recovery: 'diagnosis_training_word_order_basic_statement_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

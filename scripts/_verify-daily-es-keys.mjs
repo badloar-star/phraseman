@@ -1,9 +1,12 @@
 import fs from 'fs';
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
 
 const src = fs.readFileSync('app/daily_tasks.ts', 'utf8');
-const ids = [...src.matchAll(/\bid:\s*'([^']+)'/g)].map((m) => m[1]);
+const allTasksStart = src.indexOf('const ALL_TASKS: DailyTask[] = [');
+if (allTasksStart < 0) throw new Error('ALL_TASKS declaration not found');
+const allTasksEnd = src.indexOf('\n];', allTasksStart);
+if (allTasksEnd < 0) throw new Error('ALL_TASKS array end not found');
+const allTasksSrc = src.slice(allTasksStart, allTasksEnd);
+const ids = [...allTasksSrc.matchAll(/\bid\s*:\s*'([^']+)'/g)].map((m) => m[1]);
 const unique = [...new Set(ids)];
 // Load compiled would need ts - instead parse object keys from ES file
 const localeSrc = fs.readFileSync('app/daily_tasks_es_locale.ts', 'utf8');

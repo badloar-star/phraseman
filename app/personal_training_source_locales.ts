@@ -1469,5 +1469,7 @@ export const PERSONAL_TRAINING_SUMMARY_SOURCE_LOCALES: Record<string, PersonalTr
 };
 
 export function getPersonalTrainingSummarySourceLocales(id: string): PersonalTrainingSummarySourceLocaleMap {
-  return PERSONAL_TRAINING_SUMMARY_SOURCE_LOCALES[id] ?? {};
+  const sourceLocales = PERSONAL_TRAINING_SUMMARY_SOURCE_LOCALES[id];
+  if (sourceLocales) return sourceLocales;
+  return {};
 }

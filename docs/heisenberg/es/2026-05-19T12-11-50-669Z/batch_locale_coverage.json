@@ -1,0 +1,1973 @@
+{
+  "mode": "batch-locale-coverage",
+  "requiredLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl",
+    "es"
+  ],
+  "productOnly": true,
+  "summary": {
+    "localizedItemsChecked": 45380,
+    "expectedUnits": 2212,
+    "completeUnits": 18126,
+    "partialUnits": 87,
+    "missingAllLocaleUnits": 0,
+    "partialFiles": 8,
+    "missingByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 87,
+      "tr": 0,
+      "pl": 0,
+      "es": 0
+    },
+    "missingAllByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 0,
+      "tr": 0,
+      "pl": 0,
+      "es": 0
+    }
+  },
+  "partialFiles": [
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ]
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ]
+    },
+    {
+      "file": "components/ErrorBoundary.tsx",
+      "surface": "app-other",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ]
+    },
+    {
+      "file": "components/ForceUpdateScreen.tsx",
+      "surface": "app-other",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ]
+    },
+    {
+      "file": "components/ReleaseWaveBonusModal.tsx",
+      "surface": "app-other",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ]
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ]
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ]
+    },
+    {
+      "file": "components/UpdateModal.tsx",
+      "surface": "app-other",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ]
+    }
+  ],
+  "partialUnits": [
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.back",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 53,
+        "pt-BR": 82,
+        "vi": 111,
+        "tr": 169,
+        "pl": 198
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.cancel",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 52,
+        "pt-BR": 81,
+        "vi": 110,
+        "tr": 168,
+        "pl": 197
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.cardOf",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 47,
+        "pt-BR": 76,
+        "vi": 105,
+        "tr": 163,
+        "pl": 192
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.delete",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 49,
+        "pt-BR": 78,
+        "vi": 107,
+        "tr": 165,
+        "pl": 194
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.deleteConfirm",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 50,
+        "pt-BR": 79,
+        "vi": 108,
+        "tr": 166,
+        "pl": 195
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.deleteConfirmSub",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 51,
+        "pt-BR": 80,
+        "vi": 109,
+        "tr": 167,
+        "pl": 196
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.done",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 44,
+        "pt-BR": 73,
+        "vi": 102,
+        "tr": 160,
+        "pl": 189
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.doneSub",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 45,
+        "pt-BR": 74,
+        "vi": 103,
+        "tr": 161,
+        "pl": 190
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.editBack",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 55,
+        "pt-BR": 84,
+        "vi": 113,
+        "tr": 171,
+        "pl": 200
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.editCard",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 58,
+        "pt-BR": 87,
+        "vi": 116,
+        "tr": 174,
+        "pl": 203
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.editDescription",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 63,
+        "pt-BR": 92,
+        "vi": 121,
+        "tr": 179,
+        "pl": 208
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.editFront",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 54,
+        "pt-BR": 83,
+        "vi": 112,
+        "tr": 170,
+        "pl": 199
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.empty",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 42,
+        "pt-BR": 71,
+        "vi": 100,
+        "tr": 158,
+        "pl": 187
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.emptySub",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 43,
+        "pt-BR": 72,
+        "vi": 101,
+        "tr": 159,
+        "pl": 188
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.enter<locale>",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 62,
+        "pt-BR": 91,
+        "vi": 120,
+        "tr": 178,
+        "pl": 207
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.enterDescription",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 64,
+        "pt-BR": 93,
+        "vi": 122,
+        "tr": 180,
+        "pl": 209
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.enterEN",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 61,
+        "pt-BR": 90,
+        "vi": 119,
+        "tr": 177,
+        "pl": 206
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.hubTitle",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 41,
+        "pt-BR": 70,
+        "vi": 99,
+        "tr": 157,
+        "pl": 186
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.newCard",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 59,
+        "pt-BR": 88,
+        "vi": 117,
+        "tr": 175,
+        "pl": 204
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.next",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 56,
+        "pt-BR": 85,
+        "vi": 114,
+        "tr": 172,
+        "pl": 201
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.noDelete",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 65,
+        "pt-BR": 94,
+        "vi": 123,
+        "tr": 181,
+        "pl": 210
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.restart",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 46,
+        "pt-BR": 75,
+        "vi": 104,
+        "tr": 162,
+        "pl": 191
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.save",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 57,
+        "pt-BR": 86,
+        "vi": 115,
+        "tr": 173,
+        "pl": 202
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.source.dialog",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 66,
+        "pt-BR": 95,
+        "vi": 124,
+        "tr": 182,
+        "pl": 211
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.source.lesson",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 66,
+        "pt-BR": 95,
+        "vi": 124,
+        "tr": 182,
+        "pl": 211
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.source.verb",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 66,
+        "pt-BR": 95,
+        "vi": 124,
+        "tr": 182,
+        "pl": 211
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.source.word",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 66,
+        "pt-BR": 95,
+        "vi": 124,
+        "tr": 182,
+        "pl": 211
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.systemCannotDelete",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 60,
+        "pt-BR": 89,
+        "vi": 118,
+        "tr": 176,
+        "pl": 205
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.tapFlip",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 48,
+        "pt-BR": 77,
+        "vi": 106,
+        "tr": 164,
+        "pl": 193
+      }
+    },
+    {
+      "file": "app/flashcards/constants.ts",
+      "surface": "app-other",
+      "keyPath": "<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 40,
+        "pt-BR": 69,
+        "vi": 98,
+        "tr": 156,
+        "pl": 185
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.cta",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 87,
+        "pt-BR": 107,
+        "vi": 126,
+        "tr": 164,
+        "pl": 183
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.heroSub",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 73,
+        "pt-BR": 96,
+        "vi": 115,
+        "tr": 153,
+        "pl": 172
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.heroTitle",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 71,
+        "pt-BR": 95,
+        "vi": 114,
+        "tr": 152,
+        "pl": 171
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.needAuth",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 91,
+        "pt-BR": 110,
+        "vi": 129,
+        "tr": 167,
+        "pl": 186
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.needAuthTitle",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 89,
+        "pt-BR": 109,
+        "vi": 128,
+        "tr": 166,
+        "pl": 185
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.smallPrint",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 86,
+        "pt-BR": 106,
+        "vi": 125,
+        "tr": 163,
+        "pl": 182
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.step1Body",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 77,
+        "pt-BR": 99,
+        "vi": 118,
+        "tr": 156,
+        "pl": 175
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.step1Title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 75,
+        "pt-BR": 98,
+        "vi": 117,
+        "tr": 155,
+        "pl": 174
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.step2Body",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 80,
+        "pt-BR": 101,
+        "vi": 120,
+        "tr": 158,
+        "pl": 177
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.step2BodyIos",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 83,
+        "pt-BR": 103,
+        "vi": 122,
+        "tr": 160,
+        "pl": 179
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.step2Title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 78,
+        "pt-BR": 100,
+        "vi": 119,
+        "tr": 157,
+        "pl": 176
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.step2TitleIos",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 81,
+        "pt-BR": 102,
+        "vi": 121,
+        "tr": 159,
+        "pl": 178
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.step3Body",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 85,
+        "pt-BR": 105,
+        "vi": 124,
+        "tr": 162,
+        "pl": 181
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.step3Title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 84,
+        "pt-BR": 104,
+        "vi": 123,
+        "tr": 161,
+        "pl": 180
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.stepsTitle",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 74,
+        "pt-BR": 97,
+        "vi": 116,
+        "tr": 154,
+        "pl": 173
+      }
+    },
+    {
+      "file": "app/settings_invite_friend.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 70,
+        "pt-BR": 94,
+        "vi": 113,
+        "tr": 151,
+        "pl": 170
+      }
+    },
+    {
+      "file": "components/ErrorBoundary.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.body",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 50,
+        "pt-BR": 56,
+        "vi": 62,
+        "tr": 74,
+        "pl": 80
+      }
+    },
+    {
+      "file": "components/ErrorBoundary.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.debugTitle",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 52,
+        "pt-BR": 58,
+        "vi": 64,
+        "tr": 76,
+        "pl": 82
+      }
+    },
+    {
+      "file": "components/ErrorBoundary.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.retry",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 51,
+        "pt-BR": 57,
+        "vi": 63,
+        "tr": 75,
+        "pl": 81
+      }
+    },
+    {
+      "file": "components/ErrorBoundary.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 49,
+        "pt-BR": 55,
+        "vi": 61,
+        "tr": 73,
+        "pl": 79
+      }
+    },
+    {
+      "file": "components/ForceUpdateScreen.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.body",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 41,
+        "pt-BR": 46,
+        "vi": 51,
+        "tr": 61,
+        "pl": 66
+      }
+    },
+    {
+      "file": "components/ForceUpdateScreen.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.button",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 42,
+        "pt-BR": 47,
+        "vi": 52,
+        "tr": 62,
+        "pl": 67
+      }
+    },
+    {
+      "file": "components/ForceUpdateScreen.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 40,
+        "pt-BR": 45,
+        "vi": 50,
+        "tr": 60,
+        "pl": 65
+      }
+    },
+    {
+      "file": "components/ReleaseWaveBonusModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.cta",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 61,
+        "pt-BR": 73,
+        "vi": 85,
+        "tr": 109,
+        "pl": 121
+      }
+    },
+    {
+      "file": "components/ReleaseWaveBonusModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.ctaPreview",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 62,
+        "pt-BR": 74,
+        "vi": 86,
+        "tr": 110,
+        "pl": 122
+      }
+    },
+    {
+      "file": "components/ReleaseWaveBonusModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.sub",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 60,
+        "pt-BR": 72,
+        "vi": 84,
+        "tr": 108,
+        "pl": 120
+      }
+    },
+    {
+      "file": "components/ReleaseWaveBonusModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 53,
+        "pt-BR": 65,
+        "vi": 77,
+        "tr": 101,
+        "pl": 113
+      }
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.body",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 81,
+        "pt-BR": 97,
+        "vi": 112,
+        "tr": 142,
+        "pl": 157
+      }
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.bodyAdmin",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 84,
+        "pt-BR": 99,
+        "vi": 114,
+        "tr": 144,
+        "pl": 159
+      }
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.bodySuggestion",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 83,
+        "pt-BR": 98,
+        "vi": 113,
+        "tr": 143,
+        "pl": 158
+      }
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.btn",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 88,
+        "pt-BR": 103,
+        "vi": 118,
+        "tr": 148,
+        "pl": 163
+      }
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.kicker",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 77,
+        "pt-BR": 94,
+        "vi": 109,
+        "tr": 139,
+        "pl": 154
+      }
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.label",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 85,
+        "pt-BR": 100,
+        "vi": 115,
+        "tr": 145,
+        "pl": 160
+      }
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.labelAdmin",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 87,
+        "pt-BR": 102,
+        "vi": 117,
+        "tr": 147,
+        "pl": 162
+      }
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.labelSuggestion",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 86,
+        "pt-BR": 101,
+        "vi": 116,
+        "tr": 146,
+        "pl": 161
+      }
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.multiple",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 89,
+        "pt-BR": 104,
+        "vi": 119,
+        "tr": 149,
+        "pl": 164
+      }
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.multipleAdmin",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 91,
+        "pt-BR": 106,
+        "vi": 121,
+        "tr": 151,
+        "pl": 166
+      }
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.multipleSuggestion",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 90,
+        "pt-BR": 105,
+        "vi": 120,
+        "tr": 150,
+        "pl": 165
+      }
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.subtitle",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 79,
+        "pt-BR": 96,
+        "vi": 111,
+        "tr": 141,
+        "pl": 156
+      }
+    },
+    {
+      "file": "components/ShardRewardModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 78,
+        "pt-BR": 95,
+        "vi": 110,
+        "tr": 140,
+        "pl": 155
+      }
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.accuracyLabel",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 91,
+        "pt-BR": 106,
+        "vi": 121,
+        "tr": 151,
+        "pl": 166
+      }
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.achievement",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 88,
+        "pt-BR": 103,
+        "vi": 118,
+        "tr": 148,
+        "pl": 163
+      }
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.dateLabel",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 92,
+        "pt-BR": 107,
+        "vi": 122,
+        "tr": 152,
+        "pl": 167
+      }
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.disclaimerLine1",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 95,
+        "pt-BR": 110,
+        "vi": 125,
+        "tr": 155,
+        "pl": 170
+      }
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.disclaimerLine2",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 96,
+        "pt-BR": 111,
+        "vi": 126,
+        "tr": 156,
+        "pl": 171
+      }
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.eyebrow",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 84,
+        "pt-BR": 99,
+        "vi": 114,
+        "tr": 144,
+        "pl": 159
+      }
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.presented",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 87,
+        "pt-BR": 102,
+        "vi": 117,
+        "tr": 147,
+        "pl": 162
+      }
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.professor",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 89,
+        "pt-BR": 104,
+        "vi": 119,
+        "tr": 149,
+        "pl": 164
+      }
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.professorName",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 94,
+        "pt-BR": 109,
+        "vi": 124,
+        "tr": 154,
+        "pl": 169
+      }
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.scoreLabel",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 90,
+        "pt-BR": 105,
+        "vi": 120,
+        "tr": 150,
+        "pl": 165
+      }
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.signatureLabel",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 93,
+        "pt-BR": 108,
+        "vi": 123,
+        "tr": 153,
+        "pl": 168
+      }
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.sub",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 85,
+        "pt-BR": 100,
+        "vi": 115,
+        "tr": 145,
+        "pl": 160
+      }
+    },
+    {
+      "file": "components/share_cards/LingmanCertificateSvg.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 86,
+        "pt-BR": 101,
+        "vi": 116,
+        "tr": 146,
+        "pl": 161
+      }
+    },
+    {
+      "file": "components/UpdateModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.body",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 35,
+        "pt-BR": 41,
+        "vi": 47,
+        "tr": 59,
+        "pl": 65
+      }
+    },
+    {
+      "file": "components/UpdateModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.close",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 37,
+        "pt-BR": 43,
+        "vi": 49,
+        "tr": 61,
+        "pl": 67
+      }
+    },
+    {
+      "file": "components/UpdateModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 34,
+        "pt-BR": 40,
+        "vi": 46,
+        "tr": 58,
+        "pl": 64
+      }
+    },
+    {
+      "file": "components/UpdateModal.tsx",
+      "surface": "app-other",
+      "keyPath": "<locale>.update",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "es": 36,
+        "pt-BR": 42,
+        "vi": 48,
+        "tr": 60,
+        "pl": 66
+      }
+    }
+  ],
+  "missingAllLocaleUnits": [],
+  "truncated": false
+}

@@ -16,6 +16,9 @@ import { getForegroundDailyMsMap } from './foreground_usage_ms';
 import { getTrainerCounts } from './trainer_store';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
 import { isStreakFreezeActiveToday, streakFreezeDateKey } from './streak_freeze';
+import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+
+type StatsCacheStudyTarget = ReturnType<typeof storageStudyTarget>;
 
 const STATS_PRELOAD_CACHE_KEY = 'stats_preload_cache_v2';
 const DAYS_SHOW = 14;
@@ -63,6 +66,8 @@ export interface StatsPreloadData {
   streakAtRisk: boolean;
   /** Только слова + фразы, без arena. CTA в тренажер показываем с 5+. */
   trainerPracticeDue: number;
+  /** Scope for trainerPracticeDue only; XP, streak, daily stats and achievements stay shared. */
+  studyTarget: StatsCacheStudyTarget;
   pendingGiftCount: number;
   /** true once a successful preload has completed */
   loaded: boolean;
@@ -94,6 +99,7 @@ const DEFAULT_CACHE: StatsPreloadData = {
   myName: '',
   streakAtRisk: false,
   trainerPracticeDue: 0,
+  studyTarget: 'en',
   pendingGiftCount: 0,
   loaded: false,
   updatedAt: 0,
@@ -185,6 +191,7 @@ function normalizeStatsCache(value: Partial<StatsPreloadData> | null | undefined
     engineLeagueId: value?.engineLeagueId == null ? null : Math.max(0, Math.floor(Number(value.engineLeagueId) || 0)),
     myName: String(value?.myName ?? ''),
     trainerPracticeDue: Math.max(0, Math.floor(Number(value?.trainerPracticeDue) || 0)),
+    studyTarget: storageStudyTarget(value?.studyTarget),
     pendingGiftCount: Math.max(0, Math.floor(Number(value?.pendingGiftCount) || 0)),
     loaded: value?.loaded === true,
     updatedAt: Math.max(0, Number(value?.updatedAt) || 0),
@@ -293,8 +300,14 @@ export async function hydrateStatsCacheFromStorage(): Promise<void> {
   return _hydratePromise;
 }
 
-export function getStatsCache(): StatsPreloadData {
-  return _cache;
+export function getStatsCache(studyTarget?: RuntimeStudyTarget): StatsPreloadData {
+  const target = storageStudyTarget(studyTarget);
+  if (_cache.studyTarget === target) return _cache;
+  return {
+    ..._cache,
+    trainerPracticeDue: 0,
+    studyTarget: target,
+  };
 }
 
 /**
@@ -305,7 +318,7 @@ export function invalidateStatsCache(): void {
   _preloadInFlight = false;
 }
 
-async function buildFreshStatsSnapshot(): Promise<StatsPreloadData> {
+async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promise<StatsPreloadData> {
   const todayStr = streakFreezeDateKey();
 
   const [
@@ -351,6 +364,7 @@ async function buildFreshStatsSnapshot(): Promise<StatsPreloadData> {
     }
   }
 
+  const target = storageStudyTarget(studyTarget);
   const [clubM, gm, giftXpBank, shardsBalance, wp, { willLose }, ls, trainerCounts, pendingGiftCount] = await Promise.all([
     getXPMultiplier(),
     readGiftMultiplier(),
@@ -359,7 +373,7 @@ async function buildFreshStatsSnapshot(): Promise<StatsPreloadData> {
     getMyWeekPoints(),
     checkStreakLossPending(),
     loadLeagueState(),
-    getTrainerCounts(),
+    getTrainerCounts(target),
     loadPendingLevelGiftCount().catch(() => readPendingLevelGiftCountCache()),
   ]);
 
@@ -400,18 +414,19 @@ async function buildFreshStatsSnapshot(): Promise<StatsPreloadData> {
     myName: name || '',
     streakAtRisk: willLose && !freezeIsActive,
     trainerPracticeDue: trainerCounts.words + trainerCounts.phrases,
+    studyTarget: target,
     pendingGiftCount,
     loaded: true,
     updatedAt: Date.now(),
   });
 }
 
-export async function refreshStatsCache(): Promise<StatsPreloadData | null> {
+export async function refreshStatsCache(studyTarget?: RuntimeStudyTarget): Promise<StatsPreloadData | null> {
   await hydrateStatsCacheFromStorage();
-  if (_preloadInFlight) return _cache.loaded ? _cache : null;
+  if (_preloadInFlight) return _cache.loaded ? getStatsCache(studyTarget) : null;
   _preloadInFlight = true;
   try {
-    const fresh = await buildFreshStatsSnapshot();
+    const fresh = await buildFreshStatsSnapshot(studyTarget);
     return rememberStatsCache(fresh);
   } catch {
     return _cache.loaded ? _cache : null;
@@ -425,8 +440,8 @@ export async function refreshStatsCache(): Promise<StatsPreloadData | null> {
  * Safe to call multiple times — concurrent calls are de-duplicated.
  * Does NOT throw; errors are swallowed so callers can fire-and-forget.
  */
-export async function preloadStats(): Promise<void> {
-  await refreshStatsCache();
+export async function preloadStats(studyTarget?: RuntimeStudyTarget): Promise<void> {
+  await refreshStatsCache(studyTarget);
 }
 
 void hydrateStatsCacheFromStorage();

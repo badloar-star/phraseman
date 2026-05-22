@@ -1,0 +1,55 @@
+{
+  "generatedAt": "2026-05-21T11:06:52.376Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 649,
+    "triLangCalls": 1650,
+    "staticTriLangCalls": 1650,
+    "dynamicTriLangCalls": 0,
+    "legacyLangHelperCalls": 0,
+    "localeObjectFindings": 1,
+    "triLangMissingLocaleUnits": 0,
+    "triLangMissingAllPlannedUnits": 0,
+    "helperMissingLocaleUnits": 0,
+    "localeObjectMissingLocaleUnits": 5,
+    "localeObjectMissingAllPlannedUnits": 1,
+    "bundleMissingLocaleUnits": 0,
+    "findings": 1,
+    "byCode": {
+      "locale-object-missing-all-planned-locales": 1
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/quiz_thematic_packs.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/quiz_thematic_packs.ts",
+      "line": 135,
+      "column": 12,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: ruCopy.prompt, uk: ukCopy.prompt, es: esCopy.prompt, choices: [...item.choices], correct: item.correctIndex, answer: item.choices[item.correctIndex] ?? '', explanations: [..."
+    }
+  ]
+}

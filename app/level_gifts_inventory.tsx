@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useState } from 'react';
 import { Image, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
@@ -10,8 +10,8 @@ import LevelGiftArt from '../components/LevelGiftArt';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
-import StatsArtBackdrop from '../components/StatsArtBackdrop';
 import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
@@ -57,20 +57,20 @@ function GiftLine({ gift, label, lang, muted, primary, themeMode }: {
   themeMode: Parameters<typeof oskolokImageForPackShards>[1];
 }) {
   return (
-    <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center', minWidth: 0 }}>
+    <View style={{ flexDirection: 'row', gap: 10, alignItems: 'flex-start', minWidth: 0 }}>
       <View style={{ width: 42, height: 42, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.06)' }}>
         <GiftIcon gift={gift} themeMode={themeMode} />
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
         {!!label && (
-          <Text style={{ color: muted, fontSize: 10, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.6 }} numberOfLines={1}>
+          <Text style={{ color: muted, fontSize: 10, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.6 }}>
             {label}
           </Text>
         )}
-        <Text style={{ color: primary, fontSize: 15, fontWeight: '900' }} numberOfLines={1}>
+        <Text style={{ color: primary, fontSize: 15, lineHeight: 19, fontWeight: '900' }}>
           {giftTitleForLang(gift, lang)}
         </Text>
-        <Text style={{ color: muted, fontSize: 12, lineHeight: 16, marginTop: 2 }} numberOfLines={2}>
+        <Text style={{ color: muted, fontSize: 12, lineHeight: 16, marginTop: 2 }}>
           {giftDescForLang(gift, lang)}
         </Text>
       </View>
@@ -91,22 +91,23 @@ const dualPartLabel = (
 export default function LevelGiftsInventoryScreen() {
   const router = useRouter();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const { theme: t, f, themeMode } = useTheme();
-  const [items, setItems] = useState<PendingLevelGiftInventoryItem[]>(() => getPendingLevelGiftInventoryCache());
+  const [items, setItems] = useState<PendingLevelGiftInventoryItem[]>(() => getPendingLevelGiftInventoryCache(studyTarget));
   const [activeItems, setActiveItems] = useState<ActiveLevelGiftInventoryItem[]>([]);
   const [userName, setUserName] = useState('');
   const [selected, setSelected] = useState<PendingLevelGiftInventoryItem | null>(null);
 
   const loadData = useCallback(async () => {
     const [nextItems, nextActiveItems, nameRaw] = await Promise.all([
-      loadPendingLevelGiftInventory(),
-      loadActiveLevelGiftInventory(lang),
+      loadPendingLevelGiftInventory(studyTarget),
+      loadActiveLevelGiftInventory(lang, Date.now(), studyTarget),
       AsyncStorage.getItem('user_name'),
     ]);
     setItems(nextItems);
     setActiveItems(nextActiveItems);
     setUserName(nameRaw || '');
-  }, [lang]);
+  }, [lang, studyTarget]);
 
   useFocusEffect(useCallback(() => {
     void loadData();
@@ -119,8 +120,7 @@ export default function LevelGiftsInventoryScreen() {
   };
 
   return (
-    <ScreenGradient>
-      <StatsArtBackdrop />
+    <ScreenGradient artBackdrop="levelGifts">
       <SafeAreaView testID="screen-level-gifts-inventory" style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 15, paddingTop: Platform.OS === 'android' ? 28 : 15, paddingBottom: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
@@ -177,10 +177,10 @@ export default function LevelGiftsInventoryScreen() {
                       <Image source={getLevelGiftRewardIcon(gift.iconGiftId, themeMode)} style={{ width: 38, height: 38 }} resizeMode="contain" />
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
+                      <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body + 4, fontWeight: '900' }}>
                         {gift.title}
                       </Text>
-                      <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 4, marginTop: 2 }} numberOfLines={1}>
+                      <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 4, marginTop: 2 }}>
                         {gift.desc}
                       </Text>
                     </View>
@@ -263,8 +263,8 @@ export default function LevelGiftsInventoryScreen() {
                     end={{ x: 1, y: 1 }}
                     style={{ borderRadius: 22, padding: 14, borderWidth: 1, borderColor: `${accent}88`, overflow: 'hidden' }}
                   >
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                      <View style={{ width: 68, height: 68, alignItems: 'center', justifyContent: 'center', padding: 4 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10 }}>
+                      <View style={{ width: 68, height: 68, alignItems: 'center', justifyContent: 'center', padding: 4, flexShrink: 0 }}>
                         {singleShardAmount > 0 ? (
                           <Image
                             source={oskolokImageForPackShards(singleShardAmount, themeMode)}
@@ -280,7 +280,7 @@ export default function LevelGiftsInventoryScreen() {
                         )}
                       </View>
                       <View style={{ flex: 1, minWidth: 0 }}>
-                        <Text style={{ color: accent, fontSize: 11, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }} numberOfLines={1}>
+                        <Text style={{ color: accent, fontSize: 11, lineHeight: 15, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
                           {triLang(lang, {
                             ru: `Уровень ${item.level} · ${giftRarityUiLabel(strongestRarity, lang)}`,
                             uk: `Рівень ${item.level} · ${giftRarityUiLabel(strongestRarity, lang)}`,
@@ -292,7 +292,7 @@ export default function LevelGiftsInventoryScreen() {
                             pl: `Poziom ${item.level} · ${giftRarityUiLabel(strongestRarity, lang)}`,
                           })}
                         </Text>
-                        <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginTop: 2 }} numberOfLines={1}>
+                        <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, lineHeight: f.bodyLg + 5, fontWeight: '900', marginTop: 2 }}>
                           {item.kind === 'dual'
                             ? triLang(lang, {
                                 ru: 'Два подарка',
@@ -306,29 +306,29 @@ export default function LevelGiftsInventoryScreen() {
                               })
                             : giftTitleForLang(item.gift, lang)}
                         </Text>
+                        <TouchableOpacity
+                          testID={`gift-inventory-apply-${rowKey}`}
+                          activeOpacity={0.86}
+                          onPress={() => {
+                            hapticTap();
+                            setSelected(item);
+                          }}
+                          style={{ borderRadius: 16, paddingHorizontal: 16, paddingVertical: 11, backgroundColor: accent, minWidth: 118, alignSelf: 'flex-start', alignItems: 'center', marginTop: 10 }}
+                        >
+                          <Text style={{ color: strongestRarity === 'epic' ? '#1A1200' : '#FFFFFF', fontSize: f.sub, fontWeight: '900' }}>
+                            {triLang(lang, {
+                              ru: 'Применить',
+                              uk: 'Застосувати',
+                              es: 'Aplicar',
+                              'pt-BR': 'Usar',
+                              vi: 'Dùng',
+                              id: 'Pakai',
+                              tr: 'Kullan',
+                              pl: 'Użyj',
+                            })}
+                          </Text>
+                        </TouchableOpacity>
                       </View>
-                      <TouchableOpacity
-                        testID={`gift-inventory-apply-${rowKey}`}
-                        activeOpacity={0.86}
-                        onPress={() => {
-                          hapticTap();
-                          setSelected(item);
-                        }}
-                        style={{ borderRadius: 16, paddingHorizontal: 14, paddingVertical: 11, backgroundColor: accent, minWidth: 92, alignItems: 'center' }}
-                      >
-                        <Text style={{ color: strongestRarity === 'epic' ? '#1A1200' : '#FFFFFF', fontSize: f.sub, fontWeight: '900' }} numberOfLines={1}>
-                          {triLang(lang, {
-                            ru: 'Применить',
-                            uk: 'Застосувати',
-                            es: 'Aplicar',
-                            'pt-BR': 'Usar',
-                            vi: 'Dùng',
-                            id: 'Pakai',
-                            tr: 'Kullan',
-                            pl: 'Użyj',
-                          })}
-                        </Text>
-                      </TouchableOpacity>
                     </View>
 
                     <View style={{ height: 12 }} />
@@ -376,6 +376,7 @@ export default function LevelGiftsInventoryScreen() {
             onGiftClaimed={selected.dualPart ? () => markDualGiftPartClaimed(selected.level, selected.dualPart!) : undefined}
             saveOnDismiss={false}
             applyAsPremium={selected.dualPart ? true : undefined}
+            studyTarget={studyTarget}
           />
         )}
         {selected?.kind === 'dual' && (
@@ -387,6 +388,7 @@ export default function LevelGiftsInventoryScreen() {
             onClose={closeGiftModal}
             preRolledPair={selected.pair}
             deliveryMode="claim"
+            studyTarget={studyTarget}
           />
         )}
       </SafeAreaView>

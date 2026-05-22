@@ -51,6 +51,7 @@
     "maestro:capture-screens": "powershell.exe -ExecutionPolicy Bypass -File ./scripts/capture_maestro_precondition_screens.ps1",
     "firestore:rules": "firebase deploy --only firestore:rules,firestore:indexes",
     "firestore:repair-weekly-leagues": "node scripts/repair_weekly_league_rollover.mjs",
+    "firestore:repair-league-ghosts": "node scripts/repair_league_identity_ghosts.mjs",
     "hosting:admin": "firebase deploy --only hosting:admin",
     "hosting:knowly-www": "firebase deploy --only hosting:knowlywww",
     "admin:serve": "npx --yes serve admin -l 4173",
@@ -70,7 +71,7 @@
     "legal:sync": "node ./scripts/sync-legal-html.mjs",
     "eas:update:dev": "eas update --channel development",
     "eas:update:preview": "eas update --channel preview",
-    "eas:update:production": "eas update --channel production",
+    "eas:update:production": "eas update --channel production --environment production",
     "eas:submit-ios-wait": "node scripts/wait_ios_build_and_submit.mjs",
     "lesson:qa": "npx tsx -r ./tools/lesson_qa/node_stubs.cjs tools/lesson_qa/run.ts",
     "training:jesse:check": "jest --runTestsByPath tests/personal_training_agent_room.test.ts tests/diagnosis_training_hygiene.test.ts tests/diagnosis_training_copy.test.ts --no-cache --runInBand",
@@ -78,6 +79,8 @@
     "training:personal:copy-audit": "npx tsx scripts/audit_personal_training_copy_quality.ts",
     "training:personal:copy-audit:strict": "npx tsx scripts/audit_personal_training_copy_quality.ts --strict",
     "training:personal:check": "jest --runTestsByPath tests/personal_training_agent_room.test.ts tests/diagnosis_training_hygiene.test.ts tests/personal_training_taxonomy.test.ts tests/admin_personal_trainings.test.ts tests/diagnosis_training_copy.test.ts --no-cache --runInBand",
+    "skyler:quiz": "node ./scripts/skyler_quiz_pipeline.cjs",
+    "skyler:quiz:check": "node ./scripts/skyler_quiz_pipeline.cjs --check-protocol",
     "lesson:words-es-gen": "node ./scripts/generate-lesson-word-es-google.mjs",
     "lesson:qa:summary": "npx tsx -r ./tools/lesson_qa/node_stubs.cjs tools/lesson_qa/run.ts --summary",
     "lesson:qa:ame": "node ./scripts/qa-ame-only.mjs",
@@ -212,7 +215,8 @@
               "@/*": [
                 "./*"
               ]
-            }
+            },
+            "jsx": "react"
           }
         }
       ]

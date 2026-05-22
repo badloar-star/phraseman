@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "gustav-p1a-rollback-checkpoint-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-19T21:03:30.604Z",
+  "status": "PASS",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_p1a_rollback_checkpoint.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "sourceArtifacts": {
+    "p1aMinimalApplyPacket": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_minimal_apply_packet.json",
+    "p1aPostApplyGuard": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_post_apply_guard.json"
+  },
+  "summary": {
+    "files": 4,
+    "absentFiles": 4,
+    "existingFiles": 0,
+    "parentDirsReady": 4,
+    "snapshots": 4,
+    "contentHashes": 0,
+    "rollbackActions": 4,
+    "blockers": 0,
+    "warnings": 0,
+    "checkpointReadyAfterApproval": true,
+    "mayStartFrenchGeneration": false,
+    "mayModifyProductionAppFiles": false
+  },
+  "snapshots": [
+    {
+      "filePath": "app/study_target.ts",
+      "expectedAction": "add",
+      "existsNow": false,
+      "parentDirExists": true,
+      "sizeBytes": null,
+      "sha256": null,
+      "rollbackAction": "delete_if_created_by_p1a",
+      "rollbackNote": "If approved P1A creates this file and rollback is needed, remove this newly created file only."
+    },
+    {
+      "filePath": "app/target_storage_keys.ts",
+      "expectedAction": "add",
+      "existsNow": false,
+      "parentDirExists": true,
+      "sizeBytes": null,
+      "sha256": null,
+      "rollbackAction": "delete_if_created_by_p1a",
+      "rollbackNote": "If approved P1A creates this file and rollback is needed, remove this newly created file only."
+    },
+    {
+      "filePath": "tests/gustav_surface_target_switch.test.ts",
+      "expectedAction": "add",
+      "existsNow": false,
+      "parentDirExists": true,
+      "sizeBytes": null,
+      "sha256": null,
+      "rollbackAction": "delete_if_created_by_p1a",
+      "rollbackNote": "If approved P1A creates this file and rollback is needed, remove this newly created file only."
+    },
+    {
+      "filePath": "tests/gustav_target_storage_keys.test.ts",
+      "expectedAction": "add",
+      "existsNow": false,
+      "parentDirExists": true,
+      "sizeBytes": null,
+      "sha256": null,
+      "rollbackAction": "delete_if_created_by_p1a",
+      "rollbackNote": "If approved P1A creates this file and rollback is needed, remove this newly created file only."
+    }
+  ],
+  "rollbackPolicy": {
+    "mode": "additive_files_only",
+    "safeRollback": [
+      "Rollback may remove only files that were absent in this checkpoint and created by the approved P1A slice.",
+      "Rollback must not delete or modify any pre-existing user/app file.",
+      "Rollback must keep French generation artifacts absent."
+    ],
+    "manualReviewRequiredWhen": [
+      "Any P1A packet file existed before apply.",
+      "Any file outside the four-file packet changed during P1A.",
+      "Any content, cloud, lesson, quiz, source graph or generated artifact was created."
+    ]
+  },
+  "findings": [],
+  "notes": [
+    "This checkpoint records pre-apply file state only; it does not modify files.",
+    "All P1A files are currently absent, so rollback after approved P1A is delete-new-files-only.",
+    "If this checkpoint changes before approval, regenerate it before touching app files.",
+    "French generation and broad production apply remain blocked."
+  ]
+}

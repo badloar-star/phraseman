@@ -2,12 +2,13 @@ import { Ionicons } from '@expo/vector-icons';
 import React, { useMemo } from 'react';
 import { Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import type { Theme } from '../../constants/theme';
+import { triLang, type Lang } from '../../constants/i18n';
 import { Category, CategoryId } from './types';
 
 type Props = {
   categories: Category[];
   activeCat: CategoryId;
-  lang: 'ru' | 'uk' | 'es';
+  lang: Lang;
   t: Theme;
   bottomInset: number;
   onSwitchCategory: (catId: CategoryId) => void;
@@ -36,7 +37,6 @@ export default function FlashcardsCategoryTiles({
       style={{
         borderTopWidth: 0.5,
         borderTopColor: t.border,
-        backgroundColor: t.bgPrimary,
         paddingHorizontal: H_PAD,
         paddingTop: 10,
         paddingBottom: Math.max(bottomInset, 8),
@@ -45,7 +45,16 @@ export default function FlashcardsCategoryTiles({
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: GAP, justifyContent: 'flex-start' }}>
         {categories.map((cat) => {
           const active = cat.id === activeCat;
-          const label = lang === 'uk' ? cat.labelUK : lang === 'es' ? cat.labelES : cat.labelRU;
+          const label = triLang(lang, {
+            ru: cat.labelRU,
+            uk: cat.labelUK,
+            es: cat.labelES,
+            'pt-BR': cat.labelPtBr,
+            vi: cat.labelVi,
+            id: cat.labelId,
+            tr: cat.labelTr,
+            pl: cat.labelPl,
+          });
           const color = active ? t.textPrimary : t.textMuted;
           return (
             <TouchableOpacity

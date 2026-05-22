@@ -1,0 +1,11 @@
+appId: app.phraseman
+---
+- runFlow: ../../maestro/flows/_shared/boot_to_home_fast.yaml
+- tapOn:
+    id: "tab-settings"
+- extendedWaitUntil:
+    visible:
+      id: "screen-settings"
+    timeout: 30000
+- assertVisible:
+    id: "settings-profile-row"

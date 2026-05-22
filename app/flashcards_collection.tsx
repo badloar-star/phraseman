@@ -31,7 +31,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { getCardPackPaywallTheme, getCommunityUgcPackPaywallTheme } from './flashcards/cardPackPaywallTheme';
 import { Flashcard, loadFlashcards, removeFlashcard, saveFlashcards } from '../hooks/use-flashcards';
 import { updateMultipleTaskProgress } from './daily_tasks';
@@ -59,7 +59,7 @@ import {
   buildMarketplaceOwnedCards,
   bundledPacksForOwned,
   consumeDevActivePack,
-  fallbackBundledMarketPacks,
+  reserveBundledMarketPacks,
   loadBuiltMarketplaceCardsCache,
   loadMarketplacePacks,
   loadAccessiblePackIds,
@@ -81,6 +81,16 @@ import {
 import { getCanonicalUserId } from './user_id_policy';
 import { flashcardContentLang } from './spanish_content_gate';
 import { checkAchievements } from './achievements';
+import {
+  flashcardsDeleteHintSeenKey,
+  storageStudyTarget,
+  type RuntimeStudyTarget,
+} from './target_storage_keys';
+import {
+  flashcardsCommunityPacksAvailableForTarget,
+  flashcardsOfficialPacksAvailableForTarget,
+  flashcardsSystemCardsForTarget,
+} from './flashcards_target_gate';
 
 /** Монотонний фліп (timing замість spring) + різке opacity — без «моргання» біля 0.5. */
 const FLASHCARD_FLIP_DURATION_MS = 280;
@@ -89,7 +99,9 @@ const flashcardFlipEasing = Easing.out(Easing.cubic);
 function normalizeRouteCategory(cat: string | string[] | undefined): CategoryId | null {
   const raw = Array.isArray(cat) ? cat[0] : cat;
   if (!raw || typeof raw !== 'string') return null;
-  return CATEGORIES.some((c) => c.id === raw) ? (raw as CategoryId) : null;
+  const knownCategory = CATEGORIES.some((c) => c.id === raw);
+  if (!knownCategory) return null;
+  return raw as CategoryId;
 }
 
 function normalizePackParam(pack: string | string[] | undefined): string | null {
@@ -100,8 +112,12 @@ function normalizePackParam(pack: string | string[] | undefined): string | null 
 }
 
 // Module-level cache — survives re-renders; warm via `primeFlashcardsCollectionCache` (хаб / root)
-let _savedCardsCache: CardItem[] | null = null;
-let _customCardsCache: CardItem[] | null = null;
+let _savedCardsCacheByTarget: Partial<Record<'en' | 'fr', CardItem[]>> = {};
+let _customCardsCacheByTarget: Partial<Record<'en' | 'fr', CardItem[]>> = {};
+
+function flashcardsCacheTarget(studyTarget?: RuntimeStudyTarget): 'en' | 'fr' {
+  return storageStudyTarget(studyTarget);
+}
 
 // Built once per app session — lazy dynamic import so the ~2 MB lesson data
 // files are NOT loaded at startup (only when a card actually needs migration).
@@ -125,6 +141,13 @@ async function getEnToUkMap(): Promise<Map<string, string>> {
 const savedToCard = (f: Flashcard): CardItem => ({
   id: f.id, en: f.en, ru: f.ru, uk: f.uk || f.ru,
   es: f.es,
+  sourceLocales: {
+    'pt-BR': f.sourceLocales?.['pt-BR'],
+    vi: f.sourceLocales?.vi,
+    id: f.sourceLocales?.id,
+    tr: f.sourceLocales?.tr,
+    pl: f.sourceLocales?.pl,
+  },
   transcription: f.transcription,
   categoryId: 'saved', isSystem: false,
   source: f.source, sourceId: f.sourceId,
@@ -145,25 +168,81 @@ const savedToCard = (f: Flashcard): CardItem => ({
   level: f.level,
 });
 
+function fullCategoryLabelForLang(cat: (typeof CATEGORIES)[number], lang: Lang): string {
+  const labels: Record<Lang, string> = {
+    ru: cat.fullLabelRU,
+    uk: cat.fullLabelUK,
+    es: cat.fullLabelES,
+    'pt-BR': cat.fullLabelPtBr,
+    vi: cat.fullLabelVi,
+    id: cat.fullLabelId,
+    tr: cat.fullLabelTr,
+    pl: cat.fullLabelPl,
+  };
+  return labels[lang];
+}
+
+function customCardLocalizationForLang(
+  lang: Lang,
+  translatedText: string,
+  existing?: CardItem,
+): { baseRu: string; baseUk: string; baseEs: string; plannedSourceLocales: CardItem['sourceLocales'] } {
+  const sourceLocales = { ...(existing?.sourceLocales ?? {}) };
+  let ru = existing?.ru ?? '';
+  let uk = existing?.uk ?? '';
+  let es = existing?.es ?? '';
+
+  switch (lang) {
+    case 'uk':
+      uk = translatedText;
+      break;
+    case 'es':
+      es = translatedText;
+      break;
+    case 'pt-BR':
+      sourceLocales['pt-BR'] = translatedText;
+      break;
+    case 'vi':
+      sourceLocales.vi = translatedText;
+      break;
+    case 'id':
+      sourceLocales.id = translatedText;
+      break;
+    case 'tr':
+      sourceLocales.tr = translatedText;
+      break;
+    case 'pl':
+      sourceLocales.pl = translatedText;
+      break;
+    case 'ru':
+    default:
+      ru = translatedText;
+      break;
+  }
+
+  return { baseRu: ru, baseUk: uk, baseEs: es, plannedSourceLocales: sourceLocales };
+}
+
 /**
  * Прогрів кешу колекції до відкриття екрана: збережені + кастомні з AsyncStorage
  * (і розігрів шляху built-market cache). Не блокує JS — тільки void Promise.
  */
-export function primeFlashcardsCollectionCache() {
+export function primeFlashcardsCollectionCache(studyTarget?: RuntimeStudyTarget) {
+  const target = flashcardsCacheTarget(studyTarget);
   void Promise.all([
-    loadFlashcards().catch((): Flashcard[] => []),
-    readCustomCards().catch(() => null),
-    loadAccessiblePackIds().catch((): string[] => []),
-    loadBuiltMarketplaceCardsCache().catch((): null => null),
+    loadFlashcards(target).catch((): Flashcard[] => []),
+    readCustomCards(target).catch(() => null),
+    loadAccessiblePackIds(target).catch((): string[] => []),
+    loadBuiltMarketplaceCardsCache(target).catch((): null => null),
   ]).then(([saved, rawCustom]) => {
-    _savedCardsCache = saved.map(savedToCard);
-    _customCardsCache = Array.isArray(rawCustom) ? (rawCustom as CardItem[]) : [];
+    _savedCardsCacheByTarget[target] = saved.map(savedToCard);
+    _customCardsCacheByTarget[target] = Array.isArray(rawCustom) ? (rawCustom as CardItem[]) : [];
   });
 }
 
 /** @deprecated те саме, що primeFlashcardsCollectionCache */
-export function primeCustomFlashcardsCache() {
-  primeFlashcardsCollectionCache();
+export function primeCustomFlashcardsCache(studyTarget?: RuntimeStudyTarget) {
+  primeFlashcardsCollectionCache(studyTarget);
 }
 
 /**
@@ -171,10 +250,29 @@ export function primeCustomFlashcardsCache() {
  * тоді перший кадр уже містить картки з бандла (без порожнього «створити картку»).
  */
 let stagedOwnedPackMarketCards: CardItem[] | null = null;
+let stagedOwnedPackMarketCardsTarget: 'en' | 'fr' | null = null;
 
-export function stageOwnedPackCardsForNavigation(packId: string): void {
+export function stageOwnedPackCardsForNavigation(packId: string, studyTarget?: RuntimeStudyTarget): boolean {
+  stagedOwnedPackMarketCards = null;
+  stagedOwnedPackMarketCardsTarget = null;
+  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget)) return false;
   const packs = bundledPacksForOwned([packId]);
-  stagedOwnedPackMarketCards = packs.length > 0 ? buildMarketplaceOwnedCards(packs) : null;
+  if (packs.length === 0) return false;
+  stagedOwnedPackMarketCards = buildMarketplaceOwnedCards(packs);
+  stagedOwnedPackMarketCardsTarget = storageStudyTarget(studyTarget);
+  return stagedOwnedPackMarketCards.length > 0;
+}
+
+function consumeStagedOwnedPackMarketCards(studyTarget?: RuntimeStudyTarget): CardItem[] | null {
+  if (stagedOwnedPackMarketCardsTarget !== storageStudyTarget(studyTarget)) {
+    stagedOwnedPackMarketCards = null;
+    stagedOwnedPackMarketCardsTarget = null;
+    return null;
+  }
+  const snap = stagedOwnedPackMarketCards;
+  stagedOwnedPackMarketCards = null;
+  stagedOwnedPackMarketCardsTarget = null;
+  return snap;
 }
 
 // ─── Main screen ──────────────────────────────────────────────────────────────
@@ -186,8 +284,13 @@ export default function FlashcardsScreen() {
   const isLightTheme = false;
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const strLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
+  const flashcardsTarget = flashcardsCacheTarget(studyTarget);
+  const savedCardsCache = _savedCardsCacheByTarget[flashcardsTarget] ?? null;
+  const customCardsCache = _customCardsCacheByTarget[flashcardsTarget] ?? null;
+  const strLang: Lang = lang;
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
+  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
+  const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
   const router   = useRouter();
   const params   = useLocalSearchParams<{ cat?: string; pack?: string }>();
   const routeCat = useMemo(() => normalizeRouteCategory(params.cat), [params.cat]);
@@ -251,16 +354,22 @@ export default function FlashcardsScreen() {
   }, [routeCat]);
   const [activeFilter, setActiveFilter]   = useState<string>('all');
   const [filterOpen, setFilterOpen]       = useState(false);
-  const [savedCards, setSavedCards]   = useState<CardItem[]>(_savedCardsCache ?? []);
-  const [customCards, setCustomCards] = useState<CardItem[]>(_customCardsCache ?? []);
+  const [savedCards, setSavedCards]   = useState<CardItem[]>(savedCardsCache ?? []);
+  const [customCards, setCustomCards] = useState<CardItem[]>(customCardsCache ?? []);
   const [marketCards, setMarketCards] = useState<CardItem[]>(() => {
-    const com = consumeStagedCommunityPackMarketCards();
+    if (!officialPacksEnabled && !communityPacksEnabled) {
+      consumeStagedCommunityPackMarketCards();
+      stagedOwnedPackMarketCards = null;
+      stagedOwnedPackMarketCardsTarget = null;
+      return [];
+    }
+    const com = communityPacksEnabled ? consumeStagedCommunityPackMarketCards() : null;
     if (com && com.length > 0) return com;
-    const snap = stagedOwnedPackMarketCards;
-    stagedOwnedPackMarketCards = null;
-    return snap ?? [];
+    return officialPacksEnabled ? consumeStagedOwnedPackMarketCards(studyTarget) ?? [] : [];
   });
-  const [marketPackCatalog, setMarketPackCatalog] = useState<FlashcardMarketPack[]>(() => fallbackBundledMarketPacks());
+  const [marketPackCatalog, setMarketPackCatalog] = useState<FlashcardMarketPack[]>(
+    () => (officialPacksEnabled ? reserveBundledMarketPacks() : []),
+  );
   /** Список купленных паков из хранилища — для `?pack=` до отрисовки `marketCards` (иначе гонка с кэшем). */
   const [ownedPackIdList, setOwnedPackIdList] = useState<string[]>([]);
   /** Куплені UGC-набори (окремий ключ AsyncStorage). */
@@ -269,14 +378,14 @@ export default function FlashcardsScreen() {
   const [accessStableId, setAccessStableId] = useState<string | null>(null);
   /** `loadAll` завершил цикл; до этого нельзя валидировать `?pack=` по пустому `marketCards`. */
   const [collectionDataReady, setCollectionDataReady] = useState(false);
-  const { isPremium } = usePremium();
+  const { hasPremiumAccess: isPremium } = usePremium();
   const [index, setIndex]             = useState(0);
   const [, setIsFlipped]              = useState(false);
   const [allFlipped, setAllFlipped]   = useState(false);
   const cardFlipAnims                 = useRef<Record<string, Animated.Value>>({});
   // Instant paint when session cache exists (re-open); first cold open still waits on AsyncStorage
   const [loading, setLoading]         = useState(
-    () => _savedCardsCache === null && _customCardsCache === null,
+    () => savedCardsCache === null && customCardsCache === null,
   );
   const [loadError, setLoadError]     = useState(false);
   const sessionDoneRef                = useRef(false); // achievement fired once per session
@@ -313,25 +422,28 @@ export default function FlashcardsScreen() {
       n += 1;
     }
     if (n > 0) {
-      updateMultipleTaskProgress([{ type: 'flashcard_view', increment: n }]).catch(() => {});
-      checkAchievements({ type: 'flashcard_viewed', count: n }).catch(() => {});
+      updateMultipleTaskProgress(
+        [{ type: 'flashcard_view', increment: n }],
+        { studyTarget },
+      ).catch(() => {});
+      checkAchievements({ type: 'flashcard_viewed', count: n, studyTarget }).catch(() => {});
     }
     for (const id of cardIds) {
       if (id) flashAchievementSeenRef.current.add(id);
     }
     if (!sessionDoneRef.current && cardIds.length > 0) {
-      loadFlashcards()
+      loadFlashcards(studyTarget)
         .then((all) => {
           if (all.length === 0) return;
           const seen = flashAchievementSeenRef.current;
           if (all.every((c) => seen.has(c.id))) {
             sessionDoneRef.current = true;
-            checkAchievements({ type: 'flashcards_session' }).catch(() => {});
+            checkAchievements({ type: 'flashcards_session', studyTarget }).catch(() => {});
           }
         })
         .catch(() => {});
     }
-  }, []);
+  }, [studyTarget]);
 
   // Animations
   const flipAnim    = useRef(new Animated.Value(0)).current;
@@ -354,18 +466,22 @@ export default function FlashcardsScreen() {
   /** Власні картки користувача окремо від куплених наборів; куплений набір — лише з `?pack=`. */
   const collectionCustomCards = useMemo(() => {
     if (packDeeplink) {
-      return (marketCards ?? []).filter(
+      return (officialPacksEnabled ? marketCards : []).filter(
         (c) => c.source === 'lesson' && c.sourceId === `DEV:${packDeeplink}`,
       );
     }
     return customCards ?? [];
-  }, [packDeeplink, marketCards, customCards]);
+  }, [officialPacksEnabled, packDeeplink, marketCards, customCards]);
+  const systemCardsForTarget = useMemo(
+    () => flashcardsSystemCardsForTarget(SYSTEM_CARDS, studyTarget),
+    [studyTarget],
+  );
   const cards = useMemo(() => {
     if (activeCat === 'custom') {
       return collectionCustomCards;
     }
-    return getCardsForCategory(activeCat, savedCards, customCards, SYSTEM_CARDS);
-  }, [activeCat, savedCards, customCards, collectionCustomCards]);
+    return getCardsForCategory(activeCat, savedCards, customCards, systemCardsForTarget);
+  }, [activeCat, savedCards, customCards, collectionCustomCards, systemCardsForTarget]);
   const filteredCards = useMemo(
     () => applyCardFilter(cards, activeFilter),
     [cards, activeFilter],
@@ -433,6 +549,13 @@ export default function FlashcardsScreen() {
     router.push({ pathname: '/flashcards_swipe', params: paramsForSwipe } as any);
   }, [activeFilter, router, swipeSourceId]);
 
+  const openAudioMode = useCallback(() => {
+    const paramsForAudio: { source?: string; filter?: string } = {};
+    if (swipeSourceId) paramsForAudio.source = swipeSourceId;
+    if (swipeSourceId && activeFilter !== 'all') paramsForAudio.filter = activeFilter;
+    router.push({ pathname: '/flashcards_audio', params: paramsForAudio } as any);
+  }, [activeFilter, router, swipeSourceId]);
+
   const packPremiumVisual = useMemo(() => {
     if (!currentMarketPack) return null;
     if (currentMarketPack.isCommunityUgc && currentMarketPack.ugcCardThemeKey) {
@@ -479,7 +602,7 @@ export default function FlashcardsScreen() {
       if (!list || filteredCards.length === 0) return;
       const byId = filteredCards.findIndex((c) => c.id === info.itemId);
       const index = byId >= 0 ? byId : Math.min(Math.max(0, info.itemIndex), Math.max(0, filteredCards.length - 1));
-      const fallbackScrollToIndex = () => {
+      const backupScrollToIndex = () => {
         detailsEscortProgrammaticRef.current = true;
         detailsEscortIgnoreScrollUntilRef.current = Date.now() + 1000;
         requestAnimationFrame(() => {
@@ -496,12 +619,12 @@ export default function FlashcardsScreen() {
       const runCenterByMeasure = () => {
         const row = listItemRowRefById.current[info.itemId];
         if (!row) {
-          fallbackScrollToIndex();
+          backupScrollToIndex();
           return;
         }
         const viewport = listViewportRef.current;
         if (!viewport || typeof (viewport as any).measureInWindow !== 'function') {
-          fallbackScrollToIndex();
+          backupScrollToIndex();
           return;
         }
         detailsEscortProgrammaticRef.current = true;
@@ -546,16 +669,16 @@ export default function FlashcardsScreen() {
     const userSid = await getCanonicalUserId().catch(() => null);
     setAccessStableId(userSid);
     // Only show loading on first ever open (no cache yet)
-    if (!_savedCardsCache && !_customCardsCache) setLoading(true);
+    if (!_savedCardsCacheByTarget[flashcardsTarget] && !_customCardsCacheByTarget[flashcardsTarget]) setLoading(true);
     const [saved, customParsed, progressParsed, hintSeen, ownedIdsEarly, builtMarketCache, communityOwnedEarly] =
       await Promise.all([
-      loadFlashcards(),
-      readCustomCards(),
-      readFlashcardsProgress(),
-      AsyncStorage.getItem('flashcard_delete_hint_seen'),
-      loadAccessiblePackIds(),
-      loadBuiltMarketplaceCardsCache().catch((): null => null),
-      loadCommunityOwnedPackIds().catch((): string[] => []),
+      loadFlashcards(studyTarget),
+      readCustomCards(studyTarget),
+      readFlashcardsProgress(studyTarget),
+      AsyncStorage.getItem(flashcardsDeleteHintSeenKey(studyTarget)),
+      officialPacksEnabled ? loadAccessiblePackIds(studyTarget) : Promise.resolve([] as string[]),
+      officialPacksEnabled ? loadBuiltMarketplaceCardsCache(studyTarget).catch((): null => null) : Promise.resolve(null),
+      communityPacksEnabled ? loadCommunityOwnedPackIds(studyTarget).catch((): string[] => []) : Promise.resolve([] as string[]),
     ]);
     const custom: CardItem[] = Array.isArray(customParsed) ? (customParsed as CardItem[]) : [];
     // Швидке відображення: одразу з AsyncStorage, без import lesson data / маркету.
@@ -570,7 +693,7 @@ export default function FlashcardsScreen() {
       setMarketCards(builtMarketCache.cards);
       setOwnedPackIdList(ownedIdsEarly);
       setCommunityOwnedIdList(communityOwnedEarly);
-      setMarketPackCatalog(fallbackBundledMarketPacks());
+      setMarketPackCatalog(reserveBundledMarketPacks());
     } else if (ownedIdsEarly.length > 0 || communityOwnedEarly.length > 0) {
       /** Одразу з бандла — не чекаємо Firestore у `marketPromise`, інакше `?pack=` показує порожній custom. */
       setOwnedPackIdList(ownedIdsEarly);
@@ -579,7 +702,12 @@ export default function FlashcardsScreen() {
       if (ownedBundled.length > 0) {
         setMarketCards(buildMarketplaceOwnedCards(ownedBundled));
       }
-      setMarketPackCatalog(fallbackBundledMarketPacks());
+      setMarketPackCatalog(reserveBundledMarketPacks());
+    } else if (!officialPacksEnabled) {
+      setMarketCards([]);
+      setOwnedPackIdList([]);
+      setCommunityOwnedIdList([]);
+      setMarketPackCatalog([]);
     }
     /**
      * Блокуємо лоадер лише якщо без маркет-кешу користувач побачить порожній список
@@ -591,8 +719,8 @@ export default function FlashcardsScreen() {
       mappedSavedQuick.length === 0 &&
       custom.length === 0;
     if (mustDelayForEmptyMarketOnly) setLoading(true);
-    _savedCardsCache = mappedSavedQuick;
-    _customCardsCache = custom;
+    _savedCardsCacheByTarget[flashcardsTarget] = mappedSavedQuick;
+    _customCardsCacheByTarget[flashcardsTarget] = custom;
     setSavedCards(mappedSavedQuick);
     setCustomCards(custom);
     setLoadError(false);
@@ -625,21 +753,34 @@ export default function FlashcardsScreen() {
           return updated;
         });
         if (needsSave) {
-          await saveFlashcards(migratedLocal);
+          await saveFlashcards(migratedLocal, studyTarget);
         }
         const mappedAfter = migratedLocal.map(savedToCard);
-        _savedCardsCache = mappedAfter;
+        _savedCardsCacheByTarget[flashcardsTarget] = mappedAfter;
         setSavedCards(mappedAfter);
         return migratedLocal;
     })();
 
     const marketPromise = (async () => {
+      if (!officialPacksEnabled) {
+        setOwnedPackIdList([]);
+        setCommunityOwnedIdList([]);
+        setMarketPackCatalog([]);
+        setMarketCards([]);
+        return {
+          ownedIds: [] as string[],
+          marketPacks: [] as FlashcardMarketPack[],
+          communityOwnedIds: [] as string[],
+          communityPublished: [] as FlashcardMarketPack[],
+          activePackId: null as string | null,
+        };
+      }
       const [ownedIds, marketPacks, communityOwnedIds, communityPublished, activePackIdRaw] = await Promise.all([
-        loadAccessiblePackIds(),
+        loadAccessiblePackIds(studyTarget),
         loadMarketplacePacks(),
-        loadCommunityOwnedPackIds().catch((): string[] => []),
-        loadPublishedCommunityMarketPacks().catch((): FlashcardMarketPack[] => []),
-        isDevMarketEnabled ? consumeDevActivePack() : Promise.resolve(null as string | null),
+        communityPacksEnabled ? loadCommunityOwnedPackIds(studyTarget).catch((): string[] => []) : Promise.resolve([] as string[]),
+        communityPacksEnabled ? loadPublishedCommunityMarketPacks(studyTarget).catch((): FlashcardMarketPack[] => []) : Promise.resolve([] as FlashcardMarketPack[]),
+        isDevMarketEnabled ? consumeDevActivePack(studyTarget) : Promise.resolve(null as string | null),
       ]);
       setOwnedPackIdList(ownedIds);
       setCommunityOwnedIdList(communityOwnedIds);
@@ -667,11 +808,11 @@ export default function FlashcardsScreen() {
               .map((p) => p.id);
       const communityIdsToLoad = [...new Set([...communityOwnedIds, ...authorCommunityIds])];
       const communityCardLists = await Promise.all(
-        communityIdsToLoad.map((id) => fetchCommunityPackCards(id).catch((): CardItem[] => [])),
+        communityIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((): CardItem[] => [])),
       );
       const builtMarket = [...officialBuilt, ...communityCardLists.flat()];
       setMarketCards(builtMarket);
-      void saveBuiltMarketplaceCardsCache([...ownedIds, ...communityIdsToLoad].sort(), builtMarket);
+      void saveBuiltMarketplaceCardsCache([...ownedIds, ...communityIdsToLoad].sort(), builtMarket, studyTarget);
       if (mustDelayForEmptyMarketOnly) setLoading(false);
       return {
         ownedIds,
@@ -700,6 +841,11 @@ export default function FlashcardsScreen() {
           ru: 'Открыт купленный DEV-набор в карточках.',
           uk: 'Відкрито придбаний DEV-набір у картках.',
           es: 'Pack DEV comprado abierto en Tarjetas.',
+          'pt-BR': 'Pack DEV comprado aberto em Cartões.',
+          vi: 'Đã mở pack DEV đã mua trong Thẻ.',
+          id: 'Pack DEV yang dibeli dibuka di Kartu.',
+          tr: 'Satın alınan DEV paketi Kartlar içinde açıldı.',
+          pl: 'Kupiony pakiet DEV otwarto w Kartach.',
         }),
       );
     } else if (!rc && progressParsed) {
@@ -733,12 +879,17 @@ export default function FlashcardsScreen() {
           ru: 'Не удалось загрузить карточки.',
           uk: 'Не вдалося завантажити картки.',
           es: 'No se pudieron cargar las tarjetas.',
+          'pt-BR': 'Não foi possível carregar os cartões.',
+          vi: 'Không thể tải thẻ.',
+          id: 'Gagal memuat kartu.',
+          tr: 'Kartlar yüklenemedi.',
+          pl: 'Nie udało się załadować kart.',
         }),
       );
     } finally {
       setCollectionDataReady(true);
     }
-  }, [isDevMarketEnabled, router]);
+  }, [communityPacksEnabled, flashcardsTarget, isDevMarketEnabled, officialPacksEnabled, router, studyTarget]);
 
   useFocusEffect(
     useCallback(() => {
@@ -791,6 +942,11 @@ export default function FlashcardsScreen() {
           ru: 'Набор ещё не куплен. Его можно открыть за осколки в магазине (вкладка с наборами карточек).',
           uk: 'Набір ще не куплено. Його можна відкрити за осколки в магазині (вкладка з наборами карток).',
           es: 'Aún no has comprado este pack. Puedes obtenerlo por fragmentos en la tienda (pestaña de packs de Tarjetas).',
+          'pt-BR': 'Este pack ainda não foi comprado. Você pode abri-lo por fragmentos na loja (aba de packs de Cartões).',
+          vi: 'Bạn chưa mua pack này. Bạn có thể mở bằng mảnh trong cửa hàng (tab pack Thẻ).',
+          id: 'Pack ini belum dibeli. Kamu bisa membukanya dengan shard di toko (tab pack Kartu).',
+          tr: 'Bu paket henüz satın alınmadı. Mağazada parçalarla açabilirsin (Kart paketleri sekmesi).',
+          pl: 'Ten pakiet nie został jeszcze kupiony. Możesz otworzyć go za odłamki w sklepie (zakładka pakietów Kart).',
         }),
       );
       router.replace('/flashcards' as any);
@@ -843,8 +999,8 @@ export default function FlashcardsScreen() {
   // ── Persist progress so it survives tab switches ───────────────────────────
   useEffect(() => {
     if (loading) return;
-    writeFlashcardsProgress({ cat: activeCat, idx: index }).catch(() => {});
-  }, [index, activeCat, loading]);
+    writeFlashcardsProgress({ cat: activeCat, idx: index }, studyTarget).catch(() => {});
+  }, [index, activeCat, loading, studyTarget]);
 
   // ── (removed: old single-active-card reset on scroll — each card now has independent flip state) ──
 
@@ -875,9 +1031,9 @@ export default function FlashcardsScreen() {
     if (deleteHintPulseLoop.current) deleteHintPulseLoop.current.stop();
     Animated.timing(deleteHintAnim, { toValue: 0, duration: 250, useNativeDriver: true }).start(() => {
       setShowDeleteHint(false);
-      AsyncStorage.setItem('flashcard_delete_hint_seen', '1');
+      AsyncStorage.setItem(flashcardsDeleteHintSeenKey(studyTarget), '1');
     });
-  }, [deleteHintAnim, deleteHintPulseLoop]);
+  }, [deleteHintAnim, deleteHintPulseLoop, studyTarget]);
 
   useEffect(() => {
     if (!showDeleteHint) return;
@@ -919,21 +1075,21 @@ export default function FlashcardsScreen() {
   }, [getOverlayAnim, longPressedId]);
 
   // ── Unified delete pipeline ────────────────────────────────────────────────
-  const deleteCardById = useCallback(async (cardId: string, fallbackIdx?: number) => {
+  const deleteCardById = useCallback(async (cardId: string, backupIdx?: number) => {
     const target = cards.find((c) => c.id === cardId);
     if (!target) return;
     try {
       if (target.categoryId === 'saved') {
-        await removeFlashcard(target.id);
+        await removeFlashcard(target.id, studyTarget);
         setSavedCards((prev) => prev.filter((c) => c.id !== target.id));
       } else if (target.categoryId === 'custom') {
         const updatedCustom = customCards.filter((c) => c.id !== target.id);
-        await writeCustomCards(updatedCustom);
+        await writeCustomCards(updatedCustom, studyTarget);
         setCustomCards(updatedCustom);
       }
       const updated = cards.filter((c) => c.id !== target.id);
       setIndex((prev) => {
-        const base = typeof fallbackIdx === 'number' ? fallbackIdx : prev;
+        const base = typeof backupIdx === 'number' ? backupIdx : prev;
         return Math.max(0, Math.min(base, updated.length - 1));
       });
       setIsFlipped(false);
@@ -944,6 +1100,11 @@ export default function FlashcardsScreen() {
           ru: 'Карточка удалена.',
           uk: 'Картку видалено.',
           es: 'Tarjeta eliminada.',
+          'pt-BR': 'Cartão removido.',
+          vi: 'Đã xóa thẻ.',
+          id: 'Kartu dihapus.',
+          tr: 'Kart silindi.',
+          pl: 'Karta usunięta.',
         }),
       );
     } catch {
@@ -953,10 +1114,15 @@ export default function FlashcardsScreen() {
           ru: 'Не удалось удалить карточку.',
           uk: 'Не вдалося видалити картку.',
           es: 'No se pudo eliminar la tarjeta.',
+          'pt-BR': 'Não foi possível remover o cartão.',
+          vi: 'Không thể xóa thẻ.',
+          id: 'Gagal menghapus kartu.',
+          tr: 'Kart silinemedi.',
+          pl: 'Nie udało się usunąć karty.',
         }),
       );
     }
-  }, [cards, customCards, flipAnim]);
+  }, [cards, customCards, flipAnim, studyTarget]);
 
   // ── Delete with animation ──────────────────────────────────────────────────
   const handleDeleteCard = useCallback(async (item: CardItem, itemIdx: number) => {
@@ -1001,11 +1167,11 @@ export default function FlashcardsScreen() {
       if (isNewView) set.add(cardId);
       const updates: Parameters<typeof updateMultipleTaskProgress>[0] = [{ type: 'flashcard_flip', increment: 1 }];
       if (isNewView) updates.push({ type: 'flashcard_view', increment: 1 });
-      updateMultipleTaskProgress(updates).catch(() => {});
-      checkAchievements({ type: 'flashcard_flipped', count: 1 }).catch(() => {});
-      if (isNewView) checkAchievements({ type: 'flashcard_viewed', count: 1 }).catch(() => {});
+      updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
+      checkAchievements({ type: 'flashcard_flipped', count: 1, studyTarget }).catch(() => {});
+      if (isNewView) checkAchievements({ type: 'flashcard_viewed', count: 1, studyTarget }).catch(() => {});
     }
-  }, [getCardFlipAnim]);
+  }, [getCardFlipAnim, studyTarget]);
 
   // ── Flip all cards simultaneously ─────────────────────────────────────────
   const handleFlipAll = useCallback(() => {
@@ -1044,14 +1210,7 @@ export default function FlashcardsScreen() {
       if (p) return packTitleForInterface(p, lang);
     }
     const cat = CATEGORIES.find((c) => c.id === activeCat);
-    const full =
-      cat == null
-        ? undefined
-        : lang === 'uk'
-          ? cat.fullLabelUK
-          : lang === 'es'
-            ? cat.fullLabelES
-            : cat.fullLabelRU;
+    const full = cat == null ? undefined : fullCategoryLabelForLang(cat, lang);
     return full ?? s.title;
   }, [packDeeplink, marketPackCatalog, lang, activeCat, s.title]);
 
@@ -1071,16 +1230,18 @@ export default function FlashcardsScreen() {
     // When editing in ES mode, only `es` is updated; `ru` / `uk` are preserved.
     const existing = editingId ? customCards.find(c => c.id === editingId) : undefined;
     const descTrim = draftDescription.trim();
-    const newCard: CardItem = {
+    const localizedFields = customCardLocalizationForLang(lang, draftTR.trim(), existing);
+    const newCard = {
       id: editingId ?? `custom_${Date.now()}`,
       en: draftEN.trim(),
-      ru: lang === 'uk' ? (existing?.ru ?? '') : lang === 'es' ? (existing?.ru ?? '') : draftTR.trim(),
-      uk: lang === 'uk' ? draftTR.trim() : (existing?.uk ?? ''),
-      es: lang === 'es' ? draftTR.trim() : (existing?.es ?? ''),
       description: descTrim.length > 0 ? descTrim : undefined,
       categoryId: 'custom',
       isSystem: false,
-    };
+    } as CardItem;
+    newCard.ru = localizedFields.baseRu;
+    newCard.uk = localizedFields.baseUk;
+    newCard.es = localizedFields.baseEs;
+    newCard.sourceLocales = localizedFields.plannedSourceLocales;
     let updated: CardItem[];
     if (editingId) {
       updated = customCards.map(c => c.id === editingId ? newCard : c);
@@ -1088,7 +1249,7 @@ export default function FlashcardsScreen() {
       updated = [...customCards, newCard];
     }
     try {
-      await writeCustomCards(updated);
+      await writeCustomCards(updated, studyTarget);
       setCustomCards(updated);
       slideAnim.setValue(0);
       setActiveCat('custom');
@@ -1100,6 +1261,11 @@ export default function FlashcardsScreen() {
           ru: editingId ? 'Карточка обновлена.' : 'Карточка сохранена.',
           uk: editingId ? 'Картку оновлено.' : 'Картку збережено.',
           es: editingId ? 'Tarjeta actualizada.' : 'Tarjeta guardada.',
+          'pt-BR': editingId ? 'Cartão atualizado.' : 'Cartão salvo.',
+          vi: editingId ? 'Đã cập nhật thẻ.' : 'Đã lưu thẻ.',
+          id: editingId ? 'Kartu diperbarui.' : 'Kartu disimpan.',
+          tr: editingId ? 'Kart güncellendi.' : 'Kart kaydedildi.',
+          pl: editingId ? 'Karta zaktualizowana.' : 'Karta zapisana.',
         }),
       );
     } catch {
@@ -1109,6 +1275,11 @@ export default function FlashcardsScreen() {
           ru: 'Не удалось сохранить карточку.',
           uk: 'Не вдалося зберегти картку.',
           es: 'No se pudo guardar la tarjeta.',
+          'pt-BR': 'Não foi possível salvar o cartão.',
+          vi: 'Không thể lưu thẻ.',
+          id: 'Gagal menyimpan kartu.',
+          tr: 'Kart kaydedilemedi.',
+          pl: 'Nie udało się zapisać karty.',
         }),
       );
     }
@@ -1350,7 +1521,7 @@ export default function FlashcardsScreen() {
               </Text>
             </TouchableOpacity>
           )}
-          {activeCat === 'custom' && CLOUD_SYNC_ENABLED && !IS_EXPO_GO && (
+          {activeCat === 'custom' && communityPacksEnabled && CLOUD_SYNC_ENABLED && !IS_EXPO_GO && (
             <TouchableOpacity
               onPress={() => router.push('/community_pack_create' as any)}
               style={{ marginTop: 14, backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 28, paddingVertical: 12, borderWidth: 1, borderColor: t.accent }}
@@ -1553,6 +1724,76 @@ export default function FlashcardsScreen() {
           </TouchableOpacity>
         )}
 
+        {filteredCards.length > 0 && (
+          <TouchableOpacity
+            onPress={openAudioMode}
+            activeOpacity={0.88}
+            style={{
+              marginHorizontal: 16,
+              marginTop: 6,
+              marginBottom: 4,
+              minHeight: 54,
+              paddingVertical: 10,
+              paddingHorizontal: 14,
+              borderRadius: 16,
+              borderWidth: 1,
+              borderColor: t.border,
+              backgroundColor: t.bgCard,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 12,
+            }}
+            accessibilityLabel={triLang(lang, {
+              ru: 'Слушать карточки автоматически',
+              uk: 'Слухати картки автоматично',
+              es: 'Escuchar tarjetas automáticamente',
+              'pt-BR': 'Ouvir cartões automaticamente',
+              vi: 'Nghe thẻ tự động',
+              id: 'Dengarkan kartu otomatis',
+              tr: 'Kartları otomatik dinle',
+              pl: 'Słuchaj fiszek automatycznie',
+            })}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, flex: 1, minWidth: 0 }}>
+              <View
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: 13,
+                  backgroundColor: t.bgSurface,
+                  borderWidth: 1,
+                  borderColor: t.border,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Ionicons name="headset-outline" size={20} color={t.textSecond} />
+              </View>
+              <View style={{ flex: 1, minWidth: 0 }}>
+                <Text
+                  numberOfLines={1}
+                  adjustsFontSizeToFit
+                  minimumFontScale={0.78}
+                  style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}
+                >
+                  {triLang(lang, {
+                    ru: 'Слушать эти карточки',
+                    uk: 'Слухати ці картки',
+                    es: 'Escuchar estas tarjetas',
+                    'pt-BR': 'Ouvir estes cartões',
+                    vi: 'Nghe các thẻ này',
+                    id: 'Dengarkan kartu ini',
+                    tr: 'Bu kartları dinle',
+                    pl: 'Słuchaj tych fiszek',
+                  })}
+                </Text>
+              </View>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color={t.textSecond} />
+          </TouchableOpacity>
+        )}
+
         {/* Flip all — у режимі купленого паку: спокійна друкарська кнопка, без "кислотного" лайму */}
         {filteredCards.length > 0 &&
           (packPremiumVisual ? (
@@ -1603,7 +1844,7 @@ export default function FlashcardsScreen() {
         {IS_EXPO_GO && !showDeleteHint && (
           <TouchableOpacity
             onPress={() => {
-              AsyncStorage.removeItem('flashcard_delete_hint_seen');
+              AsyncStorage.removeItem(flashcardsDeleteHintSeenKey(studyTarget));
               deleteHintAnim.setValue(0);
               setShowDeleteHint(true);
             }}

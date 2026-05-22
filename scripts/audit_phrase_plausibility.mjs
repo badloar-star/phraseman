@@ -200,14 +200,6 @@ const RULES = [
       return null;
     },
   },
-  {
-    code: 'SEMANTIC_AUDIT_NAMED',
-    severity: 'low',
-    test: (p) => {
-      if (!semanticAuditIdSet.has(p.id)) return null;
-      return 'Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits.';
-    },
-  },
 ];
 
 const semanticAuditIdSet = new Set(loadSemanticAuditPhraseIds());
@@ -222,8 +214,19 @@ for (const p of flat) {
 
 const bySev = { high: issues.filter((i) => i.severity === 'high'), med: issues.filter((i) => i.severity === 'med'), low: issues.filter((i) => i.severity === 'low') };
 
-const semanticNamed = issues.filter((i) => i.code === 'SEMANTIC_AUDIT_NAMED');
-const lowOther = bySev.low.filter((i) => i.code !== 'SEMANTIC_AUDIT_NAMED');
+const semanticNamed = flat
+  .filter((p) => semanticAuditIdSet.has(p.id))
+  .map((p) => ({
+    code: 'SEMANTIC_AUDIT_NAMED',
+    severity: 'info',
+    lesson: p.lesson,
+    id: p.id,
+    en: p.en,
+    ru: p.ru,
+    uk: p.uk,
+    msg: 'Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase.',
+  }));
+const lowOther = bySev.low;
 
 const outDir = path.join(ROOT, 'docs', 'reports');
 fs.mkdirSync(outDir, { recursive: true });
@@ -235,6 +238,7 @@ fs.writeFileSync(
       totalPhrases: flat.length,
       issues,
       summary: bySev,
+      semanticNamed,
       semanticAuditPhraseIds: [...semanticAuditIdSet],
       heuristicsNote:
         'Automatic rules catch grammar/calque patterns; they do not replace native-speaker review. See also lessons_translation_semantic_audit_1_32.md.',
@@ -361,4 +365,4 @@ fs.writeFileSync(mdRuPath, linesRu.join('\n'), 'utf8');
 console.log(`Wrote ${jsonPath}`);
 console.log(`Wrote ${mdPath}`);
 console.log(`Wrote ${mdRuPath}`);
-console.log(`Issues: high=${bySev.high.length} med=${bySev.med.length} low=${bySev.low.length}`);
+console.log(`Issues: high=${bySev.high.length} med=${bySev.med.length} low=${lowOther.length}; semanticNamed=${semanticNamed.length}`);

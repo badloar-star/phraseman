@@ -2,6 +2,8 @@ import * as admin from 'firebase-admin';
 
 const db = admin.firestore();
 
+const MIN_PERCENTILE_SAMPLE_XP = 5000;
+
 function readProgressInt(value: unknown): number {
   const n = Math.trunc(Number(value));
   return Number.isFinite(n) ? n : 0;
@@ -53,6 +55,7 @@ export function lookupPercentile(thresholds: number[], myValue: number): number 
 export interface LeaderboardStats {
   totalUsers: number;
   updatedAt: number;
+  minimumSampleXp: number;
   // Каждый массив: 99 чисел, thresholds[i] = порог (i+1)-го перцентиля
   xpThresholds: number[];
   streakThresholds: number[];
@@ -82,7 +85,7 @@ export async function computeLeaderboardStats(): Promise<void> {
     for (const doc of snap.docs) {
       const progress = doc.data()?.progress ?? {};
       const xp = readProgressInt(progress.user_total_xp);
-      if (xp >= 50) xpVals.push(xp);
+      if (xp >= MIN_PERCENTILE_SAMPLE_XP) xpVals.push(xp);
     }
 
     lastUserDoc = snap.docs[snap.docs.length - 1] ?? null;
@@ -98,7 +101,7 @@ export async function computeLeaderboardStats(): Promise<void> {
 
   while (true) {
     let q: FirebaseFirestore.Query = db.collection('leaderboard')
-      .where('points', '>=', 50)
+      .where('points', '>=', MIN_PERCENTILE_SAMPLE_XP)
       .orderBy('points')
       .limit(500);
     if (lastLbDoc) q = q.startAfter(lastLbDoc);
@@ -148,6 +151,7 @@ export async function computeLeaderboardStats(): Promise<void> {
   const stats: LeaderboardStats = {
     totalUsers: xpVals.length,
     updatedAt: Date.now(),
+    minimumSampleXp: MIN_PERCENTILE_SAMPLE_XP,
     xpThresholds: buildPercentileThresholds(xpVals),
     streakThresholds: buildPercentileThresholds(streakVals),
     weekXpThresholds: buildPercentileThresholds(weekXpVals),
@@ -159,7 +163,7 @@ export async function computeLeaderboardStats(): Promise<void> {
   await db.collection('leaderboard_stats').doc('global').set(stats);
 
   console.log(
-    `[computeLeaderboardStats] done. xpUsers=${xpVals.length}, ` +
+    `[computeLeaderboardStats] done. minSampleXp=${MIN_PERCENTILE_SAMPLE_XP}, xpUsers=${xpVals.length}, ` +
     `streak=${streakVals.length}, daily7xp=${daily7xpVals.length}, ` +
     `arenaXp=${arenaXpVals.length}`,
   );

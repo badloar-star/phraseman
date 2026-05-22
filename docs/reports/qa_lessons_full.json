@@ -291,7 +291,7 @@
     "severity": "warning",
     "lessonId": 5,
     "phraseId": "lesson5_phrase_23",
-    "message": "words.join(' ') отличается от english только конечной пунктуацией: words=\"Does she believe in luck\" / english=\"Does she believe in luck?\""
+    "message": "words.join(' ') отличается от english только конечной пунктуацией: words=\"Does she believe you\" / english=\"Does she believe you?\""
   },
   {
     "group": "B1",
@@ -312,7 +312,7 @@
     "severity": "warning",
     "lessonId": 5,
     "phraseId": "lesson5_phrase_26",
-    "message": "words.join(' ') отличается от english только конечной пунктуацией: words=\"Does he drive a car\" / english=\"Does he drive a car?\""
+    "message": "words.join(' ') отличается от english только конечной пунктуацией: words=\"Does he drive cars\" / english=\"Does he drive cars?\""
   },
   {
     "group": "B1",

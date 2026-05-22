@@ -5,21 +5,26 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
+const OBJECT_ORDER_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre ordem de objeto ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về thứ tự tân ngữ này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan urutan objek ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu nesne sırası açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie szyku dopełnienia nadal wymaga przeglądu po polsku.',
+};
+
 const tri = (
   ru: string,
   uk: string,
   es = ru,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? OBJECT_ORDER_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'verb + person + thing',
@@ -29,6 +34,46 @@ const CONTRAST = [
   'send it to her',
   'buy it for him',
 ];
+
+const OBJECT_ORDER_SKILL_ES: Record<string, string> = {
+  full_object_after_person: 'Con una cosa completa, la persona puede ir justo despues del verbo.',
+  send_full_object: 'Con un objeto completo: send her the file.',
+  show_full_object: 'Con un objeto completo: show me your phone.',
+  object_to_person: 'Si primero va la cosa, despues usa to + persona.',
+  give_it_to_me: 'Con it, usa el orden seguro: it to me.',
+  send_it_to_her: 'Con it, usa send it to her, no send her it.',
+  show_it_to_me: 'Con it, usa show it to me, no show me it.',
+  buy_it_for_me: 'Con buy, la persona suele ir con for: buy it for me.',
+  make_it_for_her: 'Con make, la persona suele ir con for: make it for her.',
+  tell_me_truth_vs_it: 'Con la cosa completa puedes decir tell me the truth; con it usa tell it to me.',
+  mixed_book_it: 'No mezcles los dos caminos: cosa completa y it usan patrones distintos.',
+  mixed_to_for: 'Send suele llevar to; buy suele llevar for.',
+  mixed_sentence_correction: 'Photo va completo con show me; it va antes de to her.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = OBJECT_ORDER_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? OBJECT_ORDER_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function objectOrderEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = OBJECT_ORDER_SKILL_ES[input.targetSkill] ?? 'Decide si la cosa esta completa o si es it/them.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function orderStep(input: {
   id: string;
@@ -47,6 +92,7 @@ function orderStep(input: {
   focusWords: string[];
 }): DiagnosisTrainingStep {
   const correctIndex = input.options.findIndex((option) => option === input.correctAnswer);
+  const esFeedback = objectOrderEsFeedback(input);
 
   return {
     id: input.id,
@@ -54,30 +100,30 @@ function orderStep(input: {
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    teachingText: input.teachingText,
-    translation: input.translation,
-    explanationBlock: input.teachingText,
+    teachingText: withEs(input.teachingText, esFeedback),
+    translation: withEs(input.translation, esFeedback),
+    explanationBlock: withEs(input.teachingText, esFeedback),
     microTask: tri(
       'Выбери порядок: кому и что. Особенно следи за it.',
       'Обери порядок: кому і що. Особливо стеж за it.',
-      'Choose the order: who gets it and what is given. Watch it.',
+      'Elige el orden: quien recibe y que se da. Vigila especialmente it.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex,
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? tri(
+        .map((option) => [option, withEs(input.wrong[option] ?? tri(
           `Почти. Здесь безопаснее порядок: ${input.correctAnswer}.`,
           `Майже. Тут безпечніший порядок: ${input.correctAnswer}.`,
-          `Casi. The safer order is: ${input.correctAnswer}.`,
-        )]),
+          `Casi. El orden mas seguro es: ${input.correctAnswer}.`,
+        ), esFeedback)]),
     ),
-    retryFeedback: input.retryFeedback,
-    fallbackExplanation: input.fallbackExplanation,
+    retryFeedback: input.retryFeedback.map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
+    fallbackExplanation: withEs(input.fallbackExplanation, esFeedback),
     focusWords: input.focusWords,
   };
 }
@@ -85,7 +131,14 @@ function orderStep(input: {
 const TWO_PATHS = tri(
   'Есть две нормальные дороги: Give me the book или Give the book to me. Но если вещь заменили на it, безопасная дорога почти всегда Give it to me.',
   'Є дві нормальні дороги: Give me the book або Give the book to me. Але якщо річ замінили на it, безпечна дорога майже завжди Give it to me.',
-  'There are two normal paths: Give me the book or Give the book to me. But with it, the safer path is usually Give it to me.',
+  'Hay dos caminos normales: Give me the book o Give the book to me. Pero con it, el camino mas seguro casi siempre es Give it to me.',
+  {
+    'pt-BR': 'Há dois caminhos normais: Give me the book ou Give the book to me. Mas, com it, o caminho mais seguro quase sempre é Give it to me.',
+    vi: 'Có hai cách bình thường: Give me the book hoặc Give the book to me. Nhưng với it, cách an toàn nhất hầu như luôn là Give it to me.',
+    id: 'Ada dua pola normal: Give me the book atau Give the book to me. Namun dengan it, pola yang paling aman hampir selalu Give it to me.',
+    tr: 'İki normal yol var: Give me the book veya Give the book to me. Ama it ile en güvenli yol neredeyse her zaman Give it to me olur.',
+    pl: 'Są dwie normalne drogi: Give me the book albo Give the book to me. Ale z it najbezpieczniejsza droga to prawie zawsze Give it to me.',
+  },
 );
 
 export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
@@ -94,37 +147,79 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 30,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Give me the book / Give it to me: порядок без каши',
     'Give me the book / Give it to me: порядок без каші',
-    'Give me the book / Give it to me',
+    'Give me the book / Give it to me: orden claro',
+    {
+      'pt-BR': 'Give me the book / Give it to me: ordem sem confusão',
+      vi: 'Give me the book / Give it to me: thứ tự rõ ràng',
+      id: 'Give me the book / Give it to me: urutan yang jelas',
+      tr: 'Give me the book / Give it to me: karışmadan sıra',
+      pl: 'Give me the book / Give it to me: szyk bez chaosu',
+    },
   ),
   shortTitle: tri(
     'Give it to me',
     'Give it to me',
     'Give it to me',
+    {
+      'pt-BR': 'Give it to me',
+      vi: 'Give it to me',
+      id: 'Give it to me',
+      tr: 'Give it to me',
+      pl: 'Give it to me',
+    },
   ),
   shortDiagnosis: tri(
     'Ты смешиваешь два нормальных порядка и получаешь странные фразы вроде give me it.',
     'Ти змішуєш два нормальні порядки й отримуєш дивні фрази на кшталт give me it.',
-    'You mix two normal orders and get awkward phrases like give me it.',
+    'Mezclas dos ordenes normales y terminas con frases raras como give me it.',
+    {
+      'pt-BR': 'Você mistura duas ordens normais e acaba com frases estranhas como give me it.',
+      vi: 'Bạn trộn hai thứ tự bình thường và tạo ra các câu lạ như give me it.',
+      id: 'Kamu mencampur dua urutan normal dan akhirnya membuat frasa aneh seperti give me it.',
+      tr: 'İki normal sırayı karıştırıyorsun ve give me it gibi tuhaf ifadeler ortaya çıkıyor.',
+      pl: 'Mieszasz dwa normalne szyki i dostajesz dziwne frazy typu give me it.',
+    },
   ),
   diagnosisText: tri(
     'Похоже, ты знаешь все слова, но ставишь "кому" и "что" в неудобном порядке. С полной вещью можно сказать Give me the book. Но с it лучше Give it to me. Это маленькое правило спасает give me it, send her it, buy me it.',
     'Схоже, ти знаєш усі слова, але ставиш "кому" і "що" в незручному порядку. З повною річчю можна сказати Give me the book. Але з it краще Give it to me. Це маленьке правило рятує give me it, send her it, buy me it.',
-    'You know the words, but put "who" and "what" in an awkward order. With a full thing: Give me the book. With it: Give it to me.',
+    'Sabes las palabras, pero colocas "a quien" y "que" en un orden incomodo. Con una cosa completa: Give me the book. Con it: Give it to me. Esta regla pequena evita give me it, send her it, buy me it.',
+    {
+      'pt-BR': 'Parece que você sabe todas as palavras, mas coloca "para quem" e "o quê" em uma ordem desconfortável. Com uma coisa completa, dá para dizer Give me the book. Com it, é melhor Give it to me. Essa pequena regra evita give me it, send her it, buy me it.',
+      vi: 'Có vẻ bạn biết tất cả các từ, nhưng đặt "cho ai" và "cái gì" theo thứ tự không tự nhiên. Với đồ vật được nói đầy đủ, có thể nói Give me the book. Với it, tốt hơn là Give it to me. Quy tắc nhỏ này giúp tránh give me it, send her it, buy me it.',
+      id: 'Sepertinya kamu tahu semua katanya, tetapi menaruh "kepada siapa" dan "apa" dalam urutan yang kurang nyaman. Dengan benda lengkap, kamu bisa mengatakan Give me the book. Dengan it, lebih baik Give it to me. Aturan kecil ini mencegah give me it, send her it, buy me it.',
+      tr: 'Tüm kelimeleri biliyorsun gibi, ama "kime" ve "neyi" kısmını rahat olmayan bir sıraya koyuyorsun. Tam nesneyle Give me the book denebilir. Ama it ile Give it to me daha iyidir. Bu küçük kural give me it, send her it, buy me it hatalarını önler.',
+      pl: 'Wygląda na to, że znasz wszystkie słowa, ale ustawiasz "komu" i "co" w niewygodnym szyku. Przy pełnej nazwie rzeczy można powiedzieć Give me the book. Z it lepiej Give it to me. Ta mała reguła chroni przed give me it, send her it, buy me it.',
+    },
   ),
   mentalModel: tri(
     'Сначала реши, что за вещь в конце. Если она названа полностью: give me the book, send her the file, show me your phone. Если это it или them: give it to me, send it to her, show it to me. Для buy/make чаще нужен for: buy it for me.',
     'Спочатку виріши, що за річ у кінці. Якщо вона названа повністю: give me the book, send her the file, show me your phone. Якщо це it або them: give it to me, send it to her, show it to me. Для buy/make частіше потрібне for: buy it for me.',
-    'First decide what the thing is. Full thing: give me the book. With it/them: give it to me. For buy/make, often use for: buy it for me.',
+    'Primero decide que tipo de cosa tienes. Si esta nombrada completa: give me the book, send her the file, show me your phone. Si es it o them: give it to me, send it to her, show it to me. Con buy/make suele ir for: buy it for me.',
+    {
+      'pt-BR': 'Primeiro decida que tipo de coisa está no final. Se ela está nomeada por completo: give me the book, send her the file, show me your phone. Se é it ou them: give it to me, send it to her, show it to me. Com buy/make, normalmente entra for: buy it for me.',
+      vi: 'Trước hết hãy xác định vật ở cuối là gì. Nếu nó được gọi đầy đủ: give me the book, send her the file, show me your phone. Nếu đó là it hoặc them: give it to me, send it to her, show it to me. Với buy/make thường dùng for: buy it for me.',
+      id: 'Pertama tentukan benda di akhir itu jenis apa. Jika disebut lengkap: give me the book, send her the file, show me your phone. Jika memakai it atau them: give it to me, send it to her, show it to me. Untuk buy/make, biasanya gunakan for: buy it for me.',
+      tr: 'Önce sondaki şeyin ne olduğuna karar ver. Tam adı söylenmişse: give me the book, send her the file, show me your phone. it veya them ise: give it to me, send it to her, show it to me. buy/make ile çoğu zaman for gerekir: buy it for me.',
+      pl: 'Najpierw zdecyduj, jaka rzecz jest na końcu. Jeśli jest nazwana w całości: give me the book, send her the file, show me your phone. Jeśli to it albo them: give it to me, send it to her, show it to me. Przy buy/make częściej potrzebne jest for: buy it for me.',
+    },
   ),
   contrastSet: CONTRAST,
   coreRule: tri(
     'Если вещь названа полностью, можно поставить человека сразу после действия или после вещи с to. Если вещь заменена на it/them, безопаснее: сначала it/them, потом to или for и человек.',
     'Якщо річ названа повністю, можна поставити людину одразу після дії або після речі з to. Якщо річ замінена на it/them, безпечніше: спочатку it/them, потім to або for і людина.',
-    'Give me the book = Give the book to me. With it/them: Give it to me, Send it to her. Buy it for me.',
+    'Give me the book = Give the book to me. Con it/them: Give it to me, Send it to her. Buy it for me.',
+    {
+      'pt-BR': 'Se a coisa está nomeada por completo, a pessoa pode vir logo depois da ação ou depois da coisa com to. Se a coisa virou it/them, é mais seguro: primeiro it/them, depois to ou for e a pessoa.',
+      vi: 'Nếu đồ vật được gọi đầy đủ, người nhận có thể đứng ngay sau hành động hoặc sau đồ vật với to. Nếu đồ vật được thay bằng it/them, an toàn hơn là: it/them trước, rồi to hoặc for và người nhận.',
+      id: 'Jika bendanya disebut lengkap, orangnya bisa langsung setelah tindakan atau setelah benda dengan to. Jika bendanya diganti dengan it/them, lebih aman: it/them dulu, lalu to atau for dan orangnya.',
+      tr: 'Şey tam adıyla söylenmişse, kişi eylemden hemen sonra ya da şeyden sonra to ile gelebilir. Şey it/them olduysa daha güvenlisi: önce it/them, sonra to veya for ve kişi.',
+      pl: 'Jeśli rzecz jest nazwana w całości, osobę można postawić zaraz po czynności albo po rzeczy z to. Jeśli rzecz zastępuje it/them, bezpieczniej: najpierw it/them, potem to albo for i osoba.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -148,14 +243,14 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       'Не змішуй дві дороги: Give to me the book і Give me it звучать погано для стандартної навчальної фрази.',
     ],
     es: [
-      'Full thing: Give me the book.',
-      'Also possible: Give the book to me.',
-      'With it/them, use Give it to me.',
-      'Send her the file, but Send it to her.',
-      'Show me your phone, but Show it to me.',
-      'Give/send/show/tell often use to.',
-      'Buy/make/get often use for.',
-      'Do not mix the two paths.',
+      'Si la cosa esta nombrada completa, la persona puede ir justo despues del verbo: Give me the book.',
+      'Tambien puedes invertirlo: Give the book to me.',
+      'Si la cosa se cambia por it o them, es mas seguro ponerla justo despues del verbo: Give it to me.',
+      'Lo mismo con send: Send her the file, pero Send it to her.',
+      'Lo mismo con show: Show me your phone, pero Show it to me.',
+      'Con give/send/show/tell, la persona suele ir con to: give it to me, send it to her.',
+      'Con buy/make/get, la persona suele ir con for: buy it for me, make it for her.',
+      'No mezcles los dos caminos: Give to me the book y Give me it suenan mal en la frase estandar de aprendizaje.',
     ],
     'pt-BR': [
       'Coisa completa: Give me the book.',
@@ -213,97 +308,97 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       en: 'Give me the book.',
       ru: 'Дай мне книгу.',
       uk: 'Дай мені книжку.',
-      es: 'Give me the book.',
+      es: 'Dame el libro.',
       'pt-BR': 'Me dê o livro.',
       vi: 'Đưa cho tôi quyển sách.',
       id: 'Berikan buku itu kepada saya.',
       tr: 'Kitabı bana ver.',
       pl: 'Daj mi książkę.',
-      why: tri('Книга названа полностью, поэтому человек может идти сразу после give.', 'Книжка названа повністю, тому людина може йти одразу після give.', 'The book is named fully, so the person can come right after give.'),
+      why: tri('Книга названа полностью, поэтому человек может идти сразу после give.', 'Книжка названа повністю, тому людина може йти одразу після give.', 'El libro esta nombrado completo, asi que la persona puede ir justo despues de give.'),
     },
     {
       en: 'Give the book to me.',
       ru: 'Дай книгу мне.',
       uk: 'Дай книжку мені.',
-      es: 'Give the book to me.',
+      es: 'Dame el libro a mi.',
       'pt-BR': 'Dê o livro para mim.',
       vi: 'Đưa quyển sách cho tôi.',
       id: 'Berikan buku itu kepada saya.',
       tr: 'Kitabı bana ver.',
       pl: 'Daj mi książkę.',
-      why: tri('Это вторая нормальная дорога: сначала вещь, потом to me.', 'Це друга нормальна дорога: спочатку річ, потім to me.', 'Second normal path: thing first, then to me.'),
+      why: tri('Это вторая нормальная дорога: сначала вещь, потом to me.', 'Це друга нормальна дорога: спочатку річ, потім to me.', 'Segundo camino normal: primero la cosa, despues to me.'),
     },
     {
       en: 'Give it to me.',
       ru: 'Дай это мне.',
       uk: 'Дай це мені.',
-      es: 'Give it to me.',
+      es: 'Damelo.',
       'pt-BR': 'Dê isso para mim.',
       vi: 'Đưa nó cho tôi.',
       id: 'Berikan itu kepada saya.',
       tr: 'Onu bana ver.',
       pl: 'Daj mi to.',
-      why: tri('С it безопасный порядок: it to me, не me it.', 'З it безпечний порядок: it to me, не me it.', 'With it, use it to me, not me it.'),
+      why: tri('С it безопасный порядок: it to me, не me it.', 'З it безпечний порядок: it to me, не me it.', 'Con it, usa it to me, no me it.'),
     },
     {
       en: 'Send her the file.',
       ru: 'Отправь ей файл.',
       uk: 'Надішли їй файл.',
-      es: 'Send her the file.',
+      es: 'Enviale el archivo.',
       'pt-BR': 'Envie o arquivo para ela.',
       vi: 'Gửi cho cô ấy tệp đó.',
       id: 'Kirimkan file itu kepadanya.',
       tr: 'Dosyayı ona gönder.',
       pl: 'Wyślij jej plik.',
-      why: tri('Файл назван полностью, поэтому send her the file звучит нормально.', 'Файл названо повністю, тому send her the file звучить нормально.', 'The file is named fully, so send her the file is natural.'),
+      why: tri('Файл назван полностью, поэтому send her the file звучит нормально.', 'Файл названо повністю, тому send her the file звучить нормально.', 'El archivo esta nombrado completo, asi que send her the file suena natural.'),
     },
     {
       en: 'Send it to her.',
       ru: 'Отправь это ей.',
       uk: 'Надішли це їй.',
-      es: 'Send it to her.',
+      es: 'Enviaselo a ella.',
       'pt-BR': 'Envie isso para ela.',
       vi: 'Gửi nó cho cô ấy.',
       id: 'Kirimkan itu kepadanya.',
       tr: 'Onu ona gönder.',
       pl: 'Wyślij jej to.',
-      why: tri('С it лучше send it to her, не send her it.', 'З it краще send it to her, не send her it.', 'With it, use send it to her, not send her it.'),
+      why: tri('С it лучше send it to her, не send her it.', 'З it краще send it to her, не send her it.', 'Con it, usa send it to her, no send her it.'),
     },
     {
       en: 'Show me your phone.',
       ru: 'Покажи мне свой телефон.',
       uk: 'Покажи мені свій телефон.',
-      es: 'Show me your phone.',
+      es: 'Muestrame tu telefono.',
       'pt-BR': 'Mostre-me seu telefone.',
       vi: 'Cho tôi xem điện thoại của bạn.',
       id: 'Tunjukkan ponselmu kepada saya.',
       tr: 'Telefonunu bana göster.',
       pl: 'Pokaż mi swój telefon.',
-      why: tri('Your phone названо полностью: show me your phone.', 'Your phone названо повністю: show me your phone.', 'Your phone is named fully: show me your phone.'),
+      why: tri('Your phone названо полностью: show me your phone.', 'Your phone названо повністю: show me your phone.', 'Your phone esta nombrado completo: show me your phone.'),
     },
     {
       en: 'Show it to me.',
       ru: 'Покажи это мне.',
       uk: 'Покажи це мені.',
-      es: 'Show it to me.',
+      es: 'Muestramelo.',
       'pt-BR': 'Mostre isso para mim.',
       vi: 'Cho tôi xem nó.',
       id: 'Tunjukkan itu kepada saya.',
       tr: 'Onu bana göster.',
       pl: 'Pokaż mi to.',
-      why: tri('С it безопаснее show it to me.', 'З it безпечніше show it to me.', 'With it, use show it to me.'),
+      why: tri('С it безопаснее show it to me.', 'З it безпечніше show it to me.', 'Con it, es mas seguro show it to me.'),
     },
     {
       en: 'Buy it for me.',
       ru: 'Купи это для меня.',
       uk: 'Купи це для мене.',
-      es: 'Buy it for me.',
+      es: 'Compramelo.',
       'pt-BR': 'Compre isso para mim.',
       vi: 'Mua nó cho tôi.',
       id: 'Belikan itu untuk saya.',
       tr: 'Onu benim için satın al.',
       pl: 'Kup mi to.',
-      why: tri('Buy часто показывает "для кого" через for: buy it for me.', 'Buy часто показує "для кого" через for: buy it for me.', 'Buy often uses for: buy it for me.'),
+      why: tri('Buy часто показывает "для кого" через for: buy it for me.', 'Buy часто показує "для кого" через for: buy it for me.', 'Buy suele marcar "para quien" con for: buy it for me.'),
     },
   ],
   introBlocks: [
@@ -313,7 +408,7 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты иногда берёшь русскую логику "дай мне это" и переносишь её прямо в английский. Так появляется give me it. В английском с it лучше иначе: give it to me.',
         'Схоже, ти іноді береш українську логіку "дай мені це" і переносиш її прямо в англійську. Так зʼявляється give me it. В англійській з it краще інакше: give it to me.',
-        'You may be moving native-language order straight into English. That creates give me it. With it, use give it to me.',
+        'Puede que estes llevando el orden de tu idioma directamente al ingles. Asi aparece give me it. Con it, usa give it to me.',
       ),
     },
     {
@@ -327,7 +422,7 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       text: tri(
         'Главная ловушка: Give me it. Для стандартной учебной фразы безопаснее Give it to me.',
         'Головна пастка: Give me it. Для стандартної навчальної фрази безпечніше Give it to me.',
-        'Main trap: Give me it. In standard learner English, prefer Give it to me.',
+        'Trampa principal: Give me it. En ingles estandar de aprendizaje, prefiere Give it to me.',
       ),
     },
   ],
@@ -769,22 +864,22 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
     depth1: tri(
       'Сначала найди, кто получает, и что передают.',
       'Спочатку знайди, хто отримує, і що передають.',
-      'First find who receives it and what is passed.',
+      'Primero encuentra quien recibe y que se entrega.',
     ),
     depth2: tri(
       'Проверь вещь: она названа полностью или это it/them?',
       'Перевір річ: вона названа повністю чи це it/them?',
-      'Check the thing: is it named fully or is it it/them?',
+      'Comprueba la cosa: esta nombrada completa o es it/them?',
     ),
     depth3: tri(
       'Держи смысл: полная вещь может идти после человека, а it лучше ставить сразу после действия.',
       'Тримай зміст: повна річ може йти після людини, а it краще ставити одразу після дії.',
-      'Use the model pairs: give me the book / give it to me.',
+      'Usa los pares modelo: give me the book / give it to me.',
     ),
     depth4: tri(
       'Почти подсказка: система покажет безопасный порядок слов.',
       'Майже підказка: система покаже безпечний порядок слів.',
-      'Almost a hint: the system shows the safe word order.',
+      'Casi una pista: el sistema muestra el orden seguro de palabras.',
     ),
   },
   failureRecovery: {
@@ -793,7 +888,7 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       card: tri(
         'Стоп. Если вещь названа полностью: give me the book. Если вещь = it/them: give it to me. Give/send/show/tell чаще идут с to. Buy/make/get чаще идут с for.',
         'Стоп. Якщо річ названа повністю: give me the book. Якщо річ = it/them: give it to me. Give/send/show/tell частіше йдуть з to. Buy/make/get частіше йдуть з for.',
-        'Stop. Full thing: give me the book. It/them: give it to me. Give/send/show/tell often use to. Buy/make/get often use for.',
+        'Para. Cosa completa: give me the book. It/them: give it to me. Give/send/show/tell suelen usar to. Buy/make/get suelen usar for.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -801,7 +896,7 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       card: tri(
         'Подсказка: система покажет, где человек, где вещь, и названа ли вещь полностью или заменена на it/them.',
         'Підказка: система покаже, де людина, де річ, і чи названа річ повністю, чи замінена на it/them.',
-        'Hint: the system shows the person, the thing, and whether the thing is named fully or replaced by it/them.',
+        'Pista: el sistema muestra donde esta la persona, donde esta la cosa y si la cosa esta nombrada completa o reemplazada por it/them.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -809,7 +904,7 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим с подсказками: сначала выбираем, полная вещь или it/them. Потом выбираем to или for.',
         'Режим із підказками: спочатку обираємо, повна річ чи it/them. Потім обираємо to або for.',
-        'Guided mode: first choose full thing or it/them. Then choose to or for.',
+        'Modo guiado: primero elegimos cosa completa o it/them. Despues elegimos to o for.',
       ),
     },
   },
@@ -819,28 +914,28 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_object_order_001',
-        prompt: tri('В Give me the book книга названа полностью или заменена на it?', 'У Give me the book книжка названа повністю чи замінена на it?', 'In Give me the book, is the book named fully or replaced by it?'),
+        prompt: tri('В Give me the book книга названа полностью или заменена на it?', 'У Give me the book книжка названа повністю чи замінена на it?', 'En Give me the book, el libro esta nombrado completo o reemplazado por it?'),
         options: ['названа полностью', 'it'],
         correctIndex: 0,
         thenReturnToExerciseId: 'object_order_easy_001',
       },
       {
         id: 'guided_object_order_002',
-        prompt: tri('Если вещь = it, что безопаснее?', 'Якщо річ = it, що безпечніше?', 'If the thing is it, which is safer?'),
+        prompt: tri('Если вещь = it, что безопаснее?', 'Якщо річ = it, що безпечніше?', 'Si la cosa es it, que es mas seguro?'),
         options: ['Give me it', 'Give it to me'],
         correctIndex: 1,
         thenReturnToExerciseId: 'object_order_contrast_004',
       },
       {
         id: 'guided_object_order_003',
-        prompt: tri('Send ведёт вещь к человеку через to или for?', 'Send веде річ до людини через to чи for?', 'Does send usually use to or for for the receiver?'),
+        prompt: tri('Send ведёт вещь к человеку через to или for?', 'Send веде річ до людини через to чи for?', 'Send suele llevar la cosa a la persona con to o con for?'),
         options: ['to', 'for'],
         correctIndex: 0,
         thenReturnToExerciseId: 'object_order_contrast_002',
       },
       {
         id: 'guided_object_order_004',
-        prompt: tri('Buy показывает "для кого" через to или for?', 'Buy показує "для кого" через to чи for?', 'Does buy use to or for for the person?'),
+        prompt: tri('Buy показывает "для кого" через to или for?', 'Buy показує "для кого" через to чи for?', 'Buy muestra "para quien" con to o con for?'),
         options: ['to', 'for'],
         correctIndex: 1,
         thenReturnToExerciseId: 'object_order_mixed_001',
@@ -855,7 +950,7 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
     diagnosisLabel: tri(
       'Give it to me',
       'Give it to me',
-      'Give it to me',
+      'Give it to me: orden',
     ),
     contrastSet: CONTRAST,
     focusWords: ['give me the book', 'give it to me', 'send it to her', 'buy it for me'],
@@ -894,7 +989,7 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_started',
     answer: 'diagnosis_training_answer',
     mastery: 'diagnosis_training_mastered',
-    fallback: 'diagnosis_training_fallback',
+    recovery: 'diagnosis_training_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

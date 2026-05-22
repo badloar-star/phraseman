@@ -7,11 +7,12 @@
 //   • при следующем заходе на /exam отдавать его сразу (а не intro);
 //   • отдавать результат в текстовый шеринг.
 //
-// Ключ AsyncStorage: 'lingman_certificate_v1' — синкается в облако через
-// SYNC_KEYS в `cloud_sync.ts`, поэтому переживает переустановку.
+// English legacy key: 'lingman_certificate_v1'. Other study targets use
+// lingmanCertificateKey(studyTarget) and sync through target-scoped keys.
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { lingmanCertificateKey, type RuntimeStudyTarget } from './target_storage_keys';
 
 export const LINGMAN_CERT_STORAGE_KEY = 'lingman_certificate_v1';
 export const LINGMAN_CERT_MIN_PCT = 80;
@@ -86,9 +87,9 @@ export function buildLingmanCertificate(opts: {
   };
 }
 
-export async function loadLingmanCertificate(): Promise<LingmanCertificate | null> {
+export async function loadLingmanCertificate(studyTarget?: RuntimeStudyTarget): Promise<LingmanCertificate | null> {
   try {
-    const raw = await AsyncStorage.getItem(LINGMAN_CERT_STORAGE_KEY);
+    const raw = await AsyncStorage.getItem(lingmanCertificateKey(studyTarget));
     if (!raw) return null;
     const parsed: unknown = JSON.parse(raw);
     return isLingmanCertificate(parsed) ? parsed : null;
@@ -97,17 +98,20 @@ export async function loadLingmanCertificate(): Promise<LingmanCertificate | nul
   }
 }
 
-export async function saveLingmanCertificate(cert: LingmanCertificate): Promise<void> {
+export async function saveLingmanCertificate(cert: LingmanCertificate, studyTarget?: RuntimeStudyTarget): Promise<void> {
   try {
-    await AsyncStorage.setItem(LINGMAN_CERT_STORAGE_KEY, JSON.stringify(cert));
+    await AsyncStorage.setItem(lingmanCertificateKey(studyTarget), JSON.stringify(cert));
   } catch {}
 }
 
 /** Используется когда юзер ввёл имя в модалке уже после генерации серта. */
-export async function updateLingmanCertificateName(name: string): Promise<LingmanCertificate | null> {
+export async function updateLingmanCertificateName(
+  name: string,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<LingmanCertificate | null> {
   const cleaned = sanitizeCertName(name);
   if (!cleaned) return null;
-  const cert = await loadLingmanCertificate();
+  const cert = await loadLingmanCertificate(studyTarget);
   if (!cert) return null;
   // certId перегенерируем, чтобы хеш отражал имя владельца (так его сложнее
   // подделать в скриншоте: сравнить ID с владельцем = проверка валидности).
@@ -116,7 +120,7 @@ export async function updateLingmanCertificateName(name: string): Promise<Lingma
     name: cleaned,
     certId: generateCertId(cert.completedAt, cleaned),
   };
-  await saveLingmanCertificate(next);
+  await saveLingmanCertificate(next, studyTarget);
   return next;
 }
 

@@ -14,6 +14,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
+import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import { screenTextOnGradient } from '../constants/theme';
@@ -28,12 +30,16 @@ import { consumeTrainerSessionEntry } from './trainer_session';
 import { logTrainerDirectGateBlocked } from './firebase';
 import TrainerSessionReport from './trainer_session_report';
 import { checkAchievements } from './achievements';
+import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 
 type BtnState = 'idle' | 'correct' | 'wrong';
 
 export default function TrainerArenaSession() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
+  const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
+  const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
   const [items, setItems] = useState<TrainerItem[]>([]);
@@ -50,19 +56,24 @@ export default function TrainerArenaSession() {
 
   useEffect(() => {
     void (async () => {
-      const allowed = await consumeTrainerSessionEntry('/trainer_arena_session');
+      if (!trainerGateOpen) {
+        setAccessReady(true);
+        setLoading(false);
+        return;
+      }
+      const allowed = await consumeTrainerSessionEntry('/trainer_arena_session', studyTarget);
       if (!allowed) {
         logTrainerDirectGateBlocked('/trainer_arena_session');
         router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
         return;
       }
       setAccessReady(true);
-      const loaded = await getDueItems('arena', 15);
+      const loaded = await getDueItems('arena', 15, studyTarget);
       if (loaded.length === 0) { setDone(true); setLoading(false); return; }
       setItems(loaded);
       setLoading(false);
     })();
-  }, [router]);
+  }, [router, studyTarget, trainerGateOpen]);
 
   const flash = useCallback((ok: boolean) => {
     Animated.sequence([
@@ -97,7 +108,7 @@ export default function TrainerArenaSession() {
     }
     flash(isOk);
 
-    await markTrainerResult(item.key, 'arena', isOk);
+    await markTrainerResult(item.key, 'arena', isOk, studyTarget);
     const nextCorrect = correct + (isOk ? 1 : 0);
     const nextWrong = wrong + (isOk ? 0 : 1);
     const updates: { type: TaskType; increment: number }[] = [];
@@ -108,7 +119,7 @@ export default function TrainerArenaSession() {
     if (isOk) {
       updates.push({ type: 'recall_answers', increment: 1 });
       updates.push({ type: 'trainer_arena', increment: 1 });
-      checkAchievements({ type: 'trainer_correct', correct: 1 }).catch(() => {});
+      checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
     }
 
     setTimeout(() => {
@@ -120,6 +131,7 @@ export default function TrainerArenaSession() {
           correct: nextCorrect,
           wrong: nextWrong,
           total: items.length,
+          studyTarget,
         }).catch(() => {});
         setDone(true);
       } else {
@@ -127,15 +139,35 @@ export default function TrainerArenaSession() {
         setBtnStates(['idle', 'idle', 'idle', 'idle']);
         setLocked(false);
       }
-      if (updates.length > 0) updateMultipleTaskProgress(updates).catch(() => {});
+      if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
     }, isOk ? 700 : 1100);
-  }, [locked, items, current, correct, wrong, flash]);
+  }, [locked, items, current, correct, wrong, flash, studyTarget]);
 
   if (!accessReady || loading) {
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text style={{ color: '#888' }} />
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
+  if (!trainerGateOpen) {
+    const copy = frenchTrainerGateCopy(lang);
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+          <Ionicons name="lock-closed-outline" size={38} color={sx.muted} />
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '900', textAlign: 'center', marginTop: 14 }}>
+            {copy.title}
+          </Text>
+          <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 10, lineHeight: 22 }}>
+            {copy.body}
+          </Text>
+          <TouchableOpacity onPress={() => router.replace('/trainer' as any)} style={{ marginTop: 22, backgroundColor: '#E05050', borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}>
+            <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>{copy.action}</Text>
+          </TouchableOpacity>
         </SafeAreaView>
       </ScreenGradient>
     );

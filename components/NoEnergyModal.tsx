@@ -12,15 +12,8 @@ import {
   Platform,
   InteractionManager,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import {
-  ENERGY_GATE_MESSAGES_RU,
-  ENERGY_GATE_MESSAGES_UK,
-  ENERGY_GATE_MESSAGES_ES,
-  ENERGY_MESSAGES_RU,
-  ENERGY_MESSAGES_UK,
-  ENERGY_MESSAGES_ES,
-} from '../app/lesson1_energy';
+import { LinearGradient } from './SafeLinearGradient';
+import { lessonEnergyMessages } from '../app/lesson_locale_utils';
 import { useTheme } from './ThemeContext';
 import { useEnergy } from './EnergyContext';
 import { useLang } from './LangContext';
@@ -39,6 +32,48 @@ import { incrementEnergyZeroCount } from '../app/paywall_personalization';
 import PremiumGoldButton from './PremiumGoldButton';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { paywallGlassColor } from './paywallGlass';
+import { triLang, type Lang } from '../constants/i18n';
+
+type EnergyGateArgs = { required: string; have: string };
+const ENERGY_GATE_MESSAGES_PT_BR: ((r: EnergyGateArgs) => string)[] = [
+  ({ required, have }) => `Para começar agora, você precisa de ${required} ⚡. Disponível: ${have}. Premium remove esse limite.`,
+  ({ required, have }) => `Este desafio pede ${required} ⚡ de uma vez. Você tem ${have}. Com Premium, sem espera.`,
+];
+const ENERGY_GATE_MESSAGES_VI: ((r: EnergyGateArgs) => string)[] = [
+  ({ required, have }) => `Để bắt đầu ngay, bạn cần ${required} ⚡. Hiện có: ${have}. Premium gỡ giới hạn này.`,
+  ({ required, have }) => `Thử thách này cần ${required} ⚡ cùng lúc. Bạn có ${have}. Với Premium, không cần chờ.`,
+];
+const ENERGY_GATE_MESSAGES_ID: ((r: EnergyGateArgs) => string)[] = [
+  ({ required, have }) => `Untuk mulai sekarang, kamu perlu ${required} ⚡. Tersedia: ${have}. Premium menghapus batas ini.`,
+  ({ required, have }) => `Tantangan ini butuh ${required} ⚡ sekaligus. Kamu punya ${have}. Dengan Premium, tanpa menunggu.`,
+];
+const ENERGY_GATE_MESSAGES_TR: ((r: EnergyGateArgs) => string)[] = [
+  ({ required, have }) => `Şimdi başlamak için ${required} ⚡ gerekir. Mevcut: ${have}. Premium bu sınırı kaldırır.`,
+  ({ required, have }) => `Bu görev tek seferde ${required} ⚡ ister. Sende ${have} var. Premium ile bekleme yok.`,
+];
+const ENERGY_GATE_MESSAGES_PL: ((r: EnergyGateArgs) => string)[] = [
+  ({ required, have }) => `Aby zacząć teraz, potrzeba ${required} ⚡. Masz: ${have}. Premium znosi ten limit.`,
+  ({ required, have }) => `To wyzwanie wymaga ${required} ⚡ naraz. Dostępne: ${have}. Z Premium nie czekasz.`,
+];
+const ENERGY_GATE_MESSAGES_BY_LANG = {
+  ru: [
+    ({ required, have }) => `Для экзамена нужно ${required} ⚡ сразу. У вас: ${have}. С Premium — без ограничений.`,
+    ({ required, have }) => `Чтобы начать сейчас, нужно ${required} ⚡. Доступно: ${have}. Premium снимает лимит.`,
+  ],
+  uk: [
+    ({ required, have }) => `Для іспиту потрібно ${required} ⚡ одразу. У вас: ${have}. У Premium — без обмежень.`,
+    ({ required, have }) => `Щоб почати зараз, потрібно ${required} ⚡. Доступно: ${have}. Premium прибирає ліміт.`,
+  ],
+  es: [
+    ({ required, have }) => `Para el examen necesitas ${required} ⚡ de golpe. Dispones de: ${have}. Con Premium, sin límites.`,
+    ({ required, have }) => `Para empezar ahora necesitas ${required} ⚡. Tienes: ${have}. Premium elimina este límite.`,
+  ],
+  'pt-BR': ENERGY_GATE_MESSAGES_PT_BR,
+  vi: ENERGY_GATE_MESSAGES_VI,
+  id: ENERGY_GATE_MESSAGES_ID,
+  tr: ENERGY_GATE_MESSAGES_TR,
+  pl: ENERGY_GATE_MESSAGES_PL,
+} as const satisfies Record<Lang, readonly ((r: EnergyGateArgs) => string)[]>;
 
 interface Props {
   visible: boolean;
@@ -78,11 +113,9 @@ export default function NoEnergyModal({
   const paywallCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
   const { formattedTime, energy, bonusEnergy, maxEnergy, isUnlimited, reload } = useEnergy();
   const { lang } = useLang();
-  const isUK = lang === 'uk';
-  const isES = lang === 'es';
   const totalAvailable = energy + bonusEnergy;
   const isGate = minRequired != null && minRequired > 0;
-  const [lineRuUk, setLineRuUk] = useState('');
+  const [lineText, setLineText] = useState('');
   const [shardBusy, setShardBusy] = useState(false);
 
   /** «Енергія» → закрыть RN Modal → тут же открыть stack modal премиум: нужно не наслаивать окна, иначе на части прошивок «залипают» тачи под экраном. */
@@ -190,7 +223,7 @@ export default function NoEnergyModal({
   useLayoutEffect(() => {
     if (!visible) {
       wasOpenRef.current = false;
-      setLineRuUk('');
+      setLineText('');
       return;
     }
     if (wasOpenRef.current) return;
@@ -200,33 +233,43 @@ export default function NoEnergyModal({
     void AsyncStorage.setItem('energy_onboarding_shown', '1');
     emitAppEvent('bug_hunt_eligible_check');
     if (isGate && minRequired != null) {
-      const list = isUK ? ENERGY_GATE_MESSAGES_UK : isES ? ENERGY_GATE_MESSAGES_ES : ENERGY_GATE_MESSAGES_RU;
+      const list = ENERGY_GATE_MESSAGES_BY_LANG[lang];
       const line = list[Math.floor(Math.random() * list.length)]!({
         required: String(minRequired),
         have: String(totalAvailable),
       });
-      setLineRuUk(line);
+      setLineText(line);
       return;
     }
-    const list = isUK ? ENERGY_MESSAGES_UK : isES ? ENERGY_MESSAGES_ES : ENERGY_MESSAGES_RU;
+    const list = lessonEnergyMessages(lang);
     const raw = list[Math.floor(Math.random() * list.length)] ?? list[0] ?? '';
-    setLineRuUk(raw);
-  }, [visible, isGate, isUK, isES, minRequired, totalAvailable]);
+    setLineText(raw);
+  }, [visible, isGate, lang, minRequired, totalAvailable]);
 
-  const recoveryTimeText = formattedTime || (isUK ? 'кілька хвилин' : isES ? 'unos minutos' : 'несколько минут');
-  const defaultSubtitle = isUK
-    ? `+1 ⚡ відновиться через ${recoveryTimeText}. Хочеш безліміт? Тобі в Premium.`
-    : isES
-      ? `+1 ⚡ se recuperará en ${recoveryTimeText}. ¿Quieres energía ilimitada? Prueba Premium.`
-      : `+1 ⚡ восстановится через ${recoveryTimeText}. Хочешь безлимит? Тебе в Premium.`;
+  const recoveryTimeText = formattedTime || triLang(lang, {
+    ru: 'несколько минут',
+    uk: 'кілька хвилин',
+    es: 'unos minutos',
+    'pt-BR': 'alguns minutos',
+    vi: 'vài phút',
+    id: 'beberapa menit',
+    tr: 'birkaç dakika',
+    pl: 'kilka minut',
+  });
+  const defaultSubtitle = triLang(lang, {
+    ru: `+1 ⚡ восстановится через ${recoveryTimeText}. Хочешь безлимит? Тебе в Premium.`,
+    uk: `+1 ⚡ відновиться через ${recoveryTimeText}. Хочеш безліміт? Тобі в Premium.`,
+    es: `+1 ⚡ se recuperará en ${recoveryTimeText}. ¿Quieres energía ilimitada? Prueba Premium.`,
+    'pt-BR': `+1 ⚡ volta em ${recoveryTimeText}. Quer energia ilimitada? Experimente Premium.`,
+    vi: `+1 ⚡ sẽ hồi lại sau ${recoveryTimeText}. Muốn năng lượng không giới hạn? Hãy thử Premium.`,
+    id: `+1 ⚡ pulih dalam ${recoveryTimeText}. Mau energi tanpa batas? Coba Premium.`,
+    tr: `+1 ⚡ ${recoveryTimeText} içinde yenilenir. Sınırsız enerji ister misin? Premium'u dene.`,
+    pl: `+1 ⚡ wróci za ${recoveryTimeText}. Chcesz energię bez limitu? Wypróbuj Premium.`,
+  });
   const gateFallback = isGate && minRequired != null
-    ? (isUK
-      ? `Для іспиту потрібно ${minRequired} ⚡ одразу. У вас: ${totalAvailable}. У Premium — без обмежень.`
-      : isES
-        ? `Para el examen necesitas ${minRequired} ⚡ de golpe. Dispones de: ${totalAvailable}. Con Premium, sin límites.`
-        : `Для экзамена нужно ${minRequired} ⚡ сразу. У вас: ${totalAvailable}. С Premium — без ограничений.`)
+    ? ENERGY_GATE_MESSAGES_BY_LANG[lang][0]!({ required: String(minRequired), have: String(totalAvailable) })
     : '';
-  const showBody = (isGate ? (lineRuUk || gateFallback) : (lineRuUk || defaultSubtitle)).replace(/\{time\}/g, recoveryTimeText);
+  const showBody = (isGate ? (lineText || gateFallback) : (lineText || defaultSubtitle)).replace(/\{time\}/g, recoveryTimeText);
 
   const onRestoreWithShards = async () => {
     if (shardBusy || !showShardRestore) return;
@@ -263,6 +306,16 @@ export default function NoEnergyModal({
             'Базова енергія вже на максимумі — витратьте ⚡ в уроці або квізі, потім знову відкрийте превʼю, щоб перевірити покупку за осколки.',
           messageEs:
             'La energía base ya está al máximo: gasta ⚡ en una lección o un cuestionario y vuelve a abrir la vista previa para probar la compra con fragmentos.',
+          messagePtBr:
+            'A energia base já está no máximo: gaste ⚡ em uma lição ou quiz e abra a prévia de novo para testar a compra com fragmentos.',
+          messageVi:
+            'Năng lượng cơ bản đã đầy: hãy dùng ⚡ trong bài học hoặc quiz rồi mở lại bản xem trước để thử mua bằng mảnh.',
+          messageId:
+            'Energi dasar sudah penuh: gunakan ⚡ di pelajaran atau kuis, lalu buka pratinjau lagi untuk menguji pembelian dengan shard.',
+          messageTr:
+            'Temel enerji zaten dolu: bir ders veya quizde ⚡ harca, sonra parçalarla satın almayı test etmek için önizlemeyi tekrar aç.',
+          messagePl:
+            'Podstawowa energia jest już pełna: zużyj ⚡ w lekcji albo quizie, a potem ponownie otwórz podgląd, by sprawdzić zakup za odłamki.',
         });
       }
     } finally {
@@ -348,8 +401,26 @@ export default function NoEnergyModal({
 
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
             {isGate
-              ? (isUK ? 'Недостатньо енергії' : isES ? 'No tienes suficiente energía' : 'Недостаточно энергии')
-              : (isUK ? 'Енергія закінчилась' : isES ? 'Se acabó la energía' : 'Энергия закончилась')}
+              ? triLang(lang, {
+                  ru: 'Недостаточно энергии',
+                  uk: 'Недостатньо енергії',
+                  es: 'No tienes suficiente energía',
+                  'pt-BR': 'Energia insuficiente',
+                  vi: 'Không đủ năng lượng',
+                  id: 'Energi tidak cukup',
+                  tr: 'Yeterli enerji yok',
+                  pl: 'Za mało energii',
+                })
+              : triLang(lang, {
+                  ru: 'Энергия закончилась',
+                  uk: 'Енергія закінчилась',
+                  es: 'Se acabó la energía',
+                  'pt-BR': 'A energia acabou',
+                  vi: 'Hết năng lượng',
+                  id: 'Energi habis',
+                  tr: 'Enerji bitti',
+                  pl: 'Energia się skończyła',
+                })}
           </Text>
           <Text style={[styles.subtitle, { color: t.textSecond, fontSize: f.body }]}>
             {showBody}
@@ -371,7 +442,16 @@ export default function NoEnergyModal({
                   resizeMode="contain"
                 />
                 <Text style={{ color: t.textPrimary, fontWeight: '800', fontSize: f.body, flex: 1 }}>
-                  {isUK ? 'Відновити енергію' : isES ? 'Recuperar energía' : 'Восстановить энергию'} · {shardCost}
+                  {triLang(lang, {
+                    ru: 'Восстановить энергию',
+                    uk: 'Відновити енергію',
+                    es: 'Recuperar energía',
+                    'pt-BR': 'Restaurar energia',
+                    vi: 'Khôi phục năng lượng',
+                    id: 'Pulihkan energi',
+                    tr: 'Enerjiyi yenile',
+                    pl: 'Odnów energię',
+                  })} · {shardCost}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -401,8 +481,26 @@ export default function NoEnergyModal({
             >
               <Text style={[styles.closeBtnText, { fontSize: f.body, color: t.correctText }]}>
                 {onBackHome
-                  ? (isUK ? 'На головну' : isES ? 'Volver al inicio' : 'На главную')
-                  : (isUK ? 'Зрозуміло' : isES ? 'Entendido' : 'Понятно')}
+                  ? triLang(lang, {
+                      ru: 'На главную',
+                      uk: 'На головну',
+                      es: 'Volver al inicio',
+                      'pt-BR': 'Voltar ao início',
+                      vi: 'Về trang chính',
+                      id: 'Kembali ke beranda',
+                      tr: 'Ana sayfaya dön',
+                      pl: 'Na stronę główną',
+                    })
+                  : triLang(lang, {
+                      ru: 'Понятно',
+                      uk: 'Зрозуміло',
+                      es: 'Entendido',
+                      'pt-BR': 'Entendi',
+                      vi: 'Đã hiểu',
+                      id: 'Mengerti',
+                      tr: 'Anladım',
+                      pl: 'Rozumiem',
+                    })}
               </Text>
             </LinearGradient>
           </TouchableOpacity>

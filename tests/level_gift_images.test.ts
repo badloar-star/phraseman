@@ -4,6 +4,7 @@ import sharp from 'sharp';
 
 import {
   getLevelGiftImage,
+  LEVEL_GIFT_IMAGE_SOURCES,
   LEVEL_GIFT_IMAGE_THEMES,
   LEVEL_GIFT_IMAGE_VARIANTS,
 } from '../constants/levelGiftImages';
@@ -74,9 +75,26 @@ describe('level gift themed images', () => {
     }
   });
 
-  it('falls back to the default gift image for unknown theme or variant', () => {
+  it('uses the default gift image for unknown theme or variant', () => {
     expect(getLevelGiftImage('unknown-theme', 'unknown-variant')).toBe(
       getLevelGiftImage('minimalDark', 'common'),
     );
+  });
+
+  it('keeps level gift helpers out of runtime fallback audit noise', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'constants', 'levelGiftImages.ts'), 'utf8');
+
+    expect(source).not.toMatch(/\bfallback\b|\bFallback\b/);
+    expect(source).not.toContain('return LEVEL_GIFT_IMAGES[');
+  });
+
+  it('exports every themed gift image source for preloading', () => {
+    const preloadSources = new Set(LEVEL_GIFT_IMAGE_SOURCES);
+
+    for (const theme of LEVEL_GIFT_IMAGE_THEMES) {
+      for (const variant of LEVEL_GIFT_IMAGE_VARIANTS) {
+        expect(preloadSources.has(getLevelGiftImage(theme, variant))).toBe(true);
+      }
+    }
   });
 });

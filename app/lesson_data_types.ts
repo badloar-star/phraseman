@@ -16,8 +16,10 @@ export interface LessonPhrase {
   alternativesEs?: string[];
   russian: string;
   ukrainian: string;
-  /** Подсказка-перевод для локали es; до заполнения — в UI обычно fallback на russian */
+  /** Подсказка-перевод для локали es; до заполнения UI обычно использует russian. */
   spanish?: string;
+  /** Target-language French surface. It is separate from source-locale RU/UK prompts. */
+  french?: string;
   /**
    * Токены целевой фразы (испанский при L2 es). Для уроков с двойным набором см. wordsEn.
    */
@@ -26,11 +28,20 @@ export interface LessonPhrase {
    * Английские токены для режима learnTarget=en, когда `words` — испанская сборка (L2).
    */
   wordsEn?: LessonWord[];
+  /** Французские токены для режима learnTarget=fr. */
+  wordsFr?: LessonWord[];
+  /** Легитимные альтернативы на французском (режим learnTarget=fr). */
+  alternativesFr?: string[];
   /** Копия названия урока из LESSON_DATA (добавляется в getLessonData) */
   lessonTitleRU?: string;
   lessonTitleUK?: string;
   /** То же для es (название урока в шапке/шаринге фразы) */
   lessonTitleES?: string;
+  lessonTitlePtBr?: string;
+  lessonTitleVi?: string;
+  lessonTitleId?: string;
+  lessonTitleTr?: string;
+  lessonTitlePl?: string;
 }
 
 /**
@@ -74,6 +85,11 @@ export interface LessonIntroExample {
   trUK: string;
   /** ES; если нет — показываем trRU */
   trES?: string;
+  trPtBr?: string;
+  trVi?: string;
+  trId?: string;
+  trTr?: string;
+  trPl?: string;
 }
 
 export interface LessonIntroScreen {
@@ -82,12 +98,22 @@ export interface LessonIntroScreen {
   textUK?: string;
   /** ES; если нет — для локали es временно показываем textRU */
   textES?: string;
+  textPtBr?: string;
+  textVi?: string;
+  textId?: string;
+  textTr?: string;
+  textPl?: string;
   /** Тип блока — определяет иконку, цвет акцента, заголовок по умолчанию */
   kind?: LessonIntroBlockKind | 'concept' | 'formula' | 'practice';
   /** Свой заголовок (если не задан — берётся дефолт по kind) */
   titleRU?: string;
   titleUK?: string;
   titleES?: string;
+  titlePtBr?: string;
+  titleVi?: string;
+  titleId?: string;
+  titleTr?: string;
+  titlePl?: string;
   /** Опциональный список примеров: EN-фраза + перевод (рисуется отдельной колонкой под текстом) */
   examples?: any[];
   lessonId?: number;
@@ -96,9 +122,19 @@ export interface LessonIntroScreen {
   subtitleRU?: string;
   subtitleUK?: string;
   subtitleES?: string;
+  subtitlePtBr?: string;
+  subtitleVi?: string;
+  subtitleId?: string;
+  subtitleTr?: string;
+  subtitlePl?: string;
   linesRU?: IntroLine[];
   linesUK?: IntroLine[];
   linesES?: IntroLine[];
+  linesPtBr?: IntroLine[];
+  linesVi?: IntroLine[];
+  linesId?: IntroLine[];
+  linesTr?: IntroLine[];
+  linesPl?: IntroLine[];
   developerNotes?: LessonIntroScreenV2['developerNotes'];
 }
 
@@ -129,6 +165,11 @@ export type IntroExample = {
   labelRU?: string;
   labelUK?: string;
   labelES?: string;
+  labelPtBr?: string;
+  labelVi?: string;
+  labelId?: string;
+  labelTr?: string;
+  labelPl?: string;
   en: IntroTextPart[];
   ru: string;
   uk: string;
@@ -141,6 +182,11 @@ export type IntroExample = {
   noteRU?: string;
   noteUK?: string;
   noteES?: string;
+  notePtBr?: string;
+  noteVi?: string;
+  noteId?: string;
+  noteTr?: string;
+  notePl?: string;
 };
 
 export type LessonIntroScreenV2 = {
@@ -151,12 +197,27 @@ export type LessonIntroScreenV2 = {
   titleRU: string;
   titleUK: string;
   titleES: string;
+  titlePtBr?: string;
+  titleVi?: string;
+  titleId?: string;
+  titleTr?: string;
+  titlePl?: string;
   subtitleRU?: string;
   subtitleUK?: string;
   subtitleES?: string;
+  subtitlePtBr?: string;
+  subtitleVi?: string;
+  subtitleId?: string;
+  subtitleTr?: string;
+  subtitlePl?: string;
   linesRU: IntroLine[];
   linesUK: IntroLine[];
   linesES: IntroLine[];
+  linesPtBr?: IntroLine[];
+  linesVi?: IntroLine[];
+  linesId?: IntroLine[];
+  linesTr?: IntroLine[];
+  linesPl?: IntroLine[];
   examples?: IntroExample[];
   developerNotes?: {
     screenGoal: string;
@@ -173,6 +234,11 @@ export interface LessonData {
   titleUK: string;
   /** Заголовок урока в меню/навигации для локали es */
   titleES?: string;
+  titlePtBr?: string;
+  titleVi?: string;
+  titleId?: string;
+  titleTr?: string;
+  titlePl?: string;
   introScreens: LessonIntroScreen[];
   phrases: LessonPhrase[];
 }
@@ -191,7 +257,7 @@ export interface PrepositionDrillItem {
   options: string[];
   explainRU: string;
   explainUK: string;
-  /** Пояснение после ответа для локали es; до заполнения — fallback на explainRU в UI */
+  /** Пояснение после ответа для локали es; до заполнения UI использует explainRU. */
   explainES?: string;
   explainPtBr?: string;
   explainVi?: string;

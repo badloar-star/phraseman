@@ -1167,11 +1167,23 @@ const LangContext = createContext<LangCtx>({
   setLang: async () => {},
 });
 
+const STRINGS_BY_LANG: Record<Lang, Strings> = {
+  ru: RU,
+  uk: UK,
+  es: ES,
+  'pt-BR': PT_BR,
+  vi: VI,
+  id: ID,
+  tr: TR,
+  pl: PL,
+};
+
+const STUDY_TARGET_RESET_LANGS = new Set<Lang>(['es']);
+
 /** Строки интерфейса для кода и лиг без хука React. */
 export function stringsForLang(lang: Lang): Strings {
-  if (lang === 'uk') return UK;
-  if (lang === 'es' && isInterfaceLangEnabled(lang)) return ES;
-  return RU;
+  const pack = isInterfaceLangEnabled(lang) ? STRINGS_BY_LANG[lang] : RU;
+  return pack;
 }
 
 export const LangProvider = ({ children }: { children: React.ReactNode }) => {
@@ -1183,14 +1195,14 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
       .then(v => {
         const storedLang = coerceInterfaceLang(v);
         if (!storedLang) {
-          if (v === 'es') {
+          if (typeof v === 'string') {
             AsyncStorage.removeItem('app_lang').catch(() => {});
             setLangState('ru');
           }
           return;
         }
         setLangState(storedLang);
-        if (storedLang === 'es') {
+        if (STUDY_TARGET_RESET_LANGS.has(storedLang)) {
           void resetDevStudyTargetForSpanishUi().then(emitDevStudyTargetChanged);
         }
       })
@@ -1202,15 +1214,13 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setLang = useCallback(async (l: Lang) => {
     if (!isInterfaceLangEnabled(l)) {
-      if (l === 'es') {
-        AsyncStorage.removeItem('app_lang').catch(() => {});
-        setLangState('ru');
-      }
+      AsyncStorage.removeItem('app_lang').catch(() => {});
+      setLangState('ru');
       return;
     }
     await AsyncStorage.setItem('app_lang', l);
     setLangState(l);
-    if (l === 'es') {
+    if (STUDY_TARGET_RESET_LANGS.has(l)) {
       await resetDevStudyTargetForSpanishUi();
       emitDevStudyTargetChanged();
     }

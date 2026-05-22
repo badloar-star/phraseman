@@ -1,0 +1,25 @@
+# GUSTAV English Regression Risk
+
+- Existing flat English keys must be copied to en target buckets without deletion.
+- Rollback must preserve old English behavior by disabling v2 reads.
+- French target must never read legacy English fallback keys.
+- Dirty worktree preservation plan recorded: app/_layout.tsx
+- Dirty worktree preservation plan recorded: app/(tabs)/home.tsx
+- Dirty worktree preservation plan recorded: app/(tabs)/settings.tsx
+- Dirty worktree preservation plan recorded: app/cloud_sync.ts
+- Dirty worktree preservation plan recorded: app/daily_tasks_screen.tsx
+- Dirty worktree preservation plan recorded: app/daily_tasks.ts
+- Dirty worktree preservation plan recorded: app/diagnostic_test.tsx
+- Dirty worktree preservation plan recorded: app/exam.tsx
+- Dirty worktree preservation plan recorded: app/firestore_leaderboard.ts
+- Dirty worktree preservation plan recorded: app/flashcards_collection.tsx
+- Dirty worktree preservation plan recorded: app/flashcards_swipe.tsx
+- Dirty worktree preservation plan recorded: app/lesson_intro_screens.tsx
+- Dirty worktree preservation plan recorded: app/lesson_irregular_verbs.tsx
+- Dirty worktree preservation plan recorded: app/lesson_words.tsx
+- Dirty worktree preservation plan recorded: app/lesson1.tsx
+- Dirty worktree preservation plan recorded: app/level_exam.tsx
+- Dirty worktree preservation plan recorded: app/pack_opening.tsx
+- Dirty worktree preservation plan recorded: app/trainer_smart_session.tsx
+- Dirty worktree preservation plan recorded: app/trainer.tsx
+- Dirty worktree preservation plan recorded: hooks/use-flashcards.ts

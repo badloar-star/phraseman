@@ -169,6 +169,11 @@ export default function CertificatePreviewAdminModal({ visible, onClose }: Props
         ru: 'Сертификат сохранён в AsyncStorage',
         uk: 'Сертифікат збережено в AsyncStorage',
         es: 'Certificado guardado en AsyncStorage.',
+        'pt-BR': 'Certificado salvo no AsyncStorage.',
+        vi: 'Chứng chỉ đã được lưu vào AsyncStorage.',
+        id: 'Sertifikat disimpan di AsyncStorage.',
+        tr: 'Sertifika AsyncStorage içine kaydedildi.',
+        pl: 'Certyfikat zapisano w AsyncStorage.',
       }),
     );
   };
@@ -183,6 +188,11 @@ export default function CertificatePreviewAdminModal({ visible, onClose }: Props
         ru: 'Сохранённый сертификат удалён',
         uk: 'Збережений сертифікат видалено',
         es: 'Se eliminó el certificado guardado.',
+        'pt-BR': 'O certificado salvo foi removido.',
+        vi: 'Chứng chỉ đã lưu đã bị xóa.',
+        id: 'Sertifikat tersimpan telah dihapus.',
+        tr: 'Kaydedilmiş sertifika silindi.',
+        pl: 'Zapisany certyfikat został usunięty.',
       }),
     );
   };
@@ -205,6 +215,11 @@ export default function CertificatePreviewAdminModal({ visible, onClose }: Props
           ru: 'Загружено из AsyncStorage',
           uk: 'Завантажено з AsyncStorage',
           es: 'Cargado desde AsyncStorage.',
+          'pt-BR': 'Carregado do AsyncStorage.',
+          vi: 'Đã tải từ AsyncStorage.',
+          id: 'Dimuat dari AsyncStorage.',
+          tr: 'AsyncStorage üzerinden yüklendi.',
+          pl: 'Wczytano z AsyncStorage.',
         }),
       );
     } else {
@@ -214,6 +229,11 @@ export default function CertificatePreviewAdminModal({ visible, onClose }: Props
           ru: 'Сертификат не сохранён',
           uk: 'Сертифікат не збережено',
           es: 'No hay ningún certificado guardado.',
+          'pt-BR': 'Nenhum certificado salvo.',
+          vi: 'Chưa có chứng chỉ nào được lưu.',
+          id: 'Tidak ada sertifikat yang disimpan.',
+          tr: 'Kaydedilmiş sertifika yok.',
+          pl: 'Brak zapisanego certyfikatu.',
         }),
       );
     }

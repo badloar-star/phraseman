@@ -368,6 +368,18 @@ describe('lesson_words.tsx Spanish gloss coverage', () => {
     expect(lessonWordRecognitionPrompt(row!, 'uk')).toBe('Квиток');
   });
 
+  /** Жалоба lesson_words word_license: одиночный answer `license` не должен спрашивать целую фразу driver's license. */
+  it('license: standalone word prompt does not ask for driver license', () => {
+    const row = rows.find(r => r.en === 'license');
+    expect(row).toBeDefined();
+    expect(row!.ru).toBe('Лицензия / разрешение');
+    expect(row!.uk).toBe('Ліцензія / дозвіл');
+    expect(row!.es).toBe('licencia / permiso');
+    expect(lessonWordRecognitionPrompt(row!, 'ru')).toBe('Лицензия / разрешение');
+    expect(lessonWordRecognitionPrompt(row!, 'uk')).toBe('Ліцензія / дозвіл');
+    expect(lessonWordRecognitionPrompt(row!, 'es')).toBe('licencia / permiso');
+  });
+
   /** RU/UK: Thursday — RU «четверг», UK «четвер». */
   it('thursday: Russian and Ukrainian glosses are correct', () => {
     const row = rows.find(r => r.en.toLowerCase() === 'thursday');

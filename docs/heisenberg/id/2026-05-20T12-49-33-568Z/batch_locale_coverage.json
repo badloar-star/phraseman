@@ -1,0 +1,1231 @@
+{
+  "mode": "batch-locale-coverage",
+  "requiredLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl",
+    "es"
+  ],
+  "productOnly": true,
+  "summary": {
+    "localizedItemsChecked": 47055,
+    "expectedUnits": 2212,
+    "completeUnits": 19168,
+    "partialUnits": 70,
+    "missingAllLocaleUnits": 0,
+    "partialFiles": 0,
+    "missingByLocale": {
+      "pt-BR": 56,
+      "vi": 56,
+      "id": 56,
+      "tr": 56,
+      "pl": 56,
+      "es": 0
+    },
+    "missingAllByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 0,
+      "tr": 0,
+      "pl": 0,
+      "es": 0
+    }
+  },
+  "partialFiles": [],
+  "partialUnits": [
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-id[15]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 36
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-id[21]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 46
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-id[27]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 62
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-id[3]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 10
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-id[33]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 63
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-id[39]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 63
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-id[45]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 66
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-id[51]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 69
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-id[57]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 70
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-id[63]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 73
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-id[9]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 22
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pl[11]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 25
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pl[17]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 38
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pl[23]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 51
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pl[29]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 62
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pl[35]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 63
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pl[41]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 66
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pl[47]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 69
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pl[5]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 12
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pl[53]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 69
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pl[59]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 70
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pl[65]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 74
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pt-br[1]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 8
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pt-br[13]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 31
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pt-br[19]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 43
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pt-br[25]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 62
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pt-br[31]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 63
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pt-br[37]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 63
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pt-br[43]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 66
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pt-br[49]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 69
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pt-br[55]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 69
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pt-br[61]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 73
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-pt-br[7]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 20
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-tr[10]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 24
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-tr[16]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 37
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-tr[22]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 47
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-tr[28]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 62
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-tr[34]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 63
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-tr[4]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 11
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-tr[40]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 63
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-tr[46]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 66
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-tr[52]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 69
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-tr[58]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 70
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-tr[64]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 74
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-vi[14]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 33
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-vi[2]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 9
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-vi[20]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 44
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-vi[26]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 62
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-vi[32]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 63
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-vi[38]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 63
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-vi[44]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 66
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-vi[50]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 69
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-vi[56]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 70
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-vi[62]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 73
+      }
+    },
+    {
+      "file": "admin/support.html",
+      "surface": "admin-site",
+      "keyPath": "html.attr.data-i18n-vi[8]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 21
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-id[15]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 24
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-id[3]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 9
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-id[9]",
+      "present": [
+        "id"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "id": 18
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-pl[11]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 20
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-pl[17]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 27
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-pl[5]",
+      "present": [
+        "pl"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr"
+      ],
+      "lineByLocale": {
+        "pl": 11
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-pt-br[1]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 7
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-pt-br[13]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 23
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-pt-br[7]",
+      "present": [
+        "pt-BR"
+      ],
+      "missing": [
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "pt-BR": 17
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-tr[10]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 19
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-tr[16]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 26
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-tr[4]",
+      "present": [
+        "tr"
+      ],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "pl"
+      ],
+      "lineByLocale": {
+        "tr": 10
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-vi[14]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 23
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-vi[2]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 8
+      }
+    },
+    {
+      "file": "duel/index.html",
+      "surface": "app-other",
+      "keyPath": "html.attr.data-i18n-vi[8]",
+      "present": [
+        "vi"
+      ],
+      "missing": [
+        "pt-BR",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "lineByLocale": {
+        "vi": 17
+      }
+    }
+  ],
+  "missingAllLocaleUnits": [],
+  "truncated": false
+}

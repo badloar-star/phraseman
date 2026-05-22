@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from '../app/events';
 import type { DailyTask } from '../app/daily_tasks';
 import * as DailyTasks from '../app/daily_tasks';
+import { dailyTasksProgressKey } from '../app/target_storage_keys';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
@@ -101,6 +102,45 @@ describe('daily_tasks claim + completion events', () => {
       awardedXp: 0,
     });
     expect(grant2).not.toHaveBeenCalled();
+  });
+
+  it('keeps French daily progress under the scoped study-target key', async () => {
+    const scopedKey = dailyTasksProgressKey(FIXED_DAY, 'fr');
+    const legacyKey = dailyTasksProgressKey(FIXED_DAY, 'en');
+
+    await DailyTasks.updateMultipleTaskProgress(
+      [{ type: 'daily_active', increment: 1 }],
+      { studyTarget: 'fr' },
+    );
+
+    expect(getTodayTasksSafeSpy).toHaveBeenCalledWith('fr');
+    expect(mockStorage[legacyKey]).toBeUndefined();
+    const saved = JSON.parse(mockStorage[scopedKey] || '[]') as DailyTasks.TaskProgress[];
+    expect(saved.find((row) => row.taskId === 'da1')).toMatchObject({
+      current: 1,
+      completed: true,
+      claimed: false,
+    });
+  });
+
+  it('claims French daily rewards from the scoped progress row only', async () => {
+    const scopedKey = dailyTasksProgressKey(FIXED_DAY, 'fr');
+    const legacyKey = dailyTasksProgressKey(FIXED_DAY, 'en');
+    mockStorage[scopedKey] = JSON.stringify([
+      { taskId: 'da1', current: 1, completed: true, claimed: false },
+      { taskId: 'ta9', current: 0, completed: false, claimed: false },
+      { taskId: 'cs6', current: 0, completed: false, claimed: false },
+    ]);
+
+    const grant = jest.fn().mockResolvedValue(18);
+    await expect(
+      DailyTasks.claimTaskWithReward('da1', grant, { tasksForClaim: stubTasks, studyTarget: 'fr' }),
+    ).resolves.toEqual({ claimed: true, awardedXp: 18 });
+
+    expect(getTodayTasksSafeSpy).toHaveBeenCalledWith('fr');
+    expect(mockStorage[legacyKey]).toBeUndefined();
+    const saved = JSON.parse(mockStorage[scopedKey] || '[]') as DailyTasks.TaskProgress[];
+    expect(saved.find((row) => row.taskId === 'da1')?.claimed).toBe(true);
   });
 
   it('claimTaskWithReward does not claim when grant throws', async () => {

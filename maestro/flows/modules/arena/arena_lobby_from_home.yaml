@@ -3,7 +3,7 @@ appId: app.phraseman
 ---
 - runFlow: ../../_shared/boot_to_home.yaml
 - tapOn:
-    id: "home-open-arena"
+    id: "tab-arena"
 - extendedWaitUntil:
     visible:
       id: "screen-arena-lobby"

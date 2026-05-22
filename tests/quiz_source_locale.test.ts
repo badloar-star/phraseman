@@ -1,5 +1,6 @@
 import { HEISENBERG_BATCH_SOURCE_LOCALES } from '../app/source_locales';
 import {
+  getQuizPoolAuditEntries,
   getQuizPhrases,
   validateQuizSourceLocaleCoverage,
   type QuizSourceLocale,
@@ -105,6 +106,62 @@ describe('multi-source quiz locale payloads', () => {
         expect(phrase!.sourceText).not.toBe(phrase!.es);
         expect(phrase!.choices.every((choice) => /^[\x00-\x7F]+$/.test(choice))).toBe(true);
       }
+    }
+  });
+
+  it('keeps planned quiz source runtime free of legacy fallback markers', () => {
+    const source = require('fs').readFileSync(require('path').join(__dirname, '../app/quiz_data.ts'), 'utf8');
+
+    expect(source).not.toContain('fallbackSourceText');
+    expect(source).not.toContain('source fallback');
+    expect(source).not.toContain('Spanish fallback');
+    expect(source).not.toContain("_lang === 'uk'");
+    expect(source).not.toContain("_lang === 'es'");
+
+    for (const locale of NEW_BATCH_LOCALES) {
+      for (const difficulty of ['easy', 'medium', 'hard'] as const) {
+        const phrases = getQuizPhrases(difficulty, 5000, locale);
+        expect(phrases.length).toBeGreaterThan(0);
+
+        for (const phrase of phrases) {
+          expect(phrase.sourceLocale).toBe(locale);
+          expect(phrase.sourceText).toBeTruthy();
+          expect(phrase.sourceText).not.toBe(phrase.ru);
+          expect(phrase.sourceText).not.toBe(phrase.uk);
+          expect(phrase.sourceText).not.toBe(phrase.es);
+          expect(phrase.sourceExplanations).toHaveLength(4);
+        }
+      }
+    }
+  });
+
+  it('keeps corrected hard quiz answer indexes aligned with their English target choices', () => {
+    const hardEntries = getQuizPoolAuditEntries('hard');
+    const expected = [
+      {
+        ru: `Хватит ходить вокруг да около`,
+        correct: 2,
+        choice: `Stop beating around the bush.`,
+      },
+      {
+        ru: `Я редко видел такую изысканную красоту`,
+        correct: 1,
+        choice: `Seldom have I seen such exquisite beauty.`,
+      },
+      {
+        ru: `Я настаиваю на том, чтобы он присутствовал на встрече`,
+        correct: 2,
+        choice: `I insist that he be present at the meeting.`,
+      },
+    ];
+
+    for (const item of expected) {
+      const entry = hardEntries.find((candidate) => candidate.ru === item.ru);
+
+      expect(entry).toBeDefined();
+      expect(entry!.correct).toBe(item.correct);
+      expect(entry!.choices[item.correct]).toBe(item.choice);
+      expect(entry!.explanations[item.correct]).toMatch(/Невероятно|блестяще|Блестяще/i);
     }
   });
 });

@@ -40,7 +40,7 @@ export type Activity365MonthSummary = {
 };
 
 export type Activity365Insight = {
-  kind: 'improved' | 'missed_weekday' | 'steady' | 'restart';
+  kind: 'improved' | 'missed_weekday' | 'steady' | 'warmup' | 'restart';
   titleRu: string;
   titleUk: string;
   titleEs: string;
@@ -48,6 +48,16 @@ export type Activity365Insight = {
   bodyUk: string;
   bodyEs: string;
 };
+
+export type Activity365NextStepKind = 'first_day' | 'warmup' | 'build_week' | 'continue_streak' | 'restart';
+
+export function activity365NextStepKind(activeDays: number, currentStreak: number): Activity365NextStepKind {
+  if (activeDays <= 0) return 'first_day';
+  if (activeDays < 3) return 'warmup';
+  if (activeDays < 7) return 'build_week';
+  if (currentStreak > 0) return 'continue_streak';
+  return 'restart';
+}
 
 export type Activity365GoalAnalytics = {
   goal: number;
@@ -287,9 +297,22 @@ function weekdayLabelEs(dow: number): string {
 
 function buildInsights(days: Activity365Day[], todayKey: string, currentStreak: number): Activity365Insight[] {
   const observed = days.filter(day => !day.future && day.date <= todayKey);
+  const activeObserved = observed.filter(day => day.active).length;
   const last14 = activeCount(observed, observed.length - 14, observed.length);
   const prev14 = activeCount(observed, observed.length - 28, observed.length - 14);
   const insights: Activity365Insight[] = [];
+
+  if (activeObserved > 0 && activeObserved < 3) {
+    insights.push({
+      kind: 'warmup',
+      titleRu: 'Первый импульс',
+      titleUk: 'Перший імпульс',
+      titleEs: 'Primer impulso',
+      bodyRu: 'Первые данные уже есть. Сейчас важнее спокойно закрепить старт, чем оценивать ритм.',
+      bodyUk: 'Перші дані вже є. Зараз важливіше спокійно закріпити старт, ніж оцінювати ритм.',
+      bodyEs: 'Ya hay primeros datos. Ahora importa más consolidar el inicio que evaluar el ritmo.',
+    });
+  }
 
   if (prev14 > 0 && last14 > prev14) {
     const pct = Math.round(((last14 - prev14) / prev14) * 100);

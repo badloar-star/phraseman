@@ -1,0 +1,181 @@
+{
+  "targetLocale": "es",
+  "targetBaseLang": "es",
+  "targetInterfaceStatus": "active",
+  "knownLocaleConflict": true,
+  "targetRegisteredAsAppLocale": true,
+  "integrationBlockers": [],
+  "collisionPatternCount": 3,
+  "pathCollisions": [
+    {
+      "file": "app/lesson_data_1_8_phrases_es.gen.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/lesson_data_9_16_phrases_es.gen.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/lesson_intro_screens_es_l2.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/achievements_es_locale.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/intro_es_l2_bulk_part1.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/intro_es_l2_bulk_part2.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/gen_lesson_intro_es_l2.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/quiz_data_es_l2.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "tests/locale_ru_uk_es.test.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "tools/prompt006_es_phrase_words.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "tests/daily_tasks_es_locale.test.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/daily_tasks_es_locale.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/lesson_prepositions_es_factory.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/lesson_prepositions_es_segment01.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/lesson_prepositions_es_segment02.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/lesson_prepositions_es_segment03.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/lesson_prepositions_es_shuffle.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/lesson_words_es_by_en.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/lesson_words_es_map.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "constants/greetings_es.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "constants/terms_es.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/_verify-daily-es-keys.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/audit_es_pos_heuristic.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/audit-es-gaps.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/audit-lesson-words-es.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/es-l17.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/es-l18.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/es-l19.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/es-l20-last.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/es-l20.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/es-l21.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/es-l22.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/es-l23.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/es-l24.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/fetch-lesson-words-es.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/generate-lesson-word-es-google.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/inject-inline-es-lesson-words.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/intro_es_l2_bulk.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/lesson_words_es_map.json",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/rebuild-lesson-words-es-map.mjs",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "tools/prompt007_es_phrase_words.ts",
+      "kind": "path-locale-marker"
+    }
+  ],
+  "isolationPolicy": [
+    "Do not write generated target-language content into ru/uk/es fields.",
+    "Keep target language work under docs/heisenberg/<locale>/ until the integration gate is explicit.",
+    "A future apply step must add a new locale registry entry and locale-specific files, never mutate existing locale fields in place.",
+    "Before integration, run the generated manifest diff and the app test bundle."
+  ]
+}

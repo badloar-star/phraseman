@@ -1,6 +1,6 @@
 # Lesson Intro Alignment Audit
 
-Generated: 2026-05-18T16:32:35.282Z
+Generated: 2026-05-21T17:14:31.736Z
 
 | Lesson | ALL_LESSONS intro | LESSON_DATA intro | Extra intro | Status |
 |---:|---|---|---|---|

@@ -7,6 +7,7 @@ import {
   DAILY_TASK_REROLL_COST_SHARDS,
   DAILY_TASK_REROLL_MAX_PER_DAY,
 } from '../app/daily_tasks';
+import { dailyTasksProgressKey, dailyTasksRerollKey } from '../app/target_storage_keys';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
@@ -64,6 +65,27 @@ describe('daily_task_reroll', () => {
     expect(mockStorage.shards_balance).toBe(String(50 - DAILY_TASK_REROLL_COST_SHARDS));
     const after = await getDailyRerollsLeftToday();
     expect(after).toBe(DAILY_TASK_REROLL_MAX_PER_DAY - 1);
+  });
+
+  it('keeps French reroll state and replacement progress under scoped keys', async () => {
+    const tasks = await getTodayTasksSafe('fr');
+    const target = tasks[0]!.id;
+    const r = await rerollDailyTask(target, 'fr');
+
+    expect(r.ok).toBe(true);
+    expect(mockStorage.daily_tasks_reroll_v1).toBeUndefined();
+    expect(mockStorage[`daily_tasks_${getTodayKey()}`]).toBeUndefined();
+    expect(mockStorage[dailyTasksRerollKey('fr')]).toBeTruthy();
+
+    const progress = JSON.parse(
+      mockStorage[dailyTasksProgressKey(getTodayKey(), 'fr')] || '[]',
+    ) as Array<{ taskId: string }>;
+    if (r.ok) {
+      expect(progress.some((row) => row.taskId === r.newTaskId)).toBe(true);
+      expect(progress.some((row) => row.taskId === target)).toBe(false);
+    }
+    await expect(getDailyRerollsLeftToday('fr')).resolves.toBe(DAILY_TASK_REROLL_MAX_PER_DAY - 1);
+    await expect(getDailyRerollsLeftToday()).resolves.toBe(DAILY_TASK_REROLL_MAX_PER_DAY);
   });
 
   it('rejects when daily limit reached', async () => {

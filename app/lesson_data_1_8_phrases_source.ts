@@ -348,14 +348,15 @@ export const LESSON_1_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson1_phrase_29',
-    english: 'You are fine',
+    english: 'You are okay',
+    alternatives: ['You are fine'],
     russian: 'Ты в порядке',
     ukrainian: 'Ти в порядку',
     spanish: 'Estás bien.',
     words: [
       { text: 'You', correct: 'You', distractors: ['your', 'yew', 'yours', 'youth', 'yore'], category: 'pronoun' },
       { text: 'are', correct: 'are', distractors: ['am', 'is', 'art', 'air', 'arm'], category: 'to-be' },
-      { text: 'fine', correct: 'fine', distractors: ['find', 'line', 'mine', 'wine', 'pine'], category: 'adjective' },
+      { text: 'okay', correct: 'okay', distractors: ['fine', 'OK', 'alright', 'wrong', 'bad'], category: 'adjective' },
     ],
   },
   {
@@ -2887,16 +2888,15 @@ export const LESSON_5_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson5_phrase_23',
-    english: 'Does she believe in luck?',
-    russian: 'Она верит в удачу?',
-    ukrainian: 'Вона вірить у вдачу?',
-    spanish: '¿Cree ella en la suerte?',
+    english: 'Does she believe you?',
+    russian: 'Она верит тебе?',
+    ukrainian: 'Вона вірить тобі?',
+    spanish: '¿Te cree ella?',
     words: [
-      { text: 'Does', correct: 'Does', distractors: ['do', 'did', 'dose', 'doles', 'dome'], category: 'verb' },
-      { text: 'she', correct: 'she', distractors: ['he', 'the', 'see', 'shed', 'shy'], category: 'pronoun' },
-      { text: 'believe', correct: 'believe', distractors: ['believes', 'believed', 'relieve', 'bereave', 'belive'], category: 'verb' },
-      { text: 'in', correct: 'in', distractors: ['on', 'at', 'an', 'into', 'inn'], category: 'preposition' },
-      { text: 'luck', correct: 'luck', distractors: ['lock', 'duck', 'tuck', 'lack', 'lick'], category: 'noun' },
+      { text: 'Does', correct: 'Does', distractors: ['do', 'did', 'done', 'dose', 'dot'], category: 'verb' },
+      { text: 'she', correct: 'she', distractors: ['he', 'they', 'we', 'her', 'see'], category: 'pronoun' },
+      { text: 'believe', correct: 'believe', distractors: ['believes', 'believed', 'relieve', 'achieve', 'receive'], category: 'verb' },
+      { text: 'you', correct: 'you', distractors: ['your', 'yours', 'yew', 'yore', 'u'], category: 'pronoun' },
     ],
   },
   {
@@ -2928,16 +2928,15 @@ export const LESSON_5_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson5_phrase_26',
-    english: 'Does he drive a car?',
-    russian: 'Он водит машину?',
-    ukrainian: 'Він водить машину?',
-    spanish: '¿Conduce él un coche?',
+    english: 'Does he drive cars?',
+    russian: 'Он водит машины?',
+    ukrainian: 'Він водить машини?',
+    spanish: '¿Conduce coches?',
     words: [
       { text: 'Does', correct: 'Does', distractors: ['do', 'dose', 'done', 'did', 'dust'], category: 'verb' },
       { text: 'he', correct: 'he', distractors: ['his', 'him', 'she', 'hey', 'hi'], category: 'pronoun' },
       { text: 'drive', correct: 'drive', distractors: ['drives', 'driving', 'drove', 'drips', 'dream'], category: 'verb' },
-      { text: 'a', correct: 'a', distractors: ['an', 'the', 'and', 'as', 'at'], category: 'article' },
-      { text: 'car', correct: 'car', distractors: ['cat', 'can', 'care', 'bar', 'far'], category: 'noun' },
+      { text: 'cars', correct: 'cars', distractors: ['car', 'bars', 'jars', 'stars', 'card'], category: 'noun' },
     ],
   },
   {
@@ -3796,8 +3795,8 @@ export const LESSON_6_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson6_phrase_38',
     english: 'How do we book it?',
-    russian: 'Как мы бронируем это?',
-    ukrainian: 'Як ми бронюємо це?',
+    russian: 'Как нам это забронировать?',
+    ukrainian: 'Як нам це забронювати?',
     spanish: '¿Cómo lo reservamos?',
     words: [
       { text: 'How', correct: 'How', distractors: ['who', 'now', 'low', 'has', 'his'] },
@@ -3970,17 +3969,17 @@ export const LESSON_6_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson6_phrase_50',
-    english: 'When do they close the café?',
+    english: 'When do they close the cafe?',
     russian: 'Когда они закрывают кафе?',
     ukrainian: 'Коли вони зачиняють кафе?',
-    spanish: '¿Cuándo cierra el café?',
+    spanish: '¿Cuándo cierran el café?',
     words: [
       { text: 'When', correct: 'When', distractors: ['where', 'went', 'want', 'win', 'west'] },
       { text: 'do', correct: 'do', distractors: ['does', 'done', 'did', 'dot', 'dog'] },
       { text: 'they', correct: 'they', distractors: ['them', 'their', 'there', 'thee', 'these'] },
       { text: 'close', correct: 'close', distractors: ['closes', 'closing', 'class', 'clean', 'chose'] },
       { text: 'the', correct: 'the', distractors: ['then', 'than', 'that', 'this', 'thus'] },
-      { text: 'café', correct: 'café', distractors: ['cave', 'cake', 'cape', 'cage', 'cafe'] },
+      { text: 'cafe', correct: 'cafe', distractors: ['cave', 'cake', 'cape', 'cage', 'coffee'] },
     ],
   },
 ]

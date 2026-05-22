@@ -1,0 +1,948 @@
+{
+  "schemaVersion": "gustav-mixed-cloud-payload-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-22T08:31:14.736Z",
+  "status": "PASS",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/Users/maksymbabiev/Documents/phraseman/scripts/gustav_mixed_cloud_payload_audit.ts",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "summary": {
+    "payloads": 4,
+    "fields": 29,
+    "globalFields": 17,
+    "targetFields": 12,
+    "mixedFields": 0,
+    "unknownFields": 0,
+    "blockers": 0
+  },
+  "payloads": [
+    {
+      "key": "achievements_state",
+      "localKey": "achievements_v1",
+      "status": "PASS",
+      "currentCloudShape": "progress.achievements_state -> local achievements_v1 JSON array",
+      "proposedShape": "legacy progress.achievements_state for English/global compatibility + achievements_v2::{studyTarget}::achievements_v1 for target unlock state",
+      "verdict": "French target achievement state is split from legacy achievements_state.",
+      "codeReferences": [
+        {
+          "sourcePath": "app/cloud_sync.ts",
+          "line": 311,
+          "snippet": "'achievements_state',"
+        },
+        {
+          "sourcePath": "app/cloud_sync.ts",
+          "line": 510,
+          "snippet": "'achievements_v1', // мапится на achievements_state"
+        },
+        {
+          "sourcePath": "app/cloud_sync.ts",
+          "line": 1144,
+          "snippet": "if (achievementsV1) data['achievements_state'] = achievementsV1;"
+        },
+        {
+          "sourcePath": "app/cloud_sync.ts",
+          "line": 1434,
+          "snippet": "if (cloudData['achievements_state']) pairs.push(['achievements_v1', cloudData['achievements_state']]);"
+        },
+        {
+          "sourcePath": "app/cloud_sync.ts",
+          "line": 1563,
+          "snippet": "if (achievementsV1) data['achievements_state'] = achievementsV1;"
+        },
+        {
+          "sourcePath": "scripts/gustav_achievement_taxonomy.ts",
+          "line": 394,
+          "snippet": "'Target and mixed achievements cannot remain in one flat achievements_state cloud payload.',"
+        },
+        {
+          "sourcePath": "scripts/gustav_cloud_sync_mapping.ts",
+          "line": 239,
+          "snippet": "key === 'achievements_state'"
+        },
+        {
+          "sourcePath": "scripts/gustav_migration_adapter_plan.ts",
+          "line": 676,
+          "snippet": "'Keep flat achievements_state read-only during migration and never delete before rollback window.',"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 68,
+          "snippet": "'achievements_state',"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 174,
+          "snippet": "if (key === 'achievements_state') {"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 176,
+          "snippet": "globalField('AchievementState[].id', 'Legacy achievements_state remains English/global compatibility; French target achievement ids are stored under achievementStateKey(fr).', 'high'),"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 185,
+          "snippet": "currentCloudShape: 'progress.achievements_state -> local achievements_v1 JSON array',"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 186,
+          "snippet": "proposedShape: 'legacy progress.achievements_state for English/global compatibility + achievements_v2::{studyTarget}::achievements_v1 for target unlock state',"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 187,
+          "snippet": "verdict: 'French target achievement state is split from legacy achievements_state.',"
+        },
+        {
+          "sourcePath": "scripts/gustav_p1a_implementation_blueprint_audit.ts",
+          "line": 182,
+          "snippet": "'achievements_state',"
+        },
+        {
+          "sourcePath": "scripts/gustav_p1a_preflight_audit.ts",
+          "line": 98,
+          "snippet": "'achievements_state',"
+        },
+        {
+          "sourcePath": "scripts/gustav_post_p1a_readiness_projection_audit.ts",
+          "line": 136,
+          "snippet": "reason: 'P1A does not split mixed cloud payload fields for achievements_state, daily_stats, user_stats_v1 or stats_daily_breakdown_v1.',"
+        },
+        {
+          "sourcePath": "scripts/gustav_readiness_gate.ts",
+          "line": 426,
+          "snippet": "'Split achievements_state, daily_stats, user_stats_v1 and stats_daily_breakdown_v1 by global/target policy.',"
+        },
+        {
+          "sourcePath": "scripts/gustav_storage_inventory.ts",
+          "line": 806,
+          "snippet": "key === 'achievements_state' ||"
+        },
+        {
+          "sourcePath": "scripts/gustav_target_key_integration_plan.ts",
+          "line": 214,
+          "snippet": "if (id.includes('achievement') || id === 'achievements_state') return 'achievements';"
+        },
+        {
+          "sourcePath": "scripts/gustav_target_key_integration_plan.ts",
+          "line": 629,
+          "snippet": "'Flat achievements_state cannot be reused for French.',"
+        },
+        {
+          "sourcePath": "tests/gustav_target_storage_keys.test.ts",
+          "line": 178,
+          "snippet": "expect(() => assertTargetKey('achievements_state')).not.toThrow();"
+        }
+      ],
+      "fieldDecisions": [
+        {
+          "field": "AchievementState[].id",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "high",
+          "reason": "Legacy achievements_state remains English/global compatibility; French target achievement ids are stored under achievementStateKey(fr).",
+          "targetPath": "progress/global/AchievementState[].id",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        },
+        {
+          "field": "AchievementState[].unlockedAt",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "high",
+          "reason": "Legacy unlock timestamps no longer hydrate French target achievements; French target timestamps live in scoped achievements_v2::fr.",
+          "targetPath": "progress/global/AchievementState[].unlockedAt",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        },
+        {
+          "field": "AchievementState[].notified",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "high",
+          "reason": "Notification state for French target achievements is kept in the scoped target bucket.",
+          "targetPath": "progress/global/AchievementState[].notified",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        },
+        {
+          "field": "AchievementState[].shardClaimed",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "high",
+          "reason": "Shard-claim state for French target achievements is kept in the scoped target bucket.",
+          "targetPath": "progress/global/AchievementState[].shardClaimed",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        }
+      ],
+      "blockers": [],
+      "notes": [
+        "The remaining achievement taxonomy policy is tracked by RDY-030, not by mixed cloud payload split."
+      ]
+    },
+    {
+      "key": "daily_stats",
+      "status": "PASS",
+      "currentCloudShape": "progress.daily_stats -> Record<YYYY-MM-DD, { points, streak }>",
+      "proposedShape": "progress/global/daily_stats",
+      "verdict": "Daily stats stay global; target learning evidence is stored in scoped lesson/quiz/trainer/stat buckets.",
+      "codeReferences": [
+        {
+          "sourcePath": "app/_admin_settings_testers.tsx",
+          "line": 198,
+          "snippet": "const ADMIN_RESET_SHARED_STATS_KEYS = ['streak_count', 'login_bonus_v1', 'daily_stats', 'streak_freeze'];"
+        },
+        {
+          "sourcePath": "app/_admin_settings_testers.tsx",
+          "line": 1775,
+          "snippet": "await AsyncStorage.multiRemove(['streak_count', 'daily_stats', 'streak_freeze']);"
+        },
+        {
+          "sourcePath": "app/activity_365_analytics.ts",
+          "line": 487,
+          "snippet": "AsyncStorage.getItem('daily_stats'),"
+        },
+        {
+          "sourcePath": "app/activity_365_analytics.ts",
+          "line": 544,
+          "snippet": "['daily_stats', JSON.stringify(stats)],"
+        },
+        {
+          "sourcePath": "app/cloud_sync.ts",
+          "line": 359,
+          "snippet": "'daily_stats',"
+        },
+        {
+          "sourcePath": "app/cloud_sync.ts",
+          "line": 798,
+          "snippet": "latestDateKeyFromJsonMap(cloudData['daily_stats']) ??"
+        },
+        {
+          "sourcePath": "app/daily_analytics_sync.ts",
+          "line": 48,
+          "snippet": "/** Суммарный XP за последние 7 дней из daily_stats AsyncStorage. */"
+        },
+        {
+          "sourcePath": "app/daily_analytics_sync.ts",
+          "line": 51,
+          "snippet": "const raw = await AsyncStorage.getItem('daily_stats');"
+        },
+        {
+          "sourcePath": "app/foreground_usage_ms.ts",
+          "line": 133,
+          "snippet": "/** Посуточное время в foreground (мс), ключ даты `YYYY-MM-DD` (UTC, как в daily_stats). */"
+        },
+        {
+          "sourcePath": "app/hall_of_fame_utils.ts",
+          "line": 270,
+          "snippet": "* 4. daily_stats      — для графика статистики (опыт за день)"
+        },
+        {
+          "sourcePath": "app/hall_of_fame_utils.ts",
+          "line": 379,
+          "snippet": "// ── 4. daily_stats ────────────────────────────────────────────────────────"
+        },
+        {
+          "sourcePath": "app/hall_of_fame_utils.ts",
+          "line": 382,
+          "snippet": "const raw = await AsyncStorage.getItem('daily_stats');"
+        },
+        {
+          "sourcePath": "app/hall_of_fame_utils.ts",
+          "line": 392,
+          "snippet": "await AsyncStorage.setItem('daily_stats', JSON.stringify(stats));"
+        },
+        {
+          "sourcePath": "app/hall_of_fame_utils.ts",
+          "line": 457,
+          "snippet": "'daily_stats',"
+        },
+        {
+          "sourcePath": "app/lifetime_profile_stats.ts",
+          "line": 276,
+          "snippet": "AsyncStorage.getItem('daily_stats'),"
+        },
+        {
+          "sourcePath": "app/stats_daily_breakdown.ts",
+          "line": 217,
+          "snippet": "/** Увеличить счётчик за сегодняшнюю дату (UTC‑день как в daily_stats). */"
+        },
+        {
+          "sourcePath": "app/stats_daily_breakdown.ts",
+          "line": 339,
+          "snippet": "AsyncStorage.getItem('daily_stats'),"
+        },
+        {
+          "sourcePath": "app/statsCache.ts",
+          "line": 338,
+          "snippet": "AsyncStorage.getItem('daily_stats'),"
+        },
+        {
+          "sourcePath": "app/streak_safety.ts",
+          "line": 62,
+          "snippet": "...activeDatesFromStats(data.daily_stats),"
+        },
+        {
+          "sourcePath": "app/streak_safety.ts",
+          "line": 96,
+          "snippet": "'daily_stats',"
+        },
+        {
+          "sourcePath": "app/streak_stats.tsx",
+          "line": 156,
+          "snippet": "/** Очки (опыт) за день над столбцом «Полученный опыт за день» (значение из daily_stats). */"
+        },
+        {
+          "sourcePath": "app/xp_manager.ts",
+          "line": 188,
+          "snippet": "// Это обновит: leaderboard, week_leaderboard, week_points_v2, daily_stats и цепочку"
+        },
+        {
+          "sourcePath": "scripts/gustav_cloud_sync_mapping.ts",
+          "line": 248,
+          "snippet": "if (key === 'daily_stats' || key === 'stats_daily_breakdown_v1' || key === 'user_stats_v1') {"
+        },
+        {
+          "sourcePath": "scripts/gustav_migration_adapter_plan.ts",
+          "line": 340,
+          "snippet": "const statsTests = [/daily_stats/, /user_stats/, /stats_daily/, /lifetime_quiz/];"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 69,
+          "snippet": "'daily_stats',"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 197,
+          "snippet": "if (key === 'daily_stats') {"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 205,
+          "snippet": "currentCloudShape: 'progress.daily_stats -> Record<YYYY-MM-DD, { points, streak }>',"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 206,
+          "snippet": "proposedShape: 'progress/global/daily_stats',"
+        },
+        {
+          "sourcePath": "scripts/gustav_p1a_implementation_blueprint_audit.ts",
+          "line": 183,
+          "snippet": "'daily_stats',"
+        },
+        {
+          "sourcePath": "scripts/gustav_p1a_preflight_audit.ts",
+          "line": 99,
+          "snippet": "'daily_stats',"
+        },
+        {
+          "sourcePath": "scripts/gustav_post_p1a_readiness_projection_audit.ts",
+          "line": 136,
+          "snippet": "reason: 'P1A does not split mixed cloud payload fields for achievements_state, daily_stats, user_stats_v1 or stats_daily_breakdown_v1.',"
+        },
+        {
+          "sourcePath": "scripts/gustav_readiness_gate.ts",
+          "line": 426,
+          "snippet": "'Split achievements_state, daily_stats, user_stats_v1 and stats_daily_breakdown_v1 by global/target policy.',"
+        },
+        {
+          "sourcePath": "scripts/gustav_storage_inventory.ts",
+          "line": 807,
+          "snippet": "key === 'daily_stats' ||"
+        },
+        {
+          "sourcePath": "scripts/gustav_surface_route_inventory.ts",
+          "line": 242,
+          "snippet": "if (file.includes('progress_map') || file.includes('stats') || file.includes('analytics') || keys.includes('daily_stats')) return 'progress_stats';"
+        },
+        {
+          "sourcePath": "scripts/gustav_target_key_integration_plan.ts",
+          "line": 217,
+          "snippet": "id === 'daily_stats' ||"
+        },
+        {
+          "sourcePath": "scripts/gustav_target_key_integration_plan.ts",
+          "line": 708,
+          "snippet": "'daily_stats_target_v2::{studyTarget}',"
+        },
+        {
+          "sourcePath": "scripts/gustav_target_key_integration_plan.ts",
+          "line": 711,
+          "snippet": "'daily_stats, user_stats_v1 and stats_daily_breakdown_v1 mix product/global and target-learning metrics.',"
+        },
+        {
+          "sourcePath": "tests/cloud_sync_daily_tasks_merge.test.ts",
+          "line": 257,
+          "snippet": "expect(SYNC_KEYS).toContain('daily_stats');"
+        },
+        {
+          "sourcePath": "tests/cloud_sync_daily_tasks_merge.test.ts",
+          "line": 787,
+          "snippet": "it('backfills last_active_date from daily_stats for old cloud profiles', () => {"
+        },
+        {
+          "sourcePath": "tests/cloud_sync_daily_tasks_merge.test.ts",
+          "line": 791,
+          "snippet": "daily_stats: JSON.stringify({"
+        },
+        {
+          "sourcePath": "tests/cloud_sync_daily_tasks_merge.test.ts",
+          "line": 807,
+          "snippet": "daily_stats: JSON.stringify({"
+        },
+        {
+          "sourcePath": "tests/gustav_target_storage_keys.test.ts",
+          "line": 177,
+          "snippet": "expect(() => assertTargetKey('daily_stats')).not.toThrow();"
+        }
+      ],
+      "fieldDecisions": [
+        {
+          "field": "{date}.points",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "high",
+          "reason": "Daily points are account XP by product policy; French and English share XP/daily stats while learning evidence stays target-scoped.",
+          "targetPath": "progress/global/{date}.points",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        },
+        {
+          "field": "{date}.streak",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "high",
+          "reason": "Streak is account-level by product policy and is not used as French learning content.",
+          "targetPath": "progress/global/{date}.streak",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        }
+      ],
+      "blockers": [],
+      "notes": [
+        "This follows the Gustav isolation rule that XP, daily stats and streak remain account-level/shared."
+      ]
+    },
+    {
+      "key": "user_stats_v1",
+      "status": "PASS",
+      "currentCloudShape": "progress.user_stats_v1 -> UserStats JSON object",
+      "proposedShape": "legacy progress.user_stats_v1 for global telemetry + target_stats_v2::{studyTarget}::user_stats_v1 for learning telemetry",
+      "verdict": "French learning user stats are target-scoped; legacy user_stats_v1 remains global/English compatibility.",
+      "codeReferences": [
+        {
+          "sourcePath": "app/cloud_sync.ts",
+          "line": 442,
+          "snippet": "'user_stats_v1',"
+        },
+        {
+          "sourcePath": "app/target_storage_keys.ts",
+          "line": 76,
+          "snippet": "/^user_stats_v1$/,"
+        },
+        {
+          "sourcePath": "app/target_storage_keys.ts",
+          "line": 332,
+          "snippet": "return scopedOrLegacyKey('user_stats_v1', 'target_stats', studyTarget);"
+        },
+        {
+          "sourcePath": "scripts/gustav_cloud_sync_mapping.ts",
+          "line": 248,
+          "snippet": "if (key === 'daily_stats' || key === 'stats_daily_breakdown_v1' || key === 'user_stats_v1') {"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 70,
+          "snippet": "'user_stats_v1',"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 217,
+          "snippet": "if (key === 'user_stats_v1') {"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 236,
+          "snippet": "? globalField(field.field, `${field.reason} Current runtime keeps this commerce/feature telemetry in the legacy global user_stats_v1 bucket.`, 'medium')"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 244,
+          "snippet": "currentCloudShape: 'progress.user_stats_v1 -> UserStats JSON object',"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 245,
+          "snippet": "proposedShape: 'legacy progress.user_stats_v1 for global telemetry + target_stats_v2::{studyTarget}::user_stats_v1 for learning telemetry',"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 246,
+          "snippet": "verdict: 'French learning user stats are target-scoped; legacy user_stats_v1 remains global/English compatibility.',"
+        },
+        {
+          "sourcePath": "scripts/gustav_p1a_implementation_blueprint_audit.ts",
+          "line": 184,
+          "snippet": "'user_stats_v1',"
+        },
+        {
+          "sourcePath": "scripts/gustav_p1a_preflight_audit.ts",
+          "line": 100,
+          "snippet": "'user_stats_v1',"
+        },
+        {
+          "sourcePath": "scripts/gustav_post_p1a_readiness_projection_audit.ts",
+          "line": 136,
+          "snippet": "reason: 'P1A does not split mixed cloud payload fields for achievements_state, daily_stats, user_stats_v1 or stats_daily_breakdown_v1.',"
+        },
+        {
+          "sourcePath": "scripts/gustav_readiness_gate.ts",
+          "line": 426,
+          "snippet": "'Split achievements_state, daily_stats, user_stats_v1 and stats_daily_breakdown_v1 by global/target policy.',"
+        },
+        {
+          "sourcePath": "scripts/gustav_storage_inventory.ts",
+          "line": 809,
+          "snippet": "key === 'user_stats_v1'"
+        },
+        {
+          "sourcePath": "scripts/gustav_target_key_integration_plan.ts",
+          "line": 218,
+          "snippet": "id === 'user_stats_v1' ||"
+        },
+        {
+          "sourcePath": "scripts/gustav_target_key_integration_plan.ts",
+          "line": 711,
+          "snippet": "'daily_stats, user_stats_v1 and stats_daily_breakdown_v1 mix product/global and target-learning metrics.',"
+        },
+        {
+          "sourcePath": "tests/gustav_cloud_mixed_payload_target_stats.test.ts",
+          "line": 28,
+          "snippet": "it('keeps French user_stats_v1 activity out of the legacy English user stats payload', async () => {"
+        },
+        {
+          "sourcePath": "tests/gustav_cloud_mixed_payload_target_stats.test.ts",
+          "line": 33,
+          "snippet": "await expect(AsyncStorage.getItem('user_stats_v1')).resolves.toBeNull();"
+        }
+      ],
+      "fieldDecisions": [
+        {
+          "field": "lessonsStarted",
+          "scope": "study_target",
+          "risk": "low",
+          "confidence": "high",
+          "reason": "Lesson starts are routed through userStatsKey(studyTarget).",
+          "targetPath": "progress/targets/{studyTarget}/lessonsStarted",
+          "requiredBeforeFrench": []
+        },
+        {
+          "field": "lessonsAbandoned",
+          "scope": "study_target",
+          "risk": "low",
+          "confidence": "high",
+          "reason": "Lesson abandonment is routed through userStatsKey(studyTarget).",
+          "targetPath": "progress/targets/{studyTarget}/lessonsAbandoned",
+          "requiredBeforeFrench": []
+        },
+        {
+          "field": "answersTotal",
+          "scope": "study_target",
+          "risk": "low",
+          "confidence": "high",
+          "reason": "Answer counts are routed through userStatsKey(studyTarget).",
+          "targetPath": "progress/targets/{studyTarget}/answersTotal",
+          "requiredBeforeFrench": []
+        },
+        {
+          "field": "answersCorrect",
+          "scope": "study_target",
+          "risk": "low",
+          "confidence": "high",
+          "reason": "Correct answer counts are routed through userStatsKey(studyTarget).",
+          "targetPath": "progress/targets/{studyTarget}/answersCorrect",
+          "requiredBeforeFrench": []
+        },
+        {
+          "field": "energyHits",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "medium",
+          "reason": "Energy limit hits are product/account behavior unless product wants target-specific energy analytics.",
+          "targetPath": "progress/global/energyHits",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        },
+        {
+          "field": "featuresOpened",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "medium",
+          "reason": "Feature ids may include global screens and target-content screens; it needs feature-level taxonomy. Current runtime keeps this commerce/feature telemetry in the legacy global user_stats_v1 bucket.",
+          "targetPath": "progress/global/featuresOpened",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        },
+        {
+          "field": "quizLevels.easy",
+          "scope": "study_target",
+          "risk": "low",
+          "confidence": "high",
+          "reason": "Quiz attempts are routed through userStatsKey(studyTarget).",
+          "targetPath": "progress/targets/{studyTarget}/quizLevels.easy",
+          "requiredBeforeFrench": []
+        },
+        {
+          "field": "quizLevels.medium",
+          "scope": "study_target",
+          "risk": "low",
+          "confidence": "high",
+          "reason": "Quiz attempts are routed through userStatsKey(studyTarget).",
+          "targetPath": "progress/targets/{studyTarget}/quizLevels.medium",
+          "requiredBeforeFrench": []
+        },
+        {
+          "field": "quizLevels.hard",
+          "scope": "study_target",
+          "risk": "low",
+          "confidence": "high",
+          "reason": "Quiz attempts are routed through userStatsKey(studyTarget).",
+          "targetPath": "progress/targets/{studyTarget}/quizLevels.hard",
+          "requiredBeforeFrench": []
+        },
+        {
+          "field": "shardsShopOpens",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "medium",
+          "reason": "Shop opens are commerce/product behavior.",
+          "targetPath": "progress/global/shardsShopOpens",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        },
+        {
+          "field": "shardPackClicks",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "medium",
+          "reason": "Shard pack clicks are commerce behavior.",
+          "targetPath": "progress/global/shardPackClicks",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        },
+        {
+          "field": "shardPackPurchases",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "medium",
+          "reason": "Shard pack purchases are commerce behavior.",
+          "targetPath": "progress/global/shardPackPurchases",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        },
+        {
+          "field": "cardPackClicks",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "medium",
+          "reason": "Card pack catalog may become target-specific; pack ids require target metadata. Current runtime keeps this commerce/feature telemetry in the legacy global user_stats_v1 bucket.",
+          "targetPath": "progress/global/cardPackClicks",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        },
+        {
+          "field": "cardPackPurchases",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "medium",
+          "reason": "Card pack purchases may be global entitlement while learning content is target-specific. Current runtime keeps this commerce/feature telemetry in the legacy global user_stats_v1 bucket.",
+          "targetPath": "progress/global/cardPackPurchases",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        }
+      ],
+      "blockers": [],
+      "notes": [
+        "Implemented by app/user_stats.ts via userStatsKey(studyTarget); French key is included in FRENCH_TARGET_SYNC_KEYS."
+      ]
+    },
+    {
+      "key": "stats_daily_breakdown_v1",
+      "status": "PASS",
+      "currentCloudShape": "progress.stats_daily_breakdown_v1 -> Record<YYYY-MM-DD, metric counters>",
+      "proposedShape": "legacy progress.stats_daily_breakdown_v1 for English/global metrics + target_stats_v2::{studyTarget}::stats_daily_breakdown_v1 for target learning metrics",
+      "verdict": "French learning stats are target-scoped; legacy stats_daily_breakdown_v1 remains English/global compatibility.",
+      "codeReferences": [
+        {
+          "sourcePath": "app/activity_365_analytics.ts",
+          "line": 5,
+          "snippet": "export const STATS_DAILY_BREAKDOWN_KEY = 'stats_daily_breakdown_v1';"
+        },
+        {
+          "sourcePath": "app/cloud_sync.ts",
+          "line": 459,
+          "snippet": "'stats_daily_breakdown_v1',"
+        },
+        {
+          "sourcePath": "app/cloud_sync.ts",
+          "line": 799,
+          "snippet": "latestDateKeyFromJsonMap(cloudData['stats_daily_breakdown_v1'])"
+        },
+        {
+          "sourcePath": "app/cloud_sync.ts",
+          "line": 1263,
+          "snippet": "cloudData['stats_daily_breakdown_v1'] = await reconcileStatsDailyBreakdownWithCloud("
+        },
+        {
+          "sourcePath": "app/cloud_sync.ts",
+          "line": 1264,
+          "snippet": "cloudData['stats_daily_breakdown_v1'],"
+        },
+        {
+          "sourcePath": "app/stats_daily_breakdown.ts",
+          "line": 3,
+          "snippet": "* Хранятся в AsyncStorage и синхронизируются с Firestore через cloud_sync (ключ stats_daily_breakdown_v1)."
+        },
+        {
+          "sourcePath": "app/stats_daily_breakdown.ts",
+          "line": 15,
+          "snippet": "const STORAGE_KEY = 'stats_daily_breakdown_v1';"
+        },
+        {
+          "sourcePath": "app/streak_safety.ts",
+          "line": 63,
+          "snippet": "...activeDatesFromStats(data.stats_daily_breakdown_v1),"
+        },
+        {
+          "sourcePath": "app/streak_safety.ts",
+          "line": 97,
+          "snippet": "'stats_daily_breakdown_v1',"
+        },
+        {
+          "sourcePath": "app/target_storage_keys.ts",
+          "line": 77,
+          "snippet": "/^stats_daily_breakdown_v1$/,"
+        },
+        {
+          "sourcePath": "app/target_storage_keys.ts",
+          "line": 336,
+          "snippet": "return scopedOrLegacyKey('stats_daily_breakdown_v1', 'target_stats', studyTarget);"
+        },
+        {
+          "sourcePath": "scripts/gustav_cloud_sync_mapping.ts",
+          "line": 248,
+          "snippet": "if (key === 'daily_stats' || key === 'stats_daily_breakdown_v1' || key === 'user_stats_v1') {"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 71,
+          "snippet": "'stats_daily_breakdown_v1',"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 256,
+          "snippet": "if (key === 'stats_daily_breakdown_v1') {"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 274,
+          "snippet": "currentCloudShape: 'progress.stats_daily_breakdown_v1 -> Record<YYYY-MM-DD, metric counters>',"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 275,
+          "snippet": "proposedShape: 'legacy progress.stats_daily_breakdown_v1 for English/global metrics + target_stats_v2::{studyTarget}::stats_daily_breakdown_v1 for target learning metrics',"
+        },
+        {
+          "sourcePath": "scripts/gustav_mixed_cloud_payload_audit.ts",
+          "line": 276,
+          "snippet": "verdict: 'French learning stats are target-scoped; legacy stats_daily_breakdown_v1 remains English/global compatibility.',"
+        },
+        {
+          "sourcePath": "scripts/gustav_p1a_preflight_audit.ts",
+          "line": 101,
+          "snippet": "'stats_daily_breakdown_v1',"
+        },
+        {
+          "sourcePath": "scripts/gustav_post_p1a_readiness_projection_audit.ts",
+          "line": 136,
+          "snippet": "reason: 'P1A does not split mixed cloud payload fields for achievements_state, daily_stats, user_stats_v1 or stats_daily_breakdown_v1.',"
+        },
+        {
+          "sourcePath": "scripts/gustav_readiness_gate.ts",
+          "line": 426,
+          "snippet": "'Split achievements_state, daily_stats, user_stats_v1 and stats_daily_breakdown_v1 by global/target policy.',"
+        },
+        {
+          "sourcePath": "scripts/gustav_storage_inventory.ts",
+          "line": 808,
+          "snippet": "key === 'stats_daily_breakdown_v1' ||"
+        },
+        {
+          "sourcePath": "scripts/gustav_target_key_integration_plan.ts",
+          "line": 219,
+          "snippet": "id === 'stats_daily_breakdown_v1' ||"
+        },
+        {
+          "sourcePath": "scripts/gustav_target_key_integration_plan.ts",
+          "line": 711,
+          "snippet": "'daily_stats, user_stats_v1 and stats_daily_breakdown_v1 mix product/global and target-learning metrics.',"
+        },
+        {
+          "sourcePath": "tests/cloud_sync_daily_tasks_merge.test.ts",
+          "line": 795,
+          "snippet": "stats_daily_breakdown_v1: null,"
+        },
+        {
+          "sourcePath": "tests/cloud_sync_daily_tasks_merge.test.ts",
+          "line": 812,
+          "snippet": "stats_daily_breakdown_v1: null,"
+        },
+        {
+          "sourcePath": "tests/gustav_cloud_mixed_payload_target_stats.test.ts",
+          "line": 41,
+          "snippet": "it('keeps French stats_daily_breakdown_v1 metrics under the target bucket', async () => {"
+        },
+        {
+          "sourcePath": "tests/gustav_cloud_mixed_payload_target_stats.test.ts",
+          "line": 45,
+          "snippet": "await expect(AsyncStorage.getItem('stats_daily_breakdown_v1')).resolves.toBeNull();"
+        },
+        {
+          "sourcePath": "tests/gustav_cloud_mixed_payload_target_stats.test.ts",
+          "line": 53,
+          "snippet": "it('restores French stats_daily_breakdown_v1 only into the scoped French row', async () => {"
+        },
+        {
+          "sourcePath": "tests/gustav_cloud_mixed_payload_target_stats.test.ts",
+          "line": 63,
+          "snippet": "await expect(AsyncStorage.getItem('stats_daily_breakdown_v1')).resolves.toBe('{}');"
+        }
+      ],
+      "fieldDecisions": [
+        {
+          "field": "words_learned",
+          "scope": "study_target",
+          "risk": "low",
+          "confidence": "high",
+          "reason": "Learned words are routed through statsDailyBreakdownKey(studyTarget).",
+          "targetPath": "progress/targets/{studyTarget}/words_learned",
+          "requiredBeforeFrench": []
+        },
+        {
+          "field": "flashcards_saved",
+          "scope": "study_target",
+          "risk": "low",
+          "confidence": "high",
+          "reason": "Saved flashcards can be routed through statsDailyBreakdownKey(studyTarget) when emitted by target content.",
+          "targetPath": "progress/targets/{studyTarget}/flashcards_saved",
+          "requiredBeforeFrench": []
+        },
+        {
+          "field": "phrases_learned",
+          "scope": "study_target",
+          "risk": "low",
+          "confidence": "high",
+          "reason": "Learned phrases are routed through statsDailyBreakdownKey(studyTarget).",
+          "targetPath": "progress/targets/{studyTarget}/phrases_learned",
+          "requiredBeforeFrench": []
+        },
+        {
+          "field": "quizzes_completed",
+          "scope": "study_target",
+          "risk": "low",
+          "confidence": "high",
+          "reason": "Completed quizzes are routed through statsDailyBreakdownKey(studyTarget).",
+          "targetPath": "progress/targets/{studyTarget}/quizzes_completed",
+          "requiredBeforeFrench": []
+        },
+        {
+          "field": "arena_wins",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "medium",
+          "reason": "Arena wins appear product/global unless arena content becomes target-language specific.",
+          "targetPath": "progress/global/arena_wins",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        },
+        {
+          "field": "arena_losses",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "medium",
+          "reason": "Arena losses appear product/global unless arena content becomes target-language specific.",
+          "targetPath": "progress/global/arena_losses",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        },
+        {
+          "field": "daily_tasks_claimed",
+          "scope": "study_target",
+          "risk": "low",
+          "confidence": "high",
+          "reason": "Daily task claims are routed through bumpDailyTaskClaimed(studyTarget).",
+          "targetPath": "progress/targets/{studyTarget}/daily_tasks_claimed",
+          "requiredBeforeFrench": []
+        },
+        {
+          "field": "shards_earned",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "medium",
+          "reason": "Shard balance is account-level currency, but source events should retain target attribution when generated by learning.",
+          "targetPath": "progress/global/shards_earned",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        },
+        {
+          "field": "shards_spent",
+          "scope": "global",
+          "risk": "medium",
+          "confidence": "medium",
+          "reason": "Shard spending is account-level currency.",
+          "targetPath": "progress/global/shards_spent",
+          "requiredBeforeFrench": [
+            "Confirm product decision that this field is shared across study targets."
+          ]
+        }
+      ],
+      "blockers": [],
+      "notes": [
+        "Implemented by app/stats_daily_breakdown.ts via statsDailyBreakdownKey(studyTarget); French restore merge keeps max-per-day policy per bucket."
+      ]
+    }
+  ],
+  "notes": [
+    "This audit is a field-level design pass for cloud payloads previously classified as block_unknown.",
+    "It does not authorize product migration or cloud schema changes.",
+    "French generation remains blocked while mixed payload fields lack product-approved split rules and tests."
+  ]
+}

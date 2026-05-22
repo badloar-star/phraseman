@@ -9,20 +9,26 @@
     "scheme": "phraseman",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
+    "runtimeVersion": "1.5.37",
     "updates": {
       "enabled": true,
       "url": "https://u.expo.dev/87b454d9-0384-4213-8c26-fc12162e73d2",
       "checkAutomatically": "ON_LOAD",
       "assetPatternsToBeBundled": [
         "node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/*",
-        "assets/images/icon.png",
-        "assets/images/splash-icon.png",
-        "assets/images/android-icon-foreground.png",
-        "assets/images/android-icon-monochrome.png",
-        "assets/images/favicon.png"
+        "assets/images/energy/*",
+        "assets/images/home/*",
+        "assets/images/home_menu/*",
+        "assets/images/league/league_crown.webp",
+        "assets/images/league_bonus/*",
+        "assets/images/levels/league-v4-icons/*",
+        "assets/images/levels/league-v4/*",
+        "assets/images/lesson_intro/*",
+        "assets/images/lessons/*",
+        "assets/images/level_gifts/*",
+        "assets/images/level_gift_reward_icons/*",
+        "assets/images/screen_backdrops/**/*",
+        "assets/images/shards/*"
       ]
     },
     "android": {

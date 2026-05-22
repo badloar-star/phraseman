@@ -9,6 +9,7 @@ export type OverlayKey =
   | 'levelUp'
   | 'themedAlert'
   | 'premiumCelebration'
+  | 'vipCelebration'
   | 'leagueResult'
   | 'streakRevive'
   | 'lessonCompleteNotif'
@@ -34,6 +35,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'levelUp',
   'themedAlert',
   'premiumCelebration',
+  'vipCelebration',
   'leagueResult',
   'streakRevive',
   'lessonCompleteNotif',
@@ -58,6 +60,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   levelUp: false,
   themedAlert: false,
   premiumCelebration: false,
+  vipCelebration: false,
   leagueResult: false,
   streakRevive: false,
   lessonCompleteNotif: false,

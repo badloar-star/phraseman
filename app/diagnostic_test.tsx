@@ -15,6 +15,7 @@ import {
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useEnergy } from '../components/EnergyContext';
@@ -31,19 +32,21 @@ import { useEffectivePlatformOS } from './platform_ui_preview';
 import { awardOneTime } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
-import { triLang, type Lang } from '../constants/i18n';
+import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { loadExamReadinessSnapshot, type ExamReadinessSnapshot, EXAM_LESSON_DONE_THRESHOLD } from './exam_readiness';
 import { trackFeatureBlocked, trackFeatureStart, trackFeatureSuccess } from './app_activity';
+import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate';
+import { diagnosticLastKey, diagnosticOpenFlagKey, lessonProgressKey } from './target_storage_keys';
+import { getHomeMenuImages } from './home_menu_icons';
 
 const TIMER_SEC = 30;
 
 function examMenuImage(themeMode: ThemeMode) {
-  return themeMode === 'minimalLight' ? require('../assets/images/levels/exam grafit.webp')
-    : themeMode === 'minimalDark' ? require('../assets/images/levels/exam fog.webp')
-    : themeMode === 'gold'   ? require('../assets/images/achievements/diagnosis.webp')
-    : themeMode === 'neon'   ? require('../assets/images/levels/exam neon.webp')
-    :                          require('../assets/images/levels/examen forest.webp');
+  if (themeMode === 'gold' || themeMode === 'minimalDark') {
+    return require('../assets/images/levels/examen forest.webp');
+  }
+  return getHomeMenuImages(themeMode).exam;
 }
 
 /** Encabezado del tipo «build»: mismo texto en pantalla y en reportes. */
@@ -123,6 +126,121 @@ function diagnosticSkillA11y(lang: Lang, kind: keyof typeof DIAGNOSTIC_SKILL_A11
   });
 }
 
+function diagnosticUiCopy(lang: Lang) {
+  return {
+    loadError: triLang(lang, {
+      ru: 'Не удалось загрузить вопросы. Попробуй позже.',
+      uk: 'Не вдалося завантажити питання. Спробуй пізніше.',
+      es: 'No se pudieron cargar las preguntas. Inténtalo más tarde.',
+      'pt-BR': 'Não foi possível carregar as perguntas. Tente novamente mais tarde.',
+      vi: 'Không thể tải câu hỏi. Hãy thử lại sau.',
+      id: 'Pertanyaan tidak dapat dimuat. Coba lagi nanti.',
+      tr: 'Sorular yüklenemedi. Daha sonra tekrar dene.',
+      pl: 'Nie udało się wczytać pytań. Spróbuj później.',
+    }),
+    back: triLang(lang, {
+      ru: 'Назад',
+      uk: 'Назад',
+      es: 'Volver',
+      'pt-BR': 'Voltar',
+      vi: 'Quay lại',
+      id: 'Kembali',
+      tr: 'Geri',
+      pl: 'Wstecz',
+    }),
+    cancel: triLang(lang, {
+      ru: 'Отменить',
+      uk: 'Відмінити',
+      es: 'Cancelar',
+      'pt-BR': 'Cancelar',
+      vi: 'Hủy',
+      id: 'Batal',
+      tr: 'İptal',
+      pl: 'Anuluj',
+    }),
+    continue: triLang(lang, {
+      ru: 'Продолжить',
+      uk: 'Далі',
+      es: 'Siguiente',
+      'pt-BR': 'Continuar',
+      vi: 'Tiếp tục',
+      id: 'Lanjutkan',
+      tr: 'Devam et',
+      pl: 'Kontynuuj',
+    }),
+    buildPlaceholder: triLang(lang, {
+      ru: 'Тапни слово снизу...',
+      uk: 'Торкнись слова нижче...',
+      es: 'Toca una palabra abajo...',
+      'pt-BR': 'Toque em uma palavra abaixo...',
+      vi: 'Chạm vào một từ bên dưới...',
+      id: 'Ketuk kata di bawah...',
+      tr: 'Aşağıdaki bir kelimeye dokun...',
+      pl: 'Dotknij słowa poniżej...',
+    }),
+    check: triLang(lang, {
+      ru: 'Проверить',
+      uk: 'Перевірити',
+      es: 'Comprobar',
+      'pt-BR': 'Verificar',
+      vi: 'Kiểm tra',
+      id: 'Periksa',
+      tr: 'Kontrol et',
+      pl: 'Sprawdź',
+    }),
+    typeHere: triLang(lang, {
+      ru: 'Введи ответ...',
+      uk: 'Введи відповідь...',
+      es: 'Escribe aquí...',
+      'pt-BR': 'Digite aqui...',
+      vi: 'Nhập câu trả lời...',
+      id: 'Ketik jawaban...',
+      tr: 'Yanıtı yaz...',
+      pl: 'Wpisz odpowiedź...',
+    }),
+    correctAnswerPrefix: triLang(lang, {
+      ru: 'Правильный ответ',
+      uk: 'Правильна відповідь',
+      es: 'Respuesta correcta',
+      'pt-BR': 'Resposta correta',
+      vi: 'Đáp án đúng',
+      id: 'Jawaban benar',
+      tr: 'Doğru cevap',
+      pl: 'Poprawna odpowiedź',
+    }),
+    options: triLang(lang, {
+      ru: 'Варианты',
+      uk: 'Варіанти',
+      es: 'Opciones',
+      'pt-BR': 'Opções',
+      vi: 'Lựa chọn',
+      id: 'Pilihan',
+      tr: 'Seçenekler',
+      pl: 'Opcje',
+    }),
+    skip: triLang(lang, {
+      ru: 'Пропустить',
+      uk: 'Пропустити',
+      es: 'Omitir',
+      'pt-BR': 'Pular',
+      vi: 'Bỏ qua',
+      id: 'Lewati',
+      tr: 'Atla',
+      pl: 'Pomiń',
+    }),
+    secondSuffix: triLang(lang, {
+      ru: 'с',
+      uk: 'с',
+      es: 's',
+      'pt-BR': 's',
+      vi: ' giây',
+      id: ' dtk',
+      tr: ' sn',
+      pl: ' s',
+    }),
+  };
+}
+
 type QType = 'fill' | 'build' | 'choice4' | 'type' | 'match';
 
 interface Question {
@@ -143,6 +261,178 @@ interface Question {
   type?:   QType;
   words?:  string[];
   answer?: string;
+}
+
+const DIAGNOSTIC_PLANNED_OPTIONS: Record<string, Record<PlannedInterfaceLang, string[]>> = {
+  'What does "book" mean?': {
+    'pt-BR': ['livro', 'casa', 'mesa', 'cadeira'],
+    vi: ['sách', 'nhà', 'bàn', 'ghế'],
+    id: ['buku', 'rumah', 'meja', 'kursi'],
+    tr: ['kitap', 'ev', 'masa', 'sandalye'],
+    pl: ['książka', 'dom', 'stół', 'krzesło'],
+  },
+  'What does "water" mean?': {
+    'pt-BR': ['fogo', 'água', 'terra', 'ar'],
+    vi: ['lửa', 'nước', 'đất', 'không khí'],
+    id: ['api', 'air', 'tanah', 'udara'],
+    tr: ['ateş', 'su', 'toprak', 'hava'],
+    pl: ['ogień', 'woda', 'ziemia', 'powietrze'],
+  },
+  'What does "friend" mean?': {
+    'pt-BR': ['inimigo', 'colega', 'amigo', 'professor'],
+    vi: ['kẻ thù', 'đồng nghiệp', 'bạn', 'giáo viên'],
+    id: ['musuh', 'rekan kerja', 'teman', 'guru'],
+    tr: ['düşman', 'meslektaş', 'arkadaş', 'öğretmen'],
+    pl: ['wróg', 'kolega', 'przyjaciel', 'nauczyciel'],
+  },
+  'What does "happy" mean?': {
+    'pt-BR': ['triste', 'com raiva', 'cansado', 'feliz'],
+    vi: ['buồn', 'tức giận', 'mệt', 'hạnh phúc'],
+    id: ['sedih', 'marah', 'lelah', 'bahagia'],
+    tr: ['üzgün', 'kızgın', 'yorgun', 'mutlu'],
+    pl: ['smutny', 'zły', 'zmęczony', 'szczęśliwy'],
+  },
+  'What does "small" mean?': {
+    'pt-BR': ['grande', 'médio', 'velho', 'pequeno'],
+    vi: ['lớn', 'trung bình', 'cũ', 'nhỏ'],
+    id: ['besar', 'sedang', 'tua', 'kecil'],
+    tr: ['büyük', 'orta', 'eski', 'küçük'],
+    pl: ['duży', 'średni', 'stary', 'mały'],
+  },
+  'What does "father" mean?': {
+    'pt-BR': ['mãe', 'pai', 'irmão', 'filha'],
+    vi: ['mẹ', 'cha', 'anh/em trai', 'con gái'],
+    id: ['ibu', 'ayah', 'saudara laki-laki', 'anak perempuan'],
+    tr: ['anne', 'baba', 'erkek kardeş', 'kız evlat'],
+    pl: ['matka', 'ojciec', 'brat', 'córka'],
+  },
+  'What does "night" mean?': {
+    'pt-BR': ['manhã', 'noite', 'tarde', 'dia'],
+    vi: ['buổi sáng', 'đêm', 'buổi tối', 'ngày'],
+    id: ['pagi', 'malam', 'sore', 'hari'],
+    tr: ['sabah', 'gece', 'akşam', 'gün'],
+    pl: ['poranek', 'noc', 'wieczór', 'dzień'],
+  },
+  'What does "good" mean?': {
+    'pt-BR': ['ruim', 'bom', 'triste', 'com raiva'],
+    vi: ['xấu', 'tốt', 'buồn', 'tức giận'],
+    id: ['buruk', 'baik', 'sedih', 'marah'],
+    tr: ['kötü', 'iyi', 'üzgün', 'kızgın'],
+    pl: ['zły', 'dobry', 'smutny', 'zagniewany'],
+  },
+  'What does "dog" mean?': {
+    'pt-BR': ['cachorro', 'gato', 'cavalo', 'pássaro'],
+    vi: ['chó', 'mèo', 'ngựa', 'chim'],
+    id: ['anjing', 'kucing', 'kuda', 'burung'],
+    tr: ['köpek', 'kedi', 'at', 'kuş'],
+    pl: ['pies', 'kot', 'koń', 'ptak'],
+  },
+  'What does "window" mean?': {
+    'pt-BR': ['parede', 'porta', 'janela', 'chão'],
+    vi: ['tường', 'cửa ra vào', 'cửa sổ', 'sàn nhà'],
+    id: ['dinding', 'pintu', 'jendela', 'lantai'],
+    tr: ['duvar', 'kapı', 'pencere', 'zemin'],
+    pl: ['ściana', 'drzwi', 'okno', 'podłoga'],
+  },
+  'What does "tired" mean?': {
+    'pt-BR': ['com fome', 'alegre', 'cansado', 'com raiva'],
+    vi: ['đói', 'vui vẻ', 'mệt', 'tức giận'],
+    id: ['lapar', 'gembira', 'lelah', 'marah'],
+    tr: ['aç', 'neşeli', 'yorgun', 'kızgın'],
+    pl: ['głodny', 'radosny', 'zmęczony', 'zły'],
+  },
+  'What does "quickly" mean?': {
+    'pt-BR': ['devagar', 'em voz alta', 'em voz baixa', 'rapidamente'],
+    vi: ['chậm', 'to tiếng', 'nhỏ tiếng', 'nhanh'],
+    id: ['pelan', 'keras', 'lirih', 'cepat'],
+    tr: ['yavaşça', 'yüksek sesle', 'kısık sesle', 'hızlıca'],
+    pl: ['wolno', 'głośno', 'cicho', 'szybko'],
+  },
+  'What does "buy" mean?': {
+    'pt-BR': ['vender', 'encontrar', 'comprar', 'perder'],
+    vi: ['bán', 'tìm thấy', 'mua', 'mất'],
+    id: ['menjual', 'menemukan', 'membeli', 'kehilangan'],
+    tr: ['satmak', 'bulmak', 'satın almak', 'kaybetmek'],
+    pl: ['sprzedawać', 'znajdować', 'kupować', 'tracić'],
+  },
+  'What does "always" mean?': {
+    'pt-BR': ['nunca', 'às vezes', 'raramente', 'sempre'],
+    vi: ['không bao giờ', 'đôi khi', 'hiếm khi', 'luôn luôn'],
+    id: ['tidak pernah', 'kadang-kadang', 'jarang', 'selalu'],
+    tr: ['asla', 'bazen', 'nadiren', 'her zaman'],
+    pl: ['nigdy', 'czasami', 'rzadko', 'zawsze'],
+  },
+  'What does "late" mean?': {
+    'pt-BR': ['cedo', 'por muito tempo', 'com frequência', 'tarde'],
+    vi: ['sớm', 'lâu', 'thường xuyên', 'muộn'],
+    id: ['awal', 'lama', 'sering', 'terlambat'],
+    tr: ['erken', 'uzun süre', 'sık sık', 'geç'],
+    pl: ['wcześnie', 'długo', 'często', 'późno'],
+  },
+  'What does "loud" mean?': {
+    'pt-BR': ['baixo', 'alto/em voz alta', 'rápido', 'estreito'],
+    vi: ['nhỏ tiếng', 'to tiếng', 'nhanh', 'hẹp'],
+    id: ['pelan', 'keras/nyaring', 'cepat', 'sempit'],
+    tr: ['sessiz', 'yüksek sesli', 'hızlı', 'dar'],
+    pl: ['cicho', 'głośno', 'szybko', 'wąsko'],
+  },
+  'What does "hungry" mean?': {
+    'pt-BR': ['saciado', 'saboroso', 'com fome', 'doce'],
+    vi: ['no', 'ngon', 'đói', 'ngọt'],
+    id: ['kenyang', 'enak', 'lapar', 'manis'],
+    tr: ['tok', 'lezzetli', 'aç', 'tatlı'],
+    pl: ['syty', 'smaczny', 'głodny', 'słodki'],
+  },
+  'What does "necessary" mean?': {
+    'pt-BR': ['impossível', 'necessário/indispensável', 'desnecessário', 'fácil'],
+    vi: ['bất khả thi', 'cần thiết', 'thừa', 'dễ'],
+    id: ['mustahil', 'perlu/wajib', 'berlebihan', 'mudah'],
+    tr: ['imkânsız', 'gerekli/zorunlu', 'gereksiz', 'kolay'],
+    pl: ['niemożliwy', 'konieczny/niezbędny', 'zbędny', 'łatwy'],
+  },
+  'She has been working here for years.': {
+    'pt-BR': ['Ela trabalha aqui há anos', 'Ela trabalhava aqui há anos', 'Ela vai trabalhar aqui', 'Ela trabalharia aqui'],
+    vi: ['Cô ấy đã làm việc ở đây nhiều năm', 'Cô ấy từng làm việc ở đây nhiều năm', 'Cô ấy sẽ làm việc ở đây', 'Cô ấy sẽ làm việc ở đây nếu có điều kiện'],
+    id: ['Dia sudah bekerja di sini selama bertahun-tahun', 'Dia dulu bekerja di sini selama bertahun-tahun', 'Dia akan bekerja di sini', 'Dia akan bekerja di sini jika memungkinkan'],
+    tr: ['Yıllardır burada çalışıyor', 'Yıllarca burada çalıştı', 'Burada çalışacak', 'Burada çalışırdı'],
+    pl: ['Pracuje tu od lat', 'Pracowała tu latami', 'Będzie tu pracować', 'Pracowałaby tu'],
+  },
+  'The report must be submitted by Friday.': {
+    'pt-BR': ['O relatório pode ser entregue na sexta-feira', 'O relatório deve ser entregue até sexta-feira', 'O relatório foi entregue na sexta-feira', 'Vão entregar o relatório na sexta-feira'],
+    vi: ['Báo cáo có thể được nộp vào thứ Sáu', 'Báo cáo phải được nộp trước thứ Sáu', 'Báo cáo đã được nộp vào thứ Sáu', 'Họ sẽ nộp báo cáo vào thứ Sáu'],
+    id: ['Laporan boleh diserahkan pada hari Jumat', 'Laporan harus diserahkan sebelum hari Jumat', 'Laporan diserahkan pada hari Jumat', 'Mereka akan menyerahkan laporan pada hari Jumat'],
+    tr: ['Rapor cuma günü teslim edilebilir', 'Rapor cuma gününe kadar teslim edilmelidir', 'Rapor cuma günü teslim edildi', 'Raporu cuma günü teslim edecekler'],
+    pl: ['Raport można złożyć w piątek', 'Raport musi zostać złożony do piątku', 'Raport został złożony w piątek', 'Złożą raport w piątek'],
+  },
+  'Hardly had she arrived when they left.': {
+    'pt-BR': ['Mal ela chegou, eles foram embora', 'Ela chegou e eles foram embora', 'Ela não queria chegar', 'Eles foram embora antes de ela chegar'],
+    vi: ['Cô ấy vừa đến thì họ rời đi', 'Cô ấy đến và họ rời đi', 'Cô ấy không muốn đến', 'Họ rời đi trước khi cô ấy đến'],
+    id: ['Baru saja dia tiba, mereka pergi', 'Dia tiba dan mereka pergi', 'Dia tidak ingin datang', 'Mereka pergi sebelum dia tiba'],
+    tr: ['O gelir gelmez onlar ayrıldı', 'O geldi ve onlar ayrıldı', 'Gelmek istemedi', 'O gelmeden önce ayrıldılar'],
+    pl: ['Ledwie przybyła, a oni wyszli', 'Przybyła i oni wyszli', 'Nie chciała przyjść', 'Wyszli przed jej przybyciem'],
+  },
+  'She would rather stay home than go out.': {
+    'pt-BR': ['Ela não pode ficar em casa', 'Ela preferiria ficar em casa', 'Ela não vai para casa', 'Ela vai passear'],
+    vi: ['Cô ấy không thể ở nhà', 'Cô ấy thà ở nhà hơn', 'Cô ấy không về nhà', 'Cô ấy đi dạo'],
+    id: ['Dia tidak bisa tinggal di rumah', 'Dia lebih suka tinggal di rumah', 'Dia tidak pulang', 'Dia pergi jalan-jalan'],
+    tr: ['Evde kalamaz', 'Evde kalmayı tercih ederdi', 'Eve gitmiyor', 'Dışarı yürüyüşe çıkıyor'],
+    pl: ['Nie może zostać w domu', 'Wolałaby zostać w domu', 'Nie idzie do domu', 'Idzie na spacer'],
+  },
+};
+
+function isPlannedDiagnosticLang(lang: Lang): lang is PlannedInterfaceLang {
+  return lang === 'pt-BR' || lang === 'vi' || lang === 'id' || lang === 'tr' || lang === 'pl';
+}
+
+function diagnosticQuestionOptions(lang: Lang, q?: Question): string[] {
+  if (!q) return [];
+  if (isPlannedDiagnosticLang(lang)) {
+    return DIAGNOSTIC_PLANNED_OPTIONS[q.phrase]?.[lang] ?? q.opts;
+  }
+  let selectedOptions = q.opts;
+  if (lang === 'uk' && q.optsUK) selectedOptions = q.optsUK;
+  if (lang === 'es' && q.optsES) selectedOptions = q.optsES;
+  return selectedOptions;
 }
 
 /** Стабильный id для агрегации оценок (не зависит от порядка после shuffle). */
@@ -440,27 +730,57 @@ const LEVEL_RESULTS = [
   {min:0,  level:'A1', ru:'Начальный ориентир',    uk:'Початковий орієнтир',    es:'Nivel inicial (orientativo)', 'pt-BR':'Nível inicial (orientativo)', vi:'Mức khởi đầu (tham khảo)', id:'Level awal (orientatif)', tr:'Başlangıç seviyesi (tahmini)', pl:'Poziom początkowy (orientacyjnie)',
     msgRU:'База ещё формируется — это нормально. Двигайся по урокам: словарь, грамматика и теория дадут опору.',
     msgUK:'База ще формується — це нормально. Рухайся за уроками: словник, граматика й теорія дадуть опору.',
-    msgES:'Estás cimentando bases: es habitual. Sigue el hilo de lecciones (léxico, gramática y teoría) para afianzar.'},
+    msgES:'Estás cimentando bases: es habitual. Sigue el hilo de lecciones (léxico, gramática y teoría) para afianzar.',
+    msgPTBR:'A base ainda está se formando — isso é normal. Siga pelas aulas: vocabulário, gramática e teoria vão dar apoio.',
+    msgVI:'Nền tảng vẫn đang hình thành — điều này bình thường. Hãy học theo các bài: từ vựng, ngữ pháp và lý thuyết sẽ tạo điểm tựa.',
+    msgID:'Dasarnya masih terbentuk — itu wajar. Ikuti pelajaran: kosakata, tata bahasa, dan teori akan memberi pijakan.',
+    msgTR:'Temel hâlâ oluşuyor — bu normal. Dersleri takip et: kelime, dil bilgisi ve teori sana dayanak sağlar.',
+    msgPL:'Podstawy dopiero się układają — to normalne. Idź przez lekcje: słownictwo, gramatyka i teoria dadzą oparcie.'},
   {min:4,  level:'A2', ru:'Базовый ориентир',  uk:'Базовий орієнтир',   es:'Nivel básico (orientativo)', 'pt-BR':'Nível básico (orientativo)', vi:'Mức cơ bản (tham khảo)', id:'Level dasar (orientatif)', tr:'Temel seviye (tahmini)', pl:'Poziom podstawowy (orientacyjnie)',
     msgRU:'Структуры узнаваемы — углуби лексику и грамматику в упражнениях уроков; скорость придёт с привычкой.',
     msgUK:'Структури впізнавані — поглиб лексику й граматику в вправках уроків; швидкість з\'явиться з практикою.',
-    msgES:'Reconoces patrones: refuerza léxico y gramática en las lecciones; la rapidez mejora con la práctica habitual.'},
+    msgES:'Reconoces patrones: refuerza léxico y gramática en las lecciones; la rapidez mejora con la práctica habitual.',
+    msgPTBR:'Você já reconhece padrões: reforce vocabulário e gramática nas aulas; a velocidade vem com a prática.',
+    msgVI:'Bạn đã nhận ra các mẫu câu: hãy củng cố từ vựng và ngữ pháp trong bài học; tốc độ sẽ tăng nhờ luyện tập.',
+    msgID:'Kamu sudah mengenali pola: perkuat kosakata dan tata bahasa di pelajaran; kecepatan akan datang lewat kebiasaan.',
+    msgTR:'Kalıpları tanıyorsun: derslerde kelime ve dil bilgisini güçlendir; hız düzenli pratikle gelir.',
+    msgPL:'Rozpoznajesz już schematy: wzmacniaj słownictwo i gramatykę w lekcjach; tempo przyjdzie z praktyką.'},
   {min:8,  level:'B1', ru:'Средний ориентир',       uk:'Середній орієнтир',       es:'Intermedio (orientativo)', 'pt-BR':'Intermediário (orientativo)', vi:'Trung cấp (tham khảo)', id:'Menengah (orientatif)', tr:'Orta seviye (tahmini)', pl:'Średnio zaawansowany (orientacyjnie)',
     msgRU:'Увереннее держишь материал курса. Отмечай пробелы в темах и возвращайся к блокам «Теория» и «Словарь».',
     msgUK:'Впевненіше тримаєш матеріал курсу. Познач прогалини в темах і повертайся до «Теорії» та «Словника».',
-    msgES:'Manejas mejor el contenido del curso. Marca lagunas y repasa «Teoría» y «Vocabulario» donde haga falta.'},
+    msgES:'Manejas mejor el contenido del curso. Marca lagunas y repasa «Teoría» y «Vocabulario» donde haga falta.',
+    msgPTBR:'Você domina melhor o conteúdo do curso. Marque lacunas e revise “Teoria” e “Vocabulário” quando precisar.',
+    msgVI:'Bạn nắm nội dung khóa học chắc hơn. Hãy ghi lại lỗ hổng và quay lại phần “Lý thuyết” và “Từ vựng” khi cần.',
+    msgID:'Kamu makin mantap dengan materi kursus. Tandai celah dan ulangi “Teori” serta “Kosakata” saat perlu.',
+    msgTR:'Kurs içeriğini daha sağlam tutuyorsun. Eksik konuları işaretle ve gerektiğinde “Teori” ile “Kelime” bölümlerine dön.',
+    msgPL:'Coraz pewniej trzymasz materiał kursu. Zaznacz luki i wracaj do sekcji „Teoria” oraz „Słownictwo”.'},
   {min:12, level:'B2', ru:'Выше среднего', uk:'Вище середнього', es:'Intermedio alto (orientativo)', 'pt-BR':'Intermediário alto (orientativo)', vi:'Trung cấp cao (tham khảo)', id:'Menengah atas (orientatif)', tr:'Üst orta seviye (tahmini)', pl:'Wyższy średni (orientacyjnie)',
     msgRU:'Сильный результат в формате теста — не про «талант», а про накопленную практику. Закрепляй слабые темы.',
     msgUK:'Сильний результат у форматі тесту — це про практику, не про «здібності». Закріплюй слабкі теми.',
-    msgES:'Muy buen resultado en este formato: refleja práctica acumulada, no «capacidad». Refuerza temas flojos.'},
+    msgES:'Muy buen resultado en este formato: refleja práctica acumulada, no «capacidad». Refuerza temas flojos.',
+    msgPTBR:'Resultado forte neste formato: é prática acumulada, não “talento”. Reforce os temas mais fracos.',
+    msgVI:'Kết quả tốt trong dạng bài này: đó là nhờ luyện tập tích lũy, không phải “năng khiếu”. Hãy củng cố các chủ đề yếu.',
+    msgID:'Hasil yang kuat untuk format tes ini: ini soal latihan yang terkumpul, bukan “bakat”. Perkuat topik yang masih lemah.',
+    msgTR:'Bu test formatında güçlü sonuç: bu “yetenek” değil, birikmiş pratik. Zayıf konuları pekiştir.',
+    msgPL:'Mocny wynik w tym formacie: to efekt zebranej praktyki, nie „talentu”. Utrwal słabsze tematy.'},
   {min:16, level:'C1', ru:'Продвинутый ориентир',   uk:'Просунутий орієнтир',     es:'Avanzado (orientativo)', 'pt-BR':'Avançado (orientativo)', vi:'Nâng cao (tham khảo)', id:'Mahir (orientatif)', tr:'İleri seviye (tahmini)', pl:'Zaawansowany (orientacyjnie)',
     msgRU:'Высокий балл по заданиям приложения — продолжай полировать детали через уроки и повторение.',
     msgUK:'Високий бал за завдання застосунку — продовжуй шліфувати деталі через уроки й повторення.',
-    msgES:'Puntuación alta en el formato de la app: sigue puliendo matices con lecciones y repaso.'},
+    msgES:'Puntuación alta en el formato de la app: sigue puliendo matices con lecciones y repaso.',
+    msgPTBR:'Pontuação alta no formato do app: continue lapidando detalhes com aulas e revisão.',
+    msgVI:'Điểm cao trong định dạng của ứng dụng: hãy tiếp tục mài giũa chi tiết qua bài học và ôn tập.',
+    msgID:'Skor tinggi dalam format aplikasi: terus poles detail lewat pelajaran dan pengulangan.',
+    msgTR:'Uygulama formatında yüksek puan: dersler ve tekrarlarla ayrıntıları parlatmaya devam et.',
+    msgPL:'Wysoki wynik w formacie aplikacji: dalej dopracowuj szczegóły przez lekcje i powtórki.'},
   {min:20, level:'C2', ru:'Максимум в тесте', uk:'Максимум у тесті', es:'Tope en este test', 'pt-BR':'Máximo neste teste', vi:'Tối đa trong bài kiểm tra này', id:'Maksimum di tes ini', tr:'Bu testte maksimum', pl:'Maksimum w tym teście',
     msgRU:'Все задания верны — отличный ориентир. Закрепи результат регулярными повторениями уроков.',
     msgUK:'Усі завдання вірні — чудовий орієнтир. Закріпи результат регулярним повторенням уроків.',
-    msgES:'Pleno en este formato: mantén el nivel con repaso habitual en las lecciones.'},
+    msgES:'Pleno en este formato: mantén el nivel con repaso habitual en las lecciones.',
+    msgPTBR:'Você acertou tudo neste formato: mantenha o nível com revisão regular nas aulas.',
+    msgVI:'Bạn làm đúng toàn bộ trong định dạng này: hãy giữ phong độ bằng cách ôn bài đều đặn.',
+    msgID:'Semuanya benar dalam format ini: pertahankan level dengan pengulangan rutin di pelajaran.',
+    msgTR:'Bu formatta tüm sorular doğru: derslerde düzenli tekrar yaparak seviyeyi koru.',
+    msgPL:'Wszystkie zadania poprawne w tym formacie: utrzymaj poziom regularnymi powtórkami lekcji.'},
 ];
 
 // CHANGELOG v2: Level-based scoring — level = highest consecutive level with ≥3/4 correct.
@@ -481,6 +801,45 @@ const getResult = (score: number, qs?: Question[], ans?: boolean[]) => {
   return [...LEVEL_RESULTS].reverse().find(r => score >= r.min) || LEVEL_RESULTS[0];
 };
 
+function diagnosticResultTitle(lang: Lang, result: (typeof LEVEL_RESULTS)[number]): string {
+  return triLang(lang, {
+    ru: result.ru,
+    uk: result.uk,
+    es: result.es,
+    'pt-BR': result['pt-BR'],
+    vi: result.vi,
+    id: result.id,
+    tr: result.tr,
+    pl: result.pl,
+  });
+}
+
+function diagnosticResultMessage(lang: Lang, result: (typeof LEVEL_RESULTS)[number]): string {
+  return triLang(lang, {
+    ru: result.msgRU,
+    uk: result.msgUK,
+    es: result.msgES,
+    'pt-BR': result.msgPTBR,
+    vi: result.msgVI,
+    id: result.msgID,
+    tr: result.msgTR,
+    pl: result.msgPL,
+  });
+}
+
+function diagnosticDateLocale(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'ru-RU',
+    uk: 'uk-UA',
+    es: 'es-ES',
+    'pt-BR': 'pt-BR',
+    vi: 'vi-VN',
+    id: 'id-ID',
+    tr: 'tr-TR',
+    pl: 'pl-PL',
+  });
+}
+
 // Pick 20 questions: 4×A1, 4×A2, 4×B1, 4×B2, 4×C1 — mix of types
 const pickQuestions = () => {
   const result: Question[] = [];
@@ -493,6 +852,55 @@ const pickQuestions = () => {
 
 type Phase = 'intro' | 'quiz' | 'result';
 
+function FrenchDiagnosticUnavailable({
+  lang,
+  onBack,
+  onLessons,
+  sx,
+  t,
+  f,
+}: {
+  lang: string;
+  onBack: () => void;
+  onLessons: () => void;
+  sx: ReturnType<typeof screenTextOnGradient>;
+  t: ReturnType<typeof useTheme>['theme'];
+  f: ReturnType<typeof useTheme>['f'];
+}) {
+  const copy = frenchDiagnosticGateCopy(lang);
+  return (
+    <ScreenGradient artBackdrop="diagnosticTest">
+      <SafeAreaView style={{ flex: 1 }}>
+        <ContentWrap>
+          <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+            <TouchableOpacity onPress={onBack}>
+              <Ionicons name="chevron-back" size={28} color={sx.primary} />
+            </TouchableOpacity>
+          </View>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 28 }}>
+            <View style={{ width: 88, height: 88, borderRadius: 44, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
+              <Ionicons name="shield-checkmark-outline" size={40} color={t.textSecond} />
+            </View>
+            <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
+              {copy.title}
+            </Text>
+            <Text style={{ color: sx.muted, fontSize: f.bodyLg, lineHeight: 25, textAlign: 'center', marginBottom: 26 }}>
+              {copy.body}
+            </Text>
+            <TouchableOpacity
+              activeOpacity={0.86}
+              onPress={onLessons}
+              style={{ backgroundColor: t.bgSurface, borderWidth: 0.5, borderColor: t.border, borderRadius: 16, paddingHorizontal: 22, paddingVertical: 14 }}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{copy.cta}</Text>
+            </TouchableOpacity>
+          </View>
+        </ContentWrap>
+      </SafeAreaView>
+    </ScreenGradient>
+  );
+}
+
 export default function DiagnosticTest() {
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
@@ -502,13 +910,14 @@ export default function DiagnosticTest() {
   const insets = useSafeAreaInsets();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang, s } = useLang();
-  const isUK = lang === 'uk';
-  const isES = lang === 'es';
+  const { studyTarget } = useStudyTarget();
+  const frenchDiagnosticBlocked = !diagnosticContentAvailableForTarget(studyTarget);
+  const diagnosticUi = useMemo(() => diagnosticUiCopy(lang), [lang]);
   const { isUnlimited, spendOne } = useEnergy();
   const [noEnergy, setNoEnergy] = useState(false);
 
   const [phase,       setPhase]    = useState<Phase>('intro');
-  const [questions]                = useState(pickQuestions);
+  const [questions, setQuestions]  = useState<Question[]>(() => (frenchDiagnosticBlocked ? [] : pickQuestions()));
   const [idx,         setIdx]      = useState(0);
   const [score,       setScore]    = useState(0);
   const [chosen,      setChosen]   = useState<number | null>(null);
@@ -541,6 +950,10 @@ export default function DiagnosticTest() {
 
   const tryStartDiagnosticQuiz = async () => {
     hapticTap();
+    if (frenchDiagnosticBlocked) {
+      void trackFeatureBlocked('diagnostic', 'start', 'french_diagnostic_source_gate', { studyTarget }, 'diagnostic_test');
+      return;
+    }
     void trackFeatureStart('diagnostic', 'start', { total: questions.length }, 'diagnostic_test');
     if (!isUnlimited) {
       const ok = await spendOne();
@@ -556,6 +969,10 @@ export default function DiagnosticTest() {
 
   const tryRestartDiagnosticQuiz = async () => {
     hapticTap();
+    if (frenchDiagnosticBlocked) {
+      void trackFeatureBlocked('diagnostic', 'restart', 'french_diagnostic_source_gate', { studyTarget }, 'diagnostic_test');
+      return;
+    }
     void trackFeatureStart('diagnostic', 'restart', { total: questions.length }, 'diagnostic_test');
     if (!isUnlimited) {
       const ok = await spendOne();
@@ -576,7 +993,7 @@ export default function DiagnosticTest() {
 
   const loadDiagnosticLast = useCallback(async () => {
     try {
-      const v = await AsyncStorage.getItem('diagnostic_last');
+      const v = await AsyncStorage.getItem(diagnosticLastKey(studyTarget));
       if (!v) {
         setPrev(null);
         return;
@@ -594,7 +1011,16 @@ export default function DiagnosticTest() {
     } catch {
       setPrev(null);
     }
-  }, []);
+  }, [studyTarget]);
+
+  useEffect(() => {
+    if (frenchDiagnosticBlocked) {
+      setQuestions([]);
+      setPhase('intro');
+      return;
+    }
+    setQuestions((current) => (current.length > 0 ? current : pickQuestions()));
+  }, [frenchDiagnosticBlocked]);
 
   useEffect(() => {
     AsyncStorage.getItem('user_name').then(n => { if (n) userNameRef.current = n; });
@@ -606,7 +1032,7 @@ export default function DiagnosticTest() {
   }, [loadDiagnosticLast]);
 
   const loadExamLessonsDone = useCallback(async () => {
-    const lessonKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`);
+    const lessonKeys = Array.from({ length: 32 }, (_, i) => lessonProgressKey(i + 1, studyTarget));
     const lessonEntries = await AsyncStorage.multiGet(lessonKeys);
     let done = 0;
     for (const [, saved] of lessonEntries) {
@@ -618,16 +1044,16 @@ export default function DiagnosticTest() {
       } catch { /* skip corrupt */ }
     }
     setExamLessonsDone(done);
-  }, []);
+  }, [studyTarget]);
 
   const loadExamReadiness = useCallback(async () => {
     try {
-      const snap = await loadExamReadinessSnapshot();
+      const snap = await loadExamReadinessSnapshot(studyTarget);
       setExamReadiness(snap);
     } catch {
       /* keep previous */
     }
-  }, []);
+  }, [studyTarget]);
 
   useFocusEffect(
     useCallback(() => {
@@ -673,12 +1099,15 @@ export default function DiagnosticTest() {
       const lastPayload = {
         score: newScore,
         level: res.level,
-        date: new Date().toLocaleDateString(isES ? 'es-ES' : isUK ? 'uk-UA' : 'ru-RU'),
+        date: new Date().toLocaleDateString(diagnosticDateLocale(lang)),
       };
-      void AsyncStorage.setItem('diagnostic_last', JSON.stringify(lastPayload));
+      void AsyncStorage.setItem(diagnosticLastKey(studyTarget), JSON.stringify(lastPayload));
       setPrev(lastPayload);
-      checkAchievements({ type: 'diagnosis' }).catch(() => {});
-      updateMultipleTaskProgress([{ type: 'diagnostic_complete', increment: 1 }]).catch(() => {});
+      checkAchievements({ type: 'diagnosis', studyTarget }).catch(() => {});
+      updateMultipleTaskProgress(
+        [{ type: 'diagnostic_complete', increment: 1 }],
+        { studyTarget },
+      ).catch(() => {});
       awardOneTime('diagnostic_test').catch(() => {});
       void trackFeatureSuccess('diagnostic', 'complete', {
         score: newScore,
@@ -710,7 +1139,7 @@ export default function DiagnosticTest() {
     stopQuestionTimer();
     answersRef.current = [...answersRef.current, false];
     const qq = questions[idx];
-    if (qq) void recordMistakeFromDiagnostic(qq);
+    if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
     if (hapticsOn) void hapticError();
     advance(score);
   };
@@ -722,7 +1151,7 @@ export default function DiagnosticTest() {
     setChosen(-1);
     answersRef.current = [...answersRef.current, false];
     const qq = questions[idx];
-    if (qq) void recordMistakeFromDiagnostic(qq);
+    if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
     setTimeout(() => advance(score), 900);
   };
   handleSkipRef.current = handleSkip;
@@ -751,7 +1180,7 @@ export default function DiagnosticTest() {
     }
     if (!isRight) {
       const qq = questions[idx];
-      if (qq) void recordMistakeFromDiagnostic(qq);
+      if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
     }
     if (autoAdvance) setTimeout(() => advance(ns), 1500);
   };
@@ -777,7 +1206,7 @@ export default function DiagnosticTest() {
     }
     if (!isRight) {
       const qq = questions[idx];
-      if (qq) void recordMistakeFromDiagnostic(qq);
+      if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
     }
     if (autoAdvance) setTimeout(() => advance(ns), 1500);
   };
@@ -802,13 +1231,26 @@ export default function DiagnosticTest() {
     }
     if (!isRight) {
       const qq = questions[idx];
-      if (qq) void recordMistakeFromDiagnostic(qq);
+      if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
     }
     if (autoAdvance) setTimeout(() => advance(ns), 1500);
   };
 
+  if (frenchDiagnosticBlocked) {
+    return (
+      <FrenchDiagnosticUnavailable
+        lang={lang}
+        onBack={() => router.back()}
+        onLessons={() => router.replace('/(tabs)/lessons' as any)}
+        sx={sx}
+        t={t}
+        f={f}
+      />
+    );
+  }
+
   const q = questions[idx] ?? questions[0];
-  const qOpts = (lang === 'uk' && q?.optsUK) ? q.optsUK : (lang === 'es' && q?.optsES) ? q.optsES : q?.opts ?? [];
+  const qOpts = diagnosticQuestionOptions(lang, q);
   const result = getResult(score, questions, answersRef.current);
 
   if (phase === 'quiz' && (!q || questions.length === 0)) {
@@ -818,15 +1260,11 @@ export default function DiagnosticTest() {
           <ContentWrap>
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
               <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center' }}>
-                {isES
-                  ? 'No se pudieron cargar las preguntas. Inténtalo más tarde.'
-                  : isUK
-                    ? 'Не вдалося завантажити питання. Спробуй пізніше.'
-                    : 'Не удалось загрузить вопросы. Попробуй позже.'}
+                {diagnosticUi.loadError}
               </Text>
               <TouchableOpacity onPress={() => router.back()} style={{ marginTop: 20 }}>
                 <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '700' }}>
-                  {isES ? 'Volver' : isUK ? 'Назад' : 'Назад'}
+                  {diagnosticUi.back}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -862,9 +1300,7 @@ export default function DiagnosticTest() {
               {s.diagnostic.prevResult}
             </Text>
             <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }} adjustsFontSizeToFit numberOfLines={2}>
-              {prevResult.level} — {(LEVEL_RESULTS.find(r => r.level === prevResult.level) ?? LEVEL_RESULTS[0])[
-                isES ? 'es' : isUK ? 'uk' : 'ru'
-              ]}
+              {prevResult.level} — {diagnosticResultTitle(lang, LEVEL_RESULTS.find(r => r.level === prevResult.level) ?? LEVEL_RESULTS[0])}
             </Text>
             <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 10 }}>
               {s.diagnostic.correct}: {prevResult.score} / {questions.length}
@@ -995,9 +1431,7 @@ export default function DiagnosticTest() {
           </Text>
           {prevResult ? (
             <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700', marginTop: 12, lineHeight: 26 }} adjustsFontSizeToFit numberOfLines={3}>
-              {prevResult.level} — {(LEVEL_RESULTS.find(r => r.level === prevResult.level) ?? LEVEL_RESULTS[0])[
-                isES ? 'es' : isUK ? 'uk' : 'ru'
-              ]}
+              {prevResult.level} — {diagnosticResultTitle(lang, LEVEL_RESULTS.find(r => r.level === prevResult.level) ?? LEVEL_RESULTS[0])}
             </Text>
           ) : (
             <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: 'bold', marginTop: 10, lineHeight: 24 }}>
@@ -1029,10 +1463,10 @@ export default function DiagnosticTest() {
         </Text>
         <Text style={{ color: sx.primary, fontSize: f.numLg + 16, fontWeight: '700' }} adjustsFontSizeToFit numberOfLines={1}>{result.level}</Text>
         <Text style={{ color: sx.second, fontSize: f.h1, fontWeight: '600', marginTop: 4 }}>
-          {isES ? result.es : isUK ? result.uk : result.ru}
+          {diagnosticResultTitle(lang, result)}
         </Text>
         <Text style={{ color: sx.second, fontSize: f.body, textAlign: 'center', marginTop: 16, lineHeight: 24, marginBottom: 28 }}>
-          {isES ? result.msgES : isUK ? result.msgUK : result.msgRU}
+          {diagnosticResultMessage(lang, result)}
         </Text>
         <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 20, borderWidth: 0.5, borderColor: t.border, width: '100%', alignItems: 'center', marginBottom: 16 }}>
           <Text style={{ color: t.textSecond, fontSize: f.caption, marginBottom: 6 }}>
@@ -1073,8 +1507,8 @@ export default function DiagnosticTest() {
   const isBuilding = q.type === 'build';
   const isAnswered = chosen !== null || typeSubmitted || buildSubmitted;
   const correctAnswer = isTyping ? (q?.answer || q?.opts?.[q.correct] || '') : '';
-  const continueA11yLabel = isES ? s.lesson.next : isUK ? 'Далі' : 'Продолжить';
-  const continueButtonLabel = isES ? `${s.lesson.next} →` : isUK ? 'Далі →' : 'Продолжить →';
+  const continueA11yLabel = diagnosticUi.continue;
+  const continueButtonLabel = `${diagnosticUi.continue} →`;
 
   return (
     <ScreenGradient artBackdrop="diagnosticTest">
@@ -1083,9 +1517,9 @@ export default function DiagnosticTest() {
         <ContentWrap>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15 }}>
           {isFromOnboarding ? (
-            <TouchableOpacity onPress={() => { AsyncStorage.removeItem('open_diagnostic'); router.replace('/(tabs)' as any); }} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+            <TouchableOpacity onPress={() => { AsyncStorage.removeItem(diagnosticOpenFlagKey(studyTarget)); router.replace('/(tabs)' as any); }} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
               <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '600' }}>
-                {isES ? s.settings.cancel : isUK ? 'Відмінити' : 'Отменить'}
+                {diagnosticUi.cancel}
               </Text>
             </TouchableOpacity>
           ) : (
@@ -1108,7 +1542,7 @@ export default function DiagnosticTest() {
           }} />
         </View>
         <Text style={{ color: sx.second, fontSize: f.label, textAlign: 'right', marginRight: 16, marginBottom: 12 }}>
-          {isAnswered ? '—' : isES ? `${timeLeft}s` : `${timeLeft}с`}
+          {isAnswered ? '—' : `${timeLeft}${diagnosticUi.secondSuffix}`}
         </Text>
 
         <ScrollView
@@ -1181,7 +1615,7 @@ export default function DiagnosticTest() {
               }}>
                 {buildSelected.length === 0 ? (
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontStyle: 'italic', alignSelf: 'center' }}>
-                    {isES ? 'Toca una palabra abajo...' : isUK ? 'Торкнись слова нижче...' : 'Тапни слово снизу...'}
+                    {diagnosticUi.buildPlaceholder}
                   </Text>
                 ) : (
                   buildSelected.map((word, wi) => (
@@ -1235,7 +1669,7 @@ export default function DiagnosticTest() {
                   activeOpacity={0.8}
                 >
                   <Text style={{ color: buildSelected.length > 0 ? t.textPrimary : t.textMuted, fontSize: f.body, fontWeight: '600' }}>
-                    {isES ? s.lesson.check : isUK ? 'Перевірити' : 'Проверить'}
+                    {diagnosticUi.check}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -1253,7 +1687,7 @@ export default function DiagnosticTest() {
                 <TextInput
                   ref={inputRef}
                   style={{ flex: 1, padding: 16, fontSize: f.h2, color: t.textPrimary, fontWeight: '500' }}
-                  placeholder={isES ? s.lesson.typeHere : isUK ? 'Введи відповідь...' : 'Введи ответ...'}
+                  placeholder={diagnosticUi.typeHere}
                   placeholderTextColor={t.textSecond}
                   value={typedAnswer}
                   onChangeText={setTypedAnswer}
@@ -1274,7 +1708,7 @@ export default function DiagnosticTest() {
               </View>
               {typeSubmitted && chosen !== q.correct && (
                 <Text style={{ color: t.correct, fontSize: f.sub, marginTop: 8, marginLeft: 4 }}>
-                  {isES ? `✓ Respuesta correcta: ${correctAnswer}` : isUK ? `✓ Правильна відповідь: ${correctAnswer}` : `✓ Правильный ответ: ${correctAnswer}`}
+                  ✓ {diagnosticUi.correctAnswerPrefix}: {correctAnswer}
                 </Text>
               )}
             </View>
@@ -1313,11 +1747,10 @@ export default function DiagnosticTest() {
                   q.type === 'build'
                     ? `${diagnosticBuildHeader(lang)} — ${diagnosticQuestionHint(lang, q)}`
                     : `Q: ${q.phrase}`;
-                const optsForReport =
-                  lang === 'uk' && q.optsUK ? q.optsUK : lang === 'es' && q.optsES ? q.optsES : q.opts ?? [];
+                const optsForReport = diagnosticQuestionOptions(lang, q);
                 return [
                   qSummary,
-                  `${isES ? 'Opciones' : isUK ? 'Варіанти' : 'Варианты'}: ${optsForReport.map((o: string, i: number) => i === q.correct ? `[✓${o}]` : o).join(' | ')}`,
+                  `${diagnosticUi.options}: ${optsForReport.map((o: string, i: number) => i === q.correct ? `[✓${o}]` : o).join(' | ')}`,
                 ].join('\n');
               })()}
               style={{ alignSelf: 'flex-end', paddingHorizontal: 16 }}
@@ -1333,7 +1766,7 @@ export default function DiagnosticTest() {
               activeOpacity={0.5}
             >
               <Text style={{ color: sx.muted, fontSize: f.body }}>
-                {isES ? 'Omitir' : isUK ? 'Пропустити' : 'Пропустить'}
+                {diagnosticUi.skip}
               </Text>
             </TouchableOpacity>
           )}
@@ -1349,7 +1782,6 @@ export default function DiagnosticTest() {
               paddingBottom: Math.max(12, insets.bottom + 12),
               borderTopWidth: 1,
               borderTopColor: t.border,
-              backgroundColor: t.bgPrimary,
             }}
           >
             <TouchableOpacity

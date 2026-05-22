@@ -11,6 +11,7 @@ import {
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { hapticTap } from '../hooks/use-haptics';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -20,6 +21,7 @@ import { buildCloudReferralInviteShare } from './referral_invite_share';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
 import { useEffectivePlatformOS } from './platform_ui_preview';
+import type { Lang } from '../constants/i18n';
 
 const REFEREE_BONUS = 15;
 const REFERRER_BONUS = 20;
@@ -90,9 +92,104 @@ const COPY = {
     needAuth:
       'Entra con Google o Apple para que el enlace registre la invitación y ambos reciban la bonificación.',
   },
+  'pt-BR': {
+    title: 'Convidar amigo',
+    heroTitle: 'Chame um amigo —\nbônus para os dois',
+    heroSub: 'Phraseman fica melhor com amigos. E vocês dois ainda ganham fragmentos de conhecimento.',
+    stepsTitle: 'Como funciona',
+    step1Title: 'Envie seu link',
+    step1Body: 'Compartilhe o convite em qualquer mensageiro. Seu amigo pode abrir o link e instalar o Phraseman.',
+    step2Title: 'Seu amigo conclui a primeira lição',
+    step2Body: 'Ele precisa instalar o Phraseman pelo seu link e terminar a lição 1 com pelo menos bronze.',
+    step2TitleIos: 'Seu amigo digita seu código',
+    step2BodyIos: 'Na aba "Amigos", ele digita seu código pessoal. Depois, termina a lição 1 com pelo menos bronze.',
+    step3Title: 'Bônus para os dois',
+    step3Body: `Você +${REFERRER_BONUS} fragmentos de conhecimento, seu amigo +${REFEREE_BONUS}. O crédito é automático assim que a lição conta.`,
+    smallPrint: `O bônus é concedido uma vez para cada novo amigo. Por mês, você pode receber recompensa por no máximo ${MONTHLY_LIMIT} convites.`,
+    cta: 'Enviar convite',
+    preparing: '',
+    needAuthTitle: 'Login necessário',
+    needAuth: 'Entre com Google ou Apple para que o link registre o convite e vocês dois recebam os bônus.',
+  },
+  vi: {
+    title: 'Mời bạn bè',
+    heroTitle: 'Mời bạn —\ncả hai cùng nhận thưởng',
+    heroSub: 'Phraseman vui hơn khi học cùng bạn bè. Và cả hai sẽ nhận mảnh kiến thức.',
+    stepsTitle: 'Cách hoạt động',
+    step1Title: 'Gửi liên kết của bạn',
+    step1Body: 'Chia sẻ lời mời qua bất kỳ ứng dụng nhắn tin nào. Bạn của bạn có thể mở liên kết và cài Phraseman.',
+    step2Title: 'Bạn của bạn hoàn thành bài 1',
+    step2Body: 'Người đó cần cài Phraseman từ liên kết của bạn và hoàn thành bài 1 ít nhất mức đồng.',
+    step2TitleIos: 'Bạn của bạn nhập mã',
+    step2BodyIos: 'Trong tab "Bạn bè", người đó nhập mã cá nhân của bạn. Sau đó hoàn thành bài 1 ít nhất mức đồng.',
+    step3Title: 'Thưởng cho cả hai',
+    step3Body: `Bạn +${REFERRER_BONUS} mảnh kiến thức, bạn của bạn +${REFEREE_BONUS}. Tự động cộng khi bài học được tính.`,
+    smallPrint: `Thưởng chỉ được cộng một lần cho mỗi bạn mới. Mỗi tháng tối đa ${MONTHLY_LIMIT} lời mời có thưởng.`,
+    cta: 'Gửi lời mời',
+    preparing: '',
+    needAuthTitle: 'Cần đăng nhập',
+    needAuth: 'Đăng nhập bằng Google hoặc Apple để liên kết ghi nhận lời mời và cả hai nhận thưởng.',
+  },
+  'id': {
+    title: 'Undang teman',
+    heroTitle: 'Ajak teman —\nkeduanya dapat bonus',
+    heroSub: 'Phraseman lebih seru bersama teman. Kalian berdua juga mendapat shard pengetahuan.',
+    stepsTitle: 'Cara kerjanya',
+    step1Title: 'Kirim tautanmu',
+    step1Body: 'Bagikan undangan lewat aplikasi pesan apa pun. Temanmu bisa membuka tautan dan memasang Phraseman.',
+    step2Title: 'Teman menyelesaikan pelajaran pertama',
+    step2Body: 'Ia perlu memasang Phraseman dari tautanmu dan menyelesaikan pelajaran 1 minimal perunggu.',
+    step2TitleIos: 'Teman memasukkan kodemu',
+    step2BodyIos: 'Di tab "Teman", ia memasukkan kode pribadimu. Setelah itu menyelesaikan pelajaran 1 minimal perunggu.',
+    step3Title: 'Bonus untuk berdua',
+    step3Body: `Kamu +${REFERRER_BONUS} shard pengetahuan, temanmu +${REFEREE_BONUS}. Otomatis masuk setelah pelajaran tercatat.`,
+    smallPrint: `Bonus diberikan satu kali untuk setiap teman baru. Per bulan maksimal ${MONTHLY_LIMIT} undangan berhadiah.`,
+    cta: 'Kirim undangan',
+    preparing: '',
+    needAuthTitle: 'Perlu masuk',
+    needAuth: 'Masuk dengan Google atau Apple agar tautan mencatat undangan dan kalian berdua mendapat bonus.',
+  },
+  tr: {
+    title: 'Arkadaş davet et',
+    heroTitle: 'Arkadaşını çağır —\nikiniz de bonus alın',
+    heroSub: 'Phraseman arkadaşlarla daha eğlenceli. Ayrıca ikinize de bilgi parçaları veririz.',
+    stepsTitle: 'Nasıl çalışır',
+    step1Title: 'Bağlantını gönder',
+    step1Body: 'Davetini herhangi bir mesajlaşma uygulamasında paylaş. Arkadaşın bağlantıyı açıp Phraseman’i kurabilir.',
+    step2Title: 'Arkadaşın ilk dersi bitirir',
+    step2Body: 'Phraseman’i senin bağlantından kurup 1. dersi en az bronz seviyede bitirmesi gerekir.',
+    step2TitleIos: 'Arkadaşın kodunu girer',
+    step2BodyIos: '"Arkadaşlar" sekmesinde kişisel kodunu girer. Sonra 1. dersi en az bronz seviyede bitirir.',
+    step3Title: 'Bonus ikinize de gelir',
+    step3Body: `Sana +${REFERRER_BONUS} bilgi parçası, arkadaşına +${REFEREE_BONUS}. Ders sayıldığı anda otomatik yüklenir.`,
+    smallPrint: `Bonus her yeni arkadaş için bir kez verilir. Ayda en fazla ${MONTHLY_LIMIT} davet için ödül alınabilir.`,
+    cta: 'Davet gönder',
+    preparing: '',
+    needAuthTitle: 'Giriş gerekli',
+    needAuth: 'Bağlantının daveti sayması ve ikinizin de bonus alması için Google veya Apple ile giriş yap.',
+  },
+  pl: {
+    title: 'Zaproś znajomego',
+    heroTitle: 'Zaproś znajomego —\nbonus dla was obojga',
+    heroSub: 'Phraseman jest ciekawszy ze znajomymi. Do tego oboje dostaniecie odłamki wiedzy.',
+    stepsTitle: 'Jak to działa',
+    step1Title: 'Wyślij swój link',
+    step1Body: 'Udostępnij zaproszenie w dowolnym komunikatorze. Znajomy otworzy link i zainstaluje Phraseman.',
+    step2Title: 'Znajomy kończy pierwszą lekcję',
+    step2Body: 'Musi zainstalować Phraseman z twojego linku i ukończyć lekcję 1 co najmniej na brąz.',
+    step2TitleIos: 'Znajomy wpisuje twój kod',
+    step2BodyIos: 'W zakładce "Znajomi" wpisuje twój osobisty kod. Potem kończy lekcję 1 co najmniej na brąz.',
+    step3Title: 'Bonus dla obojga',
+    step3Body: `Ty +${REFERRER_BONUS} odłamków wiedzy, znajomy +${REFEREE_BONUS}. Naliczane automatycznie, gdy lekcja zostanie zaliczona.`,
+    smallPrint: `Bonus przysługuje raz za każdego nowego znajomego. Miesięcznie możesz otrzymać nagrodę maksymalnie za ${MONTHLY_LIMIT} zaproszeń.`,
+    cta: 'Wyślij zaproszenie',
+    preparing: '',
+    needAuthTitle: 'Wymagane logowanie',
+    needAuth: 'Zaloguj się przez Google lub Apple, aby link zapisał zaproszenie i oboje otrzymacie bonusy.',
+  },
 };
 
-const FALLBACK_BODIES_RU = [
+const OFFLINE_SHARE_BODIES_RU = [
   `Хватит смотреть мемы, пошли учить английский в Phraseman! Со мной ты хотя бы поймёшь, о чём шутят в оригинале. 🔥 ${STORE_URL}`,
   `Нашёл Phraseman — это как фитнес для мозга, только без одышки. Залетай, будем тупить вместе (но на английском)! 🧠🚀 ${STORE_URL}`,
   `Секретный ингредиент моего английского — Phraseman. Дарю ссылку, пока я не стал слишком умным для этой компании. 😉 ${STORE_URL}`,
@@ -103,7 +200,7 @@ const FALLBACK_BODIES_RU = [
   `Хочешь зарабатывать больше? Учи английский! Phraseman — самый кайфовый способ это сделать. Проверено! 📈✨ ${STORE_URL}`,
 ];
 
-const FALLBACK_BODIES_UK = [
+const OFFLINE_SHARE_BODIES_UK = [
   `Досить дивитися меми, ходімо вчити англійську у Phraseman! Зі мною ти хоча б зрозумієш, про що жартують в оригіналі. 🔥 ${STORE_URL}`,
   `Знайшов Phraseman — це як фітнес для мозку, тільки без задишки. Залітай, будемо тупити разом (але англійською)! 🧠🚀 ${STORE_URL}`,
   `Секретний інгредієнт моєї англійської — Phraseman. Дарую посилання, поки я не став занадто розумним для цієї компанії. 😉 ${STORE_URL}`,
@@ -120,7 +217,7 @@ function shouldCountInviteShare(result: { action?: string } | undefined): boolea
   return result.action !== Share.dismissedAction;
 }
 
-const FALLBACK_BODIES_ES = [
+const OFFLINE_SHARE_BODIES_ES = [
   `Deja los memes un rato y ven a estudiar inglés con Phraseman. Conmigo al menos entenderás por qué ríen en el original 🔥 ${STORE_URL}`,
   `Probé Phraseman: entrenamiento para el cerebro, sin drama. ¡Únete y practicamos en inglés! 🧠🚀 ${STORE_URL}`,
   `Mi secreto para el inglés: Phraseman. Te paso el enlace antes de que me ponga demasiado listo 😉 ${STORE_URL}`,
@@ -131,17 +228,64 @@ const FALLBACK_BODIES_ES = [
   `¿Más oportunidades laborales? Aprende inglés. Phraseman funciona de verdad 📈✨ ${STORE_URL}`,
 ];
 
+const OFFLINE_SHARE_BODIES_PT_BR = [
+  `Deixe os memes por um minuto e venha estudar inglês no Phraseman. Comigo você pelo menos entende a piada no original 🔥 ${STORE_URL}`,
+  `Achei o Phraseman: treino para o cérebro, sem sofrimento. Entra e vamos praticar inglês juntos! 🧠🚀 ${STORE_URL}`,
+  `Meu segredo para o inglês é o Phraseman. Estou mandando o link antes de ficar esperto demais 😉 ${STORE_URL}`,
+  `Chega de procurar tradução de meme 😂 Instale o Phraseman e comece a entender inglês de verdade. Bora! ${STORE_URL}`,
+];
+
+const OFFLINE_SHARE_BODIES_VI = [
+  `Tạm rời meme một chút và học tiếng Anh với Phraseman nhé. Ít nhất bạn sẽ hiểu trò đùa trong bản gốc 🔥 ${STORE_URL}`,
+  `Mình tìm thấy Phraseman: luyện não mà không căng thẳng. Vào học tiếng Anh cùng mình nhé! 🧠🚀 ${STORE_URL}`,
+  `Bí quyết tiếng Anh của mình là Phraseman. Gửi bạn liên kết trước khi mình thông minh quá mức 😉 ${STORE_URL}`,
+  `Đừng tra bản dịch meme mãi nữa 😂 Cài Phraseman và bắt đầu hiểu tiếng Anh thật sự. Đi thôi! ${STORE_URL}`,
+];
+
+const OFFLINE_SHARE_BODIES_ID = [
+  `Berhenti sebentar dari meme dan belajar bahasa Inggris di Phraseman. Bareng aku, kamu akan paham lelucon aslinya 🔥 ${STORE_URL}`,
+  `Aku menemukan Phraseman: latihan otak tanpa drama. Gabung, kita latihan bahasa Inggris bareng! 🧠🚀 ${STORE_URL}`,
+  `Rahasia bahasa Inggrisku adalah Phraseman. Ini tautannya sebelum aku jadi terlalu pintar 😉 ${STORE_URL}`,
+  `Cukup cari terjemahan meme terus 😂 Pasang Phraseman dan mulai pahami bahasa Inggris sungguhan. Ayo! ${STORE_URL}`,
+];
+
+const OFFLINE_SHARE_BODIES_TR = [
+  `Mizahlara biraz ara verip Phraseman'de İngilizce çalışmaya gel. En azından şakayı orijinalinden anlayacaksın 🔥 ${STORE_URL}`,
+  `Phraseman'i buldum: stres yapmadan beyin antrenmanı. Gel, İngilizceyi birlikte çalışalım! 🧠🚀 ${STORE_URL}`,
+  `İngilizce sırrım Phraseman. Çok fazla akıllanmadan linki gönderiyorum 😉 ${STORE_URL}`,
+  `Mizah çevirisi aramayı bırak 😂 Phraseman'i kur ve İngilizceyi gerçekten anlamaya başla. Hadi! ${STORE_URL}`,
+];
+
+const OFFLINE_SHARE_BODIES_PL = [
+  `Zostaw na chwilę memy i chodź uczyć się angielskiego w Phraseman. Przynajmniej zrozumiesz żart w oryginale 🔥 ${STORE_URL}`,
+  `Znalazłem Phraseman: trening dla mózgu bez dramatu. Dołącz i ćwiczmy angielski razem! 🧠🚀 ${STORE_URL}`,
+  `Mój sekret do angielskiego to Phraseman. Wysyłam link, zanim zrobię się zbyt mądry 😉 ${STORE_URL}`,
+  `Koniec z ciągłym szukaniem tłumaczeń memów 😂 Zainstaluj Phraseman i zacznij naprawdę rozumieć angielski. Lecimy! ${STORE_URL}`,
+];
+
+const OFFLINE_SHARE_BODIES_BY_LANG: Record<Lang, readonly string[]> = {
+  ru: OFFLINE_SHARE_BODIES_RU,
+  uk: OFFLINE_SHARE_BODIES_UK,
+  es: OFFLINE_SHARE_BODIES_ES,
+  'pt-BR': OFFLINE_SHARE_BODIES_PT_BR,
+  vi: OFFLINE_SHARE_BODIES_VI,
+  id: OFFLINE_SHARE_BODIES_ID,
+  tr: OFFLINE_SHARE_BODIES_TR,
+  pl: OFFLINE_SHARE_BODIES_PL,
+};
+
 export default function SettingsInviteFriend() {
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const { theme: t, f } = useTheme();
 
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const insets = useSafeAreaInsets();
   const bottomPad =
     Math.max(insets.bottom, effectiveOs === 'ios' ? 10 : 28) + 8;
-  const copyLang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
-  const tx = COPY[copyLang];
+  const copyLang = lang as Lang;
+  const tx = COPY[copyLang] ?? COPY.ru;
 
   const [busy, setBusy] = useState(false);
 
@@ -151,12 +295,14 @@ export default function SettingsInviteFriend() {
     setBusy(true);
     try {
       if (!isReferralCloudEnabled()) {
-        const pool =
-          lang === 'uk' ? FALLBACK_BODIES_UK : lang === 'es' ? FALLBACK_BODIES_ES : FALLBACK_BODIES_RU;
+        const pool = OFFLINE_SHARE_BODIES_BY_LANG[copyLang] ?? OFFLINE_SHARE_BODIES_BY_LANG.ru;
         const msg = pool[Math.floor(Math.random() * pool.length)];
         const r = await Share.share({ message: msg });
         if (shouldCountInviteShare(r)) {
-          void updateMultipleTaskProgress([{ type: 'invite_friend', increment: 1 }]).catch(() => {});
+          void updateMultipleTaskProgress(
+            [{ type: 'invite_friend', increment: 1 }],
+            { studyTarget },
+          ).catch(() => {});
         }
         return;
       }
@@ -172,20 +318,23 @@ export default function SettingsInviteFriend() {
           : share.message;
       const r = await Share.share({ message, url: share.url });
       if (shouldCountInviteShare(r)) {
-        void updateMultipleTaskProgress([{ type: 'invite_friend', increment: 1 }]).catch(() => {});
+        void updateMultipleTaskProgress(
+          [{ type: 'invite_friend', increment: 1 }],
+          { studyTarget },
+        ).catch(() => {});
       }
     } catch {
     } finally {
       setBusy(false);
     }
-  }, [busy, lang, tx.needAuth, tx.needAuthTitle]);
+  }, [busy, lang, studyTarget, tx.needAuth, tx.needAuthTitle]);
 
   const isIos = effectiveOs === 'ios';
   const scrollBottomPad = 100 + Math.max(insets.bottom, 16);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: t.bgPrimary }} edges={['top', 'left', 'right']}>
-      <ScreenGradient>
+    <ScreenGradient artBackdrop="settings">
+      <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
         <View
           style={{
             flexDirection: 'row',
@@ -351,7 +500,7 @@ export default function SettingsInviteFriend() {
             paddingHorizontal: 20,
             paddingTop: 12,
             paddingBottom: bottomPad,
-            backgroundColor: t.bgPrimary,
+            backgroundColor: 'transparent',
             borderTopWidth: 0.5,
             borderTopColor: t.border,
           }}
@@ -376,8 +525,8 @@ export default function SettingsInviteFriend() {
             </Text>
           </TouchableOpacity>
         </View>
-      </ScreenGradient>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScreenGradient>
   );
 }
 

@@ -51,6 +51,7 @@ type RevenueCatWebhookBody = {
     entitlement_id?: string;
     entitlement_ids?: unknown[];
     presented_offering_id?: string;
+    subscriber_attributes?: Record<string, unknown>;
   };
 };
 
@@ -58,6 +59,33 @@ type RevenueCatEvent = NonNullable<RevenueCatWebhookBody['event']>;
 
 function cleanId(raw: unknown): string {
   return String(raw ?? '').trim();
+}
+
+function isRevenueCatAnonymousId(raw: unknown): boolean {
+  const id = cleanId(raw);
+  return id.startsWith('$RCAnonymousID:') || id.startsWith('$RCA');
+}
+
+function stableCandidateUserIds(candidates: string[]): string[] {
+  return candidates.filter((id) => id && !isRevenueCatAnonymousId(id));
+}
+
+function prioritizeUserCandidates(candidates: string[]): string[] {
+  const stable = stableCandidateUserIds(candidates);
+  const anonymous = candidates.filter(isRevenueCatAnonymousId);
+  return [...stable, ...anonymous];
+}
+
+function subscriberAttributeValue(raw: unknown): string {
+  if (raw != null && typeof raw === 'object' && 'value' in raw) {
+    return cleanId((raw as { value?: unknown }).value);
+  }
+  return cleanId(raw);
+}
+
+function addCandidate(out: Set<string>, raw: unknown): void {
+  const id = cleanId(raw);
+  if (id) out.add(id);
 }
 
 function authMatches(header: string | undefined, expected: string): boolean {
@@ -74,13 +102,13 @@ function parseShards(raw: unknown): number {
 
 function candidateUserIds(event: RevenueCatEvent): string[] {
   const out = new Set<string>();
-  for (const raw of [event.app_user_id, event.original_app_user_id]) {
-    const id = cleanId(raw);
-    if (id) out.add(id);
+  const attrs = event.subscriber_attributes ?? {};
+  for (const key of ['phraseman_uid', 'phraseman_stable_id', 'stable_id']) {
+    addCandidate(out, subscriberAttributeValue(attrs[key]));
   }
+  for (const raw of [event.app_user_id, event.original_app_user_id]) addCandidate(out, raw);
   for (const raw of Array.isArray(event.aliases) ? event.aliases : []) {
-    const id = cleanId(raw);
-    if (id) out.add(id);
+    addCandidate(out, raw);
   }
   return [...out];
 }
@@ -122,11 +150,17 @@ async function findExistingUserRef(
   tx: admin.firestore.Transaction,
   db: admin.firestore.Firestore,
   candidates: string[],
-): Promise<{ uid: string; ref: admin.firestore.DocumentReference; snap: admin.firestore.DocumentSnapshot }> {
-  let uid = candidates[0];
+): Promise<{ uid: string; ref: admin.firestore.DocumentReference; snap: admin.firestore.DocumentSnapshot } | null> {
+  const orderedCandidates = prioritizeUserCandidates(candidates);
+  if (orderedCandidates.length === 0) return null;
+
+  const stableCandidates = stableCandidateUserIds(orderedCandidates);
+  const searchCandidates = stableCandidates.length > 0 ? stableCandidates : orderedCandidates;
+
+  let uid = searchCandidates[0];
   let ref = db.collection('users').doc(uid);
   let snap = await tx.get(ref);
-  for (const candidate of candidates.slice(1)) {
+  for (const candidate of searchCandidates.slice(1)) {
     if (snap.exists) break;
     uid = candidate;
     ref = db.collection('users').doc(uid);
@@ -169,9 +203,16 @@ async function handlePremiumSubscriptionEvent(
         return { updated: false, reason: 'duplicate' as const };
       }
 
-      const { uid, ref: userRef, snap: userSnap } = await findExistingUserRef(tx, db, candidates);
+      const match = await findExistingUserRef(tx, db, candidates);
+      if (!match) {
+        return { updated: false, reason: 'missing_user_candidate' as const };
+      }
+
+      const { uid, ref: userRef, snap: userSnap } = match;
       const progress = (userSnap.data()?.progress ?? {}) as Record<string, unknown>;
-      const adminOverride = cleanId(progress.admin_premium_override) === 'true';
+      const progressPlan = cleanId(progress.premium_plan).toLowerCase();
+      const adminOverrideValue = cleanId(progress.admin_premium_override).toLowerCase();
+      const legacyAdminVip = adminOverrideValue === 'true' || (progressPlan === 'admin_grant' && adminOverrideValue !== 'false');
       const activeEvent = PREMIUM_ACTIVE_EVENTS.has(eventType);
       const keepActiveEvent = PREMIUM_KEEP_ACTIVE_EVENTS.has(eventType);
       const inactiveEvent = PREMIUM_INACTIVE_EVENTS.has(eventType);
@@ -187,18 +228,30 @@ async function handlePremiumSubscriptionEvent(
       if (expiryMs != null) progressPatch.premium_rc_expiry_ms = String(expiryMs);
       if (purchasedMs != null) progressPatch.premium_rc_purchased_at_ms = String(purchasedMs);
 
-      if (!adminOverride) {
-        if (activeEvent || keepActiveEvent) {
-          progressPatch.premium_plan = plan;
-          progressPatch.premium_expiry = '0';
-          progressPatch.had_premium_ever = '1';
-          if (keepActiveEvent) {
-            progressPatch.premium_rc_cancelled_at = String(now);
-          }
-        } else if (inactiveEvent) {
-          progressPatch.premium_plan = '';
-          progressPatch.premium_expiry = String(expiryMs ?? now);
+      if (legacyAdminVip) {
+        const legacyExpiryMs = eventMs(progress.premium_expiry);
+        const legacyGrantAt = cleanId(progress.premium_admin_grant_at) || String(now);
+        const legacyActive = legacyExpiryMs == null || legacyExpiryMs > now;
+        progressPatch.vip_active = legacyActive ? 'true' : 'false';
+        progressPatch.vip_plan = legacyActive ? 'admin_vip' : '';
+        progressPatch.vip_from = cleanId(progress.vip_from) || legacyGrantAt;
+        progressPatch.vip_until = legacyExpiryMs == null ? '0' : String(legacyExpiryMs);
+        progressPatch.vip_admin_override = legacyActive ? 'true' : 'false';
+        progressPatch.vip_admin_grant_at = cleanId(progress.vip_admin_grant_at) || legacyGrantAt;
+        progressPatch.vip_migrated_from_admin_grant_at = String(now);
+        progressPatch.admin_premium_override = 'false';
+      }
+
+      if (activeEvent || keepActiveEvent) {
+        progressPatch.premium_plan = plan;
+        progressPatch.premium_expiry = '0';
+        progressPatch.had_premium_ever = '1';
+        if (keepActiveEvent) {
+          progressPatch.premium_rc_cancelled_at = String(now);
         }
+      } else if (inactiveEvent) {
+        progressPatch.premium_plan = '';
+        progressPatch.premium_expiry = String(expiryMs ?? now);
       }
 
       tx.set(processedRef, {
@@ -230,7 +283,7 @@ async function handlePremiumSubscriptionEvent(
         uid,
         userDocExists: userSnap.exists,
         active: activeEvent || keepActiveEvent,
-        adminOverride,
+        migratedLegacyAdminVip: legacyAdminVip,
       };
     });
 
@@ -272,7 +325,12 @@ async function handleShardPurchaseEvent(
         return { granted: false, reason: 'duplicate' as const };
       }
 
-      const { uid, ref: userRef, snap: userSnap } = await findExistingUserRef(tx, db, candidates);
+      const match = await findExistingUserRef(tx, db, candidates);
+      if (!match) {
+        return { granted: false, reason: 'missing_user_candidate' as const };
+      }
+
+      const { uid, ref: userRef, snap: userSnap } = match;
       const before = parseShards(userSnap.data()?.shards);
       const after = before + pack.shards;
 
@@ -358,6 +416,10 @@ export const revenueCatShardsWebhook = onRequest({ region: REGION, secrets: [REV
 });
 
 export const __revenueCatWebhookTestHooks = {
+  candidateUserIds,
+  isRevenueCatAnonymousId,
   looksLikePremiumSubscription,
   premiumPlanFromEvent,
+  prioritizeUserCandidates,
+  stableCandidateUserIds,
 };

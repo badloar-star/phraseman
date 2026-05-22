@@ -8,7 +8,7 @@
  */
 
 import { useRouter } from 'expo-router';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import React, { useEffect, useRef, useState } from 'react';
 import {
   Animated, Easing, Image, Modal, StyleSheet, Text, TouchableOpacity, View,
@@ -42,6 +42,7 @@ import {
   saveClaimedGiftRarity,
   saveUnclaimedGift,
 } from '../app/level_gift_inventory';
+import type { RuntimeStudyTarget } from '../app/target_storage_keys';
 
 export {
   CLAIMED_GIFTS_KEY,
@@ -69,6 +70,7 @@ interface Props {
   saveOnDismiss?: boolean;
   /** Force premium application semantics for gifts that came from a premium pair. */
   applyAsPremium?: boolean;
+  studyTarget?: RuntimeStudyTarget;
 }
 
 type Phase = 'box' | 'opening' | 'reveal';
@@ -140,6 +142,7 @@ export default function LevelGiftModal({
   onGiftClaimed,
   saveOnDismiss = true,
   applyAsPremium,
+  studyTarget,
 }: Props) {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
@@ -178,7 +181,7 @@ export default function LevelGiftModal({
         setGift(preRolledGift);
       } else {
         void (async () => {
-          setGift(await rollF2pLevelGiftForUser(level));
+          setGift(await rollF2pLevelGiftForUser(level, { studyTarget }));
         })();
       }
       fadeReveal.setValue(0);
@@ -208,7 +211,7 @@ export default function LevelGiftModal({
       idleLoop.current?.stop();
       glowLoop.current?.stop();
     }
-  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, modalEntrance, modalGlow]);
+  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, modalEntrance, modalGlow, studyTarget]);
 
   useEffect(() => {
     if (!visible || !gift) {
@@ -263,7 +266,7 @@ export default function LevelGiftModal({
             energy,
             maxEnergy,
             setEnergyFn,
-            applyAsPremium === undefined ? undefined : { isPremium: applyAsPremium },
+            { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget },
           );
           if (onGiftClaimed) {
             await onGiftClaimed(g);
@@ -345,7 +348,7 @@ export default function LevelGiftModal({
         energy,
         maxEnergy,
         setEnergyFn,
-        applyAsPremium === undefined ? undefined : { isPremium: applyAsPremium },
+        { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget },
       );
       if (result.xpBoostAlreadyActive) setXpBoostAlreadyActive(true);
       if (result.energyBoostAlreadyActive) setEnergyBoostAlreadyActive(true);
@@ -387,6 +390,7 @@ export default function LevelGiftModal({
     : rarity === 'rare'
       ? ['#93C5FD', '#2563EB']
       : rewardModalPrimaryButtonColors(themeMode);
+  const canCloseWithIcon = phase !== 'opening' && !choiceBusy;
 
   return (
     <Modal transparent visible animationType="fade" onRequestClose={handleSkip}>
@@ -458,6 +462,32 @@ export default function LevelGiftModal({
             }} />
           )}
 
+          {canCloseWithIcon && (
+            <TouchableOpacity
+              testID="level-gift-close"
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
+              activeOpacity={0.76}
+              onPress={() => { void handleSkip(); }}
+              style={{
+                position: 'absolute',
+                top: 10,
+                right: 10,
+                zIndex: 5,
+                width: 34,
+                height: 34,
+                borderRadius: 17,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: USE_ELITE_LEVEL_GIFT_MODAL ? 'rgba(3,5,10,0.42)' : 'rgba(0,0,0,0.16)',
+                borderWidth: 1,
+                borderColor: USE_ELITE_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.18)' : t.border,
+              }}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: 24, lineHeight: 28, fontWeight: '800' }}>×</Text>
+            </TouchableOpacity>
+          )}
+
           {/* Header */}
           <Text style={{ color: giftAccent(rarity), fontSize: f.label, fontWeight: '800', textTransform: 'uppercase', letterSpacing: USE_ELITE_LEVEL_GIFT_MODAL ? 1.2 : 1.5, marginBottom: USE_ELITE_LEVEL_GIFT_MODAL ? 7 : 6 }}>
             {triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, es: `Nivel ${level}`, 'pt-BR': `Nível ${level}`, vi: `Cấp ${level}`, id: `Level ${level}`, tr: `Seviye ${level}`, pl: `Poziom ${level}` })}
@@ -513,11 +543,21 @@ export default function LevelGiftModal({
               {/* Skip button — only visible while box is showing (not during open animation) */}
               {phase === 'box' && (
                 <TouchableOpacity
+                  testID="level-gift-save-later"
                   activeOpacity={0.7}
                   onPress={handleSkip}
-                  style={{ marginTop: USE_ELITE_LEVEL_GIFT_MODAL ? 22 : 24, paddingVertical: USE_ELITE_LEVEL_GIFT_MODAL ? 8 : 0, paddingHorizontal: USE_ELITE_LEVEL_GIFT_MODAL ? 14 : 0 }}
+                  style={{
+                    marginTop: USE_ELITE_LEVEL_GIFT_MODAL ? 22 : 24,
+                    paddingVertical: USE_ELITE_LEVEL_GIFT_MODAL ? 11 : 10,
+                    paddingHorizontal: USE_ELITE_LEVEL_GIFT_MODAL ? 22 : 18,
+                    borderRadius: USE_ELITE_LEVEL_GIFT_MODAL ? 16 : 14,
+                    borderWidth: 1,
+                    borderColor: USE_ELITE_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : t.border,
+                    backgroundColor: USE_ELITE_LEVEL_GIFT_MODAL ? rewardModalSoftSurface(themeMode, t) : t.bgSurface2,
+                    alignItems: 'center',
+                  }}
                 >
-                  <Text style={{ color: t.textGhost, fontSize: f.sub, textDecorationLine: USE_ELITE_LEVEL_GIFT_MODAL ? 'none' : 'underline', fontWeight: USE_ELITE_LEVEL_GIFT_MODAL ? '700' : '400' }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>
                     {triLang(lang, { ru: 'Забрать позже', uk: 'Забрати пізніше', es: 'Reclamar más tarde', 'pt-BR': 'Receber mais tarde', vi: 'Nhận sau', id: 'Klaim nanti', tr: 'Daha sonra al', pl: 'Odbierz później' })}
                   </Text>
                 </TouchableOpacity>

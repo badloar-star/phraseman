@@ -125,11 +125,15 @@ export function usePersistentBackgroundLayers<T>({
     if (activeKeyRef.current === transitionKey) return;
     activeKeyRef.current = transitionKey;
 
+    cleanupTasksRef.current.forEach(task => task.cancel());
+    cleanupTasksRef.current = [];
+
+    const singleLayerMode = disabled || maxLayers <= 1;
     const nextLayer: PersistentBackgroundLayer<T> = {
       id: ++layerSeqRef.current,
       key: transitionKey,
       value: pendingValueRef.current,
-      opacity: new Animated.Value(disabled ? 1 : 0),
+      opacity: new Animated.Value(singleLayerMode ? 1 : 0),
     };
 
     const previousLayers = layersRef.current;
@@ -137,7 +141,7 @@ export function usePersistentBackgroundLayers<T>({
       layer.opacity.stopAnimation();
     });
 
-    if (disabled) {
+    if (singleLayerMode) {
       setLayers([nextLayer]);
       return;
     }
@@ -170,7 +174,9 @@ export function usePersistentBackgroundLayers<T>({
 
     setLayers(current => {
       const withoutSameKey = current.filter(layer => layer.key !== nextLayer.key);
-      return [...withoutSameKey.slice(-(maxLayers - 1)), nextLayer];
+      const retainedCount = Math.max(0, maxLayers - 1);
+      const retainedLayers = retainedCount > 0 ? withoutSameKey.slice(-retainedCount) : [];
+      return [...retainedLayers, nextLayer];
     });
 
     Animated.timing(nextLayer.opacity, {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phraseman Invite</title>
+  <title data-i18n-key="title">Phraseman Invite</title>
   <style>
     :root {
       color-scheme: dark;
@@ -86,18 +86,110 @@
 </head>
 <body>
   <main>
-    <h1>Open Phraseman</h1>
-    <p>We are opening the invitation in the app. If nothing happens, install Phraseman and come back to this page.</p>
+    <h1 data-i18n-key="heading">Open Phraseman</h1>
+    <p data-i18n-key="intro">We are opening the invitation in the app. If nothing happens, install Phraseman and come back to this page.</p>
     <div id="code" class="code"></div>
     <div class="actions">
-      <a id="openApp" href="phraseman://invite">Open in Phraseman</a>
-      <a id="store" class="secondary" href="https://play.google.com/store/apps/details?id=app.phraseman">Install Phraseman</a>
+      <a id="openApp" href="phraseman://invite" data-i18n-key="openApp">Open in Phraseman</a>
+      <a id="store" class="secondary" href="https://play.google.com/store/apps/details?id=app.phraseman" data-i18n-key="install">Install Phraseman</a>
     </div>
-    <small id="hint">After installing, tap "Open in Phraseman" again so the invite code is applied.</small>
+    <small id="hint" data-i18n-key="hint">After installing, tap "Open in Phraseman" again so the invite code is applied.</small>
   </main>
 
   <script>
     (function () {
+      var translations = {
+        title: {
+          es: 'Invitación de Phraseman',
+          'pt-BR': 'Convite do Phraseman',
+          vi: 'Lời mời Phraseman',
+          id: 'Undangan Phraseman',
+          tr: 'Phraseman Daveti',
+          pl: 'Zaproszenie Phraseman',
+        },
+        heading: {
+          es: 'Abrir Phraseman',
+          'pt-BR': 'Abrir o Phraseman',
+          vi: 'Mở Phraseman',
+          id: 'Buka Phraseman',
+          tr: 'Phraseman’i aç',
+          pl: 'Otwórz Phraseman',
+        },
+        intro: {
+          es: 'Estamos abriendo la invitación en la app. Si no pasa nada, instala Phraseman y vuelve a esta página.',
+          'pt-BR': 'Estamos abrindo o convite no app. Se nada acontecer, instale o Phraseman e volte para esta página.',
+          vi: 'Chúng tôi đang mở lời mời trong ứng dụng. Nếu không có gì xảy ra, hãy cài đặt Phraseman rồi quay lại trang này.',
+          id: 'Kami sedang membuka undangan di aplikasi. Jika tidak terjadi apa-apa, instal Phraseman lalu kembali ke halaman ini.',
+          tr: 'Daveti uygulamada açıyoruz. Hiçbir şey olmazsa Phraseman’i yükleyip bu sayfaya geri dönün.',
+          pl: 'Otwieramy zaproszenie w aplikacji. Jeśli nic się nie stanie, zainstaluj Phraseman i wróć na tę stronę.',
+        },
+        openApp: {
+          es: 'Abrir en Phraseman',
+          'pt-BR': 'Abrir no Phraseman',
+          vi: 'Mở trong Phraseman',
+          id: 'Buka di Phraseman',
+          tr: 'Phraseman’de aç',
+          pl: 'Otwórz w Phraseman',
+        },
+        install: {
+          es: 'Instalar Phraseman',
+          'pt-BR': 'Instalar Phraseman',
+          vi: 'Cài đặt Phraseman',
+          id: 'Instal Phraseman',
+          tr: 'Phraseman’i yükle',
+          pl: 'Zainstaluj Phraseman',
+        },
+        installAppStore: {
+          es: 'Instalar desde App Store',
+          'pt-BR': 'Instalar pela App Store',
+          vi: 'Cài đặt từ App Store',
+          id: 'Instal dari App Store',
+          tr: 'App Store’dan yükle',
+          pl: 'Zainstaluj z App Store',
+        },
+        installGooglePlay: {
+          es: 'Instalar desde Google Play',
+          'pt-BR': 'Instalar pelo Google Play',
+          vi: 'Cài đặt từ Google Play',
+          id: 'Instal dari Google Play',
+          tr: 'Google Play’den yükle',
+          pl: 'Zainstaluj z Google Play',
+        },
+        hint: {
+          es: 'Después de instalar, toca “Abrir en Phraseman” otra vez para aplicar el código de invitación.',
+          'pt-BR': 'Depois de instalar, toque em “Abrir no Phraseman” novamente para aplicar o código do convite.',
+          vi: 'Sau khi cài đặt, hãy chạm lại vào “Mở trong Phraseman” để áp dụng mã mời.',
+          id: 'Setelah menginstal, ketuk “Buka di Phraseman” lagi agar kode undangan diterapkan.',
+          tr: 'Yükledikten sonra davet kodunun uygulanması için “Phraseman’de aç” düğmesine tekrar dokunun.',
+          pl: 'Po instalacji ponownie dotknij „Otwórz w Phraseman”, aby zastosować kod zaproszenia.',
+        },
+        hintIos: {
+          es: 'Si la app no se abre automáticamente, instálala e introduce este código en Amigos.',
+          'pt-BR': 'Se o app não abrir automaticamente, instale-o e insira este código em Amigos.',
+          vi: 'Nếu ứng dụng không tự mở, hãy cài đặt ứng dụng và nhập mã này trong Bạn bè.',
+          id: 'Jika aplikasi tidak terbuka otomatis, instal aplikasi lalu masukkan kode ini di Teman.',
+          tr: 'Uygulama otomatik açılmazsa yükleyin ve bu kodu Arkadaşlar bölümüne girin.',
+          pl: 'Jeśli aplikacja nie otworzy się automatycznie, zainstaluj ją i wpisz ten kod w sekcji Znajomi.',
+        },
+        hintAndroid: {
+          es: 'En Android, el enlace de instalación también lleva el código de invitación a través de Google Play.',
+          'pt-BR': 'No Android, o link de instalação também leva o código do convite pelo Google Play.',
+          vi: 'Trên Android, liên kết cài đặt cũng chuyển mã mời qua Google Play.',
+          id: 'Di Android, tautan instalasi juga membawa kode undangan melalui Google Play.',
+          tr: 'Android’de yükleme bağlantısı davet kodunu Google Play üzerinden de taşır.',
+          pl: 'Na Androidzie link instalacyjny przenosi też kod zaproszenia przez Google Play.',
+        },
+      };
+      var locale = new URLSearchParams(window.location.search).get('lang') || navigator.language || '';
+      var normalized = String(locale).toLowerCase();
+      var lang =
+        normalized.startsWith('pt') ? 'pt-BR' :
+        normalized.startsWith('vi') ? 'vi' :
+        normalized.startsWith('id') ? 'id' :
+        normalized.startsWith('tr') ? 'tr' :
+        normalized.startsWith('pl') ? 'pl' :
+        normalized.startsWith('es') ? 'es' :
+        '';
       var params = new URLSearchParams(window.location.search);
       var ref = String(params.get('ref') || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12);
       var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
@@ -113,16 +205,27 @@
       var code = document.getElementById('code');
       var hint = document.getElementById('hint');
 
+      function tr(key, defaultText) {
+        return (lang && translations[key] && translations[key][lang]) || defaultText;
+      }
+
+      if (lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n-key]').forEach(function (node) {
+          var key = node.getAttribute('data-i18n-key');
+          var value = key && translations[key] && translations[key][lang];
+          if (value) node.textContent = value;
+        });
+      }
+
       openApp.href = appUrl;
       store.href = isiOS ? iosStore : androidStore;
-      store.textContent = isiOS ? 'Install from App Store' : 'Install from Google Play';
+      store.textContent = isiOS ? tr('installAppStore', 'Install from App Store') : tr('installGooglePlay', 'Install from Google Play');
 
       if (ref) {
         code.style.display = 'block';
         code.textContent = ref;
-        hint.textContent = isiOS
-          ? 'If the app does not open automatically, install it and enter this code in Friends.'
-          : 'On Android the install link also carries the invite code through Google Play.';
+        hint.textContent = isiOS ? tr('hintIos', 'If the app does not open automatically, install it and enter this code in Friends.') : tr('hintAndroid', 'On Android the install link also carries the invite code through Google Play.');
       }
 
       window.location.href = appUrl;

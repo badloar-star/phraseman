@@ -24,6 +24,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import LevelGiftArt from '../components/LevelGiftArt';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import LevelBadge from '../components/LevelBadge';
 import LevelGiftDualModal, { loadUnclaimedDualGifts, loadDualClaimedLevels, type PremPair } from '../components/LevelGiftDualModal';
@@ -184,6 +185,7 @@ const MILESTONE_PLANNED_COPY: Record<number, {
 export default function ProgressMapScreen() {
   const { theme: t, f, isDark, themeMode } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const router = useRouter();
   const [totalXP, setTotalXP] = useState(0);
   const [userLevel, setUserLevel] = useState(1);
@@ -245,9 +247,9 @@ export default function ProgressMapScreen() {
       clubGiftBoost,
     ] = await Promise.all([
       readGiftXpBank(),
-      getPackGiftTrial(),
+      getPackGiftTrial(studyTarget),
       getDailyArenaMaxToday(),
-      getBonusHintsToday(),
+      getBonusHintsToday(studyTarget),
       AsyncStorage.getItem('gift_xp_multiplier'),
       AsyncStorage.getItem('chain_shield'),
       AsyncStorage.getItem('wager_discount'),
@@ -465,7 +467,7 @@ export default function ProgressMapScreen() {
     }
 
     setActiveGifts(nextActive);
-  }, [lang]);
+  }, [lang, studyTarget]);
 
   // После анимации перехода экрана — чтение AsyncStorage не борется с transition
   useEffect(() => {
@@ -538,7 +540,7 @@ export default function ProgressMapScreen() {
     const isLocked = lvl > userLevel;
     const maxEnrg = getMaxEnergyForLevel(lvl);
     const milestone = MILESTONE_BY_LEVEL[lvl];
-    const milestoneGift = getMilestoneLevelGift(lvl);
+    const milestoneGift = getMilestoneLevelGift(lvl, { studyTarget });
     const titleDef = TITLES.find(td => td.minLevel === lvl);
     const hasUnclaimed = !!unclaimedGifts[lvl] || !!unclaimedDual[lvl];
     const receivedGiftLabel = triLang(lang, {
@@ -962,6 +964,7 @@ export default function ProgressMapScreen() {
           lang={lang}
           onClose={onDualGiftClose}
           preRolledPair={unclaimedDual[giftModalLevel]}
+          studyTarget={studyTarget}
         />
       ) : null}
       {giftModalVisible && !giftModalIsDual ? (
@@ -972,6 +975,7 @@ export default function ProgressMapScreen() {
           lang={lang}
           onClose={onSingleGiftClose}
           preRolledGift={unclaimedGifts[giftModalLevel]}
+          studyTarget={studyTarget}
         />
       ) : null}
     </View>

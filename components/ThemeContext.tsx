@@ -242,9 +242,9 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
           setThemeModeState(t);
         }
       } else {
-        const fallback: ThemeMode = 'minimalDark';
-        setThemeModeState(fallback);
-        void AsyncStorage.setItem('app_theme', fallback);
+        const defaultThemeMode: ThemeMode = 'minimalDark';
+        setThemeModeState(defaultThemeMode);
+        void AsyncStorage.setItem('app_theme', defaultThemeMode);
       }
       if (fontStr && fontStr in FONT_SCALE) setFontSizeState(fontStr as FontSize);
     })();

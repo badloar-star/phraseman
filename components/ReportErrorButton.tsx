@@ -17,7 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { ERROR_REPORT_COMMENT_MIN_LEN, submitErrorReport } from '../app/error_report';
 import XpGainBadge from './XpGainBadge';
 
@@ -47,6 +47,16 @@ type PlannedReportLabel = {
   id: string;
   tr: string;
   pl: string;
+};
+
+type ReportCategory = { key: string; label: string };
+type LocalizedReportCategory = ReportCategory;
+type LegacyReportLabel = { primary: string; secondary: string; tertiary: string };
+
+const REPORT_CATEGORY_OTHER_LABEL: LegacyReportLabel = {
+  primary: 'Другое',
+  secondary: 'Інше',
+  tertiary: 'Otro',
 };
 
 const CATEGORY_LABEL_PLANNED: Record<string, PlannedReportLabel> = {
@@ -184,10 +194,11 @@ interface Props {
   /** Только красный флаг без подписи (напр. угол карточки описания) */
   variant?: 'default' | 'icon-flag';
   accessibilityLabel?: string;
+  testID?: string;
   textColor?: string;
 }
 
-const SCREEN_CATEGORIES: Record<string, { key: string; label: string }[]> = {
+const REPORT_CATEGORY_SETS: Record<string, ReportCategory[]> = {
   lesson: [
     { key: 'wrong_answer',  label: 'Неверный правильный ответ|Неправильна правильна відповідь|La opción marcada como correcta es errónea' },
     { key: 'typo',          label: 'Опечатка / ошибка в тексте|Друкарська помилка / помилка в тексті|Error ortográfico o en el texto' },
@@ -259,7 +270,7 @@ const SCREEN_CATEGORIES: Record<string, { key: string; label: string }[]> = {
     { key: 'ui_bug',           label: 'Криво отображается интерфейс|Криво відображається інтерфейс|La interfaz se ve mal o tapa contenido' },
     { key: 'broken_action',    label: 'Не срабатывает кнопка или переход|Не спрацьовує кнопка чи перехід|No responde un botón o una pantalla' },
     { key: 'progress_rewards', label: 'Прогресс, опыт или награды|Прогрес, досвід чи нагороди|Progreso, XP o recompensas' },
-    { key: 'payment_premium', label: 'Подписка, покупка или осколки|Підписка, покупка чи уламки|Suscripción, compra u oskolki' },
+    { key: 'payment_premium', label: 'Подписка, покупка или осколки|Підписка, покупка чи уламки|Suscripción, compra o fragmentos' },
     { key: 'content_wrong',    label: 'Неверный текст или картинка на экране|Невірний текст чи зображення|Texto o imagen incorrectos en pantalla' },
     { key: 'other',            label: 'Другое|Інше|Otro' },
   ],
@@ -274,20 +285,63 @@ const SCREEN_CATEGORIES: Record<string, { key: string; label: string }[]> = {
 
 function getCategoriesForScreen(screen: string) {
   if (GENERAL_APP_SCREEN_IDS.has(screen)) {
-    return SCREEN_CATEGORIES.general;
+    return REPORT_CATEGORY_SETS.general;
   }
   if (screen === 'level_exam') {
-    return SCREEN_CATEGORIES.level_exam;
+    return REPORT_CATEGORY_SETS.level_exam;
   }
   if (screen.startsWith('lesson_') && !screen.includes('words') && !screen.includes('irregular')) {
-    return SCREEN_CATEGORIES.lesson;
+    return REPORT_CATEGORY_SETS.lesson;
   }
   // Longer keys first so `lesson_words` / `lesson_irregular_verbs` are not swallowed by `lesson`.
-  const keys = Object.keys(SCREEN_CATEGORIES).sort((a, b) => b.length - a.length);
+  const keys = Object.keys(REPORT_CATEGORY_SETS).sort((a, b) => b.length - a.length);
   for (const key of keys) {
-    if (screen.includes(key)) return SCREEN_CATEGORIES[key];
+    if (screen.includes(key)) return REPORT_CATEGORY_SETS[key];
   }
-  return SCREEN_CATEGORIES.lesson;
+  return REPORT_CATEGORY_SETS.lesson;
+}
+
+function splitReportCategoryLabel(label: string): LegacyReportLabel {
+  const [ruCopy, ukCopy, esCopy] = label.split('|').map(part => part.trim());
+  return {
+    primary: ruCopy || REPORT_CATEGORY_OTHER_LABEL.primary,
+    secondary: ukCopy || REPORT_CATEGORY_OTHER_LABEL.secondary,
+    tertiary: esCopy || REPORT_CATEGORY_OTHER_LABEL.tertiary,
+  };
+}
+
+function plannedReportCategoryLabel(category: ReportCategory, legacy: LegacyReportLabel): PlannedReportLabel {
+  const planned = CATEGORY_LABEL_PLANNED[legacy.primary];
+  if (planned) return planned;
+  const explicitOther = CATEGORY_LABEL_PLANNED[REPORT_CATEGORY_OTHER_LABEL.primary];
+  if (category.key === 'other') return explicitOther;
+  return {
+    'pt-BR': 'Categoria em revisão',
+    vi: 'Danh mục đang được rà soát',
+    id: 'Kategori sedang ditinjau',
+    tr: 'Kategori inceleniyor',
+    pl: 'Kategoria w trakcie przeglądu',
+  };
+}
+
+export function reportErrorCategoriesForLang(screen: string, lang: Lang): LocalizedReportCategory[] {
+  return getCategoriesForScreen(screen).map(category => {
+    const legacy = splitReportCategoryLabel(category.label);
+    const planned = plannedReportCategoryLabel(category, legacy);
+    return {
+      ...category,
+      label: triLang(lang, {
+        ru: legacy.primary,
+        uk: legacy.secondary,
+        es: legacy.tertiary,
+        'pt-BR': planned['pt-BR'],
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
+      }),
+    };
+  });
 }
 
 export default function ReportErrorButton({
@@ -299,32 +353,14 @@ export default function ReportErrorButton({
   onSuccess,
   variant = 'default',
   accessibilityLabel,
+  testID,
   textColor,
 }: Props) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const insets = useSafeAreaInsets();
   const maxSheetHeight = Math.max(360, Dimensions.get('window').height - insets.top - 12);
-  const categories = getCategoriesForScreen(screen).map(cat => {
-    const parts = cat.label.split('|');
-    const labelRU = parts[0] ?? '';
-    const labelUK = parts[1] ?? labelRU;
-    const labelES = parts[2] ?? labelRU;
-    const planned = CATEGORY_LABEL_PLANNED[labelRU] ?? CATEGORY_LABEL_PLANNED['Другое'];
-    return {
-      ...cat,
-      label: triLang(lang, {
-        ru: labelRU,
-        uk: labelUK,
-        es: labelES,
-        'pt-BR': planned['pt-BR'],
-        vi: planned.vi,
-        id: planned.id,
-        tr: planned.tr,
-        pl: planned.pl,
-      }),
-    };
-  });
+  const categories = reportErrorCategoriesForLang(screen, lang);
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
   const [comment, setComment] = useState('');
@@ -404,6 +440,7 @@ export default function ReportErrorButton({
   return (
     <>
       <TouchableOpacity
+        testID={testID}
         onPress={handleOpen}
         style={[isFlag ? styles.triggerFlag : styles.trigger, style]}
         hitSlop={isFlag ? { top: 10, bottom: 10, left: 10, right: 10 } : undefined}

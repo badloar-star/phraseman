@@ -10,6 +10,7 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from '../components/ThemeContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { CEFR_FOR_LESSON } from '../constants/theme';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, lessonNamesForLang } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
@@ -41,6 +42,15 @@ import { buildCelebrationShareBody } from './celebration_share_messages';
 import { buildLessonShareMessage } from './lesson_share';
 import { coachToastDecisionFromRouteParams, type CoachToastDecision } from './coach_toast_trigger';
 import { syncToCloud } from './cloud_sync';
+import { getLessonData } from './lesson_data_all';
+import { phraseHasStudyTargetContent } from './phrase_target_utils';
+import { frenchStudyActive } from './spanish_content_gate';
+import {
+  lessonBonusGrantedKey,
+  lessonPerfectMilestoneKey,
+  lessonProgressKey,
+  lessonTopicShardGrantedKey,
+} from './target_storage_keys';
 
 const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
   bronze: require('../assets/images/levels/bronza.webp'),
@@ -359,6 +369,7 @@ export default function LessonComplete() {
   const insets = useSafeAreaInsets();
   const { theme: t, f } = useTheme();
   const { s, lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const params = useLocalSearchParams<{
     id: string;
     unlocked?: string;
@@ -430,6 +441,20 @@ export default function LessonComplete() {
   const fadeAnim   = useRef(new Animated.Value(0)).current;
   const bounceAnim = useRef(new Animated.Value(0)).current;
 
+  const canApplyCompletionRewards = useCallback(async (): Promise<boolean> => {
+    if (!frenchStudyActive(studyTarget)) return true;
+    const hasFrenchRows = getLessonData(lessonId).some(phrase => phraseHasStudyTargetContent(phrase, studyTarget));
+    if (!hasFrenchRows) return false;
+    try {
+      const progressRaw = await AsyncStorage.getItem(lessonProgressKey(lessonId, studyTarget));
+      if (!progressRaw) return false;
+      const progress = JSON.parse(progressRaw);
+      return Array.isArray(progress) && progress.length > 0;
+    } catch {
+      return false;
+    }
+  }, [lessonId, studyTarget]);
+
   const dismissNotif = () => {
     setActiveNotif(null);
     setNotifQueue(prev => {
@@ -443,11 +468,11 @@ export default function LessonComplete() {
   };
 
   const grantBonus = useCallback(async () => {
-    const suppress = { suppressEarnEvent: true } as const;
-    try {
-      const shardKeys: ShardSource[] = [];
-      const key = `lesson${lessonId}_bonus_granted`;
-      const already = await AsyncStorage.getItem(key);
+      const suppress = { suppressEarnEvent: true } as const;
+      try {
+        const shardKeys: ShardSource[] = [];
+        const key = lessonBonusGrantedKey(lessonId, studyTarget);
+        const already = await AsyncStorage.getItem(key);
       if (!already) {
         const name = await AsyncStorage.getItem('user_name');
 
@@ -477,7 +502,7 @@ export default function LessonComplete() {
       let wasPerfect = false;
       for (let i = 1; i <= 32; i++) {
         try {
-          const saved = await AsyncStorage.getItem(`lesson${i}_progress`);
+          const saved = await AsyncStorage.getItem(lessonProgressKey(i, studyTarget));
           if (saved) {
             const p: string[] = JSON.parse(saved);
             const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
@@ -490,7 +515,7 @@ export default function LessonComplete() {
           }
         } catch {}
       }
-      checkAchievements({ type: 'lesson_complete', lessonCount, wasPerfect, perfectCount, lessonId }).catch(() => {});
+      checkAchievements({ type: 'lesson_complete', lessonCount, wasPerfect, perfectCount, lessonId, studyTarget }).catch(() => {});
       if (wasPerfect) {
         const nP = await addShards('lesson_perfect', suppress);
         if (nP > 0) shardKeys.push('lesson_perfect');
@@ -502,7 +527,7 @@ export default function LessonComplete() {
       }
 // [SHARDS] 5 уроков подряд без ошибок
       if (perfectCount > 0 && perfectCount % 5 === 0) {
-        const perfKey = `shards_5perfect_milestone_${perfectCount}`;
+          const perfKey = lessonPerfectMilestoneKey(perfectCount, studyTarget);
         const alreadyPerfect = await AsyncStorage.getItem(perfKey);
         if (!alreadyPerfect) {
           const n5 = await addShards('lessons_5_perfect', suppress);
@@ -517,7 +542,7 @@ export default function LessonComplete() {
       let topicAllDone = true;
       for (let i = rangeStart; i <= rangeEnd; i++) {
         try {
-          const saved = await AsyncStorage.getItem(`lesson${i}_progress`);
+          const saved = await AsyncStorage.getItem(lessonProgressKey(i, studyTarget));
           if (!saved) { topicAllDone = false; break; }
           const p: string[] = JSON.parse(saved);
           const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
@@ -525,7 +550,7 @@ export default function LessonComplete() {
         } catch { topicAllDone = false; break; }
       }
       if (topicAllDone) {
-        const topicKey = `shards_topic_${currentCefr}_granted`;
+        const topicKey = lessonTopicShardGrantedKey(currentCefr, studyTarget);
         const alreadyTopic = await AsyncStorage.getItem(topicKey);
         if (!alreadyTopic) {
           const nT = await addShards('topic_completed', suppress);
@@ -551,7 +576,7 @@ export default function LessonComplete() {
       // D+1 персональное уведомление — только после первого урока
       if (lessonId === 1) {
         try {
-          const progressRaw = await AsyncStorage.getItem('lesson1_progress');
+          const progressRaw = await AsyncStorage.getItem(lessonProgressKey(1, studyTarget));
           let d1Phrases = 0;
           if (progressRaw) {
             const p: string[] = JSON.parse(progressRaw);
@@ -565,7 +590,7 @@ export default function LessonComplete() {
         } catch {}
       }
     } catch {}
-  }, [lang, lessonId]);
+  }, [lang, lessonId, studyTarget]);
 
   useEffect(() => {
     // Появление иконки
@@ -583,28 +608,39 @@ export default function LessonComplete() {
     );
     setTimeout(() => bounce.start(), 400);
 
-    grantBonus();
-    // Mastery: первое прохождение урока N -> выставить флаг lesson_finished_once_v1_${N}.
-    // На повторных входах функция идемпотентна и ничего не пишет.
-    void markLessonFinishedOnce(lessonId);
-    // Загружаем premium-статус, флаг завершения и цену повтора для кнопки "Повторить"
+    let cancelled = false;
     void (async () => {
+      const canApply = await canApplyCompletionRewards();
+      if (!canApply) {
+        if (!cancelled && frenchStudyActive(studyTarget)) router.replace('/(tabs)/lessons' as any);
+        return;
+      }
+      grantBonus();
+      // Mastery: первое прохождение урока N -> выставить флаг lesson_finished_once_v1_${N}.
+      // На повторных входах функция идемпотентна и ничего не пишет.
+      void markLessonFinishedOnce(lessonId, studyTarget);
+      // Загружаем premium-статус, флаг завершения и цену повтора для кнопки "Повторить"
       const [prem, finished, price] = await Promise.all([
         getVerifiedPremiumStatus(),
-        isLessonFinishedOnce(lessonId),
-        getMasteryReplayPriceShards(lessonId),
+        isLessonFinishedOnce(lessonId, studyTarget),
+        getMasteryReplayPriceShards(lessonId, studyTarget),
       ]);
+      if (cancelled) return;
       setIsPremium(prem);
       setFinishedOnce(finished);
       setMasteryReplayPrice(price);
     })();
 
     // Загружаем оценку урока, сохраняем медаль
-    AsyncStorage.getItem(`lesson${lessonId}_progress`).then(async (saved) => {
+    void (async () => {
+      const canApply = await canApplyCompletionRewards();
+      if (!canApply) return;
+      const saved = await AsyncStorage.getItem(lessonProgressKey(lessonId, studyTarget));
+      if (cancelled) return;
       if (!saved) {
         // Fallback: если прогресс не найден (например, очищен до открытия экрана),
         // показываем уже сохранённую медаль по best_score, чтобы не было "?".
-        const info = await loadMedalInfo(lessonId);
+        const info = await loadMedalInfo(lessonId, studyTarget);
         setLessonScore(info.bestScore || 0);
         setMedalTier(info.tier);
         setMedalImproved(false);
@@ -616,13 +652,13 @@ export default function LessonComplete() {
         const totalAnswers = Array.isArray(p) && p.length > 0 ? Math.min(p.length, 50) : 50;
         const score = parseFloat(((Math.min(correct, totalAnswers) / totalAnswers) * 5).toFixed(1));
         setLessonScore(score);
-        const { newTier, prevTier, isNewBest, newPassCount } = await saveMedalProgress(lessonId, score, p);
+        const { newTier, prevTier, isNewBest, newPassCount } = await saveMedalProgress(lessonId, score, p, studyTarget);
         void syncToCloud({ forceNow: true }).catch(() => {});
         setMedalTier(newTier);
         const medalUpgraded = isNewBest && newTier !== prevTier && newTier !== 'none';
         setMedalImproved(medalUpgraded);
         if (correct >= 45 && p.filter(x => x === 'wrong').length === 0 && newPassCount > 0) {
-          checkAchievements({ type: 'lesson_perfect_pass', lessonId, passCount: newPassCount }).catch(() => {});
+          checkAchievements({ type: 'lesson_perfect_pass', lessonId, passCount: newPassCount, studyTarget }).catch(() => {});
         }
 
         // Build notification queue
@@ -632,12 +668,12 @@ export default function LessonComplete() {
         }
 
         // Зачёт уровня: все уроки уровня >= 4.5
-        const unlockedLevel = await tryUnlockLevelExam(lessonId);
+        const unlockedLevel = await tryUnlockLevelExam(lessonId, studyTarget);
         if (unlockedLevel) {
           queue.push({ kind: 'level_exam_unlock', cefrLevel: unlockedLevel });
         }
         // Экзамен Лингмана: все 32 урока = 5.0 + все зачёты сданы
-        const lingmanUnlocked = await tryUnlockLingmanExam();
+        const lingmanUnlocked = await tryUnlockLingmanExam(studyTarget);
         if (lingmanUnlocked) {
           queue.push({ kind: 'lingman_exam_unlock' });
         }
@@ -648,19 +684,22 @@ export default function LessonComplete() {
         }
 
         // Gem achievements
-        const gems = await checkGemAchievements(lessonId);
-        gems.forEach(g => checkAchievements({ type: 'gem', level: g.level, gem: g.gem } as any).catch(() => {}));
+        const gems = await checkGemAchievements(lessonId, studyTarget);
+        gems.forEach(g => checkAchievements({ type: 'gem', level: g.level, gem: g.gem, studyTarget }).catch(() => {}));
       } catch {
-        const info = await loadMedalInfo(lessonId);
+        const info = await loadMedalInfo(lessonId, studyTarget);
         setLessonScore(info.bestScore || 0);
         setMedalTier(info.tier);
         setMedalImproved(false);
       }
-    });
+    })();
     const cefr = CEFR_FOR_LESSON(lessonId);
     setLessonCefr(cefr);
-    return () => bounce.stop();
-  }, [bounceAnim, fadeAnim, grantBonus, lessonId, scaleAnim]);
+    return () => {
+      cancelled = true;
+      bounce.stop();
+    };
+  }, [bounceAnim, canApplyCompletionRewards, fadeAnim, grantBonus, lessonId, router, scaleAnim, studyTarget]);
 
   // ── Триггер регистрационной модалки после первого урока ────────────────────
   // Показывается ровно один раз: только для урока 1, только если юзер ещё не залогинен
@@ -705,7 +744,7 @@ export default function LessonComplete() {
           } as any);
           return;
         }
-        await prefetchLessonMenuCache(next);
+        await prefetchLessonMenuCache(next, studyTarget);
         router.replace({ pathname: '/lesson_menu', params: { id: next } });
       })();
     } else {
@@ -838,7 +877,7 @@ export default function LessonComplete() {
               if (finishedOnce && !isPremium) {
                 setShowMasteryModal(true);
               } else {
-                void (async () => { await primeLessonScreenFromStorage(lessonId); router.replace({ pathname: '/lesson1', params: { id: lessonId } }); })();
+                void (async () => { await primeLessonScreenFromStorage(lessonId, studyTarget); router.replace({ pathname: '/lesson1', params: { id: lessonId } }); })();
               }
             }}
             activeOpacity={0.85}
@@ -860,7 +899,7 @@ export default function LessonComplete() {
             onPress={async () => {
               hapticTap();
               const msg = buildLessonShareMessage(
-                lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru',
+                lang,
                 lessonId,
                 lessonScore,
                 STORE_URL
@@ -919,10 +958,11 @@ export default function LessonComplete() {
         visible={showMasteryModal}
         lessonId={lessonId}
         isPremium={isPremium}
+        studyTarget={studyTarget}
         onClose={() => setShowMasteryModal(false)}
         onReplayed={() => {
           void (async () => {
-            await primeLessonScreenFromStorage(lessonId);
+            await primeLessonScreenFromStorage(lessonId, studyTarget);
             router.replace({ pathname: '/lesson1', params: { id: lessonId } });
           })();
         }}

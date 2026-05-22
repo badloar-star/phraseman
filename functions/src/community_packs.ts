@@ -22,6 +22,7 @@ const CARD_MAX = 50;
 const UGC_PACK_PRICE_SHARDS = 10;
 /** Базис 10_000 = 100 %. Часть цены не передаётся автору (остаётся в экономике приложения). */
 const PLATFORM_FEE_BPS = 1500;
+type CommunityStudyTarget = 'en' | 'fr';
 
 const UGC_CARD_THEME_KEYS = new Set([
   'neon_lime',
@@ -68,20 +69,57 @@ const UGC_CARD_BACK_KEYS = new Set([
 ]);
 
 type SubmissionPayload = {
+  studyTarget?: 'en' | 'fr';
   title?: string;
   description?: string;
-  sourceLang?: 'ru' | 'uk' | 'es';
+  sourceLang?: 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
   titleRu: string;
   titleUk: string;
   titleEs?: string;
+  titlePtBr?: string;
+  titleVi?: string;
+  titleId?: string;
+  titleTr?: string;
+  titlePl?: string;
   descriptionRu?: string;
   descriptionUk?: string;
   descriptionEs?: string;
+  descriptionPtBr?: string;
+  descriptionVi?: string;
+  descriptionId?: string;
+  descriptionTr?: string;
+  descriptionPl?: string;
   cardThemeKey?: string;
   cardBackKey?: string;
   priceShards: number;
-  cards: Array<{ id: string; en: string; ru?: string; uk?: string; es?: string }>;
+  cards: Array<{
+    id: string;
+    en: string;
+    ru?: string;
+    uk?: string;
+    es?: string;
+    sourceLocales?: {
+      'pt-BR'?: string;
+      vi?: string;
+      id?: string;
+      tr?: string;
+      pl?: string;
+    };
+  }>;
 };
+
+function normalizeCommunityPackStudyTarget(raw: unknown): CommunityStudyTarget {
+  return raw === 'fr' ? 'fr' : 'en';
+}
+
+function requireMatchingPackStudyTarget(requested: unknown, pack: Record<string, unknown>): CommunityStudyTarget {
+  const requestStudyTarget = normalizeCommunityPackStudyTarget(requested);
+  const packStudyTarget = normalizeCommunityPackStudyTarget(pack.studyTarget);
+  if (requestStudyTarget !== packStudyTarget) {
+    throw new HttpsError('failed-precondition', 'Pack study target mismatch');
+  }
+  return packStudyTarget;
+}
 
 function trimModeratorMessage(raw: unknown): string {
   const s = raw != null ? String(raw) : '';
@@ -94,19 +132,41 @@ function moderatorMessageOrNull(s: string): string | null {
 }
 
 function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
-  const sourceLang = raw.sourceLang === 'es' || raw.sourceLang === 'uk' ? raw.sourceLang : 'ru';
-  const titleSingle = String(raw.title ?? raw.titleRu ?? raw.titleUk ?? raw.titleEs ?? '').trim();
-  let descSingle = String(raw.description ?? raw.descriptionRu ?? raw.descriptionUk ?? raw.descriptionEs ?? '').trim();
+  const studyTarget = normalizeCommunityPackStudyTarget(raw.studyTarget);
+  if (studyTarget !== 'en') {
+    throw new HttpsError('failed-precondition', 'French community packs are source-gated');
+  }
+  const sourceLang = raw.sourceLang === 'uk' ||
+    raw.sourceLang === 'es' ||
+    raw.sourceLang === 'pt-BR' ||
+    raw.sourceLang === 'vi' ||
+    raw.sourceLang === 'id' ||
+    raw.sourceLang === 'tr' ||
+    raw.sourceLang === 'pl'
+    ? raw.sourceLang
+    : 'ru';
+  const titleSingle = String(raw.title ?? raw.titleRu ?? raw.titleUk ?? raw.titleEs ?? raw.titlePtBr ?? raw.titleVi ?? raw.titleId ?? raw.titleTr ?? raw.titlePl ?? '').trim();
+  let descSingle = String(raw.description ?? raw.descriptionRu ?? raw.descriptionUk ?? raw.descriptionEs ?? raw.descriptionPtBr ?? raw.descriptionVi ?? raw.descriptionId ?? raw.descriptionTr ?? raw.descriptionPl ?? '').trim();
   if (!descSingle) {
     descSingle = titleSingle;
   }
   const titleRu = (sourceLang === 'ru' ? titleSingle : String(raw.titleRu ?? '').trim()).slice(0, 200);
   const titleUk = (sourceLang === 'uk' ? titleSingle : String(raw.titleUk ?? '').trim()).slice(0, 200);
   const titleEs = (sourceLang === 'es' ? titleSingle : String(raw.titleEs ?? '').trim()).slice(0, 200);
+  const titlePtBr = (sourceLang === 'pt-BR' ? titleSingle : String(raw.titlePtBr ?? '').trim()).slice(0, 200);
+  const titleVi = (sourceLang === 'vi' ? titleSingle : String(raw.titleVi ?? '').trim()).slice(0, 200);
+  const titleId = (sourceLang === 'id' ? titleSingle : String(raw.titleId ?? '').trim()).slice(0, 200);
+  const titleTr = (sourceLang === 'tr' ? titleSingle : String(raw.titleTr ?? '').trim()).slice(0, 200);
+  const titlePl = (sourceLang === 'pl' ? titleSingle : String(raw.titlePl ?? '').trim()).slice(0, 200);
   const descriptionRu = sourceLang === 'ru' ? descSingle : String(raw.descriptionRu ?? '').trim();
   const descriptionUk = sourceLang === 'uk' ? descSingle : String(raw.descriptionUk ?? '').trim();
   const descriptionEs = sourceLang === 'es' ? descSingle : String(raw.descriptionEs ?? '').trim();
-  if (!titleRu && !titleUk && !titleEs) {
+  const descriptionPtBr = sourceLang === 'pt-BR' ? descSingle : String(raw.descriptionPtBr ?? '').trim();
+  const descriptionVi = sourceLang === 'vi' ? descSingle : String(raw.descriptionVi ?? '').trim();
+  const descriptionId = sourceLang === 'id' ? descSingle : String(raw.descriptionId ?? '').trim();
+  const descriptionTr = sourceLang === 'tr' ? descSingle : String(raw.descriptionTr ?? '').trim();
+  const descriptionPl = sourceLang === 'pl' ? descSingle : String(raw.descriptionPl ?? '').trim();
+  if (!titleRu && !titleUk && !titleEs && !titlePtBr && !titleVi && !titleId && !titleTr && !titlePl) {
     throw new HttpsError('invalid-argument', 'title required');
   }
   const n = raw.cards?.length ?? 0;
@@ -119,7 +179,14 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
     const ru = String(c?.ru ?? '').trim();
     const uk = String(c?.uk ?? '').trim();
     const es = String(c?.es ?? '').trim();
-    const hasSource = !!(ru || es);
+    const sourceLocales = {
+      'pt-BR': String(c?.sourceLocales?.['pt-BR'] ?? '').trim(),
+      vi: String(c?.sourceLocales?.vi ?? '').trim(),
+      id: String(c?.sourceLocales?.id ?? '').trim(),
+      tr: String(c?.sourceLocales?.tr ?? '').trim(),
+      pl: String(c?.sourceLocales?.pl ?? '').trim(),
+    };
+    const hasSource = !!(ru || es || Object.values(sourceLocales).some(Boolean));
     if (!c?.id || !String(c.en).trim() || !hasSource) {
       throw new HttpsError('invalid-argument', 'Each card needs id, en, and a source-language translation');
     }
@@ -129,6 +196,13 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
       ...(ru ? { ru } : {}),
       ...(uk ? { uk } : {}),
       ...(es ? { es } : {}),
+      sourceLocales: {
+        ...(sourceLocales['pt-BR'] ? { 'pt-BR': sourceLocales['pt-BR'] } : {}),
+        ...(sourceLocales.vi ? { vi: sourceLocales.vi } : {}),
+        ...(sourceLocales.id ? { id: sourceLocales.id } : {}),
+        ...(sourceLocales.tr ? { tr: sourceLocales.tr } : {}),
+        ...(sourceLocales.pl ? { pl: sourceLocales.pl } : {}),
+      },
     };
   });
   let cardThemeKey = String(raw.cardThemeKey ?? 'neon_lime').trim();
@@ -140,13 +214,24 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
     cardBackKey = UGC_CARD_BACK_DEFAULT_KEY;
   }
   return {
+    studyTarget,
     sourceLang,
     titleRu,
     titleUk,
     titleEs,
+    titlePtBr,
+    titleVi,
+    titleId,
+    titleTr,
+    titlePl,
     descriptionRu,
     descriptionUk,
     descriptionEs,
+    descriptionPtBr,
+    descriptionVi,
+    descriptionId,
+    descriptionTr,
+    descriptionPl,
     priceShards: UGC_PACK_PRICE_SHARDS,
     cards,
     cardThemeKey,
@@ -238,13 +323,24 @@ export const communitySubmitPackForReview = onCall(async (request) => {
         titleRu: pd.titleRu ?? '',
         titleUk: pd.titleUk ?? '',
         titleEs: pd.titleEs ?? '',
+        titlePtBr: pd.titlePtBr ?? '',
+        titleVi: pd.titleVi ?? '',
+        titleId: pd.titleId ?? '',
+        titleTr: pd.titleTr ?? '',
+        titlePl: pd.titlePl ?? '',
         descriptionRu: pd.descriptionRu ?? '',
         descriptionUk: pd.descriptionUk ?? '',
         descriptionEs: pd.descriptionEs ?? '',
+        descriptionPtBr: pd.descriptionPtBr ?? '',
+        descriptionVi: pd.descriptionVi ?? '',
+        descriptionId: pd.descriptionId ?? '',
+        descriptionTr: pd.descriptionTr ?? '',
+        descriptionPl: pd.descriptionPl ?? '',
         priceShards: pd.priceShards ?? 0,
         cards: pd.cards ?? [],
         cardThemeKey: pd.cardThemeKey ?? null,
         cardBackKey: pd.cardBackKey ?? null,
+        studyTarget: normalizeCommunityPackStudyTarget(pd.studyTarget),
       };
       tx.set(subRef, {
         status: 'pending',
@@ -315,15 +411,22 @@ export const communityModerateSubmission = onCall(async (request) => {
 
     const writeModerationInbox = (result: 'approved' | 'rejected' | 'revision_requested') => {
       if (!authorStableId) return;
+      const studyTarget = normalizeCommunityPackStudyTarget(d.payload?.studyTarget);
       const inboxRef = db.collection('users').doc(authorStableId).collection(SELLER_INBOX).doc();
       tx.set(inboxRef, {
         type: 'moderation_result',
         result,
         submissionId,
+        studyTarget,
         message: msgForInbox,
         titleRu: (d.payload?.titleRu ?? '').trim().slice(0, 200) || null,
         titleUk: (d.payload?.titleUk ?? '').trim().slice(0, 200) || null,
         titleEs: (d.payload?.titleEs ?? '').trim().slice(0, 200) || null,
+        titlePtBr: (d.payload?.titlePtBr ?? '').trim().slice(0, 200) || null,
+        titleVi: (d.payload?.titleVi ?? '').trim().slice(0, 200) || null,
+        titleId: (d.payload?.titleId ?? '').trim().slice(0, 200) || null,
+        titleTr: (d.payload?.titleTr ?? '').trim().slice(0, 200) || null,
+        titlePl: (d.payload?.titlePl ?? '').trim().slice(0, 200) || null,
         createdAt: now,
         seen: false,
       });
@@ -379,17 +482,32 @@ export const communityModerateSubmission = onCall(async (request) => {
         throw new HttpsError('not-found', 'Pack to update not found');
       }
       const existing = (packSnap.data() ?? {}) as Record<string, unknown>;
+      const existingStudyTarget = normalizeCommunityPackStudyTarget(existing.studyTarget);
+      if (existingStudyTarget !== normalizeCommunityPackStudyTarget(payload.studyTarget)) {
+        throw new HttpsError('failed-precondition', 'Cannot change pack study target');
+      }
       tx.set(packRef, {
         ...existing,
         listingStatus: 'published',
         authorStableId: d.authorStableId ?? existing.authorStableId ?? null,
         submissionId: editTarget,
+        studyTarget: existingStudyTarget,
         titleRu: payload.titleRu.trim(),
         titleUk: payload.titleUk.trim(),
         titleEs: (payload.titleEs ?? '').trim() || null,
+        titlePtBr: (payload.titlePtBr ?? '').trim() || null,
+        titleVi: (payload.titleVi ?? '').trim() || null,
+        titleId: (payload.titleId ?? '').trim() || null,
+        titleTr: (payload.titleTr ?? '').trim() || null,
+        titlePl: (payload.titlePl ?? '').trim() || null,
         descriptionRu: (payload.descriptionRu ?? '').trim() || null,
         descriptionUk: (payload.descriptionUk ?? '').trim() || null,
         descriptionEs: (payload.descriptionEs ?? '').trim() || null,
+        descriptionPtBr: (payload.descriptionPtBr ?? '').trim() || null,
+        descriptionVi: (payload.descriptionVi ?? '').trim() || null,
+        descriptionId: (payload.descriptionId ?? '').trim() || null,
+        descriptionTr: (payload.descriptionTr ?? '').trim() || null,
+        descriptionPl: (payload.descriptionPl ?? '').trim() || null,
         priceShards: Math.floor(Number(payload.priceShards)),
         cards: payload.cards,
         cardCount: payload.cards.length,
@@ -418,12 +536,23 @@ export const communityModerateSubmission = onCall(async (request) => {
       listingStatus: 'published',
       authorStableId: d.authorStableId ?? null,
       submissionId,
+      studyTarget: normalizeCommunityPackStudyTarget(payload.studyTarget),
       titleRu: payload.titleRu.trim(),
       titleUk: payload.titleUk.trim(),
       titleEs: (payload.titleEs ?? '').trim() || null,
+      titlePtBr: (payload.titlePtBr ?? '').trim() || null,
+      titleVi: (payload.titleVi ?? '').trim() || null,
+      titleId: (payload.titleId ?? '').trim() || null,
+      titleTr: (payload.titleTr ?? '').trim() || null,
+      titlePl: (payload.titlePl ?? '').trim() || null,
       descriptionRu: (payload.descriptionRu ?? '').trim() || null,
       descriptionUk: (payload.descriptionUk ?? '').trim() || null,
       descriptionEs: (payload.descriptionEs ?? '').trim() || null,
+      descriptionPtBr: (payload.descriptionPtBr ?? '').trim() || null,
+      descriptionVi: (payload.descriptionVi ?? '').trim() || null,
+      descriptionId: (payload.descriptionId ?? '').trim() || null,
+      descriptionTr: (payload.descriptionTr ?? '').trim() || null,
+      descriptionPl: (payload.descriptionPl ?? '').trim() || null,
       priceShards: Math.floor(Number(payload.priceShards)),
       cards: payload.cards,
       cardCount: payload.cards.length,
@@ -450,6 +579,7 @@ export const communityModerateSubmission = onCall(async (request) => {
 function buildSellerInboxModerationRow(params: {
   result: 'revision_requested' | 'pack_removed';
   packId: string;
+  studyTarget: CommunityStudyTarget;
   now: number;
   message: string | null;
   titleRu: string | null;
@@ -460,6 +590,7 @@ function buildSellerInboxModerationRow(params: {
     type: 'moderation_result',
     result: params.result,
     packId: params.packId,
+    studyTarget: params.studyTarget,
     createdAt: params.now,
     seen: false,
   };
@@ -505,6 +636,7 @@ export const communityAdminModeratePack = onCall({ region: 'us-central1' }, asyn
         throw new HttpsError('failed-precondition', 'Pack is not active for admin action');
       }
       const authorStableId = String(pack.authorStableId ?? '').trim();
+      const studyTarget = normalizeCommunityPackStudyTarget(pack.studyTarget);
       const now = Date.now();
       const tRu = String(pack.titleRu ?? '').trim().slice(0, 200) || null;
       const tUk = String(pack.titleUk ?? '').trim().slice(0, 200) || null;
@@ -518,6 +650,7 @@ export const communityAdminModeratePack = onCall({ region: 'us-central1' }, asyn
           buildSellerInboxModerationRow({
             result,
             packId,
+            studyTarget,
             now,
             message: msgForInbox,
             titleRu: tRu,
@@ -589,6 +722,7 @@ export const communityFetchPackCardsIfAccessible = onCall({ region: 'us-central1
   }
   const stableId = String(request.data?.stableId ?? '').trim();
   const packId = String(request.data?.packId ?? '').trim();
+  const requestedStudyTarget = request.data?.studyTarget;
   if (!stableId || !packId) {
     throw new HttpsError('invalid-argument', 'stableId and packId required');
   }
@@ -600,6 +734,7 @@ export const communityFetchPackCardsIfAccessible = onCall({ region: 'us-central1
     throw new HttpsError('not-found', 'Pack not found');
   }
   const pack = packSnap.data() as Record<string, unknown>;
+  requireMatchingPackStudyTarget(requestedStudyTarget, pack);
   const st = String(pack.listingStatus ?? '');
   const authorStableId = String(pack.authorStableId ?? '').trim();
 
@@ -632,6 +767,7 @@ export const communityPurchasePack = onCall(async (request) => {
   }
   const buyerStableId = String(request.data?.buyerStableId ?? '').trim();
   const packId = String(request.data?.packId ?? '').trim();
+  const requestedStudyTarget = request.data?.studyTarget;
   const buyerDisplayName = String(request.data?.buyerDisplayName ?? 'Игрок').trim().slice(0, 80);
   if (!buyerStableId || !packId) {
     throw new HttpsError('invalid-argument', 'buyerStableId and packId required');
@@ -658,7 +794,9 @@ export const communityPurchasePack = onCall(async (request) => {
       authorStableId?: string;
       priceShards?: number;
       salesCount?: number;
+      studyTarget?: unknown;
     };
+    const studyTarget = requireMatchingPackStudyTarget(requestedStudyTarget, pack as Record<string, unknown>);
     if (pack.listingStatus !== 'published') {
       throw new HttpsError('failed-precondition', 'Pack is not published');
     }
@@ -673,7 +811,7 @@ export const communityPurchasePack = onCall(async (request) => {
     const price = UGC_PACK_PRICE_SHARDS;
 
     if (purSnap.exists) {
-      return { alreadyOwned: true as const, priceShards: price };
+      return { alreadyOwned: true as const, priceShards: price, studyTarget };
     }
 
     const buyerShards = parseShards(buyerSnap.data());
@@ -692,6 +830,7 @@ export const communityPurchasePack = onCall(async (request) => {
 
     tx.set(purchaseRef, {
       packId,
+      studyTarget,
       buyerStableId,
       authorStableId,
       priceShards: price,
@@ -716,6 +855,7 @@ export const communityPurchasePack = onCall(async (request) => {
       amount: price,
       reason: 'community_pack_purchase',
       packId,
+      studyTarget,
       authorStableId,
       balanceBefore: buyerShards,
       balanceAfter: buyerBalanceAfter,
@@ -729,6 +869,7 @@ export const communityPurchasePack = onCall(async (request) => {
       platformFeeShards: price - net,
       reason: 'community_pack_sale',
       packId,
+      studyTarget,
       buyerStableId,
       balanceBefore: authorShards,
       balanceAfter: authorBalanceAfter,
@@ -743,6 +884,7 @@ export const communityPurchasePack = onCall(async (request) => {
     tx.set(inboxRef, {
       type: 'pack_sold',
       packId,
+      studyTarget,
       buyerStableId,
       buyerDisplayName,
       grossShards: price,
@@ -756,6 +898,7 @@ export const communityPurchasePack = onCall(async (request) => {
       priceShards: price,
       authorNetShards: net,
       buyerBalanceAfter,
+      studyTarget,
     };
   });
 
@@ -812,4 +955,3 @@ export const communityMarkSellerInboxSeen = onCall(async (request) => {
   await batch.commit();
   return { ok: true };
 });
-

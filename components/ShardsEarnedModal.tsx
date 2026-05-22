@@ -1,7 +1,7 @@
 // ShardsEarnedModal — премиальная модалка при получении осколков
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import React, { useEffect, useRef } from 'react';
-import { Animated, Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import { triLang, type Lang } from '../constants/i18n';
 import {
@@ -17,6 +17,8 @@ import {
   rewardModalAccentColor,
   rewardModalPanelBorder,
   rewardModalPanelColors,
+  rewardModalPrimaryButtonColors,
+  rewardModalPrimaryButtonText,
   rewardModalSoftSurface,
 } from './RewardModalBackdrop';
 
@@ -123,6 +125,8 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
     ? (USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(8,12,20,0.68)' : 'rgba(8,12,20,0.55)')
     : (USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(3,5,10,0.82)' : 'rgba(0,0,0,0.68)');
   const modalAccent = rewardModalAccentColor(themeMode, t);
+  const primaryButtonColors = rewardModalPrimaryButtonColors(themeMode);
+  const primaryButtonText = rewardModalPrimaryButtonText(themeMode);
 
   const shardLabel = isES
     ? amount === 1
@@ -249,6 +253,26 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
                 <Text style={[styles.tapHint, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteTapHint, { color: t.textMuted, fontSize: f.caption }]}>
                   {tapHint(lang)}
                 </Text>
+                <TouchableOpacity
+                  testID="shards-earned-close"
+                  activeOpacity={0.88}
+                  onPress={() => {
+                    hapticTap();
+                    onClose();
+                  }}
+                  style={styles.closeButton}
+                >
+                  <LinearGradient
+                    colors={primaryButtonColors}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={styles.closeButtonGradient}
+                  >
+                    <Text style={[styles.closeButtonText, { color: primaryButtonText, fontSize: f.bodyLg }]}>
+                      {triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Recoger', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })}
+                    </Text>
+                  </LinearGradient>
+                </TouchableOpacity>
               </View>
             </LinearGradient>
           </Animated.View>
@@ -386,5 +410,19 @@ const styles = StyleSheet.create({
   },
   eliteTapHint: {
     opacity: 0.78,
+  },
+  closeButton: {
+    alignSelf: 'stretch',
+    borderRadius: 18,
+    overflow: 'hidden',
+    marginTop: 16,
+  },
+  closeButtonGradient: {
+    paddingVertical: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  closeButtonText: {
+    fontWeight: '900',
   },
 });

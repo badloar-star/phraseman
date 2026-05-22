@@ -5,16 +5,25 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
-const tri = (ru: string, uk: string, es: string): TriText => {
-  const plannedFallback = {
-    'pt-BR': es,
-    vi: es,
-    id: es,
-    tr: es,
-    pl: es,
-  } satisfies Record<PlannedTrainingLocale, string>;
+const PP_VS_PAST_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre Present Perfect vs Past Simple ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về Present Perfect vs Past Simple này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan Present Perfect vs Past Simple ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu Present Perfect vs Past Simple açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie Present Perfect vs Past Simple nadal wymaga przeglądu po polsku.',
+};
 
-  return { ru, uk, es, ...plannedFallback };
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? PP_VS_PAST_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
 };
 
 const CONTRAST = [
@@ -33,30 +42,79 @@ const CONTRAST = [
 const MODEL = tri(
   'Выбор здесь не по русскому переводу. I have lost my keys и I lost my keys yesterday обе могут переводиться как "я потерял". Но английский спрашивает другое: важен результат сейчас или назван законченный момент в прошлом?',
   'Вибір тут не за українським перекладом. I have lost my keys і I lost my keys yesterday обидві можуть перекладатися як "я загубив". Але англійська питає інше: важливий результат зараз чи названий завершений момент у минулому?',
-  'The choice is not based on translation. I have lost my keys and I lost my keys yesterday can both mean "I lost". English asks a different question: result now, or a finished past time?',
+  'La eleccion no depende de la traduccion. I have lost my keys y I lost my keys yesterday pueden traducirse parecido. El ingles pregunta otra cosa: resultado ahora o momento pasado terminado?',
+  {
+    'pt-BR': 'A escolha aqui não depende da tradução. I have lost my keys e I lost my keys yesterday podem parecer parecidas na tradução. Mas o inglês pergunta outra coisa: o resultado importa agora ou foi mencionado um momento passado já terminado?',
+    vi: 'Lựa chọn ở đây không phụ thuộc vào bản dịch. I have lost my keys và I lost my keys yesterday có thể được dịch gần giống nhau. Nhưng tiếng Anh hỏi điều khác: kết quả hiện tại có quan trọng không, hay đã nêu một thời điểm quá khứ đã kết thúc?',
+    id: 'Pilihan di sini tidak bergantung pada terjemahan. I have lost my keys dan I lost my keys yesterday bisa terlihat mirip dalam terjemahan. Tetapi bahasa Inggris menanyakan hal lain: apakah hasilnya penting sekarang, atau apakah ada momen lampau yang sudah selesai?',
+    tr: 'Buradaki seçim çeviriye bağlı değildir. I have lost my keys ve I lost my keys yesterday çeviride benzer görünebilir. Ama İngilizce başka bir şey sorar: sonuç şimdi mi önemli, yoksa bitmiş bir geçmiş zaman mı belirtilmiş?',
+    pl: 'Wybór tutaj nie zależy od tłumaczenia. I have lost my keys i I lost my keys yesterday mogą wyglądać w tłumaczeniu podobnie. Ale angielski pyta o coś innego: czy ważny jest rezultat teraz, czy podano zakończony moment w przeszłości?',
+  },
 );
+
+const PP_VS_PAST_SKILL_ES: Record<string, string> = {
+  result_now_present_perfect: 'Las llaves faltan ahora: resultado ahora, usa have lost.',
+  yesterday_past_simple: 'Yesterday nombra un momento pasado: usa Past Simple.',
+  result_vs_time_pair: 'Resultado ahora = have lost; yesterday = lost.',
+  experience_present_perfect: 'Ever pregunta por experiencia: Have you ever tried.',
+  specific_time_past_question: 'Yesterday pide Past Simple: Did you try?',
+  experience_vs_specific_pair: 'Ever = Have you ever tried; yesterday = Did you try.',
+  last_week_past_simple: 'Last week es periodo pasado terminado: finished.',
+  ago_past_simple: 'Ago nombra pasado terminado: arrived.',
+  in_2020_past_simple: 'In 2020 es periodo pasado especifico: went.',
+  already_present_perfect: 'Already con resultado ahora: has already finished.',
+  yet_present_perfect_negative: 'Yet en negativo suele usar have not + V3.',
+  never_present_perfect: 'Never para experiencia: have never tried.',
+  mixed_experience_yesterday: 'Experiencia usa Present Perfect; yesterday usa Past Simple.',
+  mixed_already_last_week: 'Already = has finished; last week = finished.',
+  mixed_sentence_correction: 'Never para experiencia y in 2020 para Past Simple.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = PP_VS_PAST_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? PP_VS_PAST_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function ppVsPastEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = PP_VS_PAST_SKILL_ES[input.targetSkill] ?? 'Decide si importa el resultado ahora o un tiempo pasado terminado.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retry(correct: string): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала найди подсказку времени: yesterday, last week, in 2020, ago.',
       'Спочатку знайди підказку часу: yesterday, last week, in 2020, ago.',
-      'First find the time clue: yesterday, last week, in 2020, ago.',
+      'Primero encuentra la pista de tiempo: yesterday, last week, in 2020, ago.',
     ),
     tri(
       'Если такой момент назван, чаще нужен Past Simple.',
       'Якщо такий момент названий, частіше потрібен Past Simple.',
-      'If that finished time is named, Past Simple is usually better.',
+      'Si se nombra ese tiempo terminado, Past Simple suele ser mejor.',
     ),
     tri(
       'Если важны опыт, результат сейчас, ever, never, already или yet, чаще нужен Present Perfect.',
       'Якщо важливі досвід, результат зараз, ever, never, already або yet, частіше потрібен Present Perfect.',
-      'If the focus is experience, result now, ever, never, already, or yet, Present Perfect is usually better.',
+      'Si el foco es experiencia, resultado ahora, ever, never, already o yet, Present Perfect suele ser mejor.',
     ),
     tri(
       `Нужный вариант здесь: ${correct}.`,
       `Потрібний варіант тут: ${correct}.`,
-      `The answer here is: ${correct}.`,
+      `La respuesta aqui es: ${correct}.`,
     ),
   ];
 }
@@ -65,7 +123,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Проверь: это результат сейчас или законченный момент в прошлом? Здесь нужно: ${correct}.`,
     `Майже. Перевір: це результат зараз чи завершений момент у минулому? Тут потрібно: ${correct}.`,
-    `Almost. Check: result now or finished past time? Use: ${correct}.`,
+    `Casi. Revisa: resultado ahora o tiempo pasado terminado? Usa: ${correct}.`,
   );
 }
 
@@ -82,35 +140,36 @@ function ppPastStep(input: {
   wrong: Record<string, TriText>;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = ppVsPastEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
-    teachingText: MODEL,
-    explanationBlock: MODEL,
+    translation: withEs(input.translation, esFeedback),
+    teachingText: withEs(MODEL, esFeedback),
+    explanationBlock: withEs(MODEL, esFeedback),
     microTask: tri(
       'Выбери: связь с сейчас или законченный момент в прошлом.',
       'Обери: зв’язок із зараз чи завершений момент у минулому.',
-      'Choose: connection to now, or finished past time.',
+      'Elige: conexion con ahora o tiempo pasado terminado.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(input.correctAnswer),
+    retryFeedback: retry(input.correctAnswer).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Коротко: yesterday, last week, in 2020, ago тянут к Past Simple. Ever, never, already, yet и результат сейчас чаще тянут к Present Perfect.',
       'Коротко: yesterday, last week, in 2020, ago тягнуть до Past Simple. Ever, never, already, yet і результат зараз частіше тягнуть до Present Perfect.',
-      'Short version: yesterday, last week, in 2020, ago point to Past Simple. Ever, never, already, yet, and result now often point to Present Perfect.',
+      'Version corta: yesterday, last week, in 2020, ago apuntan a Past Simple. Ever, never, already, yet y resultado ahora suelen apuntar a Present Perfect.',
     ),
     focusWords: input.focusWords,
   };
@@ -122,29 +181,63 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 39,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Present Perfect vs Past Simple: результат сейчас или время в прошлом',
     'Present Perfect vs Past Simple: результат зараз чи час у минулому',
-    'Present Perfect vs Past Simple: result now or past time',
+    'Present Perfect vs Past Simple: resultado ahora o tiempo pasado',
+    {
+      'pt-BR': 'Present Perfect vs Past Simple: resultado agora ou tempo passado',
+      vi: 'Present Perfect vs Past Simple: kết quả hiện tại hay thời điểm quá khứ',
+      id: 'Present Perfect vs Past Simple: hasil sekarang atau waktu lampau',
+      tr: 'Present Perfect vs Past Simple: şimdiki sonuç mu geçmiş zaman mı',
+      pl: 'Present Perfect vs Past Simple: rezultat teraz czy czas w przeszłości',
+    },
   ),
-  shortTitle: tri('Perfect vs Past', 'Perfect vs Past', 'Perfect vs Past'),
+  shortTitle: tri('Perfect vs Past', 'Perfect vs Past', 'Perfect vs Past', {
+    'pt-BR': 'Perfect vs Past',
+    vi: 'Perfect vs Past',
+    id: 'Perfect vs Past',
+    tr: 'Perfect vs Past',
+    pl: 'Perfect vs Past',
+  }),
   shortDiagnosis: tri(
     'Ты видишь русский перевод "сделал / видел / был" и не понимаешь, почему иногда нужно have done, а иногда did.',
     'Ти бачиш переклад "зробив / бачив / був" і не розумієш, чому іноді потрібно have done, а іноді did.',
-    'You see the translation "did / saw / was" and do not know when to use have done and when to use did.',
+    'Ves la traduccion "hice / vi / estuve" y no sabes cuando usar have done y cuando usar did.',
+    {
+      'pt-BR': 'Você vê uma tradução como "fez / viu / esteve" e não entende por que às vezes precisa de have done e às vezes de did.',
+      vi: 'Bạn thấy bản dịch như "đã làm / đã thấy / đã ở" và không hiểu vì sao đôi khi cần have done, còn đôi khi cần did.',
+      id: 'Kamu melihat terjemahan seperti "sudah melakukan / melihat / berada" dan tidak paham mengapa kadang perlu have done, kadang did.',
+      tr: '"Yaptı / gördü / bulundu" gibi bir çeviri görüyorsun ve neden bazen have done, bazen did gerektiğini anlamıyorsun.',
+      pl: 'Widzisz tłumaczenie typu "zrobił / widział / był" i nie rozumiesz, dlaczego czasem potrzeba have done, a czasem did.',
+    },
   ),
   diagnosisText: tri(
     'Здесь ломает не сама форма. Ломает вопрос "когда?". Если фраза говорит, когда это случилось, английский обычно выбирает Past Simple. Если важен опыт или результат сейчас, чаще нужен Present Perfect.',
     'Тут ламає не сама форма. Ламає питання "коли?". Якщо фраза говорить, коли це сталося, англійська зазвичай обирає Past Simple. Якщо важливий досвід або результат зараз, частіше потрібен Present Perfect.',
-    'The problem is not only the form. It is the question "when?". If the sentence says when it happened, English usually uses Past Simple. If the focus is experience or result now, Present Perfect is usually better.',
+    'El problema no es solo la forma. Es la pregunta "cuando?". Si la frase dice cuando paso, el ingles normalmente usa Past Simple. Si el foco es experiencia o resultado ahora, Present Perfect suele ser mejor.',
+    {
+      'pt-BR': 'Aqui o problema não é só a forma. O problema é a pergunta "quando?". Se a frase diz quando aconteceu, o inglês geralmente escolhe Past Simple. Se o foco é experiência ou resultado agora, muitas vezes precisa de Present Perfect.',
+      vi: 'Ở đây vấn đề không chỉ là hình thức. Vấn đề là câu hỏi "khi nào?". Nếu câu nói cho biết chuyện xảy ra khi nào, tiếng Anh thường chọn Past Simple. Nếu điều quan trọng là trải nghiệm hoặc kết quả hiện tại, thường cần Present Perfect.',
+      id: 'Di sini yang bermasalah bukan hanya bentuknya. Yang bermasalah adalah pertanyaan "kapan?". Jika kalimat mengatakan kapan itu terjadi, bahasa Inggris biasanya memilih Past Simple. Jika yang penting adalah pengalaman atau hasil sekarang, sering perlu Present Perfect.',
+      tr: 'Burada sorun sadece biçim değildir. Sorun "ne zaman?" sorusudur. Cümle bunun ne zaman olduğunu söylüyorsa İngilizce genellikle Past Simple seçer. Deneyim ya da şimdiki sonuç önemliyse çoğu zaman Present Perfect gerekir.',
+      pl: 'Tutaj psuje nie sama forma. Psuje pytanie "kiedy?". Jeśli zdanie mówi, kiedy to się stało, angielski zwykle wybiera Past Simple. Jeśli ważne jest doświadczenie albo rezultat teraz, częściej potrzebny jest Present Perfect.',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     'I have lost my keys = результат сейчас: ключей нет. I lost my keys yesterday = назван момент в прошлом. Have you ever tried it? = опыт. Did you try it yesterday? = вчерашний момент.',
     'I have lost my keys = результат зараз: ключів немає. I lost my keys yesterday = названий момент у минулому. Have you ever tried it? = досвід. Did you try it yesterday? = вчорашній момент.',
-    'I have lost my keys = result now. I lost my keys yesterday = named past time. Have you ever tried it? = experience. Did you try it yesterday? = yesterday.',
+    'I have lost my keys = resultado ahora. I lost my keys yesterday = tiempo pasado nombrado. Have you ever tried it? = experiencia. Did you try it yesterday? = ayer.',
+    {
+      'pt-BR': 'I have lost my keys = resultado agora: as chaves não estão aqui. I lost my keys yesterday = um momento no passado foi nomeado. Have you ever tried it? = experiência. Did you try it yesterday? = momento de ontem.',
+      vi: 'I have lost my keys = kết quả hiện tại: không có chìa khóa. I lost my keys yesterday = đã nêu thời điểm trong quá khứ. Have you ever tried it? = trải nghiệm. Did you try it yesterday? = thời điểm hôm qua.',
+      id: 'I have lost my keys = hasil sekarang: kuncinya tidak ada. I lost my keys yesterday = momen masa lalu disebutkan. Have you ever tried it? = pengalaman. Did you try it yesterday? = momen kemarin.',
+      tr: 'I have lost my keys = şimdiki sonuç: anahtarlar yok. I lost my keys yesterday = geçmişte bir an belirtilmiş. Have you ever tried it? = deneyim. Did you try it yesterday? = dünkü an.',
+      pl: 'I have lost my keys = rezultat teraz: kluczy nie ma. I lost my keys yesterday = podano moment w przeszłości. Have you ever tried it? = doświadczenie. Did you try it yesterday? = moment wczoraj.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -170,15 +263,15 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       'Не кажи Did you ever been there? Для досвіду краще: Have you ever been there?',
     ],
     es: [
-      'Use Present Perfect when the result matters now: I have lost my keys.',
-      'Use Past Simple when a specific past time is named: I lost my keys yesterday.',
-      'With yesterday, last week, in 2020, and ago, Past Simple is usually better.',
-      'With ever and never for life experience, Present Perfect is usually better.',
-      'Already and yet often go with Present Perfect.',
-      'When questions usually use Past Simple: When did you arrive?',
-      'Experience questions usually use Present Perfect: Have you ever tried it?',
-      'Do not say I have seen him yesterday. With yesterday, use I saw him yesterday.',
-      'Do not say Did you ever been there? For experience, use Have you ever been there?',
+      'Usa Present Perfect cuando importa el resultado ahora: I have lost my keys.',
+      'Usa Past Simple cuando se nombra un momento pasado concreto: I lost my keys yesterday.',
+      'Con yesterday, last week, in 2020 y ago, Past Simple suele ser mejor.',
+      'Con ever y never para experiencia de vida, Present Perfect suele ser mejor.',
+      'Already y yet a menudo van con Present Perfect.',
+      'Las preguntas con when suelen usar Past Simple: When did you arrive?',
+      'Las preguntas de experiencia suelen usar Present Perfect: Have you ever tried it?',
+      'No digas I have seen him yesterday. Con yesterday, usa I saw him yesterday.',
+      'No digas Did you ever been there? Para experiencia, usa Have you ever been there?',
     ],
     'pt-BR': [
       'Use Present Perfect quando o resultado importa agora: I have lost my keys.',
@@ -241,97 +334,97 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       en: 'I have lost my keys.',
       ru: 'Я потерял ключи.',
       uk: 'Я загубив ключі.',
-      es: 'I have lost my keys.',
+      es: 'He perdido mis llaves.',
       'pt-BR': 'Perdi minhas chaves.',
       vi: 'Tôi đã làm mất chìa khóa.',
       id: 'Saya kehilangan kunci saya.',
       tr: 'Anahtarlarımı kaybettim.',
       pl: 'Zgubiłem klucze.',
-      why: tri('Фокус на результате сейчас: ключей нет.', 'Фокус на результаті зараз: ключів немає.', 'The focus is result now: the keys are missing.'),
+      why: tri('Фокус на результате сейчас: ключей нет.', 'Фокус на результаті зараз: ключів немає.', 'El foco es el resultado ahora: faltan las llaves.'),
     },
     {
       en: 'I lost my keys yesterday.',
       ru: 'Я потерял ключи вчера.',
       uk: 'Я загубив ключі вчора.',
-      es: 'I lost my keys yesterday.',
+      es: 'Perdi mis llaves ayer.',
       'pt-BR': 'Perdi minhas chaves ontem.',
       vi: 'Tôi đã làm mất chìa khóa hôm qua.',
       id: 'Saya kehilangan kunci saya kemarin.',
       tr: 'Anahtarlarımı dün kaybettim.',
       pl: 'Zgubiłem klucze wczoraj.',
-      why: tri('Yesterday называет законченный момент в прошлом.', 'Yesterday називає завершений момент у минулому.', 'Yesterday names a finished past time.'),
+      why: tri('Yesterday называет законченный момент в прошлом.', 'Yesterday називає завершений момент у минулому.', 'Yesterday nombra un tiempo pasado terminado.'),
     },
     {
       en: 'Have you ever tried sushi?',
       ru: 'Ты когда-нибудь пробовал суши?',
       uk: 'Ти коли-небудь пробував суші?',
-      es: 'Have you ever tried sushi?',
+      es: 'Has probado sushi alguna vez?',
       'pt-BR': 'Você já experimentou sushi?',
       vi: 'Bạn đã từng thử sushi chưa?',
       id: 'Apakah kamu pernah mencoba sushi?',
       tr: 'Hiç suşi denedin mi?',
       pl: 'Czy kiedykolwiek próbowałeś sushi?',
-      why: tri('Ever спрашивает об опыте до текущего момента.', 'Ever питає про досвід до поточного моменту.', 'Ever asks about experience up to now.'),
+      why: tri('Ever спрашивает об опыте до текущего момента.', 'Ever питає про досвід до поточного моменту.', 'Ever pregunta por experiencia hasta ahora.'),
     },
     {
       en: 'Did you try sushi yesterday?',
       ru: 'Ты пробовал суши вчера?',
       uk: 'Ти пробував суші вчора?',
-      es: 'Did you try sushi yesterday?',
+      es: 'Probaste sushi ayer?',
       'pt-BR': 'Você experimentou sushi ontem?',
       vi: 'Hôm qua bạn đã thử sushi chưa?',
       id: 'Apakah kamu mencoba sushi kemarin?',
       tr: 'Dün suşi denedin mi?',
       pl: 'Czy próbowałeś sushi wczoraj?',
-      why: tri('Yesterday задает конкретный момент, поэтому нужен did.', 'Yesterday задає конкретний момент, тому потрібен did.', 'Yesterday gives a specific time, so use did.'),
+      why: tri('Yesterday задает конкретный момент, поэтому нужен did.', 'Yesterday задає конкретний момент, тому потрібен did.', 'Yesterday da un momento concreto, por eso usa did.'),
     },
     {
       en: 'She has already finished the task.',
       ru: 'Она уже закончила задачу.',
       uk: 'Вона вже закінчила завдання.',
-      es: 'She has already finished the task.',
+      es: 'Ella ya ha terminado la tarea.',
       'pt-BR': 'Ela já terminou a tarefa.',
       vi: 'Cô ấy đã hoàn thành nhiệm vụ rồi.',
       id: 'Dia sudah menyelesaikan tugasnya.',
       tr: 'Görevi çoktan bitirdi.',
       pl: 'Ona już skończyła zadanie.',
-      why: tri('Already показывает результат к текущему моменту.', 'Already показує результат до поточного моменту.', 'Already shows a result by now.'),
+      why: tri('Already показывает результат к текущему моменту.', 'Already показує результат до поточного моменту.', 'Already muestra un resultado hasta ahora.'),
     },
     {
       en: 'She finished the task last week.',
       ru: 'Она закончила задачу на прошлой неделе.',
       uk: 'Вона закінчила завдання минулого тижня.',
-      es: 'She finished the task last week.',
+      es: 'Ella termino la tarea la semana pasada.',
       'pt-BR': 'Ela terminou a tarefa na semana passada.',
       vi: 'Cô ấy đã hoàn thành nhiệm vụ tuần trước.',
       id: 'Dia menyelesaikan tugas itu minggu lalu.',
       tr: 'Görevi geçen hafta bitirdi.',
       pl: 'Ona skończyła zadanie w zeszłym tygodniu.',
-      why: tri('Last week называет законченный прошлый период.', 'Last week називає завершений минулий період.', 'Last week names a finished past period.'),
+      why: tri('Last week называет законченный прошлый период.', 'Last week називає завершений минулий період.', 'Last week nombra un periodo pasado terminado.'),
     },
     {
       en: 'I have never been to London.',
       ru: 'Я никогда не был в Лондоне.',
       uk: 'Я ніколи не був у Лондоні.',
-      es: 'I have never been to London.',
+      es: 'Nunca he estado en Londres.',
       'pt-BR': 'Nunca estive em Londres.',
       vi: 'Tôi chưa bao giờ đến London.',
       id: 'Saya belum pernah ke London.',
       tr: "Londra'ya hiç gitmedim.",
       pl: 'Nigdy nie byłem w Londynie.',
-      why: tri('Never говорит об отсутствии опыта до текущего момента.', 'Never говорить про відсутність досвіду до поточного моменту.', 'Never says the experience is absent up to now.'),
+      why: tri('Never говорит об отсутствии опыта до текущего момента.', 'Never говорить про відсутність досвіду до поточного моменту.', 'Never dice que esa experiencia no existe hasta ahora.'),
     },
     {
       en: 'I went to Dublin in 2020.',
       ru: 'Я ездил в Дублин в 2020 году.',
       uk: 'Я їздив до Дубліна у 2020 році.',
-      es: 'I went to Dublin in 2020.',
+      es: 'Fui a Dublin en 2020.',
       'pt-BR': 'Fui a Dublin em 2020.',
       vi: 'Tôi đã đến Dublin năm 2020.',
       id: 'Saya pergi ke Dublin pada tahun 2020.',
       tr: "2020'de Dublin'e gittim.",
       pl: 'Pojechałem do Dublina w 2020 roku.',
-      why: tri('In 2020 называет конкретный прошлый период.', 'In 2020 називає конкретний минулий період.', 'In 2020 names a specific past period.'),
+      why: tri('In 2020 называет конкретный прошлый период.', 'In 2020 називає конкретний минулий період.', 'In 2020 nombra un periodo pasado especifico.'),
     },
   ],
   introBlocks: [
@@ -341,7 +434,7 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты выбираешь по переводу. Но перевод "я потерял" не говорит, что выбрать: I have lost или I lost.',
         'Схоже, ти обираєш за перекладом. Але переклад "я загубив" не говорить, що обрати: I have lost чи I lost.',
-        'It looks like you choose by translation. But "I lost" does not tell you whether to choose I have lost or I lost.',
+        'Parece que eliges por traduccion. Pero "perdi" no te dice si elegir I have lost o I lost.',
       ),
     },
     {
@@ -350,7 +443,7 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       text: tri(
         'Смотри на смысл. Есть результат сейчас? Present Perfect. Есть finished time: yesterday, last week, in 2020, ago? Past Simple.',
         'Дивись на зміст. Є результат зараз? Present Perfect. Є finished time: yesterday, last week, in 2020, ago? Past Simple.',
-        'Look at the meaning. Result now? Present Perfect. Finished time: yesterday, last week, in 2020, ago? Past Simple.',
+        'Mira el sentido. Resultado ahora? Present Perfect. Tiempo terminado: yesterday, last week, in 2020, ago? Past Simple.',
       ),
     },
     {
@@ -359,7 +452,7 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       text: tri(
         'Главная ловушка: I have seen him yesterday. С yesterday лучше сказать I saw him yesterday.',
         'Головна пастка: I have seen him yesterday. З yesterday краще сказати I saw him yesterday.',
-        'The main trap: I have seen him yesterday. With yesterday, say I saw him yesterday.',
+        'La trampa principal: I have seen him yesterday. Con yesterday, di I saw him yesterday.',
       ),
     },
   ],
@@ -667,10 +760,10 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Показываем подсказку времени или связь с сейчас.', 'Показуємо підказку часу або зв’язок із зараз.', 'Show the time clue or connection to now.'),
-    depth2: tri('Проще: "когда?" ведет к Past Simple, "есть опыт/результат сейчас?" ведет к Present Perfect.', 'Простіше: "коли?" веде до Past Simple, "є досвід/результат зараз?" веде до Present Perfect.', 'Simpler: "when?" points to Past Simple; experience/result now points to Present Perfect.'),
-    depth3: tri('Сравни смысл: have lost значит результат сейчас, а lost yesterday значит законченное вчера. То же с have tried и tried yesterday.', 'Порівняй зміст: have lost означає результат зараз, а lost yesterday означає завершене вчора. Так само з have tried і tried yesterday.', 'Use the pair: have lost / lost yesterday, have tried / tried yesterday.'),
-    depth4: tri('Почти подсказка: прямо выбираем Present Perfect или Past Simple.', 'Майже підказка: прямо обираємо Present Perfect або Past Simple.', 'Almost a hint: directly choose Present Perfect or Past Simple.'),
+    depth1: tri('Показываем подсказку времени или связь с сейчас.', 'Показуємо підказку часу або зв’язок із зараз.', 'Muestra la pista de tiempo o la conexion con ahora.'),
+    depth2: tri('Проще: "когда?" ведет к Past Simple, "есть опыт/результат сейчас?" ведет к Present Perfect.', 'Простіше: "коли?" веде до Past Simple, "є досвід/результат зараз?" веде до Present Perfect.', 'Mas simple: "cuando?" apunta a Past Simple; experiencia/resultado ahora apunta a Present Perfect.'),
+    depth3: tri('Сравни смысл: have lost значит результат сейчас, а lost yesterday значит законченное вчера. То же с have tried и tried yesterday.', 'Порівняй зміст: have lost означає результат зараз, а lost yesterday означає завершене вчора. Так само з have tried і tried yesterday.', 'Usa la pareja: have lost / lost yesterday, have tried / tried yesterday.'),
+    depth4: tri('Почти подсказка: прямо выбираем Present Perfect или Past Simple.', 'Майже підказка: прямо обираємо Present Perfect або Past Simple.', 'Casi una pista: elige directamente Present Perfect o Past Simple.'),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -678,7 +771,7 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       card: tri(
         'Остановись. Если есть finished time: yesterday, last week, in 2020, ago - выбирай Past Simple. Если важен опыт, результат сейчас, already, yet, ever или never - часто выбирай Present Perfect.',
         'Зупинись. Якщо є finished time: yesterday, last week, in 2020, ago - обирай Past Simple. Якщо важливий досвід, результат зараз, already, yet, ever або never - часто обирай Present Perfect.',
-        'Stop. If there is a finished time: yesterday, last week, in 2020, ago, choose Past Simple. If the focus is experience, result now, already, yet, ever, or never, often choose Present Perfect.',
+        'Alto. Si hay finished time: yesterday, last week, in 2020, ago, elige Past Simple. Si el foco es experiencia, resultado ahora, already, yet, ever o never, suele ser Present Perfect.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -686,7 +779,7 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       card: tri(
         'Система подсветит подсказку времени или результат сейчас, но не выберет ответ за тебя.',
         'Система підсвітить підказку часу або результат зараз, але не обере відповідь за тебе.',
-        'The system highlights the time clue or result now, but it does not choose the answer for you.',
+        'El sistema resalta la pista de tiempo o el resultado ahora, pero no elige la respuesta por ti.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -694,7 +787,7 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим подсказки: сначала реши, есть ли точный прошлый момент. Потом реши, важен ли опыт или результат сейчас.',
         'Режим підказки: спочатку виріши, чи є точний минулий момент. Потім виріши, чи важливий досвід або результат зараз.',
-        'Guided mode: first decide whether there is a specific past time. Then decide whether experience or result now matters.',
+        'Modo guiado: primero decide si hay un tiempo pasado especifico. Luego decide si importan experiencia o resultado ahora.',
       ),
     },
   },
@@ -704,28 +797,28 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_pp_vs_past_001',
-        prompt: tri('Yesterday обычно требует Present Perfect или Past Simple?', 'Yesterday зазвичай вимагає Present Perfect чи Past Simple?', 'Yesterday usually needs Present Perfect or Past Simple?'),
+        prompt: tri('Yesterday обычно требует Present Perfect или Past Simple?', 'Yesterday зазвичай вимагає Present Perfect чи Past Simple?', 'Yesterday normalmente pide Present Perfect o Past Simple?'),
         options: ['Present Perfect', 'Past Simple'],
         correctIndex: 1,
         thenReturnToExerciseId: 'pp_vs_past_easy_002',
       },
       {
         id: 'guided_pp_vs_past_002',
-        prompt: tri('Ever в вопросе обычно говорит об опыте или точном времени?', 'Ever у питанні зазвичай говорить про досвід чи точний час?', 'Ever in a question usually points to experience or specific time?'),
+        prompt: tri('Ever в вопросе обычно говорит об опыте или точном времени?', 'Ever у питанні зазвичай говорить про досвід чи точний час?', 'Ever en una pregunta normalmente apunta a experiencia o tiempo especifico?'),
         options: ['опыт', 'точное время'],
         correctIndex: 0,
         thenReturnToExerciseId: 'pp_vs_past_contrast_001',
       },
       {
         id: 'guided_pp_vs_past_003',
-        prompt: tri('In 2020 - это конкретный прошлый период?', 'In 2020 - це конкретний минулий період?', 'In 2020 is a specific past period?'),
+        prompt: tri('In 2020 - это конкретный прошлый период?', 'In 2020 - це конкретний минулий період?', 'In 2020 es un periodo pasado especifico?'),
         options: ['да', 'нет'],
         correctIndex: 0,
         thenReturnToExerciseId: 'pp_vs_past_contrast_006',
       },
       {
         id: 'guided_pp_vs_past_004',
-        prompt: tri('Если ключей сейчас нет, это результат сейчас или просто дата в прошлом?', 'Якщо ключів зараз немає, це результат зараз чи просто дата в минулому?', 'If the keys are missing now, is it result now or just a past date?'),
+        prompt: tri('Если ключей сейчас нет, это результат сейчас или просто дата в прошлом?', 'Якщо ключів зараз немає, це результат зараз чи просто дата в минулому?', 'Si las llaves faltan ahora, es resultado ahora o solo fecha pasada?'),
         options: ['результат сейчас', 'дата в прошлом'],
         correctIndex: 0,
         thenReturnToExerciseId: 'pp_vs_past_easy_001',
@@ -775,7 +868,7 @@ export const PRESENT_PERFECT_VS_PAST_SIMPLE_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_present_perfect_vs_past_simple_start',
     answer: 'diagnosis_training_present_perfect_vs_past_simple_answer',
     mastery: 'diagnosis_training_present_perfect_vs_past_simple_mastery',
-    fallback: 'diagnosis_training_present_perfect_vs_past_simple_fallback',
+    recovery: 'diagnosis_training_present_perfect_vs_past_simple_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

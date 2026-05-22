@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "gustav-evidence-ledger-v0",
+  "runId": "YYYY-MM-DD_fr_research_shortHash",
+  "createdAt": "2026-05-19T00:00:00.000Z",
+  "studyTarget": "fr",
+  "sourceLocales": ["ru", "uk"],
+  "claims": []
+}

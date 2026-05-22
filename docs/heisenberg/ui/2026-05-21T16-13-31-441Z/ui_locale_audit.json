@@ -1,0 +1,71 @@
+{
+  "generatedAt": "2026-05-21T16:13:31.440Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 655,
+    "triLangCalls": 1689,
+    "staticTriLangCalls": 1689,
+    "dynamicTriLangCalls": 0,
+    "legacyLangHelperCalls": 0,
+    "localeObjectFindings": 2,
+    "triLangMissingLocaleUnits": 0,
+    "triLangMissingAllPlannedUnits": 0,
+    "helperMissingLocaleUnits": 0,
+    "localeObjectMissingLocaleUnits": 10,
+    "localeObjectMissingAllPlannedUnits": 2,
+    "bundleMissingLocaleUnits": 0,
+    "findings": 2,
+    "byCode": {
+      "locale-object-missing-all-planned-locales": 2
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/achievements.ts",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/achievements.ts",
+      "line": 67,
+      "column": 82,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: (achievement) => achievement.nameRu, uk: (achievement) => achievement.nameUk, es: (achievement) => achievement.nameEs ?? ACHIEVEMENT_ES[achievement.id]?.nameEs, }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/achievements.ts",
+      "line": 73,
+      "column": 82,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru: (achievement) => achievement.descRu, uk: (achievement) => achievement.descUk, es: (achievement) => achievement.descEs ?? ACHIEVEMENT_ES[achievement.id]?.descEs, }"
+    }
+  ]
+}

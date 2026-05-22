@@ -6,56 +6,6 @@ import {
   type LevelGiftImageVariant,
 } from '../constants/levelGiftImages';
 
-type GiftArtBounds = {
-  left: number;
-  top: number;
-  width: number;
-  height: number;
-};
-
-const SOURCE_SIZE = 512;
-const MIN_SAFE_PADDING = 28;
-const SAFE_PADDING_RATIO = 0.12;
-
-const GIFT_ART_BOUNDS: Record<LevelGiftImageTheme, Record<LevelGiftImageVariant, GiftArtBounds>> = {
-  coral: {
-    common: { left: 46, top: 84, width: 420, height: 373 },
-    rare: { left: 67, top: 55, width: 378, height: 402 },
-    epic: { left: 76, top: 47, width: 360, height: 418 },
-    premium: { left: 55, top: 43, width: 401, height: 426 },
-  },
-  dark: {
-    common: { left: 47, top: 84, width: 419, height: 373 },
-    rare: { left: 66, top: 55, width: 379, height: 402 },
-    epic: { left: 76, top: 47, width: 360, height: 418 },
-    premium: { left: 55, top: 43, width: 401, height: 426 },
-  },
-  gold: {
-    common: { left: 47, top: 81, width: 410, height: 374 },
-    rare: { left: 71, top: 56, width: 365, height: 399 },
-    epic: { left: 76, top: 47, width: 360, height: 418 },
-    premium: { left: 55, top: 43, width: 399, height: 426 },
-  },
-  minimalDark: {
-    common: { left: 55, top: 80, width: 410, height: 377 },
-    rare: { left: 67, top: 55, width: 378, height: 402 },
-    epic: { left: 75, top: 47, width: 361, height: 418 },
-    premium: { left: 55, top: 43, width: 401, height: 425 },
-  },
-  minimalLight: {
-    common: { left: 56, top: 77, width: 409, height: 380 },
-    rare: { left: 78, top: 55, width: 366, height: 402 },
-    epic: { left: 78, top: 47, width: 358, height: 418 },
-    premium: { left: 55, top: 43, width: 401, height: 426 },
-  },
-  neon: {
-    common: { left: 46, top: 85, width: 420, height: 371 },
-    rare: { left: 73, top: 56, width: 366, height: 400 },
-    epic: { left: 79, top: 47, width: 354, height: 418 },
-    premium: { left: 55, top: 43, width: 402, height: 425 },
-  },
-};
-
 const isGiftTheme = (theme: string | null | undefined): theme is LevelGiftImageTheme =>
   theme === 'coral' ||
   theme === 'dark' ||
@@ -72,27 +22,6 @@ const resolveTheme = (theme: string | null | undefined): LevelGiftImageTheme =>
 
 const resolveVariant = (variant: string | null | undefined): LevelGiftImageVariant =>
   isGiftVariant(variant) ? variant : 'common';
-
-const cropImageStyle = (bounds: GiftArtBounds, size: number): ImageStyle => {
-  const maxDim = Math.max(bounds.width, bounds.height);
-  const padding = Math.max(MIN_SAFE_PADDING, Math.round(maxDim * SAFE_PADDING_RATIO));
-  const cropSize = maxDim + padding * 2;
-  const cropLeft = bounds.left - (cropSize - bounds.width) / 2;
-  const cropTop = bounds.top - (cropSize - bounds.height) / 2;
-  const scale = size / cropSize;
-
-  return {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    width: SOURCE_SIZE * scale,
-    height: SOURCE_SIZE * scale,
-    transform: [
-      { translateX: -cropLeft * scale },
-      { translateY: -cropTop * scale },
-    ],
-  };
-};
 
 export default function LevelGiftArt({
   themeMode,
@@ -119,8 +48,6 @@ export default function LevelGiftArt({
         {
           width: size,
           height: size,
-          overflow: 'hidden',
-          position: 'relative',
           opacity,
         },
         style,
@@ -129,7 +56,7 @@ export default function LevelGiftArt({
       <Image
         source={getLevelGiftImage(safeTheme, safeVariant)}
         resizeMode="contain"
-        style={[cropImageStyle(GIFT_ART_BOUNDS[safeTheme][safeVariant], size), imageStyle]}
+        style={[{ width: size, height: size } satisfies ImageStyle, imageStyle]}
       />
     </View>
   );

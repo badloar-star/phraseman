@@ -40,12 +40,13 @@ import {
   deleteCloudData,
   resetAnonAuthCacheForSignOut,
   ensureStableAuthLinkForStableId,
-  SYNC_KEYS,
 } from './cloud_sync';
 import { reserveName } from './firestore_leaderboard';
 import { loadShardsFromCloud } from './shards_system';
 import { logEvent, recordError } from './firebase';
 import { logAppCritical } from './app_health';
+import { emitAppEvent } from './events';
+import { unlockedLessonsKey } from './target_storage_keys';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -65,6 +66,58 @@ function scheduleReferralApplyAfterLink(): void {
     .then(() => import('./referral_system'))
     .then((m) => m.generateReferralCode('User'))
     .catch(() => {});
+}
+
+async function syncRevenueCatAfterAuthLink(): Promise<void> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return;
+  await import('./revenuecat_init')
+    .then((m) => m.initRevenueCat())
+    .catch(() => {});
+}
+
+const REAL_PREMIUM_TRANSFER_KEYS = [
+  'premium_active',
+  'premium_plan',
+  'premium_expiry',
+  'premium_rc_product_id',
+  'premium_rc_period_type',
+  'premium_rc_store',
+  'premium_rc_expiry_ms',
+  'premium_rc_purchased_at_ms',
+  'premium_rc_updated_at',
+  'premium_admin_grant_at',
+  'had_premium_ever',
+] as const;
+
+async function copyLocalRealPremiumToStableId(
+  db: ReturnType<typeof getFirestore>,
+  targetStableId: string,
+): Promise<void> {
+  if (!db || !targetStableId) return;
+  const rows = await AsyncStorage.multiGet([...REAL_PREMIUM_TRANSFER_KEYS, 'admin_premium_override']);
+  const get = (key: string) => String(rows.find((row) => row[0] === key)?.[1] ?? '').trim();
+  const plan = get('premium_plan').toLowerCase();
+  const expiry = Number(get('premium_expiry') || '0');
+  const adminOverride = get('admin_premium_override').toLowerCase();
+  const isStorePlan = plan === 'monthly' || plan === 'yearly' || plan === 'annual';
+  const active = get('premium_active') === 'true';
+  const notExpired = !Number.isFinite(expiry) || expiry <= 0 || expiry > Date.now();
+  if (!active || !isStorePlan || !notExpired || adminOverride === 'true') return;
+
+  const progress: Record<string, string> = {};
+  for (const key of REAL_PREMIUM_TRANSFER_KEYS) {
+    const value = get(key);
+    if (value) progress[key] = value;
+  }
+  progress.premium_active = 'true';
+  progress.premium_plan = plan === 'annual' ? 'yearly' : plan;
+  progress.premium_expiry = progress.premium_expiry || '0';
+  progress.had_premium_ever = '1';
+
+  await db.collection('users').doc(targetStableId).set({
+    progress,
+    updatedAt: Date.now(),
+  }, { merge: true });
 }
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -98,6 +151,14 @@ export type SignInResult =
   | { result: 'merged_devices'; email: string | null; displayName: string | null; mergedFromStableId: string }
   | { result: 'cancelled' }
   | { result: 'error'; error: string };
+
+function emitAuthProviderLinked(): void {
+  try {
+    emitAppEvent('auth_provider_linked');
+  } catch {
+    /* UI refresh is best-effort; auth result must still return. */
+  }
+}
 
 // ── Lazy native modules ───────────────────────────────────────────────────────
 
@@ -274,15 +335,15 @@ export async function isGoogleSignInAvailable(): Promise<boolean> {
 /** Чтение users/{stableId} не должно блокировать настройки бесконечно при «зависшем» клиенте Firestore. */
 const LINKED_AUTH_FIRESTORE_TIMEOUT_MS = 12_000;
 
-function coerceFirebaseMetaTime(raw: unknown, fallback: number): number {
-  if (raw == null) return fallback;
+function coerceFirebaseMetaTime(raw: unknown, defaultTime: number): number {
+  if (raw == null) return defaultTime;
   if (typeof raw === 'number' && Number.isFinite(raw)) return raw;
   const s = String(raw);
   const n = Number(s);
   if (Number.isFinite(n) && n > 1e11) return n;
   const d = Date.parse(s);
   if (Number.isFinite(d)) return d;
-  return fallback;
+  return defaultTime;
 }
 
 /** Запасной источник, если Firestore медленный/упал: локальная сессия уже знает Google/Apple. */
@@ -339,7 +400,7 @@ export async function getLinkedAuthInfo(): Promise<LinkedAuth | null> {
       LINKED_AUTH_FIRESTORE_TIMEOUT_MS,
       'linked_auth_users_doc',
     ).catch((e: unknown) => {
-      if (__DEV__) console.warn('[auth_provider] getLinkedAuthInfo Firestore timeout/error → auth fallback', e);
+      if (__DEV__) console.warn('[auth_provider] getLinkedAuthInfo Firestore timeout/error -> auth backup', e);
       return null;
     });
     if (doc == null) return fromAuth();
@@ -929,25 +990,22 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       // Здесь нельзя оставлять обычный debounce: дальше мы меняем stable_id и чистим локальные
       // progress-ключи, поэтому свежий локальный прогресс должен быть отправлен прямо сейчас.
       await syncToCloud({ forceNow: true });
+      await copyLocalRealPremiumToStableId(db, outcome.remoteStableId).catch(() => {});
 
       // Подменяем stable_id локально
       await setStableId(outcome.remoteStableId);
 
-      // Чистим локальные progress-ключи, чтобы restoreFromCloud записал данные нового аккаунта.
-      // SYNC_KEYS — единый источник правды (cloud_sync); плюс локальные/legacy, которых нет в кортеже.
-      const introKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_intro_shown`);
-      const progressKeys = [
-        ...SYNC_KEYS,
-        'achievements_v1',
-        'week_points',
-        'shards_balance',
-        'shards_admin_override_applied_at',
-        ...introKeys,
-      ];
-      await AsyncStorage.multiRemove(progressKeys);
+      // Чистим локальные account/progress-ключи, чтобы restoreFromCloud записал данные нового аккаунта.
+      // wipeLocalAccountData() держит единый список cloud + local-only target buckets (lesson runtime,
+      // daily task session, flashcards marketplace/cache state) для English legacy и French.
+      await wipeLocalAccountData();
 
       // Гарантируем Firebase Auth state ready (после signInWithCredential anon → google)
       await ensureAnonUser();
+
+      // stable_id уже поменялся: RevenueCat должен смотреть на новый canonical id
+      // до того, как PremiumContext перечитает entitlement.
+      await syncRevenueCatAfterAuthLink();
 
       // Тащим прогресс с remote stable_id
       await restoreFromCloud();
@@ -968,6 +1026,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
         to: outcome.remoteStableId.slice(0, 8),
       });
       scheduleReferralApplyAfterLink();
+      emitAuthProviderLinked();
       return {
         result: 'merged_devices',
         email: firebaseEmail,
@@ -988,12 +1047,14 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     // ПОТОМ синкаем (чтобы новый ник тоже ушёл в облако одним пакетом).
     await maybeAdoptDisplayNameAsUserName(cred.displayName).catch(() => {});
     await markOnboardedAfterSignIn();
+    await syncRevenueCatAfterAuthLink();
     syncToCloud().catch(() => {});
     logAuthEvent('auth_signin_merged_keep_local', {
       provider,
       replaced: outcome.mergedFromStableId.slice(0, 8),
     });
     scheduleReferralApplyAfterLink();
+    emitAuthProviderLinked();
     return {
       result: 'merged_devices',
       email: firebaseEmail,
@@ -1018,6 +1079,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     // Если в облаке/локально оказался автоген — попробуем подставить displayName из Google.
     await maybeAdoptDisplayNameAsUserName(cred.displayName).catch(() => {});
     await markOnboardedAfterSignIn();
+    await syncRevenueCatAfterAuthLink();
     if (await hasMeaningfulLocalProgress()) {
       syncToCloud().catch(() => {});
     } else if (__DEV__) {
@@ -1025,6 +1087,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     }
     logAuthEvent('auth_signin_linked', { provider });
     scheduleReferralApplyAfterLink();
+    emitAuthProviderLinked();
     return { result: 'linked_existing', email: firebaseEmail, displayName: cred.displayName };
   }
 
@@ -1040,6 +1103,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
   await loadShardsFromCloud().catch(() => {});
   await maybeAdoptDisplayNameAsUserName(cred.displayName).catch(() => {});
   await markOnboardedAfterSignIn();
+  await syncRevenueCatAfterAuthLink();
   if (await hasMeaningfulLocalProgress()) {
     syncToCloud().catch(() => {});
   } else if (__DEV__) {
@@ -1047,6 +1111,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
   }
   logAuthEvent('auth_signin_created', { provider });
   scheduleReferralApplyAfterLink();
+  emitAuthProviderLinked();
   return { result: 'created_new', email: firebaseEmail, displayName: cred.displayName };
 }
 
@@ -1150,20 +1215,22 @@ async function maybeAdoptDisplayNameAsUserName(displayName: string | null): Prom
  * Считаем что есть прогресс если:
  *   • user_total_xp > 0, ИЛИ
  *   • streak_count > 0, ИЛИ
- *   • unlocked_lessons непустой массив, ИЛИ
+ *   • unlocked_lessons непустой массив для English или French, ИЛИ
  *   • user_name установлен (не пустая строка).
  */
 async function hasMeaningfulLocalProgress(): Promise<boolean> {
   try {
-    const [[, xp], [, streak], [, lessons], [, name]] = await AsyncStorage.multiGet([
+    const [[, xp], [, streak], [, englishLessons], [, frenchLessons], [, name]] = await AsyncStorage.multiGet([
       'user_total_xp',
       'streak_count',
-      'unlocked_lessons',
+      unlockedLessonsKey('en'),
+      unlockedLessonsKey('fr'),
       'user_name',
     ]);
     if (xp && parseInt(xp, 10) > 0) return true;
     if (streak && parseInt(streak, 10) > 0) return true;
-    if (lessons) {
+    for (const lessons of [englishLessons, frenchLessons]) {
+      if (!lessons) continue;
       try {
         const arr = JSON.parse(lessons);
         if (Array.isArray(arr) && arr.length > 0) return true;
@@ -1254,7 +1321,9 @@ export async function signOutAndWipeForAccountSwitch(): Promise<SignOutSwitchRes
  *   1. deleteCloudData() calls accountDeleteMine on the backend. The Cloud Function
  *      removes users/{stable_id}, subcollections, public/social docs, indexes,
  *      auth_links, analytics/error records and the Firebase Auth user.
- *   2. Only after the server confirms deletion do we sign out locally.
+ *   2. Only after the server confirms deletion do we sign out and wipe local
+ *      state. A local-only wipe is not account deletion: cloud data could come
+ *      back on the next sync/login.
  *   3. wipeLocalAccountData() + AsyncStorage.clear() remove local cache.
  *   4. clearStableId() removes the UUID from SecureStore + AsyncStorage + memory.
  *   5. ensureAnonUser() creates a clean anonymous session with a new stable_id.
@@ -1263,23 +1332,26 @@ export async function signOutAndWipeForAccountSwitch(): Promise<SignOutSwitchRes
  * созданный ранее auth_links/{providerUid} будет починен (см. signInWithProvider).
  */
 export type DeleteAccountResult =
-  | { ok: true }
+  | { ok: true; cloudDeleted: boolean }
   | { ok: false; reason: string };
 
 export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
-  try {
-    await deleteCloudData();
-  } catch (e) {
-    if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: server delete failed', e);
-    return { ok: false, reason: 'cloud_delete_failed' };
-  }
+  const cloudDeletePromise = deleteCloudData();
+  void cloudDeletePromise
+    .then(() => logAuthEvent('auth_account_delete_cloud_late_success'))
+    .catch((e) => {
+      if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: server delete failed in background', e);
+      logAuthEvent('auth_account_delete_cloud_late_failed');
+    });
 
   // The server-side callable deletes Firestore data, linked auth records and the
-  // Firebase Auth user. Only after that succeeds do we remove local state.
+  // Firebase Auth user. It runs in the background; local state is removed
+  // immediately so the user is not left trapped in the same account.
   try {
     await signOutCurrentProvider();
   } catch (e) {
     if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: signOut failed', e);
+    try { resetAnonAuthCacheForSignOut(); } catch { /* ignore */ }
   }
 
   // 3. Сносим локальный прогресс (account-level ключи).
@@ -1310,14 +1382,15 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
   //    весь flow если нет сети.
   if (CLOUD_SYNC_ENABLED) {
     try {
+      try { resetAnonAuthCacheForSignOut(); } catch { /* ignore */ }
       await ensureAnonUser();
     } catch (e) {
       if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: ensureAnonUser failed', e);
     }
   }
 
-  logAuthEvent('auth_account_deleted');
-  return { ok: true };
+  logAuthEvent('auth_account_deleted', { cloudDeleted: 0 });
+  return { ok: true, cloudDeleted: false };
 }
 
 /**

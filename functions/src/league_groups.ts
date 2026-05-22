@@ -18,6 +18,7 @@ type MemberData = {
   profileCardMotion?: string;
   profileCardPublicFocus?: string;
   isPremium?: boolean;
+  isVip?: boolean;
   streak?: number;
   totalXp?: number;
   leagueBoostMultiplier?: number;
@@ -50,7 +51,9 @@ function makeGroupDocId(weekId: string, leagueId: number, uid: string): string {
 
 function countMembers(data: FirebaseFirestore.DocumentData | undefined): number {
   const members = data?.members;
-  return members && typeof members === 'object' ? Object.keys(members).length : 0;
+  return members && typeof members === 'object'
+    ? Object.values(members).filter((m) => (m as Record<string, unknown>)?.identityHidden !== true).length
+    : 0;
 }
 
 function sanitizeMember(raw: Record<string, unknown>, stableUid: string): MemberData {
@@ -71,6 +74,7 @@ function sanitizeMember(raw: Record<string, unknown>, stableUid: string): Member
     profileCardMotion: sanitizeString(raw.profileCardMotion, 32) || 'none',
     profileCardPublicFocus: sanitizeString(raw.profileCardPublicFocus, 32) || 'balanced',
     isPremium: raw.isPremium === true,
+    isVip: raw.isVip === true,
     streak,
     totalXp,
   };
@@ -159,11 +163,77 @@ async function findExistingGroupForUser(
   return best?.id ?? null;
 }
 
+async function hideDuplicateMemberships(
+  db: FirebaseFirestore.Firestore,
+  weekId: string,
+  stableUid: string,
+  keepGroupId: string,
+): Promise<number> {
+  const snap = await db
+    .collection('league_groups')
+    .where('weekId', '==', weekId)
+    .limit(BROAD_GROUP_QUERY_LIMIT)
+    .get();
+  if (snap.empty) return 0;
+
+  const batch = db.batch();
+  let hidden = 0;
+  const now = Date.now();
+  for (const doc of snap.docs) {
+    if (doc.id === keepGroupId) continue;
+    const data = doc.data() || {};
+    const members = data.members && typeof data.members === 'object'
+      ? { ...(data.members as Record<string, Record<string, unknown>>) }
+      : {};
+    if (!Object.prototype.hasOwnProperty.call(members, stableUid)) continue;
+    const member = members[stableUid] && typeof members[stableUid] === 'object'
+      ? members[stableUid]
+      : {};
+    if (member.identityHidden === true && member.canonicalStableId === stableUid) continue;
+    members[stableUid] = {
+      ...member,
+      uid: stableUid,
+      identityHidden: true,
+      canonicalStableId: stableUid,
+      duplicateOfGroupId: keepGroupId,
+      identityCanonicalizedAt: now,
+    };
+    batch.set(doc.ref, {
+      members,
+      memberCount: countMembers({ members }),
+      updatedAt: now,
+      identityCanonicalizedAt: now,
+    }, { merge: true });
+    hidden += 1;
+  }
+
+  if (hidden > 0) await batch.commit();
+  return hidden;
+}
+
+async function cleanupDuplicateMembershipsBestEffort(
+  db: FirebaseFirestore.Firestore,
+  weekId: string,
+  stableUid: string,
+  keepGroupId: string,
+): Promise<void> {
+  try {
+    await hideDuplicateMemberships(db, weekId, stableUid, keepGroupId);
+  } catch (e: any) {
+    console.warn(JSON.stringify({
+      event: 'league_duplicate_membership_cleanup_failed',
+      weekId,
+      keepGroupId,
+      message: String(e?.message ?? e).slice(0, 160),
+    }));
+  }
+}
+
 export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId);
+  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId, { requireKnownIdentity: true });
   await assertCanUseLeague(db, stableUid);
 
   const weekId = sanitizeString(request.data?.weekId, 16) || getWeekId();
@@ -191,9 +261,10 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
       if (data.weekId !== weekId || readInt(data.leagueId) !== leagueId) throw new HttpsError('permission-denied', 'room_mismatch');
       const members = { ...(data.members || {}) };
       members[stableUid] = { ...(members[stableUid] || {}), ...member };
-      tx.set(ref, { members, memberCount: Object.keys(members).length, updatedAt: Date.now() }, { merge: true });
+      tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
       tx.set(lbRef, { groupId, groupWeekId: weekId, leagueId }, { merge: true });
     });
+    await cleanupDuplicateMembershipsBestEffort(db, weekId, stableUid, groupId);
     return { ok: true, groupId, weekId, leagueId };
   }
 
@@ -208,13 +279,16 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
       const data = snap.data() || {};
       if (data.weekId !== weekId || readInt(data.leagueId) !== leagueId) return;
       const members = { ...(data.members || {}) };
-      if (!members[stableUid] && Object.keys(members).length >= GROUP_SIZE) return;
+      if (!members[stableUid] && countMembers({ members }) >= GROUP_SIZE) return;
       members[stableUid] = { ...(members[stableUid] || {}), ...member };
-      tx.set(ref, { members, memberCount: Object.keys(members).length, updatedAt: Date.now() }, { merge: true });
+      tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
       tx.set(lbRef, { groupId: candidate, groupWeekId: weekId, leagueId }, { merge: true });
       joined = true;
     });
-    if (joined) return { ok: true, groupId: candidate, weekId, leagueId };
+    if (joined) {
+      await cleanupDuplicateMembershipsBestEffort(db, weekId, stableUid, candidate);
+      return { ok: true, groupId: candidate, weekId, leagueId };
+    }
   }
 
   const newGroupId = makeGroupDocId(weekId, leagueId, stableUid);
@@ -230,6 +304,7 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
     });
     tx.set(lbRef, { groupId: newGroupId, groupWeekId: weekId, leagueId }, { merge: true });
   });
+  await cleanupDuplicateMembershipsBestEffort(db, weekId, stableUid, newGroupId);
   return { ok: true, groupId: newGroupId, weekId, leagueId };
 });
 
@@ -237,7 +312,7 @@ export const leagueUpdateMyMember = onCall(HOT_CALLABLE_OPTIONS, async (request)
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId);
+  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId, { requireKnownIdentity: true });
   await assertCanUseLeague(db, stableUid);
 
   const lbSnap = await db.collection('leaderboard').doc(stableUid).get();
@@ -260,6 +335,7 @@ export const leagueUpdateMyMember = onCall(HOT_CALLABLE_OPTIONS, async (request)
   if (Object.prototype.hasOwnProperty.call(raw, 'profileCardMotion')) updates[`members.${stableUid}.profileCardMotion`] = sanitizeString(raw.profileCardMotion, 32) || 'none';
   if (Object.prototype.hasOwnProperty.call(raw, 'profileCardPublicFocus')) updates[`members.${stableUid}.profileCardPublicFocus`] = sanitizeString(raw.profileCardPublicFocus, 32) || 'balanced';
   if (Object.prototype.hasOwnProperty.call(raw, 'isPremium')) updates[`members.${stableUid}.isPremium`] = raw.isPremium === true;
+  if (Object.prototype.hasOwnProperty.call(raw, 'isVip')) updates[`members.${stableUid}.isVip`] = raw.isVip === true;
   if (Object.prototype.hasOwnProperty.call(raw, 'streak')) updates[`members.${stableUid}.streak`] = Math.max(0, Math.min(100_000, readInt(raw.streak, 0)));
   if (Object.prototype.hasOwnProperty.call(raw, 'totalXp')) updates[`members.${stableUid}.totalXp`] = Math.max(0, Math.min(1_000_000_000, readInt(raw.totalXp, 0)));
   await db.collection('league_groups').doc(groupId).set(updates, { merge: true });
@@ -270,7 +346,7 @@ export const leagueSyncMyBoost = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId);
+  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId, { requireKnownIdentity: true });
   await assertCanUseLeague(db, stableUid);
 
   const lbSnap = await db.collection('leaderboard').doc(stableUid).get();

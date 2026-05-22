@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "gustav-agent-verdict-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "agentId": "app-cartographer",
+  "agentRole": "App Cartographer Agent",
+  "startedAt": "2026-05-19T00:00:00.000Z",
+  "completedAt": "2026-05-19T00:00:00.000Z",
+  "verdict": "HOLD",
+  "confidence": "medium",
+  "blockers": [
+    {
+      "id": "GVA-041",
+      "severity": "blocker",
+      "title": "Manual inventory is not complete enough",
+      "detail": "Major surfaces are listed, but there is no automated comparison against atlas routes, AsyncStorage importers, lesson files, quiz files, diagnosis files, flashcards or cloud sync keys.",
+      "affectedArtifacts": ["docs/gustav/runs/2026-05-19_fr_inventory_v0a1/inputs/file_inventory.json"],
+      "affectedProductFiles": [],
+      "evidenceIds": ["surface-inventory-v0"]
+    }
+  ],
+  "findings": [
+    {
+      "id": "GVF-001",
+      "severity": "high",
+      "title": "Storage surfaces are target-sensitive",
+      "detail": "trainer_store_v1, lesson progress, unlocked lessons and level exams are legacy English learning state and must not be shared with French.",
+      "affectedArtifacts": ["docs/gustav/runs/2026-05-19_fr_inventory_v0a1/inputs/storage_key_inventory.seed.json"],
+      "affectedProductFiles": ["app/trainer_store.ts", "app/lessons_tab_state.ts", "app/cloud_sync.ts"],
+      "evidenceIds": ["storage-seed"]
+    }
+  ],
+  "requiredFixes": [
+    {
+      "id": "fix-automated-surface-inventory",
+      "ownerAgent": "App Cartographer Agent",
+      "fixType": "audit",
+      "detail": "Implement or run automated surface inventory before generation.",
+      "blocksGeneration": true,
+      "blocksApply": true
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "surface-inventory-v0",
+      "sourcePath": "docs/gustav/GUSTAV_SURFACE_INVENTORY.md",
+      "claim": "Manual surface inventory exists but has unresolved unknowns.",
+      "confidence": "high"
+    },
+    {
+      "evidenceId": "storage-seed",
+      "sourcePath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/inputs/storage_key_inventory.seed.json",
+      "claim": "Initial storage inventory identifies legacy English learning keys.",
+      "confidence": "medium"
+    }
+  ],
+  "filesRead": [
+    "docs/gustav/GUSTAV_SURFACE_INVENTORY.md",
+    "docs/gustav/GUSTAV_TARGET_STORAGE_PLAN.md",
+    "app/trainer_store.ts",
+    "app/lessons_tab_state.ts",
+    "app/cloud_sync.ts"
+  ],
+  "filesWritten": [
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/inputs/file_inventory.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/inputs/storage_key_inventory.seed.json"
+  ],
+  "unknowns": [
+    "Full route coverage",
+    "Full AsyncStorage key coverage",
+    "Flashcards storage split",
+    "Arena target behavior",
+    "Daily phrase target behavior"
+  ],
+  "nextRecommendedAgent": "QA Gate Agent"
+}

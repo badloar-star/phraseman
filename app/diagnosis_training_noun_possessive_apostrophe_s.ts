@@ -2,7 +2,28 @@
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk = ru, es = 'This training is available for this interface language.'): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const POSSESSIVE_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': "needs-review: esta explicação sobre possessive 's ainda precisa de revisão para português do Brasil.",
+  vi: "needs-review: phần giải thích về possessive 's này vẫn cần được rà soát cho tiếng Việt.",
+  id: "needs-review: penjelasan possessive 's ini masih perlu ditinjau untuk bahasa Indonesia.",
+  tr: "needs-review: bu possessive 's açıklaması Türkçe için hâlâ gözden geçirilmeli.",
+  pl: "needs-review: to objaśnienie possessive 's nadal wymaga przeglądu po polsku.",
+};
+
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? POSSESSIVE_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST_SET = [
   "'s singular possessive",
@@ -15,29 +36,71 @@ const CONTRAST_SET = [
 
 const option = (text: string) => ({ id: text, text });
 
-const retry = (line: string): [TriText, TriText, TriText, TriText] => [
-  tri(line, line, 'Check owner, thing, and apostrophe position.'),
+const POSSESSIVE_SKILL_ES: Record<string, string> = {
+  singular_owner_name: "Un dueno: John's phone.",
+  singular_owner_common: "Un teacher: teacher's book.",
+  singular_owner_name_bag: "Un dueno: Anna's bag.",
+  friend_one_owner: "Friend's car = un amigo.",
+  friends_many_owners: "Friends' car = varios amigos.",
+  students_many_owners: "Students termina en -s, entonces students'.",
+  parents_many_owners: "Parents termina en -s, entonces parents'.",
+  of_phrase_for_thing: 'Con cosas o ideas, of suele sonar natural.',
+  possessive_s_vs_is: "John's phone es posesion; John's here es John is.",
+  children_irregular_possessive: "Children es plural sin -s: children's.",
+  men_irregular_possessive: "Men es plural sin -s: men's.",
+  is_contraction_not_possessive: "John's here significa John is here.",
+  singular_plural_pair: "John's = un dueno; students' = varios.",
+  regular_irregular_pair: "Parents' por -s; children's por plural irregular.",
+  mixed_sentence_correction: "Friend's car y parents' house tienen duenos distintos.",
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = POSSESSIVE_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? POSSESSIVE_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function possessiveEsFeedback(input: {
+  targetSkill: string;
+  correctAnswerId: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = POSSESSIVE_SKILL_ES[input.targetSkill] ?? 'Revisa dueno, objeto y posicion del apostrofo.';
+  return `Usa "${input.correctAnswerId}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
+
+const retry = (line: string, esFeedback: string): [TriText, TriText, TriText, TriText] => [
+  tri(line, line, esFeedback),
   tri(
     'Сначала найди владельца. Потом найди вещь, которая ему принадлежит.',
     'Спочатку знайди власника. Потім знайди річ, яка йому належить.',
-    'First find the owner. Then find the thing that belongs to the owner.',
+    'Primero encuentra el dueno. Luego encuentra la cosa que le pertenece.',
   ),
   tri(
     "Один владелец: John's phone. Несколько владельцев на -s: friends' car. Нестандартное множественное число: children's toys.",
     "Один власник: John's phone. Кілька власників на -s: friends' car. Нестандартна множина: children's toys.",
-    "One owner: John's phone. Several ending in -s: friends' car. Irregular plural: children's toys.",
+    "Un dueno: John's phone. Varios duenos en -s: friends' car. Plural irregular: children's toys.",
   ),
   tri(
     "Если после 's идет вещь, это обычно принадлежность. Если после 's идет here, ready или happy, это может быть is.",
     "Якщо після 's іде річ, це зазвичай належність. Якщо після 's іде here, ready або happy, це може бути is.",
-    "If a thing comes after 's, it is often possession. If here, ready, or happy comes after it, it may be is.",
+    "Si despues de 's viene una cosa, suele ser posesion. Si viene here, ready o happy, puede ser is.",
   ),
 ];
 
 const defaultWrong = (correctAnswer: string): TriText => tri(
   `Не эта форма. Здесь нужен вариант "${correctAnswer}": проверь владельца, вещь и место апострофа.`,
   `Не ця форма. Тут потрібен варіант "${correctAnswer}": перевір власника, річ і місце апострофа.`,
-  `Not this form. We need "${correctAnswer}": check owner, thing, and apostrophe position.`,
+  `No es esta forma. Necesitamos "${correctAnswer}": revisa dueno, cosa y posicion del apostrofo.`,
 );
 
 function step(input: {
@@ -57,37 +120,38 @@ function step(input: {
   fallbackExplanation?: TriText;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = possessiveEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
-    explanationBlock: input.explanationBlock,
+    translation: withEs(input.translation, esFeedback),
+    explanationBlock: withEs(input.explanationBlock, esFeedback),
     microTask: input.microTask ?? tri(
       'Выбери форму, где понятно, кому принадлежит вещь.',
       'Обери форму, де зрозуміло, кому належить річ.',
-      'Choose the form that clearly shows who owns the thing.',
+      'Elige la forma que muestra claramente a quien pertenece la cosa.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map(option),
     correctAnswerId: input.correctAnswerId,
     correctIndex: input.options.findIndex((item) => item === input.correctAnswerId),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((item) => item !== input.correctAnswerId)
         .map((item) => [
           item,
-          input.wrongFeedbackByOption?.[item] ?? defaultWrong(input.correctAnswerId),
+          withEs(input.wrongFeedbackByOption?.[item] ?? defaultWrong(input.correctAnswerId), esFeedback),
         ]),
     ),
-    retryFeedback: retry(input.retryLine),
+    retryFeedback: retry(input.retryLine, esFeedback),
     fallbackExplanation: input.fallbackExplanation ?? tri(
       "Один владелец получает 's: John's phone. Несколько владельцев на -s получают апостроф после s: friends' car. Children уже множественное число, но без -s, поэтому children's.",
       "Один власник отримує 's: John's phone. Кілька власників на -s отримують апостроф після s: friends' car. Children уже множина, але без -s, тому children's.",
-      "One owner takes 's: John's phone. Several owners ending in -s take apostrophe after s: friends' car. Children is already plural but not with -s, so children's.",
+      "Un dueno toma 's: John's phone. Varios duenos en -s toman apostrofo despues de s: friends' car. Children ya es plural sin -s, por eso children's.",
     ),
     focusWords: input.focusWords,
   };
@@ -99,33 +163,74 @@ export const NOUN_POSSESSIVE_APOSTROPHE_S_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 36,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     "John's phone / friends' car: кому принадлежит вещь",
     "John's phone / friends' car: кому належить річ",
-    "John's phone / friends' car: who owns the thing",
+    "John's phone / friends' car: de quien es la cosa",
+    {
+      'pt-BR': "John's phone / friends' car: de quem é a coisa",
+      vi: "John's phone / friends' car: đồ vật thuộc về ai",
+      id: "John's phone / friends' car: benda itu milik siapa",
+      tr: "John's phone / friends' car: eşya kime ait",
+      pl: "John's phone / friends' car: do kogo należy rzecz",
+    },
   ),
-  shortTitle: tri("Possessive 's"),
+  shortTitle: tri("Possessive 's", "Possessive 's", "Possessive 's", {
+    'pt-BR': "Possessive 's",
+    vi: "Possessive 's",
+    id: "Possessive 's",
+    tr: "Possessive 's",
+    pl: "Possessive 's",
+  }),
   shortDiagnosis: tri(
     "Ты пропускаешь апостроф или ставишь его не туда: Johns phone, friend's вместо friends'.",
     "Ти пропускаєш апостроф або ставиш його не туди: Johns phone, friend's замість friends'.",
-    'You miss the apostrophe or put it in the wrong place.',
+    'Omites el apostrofo o lo pones en el lugar incorrecto.',
+    {
+      'pt-BR': "Você omite o apóstrofo ou o coloca no lugar errado: Johns phone, friend's em vez de friends'.",
+      vi: "Bạn bỏ sót dấu nháy hoặc đặt sai vị trí: Johns phone, friend's thay vì friends'.",
+      id: "Kamu melewatkan apostrof atau meletakkannya di tempat yang salah: Johns phone, friend's alih-alih friends'.",
+      tr: "Apostrofu atlıyorsun ya da yanlış yere koyuyorsun: friends' yerine Johns phone veya friend's.",
+      pl: "Pomijasz apostrof albo stawiasz go w złym miejscu: Johns phone, friend's zamiast friends'.",
+    },
   ),
   diagnosisText: tri(
     "В русском можно сказать: телефон Джона. В английском чаще нужен другой порядок: John первым, потом 's, потом phone.",
     "Українською можна сказати: телефон Джона. В англійській частіше потрібен інший порядок: John першим, потім 's, потім phone.",
-    "English often puts the owner first: John + 's + phone.",
+    "En ingles normalmente va primero el dueno: John + 's + phone.",
+    {
+      'pt-BR': "Em português, você pode dizer telefone do John. Em inglês, geralmente a ordem muda: John primeiro, depois 's, depois phone.",
+      vi: "Trong tiếng Việt, bạn có thể nói điện thoại của John. Trong tiếng Anh, thường cần thứ tự khác: John trước, rồi 's, rồi phone.",
+      id: "Dalam bahasa Indonesia, kamu bisa mengatakan telepon John. Dalam bahasa Inggris, biasanya urutannya berbeda: John dulu, lalu 's, lalu phone.",
+      tr: "Türkçede John'un telefonu diyebilirsin. İngilizcede çoğu zaman sıra farklıdır: önce John, sonra 's, sonra phone.",
+      pl: "Po polsku można powiedzieć telefon Johna. W angielskim zwykle potrzebny jest inny szyk: najpierw John, potem 's, potem phone.",
+    },
   ),
   mentalModel: tri(
     "Думай не про апостроф сам по себе, а про пару: владелец плюс вещь. Один друг: friend's car. Несколько друзей: friends' car.",
     "Думай не про апостроф сам по собі, а про пару: власник плюс річ. Один друг: friend's car. Кілька друзів: friends' car.",
-    "Think owner plus thing. One friend: friend's car. Several friends: friends' car.",
+    "Piensa en dueno mas cosa. Un amigo: friend's car. Varios amigos: friends' car.",
+    {
+      'pt-BR': "Pense não no apóstrofo isolado, mas no par: dono mais coisa. Um amigo: friend's car. Vários amigos: friends' car.",
+      vi: "Đừng nghĩ riêng về dấu nháy; hãy nghĩ theo cặp: người sở hữu cộng với đồ vật. Một người bạn: friend's car. Nhiều người bạn: friends' car.",
+      id: "Jangan pikirkan apostrof sendirian; pikirkan pasangannya: pemilik plus benda. Satu teman: friend's car. Beberapa teman: friends' car.",
+      tr: "Apostrofu tek başına düşünme; sahip artı eşya çiftini düşün. Bir arkadaş: friend's car. Birkaç arkadaş: friends' car.",
+      pl: "Nie myśl o samym apostrofie, tylko o parze: właściciel plus rzecz. Jeden przyjaciel: friend's car. Kilku przyjaciół: friends' car.",
+    },
   ),
   contrastSet: CONTRAST_SET,
   coreRule: tri(
     "John's phone. My friend's car. My friends' car. The students' answers. The children's toys. The name of the app.",
     "John's phone. My friend's car. My friends' car. The students' answers. The children's toys. The name of the app.",
     "John's phone. My friend's car. My friends' car. The students' answers. The children's toys. The name of the app.",
+    {
+      'pt-BR': "John's phone. My friend's car. My friends' car. The students' answers. The children's toys. The name of the app.",
+      vi: "John's phone. My friend's car. My friends' car. The students' answers. The children's toys. The name of the app.",
+      id: "John's phone. My friend's car. My friends' car. The students' answers. The children's toys. The name of the app.",
+      tr: "John's phone. My friend's car. My friends' car. The students' answers. The children's toys. The name of the app.",
+      pl: "John's phone. My friend's car. My friends' car. The students' answers. The children's toys. The name of the app.",
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -149,28 +254,78 @@ export const NOUN_POSSESSIVE_APOSTROPHE_S_TRAINING: DiagnosisTraining = {
       "Для речей та ідей часто природно звучить of: the name of the app.",
     ],
     es: [
-      "One owner: John's phone.",
-      'The owner comes before the thing.',
-      "My friend's car means one friend.",
-      "My friends' car means several friends.",
-      'Words ending in -s often take apostrophe after s.',
-      "Children is plural but not with -s, so children's.",
-      "'s can also mean is.",
-      'For things and ideas, of is often natural.',
+      "Un dueno: John's phone.",
+      'El dueno va antes de la cosa.',
+      "My friend's car significa un amigo.",
+      "My friends' car significa varios amigos.",
+      'Las palabras que terminan en -s suelen llevar apostrofo despues de s.',
+      "Children es plural pero no termina en -s, por eso children's.",
+      "'s tambien puede significar is.",
+      'Para cosas e ideas, of suele sonar natural.',
+    ],
+    'pt-BR': [
+      "Um dono: John's phone.",
+      'O dono vem antes da coisa.',
+      "My friend's car significa um amigo.",
+      "My friends' car significa vários amigos.",
+      'Palavras que terminam em -s muitas vezes levam apóstrofo depois do s.',
+      "Children é plural, mas não com -s, então children's.",
+      "'s também pode significar is.",
+      'Para coisas e ideias, of muitas vezes soa natural.',
+    ],
+    vi: [
+      "Một chủ sở hữu: John's phone.",
+      'Người sở hữu đứng trước đồ vật.',
+      "My friend's car nghĩa là xe của một người bạn.",
+      "My friends' car nghĩa là xe của nhiều người bạn.",
+      'Từ kết thúc bằng -s thường đặt dấu nháy sau s.',
+      "Children là số nhiều nhưng không có -s, nên dùng children's.",
+      "'s cũng có thể nghĩa là is.",
+      'Với đồ vật và ý tưởng, of thường tự nhiên.',
+    ],
+    id: [
+      "Satu pemilik: John's phone.",
+      'Pemilik datang sebelum benda.',
+      "My friend's car berarti mobil satu teman.",
+      "My friends' car berarti mobil beberapa teman.",
+      'Kata yang berakhir dengan -s sering memakai apostrof setelah s.',
+      "Children sudah jamak tetapi bukan dengan -s, jadi children's.",
+      "'s juga bisa berarti is.",
+      'Untuk benda dan ide, of sering terdengar alami.',
+    ],
+    tr: [
+      "Tek sahip: John's phone.",
+      'Sahip, şeyden önce gelir.',
+      "My friend's car bir arkadaşın arabası demektir.",
+      "My friends' car birkaç arkadaşın arabası demektir.",
+      '-s ile biten kelimelerde apostrof çoğu zaman s sonrasına gelir.',
+      "Children çoğuldur ama -s ile bitmez, bu yüzden children's.",
+      "'s aynı zamanda is anlamına da gelebilir.",
+      'Şeyler ve fikirler için of çoğu zaman doğal gelir.',
+    ],
+    pl: [
+      "Jeden właściciel: John's phone.",
+      'Właściciel stoi przed rzeczą.',
+      "My friend's car oznacza samochód jednego przyjaciela.",
+      "My friends' car oznacza samochód kilku przyjaciół.",
+      'Słowa zakończone na -s często dostają apostrof po s.',
+      "Children jest liczbą mnogą, ale bez -s, więc children's.",
+      "'s może też znaczyć is.",
+      'Dla rzeczy i idei of często brzmi naturalnie.',
     ],
   },
   examples: [
-    { en: "This is John's phone.", ru: 'Это телефон Джона.', uk: 'Це телефон Джона.', es: "This is John's phone.", why: tri("John один, поэтому John's phone.", "John один, тому John's phone.", "John is one owner, so John's phone.") },
-    { en: "My friend's car is outside.", ru: 'Машина моего друга снаружи.', uk: 'Машина мого друга зовні.', es: "My friend's car is outside.", why: tri("Друг один: friend's car.", "Друг один: friend's car.", "One friend: friend's car.") },
-    { en: "My friends' car is outside.", ru: 'Машина моих друзей снаружи.', uk: 'Машина моїх друзів зовні.', es: "My friends' car is outside.", why: tri("Друзей несколько, friends уже с -s: friends' car.", "Друзів кілька, friends уже з -s: friends' car.", "Several friends, friends already ends in -s: friends' car.") },
-    { en: "The students' answers were correct.", ru: 'Ответы студентов были правильными.', uk: 'Відповіді студентів були правильними.', es: "The students' answers were correct.", why: tri("Students заканчивается на -s, поэтому students' answers.", "Students закінчується на -s, тому students' answers.", "Students ends in -s, so students' answers.") },
-    { en: "The children's toys are everywhere.", ru: 'Игрушки детей везде.', uk: 'Іграшки дітей всюди.', es: "The children's toys are everywhere.", why: tri("Children уже множественное число, но без -s: children's toys.", "Children уже множина, але без -s: children's toys.", "Children is plural but not with -s: children's toys.") },
-    { en: 'The name of the app is Phraseman.', ru: 'Название приложения - Phraseman.', uk: 'Назва застосунку - Phraseman.', es: 'The name of the app is Phraseman.', why: tri('Для вещей и идей of часто звучит естественно.', 'Для речей та ідей of часто звучить природно.', 'For things and ideas, of often sounds natural.') },
+    { en: "This is John's phone.", ru: 'Это телефон Джона.', uk: 'Це телефон Джона.', es: 'Este es el telefono de John.', 'pt-BR': 'Este é o telefone do John.', vi: 'Đây là điện thoại của John.', id: 'Ini ponsel John.', tr: "Bu John'un telefonu.", pl: 'To jest telefon Johna.', why: tri("John один, поэтому John's phone.", "John один, тому John's phone.", "John es un dueno, por eso John's phone.") },
+    { en: "My friend's car is outside.", ru: 'Машина моего друга снаружи.', uk: 'Машина мого друга зовні.', es: 'El coche de mi amigo esta afuera.', 'pt-BR': 'O carro do meu amigo está lá fora.', vi: 'Xe của bạn tôi ở bên ngoài.', id: 'Mobil teman saya ada di luar.', tr: 'Arkadaşımın arabası dışarıda.', pl: 'Samochód mojego przyjaciela jest na zewnątrz.', why: tri("Друг один: friend's car.", "Друг один: friend's car.", "Un amigo: friend's car.") },
+    { en: "My friends' car is outside.", ru: 'Машина моих друзей снаружи.', uk: 'Машина моїх друзів зовні.', es: 'El coche de mis amigos esta afuera.', 'pt-BR': 'O carro dos meus amigos está lá fora.', vi: 'Xe của những người bạn tôi ở bên ngoài.', id: 'Mobil teman-teman saya ada di luar.', tr: 'Arkadaşlarımın arabası dışarıda.', pl: 'Samochód moich przyjaciół jest na zewnątrz.', why: tri("Друзей несколько, friends уже с -s: friends' car.", "Друзів кілька, friends уже з -s: friends' car.", "Varios amigos; friends ya termina en -s: friends' car.") },
+    { en: "The students' answers were correct.", ru: 'Ответы студентов были правильными.', uk: 'Відповіді студентів були правильними.', es: 'Las respuestas de los estudiantes fueron correctas.', 'pt-BR': 'As respostas dos alunos estavam corretas.', vi: 'Câu trả lời của các học sinh là đúng.', id: 'Jawaban para siswa benar.', tr: 'Öğrencilerin cevapları doğruydu.', pl: 'Odpowiedzi uczniów były poprawne.', why: tri("Students заканчивается на -s, поэтому students' answers.", "Students закінчується на -s, тому students' answers.", "Students termina en -s, por eso students' answers.") },
+    { en: "The children's toys are everywhere.", ru: 'Игрушки детей везде.', uk: 'Іграшки дітей всюди.', es: 'Los juguetes de los ninos estan por todas partes.', 'pt-BR': 'Os brinquedos das crianças estão por toda parte.', vi: 'Đồ chơi của bọn trẻ ở khắp nơi.', id: 'Mainan anak-anak ada di mana-mana.', tr: 'Çocukların oyuncakları her yerde.', pl: 'Zabawki dzieci są wszędzie.', why: tri("Children уже множественное число, но без -s: children's toys.", "Children уже множина, але без -s: children's toys.", "Children ya es plural, pero sin -s: children's toys.") },
+    { en: 'The name of the app is Phraseman.', ru: 'Название приложения - Phraseman.', uk: 'Назва застосунку - Phraseman.', es: 'El nombre de la app es Phraseman.', 'pt-BR': 'O nome do app é Phraseman.', vi: 'Tên của ứng dụng là Phraseman.', id: 'Nama aplikasinya adalah Phraseman.', tr: 'Uygulamanın adı Phraseman.', pl: 'Nazwa aplikacji to Phraseman.', why: tri('Для вещей и идей of часто звучит естественно.', 'Для речей та ідей of часто звучить природно.', 'Para cosas e ideas, of suele sonar natural.') },
   ],
   introBlocks: [
-    { id: 'intro_problem', type: 'diagnosis', text: tri("John phone или phone John не решает задачу. Английскому нужен владелец перед вещью: John's phone.", "John phone або phone John не вирішує задачу. Англійській потрібен власник перед річчю: John's phone.", "John phone or phone John does not solve it. English wants the owner before the thing: John's phone.") },
-    { id: 'intro_rule', type: 'rule', text: tri("Сначала называем владельца, потом вещь: John's phone, my friend's car. Апостроф показывает, кому это принадлежит.", "Спочатку називаємо власника, потім річ: John's phone, my friend's car. Апостроф показує, кому це належить.", "Formula: owner + 's + thing. John's phone. My friend's car.") },
-    { id: 'intro_warning', type: 'warning', text: tri("Главная ловушка: friend's и friends' - разные вещи.", "Головна пастка: friend's і friends' - різні речі.", "Main trap: friend's and friends' are different.") },
+    { id: 'intro_problem', type: 'diagnosis', text: tri("John phone или phone John не решает задачу. Английскому нужен владелец перед вещью: John's phone.", "John phone або phone John не вирішує задачу. Англійській потрібен власник перед річчю: John's phone.", "John phone o phone John no resuelven la frase. En ingles el dueno va antes de la cosa: John's phone.") },
+    { id: 'intro_rule', type: 'rule', text: tri("Сначала называем владельца, потом вещь: John's phone, my friend's car. Апостроф показывает, кому это принадлежит.", "Спочатку називаємо власника, потім річ: John's phone, my friend's car. Апостроф показує, кому це належить.", "Formula: dueno + 's + cosa. John's phone. My friend's car.") },
+    { id: 'intro_warning', type: 'warning', text: tri("Главная ловушка: friend's и friends' - разные вещи.", "Головна пастка: friend's і friends' - різні речі.", "Trampa principal: friend's y friends' son cosas distintas.") },
   ],
   steps: [
     step({
@@ -493,10 +648,10 @@ export const NOUN_POSSESSIVE_APOSTROPHE_S_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Показываем владельца и вещь.', 'Показуємо власника і річ.', 'Show owner and thing.'),
-    depth2: tri('Проверяем: владелец один или их несколько?', 'Перевіряємо: власник один чи їх кілька?', 'Check: one owner or several owners?'),
-    depth3: tri("Держи три модели: один владелец дает John's phone, несколько друзей дают friends' car, а children без -s дает children's toys.", "Тримай три моделі: один власник дає John's phone, кілька друзів дають friends' car, а children без -s дає children's toys.", "Ready pairs: John's phone / friends' car / children's toys."),
-    depth4: tri("Почти подсказка: один владелец = 's; много владельцев на -s = s'; children = children's.", "Майже підказка: один власник = 's; багато власників на -s = s'; children = children's.", "Almost hint: one owner = 's; plural ending in -s = s'; children = children's."),
+    depth1: tri('Показываем владельца и вещь.', 'Показуємо власника і річ.', 'Muestra el dueno y la cosa.'),
+    depth2: tri('Проверяем: владелец один или их несколько?', 'Перевіряємо: власник один чи їх кілька?', 'Comprueba si hay un dueno o varios.'),
+    depth3: tri("Держи три модели: один владелец дает John's phone, несколько друзей дают friends' car, а children без -s дает children's toys.", "Тримай три моделі: один власник дає John's phone, кілька друзів дають friends' car, а children без -s дає children's toys.", "Modelos: John's phone / friends' car / children's toys."),
+    depth4: tri("Почти подсказка: один владелец = 's; много владельцев на -s = s'; children = children's.", "Майже підказка: один власник = 's; багато власників на -s = s'; children = children's.", "Casi pista: un dueno = 's; plural en -s = s'; children = children's."),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -504,7 +659,7 @@ export const NOUN_POSSESSIVE_APOSTROPHE_S_TRAINING: DiagnosisTraining = {
       card: tri(
         "Один владелец: John's phone. Несколько на -s: friends' car. Children без -s: children's toys.",
         "Один власник: John's phone. Кілька на -s: friends' car. Children без -s: children's toys.",
-        "One owner: John's phone. Several ending in -s: friends' car. Children without -s: children's toys.",
+        "Un dueno: John's phone. Varios en -s: friends' car. Children sin -s: children's toys.",
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -512,7 +667,7 @@ export const NOUN_POSSESSIVE_APOSTROPHE_S_TRAINING: DiagnosisTraining = {
       card: tri(
         'Мы подсветим владельца и вещь, но апостроф выберешь ты.',
         'Ми підсвітимо власника і річ, але апостроф обереш ти.',
-        'We show owner and thing, but you choose the apostrophe.',
+        'Mostramos dueno y cosa, pero tu eliges el apostrofo.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -520,7 +675,7 @@ export const NOUN_POSSESSIVE_APOSTROPHE_S_TRAINING: DiagnosisTraining = {
       card: tri(
         'Guided mode: сначала кто владелец, потом один или несколько.',
         'Guided mode: спочатку хто власник, потім один чи кілька.',
-        'Guided mode: first owner, then one or several.',
+        'Modo guiado: primero dueno, luego uno o varios.',
       ),
     },
   },
@@ -528,10 +683,10 @@ export const NOUN_POSSESSIVE_APOSTROPHE_S_TRAINING: DiagnosisTraining = {
     enabled: true,
     triggerAfterWrongAttempts: 4,
     tasks: [
-      { id: 'guided_poss_s_001', prompt: tri("В John's phone кто владелец?", "У John's phone хто власник?", "In John's phone, who is the owner?"), options: ['John', 'phone'], correctIndex: 0, thenReturnToExerciseId: 'poss_s_easy_001' },
-      { id: 'guided_poss_s_002', prompt: tri("Friend's car: один друг или несколько?", "Friend's car: один друг чи кілька?", "Friend's car: one friend or several?"), options: ['one', 'several'], correctIndex: 0, thenReturnToExerciseId: 'poss_s_contrast_001' },
-      { id: 'guided_poss_s_003', prompt: tri("Friends' car: один друг или несколько?", "Friends' car: один друг чи кілька?", "Friends' car: one friend or several?"), options: ['one', 'several'], correctIndex: 1, thenReturnToExerciseId: 'poss_s_contrast_002' },
-      { id: 'guided_poss_s_004', prompt: tri("Children уже означает одного или несколько?", "Children уже означає одного чи кілька?", "Children already means one or several?"), options: ['one', 'several'], correctIndex: 1, thenReturnToExerciseId: 'poss_s_mixed_001' },
+      { id: 'guided_poss_s_001', prompt: tri("В John's phone кто владелец?", "У John's phone хто власник?", "En John's phone, quien es el dueno?"), options: ['John', 'phone'], correctIndex: 0, thenReturnToExerciseId: 'poss_s_easy_001' },
+      { id: 'guided_poss_s_002', prompt: tri("Friend's car: один друг или несколько?", "Friend's car: один друг чи кілька?", "Friend's car: un amigo o varios?"), options: ['one', 'several'], correctIndex: 0, thenReturnToExerciseId: 'poss_s_contrast_001' },
+      { id: 'guided_poss_s_003', prompt: tri("Friends' car: один друг или несколько?", "Friends' car: один друг чи кілька?", "Friends' car: un amigo o varios?"), options: ['one', 'several'], correctIndex: 1, thenReturnToExerciseId: 'poss_s_contrast_002' },
+      { id: 'guided_poss_s_004', prompt: tri("Children уже означает одного или несколько?", "Children уже означає одного чи кілька?", "Children ya significa uno o varios?"), options: ['one', 'several'], correctIndex: 1, thenReturnToExerciseId: 'poss_s_mixed_001' },
     ],
   },
   smartTrainerConfig: {
@@ -577,7 +732,7 @@ export const NOUN_POSSESSIVE_APOSTROPHE_S_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_noun_possessive_apostrophe_s_start',
     answer: 'diagnosis_training_noun_possessive_apostrophe_s_answer',
     mastery: 'diagnosis_training_noun_possessive_apostrophe_s_mastery',
-    fallback: 'diagnosis_training_noun_possessive_apostrophe_s_fallback',
+    recovery: 'diagnosis_training_noun_possessive_apostrophe_s_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

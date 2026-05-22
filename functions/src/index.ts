@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions/v2';
 import { calculateArenaPoints } from './arena_scoring';
+import { getLevelFromXP } from './xp_levels';
 
 admin.initializeApp();
 
@@ -25,6 +26,8 @@ const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage 
 const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost } = require('./league_groups');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authEnsureStableLink } = require('./auth_identity');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { cleanupLegacyIdentityDuplicatesPage } = require('./identity_cleanup');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { accountDeleteMine } = require('./account_delete');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -54,6 +57,8 @@ const { arenaRoomCreate, arenaRoomRecordRun, arenaPulsePublish } = require('./ar
 const { arenaGhostCreateChallenge, arenaGhostRecordPlay } = require('./arena_ghosts');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { cleanupExpiredAppMessages, onAppMessageReactionWritten, onAppMessagePollVoteWritten } = require('./app_messages');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { submitVipSurvey, recordVipSurveyReviewClick } = require('./vip_survey');
 
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
 exports.leagueChatSendMessage = leagueChatSendMessage;
@@ -82,17 +87,11 @@ exports.arenaGhostCreateChallenge = arenaGhostCreateChallenge;
 exports.arenaGhostRecordPlay = arenaGhostRecordPlay;
 exports.onAppMessageReactionWritten = onAppMessageReactionWritten;
 exports.onAppMessagePollVoteWritten = onAppMessagePollVoteWritten;
+exports.submitVipSurvey = submitVipSurvey;
+exports.recordVipSurveyReviewClick = recordVipSurveyReviewClick;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 
-// Must match constants/theme.ts getLevelFromXP formula
-const _XP_BASE = 250;
-const _XP_EXP_INV = 1 / 1.82;
-const _MAX_LEVEL = 50;
-function getLevelFromXPLocal(xp: number): number {
-  if (xp <= 0) return 1;
-  return Math.min(_MAX_LEVEL, Math.floor(Math.pow(xp / _XP_BASE, _XP_EXP_INV)) + 1);
-}
 const LEVELS = ['I', 'II', 'III'] as const;
 const TIERS = ['bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'grandmaster', 'legend'] as const;
 
@@ -101,6 +100,7 @@ type ArenaCourseLbExtra = {
   frame?: string;
   aura?: string;
   isPremium: boolean;
+  isVip: boolean;
   avatarEmoji?: string;
   profileCardLevel?: number;
   profileCardTheme?: string;
@@ -122,6 +122,7 @@ function mergeArenaCourseExtras(a: ArenaCourseLbExtra | undefined, b: ArenaCours
       frame: b.frame ?? a.frame,
       aura: b.aura ?? a.aura,
       isPremium: a.isPremium || b.isPremium,
+      isVip: a.isVip || b.isVip,
       avatarEmoji: b.avatarEmoji ?? a.avatarEmoji,
       profileCardLevel: b.profileCardLevel ?? a.profileCardLevel,
       profileCardTheme: b.profileCardTheme ?? a.profileCardTheme,
@@ -135,6 +136,7 @@ function mergeArenaCourseExtras(a: ArenaCourseLbExtra | undefined, b: ArenaCours
       frame: a.frame ?? b.frame,
       aura: a.aura ?? b.aura,
       isPremium: a.isPremium || b.isPremium,
+      isVip: a.isVip || b.isVip,
       avatarEmoji: a.avatarEmoji ?? b.avatarEmoji,
       profileCardLevel: a.profileCardLevel ?? b.profileCardLevel,
       profileCardTheme: a.profileCardTheme ?? b.profileCardTheme,
@@ -147,6 +149,7 @@ function mergeArenaCourseExtras(a: ArenaCourseLbExtra | undefined, b: ArenaCours
     frame: a.frame ?? b.frame,
     aura: a.aura ?? b.aura,
     isPremium: a.isPremium || b.isPremium,
+    isVip: a.isVip || b.isVip,
     avatarEmoji: a.avatarEmoji ?? b.avatarEmoji,
     profileCardLevel: a.profileCardLevel ?? b.profileCardLevel,
     profileCardTheme: a.profileCardTheme ?? b.profileCardTheme,
@@ -166,6 +169,7 @@ function parseLeaderboardDocCf(data: FirebaseFirestore.DocumentData | undefined)
     frame,
     aura,
     isPremium: !!data.isPremium,
+    isVip: !!data.isVip,
     avatarEmoji,
     profileCardLevel: Math.max(0, Math.min(5, parseInt(String(data.profileCardLevel ?? '0'), 10) || 0)),
     profileCardTheme: typeof data.profileCardTheme === 'string' && data.profileCardTheme.trim() ? data.profileCardTheme.trim().slice(0, 32) : 'classic',
@@ -188,7 +192,7 @@ async function enrichArenaCourseDisplay(db: FirebaseFirestore.Firestore, authUid
     /* ignore */
   }
 
-  let best: ArenaCourseLbExtra = { points: 0, isPremium: false };
+  let best: ArenaCourseLbExtra = { points: 0, isPremium: false, isVip: false };
 
   const absorbStableId = async (stableId: string) => {
     const udoc = await db.collection('users').doc(stableId).get();
@@ -200,8 +204,8 @@ async function enrichArenaCourseDisplay(db: FirebaseFirestore.Firestore, authUid
     const lbSnap = await db.collection('leaderboard').doc(stableId).get();
     const fromLb = lbSnap.exists ? parseLeaderboardDocCf(lbSnap.data()) : null;
     const chunk = mergeArenaCourseExtras(
-      { points: xp, isPremium: false },
-      fromLb ?? { points: 0, isPremium: false },
+      { points: xp, isPremium: false, isVip: false },
+      fromLb ?? { points: 0, isPremium: false, isVip: false },
     );
     best = mergeArenaCourseExtras(best, chunk);
   };
@@ -212,9 +216,9 @@ async function enrichArenaCourseDisplay(db: FirebaseFirestore.Firestore, authUid
     await absorbStableId(id);
   }
 
-  if (best.points <= 0 && !best.isPremium && !best.frame && !best.aura && !best.avatarEmoji && !best.profileCardLevel && !mirrorStableId) return;
+  if (best.points <= 0 && !best.isPremium && !best.isVip && !best.frame && !best.aura && !best.avatarEmoji && !best.profileCardLevel && !mirrorStableId) return;
 
-  const hasCourse = best.points > 0 || best.isPremium || !!best.frame || !!best.aura || !!best.avatarEmoji || !!best.profileCardLevel;
+  const hasCourse = best.points > 0 || best.isPremium || best.isVip || !!best.frame || !!best.aura || !!best.avatarEmoji || !!best.profileCardLevel;
   await db.collection('arena_profiles').doc(authUid).set({
     ...(hasCourse
       ? {
@@ -223,6 +227,7 @@ async function enrichArenaCourseDisplay(db: FirebaseFirestore.Firestore, authUid
         courseFrame: best.frame ?? null,
         courseAura: best.aura ?? null,
         courseIsPremium: best.isPremium,
+        courseIsVip: best.isVip,
         courseProfileCardLevel: best.profileCardLevel ?? 0,
         courseProfileCardTheme: best.profileCardTheme ?? 'classic',
         courseProfileCardMotion: best.profileCardMotion ?? 'none',
@@ -283,6 +288,11 @@ export const syncLeaderboardCron = functions.scheduler.onSchedule(
 export const computeLeaderboardStatsCron = functions.scheduler.onSchedule(
   { schedule: 'every 1 hours', timeZone: 'UTC' },
   async () => { await computeLeaderboardStats(); }
+);
+
+export const cleanupLegacyIdentityDuplicatesCron = functions.scheduler.onSchedule(
+  { schedule: 'every 2 hours', timeZone: 'UTC' },
+  async () => { await cleanupLegacyIdentityDuplicatesPage(); }
 );
 
 // ─── Weekly XP reset cron (XP-02) ────────────────────────────────────────────
@@ -376,8 +386,8 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
     const guestData = guestUserSnap?.data() as Record<string, Record<string, string>> | undefined;
     const hostXp = parseInt(hostData?.progress?.user_total_xp ?? '0') || 0;
     const guestXp = parseInt(guestData?.progress?.user_total_xp ?? '0') || 0;
-    const hostLevel = getLevelFromXPLocal(hostXp);
-    const guestLevel = getLevelFromXPLocal(guestXp);
+    const hostLevel = getLevelFromXP(hostXp);
+    const guestLevel = getLevelFromXP(guestXp);
     const hostAvatarRaw = typeof hostData?.progress?.user_avatar === 'string' ? hostData.progress.user_avatar.trim() : '';
     const guestAvatarRaw = typeof guestData?.progress?.user_avatar === 'string' ? guestData.progress.user_avatar.trim() : '';
     const hostAuraRaw = typeof hostData?.progress?.user_avatar_aura === 'string' ? hostData.progress.user_avatar_aura.trim() : '';

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
@@ -27,11 +27,13 @@ import { oskolokImageForPackShards } from '../app/oskolok';
 import { emitAppEvent } from '../app/events';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import PremiumGoldButton from './PremiumGoldButton';
+import type { StudyTargetLang } from '../app/study_target_lang_dev';
 
 export interface MasteryReplayModalProps {
   visible: boolean;
   lessonId: number;
   isPremium: boolean;
+  studyTarget?: StudyTargetLang;
   onClose: () => void;
   /** После успешного списания / бесплатного повтора; родитель должен обновить экран урока. */
   onReplayed?: (lessonId: number) => void;
@@ -46,6 +48,7 @@ export default function MasteryReplayModal({
   visible,
   lessonId,
   isPremium,
+  studyTarget,
   onClose,
   onReplayed,
 }: MasteryReplayModalProps) {
@@ -60,11 +63,11 @@ export default function MasteryReplayModal({
   useEffect(() => {
     if (!visible || !Number.isFinite(lessonId) || lessonId <= 0) return;
     let cancelled = false;
-    void getMasteryReplayPriceShards(lessonId).then((p) => {
+    void getMasteryReplayPriceShards(lessonId, studyTarget).then((p) => {
       if (!cancelled) setPriceShards(p);
     });
     return () => { cancelled = true; };
-  }, [visible, lessonId]);
+  }, [visible, lessonId, studyTarget]);
 
   const onConfirmReplay = useCallback(async () => {
     if (busy) return;
@@ -72,7 +75,7 @@ export default function MasteryReplayModal({
     try {
       // Premium = бесплатно. Free — проверим баланс перед showing шопа.
       if (!isPremium) {
-        const needPrice = await getMasteryReplayPriceShards(lessonId);
+        const needPrice = await getMasteryReplayPriceShards(lessonId, studyTarget);
         const balance = await getShardsBalance();
         if (balance < needPrice) {
           const need = Math.max(0, needPrice - balance);
@@ -85,7 +88,7 @@ export default function MasteryReplayModal({
           return;
         }
       }
-      const r = await executeReplay(lessonId, isPremium);
+      const r = await executeReplay(lessonId, isPremium, studyTarget);
       if (r.ok) {
         hapticSuccess();
         if (!isPremium) {
@@ -107,8 +110,9 @@ export default function MasteryReplayModal({
         onClose();
         return;
       }
-      if (r.reason === 'insufficient_shards') {
-        const priceAtFail = await getMasteryReplayPriceShards(lessonId);
+      const replayFailure = r as { ok: false; reason: 'insufficient_shards' | 'not_finished_yet' };
+      if (replayFailure.reason === 'insufficient_shards') {
+        const priceAtFail = await getMasteryReplayPriceShards(lessonId, studyTarget);
         const balance2 = await getShardsBalance();
         const need = Math.max(0, priceAtFail - balance2);
         navigateAfterModalClose(onClose, () => {
@@ -119,7 +123,7 @@ export default function MasteryReplayModal({
         });
         return;
       }
-      if (r.reason === 'not_finished_yet') {
+      if (replayFailure.reason === 'not_finished_yet') {
         emitAppEvent('action_toast', {
           type: 'info',
           messageRu: 'Сначала пройди урок до конца — потом сможешь повторять.',
@@ -138,7 +142,7 @@ export default function MasteryReplayModal({
     } finally {
       setBusy(false);
     }
-  }, [busy, isPremium, lessonId, onClose, onReplayed, router]);
+  }, [busy, isPremium, lessonId, onClose, onReplayed, router, studyTarget]);
 
   const onTapPremium = useCallback(() => {
     navigateAfterModalClose(onClose, () => {

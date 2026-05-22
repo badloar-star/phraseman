@@ -4,7 +4,9 @@
  */
 
 import type { Lang } from '../constants/i18n';
-import { lessonNamesForLang } from '../constants/lessons';
+import type { StudyTargetLang } from './study_target_lang_dev';
+import { lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
+import { storageStudyTarget } from './target_storage_keys';
 
 export type HomeScreenHydration = {
   userName: string;
@@ -35,20 +37,23 @@ export type HomeScreenHydration = {
   } | null;
 };
 
-let snapshot: HomeScreenHydration | null = null;
+let snapshotByTarget: Partial<Record<string, HomeScreenHydration>> = {};
 
-export function rememberHomeScreenHydration(next: HomeScreenHydration): void {
-  snapshot = next;
+export function rememberHomeScreenHydration(next: HomeScreenHydration, studyTarget?: StudyTargetLang): void {
+  snapshotByTarget[storageStudyTarget(studyTarget)] = next;
 }
 
-export function peekHomeScreenHydration(): HomeScreenHydration | null {
-  return snapshot;
+export function peekHomeScreenHydration(studyTarget?: StudyTargetLang): HomeScreenHydration | null {
+  return snapshotByTarget[storageStudyTarget(studyTarget)] ?? null;
 }
 
-export function buildLastLessonFromHydration(lang: Lang): { id: number; name: string; progress: number; score: string } | null {
-  const mem = snapshot;
+export function buildLastLessonFromHydration(
+  lang: Lang,
+  studyTarget?: StudyTargetLang,
+): { id: number; name: string; progress: number; score: string } | null {
+  const mem = peekHomeScreenHydration(studyTarget);
   if (!mem?.lastLessonId || mem.lastLessonId < 1 || mem.lastLessonId > 32) return null;
-  const names = lessonNamesForLang(lang);
+  const names = lessonNamesForStudyTarget(lang, studyTarget ?? 'en');
   const id = mem.lastLessonId;
   const name = names[id - 1];
   if (!name) return null;

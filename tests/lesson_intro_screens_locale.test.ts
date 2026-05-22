@@ -2,9 +2,14 @@
  * Экраны интро: минимум 3 слайда, titleES/textES; у примеров перевод для ES —
  * отдельный trES или fallback на trRU (как в типах и в UI).
  */
+import fs from 'fs';
+import path from 'path';
 import { getLessonIntroScreens, LESSON_DATA } from '../app/lesson_data_all';
 import { EXTRA_INTRO_SCREENS } from '../app/lesson_intro_screens_9_32';
+import { LESSON_9_INTRO_SCREENS } from '../app/lesson_intro_screens_lesson9_v2';
 import type { LessonIntroScreen } from '../app/lesson_data_types';
+
+const ROOT = path.resolve(__dirname, '..');
 
 function assertScreenSpanishComplete(screen: LessonIntroScreen, _lessonId: number, _index: number): void {
   expect(typeof screen.titleES).toBe('string');
@@ -44,5 +49,47 @@ describe('lesson intro screens (es locale fields)', () => {
       expect(screens.length).toBeGreaterThanOrEqual(3);
       screens.forEach((s, i) => assertScreenSpanishComplete(s, lessonId, i));
     }
+  });
+
+  it('keeps lesson 9 there is intro copy natural in RU/UK/PL', () => {
+    const firstScreen = LESSON_9_INTRO_SCREENS[0];
+    const text = [
+      ...(firstScreen.linesRU ?? []),
+      ...(firstScreen.linesUK ?? []),
+      ...(firstScreen.linesPl ?? []),
+    ]
+      .flatMap((line) => line.parts ?? [])
+      .map((part) => part.text)
+      .join('\n');
+
+    expect(text).not.toContain('Не так для');
+    expect(text).not.toContain('Правильно для');
+    expect(text).not.toContain('Nie tak dla');
+    expect(text).not.toContain('Poprawnie dla');
+    expect(text).toContain('Не переводим "есть проблема" как:');
+    expect(text).toContain('Говорим так:');
+  });
+
+  it('keeps rich intro color semantics separate from background fills', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
+
+    expect(source).toContain('const semanticLineBg');
+    expect(source).toContain('styles.richLineStripe');
+    expect(source).toContain('styles.exampleNote');
+    expect(source).not.toContain("line.type === 'tip'\n              ? `${t.gold}14`");
+    expect(source).not.toContain('color: t.gold, fontSize: f.caption');
+  });
+
+  it('does not route planned intro UI locales through RU/UK/ES runtime fallbacks', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
+    const legacyRuntimeFallback = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
+
+    expect(source).not.toMatch(legacyRuntimeFallback);
+    expect(source).not.toMatch(/\{\s*ru:\s*(?:ex|screen|value|km)\./);
+    expect(source).not.toMatch(/uk:\s*(?:ex|screen|value|km)\./);
+    expect(source).not.toMatch(/es:\s*(?:ex|screen|value|km)\./);
+    expect(source).toContain('type PlannedIntroLang');
+    expect(source).toContain('defaultTitlePtBr');
+    expect(source).toContain('isPlannedIntroLang(lang)');
   });
 });

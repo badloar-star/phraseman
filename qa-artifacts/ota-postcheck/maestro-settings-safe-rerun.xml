@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="iPhone 17 Pro Max - iOS 26.4 - 5B31CAAD-5382-416C-ACCB-73E4F923E128" tests="1" failures="0" time="70.0">
+    <testcase id="settings_safe_contract" name="settings_safe_contract" classname="settings_safe_contract" time="70.0" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

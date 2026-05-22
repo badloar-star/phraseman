@@ -53,7 +53,7 @@ push('Уровни:');
 push('- `specific` — идиома или устойчивое сочетание.');
 push('- `context` — объяснение построено по соседним словам и смыслу конструкции.');
 push('- `generic` — общее правило для конкретного предлога.');
-push('- `fallback` — совсем общий текст, его нужно постепенно устранять.');
+push('- `needs-review` — planned-locale текст требует ручной проверки.');
 push('');
 push('## Сводка');
 push('');
@@ -61,27 +61,27 @@ push(`- Всего заданий: **${rows.length}**`);
 push(`- specific: **${counts.specific ?? 0}**`);
 push(`- context: **${counts.context ?? 0}**`);
 push(`- generic: **${counts.generic ?? 0}**`);
-push(`- fallback: **${counts.fallback ?? 0}**`);
+push(`- needs-review: **${counts['needs-review'] ?? 0}**`);
 push('');
 
 push('## По предлогам');
 push('');
-push('| Предлог | specific | context | generic | fallback | всего |');
-push('|---------|----------|---------|---------|----------|-------|');
+push('| Предлог | specific | context | generic | needs-review | всего |');
+push('|---------|----------|---------|---------|--------------|-------|');
 for (const prep of Object.keys(byPrep).sort()) {
   const c = byPrep[prep];
   const total = Object.values(c).reduce((a, b) => a + b, 0);
-  push(`| ${prep} | ${c.specific ?? 0} | ${c.context ?? 0} | ${c.generic ?? 0} | ${c.fallback ?? 0} | ${total} |`);
+  push(`| ${prep} | ${c.specific ?? 0} | ${c.context ?? 0} | ${c.generic ?? 0} | ${c['needs-review'] ?? 0} | ${total} |`);
 }
 push('');
 
-const fallbackRows = rows.filter(row => row.level === 'fallback');
-push('## Fallback-задания');
+const needsReviewRows = rows.filter(row => row.level === 'needs-review');
+push('## Needs-review задания');
 push('');
-if (!fallbackRows.length) {
-  push('Fallback-заданий нет.');
+if (!needsReviewRows.length) {
+  push('Needs-review заданий нет.');
 } else {
-  for (const row of fallbackRows) {
+  for (const row of needsReviewRows) {
     push(`- L${row.lesson} ${row.correct}: ${row.sentence}`);
   }
 }
@@ -98,4 +98,4 @@ const outPath = path.join(projectRoot, 'tools', 'audit', 'AUDIT_PREPOSITION_EXPL
 fs.writeFileSync(outPath, lines.join('\n'), 'utf8');
 
 console.log(`Wrote report -> ${path.relative(projectRoot, outPath)}`);
-console.log(`specific=${counts.specific ?? 0} context=${counts.context ?? 0} generic=${counts.generic ?? 0} fallback=${counts.fallback ?? 0}`);
+console.log(`specific=${counts.specific ?? 0} context=${counts.context ?? 0} generic=${counts.generic ?? 0} needs-review=${counts['needs-review'] ?? 0}`);

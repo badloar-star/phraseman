@@ -5,47 +5,101 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
+const INF_GER_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre infinitive/gerund ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về infinitive/gerund này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan infinitive/gerund ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu infinitive/gerund açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie infinitive/gerund nadal wymaga przeglądu po polsku.',
+};
+
 const tri = (
   ru: string,
   uk = ru,
   es = ru,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? INF_GER_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = ['to + base verb', 'verb-ing', 'want to', 'need to', 'decide to', 'enjoy doing', 'finish doing', 'avoid doing'];
 
 const MODEL = tri(
   'В английском первое действие часто управляет вторым. Одна группа просит кусок с to, другая группа просит форму с -ing. Поэтому учим не отдельное слово, а готовую связку.',
   'В англійській перша дія часто керує другою. Одна група просить шматок із to, інша група просить форму з -ing. Тому вчимо не окреме слово, а готову звʼязку.',
-  'The first verb often controls the next chunk: want to learn, enjoy learning.',
+  'En ingles, la primera accion suele controlar la segunda. Un grupo pide to, otro grupo pide -ing. Por eso aprendemos la combinacion completa: want to learn, enjoy learning.',
+  {
+    'pt-BR': 'Em inglês, a primeira ação muitas vezes controla a segunda. Um grupo pede um bloco com to, outro grupo pede a forma com -ing. Por isso, aprendemos a combinação inteira, não uma palavra isolada.',
+    vi: 'Trong tiếng Anh, hành động thứ nhất thường quyết định hành động thứ hai. Một nhóm cần cụm với to, nhóm khác cần dạng -ing. Vì vậy, hãy học cả cụm cố định, không học từng từ riêng lẻ.',
+    id: 'Dalam bahasa Inggris, tindakan pertama sering mengatur tindakan kedua. Satu kelompok memakai bagian dengan to, kelompok lain memakai bentuk -ing. Jadi, pelajari rangkaian utuhnya, bukan satu kata terpisah.',
+    tr: 'İngilizcede ilk eylem çoğu zaman ikinci eylemi yönetir. Bir grup to ile gelen parçayı ister, diğer grup -ing biçimini ister. Bu yüzden tek bir kelimeyi değil, hazır kalıbın tamamını öğreniriz.',
+    pl: 'W angielskim pierwsza czynność często steruje drugą. Jedna grupa wymaga fragmentu z to, druga forma z -ing. Dlatego uczymy się całej gotowej konstrukcji, a nie pojedynczego słowa.',
+  },
 );
+
+const INF_GER_SKILL_ES: Record<string, string> = {
+  want_to_learn: 'Want pide to learn.',
+  need_to_go: 'Need pide to go.',
+  want_to_help: 'Want pide to help.',
+  decide_to_start: 'Decide pide to start.',
+  plan_to_study: 'Plan pide to study.',
+  agree_to_help: 'Agree pide to help.',
+  enjoy_learning: 'Enjoy pide learning.',
+  finish_working: 'Finish pide working.',
+  enjoy_reading: 'Enjoy pide reading.',
+  avoid_making: 'Avoid pide making.',
+  mind_waiting: 'Mind pide waiting.',
+  avoid_being_late: 'Avoid pide being.',
+  mixed_want_enjoy_pair: 'Want to learn, pero enjoy learning.',
+  mixed_need_finish_pair: 'Need to go, pero finish working.',
+  mixed_sentence_correction: 'Want to improve, pero avoid making.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = INF_GER_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? INF_GER_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function infGerEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = INF_GER_SKILL_ES[input.targetSkill] ?? 'La primera accion decide si sigue to o -ing.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retry(correct: string, clue: TriText): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала найди первое действие. Именно оно подсказывает, будет дальше кусок с to или форма с -ing.',
       'Спочатку знайди першу дію. Саме вона підказує, буде далі шматок із to чи форма з -ing.',
-      'First find the first action word.',
+      'Primero encuentra la primera accion.',
     ),
     clue,
     tri(
       'Потом вспоминай не перевод, а тип связки: действие плюс to или действие плюс -ing.',
       'Потім згадуй не переклад, а тип звʼязки: дія плюс to або дія плюс -ing.',
-      'Then recall the chunk: want to learn, enjoy learning.',
+      'Luego recuerda la combinacion: want to learn, enjoy learning.',
     ),
     tri(
       'Здесь нужен вариант, где первая связка идет с to, а вторая с -ing.',
       'Тут потрібен варіант, де перша звʼязка йде з to, а друга з -ing.',
-      `The answer here is: ${correct}.`,
+      `La respuesta aqui es: ${correct}.`,
     ),
   ];
 }
@@ -54,7 +108,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Первый глагол просит другой готовый кусок. Здесь нужно: ${correct}.`,
     `Майже. Перше дієслово просить інший готовий шматок. Тут потрібно: ${correct}.`,
-    `Almost. The first verb needs: ${correct}.`,
+    `Casi. El primer verbo pide: ${correct}.`,
   );
 }
 
@@ -72,35 +126,36 @@ function infGerStep(input: {
   clue: TriText;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = infGerEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
-    teachingText: MODEL,
-    explanationBlock: MODEL,
+    translation: withEs(input.translation, esFeedback),
+    teachingText: withEs(MODEL, esFeedback),
+    explanationBlock: withEs(MODEL, esFeedback),
     microTask: tri(
       'Выбери форму второго действия: кусок с to или кусок с -ing.',
       'Обери форму другої дії: шматок із to або шматок із -ing.',
-      'Choose the second action form.',
+      'Elige la forma de la segunda accion.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong?.[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong?.[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(input.correctAnswer, input.clue),
+    retryFeedback: retry(input.correctAnswer, input.clue).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Коротко: первое действие выбирает форму второго. Одни связки идут через to, другие через -ing. После to не добавляем -ing.',
       'Коротко: перша дія вибирає форму другої. Одні звʼязки йдуть через to, інші через -ing. Після to не додаємо -ing.',
-      'Short version: want to learn, need to go; enjoy learning, avoid making.',
+      'Version corta: want to learn, need to go; enjoy learning, avoid making.',
     ),
     focusWords: input.focusWords,
   };
@@ -112,25 +167,58 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 33,
-  supportedLocales: ['ru', 'uk'],
-  title: tri('To learn / Learning: готовые связки', 'To learn / Learning: готові звʼязки', 'To learn / Learning'),
-  shortTitle: tri('To learn / Learning', 'To learn / Learning', 'To learn / Learning'),
+  supportedLocales: ['ru', 'uk', 'es'],
+  title: tri('To learn / Learning: готовые связки', 'To learn / Learning: готові звʼязки', 'To learn / Learning: combinaciones fijas', {
+    'pt-BR': 'To learn / Learning: combinações prontas',
+    vi: 'To learn / Learning: các cụm cố định',
+    id: 'To learn / Learning: rangkaian tetap',
+    tr: 'To learn / Learning: hazır kalıplar',
+    pl: 'To learn / Learning: gotowe konstrukcje',
+  }),
+  shortTitle: tri('To learn / Learning', 'To learn / Learning', 'To learn / Learning', {
+    'pt-BR': 'To learn / Learning',
+    vi: 'To learn / Learning',
+    id: 'To learn / Learning',
+    tr: 'To learn / Learning',
+    pl: 'To learn / Learning',
+  }),
   shortDiagnosis: tri(
     'Ты угадываешь, сказать to learn или learning, потому что перевод "учить" выглядит одинаково.',
     'Ти вгадуєш, сказати to learn чи learning, бо переклад "вчити" виглядає однаково.',
-    'You guess between to learn and learning.',
+    'Adivinas entre to learn y learning porque la traduccion parece igual.',
+    {
+      'pt-BR': 'Você fica tentando adivinhar entre to learn e learning porque a tradução parece igual.',
+      vi: 'Bạn đang đoán giữa to learn và learning vì bản dịch trông giống nhau.',
+      id: 'Kamu menebak antara to learn dan learning karena terjemahannya terlihat sama.',
+      tr: 'Çeviri aynı göründüğü için to learn mı learning mi diye tahmin ediyorsun.',
+      pl: 'Zgadujesz, czy powiedzieć to learn czy learning, bo tłumaczenie wygląda podobnie.',
+    },
   ),
   diagnosisText: tri(
     'Ошибка появляется, когда ты переводишь второе действие отдельно. По-русски "хочу учить" и "нравится учить" выглядят похожими. В английском это разные готовые связки: I want to learn, но I enjoy learning.',
     'Помилка зʼявляється, коли ти перекладаєш другу дію окремо. Українською "хочу вчити" і "подобається вчити" виглядають схожими. В англійській це різні готові звʼязки: I want to learn, але I enjoy learning.',
-    'The mistake appears when the second action is translated alone instead of as a verb pattern.',
+    'El error aparece cuando traduces la segunda accion sola, en vez de aprender el patron verbal completo.',
+    {
+      'pt-BR': 'O erro aparece quando você traduz a segunda ação separadamente. "Quero aprender" e "gosto de aprender" parecem parecidos em português, mas em inglês são combinações diferentes: I want to learn, mas I enjoy learning.',
+      vi: 'Lỗi xuất hiện khi bạn dịch hành động thứ hai riêng lẻ. Trong tiếng Việt, "muốn học" và "thích học" trông khá giống nhau. Trong tiếng Anh, chúng là hai cụm khác nhau: I want to learn, nhưng I enjoy learning.',
+      id: 'Kesalahan muncul saat kamu menerjemahkan tindakan kedua secara terpisah. "Ingin belajar" dan "suka belajar" terlihat mirip dalam bahasa Indonesia. Dalam bahasa Inggris, keduanya adalah rangkaian berbeda: I want to learn, tetapi I enjoy learning.',
+      tr: 'Hata, ikinci eylemi tek başına çevirdiğinde ortaya çıkar. Türkçede "öğrenmek istiyorum" ve "öğrenmeyi seviyorum" benzer görünebilir. İngilizcede bunlar farklı hazır kalıplardır: I want to learn, ama I enjoy learning.',
+      pl: 'Błąd pojawia się, gdy tłumaczysz drugą czynność osobno. Po polsku "chcę się uczyć" i "lubię się uczyć" wyglądają podobnie. W angielskim to różne gotowe konstrukcje: I want to learn, ale I enjoy learning.',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     'Есть две группы связок. После want, need, decide, plan, agree обычно идет to. После enjoy, finish, avoid, mind обычно идет -ing. Проверяй первое действие.',
     'Є дві групи звʼязок. Після want, need, decide, plan, agree зазвичай іде to. Після enjoy, finish, avoid, mind зазвичай іде -ing. Перевіряй першу дію.',
-    'Chunks: want to learn, need to go, enjoy learning, avoid making.',
+    'Combinaciones: want to learn, need to go, enjoy learning, avoid making.',
+    {
+      'pt-BR': 'Há dois grupos de combinações. Depois de want, need, decide, plan, agree, geralmente vem to. Depois de enjoy, finish, avoid, mind, geralmente vem -ing. Confira a primeira ação.',
+      vi: 'Có hai nhóm cụm. Sau want, need, decide, plan, agree thường dùng to. Sau enjoy, finish, avoid, mind thường dùng -ing. Hãy kiểm tra hành động thứ nhất.',
+      id: 'Ada dua kelompok rangkaian. Setelah want, need, decide, plan, agree biasanya memakai to. Setelah enjoy, finish, avoid, mind biasanya memakai -ing. Periksa tindakan pertama.',
+      tr: 'İki kalıp grubu vardır. Want, need, decide, plan, agree sonrasında genelde to gelir. Enjoy, finish, avoid, mind sonrasında genelde -ing gelir. İlk eylemi kontrol et.',
+      pl: 'Są dwie grupy konstrukcji. Po want, need, decide, plan, agree zwykle pojawia się to. Po enjoy, finish, avoid, mind zwykle pojawia się -ing. Sprawdzaj pierwszą czynność.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -158,16 +246,16 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       'Після to не додавай -ing: to learn, to go, to start. Не to learning.',
     ],
     es: [
-      'Want usually takes to: I want to learn.',
-      'Need usually takes to: She needs to go.',
-      'Decide usually takes to: They decided to start.',
-      'Plan usually takes to: We plan to study.',
-      'Agree usually takes to: He agreed to help.',
-      'Enjoy usually takes -ing: I enjoy learning.',
-      'Finish usually takes -ing: He finished working.',
-      'Avoid usually takes -ing: Avoid making mistakes.',
-      'Mind usually takes -ing: Do you mind waiting?',
-      'Do not say to learning.',
+      'Want normalmente pide to: I want to learn.',
+      'Need normalmente pide to: She needs to go.',
+      'Decide normalmente pide to: They decided to start.',
+      'Plan normalmente pide to: We plan to study.',
+      'Agree normalmente pide to: He agreed to help.',
+      'Enjoy normalmente pide -ing: I enjoy learning.',
+      'Finish normalmente pide -ing: He finished working.',
+      'Avoid normalmente pide -ing: Avoid making mistakes.',
+      'Mind normalmente pide -ing: Do you mind waiting?',
+      'No digas to learning.',
     ],
     'pt-BR': [
       'Depois de want, normalmente vem to: I want to learn.',
@@ -231,14 +319,14 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
     ],
   },
   examples: [
-    { en: 'I want to learn English.', ru: 'Я хочу выучить английский.', uk: 'Я хочу вивчити англійську.', es: 'I want to learn English.', 'pt-BR': 'Quero aprender inglês.', vi: 'Tôi muốn học tiếng Anh.', id: 'Saya ingin belajar bahasa Inggris.', tr: 'İngilizce öğrenmek istiyorum.', pl: 'Chcę nauczyć się angielskiego.', why: tri('Готовая связка: want to learn.', 'Готова звʼязка: want to learn.', 'Chunk: want to learn.') },
-    { en: 'She needs to go home.', ru: 'Ей нужно идти домой.', uk: 'Їй потрібно йти додому.', es: 'She needs to go home.', 'pt-BR': 'Ela precisa ir para casa.', vi: 'Cô ấy cần về nhà.', id: 'Dia perlu pulang.', tr: 'Eve gitmesi gerekiyor.', pl: 'Ona musi iść do domu.', why: tri('После need идет to go.', 'Після need іде to go.', 'Need to go.') },
-    { en: 'They decided to start again.', ru: 'Они решили начать снова.', uk: 'Вони вирішили почати знову.', es: 'They decided to start again.', 'pt-BR': 'Eles decidiram começar de novo.', vi: 'Họ quyết định bắt đầu lại.', id: 'Mereka memutuskan untuk mulai lagi.', tr: 'Tekrar başlamaya karar verdiler.', pl: 'Postanowili zacząć od nowa.', why: tri('После decide идет to start.', 'Після decide іде to start.', 'Decided to start.') },
-    { en: 'We plan to study tonight.', ru: 'Мы планируем учиться сегодня вечером.', uk: 'Ми плануємо вчитися сьогодні ввечері.', es: 'We plan to study tonight.', 'pt-BR': 'Planejamos estudar hoje à noite.', vi: 'Chúng tôi dự định học tối nay.', id: 'Kami berencana belajar malam ini.', tr: 'Bu gece ders çalışmayı planlıyoruz.', pl: 'Planujemy uczyć się dziś wieczorem.', why: tri('После plan идет to study.', 'Після plan іде to study.', 'Plan to study.') },
-    { en: 'I enjoy learning new words.', ru: 'Мне нравится учить новые слова.', uk: 'Мені подобається вчити нові слова.', es: 'I enjoy learning new words.', 'pt-BR': 'Gosto de aprender palavras novas.', vi: 'Tôi thích học từ mới.', id: 'Saya menikmati belajar kata-kata baru.', tr: 'Yeni kelimeler öğrenmekten keyif alıyorum.', pl: 'Lubię uczyć się nowych słów.', why: tri('После enjoy идет learning.', 'Після enjoy іде learning.', 'Enjoy learning.') },
-    { en: 'He finished working late.', ru: 'Он закончил работать поздно.', uk: 'Він закінчив працювати пізно.', es: 'He finished working late.', 'pt-BR': 'Ele terminou de trabalhar tarde.', vi: 'Anh ấy kết thúc công việc muộn.', id: 'Dia selesai bekerja larut malam.', tr: 'Çalışmayı geç bitirdi.', pl: 'Skończył pracować późno.', why: tri('После finish идет working.', 'Після finish іде working.', 'Finished working.') },
-    { en: 'Avoid making the same mistake.', ru: 'Избегай делать ту же ошибку.', uk: 'Уникай робити ту саму помилку.', es: 'Avoid making the same mistake.', 'pt-BR': 'Evite cometer o mesmo erro.', vi: 'Hãy tránh mắc cùng một lỗi.', id: 'Hindari membuat kesalahan yang sama.', tr: 'Aynı hatayı yapmaktan kaçın.', pl: 'Unikaj popełniania tego samego błędu.', why: tri('После avoid идет making.', 'Після avoid іде making.', 'Avoid making.') },
-    { en: 'Do you mind waiting here?', ru: 'Ты не против подождать здесь?', uk: 'Ти не проти почекати тут?', es: 'Do you mind waiting here?', 'pt-BR': 'Você se importa de esperar aqui?', vi: 'Bạn có phiền chờ ở đây không?', id: 'Apakah kamu keberatan menunggu di sini?', tr: 'Burada beklemek senin için sorun olur mu?', pl: 'Czy masz coś przeciwko poczekaniu tutaj?', why: tri('После mind идет waiting.', 'Після mind іде waiting.', 'Mind waiting.') },
+    { en: 'I want to learn English.', ru: 'Я хочу выучить английский.', uk: 'Я хочу вивчити англійську.', es: 'Quiero aprender ingles.', 'pt-BR': 'Quero aprender inglês.', vi: 'Tôi muốn học tiếng Anh.', id: 'Saya ingin belajar bahasa Inggris.', tr: 'İngilizce öğrenmek istiyorum.', pl: 'Chcę nauczyć się angielskiego.', why: tri('Готовая связка: want to learn.', 'Готова звʼязка: want to learn.', 'Combinacion fija: want to learn.') },
+    { en: 'She needs to go home.', ru: 'Ей нужно идти домой.', uk: 'Їй потрібно йти додому.', es: 'Ella necesita ir a casa.', 'pt-BR': 'Ela precisa ir para casa.', vi: 'Cô ấy cần về nhà.', id: 'Dia perlu pulang.', tr: 'Eve gitmesi gerekiyor.', pl: 'Ona musi iść do domu.', why: tri('После need идет to go.', 'Після need іде to go.', 'Need pide to go.') },
+    { en: 'They decided to start again.', ru: 'Они решили начать снова.', uk: 'Вони вирішили почати знову.', es: 'Decidieron empezar de nuevo.', 'pt-BR': 'Eles decidiram começar de novo.', vi: 'Họ quyết định bắt đầu lại.', id: 'Mereka memutuskan untuk mulai lagi.', tr: 'Tekrar başlamaya karar verdiler.', pl: 'Postanowili zacząć od nowa.', why: tri('После decide идет to start.', 'Після decide іде to start.', 'Decided pide to start.') },
+    { en: 'We plan to study tonight.', ru: 'Мы планируем учиться сегодня вечером.', uk: 'Ми плануємо вчитися сьогодні ввечері.', es: 'Planeamos estudiar esta noche.', 'pt-BR': 'Planejamos estudar hoje à noite.', vi: 'Chúng tôi dự định học tối nay.', id: 'Kami berencana belajar malam ini.', tr: 'Bu gece ders çalışmayı planlıyoruz.', pl: 'Planujemy uczyć się dziś wieczorem.', why: tri('После plan идет to study.', 'Після plan іде to study.', 'Plan pide to study.') },
+    { en: 'I enjoy learning new words.', ru: 'Мне нравится учить новые слова.', uk: 'Мені подобається вчити нові слова.', es: 'Disfruto aprendiendo palabras nuevas.', 'pt-BR': 'Gosto de aprender palavras novas.', vi: 'Tôi thích học từ mới.', id: 'Saya menikmati belajar kata-kata baru.', tr: 'Yeni kelimeler öğrenmekten keyif alıyorum.', pl: 'Lubię uczyć się nowych słów.', why: tri('После enjoy идет learning.', 'Після enjoy іде learning.', 'Enjoy pide learning.') },
+    { en: 'He finished working late.', ru: 'Он закончил работать поздно.', uk: 'Він закінчив працювати пізно.', es: 'Termino de trabajar tarde.', 'pt-BR': 'Ele terminou de trabalhar tarde.', vi: 'Anh ấy kết thúc công việc muộn.', id: 'Dia selesai bekerja larut malam.', tr: 'Çalışmayı geç bitirdi.', pl: 'Skończył pracować późno.', why: tri('После finish идет working.', 'Після finish іде working.', 'Finish pide working.') },
+    { en: 'Avoid making the same mistake.', ru: 'Избегай делать ту же ошибку.', uk: 'Уникай робити ту саму помилку.', es: 'Evita cometer el mismo error.', 'pt-BR': 'Evite cometer o mesmo erro.', vi: 'Hãy tránh mắc cùng một lỗi.', id: 'Hindari membuat kesalahan yang sama.', tr: 'Aynı hatayı yapmaktan kaçın.', pl: 'Unikaj popełniania tego samego błędu.', why: tri('После avoid идет making.', 'Після avoid іде making.', 'Avoid pide making.') },
+    { en: 'Do you mind waiting here?', ru: 'Ты не против подождать здесь?', uk: 'Ти не проти почекати тут?', es: 'Te importa esperar aqui?', 'pt-BR': 'Você se importa de esperar aqui?', vi: 'Bạn có phiền chờ ở đây không?', id: 'Apakah kamu keberatan menunggu di sini?', tr: 'Burada beklemek senin için sorun olur mu?', pl: 'Czy masz coś przeciwko poczekaniu tutaj?', why: tri('После mind идет waiting.', 'Після mind іде waiting.', 'Mind pide waiting.') },
   ],
   introBlocks: [
     {
@@ -247,7 +335,7 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты выбираешь между to learn и learning на слух. Здесь лучше не гадать, а помнить связку целиком: want to learn, enjoy learning.',
         'Схоже, ти вибираєш між to learn і learning на слух. Тут краще не вгадувати, а памʼятати звʼязку цілком: want to learn, enjoy learning.',
-        'You are guessing between to learn and learning.',
+        'Estas adivinando entre to learn y learning.',
       ),
     },
     {
@@ -256,7 +344,7 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Есть две полки. На первой живут связки с to. На второй живут связки с -ing. Важно не переводить второе действие отдельно.',
         'Є дві полиці. На першій живуть звʼязки з to. На другій живуть звʼязки з -ing. Важливо не перекладати другу дію окремо.',
-        'Two shelves: want to / need to; enjoy learning / avoid making.',
+        'Dos grupos: want to / need to; enjoy learning / avoid making.',
       ),
     },
     {
@@ -265,7 +353,7 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Две частые поломки: I want learning и I enjoy to learn. Нормально: I want to learn и I enjoy learning.',
         'Дві часті поломки: I want learning і I enjoy to learn. Нормально: I want to learn і I enjoy learning.',
-        'Common mistakes: I want learning and I enjoy to learn.',
+        'Errores comunes: I want learning y I enjoy to learn.',
       ),
     },
   ],
@@ -579,10 +667,10 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Показываем первое слово-действие и связку, которую оно просит.', 'Показуємо перше слово-дію і звʼязку, яку воно просить.', 'Show the first action word and its chunk.'),
-    depth2: tri('Делим связки на две группы: want to / need to и enjoy learning / avoid making.', 'Ділимо звʼязки на дві групи: want to / need to і enjoy learning / avoid making.', 'Split chunks into two groups.'),
-    depth3: tri('Показываем готовые пары: want to learn / enjoy learning.', 'Показуємо готові пари: want to learn / enjoy learning.', 'Show ready pairs.'),
-    depth4: tri('Даем почти готовый ответ и возвращаем в упражнение.', 'Даємо майже готову відповідь і повертаємо у вправу.', 'Give a near-answer and retry.'),
+    depth1: tri('Показываем первое слово-действие и связку, которую оно просит.', 'Показуємо перше слово-дію і звʼязку, яку воно просить.', 'Mostramos la primera accion y la combinacion que pide.'),
+    depth2: tri('Делим связки на две группы: want to / need to и enjoy learning / avoid making.', 'Ділимо звʼязки на дві групи: want to / need to і enjoy learning / avoid making.', 'Dividimos las combinaciones en dos grupos.'),
+    depth3: tri('Показываем готовые пары: want to learn / enjoy learning.', 'Показуємо готові пари: want to learn / enjoy learning.', 'Mostramos pares listos.'),
+    depth4: tri('Даем почти готовый ответ и возвращаем в упражнение.', 'Даємо майже готову відповідь і повертаємо у вправу.', 'Damos casi la respuesta y repetimos.'),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -590,7 +678,7 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       card: tri(
         'Остановись. Не переводи второе действие отдельно. Вспомни связку: want to learn, need to go, decide to start, enjoy learning, finish working, avoid making.',
         'Зупинись. Не перекладай другу дію окремо. Згадай звʼязку: want to learn, need to go, decide to start, enjoy learning, finish working, avoid making.',
-        'Stop. Recall the full verb pattern.',
+        'Alto. Recuerda el patron verbal completo.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -598,7 +686,7 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       card: tri(
         'Подсказка: система покажет первое слово-действие и нужную группу, но ответ ты выберешь сам.',
         'Підказка: система покаже перше слово-дію і потрібну групу, але відповідь ти обереш сам.',
-        'Hint: show the first action word and the group.',
+        'Pista: mostrar la primera accion y el grupo.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -606,7 +694,7 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим подсказки: сначала выбери первое слово, потом реши: оно тянет to или -ing.',
         'Режим підказки: спочатку обери перше слово, потім виріши: воно тягне to чи -ing.',
-        'Guided mode: first action word, then to or -ing.',
+        'Modo guiado: primera accion, luego to o -ing.',
       ),
     },
   },
@@ -614,10 +702,10 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
     enabled: true,
     triggerAfterWrongAttempts: 4,
     tasks: [
-      { id: 'guided_inf_ger_001', prompt: tri('Want обычно тянет to или -ing?', 'Want зазвичай тягне to чи -ing?', 'Want usually takes to or -ing?'), options: ['to', '-ing'], correctIndex: 0, thenReturnToExerciseId: 'inf_ger_easy_001' },
-      { id: 'guided_inf_ger_002', prompt: tri('Enjoy обычно тянет to или -ing?', 'Enjoy зазвичай тягне to чи -ing?', 'Enjoy usually takes to or -ing?'), options: ['to', '-ing'], correctIndex: 1, thenReturnToExerciseId: 'inf_ger_contrast_004' },
-      { id: 'guided_inf_ger_003', prompt: tri('Нормально: to learn или to learning?', 'Нормально: to learn чи to learning?', 'Correct: to learn or to learning?'), options: ['to learn', 'to learning'], correctIndex: 0, thenReturnToExerciseId: 'inf_ger_easy_001' },
-      { id: 'guided_inf_ger_004', prompt: tri('Avoid обычно тянет make или making?', 'Avoid зазвичай тягне make чи making?', 'Avoid usually takes make or making?'), options: ['make', 'making'], correctIndex: 1, thenReturnToExerciseId: 'inf_ger_mixed_001' },
+      { id: 'guided_inf_ger_001', prompt: tri('Want обычно тянет to или -ing?', 'Want зазвичай тягне to чи -ing?', 'Want normalmente pide to o -ing?'), options: ['to', '-ing'], correctIndex: 0, thenReturnToExerciseId: 'inf_ger_easy_001' },
+      { id: 'guided_inf_ger_002', prompt: tri('Enjoy обычно тянет to или -ing?', 'Enjoy зазвичай тягне to чи -ing?', 'Enjoy normalmente pide to o -ing?'), options: ['to', '-ing'], correctIndex: 1, thenReturnToExerciseId: 'inf_ger_contrast_004' },
+      { id: 'guided_inf_ger_003', prompt: tri('Нормально: to learn или to learning?', 'Нормально: to learn чи to learning?', 'Correcto: to learn o to learning?'), options: ['to learn', 'to learning'], correctIndex: 0, thenReturnToExerciseId: 'inf_ger_easy_001' },
+      { id: 'guided_inf_ger_004', prompt: tri('Avoid обычно тянет make или making?', 'Avoid зазвичай тягне make чи making?', 'Avoid normalmente pide make o making?'), options: ['make', 'making'], correctIndex: 1, thenReturnToExerciseId: 'inf_ger_mixed_001' },
     ],
   },
   smartTrainerConfig: {
@@ -663,7 +751,7 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_infinitive_vs_gerund_basic_start',
     answer: 'diagnosis_training_infinitive_vs_gerund_basic_answer',
     mastery: 'diagnosis_training_infinitive_vs_gerund_basic_mastery',
-    fallback: 'diagnosis_training_infinitive_vs_gerund_basic_fallback',
+    recovery: 'diagnosis_training_infinitive_vs_gerund_basic_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

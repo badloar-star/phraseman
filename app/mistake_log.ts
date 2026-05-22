@@ -14,8 +14,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
 import { isCategory, normalizeTokenKey, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
+import { mistakeLogKey, type RuntimeStudyTarget } from './target_storage_keys';
 
-const STORAGE_KEY = 'mistake_log_v1';
 /** Максимум записей в буфере — старые вытесняются после compaction. */
 const MAX_ENTRIES = 2000;
 const MAX_LEGACY_ENTRIES_WHEN_FULL = 250;
@@ -138,16 +138,17 @@ function compactEntriesForStorage(entries: MistakeEntry[], now = Date.now()): Mi
   const exact = recent.filter(hasExactCategorySignal);
   const legacy = recent.filter((entry) => !hasExactCategorySignal(entry));
   const legacyBudget = Math.min(MAX_LEGACY_ENTRIES_WHEN_FULL, Math.max(0, MAX_ENTRIES - exact.length));
-  return [...legacy.slice(-legacyBudget), ...exact.slice(-MAX_ENTRIES)]
+  const compacted = [...legacy.slice(-legacyBudget), ...exact.slice(-MAX_ENTRIES)]
     .sort((a, b) => a.ts - b.ts)
     .slice(-MAX_ENTRIES);
+  return compacted;
 }
 
 /** Сохранить список (compacted to MAX_ENTRIES, newest last). */
-const save = async (entries: MistakeEntry[]): Promise<void> => {
+const save = async (entries: MistakeEntry[], studyTarget?: RuntimeStudyTarget): Promise<void> => {
   try {
     const trimmed = compactEntriesForStorage(entries);
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(trimmed));
+    await AsyncStorage.setItem(mistakeLogKey(studyTarget), JSON.stringify(trimmed));
   } catch (error) {
     DebugLogger.error('mistake_log:save', error, 'warning');
   }
@@ -159,20 +160,20 @@ let writeQueue: Promise<void> = Promise.resolve();
 /** Дождаться завершения всех pending logMistake вызовов. Используется в тестах. */
 export const flushMistakeLog = (): Promise<void> => writeQueue;
 
-export const compactMistakeLog = async (): Promise<void> => {
+export const compactMistakeLog = async (studyTarget?: RuntimeStudyTarget): Promise<void> => {
   await flushMistakeLog();
   try {
-    const raw = await AsyncStorage.getItem(STORAGE_KEY);
-    await save(parseEntries(raw));
+    const raw = await AsyncStorage.getItem(mistakeLogKey(studyTarget));
+    await save(parseEntries(raw), studyTarget);
   } catch (error) {
     DebugLogger.error('mistake_log:compact', error, 'warning');
   }
 };
 
 /** Загрузить все записи из хранилища. */
-export const loadMistakeLog = async (): Promise<MistakeEntry[]> => {
+export const loadMistakeLog = async (studyTarget?: RuntimeStudyTarget): Promise<MistakeEntry[]> => {
   try {
-    const raw = await AsyncStorage.getItem(STORAGE_KEY);
+    const raw = await AsyncStorage.getItem(mistakeLogKey(studyTarget));
     return compactEntriesForStorage(parseEntries(raw));
   } catch (error) {
     DebugLogger.error('mistake_log:load', error, 'warning');
@@ -192,6 +193,7 @@ export const logMistake = (
   mode: MistakeMode,
   what: MistakeWhat,
   meta: MistakeTokenMeta = {},
+  studyTarget?: RuntimeStudyTarget,
 ): void => {
   const normalizedPhrase = phrase?.trim();
   if (
@@ -227,10 +229,10 @@ export const logMistake = (
   // Цепочка гарантирует, что конкурентные вызовы не потеряют записи (read-modify-write)
   writeQueue = writeQueue.then(async () => {
     try {
-      const raw = await AsyncStorage.getItem(STORAGE_KEY);
+      const raw = await AsyncStorage.getItem(mistakeLogKey(studyTarget));
       const entries = parseEntries(raw);
       entries.push(entry);
-      await save(entries);
+      await save(entries, studyTarget);
     } catch (error) {
       DebugLogger.error('mistake_log:logMistake', error, 'warning');
     }
@@ -296,9 +298,12 @@ function toDebugEvent(entry: MistakeEntry, now: number): MistakeLogDebugEvent {
   };
 }
 
-export const getMistakeLogDebugSnapshot = async (limit = 40): Promise<MistakeLogDebugSnapshot> => {
+export const getMistakeLogDebugSnapshot = async (
+  limit = 40,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<MistakeLogDebugSnapshot> => {
   const now = Date.now();
-  const entries = await loadMistakeLog();
+  const entries = await loadMistakeLog(studyTarget);
   const byMode = new Map<MistakeMode, number>();
   const byCategory = new Map<WordCategory, number>();
   const bySource = new Map<string, number>();
@@ -336,9 +341,12 @@ export const getMistakeLogDebugSnapshot = async (limit = 40): Promise<MistakeLog
   };
 };
 
-export const getTopMistakePhrases = async (limit = 20): Promise<PhraseMistakeStat[]> => {
+export const getTopMistakePhrases = async (
+  limit = 20,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<PhraseMistakeStat[]> => {
   try {
-    const entries = await loadMistakeLog();
+    const entries = await loadMistakeLog(studyTarget);
     const windowStart = Date.now() - ANALYTICS_WINDOW_MS;
     const recent = entries.filter((e) => e.ts >= windowStart);
     const map = new Map<string, PhraseMistakeStat>();
@@ -364,9 +372,10 @@ export const getTopMistakePhrases = async (limit = 20): Promise<PhraseMistakeSta
 export const getTopMistakePhraseDetails = async (
   limit = 20,
   minCount = 1,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<PhraseMistakeCategoryStat[]> => {
   try {
-    const entries = await loadMistakeLog();
+    const entries = await loadMistakeLog(studyTarget);
     const windowStart = Date.now() - ANALYTICS_WINDOW_MS;
     const recent = entries.filter((e) => e.ts >= windowStart);
     const map = new Map<string, PhraseMistakeCategoryStat>();
@@ -416,8 +425,12 @@ export const getTopMistakePhraseDetails = async (
  * Фразы-кандидаты для режима «Слабые места» Тренера:
  * top-N фраз из лога ошибок за 30 дней, с ≥ minCount ошибками.
  */
-export const getWeakPhrases = async (limit = 20, minCount = 2): Promise<string[]> => {
-  const stats = await getTopMistakePhrases(limit * 2);
+export const getWeakPhrases = async (
+  limit = 20,
+  minCount = 2,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<string[]> => {
+  const stats = await getTopMistakePhrases(limit * 2, studyTarget);
   return stats
     .filter((s) => s.count >= minCount)
     .slice(0, limit)
@@ -427,9 +440,9 @@ export const getWeakPhrases = async (limit = 20, minCount = 2): Promise<string[]
 /**
  * Общая статистика по уроку — сколько ошибок за 30 дней в этом уроке.
  */
-export const getMistakeCountByLesson = async (): Promise<Record<number, number>> => {
+export const getMistakeCountByLesson = async (studyTarget?: RuntimeStudyTarget): Promise<Record<number, number>> => {
   try {
-    const entries = await loadMistakeLog();
+    const entries = await loadMistakeLog(studyTarget);
     const windowStart = Date.now() - ANALYTICS_WINDOW_MS;
     const result: Record<number, number> = {};
     for (const e of entries) {
@@ -443,15 +456,15 @@ export const getMistakeCountByLesson = async (): Promise<Record<number, number>>
 };
 
 /** Сколько записей в логе (для диагностики). */
-export const getMistakeLogCount = async (): Promise<number> => {
-  const entries = await loadMistakeLog();
+export const getMistakeLogCount = async (studyTarget?: RuntimeStudyTarget): Promise<number> => {
+  const entries = await loadMistakeLog(studyTarget);
   return entries.length;
 };
 
 /** Очистить лог (для тестов / reset). */
-export const clearMistakeLog = async (): Promise<void> => {
+export const clearMistakeLog = async (studyTarget?: RuntimeStudyTarget): Promise<void> => {
   try {
-    await AsyncStorage.removeItem(STORAGE_KEY);
+    await AsyncStorage.removeItem(mistakeLogKey(studyTarget));
     // Сбрасываем кэш индекса phrase_analytics чтобы следующий запрос пересчитал
     const { invalidatePhraseIndex } = await import('./phrase_analytics');
     invalidatePhraseIndex();

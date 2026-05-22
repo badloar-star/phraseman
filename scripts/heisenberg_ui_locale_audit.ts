@@ -1,10 +1,13 @@
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import ts from 'typescript';
 
 import { HEISENBERG_BATCH_SOURCE_LOCALES, type HeisenbergSourceLocale } from '../app/source_locales';
 
-const { hasMojibake } = require('./lib/heisenberg_semantic_core.cjs') as typeof import('./lib/heisenberg_semantic_core.cjs');
+const cjsRequire = createRequire(__filename);
+
+const { hasMojibake } = cjsRequire('./lib/heisenberg_semantic_core.cjs') as typeof import('./lib/heisenberg_semantic_core.cjs');
 
 type PlannedUiLocale = Exclude<HeisenbergSourceLocale, 'es'>;
 type EncodingScanLocale = HeisenbergSourceLocale;
@@ -43,11 +46,11 @@ type UiLocaleAuditReport = {
     findings: number;
     byCode: Record<string, number>;
   };
-  topFiles: Array<{
+  topFiles: {
     file: string;
     findings: number;
     missingLocaleUnits: number;
-  }>;
+  }[];
   findings: UiLocaleFinding[];
 };
 
@@ -107,6 +110,25 @@ function objectLiteralKeys(node: ts.ObjectLiteralExpression): Set<string> {
       const name = propName(property.name);
       if (name) keys.add(name);
     }
+  }
+  return keys;
+}
+
+function objectLiteralPropertyObject(node: ts.ObjectLiteralExpression, key: string): ts.ObjectLiteralExpression | null {
+  for (const property of node.properties) {
+    if (!ts.isPropertyAssignment(property)) continue;
+    if (propName(property.name) !== key) continue;
+    const initializer = unwrapExpression(property.initializer as ts.Expression);
+    return ts.isObjectLiteralExpression(initializer) ? initializer : null;
+  }
+  return null;
+}
+
+function effectiveLocaleObjectKeys(node: ts.ObjectLiteralExpression): Set<string> {
+  const keys = objectLiteralKeys(node);
+  const sourceLocales = objectLiteralPropertyObject(node, 'sourceLocales');
+  if (sourceLocales) {
+    for (const locale of objectLiteralKeys(sourceLocales)) keys.add(locale);
   }
   return keys;
 }
@@ -202,6 +224,17 @@ function isTriLangCopyObject(node: ts.ObjectLiteralExpression): boolean {
   );
 }
 
+function isTriTextHelperSeedObject(node: ts.ObjectLiteralExpression): boolean {
+  const parent = node.parent;
+  return (
+    ts.isVariableDeclaration(parent) &&
+    parent.initializer === node &&
+    ts.isIdentifier(parent.name) &&
+    parent.name.text === 'copy' &&
+    parent.type?.getText() === 'TriText'
+  );
+}
+
 function isPropertyValue(node: ts.Node, propertyName: string): boolean {
   const parent = node.parent;
   if (!ts.isPropertyAssignment(parent) || parent.initializer !== node) return false;
@@ -282,10 +315,10 @@ function quizSourceLocaleCoverage(): Set<string> {
   try {
     const {
       getQuizPoolAuditEntries,
-    } = require('../app/quiz_data') as typeof import('../app/quiz_data');
+    } = cjsRequire('../app/quiz_data') as typeof import('../app/quiz_data');
     const {
       getStructuredQuizSourceLocalePayload,
-    } = require('../app/quiz_source_locale_payloads') as typeof import('../app/quiz_source_locale_payloads');
+    } = cjsRequire('../app/quiz_source_locale_payloads') as typeof import('../app/quiz_source_locale_payloads');
 
     for (const difficulty of ['easy', 'medium', 'hard'] as const) {
       for (const entry of getQuizPoolAuditEntries(difficulty)) {
@@ -329,7 +362,7 @@ function isLocaleObjectMissingPlanned(node: ts.ObjectLiteralExpression): {
   missing: PlannedUiLocale[];
   hasAllBase: boolean;
 } {
-  const keys = objectLiteralKeys(node);
+  const keys = effectiveLocaleObjectKeys(node);
   const hasAllBase = keys.has('ru') && keys.has('uk') && keys.has('es');
   return {
     hasAllBase,
@@ -430,7 +463,7 @@ export function analyzeUiLocaleSource(file: string, text: string): {
   const visit = (node: ts.Node): void => {
     if (ts.isObjectLiteralExpression(node)) {
       findings.push(...collectLocaleEncodingFindings(file, source, node));
-      if (!isTriLangCopyObject(node)) {
+      if (!isTriLangCopyObject(node) && !isTriTextHelperSeedObject(node)) {
         const { hasAllBase, missing } = isLocaleObjectMissingPlanned(node);
         if (hasAllBase && missing.length > 0 && !isLocaleObjectCoveredElsewhere(file, node)) {
           localeObjectFindings += 1;

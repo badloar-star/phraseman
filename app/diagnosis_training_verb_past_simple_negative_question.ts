@@ -5,16 +5,25 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
-const tri = (ru: string, uk: string, es: string): TriText => {
-  const plannedFallback = {
-    'pt-BR': es,
-    vi: es,
-    id: es,
-    tr: es,
-    pl: es,
-  } satisfies Record<PlannedTrainingLocale, string>;
+const PAST_DID_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': "needs-review: esta explicação sobre perguntas e negativas com did/didn't ainda precisa de revisão para português do Brasil.",
+  vi: "needs-review: phần giải thích về câu hỏi và phủ định với did/didn't này vẫn cần được rà soát cho tiếng Việt.",
+  id: "needs-review: penjelasan pertanyaan dan negatif dengan did/didn't ini masih perlu ditinjau untuk bahasa Indonesia.",
+  tr: "needs-review: bu did/didn't ile soru ve olumsuzluk açıklaması Türkçe için hâlâ gözden geçirilmeli.",
+  pl: "needs-review: to objaśnienie pytań i przeczeń z did/didn't nadal wymaga przeglądu po polsku.",
+};
 
-  return { ru, uk, es, ...plannedFallback };
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? PAST_DID_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
 };
 
 const CONTRAST = [
@@ -39,27 +48,76 @@ const SMART_CONTRAST = [
 const MODEL = tri(
   "В обычной фразе прошлое сидит в глаголе: I went. В вопросе и отрицании прошлое переезжает в did или didn't. Поэтому дальше идет обычная форма: Did you go? I didn't go.",
   "У звичайній фразі минуле сидить у дієслові: I went. У питанні й запереченні минуле переїжджає в did або didn't. Тому далі йде звичайна форма: Did you go? I didn't go.",
-  "In a normal statement, the past sits in the verb: I went. In questions and negatives, the past moves to did or didn't. The next verb is plain: Did you go? I didn't go.",
+  "En una afirmacion normal, el pasado esta en el verbo: I went. En preguntas y negativas, el pasado pasa a did o didn't. El siguiente verbo queda base: Did you go? I didn't go.",
+  {
+    'pt-BR': "Na frase afirmativa normal, o passado fica no verbo: I went. Na pergunta e na negativa, o passado passa para did ou didn't. Por isso, depois vem a forma básica: Did you go? I didn't go.",
+    vi: "Trong câu khẳng định thường, quá khứ nằm trong động từ: I went. Trong câu hỏi và phủ định, quá khứ chuyển sang did hoặc didn't. Vì vậy, phía sau dùng dạng cơ bản: Did you go? I didn't go.",
+    id: "Dalam kalimat pernyataan biasa, masa lampau ada pada verba: I went. Dalam pertanyaan dan negatif, masa lampau pindah ke did atau didn't. Karena itu, setelahnya bentuk dasar: Did you go? I didn't go.",
+    tr: "Normal cümlede geçmiş anlam fiildedir: I went. Soruda ve olumsuzda geçmiş anlam did ya da didn't içine taşınır. Bu yüzden ardından yalın biçim gelir: Did you go? I didn't go.",
+    pl: "W zwykłym zdaniu twierdzącym przeszłość siedzi w czasowniku: I went. W pytaniu i przeczeniu przeszłość przechodzi do did albo didn't. Dlatego dalej idzie forma podstawowa: Did you go? I didn't go.",
+  },
 );
+
+const PAST_DID_SKILL_ES: Record<string, string> = {
+  did_you_go: 'Yesterday marca pasado, asi que la pregunta empieza con Did.',
+  did_she_call: 'Despues de Did usa call, no called.',
+  did_they_work: 'Despues de Did usa work, no worked.',
+  didnt_go: "Despues de didn't usa go, no went.",
+  didnt_call: "Despues de didn't usa call, no called.",
+  didnt_work: "Despues de didn't usa work, no worked.",
+  did_go_not_went: 'Did ya muestra pasado; despues va go.',
+  did_see_not_saw: 'Did ya muestra pasado; despues va see.',
+  didnt_buy_not_bought: "Didn't ya muestra pasado; despues va buy.",
+  what_did_you_buy: 'Con what did, el verbo queda base: buy.',
+  where_did_she_go: 'Con where did, el verbo queda base: go.',
+  why_didnt_you_call: "Despues de why didn't, usa call.",
+  mixed_statement_question_negative: "Afirmacion: went. Pregunta/negativa: did/didn't + go.",
+  mixed_regular_verb: "Afirmacion: called. Pregunta/negativa: did/didn't + call.",
+  mixed_sentence_correction: "Despues de didn't y did usa buy.",
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = PAST_DID_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? PAST_DID_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function pastDidEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = PAST_DID_SKILL_ES[input.targetSkill] ?? "Busca did/didn't y deja el siguiente verbo en forma base.";
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retry(correct: string): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       "Сначала найди did или didn't.",
       "Спочатку знайди did або didn't.",
-      "First find did or didn't.",
+      "Primero encuentra did o didn't.",
     ),
     tri(
       "Если did/didn't уже есть, прошлое уже показано.",
       "Якщо did/didn't уже є, минуле вже показано.",
-      "If did/didn't is already there, the past is already shown.",
+      "Si did/didn't ya esta ahi, el pasado ya esta mostrado.",
     ),
     tri(
       "После did/didn't ставь обычную форму: go, call, buy, see, work.",
       "Після did/didn't став звичайну форму: go, call, buy, see, work.",
-      "After did/didn't, use the plain form: go, call, buy, see, work.",
+      "Despues de did/didn't, usa la forma base: go, call, buy, see, work.",
     ),
-    tri(`Нужный вариант здесь: ${correct}.`, `Потрібний варіант тут: ${correct}.`, `The answer here is: ${correct}.`),
+    tri(`Нужный вариант здесь: ${correct}.`, `Потрібний варіант тут: ${correct}.`, `La respuesta aqui es: ${correct}.`),
   ];
 }
 
@@ -67,7 +125,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Проверь did/didn't и слово после него. Здесь нужно: ${correct}.`,
     `Майже. Перевір did/didn't і слово після нього. Тут потрібно: ${correct}.`,
-    `Almost. Check did/didn't and the word after it. Use: ${correct}.`,
+    `Casi. Revisa did/didn't y la palabra despues. Usa: ${correct}.`,
   );
 }
 
@@ -84,35 +142,36 @@ function didStep(input: {
   wrong: Record<string, TriText>;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = pastDidEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
-    teachingText: MODEL,
-    explanationBlock: MODEL,
+    translation: withEs(input.translation, esFeedback),
+    teachingText: withEs(MODEL, esFeedback),
+    explanationBlock: withEs(MODEL, esFeedback),
     microTask: tri(
       "Выбери форму с правильным did/didn't и обычным словом после него.",
       "Обери форму з правильним did/didn't і звичайним словом після нього.",
-      "Choose the form with correct did/didn't and the plain verb after it.",
+      "Elige la forma con did/didn't correcto y verbo base despues.",
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(input.correctAnswer),
+    retryFeedback: retry(input.correctAnswer).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       "Скелет простой: Did you go? I didn't go. После did и didn't не ставим went, called, bought. Ставим go, call, buy.",
       "Скелет простий: Did you go? I didn't go. Після did і didn't не ставимо went, called, bought. Ставимо go, call, buy.",
-      "The pattern is simple: Did you go? I didn't go. After did and didn't, do not use went, called, bought. Use go, call, buy.",
+      "El patron es simple: Did you go? I didn't go. Despues de did y didn't, no uses went, called, bought. Usa go, call, buy.",
     ),
     focusWords: input.focusWords,
   };
@@ -124,29 +183,63 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 37,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     "Did / Didn't: вопросы и отрицания в прошлом",
     "Did / Didn't: питання і заперечення в минулому",
-    "Did / Didn't: past questions and negatives",
+    "Did / Didn't: preguntas y negaciones en pasado",
+    {
+      'pt-BR': "Did / Didn't: perguntas e negativas no passado",
+      vi: "Did / Didn't: câu hỏi và phủ định trong quá khứ",
+      id: "Did / Didn't: pertanyaan dan negatif di masa lampau",
+      tr: "Did / Didn't: geçmişte soru ve olumsuzluk",
+      pl: "Did / Didn't: pytania i przeczenia w przeszłości",
+    },
   ),
-  shortTitle: tri("Did / Didn't", "Did / Didn't", "Did / Didn't"),
+  shortTitle: tri("Did / Didn't", "Did / Didn't", "Did / Didn't", {
+    'pt-BR': "Did / Didn't",
+    vi: "Did / Didn't",
+    id: "Did / Didn't",
+    tr: "Did / Didn't",
+    pl: "Did / Didn't",
+  }),
   shortDiagnosis: tri(
     "Ты пытаешься показать прошлое два раза: Did you went? I didn't bought.",
     "Ти намагаєшся показати минуле двічі: Did you went? I didn't bought.",
-    "You try to show the past twice: Did you went? I didn't bought.",
+    "Intentas mostrar el pasado dos veces: Did you went? I didn't bought.",
+    {
+      'pt-BR': "Você tenta mostrar o passado duas vezes: Did you went? I didn't bought.",
+      vi: "Bạn cố thể hiện quá khứ hai lần: Did you went? I didn't bought.",
+      id: "Kamu mencoba menunjukkan masa lampau dua kali: Did you went? I didn't bought.",
+      tr: "Geçmişi iki kez göstermeye çalışıyorsun: Did you went? I didn't bought.",
+      pl: "Próbujesz pokazać przeszłość dwa razy: Did you went? I didn't bought.",
+    },
   ),
   diagnosisText: tri(
     "Ошибка вот в чем: если did или didn't уже стоит в фразе, прошлое уже показано. После него английский возвращает глагол к обычному виду: Did you go? I didn't buy.",
     "Помилка ось у чому: якщо did або didn't уже стоїть у фразі, минуле вже показано. Після нього англійська повертає дієслово до звичайного вигляду: Did you go? I didn't buy.",
-    "If did or didn't is already in the sentence, the past is already shown. After it, English uses the plain verb: Did you go? I didn't buy.",
+    "Si did o didn't ya esta en la frase, el pasado ya esta mostrado. Despues, el ingles usa el verbo base: Did you go? I didn't buy.",
+    {
+      'pt-BR': "O erro é este: se did ou didn't já está na frase, o passado já foi mostrado. Depois dele, o inglês devolve o verbo para a forma básica: Did you go? I didn't buy.",
+      vi: "Lỗi nằm ở chỗ này: nếu did hoặc didn't đã có trong câu, quá khứ đã được thể hiện rồi. Sau nó, tiếng Anh đưa động từ về dạng cơ bản: Did you go? I didn't buy.",
+      id: "Kesalahannya begini: jika did atau didn't sudah ada dalam kalimat, masa lampau sudah ditunjukkan. Setelah itu, bahasa Inggris mengembalikan verba ke bentuk dasar: Did you go? I didn't buy.",
+      tr: "Hata şurada: cümlede did ya da didn't zaten varsa geçmiş zaman zaten gösterilmiştir. Ondan sonra İngilizce fiili yalın hale döndürür: Did you go? I didn't buy.",
+      pl: "Błąd polega na tym: jeśli did albo didn't już stoi w zdaniu, przeszłość jest już pokazana. Po nim angielski wraca do podstawowej formy czasownika: Did you go? I didn't buy.",
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     "Утверждение: I went home. Вопрос: Did you go home? Отрицание: I didn't go home. После did/didn't: go, call, buy, see, work.",
     "Твердження: I went home. Питання: Did you go home? Заперечення: I didn't go home. Після did/didn't: go, call, buy, see, work.",
-    "Statement: I went home. Question: Did you go home? Negative: I didn't go home. After did/didn't: go, call, buy, see, work.",
+    "Afirmacion: I went home. Pregunta: Did you go home? Negacion: I didn't go home. Despues de did/didn't: go, call, buy, see, work.",
+    {
+      'pt-BR': "Afirmação: I went home. Pergunta: Did you go home? Negativa: I didn't go home. Depois de did/didn't: go, call, buy, see, work.",
+      vi: "Khẳng định: I went home. Câu hỏi: Did you go home? Phủ định: I didn't go home. Sau did/didn't: go, call, buy, see, work.",
+      id: "Pernyataan: I went home. Pertanyaan: Did you go home? Negatif: I didn't go home. Setelah did/didn't: go, call, buy, see, work.",
+      tr: "Olumlu: I went home. Soru: Did you go home? Olumsuz: I didn't go home. Did/didn't sonrasında: go, call, buy, see, work.",
+      pl: "Twierdzenie: I went home. Pytanie: Did you go home? Przeczenie: I didn't go home. Po did/didn't: go, call, buy, see, work.",
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -170,14 +263,14 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       'З be це окрема доріжка: Was he ready? Were they home?',
     ],
     es: [
-      'In a normal statement, the verb shows the past: I went, she called, they bought.',
-      'In a question, did shows the past: Did you go?',
-      'After did, do not use the past form: not Did you went, but Did you go.',
-      "In a negative, didn't shows the past: I didn't go.",
-      "After didn't, do not use the past form: not I didn't bought, but I didn't buy.",
-      'With yesterday, last night, last week, and ago, past questions often need did.',
-      'With a question word: What did you buy? Where did she go?',
-      'With be, use a separate path: Was he ready? Were they home?',
+      'En una afirmacion normal, el verbo muestra pasado: I went, she called, they bought.',
+      'En una pregunta, did muestra pasado: Did you go?',
+      'Despues de did, no uses la forma de pasado: no Did you went, sino Did you go.',
+      "En una negacion, didn't muestra pasado: I didn't go.",
+      "Despues de didn't, no uses la forma de pasado: no I didn't bought, sino I didn't buy.",
+      'Con yesterday, last night, last week y ago, las preguntas en pasado suelen necesitar did.',
+      'Con palabra interrogativa: What did you buy? Where did she go?',
+      'Con be, usa otro camino: Was he ready? Were they home?',
     ],
     'pt-BR': [
       'Em afirmação normal, o verbo mostra o passado: I went, she called, they bought.',
@@ -235,97 +328,97 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       en: 'Did you go home?',
       ru: 'Ты пошел домой?',
       uk: 'Ти пішов додому?',
-      es: 'Did you go home?',
+      es: 'Fuiste a casa?',
       'pt-BR': 'Você foi para casa?',
       vi: 'Bạn đã về nhà chưa?',
       id: 'Apakah kamu pulang?',
       tr: 'Eve gittin mi?',
       pl: 'Czy poszedłeś do domu?',
-      why: tri('Did уже показывает прошлое, поэтому дальше go.', 'Did уже показує минуле, тому далі go.', 'Did already shows the past, so use go after it.'),
+      why: tri('Did уже показывает прошлое, поэтому дальше go.', 'Did уже показує минуле, тому далі go.', 'Did ya muestra pasado, asi que despues usa go.'),
     },
     {
       en: "I didn't go home.",
       ru: 'Я не пошел домой.',
       uk: 'Я не пішов додому.',
-      es: "I didn't go home.",
+      es: 'No fui a casa.',
       'pt-BR': 'Eu não fui para casa.',
       vi: 'Tôi đã không về nhà.',
       id: 'Saya tidak pulang.',
       tr: 'Eve gitmedim.',
       pl: 'Nie poszedłem do domu.',
-      why: tri("Didn't уже показывает отрицание в прошлом, поэтому дальше go.", "Didn't уже показує заперечення в минулому, тому далі go.", "Didn't already shows the past negative, so use go after it."),
+      why: tri("Didn't уже показывает отрицание в прошлом, поэтому дальше go.", "Didn't уже показує заперечення в минулому, тому далі go.", "Didn't ya muestra negacion en pasado, asi que despues usa go."),
     },
     {
       en: 'Did she call you?',
       ru: 'Она тебе позвонила?',
       uk: 'Вона тобі подзвонила?',
-      es: 'Did she call you?',
+      es: 'Ella te llamo?',
       'pt-BR': 'Ela ligou para você?',
       vi: 'Cô ấy đã gọi cho bạn chưa?',
       id: 'Apakah dia meneleponmu?',
       tr: 'Seni aradı mı?',
       pl: 'Czy ona do ciebie zadzwoniła?',
-      why: tri('В вопросе: Did she call? Не called.', 'У питанні: Did she call? Не called.', 'In a question: Did she call? Not called.'),
+      why: tri('В вопросе: Did she call? Не called.', 'У питанні: Did she call? Не called.', 'En pregunta: Did she call? No called.'),
     },
     {
       en: "She didn't call me.",
       ru: 'Она мне не позвонила.',
       uk: 'Вона мені не подзвонила.',
-      es: "She didn't call me.",
+      es: 'Ella no me llamo.',
       'pt-BR': 'Ela não me ligou.',
       vi: 'Cô ấy đã không gọi cho tôi.',
       id: 'Dia tidak menelepon saya.',
       tr: 'Beni aramadı.',
       pl: 'Ona do mnie nie zadzwoniła.',
-      why: tri("После didn't нужен call.", "Після didn't потрібен call.", "After didn't, use call."),
+      why: tri("После didn't нужен call.", "Після didn't потрібен call.", "Despues de didn't, usa call."),
     },
     {
       en: 'What did you buy?',
       ru: 'Что ты купил?',
       uk: 'Що ти купив?',
-      es: 'What did you buy?',
+      es: 'Que compraste?',
       'pt-BR': 'O que você comprou?',
       vi: 'Bạn đã mua gì?',
       id: 'Apa yang kamu beli?',
       tr: 'Ne satın aldın?',
       pl: 'Co kupiłeś?',
-      why: tri('What стоит в начале, потом did you buy.', 'What стоїть на початку, потім did you buy.', 'What comes first, then did you buy.'),
+      why: tri('What стоит в начале, потом did you buy.', 'What стоїть на початку, потім did you buy.', 'What va primero, luego did you buy.'),
     },
     {
       en: 'Where did she go?',
       ru: 'Куда она пошла?',
       uk: 'Куди вона пішла?',
-      es: 'Where did she go?',
+      es: 'A donde fue ella?',
       'pt-BR': 'Para onde ela foi?',
       vi: 'Cô ấy đã đi đâu?',
       id: 'Ke mana dia pergi?',
       tr: 'O nereye gitti?',
       pl: 'Dokąd ona poszła?',
-      why: tri('После did используем go, не went.', 'Після did використовуємо go, не went.', 'After did, use go, not went.'),
+      why: tri('После did используем go, не went.', 'Після did використовуємо go, не went.', 'Despues de did, usa go, no went.'),
     },
     {
       en: "He didn't see the message.",
       ru: 'Он не видел сообщение.',
       uk: 'Він не бачив повідомлення.',
-      es: "He didn't see the message.",
+      es: 'El no vio el mensaje.',
       'pt-BR': 'Ele não viu a mensagem.',
       vi: 'Anh ấy đã không thấy tin nhắn.',
       id: 'Dia tidak melihat pesan itu.',
       tr: 'Mesajı görmedi.',
       pl: 'On nie widział wiadomości.',
-      why: tri("В утверждении было бы saw, но после didn't возвращаем see.", "У твердженні було б saw, але після didn't повертаємо see.", "In a statement it would be saw, but after didn't use see."),
+      why: tri("В утверждении было бы saw, но после didn't возвращаем see.", "У твердженні було б saw, але після didn't повертаємо see.", "En afirmacion seria saw, pero despues de didn't usa see."),
     },
     {
       en: 'Did they work yesterday?',
       ru: 'Они работали вчера?',
       uk: 'Вони працювали вчора?',
-      es: 'Did they work yesterday?',
+      es: 'Trabajaron ayer?',
       'pt-BR': 'Eles trabalharam ontem?',
       vi: 'Hôm qua họ có làm việc không?',
       id: 'Apakah mereka bekerja kemarin?',
       tr: 'Dün çalıştılar mı?',
       pl: 'Czy oni pracowali wczoraj?',
-      why: tri('Yesterday показывает прошлое, а вопрос собирает did + work.', 'Yesterday показує минуле, а питання збирає did + work.', 'Yesterday shows the past, and the question uses did + work.'),
+      why: tri('Yesterday показывает прошлое, а вопрос собирает did + work.', 'Yesterday показує минуле, а питання збирає did + work.', 'Yesterday muestra pasado, y la pregunta usa did + work.'),
     },
   ],
   introBlocks: [
@@ -335,7 +428,7 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       text: tri(
         "Похоже, ты пытаешься показать прошлое два раза: Did you went? I didn't called. В английском прошлое не нужно дублировать.",
         "Схоже, ти намагаєшся показати минуле двічі: Did you went? I didn't called. В англійській минуле не треба дублювати.",
-        "It looks like you try to show the past twice: Did you went? I didn't called. English does not need the past twice.",
+        "Parece que intentas mostrar el pasado dos veces: Did you went? I didn't called. El ingles no necesita duplicar el pasado.",
       ),
     },
     {
@@ -344,7 +437,7 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       text: tri(
         "Формула простая: did показывает прошлое, а следующий глагол возвращается в обычный вид.",
         "Формула проста: did показує минуле, а наступне дієслово повертається у звичайний вигляд.",
-        "Pattern: Did you go? I didn't go. Did she call? She didn't call.",
+        "Patron: Did you go? I didn't go. Did she call? She didn't call.",
       ),
     },
     {
@@ -353,7 +446,7 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       text: tri(
         "Главная ловушка: did + went, didn't + bought. Нужно did + go, didn't + buy.",
         "Головна пастка: did + went, didn't + bought. Потрібно did + go, didn't + buy.",
-        "Main trap: did + went, didn't + bought. Use did + go, didn't + buy.",
+        "Trampa principal: did + went, didn't + bought. Usa did + go, didn't + buy.",
       ),
     },
   ],
@@ -651,10 +744,10 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri("Показываем did/didn't.", "Показуємо did/didn't.", "Show did/didn't."),
-    depth2: tri("Напоминаем: did/didn't уже показывают прошлое.", "Нагадуємо: did/didn't уже показують минуле.", "Remind: did/didn't already show the past."),
-    depth3: tri("Даем пару: обычная фраза, вопрос и отрицание. После did уже не нужен went.", "Даємо пару: звичайна фраза, питання і заперечення. Після did уже не потрібен went.", "Give the pair: I went -> Did you go? -> I didn't go."),
-    depth4: tri("Почти подсказка: показываем нужное слово после did/didn't.", "Майже підказка: показуємо потрібне слово після did/didn't.", "Almost a hint: show the needed word after did/didn't."),
+    depth1: tri("Показываем did/didn't.", "Показуємо did/didn't.", "Muestra did/didn't."),
+    depth2: tri("Напоминаем: did/didn't уже показывают прошлое.", "Нагадуємо: did/didn't уже показують минуле.", "Recuerda: did/didn't ya muestran pasado."),
+    depth3: tri("Даем пару: обычная фраза, вопрос и отрицание. После did уже не нужен went.", "Даємо пару: звичайна фраза, питання і заперечення. Після did уже не потрібен went.", "Da la pareja: I went -> Did you go? -> I didn't go."),
+    depth4: tri("Почти подсказка: показываем нужное слово после did/didn't.", "Майже підказка: показуємо потрібне слово після did/didn't.", "Casi una pista: muestra la palabra necesaria despues de did/didn't."),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -662,7 +755,7 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       card: tri(
         "Стоп. Did/didn't уже несут прошлое. После них ставим обычную форму: did go, didn't buy, did see. Не did went и не didn't bought.",
         "Стоп. Did/didn't уже несуть минуле. Після них ставимо звичайну форму: did go, didn't buy, did see. Не did went і не didn't bought.",
-        "Stop. Did/didn't already carry the past. After them, use the plain form: did go, didn't buy, did see. Not did went and not didn't bought.",
+        "Alto. Did/didn't ya llevan el pasado. Despues usa la forma base: did go, didn't buy, did see. No did went ni didn't bought.",
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -670,7 +763,7 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       card: tri(
         "Система подсветит did/didn't и напомнит, что следующее слово должно быть обычным.",
         "Система підсвітить did/didn't і нагадає, що наступне слово має бути звичайним.",
-        "The system highlights did/didn't and reminds you that the next word should be plain.",
+        "El sistema resalta did/didn't y recuerda que la palabra siguiente debe ser base.",
       ),
     },
     afterFourWrongInSameExercise: {
@@ -678,7 +771,7 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
       card: tri(
         "Режим подсказки: сначала выбираешь утверждение, вопрос или отрицание. Потом решаешь, где показано прошлое.",
         "Режим підказки: спочатку обираєш твердження, питання чи заперечення. Потім вирішуєш, де показано минуле.",
-        "Guided mode: first choose statement, question, or negative. Then decide where the past is shown.",
+        "Modo guiado: primero elige afirmacion, pregunta o negacion. Luego decide donde se muestra el pasado.",
       ),
     },
   },
@@ -688,28 +781,28 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_past_neg_q_001',
-        prompt: tri('После did нужен go или went?', 'Після did потрібен go чи went?', 'After did, do you need go or went?'),
+        prompt: tri('После did нужен go или went?', 'Після did потрібен go чи went?', 'Despues de did, necesitas go o went?'),
         options: ['go', 'went'],
         correctIndex: 0,
         thenReturnToExerciseId: 'past_neg_q_contrast_004',
       },
       {
         id: 'guided_past_neg_q_002',
-        prompt: tri("После didn't нужен bought или buy?", "Після didn't потрібен bought чи buy?", "After didn't, do you need bought or buy?"),
+        prompt: tri("После didn't нужен bought или buy?", "Після didn't потрібен bought чи buy?", "Despues de didn't, necesitas bought o buy?"),
         options: ['bought', 'buy'],
         correctIndex: 1,
         thenReturnToExerciseId: 'past_neg_q_contrast_006',
       },
       {
         id: 'guided_past_neg_q_003',
-        prompt: tri('Yesterday в вопросе просит do или did?', 'Yesterday у питанні просить do чи did?', 'In a question, yesterday asks for do or did?'),
+        prompt: tri('Yesterday в вопросе просит do или did?', 'Yesterday у питанні просить do чи did?', 'En una pregunta, yesterday pide do o did?'),
         options: ['do', 'did'],
         correctIndex: 1,
         thenReturnToExerciseId: 'past_neg_q_easy_001',
       },
       {
         id: 'guided_past_neg_q_004',
-        prompt: tri("В I didn't go прошлое показано в didn't или в go?", "У I didn't go минуле показано в didn't чи в go?", "In I didn't go, is the past shown in didn't or in go?"),
+        prompt: tri("В I didn't go прошлое показано в didn't или в go?", "У I didn't go минуле показано в didn't чи в go?", "En I didn't go, el pasado esta en didn't o en go?"),
         options: ["didn't", 'go'],
         correctIndex: 0,
         thenReturnToExerciseId: 'past_neg_q_contrast_001',
@@ -759,7 +852,7 @@ export const VERB_PAST_SIMPLE_NEGATIVE_QUESTION_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_verb_past_simple_negative_question_start',
     answer: 'diagnosis_training_verb_past_simple_negative_question_answer',
     mastery: 'diagnosis_training_verb_past_simple_negative_question_mastery',
-    fallback: 'diagnosis_training_verb_past_simple_negative_question_fallback',
+    recovery: 'diagnosis_training_verb_past_simple_negative_question_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

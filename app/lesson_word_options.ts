@@ -32,13 +32,13 @@ export function buildLessonWordOptions(
   const crossCandidates = allWords
     .filter((word) => notMe(word) && allowed(word) && !lessonWords.some((local) => local.en === word.en))
     .map(toCandidate('crossLesson'));
-  const fallbackCandidates = [...lessonWords, ...allWords]
+  const reserveCandidates = [...lessonWords, ...allWords]
     .filter((word) => notMe(word) && allowed(word))
-    .map(toCandidate('fallback'));
+    .map(toCandidate('reserve'));
 
   return buildSmartVocabularyOptions(
     { value: correct.en, pos: correct.pos, source: 'lesson' },
-    [...lessonCandidates, ...crossCandidates, ...fallbackCandidates],
+    [...lessonCandidates, ...crossCandidates, ...reserveCandidates],
     { pos: correct.pos, optionCount: 6 },
   );
 }

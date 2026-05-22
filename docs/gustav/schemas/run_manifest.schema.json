@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phraseman.local/gustav/run_manifest.schema.json",
+  "title": "GUSTAV Run Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "runId",
+    "createdAt",
+    "mode",
+    "repoRoot",
+    "inputRef",
+    "requestedStudyTarget",
+    "allowedSourceLocales",
+    "allowedWriteZones",
+    "forbiddenWriteZones",
+    "productWritePermission",
+    "agents",
+    "gates",
+    "notes"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "gustav-run-manifest-v0" },
+    "runId": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}_[a-z]{2,5}_[a-z0-9_-]+_[A-Za-z0-9]+$" },
+    "createdAt": { "type": "string" },
+    "mode": {
+      "enum": [
+        "inventory",
+        "source_graph",
+        "english_audit",
+        "architecture",
+        "research",
+        "curriculum",
+        "agent_contract",
+        "generate",
+        "audit_generated",
+        "apply_plan",
+        "apply"
+      ]
+    },
+    "repoRoot": { "type": "string", "minLength": 1 },
+    "inputRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gitStatusSummary"],
+      "properties": {
+        "gitCommit": { "type": "string" },
+        "gitStatusSummary": { "type": "string" },
+        "atlasPath": { "type": "string" },
+        "sourceGraphPath": { "type": "string" },
+        "sourceGraphHash": { "type": "string" }
+      }
+    },
+    "requestedStudyTarget": { "enum": ["en", "fr", "de", "es"] },
+    "allowedSourceLocales": {
+      "type": "array",
+      "items": { "enum": ["ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl"] },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "allowedWriteZones": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "forbiddenWriteZones": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "productWritePermission": { "type": "boolean" },
+    "explicitApprovalRef": { "type": "string" },
+    "agents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "contractPath"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "contractPath": { "type": "string", "minLength": 1 },
+          "outputPath": { "type": "string" }
+        }
+      }
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["gateId", "status"],
+        "properties": {
+          "gateId": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["pending", "pass", "hold", "block"] },
+          "evidencePath": { "type": "string" }
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

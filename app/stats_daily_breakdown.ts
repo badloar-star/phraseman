@@ -10,6 +10,7 @@ import type { Lang } from '../constants/i18n';
 import { syncToCloud } from './cloud_sync';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureArenaAuthUid } from './user_id_policy';
+import { statsDailyBreakdownKey, type RuntimeStudyTarget } from './target_storage_keys';
 
 const STORAGE_KEY = 'stats_daily_breakdown_v1';
 
@@ -77,10 +78,13 @@ function pruneStore(s: Store): Store {
 }
 
 /** Объединить локальное и облачное (max по каждой метрике за день), записать локально; строка для progress в Firestore. */
-export async function reconcileStatsDailyBreakdownWithCloud(cloudRaw: unknown): Promise<string> {
+export async function reconcileStatsDailyBreakdownWithCloud(
+  cloudRaw: unknown,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<string> {
   let local: Store = {};
   try {
-    const raw = await AsyncStorage.getItem(STORAGE_KEY);
+    const raw = await AsyncStorage.getItem(statsDailyBreakdownKey(studyTarget));
     local = parseStore(raw);
   } catch {
     local = {};
@@ -89,7 +93,7 @@ export async function reconcileStatsDailyBreakdownWithCloud(cloudRaw: unknown): 
   const merged = pruneStore(mergeDailyBreakdownStores(local, remote));
   const str = JSON.stringify(merged);
   try {
-    await AsyncStorage.setItem(STORAGE_KEY, str);
+    await AsyncStorage.setItem(statsDailyBreakdownKey(studyTarget), str);
   } catch {
     /* ignore */
   }
@@ -211,18 +215,22 @@ async function loadArenaHistoryDailyCounts(
 }
 
 /** Увеличить счётчик за сегодняшнюю дату (UTC‑день как в daily_stats). */
-export async function bumpStatsDaily(metric: StatsDailyMetric, delta: number): Promise<void> {
+export async function bumpStatsDaily(
+  metric: StatsDailyMetric,
+  delta: number,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> {
   if (!Number.isFinite(delta) || delta <= 0) return;
   const day = toDateStr(new Date());
   const add = Math.floor(delta);
   try {
-    const raw = await AsyncStorage.getItem(STORAGE_KEY);
+    const raw = await AsyncStorage.getItem(statsDailyBreakdownKey(studyTarget));
     const store = parseStore(raw);
     const row = { ...(store[day] ?? {}) };
     row[metric] = Math.max(0, Math.floor(Number(row[metric] ?? 0) + add));
     store[day] = row;
     const pruned = pruneStore(store);
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(pruned));
+    await AsyncStorage.setItem(statsDailyBreakdownKey(studyTarget), JSON.stringify(pruned));
   } catch {
     /* ignore */
   }

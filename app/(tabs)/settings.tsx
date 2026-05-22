@@ -30,14 +30,23 @@ import {
   KNOWLY_LEGAL_TERMS_URL,
 } from '../config';
 import {
+  devStudyTargetsForUiLang,
   emitDevStudyTargetChanged,
   getDevStudyTargetLang,
+  isStudyTargetSourceUiLang,
   setDevStudyTargetLang,
+  studyTargetLabelForSourceUiLang,
   type StudyTargetLang,
 } from '../study_target_lang_dev';
+import {
+  getStoredStudyTarget,
+  setStoredStudyTarget,
+  studyTargetsForSourceLocale,
+} from '../study_target';
 import { triLang, type Lang } from '../../constants/i18n';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
-import { isNameAvailable, reserveName } from '../firestore_leaderboard';
+import { reserveName } from '../firestore_leaderboard';
+import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
@@ -71,11 +80,15 @@ export default function SettingsMain() {
   const chipSurfaceOn = t.correctBg;
   const chipTextOn = isGradientLight ? '#FFFFFF' : t.correct;
   const chipBorderOn = isGradientLight ? chipSurfaceOn : t.correct;
-  /** Плашка Premium на градиенте: не correctBg (просвечивает) — как обычная светлая карточка + тёмный текст. */
+  /** Плашка Premium/VIP на градиенте: не correctBg (просвечивает) — как обычная светлая карточка + тёмный текст. */
   const premiumActiveSurface = isGradientLight ? t.bgCard : t.correctBg;
   const premiumActiveTitle = isGradientLight ? t.textPrimary : t.correct;
   const premiumActiveSub = isGradientLight ? t.textMuted : t.textSecond;
   const premiumActiveIcon = isGradientLight ? t.accent : t.correct;
+  const vipActiveSurface = isGradientLight ? t.bgCard : t.accentBg;
+  const vipActiveTitle = isGradientLight ? t.textPrimary : t.accent;
+  const vipActiveSub = isGradientLight ? t.textMuted : t.textSecond;
+  const vipActiveBorder = isGradientLight ? t.accent : t.accent;
   /** Обводка неактивного чипа на градиенте — чтобы светлая плитка не «терялась» в фоне. */
   const chipBorderOff = isGradientLight ? 'rgba(255,255,255,0.42)' : screenBorder;
   const [notifEnabled, setNotifEnabled] = React.useState(false);
@@ -117,10 +130,15 @@ export default function SettingsMain() {
       setTimeout(() => setNameModal(false), delay);
     });
   }, []);
-  const LANG_NATIVE: Record<Lang, string> = {
+  const LANG_NATIVE: Record<string, string> = {
     ru: 'Русский',
     uk: 'Українська',
     es: 'Español',
+    'pt-BR': 'Português (Brasil)',
+    vi: 'Tiếng Việt',
+    id: 'Bahasa Indonesia',
+    tr: 'Türkçe',
+    pl: 'Polski',
   };
 
   const toggleNotifications = async (val: boolean) => {
@@ -128,7 +146,7 @@ export default function SettingsMain() {
     try {
       if (val) {
         if (!lang) return;
-        await scheduleDailyReminder(notifHour, 0, lang);
+        await scheduleDailyReminder(notifHour, 0, lang, { studyTarget });
       } else {
         await cancelAllNotifications();
       }
@@ -151,7 +169,7 @@ export default function SettingsMain() {
   const [nameReady, setNameReady] = useState(false);
   const [nameModal, setNameModal] = useState(false);
   const [newName, setNewName]     = useState('');
-  const { isPremium } = usePremium();
+  const { isPremium, isVip } = usePremium();
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
   /** Пока false — getLinkedAuthInfo ещё не завершился (избегаем кадра «Не привязан»). */
@@ -169,24 +187,38 @@ export default function SettingsMain() {
 
   const [hapticTap,  setHapticTap]   = useState(true);
   const [studyTarget, setStudyTarget] = useState<StudyTargetLang>('en');
+  const loadStudyTarget = useCallback(async () => {
+    if (!isStudyTargetSourceUiLang(lang)) {
+      setStudyTarget('en');
+      return;
+    }
+    if (ENABLE_DEV_STUDY_TARGET_LANG) {
+      const devTarget = await getDevStudyTargetLang(lang);
+      if (devTarget === 'es') {
+        setStudyTarget('es');
+        return;
+      }
+      if (devTarget === 'fr') {
+        setStudyTarget('fr');
+        return;
+      }
+    }
+    setStudyTarget(await getStoredStudyTarget(lang));
+  }, [lang]);
   useEffect(() => {
-    if (!ENABLE_DEV_STUDY_TARGET_LANG) return;
-    void getDevStudyTargetLang(lang).then(setStudyTarget);
-  }, [lang, activeIdx]);
-  const isUK = lang === 'uk';
-  const isES = lang === 'es';
+    void loadStudyTarget();
+  }, [loadStudyTarget, activeIdx]);
   const currentThemeLabel = (() => {
-    const names: Record<string, { ru: string; uk: string; es: string }> = {
-      dark: { ru: 'Форест', uk: 'Форест', es: 'Bosque' },
-      neon: { ru: 'Неон', uk: 'Неон', es: 'Neón' },
-      gold: { ru: 'Золото', uk: 'Золото', es: 'Oro' },
-      coral: { ru: 'Корал', uk: 'Корал', es: 'Coral' },
-      minimalLight: { ru: 'Скетч', uk: 'Скетч', es: 'Boceto' },
-      minimalDark: { ru: 'Графит', uk: 'Графіт', es: 'Grafito' },
+    const names: Record<string, Record<Lang, string>> = {
+      dark: { ru: 'Форест', uk: 'Форест', es: 'Bosque', 'pt-BR': 'Floresta', vi: 'Rừng', id: 'Hutan', tr: 'Orman', pl: 'Las' },
+      neon: { ru: 'Неон', uk: 'Неон', es: 'Neón', 'pt-BR': 'Neon', vi: 'Neon', id: 'Neon', tr: 'Neon', pl: 'Neon' },
+      gold: { ru: 'Золото', uk: 'Золото', es: 'Oro', 'pt-BR': 'Ouro', vi: 'Vàng', id: 'Emas', tr: 'Altın', pl: 'Złoto' },
+      coral: { ru: 'Корал', uk: 'Корал', es: 'Coral', 'pt-BR': 'Coral', vi: 'San hô', id: 'Koral', tr: 'Mercan', pl: 'Koral' },
+      minimalLight: { ru: 'Скетч', uk: 'Скетч', es: 'Boceto', 'pt-BR': 'Esboço', vi: 'Phác thảo', id: 'Sketsa', tr: 'Eskiz', pl: 'Szkic' },
+      minimalDark: { ru: 'Графит', uk: 'Графіт', es: 'Grafito', 'pt-BR': 'Grafite', vi: 'Than chì', id: 'Grafit', tr: 'Grafit', pl: 'Grafit' },
     };
     const entry = names[themeMode] ?? names.minimalDark;
-    if (isES) return entry.es;
-    return isUK ? entry.uk : entry.ru;
+    return entry[lang];
   })();
 
   useEffect(() => {
@@ -247,82 +279,35 @@ export default function SettingsMain() {
     return BAD_WORDS.some(w => low.includes(w));
   };
 
-  const saveName = async () => {
-    const trimmed = newName.trim();
-    if (!trimmed) { showInfoAlert('', L('Введите имя', "Введіть ім\'я", 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
-    if (trimmed.length < 2) { showInfoAlert('', L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
-    if (trimmed.length > 20) { showInfoAlert('', L('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków')); return; }
-    if (containsBadWord(trimmed)) { showInfoAlert('', L('Недопустимое имя', "Недопустиме ім\'я", 'Nombre no válido', 'Nome inválido', 'Tên không hợp lệ', 'Nama tidak valid', 'Geçersiz ad', 'Niedozwolona nazwa')); return; }
-
-    // Быстрая read-only проверка (UI feedback) + атомарная резервация (транзакция)
-    const available = await isNameAvailable(trimmed);
-    if (!available) {
-      showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
-      return;
-    }
-
-    const oldName = userName;
-    const reservation = await reserveName(trimmed, oldName);
-    if (reservation === 'taken') {
-      showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
-      return;
-    }
-    if (reservation !== 'ok') {
-      showInfoAlert(
-        '',
-        L(
-          'Не удалось проверить уникальность имени. Попробуйте ещё раз.',
-          'Не вдалося перевірити унікальність імені. Спробуйте ще раз.',
-          'No pudimos comprobar si el nombre está libre. Inténtalo de nuevo.',
-          'Não foi possível verificar se o nome está disponível. Tente novamente.',
-          'Không thể kiểm tra tên này còn trống hay không. Hãy thử lại.',
-          'Tidak dapat memeriksa apakah nama tersedia. Coba lagi.',
-          'Adın uygun olup olmadığı kontrol edilemedi. Tekrar dene.',
-          'Nie udało się sprawdzić dostępności nazwy. Spróbuj ponownie.',
-        ),
-      );
-      return;
-    }
-    await AsyncStorage.setItem('user_name', trimmed);
-    setUserName(trimmed);
-
-    // Обновляем имя в leaderboard
+  const updateLocalNameReferences = useCallback(async (fromName: string, toName: string) => {
     try {
       const lb = await AsyncStorage.getItem('leaderboard');
       if (lb) {
         const arr = JSON.parse(lb);
-        const updated = arr.map((e: any) =>
-          e.name === oldName ? { ...e, name: trimmed } : e
-        );
+        const updated = arr.map((e: any) => e.name === fromName ? { ...e, name: toName } : e);
         await AsyncStorage.setItem('leaderboard', JSON.stringify(updated));
       }
     } catch (error) {
       DebugLogger.error('settings.tsx:renameName:leaderboard', error, 'warning');
     }
 
-    // Обновляем имя в week_leaderboard
     try {
       const wlb = await AsyncStorage.getItem('week_leaderboard');
       if (wlb) {
         const arr = JSON.parse(wlb);
-        const updated = arr.map((e: any) =>
-          e.name === oldName ? { ...e, name: trimmed } : e
-        );
+        const updated = arr.map((e: any) => e.name === fromName ? { ...e, name: toName } : e);
         await AsyncStorage.setItem('week_leaderboard', JSON.stringify(updated));
       }
     } catch (error) {
       DebugLogger.error('settings.tsx:renameName:weekLeaderboard', error, 'warning');
     }
 
-    // Обновляем имя в league_state_v3 — находим isMe:true и меняем name
     try {
       const ls = await AsyncStorage.getItem('league_state_v3');
       if (ls) {
         const state = JSON.parse(ls);
         if (state.group) {
-          state.group = state.group.map((m: any) =>
-            m.isMe ? { ...m, name: trimmed } : m
-          );
+          state.group = state.group.map((m: any) => m.isMe ? { ...m, name: toName } : m);
           await AsyncStorage.setItem('league_state_v3', JSON.stringify(state));
         }
       }
@@ -330,24 +315,21 @@ export default function SettingsMain() {
       DebugLogger.error('settings.tsx:renameName:leagueState', error, 'warning');
     }
 
-    // Обновляем имя в league_result_pending (если есть)
     try {
       const lrp = await AsyncStorage.getItem('league_result_pending');
       if (lrp) {
         const result = JSON.parse(lrp);
         if (result.group) {
-          result.group = result.group.map((m: any) =>
-            m.isMe ? { ...m, name: trimmed } : m
-          );
+          result.group = result.group.map((m: any) => m.isMe ? { ...m, name: toName } : m);
           await AsyncStorage.setItem('league_result_pending', JSON.stringify(result));
         }
       }
     } catch (error) {
       DebugLogger.error('settings.tsx:renameName:leagueResultPending', error, 'warning');
     }
+  }, []);
 
-    // Обновляем displayName в arena_profiles, чтобы топ-100 арены и карточки соперников
-    // показывали актуальный ник, а не дефолтное «Игрок» с момента первого матча.
+  const syncArenaDisplayName = useCallback(async (displayName: string) => {
     try {
       const { CLOUD_SYNC_ENABLED, IS_EXPO_GO } = await import('../config');
       if (CLOUD_SYNC_ENABLED && !IS_EXPO_GO) {
@@ -358,14 +340,68 @@ export default function SettingsMain() {
           await firestore()
             .collection('arena_profiles')
             .doc(uid)
-            .set({ displayName: trimmed, updatedAt: Date.now() }, { merge: true });
+            .set({ displayName, updatedAt: Date.now() }, { merge: true });
         }
       }
     } catch (error) {
       DebugLogger.error('settings.tsx:renameName:arenaProfile', error, 'warning');
     }
+  }, []);
 
-    closeNameModal();
+  const saveName = async () => {
+    const trimmed = newName.trim();
+    if (!trimmed) { showInfoAlert('', L('Введите имя', "Введіть ім\'я", 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
+    if (trimmed.length < 2) { showInfoAlert('', L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
+    if (trimmed.length > 20) { showInfoAlert('', L('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków')); return; }
+    if (containsBadWord(trimmed)) { showInfoAlert('', L('Недопустимое имя', "Недопустиме ім\'я", 'Nombre no válido', 'Nome inválido', 'Tên không hợp lệ', 'Nama tidak valid', 'Geçersiz ad', 'Niedozwolona nazwa')); return; }
+
+    const oldName = userName.trim();
+    if (trimmed === oldName) {
+      closeNameModal();
+      return;
+    }
+
+    try {
+      await AsyncStorage.setItem('user_name', trimmed);
+      setUserName(trimmed);
+      await updateLocalNameReferences(oldName, trimmed);
+      closeNameModal();
+    } catch (error) {
+      DebugLogger.error('settings.tsx:renameName:localApply', error, 'warning');
+      showInfoAlert('', L(
+        'Не удалось сохранить имя локально. Попробуйте ещё раз.',
+        'Не вдалося зберегти імʼя локально. Спробуйте ще раз.',
+        'No pudimos guardar el nombre localmente. Inténtalo de nuevo.',
+        'Não foi possível salvar o nome localmente. Tente novamente.',
+        'Không thể lưu tên cục bộ. Hãy thử lại.',
+        'Nama belum bisa disimpan secara lokal. Coba lagi.',
+        'Ad yerel olarak kaydedilemedi. Tekrar dene.',
+        'Nie udało się zapisać nazwy lokalnie. Spróbuj ponownie.',
+      ));
+      return;
+    }
+
+    void (async () => {
+      try {
+        const reservation = await reserveName(trimmed, oldName);
+        if (reservation === 'taken') {
+          if (oldName) await AsyncStorage.setItem('user_name', oldName);
+          else await AsyncStorage.removeItem('user_name');
+          setUserName(oldName);
+          await updateLocalNameReferences(trimmed, oldName);
+          showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
+          return;
+        }
+        if (reservation !== 'ok') {
+          DebugLogger.error('settings.tsx:renameName:reserveName', new Error('reserveName failed'), 'warning');
+          return;
+        }
+        await syncArenaDisplayName(trimmed);
+        void syncMyLeagueMemberProfileNow();
+      } catch (error) {
+        DebugLogger.error('settings.tsx:renameName:reserveName', error, 'warning');
+      }
+    })();
   };
 
   const Row = ({ icon, label, sub, onPress, right, danger, testID }: {
@@ -424,18 +460,15 @@ export default function SettingsMain() {
           </Text>
         </View>
 
-        {ENABLE_DEV_STUDY_TARGET_LANG && (
+        {isStudyTargetSourceUiLang(lang) && (
           <View style={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 6 }}>
             <Text style={{ color: screenMuted, fontSize: f.label, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 }}>
               {L('Изучаемый язык', 'Мова, яку вивчаєте', 'Idioma de estudio', 'Idioma de estudo', 'Ngôn ngữ học', 'Bahasa yang dipelajari', 'Öğrenilen dil', 'Język nauki')}
             </Text>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-              {(lang === 'es' ? (['en'] as const) : (['en', 'es'] as const)).map(code => {
+              {(ENABLE_DEV_STUDY_TARGET_LANG ? devStudyTargetsForUiLang(lang) : studyTargetsForSourceLocale(lang)).map(code => {
                 const active = studyTarget === code;
-                const label =
-                  code === 'en'
-                    ? L('Английский', 'Англійська', 'Inglés', 'Inglês', 'Tiếng Anh', 'Bahasa Inggris', 'İngilizce', 'Angielski')
-                    : L('Испанский', 'Іспанська', 'Español', 'Espanhol', 'Tiếng Tây Ban Nha', 'Bahasa Spanyol', 'İspanyolca', 'Hiszpański');
+                const label = studyTargetLabelForSourceUiLang(code, lang);
                 return (
                   <TouchableOpacity
                     key={code}
@@ -443,9 +476,16 @@ export default function SettingsMain() {
                     onPress={() => {
                       doHaptic();
                       void (async () => {
-                        await setDevStudyTargetLang(code, lang);
+                        if (ENABLE_DEV_STUDY_TARGET_LANG && (code === 'es' || code === 'fr')) {
+                          await setDevStudyTargetLang(code, lang);
+                        } else {
+                          await setStoredStudyTarget(code === 'en' ? code : 'en', lang);
+                          if (ENABLE_DEV_STUDY_TARGET_LANG) {
+                            await setDevStudyTargetLang('en', lang);
+                          }
+                        }
                         emitDevStudyTargetChanged();
-                        setStudyTarget(await getDevStudyTargetLang(lang));
+                        await loadStudyTarget();
                       })();
                     }}
                     style={{
@@ -465,34 +505,40 @@ export default function SettingsMain() {
               })}
             </View>
             <Text style={{ color: screenGhost, fontSize: f.caption - 1, marginTop: 8, lineHeight: 18 }}>
-              {lang === 'es'
-                ? L(
-                    'При испанском интерфейсе можно учить только английский.',
-                    'При іспанському інтерфейсі можна вчити лише англійську.',
-                    'Con la interfaz en español solo puedes estudiar inglés.',
-                    'Com a interface em espanhol, você só pode estudar inglês.',
-                    'Với giao diện tiếng Tây Ban Nha, bạn chỉ có thể học tiếng Anh.',
-                    'Dengan antarmuka bahasa Spanyol, kamu hanya bisa belajar bahasa Inggris.',
-                    'İspanyolca arayüzde yalnızca İngilizce çalışabilirsin.',
-                    'Przy hiszpańskim interfejsie możesz uczyć się tylko angielskiego.',
-                  )
-                : L(
-                    'Только в dev-сборке. Испанский — с интерфейсом на русском или украинском.',
-                    'Лише в dev-збірці. Іспанська — з інтерфейсом російською чи українською.',
-                    'Solo en build de desarrollo. El español como meta requiere interfaz en ruso o ucraniano.',
-                    'Somente na build de desenvolvimento. Espanhol como meta exige interface em russo ou ucraniano.',
-                    'Chỉ trong bản dev. Nếu học tiếng Tây Ban Nha, giao diện cần là tiếng Nga hoặc tiếng Ukraina.',
-                    'Hanya di build dev. Bahasa Spanyol sebagai target memerlukan antarmuka Rusia atau Ukraina.',
-                    'Yalnızca dev sürümünde. Hedef İspanyolca için arayüz Rusça veya Ukraynaca olmalı.',
-                    'Tylko w wersji deweloperskiej. Hiszpański jako cel wymaga interfejsu rosyjskiego albo ukraińskiego.',
-                  )}
+              {L(
+                ENABLE_DEV_STUDY_TARGET_LANG
+                  ? 'French доступен только в DEV-режиме. В публичной версии открыт английский.'
+                  : 'В публичной версии сейчас открыт английский.',
+                ENABLE_DEV_STUDY_TARGET_LANG
+                  ? 'French доступна лише в DEV-режимі. У публічній версії відкрита англійська.'
+                  : 'У публічній версії зараз відкрита англійська.',
+                ENABLE_DEV_STUDY_TARGET_LANG
+                  ? 'French is DEV-only. The public version keeps English active.'
+                  : 'The public version currently keeps English active.',
+                ENABLE_DEV_STUDY_TARGET_LANG
+                  ? 'French is DEV-only. The public version keeps English active.'
+                  : 'The public version currently keeps English active.',
+                ENABLE_DEV_STUDY_TARGET_LANG
+                  ? 'French is DEV-only. The public version keeps English active.'
+                  : 'The public version currently keeps English active.',
+                ENABLE_DEV_STUDY_TARGET_LANG
+                  ? 'French is DEV-only. The public version keeps English active.'
+                  : 'The public version currently keeps English active.',
+                ENABLE_DEV_STUDY_TARGET_LANG
+                  ? 'French is DEV-only. The public version keeps English active.'
+                  : 'The public version currently keeps English active.',
+                ENABLE_DEV_STUDY_TARGET_LANG
+                  ? 'French is DEV-only. The public version keeps English active.'
+                  : 'The public version currently keeps English active.',
+              )}
             </Text>
           </View>
         )}
 
         <SectionTitle title={L('Профиль', 'Профіль', 'Perfil', 'Perfil', 'Hồ sơ', 'Profil', 'Profil', 'Profil')} />
 
-<Row
+        <Row
+          testID="settings-profile-row"
           icon="person-outline"
           label={L('Имя / никнейм', 'Ім\'я / нікнейм', 'Nombre o apodo', 'Nome / apelido', 'Tên / biệt danh', 'Nama / panggilan', 'Ad / takma ad', 'Imię / pseudonim')}
           sub={
@@ -516,7 +562,6 @@ export default function SettingsMain() {
             setAccountModalVisible(true);
           }}
         />
-
         {/* Баннер: нет ника */}
         {nameReady && !userName && (
           <TouchableOpacity
@@ -548,6 +593,7 @@ export default function SettingsMain() {
         )}
 
         <Row
+          testID="settings-language-row"
           icon="language-outline"
           label={s.settings.lang}
           sub={LANG_NATIVE[lang]}
@@ -659,7 +705,34 @@ export default function SettingsMain() {
           <Row icon="people-outline" label={L('Бета-тестеры', 'Бета-тестери', 'Probadores beta', 'Testadores beta', 'Người thử nghiệm beta', 'Penguji beta', 'Beta test kullanıcıları', 'Beta testerzy')} onPress={() => router.push('/beta_testers' as any)} />
         )}
         {ENABLE_DEV_TOOLS && (
-          <Row icon="construct-outline" label={L('Админ панель', 'Адмін панель', 'Panel admin', 'Painel admin', 'Bảng quản trị', 'Panel admin', 'Yönetici paneli', 'Panel admina')} onPress={() => router.push('/settings_testers' as any)} />
+          <Row
+            icon="construct-outline"
+            label={L('Админ панель', 'Адмін панель', 'Panel admin', 'Painel admin', 'Bảng quản trị', 'Panel admin', 'Yönetici paneli', 'Panel admina')}
+            onPress={() => router.push('/settings_testers' as any)}
+            testID="settings-open-testers"
+          />
+        )}
+        {isVip && !isPremium && (
+          <View testID="settings-vip-card" style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginHorizontal: 20,
+            marginTop: 20,
+            marginBottom: -4,
+            backgroundColor: vipActiveSurface,
+            borderRadius: 14,
+            padding: 14,
+            borderWidth: 1,
+            borderColor: vipActiveBorder,
+          }}>
+            <Ionicons name="shield-checkmark-outline" size={24} color={vipActiveTitle} style={{ marginRight: 12 }} />
+            <View style={{ flex: 1 }}>
+              <Text style={{ color: vipActiveTitle, fontSize: f.body, fontWeight: '900' }}>VIP</Text>
+              <Text testID="settings-vip-subtitle" style={{ color: vipActiveSub, fontSize: f.caption, marginTop: 2 }}>
+                {L('VIP аккаунт', 'VIP акаунт', 'Cuenta VIP', 'Conta VIP', 'Tài khoản VIP', 'Akun VIP', 'VIP hesap', 'Konto VIP')}
+              </Text>
+            </View>
+          </View>
         )}
         {/* Premium — одна плашка: контекст уже учитывает DEV / FORCE_PREMIUM / RevenueCat */}
         {isPremium ? (
@@ -711,6 +784,9 @@ export default function SettingsMain() {
           </TouchableOpacity>
         )}
         <TouchableOpacity
+          testID="settings-delete-account"
+          accessibilityRole="button"
+          hitSlop={{ top: 12, right: 20, bottom: 12, left: 20 }}
           activeOpacity={0.7}
           onPress={() => {
             doHaptic();
@@ -833,6 +909,7 @@ export default function SettingsMain() {
             </View>
 
             <TouchableOpacity
+              testID="account-modal-delete-account"
               activeOpacity={0.8}
               onPress={() => {
                 navigateAfterModalClose(

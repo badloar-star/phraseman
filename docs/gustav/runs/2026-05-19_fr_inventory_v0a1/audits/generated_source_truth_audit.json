@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "gustav-generated-source-truth-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "status": "PASS",
+  "generatedAt": "2026-05-19T19:29:58.712Z",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_generated_source_truth_audit.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "summary": {
+    "artifacts": 7,
+    "phraseRuntimeArtifacts": 2,
+    "supportRuntimeArtifacts": 5,
+    "usedAsPhraseSourceInGraph": 0,
+    "generatedPhraseEntries": 0,
+    "canonicalSourceAvailable": 2,
+    "runtimeEvidenceOnly": 5,
+    "blockedMissingCanonicalSource": 0,
+    "blockers": 0,
+    "highRisks": 0,
+    "canApproveGeneratedRuntimeAsFrenchSourceTruth": true
+  },
+  "artifacts": [
+    {
+      "file": "app/lesson_data_1_8_phrases_es.gen.ts",
+      "role": "phrase_runtime",
+      "generator": "tools/prompt006_es_phrase_words.ts",
+      "generatorExists": true,
+      "sourceCandidates": [
+        "app/lesson_data_1_8_phrases_source.ts"
+      ],
+      "sourceCandidatesExist": [
+        "app/lesson_data_1_8_phrases_source.ts"
+      ],
+      "importsGeneratedRuntime": false,
+      "usedAsPhraseSourceInGraph": false,
+      "generatedPhraseEntries": 0,
+      "decision": "canonical_source_available",
+      "severity": "medium",
+      "blockers": [],
+      "notes": [
+        "A candidate canonical source exists; generated runtime file remains evidence only."
+      ]
+    },
+    {
+      "file": "app/lesson_data_9_16_phrases_es.gen.ts",
+      "role": "phrase_runtime",
+      "generator": "tools/prompt007_es_phrase_words.ts",
+      "generatorExists": true,
+      "sourceCandidates": [
+        "app/lesson_data_9_16.ts"
+      ],
+      "sourceCandidatesExist": [
+        "app/lesson_data_9_16.ts"
+      ],
+      "importsGeneratedRuntime": true,
+      "usedAsPhraseSourceInGraph": false,
+      "generatedPhraseEntries": 0,
+      "decision": "canonical_source_available",
+      "severity": "medium",
+      "blockers": [],
+      "notes": [
+        "A candidate canonical source exists; generated runtime file remains evidence only."
+      ]
+    },
+    {
+      "file": "app/lesson_intro_screens_es_l2.ts",
+      "role": "support_runtime",
+      "generator": "",
+      "generatorExists": false,
+      "sourceCandidates": [
+        "app/lesson_intro_screens_9_32.ts"
+      ],
+      "sourceCandidatesExist": [
+        "app/lesson_intro_screens_9_32.ts"
+      ],
+      "importsGeneratedRuntime": false,
+      "usedAsPhraseSourceInGraph": false,
+      "generatedPhraseEntries": 0,
+      "decision": "runtime_evidence_only",
+      "severity": "medium",
+      "blockers": [],
+      "notes": [
+        "Support runtime file must not define French structure unless target architecture maps it explicitly."
+      ]
+    },
+    {
+      "file": "app/quiz_data_es_l2.ts",
+      "role": "support_runtime",
+      "generator": "",
+      "generatorExists": false,
+      "sourceCandidates": [
+        "app/quiz_data.ts"
+      ],
+      "sourceCandidatesExist": [
+        "app/quiz_data.ts"
+      ],
+      "importsGeneratedRuntime": true,
+      "usedAsPhraseSourceInGraph": false,
+      "generatedPhraseEntries": 0,
+      "decision": "runtime_evidence_only",
+      "severity": "medium",
+      "blockers": [],
+      "notes": [
+        "Support runtime file must not define French structure unless target architecture maps it explicitly."
+      ]
+    },
+    {
+      "file": "app/lesson_prepositions_es_segment01.ts",
+      "role": "support_runtime",
+      "generator": "",
+      "generatorExists": false,
+      "sourceCandidates": [
+        "app/lesson_prepositions.ts"
+      ],
+      "sourceCandidatesExist": [
+        "app/lesson_prepositions.ts"
+      ],
+      "importsGeneratedRuntime": false,
+      "usedAsPhraseSourceInGraph": false,
+      "generatedPhraseEntries": 0,
+      "decision": "runtime_evidence_only",
+      "severity": "medium",
+      "blockers": [],
+      "notes": [
+        "Support runtime file must not define French structure unless target architecture maps it explicitly."
+      ]
+    },
+    {
+      "file": "app/lesson_prepositions_es_segment02.ts",
+      "role": "support_runtime",
+      "generator": "",
+      "generatorExists": false,
+      "sourceCandidates": [
+        "app/lesson_prepositions.ts"
+      ],
+      "sourceCandidatesExist": [
+        "app/lesson_prepositions.ts"
+      ],
+      "importsGeneratedRuntime": false,
+      "usedAsPhraseSourceInGraph": false,
+      "generatedPhraseEntries": 0,
+      "decision": "runtime_evidence_only",
+      "severity": "medium",
+      "blockers": [],
+      "notes": [
+        "Support runtime file must not define French structure unless target architecture maps it explicitly."
+      ]
+    },
+    {
+      "file": "app/lesson_prepositions_es_segment03.ts",
+      "role": "support_runtime",
+      "generator": "",
+      "generatorExists": false,
+      "sourceCandidates": [
+        "app/lesson_prepositions.ts"
+      ],
+      "sourceCandidatesExist": [
+        "app/lesson_prepositions.ts"
+      ],
+      "importsGeneratedRuntime": false,
+      "usedAsPhraseSourceInGraph": false,
+      "generatedPhraseEntries": 0,
+      "decision": "runtime_evidence_only",
+      "severity": "medium",
+      "blockers": [],
+      "notes": [
+        "Support runtime file must not define French structure unless target architecture maps it explicitly."
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "GST-002",
+      "severity": "medium",
+      "title": "Generated support files must remain evidence only",
+      "detail": "5 generated support file(s) are allowed as runtime evidence but cannot define French curriculum structure.",
+      "files": [
+        "app/lesson_intro_screens_es_l2.ts",
+        "app/quiz_data_es_l2.ts",
+        "app/lesson_prepositions_es_segment01.ts",
+        "app/lesson_prepositions_es_segment02.ts",
+        "app/lesson_prepositions_es_segment03.ts"
+      ]
+    }
+  ],
+  "policy": {
+    "defaultDecision": "Generated runtime artifacts are evidence only, never French source truth by default.",
+    "allowedEvidenceUse": [
+      "Read generated runtime files to understand current app behavior.",
+      "Compare generated runtime files against canonical source candidates.",
+      "Use generated runtime files to locate missing source-truth decisions."
+    ],
+    "forbiddenUse": [
+      "Do not copy Spanish L2 tokenization, examples or lesson structure into French.",
+      "Do not treat generated runtime phrase files as canonical unless an explicit approval artifact exists.",
+      "Do not let sourceLocale fields become studyTarget output."
+    ],
+    "requiredBeforeFrenchGeneration": [
+      "Provide a canonical non-generated source for lessons 9-16 or an explicit read-only evidence approval.",
+      "Exclude ES support files from French target architecture unless mapped by a target-language expert pass.",
+      "Rerun source graph and quality audits after source-truth decisions are recorded."
+    ]
+  },
+  "notes": [
+    "This audit narrows the generated-file blocker to the files that actually feed source graph phrase nodes.",
+    "Lesson 1-8 generated phrase runtime has a canonical extracted source and is not used as phrase source by the current graph.",
+    "No generated phrase runtime file is currently used as source graph phrase source."
+  ]
+}

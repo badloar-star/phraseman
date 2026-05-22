@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { isUserFacingCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
+import { posMasteryKey, type RuntimeStudyTarget } from './target_storage_keys';
 
 export type PosDrillType =
   | 'form_choice'
@@ -86,7 +87,6 @@ export interface TrainerCategoryLike {
   arenaQuestion?: { correct?: string; rule?: string };
 }
 
-const POS_MASTERY_KEY = 'pos_mastery_v1';
 const POS_LEVEL_XP = 120;
 
 const POS_DRILL_OPTIONS: Partial<Record<Exclude<WordCategory, 'other'>, string[]>> = {
@@ -623,29 +623,33 @@ function masteryKey(category: WordCategory): WordCategory {
   return category;
 }
 
-async function loadMastery(): Promise<Partial<Record<WordCategory, PosMasteryEntry>>> {
+async function loadMastery(studyTarget?: RuntimeStudyTarget): Promise<Partial<Record<WordCategory, PosMasteryEntry>>> {
   try {
-    const raw = await AsyncStorage.getItem(POS_MASTERY_KEY);
+    const raw = await AsyncStorage.getItem(posMasteryKey(studyTarget));
     return raw ? JSON.parse(raw) : {};
   } catch {
     return {};
   }
 }
 
-async function saveMastery(items: Partial<Record<WordCategory, PosMasteryEntry>>): Promise<void> {
-  await AsyncStorage.setItem(POS_MASTERY_KEY, JSON.stringify(items));
+async function saveMastery(
+  items: Partial<Record<WordCategory, PosMasteryEntry>>,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> {
+  await AsyncStorage.setItem(posMasteryKey(studyTarget), JSON.stringify(items));
 }
 
 export function getPosWorkoutProfile(category?: WordCategory | null): PosWorkoutProfile | null {
   if (!category || !isUserFacingCategory(category)) return null;
-  return PROFILES[category as Exclude<WordCategory, 'other'>] ?? null;
+  const profile = PROFILES[category as Exclude<WordCategory, 'other'>];
+  return profile || null;
 }
 
 export function getPosDrillOptions(category: WordCategory | undefined, correct: string, candidates: string[] = []): string[] {
   const cleanCorrect = correct.trim();
   if (!cleanCorrect) return [];
   const defaults = category && category !== 'other'
-    ? POS_DRILL_OPTIONS[category as Exclude<WordCategory, 'other'>] ?? []
+    ? POS_DRILL_OPTIONS[category as Exclude<WordCategory, 'other'>] || []
     : [];
   const seen = new Set<string>();
   return [cleanCorrect, ...candidates, ...defaults]
@@ -683,7 +687,7 @@ export function buildPosDrillPlan(input: PosDrillPlanInput): PosDrillPlan | null
     title: profile.title[input.lang],
     instruction: METHOD_INSTRUCTIONS[method][input.lang],
     answerLabel: METHOD_ANSWER_LABELS[method][input.lang],
-    focusChips: CATEGORY_FOCUS_CHIPS[input.category as Exclude<WordCategory, 'other'>]?.[input.lang] ?? [],
+    focusChips: CATEGORY_FOCUS_CHIPS[input.category as Exclude<WordCategory, 'other'>]?.[input.lang] || [],
     options,
     correct: token,
   };
@@ -736,9 +740,13 @@ export function getStrongestWeakPos(attempts: readonly PosAttemptSignal[]): Word
   return [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? null;
 }
 
-export async function recordPosWorkoutResult(category: WordCategory | undefined, correct: boolean): Promise<PosMasteryReward | null> {
+export async function recordPosWorkoutResult(
+  category: WordCategory | undefined,
+  correct: boolean,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<PosMasteryReward | null> {
   if (!category || !isUserFacingCategory(category)) return null;
-  const items = await loadMastery();
+  const items = await loadMastery(studyTarget);
   const key: WordCategory = masteryKey(category);
   const now = Date.now();
   const previous = items[key] ?? {
@@ -765,7 +773,7 @@ export async function recordPosWorkoutResult(category: WordCategory | undefined,
     lastPracticed: now,
   };
   items[key] = next;
-  await saveMastery(items);
+  await saveMastery(items, studyTarget);
   return {
     category,
     xpDelta,
@@ -775,19 +783,20 @@ export async function recordPosWorkoutResult(category: WordCategory | undefined,
   };
 }
 
-export async function getPosMasterySnapshot(): Promise<PosMasteryEntry[]> {
-  const items = await loadMastery();
-  return USER_FACING_POS_CATEGORIES
+export async function getPosMasterySnapshot(studyTarget?: RuntimeStudyTarget): Promise<PosMasteryEntry[]> {
+  const items = await loadMastery(studyTarget);
+  const snapshot = USER_FACING_POS_CATEGORIES
     .map(category => {
       const key: WordCategory = masteryKey(category);
       return items[key];
     })
     .filter((entry): entry is PosMasteryEntry => Boolean(entry))
     .sort((a, b) => b.level - a.level || b.xp - a.xp || b.lastPracticed - a.lastPracticed);
+  return snapshot;
 }
 
-export async function clearPosMastery(): Promise<void> {
-  await AsyncStorage.removeItem(POS_MASTERY_KEY);
+export async function clearPosMastery(studyTarget?: RuntimeStudyTarget): Promise<void> {
+  await AsyncStorage.removeItem(posMasteryKey(studyTarget));
 }
 
 /* expo-router route shim */

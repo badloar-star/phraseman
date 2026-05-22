@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="iPhone 17 Pro Max - iOS 26.4 - 5B31CAAD-5382-416C-ACCB-73E4F923E128" tests="3" failures="0" time="378.0">
+    <testcase id="quizzes_level_nav" name="quizzes_level_nav" classname="quizzes_level_nav" time="185.0" status="SUCCESS"/>
+    <testcase id="flashcards_hub_nav" name="flashcards_hub_nav" classname="flashcards_hub_nav" time="92.0" status="SUCCESS"/>
+    <testcase id="arena_lobby_from_home" name="arena_lobby_from_home" classname="arena_lobby_from_home" time="101.0" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

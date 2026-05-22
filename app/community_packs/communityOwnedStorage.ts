@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const KEY = 'community_owned_pack_ids_v1';
+import {
+  flashcardsCommunityOwnedPacksKey,
+  type RuntimeStudyTarget,
+} from '../target_storage_keys';
 
 function parseIds(raw: string | null): string[] {
   if (!raw) return [];
@@ -12,18 +14,18 @@ function parseIds(raw: string | null): string[] {
   }
 }
 
-export async function loadCommunityOwnedPackIds(): Promise<string[]> {
+export async function loadCommunityOwnedPackIds(studyTarget?: RuntimeStudyTarget): Promise<string[]> {
   try {
-    return parseIds(await AsyncStorage.getItem(KEY));
+    return parseIds(await AsyncStorage.getItem(flashcardsCommunityOwnedPacksKey(studyTarget)));
   } catch {
     return [];
   }
 }
 
-export async function addCommunityOwnedPackId(id: string): Promise<void> {
-  const cur = await loadCommunityOwnedPackIds();
+export async function addCommunityOwnedPackId(id: string, studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const cur = await loadCommunityOwnedPackIds(studyTarget);
   if (cur.includes(id)) return;
-  await AsyncStorage.setItem(KEY, JSON.stringify([...cur, id]));
+  await AsyncStorage.setItem(flashcardsCommunityOwnedPacksKey(studyTarget), JSON.stringify([...cur, id]));
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

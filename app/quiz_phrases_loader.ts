@@ -2,7 +2,7 @@
  * Quiz phrase pools are bundled with the app (no dynamic import) so the quiz
  * screen renders immediately with no "loading questions" state.
  */
-import type { QuizPhrase } from './quiz_data';
+import type { QuizPhrase, QuizStudyTargetLang } from './quiz_data';
 import * as quizData from './quiz_data';
 import type { Lang } from '../constants/i18n';
 
@@ -20,8 +20,9 @@ export function getQuizPhrasesLoaded(
   difficulty: 'easy' | 'medium' | 'hard',
   count: number = 10,
   lang: Lang = 'ru',
+  studyTarget: QuizStudyTargetLang = 'en',
 ): QuizPhrase[] {
-  return quizData.getQuizPhrases(difficulty, count, lang);
+  return quizData.getQuizPhrases(difficulty, count, lang, studyTarget);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

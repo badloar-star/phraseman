@@ -11,7 +11,7 @@ import {
   View,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
@@ -167,6 +167,11 @@ const TEXT = {
   },
 } as const;
 
+const pickReleaseNotesCopy = <T extends { ru: unknown }>(
+  lang: string,
+  copy: T,
+) => (copy[lang as keyof T] ?? copy.ru) as T[keyof T];
+
 type Props = {
   visible: boolean;
   onClose: () => void;
@@ -200,10 +205,17 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
     tr: TEXT.subtitle.tr,
     pl: TEXT.subtitle.pl,
   }), [lang]);
-  const chips = useMemo(
-    () => (lang === 'es' ? TEXT.chips.es : lang === 'uk' ? TEXT.chips.uk : TEXT.chips.ru),
-    [lang],
-  );
+  const chips = useMemo(() => pickReleaseNotesCopy(lang, TEXT.chips), [lang]);
+  const versionLabel = useMemo(() => pickReleaseNotesCopy(lang, {
+    ru: 'Новая версия',
+    uk: 'Нова версія',
+    es: 'Nueva versión',
+    'pt-BR': 'Nova versão',
+    vi: 'Phiên bản mới',
+    id: 'Versi baru',
+    tr: 'Yeni sürüm',
+    pl: 'Nowa wersja',
+  }), [lang]);
   const body = useMemo(() => triLang(lang, {
     ru: TEXT.body.ru,
     uk: TEXT.body.uk,
@@ -377,7 +389,7 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
             <View style={styles.releasePill}>
               <Ionicons name="rocket-outline" size={14} color="#F9D77A" />
               <Text style={[styles.releasePillText, { fontSize: captionSize }]}>
-                {lang === 'es' ? 'Nueva versión' : lang === 'uk' ? 'Нова версія' : 'Новая версия'}
+                {versionLabel}
               </Text>
             </View>
             <Text style={[styles.title, { fontSize: titleSize }]}>{title}</Text>

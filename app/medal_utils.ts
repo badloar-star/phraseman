@@ -1,6 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { COURSE_LEVEL_RANGES } from './course_levels';
+import {
+  lessonBestScoreKey,
+  lessonPassCountKey,
+  levelExamKey,
+  storageStudyTarget,
+  type RuntimeStudyTarget,
+} from './target_storage_keys';
 
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
@@ -101,11 +108,14 @@ const parseStoredPassCount = (raw: unknown): number => {
 export const normalizeLessonPassCount = (storedPassCount: number, bestScore: number): number =>
   Math.max(storedPassCount, bestScore >= 4.5 ? 1 : 0);
 
-export const loadMedalInfo = async (lessonId: number): Promise<MedalInfo> => {
+export const loadMedalInfo = async (
+  lessonId: number,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<MedalInfo> => {
   try {
     const [scoreRaw, passRaw] = await AsyncStorage.multiGet([
-      `lesson${lessonId}_best_score`,
-      `lesson${lessonId}_pass_count`,
+      lessonBestScoreKey(lessonId, studyTarget),
+      lessonPassCountKey(lessonId, studyTarget),
     ]);
     const bestScore = parseStoredScore(scoreRaw[1]);
     const storedPassCount = parseStoredPassCount(passRaw[1]);
@@ -121,6 +131,7 @@ export const saveMedalProgress = async (
   lessonId: number,
   currentScore: number,
   progressArr: string[],
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<{
   newTier: MedalTier;
   prevTier: MedalTier;
@@ -140,8 +151,8 @@ export const saveMedalProgress = async (
       ? currentScore
       : parseFloat(((Math.min(progressCorrect, progressTotal) / progressTotal) * 5).toFixed(1));
     const [scoreRaw, passRaw] = await AsyncStorage.multiGet([
-      `lesson${lessonId}_best_score`,
-      `lesson${lessonId}_pass_count`,
+      lessonBestScoreKey(lessonId, studyTarget),
+      lessonPassCountKey(lessonId, studyTarget),
     ]);
     const prevBest  = parseStoredScore(scoreRaw[1]);
     const storedPrevPass = parseStoredPassCount(passRaw[1]);
@@ -156,10 +167,10 @@ export const saveMedalProgress = async (
     // Save best score for lesson medal/unlock state. Count a pass for strong silver+ runs.
     const passCountIncreased = scoreForPass >= 4.5;
     const writes: [string, string][] = [
-      [`lesson${lessonId}_best_score`, String(newBest)],
+      [lessonBestScoreKey(lessonId, studyTarget), String(newBest)],
     ];
     if (passCountIncreased) {
-      writes.push([`lesson${lessonId}_pass_count`, String(newPass)]);
+      writes.push([lessonPassCountKey(lessonId, studyTarget), String(newPass)]);
     }
     await AsyncStorage.multiSet(writes);
     invalidateMedalsCache();
@@ -186,19 +197,22 @@ export const saveMedalProgress = async (
 };
 
 // In-memory cache for loadAllMedals
-let _medalsCache: MedalTier[] | null = null;
+let _medalsCacheByTarget: Partial<Record<string, MedalTier[]>> = {};
 
 /** Invalidate medal cache (call after saveMedalProgress / saveExamProgress) */
-export const invalidateMedalsCache = () => { _medalsCache = null; };
+export const invalidateMedalsCache = () => { _medalsCacheByTarget = {}; };
 
 // Загружает медали для всех 32 уроков разом (cached in memory)
-export const loadAllMedals = async (): Promise<MedalTier[]> => {
-  if (_medalsCache) return _medalsCache;
+export const loadAllMedals = async (studyTarget?: RuntimeStudyTarget): Promise<MedalTier[]> => {
+  const cacheKey = storageStudyTarget(studyTarget);
+  const cached = _medalsCacheByTarget[cacheKey];
+  if (cached) return cached;
   try {
-    const keys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_best_score`);
+    const keys = Array.from({ length: 32 }, (_, i) => lessonBestScoreKey(i + 1, studyTarget));
     const pairs = await AsyncStorage.multiGet(keys);
-    _medalsCache = pairs.map(([, v]) => getMedalTier(parseFloat(v ?? '0') || 0));
-    return _medalsCache;
+    const medals = pairs.map(([, v]) => getMedalTier(parseFloat(v ?? '0') || 0));
+    _medalsCacheByTarget[cacheKey] = medals;
+    return medals;
   } catch {
     return new Array(32).fill('none');
   }
@@ -218,6 +232,7 @@ export type GemType = 'ruby' | 'emerald' | 'diamond';
 // Возвращает гем-достижения, которые нужно разблокировать после saveMedalProgress
 export const checkGemAchievements = async (
   lessonId: number,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<{ level: string; gem: GemType }[]> => {
   try {
     const results: { level: string; gem: GemType }[] = [];
@@ -228,15 +243,15 @@ export const checkGemAchievements = async (
       // Читаем pass_count всех уроков этого уровня
       const lessonIds = Array.from({ length: to - from + 1 }, (_, i) => from + i);
       const keys = lessonIds.flatMap(id => [
-        `lesson${id}_pass_count`,
-        `lesson${id}_best_score`,
+        lessonPassCountKey(id, studyTarget),
+        lessonBestScoreKey(id, studyTarget),
       ]);
       const pairs = await AsyncStorage.multiGet(keys);
       const map = Object.fromEntries(pairs);
       const passCounts = lessonIds.map(id =>
         normalizeLessonPassCount(
-          parseStoredPassCount(map[`lesson${id}_pass_count`]),
-          parseStoredScore(map[`lesson${id}_best_score`]),
+          parseStoredPassCount(map[lessonPassCountKey(id, studyTarget)]),
+          parseStoredScore(map[lessonBestScoreKey(id, studyTarget)]),
         ),
       );
       const minPasses = Math.min(...passCounts);
@@ -263,11 +278,12 @@ export const getExamMedalTier = (pct: number): MedalTier => {
 export const saveExamProgress = async (
   lvl: string,
   pct: number,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<{ newTier: MedalTier; prevTier: MedalTier; newPassCount: number }> => {
   try {
     const [bestRaw, passRaw] = await AsyncStorage.multiGet([
-      `level_exam_${lvl}_best_pct`,
-      `level_exam_${lvl}_pass_count`,
+      levelExamKey(lvl, 'best_pct', studyTarget),
+      levelExamKey(lvl, 'pass_count', studyTarget),
     ]);
     const prevBest  = parseInt(bestRaw[1] ?? '0') || 0;
     const prevPass  = parseInt(passRaw[1] ?? '0') || 0;
@@ -275,8 +291,8 @@ export const saveExamProgress = async (
     // Рубин/изумруд/бриллиант на карточке зачёта — только за идеальные (100%) прохождения
     const newPass   = prevPass + (pct === 100 ? 1 : 0);
     await AsyncStorage.multiSet([
-      [`level_exam_${lvl}_best_pct`,    String(newBest)],
-      [`level_exam_${lvl}_pass_count`,  String(newPass)],
+      [levelExamKey(lvl, 'best_pct', studyTarget), String(newBest)],
+      [levelExamKey(lvl, 'pass_count', studyTarget), String(newPass)],
     ]);
     return {
       newTier:      getExamMedalTier(newBest),
@@ -289,11 +305,14 @@ export const saveExamProgress = async (
 };
 
 // Загружает медаль и pass_count для одного экзамена
-export const loadExamMedalInfo = async (lvl: string): Promise<{ tier: MedalTier; passCount: number }> => {
+export const loadExamMedalInfo = async (
+  lvl: string,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<{ tier: MedalTier; passCount: number }> => {
   try {
     const [bestRaw, passRaw] = await AsyncStorage.multiGet([
-      `level_exam_${lvl}_best_pct`,
-      `level_exam_${lvl}_pass_count`,
+      levelExamKey(lvl, 'best_pct', studyTarget),
+      levelExamKey(lvl, 'pass_count', studyTarget),
     ]);
     const best = parseInt(bestRaw[1] ?? '0') || 0;
     const pass = parseInt(passRaw[1] ?? '0') || 0;

@@ -255,13 +255,23 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       }
     });
 
-    // Перезагружаем энергию по событию от xp_manager при level-up
+    // Перезагружаем энергию по событию от xp_manager при level-up / смене Premium.
     const levelSub = DeviceEventEmitter.addListener('energy_reload', () => { load(); });
+    const premiumOnSub = DeviceEventEmitter.addListener('premium_activated', () => { load(); });
+    const premiumOffSub = DeviceEventEmitter.addListener('premium_deactivated', () => { load(); });
+    const vipOnSub = DeviceEventEmitter.addListener('vip_activated', () => { load(); });
+    const vipOffSub = DeviceEventEmitter.addListener('vip_deactivated', () => { load(); });
+    const accessSub = DeviceEventEmitter.addListener('premium_access_changed', () => { load(); });
 
     return () => {
       stopInterval();
       sub.remove();
       levelSub.remove();
+      premiumOnSub.remove();
+      premiumOffSub.remove();
+      vipOnSub.remove();
+      vipOffSub.remove();
+      accessSub.remove();
       if (resumeTimer) clearTimeout(resumeTimer);
       resumeTask?.cancel?.();
     };

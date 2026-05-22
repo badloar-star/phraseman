@@ -6,8 +6,10 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
@@ -15,32 +17,26 @@ import { clearTrainerStore, devSeedTrainer, getTrainerDashboard, type TrainerDas
 import { ENABLE_DEV_TOOLS } from './config';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { getFreeSessionsLeftToday, reserveTrainerSessionEntry } from './trainer_session';
-import { computePhraseAnalytics, type PhraseAnalyticsResult, type WordCategoryStat, } from './phrase_analytics';
+import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
+import { computePhraseAnalytics, type LessonMistakeStat, type PhraseAnalyticsResult, type WordCategoryStat, } from './phrase_analytics';
 import { getDiagnosisTraining } from './diagnosis_trainings';
 import { loadResolvedPersonalTrainings, type ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
+import { personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
+import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import { choosePersonalTrainingCandidate } from './personal_training_taxonomy';
+import { lessonNameForStudyTarget } from './lesson_titles_for_study_target';
+import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_lang_dev';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { trainerThemeIconPalette, type TrainerThemeIconKind } from '../constants/trainerThemeIcons';
 import type { ThemeMode } from '../constants/theme';
 type RoutePath = '/trainer_words_session' | '/trainer_phrases_session' | '/trainer_arena_session';
+type PlannedCopy = { ru: string; uk: string; es: string } & Partial<Record<PlannedInterfaceLang, string>>;
 interface SectionInfo {
     queue: TrainerQueue;
     icon: keyof typeof Ionicons.glyphMap;
-    title: {
-        ru: string;
-        uk: string;
-        es: string;
-    };
-    sub: {
-        ru: string;
-        uk: string;
-        es: string;
-    };
-    method: {
-        ru: string;
-        uk: string;
-        es: string;
-    };
+    title: PlannedCopy;
+    sub: PlannedCopy;
+    method: PlannedCopy;
     accent: string;
     route: RoutePath;
 }
@@ -101,16 +97,26 @@ const SECTIONS: SectionInfo[] = [
     {
         queue: 'phrases',
         icon: 'chatbubbles',
-        title: { ru: 'Фразы', uk: 'Фрази', es: 'Frases' },
+        title: { ru: 'Фразы', uk: 'Фрази', es: 'Frases', 'pt-BR': 'Frases', vi: 'Cụm từ', id: 'Frasa', tr: 'İfadeler', pl: 'Frazy' },
         sub: {
             ru: 'Сборка и пропуски по фразам, где ты ошибался.',
             uk: 'Складання й пропуски у фразах, де ти помилявся.',
             es: 'Construcción y huecos en frases donde fallaste.',
+            'pt-BR': 'Montagem e lacunas em frases em que você errou.',
+            vi: 'Lắp câu và điền chỗ trống trong những câu bạn đã sai.',
+            id: 'Menyusun dan mengisi bagian kosong pada frasa yang pernah salah.',
+            tr: 'Hata yaptığın ifadelerde kurma ve boşluk doldurma.',
+            pl: 'Układanie i luki w zdaniach, w których były błędy.',
         },
         method: {
             ru: 'Generation practice: вспоминаешь фразу сам, а не узнаешь её глазами.',
             uk: 'Generation practice: згадуєш фразу сам, а не впізнаєш очима.',
             es: 'Práctica generativa: recuerdas la frase, no solo la reconoces.',
+            'pt-BR': 'Prática generativa: você lembra a frase, não só a reconhece.',
+            vi: 'Luyện gợi nhớ: bạn tự nhớ cụm từ, không chỉ nhận ra bằng mắt.',
+            id: 'Latihan generatif: kamu mengingat frasa sendiri, bukan hanya mengenalinya.',
+            tr: 'Üretim pratiği: ifadeyi sadece tanımak yerine kendin hatırlarsın.',
+            pl: 'Praktyka generowania: przypominasz sobie frazę, nie tylko ją rozpoznajesz.',
         },
         accent: '#2DD4BF',
         route: '/trainer_phrases_session',
@@ -118,16 +124,26 @@ const SECTIONS: SectionInfo[] = [
     {
         queue: 'words',
         icon: 'library',
-        title: { ru: 'Слова', uk: 'Слова', es: 'Palabras' },
+        title: { ru: 'Слова', uk: 'Слова', es: 'Palabras', 'pt-BR': 'Palavras', vi: 'Từ vựng', id: 'Kata', tr: 'Kelimeler', pl: 'Słowa' },
         sub: {
             ru: 'Слова и глаголы, где ошибка повторилась.',
             uk: 'Слова й дієслова, де помилка повторилась.',
             es: 'Palabras y verbos donde el error se repitió.',
+            'pt-BR': 'Palavras e verbos em que o erro se repetiu.',
+            vi: 'Từ và động từ mà lỗi đã lặp lại.',
+            id: 'Kata dan verba yang kesalahannya berulang.',
+            tr: 'Hatanın tekrarlandığı kelimeler ve fiiller.',
+            pl: 'Słowa i czasowniki, przy których błąd się powtórzył.',
         },
         method: {
             ru: 'Active recall: быстро проверяешь перевод и закрепляешь слабый словарь.',
             uk: 'Active recall: швидко перевіряєш переклад і закріплюєш слабкий словник.',
             es: 'Recuerdo activo: revisas traducción y vocabulario débil.',
+            'pt-BR': 'Recordação ativa: revise rapidamente a tradução e fixe o vocabulário fraco.',
+            vi: 'Gợi nhớ chủ động: kiểm tra nhanh bản dịch và củng cố từ vựng yếu.',
+            id: 'Active recall: cepat memeriksa terjemahan dan menguatkan kosakata yang lemah.',
+            tr: 'Aktif hatırlama: çeviriyi hızla kontrol edip zayıf kelimeleri pekiştirirsin.',
+            pl: 'Aktywne przypominanie: szybko sprawdzasz tłumaczenie i wzmacniasz słabe słownictwo.',
         },
         accent: '#60A5FA',
         route: '/trainer_words_session',
@@ -135,16 +151,26 @@ const SECTIONS: SectionInfo[] = [
     {
         queue: 'arena',
         icon: 'shield-checkmark',
-        title: { ru: 'Фразы', uk: 'Фрази', es: 'Frases' },
+        title: { ru: 'Фразы', uk: 'Фрази', es: 'Frases', 'pt-BR': 'Frases', vi: 'Cụm từ', id: 'Frasa', tr: 'İfadeler', pl: 'Frazy' },
         sub: {
             ru: 'Фразы из быстрых тренировок без давления.',
             uk: 'Фрази зі швидких тренувань без тиску.',
             es: 'Frases de práctica rápida sin presión.',
+            'pt-BR': 'Frases de treinos rápidos sem pressão.',
+            vi: 'Cụm từ từ các buổi luyện nhanh không áp lực.',
+            id: 'Frasa dari latihan cepat tanpa tekanan.',
+            tr: 'Baskısız hızlı antrenmanlardan ifadeler.',
+            pl: 'Frazy z szybkich ćwiczeń bez presji.',
         },
         method: {
             ru: 'Transfer practice: переносишь знание в быстрые ответы.',
             uk: 'Transfer practice: переносиш знання у швидкі відповіді.',
             es: 'Práctica de transferencia: llevas conocimiento a respuestas rápidas.',
+            'pt-BR': 'Prática de transferência: você leva o conhecimento para respostas rápidas.',
+            vi: 'Luyện chuyển giao: đưa kiến thức vào câu trả lời nhanh.',
+            id: 'Latihan transfer: membawa pengetahuan ke jawaban cepat.',
+            tr: 'Aktarım pratiği: bilgiyi hızlı cevaplara taşırsın.',
+            pl: 'Praktyka transferu: przenosisz wiedzę do szybkich odpowiedzi.',
         },
         accent: '#FB7185',
         route: '/trainer_arena_session',
@@ -379,6 +405,25 @@ const CATEGORY_LABELS_INLINE: Record<string, {
     determiner: { ru: 'Determiners', uk: 'Determiners', es: 'Determinantes', 'pt-BR': 'Determinantes', vi: 'Từ hạn định', id: 'Determiner', tr: 'Belirleyiciler', pl: 'Określniki' },
     other: { ru: 'Другое', uk: 'Інше', es: 'Otros', 'pt-BR': 'Outros', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' },
 };
+const TRAINER_LESSON_TITLE_UNAVAILABLE: Record<PlannedInterfaceLang, string> = {
+    'pt-BR': 'Título da aula indisponível',
+    vi: 'Chưa có tiêu đề bài học',
+    id: 'Judul pelajaran belum tersedia',
+    tr: 'Ders başlığı kullanılamıyor',
+    pl: 'Tytuł lekcji jest niedostępny',
+};
+function isTrainerPlannedLang(lang: Lang): lang is PlannedInterfaceLang {
+    return lang === 'pt-BR' || lang === 'vi' || lang === 'id' || lang === 'tr' || lang === 'pl';
+}
+export function trainerAnalyticsLessonTitle(stat: LessonMistakeStat, lang: Lang, studyTarget: StudyTargetLang): string {
+    const localized = lessonNameForStudyTarget(lang, studyTarget, stat.lessonId)?.trim();
+    if (localized) return localized;
+    if (isTrainerPlannedLang(lang)) return TRAINER_LESSON_TITLE_UNAVAILABLE[lang];
+    let legacyTitle = stat.lessonNameRU;
+    if (lang === 'uk') legacyTitle = stat.lessonNameUK;
+    if (lang === 'es') legacyTitle = stat.lessonNameES;
+    return legacyTitle || `Lesson ${stat.lessonId}`;
+}
 function resolvedDiagnosisIdSet(resolved: ResolvedPersonalTrainingsState | null): Set<string> {
     return new Set(Object.keys(resolved?.diagnoses ?? {}));
 }
@@ -405,13 +450,14 @@ function chooseInlineDiagnosis(stat: WordCategoryStat, resolved: ResolvedPersona
     const routedId = choosePersonalTrainingCandidate(candidates[stat.category] ?? [], resolvedDiagnosisIdSet(resolved));
     return routedId && getDiagnosisTraining(routedId) ? routedId : null;
 }
-function InlineCategoryRow({ stat, lang, t, f, router, resolvedPersonalTrainings, isGoldTheme = false }: {
+function InlineCategoryRow({ stat, lang, t, f, router, resolvedPersonalTrainings, personalTrainingEnabled = true, isGoldTheme = false }: {
     stat: WordCategoryStat;
     lang: string;
     t: ReturnType<typeof useTheme>['theme'];
     f: ReturnType<typeof useTheme>['f'];
     router: ReturnType<typeof useRouter>;
     resolvedPersonalTrainings: ResolvedPersonalTrainingsState | null;
+    personalTrainingEnabled?: boolean;
     isGoldTheme?: boolean;
 }) {
     const categoryCopy = CATEGORY_LABELS_INLINE[stat.category];
@@ -439,7 +485,7 @@ function InlineCategoryRow({ stat, lang, t, f, router, resolvedPersonalTrainings
     const priorityScore = stat.priorityScore ?? stat.weaknessScore;
     const recoveryScore = stat.recoveryScore ?? 0;
     const isWeak = priorityScore >= 55 || (stat.pct >= 15 && recoveryScore < 25);
-    const diagnosisId = isWeak ? chooseInlineDiagnosis(stat, resolvedPersonalTrainings) : null;
+    const diagnosisId = isWeak && personalTrainingEnabled ? chooseInlineDiagnosis(stat, resolvedPersonalTrainings) : null;
     const accent = isGoldTheme ? GOLD_RICH.metalGold : t.accent;
     const rowBg = isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface;
     const rowBorder = isGoldTheme
@@ -474,6 +520,8 @@ export default function TrainerScreen() {
     const isGoldTheme = themeMode === 'gold';
     const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
     const { lang } = useLang();
+    const { studyTarget } = useStudyTarget();
+    const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
     const [dashboard, setDashboard] = useState<TrainerDashboard>(EMPTY_TRAINER_DASHBOARD);
     const [loading, setLoading] = useState(true);
     const [seeding, setSeeding] = useState(false);
@@ -482,14 +530,21 @@ export default function TrainerScreen() {
     const [analytics, setAnalytics] = useState<PhraseAnalyticsResult | null>(null);
     const [resolvedPersonalTrainings, setResolvedPersonalTrainings] = useState<ResolvedPersonalTrainingsState | null>(null);
     const [analyticsTab, setAnalyticsTab] = useState<'categories' | 'lessons' | 'phrases'>('categories');
+    const personalPracticeCoachEnabled = personalPracticeCoachEnabledForTarget(studyTarget);
+    const trainerSessionEnabled = trainerSessionContentAvailableForTarget(studyTarget);
+    const trainerGateCopy = frenchTrainerGateCopy(lang);
     const loadData = useCallback(async () => {
         setLoading(true);
         const [dash, premium, left, analyticsResult, resolved] = await Promise.all([
-            getTrainerDashboard(),
+            getTrainerDashboard(studyTarget, sourceLocale),
             getVerifiedPremiumStatus().catch(() => false),
-            getFreeSessionsLeftToday(),
-            computePhraseAnalytics().catch(() => null),
-            loadResolvedPersonalTrainings(),
+            getFreeSessionsLeftToday(studyTarget),
+            trainerSessionEnabled
+                ? studyTarget === 'fr'
+                    ? computeFrenchPhraseAnalytics({ sourceLocale }).catch(() => null)
+                    : computePhraseAnalytics().catch(() => null)
+                : Promise.resolve(null),
+            personalPracticeCoachEnabled ? loadResolvedPersonalTrainings({ studyTarget, sourceLocale }) : Promise.resolve(null),
         ]);
         setDashboard(dash);
         setHasPremium(premium);
@@ -497,7 +552,7 @@ export default function TrainerScreen() {
         setAnalytics(analyticsResult);
         setResolvedPersonalTrainings(resolved);
         setLoading(false);
-    }, []);
+    }, [personalPracticeCoachEnabled, sourceLocale, studyTarget, trainerSessionEnabled]);
     useFocusEffect(useCallback(() => { void loadData(); }, [loadData]));
     const total = dashboard?.totalDue ?? 0;
     const nextOption = useMemo(() => (dashboard.nextQueue === 'words' ? PRACTICE_OPTIONS[1] : PRACTICE_OPTIONS[0]), [dashboard]);
@@ -531,7 +586,7 @@ export default function TrainerScreen() {
             openPremium('trainer_limit');
             return;
         }
-        const reserved = await reserveTrainerSessionEntry(section.route, hasPremium);
+        const reserved = await reserveTrainerSessionEntry(section.route, hasPremium, studyTarget);
         if (!reserved) {
             openPremium('trainer_limit');
             return;
@@ -539,7 +594,7 @@ export default function TrainerScreen() {
         if (!hasPremium)
             setFreeLeft(0);
         router.push(section.route as any);
-    }, [dashboard, freeLeft, hasPremium, openPremium, router]);
+    }, [dashboard, freeLeft, hasPremium, openPremium, router, studyTarget]);
     const startPracticeOption = useCallback(async (option: PracticeOption) => {
         const recommendedQueue = dashboard.nextQueue && option.queues.includes(dashboard.nextQueue) && (dashboard.due[dashboard.nextQueue] ?? 0) > 0
             ? dashboard.nextQueue
@@ -577,6 +632,23 @@ export default function TrainerScreen() {
         })}
               </Text>
             </View>
+            <ReportErrorButton
+              screen="trainer"
+              dataId="trainer_dashboard"
+              dataText={triLang(lang, {
+                ru: 'Экран Моя практика',
+                uk: 'Екран Моя практика',
+                es: 'Pantalla Mi práctica',
+                'pt-BR': 'Tela Minha prática',
+                vi: 'Màn hình Luyện tập của tôi',
+                id: 'Layar Latihanku',
+                tr: 'Pratiğim ekranı',
+                pl: 'Ekran Moja praktyka',
+              })}
+              variant="icon-flag"
+              accessibilityLabel="Сообщить о баге на экране практики"
+              style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border }}
+            />
           </View>
 
           <ScrollView contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false}>
@@ -584,9 +656,23 @@ export default function TrainerScreen() {
 
             {null}
 
+            {!trainerSessionEnabled && (<View style={[styles.card, { backgroundColor: isGoldTheme ? 'rgba(8,8,6,0.92)' : t.bgCard, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}>
+                <View style={styles.cardIcon}>
+                  <Ionicons name="lock-closed-outline" size={30} color={isGoldTheme ? GOLD_RICH.metalGold : t.textMuted}/>
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>
+                    {trainerGateCopy.title}
+                  </Text>
+                  <Text style={[styles.cardSub, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={4}>
+                    {trainerGateCopy.body}
+                  </Text>
+                </View>
+              </View>)}
+
             {PRACTICE_OPTIONS.map(option => {
             const count = option.queues.reduce((sum, queue) => sum + (dashboard.due[queue] ?? 0), 0);
-            const empty = count === 0;
+            const empty = count === 0 || !trainerSessionEnabled;
             const isNext = option.queues.includes(dashboard.nextQueue as TrainerQueue);
             const optionAccent = isGoldTheme
                 ? option.id === 'context' ? GOLD_RICH.metalGold : GOLD_RICH.champagne
@@ -596,7 +682,7 @@ export default function TrainerScreen() {
                 ? (isNext ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet)
                 :
                     optionAccent + '55';
-            return (<TouchableOpacity key={option.id} accessibilityRole="button" accessibilityLabel={optionTitle(option, lang)} onPress={() => { void startPracticeOption(option); }} activeOpacity={empty ? 1 : 0.86} style={[
+            return (<TouchableOpacity key={option.id} accessibilityRole="button" accessibilityLabel={optionTitle(option, lang)} onPress={() => { if (trainerSessionEnabled) void startPracticeOption(option); }} activeOpacity={empty ? 1 : 0.86} style={[
                     styles.card,
                     {
                         backgroundColor: isGoldTheme ? 'rgba(8,8,6,0.92)' : t.bgCard,
@@ -753,7 +839,7 @@ export default function TrainerScreen() {
 
                 {/* Контент вкладок */}
                 {hasAnalyticsMistakes && analyticsTab === 'categories' && (<View style={{ gap: 6 }}>
-                    {shownAnalytics.categoryStats.slice(0, 4).map(stat => (<InlineCategoryRow key={stat.category} stat={stat} lang={lang} t={t} f={f} router={router} resolvedPersonalTrainings={resolvedPersonalTrainings} isGoldTheme={isGoldTheme}/>))}
+                    {shownAnalytics.categoryStats.slice(0, 4).map(stat => (<InlineCategoryRow key={stat.category} stat={stat} lang={lang} t={t} f={f} router={router} resolvedPersonalTrainings={resolvedPersonalTrainings} personalTrainingEnabled={personalPracticeCoachEnabled} isGoldTheme={isGoldTheme}/>))}
                   </View>)}
                 {hasAnalyticsMistakes && analyticsTab === 'lessons' && (<View style={{ gap: 6 }}>
                     {shownAnalytics.lessonStats.slice(0, 4).map(stat => (<View key={stat.lessonId} style={[styles.analyticsRow, { backgroundColor: isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}>
@@ -772,7 +858,7 @@ export default function TrainerScreen() {
                     })} {stat.lessonId}
                           </Text>
                           <Text style={{ color: t.textPrimary, fontSize: f.caption }} numberOfLines={1}>
-                            {lang === 'uk' ? stat.lessonNameUK : lang === 'es' ? stat.lessonNameES : stat.lessonNameRU}
+                            {trainerAnalyticsLessonTitle(stat, lang, studyTarget)}
                           </Text>
                           <View style={styles.miniProgressBg}>
                             <View style={[styles.miniProgressFill, { width: `${Math.min(stat.pct, 100)}%`, backgroundColor: isGoldTheme ? GOLD_RICH.metalGold : 'rgba(255,255,255,0.45)' }]}/>
@@ -842,7 +928,7 @@ export default function TrainerScreen() {
                 <View style={{ flexDirection: 'row', gap: 8 }}>
                   <TouchableOpacity onPress={async () => {
                 setSeeding(true);
-                await devSeedTrainer();
+                await devSeedTrainer(studyTarget);
                 await loadData();
                 setSeeding(false);
             }} testID="trainer-dev-seed" style={[styles.devBtn, { backgroundColor: isGoldTheme ? GOLD_RICH.wash : '#4A9EFF22', borderColor: isGoldTheme ? GOLD_RICH.hairline : '#4A9EFF66', flex: 1 }]}>
@@ -851,14 +937,14 @@ export default function TrainerScreen() {
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={async () => {
-                await clearTrainerStore();
+                await clearTrainerStore(studyTarget);
                 await loadData();
             }} testID="trainer-dev-clear" style={[styles.devBtn, { backgroundColor: isGoldTheme ? 'rgba(110,75,20,0.14)' : '#E0505022', borderColor: isGoldTheme ? GOLD_RICH.hairlineDark : '#E0505066' }]}>
                     <Ionicons name="trash" size={16} color={isGoldTheme ? GOLD_RICH.agedGold : '#E05050'}/>
                   </TouchableOpacity>
                 </View>
               </View>)}
-          </ScrollView>
+            </ScrollView>
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>);

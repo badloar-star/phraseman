@@ -1,7 +1,7 @@
 // pos_analytics_audit.tsx - production-safe gate for the POS audit route.
 import React from 'react';
-import { Redirect } from 'expo-router';
 import { IS_STORE_RELEASE } from './config';
+import { DeferredRedirect } from '../components/DeferredRedirect';
 
 export default function PosAnalyticsAuditGate() {
   if (__DEV__ && !IS_STORE_RELEASE) {
@@ -9,5 +9,5 @@ export default function PosAnalyticsAuditGate() {
     const Real = require('./_pos_analytics_audit').default;
     return <Real />;
   }
-  return <Redirect href={'/(tabs)/' as any} />;
+  return <DeferredRedirect href={'/(tabs)/' as any} />;
 }

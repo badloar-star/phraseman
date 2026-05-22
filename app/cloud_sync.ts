@@ -13,11 +13,94 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED } from './config';
 import { getTodayKey, getTodayTasksSafe, loadTodayProgress } from './daily_tasks';
 import { clearArenaAuthUidCache, getAuthUserId, getCanonicalUserId, ensureArenaAuthUid } from './user_id_policy';
-import { processAdminGrantForCelebration } from './premium_celebration_state';
+import { processVipGrantForCelebration } from './vip_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
+import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
 import { normalizeDevSeededStreakValue, repairDevSeededStreakInStorage } from './streak_safety';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS } from './account_delete_timeout';
+import { DIAGNOSIS_TRAINING_IDS } from './personal_practice_training_ids';
+import {
+  activeRecallItemsKey,
+  achievementStateKey,
+  achievementLessonPerfectPassesKey,
+  comboAchievementCounterKey,
+  communityPackCreateDraftKey,
+  dailyPhraseAchievementReadCountKey,
+  dailyPhraseAchievementSaveCountKey,
+  dailyTasksAchievementAllDoneStreakKey,
+  dailyTasksAchievementNoRerollStreakKey,
+  dailyTasksAdminOverrideKey,
+  customFlashcardsKey,
+  dailyTaskLessonVisitedKey,
+  dailyTasksProgressKey,
+  dailyTasksRerollKey,
+  diagnosticOpenFlagKey,
+  diagnosticLastKey,
+  fiftyFiftyUsageKey,
+  flashcardsCommunityOwnedPacksKey,
+  flashcardsAchievementFlipCountKey,
+  flashcardsAchievementSavedCountKey,
+  flashcardsAchievementSourceSetKey,
+  flashcardsAchievementViewStreakKey,
+  flashcardsDeleteHintSeenKey,
+  flashcardsHiddenCommunityPacksKey,
+  flashcardsMarketDevActivePackKey,
+  flashcardsMarketDevOwnedPacksKey,
+  flashcardsMarketplaceBuiltCardsCacheKey,
+  flashcardsOpenedPacksKey,
+  flashcardsOwnedPacksKey,
+  flashcardsPackTrialGiftKey,
+  flashcardsProgressKey,
+  flashcardsSavedKey,
+  flashcardsSwipeMemoryKey,
+  flashcardsSwipeSessionDraftKey,
+  grammarHintSeenKey,
+  irregularVerbsGlobalKey,
+  lastOpenedLessonKey,
+  lessonBestScoreKey,
+  lessonBonusHintsKey,
+  lessonBonusGrantedKey,
+  lessonIntroShownKey,
+  lessonIrregularShardsGrantedKey,
+  lessonPassCountKey,
+  lessonPerfectMilestoneKey,
+  lessonPrepositionProgressKey,
+  lessonProgressKey,
+  lessonSessionKey,
+  lessonTheoryXpClaimedKey,
+  lessonTopicShardGrantedKey,
+  lessonUnlockRepairKey,
+  lessonWordsShardsGrantedKey,
+  lessonWordsKey,
+  lingmanCertificateKey,
+  levelExamKey,
+  lingmanExamAvailableKey,
+  masteryFinishedOnceKey,
+  masteryReplayCountKey,
+  mistakeLogKey,
+  personalPracticeFreeAccessKey,
+  personalPracticeTrainingProgressKey,
+  posMasteryKey,
+  premiumCourseLevelKey,
+  prepositionDrillPerfectKey,
+  quizAchievementCounterKey,
+  quizLifetimeCounterKey,
+  quizNavLevelKey,
+  quizPerfectLevelsTodayKey,
+  quizPerfectStreakKey,
+  resolvedPersonalTrainingsKey,
+  shareAchievementCounterKey,
+  targetKey,
+  activeRecallAchievementCorrectCountKey,
+  trainerAchievementCorrectCountKey,
+  trainerAchievementCorrectStreakKey,
+  trainerAchievementPerfectSessionCountKey,
+  trainerStoreKey,
+  unlockedLessonsKey,
+  userStatsKey,
+  statsDailyBreakdownKey,
+} from './target_storage_keys';
 
 /** Одна строка прогресса по заданию (как TaskProgress в daily_tasks, без лишних импортов). */
 type DailyTaskProgressRow = {
@@ -31,6 +114,101 @@ type DailyTaskProgressRow = {
 
 const taskProgressNum = (v: unknown): number =>
   typeof v === 'number' && Number.isFinite(v) ? v : 0;
+
+const CLOUD_DAILY_TASKS_PROGRESS_KEY = 'daily_tasks_progress';
+const CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY = 'daily_tasks_progress_day';
+const FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY = targetKey('cloud_sync', 'fr', 'daily_tasks_progress');
+const FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY = targetKey('cloud_sync', 'fr', 'daily_tasks_progress_day');
+const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
+const FRENCH_SYNC_EXAM_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
+const FRENCH_SYNC_PERFECT_MILESTONES = [5, 10, 15, 20, 25, 30] as const;
+const FRENCH_SYNC_SOURCE_LOCALES = ['ru', 'uk'] as const;
+const SYNC_STUDY_TARGETS = ['en', 'fr'] as const;
+const LESSON_SESSION_FIELDS = ['cellIndex', 'phraseOrder', 'errorReplayQueue', 'errorReplaySince', 'errorReplayOverride'] as const;
+const GRAMMAR_HINT_STORAGE_IDS = ['grammar_hint_articles', 'grammar_hint_some_any'] as const;
+
+export const FRENCH_TARGET_SYNC_KEYS = [
+  unlockedLessonsKey('fr'),
+  premiumCourseLevelKey('fr'),
+  lessonUnlockRepairKey('fr'),
+  lastOpenedLessonKey('fr'),
+  lingmanExamAvailableKey('fr'),
+  lingmanCertificateKey('fr'),
+  diagnosticLastKey('fr'),
+  quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'fr'),
+  quizLifetimeCounterKey('lifetime_quiz_medium_v1', 'fr'),
+  quizLifetimeCounterKey('lifetime_quiz_hard_v1', 'fr'),
+  quizAchievementCounterKey('achievement_quiz_total_count', 'fr'),
+  quizAchievementCounterKey('quiz_hard_count', 'fr'),
+  quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'fr'),
+  quizPerfectLevelsTodayKey('fr'),
+  quizPerfectStreakKey('fr'),
+  achievementStateKey('fr'),
+  comboAchievementCounterKey('fr'),
+  dailyPhraseAchievementReadCountKey('fr'),
+  dailyPhraseAchievementSaveCountKey('fr'),
+  dailyTasksAchievementAllDoneStreakKey('fr'),
+  dailyTasksAchievementNoRerollStreakKey('fr'),
+  shareAchievementCounterKey('fr'),
+  userStatsKey('fr'),
+  statsDailyBreakdownKey('fr'),
+  irregularVerbsGlobalKey('fr'),
+  trainerStoreKey('fr'),
+  activeRecallAchievementCorrectCountKey('fr'),
+  trainerAchievementCorrectCountKey('fr'),
+  trainerAchievementCorrectStreakKey('fr'),
+  trainerAchievementPerfectSessionCountKey('fr'),
+  mistakeLogKey('fr'),
+  activeRecallItemsKey('fr'),
+  posMasteryKey('fr'),
+  flashcardsSavedKey('fr'),
+  customFlashcardsKey('fr'),
+  flashcardsCommunityOwnedPacksKey('fr'),
+  flashcardsOwnedPacksKey('fr'),
+  flashcardsMarketDevOwnedPacksKey('fr'),
+  flashcardsProgressKey('fr'),
+  flashcardsPackTrialGiftKey('fr'),
+  flashcardsAchievementSavedCountKey('fr'),
+  flashcardsAchievementFlipCountKey('fr'),
+  flashcardsAchievementViewStreakKey('fr'),
+  flashcardsAchievementSourceSetKey('fr'),
+  flashcardsSwipeSessionDraftKey('fr'),
+  flashcardsSwipeMemoryKey('fr'),
+  ...FRENCH_SYNC_SOURCE_LOCALES.flatMap((sourceLocale) => [
+    personalPracticeFreeAccessKey('fr', sourceLocale),
+    resolvedPersonalTrainingsKey('fr', sourceLocale),
+    ...DIAGNOSIS_TRAINING_IDS.map((id) => personalPracticeTrainingProgressKey(id, 'fr', sourceLocale)),
+  ]),
+  FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY,
+  FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
+  dailyTasksRerollKey('fr'),
+  ...FRENCH_SYNC_LESSON_IDS.flatMap((lessonId) => [
+    lessonBestScoreKey(lessonId, 'fr'),
+    lessonPassCountKey(lessonId, 'fr'),
+    lessonProgressKey(lessonId, 'fr'),
+    lessonWordsKey(lessonId, 'fr'),
+    lessonWordsShardsGrantedKey(lessonId, 'fr'),
+    lessonIrregularShardsGrantedKey(lessonId, 'fr'),
+    lessonPrepositionProgressKey(lessonId, 'fr'),
+    lessonTheoryXpClaimedKey(lessonId, 'fr'),
+    prepositionDrillPerfectKey(lessonId, 'fr'),
+    lessonBonusGrantedKey(lessonId, 'fr'),
+    masteryFinishedOnceKey(lessonId, 'fr'),
+    masteryReplayCountKey(lessonId, 'fr'),
+    achievementLessonPerfectPassesKey(lessonId, 'fr'),
+  ]),
+  ...FRENCH_SYNC_EXAM_LEVELS.flatMap((level) => [
+    levelExamKey(level, 'passed', 'fr'),
+    levelExamKey(level, 'available', 'fr'),
+    levelExamKey(level, 'pct', 'fr'),
+    levelExamKey(level, 'best_pct', 'fr'),
+    levelExamKey(level, 'pass_count', 'fr'),
+    levelExamKey(level, 'attempt_count', 'fr'),
+    levelExamKey(level, 'medal_tier', 'fr'),
+    lessonTopicShardGrantedKey(level, 'fr'),
+  ]),
+  ...FRENCH_SYNC_PERFECT_MILESTONES.map((count) => lessonPerfectMilestoneKey(count, 'fr')),
+] as const;
 
 function leagueResultSignature(raw: unknown): string | null {
   if (raw === null || raw === undefined) return null;
@@ -135,7 +313,15 @@ export const SYNC_KEYS = [
   'achievement_active_recall_correct_count',
   'achievement_trainer_correct_count',
   'achievement_trainer_correct_streak_v1',
+  'achievement_trainer_perfect_session_count',
   'achievement_all_daily_streak_v1',
+  'achievement_quiz_total_count',
+  'quiz_hard_count',
+  'achievement_quiz_hard_perfect_count',
+  'achievement_quiz_perfect_levels_today_v1',
+  'achievement_quiz_perfect_streak_v1',
+  'achievement_daily_phrase_read_count',
+  'achievement_daily_phrase_save_count',
   'achievement_flashcards_saved_count',
   'achievement_flashcards_flip_count',
   'achievement_flashcards_view_streak_v1',
@@ -167,6 +353,7 @@ export const SYNC_KEYS = [
   // functions/src/sync_leaderboard.ts (читает progress.week_points_v2).
   'week_points_v2',
   'daily_tasks_progress',
+  'daily_tasks_progress_day',
   'login_bonus_v1',
   /** Опыт по дням (график статистики) — без синка теряется на новом устройстве. */
   'daily_stats',
@@ -183,13 +370,19 @@ export const SYNC_KEYS = [
   'premium_rc_purchased_at_ms',
   'premium_rc_updated_at',
   'premium_admin_grant_at',
+  'vip_active',
+  'vip_plan',
+  'vip_from',
+  'vip_until',
+  'vip_admin_override',
+  'vip_admin_grant_at',
   'had_premium_ever',
   'streak_freeze',
   'premium_free_freeze_used',
   'chain_shield',
   'gift_xp_multiplier',
   'arena_daily_gift_bonus_v1',
-  'flashcard_pack_trial_gift_v1',
+  flashcardsPackTrialGiftKey('en'),
   'club_gift_free_boost_v1',
   'wager_discount',
   'league_chest_energy_override_v1',
@@ -214,18 +407,22 @@ export const SYNC_KEYS = [
   'level_exam_A2_pass_count',
   'level_exam_B1_pass_count',
   'level_exam_B2_pass_count',
+  'level_exam_A1_attempt_count',
+  'level_exam_A2_attempt_count',
+  'level_exam_B1_attempt_count',
+  'level_exam_B2_attempt_count',
 
   // ── Финальный экзамен Лингмана: сертификат (объект JSON c именем, score, certId) ─
   // Без синка после переустановки сертификат пропадёт, и юзер не увидит свой
   // диплом, хотя зачёты A1..B2 и звёзды уроков остаются. См. exam_certificate.ts.
-  'lingman_certificate_v1',
+  lingmanCertificateKey('en'),
 
   // ── Карточки (юзерская библиотека + покупки) ───────────────────────────────
   'custom_flashcards_v2',
   'flashcards_progress_v1',
   'flashcards_owned_packs_v1',
   'community_owned_pack_ids_v1',
-  'irregular_verbs_global',
+  irregularVerbsGlobalKey('en'),
 
   // ── Осколки: дополнительные ключи (баланс/история — отдельный канал) ───────
   // Сам баланс (shards) живёт в users/{uid}.shards и грузится через
@@ -274,8 +471,72 @@ export const SYNC_KEYS = [
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`),
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_listening_progress`),
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_words`),
-  ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_intro_shown`),
+  ...Array.from({ length: 32 }, (_, i) => achievementLessonPerfectPassesKey(i + 1, 'en')),
+  ...FRENCH_TARGET_SYNC_KEYS,
 ] as const;
+
+export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): string[] {
+  const localOnlyTargetKeys = SYNC_STUDY_TARGETS.flatMap((target) => [
+    dailyTasksProgressKey(todayKey, target),
+    dailyTaskLessonVisitedKey(todayKey, target),
+    dailyTasksAdminOverrideKey(target),
+    fiftyFiftyUsageKey(todayKey, target),
+    lessonBonusHintsKey(todayKey, target),
+    quizNavLevelKey(target),
+    diagnosticOpenFlagKey(target),
+    irregularVerbsGlobalKey(target),
+    lingmanCertificateKey(target),
+    flashcardsMarketplaceBuiltCardsCacheKey(target),
+    flashcardsMarketDevActivePackKey(target),
+    flashcardsCommunityOwnedPacksKey(target),
+    flashcardsHiddenCommunityPacksKey(target),
+    flashcardsOwnedPacksKey(target),
+    flashcardsMarketDevOwnedPacksKey(target),
+    flashcardsOpenedPacksKey(target),
+    flashcardsPackTrialGiftKey(target),
+    flashcardsDeleteHintSeenKey(target),
+    communityPackCreateDraftKey(target, 'ru'),
+    ...(target === 'fr' ? [communityPackCreateDraftKey(target, 'uk')] : []),
+    ...GRAMMAR_HINT_STORAGE_IDS.map((id) => grammarHintSeenKey(id, target)),
+    ...Array.from({ length: 32 }, (_, index) => index + 1).flatMap((lessonId) => [
+      lessonIntroShownKey(lessonId, target),
+      ...LESSON_SESSION_FIELDS.map((field) => lessonSessionKey(lessonId, field, target)),
+    ]),
+  ]);
+
+  return Array.from(new Set([
+    ...SYNC_KEYS,
+    // Доп. ключи которые синкаются под другими именами или субколлекциями:
+    'achievements_v1', // мапится на achievements_state
+    'daily_tasks_progress',
+    // Шарды: баланс и служебные (баланс перетянется loadShardsFromCloud,
+    // но для нового аккаунта он стартует с 0).
+    'shards_balance',
+    // Bookkeeping синка (новый stable_id = новая история синка)
+    LAST_SYNC_SNAPSHOT_KEY,
+    CREATED_AT_SYNC_KEY,
+    'cloud_migration_v1',
+    // Кэши лидербордов (содержат предыдущего юзера)
+    'global_lb_cache',
+    'leaderboard_cache_v1',
+    'last_known_league_rank',
+    'league_result_pending',
+    'week_leaderboard',
+    // Прочее account-level
+    'last_active_date',
+    'comeback_active',
+    'comeback_pending',
+    'bug_hunt_shown',
+    'flashcard_anim_pending',
+    'energy_state',
+    'energy_onboarding_shown',
+    'daily_treasure_state',
+    'install_date',
+    'login_bonus_v1',
+    'last_opened_lesson',
+    ...localOnlyTargetKeys,
+  ]));
+}
 const CREATED_AT_SYNC_KEY = 'cloud_created_at_synced_v1';
 const LAST_SYNC_SNAPSHOT_KEY = 'cloud_last_sync_snapshot_v1';
 /** Ожидание чужого syncInFlight без лимита оставляло «Сменить аккаунт» на вечном спиннере при «зависшем» Firestore. */
@@ -330,6 +591,12 @@ const PREMIUM_PROGRESS_KEYS = new Set([
   'premium_rc_purchased_at_ms',
   'premium_rc_updated_at',
   'premium_admin_grant_at',
+  'vip_active',
+  'vip_plan',
+  'vip_from',
+  'vip_until',
+  'vip_admin_override',
+  'vip_admin_grant_at',
   'had_premium_ever',
 ]);
 
@@ -344,6 +611,10 @@ function hasLocalPremiumSyncState(data: Record<string, string | null>): boolean 
   if (plan && plan !== 'null' && plan !== 'undefined') return true;
   if (String(data['admin_premium_override'] ?? '').trim() === 'true') return true;
   if (parseProgressInt(data['premium_expiry']) > 0) return true;
+  if (String(data['vip_active'] ?? '').trim() === 'true') return true;
+  if (String(data['vip_admin_override'] ?? '').trim() === 'true') return true;
+  if (String(data['vip_plan'] ?? '').trim()) return true;
+  if (parseProgressInt(data['vip_until']) > 0) return true;
   return [
     'premium_rc_product_id',
     'premium_rc_period_type',
@@ -354,18 +625,23 @@ function hasLocalPremiumSyncState(data: Record<string, string | null>): boolean 
   ].some((key) => premiumValuePresent(data[key]));
 }
 
-function adminPremiumActiveFromProgress(data: Record<string, unknown>): boolean | null {
-  const plan = String(data['premium_plan'] ?? '').trim().toLowerCase();
-  const override = String(data['admin_premium_override'] ?? '').trim();
-  const expiry = parseProgressInt(data['premium_expiry']);
-  const hasPlan = !!plan && plan !== 'null' && plan !== 'undefined';
-  const legacyAdminPlan = plan === 'admin_grant' && override !== 'false';
-  const isAdminGrant = override === 'true' || legacyAdminPlan;
+function vipActiveFromProgress(data: Record<string, unknown>): boolean | null {
+  return getVipProgressState(data)?.active ?? null;
+}
 
-  if (!isAdminGrant) {
-    return override === 'false' ? false : null;
+function cloudProgressStorageValue(key: string, value: unknown): string {
+  if (
+    key === 'premium_expiry' ||
+    key === 'premium_rc_expiry_ms' ||
+    key === 'premium_rc_purchased_at_ms' ||
+    key === 'premium_admin_grant_at' ||
+    key === 'vip_from' ||
+    key === 'vip_until' ||
+    key === 'vip_admin_grant_at'
+  ) {
+    return String(parsePremiumProgressMs(value));
   }
-  return hasPlan && (expiry <= 0 || expiry > Date.now());
+  return String(value);
 }
 
 export function shouldSyncPremiumProgressField(
@@ -385,8 +661,14 @@ const LESSON_RESTORE_MERGE_KEYS = Array.from({ length: 32 }, (_, i) => {
     `lesson${lessonId}_best_score`,
     `lesson${lessonId}_pass_count`,
     `lesson${lessonId}_progress`,
+    achievementLessonPerfectPassesKey(lessonId, 'en'),
+    lessonBestScoreKey(lessonId, 'fr'),
+    lessonPassCountKey(lessonId, 'fr'),
+    lessonProgressKey(lessonId, 'fr'),
+    achievementLessonPerfectPassesKey(lessonId, 'fr'),
   ];
 }).flat();
+const LESSON_RESTORE_MERGE_KEY_SET = new Set<string>(LESSON_RESTORE_MERGE_KEYS);
 
 function parseLessonProgressArray(raw: unknown): string[] | null {
   if (typeof raw !== 'string' || raw.trim() === '') return null;
@@ -410,18 +692,51 @@ function lessonProgressQuality(raw: unknown): { correct: number; wrong: number; 
   return { correct, wrong, total: arr.length };
 }
 
+function parsePositiveNumberSet(raw: unknown): number[] | null {
+  if (raw === null || raw === undefined || String(raw).trim() === '') return [];
+  try {
+    const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    if (!Array.isArray(parsed)) return null;
+    return parsed
+      .map(x => Math.floor(Number(x)))
+      .filter(x => Number.isFinite(x) && x > 0);
+  } catch {
+    return null;
+  }
+}
+
+function mergeNumberSetRestoreValue(cloudValue: string, localValue: string | null | undefined): string {
+  const cloud = parsePositiveNumberSet(cloudValue);
+  const local = parsePositiveNumberSet(localValue);
+  if (!cloud || !local) return cloudValue;
+  return JSON.stringify([...new Set([...cloud, ...local])].sort((a, b) => a - b));
+}
+
+function targetScopedRestoreInfo(key: string): { domain: string; id: string } | null {
+  const match = /^([a-z_]+)_v2::(?:en|fr)::(.+)$/.exec(key);
+  if (!match) return null;
+  try {
+    return { domain: match[1], id: decodeURIComponent(match[2]) };
+  } catch {
+    return { domain: match[1], id: match[2] };
+  }
+}
+
 function mergeLessonRestoreValue(
   key: string,
   cloudValue: string,
   localValue: string | null | undefined,
 ): string {
-  if (/^lesson\d+_pass_count$/.test(key)) {
+  const scoped = targetScopedRestoreInfo(key);
+  const restoreId = scoped?.id ?? key;
+  const isScopedLessonProgress = scoped?.domain === 'lesson_progress';
+  if (/^lesson\d+_pass_count$/.test(restoreId)) {
     return String(Math.max(parseProgressInt(cloudValue), parseProgressInt(localValue)));
   }
-  if (/^lesson\d+_best_score$/.test(key)) {
+  if (/^lesson\d+_best_score$/.test(restoreId)) {
     return String(Math.max(parseProgressFloat(cloudValue), parseProgressFloat(localValue)));
   }
-  if (/^lesson\d+_progress$/.test(key)) {
+  if (/^lesson\d+_progress$/.test(restoreId) || (isScopedLessonProgress && /^\d+$/.test(restoreId))) {
     const cloudQuality = lessonProgressQuality(cloudValue);
     const localQuality = lessonProgressQuality(localValue);
     if (!cloudQuality || !localQuality) return cloudValue;
@@ -430,7 +745,38 @@ function mergeLessonRestoreValue(
     if (localQuality.wrong < cloudQuality.wrong) return localValue ?? cloudValue;
     return cloudValue;
   }
+  if (/^achievement_lesson_\d+_perfect_passes_v1$/.test(restoreId)) {
+    return mergeNumberSetRestoreValue(cloudValue, localValue);
+  }
   return cloudValue;
+}
+
+async function buildFrenchTargetStickyRestorePairs(cloudData: Record<string, unknown>): Promise<[string, string][]> {
+  const restorableKeys = FRENCH_TARGET_SYNC_KEYS.filter((key) => (
+    key !== FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY &&
+    key !== FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY
+  ));
+  const localMap = Object.fromEntries(
+    await AsyncStorage.multiGet([...restorableKeys]),
+  ) as Record<string, string | null>;
+  const pairs: [string, string][] = [];
+
+  for (const key of restorableKeys) {
+    const val = cloudData[key];
+    if (val === null || val === undefined) continue;
+    const localValue = localMap[key];
+    const storageValue = cloudProgressStorageValue(key, val);
+    if (LESSON_RESTORE_MERGE_KEY_SET.has(key)) {
+      const merged = mergeLessonRestoreValue(key, storageValue, localValue);
+      if (merged !== localValue) pairs.push([key, merged]);
+      continue;
+    }
+    if (localValue === null || localValue === undefined || localValue === '') {
+      pairs.push([key, storageValue]);
+    }
+  }
+
+  return pairs;
 }
 
 function latestDateKeyFromJsonMap(raw: unknown): string | null {
@@ -452,6 +798,42 @@ export function deriveLastActiveDateForRestore(cloudData: Record<string, string 
     latestDateKeyFromJsonMap(cloudData['daily_stats']) ??
     latestDateKeyFromJsonMap(cloudData['stats_daily_breakdown_v1'])
   );
+}
+
+function currentCloudDailyTasksProgress(
+  cloudData: Record<string, string | null>,
+  progressKey: string = CLOUD_DAILY_TASKS_PROGRESS_KEY,
+  dayKeyField: string = CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
+): string | null {
+  const raw = cloudData[progressKey];
+  if (raw === null || raw === undefined || String(raw).trim() === '') return null;
+
+  const dayKey = cloudData[dayKeyField];
+  if (!isDateKey(dayKey)) return null;
+  return dayKey === getTodayKey() ? String(raw) : null;
+}
+
+function removeCloudOnlyDailyTaskSnapshots(data: Record<string, string | null>): void {
+  delete data[CLOUD_DAILY_TASKS_PROGRESS_KEY];
+  delete data[CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY];
+  delete data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY];
+  delete data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY];
+}
+
+async function addTodayDailyTaskSnapshots(data: Record<string, string | null>): Promise<void> {
+  const todayKey = getTodayKey();
+  const [englishTodayTasks, frenchTodayTasks] = await Promise.all([
+    AsyncStorage.getItem(dailyTasksProgressKey(todayKey, 'en')),
+    AsyncStorage.getItem(dailyTasksProgressKey(todayKey, 'fr')),
+  ]);
+  if (englishTodayTasks) {
+    data[CLOUD_DAILY_TASKS_PROGRESS_KEY] = englishTodayTasks;
+    data[CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY] = todayKey;
+  }
+  if (frenchTodayTasks) {
+    data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY] = frenchTodayTasks;
+    data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY] = todayKey;
+  }
 }
 
 const getAuth = () => {
@@ -639,11 +1021,19 @@ async function runSyncNow(): Promise<void> {
 }
 
 /** Після restore зі snapshot старі taskId у JSON — наступний load підтягує getTodayTasksSafe() і перезаписує ключ. */
-async function reconcileRestoredDayDailyStorageIfNeeded(hadCloudDaily: boolean): Promise<void> {
-  if (!hadCloudDaily) return;
+async function reconcileRestoredDayDailyStorageIfNeeded(restoredTargets: Array<'en' | 'fr'> | boolean): Promise<void> {
+  const targets = restoredTargets === true
+    ? ['en' as const]
+    : restoredTargets === false
+      ? []
+      : restoredTargets;
+  if (targets.length === 0) return;
   try {
-    const list = await getTodayTasksSafe();
-    if (list.length > 0) await loadTodayProgress(list);
+    for (const target of targets) {
+      const studyTarget = target === 'fr' ? 'fr' : undefined;
+      const list = await getTodayTasksSafe(studyTarget);
+      if (list.length > 0) await loadTodayProgress(list, studyTarget);
+    }
   } catch { /* empty */ }
 }
 
@@ -745,16 +1135,18 @@ async function doSyncToCloud(): Promise<void> {
     for (const [key, value] of pairs) {
       data[key] = value;
     }
+    // daily_tasks_progress fields are cloud-only snapshots of date-keyed local rows.
+    // Never upload stale generic local copies after restore; only real
+    // daily_tasks_YYYY-MM-DD / scoped French keys below may populate these cloud fields.
+    removeCloudOnlyDailyTaskSnapshots(data);
     // Маппинг: внутренние ключи → ключи Firestore для аналитики
     const achievementsV1 = await AsyncStorage.getItem('achievements_v1');
     if (achievementsV1) data['achievements_state'] = achievementsV1;
     if (data['app_lang']) data['lang'] = data['app_lang'];
     if (data['user_frame']) data['user_avatar_frame'] = data['user_frame'];
 
-    // Дополнительно синхронизируем сегодняшние задания под фиксированным ключом
-    const todayKey = getTodayKey();
-    const todayTasks = await AsyncStorage.getItem('daily_tasks_' + todayKey);
-    if (todayTasks) data['daily_tasks_progress'] = todayTasks;
+    // Дополнительно синхронизируем сегодняшние задания под фиксированными cloud keys.
+    await addTodayDailyTaskSnapshots(data);
 
     // Сравниваем с последним синкнутым снапшотом и отправляем только изменённые поля.
     // Это снижает сетевой шум и частоту "пустых" write-операций.
@@ -870,23 +1262,33 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     const { reconcileStatsDailyBreakdownWithCloud } = await import('./stats_daily_breakdown');
     cloudData['stats_daily_breakdown_v1'] = await reconcileStatsDailyBreakdownWithCloud(
       cloudData['stats_daily_breakdown_v1'],
+      'en',
+    );
+    const frenchStatsKey = statsDailyBreakdownKey('fr');
+    cloudData[frenchStatsKey] = await reconcileStatsDailyBreakdownWithCloud(
+      cloudData[frenchStatsKey],
+      'fr',
     );
   } catch {
     /* ignore */
   }
 
-  const cloudHasPremiumAdminState =
+  const cloudHasVipEntitlementState =
+    cloudData['vip_active'] !== undefined ||
+    cloudData['vip_plan'] !== undefined ||
+    cloudData['vip_until'] !== undefined ||
+    cloudData['vip_admin_override'] !== undefined ||
+    cloudData['vip_admin_grant_at'] !== undefined ||
     cloudData['premium_plan'] !== undefined ||
     cloudData['admin_premium_override'] !== undefined ||
     cloudData['premium_expiry'] !== undefined;
 
-  // Premium granted by admin via admin/index.html: progress.premium_admin_grant_at — unix ms строка.
-  // Если timestamp новее нашего last seen marker — поднимает pending для PremiumCelebrationModal.
-  // Срабатывает один раз на каждый grant (повторная выдача ставит новый ts → снова сработает).
-  // Revoked or expired admin grants can keep the old timestamp in progress.
-  const cloudAdminPremiumActive = adminPremiumActiveFromProgress(cloudData);
-  void processAdminGrantForCelebration(
-    cloudAdminPremiumActive ? cloudData['premium_admin_grant_at'] : null,
+  // VIP issued by admin via admin/index.html. Legacy admin premium grants are
+  // interpreted as VIP so real RevenueCat Premium state remains untouched.
+  const cloudVipState = getVipProgressState(cloudData);
+  const cloudVipActive = vipActiveFromProgress(cloudData);
+  void processVipGrantForCelebration(
+    cloudVipActive ? cloudVipState?.grantAt : null,
   );
 
   const localXPRaw = await AsyncStorage.getItem('user_total_xp');
@@ -909,11 +1311,17 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       'premium_rc_purchased_at_ms',
       'premium_rc_updated_at',
       'premium_admin_grant_at',
+      'vip_active',
+      'vip_plan',
+      'vip_from',
+      'vip_until',
+      'vip_admin_override',
+      'vip_admin_grant_at',
     ] as const;
     const stickyPairs: [string, string][] = [];
     for (const key of stickyKeys) {
       const val = cloudData[key];
-      if (val !== null && val !== undefined) stickyPairs.push([key, val]);
+      if (val !== null && val !== undefined) stickyPairs.push([key, cloudProgressStorageValue(key, val)]);
     }
     // Локальный XP ≥ облачного, но ник мог остаться только в облаке (другой девайс / сбой записи).
     const localNameRaw = await AsyncStorage.getItem('user_name');
@@ -934,14 +1342,28 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     if (mergedLoginBonus !== null) {
       stickyPairs.push(['login_bonus_v1', mergedLoginBonus]);
     }
-    const cloudDaily = cloudData['daily_tasks_progress'];
-    let restoredDailyTasksToLocal = false;
+    stickyPairs.push(...await buildFrenchTargetStickyRestorePairs(cloudData));
+    const cloudDaily = currentCloudDailyTasksProgress(cloudData);
+    const restoredDailyTaskTargets: Array<'en' | 'fr'> = [];
     if (cloudDaily) {
-      const dk = `daily_tasks_${getTodayKey()}`;
+      const dk = dailyTasksProgressKey(getTodayKey(), 'en');
       const localDaily = await AsyncStorage.getItem(dk);
       if (!localDaily) {
         stickyPairs.push([dk, cloudDaily]);
-        restoredDailyTasksToLocal = true;
+        restoredDailyTaskTargets.push('en');
+      }
+    }
+    const cloudFrenchDaily = currentCloudDailyTasksProgress(
+      cloudData,
+      FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY,
+      FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
+    );
+    if (cloudFrenchDaily) {
+      const dk = dailyTasksProgressKey(getTodayKey(), 'fr');
+      const localDaily = await AsyncStorage.getItem(dk);
+      if (!localDaily) {
+        stickyPairs.push([dk, cloudFrenchDaily]);
+        restoredDailyTaskTargets.push('fr');
       }
     }
     const cloudLeaguePending = cloudData['league_result_pending'];
@@ -962,13 +1384,20 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       }
     }
     stickyPairs.push(...await buildGiftEntitlementStickyPairs(cloudData));
-    if (cloudAdminPremiumActive !== null) {
-      stickyPairs.push(['premium_active', cloudAdminPremiumActive ? 'true' : 'false']);
+    if (cloudVipActive !== null) {
+      stickyPairs.push(
+        ['vip_active', cloudVipActive ? 'true' : 'false'],
+        ['vip_plan', cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : ''],
+        ['vip_from', cloudVipActive ? (cloudVipState?.fromValue ?? '0') : '0'],
+        ['vip_until', cloudVipActive ? (cloudVipState?.untilValue ?? '0') : '0'],
+        ['vip_admin_override', cloudVipActive ? 'true' : 'false'],
+      );
+      if (cloudVipState?.grantAt) stickyPairs.push(['vip_admin_grant_at', cloudVipState.grantAt]);
     }
     if (stickyPairs.length > 0) {
       await AsyncStorage.multiSet(stickyPairs);
-      if (cloudHasPremiumAdminState) invalidatePremiumCache();
-      await reconcileRestoredDayDailyStorageIfNeeded(restoredDailyTasksToLocal);
+      if (cloudHasVipEntitlementState) invalidatePremiumCache();
+      await reconcileRestoredDayDailyStorageIfNeeded(restoredDailyTaskTargets);
       await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify({ ...cloudData })).catch(() => {});
       return true;
     }
@@ -982,6 +1411,14 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   const localConsumedSig = await AsyncStorage.getItem('league_result_consumed_sig');
   const cloudConsumedSig = cloudData['league_result_consumed_sig'];
   for (const key of SYNC_KEYS) {
+    if (
+      key === CLOUD_DAILY_TASKS_PROGRESS_KEY ||
+      key === CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY ||
+      key === FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY ||
+      key === FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY
+    ) {
+      continue;
+    }
     const val = cloudData[key];
     if (val !== null && val !== undefined) {
       if (key === 'league_result_pending') {
@@ -990,30 +1427,51 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
           continue;
         }
       }
-      pairs.push([key, mergeLessonRestoreValue(key, String(val), localLessonRestoreMap[key])]);
+      const storageValue = cloudProgressStorageValue(key, val);
+      pairs.push([key, mergeLessonRestoreValue(key, storageValue, localLessonRestoreMap[key])]);
     }
   }
   if (cloudData['achievements_state']) pairs.push(['achievements_v1', cloudData['achievements_state']]);
   if (!cloudData['flashcards_v1'] && cloudData['flashcards']) pairs.push(['flashcards_v1', String(cloudData['flashcards'])]);
   if (cloudData['lang']) pairs.push(['app_lang', cloudData['lang']]);
   if (cloudData['user_avatar_frame']) pairs.push(['user_frame', cloudData['user_avatar_frame']]);
-  const dailyBlob = cloudData['daily_tasks_progress'];
-  const fullRestoreDaily = dailyBlob != null && dailyBlob !== '';
-  if (fullRestoreDaily) {
-    const dk = `daily_tasks_${getTodayKey()}`;
+  const dailyBlob = currentCloudDailyTasksProgress(cloudData);
+  const fullRestoreDailyTargets: Array<'en' | 'fr'> = [];
+  if (dailyBlob != null && dailyBlob !== '') {
+    const dk = dailyTasksProgressKey(getTodayKey(), 'en');
     const localDailyForMerge = await AsyncStorage.getItem(dk);
     pairs.push([dk, mergeDailyTasksProgressForRestore(localDailyForMerge, String(dailyBlob))]);
+    fullRestoreDailyTargets.push('en');
+  }
+  const frenchDailyBlob = currentCloudDailyTasksProgress(
+    cloudData,
+    FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY,
+    FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
+  );
+  if (frenchDailyBlob != null && frenchDailyBlob !== '') {
+    const dk = dailyTasksProgressKey(getTodayKey(), 'fr');
+    const localDailyForMerge = await AsyncStorage.getItem(dk);
+    pairs.push([dk, mergeDailyTasksProgressForRestore(localDailyForMerge, String(frenchDailyBlob))]);
+    fullRestoreDailyTargets.push('fr');
   }
   if (pairs.length > 0) {
     await AsyncStorage.multiSet(pairs);
-    if (cloudHasPremiumAdminState) invalidatePremiumCache();
+    if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
-  if (cloudAdminPremiumActive !== null) {
-    await AsyncStorage.setItem('premium_active', cloudAdminPremiumActive ? 'true' : 'false');
-    if (cloudHasPremiumAdminState) invalidatePremiumCache();
+  if (cloudVipActive !== null) {
+    const vipPairs: [string, string][] = [
+      ['vip_active', cloudVipActive ? 'true' : 'false'],
+      ['vip_plan', cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : ''],
+      ['vip_from', cloudVipActive ? (cloudVipState?.fromValue ?? '0') : '0'],
+      ['vip_until', cloudVipActive ? (cloudVipState?.untilValue ?? '0') : '0'],
+      ['vip_admin_override', cloudVipActive ? 'true' : 'false'],
+    ];
+    if (cloudVipState?.grantAt) vipPairs.push(['vip_admin_grant_at', cloudVipState.grantAt]);
+    await AsyncStorage.multiSet(vipPairs);
+    if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
-  if (fullRestoreDaily) {
-    await reconcileRestoredDayDailyStorageIfNeeded(true);
+  if (fullRestoreDailyTargets.length > 0) {
+    await reconcileRestoredDayDailyStorageIfNeeded(fullRestoreDailyTargets);
   }
   await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify({ ...cloudData })).catch(() => {});
   return true;
@@ -1030,6 +1488,7 @@ export async function restoreAndMigrateFromCloud(): Promise<boolean> {
   const uid = await ensureAnonUser();
   if (!uid) return false;
   try {
+    await ensureStableAuthLinkForStableId(uid).catch(() => false);
     const doc = await db.collection('users').doc(uid).get();
     const migrated = await AsyncStorage.getItem('cloud_migration_v1');
     if (!migrated) {
@@ -1099,13 +1558,12 @@ export async function forceSyncToCloud(): Promise<boolean> {
     const pairs = await AsyncStorage.multiGet([...SYNC_KEYS]);
     const data: Record<string, string | null> = {};
     for (const [key, value] of pairs) data[key] = value;
+    removeCloudOnlyDailyTaskSnapshots(data);
     const achievementsV1 = await AsyncStorage.getItem('achievements_v1');
     if (achievementsV1) data['achievements_state'] = achievementsV1;
     if (data['app_lang']) data['lang'] = data['app_lang'];
     if (data['user_frame']) data['user_avatar_frame'] = data['user_frame'];
-    const todayKey = getTodayKey();
-    const todayTasks = await AsyncStorage.getItem('daily_tasks_' + todayKey);
-    if (todayTasks) data['daily_tasks_progress'] = todayTasks;
+    await addTodayDailyTaskSnapshots(data);
     for (const [key, value] of Object.entries({ ...data })) {
       if (!shouldSyncPremiumProgressField(key, value, data)) delete data[key];
     }
@@ -1114,9 +1572,11 @@ export async function forceSyncToCloud(): Promise<boolean> {
     const docRef = db.collection('users').doc(uid);
     const createdAtSynced = await AsyncStorage.getItem(CREATED_AT_SYNC_KEY);
     const shouldSendCreatedAt = !createdAtSynced;
+    const firebaseAuthUidRow = getAuthUserId();
     await withTimeout(
       docRef.set(
         {
+          ...(firebaseAuthUidRow ? { firebaseAuthUid: firebaseAuthUidRow } : {}),
           progress: data,
           ...(data['user_avatar'] ? { user_avatar: data['user_avatar'] } : {}),
           ...(data['user_avatar_frame'] ? { user_avatar_frame: data['user_avatar_frame'] } : {}),
@@ -1129,7 +1589,6 @@ export async function forceSyncToCloud(): Promise<boolean> {
       FORCE_SYNC_FIRESTORE_WRITE_MS,
       'firestore_set',
     );
-    const firebaseAuthUidRow = getAuthUserId();
     if (firebaseAuthUidRow) {
       try {
         const arenaUid = await ensureArenaAuthUid();
@@ -1188,31 +1647,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
 //
 // ВАЖНО: stable_id не трогаем тут — это делает clearStableId() в stable_id.ts.
 export async function wipeLocalAccountData(): Promise<void> {
-  const accountKeys = new Set<string>([
-    ...SYNC_KEYS,
-    // Доп. ключи которые синкаются под другими именами или субколлекциями:
-    'achievements_v1', // мапится на achievements_state
-    'daily_tasks_progress',
-    // Шарды: баланс и служебные (баланс перетянется loadShardsFromCloud,
-    // но для нового аккаунта он стартует с 0).
-    'shards_balance',
-    // Bookkeeping синка (новый stable_id = новая история синка)
-    LAST_SYNC_SNAPSHOT_KEY,
-    CREATED_AT_SYNC_KEY,
-    'cloud_migration_v1',
-    // Сегодняшний день daily_tasks тоже надо снести (у нового аккаунта свой)
-    `daily_tasks_${getTodayKey()}`,
-    // Кэши лидербордов (содержат предыдущего юзера)
-    'global_lb_cache', 'leaderboard_cache_v1', 'last_known_league_rank',
-    'league_result_pending', 'week_leaderboard',
-    // Прочее account-level
-    'last_active_date', 'comeback_active', 'comeback_pending',
-    'bug_hunt_shown', 'flashcard_anim_pending', 'flashcard_delete_hint_seen',
-    'energy_state', 'energy_onboarding_shown',
-    'daily_treasure_state', 'install_date',
-    'login_bonus_v1', 'last_opened_lesson',
-    'diagnostic_last',
-  ]);
+  const accountKeys = new Set<string>(accountLocalDataKeysForToday());
   // Сохраняем НЕ-аккаунтные настройки устройства:
   const KEEP = new Set<string>(['app_theme', 'app_font_size', 'haptics_tap']);
   const toRemove = Array.from(accountKeys).filter((k) => !KEEP.has(k));
@@ -1237,6 +1672,7 @@ export async function deleteCloudData(): Promise<void> {
   if (!CLOUD_SYNC_ENABLED) return;
   if (IS_EXPO_GO) return;
   const canonicalUid = await getCanonicalUserId();
+  await ensureAnonUser();
   await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<
     { stableId?: string | null },

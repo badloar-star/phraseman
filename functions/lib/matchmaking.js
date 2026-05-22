@@ -41,16 +41,8 @@ const admin = __importStar(require("firebase-admin"));
 const types_1 = require("./types");
 const arena_pregame_1 = require("./arena_pregame");
 const arena_cleanup_1 = require("./arena_cleanup");
+const xp_levels_1 = require("./xp_levels");
 const db = admin.firestore();
-// Must match constants/theme.ts getLevelFromXP formula
-const _XP_BASE = 250;
-const _XP_EXP_INV = 1 / 1.82;
-const _MAX_LEVEL = 50;
-function getLevelFromXP(xp) {
-    if (xp <= 0)
-        return 1;
-    return Math.min(_MAX_LEVEL, Math.floor(Math.pow(xp / _XP_BASE, _XP_EXP_INV)) + 1);
-}
 /** Публичный агрегат для UI лобби: live-док, обновляется на каждом изменении очереди (CF). */
 const APP_META_MATCHMAKING = 'app_meta/matchmaking_searching';
 const RANKED_QUESTIONS_PER_MATCH = 10;
@@ -291,7 +283,7 @@ async function createSession(players, size) {
     for (let i = 0; i < playersNorm.length; i++) {
         const d = userSnaps[i]?.data();
         const xp = parseInt(d?.progress?.user_total_xp ?? '0') || 0;
-        const level = getLevelFromXP(xp);
+        const level = (0, xp_levels_1.getLevelFromXP)(xp);
         const avatarRaw = typeof d?.progress?.user_avatar === 'string' ? d.progress.user_avatar.trim() : '';
         const auraRaw = typeof d?.progress?.user_avatar_aura === 'string' ? d.progress.user_avatar_aura.trim() : '';
         avatarLevelByUid.set(playersNorm[i].userId, level);

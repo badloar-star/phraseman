@@ -6,14 +6,17 @@ appId: app.phraseman
 - waitForAnimationToEnd:
     timeout: 5000
 - tapOn:
-    point: "50%,92%"
+    point: "10%,95%"
 - waitForAnimationToEnd:
     timeout: 3000
 - runFlow: ../../_precondition.yaml
-- extendedWaitUntil:
-    visible:
+- scrollUntilVisible:
+    element:
       id: "home-league-open"
+    direction: DOWN
     timeout: 30000
+    speed: 60
+    visibilityPercentage: 30
 - tapOn:
     id: "home-league-open"
 - extendedWaitUntil:

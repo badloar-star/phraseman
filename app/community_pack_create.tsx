@@ -18,13 +18,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
-import { triLang } from '../constants/i18n';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import { triLang, type Lang } from '../constants/i18n';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { useTheme } from '../components/ThemeContext';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { emitAppEvent } from './events';
+import { actionToastTri, emitAppEvent } from './events';
 import { getCommunityUgcPackPaywallTheme } from './flashcards/cardPackPaywallTheme';
+import { flashcardsCommunityPacksAvailableForTarget } from './flashcards_target_gate';
 import {
   COMMUNITY_PACK_CARD_COUNT_MAX,
   COMMUNITY_PACK_CARD_COUNT_MIN,
@@ -60,49 +62,167 @@ import { getCanonicalUserId } from './user_id_policy';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { getTextInputSystemEditMenuProps } from './textInputSystemMenuProps';
 
-type Row = { id: string; en: string; ru: string; uk: string; es?: string };
+type Row = {
+  id: string;
+  en: string;
+  ru: string;
+  uk: string;
+  es?: string;
+  sourceLocales?: {
+    'pt-BR'?: string;
+    vi?: string;
+    id?: string;
+    tr?: string;
+    pl?: string;
+  };
+};
+
+type PlannedCommunitySourceLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+function plannedCommunitySourceLocale(lang: Lang): PlannedCommunitySourceLocale | null {
+  return lang === 'pt-BR' || lang === 'vi' || lang === 'id' || lang === 'tr' || lang === 'pl'
+    ? lang
+    : null;
+}
+
+function communitySourceLocalesWith(
+  sourceLocales: Row['sourceLocales'] | undefined,
+  locale: PlannedCommunitySourceLocale | null,
+  text: string,
+): NonNullable<Row['sourceLocales']> {
+  const next = {
+    'pt-BR': sourceLocales?.['pt-BR'],
+    vi: sourceLocales?.vi,
+    id: sourceLocales?.id,
+    tr: sourceLocales?.tr,
+    pl: sourceLocales?.pl,
+  };
+  if (locale) next[locale] = text || undefined;
+  return next;
+}
+
+function communityPackRowWithSourceLocale(
+  base: Row,
+  en: string,
+  ru: string,
+  es: string,
+  note: string,
+  locale: PlannedCommunitySourceLocale | null,
+  text: string,
+): Row {
+  const next = {
+    ...base,
+    en,
+    uk: note,
+    sourceLocales: communitySourceLocalesWith(base.sourceLocales, locale, text),
+  };
+  next.ru = ru;
+  next.es = es || undefined;
+  return next;
+}
+
+function newCommunityPackRowWithSourceLocale(
+  id: string,
+  en: string,
+  ru: string,
+  es: string,
+  note: string,
+  locale: PlannedCommunitySourceLocale | null,
+  text: string,
+): Row {
+  const row = {
+    id,
+    en,
+    uk: note,
+    sourceLocales: communitySourceLocalesWith(undefined, locale, text),
+  } as Row;
+  row.ru = ru;
+  row.es = es || undefined;
+  return row;
+}
 
 function communityPackValidationToast(
   err: string,
   cardsLen: number,
-): { messageRu: string; messageUk: string; messageEs: string } {
+): Parameters<typeof actionToastTri>[1] {
   switch (err) {
     case 'card_count':
       if (cardsLen < COMMUNITY_PACK_CARD_COUNT_MIN) {
         return {
-          messageRu: `Минимум ${COMMUNITY_PACK_CARD_COUNT_MIN} карточек.`,
-          messageUk: `Мінімум ${COMMUNITY_PACK_CARD_COUNT_MIN} карток.`,
-          messageEs: `Al menos ${COMMUNITY_PACK_CARD_COUNT_MIN} tarjetas.`,
+          ru: `Минимум ${COMMUNITY_PACK_CARD_COUNT_MIN} карточек.`,
+          uk: `Мінімум ${COMMUNITY_PACK_CARD_COUNT_MIN} карток.`,
+          es: `Al menos ${COMMUNITY_PACK_CARD_COUNT_MIN} tarjetas.`,
+          'pt-BR': `No mínimo ${COMMUNITY_PACK_CARD_COUNT_MIN} cartões.`,
+          vi: `Tối thiểu ${COMMUNITY_PACK_CARD_COUNT_MIN} thẻ.`,
+          id: `Minimal ${COMMUNITY_PACK_CARD_COUNT_MIN} kartu.`,
+          tr: `En az ${COMMUNITY_PACK_CARD_COUNT_MIN} kart.`,
+          pl: `Minimum ${COMMUNITY_PACK_CARD_COUNT_MIN} kart.`,
         };
       }
       return {
-        messageRu: `Не более ${COMMUNITY_PACK_CARD_COUNT_MAX} карточек.`,
-        messageUk: `Не більше ${COMMUNITY_PACK_CARD_COUNT_MAX} карток.`,
-        messageEs: `Como máximo, ${COMMUNITY_PACK_CARD_COUNT_MAX} tarjetas.`,
+        ru: `Не более ${COMMUNITY_PACK_CARD_COUNT_MAX} карточек.`,
+        uk: `Не більше ${COMMUNITY_PACK_CARD_COUNT_MAX} карток.`,
+        es: `Como máximo, ${COMMUNITY_PACK_CARD_COUNT_MAX} tarjetas.`,
+        'pt-BR': `No máximo ${COMMUNITY_PACK_CARD_COUNT_MAX} cartões.`,
+        vi: `Tối đa ${COMMUNITY_PACK_CARD_COUNT_MAX} thẻ.`,
+        id: `Maksimal ${COMMUNITY_PACK_CARD_COUNT_MAX} kartu.`,
+        tr: `En fazla ${COMMUNITY_PACK_CARD_COUNT_MAX} kart.`,
+        pl: `Maksymalnie ${COMMUNITY_PACK_CARD_COUNT_MAX} kart.`,
       };
     case 'title_or_desc':
       return {
-        messageRu: 'Укажите название и описание набора.',
-        messageUk: 'Вкажіть назву й опис набору.',
-        messageEs: 'Indica el título y la descripción del pack.',
+        ru: 'Укажите название и описание набора.',
+        uk: 'Вкажіть назву й опис набору.',
+        es: 'Indica el título y la descripción del pack.',
+        'pt-BR': 'Informe o título e a descrição do pacote.',
+        vi: 'Nhập tên và mô tả của bộ thẻ.',
+        id: 'Isi judul dan deskripsi paket.',
+        tr: 'Paketin adını ve açıklamasını gir.',
+        pl: 'Podaj nazwę i opis zestawu.',
       };
     case 'price':
       return {
-        messageRu: 'Что-то пошло не так с отправкой набора — попробуйте ещё раз.',
-        messageUk: 'Щось пішло не так з надсиланням набору — спробуйте ще раз.',
-        messageEs: 'Algo salió mal al enviar el pack — inténtalo otra vez.',
+        ru: 'Что-то пошло не так с отправкой набора — попробуйте ещё раз.',
+        uk: 'Щось пішло не так з надсиланням набору — спробуйте ще раз.',
+        es: 'Algo salió mal al enviar el pack — inténtalo otra vez.',
+        'pt-BR': 'Algo deu errado ao enviar o pacote. Tente novamente.',
+        vi: 'Đã xảy ra lỗi khi gửi bộ thẻ. Hãy thử lại.',
+        id: 'Ada yang salah saat mengirim paket. Coba lagi.',
+        tr: 'Paket gönderilirken bir şey ters gitti. Tekrar dene.',
+        pl: 'Coś poszło nie tak przy wysyłaniu zestawu. Spróbuj ponownie.',
       };
     case 'card_fields':
       return {
-        messageRu: 'У каждой карточки должны быть EN и перевод.',
-        messageUk: 'У кожної картки мають бути EN і переклад.',
-        messageEs: 'Cada tarjeta debe tener EN y traducción.',
+        ru: 'У каждой карточки должны быть EN и перевод.',
+        uk: 'У кожної картки мають бути EN і переклад.',
+        es: 'Cada tarjeta debe tener EN y traducción.',
+        'pt-BR': 'Cada cartão precisa ter EN e tradução.',
+        vi: 'Mỗi thẻ cần có EN và bản dịch.',
+        id: 'Setiap kartu harus memiliki EN dan terjemahan.',
+        tr: 'Her kartta EN ve çeviri olmalı.',
+        pl: 'Każda karta musi mieć EN i tłumaczenie.',
+      };
+    case 'study_target_gate':
+      return {
+        ru: 'Community-наборы для French закрыты до отдельной проверки источников.',
+        uk: 'Community-набори для French закриті до окремої перевірки джерел.',
+        es: 'Los packs community para French están bloqueados hasta una revisión de fuentes.',
+        'pt-BR': 'Os pacotes community para French ficam bloqueados até uma revisão separada das fontes.',
+        vi: 'Bộ community cho French bị chặn cho đến khi kiểm tra nguồn riêng.',
+        id: 'Paket community untuk French diblokir sampai sumbernya ditinjau terpisah.',
+        tr: 'French community paketleri ayrı kaynak incelemesine kadar kapalı.',
+        pl: 'Pakiety community dla French są zablokowane do osobnej weryfikacji źródeł.',
       };
     default:
       return {
-        messageRu: 'Проверьте название, описание, цену и все карточки.',
-        messageUk: 'Перевірте назву, опис, ціну та всі картки.',
-        messageEs: 'Revisa el título, la descripción, el precio y todas las tarjetas.',
+        ru: 'Проверьте название, описание, цену и все карточки.',
+        uk: 'Перевірте назву, опис, ціну та всі картки.',
+        es: 'Revisa el título, la descripción, el precio y todas las tarjetas.',
+        'pt-BR': 'Verifique o título, a descrição, o preço e todos os cartões.',
+        vi: 'Kiểm tra tên, mô tả, giá và tất cả thẻ.',
+        id: 'Periksa judul, deskripsi, harga, dan semua kartu.',
+        tr: 'Adı, açıklamayı, fiyatı ve tüm kartları kontrol et.',
+        pl: 'Sprawdź nazwę, opis, cenę i wszystkie karty.',
       };
   }
 }
@@ -116,6 +236,7 @@ export default function CommunityPackCreateScreen() {
 
   const { theme: t, f, themeMode, isDark } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const L = (
     ru: string,
     uk: string,
@@ -139,6 +260,7 @@ export default function CommunityPackCreateScreen() {
   const [draftEn, setDraftEn] = useState('');
   const [draftRu, setDraftRu] = useState('');
   const [draftEs, setDraftEs] = useState('');
+  const [draftPlannedTranslation, setDraftPlannedTranslation] = useState('');
   const [draftNote, setDraftNote] = useState('');
   const [editingIdx, setEditingIdx] = useState<number | null>(null);
   /** Extra bottom padding so ScrollView can scroll past the keyboard. */
@@ -155,10 +277,12 @@ export default function CommunityPackCreateScreen() {
   const draftEnInputRef = useRef<TextInput>(null);
   const draftRuInputRef = useRef<TextInput>(null);
   const draftEsInputRef = useRef<TextInput>(null);
+  const draftPlannedInputRef = useRef<TextInput>(null);
   const draftNoteInputRef = useRef<TextInput>(null);
   const draftPanelRef = useRef<View>(null);
 
-  const canUse = CLOUD_SYNC_ENABLED && !IS_EXPO_GO && isCommunityPacksCloudEnabled();
+  const communityPacksTargetEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
+  const canUse = CLOUD_SYNC_ENABLED && !IS_EXPO_GO && isCommunityPacksCloudEnabled() && communityPacksTargetEnabled;
   const isEditMode = !!editPackId;
   /** Create mode: false until local draft load/clear finished (avoid overwriting AsyncStorage). */
   const [draftHydrated, setDraftHydrated] = useState(() => isEditMode || !canUse);
@@ -167,6 +291,7 @@ export default function CommunityPackCreateScreen() {
   const cardBackKey: UgcCardBackId = (UGC_CARD_BACK_IDS[cardBackIdx] ?? UGC_CARD_BACK_DEFAULT_ID) as UgcCardBackId;
   const selectedCardBack = cardBackImage(cardBackKey);
   const selectedCardBackFan = cardBackFanImage(cardBackKey);
+  const plannedDraftLocale = plannedCommunitySourceLocale(lang);
 
   const packVis = useMemo(
     () => getCommunityUgcPackPaywallTheme(themeKey, { themeMode, isLight: isLightTheme }),
@@ -248,7 +373,7 @@ export default function CommunityPackCreateScreen() {
         setLoadErr(L('Нет id', 'Немає id', 'Sin ID', 'Sem ID', 'Không có ID', 'Tanpa ID', 'ID yok', 'Brak ID'));
         return;
       }
-      const snap = await fetchCommunityPackForAuthorEdit(editPackId, sid);
+      const snap = await fetchCommunityPackForAuthorEdit(editPackId, sid, studyTarget);
       if (cancelled) return;
       if (!snap) {
         setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'El pack no está disponible para editar', 'O pack não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Pakiet nie jest dostępny do edycji'));
@@ -267,13 +392,20 @@ export default function CommunityPackCreateScreen() {
           ru: c.ru,
           uk: c.uk,
           es: c.es,
+          sourceLocales: {
+            'pt-BR': c.sourceLocales?.['pt-BR'],
+            vi: c.sourceLocales?.vi,
+            id: c.sourceLocales?.id,
+            tr: c.sourceLocales?.tr,
+            pl: c.sourceLocales?.pl,
+          },
         })),
       );
     })();
     return () => {
       cancelled = true;
     };
-  }, [canUse, isEditMode, editPackId, lang]);
+  }, [canUse, isEditMode, editPackId, lang, studyTarget]);
 
   useEffect(() => {
     if (!canUse || isEditMode) {
@@ -283,11 +415,11 @@ export default function CommunityPackCreateScreen() {
     let cancelled = false;
     void (async () => {
       if (freshStart) {
-        await clearCommunityPackCreateDraft();
+        await clearCommunityPackCreateDraft(studyTarget, lang);
         if (!cancelled) setDraftHydrated(true);
         return;
       }
-      const d = await loadCommunityPackCreateDraft();
+      const d = await loadCommunityPackCreateDraft(studyTarget, lang);
       if (cancelled) return;
       if (d) {
         setTitle(d.title);
@@ -299,6 +431,7 @@ export default function CommunityPackCreateScreen() {
         setDraftEn(d.draftEn);
         setDraftRu(d.draftRu);
         setDraftEs(d.draftEs);
+        setDraftPlannedTranslation(d.draftPlannedTranslation);
         setDraftNote(d.draftNote);
       }
       setDraftHydrated(true);
@@ -306,7 +439,7 @@ export default function CommunityPackCreateScreen() {
     return () => {
       cancelled = true;
     };
-  }, [canUse, isEditMode, freshStart]);
+  }, [canUse, isEditMode, freshStart, studyTarget, lang]);
 
   useEffect(() => {
     if (!draftHydrated || isEditMode || !canUse) return;
@@ -323,8 +456,9 @@ export default function CommunityPackCreateScreen() {
         draftEn,
         draftRu,
         draftEs,
+        draftPlannedTranslation,
         draftNote,
-      });
+      }, studyTarget, lang);
     }, 420);
     return () => clearTimeout(tmr);
   }, [
@@ -341,7 +475,10 @@ export default function CommunityPackCreateScreen() {
     draftEn,
     draftRu,
     draftEs,
+    draftPlannedTranslation,
     draftNote,
+    studyTarget,
+    lang,
   ]);
 
   useEffect(() => {
@@ -360,8 +497,9 @@ export default function CommunityPackCreateScreen() {
           draftEn,
           draftRu,
           draftEs,
+          draftPlannedTranslation,
           draftNote,
-        });
+        }, studyTarget, lang);
       }
     });
     return () => sub.remove();
@@ -379,7 +517,10 @@ export default function CommunityPackCreateScreen() {
     draftEn,
     draftRu,
     draftEs,
+    draftPlannedTranslation,
     draftNote,
+    studyTarget,
+    lang,
   ]);
 
   const removeRow = useCallback((idx: number) => {
@@ -398,11 +539,12 @@ export default function CommunityPackCreateScreen() {
       setDraftEn(row.en);
       setDraftRu(row.ru);
       setDraftEs(row.es ?? '');
+      setDraftPlannedTranslation(plannedDraftLocale ? row.sourceLocales?.[plannedDraftLocale] ?? '' : '');
       setDraftNote(row.uk);
       setAddCardFormOpen(true);
       setEditingIdx(idx);
     },
-    [rows],
+    [rows, plannedDraftLocale],
   );
 
   useEffect(() => {
@@ -422,9 +564,9 @@ export default function CommunityPackCreateScreen() {
     return () => clearTimeout(timer);
   }, [editingIdx]);
 
-  const draftTranslation = lang === 'es' ? draftEs : draftRu;
-  const setDraftTranslation = lang === 'es' ? setDraftEs : setDraftRu;
-  const draftTranslationInputRef = lang === 'es' ? draftEsInputRef : draftRuInputRef;
+  const draftTranslation = plannedDraftLocale ? draftPlannedTranslation : lang === 'es' ? draftEs : draftRu;
+  const setDraftTranslation = plannedDraftLocale ? setDraftPlannedTranslation : lang === 'es' ? setDraftEs : setDraftRu;
+  const draftTranslationInputRef = plannedDraftLocale ? draftPlannedInputRef : lang === 'es' ? draftEsInputRef : draftRuInputRef;
   const draftValid = draftEn.trim().length > 0 && draftTranslation.trim().length > 0;
   const isEditingCard = editingIdx != null;
 
@@ -433,43 +575,54 @@ export default function CommunityPackCreateScreen() {
     const en = draftEn.trim();
     const translation = draftTranslation.trim();
     if (!en || !translation) {
-      emitAppEvent('action_toast', {
-        type: 'error',
-        messageRu: 'Заполните английский текст и перевод.',
-        messageUk: 'Заповніть англійський текст і переклад.',
-        messageEs: 'Completa el texto en inglés y la traducción.',
-      });
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Заполните английский текст и перевод.',
+        uk: 'Заповніть англійський текст і переклад.',
+        es: 'Completa el texto en inglés y la traducción.',
+        'pt-BR': 'Preencha o texto em inglês e a tradução.',
+        vi: 'Nhập văn bản tiếng Anh và bản dịch.',
+        id: 'Isi teks bahasa Inggris dan terjemahannya.',
+        tr: 'İngilizce metni ve çeviriyi doldur.',
+        pl: 'Uzupełnij tekst po angielsku i tłumaczenie.',
+      }));
       return;
     }
-    const ru = lang === 'es' ? draftRu.trim() : translation;
-    const es = lang === 'es' ? translation : draftEs.trim();
+    const ru = plannedDraftLocale ? draftRu.trim() : lang === 'es' ? draftRu.trim() : translation;
+    const es = plannedDraftLocale ? draftEs.trim() : lang === 'es' ? translation : draftEs.trim();
     const note = draftNote.trim();
     if (editingIdx != null) {
       setRows((r) =>
         r.map((row, i) =>
-          i === editingIdx ? { ...row, en, ru, es: es || undefined, uk: note } : row,
+          i === editingIdx
+            ? communityPackRowWithSourceLocale(row, en, ru, es, note, plannedDraftLocale, translation)
+            : row,
         ),
       );
     } else {
       setRows((r) => {
         if (r.length >= 50) return r;
-        const next = [...r, { id: `c${r.length + 1}`, en, ru, es: es || undefined, uk: note }];
+        const next = [
+          ...r,
+          newCommunityPackRowWithSourceLocale(`c${r.length + 1}`, en, ru, es, note, plannedDraftLocale, translation),
+        ];
         return next.map((row, i) => ({ ...row, id: `c${i + 1}` }));
       });
     }
     setDraftEn('');
     setDraftRu('');
     setDraftEs('');
+    setDraftPlannedTranslation('');
     setDraftNote('');
     setAddCardFormOpen(false);
     setEditingIdx(null);
-  }, [draftEn, draftRu, draftEs, draftTranslation, draftNote, editingIdx, lang]);
+  }, [draftEn, draftRu, draftEs, draftTranslation, draftNote, editingIdx, lang, plannedDraftLocale]);
 
   const cancelDraftCard = useCallback(() => {
     Keyboard.dismiss();
     setDraftEn('');
     setDraftRu('');
     setDraftEs('');
+    setDraftPlannedTranslation('');
     setDraftNote('');
     setAddCardFormOpen(false);
     setEditingIdx(null);
@@ -489,14 +642,15 @@ export default function CommunityPackCreateScreen() {
         draftEn,
         draftRu,
         draftEs,
+        draftPlannedTranslation,
         draftNote,
       }),
-    [title, description, themeIdx, cardBackIdx, rows, addCardFormOpen, draftEn, draftRu, draftEs, draftNote],
+    [title, description, themeIdx, cardBackIdx, rows, addCardFormOpen, draftEn, draftRu, draftEs, draftPlannedTranslation, draftNote],
   );
 
   const performClearLocalDraft = useCallback(() => {
     setClearDraftModalOpen(false);
-    void clearCommunityPackCreateDraft();
+    void clearCommunityPackCreateDraft(studyTarget, lang);
     setTitle('');
     setDescription('');
     setThemeIdx(0);
@@ -506,8 +660,9 @@ export default function CommunityPackCreateScreen() {
     setDraftEn('');
     setDraftRu('');
     setDraftEs('');
+    setDraftPlannedTranslation('');
     setDraftNote('');
-  }, []);
+  }, [studyTarget, lang]);
 
   const onClearLocalDraftPrompt = useCallback(() => {
     setClearDraftModalOpen(true);
@@ -520,8 +675,16 @@ export default function CommunityPackCreateScreen() {
       ru: row.ru.trim() || undefined,
       uk: row.uk.trim() || undefined,
       es: row.es?.trim() || undefined,
+      sourceLocales: {
+        'pt-BR': row.sourceLocales?.['pt-BR'],
+        vi: row.sourceLocales?.vi,
+        id: row.sourceLocales?.id,
+        tr: row.sourceLocales?.tr,
+        pl: row.sourceLocales?.pl,
+      },
     }));
     const p: CommunityPackSubmissionPayload = {
+      studyTarget,
       title: title.trim(),
       description: description.trim(),
       sourceLang: lang,
@@ -531,36 +694,44 @@ export default function CommunityPackCreateScreen() {
       cardBackKey,
     };
     return p;
-  }, [title, description, rows, themeKey, cardBackKey, lang]);
+  }, [title, description, rows, themeKey, cardBackKey, lang, studyTarget]);
 
   const runSubmit = useCallback(
     async (updatePackId?: string) => {
       if (!canUse || !payload) return;
       const err = validateCommunityPackPayload(payload);
       if (err) {
-        emitAppEvent('action_toast', { type: 'error', ...communityPackValidationToast(err, payload.cards.length) });
+        emitAppEvent('action_toast', actionToastTri('error', communityPackValidationToast(err, payload.cards.length)));
         return;
       }
       const authorStableId = await getCanonicalUserId();
       if (!authorStableId) {
-        emitAppEvent('action_toast', {
-          type: 'error',
-          messageRu: 'Нет стабильного id профиля.',
-          messageUk: 'Немає стабільного id профілю.',
-          messageEs: 'No hay un ID de perfil estable.',
-        });
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Нет стабильного id профиля.',
+          uk: 'Немає стабільного id профілю.',
+          es: 'No hay un ID de perfil estable.',
+          'pt-BR': 'Não há um ID de perfil estável.',
+          vi: 'Không có ID hồ sơ ổn định.',
+          id: 'Tidak ada ID profil yang stabil.',
+          tr: 'Sabit profil kimliği yok.',
+          pl: 'Brak stabilnego ID profilu.',
+        }));
         return;
       }
       if (!auth().currentUser) {
         try {
           await auth().signInAnonymously();
         } catch {
-          emitAppEvent('action_toast', {
-            type: 'error',
-            messageRu: 'Войдите в приложение (облако).',
-            messageUk: 'Увійдіть у застосунок (хмара).',
-            messageEs: 'Inicia sesión en la app (nube).',
-          });
+          emitAppEvent('action_toast', actionToastTri('error', {
+            ru: 'Войдите в приложение (облако).',
+            uk: 'Увійдіть у застосунок (хмара).',
+            es: 'Inicia sesión en la app (nube).',
+            'pt-BR': 'Entre no aplicativo (nuvem).',
+            vi: 'Đăng nhập vào ứng dụng (đám mây).',
+            id: 'Masuk ke aplikasi (cloud).',
+            tr: 'Uygulamaya giriş yap (bulut).',
+            pl: 'Zaloguj się w aplikacji (chmura).',
+          }));
           return;
         }
       }
@@ -573,37 +744,46 @@ export default function CommunityPackCreateScreen() {
           ...(updatePackId ? { updatePackId } : {}),
         });
         if (!updatePackId) {
-          await clearCommunityPackCreateDraft();
+          await clearCommunityPackCreateDraft(studyTarget, lang);
         }
-        emitAppEvent('action_toast', {
-          type: 'success',
-          messageRu: updatePackId ? 'Изменения отправлены на проверку.' : 'Набор отправлен на проверку.',
-          messageUk: updatePackId ? 'Зміни надіслано на перевірку.' : 'Набір надіслано на перевірку.',
-          messageEs: updatePackId
+        emitAppEvent('action_toast', actionToastTri('success', {
+          ru: updatePackId ? 'Изменения отправлены на проверку.' : 'Набор отправлен на проверку.',
+          uk: updatePackId ? 'Зміни надіслано на перевірку.' : 'Набір надіслано на перевірку.',
+          es: updatePackId
             ? 'Cambios enviados para revisión.'
             : 'Pack enviado para revisión.',
-        });
+          'pt-BR': updatePackId ? 'Alterações enviadas para revisão.' : 'Pacote enviado para revisão.',
+          vi: updatePackId ? 'Đã gửi thay đổi để xét duyệt.' : 'Đã gửi bộ thẻ để xét duyệt.',
+          id: updatePackId ? 'Perubahan dikirim untuk ditinjau.' : 'Paket dikirim untuk ditinjau.',
+          tr: updatePackId ? 'Değişiklikler incelemeye gönderildi.' : 'Paket incelemeye gönderildi.',
+          pl: updatePackId ? 'Zmiany wysłane do sprawdzenia.' : 'Zestaw wysłany do sprawdzenia.',
+        }));
         router.back();
       } catch (e: unknown) {
         const msg = e && typeof e === 'object' && 'message' in e ? String((e as Error).message) : String(e);
-        emitAppEvent('action_toast', {
-          type: 'error',
-          messageRu: msg.slice(0, 140) || 'Ошибка отправки.',
-          messageUk: msg.slice(0, 140) || 'Помилка відправки.',
-          messageEs: msg.slice(0, 140) || 'Error al enviar.',
-        });
+        const short = msg.slice(0, 140);
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: short || 'Ошибка отправки.',
+          uk: short || 'Помилка відправки.',
+          es: short || 'Error al enviar.',
+          'pt-BR': short || 'Erro ao enviar.',
+          vi: short || 'Lỗi khi gửi.',
+          id: short || 'Gagal mengirim.',
+          tr: short || 'Gönderme hatası.',
+          pl: short || 'Błąd wysyłania.',
+        }));
       } finally {
         setBusy(false);
       }
     },
-    [canUse, payload, router, lang],
+    [canUse, payload, router, studyTarget, lang],
   );
 
   const onSubmit = useCallback(() => {
     if (!canUse || !payload) return;
     const err = validateCommunityPackPayload(payload);
     if (err) {
-      emitAppEvent('action_toast', { type: 'error', ...communityPackValidationToast(err, payload.cards.length) });
+      emitAppEvent('action_toast', actionToastTri('error', communityPackValidationToast(err, payload.cards.length)));
       return;
     }
     if (isEditMode) {
@@ -646,7 +826,9 @@ export default function CommunityPackCreateScreen() {
           <ContentWrap>
             <View style={styles.formHorizontalInset}>
               <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 24 }}>
-                {L('Создание наборов с облаком недоступно в этой сборке.', 'Створення наборів з хмарою недоступне в цьому білді.', 'Crear packs con la nube no está disponible en esta versión.', 'A criação de packs com nuvem não está disponível nesta versão.', 'Tính năng tạo bộ thẻ bằng đám mây không khả dụng trong bản dựng này.', 'Pembuatan paket dengan cloud tidak tersedia di build ini.', 'Bulutla paket oluşturma bu sürümde kullanılamıyor.', 'Tworzenie pakietów z chmurą nie jest dostępne w tej wersji.')}
+                {communityPacksTargetEnabled
+                  ? L('Создание наборов с облаком недоступно в этой сборке.', 'Створення наборів з хмарою недоступне в цьому білді.', 'Crear packs con la nube no está disponible en esta versión.', 'A criação de packs com nuvem não está disponível nesta versão.', 'Tính năng tạo bộ thẻ bằng đám mây không khả dụng trong bản dựng này.', 'Pembuatan paket dengan cloud tidak tersedia di build ini.', 'Bulutla paket oluşturma bu sürümde kullanılamıyor.', 'Tworzenie pakietów z chmurą nie jest dostępne w tej wersji.')
+                  : L('Community-наборы для French закрыты до отдельной проверки источников.', 'Community-набори для French закриті до окремої перевірки джерел.', 'Los packs community para French están bloqueados hasta una revisión de fuentes.', 'Os packs community para French estão bloqueados até uma revisão de fontes.', 'Các gói community cho French đang bị khóa cho đến khi kiểm tra nguồn riêng.', 'Paket community untuk French dikunci sampai pemeriksaan sumber terpisah.', 'French için community paketleri ayrı kaynak kontrolüne kadar kapalı.', 'Pakiety community dla French są zablokowane do osobnej kontroli źródeł.')}
               </Text>
             </View>
           </ContentWrap>
@@ -1014,6 +1196,7 @@ export default function CommunityPackCreateScreen() {
                   ru={row.ru}
                   uk={row.uk}
                   es={row.es}
+                  sourceLocales={row.sourceLocales}
                   frontGradient={cardChrome.frontGradient}
                   backGradient={cardChrome.backGradient}
                   borderAccent={cardChrome.borderAccent}

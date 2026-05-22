@@ -1,4 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  flashcardsSwipeSessionDraftKey,
+  type RuntimeStudyTarget,
+} from './target_storage_keys';
 
 export type FlashcardsSwipeCardProgress = {
   wrong: number;
@@ -50,7 +54,6 @@ export type FlashcardsSwipeSessionDraft = FlashcardsSwipeSessionScope & {
   progress: Record<string, FlashcardsSwipeCardProgress>;
 };
 
-export const FLASHCARDS_SWIPE_SESSION_DRAFT_KEY = 'flashcards_swipe_session_draft_v1';
 export const FLASHCARDS_SWIPE_SESSION_DRAFT_TTL_MS = 36 * 60 * 60 * 1000;
 
 function cleanString(value: unknown): string {
@@ -73,8 +76,8 @@ function sameSourceIds(left: string[], right: string[]): boolean {
   return a.length === b.length && a.every((id, index) => id === b[index]);
 }
 
-function validNumber(value: unknown, fallback = 0): number {
-  return typeof value === 'number' && Number.isFinite(value) ? value : fallback;
+function validNumber(value: unknown, defaultValue = 0): number {
+  return typeof value === 'number' && Number.isFinite(value) ? value : defaultValue;
 }
 
 function parseStats(value: unknown): FlashcardsSwipeSessionStats | null {
@@ -185,9 +188,12 @@ function draftMatchesScope(draft: FlashcardsSwipeSessionDraft, scope: Flashcards
   );
 }
 
-export async function saveFlashcardsSwipeSessionDraft(draft: FlashcardsSwipeSessionDraft): Promise<void> {
+export async function saveFlashcardsSwipeSessionDraft(
+  draft: FlashcardsSwipeSessionDraft,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> {
   await AsyncStorage.setItem(
-    FLASHCARDS_SWIPE_SESSION_DRAFT_KEY,
+    flashcardsSwipeSessionDraftKey(studyTarget),
     JSON.stringify({
       ...draft,
       sourceIds: normalizeSourceIds(draft.sourceIds),
@@ -199,17 +205,18 @@ export async function saveFlashcardsSwipeSessionDraft(draft: FlashcardsSwipeSess
 export async function loadFlashcardsSwipeSessionDraft(
   scope: FlashcardsSwipeSessionScope,
   now = Date.now(),
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<FlashcardsSwipeSessionDraft | null> {
-  const draft = parseDraft(await AsyncStorage.getItem(FLASHCARDS_SWIPE_SESSION_DRAFT_KEY));
+  const draft = parseDraft(await AsyncStorage.getItem(flashcardsSwipeSessionDraftKey(studyTarget)));
   if (!draft) return null;
   const expired = now - draft.savedAt > FLASHCARDS_SWIPE_SESSION_DRAFT_TTL_MS;
   if (expired || !draftMatchesScope(draft, scope)) {
-    await clearFlashcardsSwipeSessionDraft();
+    await clearFlashcardsSwipeSessionDraft(studyTarget);
     return null;
   }
   return draft;
 }
 
-export async function clearFlashcardsSwipeSessionDraft(): Promise<void> {
-  await AsyncStorage.removeItem(FLASHCARDS_SWIPE_SESSION_DRAFT_KEY);
+export async function clearFlashcardsSwipeSessionDraft(studyTarget?: RuntimeStudyTarget): Promise<void> {
+  await AsyncStorage.removeItem(flashcardsSwipeSessionDraftKey(studyTarget));
 }

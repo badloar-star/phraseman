@@ -5,21 +5,26 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
+const QUESTION_ORDER_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre ordem básica em perguntas ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về trật tự từ trong câu hỏi này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan urutan kata dasar dalam pertanyaan ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu temel soru kelime sırası açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie podstawowego szyku słów w pytaniu nadal wymaga przeglądu po polsku.',
+};
+
 const tri = (
   ru: string,
   uk = ru,
   es = ru,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? QUESTION_ORDER_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'do questions',
@@ -35,26 +40,68 @@ const SMART_CONTRAST = ['do questions', 'does questions', 'did questions', 'be q
 
 const option = (text: string) => ({ id: text, text });
 
+const QUESTION_ORDER_SKILL_ES: Record<string, string> = {
+  do_you_work: 'Una accion normal con you suele empezar con Do.',
+  do_they_live: 'Con they y una accion normal, usa Do.',
+  statement_vs_question_order: 'No basta la entonacion: la pregunta necesita Do delante.',
+  does_she_work_base: 'Con she, usa Does y deja el verbo en forma base.',
+  does_no_s: 'Does ya lleva la marca de tercera persona; no agregues -s al verbo.',
+  did_base_verb: 'Did lleva el pasado; el verbo vuelve a la forma base.',
+  where_do_you_live: 'Where va primero, pero dentro de la pregunta aun necesitas do.',
+  where_are_you: 'Con are, no agregues do; are se mueve delante de you.',
+  can_question: 'Can se mueve delante por si solo; no agregues do.',
+  did_yesterday: 'Yesterday apunta al pasado: usa Did + verbo base.',
+  is_at_home: 'At home describe estado/lugar, asi que usa Is.',
+  will_future: 'Tomorrow apunta al futuro: Will va delante.',
+  what_did_buy: 'What va primero; did lleva el pasado y buy queda base.',
+  what_can_do: 'Con can, el orden es What can you do?',
+  why_did_leave: 'Why va primero; did lleva el pasado y leave queda base.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = QUESTION_ORDER_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? QUESTION_ORDER_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function questionEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = QUESTION_ORDER_SKILL_ES[input.targetSkill] ?? 'Primero decide si la pregunta usa do/does/did, be o can/will/should.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
+
 const DEFAULT_RETRY: [TriText, TriText, TriText, TriText] = [
   tri(
     'Сначала посмотри, что делает фраза: действие, состояние или возможность. От этого зависит первое слово вопроса.',
     'Спочатку подивись, що робить фраза: дія, стан чи можливість. Від цього залежить перше слово питання.',
-    'First check what the phrase expresses: action, state, or possibility. That decides the first word.',
+    'Primero mira que expresa la frase: accion, estado o posibilidad. Eso decide la primera palabra.',
   ),
   tri(
     'Если это обычное действие, чаще всего нужен do, does или did.',
     'Якщо це звичайна дія, найчастіше потрібне do, does або did.',
-    'For a normal action, you usually need do, does, or did.',
+    'Para una accion normal, normalmente necesitas do, does o did.',
   ),
   tri(
     'Если во фразе уже есть am/is/are или can/will/should, это слово само выходит вперед.',
     'Якщо у фразі вже є am/is/are або can/will/should, це слово саме виходить уперед.',
-    'If the phrase already has am/is/are or can/will/should, that word moves forward.',
+    'Si la frase ya tiene am/is/are o can/will/should, esa palabra se mueve delante.',
   ),
   tri(
     'Почти подсказка: держи готовые модели Do you work? Are you ready? Can you help?',
     'Майже підказка: тримай готові моделі Do you work? Are you ready? Can you help?',
-    'Almost a hint: keep the models Do you work? Are you ready? Can you help?',
+    'Casi una pista: guarda los modelos Do you work? Are you ready? Can you help?',
   ),
 ];
 
@@ -62,7 +109,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Здесь нужен другой порядок слов. Нормальный вопрос: ${correct}`,
     `Тут потрібен інший порядок слів. Нормальне питання: ${correct}`,
-    `Use a different question order: ${correct}`,
+    `Usa otro orden de pregunta: ${correct}`,
   );
 }
 
@@ -80,38 +127,44 @@ function step(input: {
   retryFeedback?: [TriText, TriText, TriText, TriText];
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = questionEsFeedback({
+    targetSkill: input.targetSkill,
+    correctAnswer: input.correctAnswer,
+    focusWords: input.focusWords,
+  });
+
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: withEs(input.translation, esFeedback),
     explanationBlock: tri(
       'В английском вопросе часто нельзя просто сказать утверждение с вопросительной интонацией. Нужно вынести вперед do, does, did, am, is, are, can или will.',
       'В англійському питанні часто не можна просто сказати твердження з питальною інтонацією. Потрібно винести вперед do, does, did, am, is, are, can або will.',
-      'English questions often need a word at the front: do, does, did, am, is, are, can, or will.',
+      esFeedback,
     ),
     microTask: tri(
       'Выбери вариант, который звучит как нормальный английский вопрос.',
       'Обери варіант, який звучить як нормальне англійське питання.',
-      'Choose the option that sounds like a normal English question.',
+      'Elige la opcion que suena como una pregunta normal en ingles.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map(option),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((item) => item === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((item) => item !== input.correctAnswer)
-        .map((item) => [item, input.wrong?.[item] ?? defaultWrong(input.correctAnswer)]),
+        .map((item) => [item, withEs(input.wrong?.[item] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: input.retryFeedback ?? DEFAULT_RETRY,
+    retryFeedback: (input.retryFeedback ?? DEFAULT_RETRY).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Быстрая проверка: обычное действие получает do/does/did. Например: Do you speak English? Does he like coffee? What did you buy? Слова am/is/are и can/will/should выходят вперед сами: Where are you? What can you do? Вопросительное слово ставим в самое начало.',
       'Швидка перевірка: звичайна дія отримує do/does/did. Слова am/is/are і can/will/should виходять уперед самі. Питальне слово ставимо на самий початок.',
-      'Quick check: normal actions use do/does/did. Am/is/are and can/will/should move forward themselves. Question words go first.',
+      esFeedback,
     ),
     focusWords: input.focusWords,
   };
@@ -123,29 +176,69 @@ export const WORD_ORDER_BASIC_QUESTION_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 32,
-  supportedLocales: ['ru', 'uk'],
-  title: tri('Вопросы: Do you work? / Are you ready?', 'Питання: Do you work? / Are you ready?', 'Question word order'),
-  shortTitle: tri('Порядок в вопросах', 'Порядок у питаннях', 'Question order'),
+  supportedLocales: ['ru', 'uk', 'es'],
+  title: tri('Вопросы: Do you work? / Are you ready?', 'Питання: Do you work? / Are you ready?', 'Preguntas: Do you work? / Are you ready?', {
+    'pt-BR': 'Perguntas: Do you work? / Are you ready?',
+    vi: 'Câu hỏi: Do you work? / Are you ready?',
+    id: 'Pertanyaan: Do you work? / Are you ready?',
+    tr: 'Sorular: Do you work? / Are you ready?',
+    pl: 'Pytania: Do you work? / Are you ready?',
+  }),
+  shortTitle: tri('Порядок в вопросах', 'Порядок у питаннях', 'Orden en preguntas', {
+    'pt-BR': 'Ordem em perguntas',
+    vi: 'Trật tự từ trong câu hỏi',
+    id: 'Urutan kata dalam pertanyaan',
+    tr: 'Sorularda kelime sırası',
+    pl: 'Szyk słów w pytaniach',
+  }),
   shortDiagnosis: tri(
     'Ты строишь английский вопрос как русское утверждение с интонацией.',
     'Ти будуєш англійське питання як українське твердження з інтонацією.',
-    'You are building English questions like statements with intonation.',
+    'Construyes preguntas en ingles como afirmaciones con entonacion.',
+    {
+      'pt-BR': 'Você monta a pergunta em inglês como uma afirmação com entonação de pergunta.',
+      vi: 'Bạn tạo câu hỏi tiếng Anh như một câu khẳng định rồi thêm ngữ điệu hỏi.',
+      id: 'Kamu membangun pertanyaan bahasa Inggris seperti pernyataan dengan intonasi tanya.',
+      tr: 'İngilizce soruyu soru tonlamalı bir olumlu cümle gibi kuruyorsun.',
+      pl: 'Budujesz angielskie pytanie jak zdanie twierdzące z pytającą intonacją.',
+    },
   ),
   diagnosisText: tri(
     'Ты часто оставляешь слова в порядке утверждения: You work here? По смыслу тебя могут понять, но фраза звучит слабее и иногда ломается полностью. В базовом английском вопрос обычно получает отдельное слово впереди: Do you work here? Are you ready? Can you help?',
     'Ти часто залишаєш слова в порядку твердження: You work here? За змістом тебе можуть зрозуміти, але фраза звучить слабше й іноді ламається повністю. У базовій англійській питання зазвичай отримує окреме слово попереду: Do you work here? Are you ready? Can you help?',
-    'You often keep statement order in questions. English usually needs a front question word: Do you work here? Are you ready? Can you help?',
+    'A menudo dejas las palabras en orden de afirmacion: You work here? Por sentido pueden entenderte, pero suena mas debil y a veces se rompe. En ingles basico la pregunta suele llevar una palabra delante: Do you work here? Are you ready? Can you help?',
+    {
+      'pt-BR': 'Você muitas vezes deixa as palavras na ordem de uma afirmação: You work here? Pelo sentido, talvez entendam você, mas a frase soa mais fraca e às vezes quebra totalmente. No inglês básico, a pergunta geralmente leva uma palavra antes: Do you work here? Are you ready? Can you help?',
+      vi: 'Bạn thường giữ các từ theo trật tự câu khẳng định: You work here? Về nghĩa có thể người khác vẫn hiểu, nhưng câu nghe yếu hơn và đôi khi sai hẳn. Trong tiếng Anh cơ bản, câu hỏi thường cần một từ đứng trước: Do you work here? Are you ready? Can you help?',
+      id: 'Kamu sering membiarkan kata-kata dalam urutan pernyataan: You work here? Dari makna mungkin masih dipahami, tetapi terdengar lebih lemah dan kadang benar-benar rusak. Dalam bahasa Inggris dasar, pertanyaan biasanya memakai kata bantu di depan: Do you work here? Are you ready? Can you help?',
+      tr: 'Kelimeleri sık sık olumlu cümle sırasıyla bırakıyorsun: You work here? Anlamdan anlaşılabilir, ama cümle daha zayıf duyulur ve bazen tamamen bozulur. Temel İngilizcede soru genellikle öne ayrı bir kelime alır: Do you work here? Are you ready? Can you help?',
+      pl: 'Często zostawiasz słowa w szyku zdania twierdzącego: You work here? Z sensu może da się cię zrozumieć, ale zdanie brzmi słabiej i czasem całkiem się psuje. W podstawowym angielskim pytanie zwykle dostaje osobne słowo z przodu: Do you work here? Are you ready? Can you help?',
+    },
   ),
   mentalModel: tri(
     'Думай не “как поднять интонацию?”, а “какое слово ставит вопрос на рельсы?”. Для обычного действия это do, does или did. Для ready, at home, late работают am/is/are. Для can, will, should ничего добавлять не надо: они сами становятся первыми.',
     'Думай не “як підняти інтонацію?”, а “яке слово ставить питання на рейки?”. Для звичайної дії це do, does або did. Для ready, at home, late працюють am/is/are. Для can, will, should нічого додавати не треба: вони самі стають першими.',
-    'Think: which word starts the question? Normal actions use do/does/did. Be-phrases use am/is/are. Can/will/should move forward themselves.',
+    'No pienses "como subo la entonacion?", sino "que palabra pone la pregunta en marcha?". Para una accion normal es do, does o did. Para ready, at home, late funcionan am/is/are. Con can, will, should no agregas nada: ellos mismos van primero.',
+    {
+      'pt-BR': 'Não pense “como eu subo a entonação?”, mas “qual palavra coloca a pergunta nos trilhos?”. Para uma ação normal, é do, does ou did. Para ready, at home, late, funcionam am/is/are. Com can, will, should, não acrescente nada: eles mesmos vão para a frente.',
+      vi: 'Đừng nghĩ “làm sao lên giọng?”, hãy nghĩ “từ nào đặt câu hỏi vào đúng khung?”. Với hành động bình thường, đó là do, does hoặc did. Với ready, at home, late, dùng am/is/are. Với can, will, should, không thêm gì cả: chúng tự đứng lên đầu.',
+      id: 'Jangan berpikir “bagaimana menaikkan intonasi?”, tetapi “kata apa yang membuat ini menjadi pertanyaan?”. Untuk aksi biasa, gunakan do, does, atau did. Untuk ready, at home, late, gunakan am/is/are. Dengan can, will, should, jangan tambahkan apa pun: kata itu sendiri maju ke depan.',
+      tr: '“Tonlamayı nasıl yükseltirim?” diye değil, “soruyu hangi kelime rayına oturtur?” diye düşün. Normal eylem için bu do, does veya did olur. Ready, at home, late için am/is/are çalışır. Can, will, should ile hiçbir şey ekleme: onlar kendileri başa gelir.',
+      pl: 'Nie myśl „jak podnieść intonację?”, tylko „jakie słowo ustawia pytanie na torach?”. Przy zwykłej czynności jest to do, does albo did. Przy ready, at home, late działają am/is/are. Przy can, will, should niczego nie dodajesz: one same idą na początek.',
+    },
   ),
   contrastSet: CONTRAST,
   coreRule: tri(
     'Обычное действие: Do you work? Does she work? Did they call? Состояние или место: Are you ready? Is he at home? Возможность или будущее: Can you help? Will they come? Слова where/what/when/how ставятся перед всей этой конструкцией.',
     'Звичайна дія: Do you work? Does she work? Did they call? Стан або місце: Are you ready? Is he at home? Можливість або майбутнє: Can you help? Will they come? Слова where/what/when/how ставляться перед усією цією конструкцією.',
-    'Normal action: Do you work? Does she work? Did they call? State/place: Are you ready? Is he at home? Can/will go first by themselves.',
+    'Accion normal: Do you work? Does she work? Did they call? Estado o lugar: Are you ready? Is he at home? Posibilidad o futuro: Can you help? Will they come? Where/what/when/how van antes de toda esta estructura.',
+    {
+      'pt-BR': 'Ação normal: Do you work? Does she work? Did they call? Estado ou lugar: Are you ready? Is he at home? Possibilidade ou futuro: Can you help? Will they come? Where/what/when/how vêm antes de toda essa estrutura.',
+      vi: 'Hành động bình thường: Do you work? Does she work? Did they call? Trạng thái hoặc nơi chốn: Are you ready? Is he at home? Khả năng hoặc tương lai: Can you help? Will they come? Where/what/when/how đứng trước toàn bộ cấu trúc đó.',
+      id: 'Aksi biasa: Do you work? Does she work? Did they call? Keadaan atau tempat: Are you ready? Is he at home? Kemungkinan atau masa depan: Can you help? Will they come? Where/what/when/how diletakkan sebelum seluruh struktur itu.',
+      tr: 'Normal eylem: Do you work? Does she work? Did they call? Durum veya yer: Are you ready? Is he at home? Olasılık veya gelecek: Can you help? Will they come? Where/what/when/how bütün bu yapının önüne gelir.',
+      pl: 'Zwykła czynność: Do you work? Does she work? Did they call? Stan albo miejsce: Are you ready? Is he at home? Możliwość albo przyszłość: Can you help? Will they come? Where/what/when/how stawiamy przed całą tą strukturą.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -173,10 +266,16 @@ export const WORD_ORDER_BASIC_QUESTION_TRAINING: DiagnosisTraining = {
       'Головна звичка: спочатку знайди перше слово питання, потім збирай решту.',
     ],
     es: [
-      'Normal present actions use do or does.',
-      'Past questions use did plus the simple action.',
-      'Am/is/are and can/will/should move forward themselves.',
-      'Question words go first.',
+      'Para una accion normal en presente con I/you/we/they, la pregunta empieza con do: Do you work?',
+      'Para he/she/it en presente, la pregunta empieza con does y el verbo va sin -s: Does she work?',
+      'En pasado, la pregunta empieza con did y el verbo vuelve a la forma simple: Did you go?',
+      'Con ready, at home, late y frases parecidas no hace falta do: Are you ready? Is he at home?',
+      'Con can/will/should no hace falta do: Can you help? Will they come?',
+      'Where, what, when, why, how van al principio: Where do you live?',
+      'No copies el orden de tu idioma: Where you live? suena como error. Normal: Where do you live?',
+      'Despues de does no agregues -s al verbo: Does she speak? No Does she speaks?',
+      'Despues de did no uses pasado: Did you buy? No Did you bought?',
+      'Habito principal: primero encuentra la primera palabra de la pregunta, despues monta lo demas.',
     ],
     'pt-BR': [
       'Ações normais no presente usam do ou does.',
@@ -210,14 +309,14 @@ export const WORD_ORDER_BASIC_QUESTION_TRAINING: DiagnosisTraining = {
     ],
   },
   examples: [
-    { en: 'Do you work here?', ru: 'Ты здесь работаешь?', uk: 'Ти тут працюєш?', es: 'Do you work here?', 'pt-BR': 'Você trabalha aqui?', vi: 'Bạn làm việc ở đây à?', id: 'Apakah kamu bekerja di sini?', tr: 'Burada çalışıyor musun?', pl: 'Czy pracujesz tutaj?', why: tri('Work - обычное действие. С you вопрос начинается с do.', 'Work - звичайна дія. З you питання починається з do.', 'Normal action with you uses do.') },
-    { en: 'Does she speak English?', ru: 'Она говорит по-английски?', uk: 'Вона говорить англійською?', es: 'Does she speak English?', 'pt-BR': 'Ela fala inglês?', vi: 'Cô ấy nói tiếng Anh không?', id: 'Apakah dia berbicara bahasa Inggris?', tr: 'O İngilizce konuşuyor mu?', pl: 'Czy ona mówi po angielsku?', why: tri('Does уже показывает he/she/it, поэтому speak остается без -s.', 'Does уже показує he/she/it, тому speak лишається без -s.', 'Does carries the third-person signal, so speak has no -s.') },
-    { en: 'Did you call him?', ru: 'Ты позвонил ему?', uk: 'Ти подзвонив йому?', es: 'Did you call him?', 'pt-BR': 'Você ligou para ele?', vi: 'Bạn đã gọi cho anh ấy chưa?', id: 'Apakah kamu menelepon dia?', tr: 'Onu aradın mı?', pl: 'Czy zadzwoniłeś do niego?', why: tri('Did показывает прошлое, поэтому call не превращается в called.', 'Did показує минуле, тому call не перетворюється на called.', 'Did carries the past signal, so call stays simple.') },
-    { en: 'Are you ready?', ru: 'Ты готов?', uk: 'Ти готовий?', es: 'Are you ready?', 'pt-BR': 'Você está pronto?', vi: 'Bạn đã sẵn sàng chưa?', id: 'Apakah kamu siap?', tr: 'Hazır mısın?', pl: 'Czy jesteś gotowy?', why: tri('Ready работает с are. Do здесь не нужен.', 'Ready працює з are. Do тут не потрібне.', 'Ready uses are here.') },
-    { en: 'Is he at home?', ru: 'Он дома?', uk: 'Він удома?', es: 'Is he at home?', 'pt-BR': 'Ele está em casa?', vi: 'Anh ấy có ở nhà không?', id: 'Apakah dia di rumah?', tr: 'O evde mi?', pl: 'Czy on jest w domu?', why: tri('At home описывает место/состояние, поэтому вопрос начинается с is.', 'At home описує місце/стан, тому питання починається з is.', 'At home uses is here.') },
-    { en: 'Can you help me?', ru: 'Ты можешь мне помочь?', uk: 'Ти можеш мені допомогти?', es: 'Can you help me?', 'pt-BR': 'Você pode me ajudar?', vi: 'Bạn có thể giúp tôi không?', id: 'Bisakah kamu membantu saya?', tr: 'Bana yardım edebilir misin?', pl: 'Czy możesz mi pomóc?', why: tri('Can само выходит вперед. Do добавлять не надо.', 'Can саме виходить уперед. Do додавати не треба.', 'Can moves forward by itself.') },
-    { en: 'Where do you live?', ru: 'Где ты живешь?', uk: 'Де ти живеш?', es: 'Where do you live?', 'pt-BR': 'Onde você mora?', vi: 'Bạn sống ở đâu?', id: 'Di mana kamu tinggal?', tr: 'Nerede yaşıyorsun?', pl: 'Gdzie mieszkasz?', why: tri('Where стоит первым, но внутри вопроса все равно нужен do.', 'Where стоїть першим, але всередині питання все одно потрібне do.', 'Where goes first, but do is still needed.') },
-    { en: 'What did you buy?', ru: 'Что ты купил?', uk: 'Що ти купив?', es: 'What did you buy?', 'pt-BR': 'O que você comprou?', vi: 'Bạn đã mua gì?', id: 'Apa yang kamu beli?', tr: 'Ne satın aldın?', pl: 'Co kupiłeś?', why: tri('What ставим вперед. Did показывает прошлое. Buy остается простым.', 'What ставимо вперед. Did показує минуле. Buy лишається простим.', 'What goes first. Did carries the past signal.') },
+    { en: 'Do you work here?', ru: 'Ты здесь работаешь?', uk: 'Ти тут працюєш?', es: 'Trabajas aqui?', 'pt-BR': 'Você trabalha aqui?', vi: 'Bạn làm việc ở đây à?', id: 'Apakah kamu bekerja di sini?', tr: 'Burada çalışıyor musun?', pl: 'Czy pracujesz tutaj?', why: tri('Work - обычное действие. С you вопрос начинается с do.', 'Work - звичайна дія. З you питання починається з do.', 'Work es una accion normal. Con you, la pregunta empieza con do.') },
+    { en: 'Does she speak English?', ru: 'Она говорит по-английски?', uk: 'Вона говорить англійською?', es: 'Ella habla ingles?', 'pt-BR': 'Ela fala inglês?', vi: 'Cô ấy nói tiếng Anh không?', id: 'Apakah dia berbicara bahasa Inggris?', tr: 'O İngilizce konuşuyor mu?', pl: 'Czy ona mówi po angielsku?', why: tri('Does уже показывает he/she/it, поэтому speak остается без -s.', 'Does уже показує he/she/it, тому speak лишається без -s.', 'Does ya marca he/she/it, asi que speak queda sin -s.') },
+    { en: 'Did you call him?', ru: 'Ты позвонил ему?', uk: 'Ти подзвонив йому?', es: 'Lo llamaste?', 'pt-BR': 'Você ligou para ele?', vi: 'Bạn đã gọi cho anh ấy chưa?', id: 'Apakah kamu menelepon dia?', tr: 'Onu aradın mı?', pl: 'Czy zadzwoniłeś do niego?', why: tri('Did показывает прошлое, поэтому call не превращается в called.', 'Did показує минуле, тому call не перетворюється на called.', 'Did marca el pasado, asi que call queda simple.') },
+    { en: 'Are you ready?', ru: 'Ты готов?', uk: 'Ти готовий?', es: 'Estas listo?', 'pt-BR': 'Você está pronto?', vi: 'Bạn đã sẵn sàng chưa?', id: 'Apakah kamu siap?', tr: 'Hazır mısın?', pl: 'Czy jesteś gotowy?', why: tri('Ready работает с are. Do здесь не нужен.', 'Ready працює з are. Do тут не потрібне.', 'Ready funciona con are. Aqui no hace falta do.') },
+    { en: 'Is he at home?', ru: 'Он дома?', uk: 'Він удома?', es: 'Esta en casa?', 'pt-BR': 'Ele está em casa?', vi: 'Anh ấy có ở nhà không?', id: 'Apakah dia di rumah?', tr: 'O evde mi?', pl: 'Czy on jest w domu?', why: tri('At home описывает место/состояние, поэтому вопрос начинается с is.', 'At home описує місце/стан, тому питання починається з is.', 'At home describe lugar/estado, asi que la pregunta empieza con is.') },
+    { en: 'Can you help me?', ru: 'Ты можешь мне помочь?', uk: 'Ти можеш мені допомогти?', es: 'Puedes ayudarme?', 'pt-BR': 'Você pode me ajudar?', vi: 'Bạn có thể giúp tôi không?', id: 'Bisakah kamu membantu saya?', tr: 'Bana yardım edebilir misin?', pl: 'Czy możesz mi pomóc?', why: tri('Can само выходит вперед. Do добавлять не надо.', 'Can саме виходить уперед. Do додавати не треба.', 'Can se mueve delante por si solo. No agregues do.') },
+    { en: 'Where do you live?', ru: 'Где ты живешь?', uk: 'Де ти живеш?', es: 'Donde vives?', 'pt-BR': 'Onde você mora?', vi: 'Bạn sống ở đâu?', id: 'Di mana kamu tinggal?', tr: 'Nerede yaşıyorsun?', pl: 'Gdzie mieszkasz?', why: tri('Where стоит первым, но внутри вопроса все равно нужен do.', 'Where стоїть першим, але всередині питання все одно потрібне do.', 'Where va primero, pero dentro de la pregunta aun hace falta do.') },
+    { en: 'What did you buy?', ru: 'Что ты купил?', uk: 'Що ти купив?', es: 'Que compraste?', 'pt-BR': 'O que você comprou?', vi: 'Bạn đã mua gì?', id: 'Apa yang kamu beli?', tr: 'Ne satın aldın?', pl: 'Co kupiłeś?', why: tri('What ставим вперед. Did показывает прошлое. Buy остается простым.', 'What ставимо вперед. Did показує минуле. Buy лишається простим.', 'What va primero. Did marca el pasado.') },
   ],
   introBlocks: [
     {
@@ -226,7 +325,7 @@ export const WORD_ORDER_BASIC_QUESTION_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты иногда строишь вопрос как утверждение и просто добавляешь вопросительную интонацию. В русском это часто работает. В английском часто нет.',
         'Схоже, ти іноді будуєш питання як твердження і просто додаєш питальну інтонацію. В українській це часто працює. В англійській часто ні.',
-        'You may be building questions like statements with intonation only.',
+        'Puede que a veces construyas la pregunta como una afirmacion y solo agregues entonacion. En tu idioma eso puede funcionar; en ingles muchas veces no.',
       ),
     },
     {
@@ -235,7 +334,7 @@ export const WORD_ORDER_BASIC_QUESTION_TRAINING: DiagnosisTraining = {
       text: tri(
         'У английского вопроса часто есть первое служебное слово: Do you work? Are you ready? Can you help?',
         'В англійського питання часто є перше службове слово: Do you work? Are you ready? Can you help?',
-        'Many English questions start with a front word: Do you work? Are you ready? Can you help?',
+        'Muchas preguntas en ingles tienen una palabra auxiliar delante: Do you work? Are you ready? Can you help?',
       ),
     },
     {
@@ -244,7 +343,7 @@ export const WORD_ORDER_BASIC_QUESTION_TRAINING: DiagnosisTraining = {
       text: tri(
         'Главные ловушки: вопрос без do, лишняя -s после does и прошлая форма после did. Нормально: Do you work? Where do you live? Does she work? Did you go?',
         'Головні пастки: питання без do, зайва -s після does і минула форма після did. Нормально: Do you work? Where do you live? Does she work? Did you go?',
-        'Main traps: You work? Where you live? Does she works? Did you went?',
+        'Trampas principales: pregunta sin do, -s extra despues de does y pasado despues de did. Normal: Do you work? Where do you live? Does she work? Did you go?',
       ),
     },
   ],
@@ -529,22 +628,22 @@ export const WORD_ORDER_BASIC_QUESTION_TRAINING: DiagnosisTraining = {
     depth1: tri(
       'Показываем, какой тип вопроса перед тобой: обычное действие, состояние или can/will/should.',
       'Показуємо, який тип питання перед тобою: звичайна дія, стан або can/will/should.',
-      'Show the question type: normal action, state, or can/will/should.',
+      'Mostramos que tipo de pregunta tienes: accion normal, estado o can/will/should.',
     ),
     depth2: tri(
       'Проще: если это действие, ищи do/does/did. Если это ready/at home, ищи am/is/are.',
       'Простіше: якщо це дія, шукай do/does/did. Якщо це ready/at home, шукай am/is/are.',
-      'Simpler: action uses do/does/did; ready/at home uses am/is/are.',
+      'Mas simple: si es accion, busca do/does/did. Si es ready/at home, busca am/is/are.',
     ),
     depth3: tri(
       'Держи готовые модели и сравни по смыслу: действие сейчас или обычно - Do you work? She - Does she work? Прошлое - Did you call? Состояние - Are you ready? Возможность - Can you help?',
       'Тримай готові моделі й порівняй за змістом: дія зараз або зазвичай - Do you work? She - Does she work? Минуле - Did you call? Стан - Are you ready? Можливість - Can you help?',
-      'Keep the model questions: Do you work? Does she work? Did you call? Are you ready? Can you help?',
+      'Guarda los modelos: Do you work? Does she work? Did you call? Are you ready? Can you help?',
     ),
     depth4: tri(
       'Почти подсказка: выбери вариант, где первое слово вопроса уже стоит перед человеком или предметом.',
       'Майже підказка: обери варіант, де перше слово питання вже стоїть перед людиною або предметом.',
-      'Almost a hint: choose the option where the question starter is already before the person or thing.',
+      'Casi una pista: elige la opcion donde la palabra inicial de la pregunta ya esta antes de la persona o cosa.',
     ),
   },
   failureRecovery: {
@@ -685,7 +784,7 @@ export const WORD_ORDER_BASIC_QUESTION_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_word_order_basic_question_start',
     answer: 'diagnosis_training_word_order_basic_question_answer',
     mastery: 'diagnosis_training_word_order_basic_question_mastery',
-    fallback: 'diagnosis_training_word_order_basic_question_fallback',
+    recovery: 'diagnosis_training_word_order_basic_question_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

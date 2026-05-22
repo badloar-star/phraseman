@@ -118,7 +118,8 @@ export async function flushCommunityModerationAlertsFromInbox(): Promise<void> {
       const tes = String(rec.titleEs || '').trim();
       if (pid && !tr && !tuk && !tes) {
         try {
-          const meta = await fetchCommunityPackMeta(pid);
+          const eventStudyTarget = String(rec.studyTarget || '').trim();
+          const meta = await fetchCommunityPackMeta(pid, eventStudyTarget);
           if (meta) {
             rec.titleRu = meta.titleRu;
             rec.titleUk = meta.titleUk;

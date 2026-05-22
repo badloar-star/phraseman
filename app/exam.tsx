@@ -13,6 +13,7 @@ import Svg from 'react-native-svg';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { useEnergy } from '../components/EnergyContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
@@ -46,6 +47,8 @@ import { logMistake, type MistakeWhat } from './mistake_log';
 import { resolveChoiceMistakeToken, resolvePhraseMistakeToken } from './mistake_token_resolver';
 import type { PhraseMistakeSignal } from './phrase_analytics';
 import { isUserFacingCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
+import { lessonProgressKey } from './target_storage_keys';
+import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
 const LINGMAN_EXAM_ENERGY = 8;
@@ -354,11 +357,60 @@ const formatTime = (sec: number) => {
 
 type Phase = 'locked'|'intro'|'countdown'|'quiz'|'review'|'result'|'cert';
 
+function FrenchLingmanExamUnavailable({
+  lang,
+  onBack,
+  onLessons,
+  sx,
+  t,
+  f,
+}: {
+  lang: string;
+  onBack: () => void;
+  onLessons: () => void;
+  sx: ReturnType<typeof screenTextOnGradient>;
+  t: ReturnType<typeof useTheme>['theme'];
+  f: ReturnType<typeof useTheme>['f'];
+}) {
+  const copy = frenchExamGateCopy('final', lang);
+  return (
+    <ScreenGradient artBackdrop="exam">
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+          <TouchableOpacity onPress={onBack}>
+            <Ionicons name="chevron-back" size={28} color={sx.primary} />
+          </TouchableOpacity>
+        </View>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 28 }}>
+          <View style={{ width: 88, height: 88, borderRadius: 44, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
+            <Ionicons name="shield-checkmark-outline" size={40} color={t.textSecond} />
+          </View>
+          <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
+            {copy.title}
+          </Text>
+          <Text style={{ color: sx.muted, fontSize: f.bodyLg, lineHeight: 25, textAlign: 'center', marginBottom: 26 }}>
+            {copy.body}
+          </Text>
+          <TouchableOpacity
+            activeOpacity={0.86}
+            onPress={onLessons}
+            style={{ backgroundColor: t.bgSurface, borderWidth: 0.5, borderColor: t.border, borderRadius: 16, paddingHorizontal: 22, paddingVertical: 14 }}
+          >
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{copy.cta}</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </ScreenGradient>
+  );
+}
+
 export default function ExamScreen() {
   const router = useRouter();
   const {theme:t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const {lang} = useLang();
+  const { studyTarget } = useStudyTarget();
+  const frenchExamBlocked = !examContentAvailableForTarget(studyTarget);
   const insets = useSafeAreaInsets();
   const t3 = (
     ru: string,
@@ -385,6 +437,7 @@ export default function ExamScreen() {
   const [certNamePrefill, setCertNamePrefill] = useState('');
   const [mountExportCert, setMountExportCert] = useState(false);
   const questions = React.useMemo(() => {
+    if (frenchExamBlocked) return [];
     // Группируем по уроку
     const byLesson: Record<number, ExamQuestion[]> = {};
     for (const q of EXAM_POOL) {
@@ -402,7 +455,7 @@ export default function ExamScreen() {
     const pool = [...mandatory, ...shuffle(extras).slice(0, needed)];
     const result = shuffle(pool);
     return result.map(q => ({ ...q, rawTopic: q.rawTopic ?? q.topic, topic: examTopicForLang(q, lang) }));
-  }, [lang]);
+  }, [frenchExamBlocked, lang]);
   const [idx, setIdx]               = useState(0);
   const [choices, setChoices]       = useState<(number|null)[]>(() => Array(questions.length).fill(null));
   const [flagged, setFlagged]       = useState<boolean[]>(() => Array(questions.length).fill(false));
@@ -414,15 +467,20 @@ export default function ExamScreen() {
 
   useEffect(()=>{
     (async()=>{
+      if (frenchExamBlocked) {
+        setCompleted(0);
+        setPhase('intro');
+        return;
+      }
       // Подсчитываем завершённые уроки для отображения прогресса
-      const keys = Array.from({length:32},(_,i)=>`lesson${i+1}_progress`);
+      const keys = Array.from({length:32},(_,i)=>lessonProgressKey(i + 1, studyTarget));
       const pairs = await AsyncStorage.multiGet(keys);
       let done=0;
       for(const [,saved] of pairs){
         if(saved){ try{const p:string[]=JSON.parse(saved);if(p.filter((x:string)=>x==='correct'||x==='replay_correct').length>=45)done++;}catch{} }
       }
       setCompleted(done);
-      const existingCert = await loadLingmanCertificate();
+      const existingCert = await loadLingmanCertificate(studyTarget);
       if (existingCert) {
         setCertificate(existingCert);
         // Юзер уже сдал — открывать сразу его сертификат, а не intro/locked.
@@ -431,11 +489,11 @@ export default function ExamScreen() {
       }
       // Экзамен Лингмана: все 32 урока = 5.0 + все зачёты сданы
       if(!DEV_MODE){
-        const available = await isLingmanExamAvailable();
+        const available = await isLingmanExamAvailable(studyTarget);
         if(!available) setPhase('locked');
       }
     })();
-  },[]);
+  },[frenchExamBlocked, studyTarget]);
 
   useEffect(()=>{
     if(phase!=='quiz'){
@@ -517,6 +575,10 @@ export default function ExamScreen() {
   };
 
   const startExam = async () => {
+    if (frenchExamBlocked) {
+      void trackFeatureBlocked('exam', 'start', 'french_exam_source_gate', { studyTarget }, 'exam');
+      return;
+    }
     void trackFeatureStart('exam', 'start', { questions: questions.length }, 'exam');
     if (!isUnlimited) {
       if (energy + bonusEnergy < LINGMAN_EXAM_ENERGY) {
@@ -547,12 +609,12 @@ export default function ExamScreen() {
         .filter((item): item is { lessonId: number; signal: PhraseMistakeSignal; what: MistakeWhat } => Boolean(item));
       mistakeSignals.forEach(({ lessonId, signal, what }) => {
         const { phrase, ...meta } = signal;
-        logMistake(phrase, lessonId, 'exam', what, meta);
+        logMistake(phrase, lessonId, 'exam', what, meta, studyTarget);
       });
     // XP: 10000 за золото (≥90%), иначе 50 + бонус за %
     const xp = p >= 90 ? 10000 : 50 + Math.round(p / 2);
     if (p >= 90) awardOneTime('exam_excellent').catch(() => {});
-    checkAchievements({ type: 'exam', pct: p }).catch(() => {});
+    checkAchievements({ type: 'exam', pct: p, studyTarget }).catch(() => {});
     let storedName = '';
     try {
       const raw = await AsyncStorage.getItem('user_name');
@@ -579,7 +641,7 @@ export default function ExamScreen() {
         pct: p,
         lang: bundleLang(lang),
       });
-      await saveLingmanCertificate(cert);
+      await saveLingmanCertificate(cert, studyTarget);
       setCertificate(cert);
       // Подсказка для модалки — из локального профиля, юзер может оставить или изменить.
       setCertNamePrefill(storedName);
@@ -603,7 +665,7 @@ export default function ExamScreen() {
     try {
       await AsyncStorage.setItem('user_name', name);
     } catch {}
-    const updated = await updateLingmanCertificateName(name);
+    const updated = await updateLingmanCertificateName(name, studyTarget);
     if (updated) setCertificate(updated);
     setNameModalVisible(false);
   };
@@ -651,6 +713,16 @@ export default function ExamScreen() {
   const answered = choices.filter(c => c !== null).length;
   const pct = questions.length>0?Math.round(score/questions.length*100):0;
   const examXp = pct >= 90 ? 10000 : 50 + Math.round(pct / 2);
+  if (frenchExamBlocked) return (
+    <FrenchLingmanExamUnavailable
+      lang={lang}
+      onBack={() => router.back()}
+      onLessons={() => router.replace('/(tabs)/lessons' as any)}
+      sx={sx}
+      t={t}
+      f={f}
+    />
+  );
   const q = questions[idx]||questions[0];
   if (!q) return null;
   const chosen = choices[idx];
@@ -759,12 +831,13 @@ export default function ExamScreen() {
           </Text>
         </View>
         {[
-          { icon: 'timer-outline', ru: '60 минут на весь блок', uk: '60 хвилин на весь блок', es: '60 minutos para todo el bloque', ptBr: '60 minutos para todo o bloco', vi: '60 phút cho toàn bộ phần', id: '60 menit untuk seluruh blok', tr: 'Tüm blok için 60 dakika', pl: '60 minut na cały blok' },
+          { icon: 'timer-outline', ru: '60 минут на весь блок', uk: '60 хвилин на весь блок', es: '60 minutos para todo el bloque', 'pt-BR': '60 minutos para todo o bloco', ptBr: '60 minutos para todo o bloco', vi: '60 phút cho toàn bộ phần', id: '60 menit untuk seluruh blok', tr: 'Tüm blok için 60 dakika', pl: '60 minut na cały blok' },
           {
             icon: 'bookmark-outline',
             ru: 'Можно помечать и пропускать вопросы, затем вернуться, если есть время',
             uk: 'Можна позначати й пропускати питання, потім повернутися, якщо є час',
             es: 'Puedes marcar y saltar preguntas y volver si te da tiempo',
+            'pt-BR': 'Você pode marcar e pular perguntas e voltar se der tempo',
             ptBr: 'Você pode marcar e pular perguntas e voltar se der tempo',
             vi: 'Bạn có thể đánh dấu, bỏ qua câu hỏi rồi quay lại nếu còn thời gian',
             id: 'Kamu bisa menandai dan melewati soal, lalu kembali jika masih ada waktu',
@@ -776,6 +849,7 @@ export default function ExamScreen() {
             ru: 'Награда уровня B2 в приложении при успешной сдаче',
             uk: 'Нагорода рівня B2 у застосунку при успішній здачі',
             es: 'Insignia nivel B2 en la app al completar con éxito',
+            'pt-BR': 'Insígnia nível B2 no app ao concluir com sucesso',
             ptBr: 'Insígnia nível B2 no app ao concluir com sucesso',
             vi: 'Huy hiệu cấp B2 trong ứng dụng khi hoàn thành thành công',
             id: 'Badge level B2 di aplikasi setelah berhasil selesai',
@@ -937,7 +1011,7 @@ export default function ExamScreen() {
 
       <View style={{
         position:'absolute', bottom:0, left:0, right:0,
-        backgroundColor:t.bgPrimary, borderTopWidth:0.5, borderTopColor:t.border,
+        borderTopWidth:0.5, borderTopColor:t.border,
         padding:16, paddingBottom: Math.max(16, insets.bottom + 16),
       }}>
             {answered < questions.length && (
@@ -1471,7 +1545,7 @@ export default function ExamScreen() {
       {/* Bottom navigation — 2 rows, safe area aware */}
       <View style={{
         position:'absolute', bottom:0, left:0, right:0,
-        backgroundColor:t.bgPrimary, borderTopWidth:0.5, borderTopColor:t.border,
+        borderTopWidth:0.5, borderTopColor:t.border,
         paddingBottom: Math.max(insets.bottom, 8),
         paddingHorizontal:12, paddingTop:10, gap:8,
       }}>

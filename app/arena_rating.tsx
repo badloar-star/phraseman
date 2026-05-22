@@ -4,7 +4,7 @@ import {
   View, Text, TouchableOpacity, StyleSheet, Image, ScrollView,
   Modal, Pressable, Dimensions,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useTheme } from '../components/ThemeContext';

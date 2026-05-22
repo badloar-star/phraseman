@@ -7,9 +7,10 @@ import { Animated, Easing, InteractionManager, ScrollView, Text, TouchableOpacit
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { useTheme } from '../components/ThemeContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { useEnergy } from '../components/EnergyContext';
 import EnergyBar from '../components/EnergyBar';
 import NoEnergyModal from '../components/NoEnergyModal';
@@ -23,6 +24,11 @@ import { addShards } from './shards_system';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { loadSettings } from './settings_edu';
+import { lessonPrepositionProgressKey, prepositionDrillPerfectKey } from './target_storage_keys';
+import {
+  frenchVocabularyGateCopy,
+  vocabularyContentAvailableForTarget,
+} from './vocabulary_target_gate';
 
 const POINTS_PER_CORRECT = 2;
 const POINTS_PER_PERFECT = 10;
@@ -32,18 +38,49 @@ type PrepositionProgress = {
   wrongIds: string[];
 };
 
+function FrenchPrepositionDrillUnavailable({ lang, onBack }: { lang: Lang; onBack: () => void }) {
+  const { theme: t, f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  const copy = frenchVocabularyGateCopy('preposition_drill', lang);
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24, gap: 16 }}>
+      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
+        <Ionicons name="shield-checkmark-outline" size={34} color={sx.second} />
+      </View>
+      <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center' }}>
+        {copy.title}
+      </Text>
+      <Text style={{ color: sx.muted, fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center' }}>
+        {copy.body}
+      </Text>
+      <TouchableOpacity
+        testID="preposition-drill-french-source-gate-back"
+        onPress={onBack}
+        activeOpacity={0.82}
+        style={{ marginTop: 8, alignSelf: 'center', backgroundColor: sx.second, borderRadius: 14, paddingHorizontal: 26, paddingVertical: 13 }}
+      >
+        <Text style={{ color: '#06111f', fontSize: f.bodyLg, fontWeight: '800' }}>
+          {copy.action}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
 export default function PrepositionDrillScreen() {
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const { id } = useLocalSearchParams<{ id?: string }>();
   const lessonId = parseInt(id || '0', 10) || 0;
+  const { studyTarget } = useStudyTarget();
   useEffect(() => {
     let cancelled = false;
-    void shouldBlockLessonAccess(lessonId).then(blocked => {
+    void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
       if (!cancelled && blocked) openLessonAccessGate(router, lessonId);
     });
     return () => { cancelled = true; };
-  }, [lessonId, router]);
+  }, [lessonId, router, studyTarget]);
   const { lang } = useLang();
   const { theme: t, f, themeMode, ds } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
@@ -51,8 +88,9 @@ export default function PrepositionDrillScreen() {
   const scrollRef = useRef<ScrollView>(null);
   const isLightTheme = false;
 
-  const pack = useMemo(() => getLessonPrepositionPack(lessonId), [lessonId]);
-  const progressKey = `lesson${lessonId}_preposition_progress`;
+  const pack = useMemo(() => getLessonPrepositionPack(lessonId, studyTarget), [lessonId, studyTarget]);
+  const frenchPrepositionBlocked = !vocabularyContentAvailableForTarget(studyTarget, 'preposition_drill');
+  const progressKey = lessonPrepositionProgressKey(lessonId, studyTarget);
   const [itemIdx, setItemIdx] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState(false);
@@ -195,7 +233,7 @@ export default function PrepositionDrillScreen() {
     if (wrongIds.length > 0) return;
     perfectAwardedRef.current = true;
     (async () => {
-      const key = `prep_drill_perfect_${lessonId}`;
+      const key = prepositionDrillPerfectKey(lessonId, studyTarget);
       try {
         const already = await AsyncStorage.getItem(key);
         if (already) return;
@@ -206,7 +244,7 @@ export default function PrepositionDrillScreen() {
         await AsyncStorage.setItem(key, '1').catch(() => {});
       } catch {}
     })();
-  }, [done, reviewMode, total, wrongIds.length, lessonId, lang]);
+  }, [done, reviewMode, total, wrongIds.length, lessonId, lang, studyTarget]);
 
   useEffect(() => {
     if (!done) return;
@@ -230,6 +268,21 @@ export default function PrepositionDrillScreen() {
       clearTimeout(t2);
     };
   }, [selected, item?.id, isCorrect]);
+
+  if (frenchPrepositionBlocked) {
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1 }}>
+          <ContentWrap>
+            <FrenchPrepositionDrillUnavailable
+              lang={lang}
+              onBack={() => router.replace({ pathname: '/lesson_menu', params: { id: lessonId } } as any)}
+            />
+          </ContentWrap>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
 
   if (!pack) {
     return (

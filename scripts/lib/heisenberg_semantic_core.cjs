@@ -14,11 +14,18 @@ const STOP_WORDS = new Set([
   'as',
   'at',
   'be',
+  'been',
+  'being',
   'but',
+  'can',
+  'could',
   'do',
   'does',
   'for',
   'from',
+  'had',
+  'has',
+  'have',
   'he',
   'her',
   'him',
@@ -34,13 +41,17 @@ const STOP_WORDS = new Set([
   'on',
   'or',
   'she',
+  'should',
   'that',
   'the',
   'they',
   'this',
   'to',
   'we',
+  'when',
+  'will',
   'with',
+  'would',
   'you',
   'your',
 ]);
@@ -280,6 +291,31 @@ function words(value) {
   return String(value || '').match(/[A-Za-z][A-Za-z']*/g) || [];
 }
 
+function contentWords(value) {
+  return words(value)
+    .map((word) => word.toLowerCase())
+    .filter((word) => word.length >= 3 && !STOP_WORDS.has(word));
+}
+
+function commonContentWords(choices) {
+  const choiceList = Array.isArray(choices) ? choices : [];
+  if (choiceList.length < 2) return new Set();
+  const [first, ...rest] = choiceList.map((choice) => new Set(contentWords(choice)));
+  return new Set([...first].filter((word) => rest.every((choiceWords) => choiceWords.has(word))));
+}
+
+function discriminativeContentWords(term, choices) {
+  const common = commonContentWords(choices);
+  return contentWords(term).filter((word) => !common.has(word));
+}
+
+function termCovered(text, term, choices) {
+  if (containsTerm(text, term)) return true;
+  const content = discriminativeContentWords(term, choices);
+  if (content.length < 1) return false;
+  return content.every((word) => containsTerm(text, word));
+}
+
 function choiceNgrams(choice) {
   const tokens = words(choice);
   const out = new Set();
@@ -289,7 +325,11 @@ function choiceNgrams(choice) {
       const slice = tokens.slice(i, i + size);
       const phrase = slice.join(' ');
       const lower = phrase.toLowerCase();
+      const first = slice[0].toLowerCase();
+      const last = slice[slice.length - 1].toLowerCase();
       if (size === 1 && (phrase.length < 3 || STOP_WORDS.has(lower))) continue;
+      if (size > 1 && (STOP_WORDS.has(first) || STOP_WORDS.has(last))) continue;
+      if (contentWords(phrase).length === 0) continue;
       if (phrase.length < 3) continue;
       out.add(phrase);
     }
@@ -310,8 +350,11 @@ function expectedProtectedTerms(choices, baseExplanation) {
     .slice(0, 8);
 }
 
-function missingProtectedTerms(choices, baseExplanation, localizedExplanation) {
-  return expectedProtectedTerms(choices, baseExplanation).filter((term) => !containsTerm(localizedExplanation, term));
+function missingProtectedTerms(choices, baseExplanation, localizedExplanation, allChoices) {
+  const referenceChoices = Array.isArray(allChoices) && allChoices.length > 0 ? allChoices : choices;
+  return expectedProtectedTerms(choices, baseExplanation)
+    .filter((term) => discriminativeContentWords(term, referenceChoices).length > 0)
+    .filter((term) => !termCovered(localizedExplanation, term, referenceChoices));
 }
 
 function missingRequiredFields(record, fields) {
@@ -396,7 +439,10 @@ module.exports = {
   REPLACEMENT_QUESTION_MARK_RE,
   choiceNgrams,
   compactSample,
+  commonContentWords,
   containsTerm,
+  contentWords,
+  discriminativeContentWords,
   duplicateLocaleFieldValues,
   exactStringInList,
   expectedProtectedTerms,
@@ -407,4 +453,5 @@ module.exports = {
   missingRequiredFields,
   missingProtectedTerms,
   normalizeForSearch,
+  termCovered,
 };

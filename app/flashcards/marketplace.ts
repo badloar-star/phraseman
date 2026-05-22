@@ -1,7 +1,17 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
+import type { PlannedInterfaceLang } from '../../constants/i18n';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
+import type { StudyTarget } from '../study_target';
 import { CardItem } from './types';
+import {
+  flashcardsMarketDevActivePackKey,
+  flashcardsMarketplaceBuiltCardsCacheKey,
+  flashcardsMarketDevOwnedPacksKey,
+  flashcardsOwnedPacksKey,
+  type RuntimeStudyTarget,
+} from '../target_storage_keys';
+import { flashcardsOfficialPacksAvailableForTarget } from '../flashcards_target_gate';
 import bundledManifest from './bundles/bundled_marketplace_manifest.json';
 import { derivePackCodeName, victoriaMetaFromPackJson, type VictoriaPackFile } from './bundles/victoriaBundleShared';
 import {
@@ -40,9 +50,19 @@ export type FlashcardMarketPack = {
   titleUk: string;
   /** ES — для локалі es; порожній рядок, якщо ще не заповнено в даних. */
   titleEs: string;
+  titlePtBr?: string;
+  titleVi?: string;
+  titleId?: string;
+  titleTr?: string;
+  titlePl?: string;
   descriptionRu: string;
   descriptionUk: string;
   descriptionEs: string;
+  descriptionPtBr?: string;
+  descriptionVi?: string;
+  descriptionId?: string;
+  descriptionTr?: string;
+  descriptionPl?: string;
   category: FlashcardPackCategory;
   cardCount: number;
   priceShards: number;
@@ -51,6 +71,8 @@ export type FlashcardMarketPack = {
   isOfficial: boolean;
   /** Набор из community_packs (UGC); покупка через Cloud Function. */
   isCommunityUgc?: boolean;
+  /** Study target this pack teaches; missing legacy Firestore docs are treated as English. */
+  studyTarget?: StudyTarget;
   /** Полный authorStableId для UGC (редагування). */
   authorStableId?: string;
   /** Статус листингу з Firestore (published / update_pending …). */
@@ -64,12 +86,6 @@ export type FlashcardMarketPack = {
   updatedAt: string;
 };
 
-export const DEV_OWNED_KEY = 'flashcards_market_dev_owned_v1';
-/** Единое хранилище купленных наборов (DEV-маркет и покупка за осколки в shards_shop). */
-export const OWNED_PACKS_KEY = 'flashcards_owned_packs_v1';
-export const DEV_ACTIVE_PACK_KEY = 'flashcards_market_dev_active_pack_v1';
-/** Собрані картки всіх куплених паків (після `buildMarketplaceOwnedCards`) — швидке відкрити розділ без пустого екрану. */
-export const MARKETPLACE_BUILT_CARDS_CACHE_KEY = 'flashcards_market_built_cards_v1';
 /** Підняти при зміні бандлів / схеми карт — інвалідує старий кеш на пристроях. */
 export const MARKETPLACE_BUILT_CARDS_CACHE_EPOCH = 12;
 
@@ -84,9 +100,20 @@ export function marketOwnedIdsCacheKey(ownedIds: string[]): string {
   return [...ownedIds].sort().join('\0');
 }
 
-export async function loadBuiltMarketplaceCardsCache(): Promise<BuiltMarketplaceCardsCache | null> {
+function marketplaceCardsAllowedForTarget(studyTarget?: RuntimeStudyTarget): boolean {
+  return flashcardsOfficialPacksAvailableForTarget(studyTarget);
+}
+
+export async function loadBuiltMarketplaceCardsCache(
+  studyTarget?: RuntimeStudyTarget,
+): Promise<BuiltMarketplaceCardsCache | null> {
+  const key = flashcardsMarketplaceBuiltCardsCacheKey(studyTarget);
+  if (!marketplaceCardsAllowedForTarget(studyTarget)) {
+    await AsyncStorage.removeItem(key).catch(() => {});
+    return null;
+  }
   try {
-    const raw = await AsyncStorage.getItem(MARKETPLACE_BUILT_CARDS_CACHE_KEY);
+    const raw = await AsyncStorage.getItem(key);
     if (!raw) return null;
     const p = JSON.parse(raw) as BuiltMarketplaceCardsCache;
     if (!p || p.epoch !== MARKETPLACE_BUILT_CARDS_CACHE_EPOCH) return null;
@@ -97,10 +124,19 @@ export async function loadBuiltMarketplaceCardsCache(): Promise<BuiltMarketplace
   }
 }
 
-export async function saveBuiltMarketplaceCardsCache(ownedIds: string[], cards: CardItem[]): Promise<void> {
+export async function saveBuiltMarketplaceCardsCache(
+  ownedIds: string[],
+  cards: CardItem[],
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> {
+  const key = flashcardsMarketplaceBuiltCardsCacheKey(studyTarget);
+  if (!marketplaceCardsAllowedForTarget(studyTarget)) {
+    await AsyncStorage.removeItem(key).catch(() => {});
+    return;
+  }
   if (ownedIds.length === 0) {
     try {
-      await AsyncStorage.removeItem(MARKETPLACE_BUILT_CARDS_CACHE_KEY);
+      await AsyncStorage.removeItem(key);
     } catch {
       // ignore
     }
@@ -112,7 +148,7 @@ export async function saveBuiltMarketplaceCardsCache(ownedIds: string[], cards: 
     cards,
   };
   try {
-    await AsyncStorage.setItem(MARKETPLACE_BUILT_CARDS_CACHE_KEY, JSON.stringify(payload));
+    await AsyncStorage.setItem(key, JSON.stringify(payload));
   } catch {
     // ignore
   }
@@ -128,13 +164,15 @@ const parseIdList = (raw: string | null): string[] => {
   }
 };
 
-export async function loadOwnedPackIds(): Promise<string[]> {
+export async function loadOwnedPackIds(studyTarget?: RuntimeStudyTarget): Promise<string[]> {
   try {
-    const fromOwned = parseIdList(await AsyncStorage.getItem(OWNED_PACKS_KEY));
-    const fromLegacy = parseIdList(await AsyncStorage.getItem(DEV_OWNED_KEY));
+    const ownedKey = flashcardsOwnedPacksKey(studyTarget);
+    const devOwnedKey = flashcardsMarketDevOwnedPacksKey(studyTarget);
+    const fromOwned = parseIdList(await AsyncStorage.getItem(ownedKey));
+    const fromLegacy = parseIdList(await AsyncStorage.getItem(devOwnedKey));
     const merged = [...new Set([...fromOwned, ...fromLegacy])];
     if (merged.length > 0 && fromOwned.length === 0 && fromLegacy.length > 0) {
-      await AsyncStorage.setItem(OWNED_PACKS_KEY, JSON.stringify(merged));
+      await AsyncStorage.setItem(ownedKey, JSON.stringify(merged));
     }
     return merged;
   } catch {
@@ -150,23 +188,23 @@ export async function loadOwnedPackIds(): Promise<string[]> {
  * не дає доступ до контенту — юзер обирає й активує конкретний пак через
  * paywall-флоу, після чого його id додається до owned. Тому тут — лише owned.
  */
-export async function loadAccessiblePackIds(): Promise<string[]> {
-  return loadOwnedPackIds();
+export async function loadAccessiblePackIds(studyTarget?: RuntimeStudyTarget): Promise<string[]> {
+  return loadOwnedPackIds(studyTarget);
 }
 
-export async function saveOwnedPackIds(ids: string[]): Promise<void> {
-  await AsyncStorage.setItem(OWNED_PACKS_KEY, JSON.stringify(ids));
+export async function saveOwnedPackIds(ids: string[], studyTarget?: RuntimeStudyTarget): Promise<void> {
+  await AsyncStorage.setItem(flashcardsOwnedPacksKey(studyTarget), JSON.stringify(ids));
 }
 
-export async function addOwnedPackId(id: string): Promise<void> {
-  const cur = await loadOwnedPackIds();
+export async function addOwnedPackId(id: string, studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const cur = await loadOwnedPackIds(studyTarget);
   if (cur.includes(id)) return;
-  await saveOwnedPackIds([...cur, id]);
+  await saveOwnedPackIds([...cur, id], studyTarget);
 }
 
-const parseNumber = (value: unknown, fallback = 0): number => {
+const parseNumber = (value: unknown, backup = 0): number => {
   const n = Number(value);
-  return Number.isFinite(n) ? n : fallback;
+  return Number.isFinite(n) ? n : backup;
 };
 
 export { derivePackCodeName };
@@ -190,32 +228,297 @@ export function packHubCodeName(pack: FlashcardMarketPack): string {
   return normalizePackCodeDisplay(base);
 }
 
-/** Заголовок пака в шапке / плитках для RU/UK/ES (для ES — titleEs або codeName офіційних наборів). */
-export function packTitleForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'uk' | 'es'): string {
-  if (lang === 'uk') return pack.titleUk.trim() || pack.titleRu.trim() || pack.titleEs.trim() || packHubCodeName(pack);
-  if (lang === 'ru') return pack.titleRu.trim() || pack.titleUk.trim() || pack.titleEs.trim() || packHubCodeName(pack);
-  const esTitle = pack.titleEs.trim();
-  if (esTitle) return esTitle;
-  if (pack.isCommunityUgc) {
-    const a = pack.titleRu.trim();
-    const b = pack.titleUk.trim();
-    return a || b || packHubCodeName(pack);
-  }
-  return packHubCodeName(pack) || pack.titleRu;
+type MarketplaceInterfaceLocale = 'ru' | 'uk' | 'es' | PlannedInterfaceLang;
+type PlannedMarketCopy = Record<PlannedInterfaceLang, { title: string; description: string }>;
+
+const PACK_TITLE_FIELD_BY_LANG = {
+  ru: 'titleRu',
+  uk: 'titleUk',
+  es: 'titleEs',
+  'pt-BR': 'titlePtBr',
+  vi: 'titleVi',
+  id: 'titleId',
+  tr: 'titleTr',
+  pl: 'titlePl',
+} as const satisfies Record<MarketplaceInterfaceLocale, keyof FlashcardMarketPack>;
+
+const PACK_DESCRIPTION_FIELD_BY_LANG = {
+  ru: 'descriptionRu',
+  uk: 'descriptionUk',
+  es: 'descriptionEs',
+  'pt-BR': 'descriptionPtBr',
+  vi: 'descriptionVi',
+  id: 'descriptionId',
+  tr: 'descriptionTr',
+  pl: 'descriptionPl',
+} as const satisfies Record<MarketplaceInterfaceLocale, keyof FlashcardMarketPack>;
+
+const OFFICIAL_MARKETPLACE_PLANNED_COPY: Partial<Record<string, PlannedMarketCopy>> = {
+  [OFFICIAL_NEGOTIATOR_EN_ID]: {
+    'pt-BR': {
+      title: 'Negociacoes nas sombras: como conseguir melhores condicoes',
+      description: 'Nao e so negocios: e vida cotidiana. Descontos, aluguel, autoridade no transito: linguagem para convencer, pressionar e chegar a acordos. Torne-se a pessoa que ouve "sim" com mais frequencia.',
+    },
+    vi: {
+      title: 'Dam phan trong bong toi: cach gianh dieu kien tot hon',
+      description: 'Khong chi la kinh doanh: do la doi song hang ngay. Giam gia, chu nha, canh sat giao thong: ngon ngu de thuyet phuc, tao ap luc va dat thoa thuan. Hay tro thanh nguoi duoc nghe "dong y" thuong xuyen hon.',
+    },
+    id: {
+      title: 'Negosiasi bayangan: cara mendapat syarat lebih baik',
+      description: 'Ini bukan cuma bisnis, ini kehidupan sehari-hari. Diskon, pemilik rumah, petugas lalu lintas: bahasa untuk meyakinkan, menekan, dan mencapai kesepakatan. Jadilah orang yang lebih sering mendengar "ya".',
+    },
+    tr: {
+      title: 'Golge pazarliklar: daha iyi sartlar nasil alinir',
+      description: 'Bu sadece is degil, gunluk hayat. Indirim, ev sahibi, trafik polisi: ikna etmek, baski kurmak ve uzlasmak icin gereken dil. Daha sik "evet" duyan kisi ol.',
+    },
+    pl: {
+      title: 'Zakulisowe negocjacje: jak wywalczyc lepsze warunki',
+      description: 'To nie tylko biznes, to codzienne zycie. Rabat, wlasciciel mieszkania, policjant drogowy: jezyk do przekonywania, nacisku i zawierania porozumien. Zostan osoba, ktorej czesciej mowia "tak".',
+    },
+  },
+  [OFFICIAL_DARK_LOGIC_EN_ID]: {
+    'pt-BR': {
+      title: 'Logica sombria: vencendo discussoes mesmo sem ter razao',
+      description: 'Cansou de ser encurralado por termos tecnicos em debates? Este pacote traz armadilhas logicas, frases manipulativas e jeitos elegantes de travar o oponente. Aprenda a conduzir a discussao para ficar com a ultima palavra.',
+    },
+    vi: {
+      title: 'Logic den toi: thang tranh luan ngay ca khi ban sai',
+      description: 'Met moi vi bi don ep bang thuat ngu trong tranh luan? Goi nay co bay logic, cau thao tung va cach lich su de day doi phuong vao the bi. Hoc cach dieu khien cuoc thao luan de giu loi cuoi.',
+    },
+    id: {
+      title: 'Logika gelap: menang debat meski kamu tidak benar',
+      description: 'Lelah dipojokkan dengan istilah teknis saat debat? Paket ini berisi jebakan logika, frasa manipulatif, dan cara elegan membuat lawan buntu. Pelajari cara mengendalikan diskusi agar kata terakhir tetap milikmu.',
+    },
+    tr: {
+      title: 'Karanlik mantik: hakli olmasan da tartismayi kazan',
+      description: 'Tartismalarda teknik terimlerle sikistirilmaktan biktin mi? Bu paket mantik tuzaklari, manipilatif ifadeler ve rakibi zarifce kilitleme yollarini toplar. Son soz sende kalsin diye tartismayi yonetmeyi ogren.',
+    },
+    pl: {
+      title: 'Mroczna logika: wygrywaj spory nawet bez racji',
+      description: 'Masz dosc tego, ze w sporach przygniataja cie terminami? Ten pakiet zawiera pulapki logiczne, manipulacyjne frazy i eleganckie sposoby na zablokowanie rozmowcy. Naucz sie prowadzic dyskusje tak, by ostatnie slowo nalezalo do ciebie.',
+    },
+  },
+  [OFFICIAL_WILD_WEST_EN_ID]: {
+    'pt-BR': {
+      title: 'Velho Oeste: ingles sem regras nem piedade',
+      description: 'Aqui nao ha espaco para conversa longa: so decisoes rapidas. Gíria de cowboy, frases de saloon e ditados da corrida do ouro para soar confiante como em um western.',
+    },
+    vi: {
+      title: 'Mien Tay hoang da: tieng Anh khong luat le va khong khoan nhuong',
+      description: 'O day khong thich noi dai, chi thich quyet dinh nhanh. Tieng long cowboy, cau noi trong saloon va thanh ngu con sot vang de ban noi chac nhu trong phim mien Tay.',
+    },
+    id: {
+      title: 'Wild West: bahasa Inggris tanpa aturan dan ampun',
+      description: 'Di sini orang tidak suka obrolan panjang, mereka suka keputusan cepat. Slang koboi, frasa saloon, dan pepatah demam emas agar kamu terdengar mantap seperti di film western.',
+    },
+    tr: {
+      title: 'Vahsi Bati: kuralsiz ve acimasiz Ingilizce',
+      description: 'Burada uzun sohbet sevilmez, hizli karar sevilir. Kovboy argosu, salon ifadeleri ve altina hucum deyisleriyle bir western kadar ozguvenli konus.',
+    },
+    pl: {
+      title: 'Dziki Zachod: angielski bez zasad i litosci',
+      description: 'Tu nikt nie lubi dlugich rozmow, licza sie szybkie decyzje. Kowbojski slang, frazy z saloonu i powiedzenia z goraczki zlota, zeby brzmiec pewnie jak w westernie.',
+    },
+  },
+  [OFFICIAL_ROYAL_TEA_EN_ID]: {
+    'pt-BR': {
+      title: 'Bridgerton: flerte e fofoca da alta sociedade',
+      description: 'Aprenda a linguagem dos leques, bailes e insultos velados da Regencia. Insinue escandalos e rejeite pretendentes com elegancia digna de soneto.',
+    },
+    vi: {
+      title: 'Bridgerton: tan tinh va tin don cua gioi thuong luu',
+      description: 'Hoc ngon ngu cua quat tay, vu hoi va nhung loi mia mai tinh te thoi Nhiep chinh. Biet cach goi mo be boi va tu choi nguoi theo duoi that thanh lich.',
+    },
+    id: {
+      title: 'Bridgerton: rayuan dan gosip masyarakat kelas atas',
+      description: 'Pelajari bahasa kipas, pesta dansa, dan sindiran halus era Regency. Isyaratkan skandal dan tolak pelamar dengan anggun sampai ia ingin menulis soneta.',
+    },
+    tr: {
+      title: 'Bridgerton: yuksek sosyetede flort ve dedikodu',
+      description: 'Yelpazelerin, balolarin ve Regency donemi ince hakaretlerinin dilini ogren. Skandali zarifce ima et, talibini sonnet yazdiracak kadar kibarca reddet.',
+    },
+    pl: {
+      title: 'Bridgertonowie: flirt i plotki z wyzszych sfer',
+      description: 'Poznaj jezyk wachlarzy, bali i zawoalowanych obelg z epoki regencji. Sugeruj skandal i odrzucaj zalotnika z elegancja godna sonetu.',
+    },
+  },
+  [OFFICIAL_PEAKY_BLINDERS_EN_ID]: {
+    'pt-BR': {
+      title: 'Peaky Blinders: o ingles do cavalheiro da sorte, Birmingham dos anos 1920',
+      description: 'Quer soar como se tivesse uma lamina na boina e as chaves de meia Londres no bolso? Aprenda a fala dura e enfumacada dos Peaky Blinders.',
+    },
+    vi: {
+      title: 'Peaky Blinders: tieng Anh cua quy ong may man, Birmingham thap nien 1920',
+      description: 'Muon nghe nhu co luoi dao trong mu va chia khoa nua London trong tui? Hoc cach noi ran roi, am mui khoi cua Peaky Blinders.',
+    },
+    id: {
+      title: 'Peaky Blinders: bahasa Inggris pria beruntung, Birmingham 1920-an',
+      description: 'Ingin terdengar seperti punya pisau di topi dan kunci separuh London di saku? Pelajari gaya bicara keras dan berasap ala Peaky Blinders.',
+    },
+    tr: {
+      title: 'Peaky Blinders: 1920ler Birminghamindan talihli beyefendi Ingilizcesi',
+      description: 'Sapkasinda jilet, cebinde Londranin yarisinin anahtarlari varmis gibi mi konusmak istiyorsun? Peaky Blindersin sert ve dumanli dilini ogren.',
+    },
+    pl: {
+      title: 'Peaky Blinders: angielski dzentelmena fortuny, Birmingham lat 20.',
+      description: 'Chcesz brzmiec, jakby w kaszkiecie byla zyletka, a w kieszeni klucze do polowy Londynu? Naucz sie twardej, zadymionej mowy Peaky Blinders.',
+    },
+  },
+  [OFFICIAL_PREP_IN_EN_ID]: {
+    'pt-BR': {
+      title: 'Preposicao IN: quando usar "in" em ingles',
+      description: 'IN e a preposicao inglesa mais frequente. Comodos, cidades, manhas, estados e estacoes: veja quando usar IN em vez de AT ou ON.',
+    },
+    vi: {
+      title: 'Gioi tu IN: khi nao dung "in" trong tieng Anh',
+      description: 'IN la mot trong nhung gioi tu thuong gap nhat trong tieng Anh. Phong, thanh pho, buoi sang, trang thai va mua: phan biet IN voi AT va ON.',
+    },
+    id: {
+      title: 'Preposisi IN: kapan memakai "in" dalam bahasa Inggris',
+      description: 'IN adalah salah satu preposisi bahasa Inggris paling sering dipakai. Ruangan, kota, pagi, keadaan, dan musim: bedakan IN dari AT dan ON.',
+    },
+    tr: {
+      title: 'IN edati: Ingilizcede "in" ne zaman kullanilir',
+      description: 'IN Ingilizcenin en sik edatlarindan biridir. Odalar, sehirler, sabahlar, durumlar ve mevsimler: IN ile AT ve ON arasindaki farki netlestir.',
+    },
+    pl: {
+      title: 'Przyimek IN: kiedy uzywac "in" po angielsku',
+      description: 'IN to jeden z najczestszych angielskich przyimkow. Pokoje, miasta, poranki, stany i pory roku: odroznij IN od AT i ON.',
+    },
+  },
+  [OFFICIAL_PREP_ON_EN_ID]: {
+    'pt-BR': {
+      title: 'Preposicao ON: superficies, dias e canais',
+      description: 'ON cobre superficies, dias especificos e canais de comunicacao. Mesa, onibus, segunda-feira, telefone: pare de adivinhar e fale com precisao.',
+    },
+    vi: {
+      title: 'Gioi tu ON: be mat, ngay va kenh giao tiep',
+      description: 'ON dung cho be mat, ngay cu the va kenh giao tiep. Ban, xe buyt, thu Hai, dien thoai: dung doan nua, hay noi chinh xac.',
+    },
+    id: {
+      title: 'Preposisi ON: permukaan, hari, dan saluran',
+      description: 'ON dipakai untuk permukaan, hari tertentu, dan saluran komunikasi. Meja, bus, Senin, telepon: berhenti menebak dan bicara tepat.',
+    },
+    tr: {
+      title: 'ON edati: yuzeyler, gunler ve kanallar',
+      description: 'ON yuzeyler, belirli gunler ve iletisim kanallari icindir. Masa, otobus, pazartesi, telefon: tahmini birak, dogru konus.',
+    },
+    pl: {
+      title: 'Przyimek ON: powierzchnie, dni i kanaly',
+      description: 'ON laczy sie z powierzchniami, konkretnymi dniami i kanalami komunikacji. Stol, autobus, poniedzialek, telefon: przestan zgadywac.',
+    },
+  },
+  [OFFICIAL_PREP_AT_EN_ID]: {
+    'pt-BR': {
+      title: 'Preposicao AT: pontos no espaco e no tempo',
+      description: 'AT marca pontos: endereco exato, hora precisa, momento concreto. Aeroporto, meia-noite, ponto de onibus, festa: onde voce chega.',
+    },
+    vi: {
+      title: 'Gioi tu AT: diem trong khong gian va thoi gian',
+      description: 'AT danh dau mot diem: dia chi cu the, gio chinh xac, khoanh khac ro rang. San bay, nua dem, diem dung, bua tiec: noi ban den.',
+    },
+    id: {
+      title: 'Preposisi AT: titik dalam ruang dan waktu',
+      description: 'AT menandai titik: alamat tertentu, waktu tepat, momen spesifik. Bandara, tengah malam, halte, pesta: tempat kamu tiba.',
+    },
+    tr: {
+      title: 'AT edati: mekan ve zamanda noktalar',
+      description: 'AT bir noktayi gosterir: belirli adres, tam saat, net an. Havaalani, gece yarisi, durak, parti: vardigin yer.',
+    },
+    pl: {
+      title: 'Przyimek AT: punkty w przestrzeni i czasie',
+      description: 'AT oznacza punkt: konkretny adres, dokladna godzine, precyzyjny moment. Lotnisko, polnoc, przystanek, impreza: miejsce przybycia.',
+    },
+  },
+  [OFFICIAL_PREP_TO_EN_ID]: {
+    'pt-BR': {
+      title: 'Preposicao TO: movimento e direcao',
+      description: 'TO mostra movimento em direcao a um objetivo. Escola, praia, amigo, porta: TO indica para onde voce esta indo.',
+    },
+    vi: {
+      title: 'Gioi tu TO: chuyen dong va huong',
+      description: 'TO luon chi chuyen dong toi muc tieu. Truong, bai bien, ban be, cua: TO cho biet ban dang di ve dau.',
+    },
+    id: {
+      title: 'Preposisi TO: gerak dan arah',
+      description: 'TO menunjukkan gerak menuju tujuan. Sekolah, pantai, teman, pintu: TO memperlihatkan ke mana kamu pergi.',
+    },
+    tr: {
+      title: 'TO edati: hareket ve yon',
+      description: 'TO hedefe dogru hareketi gosterir. Okul, plaj, arkadas, kapi: TO nereye yoneldigini anlatir.',
+    },
+    pl: {
+      title: 'Przyimek TO: ruch i kierunek',
+      description: 'TO pokazuje ruch ku celowi. Szkola, plaza, znajomy, drzwi: TO mowi, dokad zmierzasz.',
+    },
+  },
+  [OFFICIAL_PREP_BY_EN_ID]: {
+    'pt-BR': {
+      title: 'Preposicao BY: modo e meio',
+      description: 'BY explica como algo acontece. Carro, acaso, erro, lei, memoria: BY revela o mecanismo da acao.',
+    },
+    vi: {
+      title: 'Gioi tu BY: cach thuc va phuong tien',
+      description: 'BY giai thich cach mot viec xay ra. Xe, tinh co, loi, luat, tri nho: BY cho thay co che cua hanh dong.',
+    },
+    id: {
+      title: 'Preposisi BY: cara dan sarana',
+      description: 'BY menjelaskan bagaimana sesuatu terjadi. Mobil, kebetulan, kesalahan, hukum, hafalan: BY membuka mekanisme tindakan.',
+    },
+    tr: {
+      title: 'BY edati: yontem ve arac',
+      description: 'BY bir seyin nasil oldugunu aciklar. Araba, tesaduf, hata, yasa, ezber: BY eylemin mekanizmasini gosterir.',
+    },
+    pl: {
+      title: 'Przyimek BY: sposob i srodek',
+      description: 'BY wyjasnia, jak cos sie dzieje. Samochod, przypadek, blad, prawo, pamiec: BY ujawnia mechanizm dzialania.',
+    },
+  },
+};
+
+function trimmedMarketString(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : '';
 }
 
-/** Опис набору для модалки / деталей; для ES — descriptionEs або короткий фолбек без кирилиці. */
-export function packDescriptionForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'uk' | 'es'): string {
-  if (lang === 'uk') return pack.descriptionUk.trim() || pack.descriptionRu.trim() || pack.descriptionEs.trim();
-  if (lang === 'ru') return pack.descriptionRu.trim() || pack.descriptionUk.trim() || pack.descriptionEs.trim();
-  const es = pack.descriptionEs.trim();
-  if (es) return es;
-  if (pack.isCommunityUgc) {
-    return pack.descriptionUk.trim() || pack.descriptionRu.trim() || pack.descriptionEs.trim();
-  }
+function plannedCopyForPack(pack: FlashcardMarketPack, lang: MarketplaceInterfaceLocale): { title: string; description: string } | null {
+  const copy = OFFICIAL_MARKETPLACE_PLANNED_COPY[pack.id]?.[lang as PlannedInterfaceLang];
+  return copy ?? null;
+}
+
+function spanishPackDescriptionReserve(pack: FlashcardMarketPack): string {
   return pack.cardCount > 0
     ? `Paquete de ${pack.cardCount} tarjetas en inglés.`
     : 'Paquete de tarjetas en inglés.';
+}
+
+/** Заголовок пака в шапке / плитках: planned-локалі не читають RU/UK/ES. */
+export function packTitleForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'uk' | 'es' | PlannedInterfaceLang): string {
+  const titleField = PACK_TITLE_FIELD_BY_LANG[lang];
+  const requestedTitle = trimmedMarketString(pack[titleField]);
+  if (requestedTitle) return requestedTitle;
+  const plannedTitle = plannedCopyForPack(pack, lang)?.title.trim();
+  if (plannedTitle) return plannedTitle;
+  const isSpanish = titleField === 'titleEs';
+  if (!isSpanish) return packHubCodeName(pack);
+  if (pack.isCommunityUgc) {
+    return trimmedMarketString(pack.titleRu) || trimmedMarketString(pack.titleUk) || packHubCodeName(pack);
+  }
+  return packHubCodeName(pack);
+}
+
+/** Опис набору для модалки / деталей; planned-локалі не читають RU/UK/ES. */
+export function packDescriptionForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'uk' | 'es' | PlannedInterfaceLang): string {
+  const descriptionField = PACK_DESCRIPTION_FIELD_BY_LANG[lang];
+  const requestedDescription = trimmedMarketString(pack[descriptionField]);
+  if (requestedDescription) return requestedDescription;
+  const plannedDescription = plannedCopyForPack(pack, lang)?.description.trim();
+  if (plannedDescription) return plannedDescription;
+  const isSpanish = descriptionField === 'descriptionEs';
+  if (!isSpanish) return '';
+  if (pack.isCommunityUgc) {
+    return trimmedMarketString(pack.descriptionUk) || trimmedMarketString(pack.descriptionRu) || trimmedMarketString(pack.descriptionEs);
+  }
+  return spanishPackDescriptionReserve(pack);
 }
 
 const bundledRaw = (bundledManifest as { packs?: VictoriaPackFile['pack'][] }).packs;
@@ -224,7 +527,7 @@ export const BUNDLED_MARKETPLACE_PACKS: FlashcardMarketPack[] = Array.isArray(bu
   : [];
 
 /** Синхронный запасной список (если async-загрузка вернула пусто или упала). */
-export function fallbackBundledMarketPacks(): FlashcardMarketPack[] {
+export function reserveBundledMarketPacks(): FlashcardMarketPack[] {
   return sortPacksByUpdatedAt([...BUNDLED_MARKETPLACE_PACKS]);
 }
 
@@ -270,9 +573,19 @@ const mapPack = (id: string, data: any): FlashcardMarketPack | null => {
     titleRu,
     titleUk,
     titleEs,
+    titlePtBr: String(data.titlePtBr ?? ''),
+    titleVi: String(data.titleVi ?? ''),
+    titleId: String(data.titleId ?? ''),
+    titleTr: String(data.titleTr ?? ''),
+    titlePl: String(data.titlePl ?? ''),
     descriptionRu: String(data.descriptionRu ?? ''),
     descriptionUk: String(data.descriptionUk ?? ''),
     descriptionEs: String(data.descriptionEs ?? ''),
+    descriptionPtBr: String(data.descriptionPtBr ?? ''),
+    descriptionVi: String(data.descriptionVi ?? ''),
+    descriptionId: String(data.descriptionId ?? ''),
+    descriptionTr: String(data.descriptionTr ?? ''),
+    descriptionPl: String(data.descriptionPl ?? ''),
     category: (data.category as FlashcardPackCategory) ?? 'daily',
     cardCount: Math.max(0, Math.floor(parseNumber(data.cardCount))),
     priceShards: Math.max(0, Math.floor(parseNumber(data.priceShards))),
@@ -299,9 +612,9 @@ export async function loadMarketplacePacks(): Promise<FlashcardMarketPack[]> {
   const p = (async (): Promise<FlashcardMarketPack[]> => {
     try {
       if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
-        const fallback = normalizeMarketplaceResult(sortPacksByUpdatedAt([...BUNDLED_MARKETPLACE_PACKS]));
-        warmMarketplacePacks = fallback;
-        return fallback;
+        const reserve = normalizeMarketplaceResult(sortPacksByUpdatedAt([...BUNDLED_MARKETPLACE_PACKS]));
+        warmMarketplacePacks = reserve;
+        return reserve;
       }
       const db = firestore();
       const snap = await db
@@ -319,8 +632,8 @@ export async function loadMarketplacePacks(): Promise<FlashcardMarketPack[]> {
       warmMarketplacePacks = result;
       return result;
     } catch {
-      const fallback = normalizeMarketplaceResult(sortPacksByUpdatedAt([...BUNDLED_MARKETPLACE_PACKS]));
-      warmMarketplacePacks ??= fallback;
+      const reserve = normalizeMarketplaceResult(sortPacksByUpdatedAt([...BUNDLED_MARKETPLACE_PACKS]));
+      warmMarketplacePacks ??= reserve;
       return warmMarketplacePacks;
     }
   })();
@@ -338,22 +651,23 @@ export async function prefetchMarketplacePacks(): Promise<void> {
 }
 
 /** @deprecated Имя «dev» — фактически все купленные наборы; используйте loadOwnedPackIds. */
-export async function loadDevOwnedPackIds(): Promise<string[]> {
-  return loadOwnedPackIds();
+export async function loadDevOwnedPackIds(studyTarget?: RuntimeStudyTarget): Promise<string[]> {
+  return loadOwnedPackIds(studyTarget);
 }
 
-export async function saveDevOwnedPackIds(ids: string[]): Promise<void> {
-  await saveOwnedPackIds(ids);
+export async function saveDevOwnedPackIds(ids: string[], studyTarget?: RuntimeStudyTarget): Promise<void> {
+  await saveOwnedPackIds(ids, studyTarget);
 }
 
-export async function setDevActivePack(packId: string): Promise<void> {
-  await AsyncStorage.setItem(DEV_ACTIVE_PACK_KEY, packId);
+export async function setDevActivePack(packId: string, studyTarget?: RuntimeStudyTarget): Promise<void> {
+  await AsyncStorage.setItem(flashcardsMarketDevActivePackKey(studyTarget), packId);
 }
 
-export async function consumeDevActivePack(): Promise<string | null> {
+export async function consumeDevActivePack(studyTarget?: RuntimeStudyTarget): Promise<string | null> {
+  const key = flashcardsMarketDevActivePackKey(studyTarget);
   try {
-    const packId = await AsyncStorage.getItem(DEV_ACTIVE_PACK_KEY);
-    await AsyncStorage.removeItem(DEV_ACTIVE_PACK_KEY);
+    const packId = await AsyncStorage.getItem(key);
+    await AsyncStorage.removeItem(key);
     return packId;
   } catch {
     return null;
@@ -366,18 +680,33 @@ const PACK_CARD_TEMPLATES = [
     ru: 'Можешь кратко объяснить основную идею?',
     uk: 'Можеш коротко пояснити основну ідею?',
     es: '¿Puedes explicarme brevemente la idea principal?',
+    'pt-BR': 'Você pode me explicar brevemente a ideia principal?',
+    vi: 'Bạn có thể giải thích ngắn gọn ý chính cho tôi không?',
+    id: 'Bisakah kamu menjelaskan ide utamanya secara singkat?',
+    tr: 'Ana fikri kısaca anlatabilir misin?',
+    pl: 'Czy możesz krótko wyjaśnić główną ideę?',
   },
   {
     en: 'Let us align on the next steps.',
     ru: 'Давайте согласуем следующие шаги.',
     uk: 'Давайте узгодимо наступні кроки.',
     es: 'Pongámonos de acuerdo sobre los próximos pasos.',
+    'pt-BR': 'Vamos alinhar os próximos passos.',
+    vi: 'Hãy thống nhất các bước tiếp theo.',
+    id: 'Mari kita selaraskan langkah berikutnya.',
+    tr: 'Sonraki adımlar üzerinde anlaşalım.',
+    pl: 'Uzgodnijmy następne kroki.',
   },
   {
     en: 'I need a practical example for this.',
     ru: 'Мне нужен практический пример для этого.',
     uk: 'Мені потрібен практичний приклад для цього.',
     es: 'Necesito un ejemplo práctico de esto.',
+    'pt-BR': 'Preciso de um exemplo prático disso.',
+    vi: 'Tôi cần một ví dụ thực tế cho điều này.',
+    id: 'Saya butuh contoh praktis untuk ini.',
+    tr: 'Bunun için pratik bir örneğe ihtiyacım var.',
+    pl: 'Potrzebuję praktycznego przykładu do tego.',
   },
 ];
 
@@ -385,10 +714,17 @@ export function buildDevOwnedPackCards(packs: FlashcardMarketPack[]): CardItem[]
   return packs.flatMap((pack) =>
     PACK_CARD_TEMPLATES.map((tpl, idx) => ({
       id: `market_${pack.id}_${idx + 1}`,
-      en: `${tpl.en} (${pack.titleRu})`,
+      en: `${tpl.en} (${packHubCodeName(pack)})`,
       ru: tpl.ru,
       uk: tpl.uk,
       es: tpl.es,
+      sourceLocales: {
+        'pt-BR': tpl['pt-BR'],
+        vi: tpl.vi,
+        id: tpl.id,
+        tr: tpl.tr,
+        pl: tpl.pl,
+      },
       categoryId: 'custom',
       isSystem: true,
       source: 'lesson',
@@ -452,27 +788,27 @@ export function bundledPacksForOwned(ownedIds: string[]): FlashcardMarketPack[] 
 /**
  * Повторно зібрати картки з бандлів у додатку і зберегти (після покупки, щоб кеш був готовий до відкриття «Картки»).
  */
-export async function primeMarketplaceBuiltCardsCacheFromOwnedStorage(): Promise<void> {
-  const owned = await loadOwnedPackIds();
+export async function primeMarketplaceBuiltCardsCacheFromOwnedStorage(studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const owned = await loadOwnedPackIds(studyTarget);
   if (owned.length === 0) {
-    await saveBuiltMarketplaceCardsCache([], []);
+    await saveBuiltMarketplaceCardsCache([], [], studyTarget);
     return;
   }
   const ownedPacks = bundledPacksForOwned(owned);
   const cards = buildMarketplaceOwnedCards(ownedPacks);
-  await saveBuiltMarketplaceCardsCache(owned, cards);
+  await saveBuiltMarketplaceCardsCache(owned, cards, studyTarget);
 }
 
 /** Після надання пробного набору з подарунка — зібрати кеш з куплених + trial */
-export async function primeMarketplaceBuiltCardsCacheFromAccessibleStorage(): Promise<void> {
-  const ids = await loadAccessiblePackIds();
+export async function primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const ids = await loadAccessiblePackIds(studyTarget);
   if (ids.length === 0) {
-    await saveBuiltMarketplaceCardsCache([], []);
+    await saveBuiltMarketplaceCardsCache([], [], studyTarget);
     return;
   }
   const ownedPacks = bundledPacksForOwned(ids);
   const cards = buildMarketplaceOwnedCards(ownedPacks);
-  await saveBuiltMarketplaceCardsCache(ids, cards);
+  await saveBuiltMarketplaceCardsCache(ids, cards, studyTarget);
 }
 
 

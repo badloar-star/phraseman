@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useFocusEffect, useRouter } from 'expo-router';
@@ -9,6 +9,7 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, goldTaskAccent, goldShadow } from '../constants/goldTheme';
@@ -19,7 +20,7 @@ import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
 import GoldBevel from '../components/GoldBevel';
 import { checkAchievements } from './achievements';
-import { claimTaskWithReward, countClaimedForTaskList, DailyTask, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
+import { claimTaskWithReward, countClaimedForTaskList, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
 import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 import { getCurrentMultiplier, registerXP } from './xp_manager';
 import { claimDailyTasksAllShardsReward, isDailyTasksAllShardsRewardClaimedForDay, SHARD_REWARDS, getShardsBalance, } from './shards_system';
@@ -28,6 +29,10 @@ import { oskolokImageForPackShards } from './oskolok';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { emitAppEvent, onAppEvent } from './events';
 import { DAILY_TASK_ACHIEVEMENT_ICONS, DAILY_TASK_ID_ACHIEVEMENT_ICONS } from './daily_task_achievement_icons';
+import { lastOpenedLessonKey, quizNavLevelKey } from './target_storage_keys';
+import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
+import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
+import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate';
 const PREMIUM_TASK_TYPES = new Set([
     'quiz_hard', 'quiz_medium', 'quiz_perfect', 'quiz_hard_perfect',
 ]);
@@ -40,6 +45,16 @@ type DailyTaskUiMeta = {
     icon: keyof typeof Ionicons.glyphMap;
     tone: string;
 };
+
+function slavicPlural(count: number, one: string, few: string, many: string): string {
+    const normalized = Math.abs(Math.floor(count));
+    const mod10 = normalized % 10;
+    const mod100 = normalized % 100;
+    if (mod10 === 1 && mod100 !== 11) return one;
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return few;
+    return many;
+}
+
 const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
     const byType: Record<TaskType, DailyTaskUiMeta> = {
         daily_active: {
@@ -1636,6 +1651,7 @@ export default function DailyTasksScreen() {
     const rewardActionBg = isGoldTheme ? GOLD_RICH.paleGold : t.correct;
     const rewardActionText = isGoldTheme ? t.textOnGold : t.correctText;
     const { lang } = useLang();
+    const { studyTarget } = useStudyTarget();
     // Не подставляем getTodayTasks() (всегда тир уровня 1) — иначе после обновления/холодного старта
     // карточки не совпадают с AsyncStorage и «Забрать» не срабатывает, пока не перезагрузишь экран.
     const [tasks, setTasks] = useState<DailyTask[]>([]);
@@ -1695,11 +1711,11 @@ export default function DailyTasksScreen() {
         const gen = ++refreshGen.current;
         (async () => {
             try {
-                const list = await getTodayTasksSafe();
+                const list = await getTodayTasksSafe(studyTarget);
                 if (gen !== refreshGen.current)
                     return;
                 setTasks(list);
-                const p = await loadTodayProgress(list);
+                const p = await loadTodayProgress(list, studyTarget);
                 if (gen !== refreshGen.current)
                     return;
                 setProgress(p);
@@ -1707,7 +1723,7 @@ export default function DailyTasksScreen() {
                 if (gen !== refreshGen.current)
                     return;
                 setTrioShardsClaimed(trio);
-                const left = await getDailyRerollsLeftToday();
+                const left = await getDailyRerollsLeftToday(studyTarget);
                 if (gen !== refreshGen.current)
                     return;
                 setRerollsLeft(left);
@@ -1715,13 +1731,13 @@ export default function DailyTasksScreen() {
             catch {
                 if (gen !== refreshGen.current)
                     return;
-                const fallback = getTodayTasks();
-                setTasks(fallback);
-                setProgress(fallback.map((x) => ({ taskId: x.id, current: 0, completed: false, claimed: false })));
+                const backupTaskList = filterDailyTasksForStudyTarget(getTodayTasks(), studyTarget);
+                setTasks(backupTaskList);
+                setProgress(backupTaskList.map((x) => ({ taskId: x.id, current: 0, completed: false, claimed: false })));
                 setRerollsLeft(0);
             }
         })();
-    }, []);
+    }, [studyTarget]);
     const handleRerollConfirm = useCallback(async () => {
         const target = rerollConfirm?.task;
         if (!target || rerollBusyId)
@@ -1738,7 +1754,7 @@ export default function DailyTasksScreen() {
                 } as any);
                 return;
             }
-            const r = await rerollDailyTask(target.id);
+            const r = await rerollDailyTask(target.id, studyTarget);
             if (r.ok) {
                 emitAppEvent('action_toast', {
                     type: 'success',
@@ -1764,27 +1780,52 @@ export default function DailyTasksScreen() {
                 ru: string;
                 uk: string;
                 es: string;
+                'pt-BR': string;
+                vi: string;
+                id: string;
+                tr: string;
+                pl: string;
             }> = {
                 limit_reached: {
                     ru: 'Сегодня ты уже использовал замену. Завтра будет новая попытка.',
                     uk: 'Сьогодні ти вже використав заміну. Завтра буде нова спроба.',
                     es: 'Ya usaste tu reemplazo de hoy. Mañana podrás reemplazar otra tarea.',
+                    'pt-BR': 'Você já usou a troca de hoje. Amanhã terá outra tentativa.',
+                    vi: 'Hôm nay bạn đã dùng lượt đổi. Ngày mai sẽ có lượt mới.',
+                    id: 'Kamu sudah memakai penggantian hari ini. Besok ada kesempatan baru.',
+                    tr: 'Bugünkü değiştirme hakkını kullandın. Yarın yeni bir deneme olacak.',
+                    pl: 'Dzisiejsza wymiana została już użyta. Jutro będzie kolejna próba.',
                 },
                 task_already_completed: {
                     ru: 'Это задание уже выполнено — заменять нечего.',
                     uk: 'Це завдання вже виконане — замінювати нема чого.',
                     es: 'Esta tarea ya está completada, no hay nada que reemplazar.',
+                    'pt-BR': 'Esta tarefa já foi concluída. Não há nada para trocar.',
+                    vi: 'Nhiệm vụ này đã hoàn thành, không còn gì để đổi.',
+                    id: 'Tugas ini sudah selesai, tidak ada yang perlu diganti.',
+                    tr: 'Bu görev zaten tamamlandı, değiştirilecek bir şey yok.',
+                    pl: 'To zadanie jest już ukończone, nie ma czego wymieniać.',
                 },
                 no_candidates: {
                     ru: 'Не нашлось подходящей замены — попробуй другое задание.',
                     uk: 'Не знайшлось гідної заміни — спробуй інше завдання.',
                     es: 'No hay reemplazo disponible. Prueba con otra tarea.',
+                    'pt-BR': 'Não há uma troca adequada. Tente outra tarefa.',
+                    vi: 'Không tìm thấy nhiệm vụ thay thế phù hợp. Hãy thử nhiệm vụ khác.',
+                    id: 'Tidak ada pengganti yang cocok. Coba tugas lain.',
+                    tr: 'Uygun bir değiştirme bulunamadı. Başka bir görevi dene.',
+                    pl: 'Nie znaleziono odpowiedniej wymiany. Spróbuj innego zadania.',
                 },
             };
             const msg = reasonMsg[r.reason] ?? {
                 ru: 'Не удалось заменить задание. Попробуй ещё раз.',
                 uk: 'Не вдалося замінити завдання. Спробуй ще раз.',
                 es: 'No se pudo reemplazar la tarea. Inténtalo de nuevo.',
+                'pt-BR': 'Não foi possível trocar a tarefa. Tente de novo.',
+                vi: 'Không thể đổi nhiệm vụ. Hãy thử lại.',
+                id: 'Gagal mengganti tugas. Coba lagi.',
+                tr: 'Görev değiştirilemedi. Tekrar dene.',
+                pl: 'Nie udało się wymienić zadania. Spróbuj ponownie.',
             };
             emitAppEvent('action_toast', {
                 type: 'info',
@@ -1797,7 +1838,7 @@ export default function DailyTasksScreen() {
         finally {
             setRerollBusyId(null);
         }
-    }, [rerollConfirm, rerollBusyId, refreshTasksAndProgress, router]);
+    }, [rerollConfirm, rerollBusyId, refreshTasksAndProgress, router, studyTarget]);
     useFocusEffect(useCallback(() => { refreshTasksAndProgress(); }, [refreshTasksAndProgress]));
     useEffect(() => {
         const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(); });
@@ -1808,7 +1849,7 @@ export default function DailyTasksScreen() {
             return;
         setClaimBusyId(taskId);
         try {
-            const freshList = await getTodayTasksSafe();
+            const freshList = await getTodayTasksSafe(studyTarget);
             const tasksForClaim = freshList.length > 0 ? freshList : tasks;
             const { claimed, awardedXp } = await claimTaskWithReward(taskId, async () => {
                 // registerXP сам резолвит имя из canonical UID + уровня, если userName пустой.
@@ -1822,7 +1863,7 @@ export default function DailyTasksScreen() {
                     // Не блокируем выдачу награды из-за transient-сбоя XP-пайплайна.
                     return xpBase;
                 }
-            }, { tasksForClaim });
+            }, { tasksForClaim, studyTarget });
             // Снимаем спиннер сразу после клейма: дальше могут быть медленные getTodayTasksSafe/loadTodayProgress.
             setClaimBusyId(null);
             if (!claimed) {
@@ -1835,15 +1876,15 @@ export default function DailyTasksScreen() {
                 });
                 return;
             }
-            const t = await getTodayTasksSafe();
+            const t = await getTodayTasksSafe(studyTarget);
             setTasks(t);
-            const newProgress = await loadTodayProgress(t);
+            const newProgress = await loadTodayProgress(t, studyTarget);
             setProgress(newProgress);
             const allDone = newProgress.length > 0 && newProgress.every(p => p.claimed);
             const noReroll = allDone
-                ? (await getDailyRerollsLeftToday().catch(() => rerollsLeft)) >= DAILY_TASK_REROLL_MAX_PER_DAY
+                ? (await getDailyRerollsLeftToday(studyTarget).catch(() => rerollsLeft)) >= DAILY_TASK_REROLL_MAX_PER_DAY
                 : false;
-            checkAchievements({ type: 'daily_task', allDone, noReroll }).catch(() => { });
+            checkAchievements({ type: 'daily_task', allDone, noReroll, studyTarget }).catch(() => { });
             void hapticSuccess();
             const anim = claimAnims.current[taskId];
             if (anim) {
@@ -1924,6 +1965,10 @@ export default function DailyTasksScreen() {
     const taskProgressById = new Map(progress.map((row) => [row.taskId, row]));
     const objectivesDoneCount = tasks.filter((task) => taskProgressById.get(task.id)?.completed).length;
     const handleTaskNav = async (task: DailyTask) => {
+        if (!dailyTaskAvailableForStudyTarget(task, studyTarget)) {
+            router.replace('/(tabs)/lessons' as any);
+            return;
+        }
         if (PREMIUM_TASK_TYPES.has(task.type) && !hasPremium) {
             const paywallContext = task.type === 'quiz_hard'
                 ? 'quiz_hard'
@@ -1933,8 +1978,51 @@ export default function DailyTasksScreen() {
             router.push({ pathname: '/premium_modal', params: { context: paywallContext } } as any);
             return;
         }
-        const lastLesson = await AsyncStorage.getItem('last_opened_lesson');
+        const lastLesson = await AsyncStorage.getItem(lastOpenedLessonKey(studyTarget));
         const lessonId = parseInt(lastLesson || '1', 10);
+        const openLessonOrFrenchGate = async () => {
+            if (!frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId)) {
+                emitAppEvent('action_toast', {
+                    type: 'info',
+                    messageRu: 'French урок ещё на source gate. English фразы не будут открыты как замена.',
+                    messageUk: 'French урок ще на source gate. English фрази не відкриватимуться як заміна.',
+                    messageEs: 'French lesson is still behind source gate.',
+                });
+                router.replace('/(tabs)/lessons' as any);
+                return;
+            }
+            await primeLessonScreenFromStorage(lessonId, studyTarget);
+            router.push({ pathname: '/lesson1', params: { id: lessonId } });
+        };
+        const openQuizOrFrenchGate = async (level: 'easy' | 'medium' | 'hard') => {
+            if (!quizContentAvailableForTarget(studyTarget)) {
+                const copy = frenchQuizGateCopy(lang);
+                emitAppEvent('action_toast', {
+                    type: 'info',
+                    messageRu: copy.title,
+                    messageUk: copy.title,
+                    messageEs: 'French quizzes are still behind source gate.',
+                });
+                router.replace('/(tabs)/quizzes' as any);
+                return;
+            }
+            await AsyncStorage.setItem(quizNavLevelKey(studyTarget), level);
+            router.replace('/(tabs)/quizzes');
+        };
+        const openDiagnosticOrFrenchGate = () => {
+            if (!diagnosticContentAvailableForTarget(studyTarget)) {
+                const copy = frenchDiagnosticGateCopy(lang);
+                emitAppEvent('action_toast', {
+                    type: 'info',
+                    messageRu: copy.title,
+                    messageUk: copy.title,
+                    messageEs: 'French diagnostic is still behind source gate.',
+                });
+                router.replace('/(tabs)/lessons' as any);
+                return;
+            }
+            router.push('/diagnostic_test');
+        };
         switch (task.type) {
             case 'different_lessons':
                 // "Заниматься в N разных уроках" — отправляем в список, чтобы пользователь мог выбрать другой урок.
@@ -1948,8 +2036,7 @@ export default function DailyTasksScreen() {
             case 'morning_session':
             case 'evening_session':
             case 'energy_spend':
-                await primeLessonScreenFromStorage(lessonId);
-                router.push({ pathname: '/lesson1', params: { id: lessonId } });
+                await openLessonOrFrenchGate();
                 break;
             case 'verb_learned': {
                 let verbLessonId = lessonId;
@@ -1964,27 +2051,32 @@ export default function DailyTasksScreen() {
                 router.push({ pathname: '/lesson_words', params: { id: lessonId } });
                 break;
             case 'quiz_hard':
-                await AsyncStorage.setItem('quiz_nav_level', 'hard');
-                router.replace('/(tabs)/quizzes');
+                await openQuizOrFrenchGate('hard');
                 break;
             case 'quiz_score':
             case 'quiz_perfect':
-                await AsyncStorage.setItem('quiz_nav_level', 'easy');
-                router.replace('/(tabs)/quizzes');
+                await openQuizOrFrenchGate('easy');
                 break;
             case 'quiz_easy':
-                await AsyncStorage.setItem('quiz_nav_level', 'easy');
-                router.replace('/(tabs)/quizzes');
+                await openQuizOrFrenchGate('easy');
                 break;
             case 'quiz_medium':
-                await AsyncStorage.setItem('quiz_nav_level', 'medium');
-                router.replace('/(tabs)/quizzes');
+                await openQuizOrFrenchGate('medium');
                 break;
             case 'quiz_hard_perfect':
-                await AsyncStorage.setItem('quiz_nav_level', 'hard');
-                router.replace('/(tabs)/quizzes');
+                await openQuizOrFrenchGate('hard');
                 break;
             case 'open_theory':
+                if (!frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId)) {
+                    emitAppEvent('action_toast', {
+                        type: 'info',
+                        messageRu: 'French теория откроется после source gate. English theory не подставляется.',
+                        messageUk: 'French теорія відкриється після source gate. English theory не підставляється.',
+                        messageEs: 'French theory is still behind source gate.',
+                    });
+                    router.replace('/(tabs)/lessons' as any);
+                    break;
+                }
                 router.push({ pathname: '/lesson_help', params: { id: lessonId } });
                 break;
             case 'flashcard_view':
@@ -2011,7 +2103,7 @@ export default function DailyTasksScreen() {
                 router.replace('/(tabs)/home');
                 break;
             case 'diagnostic_complete':
-                router.push('/diagnostic_test');
+                openDiagnosticOrFrenchGate();
                 break;
             case 'invite_friend':
                 // На iPhone экран с приглашением по ссылке скрыт — ведём во «Друзья» (код).
@@ -2032,8 +2124,7 @@ export default function DailyTasksScreen() {
                 });
                 break;
             default:
-                await primeLessonScreenFromStorage(lessonId);
-                router.push({ pathname: '/lesson1', params: { id: lessonId } });
+                await openLessonOrFrenchGate();
                 break;
         }
     };
@@ -2153,8 +2244,8 @@ export default function DailyTasksScreen() {
               </Text>
               <Text style={{ color: isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.50)', fontSize: f.caption, lineHeight: f.caption * 1.4 }}>
                 {triLang(lang, {
-            ru: `Выполни все задания и забери ${trioRewardCount} осколков.`,
-            uk: `Виконай усі завдання і забери ${trioRewardCount} уламків.`,
+            ru: `Выполни все задания и забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'осколок', 'осколка', 'осколков')}.`,
+            uk: `Виконай усі завдання і забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'уламок', 'уламки', 'уламків')}.`,
             es: `Completa todas las tareas y reclama ${trioRewardCount} fragmentos.`,
             'pt-BR': `Conclua todas as tarefas e colete ${trioRewardCount} fragmentos.`,
             vi: `Hoàn thành tất cả nhiệm vụ và nhận ${trioRewardCount} mảnh.`,
@@ -2192,9 +2283,6 @@ export default function DailyTasksScreen() {
                     borderRadius: 999,
                 }}/>)}
             </View>
-            <Text style={{ color: isGoldTheme ? t.textGhost : 'rgba(255,255,255,0.35)', fontSize: f.caption, fontWeight: '700' }}>
-              {objectivesDoneCount} / {tasks.length || 0}
-            </Text>
           </View>
 
           {(trioClaimButtonEnabled || trioShardsClaimed) && (<>

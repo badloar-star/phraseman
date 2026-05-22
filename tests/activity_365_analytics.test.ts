@@ -1,4 +1,5 @@
 import {
+  activity365NextStepKind,
   computeActivity365Analytics,
   levelForFilter,
   valueForFilter,
@@ -61,6 +62,35 @@ describe('activity 365 analytics', () => {
     expect(analytics.activeDays).toBe(5);
     expect(analytics.goal.forecastDate).toBe('2026-08-08');
     expect(analytics.goal.requiredDaysPerWeek).toBe(1.8);
+  });
+
+  it('treats a fresh one-day account as warmup instead of a missed-rhythm state', () => {
+    const analytics = computeActivity365Analytics({
+      statsMap: {
+        '2026-05-21': { points: 385 },
+      },
+      fgDaily: {
+        '2026-05-21': 16 * 60_000,
+      },
+      breakdown: {
+        '2026-05-21': { phrases_learned: 2 },
+      },
+      goal: 180,
+      now: new Date('2026-05-21T22:33:00Z'),
+    });
+
+    expect(analytics.activeDays).toBe(1);
+    expect(analytics.currentStreak).toBe(1);
+    expect(analytics.insights[0]?.kind).toBe('warmup');
+    expect(activity365NextStepKind(analytics.activeDays, analytics.currentStreak)).toBe('warmup');
+  });
+
+  it('uses a softer build-week next step after the warmup phase', () => {
+    expect(activity365NextStepKind(0, 0)).toBe('first_day');
+    expect(activity365NextStepKind(2, 2)).toBe('warmup');
+    expect(activity365NextStepKind(3, 3)).toBe('build_week');
+    expect(activity365NextStepKind(8, 4)).toBe('continue_streak');
+    expect(activity365NextStepKind(8, 0)).toBe('restart');
   });
 
   it('uses type filters from daily breakdown metrics', () => {

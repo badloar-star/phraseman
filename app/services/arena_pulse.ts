@@ -17,8 +17,8 @@ export type ArenaPulseEvent = {
   createdAt: number;
 };
 
-function cleanText(s: string | null | undefined, fallback = ''): string {
-  return String(s ?? fallback).replace(/\s+/g, ' ').trim().slice(0, 120);
+function cleanText(s: string | null | undefined, defaultValue = ''): string {
+  return String(s ?? defaultValue).replace(/\s+/g, ' ').trim().slice(0, 120);
 }
 
 function getDb(): any | null {

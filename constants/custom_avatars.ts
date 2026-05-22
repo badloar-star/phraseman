@@ -403,9 +403,11 @@ export function getCustomAvatarGradientById(id: string): CustomAvatarGradient | 
 
 export function customAvatarNameForLang(avatar: CustomAvatarDef | string | undefined | null, lang: Lang): string {
   const id = typeof avatar === 'string' ? avatar : avatar?.id;
-  const fallback = typeof avatar === 'string' ? avatar : avatar?.name;
+  const defaultName = typeof avatar === 'string' ? avatar : avatar?.name;
   const label = id ? CUSTOM_AVATAR_LABELS[id] : undefined;
-  return label?.[lang] ?? label?.ru ?? fallback ?? '';
+  const localized = label?.[lang];
+  if (localized) return localized;
+  return defaultName || label?.ru || '';
 }
 
 export function customAvatarGradientNameForLang(
@@ -413,9 +415,11 @@ export function customAvatarGradientNameForLang(
   lang: Lang,
 ): string {
   const id = typeof gradient === 'string' ? gradient : gradient?.id;
-  const fallback = typeof gradient === 'string' ? gradient : gradient?.name;
+  const defaultName = typeof gradient === 'string' ? gradient : gradient?.name;
   const label = id ? CUSTOM_AVATAR_GRADIENT_LABELS[id] : undefined;
-  return label?.[lang] ?? label?.ru ?? fallback ?? '';
+  const localized = label?.[lang];
+  if (localized) return localized;
+  return defaultName || label?.ru || '';
 }
 
 export function customAvatarGiftLabelForLang(
@@ -425,4 +429,3 @@ export function customAvatarGiftLabelForLang(
 ): string {
   return `${customAvatarNameForLang(avatar, lang)} - ${customAvatarGradientNameForLang(gradient, lang)}`;
 }
-

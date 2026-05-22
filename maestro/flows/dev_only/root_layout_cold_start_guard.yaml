@@ -1,0 +1,16 @@
+appId: app.phraseman
+---
+- runFlow: ../_shared/open_dev_client.yaml
+- runFlow: ../_dismiss_bug_hunt.yaml
+- runFlow: ../_precondition.yaml
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 120000
+- assertNotVisible:
+    text: "Attempted to navigate before mounting"
+- assertNotVisible:
+    text: "Root Layout"
+- assertNotVisible:
+    text: "NSInternalInconsistencyException"
+

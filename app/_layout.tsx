@@ -2,19 +2,21 @@ import 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { Stack, usePathname, useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
 import Constants from 'expo-constants';
 import * as Linking from 'expo-linking';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, AppState, Image, ImageBackground, InteractionManager, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, AppState, Image, ImageBackground, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
 import AchievementToast from '../components/AchievementToast';
 import { EnergyProvider } from '../components/EnergyContext';
 import { LangProvider, useLang } from '../components/LangContext';
-import { StudyTargetProvider } from '../components/StudyTargetContext';
+import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetContext';
 import LevelBadge from '../components/LevelBadge';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
@@ -45,13 +47,13 @@ import {
 import { initRevenueCat } from './revenuecat_init';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
 import { prefetchArenaRatingCache } from './arena_rating_cache';
-import { updateMyPremiumInLeaderboard } from './firestore_leaderboard';
-import { getVerifiedPremiumStatus } from './premium_guard';
+import { updateMyPremiumInLeaderboard, updateMyVipInLeaderboard } from './firestore_leaderboard';
+import { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
 import { tryGrantPremiumMonthlyWagerFromLevelUp } from './streak_wager';
 import { incrementSessionCount } from './review_utils';
 import { checkForUpdate, UpdateInfo } from './update_check';
 import { registerXP, migrateXPFormulaV2 } from './xp_manager';
-import { getShardsBalance, loadShardsFromCloud } from './shards_system';
+import { getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud } from './shards_system';
 import { MatchmakingProvider } from '../contexts/MatchmakingContext';
 import MatchFoundToast from '../components/MatchFoundToast';
 import ActionToast from '../components/ActionToast';
@@ -71,6 +73,7 @@ import { hydrateUserSettingsFromStorage } from './user_settings_store';
 import { hydrateHapticsTapFromStorage } from './haptics_tap_preload';
 import { installForegroundUsageMsTracker } from './foreground_usage_ms';
 import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
+import { applyContentDeliveryMigration } from './content_delivery_migration';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
@@ -94,6 +97,11 @@ import {
   type LeagueBonusAvailability,
 } from './services/league_chest_rewards';
 import { FIRST_LESSON_SHEET_BACKGROUNDS } from '../components/firstLessonSheetAssets';
+import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
+
+LogBox.ignoreLogs([
+  '[expo-notifications] Error reading persisted server registration info',
+]);
 
 /** Список друзей с диска в память до открытия вкладки — чтобы первый кадр вкладки мог сразу показать строки. */
 startFriendsTabSwrPrime();
@@ -202,6 +210,22 @@ function normalizeWarmDeepLink(url: string): string | null {
   }
 }
 
+function isDevUtilityRoutePath(path: string | null | undefined): boolean {
+  if (!path) return false;
+  return (
+    path.startsWith('/settings_testers') ||
+    path.startsWith('/pos_analytics_audit') ||
+    path.startsWith('/admin_review_test') ||
+    path.startsWith('/admin_intro_preview') ||
+    path.startsWith('/admin_premium_delivery_test')
+  );
+}
+
+function isTabsGroupRoutePath(path: string): boolean {
+  const cleanPath = path.split(/[?#]/)[0]?.replace(/\/$/, '') || '';
+  return cleanPath === '/(tabs)' || cleanPath.startsWith('/(tabs)/');
+}
+
 function StartupSplashHold({ visible }: { visible: boolean }) {
   if (!visible) return null;
   return (
@@ -221,7 +245,7 @@ function StartupSplashHold({ visible }: { visible: boolean }) {
       }}
     >
       <Image
-        source={require('../assets/images/splash-icon.webp')}
+        source={require('../assets/images/splash-icon.png')}
         resizeMode="contain"
         style={{ width: 240, height: 240 }}
       />
@@ -261,13 +285,20 @@ const LEVELUP_CONGRATS_ES = [
   'Te lo has ganado con la práctica.',
   '¡El progreso se nota a simple vista! 💪',
 ];
+
+async function preloadVectorIconFonts() {
+  await Promise.all([
+    Ionicons.loadFont(),
+    MaterialIcons.loadFont(),
+  ]);
+}
 const LEVELUP_BTN_ES = ['¡Genial!', '¡Vamos!', '¡Continuamos!', '¡Listo!', '¡Entendido, gracias!', '¡Hurra! 🎉'];
 
 // RevenueCat API keys must be set via environment variables.
 // See revenuecat_init.ts for singleton initialization pattern.
 
 // ── Daily Login Bonus + Comeback Bonus — запускается при каждом старте ────────
-const runSessionChecks = async () => {
+const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
   try {
     const today = new Date().toISOString().split('T')[0];
 
@@ -354,20 +385,20 @@ const runSessionChecks = async () => {
       const notifSnap = getNotifSettingsSnapshot();
       const hasPerDay = Object.values(notifSnap.schedule).some(d => d.enabled);
       if (hasPerDay) {
-        scheduleNotifications(notifSnap, lang, 0, { requestPermission: false }).catch(() => {});
+        scheduleNotifications(notifSnap, lang, 0, { requestPermission: false, studyTarget }).catch(() => {});
       } else {
         const hour = parseInt((await AsyncStorage.getItem('notification_hour')) || '19');
         const minute = parseInt((await AsyncStorage.getItem('notification_minute')) || '0');
-        scheduleDailyReminder(hour, minute, lang, { requestPermission: false }).catch(() => {});
+        scheduleDailyReminder(hour, minute, lang, { requestPermission: false, studyTarget }).catch(() => {});
       }
     }
 
     if (notifEnabled === 'true') {
       scheduleStreakWarningIfNeeded(lang, { requestPermission: false }).catch(() => {});
-      schedulePhrasOfDayNotification(lang, { requestPermission: false }).catch(() => {});
+      schedulePhrasOfDayNotification(lang, { requestPermission: false, studyTarget }).catch(() => {});
 
       scheduleWeeklyRecapNotification(lang, { requestPermission: false }).catch(() => {});
-      scheduleMonthlyRecapNotification(lang, { requestPermission: false }).catch(() => {});
+      scheduleMonthlyRecapNotification(lang, { requestPermission: false, studyTarget }).catch(() => {});
     }
 
     // ── 6. League Overtake Notification ─────────────────────────────────────
@@ -394,6 +425,7 @@ const runSessionChecks = async () => {
 function GlobalLevelUpHandler() {
   const { theme: t, isDark, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const isGoldTheme = themeMode === 'gold';
 
   const [showLevelUp, setShowLevelUp] = useState(false);
@@ -688,6 +720,7 @@ function GlobalLevelUpHandler() {
           lang={lang}
           onClose={onGiftClose}
           deliveryMode="inventory"
+          studyTarget={studyTarget}
         />
       ) : (
         <LevelGiftModal
@@ -697,6 +730,7 @@ function GlobalLevelUpHandler() {
           lang={lang}
           onClose={onGiftClose}
           deliveryMode="inventory"
+          studyTarget={studyTarget}
         />
       )}
     </>
@@ -710,6 +744,7 @@ const BAN_CACHE_TTL_MS = 30 * 60 * 1000;
 // Вынесено в дочерний компонент чтобы иметь доступ к LangContext + AchievementContext
 function AppContent() {
   const [ready, setReady]           = useState(false);
+  const [rootNavigationReady, setRootNavigationReady] = useState(false);
   const [isBanned, setIsBanned]     = useState(false);
   const [showOnboarding, setShow]   = useState(false);
   const [firstContentReady, setFirstContentReady] = useState(false);
@@ -743,13 +778,20 @@ function AppContent() {
   const [notifNudgeVisible, setNotifNudgeVisible] = useState(false);
   const [notifNudgeMissedDays, setNotifNudgeMissedDays] = useState(0);
   const { setLang, lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const { showAchievement } = useAchievement();
   const { theme: tTheme, themeMode } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
+  const currentDevUtilityRoute = ENABLE_DEV_TOOLS && isDevUtilityRoutePath(pathname);
+  const effectiveShowOnboarding = showOnboarding && !currentDevUtilityRoute;
   const insets = useSafeAreaInsets();
   const globalBottomOverlay = useGlobalBottomOverlayOffset();
   const lastPathRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    setRootNavigationReady(true);
+  }, []);
 
   useEffect(() => {
     const sub = Linking.addEventListener('url', ({ url }) => {
@@ -761,16 +803,12 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    if (!pendingWarmDeepLink || !ready || showOnboarding || isBanned) return;
+    const targetIsDevUtilityRoute = ENABLE_DEV_TOOLS && isDevUtilityRoutePath(pendingWarmDeepLink);
+    if (!pendingWarmDeepLink || !ready || !rootNavigationReady || isBanned || (showOnboarding && !targetIsDevUtilityRoute)) return;
     const target = pendingWarmDeepLink;
     setPendingWarmDeepLink(null);
 
-    if (
-      target.startsWith('/settings_testers') ||
-      target.startsWith('/pos_analytics_audit') ||
-      target.startsWith('/admin_review_test') ||
-      target.startsWith('/admin_intro_preview')
-    ) {
+    if (isDevUtilityRoutePath(target)) {
       if (!ENABLE_DEV_TOOLS) {
         router.replace('/(tabs)/home' as any);
         return;
@@ -780,8 +818,13 @@ function AppContent() {
       return () => clearTimeout(retry);
     }
 
+    if (isTabsGroupRoutePath(target)) {
+      router.replace(target as any);
+      return;
+    }
+
     router.push(target as any);
-  }, [isBanned, pendingWarmDeepLink, ready, router, showOnboarding]);
+  }, [isBanned, pendingWarmDeepLink, ready, rootNavigationReady, router, showOnboarding]);
 
   useEffect(() => {
     if (!ready || !pathname || lastPathRef.current === pathname) return;
@@ -1030,20 +1073,20 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    void loadFlashcards();
+    void loadFlashcards(studyTarget);
     void (async () => {
       try {
-        const last = await AsyncStorage.getItem('last_opened_lesson');
+        const last = await AsyncStorage.getItem(lastOpenedLessonKey(studyTarget));
         const id = parseInt(last || '1', 10) || 1;
         if (id >= 1) {
           const m = await import('./lesson_menu');
-          await m.prefetchLessonMenuCache(id);
+          await m.prefetchLessonMenuCache(id, studyTarget);
         }
         const tab = await import('./lessons_tab_state');
-        await tab.loadLessonsTabStateFromStorage();
+        await tab.loadLessonsTabStateFromStorage(studyTarget);
       } catch { /* */ }
     })();
-  }, []);
+  }, [studyTarget]);
 
   useEffect(() => {
     const unsub = setupNotificationTapHandler(router);
@@ -1102,6 +1145,16 @@ function AppContent() {
     // Гидратация облака запускается рано (в bootstrap) и используется здесь,
     // чтобы остальной runHeavyInit ждал её завершения, а не дублировал.
     let cloudHydratePromise: Promise<void> | null = null;
+    let contentDeliveryMigrationPromise: Promise<void> | null = null;
+    const runContentDeliveryMigration = (after?: Promise<void> | null): Promise<void> => {
+      if (!contentDeliveryMigrationPromise) {
+        contentDeliveryMigrationPromise = (async () => {
+          if (after) await after.catch(() => {});
+          await applyContentDeliveryMigration().catch(() => {});
+        })();
+      }
+      return contentDeliveryMigrationPromise;
+    };
 
     const runHeavyInit = () => {
       const startShopWarm = async () => {
@@ -1119,7 +1172,9 @@ function AppContent() {
       if (deferLessonPrimeRef.current) {
         deferLessonPrimeRef.current = false;
         InteractionManager.runAfterInteractions(() => {
-          void primeAllLessonsFromStorageOnAppLaunch().catch(() => {});
+          void runContentDeliveryMigration(cloudHydratePromise)
+            .then(() => primeAllLessonsFromStorageOnAppLaunch(studyTarget))
+            .catch(() => {});
         });
       }
 
@@ -1146,6 +1201,7 @@ function AppContent() {
       })();
 
       void hydrate.then(async () => {
+        await runContentDeliveryMigration().catch(() => {});
         try { emitAppEvent('cloud_profile_hydrated'); } catch {}
         // Одноразовая починка после релиза, в котором (tabs)/index.tsx
         // перестал уважать persistedUnlocked: подтягиваем lesson{N-1}_best_score
@@ -1157,17 +1213,30 @@ function AppContent() {
         const freshShards = await AsyncStorage.getItem('shards_balance');
         const parsedShards = Number(freshShards);
         if (Number.isFinite(parsedShards) && parsedShards >= 0) {
-          emitAppEvent('shards_balance_updated', { balance: Math.floor(parsedShards) });
+          const balance = Math.floor(parsedShards);
+          emitAppEvent('shards_balance_updated', {
+            balance,
+            eligibleAchievementBalance: await getShardAchievementEligibleBalance(balance),
+          });
         }
         await migrateWeekPointsIfNeeded().catch(() => {});
         await updateStreakOnActivity().catch(() => {});
-        await runSessionChecks().catch(() => {});
+        await runSessionChecks(studyTarget).catch(() => {});
         await syncToCloud().catch(() => {});
         await ensureStableAuthLink().catch(() => false);
         registerInLeagueGroupSilently().catch(() => {});
-        getVerifiedPremiumStatus().then(isPrem => {
+        Promise.all([
+          getVerifiedRealPremiumStatus().catch(() => false),
+          getVerifiedVipStatus().catch(() => false),
+        ]).then(([isPrem, isVip]) => {
           emitAppEvent(isPrem ? 'premium_activated' : 'premium_deactivated');
+          emitAppEvent(isVip ? 'vip_activated' : 'vip_deactivated');
+          emitAppEvent('premium_access_changed', {
+            active: isPrem || isVip,
+            source: isPrem ? 'premium' : isVip ? 'vip' : 'none',
+          });
           updateMyPremiumInLeaderboard(isPrem);
+          updateMyVipInLeaderboard(isVip);
         }).catch(() => {});
         void import('./community_packs/communityModerationAlerts')
           .then((m) => m.flushCommunityModerationAlertsFromInbox())
@@ -1196,13 +1265,17 @@ function AppContent() {
     const bootstrap = async () => {
       onboardingPathRef.current = false;
       deferLessonPrimeRef.current = false;
+      const forceOnboardingForQA =
+        typeof __DEV__ !== 'undefined' &&
+        __DEV__ &&
+        process.env.EXPO_PUBLIC_FORCE_ONBOARDING_QA === '1';
 
       // ВАЖНО: запускаем гидратацию из облака как можно раньше (параллельно
       // локальной подготовке), и потом подождём её ниже с таймаутом 2.5с
       // ДО чтения 'onboarding_done'. Иначе на холодном старте после очистки
       // AsyncStorage юзеру повторно показывается онбординг — а параллельно
       // авто-имя (Psi5552 и т.п.) затирает реальный ник в облаке.
-      if (!IS_EXPO_GO) {
+      if (!IS_EXPO_GO && !forceOnboardingForQA) {
         await Promise.race([
           initFirebaseAppCheckIfAvailable(),
           new Promise<void>((resolve) => setTimeout(resolve, 1200)),
@@ -1213,6 +1286,7 @@ function AppContent() {
             await restoreFromCloud();
           } catch {}
         })();
+        runContentDeliveryMigration(cloudHydratePromise);
       }
 
       // Синхронные снимки тумблеров (настройки обучения, тактильный отклик, расписание пушей) — до setReady
@@ -1223,6 +1297,7 @@ function AppContent() {
       ]);
       // Сразу читаем осколки в фоне — к моменту «Главной» peekLastKnownShardsBalance уже с кэшем.
       void getShardsBalance()
+        .then(balance => getShardAchievementEligibleBalance(balance))
         .then(balance => checkAchievements({ type: 'shards', balance }).catch(() => {}))
         .catch(() => {});
 
@@ -1235,7 +1310,7 @@ function AppContent() {
           }
         }
 
-        const val = await AsyncStorage.getItem('onboarding_done');
+        const val = forceOnboardingForQA ? null : await AsyncStorage.getItem('onboarding_done');
 
         let handledByReferrer = false;
         if (!val && Platform.OS === 'android' && !IS_EXPO_GO) {
@@ -1270,23 +1345,35 @@ function AppContent() {
           });
         }
 
-        const willShowOnboarding = !handledByReferrer && !val;
+        const willShowOnboarding = forceOnboardingForQA || (!handledByReferrer && !val);
         onboardingPathRef.current = willShowOnboarding;
-        if (willShowOnboarding) {
-          deferLessonPrimeRef.current = true;
-        } else {
-          await primeAllLessonsFromStorageOnAppLaunch().catch(() => {});
-        }
+	        if (willShowOnboarding) {
+	          deferLessonPrimeRef.current = true;
+	        } else {
+	          await Promise.race([
+	            runContentDeliveryMigration(cloudHydratePromise),
+	            new Promise<void>((resolve) => setTimeout(resolve, 2500)),
+	          ]).catch(() => {});
+	          await primeAllLessonsFromStorageOnAppLaunch(studyTarget).catch(() => {});
+	        }
 
         if (!handledByReferrer) {
-          setShow(!val);
+          setShow(willShowOnboarding);
         }
       } catch {}
 
-      await Promise.race([
-        preloadStartupImages(),
-        new Promise<void>((resolve) => setTimeout(resolve, 450)),
+      const iconFontsReady = preloadVectorIconFonts();
+      await Promise.all([
+        Promise.race([
+          iconFontsReady,
+          new Promise<void>((resolve) => setTimeout(resolve, 1800)),
+        ]),
+        Promise.race([
+          preloadStartupImages(),
+          new Promise<void>((resolve) => setTimeout(resolve, 450)),
+        ]),
       ]).catch(() => {});
+      void iconFontsReady.catch(() => {});
 
       clearTimeout(safetyTimer);
       setReady(true);
@@ -1303,7 +1390,13 @@ function AppContent() {
     });
     const subShards = onAppEvent('shards_balance_updated', (payload) => {
       const balance = typeof payload?.balance === 'number' ? payload.balance : null;
-      if (balance !== null) checkAchievements({ type: 'shards', balance }).catch(() => {});
+      if (balance !== null) {
+        const eligible = typeof payload?.eligibleAchievementBalance === 'number'
+          ? payload.eligibleAchievementBalance
+          : null;
+        const run = eligible === null ? getShardAchievementEligibleBalance(balance) : Promise.resolve(eligible);
+        run.then((achievementBalance) => checkAchievements({ type: 'shards', balance: achievementBalance })).catch(() => {});
+      }
     });
     const subDelete = onAppEvent('account_deleted', () => {
       // После первого онбординга refs = true; без сброса повторное завершение
@@ -1354,14 +1447,14 @@ function AppContent() {
 
   // После закрытия онбординга и монтирования Stack — переходим на нужный экран
   useEffect(() => {
-    if (!showOnboarding && pendingRoute) {
+    if (ready && rootNavigationReady && !isBanned && !showOnboarding && pendingRoute) {
       const t = setTimeout(() => {
         router.replace(pendingRoute as any);
         setPendingRoute(null);
       }, 50);
       return () => clearTimeout(t);
     }
-  }, [pendingRoute, router, showOnboarding]);
+  }, [isBanned, pendingRoute, ready, rootNavigationReady, router, showOnboarding]);
 
 
   // ── Очередь модалок: ровно одна показывается за раз ─────────────────────
@@ -1373,15 +1466,15 @@ function AppContent() {
   const leagueBonusAvailableModalVisible = useOverlayVisible('leagueBonusAvailable', !!leagueBonusAvailable);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
   const firstLessonSheetVisible = useOverlayVisible('firstLessonSheet', showFirstLessonSheet);
-  const firstLessonSheetBackground = FIRST_LESSON_SHEET_BACKGROUNDS[themeMode] ?? FIRST_LESSON_SHEET_BACKGROUNDS.minimalDark;
-  const firstLessonSheetScrim = FIRST_LESSON_SHEET_PANEL_SCRIMS[themeMode] ?? FIRST_LESSON_SHEET_PANEL_SCRIMS.minimalDark;
-  const firstLessonSheetTitleColor = FIRST_LESSON_SHEET_TITLE_COLORS[themeMode] ?? '#FFFFFF';
-  const firstLessonSheetSubtitleColor = FIRST_LESSON_SHEET_SUBTITLE_COLORS[themeMode] ?? '#C5CAD0';
-  const firstLessonSheetLaterColor = FIRST_LESSON_SHEET_LATER_COLORS[themeMode] ?? '#9298A1';
-  const firstLessonSheetBorderColor = FIRST_LESSON_SHEET_BORDER_COLORS[themeMode] ?? 'rgba(255,255,255,0.16)';
-  const firstLessonSheetCtaTextColor = FIRST_LESSON_SHEET_CTA_TEXT_COLORS[themeMode] ?? '#FFFFFF';
-  const firstLessonSheetCtaGradient = FIRST_LESSON_SHEET_CTA_GRADIENTS[themeMode] ?? FIRST_LESSON_SHEET_CTA_GRADIENTS.neon;
-  const firstLessonSheetCtaShadowColor = FIRST_LESSON_SHEET_CTA_SHADOW_COLORS[themeMode] ?? '#C8FF00';
+  const firstLessonSheetBackground = FIRST_LESSON_SHEET_BACKGROUNDS[themeMode];
+  const firstLessonSheetScrim = FIRST_LESSON_SHEET_PANEL_SCRIMS[themeMode];
+  const firstLessonSheetTitleColor = FIRST_LESSON_SHEET_TITLE_COLORS[themeMode];
+  const firstLessonSheetSubtitleColor = FIRST_LESSON_SHEET_SUBTITLE_COLORS[themeMode];
+  const firstLessonSheetLaterColor = FIRST_LESSON_SHEET_LATER_COLORS[themeMode];
+  const firstLessonSheetBorderColor = FIRST_LESSON_SHEET_BORDER_COLORS[themeMode];
+  const firstLessonSheetCtaTextColor = FIRST_LESSON_SHEET_CTA_TEXT_COLORS[themeMode];
+  const firstLessonSheetCtaGradient = FIRST_LESSON_SHEET_CTA_GRADIENTS[themeMode];
+  const firstLessonSheetCtaShadowColor = FIRST_LESSON_SHEET_CTA_SHADOW_COLORS[themeMode];
 
   if (!ready) {
     return (
@@ -1413,7 +1506,7 @@ function AppContent() {
     );
   }
 
-  if (showOnboarding) {
+  if (effectiveShowOnboarding) {
     return (
       <View style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>
         <Onboarding onDone={handleOnboardingDone} onLangSelect={handleLangSelect} />
@@ -1421,7 +1514,9 @@ function AppContent() {
     );
   }
 
-  const appShellReady = firstContentReady;
+  const appShellReady = ready && !effectiveShowOnboarding && !isBanned && firstContentReady;
+  const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned;
+  const startupSplashVisible = !ready || (!effectiveShowOnboarding && !isBanned && !firstContentReady);
 
   return (
     <View style={{ flex: 1, backgroundColor: appShellReady ? tTheme.bgPrimary : STARTUP_SPLASH_BG }}>
@@ -1470,6 +1565,7 @@ function AppContent() {
       <Stack.Screen name="review" />
       {ENABLE_DEV_TOOLS && <Stack.Screen name="admin_review_test" />}
       {ENABLE_DEV_TOOLS && <Stack.Screen name="admin_intro_preview" />}
+      {ENABLE_DEV_TOOLS && <Stack.Screen name="admin_premium_delivery_test" />}
       {ENABLE_DEV_TOOLS && <Stack.Screen name="settings_testers" />}
       {ENABLE_DEV_TOOLS && <Stack.Screen name="pos_analytics_audit" />}
       <Stack.Screen name="progress_map" />
@@ -1495,7 +1591,7 @@ function AppContent() {
     </Stack>
 
     <NotificationPermissionModal
-      visible={notifNudgeModalVisible}
+      visible={appOverlaysEnabled && notifNudgeModalVisible}
       lang={lang}
       title={
         lang === 'es'
@@ -1529,17 +1625,17 @@ function AppContent() {
         const snap = getNotifSettingsSnapshot();
         const hasPerDay = Object.values(snap.schedule).some(d => d.enabled);
         if (hasPerDay) {
-          await scheduleNotifications(snap, lang, 0);
+          await scheduleNotifications(snap, lang, 0, { studyTarget });
           return;
         }
         const hour = parseInt((await AsyncStorage.getItem('notification_hour')) || '19', 10);
         const minute = parseInt((await AsyncStorage.getItem('notification_minute')) || '0', 10);
-        await scheduleDailyReminder(hour, minute, lang);
+        await scheduleDailyReminder(hour, minute, lang, { studyTarget });
       }}
     />
 
     {/* Модальник обновления — поверх всего приложения */}
-    {updateInfo && (
+    {appOverlaysEnabled && updateInfo && (
       <UpdateModal
         visible={updateModalVisible}
         storeUrl={updateInfo.storeUrl}
@@ -1557,18 +1653,18 @@ function AppContent() {
     )}
 
     <ReleaseNotesModal
-      visible={releaseNotesModalVisible}
+      visible={appOverlaysEnabled && releaseNotesModalVisible}
       onClose={() => { void closeReleaseNotesModal(); }}
     />
 
     <GlobalBroadcastModal
-      visible={broadcastModalVisible}
+      visible={appOverlaysEnabled && broadcastModalVisible}
       payload={globalBroadcastModal}
       onClose={() => setGlobalBroadcastModal(null)}
     />
 
     <LeagueBonusAvailableModal
-      visible={leagueBonusAvailableModalVisible}
+      visible={appOverlaysEnabled && leagueBonusAvailableModalVisible}
       availability={leagueBonusAvailable}
       onClose={() => setLeagueBonusAvailable(null)}
       onOpenLeague={() => {
@@ -1578,7 +1674,7 @@ function AppContent() {
     />
 
     {/* Bottomsheet первого урока после онбординга */}
-    {showFirstLessonSheet && (
+    {appOverlaysEnabled && showFirstLessonSheet && (
       <Modal
         transparent
         visible={firstLessonSheetVisible}
@@ -1686,13 +1782,45 @@ function AppContent() {
       </Modal>
     )}
 
-    <StartupSplashHold visible={!appShellReady} />
+    {ready && effectiveShowOnboarding && (
+      <View style={styles.appFullScreenOverlay}>
+        <Onboarding onDone={handleOnboardingDone} onLangSelect={handleLangSelect} />
+      </View>
+    )}
+
+    {ready && isBanned && (
+      <View style={[styles.appFullScreenOverlay, { backgroundColor: '#06141B', justifyContent: 'center', padding: 24 }]}>
+        <View style={{ backgroundColor: '#121826', borderRadius: 18, borderWidth: 1, borderColor: '#7f1d1d', padding: 20 }}>
+          <Text style={{ color: '#f87171', fontSize: 28, textAlign: 'center', marginBottom: 10 }}>🚫</Text>
+          <Text style={{ color: '#fff', fontSize: 20, fontWeight: '800', textAlign: 'center', marginBottom: 8 }}>
+            Аккаунт заблокирован
+          </Text>
+          <Text style={{ color: '#9ca3af', fontSize: 14, textAlign: 'center', lineHeight: 20, marginBottom: 16 }}>
+            Доступ к приложению ограничен. Если считаете блокировку ошибочной — напишите в поддержку.
+          </Text>
+          <TouchableOpacity
+            onPress={() => checkBanStatus(true)}
+            style={{ backgroundColor: '#1f2937', borderRadius: 12, paddingVertical: 12, alignItems: 'center' }}
+          >
+            <Text style={{ color: '#fff', fontWeight: '700' }}>Проверить снова</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )}
+
+    <StartupSplashHold visible={startupSplashVisible} />
 
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  appFullScreenOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 50,
+    elevation: 50,
+    backgroundColor: STARTUP_SPLASH_BG,
+  },
   firstLessonSheetOverlay: {
     flex: 1,
     justifyContent: 'flex-end',

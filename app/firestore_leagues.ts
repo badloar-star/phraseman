@@ -20,7 +20,7 @@ import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { GroupMember, getWeekId } from './league_engine';
 import { getMyWeekPoints } from './hall_of_fame_utils';
-import { getVerifiedPremiumStatus } from './premium_guard';
+import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
 import { loadActiveLeagueBoost } from './league_personal_boosts';
 import { emitAppEvent } from './events';
 import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../constants/avatar_auras';
@@ -68,13 +68,13 @@ const BROAD_GROUP_QUERY_LIMIT = 500;
 function countMembersInData(data: any): number {
   const m = data?.members;
   if (!m || typeof m !== 'object') return 0;
-  return Object.keys(m).length;
+  return Object.values(m).filter((member: any) => member?.identityHidden !== true).length;
 }
 
 /** Firestore числа + надёжное сравнение id клуба (избегаем рассинхрона 0 / long / int). */
-function normLeagueIdData(v: unknown, fallback: number = 0): number {
+function normLeagueIdData(v: unknown, defaultValue: number = 0): number {
   const n = Number(v);
-  if (!Number.isFinite(n)) return fallback;
+  if (!Number.isFinite(n)) return defaultValue;
   return Math.trunc(n);
 }
 
@@ -416,7 +416,10 @@ export async function getOrCreateLeagueGroup(
   const memberAvatar   = avatarRaw  ?? undefined;
   const memberFrame    = frameRaw   ?? undefined;
   const memberAura     = normalizeAvatarAuraId(auraRaw);
-  const memberPremium  = await getVerifiedPremiumStatus().catch(() => false);
+  const [memberPremium, memberVip] = await Promise.all([
+    getVerifiedRealPremiumStatus().catch(() => false),
+    getVerifiedVipStatus().catch(() => false),
+  ]);
   const memberStreak   = streakRaw  ? parseInt(streakRaw, 10) : 0;
   const memberTotalXp  = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
   const memberProfileCardLevel = normalizeProfileCardLevel(cardLevelRaw);
@@ -442,6 +445,7 @@ export async function getOrCreateLeagueGroup(
     profileCardMotion: memberProfileCardMotion,
     profileCardPublicFocus: memberProfileCardPublicFocus,
     isPremium: memberPremium,
+    isVip: memberVip,
     streak:    memberStreak,
     totalXp:   memberTotalXp,
     ...boostFields,
@@ -598,7 +602,7 @@ export async function fetchLeagueTopMembers(
   if (!db) return [];
   try {
     // Сначала пробуем точный запрос weekId + leagueId.
-    // Если индекс не готов, fallback на weekId с расширенным лимитом.
+    // Если индекс не готов, читаем weekId с расширенным лимитом.
     let snap: any;
     try {
       snap = await db
@@ -621,9 +625,10 @@ export async function fetchLeagueTopMembers(
       snap.docs
         .filter((doc: any) => normLeagueIdData(doc.data().leagueId) === normLeagueIdData(leagueId))
         .forEach((doc: any) => {
-          const members: Record<string, { name: string; points: number; uid: string; avatar?: string; frame?: string; aura?: string; isPremium?: boolean; streak?: number; totalXp?: number }> =
+          const members: Record<string, { name: string; points: number; uid: string; avatar?: string; frame?: string; aura?: string; isPremium?: boolean; isVip?: boolean; streak?: number; totalXp?: number }> =
             doc.data()?.members ?? {};
           Object.entries(members).forEach(([uid, m]) => {
+            if ((m as any)?.identityHidden === true) return;
             all.push({
               name: m.name,
               points: m.points,
@@ -633,6 +638,7 @@ export async function fetchLeagueTopMembers(
               frame: m.frame,
               aura: normalizeAvatarAuraId(m.aura),
               isPremium: m.isPremium,
+              isVip: m.isVip,
               streak: m.streak,
               totalXp: m.totalXp,
             });
@@ -640,8 +646,9 @@ export async function fetchLeagueTopMembers(
         });
     }
 
-    // Фолбэк: ищем игроков по leagueId прямо в leaderboard
-    if (all.length < 3) {
+    // Строгий фолбэк: leaderboard используем только когда нет ни одной current-week group.
+    // Иначе старые leaderboard/{authUid} документы могут выглядеть как живые участники лиги.
+    if (all.length === 0) {
       try {
         // Сначала ищем по leagueId (новые пользователи с обновлённым кодом)
         const lbSnap = await db
@@ -655,7 +662,11 @@ export async function fetchLeagueTopMembers(
         if (!lbSnap.empty) {
           lbSnap.docs.forEach((doc: any) => {
             const d = doc.data();
-            if (d?.name && !existingNames.has((d.name as string).trim().toLowerCase())) {
+            if (
+              d?.name &&
+              d?.groupWeekId === weekId &&
+              !existingNames.has((d.name as string).trim().toLowerCase())
+            ) {
               all.push({
                 name: d.name,
                 points: d.weekKey === weekId ? (d.weekPoints ?? 0) : 0,
@@ -665,6 +676,7 @@ export async function fetchLeagueTopMembers(
                 frame: d.frame,
                 aura: normalizeAvatarAuraId(d.aura),
                 isPremium: d.isPremium,
+                isVip: d.isVip,
                 streak: d.streak,
                 totalXp: d.points,
               });
@@ -675,7 +687,7 @@ export async function fetchLeagueTopMembers(
 
         // Для клуба 0 — показываем всех пользователей у кого нет leagueId (старые клиенты)
         // Все новые пользователи начинают с leagueId=0
-        if (all.length < 3 && leagueId === 0) {
+        if (all.length === 0 && leagueId === 0) {
           const allUsersSnap = await db
             .collection('leaderboard')
             .limit(limit)
@@ -684,7 +696,12 @@ export async function fetchLeagueTopMembers(
           allUsersSnap.docs.forEach((doc: any) => {
             const d = doc.data();
             const hasLeagueId = d?.leagueId !== undefined && d?.leagueId !== null;
-            if (d?.name && !hasLeagueId && !existingNames.has((d.name as string).trim().toLowerCase())) {
+            if (
+              d?.name &&
+              d?.groupWeekId === weekId &&
+              !hasLeagueId &&
+              !existingNames.has((d.name as string).trim().toLowerCase())
+            ) {
               all.push({
                 name: d.name,
                 points: d.weekKey === weekId ? (d.weekPoints ?? 0) : 0,
@@ -694,6 +711,7 @@ export async function fetchLeagueTopMembers(
                 frame: d.frame,
                 aura: normalizeAvatarAuraId(d.aura),
                 isPremium: d.isPremium,
+                isVip: d.isVip,
                 streak: d.streak,
                 totalXp: d.points,
               });
@@ -745,6 +763,7 @@ async function _doUpdateGroupPoints(weekPoints: number): Promise<void> {
       [, auraRaw],
       [, streakRaw],
       [, totalXpRaw],
+      [, nameRaw],
       [, cardLevelRaw],
       [, cardThemeRaw],
       [, cardMotionRaw],
@@ -755,17 +774,23 @@ async function _doUpdateGroupPoints(weekPoints: number): Promise<void> {
       USER_AVATAR_AURA_KEY,
       'streak_count',
       'user_total_xp',
+      'user_name',
       PROFILE_CARD_LEVEL_KEY,
       PROFILE_CARD_THEME_KEY,
       PROFILE_CARD_MOTION_KEY,
       PROFILE_CARD_PUBLIC_FOCUS_KEY,
     ]);
-    const memberPremium = await getVerifiedPremiumStatus().catch(() => false);
+    const [memberPremium, memberVip] = await Promise.all([
+      getVerifiedRealPremiumStatus().catch(() => false),
+      getVerifiedVipStatus().catch(() => false),
+    ]);
     const memberTotalXp = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
+    const memberName = (nameRaw ?? '').trim();
     const fn = callable<{ stableId?: string; member: Record<string, unknown> }, { ok: boolean }>('leagueUpdateMyMember');
     await fn({
       stableId: uid,
-      member: {
+      member: withoutUndefinedFields({
+        name: memberName || undefined,
         points: weekPoints,
         uid,
         avatar: avatarRaw ?? null,
@@ -776,10 +801,31 @@ async function _doUpdateGroupPoints(weekPoints: number): Promise<void> {
         profileCardMotion: normalizeProfileCardMotion(cardMotionRaw),
         profileCardPublicFocus: normalizeProfileCardPublicFocus(cardFocusRaw),
         isPremium: memberPremium,
+        isVip: memberVip,
         streak: streakRaw ? parseInt(streakRaw, 10) : 0,
         totalXp: memberTotalXp,
-      },
+      }),
     });
+  } catch {}
+}
+
+export async function syncMyLeagueMemberProfileNow(): Promise<void> {
+  if (!CLOUD_SYNC_ENABLED) return;
+  try {
+    const weekPoints = await getMyWeekPoints();
+    const [[, nameRaw], [, leagueRaw]] = await AsyncStorage.multiGet(['user_name', LEAGUE_STATE_V3_KEY]);
+    const name = (nameRaw ?? '').trim();
+    if (name) {
+      let leagueId = 0;
+      try {
+        const state = leagueRaw ? JSON.parse(leagueRaw) : null;
+        leagueId = normLeagueIdData(state?.leagueId, 0);
+      } catch {
+        leagueId = 0;
+      }
+      await getOrCreateLeagueGroup(getWeekId(), leagueId, name, weekPoints).catch(() => null);
+    }
+    await _doUpdateGroupPoints(weekPoints);
   } catch {}
 }
 
@@ -839,6 +885,7 @@ function mapLeagueMembersToGroupList(
   myWeekPoints: number,
 ): GroupMember[] {
   return Object.entries(members)
+    .filter(([, m]) => m?.identityHidden !== true)
     .map(([key, m]) => {
       const mult = m.leagueBoostMultiplier;
       const until = typeof m.leagueBoostExpiresAt === 'number' ? m.leagueBoostExpiresAt : 0;
@@ -849,6 +896,7 @@ function mapLeagueMembersToGroupList(
         isMe: key === myUid,
         uid: key,
         isPremium: m.isPremium ?? false,
+        isVip: m.isVip ?? false,
         avatar: m.avatar ?? undefined,
         frame: m.frame ?? undefined,
         aura: normalizeAvatarAuraId(m.aura),

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Image, View, Text, TouchableOpacity, Modal, Pressable, ScrollView, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -13,13 +13,12 @@ import ContentWrap from '../components/ContentWrap';
 import EnergyBar from '../components/EnergyBar';
 import { useEnergy } from '../components/EnergyContext';
 import PremiumCard from '../components/PremiumCard';
-import { lessonNamesForLang } from '../constants/lessons';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { LESSONS_WITH_WORDS, WORD_COUNT_BY_LESSON, WORD_KEYS_BY_LESSON } from './lesson_words';
 import { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
-import { GLOBAL_IRREGULAR_KEY } from './lesson_irregular_verbs';
-import { getLessonPrepositionPack, hasLessonPrepositionDrill } from './lesson_prepositions';
+import { getLessonPrepositionPack, hasLessonPrepositionDrillForTarget } from './lesson_prepositions';
 import CircularProgress from '../components/CircularProgress';
 import { getMedalTier, getNextMedalHint, loadMedalInfo, getEarnedDots } from './medal_utils';
 import {
@@ -38,9 +37,23 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import { oskolokImageForPackShards } from './oskolok';
 import { isFreeLesson, lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { getCourseLevelForLesson, getPreviousCourseLevel } from './course_levels';
-import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
+import { getLessonScreenPrimed, primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import GoldBevel from '../components/GoldBevel';
+import { lessonCefrLabelForStudyTarget, lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
+import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
+import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
+import {
+  lastOpenedLessonKey,
+  irregularVerbsGlobalKey,
+  lessonBestScoreKey,
+  lessonPassCountKey,
+  lessonPrepositionProgressKey,
+  lessonProgressKey,
+  lessonWordsKey,
+  storageStudyTarget,
+  type RuntimeStudyTarget,
+} from './target_storage_keys';
 
 // Medal images
 const MEDAL_IMAGES: Record<string, any> = {
@@ -51,7 +64,6 @@ const MEDAL_IMAGES: Record<string, any> = {
   emerald: require('../assets/images/levels/izumrud.webp'),
   diamond: require('../assets/images/levels/almaz.webp'),
 };
-
 type LessonMenuCache = {
   score: number;
   progress: number;
@@ -63,9 +75,36 @@ type LessonMenuCache = {
   passCount: number;
 };
 
-const lessonMenuCacheById: Record<number, LessonMenuCache> = {};
+const lessonMenuCacheById: Record<string, LessonMenuCache> = {};
+
+function lessonMenuCacheKey(lessonId: number, studyTarget?: RuntimeStudyTarget): string {
+  return `${storageStudyTarget(studyTarget)}:${lessonId}`;
+}
 
 const emptyProgress = () => new Array(50).fill('empty');
+
+function countAnsweredProgress(progressArr: string[]): number {
+  return progressArr.filter(x => x === 'correct' || x === 'replay_correct' || x === 'wrong').length;
+}
+
+function freshestProgressRaw(
+  lessonId: number,
+  progressRaw: string | null,
+  studyTarget?: RuntimeStudyTarget,
+): string | null {
+  const primed = getLessonScreenPrimed(lessonId, studyTarget)?.progress;
+  if (!primed || primed.length === 0) return progressRaw;
+  if (!progressRaw) return JSON.stringify(primed);
+  try {
+    const saved = JSON.parse(progressRaw) as unknown;
+    if (!Array.isArray(saved)) return JSON.stringify(primed);
+    return countAnsweredProgress(primed) >= countAnsweredProgress(saved as string[])
+      ? JSON.stringify(primed)
+      : progressRaw;
+  } catch {
+    return JSON.stringify(primed);
+  }
+}
 
 function parseProgress(
   progressRaw: string | null,
@@ -111,8 +150,12 @@ function parseIrregularLearned(lessonId: number, irregularRaw: string | null): n
   }
 }
 
-function parsePrepositionAnswered(lessonId: number, raw: string | null): { answered: number; total: number } {
-  const pack = getLessonPrepositionPack(lessonId);
+function parsePrepositionAnswered(
+  lessonId: number,
+  raw: string | null,
+  studyTarget?: RuntimeStudyTarget,
+): { answered: number; total: number } {
+  const pack = getLessonPrepositionPack(lessonId, studyTarget);
   const total = pack?.items.length ?? 0;
   if (!pack || total === 0) return { answered: 0, total: 0 };
   try {
@@ -126,25 +169,33 @@ function parsePrepositionAnswered(lessonId: number, raw: string | null): { answe
   }
 }
 
-export async function prefetchLessonMenuCache(lessonId: number): Promise<void> {
+export async function prefetchLessonMenuCache(
+  lessonId: number,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> {
   const id = Math.max(1, Math.floor(lessonId || 1));
   try {
+    const progressKey = lessonProgressKey(id, studyTarget);
+    const bestScoreKey = lessonBestScoreKey(id, studyTarget);
+    const wordsKey = lessonWordsKey(id, studyTarget);
+    const irregularKey = irregularVerbsGlobalKey(studyTarget);
+    const prepositionProgressKey = lessonPrepositionProgressKey(id, studyTarget);
     const [entries, medalInfo] = await Promise.all([
       AsyncStorage.multiGet([
-        `lesson${id}_progress`,
-        `lesson${id}_best_score`,
-        `lesson${id}_words`,
-        GLOBAL_IRREGULAR_KEY,
-        `lesson${id}_preposition_progress`,
+        progressKey,
+        bestScoreKey,
+        wordsKey,
+        irregularKey,
+        prepositionProgressKey,
       ]),
-      loadMedalInfo(id),
+      loadMedalInfo(id, studyTarget),
     ]);
     const map = Object.fromEntries(entries) as Record<string, string | null>;
-    const prep = parsePrepositionAnswered(id, map[`lesson${id}_preposition_progress`] ?? null);
-    lessonMenuCacheById[id] = {
-      ...parseProgress(map[`lesson${id}_progress`] ?? null, map[`lesson${id}_best_score`] ?? null),
-      wordsLearned: parseWordsLearned(id, map[`lesson${id}_words`] ?? null),
-      irregularLearned: parseIrregularLearned(id, map[GLOBAL_IRREGULAR_KEY] ?? null),
+    const prep = parsePrepositionAnswered(id, map[prepositionProgressKey] ?? null, studyTarget);
+    lessonMenuCacheById[lessonMenuCacheKey(id, studyTarget)] = {
+      ...parseProgress(freshestProgressRaw(id, map[progressKey] ?? null, studyTarget), map[bestScoreKey] ?? null),
+      wordsLearned: parseWordsLearned(id, map[wordsKey] ?? null),
+      irregularLearned: parseIrregularLearned(id, map[irregularKey] ?? null),
       prepositionAnswered: prep.answered,
       prepositionTotal: prep.total,
       passCount: medalInfo.passCount,
@@ -159,13 +210,14 @@ export default function LessonMenu() {
   const isLightTheme = false;
   const isGoldTheme = themeMode === 'gold';
   const { s, lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const { energy, bonusEnergy, isUnlimited: menuEnergyUnlimited, energyReady: menuEnergyReady } = useEnergy();
   const { id: idParam } = useLocalSearchParams<{ id?: string | string[] }>();
   const id = (Array.isArray(idParam) ? idParam[0] : idParam) || '1';
   const lessonId = parseInt(id, 10) || 1;
 
-  const lessonNames = lessonNamesForLang(lang);
-  const fallbackLessonTitle = triLang(lang, {
+  const lessonNames = lessonNamesForStudyTarget(lang, studyTarget);
+  const defaultLessonTitle = triLang(lang, {
   ru: `Урок ${lessonId}`,
   uk: `Урок ${lessonId}`,
   es: `Lección ${lessonId}`,
@@ -175,8 +227,12 @@ export default function LessonMenu() {
   tr: `Ders ${lessonId}`,
   pl: `Lekcja ${lessonId}`,
 });
-  const lessonName = lessonNames[lessonId - 1] || fallbackLessonTitle;
-  const cachedMenu = lessonMenuCacheById[lessonId];
+  const lessonName = lessonNames[lessonId - 1] || defaultLessonTitle;
+  const lessonCefrLabel = lessonCefrLabelForStudyTarget(lessonId, studyTarget);
+  const cachedMenu = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
+  const hideEnglishOnlyAuxiliary = studyTarget === 'fr';
+  const frenchLessonSourceGated = !frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId);
+  const frenchTheorySourceGated = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId);
 
   const [score,setScore] = useState(cachedMenu?.score ?? 0);
   const [progress,setProgress] = useState(cachedMenu?.progress ?? 0);
@@ -187,7 +243,7 @@ export default function LessonMenu() {
   const [prepositionTotal, setPrepositionTotal] = useState(cachedMenu?.prepositionTotal ?? 0);
   const [passCount, setPassCount] = useState(cachedMenu?.passCount ?? 0);
   const [dataLoaded, setDataLoaded] = useState(Boolean(cachedMenu));
-  const [soonOpen, setSoonOpen] = useState<null | 'vocab' | 'verbs' | 'prepositions'>(null);
+  const [soonOpen, setSoonOpen] = useState<null | 'frenchLesson' | 'frenchTheory' | 'vocab' | 'verbs' | 'prepositions'>(null);
 
   // Состояние блокировки урока
   const [isLessonLocked, setIsLessonLocked] = useState(false);
@@ -206,7 +262,7 @@ export default function LessonMenu() {
   useEffect(() => {
     let cancelled = false;
     void Promise.all([
-      isLessonFinishedOnce(lessonId),
+      isLessonFinishedOnce(lessonId, studyTarget),
       getVerifiedPremiumStatus(),
     ]).then(([fin, prem]) => {
       if (cancelled) return;
@@ -214,33 +270,35 @@ export default function LessonMenu() {
       setIsPremium(prem);
     });
     return () => { cancelled = true; };
-  }, [lessonId]);
+  }, [lessonId, studyTarget]);
 
   useEffect(() => {
     if (!showMasteryPaywall) return;
     let cancelled = false;
-    void getMasteryReplayPriceShards(lessonId).then((p) => {
+    void getMasteryReplayPriceShards(lessonId, studyTarget).then((p) => {
       if (!cancelled) setMasteryReplayPrice(p);
     });
     return () => { cancelled = true; };
-  }, [lessonId, showMasteryPaywall, finishedOnce, isPremium]);
+  }, [lessonId, showMasteryPaywall, finishedOnce, isPremium, studyTarget]);
 
   useEffect(() => {
     const sub = onAppEvent('lesson_replay_started', (payload) => {
       if (payload?.lessonId !== lessonId) return;
-      void getMasteryReplayPriceShards(lessonId).then(setMasteryReplayPrice);
+      if ((payload.studyTarget ?? 'en') !== storageStudyTarget(studyTarget)) return;
+      void getMasteryReplayPriceShards(lessonId, studyTarget).then(setMasteryReplayPrice);
     });
     return () => sub.remove();
-  }, [lessonId]);
+  }, [lessonId, studyTarget]);
 
   // Подписка на event «урок впервые завершён» — на случай если юзер вернулся
   // на lesson_menu сразу из lesson_complete без перезагрузки экрана.
   useEffect(() => {
     const sub = onAppEvent('lesson_finished_once', (payload) => {
+      if ((payload?.studyTarget ?? 'en') !== storageStudyTarget(studyTarget)) return;
       if (payload?.lessonId === lessonId) setFinishedOnce(true);
     });
     return () => sub.remove();
-  }, [lessonId]);
+  }, [lessonId, studyTarget]);
 
   const loadLockState = useCallback(() => {
     // Проверить, заблокирован ли урок (с учётом тестерской функции "Без ограничений")
@@ -259,15 +317,15 @@ export default function LessonMenu() {
       if (!premiumNow && requiresPremiumForLesson(lessonId)) {
         setIsLessonLocked(true);
         setLockReason('premium');
-        setLockInfo(await getLessonLockInfo(lessonId));
+        setLockInfo(await getLessonLockInfo(lessonId, studyTarget));
         return;
       }
 
       if (premiumNow) {
-        const premiumUnlocked = await isLessonUnlockedByPremiumCourse(lessonId);
+        const premiumUnlocked = await isLessonUnlockedByPremiumCourse(lessonId, studyTarget);
         setIsLessonLocked(!premiumUnlocked);
         setLockReason(premiumUnlocked ? 'progress' : 'level');
-        setLockInfo(premiumUnlocked ? null : await getLessonLockInfo(lessonId));
+        setLockInfo(premiumUnlocked ? null : await getLessonLockInfo(lessonId, studyTarget));
         return;
       }
 
@@ -278,23 +336,23 @@ export default function LessonMenu() {
         return;
       }
 
-      let unlocked = await isLessonUnlocked(lessonId);
+      let unlocked = await isLessonUnlocked(lessonId, studyTarget);
       // Fallback: если урок не в persisted unlock list, проверяем предыдущий урок
       // через best_score или динамически через прогресс (как в index.tsx)
       if (!unlocked && lessonId > 1) {
         const prevId = lessonId - 1;
-        const prevBestRaw = await AsyncStorage.getItem(`lesson${prevId}_best_score`);
+        const prevBestRaw = await AsyncStorage.getItem(lessonBestScoreKey(prevId, studyTarget));
         let prevScore = parseFloat(prevBestRaw ?? '0') || 0;
 
         // Если best_score ещё не записан — считаем из прогресса (урок в процессе)
         if (prevScore === 0) {
-          const savedProg = await AsyncStorage.getItem(`lesson${prevId}_progress`);
+          const savedProg = await AsyncStorage.getItem(lessonProgressKey(prevId, studyTarget));
           prevScore = effectiveLessonStarScore(prevBestRaw, savedProg).score;
         }
 
         if (prevScore >= 2.5) {
           const { unlockLesson } = await import('./lesson_lock_system');
-          await unlockLesson(lessonId);
+          await unlockLesson(lessonId, studyTarget);
           unlocked = true;
         }
       }
@@ -302,22 +360,27 @@ export default function LessonMenu() {
       setIsLessonLocked(!unlocked);
       if (!unlocked) {
         setLockReason('progress');
-        const info = await getLessonLockInfo(lessonId);
+        const info = await getLessonLockInfo(lessonId, studyTarget);
         setLockInfo(info);
       } else {
         setLockInfo(null);
       }
     })();
-  }, [lessonId]);
+  }, [lessonId, studyTarget]);
 
   const loadProgress = useCallback(() => {
+    const progressKey = lessonProgressKey(lessonId, studyTarget);
+    const bestScoreKey = lessonBestScoreKey(lessonId, studyTarget);
+    const wordsKey = lessonWordsKey(lessonId, studyTarget);
+    const irregularKey = irregularVerbsGlobalKey(studyTarget);
+    const prepositionProgressKey = lessonPrepositionProgressKey(lessonId, studyTarget);
     AsyncStorage.multiGet([
-      `lesson${lessonId}_progress`,
-      `lesson${lessonId}_best_score`,
+      progressKey,
+      bestScoreKey,
     ]).then(entries => {
       const map = Object.fromEntries(entries) as Record<string, string | null>;
-      const saved = map[`lesson${lessonId}_progress`] ?? null;
-      const bestRaw = map[`lesson${lessonId}_best_score`] ?? null;
+      const saved = freshestProgressRaw(lessonId, map[progressKey] ?? null, studyTarget);
+      const bestRaw = map[bestScoreKey] ?? null;
       try {
         if (saved) {
           const p: string[] = JSON.parse(saved);
@@ -333,8 +396,8 @@ export default function LessonMenu() {
       } catch { setScore(parseFloat(bestRaw ?? '0') || 0); setProgress(0); setProgressArr(new Array(50).fill('empty')); }
       setDataLoaded(true);
     });
-    loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
-    AsyncStorage.getItem(`lesson${lessonId}_words`).then(saved => {
+    loadMedalInfo(lessonId, studyTarget).then(info => setPassCount(info.passCount));
+    AsyncStorage.getItem(wordsKey).then(saved => {
       try {
         if (!saved) { setWordsLearned(0); return; }
         let counts: Record<string,number> = JSON.parse(saved);
@@ -345,7 +408,7 @@ export default function LessonMenu() {
           for (const p of pronouns) {
             if (!counts[p] || counts[p] < 3) { counts = { ...counts, [p]: 3 }; migrated = true; }
           }
-          if (migrated) AsyncStorage.setItem('lesson1_words', JSON.stringify(counts));
+          if (migrated) AsyncStorage.setItem(wordsKey, JSON.stringify(counts));
         }
         const validKeys = WORD_KEYS_BY_LESSON[lessonId];
         const learned = validKeys
@@ -355,7 +418,7 @@ export default function LessonMenu() {
       } catch { setWordsLearned(0); }
     });
     if (LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) {
-      AsyncStorage.getItem(GLOBAL_IRREGULAR_KEY).then(saved => {
+      AsyncStorage.getItem(irregularKey).then(saved => {
         try {
           const counts: Record<string,number> = saved ? JSON.parse(saved) : {};
           const lessonVerbs = IRREGULAR_VERBS_BY_LESSON[lessonId] ?? [];
@@ -363,23 +426,23 @@ export default function LessonMenu() {
         } catch { setIrregularLearned(0); }
       });
     }
-    AsyncStorage.getItem(`lesson${lessonId}_preposition_progress`).then(saved => {
-      const prep = parsePrepositionAnswered(lessonId, saved);
+    AsyncStorage.getItem(prepositionProgressKey).then(saved => {
+      const prep = parsePrepositionAnswered(lessonId, saved, studyTarget);
       setPrepositionAnswered(prep.answered);
       setPrepositionTotal(prep.total);
     }).catch(() => {
-      const prep = parsePrepositionAnswered(lessonId, null);
+      const prep = parsePrepositionAnswered(lessonId, null, studyTarget);
       setPrepositionAnswered(prep.answered);
       setPrepositionTotal(prep.total);
     });
-  }, [lessonId]);
+  }, [lessonId, studyTarget]);
 
   useEffect(() => {
-    void AsyncStorage.setItem('last_opened_lesson', String(lessonId));
+    void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId));
     loadLockState();
     // Не сбрасываем dataLoaded вслепую: это ломало мгновенный UI после prefetch и
     // оставляло пустые кольца до первого getItem(progress). Если кэш уже есть — сразу гидратим.
-    const warm = lessonMenuCacheById[lessonId];
+    const warm = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
     if (warm) {
       setScore(warm.score);
       setProgress(warm.progress);
@@ -393,22 +456,46 @@ export default function LessonMenu() {
     } else {
       setDataLoaded(false);
     }
-  }, [lessonId, loadLockState]);
+  }, [lessonId, loadLockState, studyTarget]);
+
+  const openLessonFromMenu = useCallback(() => {
+    if (frenchLessonSourceGated) {
+      setSoonOpen('frenchLesson');
+      return;
+    }
+    void (async () => {
+      await primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
+      router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu' } });
+    })();
+  }, [frenchLessonSourceGated, lessonId, router, studyTarget]);
 
   const handleStartLesson = useCallback(() => {
-    router.replace({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu' } });
-  }, [lessonId, router]);
+    if (frenchLessonSourceGated) {
+      setSoonOpen('frenchLesson');
+      return;
+    }
+    void (async () => {
+      await primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
+      router.replace({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu' } });
+    })();
+  }, [frenchLessonSourceGated, lessonId, router, studyTarget]);
+
+  const handleContinueLesson = openLessonFromMenu;
 
   const handleReplayIntroAndContinue = useCallback(() => {
     if (isLessonLocked || showMasteryPaywall) return;
+    if (frenchLessonSourceGated) {
+      setSoonOpen('frenchLesson');
+      return;
+    }
     void (async () => {
-      await primeLessonScreenFromStorage(lessonId).catch(() => {});
+      await primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
       router.push({
         pathname: '/lesson1',
         params: { id: lessonId, from: 'lesson_menu', replayIntro: '1', replayIntroAt: String(Date.now()) },
       });
     })();
-  }, [isLessonLocked, lessonId, router, showMasteryPaywall]);
+  }, [frenchLessonSourceGated, isLessonLocked, lessonId, router, showMasteryPaywall, studyTarget]);
 
   const handleLockedLessonPress = useCallback(() => {
     hapticTap();
@@ -437,7 +524,18 @@ export default function LessonMenu() {
   }[] = [
     {
       testID: 'lesson-menu-primary',
-      label: showMasteryPaywall
+      label: frenchLessonSourceGated
+        ? triLang(lang, {
+  ru: 'Материал на проверке',
+  uk: 'Матеріал на перевірці',
+  es: 'Material pendiente',
+  "pt-BR": 'Material em revisão',
+  vi: 'Nội dung đang chờ duyệt',
+  id: 'Materi sedang ditinjau',
+  tr: 'Materyal inceleniyor',
+  pl: 'Materiał weryfikowany',
+})
+        : showMasteryPaywall
         ? triLang(lang, {
   ru: 'Перепройти',
   uk: 'Перепройти',
@@ -449,7 +547,18 @@ export default function LessonMenu() {
   pl: 'Powtórz',
 })
         : (isStarted ? s.lessonMenu.continue : s.lessonMenu.start),
-      sub: showMasteryPaywall
+      sub: frenchLessonSourceGated
+        ? triLang(lang, {
+  ru: 'French откроется после source gate. English фразы не подставляются.',
+  uk: 'French відкриється після source gate. English фрази не підставляються.',
+  es: 'French se abrirá después del source gate.',
+  "pt-BR": 'French será aberto após o source gate.',
+  vi: 'French sẽ mở sau source gate.',
+  id: 'French akan dibuka setelah source gate.',
+  tr: 'French source gate sonrası açılacak.',
+  pl: 'French otworzy się po source gate.',
+})
+        : showMasteryPaywall
         ? (isStarted
             ? `${progress} / 50  ★ ${score.toFixed(1)}`
             : triLang(lang, {
@@ -465,47 +574,68 @@ export default function LessonMenu() {
         : (isStarted
             ? `${progress} / 50  ★ ${score.toFixed(1)}`
             : s.lessonMenu.fromScratch),
-      icon: isLessonLocked
+      icon: frenchLessonSourceGated
+        ? 'shield-checkmark-outline'
+        : isLessonLocked
         ? 'lock-closed'
         : showMasteryPaywall
           ? 'refresh-circle-outline'
           : (isStarted ? 'play-circle-outline' : 'rocket-outline'),
-      pct: showMasteryPaywall ? undefined : Math.round(progress / 50 * 100),
+      pct: frenchLessonSourceGated || showMasteryPaywall ? undefined : Math.round(progress / 50 * 100),
       cornerShardPrice: showMasteryPaywall ? masteryReplayPrice : undefined,
       onPress: isLessonLocked
         ? handleLockedLessonPress
+        : frenchLessonSourceGated
+          ? () => setSoonOpen('frenchLesson')
         : showMasteryPaywall
           ? () => { hapticTap(); setShowMasteryModal(true); }
           : (isStarted
-              ? () => router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu' } })
+              ? handleContinueLesson
               : handleStartLesson),
-      onLongPress: isStarted && !isLessonLocked && !showMasteryPaywall ? handleReplayIntroAndContinue : undefined,
+      onLongPress: isStarted && !frenchLessonSourceGated && !isLessonLocked && !showMasteryPaywall ? handleReplayIntroAndContinue : undefined,
       disabled: isLessonLocked,
+      unavailable: frenchLessonSourceGated,
     },
     {
       testID: 'lesson-menu-words',
+      hidden: hideEnglishOnlyAuxiliary,
       label: s.lessonMenu.vocab,
       sub: LESSONS_WITH_WORDS.has(lessonId)
         ? (() => {
             const total = WORD_COUNT_BY_LESSON[lessonId] ?? 0;
             if (total > 0) {
-              return lang === 'uk'
-                ? `${wordsLearned}/${total} слів`
-                : lang === 'es'
-                  ? `${wordsLearned}/${total} palabras`
-                  : `${wordsLearned}/${total} слов`;
+              return triLang(lang, {
+                ru: `${wordsLearned}/${total} слов`,
+                uk: `${wordsLearned}/${total} слів`,
+                es: `${wordsLearned}/${total} palabras`,
+                'pt-BR': `${wordsLearned}/${total} palavras`,
+                vi: `${wordsLearned}/${total} từ`,
+                id: `${wordsLearned}/${total} kata`,
+                tr: `${wordsLearned}/${total} kelime`,
+                pl: `${wordsLearned}/${total} słów`,
+              });
             }
-            return lang === 'uk'
-              ? 'Слова цього уроку'
-              : lang === 'es'
-                ? 'Palabras de esta lección'
-                : 'Слова этого урока';
+            return triLang(lang, {
+              ru: 'Слова этого урока',
+              uk: 'Слова цього уроку',
+              es: 'Palabras de esta lección',
+              'pt-BR': 'Palavras desta lição',
+              vi: 'Từ vựng của bài này',
+              id: 'Kosakata pelajaran ini',
+              tr: 'Bu dersin kelimeleri',
+              pl: 'Słowa z tej lekcji',
+            });
           })()
-        : (lang === 'uk'
-            ? 'Слова цього уроку'
-            : lang === 'es'
-              ? 'Palabras de esta lección'
-              : 'Слова этого урока'),
+        : triLang(lang, {
+            ru: 'Слова этого урока',
+            uk: 'Слова цього уроку',
+            es: 'Palabras de esta lección',
+            'pt-BR': 'Palavras desta lição',
+            vi: 'Từ vựng của bài này',
+            id: 'Kosakata pelajaran ini',
+            tr: 'Bu dersin kelimeleri',
+            pl: 'Słowa z tej lekcji',
+          }),
       icon: 'book-outline',
       pct: (() => {
         if (!LESSONS_WITH_WORDS.has(lessonId)) return undefined;
@@ -514,7 +644,7 @@ export default function LessonMenu() {
       })(),
       onPress: () => {
         if (LESSONS_WITH_WORDS.has(lessonId)) {
-          router.push({pathname:'/lesson_words',params:{id:lessonId}});
+          router.push({ pathname: '/lesson_words', params: { id: lessonId, tab: 'list' } });
         } else {
           setSoonOpen('vocab');
         }
@@ -522,28 +652,43 @@ export default function LessonMenu() {
     },
     {
       testID: 'lesson-menu-irregular-verbs',
-      hidden: !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId),
+      hidden: hideEnglishOnlyAuxiliary || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId),
       label: s.lessonMenu.verbs,
       sub: LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)
         ? (() => {
             const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
             return total > 0
-              ? (lang === 'uk'
-                  ? `${irregularLearned}/${total} дієслів`
-                  : lang === 'es'
-                    ? `${irregularLearned}/${total} verbos`
-                    : `${irregularLearned}/${total} глаголов`)
-              : (lang === 'uk'
-                  ? 'Неправильні дієслова уроку'
-                  : lang === 'es'
-                    ? 'Formas verbales irregulares de esta lección'
-                    : 'Неправильные глаголы урока');
+              ? triLang(lang, {
+                  ru: `${irregularLearned}/${total} глаголов`,
+                  uk: `${irregularLearned}/${total} дієслів`,
+                  es: `${irregularLearned}/${total} verbos`,
+                  'pt-BR': `${irregularLearned}/${total} verbos`,
+                  vi: `${irregularLearned}/${total} động từ`,
+                  id: `${irregularLearned}/${total} kata kerja`,
+                  tr: `${irregularLearned}/${total} fiil`,
+                  pl: `${irregularLearned}/${total} czasowników`,
+                })
+              : triLang(lang, {
+                  ru: 'Неправильные глаголы урока',
+                  uk: 'Неправильні дієслова уроку',
+                  es: 'Formas verbales irregulares de esta lección',
+                  'pt-BR': 'Verbos irregulares desta lição',
+                  vi: 'Động từ bất quy tắc của bài này',
+                  id: 'Kata kerja tak beraturan pelajaran ini',
+                  tr: 'Bu dersin düzensiz fiilleri',
+                  pl: 'Czasowniki nieregularne z tej lekcji',
+                });
           })()
-        : (lang === 'uk'
-            ? 'Неправильні дієслова уроку'
-            : lang === 'es'
-              ? 'Formas verbales irregulares de esta lección'
-              : 'Неправильные глаголы урока'),
+        : triLang(lang, {
+            ru: 'Неправильные глаголы урока',
+            uk: 'Неправильні дієслова уроку',
+            es: 'Formas verbales irregulares de esta lección',
+            'pt-BR': 'Verbos irregulares desta lição',
+            vi: 'Động từ bất quy tắc của bài này',
+            id: 'Kata kerja tak beraturan pelajaran ini',
+            tr: 'Bu dersin düzensiz fiilleri',
+            pl: 'Czasowniki nieregularne z tej lekcji',
+          }),
       icon: 'flash-outline' as const,
       pct: (() => {
         if (!LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) return undefined;
@@ -561,7 +706,7 @@ export default function LessonMenu() {
     },
     {
       testID: 'lesson-menu-prepositions',
-      hidden: !hasLessonPrepositionDrill(lessonId),
+      hidden: !hasLessonPrepositionDrillForTarget(lessonId, studyTarget),
       label: triLang(lang, {
   ru: 'Тренажёр предлогов',
   uk: 'Тренажер прийменників',
@@ -573,21 +718,31 @@ export default function LessonMenu() {
   pl: 'Trening przyimków',
 }),
       sub: prepositionTotal > 0
-        ? (lang === 'uk'
-            ? `${prepositionAnswered}/${prepositionTotal} завдань`
-            : lang === 'es'
-              ? `${prepositionAnswered}/${prepositionTotal} ejercicios`
-              : `${prepositionAnswered}/${prepositionTotal} заданий`)
-        : (lang === 'uk'
-            ? 'Прийменники цього уроку'
-            : lang === 'es'
-              ? 'Preposiciones de esta lección'
-              : 'Предлоги этого урока'),
+        ? triLang(lang, {
+            ru: `${prepositionAnswered}/${prepositionTotal} заданий`,
+            uk: `${prepositionAnswered}/${prepositionTotal} завдань`,
+            es: `${prepositionAnswered}/${prepositionTotal} ejercicios`,
+            'pt-BR': `${prepositionAnswered}/${prepositionTotal} exercícios`,
+            vi: `${prepositionAnswered}/${prepositionTotal} bài tập`,
+            id: `${prepositionAnswered}/${prepositionTotal} latihan`,
+            tr: `${prepositionAnswered}/${prepositionTotal} alıştırma`,
+            pl: `${prepositionAnswered}/${prepositionTotal} ćwiczeń`,
+          })
+        : triLang(lang, {
+            ru: 'Предлоги этого урока',
+            uk: 'Прийменники цього уроку',
+            es: 'Preposiciones de esta lección',
+            'pt-BR': 'Preposições desta lição',
+            vi: 'Giới từ của bài này',
+            id: 'Preposisi pelajaran ini',
+            tr: 'Bu dersin edatları',
+            pl: 'Przyimki z tej lekcji',
+          }),
       icon: 'funnel-outline' as const,
       pct: prepositionTotal > 0 ? Math.round(prepositionAnswered / prepositionTotal * 100) : undefined,
       onPress: () => {
         hapticTap();
-        if (hasLessonPrepositionDrill(lessonId)) {
+        if (hasLessonPrepositionDrillForTarget(lessonId, studyTarget)) {
           if (menuEnergyReady && !menuEnergyUnlimited && energy + bonusEnergy <= 0) {
             emitAppEvent('action_toast', {
               type: 'error',
@@ -605,8 +760,30 @@ export default function LessonMenu() {
     },
     {
       testID: 'lesson-menu-theory',
-      label: s.lessonMenu.theory,
-      sub: triLang(lang, {
+      label: frenchTheorySourceGated
+        ? triLang(lang, {
+            ru: 'Теория на проверке',
+            uk: 'Теорія на перевірці',
+            es: 'Theory under review',
+            "pt-BR": 'Theory under review',
+            vi: 'Theory under review',
+            id: 'Theory under review',
+            tr: 'Theory under review',
+            pl: 'Theory under review',
+          })
+        : s.lessonMenu.theory,
+      sub: frenchTheorySourceGated
+        ? triLang(lang, {
+            ru: 'French theory откроется после source gate. English theory не подставляется.',
+            uk: 'French theory відкриється після source gate. English theory не підставляється.',
+            es: 'French theory opens after source gate.',
+            "pt-BR": 'French theory opens after source gate.',
+            vi: 'French theory opens after source gate.',
+            id: 'French theory opens after source gate.',
+            tr: 'French theory opens after source gate.',
+            pl: 'French theory opens after source gate.',
+          })
+        : triLang(lang, {
   ru: 'Правила и пояснения',
   uk: 'Правила та пояснення',
   es: 'Reglas y explicaciones',
@@ -616,8 +793,16 @@ export default function LessonMenu() {
   tr: 'Kurallar ve açıklamalar',
   pl: 'Zasady i wyjaśnienia',
 }),
-      icon: 'book-outline' as const,
-      onPress: () => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); },
+      icon: frenchTheorySourceGated ? 'shield-checkmark-outline' as const : 'book-outline' as const,
+      onPress: () => {
+        hapticTap();
+        if (frenchTheorySourceGated) {
+          setSoonOpen('frenchTheory');
+          return;
+        }
+        router.push({ pathname: '/lesson_help', params: { id: lessonId } });
+      },
+      unavailable: frenchTheorySourceGated,
     },
   ];
 
@@ -736,7 +921,7 @@ export default function LessonMenu() {
         <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',paddingHorizontal:16,paddingVertical:14,borderBottomWidth:0.5,borderBottomColor:t.border}}>
           <PremiumCard level={1} onPress={()=>{
             hapticTap();
-            // Safe-back: после онбординга стек может быть пуст — fallback на список уроков.
+            // Safe-back: после онбординга стек может быть пуст — возвращаемся на список уроков.
             if (router.canGoBack()) router.back();
             else router.replace('/(tabs)/lessons' as any);
           }}
@@ -801,7 +986,7 @@ export default function LessonMenu() {
                 router.replace({ pathname: '/level_exam', params: { level: prevLevel } });
               } else {
                 void (async () => {
-                  await prefetchLessonMenuCache(prevId);
+                  await prefetchLessonMenuCache(prevId, studyTarget);
                   router.replace({ pathname: '/lesson_menu', params: { id: prevId } });
                 })();
               }
@@ -833,7 +1018,7 @@ export default function LessonMenu() {
       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',paddingHorizontal:16,paddingVertical:14,borderBottomWidth:0.5,borderBottomColor:t.border}}>
         <PremiumCard testID="lesson-menu-back" level={1} onPress={()=>{
           hapticTap();
-          // Safe-back: после онбординга стек может быть пуст — fallback на список уроков.
+          // Safe-back: после онбординга стек может быть пуст — возвращаемся на список уроков.
           if (router.canGoBack()) router.back();
           else router.replace('/(tabs)/lessons' as any);
         }}
@@ -857,7 +1042,7 @@ export default function LessonMenu() {
             lessonId<=18 ? (isLightTheme?'#93C5FD':'#40B4E8') :
             lessonId<=28 ? (isLightTheme?'#FDE047':'#D4A017') :
                            (isLightTheme?'#FCA5A5':'#DC6428')
-          }}>{lessonId <= 8 ? 'A1' : lessonId <= 18 ? 'A2' : lessonId <= 28 ? 'B1' : 'B2'}</Text>
+          }}>{lessonCefrLabel}</Text>
         </Text>
         <EnergyBar size={30} />
         <PremiumCard level={1} onPress={()=>{ hapticTap(); router.push('/settings_edu'); }}
@@ -1113,7 +1298,29 @@ export default function LessonMenu() {
   pl: 'Wkrótce',
 })}
         message={
-          soonOpen === 'vocab'
+          soonOpen === 'frenchLesson'
+            ? triLang(lang, {
+  ru: 'Французский урок ещё закрыт source gate. Мы не будем открывать английские фразы, интро или прогресс как замену French.',
+  uk: 'Французький урок ще закритий source gate. Ми не відкриватимемо англійські фрази, інтро або прогрес як заміну French.',
+  es: 'La lección de French sigue bloqueada por source gate.',
+  "pt-BR": 'A lição de French ainda está bloqueada pelo source gate.',
+  vi: 'Bài French vẫn bị khóa bởi source gate.',
+  id: 'Pelajaran French masih dikunci oleh source gate.',
+  tr: 'French dersi source gate tarafından hâlâ kapalı.',
+  pl: 'Lekcja French jest nadal zablokowana przez source gate.',
+})
+            : soonOpen === 'frenchTheory'
+              ? triLang(lang, {
+  ru: 'Французская теория ещё закрыта source gate. Мы не будем открывать английскую теорию, интро или примеры как замену French.',
+  uk: 'Французька теорія ще закрита source gate. Ми не відкриватимемо англійську теорію, інтро або приклади як заміну French.',
+  es: 'French theory is still blocked by source gate.',
+  "pt-BR": 'French theory is still blocked by source gate.',
+  vi: 'French theory is still blocked by source gate.',
+  id: 'French theory is still blocked by source gate.',
+  tr: 'French theory is still blocked by source gate.',
+  pl: 'French theory is still blocked by source gate.',
+})
+            : soonOpen === 'vocab'
             ? triLang(lang, {
   ru: 'Словарь для этого урока ещё готовится',
   uk: 'Словник для цього урока ще готується',
@@ -1166,10 +1373,15 @@ export default function LessonMenu() {
         visible={showMasteryModal}
         lessonId={lessonId}
         isPremium={isPremium}
+        studyTarget={studyTarget}
         onClose={() => setShowMasteryModal(false)}
         onReplayed={(id) => {
-          delete lessonMenuCacheById[id];
+          delete lessonMenuCacheById[lessonMenuCacheKey(id, studyTarget)];
           loadProgress();
+          if (!frenchLessonRuntimeAvailableForTarget(studyTarget, id)) {
+            setSoonOpen('frenchLesson');
+            return;
+          }
           router.replace({ pathname: '/lesson1', params: { id, from: 'lesson_menu' } });
         }}
       />

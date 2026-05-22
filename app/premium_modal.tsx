@@ -5,13 +5,12 @@ import {
   Platform,
   TextInput,
   Image,
-  ImageBackground,
   type ImageSourcePropType,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Purchases, { PurchasesPackage } from 'react-native-purchases';
 import { useTheme } from '../components/ThemeContext';
@@ -24,8 +23,8 @@ import ScreenGradient from '../components/ScreenGradient';
 import { paywallGlassColor } from '../components/paywallGlass';
 import MatchFoundToast from '../components/MatchFoundToast';
 import { DEV_IAP_BYPASS, IS_EXPO_GO, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from './config';
-import { initRevenueCat, resolvePremiumPackages } from './revenuecat_init';
-import { getVerifiedPremiumStatus, invalidatePremiumCache } from './premium_guard';
+import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
+import { getVerifiedRealPremiumStatus, invalidatePremiumCache } from './premium_guard';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import {
   getTrialReofferBlockedByCooldown,
@@ -97,6 +96,7 @@ function storePriceTrim(raw: string | undefined | null): string {
 const isEnergyGlyph = (value: string) => value.codePointAt(0) === 0x26A1;
 
 type Plan = 'monthly' | 'yearly';
+type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage };
 type PremiumContext =
   | 'arena'
   | 'no_energy'
@@ -1390,11 +1390,23 @@ function getPersonalValueLine(ctx: PremiumContext, streakDays: number, lessonsDo
 
 // ── Строки сравнения ──────────────────────────────────────────────────────────
 
-const formatDate = (ts: number, lang: string) =>
-  new Date(ts).toLocaleDateString(
-    lang === 'uk' ? 'uk-UA' : lang === 'es' ? 'es-ES' : 'ru-RU',
-    { day: 'numeric', month: 'long', year: 'numeric' },
-  );
+const PREMIUM_DATE_LOCALE: Record<Lang, string> = {
+  ru: 'ru-RU',
+  uk: 'uk-UA',
+  es: 'es-ES',
+  'pt-BR': 'pt-BR',
+  vi: 'vi-VN',
+  id: 'id-ID',
+  tr: 'tr-TR',
+  pl: 'pl-PL',
+};
+
+const formatDate = (ts: number, lang: Lang) =>
+  new Date(ts).toLocaleDateString(PREMIUM_DATE_LOCALE[lang] ?? 'ru-RU', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
 
 /**
  * `storeProductHasTrialIntro` импортирован из `./premium_trial_signal` — общая логика
@@ -1505,7 +1517,9 @@ export default function PremiumModal() {
   const [selected,   setSelected]   = useState<Plan>('yearly');
   const [restoring,  setRestoring]  = useState(false);
   const [purchasing, setPurchasing] = useState(false);
-  const [packages,   setPackages]   = useState<{ monthly?: PurchasesPackage; yearly?: PurchasesPackage }>({});
+  const [packages,   setPackages]   = useState<PremiumPackages>({});
+  const [loadingPackages, setLoadingPackages] = useState(false);
+  const [packagesLoadAttempted, setPackagesLoadAttempted] = useState(false);
   /** true = в 90-дн. «окне» после последней покупки/триал-флоу — не показываем копию 3 дня (локально). */
   const [trialReofferBlocked, setTrialReofferBlocked] = useState(false);
 
@@ -1546,7 +1560,7 @@ export default function PremiumModal() {
   const [canClose, setCanClose] = useState(false);
 
   const resolveCurrentPremiumState = useCallback(async () => {
-    const verified = await getVerifiedPremiumStatus().catch(() => false);
+    const verified = await getVerifiedRealPremiumStatus().catch(() => false);
     const res = await AsyncStorage.multiGet([
       'premium_active',
       'premium_plan',
@@ -1560,19 +1574,37 @@ export default function PremiumModal() {
     const expiry = parseInt(res.find(r => r[0] === 'premium_expiry')?.[1] || '0');
     const noPremium = res.find(r => r[0] === 'tester_no_premium')?.[1];
     const adminOverride = res.find(r => r[0] === 'admin_premium_override')?.[1];
-    const adminGrantAlive =
-      adminOverride === 'true' &&
-      !!rawPlan &&
-      rawPlan.toLowerCase() !== 'null' &&
-      (expiry === 0 || expiry > Date.now());
-    const isAdmin = adminGrantAlive;
+    const legacyAdminGrant =
+      adminOverride === 'true' ||
+      (rawPlan.toLowerCase() === 'admin_grant' && adminOverride !== 'false');
+    const isAdmin = false;
     const hasLocalActive =
       noPremium !== 'true' &&
       active === 'true' &&
+      !legacyAdminGrant &&
       !!plan &&
       (expiry === 0 || expiry > Date.now());
-    const isPremium = noPremium === 'true' ? false : (verified || isAdmin || hasLocalActive);
+    const isPremium = noPremium === 'true' ? false : (verified || hasLocalActive);
     return { isPremium, plan, expiry, isAdmin };
+  }, []);
+
+  const loadPremiumPackages = useCallback(async (): Promise<PremiumPackages> => {
+    if (IS_EXPO_GO || DEV_IAP_BYPASS) return {};
+
+    setPackagesLoadAttempted(true);
+    setLoadingPackages(true);
+    try {
+      await initRevenueCat();
+      if (!(await Purchases.isConfigured().catch(() => false))) return {};
+      const offerings = await Purchases.getOfferings();
+      const nextPackages = resolvePremiumPackages(offerings.current?.availablePackages ?? []);
+      setPackages(nextPackages);
+      return nextPackages;
+    } catch {
+      return {};
+    } finally {
+      setLoadingPackages(false);
+    }
   }, []);
 
   const startCelebrationSequence = useCallback(() => {
@@ -1788,8 +1820,8 @@ export default function PremiumModal() {
   const hero = getHero(ctx, streakDays, lessonsDone, savedCards);
   const heroPlanned = getHeroPlannedCopy(ctx, savedCards);
   const benefits = CONTEXT_BENEFITS[ctx] ?? CONTEXT_BENEFITS.generic;
-  const heroBackdrop = PREMIUM_HERO_BACKDROPS[themeMode] ?? PREMIUM_HERO_BACKDROPS.minimalDark;
-  const heroArt = PREMIUM_HERO_ART[ctx] ?? PREMIUM_HERO_ART.generic;
+  const heroBackdrop = PREMIUM_HERO_BACKDROPS[themeMode];
+  const heroArt = PREMIUM_HERO_ART[ctx];
   const heroScrim = premiumHeroScrim(themeMode);
   const personalValueLine = getPersonalValueLine(ctx, streakDays, lessonsDone, savedCards, lang as Lang);
   const yearlyStoreHasTrial = !trialReofferBlocked && storeProductHasTrialIntro(packages.yearly?.product);
@@ -1806,6 +1838,21 @@ export default function PremiumModal() {
   const storePricesRequired = !IS_EXPO_GO && !DEV_IAP_BYPASS;
   const yearlyPrice = storePriceTrim(packages.yearly?.product.priceString);
   const monthlyPrice = storePriceTrim(packages.monthly?.product.priceString);
+  const missingStorePriceLabel = loadingPackages || !packagesLoadAttempted
+    ? LP('Загрузка...', 'Завантаження...', 'Cargando...', {
+        'pt-BR': 'Carregando...',
+        vi: 'Đang tải...',
+        id: 'Memuat...',
+        tr: 'Yükleniyor...',
+        pl: 'Ładowanie...',
+      })
+    : LP('Повторить', 'Повторити', 'Reintentar', {
+        'pt-BR': 'Repetir',
+        vi: 'Thử lại',
+        id: 'Coba lagi',
+        tr: 'Tekrar dene',
+        pl: 'Ponów',
+      });
 
   const closePaywallAfterDecline = useCallback((reason: PaywallCloseReason) => {
     if (exitTrialOfferVisible) {
@@ -1878,14 +1925,8 @@ export default function PremiumModal() {
   useFocusEffect(
     useCallback(() => {
       void getTrialReofferBlockedByCooldown().then(setTrialReofferBlocked);
-      if (IS_EXPO_GO || DEV_IAP_BYPASS) return;
-      void Purchases.getOfferings()
-        .then(o => {
-          const pkgs = o.current?.availablePackages ?? [];
-          setPackages(resolvePremiumPackages(pkgs));
-        })
-        .catch(() => {});
-    }, []),
+      void loadPremiumPackages();
+    }, [loadPremiumPackages]),
   );
 
   const activateFreezeIfNeeded = async () => {
@@ -1965,16 +2006,32 @@ export default function PremiumModal() {
       purchasingRef.current = false;
       return;
     }
-    let pkg = plan === 'yearly' ? packages.yearly : packages.monthly;
-    if (!pkg) {
+    if (!(await syncRevenueCatIdentity())) {
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: 'Платежи ещё привязываются к аккаунту. Подождите пару секунд и попробуйте снова.',
+        messageUk: 'Платежі ще прив\'язуються до акаунта. Зачекайте пару секунд і спробуйте знову.',
+        messageEs: 'Los pagos aún se están vinculando a la cuenta. Espera unos segundos e inténtalo de nuevo.',
+      });
+      purchasingRef.current = false;
+      return;
+    }
+    let currentPackages = packages;
+    let pkg = plan === 'yearly' ? currentPackages.yearly : currentPackages.monthly;
+    const hadVisibleStorePrice = !!storePriceTrim(pkg?.product.priceString);
+    if (!pkg || !hadVisibleStorePrice) {
       // Fallback: пользователь мог нажать CTA раньше, чем завершился initial getOfferings.
-      try {
-        const offerings = await Purchases.getOfferings();
-        const nextPackages = resolvePremiumPackages(offerings.current?.availablePackages ?? []);
-        setPackages(nextPackages);
-        pkg = plan === 'yearly' ? nextPackages.yearly : nextPackages.monthly;
-      } catch {
-        // Ошибку покажем общим тостом ниже
+      currentPackages = await loadPremiumPackages();
+      pkg = plan === 'yearly' ? currentPackages.yearly : currentPackages.monthly;
+      if (pkg && storePriceTrim(pkg.product.priceString)) {
+        emitAppEvent('action_toast', {
+          type: 'info',
+          messageRu: 'Цена загружена. Нажмите кнопку ещё раз, чтобы открыть покупку.',
+          messageUk: 'Ціну завантажено. Натисніть кнопку ще раз, щоб відкрити покупку.',
+          messageEs: 'Precio cargado. Pulsa el botón otra vez para abrir la compra.',
+        });
+        purchasingRef.current = false;
+        return;
       }
     }
     if (!pkg) {
@@ -2357,10 +2414,10 @@ export default function PremiumModal() {
         });
     const noExpiryLabel = LP('без срока', 'без строку', 'sin fecha de fin', {
       'pt-BR': 'sem data final',
-      vi: 'khong co ngay het han',
+      vi: 'không có ngày hết hạn',
       id: 'tanpa tanggal akhir',
-      tr: 'bitis tarihi yok',
-      pl: 'bez daty koncowej',
+      tr: 'bitiş tarihi yok',
+      pl: 'bez daty końcowej',
     });
     const amountLabel = isAdminGrantedPremium
       ? LP('Выдано администратором', 'Видано адміністратором', 'Concedido por admin', {
@@ -2546,11 +2603,11 @@ export default function PremiumModal() {
                       <Text style={{ color: t.textMuted, fontSize: 12, lineHeight: 17 }}>
                         {isAdminGrantedPremium
                           ? LP('Это админский доступ, не новая покупка в магазине.', 'Це адмінський доступ, не нова покупка в магазині.', 'This is admin access, not a new store purchase.', {
-                              'pt-BR': 'Este e acesso de admin, nao uma nova compra na loja.',
-                              vi: 'Day la quyen truy cap admin, khong phai giao dich moi trong cua hang.',
+                              'pt-BR': 'Este é acesso de administrador, não uma nova compra na loja.',
+                              vi: 'Đây là quyền truy cập quản trị, không phải giao dịch mới trong cửa hàng.',
                               id: 'Ini akses admin, bukan pembelian toko baru.',
-                              tr: 'Bu admin erisimi, magazada yeni satin alma degil.',
-                              pl: 'To dostep admina, nie nowy zakup w sklepie.',
+                              tr: 'Bu yönetici erişimi, mağazada yeni bir satın alma değil.',
+                              pl: 'To dostęp administratora, nie nowy zakup w sklepie.',
                             })
                           : effectiveOs === 'ios'
                             ? LP('Точную дату списания смотри в App Store', 'Точну дату списання дивись в App Store', 'La fecha exacta del cargo está en App Store', {
@@ -2735,11 +2792,11 @@ export default function PremiumModal() {
               <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', marginTop: 4, lineHeight: 17 }}>
                 {isAdminGrantedPremium
                   ? LP('Админский Premium не отменяет отдельную подписку в магазине. Если там был активный триал или план, отмените его в App Store / Google Play.', 'Адмінський Premium не скасовує окрему підписку в магазині. Якщо там був активний trial або план, скасуйте його в App Store / Google Play.', 'Admin Premium does not cancel a separate store subscription. If a trial or plan is active there, cancel it in App Store / Google Play.', {
-                      'pt-BR': 'Premium de admin nao cancela uma assinatura separada da loja. Se houver teste ou plano ativo, cancele na App Store / Google Play.',
-                      vi: 'Premium admin khong huy goi dang ky rieng trong cua hang. Neu co goi hoac dung thu dang hoat dong, hay huy trong App Store / Google Play.',
+                      'pt-BR': 'Premium de administrador não cancela uma assinatura separada da loja. Se houver teste ou plano ativo, cancele na App Store / Google Play.',
+                      vi: 'Premium quản trị không hủy gói đăng ký riêng trong cửa hàng. Nếu có gói hoặc bản dùng thử đang hoạt động, hãy hủy trong App Store / Google Play.',
                       id: 'Premium admin tidak membatalkan langganan toko terpisah. Jika ada trial atau paket aktif, batalkan di App Store / Google Play.',
-                      tr: 'Admin Premium ayri magazadaki aboneligi iptal etmez. Aktif deneme veya plan varsa App Store / Google Play icinde iptal edin.',
-                      pl: 'Premium admina nie anuluje osobnej subskrypcji w sklepie. Jesli trial lub plan jest aktywny, anuluj go w App Store / Google Play.',
+                      tr: 'Yönetici Premium’u ayrı mağaza aboneliğini iptal etmez. Aktif deneme veya plan varsa App Store / Google Play içinde iptal edin.',
+                      pl: 'Premium administratora nie anuluje osobnej subskrypcji w sklepie. Jeśli trial lub plan jest aktywny, anuluj go w App Store / Google Play.',
                     })
                   : effectiveOs === 'ios'
                     ? LP('Подписка управляется через App Store', 'Підписка управляється через App Store', 'La suscripción se gestiona en App Store', {
@@ -2979,10 +3036,10 @@ export default function PremiumModal() {
                     }}
                   >
                     {LP('3 дня Premium бесплатно', '3 дні Premium безкоштовно', '3 dias de Premium gratis', {
-                      'pt-BR': '3 dias de Premium gratis',
-                      vi: '3 ngay Premium mien phi',
+                      'pt-BR': '3 dias de Premium grátis',
+                      vi: '3 ngày Premium miễn phí',
                       id: 'Premium gratis 3 hari',
-                      tr: '3 gun Premium ucretsiz',
+                      tr: '3 gün Premium ücretsiz',
                       pl: '3 dni Premium za darmo',
                     })}
                   </Text>
@@ -3000,11 +3057,11 @@ export default function PremiumModal() {
                       'Спробуй Premium зараз. Якщо не підійде, скасувати можна до завершення пробного періоду.',
                       'Prueba Premium ahora. Si no te convence, puedes cancelar antes de que termine la prueba.',
                       {
-                        'pt-BR': 'Teste o Premium agora. Se nao gostar, voce pode cancelar antes do fim do periodo gratis.',
-                        vi: 'Dung thu Premium ngay. Neu khong phu hop, ban co the huy truoc khi het thoi gian dung thu.',
+                        'pt-BR': 'Teste o Premium agora. Se não gostar, você pode cancelar antes do fim do período grátis.',
+                        vi: 'Dùng thử Premium ngay. Nếu không phù hợp, bạn có thể hủy trước khi hết thời gian dùng thử.',
                         id: 'Coba Premium sekarang. Jika tidak cocok, kamu bisa membatalkan sebelum masa uji coba berakhir.',
-                        tr: 'Premiumu simdi dene. Uygun degilse deneme suresi bitmeden iptal edebilirsin.',
-                        pl: 'Wyprobuj Premium teraz. Jesli Ci nie pasuje, mozesz anulowac przed koncem okresu probnego.',
+                        tr: 'Premium’u şimdi dene. Uygun değilse deneme süresi bitmeden iptal edebilirsin.',
+                        pl: 'Wypróbuj Premium teraz. Jeśli Ci nie pasuje, możesz anulować przed końcem okresu próbnego.',
                       },
                     )}
                   </Text>
@@ -3022,11 +3079,11 @@ export default function PremiumModal() {
                       'Після пробного періоду підписка продовжиться за обраним планом.',
                       'Despues de la prueba, la suscripcion continuara con el plan elegido.',
                       {
-                        'pt-BR': 'Depois do teste, a assinatura continuara no plano escolhido.',
-                        vi: 'Sau thoi gian dung thu, goi dang ky se tiep tuc theo goi da chon.',
+                        'pt-BR': 'Depois do teste, a assinatura continuará no plano escolhido.',
+                        vi: 'Sau thời gian dùng thử, gói đăng ký sẽ tiếp tục theo gói đã chọn.',
                         id: 'Setelah uji coba, langganan berlanjut dengan paket yang dipilih.',
-                        tr: 'Deneme suresinden sonra abonelik secilen planla devam eder.',
-                        pl: 'Po okresie probnym subskrypcja bedzie kontynuowana w wybranym planie.',
+                        tr: 'Deneme süresinden sonra abonelik seçilen planla devam eder.',
+                        pl: 'Po okresie próbnym subskrypcja będzie kontynuowana w wybranym planie.',
                       },
                     )}
                   </Text>
@@ -3062,10 +3119,10 @@ export default function PremiumModal() {
                     style={{ color: '#1F1A08', fontSize: f.bodyLg, fontWeight: '900', textAlign: 'center' }}
                   >
                     {LP('Начать бесплатно', 'Почати безкоштовно', 'Empezar gratis', {
-                      'pt-BR': 'Comecar gratis',
-                      vi: 'Bat dau mien phi',
+                      'pt-BR': 'Começar grátis',
+                      vi: 'Bắt đầu miễn phí',
                       id: 'Mulai gratis',
-                      tr: 'Ucretsiz basla',
+                      tr: 'Ücretsiz başla',
                       pl: 'Zacznij za darmo',
                     })}
                   </Text>
@@ -3096,11 +3153,11 @@ export default function PremiumModal() {
                     style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}
                   >
                     {LP('Остаться на бесплатной версии', 'Залишитися на безкоштовній версії', 'Seguir gratis', {
-                      'pt-BR': 'Continuar gratis',
-                      vi: 'Tiep tuc mien phi',
+                      'pt-BR': 'Continuar grátis',
+                      vi: 'Tiếp tục miễn phí',
                       id: 'Tetap gratis',
-                      tr: 'Ucretsiz devam et',
-                      pl: 'Zostan przy wersji darmowej',
+                      tr: 'Ücretsiz devam et',
+                      pl: 'Zostań przy wersji darmowej',
                     })}
                   </Text>
                 </TouchableOpacity>
@@ -3345,13 +3402,15 @@ export default function PremiumModal() {
             )}
 
             {/* БЛОК 1: Герой */}
-            <Animated.View style={{ alignItems: 'center', marginBottom: 24, transform: [{ translateY: heroFloat }] }}>
-              <ImageBackground
-                source={heroBackdrop}
-                resizeMode="cover"
-                imageStyle={{ borderRadius: 22 }}
-                style={{ width: '100%', borderRadius: 22, backgroundColor: paywallCardBg, borderWidth: 1, borderColor: heroArt.accent + '66', paddingVertical: 20, paddingHorizontal: 16, alignItems: 'center', overflow: 'hidden' }}
+            <Animated.View style={{ width: '100%', alignSelf: 'stretch', alignItems: 'center', marginBottom: 24, transform: [{ translateY: heroFloat }] }}>
+              <View
+                style={{ width: '100%', alignSelf: 'stretch', borderRadius: 22, backgroundColor: paywallCardBg, borderWidth: 1, borderColor: heroArt.accent + '66', paddingVertical: 20, paddingHorizontal: 16, alignItems: 'center', overflow: 'hidden' }}
               >
+                <Image
+                  source={heroBackdrop}
+                  resizeMode="stretch"
+                  style={StyleSheet.absoluteFillObject}
+                />
                 <LinearGradient
                   pointerEvents="none"
                   colors={heroScrim as any}
@@ -3400,7 +3459,7 @@ export default function PremiumModal() {
                 <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: f.body * 1.55 }}>
                   {LP(hero.subtitleRu, hero.subtitleUk, hero.subtitleEs, heroPlanned.subtitle)}
                 </Text>
-              </ImageBackground>
+              </View>
             </Animated.View>
 
             {/* БЛОК 2: Что ты получишь */}
@@ -3673,13 +3732,7 @@ export default function PremiumModal() {
                         </>
                       ) : (
                         <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', textAlign: 'right' }} numberOfLines={2}>
-                          {LP('...', '...', '...', {
-                            'pt-BR': '...',
-                            vi: '...',
-                            id: '...',
-                            tr: '...',
-                            pl: '...',
-                          })}
+                          {missingStorePriceLabel}
                         </Text>
                       )}
                     </View>
@@ -3801,13 +3854,7 @@ export default function PremiumModal() {
                         </>
                       ) : (
                         <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', textAlign: 'right' }} numberOfLines={2}>
-                          {LP('...', '...', '...', {
-                            'pt-BR': '...',
-                            vi: '...',
-                            id: '...',
-                            tr: '...',
-                            pl: '...',
-                          })}
+                          {missingStorePriceLabel}
                         </Text>
                       )}
                     </View>
@@ -3852,13 +3899,21 @@ export default function PremiumModal() {
                     pl: '/mies.',
                   });
               const ctaLabel = !canPurchaseSelectedPlan
-                ? LP('Premium', 'Premium', 'Premium', {
-                    'pt-BR': 'Premium',
-                    vi: 'Premium',
-                    id: 'Premium',
-                    tr: 'Premium',
-                    pl: 'Premium',
-                  })
+                ? loadingPackages
+                  ? LP('Загрузка цены...', 'Завантаження ціни...', 'Cargando precio...', {
+                      'pt-BR': 'Carregando preço...',
+                      vi: 'Đang tải giá...',
+                      id: 'Memuat harga...',
+                      tr: 'Fiyat yükleniyor...',
+                      pl: 'Ładowanie ceny...',
+                    })
+                  : LP('Загрузить цену', 'Завантажити ціну', 'Cargar precio', {
+                      'pt-BR': 'Carregar preço',
+                      vi: 'Tải giá',
+                      id: 'Muat harga',
+                      tr: 'Fiyatı yükle',
+                      pl: 'Załaduj cenę',
+                    })
                 : hasTrial
                   ? LP(
                       `🚀 3 дня бесплатно — затем ${ctaPrice}${periodStr}`,
@@ -3893,7 +3948,7 @@ export default function PremiumModal() {
                   style={{
                     backgroundColor: t.textSecond, borderRadius: 16, padding: 18,
                     alignItems: 'center', marginBottom: 10,
-                    opacity: purchasing || !canPurchaseSelectedPlan ? 0.7 : 1,
+                    opacity: purchasing || loadingPackages ? 0.7 : 1,
                     shadowColor: t.textSecond,
                     shadowOffset: { width: 0, height: 4 },
                     shadowOpacity: 0.5,
@@ -3904,10 +3959,24 @@ export default function PremiumModal() {
                     hapticTap();
                     logPaywallPlanSelectDeduped(selected);
                     logPaywallCtaClick(ctx, selected);
+                    if (!canPurchaseSelectedPlan) {
+                      void loadPremiumPackages().then((nextPackages) => {
+                        const nextPkg = selected === 'yearly' ? nextPackages.yearly : nextPackages.monthly;
+                        if (!storePriceTrim(nextPkg?.product.priceString)) {
+                          emitAppEvent('action_toast', {
+                            type: 'error',
+                            messageRu: 'Цена магазина не загрузилась. Проверьте интернет и попробуйте ещё раз.',
+                            messageUk: 'Ціна магазину не завантажилась. Перевірте інтернет і спробуйте ще раз.',
+                            messageEs: 'El precio de la tienda no se cargó. Revisa internet e inténtalo de nuevo.',
+                          });
+                        }
+                      });
+                      return;
+                    }
                     handlePurchase(selected);
                   }}
                   activeOpacity={0.85}
-                  disabled={purchasing || !canPurchaseSelectedPlan}
+                  disabled={purchasing || loadingPackages}
                 >
                   <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '800' }} adjustsFontSizeToFit numberOfLines={1}>
                     {ctaLabel}
@@ -3984,15 +4053,15 @@ export default function PremiumModal() {
                   <View style={{ marginTop: 12 }}>
                     <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', lineHeight: 18 }}>
                       {LP(
-                        'Store price appears before purchase.',
-                        'Store price appears before purchase.',
-                        'Store price appears before purchase.',
+                        'Цена магазина появится перед покупкой.',
+                        'Ціна магазину зʼявиться перед покупкою.',
+                        'El precio de la tienda aparecerá antes de la compra.',
                         {
-                          'pt-BR': 'Store price appears before purchase.',
-                          vi: 'Store price appears before purchase.',
-                          id: 'Store price appears before purchase.',
-                          tr: 'Store price appears before purchase.',
-                          pl: 'Store price appears before purchase.',
+                          'pt-BR': 'O preço da loja aparecerá antes da compra.',
+                          vi: 'Giá trong cửa hàng sẽ xuất hiện trước khi mua.',
+                          id: 'Harga toko akan muncul sebelum pembelian.',
+                          tr: 'Mağaza fiyatı satın alma öncesinde görünür.',
+                          pl: 'Cena ze sklepu pojawi się przed zakupem.',
                         },
                       )}
                     </Text>
@@ -4012,6 +4081,21 @@ export default function PremiumModal() {
                 selected === 'yearly'
                   ? 'suscripción anual PhraseMan Premium'
                   : 'suscripción mensual PhraseMan Premium';
+              const footerPeriodPlanned: PremiumPlannedCopy = selected === 'yearly'
+                ? {
+                    'pt-BR': 'assinatura anual PhraseMan Premium',
+                    vi: 'gói PhraseMan Premium hằng năm',
+                    id: 'langganan tahunan PhraseMan Premium',
+                    tr: 'yıllık PhraseMan Premium aboneliği',
+                    pl: 'roczna subskrypcja PhraseMan Premium',
+                  }
+                : {
+                    'pt-BR': 'assinatura mensal PhraseMan Premium',
+                    vi: 'gói PhraseMan Premium hằng tháng',
+                    id: 'langganan bulanan PhraseMan Premium',
+                    tr: 'aylık PhraseMan Premium aboneliği',
+                    pl: 'miesięczna subskrypcja PhraseMan Premium',
+                  };
               const ios = effectiveOs === 'ios';
 
               const trialUk = ios
@@ -4026,72 +4110,37 @@ export default function PremiumModal() {
                 ? `Si este plan ofrece 3 días sin cargo: al terminar la prueba, tu Apple ID cargará ${footerPrice} por el período elegido si no cancelas al menos 24 horas antes (Ajustes → Apple ID → Suscripciones).`
                 : `Si este plan ofrece 3 días sin cargo: al terminar la prueba, tu cuenta Google cargará ${footerPrice} por el período elegido si no cancelas al menos 24 horas antes (Google Play → Suscripciones).`;
 
+              const legalRu = ios
+                ? `Оформляется ${footerPeriodRu} с автопродлением. Списание с Apple ID по тарифам App Store для вашего региона: ${footerPrice}. Отменить можно в любой момент: Настройки → Apple ID → Подписки.`
+                : `Оформляется ${footerPeriodRu} с автопродлением. Оплата через Google Play для вашего региона: ${footerPrice}. Отмена: Google Play → Подписки.`;
+              const legalUk = ios
+                ? `Оформлюється ${footerPeriodUk} із автоматичним поновленням. Оплата знімається з Apple ID за тарифами App Store для вашого регіону: ${footerPrice}. Скасувати можна в будь-який момент: Налаштування → Apple ID → Підписки.`
+                : `Оформлюється ${footerPeriodUk} із автоматичним поновленням. Оплата через Google Play для вашого регіону: ${footerPrice}. Скасувати: Google Play → Підписки.`;
+              const legalEs = ios
+                ? `Contratas la ${footerPeriodEs} con renovación automática. El cobro se hace en tu Apple ID según los precios del App Store de tu zona: ${footerPrice}. Puedes cancelar cuando quieras: Ajustes → Apple ID → Suscripciones.`
+                : `Contratas la ${footerPeriodEs} con renovación automática. Pago vía Google Play en tu zona: ${footerPrice}. Cancelación: Google Play → Suscripciones.`;
+              const legalPlanned: PremiumPlannedCopy = {
+                'pt-BR': ios
+                  ? `Você assina a ${footerPeriodPlanned['pt-BR']} com renovação automática. A cobrança é feita no Apple ID conforme os preços da App Store da sua região: ${footerPrice}. Você pode cancelar quando quiser: Ajustes → Apple ID → Assinaturas.`
+                  : `Você assina a ${footerPeriodPlanned['pt-BR']} com renovação automática. O pagamento é feito pelo Google Play na sua região: ${footerPrice}. Cancelamento: Google Play → Assinaturas.`,
+                vi: ios
+                  ? `Bạn đăng ký ${footerPeriodPlanned.vi} có tự động gia hạn. Apple ID sẽ tính phí theo giá App Store tại khu vực của bạn: ${footerPrice}. Bạn có thể hủy bất cứ lúc nào: Cài đặt → Apple ID → Đăng ký.`
+                  : `Bạn đăng ký ${footerPeriodPlanned.vi} có tự động gia hạn. Thanh toán qua Google Play tại khu vực của bạn: ${footerPrice}. Hủy tại: Google Play → Gói đăng ký.`,
+                id: ios
+                  ? `Kamu berlangganan ${footerPeriodPlanned.id} dengan perpanjangan otomatis. Biaya ditagih ke Apple ID sesuai harga App Store di wilayahmu: ${footerPrice}. Kamu bisa membatalkan kapan saja: Pengaturan → Apple ID → Langganan.`
+                  : `Kamu berlangganan ${footerPeriodPlanned.id} dengan perpanjangan otomatis. Pembayaran melalui Google Play di wilayahmu: ${footerPrice}. Pembatalan: Google Play → Langganan.`,
+                tr: ios
+                  ? `${footerPeriodPlanned.tr} otomatik yenilemeyle başlar. Ücret, bölgenizdeki App Store fiyatlarına göre Apple ID hesabından alınır: ${footerPrice}. İstediğiniz zaman iptal edebilirsiniz: Ayarlar → Apple ID → Abonelikler.`
+                  : `${footerPeriodPlanned.tr} otomatik yenilemeyle başlar. Ödeme, bölgenizdeki Google Play üzerinden yapılır: ${footerPrice}. İptal: Google Play → Abonelikler.`,
+                pl: ios
+                  ? `Aktywujesz ${footerPeriodPlanned.pl} z automatycznym odnowieniem. Opłata zostanie pobrana z Apple ID według cen App Store w twoim regionie: ${footerPrice}. Możesz anulować w dowolnym momencie: Ustawienia → Apple ID → Subskrypcje.`
+                  : `Aktywujesz ${footerPeriodPlanned.pl} z automatycznym odnowieniem. Płatność przez Google Play w twoim regionie: ${footerPrice}. Anulowanie: Google Play → Subskrypcje.`,
+              };
+
               return (
                 <View style={{ marginTop: 12 }}>
                   <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', lineHeight: 18 }}>
-                    {lang === 'uk'
-                      ? (
-                          ios ? (
-                            <>
-                              Оформлюється{' '}
-                              <Text style={{ fontWeight: '700', color: t.textMuted }}>{footerPeriodUk}</Text>
-                              {' '}із автоматичним поновленням. Оплата знімається з Apple ID за тарифами App Store для вашого регіону (сума{' '}
-                              <Text style={{ fontWeight: '700', color: t.textMuted }}>{footerPrice}</Text>
-                              {' '}на екрані). Скасувати можна в будь-який момент:{' '}
-                              <Text style={{ fontWeight: '600' }}>Налаштування → Apple ID → Підписки</Text>.
-                            </>
-                          ) : (
-                            <>
-                              Оформлюється{' '}
-                              <Text style={{ fontWeight: '700', color: t.textMuted }}>{footerPeriodUk}</Text>
-                              {' '}із автоматичним поновленням. Оплата через Google Play для вашого регіону (сума{' '}
-                              <Text style={{ fontWeight: '700', color: t.textMuted }}>{footerPrice}</Text>
-                              {' '}на екрані). Скасувати:{' '}
-                              <Text style={{ fontWeight: '600' }}>Google Play → Підписки</Text>.
-                            </>
-                          )
-                        )
-                      : lang === 'es'
-                        ? (
-                            ios ? (
-                              <>
-                                Contratas la{' '}
-                                <Text style={{ fontWeight: '700', color: t.textMuted }}>{footerPeriodEs}</Text>
-                                {' '}con renovación automática. El cobro se hace en tu Apple ID según los precios del App Store de tu zona ({' '}
-                                <Text style={{ fontWeight: '700', color: t.textMuted }}>{footerPrice}</Text>
-                                {' '}según pantalla). Puedes cancelar cuando quieras:{' '}
-                                <Text style={{ fontWeight: '600' }}>Ajustes → Apple ID → Suscripciones</Text>.
-                              </>
-                            ) : (
-                              <>
-                                Contratas la{' '}
-                                <Text style={{ fontWeight: '700', color: t.textMuted }}>{footerPeriodEs}</Text>
-                                {' '}con renovación automática. Pago vía Google Play en tu zona ({' '}
-                                <Text style={{ fontWeight: '700', color: t.textMuted }}>{footerPrice}</Text>
-                                {' '}según pantalla). Cancelación:{' '}
-                                <Text style={{ fontWeight: '600' }}>Google Play → Suscripciones</Text>.
-                              </>
-                            )
-                          )
-                        : ios ? (
-                            <>
-                              Оформляется{' '}
-                              <Text style={{ fontWeight: '700', color: t.textMuted }}>{footerPeriodRu}</Text>
-                              {' '}с автопродлением. Списание с Apple ID по тарифам App Store для вашего региона (сумма{' '}
-                              <Text style={{ fontWeight: '700', color: t.textMuted }}>{footerPrice}</Text>
-                              {' '}на экране). Отменить можно в любой момент:{' '}
-                              <Text style={{ fontWeight: '600' }}>Настройки → Apple ID → Подписки</Text>.
-                            </>
-                          ) : (
-                            <>
-                              Оформляется{' '}
-                              <Text style={{ fontWeight: '700', color: t.textMuted }}>{footerPeriodRu}</Text>
-                              {' '}с автопродлением. Оплата через Google Play для вашего региона (сумма{' '}
-                              <Text style={{ fontWeight: '700', color: t.textMuted }}>{footerPrice}</Text>
-                              {' '}на экране). Отмена:{' '}
-                              <Text style={{ fontWeight: '600' }}>Google Play → Подписки</Text>.
-                            </>
-                          )}
+                    {LP(legalRu, legalUk, legalEs, legalPlanned)}
                   </Text>
                   {footerHasTrial ? (
                     <Text

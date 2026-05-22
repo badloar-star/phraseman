@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, Easing, View, ViewStyle } from 'react-native';
-import { LinearGradient as ExpoLinearGradient } from 'expo-linear-gradient';
+import { LinearGradient as ExpoLinearGradient } from './SafeLinearGradient';
 import Svg, { Circle, Polygon, Polyline } from 'react-native-svg';
-import { getAvatarAuraById, PREMIUM_AVATAR_AURA_ID } from '../constants/avatar_auras';
+import { getAvatarAuraById, PREMIUM_AVATAR_AURA_ID, VIP_AVATAR_AURA_ID } from '../constants/avatar_auras';
 
 type Props = {
   auraId?: string | null;
@@ -15,9 +15,10 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
   const aura = getAvatarAuraById(auraId);
   const auraPhase = useRef(new Animated.Value(0)).current;
   const isPremiumAura = aura?.id === PREMIUM_AVATAR_AURA_ID;
+  const isVipAura = aura?.id === VIP_AVATAR_AURA_ID;
   const isFlameAura = aura?.effect === 'flame';
   const isStormAura = aura?.effect === 'storm';
-  const shouldAnimate = (isPremiumAura && size >= 52) || ((isFlameAura || isStormAura) && size >= 42);
+  const shouldAnimate = ((isPremiumAura || isVipAura) && size >= 52) || ((isFlameAura || isStormAura) && size >= 42);
 
   useEffect(() => {
     if (!shouldAnimate) {
@@ -26,7 +27,7 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
     }
 
     auraPhase.setValue(0);
-    const loop = isPremiumAura
+    const loop = isPremiumAura || isVipAura
       ? Animated.loop(Animated.sequence([
         Animated.timing(auraPhase, {
           toValue: 1,
@@ -50,7 +51,7 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
 
     loop.start();
     return () => loop.stop();
-  }, [auraPhase, isPremiumAura, isStormAura, shouldAnimate]);
+  }, [auraPhase, isPremiumAura, isStormAura, isVipAura, shouldAnimate]);
 
   if (!aura || size < 36) {
     return (
@@ -60,9 +61,11 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
     );
   }
 
-  if (isPremiumAura) {
+  if (isPremiumAura || isVipAura) {
     const outer = size + 6;
     const ring = 1;
+    const main = aura.color;
+    const bright = aura.color2 ?? '#FFF2A8';
     const glowScale = auraPhase.interpolate({ inputRange: [0, 1], outputRange: [0.99, 1.02] });
     const glowOpacity = auraPhase.interpolate({ inputRange: [0, 1], outputRange: [0.16, 0.28] });
     const rimOpacity = auraPhase.interpolate({ inputRange: [0, 1], outputRange: [0.72, 0.9] });
@@ -87,7 +90,7 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
             width: outer,
             height: outer,
             borderRadius: outer / 2,
-            backgroundColor: 'rgba(250,204,21,0.08)',
+            backgroundColor: aura.softColor,
             opacity: glowOpacity,
             transform: [{ scale: glowScale }],
           }}
@@ -127,9 +130,9 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
             height: outer,
             borderRadius: outer / 2,
             borderWidth: ring,
-            borderColor: '#FACC15',
+            borderColor: main,
             opacity: rimOpacity,
-            shadowColor: '#FACC15',
+            shadowColor: main,
             shadowOpacity: 0.16,
             shadowRadius: 4,
             elevation: 2,
@@ -143,7 +146,7 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
             height: size + 2,
             borderRadius: (size + 2) / 2,
             borderWidth: 1,
-            borderColor: '#FFF2A8',
+            borderColor: bright,
             opacity: 0.42,
           }}
         />

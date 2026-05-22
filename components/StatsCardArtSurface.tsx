@@ -7,7 +7,7 @@ import {
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 
 export const STATS_CARD_ART = {
   streak: require('../assets/images/statistics/cards/stats-card-streak.webp'),

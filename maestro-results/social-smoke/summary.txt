@@ -1,0 +1,5 @@
+PASS friends_open_and_search_contract
+PASS league_chat_send_message
+PASS league_chat_second_account_actions
+PASS arena_lobby_from_home
+PASS friends_arena_challenge_contract

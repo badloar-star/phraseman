@@ -6,8 +6,16 @@ import { triLang } from '../constants/i18n';
 import { Ionicons } from '@expo/vector-icons';
 import { updateMultipleTaskProgress } from '../app/daily_tasks';
 import { checkAchievements } from '../app/achievements';
-import { dailyPhraseCopyForLang, getTodayPhrase, getTodayPhraseSync, subscribeTodayPhrase, DailyPhrase } from '../app/daily_phrase_system';
+import {
+  dailyPhraseCopyForLang,
+  getTodayPhraseForTarget,
+  getTodayPhraseSyncForTarget,
+  subscribeTodayPhraseForTarget,
+  DailyPhrase,
+  type DailyPhraseInterfaceLang,
+} from '../app/daily_phrase_system';
 import AddToFlashcard from './AddToFlashcard';
+import { useStudyTarget } from './StudyTargetContext';
 
 const DAILY_PHRASE_IMAGES: Record<string, any> = {
   dark: require('../assets/images/home_menu/home-forest-daily-phrase.webp'),
@@ -31,15 +39,24 @@ interface Props {
 export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const [phrase, setPhrase] = useState<DailyPhrase>(() => getTodayPhraseSync());
+  const { studyTarget } = useStudyTarget();
+  const [phrase, setPhrase] = useState<DailyPhrase | null>(() => (
+    getTodayPhraseSyncForTarget(studyTarget)
+  ));
   const [expanded, setExpanded] = useState(false);
   const revealAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    void getTodayPhrase().then(p => { if (p) setPhrase(p); }).catch(() => {});
-    const unsubscribe = subscribeTodayPhrase(p => { if (p) setPhrase(p); });
+    if (studyTarget === 'fr') {
+      setPhrase(null);
+      setExpanded(false);
+      return;
+    }
+    setPhrase(getTodayPhraseSyncForTarget(studyTarget));
+    void getTodayPhraseForTarget(studyTarget).then(p => { if (p) setPhrase(p); }).catch(() => {});
+    const unsubscribe = subscribeTodayPhraseForTarget(p => { if (p) setPhrase(p); }, studyTarget);
     return unsubscribe;
-  }, []);
+  }, [studyTarget]);
 
   useEffect(() => {
     if (!USE_EDITORIAL_DAILY_PHRASE) return;
@@ -50,6 +67,10 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
       useNativeDriver: true,
     }).start();
   }, [expanded, phrase?.date, revealAnim]);
+
+  if (studyTarget === 'fr') {
+    return null;
+  }
 
   if (!phrase) {
     return <View style={[styles.container, { backgroundColor: t.bgCard }]} />;
@@ -75,12 +96,18 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
     tr: 'Anlamı',
     pl: 'Znaczenie',
   });
-  // Контент идиом: для es пока подставляем RU-поля (см. idioms_data — без полей *_es).
-  const phraseLang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
+  const phraseLang: DailyPhraseInterfaceLang = lang;
   const phraseCopy = dailyPhraseCopyForLang(phrase, phraseLang);
   const phraseLiteral = phraseCopy.literal;
   const phraseMeaning = phraseCopy.meaning;
   const phraseText = phraseCopy.text;
+  const flashcardSourceLocales = {
+    'pt-BR': phrase.sourceLocales?.['pt-BR']?.meaning,
+    vi: phrase.sourceLocales?.vi?.meaning,
+    id: phrase.sourceLocales?.id?.meaning,
+    tr: phrase.sourceLocales?.tr?.meaning,
+    pl: phrase.sourceLocales?.pl?.meaning,
+  };
   const dailyPhraseImage = DAILY_PHRASE_IMAGES[themeMode] ?? DAILY_PHRASE_FALLBACK_IMAGE;
   const revealStyle = {
     opacity: revealAnim,
@@ -93,8 +120,8 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
         const opening = !expanded;
         setExpanded(opening);
         if (opening) {
-          updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }]).catch(() => {});
-          checkAchievements({ type: 'daily_phrase', action: 'read' }).catch(() => {});
+          updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }], { studyTarget }).catch(() => {});
+          checkAchievements({ type: 'daily_phrase', action: 'read', studyTarget }).catch(() => {});
         }
       }} activeOpacity={0.9}>
         <View style={[
@@ -169,8 +196,10 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
                   ru={phrase.meaning}
                   uk={phrase.meaning_uk}
                   es={phrase.meaning_es}
+                  sourceLocales={flashcardSourceLocales}
                   source="daily_phrase"
                   sourceId={phrase.id || phrase.date}
+                  studyTarget={studyTarget}
                   size={22}
                   literalRu={phrase.literal}
                   literalUk={phrase.literal_uk}
@@ -196,8 +225,8 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
       const opening = !expanded;
       setExpanded(opening);
       if (opening) {
-        updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }]).catch(() => {});
-        checkAchievements({ type: 'daily_phrase', action: 'read' }).catch(() => {});
+        updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }], { studyTarget }).catch(() => {});
+        checkAchievements({ type: 'daily_phrase', action: 'read', studyTarget }).catch(() => {});
       }
     }} activeOpacity={0.9}>
       <View style={[styles.container, { backgroundColor: t.bgCard, borderColor: t.accent }]}>
@@ -278,6 +307,7 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
                 ru={phrase.meaning}
                 uk={phrase.meaning_uk}
                 es={phrase.meaning_es}
+                sourceLocales={flashcardSourceLocales}
                 source="daily_phrase"
                 sourceId={phrase.id || phrase.date}
                 size={22}

@@ -1,0 +1,648 @@
+{
+  "schemaVersion": "gustav-dirty-overlap-preservation-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "status": "PASS",
+  "generatedAt": "2026-05-19T20:00:58.445Z",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_dirty_overlap_preservation_audit.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "applyPlanPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/file_changes.json",
+  "summary": {
+    "plannedDirtyOverlaps": 20,
+    "reviewedOverlaps": 20,
+    "currentlyDirtyOverlaps": 20,
+    "noLongerDirtyOverlaps": 0,
+    "missingFiles": 0,
+    "totalDiffAddedLines": 314,
+    "totalDiffDeletedLines": 106,
+    "blockers": 0,
+    "highRisks": 0,
+    "canPreserveDirtyWorktree": true,
+    "mayModifyProductionAppFiles": false
+  },
+  "decisions": [
+    {
+      "path": "app/_layout.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P5",
+      "risk": "blocker",
+      "adapters": [
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 1816,
+      "diffAddedLines": 5,
+      "diffDeletedLines": 1,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/(tabs)/home.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P1",
+      "risk": "blocker",
+      "adapters": [
+        "target_storage_key_builder",
+        "legacy_english_compat",
+        "lesson_progress_store",
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 2259,
+      "diffAddedLines": 26,
+      "diffDeletedLines": 13,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/(tabs)/settings.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "study_target",
+      "phase": "P1",
+      "risk": "blocker",
+      "adapters": [
+        "production_study_target",
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 1016,
+      "diffAddedLines": 26,
+      "diffDeletedLines": 8,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/cloud_sync.ts",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P1",
+      "risk": "blocker",
+      "adapters": [
+        "target_storage_key_builder",
+        "legacy_english_compat",
+        "level_exam_certificate_store",
+        "target_stats_store",
+        "cloud_sync_target_buckets"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 1260,
+      "diffAddedLines": 1,
+      "diffDeletedLines": 0,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/daily_tasks_screen.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P1",
+      "risk": "blocker",
+      "adapters": [
+        "target_storage_key_builder",
+        "legacy_english_compat",
+        "quiz_progress_store",
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 2734,
+      "diffAddedLines": 25,
+      "diffDeletedLines": 0,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/daily_tasks.ts",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P1",
+      "risk": "blocker",
+      "adapters": [
+        "target_storage_key_builder"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 1895,
+      "diffAddedLines": 5,
+      "diffDeletedLines": 0,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/diagnostic_test.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P1",
+      "risk": "blocker",
+      "adapters": [
+        "target_storage_key_builder",
+        "legacy_english_compat",
+        "personal_practice_store",
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 1383,
+      "diffAddedLines": 0,
+      "diffDeletedLines": 1,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/exam.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P2",
+      "risk": "blocker",
+      "adapters": [
+        "legacy_english_compat",
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 1556,
+      "diffAddedLines": 5,
+      "diffDeletedLines": 3,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/firestore_leaderboard.ts",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P1",
+      "risk": "blocker",
+      "adapters": [
+        "target_storage_key_builder"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 454,
+      "diffAddedLines": 1,
+      "diffDeletedLines": 1,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/flashcards_collection.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "course",
+      "phase": "P3",
+      "risk": "blocker",
+      "adapters": [
+        "flashcards_target_store",
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 1904,
+      "diffAddedLines": 51,
+      "diffDeletedLines": 1,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/flashcards_swipe.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "course",
+      "phase": "P3",
+      "risk": "blocker",
+      "adapters": [
+        "flashcards_target_store",
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 3036,
+      "diffAddedLines": 14,
+      "diffDeletedLines": 0,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/lesson_intro_screens.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P5",
+      "risk": "blocker",
+      "adapters": [
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 1363,
+      "diffAddedLines": 46,
+      "diffDeletedLines": 23,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/lesson_irregular_verbs.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P1",
+      "risk": "blocker",
+      "adapters": [
+        "target_storage_key_builder",
+        "legacy_english_compat",
+        "lesson_progress_store",
+        "lesson_session_store",
+        "lesson_reward_idempotency",
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 1064,
+      "diffAddedLines": 0,
+      "diffDeletedLines": 1,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/lesson_words.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P1",
+      "risk": "blocker",
+      "adapters": [
+        "target_storage_key_builder",
+        "lesson_progress_store",
+        "lesson_session_store",
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 3296,
+      "diffAddedLines": 1,
+      "diffDeletedLines": 1,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/lesson1.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P1",
+      "risk": "blocker",
+      "adapters": [
+        "target_storage_key_builder",
+        "legacy_english_compat",
+        "lesson_progress_store",
+        "lesson_session_store",
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 2500,
+      "diffAddedLines": 2,
+      "diffDeletedLines": 2,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/level_exam.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P1",
+      "risk": "blocker",
+      "adapters": [
+        "target_storage_key_builder",
+        "legacy_english_compat",
+        "level_exam_certificate_store",
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 1535,
+      "diffAddedLines": 6,
+      "diffDeletedLines": 2,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/pack_opening.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P5",
+      "risk": "blocker",
+      "adapters": [
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 738,
+      "diffAddedLines": 28,
+      "diffDeletedLines": 24,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/trainer_smart_session.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "trainer",
+      "phase": "P3",
+      "risk": "blocker",
+      "adapters": [
+        "trainer_practice_store",
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 1122,
+      "diffAddedLines": 34,
+      "diffDeletedLines": 7,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "app/trainer.tsx",
+      "plannedAction": "modify",
+      "ownerArea": "trainer",
+      "phase": "P3",
+      "risk": "blocker",
+      "adapters": [
+        "trainer_practice_store",
+        "route_surface_integration"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 1018,
+      "diffAddedLines": 37,
+      "diffDeletedLines": 18,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    },
+    {
+      "path": "hooks/use-flashcards.ts",
+      "plannedAction": "modify",
+      "ownerArea": "storage",
+      "phase": "P1",
+      "risk": "blocker",
+      "adapters": [
+        "target_storage_key_builder",
+        "legacy_english_compat",
+        "flashcards_target_store"
+      ],
+      "gitStatus": " M",
+      "currentlyDirty": true,
+      "exists": true,
+      "lineCount": 173,
+      "diffAddedLines": 1,
+      "diffDeletedLines": 0,
+      "preservationStatus": "preservation_plan_recorded",
+      "strategy": [
+        "Read the current file before any apply edit.",
+        "Patch only the target-isolation call sites listed by the adapter plan.",
+        "Preserve unrelated current hunks and avoid whole-file rewrites or broad formatting.",
+        "If an intended hunk overlaps current local edits, stop and create a smaller follow-up patch instead of replacing the user change."
+      ],
+      "requiredBeforeEdit": [
+        "Re-run this preservation audit immediately before production apply.",
+        "Review git diff for this file in the same turn as the edit.",
+        "Keep rollback additive: disable new v2 target path without deleting legacy English keys."
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "DOP-000",
+      "severity": "info",
+      "title": "Dirty-overlap preservation plan recorded",
+      "detail": "20 dirty-overlap file(s) have preservation instructions before any production apply.",
+      "sourceRefs": [
+        {
+          "file": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/file_changes.json",
+          "line": 1,
+          "provenance": "apply_plan"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "This audit records preservation strategy only; it does not approve production app writes.",
+    "Dirty files remain dirty and must be rechecked immediately before any approved apply.",
+    "No French content is generated by this audit."
+  ]
+}

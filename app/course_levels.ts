@@ -27,11 +27,13 @@ export function getCourseLevelForLesson(lessonId: number): CourseLevel {
 }
 
 export function getFirstLessonForLevel(level: CourseLevel): number {
-  return COURSE_LEVEL_RANGES[level][0];
+  const range = COURSE_LEVEL_RANGES[level];
+  return range[0];
 }
 
 export function getLastLessonForLevel(level: CourseLevel): number {
-  return COURSE_LEVEL_RANGES[level][1];
+  const range = COURSE_LEVEL_RANGES[level];
+  return range[1];
 }
 
 export function getPreviousCourseLevel(level: CourseLevel): CourseLevel | null {

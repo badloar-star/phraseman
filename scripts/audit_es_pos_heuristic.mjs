@@ -26,6 +26,9 @@ function firstSpanishToken(es) {
 /** Типичный инфинитив одним токеном (без пробелов, без clitic). */
 const LOOKS_INF = /^[a-záéíóúüñ]{2,}(ar|er|ir)$/i;
 
+/** Нормальные существительные, которые внешне заканчиваются как инфинитив. */
+const NOUN_INF_LOOKALIKE_ALLOWLIST = new Set(['alquiler', 'azúcar', 'lugar', 'mujer']);
+
 /** Одно слово похоже на отглаголное / абстрактное существительное. */
 const LOOKS_NOUN_SUF = /(ción|dad|tad|mente|aje|ncia|ismo)$/i;
 
@@ -50,7 +53,7 @@ function main() {
     const first = firstSpanishToken(es);
     if (!first || first.includes(' ') || first.includes('(')) continue;
 
-    if (pos === 'nouns' && LOOKS_INF.test(first)) {
+    if (pos === 'nouns' && LOOKS_INF.test(first) && !NOUN_INF_LOOKALIKE_ALLOWLIST.has(first.toLowerCase())) {
       nounVerbEs.push({ line: i + 1, lesson, en, es, first });
     }
     if ((pos === 'verbs' || pos === 'irregular_verbs') && LOOKS_NOUN_SUF.test(first)) {

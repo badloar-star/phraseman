@@ -4,10 +4,17 @@ import type { FlashcardContentLang } from './flashcards/types';
 import type { StudyTargetLang } from './study_target_lang_dev';
 
 /**
- * Режим «учим испанский» (dev): включено в настройках обучения.
+ * Легаси-режим «учим испанский» (dev): оставлен только для старых веток данных.
+ * Новый production-контракт целевых языков живет в study_target.ts.
+ * French пока остается dev-only до source-gate approval.
  */
 export function spanishStudyActive(studyTarget: StudyTargetLang): boolean {
   return ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es';
+}
+
+/** Режим «учим французский»: целевой контент, а не язык интерфейса. */
+export function frenchStudyActive(studyTarget: StudyTargetLang): boolean {
+  return ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'fr';
 }
 
 /**

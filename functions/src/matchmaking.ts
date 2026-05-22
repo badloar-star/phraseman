@@ -5,17 +5,9 @@ import {
 } from './types';
 import { expireStaleAcceptanceSessions } from './arena_pregame';
 import { cleanupStaleArenaSessions } from './arena_cleanup';
+import { getLevelFromXP } from './xp_levels';
 
 const db = admin.firestore();
-
-// Must match constants/theme.ts getLevelFromXP formula
-const _XP_BASE = 250;
-const _XP_EXP_INV = 1 / 1.82;
-const _MAX_LEVEL = 50;
-function getLevelFromXP(xp: number): number {
-  if (xp <= 0) return 1;
-  return Math.min(_MAX_LEVEL, Math.floor(Math.pow(xp / _XP_BASE, _XP_EXP_INV)) + 1);
-}
 
 /** Публичный агрегат для UI лобби: live-док, обновляется на каждом изменении очереди (CF). */
 const APP_META_MATCHMAKING = 'app_meta/matchmaking_searching';

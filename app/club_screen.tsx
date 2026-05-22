@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Easing, Pressable, Image } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import * as Haptics from 'expo-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect } from 'expo-router';
@@ -8,18 +8,20 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang, type Lang } from '../constants/i18n';
 import UnifiedPlayerModal, { PlayerInfo as UnifiedPlayerInfo } from '../components/PlayerProfileModal';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import PremiumGoldUserName from '../components/PremiumGoldUserName';
+import VipGreenUserName from '../components/VipGreenUserName';
 import LeagueCrownName from '../components/LeagueCrownName';
 import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
 import {
   LEAGUES,
-  CLUB_DESC_ES,
+  clubDescForLang,
   clubDescPlanned,
   clubNamePlanned,
   GroupMember, LeagueState, LeagueResult,
@@ -74,10 +76,12 @@ import {
 } from './services/league_chest_rewards';
 import { shouldShowLeagueRace } from './league_race_visibility';
 import LeagueChatPanel from '../components/LeagueChatPanel';
+import { formatLeagueChatUnreadBadge } from './league_chat_unread';
+import { useLeagueChatUnread } from './use_league_chat_unread';
 import { checkAchievements } from './achievements';
 import { GOLD_RICH } from '../constants/goldTheme';
 
-// v2 — bumped после фикса race на signInAnonymously + остановки записи fallback\'а
+// v2 — bumped после фикса race на signInAnonymously + остановки резервной записи
 // в league_state_v3. Старый таймер мог хранить «не обновлять» с момента, когда
 // fetchGroupForUser возвращал только пользователя из-за PERMISSION_DENIED.
 const CLUB_REMOTE_REFRESH_AT_KEY = 'club_remote_refresh_at_v2';
@@ -125,19 +129,6 @@ function leagueTag(lang: Lang, tagRU: string, tagUK: string): string {
     id: `Bonus XP: ${formattedPct}`,
     tr: `XP bonusu: ${formattedPct}`,
     pl: `Bonus XP: ${formattedPct}`,
-  });
-}
-
-function leagueDesc(lang: Lang, leagueId: number, descRU: string, descUK: string): string {
-  return triLang(lang, {
-    ru: descRU,
-    uk: descUK,
-    es: CLUB_DESC_ES[leagueId] ?? descRU,
-    'pt-BR': clubDescPlanned(leagueId, 'pt-BR'),
-    vi: clubDescPlanned(leagueId, 'vi'),
-    id: clubDescPlanned(leagueId, 'id'),
-    tr: clubDescPlanned(leagueId, 'tr'),
-    pl: clubDescPlanned(leagueId, 'pl'),
   });
 }
 
@@ -235,6 +226,7 @@ export default function ClubScreen() {
   const leagueBonusPalette = getLeagueBonusPalette(t, themeMode);
   const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
 
   const [myLeagueId, setMyLeagueId]     = useState(0);
   const [selectedLeagueId, setSelectedLeagueId] = useState(0);
@@ -303,6 +295,11 @@ export default function ClubScreen() {
   } | null>(null);
 
   const isMountedRef = useRef(true);
+  const leagueChatUnreadCount = useLeagueChatUnread({
+    initialRoom: leagueGroupMeta,
+    myUid: arenaClubStableUid,
+    active: clubTab === 'chat',
+  });
 
   useEffect(() => {
     let cancelled = false;
@@ -679,6 +676,11 @@ export default function ClubScreen() {
           ru: `Превью: выпало ${previewRewards.length} подарков, Gold разблокирован локально`,
           uk: `Превʼю: випало ${previewRewards.length} подарунків, Gold розблоковано локально`,
           es: `Vista previa: ${previewRewards.length} regalos, Gold desbloqueado localmente`,
+          'pt-BR': `Prévia: ${previewRewards.length} presentes, Gold desbloqueado localmente`,
+          vi: `Xem trước: nhận ${previewRewards.length} quà, Gold đã mở khóa cục bộ`,
+          id: `Pratinjau: mendapat ${previewRewards.length} hadiah, Gold dibuka secara lokal`,
+          tr: `Önizleme: ${previewRewards.length} hediye düştü, Gold yerel olarak açıldı`,
+          pl: `Podgląd: wypadło ${previewRewards.length} prezentów, Gold odblokowany lokalnie`,
         }));
       } finally {
         if (isMountedRef.current) setLeagueChestClaiming(false);
@@ -702,6 +704,7 @@ export default function ClubScreen() {
         })),
         chestReady: leagueChestReady,
         myContribution: myLeagueChestContribution,
+        studyTarget,
       });
       if (!isMountedRef.current) return;
       if (res.claimed) setLeagueChestClaimed(true);
@@ -731,24 +734,59 @@ export default function ClubScreen() {
             : hasGoldDuplicate
               ? `Bono de liga abierto: ${rewardCount} regalos, Gold doble convertido en fragmentos`
               : `Bono de liga abierto: cayeron ${rewardCount} regalos`,
+          'pt-BR': hasGold
+            ? `Bônus da liga aberto: ${rewardCount} presentes, incluindo Gold`
+            : hasGoldDuplicate
+              ? `Bônus da liga aberto: ${rewardCount} presentes, Gold duplicado virou fragmentos`
+              : `Bônus da liga aberto: caíram ${rewardCount} presentes`,
+          vi: hasGold
+            ? `Đã mở thưởng giải đấu: ${rewardCount} quà, có Gold`
+            : hasGoldDuplicate
+              ? `Đã mở thưởng giải đấu: ${rewardCount} quà, Gold trùng đã đổi thành mảnh`
+              : `Đã mở thưởng giải đấu: nhận ${rewardCount} quà`,
+          id: hasGold
+            ? `Bonus liga dibuka: ${rewardCount} hadiah, termasuk Gold`
+            : hasGoldDuplicate
+              ? `Bonus liga dibuka: ${rewardCount} hadiah, duplikat Gold menjadi pecahan`
+              : `Bonus liga dibuka: mendapat ${rewardCount} hadiah`,
+          tr: hasGold
+            ? `Lig bonusu açıldı: ${rewardCount} hediye, içinde Gold var`
+            : hasGoldDuplicate
+              ? `Lig bonusu açıldı: ${rewardCount} hediye, çift Gold parçalara dönüştü`
+              : `Lig bonusu açıldı: ${rewardCount} hediye düştü`,
+          pl: hasGold
+            ? `Bonus ligi otwarty: ${rewardCount} prezentów, w tym Gold`
+            : hasGoldDuplicate
+              ? `Bonus ligi otwarty: ${rewardCount} prezentów, duplikat Gold zmienił się we fragmenty`
+              : `Bonus ligi otwarty: wypadło ${rewardCount} prezentów`,
         }));
       } else if (res.claimed) {
         emitAppEvent('action_toast', actionToastTri('info', {
           ru: 'Бонус лиги уже забран',
           uk: 'Бонус ліги вже забрано',
           es: 'El bono de liga ya fue recogido',
+          'pt-BR': 'O bônus da liga já foi resgatado',
+          vi: 'Thưởng giải đấu đã được nhận rồi',
+          id: 'Bonus liga sudah diambil',
+          tr: 'Lig bonusu zaten alındı',
+          pl: 'Bonus ligi został już odebrany',
         }));
       } else {
         emitAppEvent('action_toast', actionToastTri('info', {
           ru: 'Бонус пока не готов или не хватает личного вклада',
           uk: 'Бонус ще не готовий або бракує особистого внеску',
           es: 'El bono aún no está listo o falta contribución personal',
+          'pt-BR': 'O bônus ainda não está pronto ou falta contribuição pessoal',
+          vi: 'Thưởng chưa sẵn sàng hoặc bạn chưa đóng góp đủ',
+          id: 'Bonus belum siap atau kontribusi pribadi belum cukup',
+          tr: 'Bonus henüz hazır değil veya kişisel katkı eksik',
+          pl: 'Bonus nie jest jeszcze gotowy albo brakuje osobistego wkładu',
         }));
       }
     } finally {
       if (isMountedRef.current) setLeagueChestClaiming(false);
     }
-  }, [leagueRaceVisible, leagueChestReady, leagueGroupMeta, leagueChestClaimed, leagueChestClaiming, leagueBonusAdminActive, leagueBonusAdminPreview?.crownWinner, leagueCrownWinnerName, userName, myLeagueChestContribution, sortedGroup, arenaClubStableUid]);
+  }, [leagueRaceVisible, leagueChestReady, leagueGroupMeta, leagueChestClaimed, leagueChestClaiming, leagueBonusAdminActive, leagueBonusAdminPreview?.crownWinner, leagueCrownWinnerName, userName, myLeagueChestContribution, sortedGroup, arenaClubStableUid, studyTarget]);
 
   const showLeagueToast = useCallback((message: string, type: 'success' | 'error' | 'info' = 'info') => {
     emitAppEvent('action_toast', {
@@ -1168,11 +1206,36 @@ export default function ClubScreen() {
                   justifyContent:'center',
                   flexDirection:'row',
                   gap:7,
+                  position:'relative',
+                  overflow:'visible',
                   backgroundColor: active ? t.accent : 'transparent',
                 }}
               >
                 <Ionicons name={icon as any} size={17} color={active ? t.correctText : t.textMuted} />
                 <Text style={{ color:active ? t.correctText : t.textMuted, fontSize:f.sub, fontWeight:'900' }}>{label}</Text>
+                {key === 'chat' && leagueChatUnreadCount > 0 && (
+                  <View
+                    testID="club-chat-unread-badge"
+                    style={{
+                      position:'absolute',
+                      top:-6,
+                      right:8,
+                      minWidth:20,
+                      height:20,
+                      paddingHorizontal:6,
+                      borderRadius:10,
+                      alignItems:'center',
+                      justifyContent:'center',
+                      backgroundColor:'#E9505F',
+                      borderWidth:1.5,
+                      borderColor:t.bgCard,
+                    }}
+                  >
+                    <Text style={{ color:'#FFFFFF', fontSize:10, fontWeight:'900' }}>
+                      {formatLeagueChatUnreadBadge(leagueChatUnreadCount)}
+                    </Text>
+                  </View>
+                )}
               </TouchableOpacity>
             );
           })}
@@ -1540,7 +1603,7 @@ export default function ClubScreen() {
               const isMyRow = !!p.isMe;
               const rowFinalBg = isMyRow ? t.accentBg : rowBg;
               const rowMask = rowFinalBg === 'transparent' ? t.bgCard : rowFinalBg;
-              const rowEffectiveAura = getEffectiveAvatarAuraId(p.isMe ? myAuraId : p.aura, p.isPremium);
+              const rowEffectiveAura = getEffectiveAvatarAuraId(p.isMe ? myAuraId : p.aura, p.isPremium, p.isVip);
               const rowUsesPremiumAura = rowEffectiveAura === PREMIUM_AVATAR_AURA_ID;
               const boostMult = p.leagueBoostMultiplier;
               const boostUntil = p.leagueBoostExpiresAt ?? 0;
@@ -1563,6 +1626,7 @@ export default function ClubScreen() {
                   leagueId: p.leagueId ?? myLeague.id,
                   uid: p.uid,
                   isPremium: p.isPremium ?? false,
+                  isVip: p.isVip ?? false,
                   avatar: p.avatar,
                   frame: p.frame,
                   aura: p.isMe ? myAuraId : p.aura,
@@ -1582,8 +1646,6 @@ export default function ClubScreen() {
                   borderBottomWidth: i < sortedGroup.length - 1 ? 0.5 : 0,
                   borderBottomColor: t.border,
                   backgroundColor: rowFinalBg,
-                  borderLeftWidth: 4,
-                  borderLeftColor: isMyRow ? t.accent : 'transparent',
                 }}
               >
                 <Text style={{ width:24, fontSize: 14, color: isMyRow ? t.accent : t.textPrimary, fontWeight: isMyRow ? '900' : '400' }}>{i + 1}</Text>
@@ -1615,6 +1677,8 @@ export default function ClubScreen() {
                 <View style={{ flex:1, minWidth: 0 }}>
                   {hasLeagueCrown ? (
                     <LeagueCrownName text={p.name} fontSize={f.body} />
+                  ) : !!p.isVip ? (
+                    <VipGreenUserName text={p.name} fontSize={f.body} />
                   ) : !!p.isPremium ? (
                     <PremiumGoldUserName text={p.name} fontSize={f.body} />
                   ) : (
@@ -1682,7 +1746,7 @@ export default function ClubScreen() {
       {clubTab === 'chat' && (
         <View style={{ flex: 1, minHeight: 0 }}>
           <LeagueChatPanel
-            fallbackRoom={leagueGroupMeta}
+            initialRoom={leagueGroupMeta}
             myUid={arenaClubStableUid}
             myAvatar={myAvatarEmoji}
             myAuraId={myAuraId}
@@ -1817,7 +1881,7 @@ export default function ClubScreen() {
                 }) : ''}
               </Text>
               <Text style={{ color:t.textSecond, fontSize:f.body, lineHeight:22, textAlign:'center' }}>
-                {descModal ? leagueDesc(lang, descModal.id, descModal.descRU, descModal.descUK) : ''}
+                {descModal ? clubDescForLang(descModal, lang) : ''}
               </Text>
               {!!descModal && !!leagueTag(lang, descModal.tagRU, descModal.tagUK) && (
                 <Text style={{ color:'#D4A017', fontSize:f.body, fontWeight:'700', textAlign:'center', marginTop:12 }}>

@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "gustav-french-curriculum-placement-packet-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "lessonId": 1,
+  "batchId": "lesson1_rows_1_10_curriculum_placement",
+  "studyTarget": "fr",
+  "sourceLocales": ["ru", "uk"],
+  "parentPackets": [
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_row_review_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_10_grammar_form_review_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_10_source_locale_meaning_review_packet.json"
+  ],
+  "activationStatus": "blocked",
+  "containsFrenchTargetText": false,
+  "containsWordsFr": false,
+  "mayWriteAppSeed": false,
+  "mayWriteIntroExamples": false,
+  "mayWriteQuizOrExam": false,
+  "curriculumStatus": "needs_reviewer_acceptance",
+  "sourceEvidenceClaimIds": [
+    "fr-l1-a1-communication-boundary-fei",
+    "fr-l1-etre-sappeler-a1-tv5monde",
+    "fr-l1-etre-conjugation-larousse",
+    "fr-l1-be-lexical-risk-cambridge"
+  ],
+  "lessonObjectiveCandidate": {
+    "status": "not_approved_for_app",
+    "grammarObjective": "A1 starter identity/state awareness around etre, subject pronouns and simple personal-state meanings",
+    "orderingPolicy": "French may reorder, defer or replace English-base rows when French grammar/register/naturalness requires it.",
+    "mustNotDo": [
+      "Do not copy English Lesson 1 order as French curriculum by default.",
+      "Do not write French target text from this placement packet.",
+      "Do not create French quiz, exam, intro or vocabulary rows from this placement packet."
+    ]
+  },
+  "rows": [
+    {
+      "phraseId": "lesson1_phrase_1",
+      "englishBase": "I am here",
+      "placementDecision": "keep_candidate_after_location_structure_review",
+      "placementReason": "Simple first-person location/status can fit a starter lesson if location structure is accepted before target text.",
+      "blockedBy": ["location_or_status_structure_review", "ru_uk_meaning_acceptance", "reviewer_approval_record"],
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_2",
+      "englishBase": "You are ready",
+      "placementDecision": "keep_candidate_after_register_and_agreement_review",
+      "placementReason": "Second-person readiness can fit early only after tu/vous and adjective agreement policies are accepted.",
+      "blockedBy": ["tu_vous_policy_review", "adjective_agreement_review", "ru_uk_meaning_acceptance", "reviewer_approval_record"],
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_3",
+      "englishBase": "He is busy",
+      "placementDecision": "keep_candidate_after_masculine_state_review",
+      "placementReason": "Third-person masculine state is useful for etre agreement if personal-state sense and adjective agreement are accepted.",
+      "blockedBy": ["personal_state_sense_review", "masculine_singular_agreement_review", "reviewer_approval_record"],
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_4",
+      "englishBase": "She is calm",
+      "placementDecision": "keep_candidate_after_feminine_agreement_review",
+      "placementReason": "Feminine counterpart can support agreement contrast if the lesson intentionally introduces gendered adjective agreement.",
+      "blockedBy": ["feminine_singular_agreement_review", "lesson_scope_acceptance", "reviewer_approval_record"],
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_5",
+      "englishBase": "We are together",
+      "placementDecision": "defer_candidate_unless_adverbial_complement_is_in_scope",
+      "placementReason": "Togetherness is communicatively simple but does not strengthen the main adjective-agreement objective unless adverbial complements are approved for Lesson 1.",
+      "blockedBy": ["adverbial_complement_scope_review", "lesson_order_review", "reviewer_approval_record"],
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_6",
+      "englishBase": "They are happy",
+      "placementDecision": "defer_candidate_until_plural_and_mixed_group_policy",
+      "placementReason": "Plural emotional state is useful later, but mixed-group and plural agreement policy can overload a first French lesson.",
+      "blockedBy": ["plural_agreement_review", "mixed_group_policy_review", "lesson_scope_acceptance", "reviewer_approval_record"],
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_7",
+      "englishBase": "It is important",
+      "placementDecision": "defer_candidate_impersonal_structure",
+      "placementReason": "Impersonal evaluation is a non-calque structure and should not be treated as a direct starter etre row without explicit source-backed structure approval.",
+      "blockedBy": ["impersonal_structure_source_review", "non_calque_structure_review", "later_lesson_mapping_review", "reviewer_approval_record"],
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_8",
+      "englishBase": "I am okay",
+      "placementDecision": "defer_candidate_idiomatic_register",
+      "placementReason": "Personal well-being is useful, but idiomatic/register naturalness makes it risky before source-backed starter patterns are approved.",
+      "blockedBy": ["idiomatic_state_structure_review", "register_naturalness_review", "reviewer_approval_record"],
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_9",
+      "englishBase": "You are right",
+      "placementDecision": "defer_candidate_until_register_policy",
+      "placementReason": "Judgment/correctness can be useful, but sourceLocale polite/plural wording must not implicitly choose French register.",
+      "blockedBy": ["tu_vous_policy_review", "judgment_correctness_structure_review", "register_policy_review", "reviewer_approval_record"],
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_10",
+      "englishBase": "We are safe",
+      "placementDecision": "defer_candidate_until_safety_status_naturalness_review",
+      "placementReason": "Safety/status meaning may require construction-specific naturalness review and should not be an early row before core etre patterns are accepted.",
+      "blockedBy": ["safety_status_structure_review", "naturalness_review", "lesson_order_review", "reviewer_approval_record"],
+      "activationStatus": "blocked"
+    }
+  ],
+  "candidateLesson1KeepRows": [
+    "lesson1_phrase_1",
+    "lesson1_phrase_2",
+    "lesson1_phrase_3",
+    "lesson1_phrase_4"
+  ],
+  "candidateDeferredRows": [
+    "lesson1_phrase_5",
+    "lesson1_phrase_6",
+    "lesson1_phrase_7",
+    "lesson1_phrase_8",
+    "lesson1_phrase_9",
+    "lesson1_phrase_10"
+  ],
+  "nextRequiredAction": "Create reviewer approval record for curriculum placement or revise the French-specific Lesson 1 order before any French target text is drafted."
+}

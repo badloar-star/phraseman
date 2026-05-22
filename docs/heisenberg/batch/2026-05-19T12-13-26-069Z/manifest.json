@@ -1,0 +1,118 @@
+{
+  "pipeline": "heisenberg",
+  "mode": "batch",
+  "runId": "2026-05-19T12-13-26-069Z",
+  "generatedAt": "2026-05-19T12:14:19.388Z",
+  "locales": [
+    "es",
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "auditOnly": true,
+  "outputDir": "docs/heisenberg/batch/2026-05-19T12-13-26-069Z",
+  "runs": [
+    {
+      "locale": "es",
+      "status": 0,
+      "ok": true,
+      "command": "/usr/local/bin/node /Users/maksymbabiev/Documents/phraseman/scripts/heisenberg_pipeline.cjs --lang es --out-root docs/heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=es\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1869\n[heisenberg] localized items (all): 116383\n[heisenberg] localized items (blocks): 2052\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/es/2026-05-19T12-13-26-205Z\n[heisenberg] warning: es already maps to an existing app locale.\n[heisenberg] existing-locale mode: existing-locale-production-audit\n[heisenberg] existing-locale blockers: 0\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "pt-BR",
+      "status": 0,
+      "ok": true,
+      "command": "/usr/local/bin/node /Users/maksymbabiev/Documents/phraseman/scripts/heisenberg_pipeline.cjs --lang pt-BR --out-root docs/heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=pt-BR\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1869\n[heisenberg] localized items (all): 116383\n[heisenberg] localized items (blocks): 78246\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/pt-br/2026-05-19T12-13-29-736Z\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "vi",
+      "status": 0,
+      "ok": true,
+      "command": "/usr/local/bin/node /Users/maksymbabiev/Documents/phraseman/scripts/heisenberg_pipeline.cjs --lang vi --out-root docs/heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=vi\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1869\n[heisenberg] localized items (all): 116383\n[heisenberg] localized items (blocks): 78246\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/vi/2026-05-19T12-13-32-903Z\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "id",
+      "status": 0,
+      "ok": true,
+      "command": "/usr/local/bin/node /Users/maksymbabiev/Documents/phraseman/scripts/heisenberg_pipeline.cjs --lang id --out-root docs/heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=id\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1869\n[heisenberg] localized items (all): 116383\n[heisenberg] localized items (blocks): 78246\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/id/2026-05-19T12-13-36-168Z\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "tr",
+      "status": 0,
+      "ok": true,
+      "command": "/usr/local/bin/node /Users/maksymbabiev/Documents/phraseman/scripts/heisenberg_pipeline.cjs --lang tr --out-root docs/heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=tr\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1869\n[heisenberg] localized items (all): 116383\n[heisenberg] localized items (blocks): 78246\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/tr/2026-05-19T12-13-39-458Z\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "pl",
+      "status": 0,
+      "ok": true,
+      "command": "/usr/local/bin/node /Users/maksymbabiev/Documents/phraseman/scripts/heisenberg_pipeline.cjs --lang pl --out-root docs/heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=pl\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1869\n[heisenberg] localized items (all): 116383\n[heisenberg] localized items (blocks): 78246\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/pl/2026-05-19T12-13-42-684Z\n",
+      "stderrTail": ""
+    }
+  ],
+  "checks": [
+    {
+      "command": "npm run audit:translations",
+      "startedAt": "2026-05-19T12:13:45.839Z",
+      "finishedAt": "2026-05-19T12:13:47.116Z",
+      "status": 0,
+      "ok": true,
+      "error": null,
+      "stdoutTail": "\n> phraseman@1.5.37 audit:translations\n> node ./scripts/audit_translations_1_32.mjs\n\nГотово. Фраз: 1600, пометок: 0\nСводка по типам: {}\n→ docs/reports/lessons_translations_audit.md\n→ docs/reports/lessons_translations_audit.json\n→ docs/reports/lessons_translations_flat.json\n",
+      "stderrTail": ""
+    },
+    {
+      "command": "npm test -- --runTestsByPath tests/heisenberg_pipeline.test.ts tests/locale_ru_uk_es.test.ts tests/quiz_source_locale.test.ts tests/quiz_spanish_locale.test.ts tests/daily_phrase_locale.test.ts --runInBand",
+      "startedAt": "2026-05-19T12:13:47.116Z",
+      "finishedAt": "2026-05-19T12:13:56.748Z",
+      "status": 0,
+      "ok": true,
+      "error": null,
+      "stdoutTail": "\n> phraseman@1.5.37 test\n> jest --testPathPattern=tests/ --no-cache --runTestsByPath tests/heisenberg_pipeline.test.ts tests/locale_ru_uk_es.test.ts tests/quiz_source_locale.test.ts tests/quiz_spanish_locale.test.ts tests/daily_phrase_locale.test.ts --runInBand\n\n",
+      "stderrTail": "PASS tests/quiz_spanish_locale.test.ts (6.357 s)\nPASS tests/heisenberg_pipeline.test.ts\nPASS tests/daily_phrase_locale.test.ts\nPASS tests/quiz_source_locale.test.ts\nPASS tests/locale_ru_uk_es.test.ts\n\nTest Suites: 5 passed, 5 total\nTests:       61 passed, 61 total\nSnapshots:   0 total\nTime:        8.147 s\nRan all test suites within paths \"tests/heisenberg_pipeline.test.ts\", \"tests/locale_ru_uk_es.test.ts\", \"tests/quiz_source_locale.test.ts\", \"tests/quiz_spanish_locale.test.ts\", \"tests/daily_phrase_locale.test.ts\".\nForce exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?\n"
+    },
+    {
+      "command": "npx tsc --noEmit --pretty false",
+      "startedAt": "2026-05-19T12:13:56.748Z",
+      "finishedAt": "2026-05-19T12:14:11.770Z",
+      "status": 2,
+      "ok": false,
+      "error": null,
+      "stdoutTail": "functions/src/leaderboard.ts(64,75): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/leaderboard.ts(132,77): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/leaderboard.ts(146,84): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/leaderboard.ts(164,74): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/leaderboard.ts(181,64): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/leaderboard.ts(229,68): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/league_chat.ts(2,36): error TS2307: Cannot find module 'firebase-functions/v2/https' or its corresponding type declarations.\nfunctions/src/league_chat.ts(211,74): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/league_chat.ts(227,72): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/league_chat.ts(295,74): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/league_chest.ts(2,36): error TS2307: Cannot find module 'firebase-functions/v2/https' or its corresponding type declarations.\nfunctions/src/league_chest.ts(369,67): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/league_groups.ts(2,36): error TS2307: Cannot find module 'firebase-functions/v2/https' or its corresponding type declarations.\nfunctions/src/league_groups.ts(162,76): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/league_groups.ts(236,73): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/league_groups.ts(269,70): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/referral.ts(7,36): error TS2307: Cannot find module 'firebase-functions/v2/https' or its corresponding type declarations.\nfunctions/src/referral.ts(8,28): error TS2307: Cannot find module 'firebase-functions/v2' or its corresponding type declarations.\nfunctions/src/referral.ts(200,66): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/referral.ts(251,59): error TS7006: Parameter 'request' implicitly has an 'any' type.\nfunctions/src/referral.ts(334,10): error TS7006: Parameter 'event' implicitly has an 'any' type.\nfunctions/src/revenuecat_shards.ts(2,27): error TS2307: Cannot find module 'firebase-functions/v2/https' or its corresponding type declarations.\nfunctions/src/revenuecat_shards.ts(3,25): error TS2307: Cannot find module 'firebase-functions/logger' or its corresponding type declarations.\nfunctions/src/revenuecat_shards.ts(4,30): error TS2307: Cannot find module 'firebase-functions/params' or its corresponding type declarations.\nfunctions/src/revenuecat_shards.ts(323,113): error TS7006: Parameter 'req' implicitly has an 'any' type.\nfunctions/src/revenuecat_shards.ts(323,118): error TS7006: Parameter 'res' implicitly has an 'any' type.\nfunctions/src/website_contact.ts(1,27): error TS2307: Cannot find module 'firebase-functions/v2/https' or its corresponding type declarations.\nfunctions/src/website_contact.ts(2,25): error TS2307: Cannot find module 'firebase-functions/logger' or its corresponding type declarations.\nfunctions/src/website_contact.ts(4,30): error TS2307: Cannot find module 'firebase-functions/params' or its corresponding type declarations.\nfunctions/src/website_contact.ts(67,10): error TS7006: Parameter 'req' implicitly has an 'any' type.\nfunctions/src/website_contact.ts(67,15): error TS7006: Parameter 'res' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(2,46): error TS2307: Cannot find module 'fastify' or its corresponding type declarations.\nsubscription-recovery/apps/api/src/server.ts(3,38): error TS2307: Cannot find module '@prisma/client' or its corresponding type declarations.\nsubscription-recovery/apps/api/src/server.ts(4,19): error TS2307: Cannot find module 'zod' or its corresponding type declarations.\nsubscription-recovery/apps/api/src/server.ts(5,59): error TS2307: Cannot find module '@subscription-recovery/core' or its corresponding type declarations.\nsubscription-recovery/apps/api/src/server.ts(300,45): error TS7006: Parameter '_request' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(300,55): error TS7006: Parameter 'reply' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(315,50): error TS7006: Parameter 'request' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(315,59): error TS7006: Parameter 'reply' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(391,36): error TS7006: Parameter 'row' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(405,50): error TS7006: Parameter 'entry' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(407,31): error TS7006: Parameter 'row' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(422,18): error TS2339: Property 'confirmedMonthly' does not exist on type '{}'.\nsubscription-recovery/apps/api/src/server.ts(422,62): error TS2339: Property 'confirmedMonthly' does not exist on type '{}'.\nsubscription-recovery/apps/api/src/server.ts(430,35): error TS2339: Property 'id' does not exist on type '{}'.\nsubscription-recovery/apps/api/src/server.ts(431,37): error TS2339: Property 'realizedAt' does not exist on type '{}'.\nsubscription-recovery/apps/api/src/server.ts(435,15): error TS7006: Parameter 'a' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(435,18): error TS7006: Parameter 'b' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(443,44): error TS7006: Parameter 'request' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(443,53): error TS7006: Parameter 'reply' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(475,36): error TS7006: Parameter 'row' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(487,50): error TS7006: Parameter 'entry' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(507,30): error TS7006: Parameter 'row' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(535,18): error TS2339: Property 'confirmedMonthly' does not exist on type '{}'.\nsubscription-recovery/apps/api/src/server.ts(535,62): error TS2339: Property 'confirmedMonthly' does not exist on type '{}'.\nsubscription-recovery/apps/api/src/server.ts(536,18): error TS2339: Property 'realizedAt' does not exist on type '{}'.\nsubscription-recovery/apps/api/src/server.ts(536,49): error TS2339: Property 'realizedAt' does not exist on type '{}'.\nsubscription-recovery/apps/api/src/server.ts(547,43): error TS7006: Parameter 'request' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(547,52): error TS7006: Parameter 'reply' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(606,29): error TS7006: Parameter 'row' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(627,46): error TS7006: Parameter 'request' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(627,55): error TS7006: Parameter 'reply' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(661,54): error TS7006: Parameter 'request' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(661,63): error TS7006: Parameter 'reply' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(741,38): error TS7006: Parameter 'request' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(741,47): error TS7006: Parameter 'reply' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(820,59): error TS7006: Parameter 'tx' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(846,66): error TS18046: 'error' is of type 'unknown'.\nsubscription-recovery/apps/api/src/server.ts(888,39): error TS7006: Parameter 'request' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(922,23): error TS7006: Parameter 'tx' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(952,41): error TS7006: Parameter 'row' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(979,15): error TS7006: Parameter 'f' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(980,18): error TS7006: Parameter 'id' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(990,43): error TS7006: Parameter 'f' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(1195,39): error TS7006: Parameter 'request' implicitly has an 'any' type.\nsubscription-recovery/apps/api/src/server.ts(1215,22): error TS7006: Parameter 'row' implicitly has an 'any' type.\nsubscription-recovery/apps/web/app/page.tsx(7,8): error TS2307: Cannot find module '@subscription-recovery/core' or its corresponding type declarations.\nsubscription-recovery/apps/web/next.config.ts(1,33): error TS2307: Cannot find module 'next' or its corresponding type declarations.\nsubscription-recovery/prisma/seed.ts(1,30): error TS2307: Cannot find module '@prisma/client' or its corresponding type declarations.\n",
+      "stderrTail": ""
+    },
+    {
+      "command": "npm run heisenberg:semantic-audit:strict",
+      "startedAt": "2026-05-19T12:14:11.770Z",
+      "finishedAt": "2026-05-19T12:14:16.431Z",
+      "status": 0,
+      "ok": true,
+      "error": null,
+      "stdoutTail": "\n> phraseman@1.5.37 heisenberg:semantic-audit:strict\n> npx tsx ./scripts/heisenberg_semantic_audit.ts --strict\n\nHeisenberg semantic audit: 0 blockers, 259 warnings\nReview groups: 74\nquiz-source-locale-coverage-gap: 147 | protected-english-term-missing: 97 | possible-distractor-index-drift: 15\nReport: docs/heisenberg/semantic/2026-05-19T12-14-16-405Z\n",
+      "stderrTail": ""
+    },
+    {
+      "command": "npm run heisenberg:ui-audit",
+      "startedAt": "2026-05-19T12:14:16.431Z",
+      "finishedAt": "2026-05-19T12:14:19.388Z",
+      "status": 0,
+      "ok": true,
+      "error": null,
+      "stdoutTail": "\n> phraseman@1.5.37 heisenberg:ui-audit\n> npx tsx ./scripts/heisenberg_ui_locale_audit.ts\n\nHeisenberg UI locale audit: activationReady=yes, 0 findings, 0 missing triLang locale units\nReport: docs/heisenberg/ui/2026-05-19T12-14-19-363Z\n",
+      "stderrTail": ""
+    }
+  ]
+}

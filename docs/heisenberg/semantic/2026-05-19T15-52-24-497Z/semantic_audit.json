@@ -1,0 +1,1190 @@
+{
+  "generatedAt": "2026-05-19T15:52:24.496Z",
+  "mode": "semantic-audit",
+  "strict": true,
+  "summary": {
+    "findings": 80,
+    "blockers": 0,
+    "warnings": 80,
+    "reviewGroups": 16,
+    "byCode": {
+      "protected-english-term-missing": 75,
+      "possible-distractor-index-drift": 5
+    },
+    "bySurface": {
+      "quiz": 80
+    }
+  },
+  "reviewGroups": [
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 283,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): Small.",
+      "sample": "Little did he knew that a surprise awaited him. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 268,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): few.",
+      "sample": "Only then did I realized the gravity of the situation usa did e realized juntos. Depois de did, o verbo deve voltar para realize.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 269,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): leaf.",
+      "sample": "Rarely have I witnessed such blanket injustice troca blatant por blanket. Blanket significa cobertor; aqui você precisa de blatant.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): exquisite, Arguably.",
+      "sample": "No sooner we set off than it started to rain perde a inversão. Depois de No sooner no início, precisamos de had we set off.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): excruciating.",
+      "sample": "No sooner had we sat off than it started to rain troca set por sat. Sat significa sentado; aqui você precisa de set off.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): gravity.",
+      "sample": "I resent telling what to do inverte o sentido. Soa como se você se incomodasse em dizer aos outros o que fazer. Precisa de being told.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): did.",
+      "sample": "I hate when people say me what to do soa simples e say me não é natural aqui. A forma-alvo é I resent being told what to do.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): gravy.",
+      "sample": "I resent being tolled what to do troca told por tolled. Tolled se relaciona a pedágio ou sino; aqui você precisa de told.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): blatant.",
+      "sample": "Correto. Seemingly suaviza a opinião, e quite dubious soa mais preciso do que simplesmente very bad.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): blanket.",
+      "sample": "Seemingly, this decision is quite doobious escreve dubious errado. Depois de d vem u, não oo.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): heart.",
+      "sample": "You hit the nail in the head. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): snail.",
+      "sample": "You beat the nail on the head. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 285,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): fish.",
+      "sample": "I made him fixed my computer. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 286,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): skies.",
+      "sample": "Correto. Every cloud has a silver lining. preserva o sentido do enunciado e usa a estrutura inglesa esperada.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 288,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): then.",
+      "sample": "Hard had I left when it started raining. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 291,
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): explicit.",
+      "sample": "Rarely have I seen such exquisite beautiful. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher.",
+      "count": 5,
+      "locales": [
+        "id",
+        "pl",
+        "pt-BR",
+        "tr",
+        "vi"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 268,
+      "locale": "pt-BR",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): few.",
+      "sample": "Only then did I realized the gravity of the situation usa did e realized juntos. Depois de did, o verbo deve voltar para realize."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 268,
+      "locale": "vi",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): few.",
+      "sample": "Only then did I realized the gravity of the situation dùng did và realized cùng lúc. Sau did, động từ phải trở về realize."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 268,
+      "locale": "id",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): few.",
+      "sample": "Only then did I realized the gravity of the situation memakai did dan realized sekaligus. Setelah did, verb harus kembali ke realize."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 268,
+      "locale": "tr",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): few.",
+      "sample": "Only then did I realized the gravity of the situation did ve realized yapısını birlikte kullanıyor. Did sonrasında fiil realize olmalıdır."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 268,
+      "locale": "pl",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): few.",
+      "sample": "Only then did I realized the gravity of the situation używa did i realized jednocześnie. Po did czasownik wraca do realize."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 269,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): leaf.",
+      "sample": "Rarely have I witnessed such blanket injustice troca blatant por blanket. Blanket significa cobertor; aqui você precisa de blatant."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 269,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): leaf.",
+      "sample": "Rarely have I witnessed such blanket injustice đổi blatant thành blanket. Blanket là chăn; ở đây cần blatant."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 269,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): leaf.",
+      "sample": "Rarely have I witnessed such blanket injustice mengganti blatant dengan blanket. Blanket berarti selimut; di sini perlu blatant."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 269,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): leaf.",
+      "sample": "Rarely have I witnessed such blanket injustice blatant yerine blanket kullanıyor. Blanket battaniye demektir; burada blatant gerekir."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 269,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): leaf.",
+      "sample": "Rarely have I witnessed such blanket injustice zamienia blatant na blanket. Blanket to koc; tutaj potrzebujesz blatant."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "pt-BR",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): exquisite, Arguably.",
+      "sample": "No sooner we set off than it started to rain perde a inversão. Depois de No sooner no início, precisamos de had we set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): excruciating.",
+      "sample": "No sooner had we sat off than it started to rain troca set por sat. Sat significa sentado; aqui você precisa de set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "vi",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): exquisite, Arguably.",
+      "sample": "No sooner we set off than it started to rain mất inversion. Sau No sooner ở đầu câu, cần had we set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): excruciating.",
+      "sample": "No sooner had we sat off than it started to rain đổi set thành sat. Sat nghĩa là đã ngồi; ở đây cần set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "id",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): exquisite, Arguably.",
+      "sample": "No sooner we set off than it started to rain kehilangan inversion. Setelah No sooner di awal, perlu had we set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): excruciating.",
+      "sample": "No sooner had we sat off than it started to rain mengganti set dengan sat. Sat berarti duduk; di sini perlu set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "tr",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): exquisite, Arguably.",
+      "sample": "No sooner we set off than it started to rain inversion kullanmıyor. Başta No sooner varsa had we set off gerekir."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): excruciating.",
+      "sample": "No sooner had we sat off than it started to rain set yerine sat kullanıyor. Sat oturdu demektir; burada set off gerekir."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "pl",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): exquisite, Arguably.",
+      "sample": "No sooner we set off than it started to rain gubi inwersję. Po No sooner na początku potrzebujesz had we set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 270,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): excruciating.",
+      "sample": "No sooner had we sat off than it started to rain zamienia set na sat. Sat znaczy siedział; tutaj potrzebujesz set off."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pt-BR",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): gravity.",
+      "sample": "I resent telling what to do inverte o sentido. Soa como se você se incomodasse em dizer aos outros o que fazer. Precisa de being told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pt-BR",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): did.",
+      "sample": "I hate when people say me what to do soa simples e say me não é natural aqui. A forma-alvo é I resent being told what to do."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): gravy.",
+      "sample": "I resent being tolled what to do troca told por tolled. Tolled se relaciona a pedágio ou sino; aqui você precisa de told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "vi",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): gravity.",
+      "sample": "I resent telling what to do đảo ngược nghĩa. Nghe như bạn khó chịu khi bảo người khác phải làm gì. Cần being told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "vi",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): did.",
+      "sample": "I hate when people say me what to do nghe đơn giản và say me không tự nhiên ở đây. Cấu trúc mục tiêu là I resent being told what to do."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): gravy.",
+      "sample": "I resent being tolled what to do đổi told thành tolled. Tolled liên quan đến thu phí hoặc tiếng chuông; ở đây cần told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "id",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): gravity.",
+      "sample": "I resent telling what to do membalik makna. Terdengar seperti kamu kesal saat menyuruh orang lain melakukan sesuatu. Perlu being told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "id",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): did.",
+      "sample": "I hate when people say me what to do terdengar sederhana dan say me tidak natural di sini. Bentuk targetnya adalah I resent being told what to do."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): gravy.",
+      "sample": "I resent being tolled what to do mengganti told dengan tolled. Tolled berkaitan dengan biaya tol atau bunyi lonceng; di sini perlu told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "tr",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): gravity.",
+      "sample": "I resent telling what to do anlamı tersine çevirir. Başkalarına ne yapacağını söylemekten rahatsız oluyormuşsun gibi duyulur. Being told gerekir."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "tr",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): did.",
+      "sample": "I hate when people say me what to do basit duyulur ve say me burada doğal değildir. Hedef yapı I resent being told what to do olur."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): gravy.",
+      "sample": "I resent being tolled what to do told yerine tolled kullanıyor. Tolled ücret alınması veya çan çalmasıyla ilgilidir; burada told gerekir."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pl",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): gravity.",
+      "sample": "I resent telling what to do odwraca sens. Brzmi, jakby przeszkadzało ci mówienie innym, co mają robić. Potrzebujesz being told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pl",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): did.",
+      "sample": "I hate when people say me what to do brzmi prosto, a say me nie jest tu naturalne. Forma docelowa to I resent being told what to do."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 271,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): gravy.",
+      "sample": "I resent being tolled what to do zamienia told na tolled. Tolled wiąże się z opłatą albo biciem dzwonu; tutaj potrzebujesz told."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "pt-BR",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): blatant.",
+      "sample": "Correto. Seemingly suaviza a opinião, e quite dubious soa mais preciso do que simplesmente very bad."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): blanket.",
+      "sample": "Seemingly, this decision is quite doobious escreve dubious errado. Depois de d vem u, não oo."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "vi",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): blatant.",
+      "sample": "Đúng. Seemingly làm ý kiến mềm hơn, và quite dubious chính xác hơn nhiều so với simply very bad."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): blanket.",
+      "sample": "Seemingly, this decision is quite doobious viết sai dubious. Sau d là u, không phải oo."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "id",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): blatant.",
+      "sample": "Benar. Seemingly melembutkan opini, dan quite dubious terdengar lebih tepat daripada sekadar very bad."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): blanket.",
+      "sample": "Seemingly, this decision is quite doobious salah mengeja dubious. Setelah d ada u, bukan oo."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "tr",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): blatant.",
+      "sample": "Doğru. Seemingly görüşü yumuşatır; quite dubious ise sadece very bad demekten daha kesin ve profesyonel duyulur."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): blanket.",
+      "sample": "Seemingly, this decision is quite doobious dubious kelimesini yanlış yazar. d sonrasında u gelir, çift o değil."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "pl",
+      "field": "explanations[0]",
+      "message": "Localized explanation is missing protected English term(s): blatant.",
+      "sample": "Dobrze. Seemingly łagodzi opinię, a quite dubious brzmi precyzyjniej niż zwykłe very bad."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 272,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): blanket.",
+      "sample": "Seemingly, this decision is quite doobious błędnie zapisuje dubious. Po d jest u, nie oo."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 283,
+      "locale": "pt-BR",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): Small.",
+      "sample": "Little did he knew that a surprise awaited him. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 283,
+      "locale": "vi",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): Small.",
+      "sample": "Little did he knew that a surprise awaited him. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 283,
+      "locale": "id",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): Small.",
+      "sample": "Little did he knew that a surprise awaited him. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 283,
+      "locale": "tr",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): Small.",
+      "sample": "Little did he knew that a surprise awaited him. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır."
+    },
+    {
+      "severity": "warning",
+      "code": "possible-distractor-index-drift",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 283,
+      "locale": "pl",
+      "field": "explanations[2]",
+      "message": "Localized explanation is missing protected English term(s): Small.",
+      "sample": "Little did he knew that a surprise awaited him. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "pt-BR",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): heart.",
+      "sample": "You hit the nail in the head. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): snail.",
+      "sample": "You beat the nail on the head. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "vi",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): heart.",
+      "sample": "You hit the nail in the head. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): snail.",
+      "sample": "You beat the nail on the head. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "id",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): heart.",
+      "sample": "You hit the nail in the head. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): snail.",
+      "sample": "You beat the nail on the head. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "tr",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): heart.",
+      "sample": "You hit the nail in the head. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): snail.",
+      "sample": "You beat the nail on the head. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "pl",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): heart.",
+      "sample": "You hit the nail in the head. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 284,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): snail.",
+      "sample": "You beat the nail on the head. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 285,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): fish.",
+      "sample": "I made him fixed my computer. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 285,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): fish.",
+      "sample": "I made him fixed my computer. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 285,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): fish.",
+      "sample": "I made him fixed my computer. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 285,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): fish.",
+      "sample": "I made him fixed my computer. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 285,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): fish.",
+      "sample": "I made him fixed my computer. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 286,
+      "locale": "pt-BR",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): skies.",
+      "sample": "Correto. Every cloud has a silver lining. preserva o sentido do enunciado e usa a estrutura inglesa esperada."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 286,
+      "locale": "vi",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): skies.",
+      "sample": "Đúng. Every cloud has a silver lining. giữ đúng ý của câu gốc và dùng cấu trúc tiếng Anh cần thiết."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 286,
+      "locale": "id",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): skies.",
+      "sample": "Benar. Every cloud has a silver lining. mempertahankan makna kalimat dan memakai struktur Inggris yang dibutuhkan."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 286,
+      "locale": "tr",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): skies.",
+      "sample": "Doğru. Every cloud has a silver lining. cümlenin anlamını korur ve gereken İngilizce yapıyı kullanır."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 286,
+      "locale": "pl",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): skies.",
+      "sample": "Dobrze. Every cloud has a silver lining. zachowuje sens zdania i używa potrzebnej angielskiej struktury."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 288,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): then.",
+      "sample": "Hard had I left when it started raining. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 288,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): then.",
+      "sample": "Hard had I left when it started raining. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 288,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): then.",
+      "sample": "Hard had I left when it started raining. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 288,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): then.",
+      "sample": "Hard had I left when it started raining. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 288,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): then.",
+      "sample": "Hard had I left when it started raining. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 291,
+      "locale": "pt-BR",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): explicit.",
+      "sample": "Rarely have I seen such exquisite beautiful. não corresponde totalmente ao sentido ou à gramática exigida. Compare com a opção correta antes de escolher."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 291,
+      "locale": "vi",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): explicit.",
+      "sample": "Rarely have I seen such exquisite beautiful. không khớp hoàn toàn với ý nghĩa hoặc ngữ pháp cần dùng. Hãy so với đáp án đúng trước khi chọn."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 291,
+      "locale": "id",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): explicit.",
+      "sample": "Rarely have I seen such exquisite beautiful. belum sesuai sepenuhnya dengan makna atau tata bahasa yang dibutuhkan. Bandingkan dengan pilihan benar sebelum memilih."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 291,
+      "locale": "tr",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): explicit.",
+      "sample": "Rarely have I seen such exquisite beautiful. gereken anlam veya dil bilgisiyle tam örtüşmez. Seçmeden önce doğru seçenekle karşılaştır."
+    },
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "hard",
+      "ordinal": 291,
+      "locale": "pl",
+      "field": "explanations[3]",
+      "message": "Localized explanation is missing protected English term(s): explicit.",
+      "sample": "Rarely have I seen such exquisite beautiful. nie pasuje w pełni do wymaganego sensu albo gramatyki. Porównaj z poprawną opcją przed wyborem."
+    }
+  ]
+}

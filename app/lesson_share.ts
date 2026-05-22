@@ -1,12 +1,11 @@
-type LangCode = 'ru' | 'uk' | 'es';
+import type { Lang } from '../constants/i18n';
 
-function pickRandom<T>(values: T[]): T {
+type LangCode = Lang;
+
+function pickRandom<T>(values: readonly T[]): T {
   return values[Math.floor(Math.random() * values.length)]!;
 }
 
-/**
- * Text fallback for lesson result share; pool matches `lesson_complete.tsx` main CTA.
- */
 export function buildLessonShareMessage(
   lang: LangCode,
   lessonId: number,
@@ -46,6 +45,36 @@ export function buildLessonShareMessage(
     `Lección ${lessonId} completada en Phraseman. ★ ${lessonScore}: un resultado del que estar orgulloso. 😎✨`,
     `Otro escalón superado. Lección ${lessonId} cerrada en Phraseman con ★ ${lessonScore}. ¡Seguimos! 🚀`,
   ];
-  const pool = lang === 'uk' ? variantsUk : lang === 'es' ? variantsEs : variantsRu;
+  const variantsPtBr = [
+    `Lição ${lessonId} concluída no Phraseman com ★ ${lessonScore}. Meu inglês ficou mais forte hoje. 🚀`,
+    `Mais uma etapa vencida: Lição ${lessonId} no Phraseman, ★ ${lessonScore}. Seguimos evoluindo! 🔥`,
+  ];
+  const variantsVi = [
+    `Mình đã hoàn thành Bài ${lessonId} trên Phraseman với ★ ${lessonScore}. Tiếng Anh tiến thêm một bước! 🚀`,
+    `Bài ${lessonId} đã xong trong Phraseman: ★ ${lessonScore}. Tiếp tục luyện nào! 🔥`,
+  ];
+  const variantsId = [
+    `Pelajaran ${lessonId} selesai di Phraseman dengan ★ ${lessonScore}. Bahasa Inggrisku naik level hari ini. 🚀`,
+    `Satu langkah lagi selesai: Pelajaran ${lessonId} di Phraseman, ★ ${lessonScore}. Lanjut terus! 🔥`,
+  ];
+  const variantsTr = [
+    `Phraseman’da Ders ${lessonId} tamamlandı: ★ ${lessonScore}. İngilizcem bugün biraz daha güçlendi. 🚀`,
+    `Bir adım daha bitti: Phraseman Ders ${lessonId}, ★ ${lessonScore}. Devam! 🔥`,
+  ];
+  const variantsPl = [
+    `Lekcja ${lessonId} ukończona w Phraseman z wynikiem ★ ${lessonScore}. Angielski idzie do przodu! 🚀`,
+    `Kolejny krok za mną: Lekcja ${lessonId} w Phraseman, ★ ${lessonScore}. Lecimy dalej! 🔥`,
+  ];
+  const pools: Record<LangCode, readonly string[]> = {
+    ru: variantsRu,
+    uk: variantsUk,
+    es: variantsEs,
+    'pt-BR': variantsPtBr,
+    vi: variantsVi,
+    id: variantsId,
+    tr: variantsTr,
+    pl: variantsPl,
+  };
+  const pool = pools[lang] ?? pools.ru;
   return `${pickRandom(pool)}\n${storeUrl}`;
 }

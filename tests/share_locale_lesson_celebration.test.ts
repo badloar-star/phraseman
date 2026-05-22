@@ -1,5 +1,5 @@
 /**
- * Lesson / celebration share text pools — RU / UK / ES branching and placeholders.
+ * Lesson / celebration share text pools and placeholders.
  */
 
 import type { Lang } from '../constants/i18n';
@@ -16,6 +16,11 @@ describe('buildLessonShareMessage', () => {
     ['ru', /Урок 7[\s\S]*Phraseman[\s\S]*★ 92/u],
     ['uk', /Урок 7[\s\S]*Phraseman[\s\S]*★ 92/u],
     ['es', /Lección 7[\s\S]*Phraseman[\s\S]*★ 92/u],
+    ['pt-BR', /Lição 7[\s\S]*Phraseman[\s\S]*★ 92/u],
+    ['vi', /Bài 7[\s\S]*Phraseman[\s\S]*★ 92/u],
+    ['id', /Pelajaran 7[\s\S]*Phraseman[\s\S]*★ 92/u],
+    ['tr', /Phraseman[\s\S]*Ders 7[\s\S]*★ 92/u],
+    ['pl', /Lekcja 7[\s\S]*Phraseman[\s\S]*★ 92/u],
   ];
 
   for (const [lang, pattern] of lessonCases) {
@@ -43,6 +48,20 @@ describe('buildLessonShareMessage', () => {
       jest.restoreAllMocks();
     }
     expect(sawLessonWord).toBe(true);
+  });
+
+  it('does not route planned lesson share copy through RU/UK/ES runtime branches', () => {
+    const fs = require('fs');
+    const path = require('path');
+    const root = path.resolve(__dirname, '..');
+    const source = fs.readFileSync(path.join(root, 'app', 'lesson_share.ts'), 'utf8');
+    const completeSource = fs.readFileSync(path.join(root, 'app', 'lesson_complete.tsx'), 'utf8');
+    const legacyRuntimeRe = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
+
+    expect(source).not.toMatch(legacyRuntimeRe);
+    expect(source).toContain('const pools: Record<LangCode, readonly string[]>');
+    expect(completeSource).not.toContain("lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru'");
+    expect(completeSource).toContain('buildLessonShareMessage(\n                lang,');
   });
 });
 

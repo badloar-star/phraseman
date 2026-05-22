@@ -41,10 +41,17 @@ const severityRank: Record<Severity, number> = { high: 0, medium: 1, low: 2 };
 const ALLOWED_LATIN_PROMPT_TOKENS = new Set([
   'a', 'am', 'an', 'are', 'be', 'being', 'can', 'cannot', 'can\'t', 'could',
   'did', 'didn\'t', 'do', 'does', 'doesn\'t', 'doing', 'done', 'don\'t',
-  'had', 'has', 'have', 'i', 'if', 'ing', 'is', 'isn\'t', 'it', 'let', 'let\'s',
-  'may', 'might', 'must', 'mustn\'t', 'not', 'ok', 'okay', 'pm', 'am', 'should',
-  'that', 'the', 'there', 'this', 'to', 'us', 'v', 'v2', 'v3', 'was', 'were',
+  'ame', 'bad', 'good', 'had', 'has', 'have', 'he', 'i', 'if', 'ing', 'is', 'isn\'t', 'it', 'let', 'let\'s',
+  'may', 'might', 'must', 'mustn\'t', 'not', 'off', 'ok', 'okay', 'pm', 'am', 'she', 'should',
+  'that', 'the', 'there', 'they', 'this', 'to', 'us', 'v', 'v2', 'v3', 'was', 'we', 'were',
   'will', 'would', 'wifi', 'wi-fi', 'you',
+]);
+
+const EXPECTED_MULTI_POS_EN = new Set([
+  'answer', 'before', 'better', 'break', 'call', 'clean', 'faster', 'he', 'his',
+  'i', 'late', 'lighter', 'may', 'my', 'near', 'new', 'not', 'okay', 'old',
+  'open', 'order', 'park', 'rent', 'rest', 'return', 'she', 'they', 'this',
+  'water', 'we', 'which', 'who', 'will', 'work',
 ]);
 
 const BORROWED_IDENTICAL = new Set([
@@ -261,6 +268,7 @@ function auditWords(issues: Issue[]): void {
   }
   for (const [en, group] of enPos) {
     const poses = [...new Set(group.map((r) => r.pos))];
+    if (EXPECTED_MULTI_POS_EN.has(en)) continue;
     if (poses.length > 1) {
       addIssue(issues, 'low', 'WORD_SAME_EN_DIFFERENT_POS_REVIEW', en, `${en} appears as multiple POS: ${poses.join(', ')} in lessons ${[...new Set(group.map((r) => r.lessonId))].join(', ')}`);
     }

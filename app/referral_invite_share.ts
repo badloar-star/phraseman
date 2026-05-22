@@ -8,6 +8,7 @@ import { Platform } from 'react-native';
 import { STORE_URL_ANDROID, STORE_URL_IOS } from './config';
 import { buildPlayStoreUrlWithInstallReferral, buildReferralShareLinks } from './referral_bootstrap';
 import { generateReferralCode, getReferralCode } from './referral_system';
+import type { Lang } from '../constants/i18n';
 
 const BODY_RU = [
   'Хватит смотреть мемы, пошли учить английский в Phraseman! Со мной ты хотя бы поймёшь, о чём шутят в оригинале. 🔥',
@@ -42,20 +43,56 @@ const BODY_ES = [
   '¿Más oportunidades laborales? Aprende inglés. Phraseman funciona de verdad. 📈✨',
 ] as const;
 
-export type InviteShareLang = 'ru' | 'uk' | 'es';
+const BODY_PT_BR = [
+  'Bora aprender inglês no Phraseman comigo! É treino para o cérebro, mas sem sofrimento. 🔥',
+  'Achei um jeito divertido de estudar inglês: Phraseman. Entra pelo link e vamos evoluir juntos. 🚀',
+] as const;
+
+const BODY_VI = [
+  'Cùng mình học tiếng Anh trên Phraseman nhé! Vui, gọn và dễ duy trì mỗi ngày. 🔥',
+  'Mình đang luyện tiếng Anh bằng Phraseman. Vào link này để cùng tiến bộ nhé. 🚀',
+] as const;
+
+const BODY_ID = [
+  'Ayo belajar bahasa Inggris bareng di Phraseman! Latihannya ringan, tapi terasa hasilnya. 🔥',
+  'Aku pakai Phraseman buat naik level bahasa Inggris. Masuk lewat tautan ini dan latihan bareng. 🚀',
+] as const;
+
+const BODY_TR = [
+  'Phraseman’da benimle İngilizce çalışmaya var mısın? Kısa, eğlenceli ve işe yarıyor. 🔥',
+  'İngilizcemi Phraseman ile geliştiriyorum. Linkten katıl, birlikte ilerleyelim. 🚀',
+] as const;
+
+const BODY_PL = [
+  'Chodź uczyć się angielskiego ze mną w Phraseman! Krótko, konkretnie i bez męki. 🔥',
+  'Ćwiczę angielski w Phraseman. Wejdź z tego linku i róbmy postępy razem. 🚀',
+] as const;
+
+export type InviteShareLang = Lang;
+
+const BODY_BY_LANG: Record<InviteShareLang, readonly string[]> = {
+  ru: BODY_RU,
+  uk: BODY_UK,
+  es: BODY_ES,
+  'pt-BR': BODY_PT_BR,
+  vi: BODY_VI,
+  id: BODY_ID,
+  tr: BODY_TR,
+  pl: BODY_PL,
+};
 
 function pickBody(lang: InviteShareLang): string {
-  const arr = lang === 'uk' ? BODY_UK : lang === 'es' ? BODY_ES : BODY_RU;
+  const arr = BODY_BY_LANG[lang];
   return arr[Math.floor(Math.random() * arr.length)] as string;
 }
 
 export type ReferralInviteShare = { message: string; url: string };
 
-function label(lang: InviteShareLang, ru: string, uk: string, es: string): string {
-  return lang === 'uk' ? uk : lang === 'es' ? es : ru;
+function label(lang: InviteShareLang, copy: Record<InviteShareLang, string>): string {
+  return copy[lang];
 }
 
-/** Android: primary web invite for installed users, Play URL only as install fallback. */
+/** Android: primary web invite for installed users, Play URL only for installation. */
 function buildAndroidInviteShare(
   lang: InviteShareLang,
   inviteHttps: string,
@@ -64,9 +101,9 @@ function buildAndroidInviteShare(
 ): ReferralInviteShare {
   const body = pickBody(lang);
   const storeUrl = buildPlayStoreUrlWithInstallReferral(refCode);
-  const line1 = label(lang, 'Открой приглашение: ', 'Відкрий запрошення: ', 'Abre la invitación: ') + inviteHttps;
-  const line2 = label(lang, 'Если приложение уже установлено: ', 'Якщо застосунок уже встановлено: ', 'Si ya tienes la app: ') + appDeepLink;
-  const line3 = label(lang, 'Если нужно установить: ', 'Якщо треба встановити: ', 'Si necesitas instalarla: ') + storeUrl;
+  const line1 = label(lang, { ru: 'Открой приглашение: ', uk: 'Відкрий запрошення: ', es: 'Abre la invitación: ', 'pt-BR': 'Abra o convite: ', vi: 'Mở lời mời: ', id: 'Buka undangan: ', tr: 'Davet bağlantısını aç: ', pl: 'Otwórz zaproszenie: ' }) + inviteHttps;
+  const line2 = label(lang, { ru: 'Если приложение уже установлено: ', uk: 'Якщо застосунок уже встановлено: ', es: 'Si ya tienes la app: ', 'pt-BR': 'Se o app já estiver instalado: ', vi: 'Nếu ứng dụng đã được cài đặt: ', id: 'Jika aplikasi sudah terpasang: ', tr: 'Uygulama zaten yüklüyse: ', pl: 'Jeśli aplikacja jest już zainstalowana: ' }) + appDeepLink;
+  const line3 = label(lang, { ru: 'Если нужно установить: ', uk: 'Якщо треба встановити: ', es: 'Si necesitas instalarla: ', 'pt-BR': 'Se precisar instalar: ', vi: 'Nếu cần cài đặt: ', id: 'Jika perlu memasang: ', tr: 'Yüklemen gerekiyorsa: ', pl: 'Jeśli trzeba zainstalować: ' }) + storeUrl;
   return {
     message: `${body}\n\n${line1}\n${line2}\n${line3}`,
     url: inviteHttps,
@@ -79,24 +116,9 @@ function buildAndroidInviteShare(
  */
 function buildIosInviteShare(lang: InviteShareLang, inviteHttps: string, appDeepLink: string): ReferralInviteShare {
   const body = pickBody(lang);
-  const line1 =
-    (lang === 'uk'
-      ? 'Завантаж у App Store: '
-      : lang === 'es'
-        ? 'Descarga en App Store: '
-        : 'Скачай в App Store: ') + STORE_URL_IOS;
-  const line2 =
-    lang === 'uk'
-      ? 'Після встановлення натисни (бонус на двох): ' + inviteHttps
-      : lang === 'es'
-        ? 'Después de instalar, abre este enlace (bonificación para los dos): ' + inviteHttps
-        : 'После установки нажми (бонус вам обоим): ' + inviteHttps;
-  const line3 =
-    lang === 'uk'
-      ? 'Або відкрий у застосунку: ' + appDeepLink
-      : lang === 'es'
-        ? 'O ábrelo desde la app: ' + appDeepLink
-        : 'Или открой в приложении: ' + appDeepLink;
+  const line1 = label(lang, { ru: 'Скачай в App Store: ', uk: 'Завантаж у App Store: ', es: 'Descarga en App Store: ', 'pt-BR': 'Baixe na App Store: ', vi: 'Tải trên App Store: ', id: 'Unduh di App Store: ', tr: 'App Store’dan indir: ', pl: 'Pobierz z App Store: ' }) + STORE_URL_IOS;
+  const line2 = label(lang, { ru: 'После установки нажми (бонус вам обоим): ', uk: 'Після встановлення натисни (бонус на двох): ', es: 'Después de instalar, abre este enlace (bonificación para los dos): ', 'pt-BR': 'Depois de instalar, abra este link (bônus para vocês dois): ', vi: 'Sau khi cài đặt, mở liên kết này (cả hai cùng nhận thưởng): ', id: 'Setelah memasang, buka tautan ini (bonus untuk kalian berdua): ', tr: 'Yükledikten sonra bu bağlantıyı aç (ikinize de bonus): ', pl: 'Po instalacji otwórz ten link (bonus dla was obojga): ' }) + inviteHttps;
+  const line3 = label(lang, { ru: 'Или открой в приложении: ', uk: 'Або відкрий у застосунку: ', es: 'O ábrelo desde la app: ', 'pt-BR': 'Ou abra no app: ', vi: 'Hoặc mở trong ứng dụng: ', id: 'Atau buka di aplikasi: ', tr: 'Ya da uygulamada aç: ', pl: 'Albo otwórz w aplikacji: ' }) + appDeepLink;
   return {
     message: `${body}\n\n${line1}\n${line2}\n${line3}`,
     url: inviteHttps,

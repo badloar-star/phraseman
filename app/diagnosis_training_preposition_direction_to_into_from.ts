@@ -10,18 +10,191 @@ const tri = (
   uk: string,
   es = ru,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? DIRECTION_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = ['to', 'into', 'from', 'out of', 'towards', 'in', 'direction', 'source'];
+
+const DIRECTION_STEP_ES: Record<string, string> = {
+  prep_dir_easy_001: 'Voy al trabajo todos los dias.',
+  prep_dir_easy_002: 'Fuimos en coche a Dublin.',
+  prep_dir_easy_003: 'Envialo a mi.',
+  prep_dir_contrast_001: 'Ella entro en la habitacion.',
+  prep_dir_contrast_002: 'Pon las llaves dentro de la bolsa.',
+  prep_dir_contrast_003: 'Entre en la habitacion.',
+  prep_dir_contrast_004: 'El vino del trabajo tarde.',
+  prep_dir_contrast_005: 'Ella es de Ucrania.',
+  prep_dir_contrast_006: 'Recibi un mensaje de mi amigo.',
+  prep_dir_mixed_001: 'Sal del coche.',
+  prep_dir_mixed_002: 'Saca el telefono de la bolsa.',
+  prep_dir_mixed_003: 'meterlo en la bolsa / sacarlo de la bolsa',
+  prep_dir_mixed_004: 'al trabajo / del trabajo',
+  prep_dir_mixed_005: 'estoy en la habitacion / entre en la habitacion',
+  prep_dir_mixed_006: 'Ella vino del trabajo y entro en la habitacion.',
+};
+
+const DIRECTION_STEP_PLANNED: Record<string, Record<PlannedTrainingLocale, string>> = {
+  prep_dir_easy_001: {
+    'pt-BR': 'Eu vou ao trabalho todos os dias.',
+    vi: 'Tôi đi làm mỗi ngày.',
+    id: 'Saya pergi bekerja setiap hari.',
+    tr: 'Her gün işe giderim.',
+    pl: 'Chodzę do pracy codziennie.',
+  },
+  prep_dir_easy_002: {
+    'pt-BR': 'Fomos de carro para Dublin.',
+    vi: 'Chúng tôi đã lái xe đến Dublin.',
+    id: 'Kami berkendara ke Dublin.',
+    tr: "Dublin'e arabayla gittik.",
+    pl: 'Pojechaliśmy samochodem do Dublina.',
+  },
+  prep_dir_easy_003: {
+    'pt-BR': 'Envie isso para mim.',
+    vi: 'Gửi nó cho tôi.',
+    id: 'Kirimkan itu kepada saya.',
+    tr: 'Onu bana gönder.',
+    pl: 'Wyślij mi to.',
+  },
+  prep_dir_contrast_001: {
+    'pt-BR': 'Ela entrou na sala.',
+    vi: 'Cô ấy bước vào phòng.',
+    id: 'Dia berjalan masuk ke ruangan.',
+    tr: 'Odaya girdi.',
+    pl: 'Weszła do pokoju.',
+  },
+  prep_dir_contrast_002: {
+    'pt-BR': 'Coloque as chaves na bolsa.',
+    vi: 'Bỏ chìa khóa vào túi.',
+    id: 'Masukkan kunci ke dalam tas.',
+    tr: 'Anahtarları çantanın içine koy.',
+    pl: 'Włóż klucze do torby.',
+  },
+  prep_dir_contrast_003: {
+    'pt-BR': 'Entrei na sala.',
+    vi: 'Tôi đã đi vào phòng.',
+    id: 'Saya masuk ke ruangan.',
+    tr: 'Odaya girdim.',
+    pl: 'Wszedłem do pokoju.',
+  },
+  prep_dir_contrast_004: {
+    'pt-BR': 'Ele chegou tarde do trabalho.',
+    vi: 'Anh ấy đi làm về muộn.',
+    id: 'Dia pulang dari kerja terlambat.',
+    tr: 'İşten geç geldi.',
+    pl: 'Przyszedł późno z pracy.',
+  },
+  prep_dir_contrast_005: {
+    'pt-BR': 'Ela é da Ucrânia.',
+    vi: 'Cô ấy đến từ Ukraine.',
+    id: 'Dia berasal dari Ukraina.',
+    tr: 'O Ukraynalı.',
+    pl: 'Ona jest z Ukrainy.',
+  },
+  prep_dir_contrast_006: {
+    'pt-BR': 'Recebi uma mensagem do meu amigo.',
+    vi: 'Tôi nhận được tin nhắn từ bạn tôi.',
+    id: 'Saya mendapat pesan dari teman saya.',
+    tr: 'Arkadaşımdan bir mesaj aldım.',
+    pl: 'Dostałem wiadomość od mojego znajomego.',
+  },
+  prep_dir_mixed_001: {
+    'pt-BR': 'Saia do carro.',
+    vi: 'Ra khỏi xe đi.',
+    id: 'Keluar dari mobil.',
+    tr: 'Arabadan çık.',
+    pl: 'Wysiądź z samochodu.',
+  },
+  prep_dir_mixed_002: {
+    'pt-BR': 'Tire o telefone da bolsa.',
+    vi: 'Lấy điện thoại ra khỏi túi.',
+    id: 'Keluarkan telepon dari tas.',
+    tr: 'Telefonu çantadan çıkar.',
+    pl: 'Wyjmij telefon z torby.',
+  },
+  prep_dir_mixed_003: {
+    'pt-BR': 'colocar na bolsa / tirar da bolsa',
+    vi: 'bỏ vào túi / lấy ra khỏi túi',
+    id: 'memasukkan ke tas / mengeluarkan dari tas',
+    tr: 'çantaya koymak / çantadan çıkarmak',
+    pl: 'włożyć do torby / wyjąć z torby',
+  },
+  prep_dir_mixed_004: {
+    'pt-BR': 'para o trabalho / do trabalho',
+    vi: 'đi làm / từ chỗ làm về',
+    id: 'ke tempat kerja / dari tempat kerja',
+    tr: 'işe / işten',
+    pl: 'do pracy / z pracy',
+  },
+  prep_dir_mixed_005: {
+    'pt-BR': 'estou na sala / entrei na sala',
+    vi: 'tôi ở trong phòng / tôi đi vào phòng',
+    id: 'saya ada di ruangan / saya masuk ke ruangan',
+    tr: 'odadayım / odaya girdim',
+    pl: 'jestem w pokoju / wszedłem do pokoju',
+  },
+  prep_dir_mixed_006: {
+    'pt-BR': 'Ela veio do trabalho e entrou na sala.',
+    vi: 'Cô ấy từ chỗ làm về và đi vào phòng.',
+    id: 'Dia datang dari tempat kerja dan masuk ke ruangan.',
+    tr: 'İşten geldi ve odaya girdi.',
+    pl: 'Przyszła z pracy i weszła do pokoju.',
+  },
+};
+
+const DIRECTION_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre preposições de direção ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về giới từ chỉ hướng này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan preposisi arah ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu yön edatları açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie przyimków kierunku nadal wymaga przeglądu po polsku.',
+};
+
+const DIRECTION_SKILL_ES: Record<string, string> = {
+  to_destination_work: 'Movimiento hacia un lugar o una meta: usa to.',
+  to_city_destination: 'La ciudad es el destino del viaje: usa to.',
+  to_recipient: 'La persona recibe algo: usa to.',
+  into_room: 'La flecha entra dentro de un espacio: usa into.',
+  into_bag: 'El objeto se mueve hacia dentro de una bolsa o caja: usa into.',
+  in_vs_into_room: 'In es estar ya dentro; into es entrar hacia dentro.',
+  from_work: 'From responde a "de donde?".',
+  from_country: 'El origen se marca con from.',
+  from_person_source: 'La fuente de un mensaje o cosa se marca con from.',
+  out_of_car: 'La persona sale desde dentro hacia fuera: usa out of.',
+  out_of_bag: 'El objeto sale desde dentro hacia fuera: usa out of.',
+  into_out_of_pair: 'Compara dos flechas: hacia dentro = into; hacia fuera desde dentro = out of.',
+  mixed_to_from: 'To y from son flechas opuestas: hacia un lugar y desde un lugar.',
+  mixed_in_into: 'In marca estado dentro; into marca movimiento hacia dentro.',
+  mixed_sentence_correction: 'Divide la frase en bloques: from work y into the room.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = DIRECTION_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? DIRECTION_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function directionEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = DIRECTION_SKILL_ES[input.targetSkill] ?? 'Dibuja la flecha de movimiento antes de elegir la palabra pequena.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function directionStep(input: {
   id: string;
@@ -40,6 +213,7 @@ function directionStep(input: {
   focusWords: string[];
 }): DiagnosisTrainingStep {
   const correctIndex = input.options.findIndex((option) => option === input.correctAnswer);
+  const esFeedback = directionEsFeedback(input);
 
   return {
     id: input.id,
@@ -47,39 +221,39 @@ function directionStep(input: {
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    teachingText: input.teachingText,
-    translation: input.translation,
-    explanationBlock: input.teachingText,
+    teachingText: withEs(input.teachingText, esFeedback),
+    translation: withEs(input.translation, DIRECTION_STEP_ES[input.id] ?? esFeedback, DIRECTION_STEP_PLANNED[input.id]),
+    explanationBlock: withEs(input.teachingText, esFeedback),
     microTask: tri(
       'Выбери маленькое слово по движению: куда, внутрь, откуда или изнутри наружу.',
       'Обери маленьке слово за рухом: куди, всередину, звідки або зсередини назовні.',
-      'Choose the small word by movement: where to, inside, from where, or from inside out.',
+      'Elige la palabra pequena segun el movimiento: hacia donde, hacia dentro, desde donde o desde dentro hacia fuera.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex,
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? tri(
+        .map((option) => [option, withEs(input.wrong[option] ?? tri(
           `Почти. Здесь нужен готовый кусок с ${input.correctAnswer}.`,
           `Майже. Тут потрібен готовий шматок з ${input.correctAnswer}.`,
           `Casi. Aquí necesitas el bloque con ${input.correctAnswer}.`,
-        )]),
+        ), esFeedback)]),
     ),
     retryFeedback: [
-      input.retry[0],
-      input.retry[1],
-      input.retry[2],
+      withEs(input.retry[0], esFeedback),
+      withEs(input.retry[1], esFeedback),
+      withEs(input.retry[2], esFeedback),
       tri(
         `Подсказка: готовый кусок - ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
         `Підказка: готовий шматок - ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
-        `Hint: the ready block is ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
+        `Pista: el bloque listo es ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
       ),
     ],
-    fallbackExplanation: input.fallbackExplanation,
+    fallbackExplanation: withEs(input.fallbackExplanation, esFeedback),
     focusWords: input.focusWords,
   };
 }
@@ -90,37 +264,79 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 28,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'To / Into / From / Out of: куда движется действие',
     'To / Into / From / Out of: куди рухається дія',
-    'To / Into / From / Out of: movement',
+    'To / Into / From / Out of: hacia donde se mueve la accion',
+    {
+      'pt-BR': 'To / Into / From / Out of: para onde a ação se move',
+      vi: 'To / Into / From / Out of: hành động di chuyển về đâu',
+      id: 'To / Into / From / Out of: ke mana aksi bergerak',
+      tr: 'To / Into / From / Out of: eylem nereye hareket ediyor',
+      pl: 'To / Into / From / Out of: dokąd porusza się czynność',
+    },
   ),
   shortTitle: tri(
     'Куда / внутрь / откуда',
     'Куди / всередину / звідки',
-    'To / Into / From',
+    'Hacia / dentro / desde',
+    {
+      'pt-BR': 'Para / para dentro / de onde',
+      vi: 'Đến đâu / vào trong / từ đâu',
+      id: 'Ke mana / ke dalam / dari mana',
+      tr: 'Nereye / içeri / nereden',
+      pl: 'Dokąd / do środka / skąd',
+    },
   ),
   shortDiagnosis: tri(
     'Ты путаешь маленькие слова движения: к месту, внутрь, откуда и изнутри наружу.',
     'Ти плутаєш маленькі слова руху: до місця, всередину, звідки та зсередини назовні.',
-    'You mix small movement words: to a place, inside, from a place, and out from inside.',
+    'Confundes palabras pequenas de movimiento: hacia un lugar, hacia dentro, desde un lugar y desde dentro hacia fuera.',
+    {
+      'pt-BR': 'Você confunde pequenas palavras de movimento: para um lugar, para dentro, de onde e de dentro para fora.',
+      vi: 'Bạn đang nhầm các từ nhỏ chỉ chuyển động: đến một nơi, vào trong, từ đâu và từ trong ra ngoài.',
+      id: 'Kamu mencampur kata kecil untuk gerakan: ke tempat, ke dalam, dari mana, dan dari dalam ke luar.',
+      tr: 'Hareketin küçük kelimelerini karıştırıyorsun: bir yere, içeri, nereden ve içeriden dışarı.',
+      pl: 'Mylisz małe słowa ruchu: do miejsca, do środka, skąd oraz ze środka na zewnątrz.',
+    },
   ),
   diagnosisText: tri(
     'Похоже, ты выбираешь маленькое слово по переводу, а не по движению. Английский здесь смотрит на маршрут: действие идёт к месту, входит внутрь, выходит изнутри или начинается откуда-то.',
     'Схоже, ти обираєш маленьке слово за перекладом, а не за рухом. Англійська тут дивиться на маршрут: дія йде до місця, входить усередину, виходить зсередини або починається звідкись.',
-    'The problem is choosing by translation instead of movement. English looks at the route: to a place, inside, out from inside, or from somewhere.',
+    'El problema es elegir por traduccion en vez de por movimiento. El ingles mira la ruta: hacia un lugar, hacia dentro, desde dentro hacia fuera o desde algun punto.',
+    {
+      'pt-BR': 'Parece que você escolhe a palavra pequena pela tradução, não pelo movimento. O inglês olha para a rota: a ação vai para um lugar, entra, sai de dentro ou começa em algum ponto.',
+      vi: 'Có vẻ bạn chọn từ nhỏ theo bản dịch, không theo chuyển động. Tiếng Anh nhìn vào lộ trình: hành động đi đến một nơi, đi vào trong, đi từ trong ra ngoài hoặc bắt đầu từ đâu đó.',
+      id: 'Sepertinya kamu memilih kata kecil berdasarkan terjemahan, bukan gerakan. Bahasa Inggris melihat rutenya: aksi menuju tempat, masuk ke dalam, keluar dari dalam, atau mulai dari suatu titik.',
+      tr: 'Küçük kelimeyi harekete göre değil çeviriye göre seçiyor gibisin. İngilizce burada rotaya bakar: eylem bir yere gider, içeri girer, içeriden dışarı çıkar ya da bir noktadan başlar.',
+      pl: 'Wygląda na to, że wybierasz małe słowo według tłumaczenia, a nie według ruchu. Angielski patrzy tu na trasę: czynność idzie do miejsca, wchodzi do środka, wychodzi ze środka albo zaczyna się skądś.',
+    },
   ),
   mentalModel: tri(
     'Представь стрелку. To - стрелка к месту или человеку. Into - стрелка внутрь. From - стрелка откуда началось движение. Out of - стрелка изнутри наружу. In - уже внутри, без входа.',
     'Уяви стрілку. To - стрілка до місця або людини. Into - стрілка всередину. From - стрілка звідки почався рух. Out of - стрілка зсередини назовні. In - уже всередині, без входу.',
-    'Imagine an arrow. To = to a place/person. Into = inside. From = starting point. Out of = from inside to outside. In = already inside.',
+    'Imagina una flecha. To = hacia un lugar o persona. Into = hacia dentro. From = punto de inicio. Out of = desde dentro hacia fuera. In = ya dentro.',
+    {
+      'pt-BR': 'Imagine uma seta. To = seta para um lugar ou pessoa. Into = seta para dentro. From = ponto de partida. Out of = de dentro para fora. In = já dentro.',
+      vi: 'Hãy tưởng tượng một mũi tên. To = mũi tên đến nơi hoặc người. Into = mũi tên vào trong. From = điểm bắt đầu. Out of = từ trong ra ngoài. In = đã ở bên trong.',
+      id: 'Bayangkan sebuah panah. To = panah ke tempat atau orang. Into = panah ke dalam. From = titik awal. Out of = dari dalam ke luar. In = sudah di dalam.',
+      tr: 'Bir ok düşün. To = bir yere veya kişiye doğru ok. Into = içeri doğru ok. From = başlangıç noktası. Out of = içeriden dışarı. In = zaten içeride.',
+      pl: 'Wyobraź sobie strzałkę. To = strzałka do miejsca albo osoby. Into = strzałka do środka. From = punkt startu. Out of = ze środka na zewnątrz. In = już w środku.',
+    },
   ),
   contrastSet: CONTRAST,
   coreRule: tri(
     'go to work, walk into the room, come from work, get out of the car, be in the room.',
     'go to work, walk into the room, come from work, get out of the car, be in the room.',
     'go to work, walk into the room, come from work, get out of the car, be in the room.',
+    {
+      'pt-BR': 'go to work, walk into the room, come from work, get out of the car, be in the room.',
+      vi: 'go to work, walk into the room, come from work, get out of the car, be in the room.',
+      id: 'go to work, walk into the room, come from work, get out of the car, be in the room.',
+      tr: 'go to work, walk into the room, come from work, get out of the car, be in the room.',
+      pl: 'go to work, walk into the room, come from work, get out of the car, be in the room.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -142,13 +358,13 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       'Головна звичка: спочатку намалювати стрілку, потім обрати маленьке слово.',
     ],
     es: [
-      'To = movement to a place or person.',
-      'Into = movement inside.',
-      'From = starting point.',
-      'Out of = from inside to outside.',
-      'In = already inside.',
-      'Towards = in the direction of.',
-      'First draw the arrow, then choose the word.',
+      'To muestra movimiento hacia un lugar o una persona.',
+      'Into muestra entrada hacia dentro.',
+      'From muestra el punto de inicio.',
+      'Out of muestra salida desde dentro hacia fuera.',
+      'In muestra que alguien o algo ya esta dentro.',
+      'Towards muestra movimiento en direccion a algo, no siempre hasta el punto final.',
+      'Primero dibuja la flecha, luego elige la palabra.',
     ],
     'pt-BR': [
       'To = movimento para um lugar ou pessoa.',
@@ -197,19 +413,19 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
     ],
   },
   examples: [
-    { en: 'I go to work every day.', ru: 'Я хожу на работу каждый день.', uk: 'Я ходжу на роботу щодня.', es: 'I go to work every day.', 'pt-BR': 'Eu vou ao trabalho todos os dias.', vi: 'Tôi đi làm mỗi ngày.', id: 'Saya pergi bekerja setiap hari.', tr: 'Her gün işe giderim.', pl: 'Chodzę do pracy codziennie.', why: tri('Стрелка идёт к месту: to work.', 'Стрілка йде до місця: to work.', 'The arrow goes to a place: to work.') },
-    { en: 'She walked into the room.', ru: 'Она вошла в комнату.', uk: 'Вона увійшла в кімнату.', es: 'She walked into the room.', 'pt-BR': 'Ela entrou na sala.', vi: 'Cô ấy bước vào phòng.', id: 'Dia berjalan masuk ke ruangan.', tr: 'Odaya girdi.', pl: 'Weszła do pokoju.', why: tri('Стрелка входит внутрь комнаты: into the room.', 'Стрілка входить усередину кімнати: into the room.', 'The arrow goes inside: into the room.') },
-    { en: 'He came from work late.', ru: 'Он пришёл с работы поздно.', uk: 'Він прийшов з роботи пізно.', es: 'He came from work late.', 'pt-BR': 'Ele chegou tarde do trabalho.', vi: 'Anh ấy đi làm về muộn.', id: 'Dia pulang dari kerja terlambat.', tr: 'İşten geç geldi.', pl: 'Przyszedł późno z pracy.', why: tri('Work - место, откуда он пришёл: from work.', 'Work - місце, звідки він прийшов: from work.', 'Work is where he came from.') },
-    { en: 'Take the phone out of the bag.', ru: 'Достань телефон из сумки.', uk: 'Дістань телефон із сумки.', es: 'Take the phone out of the bag.', 'pt-BR': 'Tire o telefone da bolsa.', vi: 'Lấy điện thoại ra khỏi túi.', id: 'Keluarkan telepon dari tas.', tr: 'Telefonu çantadan çıkar.', pl: 'Wyjmij telefon z torby.', why: tri('Телефон был внутри сумки и движется наружу: out of the bag.', 'Телефон був усередині сумки і рухається назовні: out of the bag.', 'The phone moves from inside to outside: out of the bag.') },
-    { en: 'I am in the room.', ru: 'Я в комнате.', uk: 'Я в кімнаті.', es: 'I am in the room.', 'pt-BR': 'Estou na sala.', vi: 'Tôi đang ở trong phòng.', id: 'Saya ada di ruangan.', tr: 'Odadayım.', pl: 'Jestem w pokoju.', why: tri('Движения нет. Человек уже внутри комнаты: in the room.', 'Руху немає. Людина вже всередині кімнати: in the room.', 'No movement. Already inside: in the room.') },
-    { en: 'I went into the room.', ru: 'Я вошёл в комнату.', uk: 'Я увійшов у кімнату.', es: 'I went into the room.', 'pt-BR': 'Entrei na sala.', vi: 'Tôi đã đi vào phòng.', id: 'Saya masuk ke ruangan.', tr: 'Odaya girdim.', pl: 'Wszedłem do pokoju.', why: tri('Здесь есть вход внутрь, поэтому into the room.', 'Тут є вхід усередину, тому into the room.', 'There is movement inside: into the room.') },
-    { en: 'Send it to me.', ru: 'Отправь это мне.', uk: 'Надішли це мені.', es: 'Send it to me.', 'pt-BR': 'Envie isso para mim.', vi: 'Gửi nó cho tôi.', id: 'Kirimkan itu kepada saya.', tr: 'Onu bana gönder.', pl: 'Wyślij mi to.', why: tri('To может показывать не место, а человека-получателя: to me.', 'To може показувати не місце, а людину-отримувача: to me.', 'To can point to the receiver: to me.') },
-    { en: 'She walked towards the door.', ru: 'Она пошла к двери.', uk: 'Вона пішла до дверей.', es: 'She walked towards the door.', 'pt-BR': 'Ela caminhou em direção à porta.', vi: 'Cô ấy đi về phía cửa.', id: 'Dia berjalan menuju pintu.', tr: 'Kapıya doğru yürüdü.', pl: 'Poszła w stronę drzwi.', why: tri('Towards - в сторону двери. Не обязательно значит, что она дошла до двери.', 'Towards - у бік дверей. Не обовʼязково значить, що вона дійшла до дверей.', 'Towards means in the direction of the door.') },
+    { en: 'I go to work every day.', ru: 'Я хожу на работу каждый день.', uk: 'Я ходжу на роботу щодня.', es: 'Voy al trabajo todos los dias.', 'pt-BR': 'Eu vou ao trabalho todos os dias.', vi: 'Tôi đi làm mỗi ngày.', id: 'Saya pergi bekerja setiap hari.', tr: 'Her gün işe giderim.', pl: 'Chodzę do pracy codziennie.', why: tri('Стрелка идёт к месту: to work.', 'Стрілка йде до місця: to work.', 'La flecha va hacia un lugar: to work.') },
+    { en: 'She walked into the room.', ru: 'Она вошла в комнату.', uk: 'Вона увійшла в кімнату.', es: 'Ella entro en la habitacion.', 'pt-BR': 'Ela entrou na sala.', vi: 'Cô ấy bước vào phòng.', id: 'Dia berjalan masuk ke ruangan.', tr: 'Odaya girdi.', pl: 'Weszła do pokoju.', why: tri('Стрелка входит внутрь комнаты: into the room.', 'Стрілка входить усередину кімнати: into the room.', 'La flecha entra hacia dentro: into the room.') },
+    { en: 'He came from work late.', ru: 'Он пришёл с работы поздно.', uk: 'Він прийшов з роботи пізно.', es: 'El vino tarde del trabajo.', 'pt-BR': 'Ele chegou tarde do trabalho.', vi: 'Anh ấy đi làm về muộn.', id: 'Dia pulang dari kerja terlambat.', tr: 'İşten geç geldi.', pl: 'Przyszedł późno z pracy.', why: tri('Work - место, откуда он пришёл: from work.', 'Work - місце, звідки він прийшов: from work.', 'Work es el lugar desde donde vino: from work.') },
+    { en: 'Take the phone out of the bag.', ru: 'Достань телефон из сумки.', uk: 'Дістань телефон із сумки.', es: 'Saca el telefono de la bolsa.', 'pt-BR': 'Tire o telefone da bolsa.', vi: 'Lấy điện thoại ra khỏi túi.', id: 'Keluarkan telepon dari tas.', tr: 'Telefonu çantadan çıkar.', pl: 'Wyjmij telefon z torby.', why: tri('Телефон был внутри сумки и движется наружу: out of the bag.', 'Телефон був усередині сумки і рухається назовні: out of the bag.', 'El telefono estaba dentro y se mueve hacia fuera: out of the bag.') },
+    { en: 'I am in the room.', ru: 'Я в комнате.', uk: 'Я в кімнаті.', es: 'Estoy en la habitacion.', 'pt-BR': 'Estou na sala.', vi: 'Tôi đang ở trong phòng.', id: 'Saya ada di ruangan.', tr: 'Odadayım.', pl: 'Jestem w pokoju.', why: tri('Движения нет. Человек уже внутри комнаты: in the room.', 'Руху немає. Людина вже всередині кімнати: in the room.', 'No hay movimiento. Ya esta dentro: in the room.') },
+    { en: 'I went into the room.', ru: 'Я вошёл в комнату.', uk: 'Я увійшов у кімнату.', es: 'Entre en la habitacion.', 'pt-BR': 'Entrei na sala.', vi: 'Tôi đã đi vào phòng.', id: 'Saya masuk ke ruangan.', tr: 'Odaya girdim.', pl: 'Wszedłem do pokoju.', why: tri('Здесь есть вход внутрь, поэтому into the room.', 'Тут є вхід усередину, тому into the room.', 'Aqui hay entrada hacia dentro: into the room.') },
+    { en: 'Send it to me.', ru: 'Отправь это мне.', uk: 'Надішли це мені.', es: 'Envialo a mi.', 'pt-BR': 'Envie isso para mim.', vi: 'Gửi nó cho tôi.', id: 'Kirimkan itu kepada saya.', tr: 'Onu bana gönder.', pl: 'Wyślij mi to.', why: tri('To может показывать не место, а человека-получателя: to me.', 'To може показувати не місце, а людину-отримувача: to me.', 'To tambien puede apuntar al receptor: to me.') },
+    { en: 'She walked towards the door.', ru: 'Она пошла к двери.', uk: 'Вона пішла до дверей.', es: 'Ella camino hacia la puerta.', 'pt-BR': 'Ela caminhou em direção à porta.', vi: 'Cô ấy đi về phía cửa.', id: 'Dia berjalan menuju pintu.', tr: 'Kapıya doğru yürüdü.', pl: 'Poszła w stronę drzwi.', why: tri('Towards - в сторону двери. Не обязательно значит, что она дошла до двери.', 'Towards - у бік дверей. Не обовʼязково значить, що вона дійшла до дверей.', 'Towards significa en direccion a la puerta, no necesariamente hasta ella.') },
   ],
   introBlocks: [
-    { id: 'intro_problem', type: 'diagnosis', text: tri('Здесь ловушка в маршруте. Слова похожи, но стрелка движения разная.', 'Тут пастка в маршруті. Слова схожі, але стрілка руху різна.', 'The trap is the route. The words look close, but the movement arrow is different.') },
-    { id: 'intro_rule', type: 'rule', text: tri('Не начинай с перевода. Сначала спроси: действие идёт к месту, внутрь, откуда или наружу изнутри?', 'Не починай з перекладу. Спочатку спитай: дія йде до місця, всередину, звідки або назовні зсередини?', 'Do not start with translation. Ask: to a place, inside, from where, or out from inside?') },
-    { id: 'intro_tone', type: 'encouragement', text: tri('Это чинится быстро, если видеть стрелку. Давай закрепим несколько готовых кусков.', 'Це швидко чиниться, якщо бачити стрілку. Закріпімо кілька готових шматків.', 'This becomes easier when you see the arrow. Let’s fix a few ready blocks.') },
+    { id: 'intro_problem', type: 'diagnosis', text: tri('Здесь ловушка в маршруте. Слова похожи, но стрелка движения разная.', 'Тут пастка в маршруті. Слова схожі, але стрілка руху різна.', 'La trampa esta en la ruta. Las palabras se parecen, pero la flecha de movimiento es distinta.') },
+    { id: 'intro_rule', type: 'rule', text: tri('Не начинай с перевода. Сначала спроси: действие идёт к месту, внутрь, откуда или наружу изнутри?', 'Не починай з перекладу. Спочатку спитай: дія йде до місця, всередину, звідки або назовні зсередини?', 'No empieces por la traduccion. Pregunta: hacia un lugar, hacia dentro, desde donde o desde dentro hacia fuera?') },
+    { id: 'intro_tone', type: 'encouragement', text: tri('Это чинится быстро, если видеть стрелку. Давай закрепим несколько готовых кусков.', 'Це швидко чиниться, якщо бачити стрілку. Закріпімо кілька готових шматків.', 'Esto se arregla rapido si ves la flecha. Vamos a fijar unos bloques listos.') },
   ],
   steps: [
     directionStep({
@@ -594,10 +810,10 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Сначала показываем стрелку движения.', 'Спочатку показуємо стрілку руху.', 'First show the movement arrow.'),
-    depth2: tri('Потом уточняем: к месту, внутрь, откуда или наружу изнутри.', 'Потім уточнюємо: до місця, всередину, звідки або назовні зсередини.', 'Then clarify: to a place, inside, from where, or out from inside.'),
-    depth3: tri('Показываем готовые куски: to work, into the room, from work, out of the car.', 'Показуємо готові шматки: to work, into the room, from work, out of the car.', 'Show ready blocks: to work, into the room, from work, out of the car.'),
-    depth4: tri('Почти подсказка: называем нужную стрелку и просим выбрать маленькое слово.', 'Майже підказка: називаємо потрібну стрілку і просимо обрати маленьке слово.', 'Almost a hint: name the needed arrow and ask the learner to choose.'),
+    depth1: tri('Сначала показываем стрелку движения.', 'Спочатку показуємо стрілку руху.', 'Primero mostramos la flecha de movimiento.'),
+    depth2: tri('Потом уточняем: к месту, внутрь, откуда или наружу изнутри.', 'Потім уточнюємо: до місця, всередину, звідки або назовні зсередини.', 'Luego aclaramos: hacia un lugar, hacia dentro, desde donde o desde dentro hacia fuera.'),
+    depth3: tri('Показываем готовые куски: to work, into the room, from work, out of the car.', 'Показуємо готові шматки: to work, into the room, from work, out of the car.', 'Mostramos bloques listos: to work, into the room, from work, out of the car.'),
+    depth4: tri('Почти подсказка: называем нужную стрелку и просим выбрать маленькое слово.', 'Майже підказка: називаємо потрібну стрілку і просимо обрати маленьке слово.', 'Casi una pista: nombramos la flecha necesaria y pedimos elegir la palabra pequena.'),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -605,7 +821,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       card: tri(
         'Стоп. Нарисуй стрелку: к месту = to, внутрь = into, откуда = from, изнутри наружу = out of. Если движения нет и кто-то уже внутри, часто нужен in.',
         'Стоп. Намалюй стрілку: до місця = to, всередину = into, звідки = from, зсередини назовні = out of. Якщо руху немає і хтось уже всередині, часто потрібен in.',
-        'Stop. Draw the arrow: to a place = to, inside = into, from where = from, inside to outside = out of. Already inside = in.',
+        'Alto. Dibuja la flecha: hacia un lugar = to, hacia dentro = into, desde donde = from, desde dentro hacia fuera = out of. Ya dentro = in.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -613,7 +829,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       card: tri(
         'Подсказка покажет только стрелку движения. Маленькое слово ты выберешь сам.',
         'Підказка покаже тільки стрілку руху. Маленьке слово ти обереш сам.',
-        'The hint shows only the arrow. You choose the small word.',
+        'La pista muestra solo la flecha. Tu eliges la palabra pequena.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -621,7 +837,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
       card: tri(
         'Переходим мягче: сначала выбираем маршрут, потом возвращаемся к фразе.',
         'Переходимо мʼякше: спочатку обираємо маршрут, потім повертаємося до фрази.',
-        'Guided mode: choose the route first, then return to the sentence.',
+        'Modo guiado: primero elige la ruta y luego vuelve a la frase.',
       ),
     },
   },
@@ -629,10 +845,10 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
     enabled: true,
     triggerAfterWrongAttempts: 4,
     tasks: [
-      { id: 'guided_prep_dir_001', prompt: tri('Go to work - стрелка к месту или внутрь контейнера?', 'Go to work - стрілка до місця чи всередину контейнера?', 'Go to work: to a place or inside a container?'), options: ['к месту', 'внутрь контейнера'], correctIndex: 0, thenReturnToExerciseId: 'prep_dir_easy_001' },
-      { id: 'guided_prep_dir_002', prompt: tri('Walk into the room - движение внутрь или откуда-то?', 'Walk into the room - рух усередину чи звідкись?', 'Walk into the room: inside or from somewhere?'), options: ['внутрь', 'откуда-то'], correctIndex: 0, thenReturnToExerciseId: 'prep_dir_contrast_001' },
-      { id: 'guided_prep_dir_003', prompt: tri('Come from work отвечает на “куда?” или “откуда?”', 'Come from work відповідає на “куди?” чи “звідки?”', 'Come from work answers where to or from where?'), options: ['куда', 'откуда'], correctIndex: 1, thenReturnToExerciseId: 'prep_dir_contrast_004' },
-      { id: 'guided_prep_dir_004', prompt: tri('Get out of the car - внутрь машины или изнутри наружу?', 'Get out of the car - всередину машини чи зсередини назовні?', 'Get out of the car: inside the car or from inside to outside?'), options: ['внутрь', 'изнутри наружу'], correctIndex: 1, thenReturnToExerciseId: 'prep_dir_mixed_001' },
+      { id: 'guided_prep_dir_001', prompt: tri('Go to work - стрелка к месту или внутрь контейнера?', 'Go to work - стрілка до місця чи всередину контейнера?', 'Go to work: hacia un lugar o hacia dentro de un contenedor?'), options: ['к месту', 'внутрь контейнера'], correctIndex: 0, thenReturnToExerciseId: 'prep_dir_easy_001' },
+      { id: 'guided_prep_dir_002', prompt: tri('Walk into the room - движение внутрь или откуда-то?', 'Walk into the room - рух усередину чи звідкись?', 'Walk into the room: movimiento hacia dentro o desde algun lugar?'), options: ['внутрь', 'откуда-то'], correctIndex: 0, thenReturnToExerciseId: 'prep_dir_contrast_001' },
+      { id: 'guided_prep_dir_003', prompt: tri('Come from work отвечает на “куда?” или “откуда?”', 'Come from work відповідає на “куди?” чи “звідки?”', 'Come from work responde a "hacia donde?" o "desde donde?"'), options: ['куда', 'откуда'], correctIndex: 1, thenReturnToExerciseId: 'prep_dir_contrast_004' },
+      { id: 'guided_prep_dir_004', prompt: tri('Get out of the car - внутрь машины или изнутри наружу?', 'Get out of the car - всередину машини чи зсередини назовні?', 'Get out of the car: hacia dentro del coche o desde dentro hacia fuera?'), options: ['внутрь', 'изнутри наружу'], correctIndex: 1, thenReturnToExerciseId: 'prep_dir_mixed_001' },
     ],
   },
   smartTrainerConfig: {
@@ -640,7 +856,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'preposition',
     microDiagnosisId: 'preposition_direction_to_into_from',
-    diagnosisLabel: tri('To / Into / From / Out of', 'To / Into / From / Out of', 'To / Into / From / Out of'),
+    diagnosisLabel: tri('To / Into / From / Out of', 'To / Into / From / Out of', 'To / Into / From / Out of: movimiento'),
     contrastSet: CONTRAST,
     focusWords: ['to', 'into', 'from', 'out of', 'in', 'towards'],
     focusPatterns: [
@@ -678,7 +894,7 @@ export const PREPOSITION_DIRECTION_TO_INTO_FROM_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_preposition_direction_to_into_from_start',
     answer: 'diagnosis_training_preposition_direction_to_into_from_answer',
     mastery: 'diagnosis_training_preposition_direction_to_into_from_mastery',
-    fallback: 'diagnosis_training_preposition_direction_to_into_from_fallback',
+    recovery: 'diagnosis_training_preposition_direction_to_into_from_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

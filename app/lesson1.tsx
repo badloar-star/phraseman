@@ -35,7 +35,7 @@ import { trackActivity, trackFeatureBlocked, trackFeatureError, trackFeatureStar
 import { useEffectivePlatformOS } from './platform_ui_preview';
 // [SRS] Модуль интервального повторения (active_recall.ts).
 // recordMistake() вызывается при каждом неверном ответе в уроке.
-// Фраза попадает в AsyncStorage ('active_recall_items') с алгоритмом SM-2:
+// Фраза попадает в target-aware SRS-хранилище с алгоритмом SM-2:
 //   interval=1 день, easeFactor=2.5. При повторных ошибках easeFactor снижается.
 // Связь: review.tsx — getDueItems(..., { commitSessionOverflow: true }).
 // Связь: home.tsx — countDueItemsToday() на бейдже.
@@ -53,8 +53,17 @@ import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer,
 import { trackLessonStart, trackLessonAbandoned, trackAnswer, trackEnergyHit } from './user_stats';
 import { useEnergy } from '../components/EnergyContext';
 import { getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
-import { phraseAnswerAlternatives, phraseAnswerDisplayLine, phraseCanonicalAnswer, phrasePrimarySurface, phraseWordRowsForStudyTarget, ttsLocaleForStudyTarget } from './phrase_target_utils';
-import { spanishLessonUiStringsActive, spanishStudyActive, spanishSurfacesEnabled } from './spanish_content_gate';
+import { phraseAnswerAlternatives, phraseAnswerDisplayLine, phraseCanonicalAnswer, phraseHasStudyTargetContent, phrasePrimarySurface, phraseWordRowsForStudyTarget, ttsLocaleForStudyTarget } from './phrase_target_utils';
+import {
+  dailyTaskLessonVisitedKey,
+  fiftyFiftyUsageKey,
+  grammarHintSeenKey,
+  lessonCycleEndIntroShownKey,
+  lessonIntroShownKey,
+  lessonProgressKey,
+  lessonSessionKey,
+} from './target_storage_keys';
+import { frenchStudyActive, spanishLessonUiStringsActive, spanishStudyActive, spanishSurfacesEnabled } from './spanish_content_gate';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import LessonIntroScreens from './lesson_intro_screens';
 import { getMedalTier, getProgressCellColor, loadMedalInfo } from './medal_utils';
@@ -69,9 +78,13 @@ import {
 } from './lesson1_smart_options';
 import { tryUnlockNextLesson } from './lesson_lock_system';
 import {
+  buildLessonContentSignature,
+  clampStoredLessonCell,
   getInitialOrderAndCell,
   getInitialProgressArray,
   isLessonScreenPrimedThisSession,
+  parseStoredLessonOrder,
+  parseStoredLessonProgress,
   touchLessonScreenPrimed,
 } from './lesson_screen_bootstrap';
 import { getBonusHintsToday } from './level_gift_system';
@@ -81,6 +94,7 @@ import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { MOTION_DURATION } from '../constants/motion';
+import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 
 const GRAMMAR_HINTS = [
   {
@@ -91,6 +105,16 @@ const GRAMMAR_HINTS = [
     textUk: 'Артиклі a, an, the зустрічаються тут раніше уроку 20, де ми вивчимо їх докладно. Поки просто використовуй як показано — без них речення не побудувати.',
     textEs:
       'Los artículos a, an y the aparecen aquí antes de la lección 20, donde los veremos en detalle. Por ahora úsalos como en el ejemplo; sin ellos la frase no encaja.',
+    textPtBr:
+      'Os artigos a, an e the aparecem aqui antes da lição 20, onde vamos estudá-los em detalhe. Por enquanto, use-os como no exemplo; sem eles, a frase não encaixa.',
+    textVi:
+      'Các mạo từ a, an và the xuất hiện ở đây trước bài 20, nơi chúng ta sẽ học kỹ hơn. Tạm thời hãy dùng chúng như trong ví dụ; thiếu chúng thì câu không hoàn chỉnh.',
+    textId:
+      'Artikel a, an, dan the muncul di sini sebelum pelajaran 20, tempat kita akan membahasnya lebih rinci. Untuk sekarang, gunakan seperti pada contoh; tanpa itu kalimat tidak utuh.',
+    textTr:
+      'a, an ve the artikelleri burada 20. dersten önce çıkıyor; o derste ayrıntılı işleyeceğiz. Şimdilik örnekteki gibi kullan; onlar olmadan cümle tamamlanmaz.',
+    textPl:
+      'Przedimki a, an i the pojawiają się tutaj przed lekcją 20, gdzie omówimy je dokładnie. Na razie używaj ich jak w przykładzie; bez nich zdanie się nie składa.',
   },
   {
     key: 'grammar_hint_some_any',
@@ -100,6 +124,16 @@ const GRAMMAR_HINTS = [
     textUk: 'Слова some і any зустрічаються тут раніше уроку 21, де ми розберемо їх докладно. Поки просто використовуй як показано.',
     textEs:
       'Some y any salen aquí antes de la lección 21, donde las explicamos a fondo. Por ahora empléalas tal como ves en la frase.',
+    textPtBr:
+      'Some e any aparecem aqui antes da lição 21, onde vamos explicá-los em detalhe. Por enquanto, use-os como aparecem na frase.',
+    textVi:
+      'Some và any xuất hiện ở đây trước bài 21, nơi chúng ta sẽ giải thích kỹ hơn. Tạm thời hãy dùng chúng đúng như trong câu.',
+    textId:
+      'Some dan any muncul di sini sebelum pelajaran 21, tempat kita akan membahasnya lebih rinci. Untuk sekarang, gunakan seperti yang terlihat dalam kalimat.',
+    textTr:
+      'Some ve any burada 21. dersten önce çıkıyor; o derste ayrıntılı anlatacağız. Şimdilik cümlede gördüğün gibi kullan.',
+    textPl:
+      'Some i any pojawiają się tutaj przed lekcją 21, gdzie wyjaśnimy je dokładnie. Na razie używaj ich tak, jak widzisz w zdaniu.',
   },
 ];
 
@@ -121,6 +155,46 @@ const stripMarkers = (word: string): string => {
 // e.g. 'I bought a new - phone.' → 'I bought a new phone.'
 const cleanPhraseForDisplay = (english: string): string =>
   english.split(' ').map(stripMarkers).filter(w => w.length > 0).join(' ');
+
+const PHRASE_SOURCE_FIELD_BY_LANG = {
+  ru: 'russian',
+  uk: 'ukrainian',
+  es: 'spanish',
+  'pt-BR': 'pt-BR',
+  vi: 'vi',
+  id: null,
+  tr: 'tr',
+  pl: 'pl',
+} as const satisfies Record<Lang, string | null>;
+
+function phraseSourceTextForLang(phrase: any, lang: Lang): string {
+  if (!phrase) return '';
+  const sourceLocales = phrase.sourceLocales;
+  const fromSourceLocales = sourceLocales && typeof sourceLocales === 'object'
+    ? String(sourceLocales[lang] ?? '').trim()
+    : '';
+  if (fromSourceLocales) return fromSourceLocales;
+  const field = PHRASE_SOURCE_FIELD_BY_LANG[lang];
+  if (!field) return '';
+  return String(phrase[field] ?? '').trim();
+}
+
+function missingPhraseSourceText(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'Перевод фразы ещё готовится.',
+    uk: 'Переклад фрази ще готується.',
+    es: 'La traducción de la frase está en revisión.',
+    'pt-BR': 'A tradução da frase ainda está em revisão.',
+    vi: 'Bản dịch của câu này vẫn đang được rà soát.',
+    id: 'Terjemahan frasa ini masih ditinjau.',
+    tr: 'Bu cümlenin çevirisi hâlâ inceleniyor.',
+    pl: 'Tłumaczenie tej frazy jest jeszcze sprawdzane.',
+  });
+}
+
+function phrasePromptForInterface(phrase: any, lang: Lang): string {
+  return phraseSourceTextForLang(phrase, lang) || missingPhraseSourceText(lang);
+}
 
 // Returns true if the phrase word at the given position is a zero-article marker '-'
 // (correct answer is empty — skip this position in word-select mode)
@@ -154,7 +228,7 @@ function isPhraseAssemblyComplete(
 }
 
 // Safe wrapper: if getPerWordDistracts returns [] (phraseWordIdx out of bounds),
-// fall back to the last valid position so buttons never disappear mid-phrase.
+// reuse the last valid position so buttons never disappear mid-phrase.
 // phraseWordIdx is now always in sync with phrase.words indices (via getPhraseTokens).
 const dedupeOptions = (opts: string[]): string[] => {
   const seen = new Set<string>();
@@ -173,12 +247,12 @@ const safeGetDistracts = (phrase: any, wordIndex: number, studyTarget: StudyTarg
   }
   // Walk back to find the last position with data
   for (let i = wordIndex - 1; i >= 0; i--) {
-    const fallback = getPerWordDistracts(phrase, i, studyTarget);
-    if (fallback.length > 0) {
-      if (correctWord && !fallback.some((w: string) => w.toLowerCase() === correctWord.toLowerCase())) {
-        return dedupeOptions([...fallback.slice(0, fallback.length - 1), correctWord]);
+    const reserveOptions = getPerWordDistracts(phrase, i, studyTarget);
+    if (reserveOptions.length > 0) {
+      if (correctWord && !reserveOptions.some((w: string) => w.toLowerCase() === correctWord.toLowerCase())) {
+        return dedupeOptions([...reserveOptions.slice(0, reserveOptions.length - 1), correctWord]);
       }
-      return dedupeOptions(fallback);
+      return dedupeOptions(reserveOptions);
     }
   }
   return result;
@@ -267,7 +341,7 @@ const DEFAULT_SETTINGS: Settings = {
 // LessonHexProgress is now imported from components/LessonHexProgress.tsx
 
 // ── Модалка "Конец цикла урока" ───────────────────────────────────────────────
-export const CYCLE_END_SHOWN_KEY = 'lesson_cycle_end_intro_shown';
+export const CYCLE_END_SHOWN_KEY = lessonCycleEndIntroShownKey();
 
 function LessonCycleEndModal({ visible, hasErrors, lang, studyTarget, t, f, onClose }: {
   visible: boolean;
@@ -295,20 +369,47 @@ function LessonCycleEndModal({ visible, hasErrors, lang, studyTarget, t, f, onCl
 
   if (!visible) return null;
 
-  const isUK = lang === 'uk';
   const isES = spanishLessonUiStringsActive(lang, studyTarget);
-  const title = isES ? '🎉 ¡Has cerrado todo el ciclo!' : isUK ? '🎉 Ти пройшов увесь урок!' : '🎉 Ты прошёл весь урок!';
-  const subtitle = isES
-    ? 'Puedes seguir todas las vueltas que quieras; cada nueva ronda afianza mejor tu resultado.'
-    : isUK
-      ? 'Можеш продовжувати скільки завгодно разів — кожне нове коло покращує твій результат.'
-      : 'Можешь проходить сколько угодно раз — каждый новый круг улучшает твой результат.';
-  const errorText = isES
-    ? 'Hubo errores: repásalo otra vez para corregirlos y fijar lo aprendido.'
-    : isUK
-      ? 'У тебе були помилки — пройди ще раз, щоб виправити їх і закріпити знання.'
-      : 'У тебя были ошибки — пройди ещё раз, чтобы исправить их и закрепить знания.';
-  const btnLabel = isES ? 'Continuar' : isUK ? 'Продовжити' : 'Продолжить';
+  const title = isES ? '🎉 ¡Has cerrado todo el ciclo!' : triLang(lang, {
+    ru: '🎉 Ты прошёл весь урок!',
+    uk: '🎉 Ти пройшов увесь урок!',
+    es: '🎉 ¡Has cerrado todo el ciclo!',
+    'pt-BR': '🎉 Você concluiu toda a lição!',
+    vi: '🎉 Bạn đã hoàn thành toàn bộ bài học!',
+    id: '🎉 Kamu sudah menyelesaikan seluruh pelajaran!',
+    tr: '🎉 Tüm dersi tamamladın!',
+    pl: '🎉 Cała lekcja ukończona!',
+  });
+  const subtitle = isES ? 'Puedes seguir todas las vueltas que quieras; cada nueva ronda afianza mejor tu resultado.' : triLang(lang, {
+    ru: 'Можешь проходить сколько угодно раз — каждый новый круг улучшает твой результат.',
+    uk: 'Можеш продовжувати скільки завгодно разів — кожне нове коло покращує твій результат.',
+    es: 'Puedes seguir todas las vueltas que quieras; cada nueva ronda afianza mejor tu resultado.',
+    'pt-BR': 'Você pode repetir quantas vezes quiser; cada nova rodada consolida melhor o resultado.',
+    vi: 'Bạn có thể luyện lại bao nhiêu vòng tùy thích; mỗi vòng mới giúp kết quả chắc hơn.',
+    id: 'Kamu bisa mengulang sebanyak yang kamu mau; setiap putaran baru membuat hasilmu lebih kuat.',
+    tr: 'İstediğin kadar tur devam edebilirsin; her yeni tur sonucu daha iyi pekiştirir.',
+    pl: 'Możesz powtarzać tyle razy, ile chcesz; każda kolejna runda lepiej utrwala wynik.',
+  });
+  const errorText = isES ? 'Hubo errores: repásalo otra vez para corregirlos y fijar lo aprendido.' : triLang(lang, {
+    ru: 'У тебя были ошибки — пройди ещё раз, чтобы исправить их и закрепить знания.',
+    uk: 'У тебе були помилки — пройди ще раз, щоб виправити їх і закріпити знання.',
+    es: 'Hubo errores: repásalo otra vez para corregirlos y fijar lo aprendido.',
+    'pt-BR': 'Houve erros: revise mais uma vez para corrigi-los e fixar o que aprendeu.',
+    vi: 'Bạn có lỗi sai: hãy ôn lại một vòng nữa để sửa và ghi nhớ chắc hơn.',
+    id: 'Ada kesalahan: ulangi sekali lagi untuk memperbaikinya dan menguatkan materi.',
+    tr: 'Hatalar vardı: düzeltmek ve öğrendiklerini pekiştirmek için bir kez daha gözden geçir.',
+    pl: 'Były błędy: przejdź jeszcze raz, żeby je poprawić i utrwalić materiał.',
+  });
+  const btnLabel = isES ? 'Continuar' : triLang(lang, {
+    ru: 'Продолжить',
+    uk: 'Продовжити',
+    es: 'Continuar',
+    'pt-BR': 'Continuar',
+    vi: 'Tiếp tục',
+    id: 'Lanjut',
+    tr: 'Devam et',
+    pl: 'Kontynuuj',
+  });
 
   return (
     <Modal transparent visible={visible} animationType="none" onRequestClose={onClose}>
@@ -424,6 +525,9 @@ interface LessonContentProps {
   realPhraseIdx: number;
   /** Язык, который учим (dev: en|es); упражнение по словам пока по EN, озвучка/ответ могут быть ES. */
   studyTarget: StudyTargetLang;
+  lessonTheorySupportBlocked: boolean;
+  lessonHintSupportBlocked: boolean;
+  onReplayPhraseAudio: () => void;
   toastAnim: Animated.Value;
   from?: string;
   onHeaderBack: () => void;
@@ -493,6 +597,9 @@ const LessonContent = React.memo(function LessonContent({
   xpToastAnim,
   realPhraseIdx,
   studyTarget,
+  lessonTheorySupportBlocked,
+  lessonHintSupportBlocked,
+  onReplayPhraseAudio,
   toastAnim,
   from,
   onHeaderBack,
@@ -561,15 +668,17 @@ const LessonContent = React.memo(function LessonContent({
     && (phraseWordIdx >= phraseTokens.length || selectedAnswerMatchesAlternative);
 
   const triggerGrammarHint = useCallback(async (currentWord: string, force = false) => {
+    if (lessonHintSupportBlocked) return;
     if (!currentWord) return;
     if (grammarHintTimerRef.current) clearTimeout(grammarHintTimerRef.current);
     for (const hint of GRAMMAR_HINTS) {
       if (lessonId >= hint.lessonTeaches) continue;
       if (!hint.detect(currentWord)) continue;
       if (!force) {
-        const seen = await AsyncStorage.getItem(hint.key);
+        const seenKey = grammarHintSeenKey(hint.key, studyTarget);
+        const seen = await AsyncStorage.getItem(seenKey);
         if (seen) continue;
-        await AsyncStorage.setItem(hint.key, '1');
+        await AsyncStorage.setItem(seenKey, '1');
       }
       const text = grammarHintLine(lang, hint, studyTarget);
       Animated.timing(grammarHintAnim, { toValue: 0, duration: 100, useNativeDriver: true }).start(() => {
@@ -581,7 +690,7 @@ const LessonContent = React.memo(function LessonContent({
       });
       return;
     }
-  }, [lessonId, lang, studyTarget]);
+  }, [lessonHintSupportBlocked, lessonId, lang, studyTarget]);
 
   const hideGrammarHint = useCallback(() => {
     if (grammarHintTimerRef.current) clearTimeout(grammarHintTimerRef.current);
@@ -658,8 +767,55 @@ const LessonContent = React.memo(function LessonContent({
   // Main lesson UI
   if (!phrase) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: t.textPrimary }} />
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+        <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
+          {frenchStudyActive(studyTarget)
+            ? triLang(lang, {
+                ru: 'Французский материал ещё на проверке',
+                uk: 'Французький матеріал ще на перевірці',
+                es: 'Material pendiente de revisión',
+                'pt-BR': 'Material aguardando revisão',
+                vi: 'Nội dung đang chờ kiểm duyệt',
+                id: 'Materi menunggu peninjauan',
+                tr: 'Materyal inceleme bekliyor',
+                pl: 'Materiał czeka na weryfikację',
+              })
+            : ''}
+        </Text>
+        {frenchStudyActive(studyTarget) ? (
+          <>
+            <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: f.body + 6, marginBottom: 18 }}>
+              {triLang(lang, {
+                ru: 'Этот урок не будет открывать английские фразы или интро как замену. Он появится после French source gate.',
+                uk: 'Цей урок не відкриватиме англійські фрази або інтро як заміну. Він з’явиться після French source gate.',
+                es: 'Este lesson no usará frases inglesas como reemplazo.',
+                'pt-BR': 'Este lesson não usará frases inglesas como substituição.',
+                vi: 'Bài này sẽ không dùng câu tiếng Anh thay thế.',
+                id: 'Pelajaran ini tidak memakai frasa Inggris sebagai pengganti.',
+                tr: 'Bu ders İngilizce ifadeleri yedek olarak kullanmayacak.',
+                pl: 'Ta lekcja nie użyje angielskich fraz jako zamiennika.',
+              })}
+            </Text>
+            <TouchableOpacity
+              accessibilityRole="button"
+              onPress={() => router.replace('/(tabs)/lessons' as any)}
+              style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
+            >
+              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
+                {triLang(lang, {
+                  ru: 'К урокам',
+                  uk: 'До уроків',
+                  es: 'A lecciones',
+                  'pt-BR': 'Para aulas',
+                  vi: 'Về bài học',
+                  id: 'Ke pelajaran',
+                  tr: 'Derslere',
+                  pl: 'Do lekcji',
+                })}
+              </Text>
+            </TouchableOpacity>
+          </>
+        ) : null}
       </View>
     );
   }
@@ -775,16 +931,9 @@ const LessonContent = React.memo(function LessonContent({
       >
         <Animated.View style={[questionEnterStyle, { width: '100%' }]}>
         <Pressable onPress={status === 'result' ? undefined : handleBgTap} style={{ width: '100%' }}>
-          <Text style={{ color: sx.primary, fontSize: f.h2 + 6, marginBottom: compact ? 12 : 20, textAlign: 'center' }} numberOfLines={3} adjustsFontSizeToFit>{(() => {
-            if (!phrase) return '';
-            if (lang === 'uk') return (phrase.ukrainian || phrase.russian);
-            if (spanishStudyActive(studyTarget)) {
-              if (lang === 'es') return (phrase.spanish ?? phrase.russian);
-              return phrase.russian;
-            }
-            if (lang === 'es') return (phrase.russian || phrase.ukrainian || phrase.english);
-            return phrase.russian;
-          })()}</Text>
+          <Text style={{ color: sx.primary, fontSize: f.h2 + 6, marginBottom: compact ? 12 : 20, textAlign: 'center' }} numberOfLines={3} adjustsFontSizeToFit>
+            {phrasePromptForInterface(phrase, lang)}
+          </Text>
 
           <View style={{ minHeight: 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: compact ? 12 : 20, justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
             {settings.hardMode ? (
@@ -1045,10 +1194,70 @@ const LessonContent = React.memo(function LessonContent({
           )}
 
           {/* Theory Button */}
-          <LessonPressable testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); }}>
-            <Ionicons name="book-outline" size={26} color={sx.second} />
-            <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>{s.lesson.theory}</Text>
+          <LessonPressable
+            testID="lesson1-theory"
+            style={{ flex: 1, alignItems: 'center' }}
+            onPress={() => {
+              hapticTap();
+              if (lessonTheorySupportBlocked) {
+                router.push({ pathname: '/lesson_help', params: { id: lessonId } });
+                return;
+              }
+              router.push({ pathname: '/lesson_help', params: { id: lessonId } });
+            }}
+          >
+            <Ionicons name={lessonTheorySupportBlocked ? 'shield-checkmark-outline' : 'book-outline'} size={26} color={sx.second} />
+            <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
+              {lessonTheorySupportBlocked
+                ? triLang(lang, {
+                    ru: 'На проверке',
+                    uk: 'На перевірці',
+                    es: 'Under review',
+                    'pt-BR': 'Under review',
+                    vi: 'Under review',
+                    id: 'Under review',
+                    tr: 'Under review',
+                    pl: 'Under review',
+                  })
+                : s.lesson.theory}
+            </Text>
           </LessonPressable>
+
+          {status === 'result' && (
+            <LessonPressable
+              testID="lesson1-replay-audio"
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, {
+                ru: 'Повторить озвучку фразы',
+                uk: 'Повторити озвучку фрази',
+                es: 'Repetir audio de la frase',
+                'pt-BR': 'Repetir audio da frase',
+                vi: 'Phát lại âm thanh của câu',
+                id: 'Putar ulang audio frasa',
+                tr: 'Cümlenin sesini tekrar çal',
+                pl: 'Powtórz nagranie frazy',
+              })}
+              style={{ flex: 1, alignItems: 'center' }}
+              onPress={() => {
+                hapticTap();
+                onReplayPhraseAudio();
+              }}
+            >
+              <Ionicons name="volume-high" size={26} color={sx.second} />
+              <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
+                {triLang(lang, {
+                  ru: 'Повтор',
+                  uk: 'Повтор',
+                  es: 'Repetir',
+                  'pt-BR': 'Repetir',
+                  vi: 'Phát lại',
+                  id: 'Ulangi',
+                  tr: 'Tekrar',
+                  pl: 'Powtórz',
+                })}
+              </Text>
+            </LessonPressable>
+          )}
 
           {/* Undo Button - всегда доступна когда есть выбранные слова или текст */}
           <LessonPressable
@@ -1096,7 +1305,7 @@ const LessonContent = React.memo(function LessonContent({
           )}
         </View>
 
-        {__DEV__ && (
+        {__DEV__ && !lessonHintSupportBlocked && (
           <TouchableOpacity
             style={{ position: 'absolute', bottom: 90, right: 12, backgroundColor: 'rgba(40,40,40,0.85)', borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, zIndex: 999 }}
             onPress={() => {
@@ -1146,27 +1355,38 @@ export default function LessonScreen() {
   const replayIntroAt = Array.isArray(replayIntroAtParam) ? replayIntroAtParam[0] : replayIntroAtParam;
   const replayIntroToken = replayIntro ? (replayIntroAt || 'manual') : '';
   const lessonId = parseInt(id, 10) || 1;
-  const LESSON_KEY = `lesson${lessonId}_progress`;
-  const CELL_KEY   = `lesson${lessonId}_cellIndex`;
-  const ORDER_KEY  = `lesson${lessonId}_phraseOrder`;
-  const ERROR_REPLAY_QUEUE_KEY   = `lesson${lessonId}_errorReplayQueue`;
-  const ERROR_REPLAY_SINCE_KEY   = `lesson${lessonId}_errorReplaySince`;
-  const ERROR_REPLAY_OVERRIDE_KEY = `lesson${lessonId}_errorReplayOverride`;
+  const LESSON_KEY = lessonProgressKey(lessonId, studyTarget);
+  const CELL_KEY   = lessonSessionKey(lessonId, 'cellIndex', studyTarget);
+  const ORDER_KEY  = lessonSessionKey(lessonId, 'phraseOrder', studyTarget);
+  const CONTENT_SIGNATURE_KEY = lessonSessionKey(lessonId, 'contentSignature', studyTarget);
+  const ERROR_REPLAY_QUEUE_KEY   = lessonSessionKey(lessonId, 'errorReplayQueue', studyTarget);
+  const ERROR_REPLAY_SINCE_KEY   = lessonSessionKey(lessonId, 'errorReplaySince', studyTarget);
+  const ERROR_REPLAY_OVERRIDE_KEY = lessonSessionKey(lessonId, 'errorReplayOverride', studyTarget);
+  const INTRO_SHOWN_KEY = lessonIntroShownKey(lessonId, studyTarget);
 
   // Фильтруем только фразы с .words — словарные слова (без .words) не показываем в режиме кнопок
-  const LESSON_DATA = getLessonData(lessonId).filter(p => p.words && p.words.length > 0);
+  const LESSON_DATA = getLessonData(lessonId).filter(p => phraseHasStudyTargetContent(p, studyTarget));
   // Если в уроке меньше 50 фраз — не повторяем. effectiveTotal = реальное кол-во фраз.
   const effectiveTotal = Math.min(LESSON_DATA.length, TOTAL);
-  const { startCell: initialStartCell, initialOrder: initialOrderFromPrime } = getInitialOrderAndCell(lessonId, LESSON_DATA.length, effectiveTotal);
+  const lessonContentSignature = buildLessonContentSignature(
+    lessonId,
+    studyTarget,
+    LESSON_DATA.slice(0, effectiveTotal).map((p) => {
+      const rows = phraseWordRowsForStudyTarget(p, studyTarget);
+      return `${String(p.id ?? '')}|${phraseCanonicalAnswer(p, studyTarget)}|${rows.length}`;
+    }),
+  );
+  const hasPlayableLessonRows = effectiveTotal > 0;
+  const { startCell: initialStartCell, initialOrder: initialOrderFromPrime } = getInitialOrderAndCell(lessonId, LESSON_DATA.length, effectiveTotal, studyTarget);
   const { energy: currentEnergy, bonusEnergy, maxEnergy: currentMaxEnergy, isUnlimited: testerEnergyDisabled, spendOne, energyReady } = useEnergy();
   useEffect(() => {
     let cancelled = false;
     void (async () => {
-      const blocked = await shouldBlockLessonAccess(lessonId);
+      const blocked = await shouldBlockLessonAccess(lessonId, studyTarget);
       if (!cancelled && blocked) openLessonAccessGate(router, lessonId);
     })();
     return () => { cancelled = true; };
-  }, [lessonId, router]);
+  }, [lessonId, router, studyTarget]);
   // Refs to avoid stale closures in useCallback (checkAnswer has [progress,...] deps, not energy)
   const currentEnergyRef = useRef(currentEnergy);
   const bonusEnergyRef = useRef(bonusEnergy);
@@ -1182,7 +1402,7 @@ export default function LessonScreen() {
   const [status,       setStatus]       = useState<'playing' | 'result'>('playing');
   const [selectedWords,setSelectedWords]= useState<string[]>([]);
   const [shuffled,     setShuffled]     = useState<string[]>([]);
-  const [progress,     setProgress]     = useState<string[]>(() => getInitialProgressArray(effectiveTotal, lessonId));
+  const [progress,     setProgress]     = useState<string[]>(() => getInitialProgressArray(effectiveTotal, lessonId, studyTarget));
   const [settings,     setSettings]     = useState<Settings>(DEFAULT_SETTINGS);
   const spokenResultKeyRef = useRef('');
   const [wasWrong,     setWasWrong]     = useState(false);
@@ -1225,7 +1445,7 @@ export default function LessonScreen() {
    * (see lesson_menu / primeLessonScreenFromStorage) — then first paint is already at saved cell.
    */
   const [lessonHydrated, setLessonHydrated] = useState(
-    () => isLessonScreenPrimedThisSession(lessonId, LESSON_DATA.length, effectiveTotal)
+    () => isLessonScreenPrimedThisSession(lessonId, LESSON_DATA.length, effectiveTotal, studyTarget)
   );
   // Ref для хранения колбека после закрытия модалки (навигация на lesson_complete)
   const cycleEndCallbackRef = useRef<(() => void) | null>(null);
@@ -1289,6 +1509,7 @@ export default function LessonScreen() {
     if (shuffled.length > 0) return;
     const p = phraseRef.current;
     const idx = phraseWordIdxRef.current;
+    if (!p || !phraseHasStudyTargetContent(p, studyTarget)) return;
     if (!phraseWordRowsForStudyTarget(p, studyTarget).length) return;
     const totalWords = getPhraseTokens(p, studyTarget).length;
     if (idx >= totalWords) return; // предложение завершено — нормально
@@ -1318,11 +1539,11 @@ export default function LessonScreen() {
     return () => {
       if (autoTimer.current) clearTimeout(autoTimer.current);
     };
-  }, [lang, lessonId]);
+  }, [lang, lessonId, studyTarget]);
 
   useEffect(() => {
     let cancelled = false;
-    const introKey = `lesson${lessonId}_intro_shown`;
+    const introKey = INTRO_SHOWN_KEY;
     const hasIntroScreens = getLessonIntroScreens(lessonId, studyTarget).length > 0;
     if (!hasIntroScreens) {
       setShowIntroScreens(false);
@@ -1362,7 +1583,7 @@ export default function LessonScreen() {
     return () => {
       cancelled = true;
     };
-  }, [lessonId, replayIntro, replayIntroToken, studyTarget]);
+  }, [lessonId, INTRO_SHOWN_KEY, replayIntro, replayIntroToken, studyTarget]);
 
   // Показываем подсказку один раз за сессию
   useEffect(() => {
@@ -1393,6 +1614,16 @@ export default function LessonScreen() {
     spokenResultKeyRef.current = key;
     speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) });
   }, [cellIndex, lang, phrase, settings.speechRate, settings.voiceOut, speakAudio, status, studyTarget]);
+
+  const replayResultPhraseAudio = useCallback(() => {
+    if (status !== 'result' || !phrase) return;
+    const line = phraseAnswerDisplayLine(phrase, studyTarget, lang);
+    if (!line) return;
+    stopAudio();
+    setTimeout(() => {
+      speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) });
+    }, Platform.OS === 'android' ? 90 : 30);
+  }, [lang, phrase, settings.speechRate, speakAudio, status, stopAudio, studyTarget]);
 
   // Pulsing animation for to-be hint (only on first phrase of lesson 1)
   useEffect(() => {
@@ -1433,6 +1664,14 @@ export default function LessonScreen() {
     // BUGFIX: используем overridePhraseCell если есть (replay), иначе cellIndex
     if (status === 'playing') {
       const p = getPhraseForCell(overridePhraseCell ?? cellIndex);
+      if (!p || !phraseHasStudyTargetContent(p, studyTarget)) {
+        setShuffled([]);
+        setSelectedWords([]);
+        setTypedText('');
+        setPhraseWordIdx(0);
+        setContrExpanded(null);
+        return;
+      }
       // Skip any leading «-» zero-article positions at the start of the phrase
       const pWords = getPhraseTokens(p, studyTarget);
       let startIdx = 0;
@@ -1480,7 +1719,7 @@ export default function LessonScreen() {
         router.dismissTo({ pathname: '/lesson_menu', params: { id: String(lessonId) } });
       };
       void import('./lesson_menu')
-        .then((m) => m.prefetchLessonMenuCache(lessonId))
+        .then((m) => m.prefetchLessonMenuCache(lessonId, studyTargetRef.current))
         .then(popToMenu)
         .catch(popToMenu);
       return;
@@ -1497,7 +1736,7 @@ export default function LessonScreen() {
 
   const handleLessonHeaderBack = useCallback(() => {
     logLessonAbandoned(lessonId, cellIndex, 50);
-    trackLessonAbandoned().catch(() => {});
+    trackLessonAbandoned(studyTargetRef.current).catch(() => {});
     navigateUpFromLessonScreen();
   }, [lessonId, cellIndex, navigateUpFromLessonScreen]);
 
@@ -1545,20 +1784,41 @@ export default function LessonScreen() {
   }, [energyReady, lessonId, currentEnergy, bonusEnergy, testerEnergyDisabled, showEnergyEmptyFeedback]);
 
   const loadData = async () => {
-    if (!isLessonScreenPrimedThisSession(lessonId, LESSON_DATA.length, effectiveTotal)) {
+    if (!isLessonScreenPrimedThisSession(lessonId, LESSON_DATA.length, effectiveTotal, studyTargetRef.current)) {
       setLessonHydrated(false);
     }
     try {
       logLessonStart(lessonId);
-      trackLessonStart().catch(() => {});
+      trackLessonStart(studyTargetRef.current).catch(() => {});
+
+      if (!hasPlayableLessonRows) {
+        phraseOrderRef.current = [];
+        errorQueueRef.current = [];
+        questionsSinceErrorRef.current = 0;
+        setOverridePhraseCell(null);
+        setProgress([]);
+        setShuffled([]);
+        setSelectedWords([]);
+        setTypedText('');
+        setPhraseWordIdx(0);
+        setContrExpanded(null);
+        setStatus('playing');
+        setLessonHydrated(true);
+        touchLessonScreenPrimed(lessonId, {
+          cell: 0,
+          order: [],
+          progress: [],
+        }, studyTargetRef.current);
+        return;
+      }
 
       // Показываем intro-экраны при первом открытии урока (если контент есть).
       // Проверку делаем РАНЬШЕ тяжёлых await, чтобы экран появился мгновенно;
       // данные урока продолжают грузиться параллельно — к моменту тапа «Начать»
       // всё уже готово.
-      const introShownRaw = await AsyncStorage.getItem(`lesson${lessonId}_intro_shown`);
+      const introShownRaw = await AsyncStorage.getItem(INTRO_SHOWN_KEY);
       if (!introShownRaw && getLessonIntroScreens(lessonId, studyTargetRef.current).length > 0) {
-        await AsyncStorage.setItem(`lesson${lessonId}_intro_shown`, 'true').catch(() => {});
+        await AsyncStorage.setItem(INTRO_SHOWN_KEY, 'true').catch(() => {});
         syncLessonIntroShownFlagNow();
         setShowIntroScreens(true);
         setLessonHydrated(true); // снимаем спиннер — рендерим интро поверх
@@ -1569,27 +1829,50 @@ export default function LessonScreen() {
       setTesterNoLimits(noLimits === 'true');
       // energy state comes from EnergyContext — no local load needed
 
-      loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
-      const [sp, ss, ci, savedOrder, errQRaw, errSinceRaw, errOvRaw] = await Promise.all([
+      loadMedalInfo(lessonId, studyTargetRef.current).then(info => setPassCount(info.passCount));
+      const [sp, ss, ci, savedOrder, contentSignatureRaw, errQRaw, errSinceRaw, errOvRaw] = await Promise.all([
         AsyncStorage.getItem(LESSON_KEY),
         AsyncStorage.getItem(SETTINGS_KEY),
         AsyncStorage.getItem(CELL_KEY),
         AsyncStorage.getItem(ORDER_KEY),
+        AsyncStorage.getItem(CONTENT_SIGNATURE_KEY),
         AsyncStorage.getItem(ERROR_REPLAY_QUEUE_KEY),
         AsyncStorage.getItem(ERROR_REPLAY_SINCE_KEY),
         AsyncStorage.getItem(ERROR_REPLAY_OVERRIDE_KEY),
       ]);
 
+      const sessionStateStale = contentSignatureRaw !== lessonContentSignature;
+      if (sessionStateStale) {
+        void AsyncStorage.multiRemove([
+          CELL_KEY,
+          ORDER_KEY,
+          ERROR_REPLAY_QUEUE_KEY,
+          ERROR_REPLAY_SINCE_KEY,
+          ERROR_REPLAY_OVERRIDE_KEY,
+        ]).catch(() => {});
+        phraseOrderRef.current = [];
+        errorQueueRef.current = [];
+        questionsSinceErrorRef.current = 0;
+        setOverridePhraseCell(null);
+      }
+
       let restoredProgress = new Array(effectiveTotal).fill('empty');
-      if (sp) {
-        const p: string[] = JSON.parse(sp);
-        if (p.length === effectiveTotal) restoredProgress = p;
+      const parsedProgress = parseStoredLessonProgress(sp, effectiveTotal);
+      if (parsedProgress) {
+        restoredProgress = parsedProgress;
+      } else if (sp) {
+        void AsyncStorage.multiRemove([
+          LESSON_KEY,
+          ERROR_REPLAY_QUEUE_KEY,
+          ERROR_REPLAY_SINCE_KEY,
+          ERROR_REPLAY_OVERRIDE_KEY,
+        ]).catch(() => {});
       }
       setProgress(restoredProgress);
 
       // Очередь «повтори ошибку через один» — только в памяти → терялась после модалки энергии / remount.
       let restoredOverrideForUi: number | null = null;
-      if (!sp) {
+      if (!parsedProgress || sessionStateStale) {
         errorQueueRef.current = [];
         questionsSinceErrorRef.current = 0;
         setOverridePhraseCell(null);
@@ -1644,7 +1927,7 @@ export default function LessonScreen() {
       isReplayRef.current = restoredProgress.every(x => x === 'correct' || x === 'replay_correct');
 
       // Восстанавливаем позицию строго из CELL_KEY — каждый индикатор = конкретная фраза
-      const startCell = ci !== null ? (parseInt(ci) || 0) : 0;
+      const startCell = sessionStateStale ? 0 : clampStoredLessonCell(ci, effectiveTotal);
 
       // [SHUFFLE] Порядок фраз — без повторов внутри одного прохода.
       // Сохраняем в AsyncStorage чтобы при повторном входе (remount) не перегенерировать —
@@ -1652,16 +1935,7 @@ export default function LessonScreen() {
       if (phraseOrderRef.current.length === 0 && LESSON_DATA.length > 0) {
         const n = LESSON_DATA.length;
         const count = Math.min(n, TOTAL);
-        let restoredOrder: number[] | null = null;
-        if (savedOrder) {
-          try {
-            const parsed: number[] = JSON.parse(savedOrder);
-            // Валидируем: длина совпадает и все индексы в диапазоне
-            if (parsed.length === count && parsed.every(i => i >= 0 && i < n)) {
-              restoredOrder = parsed;
-            }
-          } catch {}
-        }
+        const restoredOrder = sessionStateStale ? null : parseStoredLessonOrder(savedOrder, n, count);
         if (restoredOrder) {
           phraseOrderRef.current = restoredOrder;
         } else {
@@ -1699,11 +1973,21 @@ export default function LessonScreen() {
       }
 
       if (ss) {
-        const loaded = { ...DEFAULT_SETTINGS, ...JSON.parse(ss) };
-        setSettings(loaded);
+        try {
+          const parsedSettings = JSON.parse(ss) as unknown;
+          if (parsedSettings && typeof parsedSettings === 'object' && !Array.isArray(parsedSettings)) {
+            const loaded = { ...DEFAULT_SETTINGS, ...parsedSettings };
+            setSettings(loaded);
+          } else {
+            void AsyncStorage.removeItem(SETTINGS_KEY).catch(() => {});
+          }
+        } catch {
+          void AsyncStorage.removeItem(SETTINGS_KEY).catch(() => {});
+        }
       }
 
       setInsufficientEnergy(false);
+      void AsyncStorage.setItem(CONTENT_SIGNATURE_KEY, lessonContentSignature).catch(() => {});
 
       // Сразу показываем урок (до вторичных await) — иначе React может сделать commit между
       // setCellIndex и setLessonHydrated в разных батчах вокруг await и кратковременно
@@ -1713,13 +1997,13 @@ export default function LessonScreen() {
         cell: startCell,
         order: phraseOrderRef.current,
         progress: restoredProgress,
-      });
+      }, studyTargetRef.current);
 
       // Загружаем счётчик подсказок 50/50 за сегодня
-      const todayKey = `fifty_fifty_${new Date().toISOString().slice(0, 10)}`;
+      const todayKey = fiftyFiftyUsageKey(new Date().toISOString().slice(0, 10), studyTargetRef.current);
       const ffCount = await AsyncStorage.getItem(todayKey);
       setFiftyFiftyUsedToday(ffCount ? parseInt(ffCount, 10) : 0);
-      const bonus = await getBonusHintsToday();
+      const bonus = await getBonusHintsToday(studyTargetRef.current);
       setBonusHints(bonus);
 
       // (проверка энергии при входе — в отдельном useEffect ниже)
@@ -1751,11 +2035,14 @@ export default function LessonScreen() {
       result: isRight ? 'success' : 'blocked',
       tags: { lessonId, cellIndex, isRight, replay: overridePhraseCell !== null },
     });
-    trackAnswer(isRight).catch(() => {});
+    trackAnswer(isRight, studyTargetRef.current).catch(() => {});
     if (isRight && !differentLessonTrackedRef.current) {
       differentLessonTrackedRef.current = true;
       (async () => {
-        const lessonKey = `lesson_visited_${new Date().toISOString().split('T')[0]}`;
+        const lessonKey = dailyTaskLessonVisitedKey(
+          new Date().toISOString().split('T')[0],
+          studyTargetRef.current,
+        );
         const visitedRaw = await AsyncStorage.getItem(lessonKey);
         let visited: number[] = [];
         try { visited = visitedRaw ? JSON.parse(visitedRaw) : []; } catch { visited = []; }
@@ -1763,7 +2050,10 @@ export default function LessonScreen() {
         if (!visited.includes(lessonId)) {
           visited.push(lessonId);
           await AsyncStorage.setItem(lessonKey, JSON.stringify(visited));
-          updateMultipleTaskProgress([{ type: 'different_lessons', increment: 1 }]).catch(() => {});
+          updateMultipleTaskProgress(
+            [{ type: 'different_lessons', increment: 1 }],
+            { studyTarget: studyTargetRef.current },
+          ).catch(() => {});
         }
       })();
     }
@@ -1791,7 +2081,7 @@ export default function LessonScreen() {
         : (isReplayRef.current ? 'replay_correct' : 'correct');
       if (!stillPendingReplay) {
         const wasLearned = prevPhraseCellState === 'correct' || prevPhraseCellState === 'replay_correct';
-        if (!wasLearned) void bumpStatsDaily('phrases_learned', 1);
+        if (!wasLearned) void bumpStatsDaily('phrases_learned', 1, studyTargetRef.current);
       }
     } else {
       // Ошибка всегда перезаписывает ячейку красной (даже если была зелёной)
@@ -1848,8 +2138,9 @@ export default function LessonScreen() {
             'lesson',
             spanishSurfacesEnabled(lang, stRm) ? phrase.spanish : undefined,
             mistakeMeta,
+            stRm,
           );
-          logMistake(analyticsPhraseKey || canonKey, lessonId, 'lesson', 'wrong_pick', mistakeMeta);
+          logMistake(analyticsPhraseKey || canonKey, lessonId, 'lesson', 'wrong_pick', mistakeMeta, stRm);
           lessonWrongMistakesRef.current.push({ phrase: analyticsPhraseKey || canonKey, ...mistakeMeta });
           void recordPhraseMistake(
             canonKey,
@@ -1859,6 +2150,7 @@ export default function LessonScreen() {
             errWord,
             tokenRow?.category,
             phrase.spanish,
+            stRm,
           );
         }
       }
@@ -1878,7 +2170,7 @@ export default function LessonScreen() {
       const hour = new Date().getHours();
       if (hour < 12) lessonUpdates.push({ type: 'morning_session' });
       if (hour >= 18) lessonUpdates.push({ type: 'evening_session' });
-      updateMultipleTaskProgress(lessonUpdates);
+      updateMultipleTaskProgress(lessonUpdates, { studyTarget: studyTargetRef.current });
       // Начисляем XP: 5 базовых × комбо-множитель (за серию без ошибок подряд внутри урока)
       const comboM = correctStreakRef.current >= 25 ? 3.0
         : correctStreakRef.current >= 15 ? 2.5
@@ -1905,7 +2197,7 @@ export default function LessonScreen() {
           .catch(() => {});
       }
       // [COMBO] Ачивки за серию правильных ответов
-      checkAchievements({ type: 'combo', count: correctStreakRef.current }).catch(() => {});
+      checkAchievements({ type: 'combo', count: correctStreakRef.current, studyTarget: studyTargetRef.current }).catch(() => {});
       // [TIME] Ачивки за ночное/утреннее обучение
       if (correctStreakRef.current === 1) {
         checkAchievements({ type: 'time_of_day' }).catch(() => {});
@@ -1919,16 +2211,20 @@ export default function LessonScreen() {
         resetAndUpdateTaskProgress(
           ['lesson_no_mistakes', 'correct_streak'],
           [{ type: 'total_answers' }],
+          studyTargetRef.current,
         );
       } else {
-        updateMultipleTaskProgress([{ type: 'total_answers' }]);
+        updateMultipleTaskProgress([{ type: 'total_answers' }], { studyTarget: studyTargetRef.current });
       }
 
       // При ОШИБКЕ: тратим энергию через контекст (используем refs — нет stale closure)
       if ((currentEnergyRef.current > 0 || bonusEnergyRef.current > 0) && !testerEnergyDisabledRef.current) {
         spendOneRef.current().then(success => {
           if (success) {
-            updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }]).catch(() => {});
+            updateMultipleTaskProgress(
+              [{ type: 'energy_spend', increment: 1 }],
+              { studyTarget: studyTargetRef.current },
+            ).catch(() => {});
             if (currentEnergyRef.current === 0 && bonusEnergyRef.current === 0) {
               setTimeout(() => { showEnergyEmptyFeedbackRef.current(); }, 1000);
             }
@@ -1962,7 +2258,7 @@ export default function LessonScreen() {
     const nextCell = (cellIndex + 1) % effectiveTotal;
     void AsyncStorage.setItem(LESSON_KEY, JSON.stringify(np)).catch(() => {});
     void AsyncStorage.setItem(CELL_KEY, String(nextCell)).catch(() => {});
-    touchLessonScreenPrimed(lessonId, { cell: nextCell, order: phraseOrderRef.current, progress: np });
+    touchLessonScreenPrimed(lessonId, { cell: nextCell, order: phraseOrderRef.current, progress: np }, studyTargetRef.current);
 
     // Проверяем завершение урока: только когда юзер дошёл до конца круга (nextCell === 0)
     // и ответил минимум на effectiveTotal вопросов в сессии.
@@ -1999,7 +2295,7 @@ export default function LessonScreen() {
         }
 
         // Пытаемся разблокировать следующий урок
-        const didUnlock = await tryUnlockNextLesson(lessonId, finalScore);
+        const didUnlock = await tryUnlockNextLesson(lessonId, finalScore, studyTargetRef.current);
         if (didUnlock && lessonId === 1) {
           void import('./cloud_sync')
             .then((m) => m.syncToCloud({ forceNow: true }))
@@ -2019,11 +2315,18 @@ export default function LessonScreen() {
           correct,
           effectiveTotal,
         }, 'lesson1');
-        updateMultipleTaskProgress([{ type: 'lesson_complete', increment: 1 }]).catch(() => {});
+        updateMultipleTaskProgress(
+          [{ type: 'lesson_complete', increment: 1 }],
+          { studyTarget: studyTargetRef.current },
+        ).catch(() => {});
 
         let coachRouteParams = {};
         try {
-          const decision = await checkCoachToastNeededWithAnalytics(lessonWrongMistakesRef.current);
+          const decision = await checkCoachToastNeededWithAnalytics(
+            lessonWrongMistakesRef.current,
+            studyTargetRef.current,
+            lang === 'uk' ? 'uk' : 'ru',
+          );
           coachRouteParams = coachToastDecisionToRouteParams(decision);
         } catch {
           coachRouteParams = {};
@@ -2059,6 +2362,7 @@ export default function LessonScreen() {
   }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, persistErrorReplayToStorage]);
 
   const goNext = useCallback(async (_currentProgress?: string[]) => {
+    if (effectiveTotal <= 0) return;
     if (autoTimer.current) clearTimeout(autoTimer.current);
 
     // [IMMEDIATE ERROR REPLAY] Определяем ДО того как двигать cellIndex
@@ -2109,7 +2413,7 @@ export default function LessonScreen() {
 
     // Сохраняем позицию
     try { await AsyncStorage.setItem(CELL_KEY, String(nextCell)); } catch {}
-    touchLessonScreenPrimed(lessonId, { cell: nextCell, order: phraseOrderRef.current, progress });
+    touchLessonScreenPrimed(lessonId, { cell: nextCell, order: phraseOrderRef.current, progress }, studyTargetRef.current);
   }, [cellIndex, progress, fadeAnim, LESSON_DATA, persistErrorReplayToStorage]);
 
   // CHANGE v5: rewritten for contraction branching using phraseWordIdx
@@ -2277,7 +2581,7 @@ export default function LessonScreen() {
 
   const correctCount = useMemo(() => progress.filter(p => p === 'correct' || p === 'replay_correct').length, [progress]);
   const wrongCount   = useMemo(() => progress.filter(p => p === 'wrong').length, [progress]);
-  const score = useMemo(() => Number((correctCount / effectiveTotal * 5).toFixed(1)), [correctCount, effectiveTotal]);
+  const score = useMemo(() => effectiveTotal > 0 ? Number((correctCount / effectiveTotal * 5).toFixed(1)) : 0, [correctCount, effectiveTotal]);
 
   // ── Medal tier change toast ──────────────────────────────────────────────────
   const prevMedalTierRef = useRef<MedalTier>('none');
@@ -2375,9 +2679,67 @@ export default function LessonScreen() {
 
     const newCount = fiftyFiftyUsedToday + 1;
     setFiftyFiftyUsedToday(newCount);
-    const todayKey = `fifty_fifty_${new Date().toISOString().slice(0, 10)}`;
+    const todayKey = fiftyFiftyUsageKey(new Date().toISOString().slice(0, 10), studyTargetRef.current);
     AsyncStorage.setItem(todayKey, String(newCount));
   }, [fiftyFiftyUsedToday, bonusHints, phrase, phraseWordIdx, shuffled, contrExpanded]);
+
+  const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows;
+  const lessonTheorySupportBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId);
+  const lessonHintSupportBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_hint', lessonId);
+
+  if (frenchLessonSourceGateBlocked) {
+    return (
+      <TouchableWithoutFeedback onPress={undefined}>
+        <ScreenGradient>
+          <LessonArtBackdrop variant="practice" />
+          <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
+              {triLang(lang, {
+                ru: 'Французский материал ещё на проверке',
+                uk: 'Французький матеріал ще на перевірці',
+                es: 'Material pendiente de revisión',
+                'pt-BR': 'Material aguardando revisão',
+                vi: 'Nội dung đang chờ kiểm duyệt',
+                id: 'Materi menunggu peninjauan',
+                tr: 'Materyal inceleme bekliyor',
+                pl: 'Materiał czeka na weryfikację',
+              })}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: f.body + 6, marginBottom: 18 }}>
+              {triLang(lang, {
+                ru: 'Этот урок не будет открывать английские фразы или интро как замену. Он появится после French source gate.',
+                uk: 'Цей урок не відкриватиме англійські фрази або інтро як заміну. Він з’явиться після French source gate.',
+                es: 'Este lesson no usará frases inglesas como reemplazo.',
+                'pt-BR': 'Este lesson não usará frases inglesas como substituição.',
+                vi: 'Bài này sẽ không dùng câu tiếng Anh thay thế.',
+                id: 'Pelajaran ini tidak memakai frasa Inggris sebagai pengganti.',
+                tr: 'Bu ders İngilizce ifadeleri yedek olarak kullanmayacak.',
+                pl: 'Ta lekcja nie użyje angielskich fraz jako zamiennika.',
+              })}
+            </Text>
+            <TouchableOpacity
+              accessibilityRole="button"
+              onPress={() => router.replace('/(tabs)/lessons' as any)}
+              style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
+            >
+              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
+                {triLang(lang, {
+                  ru: 'К урокам',
+                  uk: 'До уроків',
+                  es: 'A lecciones',
+                  'pt-BR': 'Para aulas',
+                  vi: 'Về bài học',
+                  id: 'Ke pelajaran',
+                  tr: 'Derslere',
+                  pl: 'Do lekcji',
+                })}
+              </Text>
+            </TouchableOpacity>
+          </SafeAreaView>
+        </ScreenGradient>
+      </TouchableWithoutFeedback>
+    );
+  }
 
   return (
     <>
@@ -2391,7 +2753,7 @@ export default function LessonScreen() {
             setShowIntroScreens={setShowIntroScreens}
             onIntroDone={async () => {
               if (replayIntro) consumedReplayIntroTokenRef.current = replayIntroToken || 'manual';
-              await AsyncStorage.setItem(`lesson${lessonId}_intro_shown`, 'true').catch(() => {});
+              await AsyncStorage.setItem(INTRO_SHOWN_KEY, 'true').catch(() => {});
               syncLessonIntroShownFlagNow();
               setShowIntroScreens(false);
             }}
@@ -2454,6 +2816,9 @@ export default function LessonScreen() {
             xpToastAnim={xpToastAnim}
             realPhraseIdx={(() => { const order = phraseOrderRef.current; const cell = overridePhraseCell ?? cellIndex; if (order.length === 0) return cell % (LESSON_DATA?.length || 1); return order[cell] ?? order[cell % order.length]; })()}
             studyTarget={studyTarget}
+            lessonTheorySupportBlocked={lessonTheorySupportBlocked}
+            lessonHintSupportBlocked={lessonHintSupportBlocked}
+            onReplayPhraseAudio={replayResultPhraseAudio}
             toastAnim={toastAnim}
             from={from}
             onHeaderBack={handleLessonHeaderBack}

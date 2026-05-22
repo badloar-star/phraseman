@@ -25,7 +25,7 @@ interface State {
   hasError: boolean;
   error: Error | null;
   errorInfo: React.ErrorInfo | null;
-  lang: 'ru' | 'uk' | 'es';
+  lang: ErrorBoundaryLang;
 }
 
 interface Props {
@@ -51,18 +51,39 @@ const TEXTS = {
     retry: 'Intentar de nuevo',
     debugTitle: 'Detalles técnicos:',
   },
+  'pt-BR': {
+    title: 'Algo deu errado',
+    body: 'O app encontrou um erro inesperado. Enviamos o relatório automaticamente. Tente continuar ou reinicie o Phraseman.',
+    retry: 'Tentar novamente',
+    debugTitle: 'Detalhes técnicos:',
+  },
+  vi: {
+    title: 'Đã xảy ra lỗi',
+    body: 'Ứng dụng gặp lỗi bất ngờ. Báo cáo đã được gửi tự động. Hãy thử tiếp tục hoặc khởi động lại Phraseman.',
+    retry: 'Thử lại',
+    debugTitle: 'Chi tiết kỹ thuật:',
+  },
+  'id': {
+    title: 'Terjadi kesalahan',
+    body: 'Aplikasi mengalami kesalahan tak terduga. Laporan sudah dikirim otomatis. Coba lanjutkan atau mulai ulang Phraseman.',
+    retry: 'Coba lagi',
+    debugTitle: 'Detail teknis:',
+  },
+  tr: {
+    title: 'Bir şeyler ters gitti',
+    body: 'Uygulama beklenmeyen bir hatayla karşılaştı. Raporu otomatik olarak gönderdik. Devam etmeyi dene veya Phraseman uygulamasını yeniden başlat.',
+    retry: 'Tekrar dene',
+    debugTitle: 'Teknik ayrıntılar:',
+  },
+  pl: {
+    title: 'Coś poszło nie tak',
+    body: 'Aplikacja napotkała nieoczekiwany błąd. Raport został wysłany automatycznie. Spróbuj kontynuować albo uruchom Phraseman ponownie.',
+    retry: 'Spróbuj ponownie',
+    debugTitle: 'Szczegóły techniczne:',
+  },
 } as const;
 
-function getLang(): 'ru' | 'uk' {
-  // Без useLang() — boundary рендериться поза провайдерами при критичних помилках.
-  // Фолбек на ru. Легке покращення можна додати через AsyncStorage.getItem(),
-  // але render не може бути async — лишаємо синхронно.
-  try {
-    const platform = Platform.OS;
-    void platform;
-  } catch {}
-  return 'ru';
-}
+type ErrorBoundaryLang = keyof typeof TEXTS;
 
 export default class ErrorBoundary extends React.Component<Props, State> {
   state: State = {
@@ -102,8 +123,8 @@ export default class ErrorBoundary extends React.Component<Props, State> {
 
   componentDidMount() {
     AsyncStorage.getItem('app_lang').then(v => {
-      if (v === 'ru' || v === 'uk' || v === 'es') {
-        this.setState({ lang: v });
+      if (v && Object.prototype.hasOwnProperty.call(TEXTS, v)) {
+        this.setState({ lang: v as ErrorBoundaryLang });
       }
     }).catch(() => {});
     this.appStateSub = AppState.addEventListener('change', (state) => {

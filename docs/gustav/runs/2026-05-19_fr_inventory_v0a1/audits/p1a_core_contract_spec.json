@@ -1,0 +1,409 @@
+{
+  "schemaVersion": "gustav-p1a-core-contract-spec-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-19T20:33:38.581Z",
+  "status": "PASS",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_p1a_core_contract_spec_audit.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "sourceArtifacts": {
+    "manifest": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/manifest.json",
+    "targetKeyIntegrationPlan": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/target_key_integration_plan.json",
+    "p1ExecutionSliceAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1_execution_slice_audit.json",
+    "applyPlan": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/file_changes.json"
+  },
+  "summary": {
+    "studyTargets": 2,
+    "sourceLocales": 2,
+    "publicApis": 7,
+    "domainContracts": 14,
+    "allowedTargetDomains": 10,
+    "blockedDomains": 1,
+    "storageShapes": 36,
+    "firstSliceFiles": 4,
+    "firstSliceDirtyOverlaps": 0,
+    "testAssertions": 6,
+    "blockers": 0,
+    "warnings": 0,
+    "canImplementP1AContractsAfterApproval": true,
+    "mayStartFrenchGeneration": false,
+    "mayModifyProductionAppFiles": false
+  },
+  "studyTargetContract": {
+    "typeName": "StudyTarget",
+    "values": [
+      "en",
+      "fr"
+    ],
+    "defaultTarget": "en",
+    "requestedTarget": "fr",
+    "storageKey": "study_target_v1",
+    "mustNotDependOnSourceLocale": true,
+    "mustNotUseDevStudyTargetLang": true,
+    "notes": [
+      "Production StudyTarget is the language being learned.",
+      "sourceLocale remains the explanation/interface language.",
+      "Existing dev StudyTargetLang en/es must not drive production French."
+    ]
+  },
+  "sourceLocaleContract": {
+    "values": [
+      "ru",
+      "uk"
+    ],
+    "mustNotChangeStudyTarget": true,
+    "notes": [
+      "Russian and Ukrainian are source locales for studying French.",
+      "Switching source locale changes explanations/copy only."
+    ]
+  },
+  "keyBuilderContract": {
+    "modulePath": "app/target_storage_keys.ts",
+    "allowedTargetDomains": [
+      "lesson_progress",
+      "lesson_session_local",
+      "lesson_rewards",
+      "level_exams",
+      "trainer_practice",
+      "personal_practice",
+      "achievements",
+      "cloud_sync",
+      "flashcards",
+      "analytics_stats"
+    ],
+    "blockedDomains": [
+      "unknown_target_storage"
+    ],
+    "publicApis": [
+      {
+        "name": "isStudyTarget",
+        "signature": "isStudyTarget(value: unknown): value is StudyTarget",
+        "purpose": "Accept only 'en' and 'fr' production study targets.",
+        "forbiddenBehavior": [
+          "Must not accept 'es' from dev StudyTargetLang.",
+          "Must not infer target from sourceLocale."
+        ]
+      },
+      {
+        "name": "assertStudyTarget",
+        "signature": "assertStudyTarget(value: unknown): StudyTarget",
+        "purpose": "Fail closed when target is missing or unsupported.",
+        "forbiddenBehavior": [
+          "Must not silently default French requests to English."
+        ]
+      },
+      {
+        "name": "defaultStudyTarget",
+        "signature": "defaultStudyTarget(): 'en'",
+        "purpose": "Keep existing English behavior as the default compatibility target.",
+        "forbiddenBehavior": [
+          "Must not change sourceLocale preferences."
+        ]
+      },
+      {
+        "name": "targetKey",
+        "signature": "targetKey(domain: TargetKeyDomain, studyTarget: StudyTarget, id?: string | number): string",
+        "purpose": "Build target-scoped keys for learning state.",
+        "forbiddenBehavior": [
+          "Must not emit raw legacy keys.",
+          "Must not accept blocked unknown_target_storage domain."
+        ]
+      },
+      {
+        "name": "sourceTargetKey",
+        "signature": "sourceTargetKey(domain: SourceTargetKeyDomain, studyTarget: StudyTarget, sourceLocale: SourceLocale, id?: string | number): string",
+        "purpose": "Build keys where feedback/copy state needs both target and sourceLocale dimensions.",
+        "forbiddenBehavior": [
+          "Must not let sourceLocale replace studyTarget."
+        ]
+      },
+      {
+        "name": "legacyEnglishKey",
+        "signature": "legacyEnglishKey(domain: TargetKeyDomain, id?: string | number): string",
+        "purpose": "Name legacy English fallback keys for migration/read-compat modules only.",
+        "forbiddenBehavior": [
+          "Must not be used for French reads.",
+          "Must not delete legacy English keys."
+        ]
+      },
+      {
+        "name": "assertTargetKey",
+        "signature": "assertTargetKey(key: string): string",
+        "purpose": "Reject new target-sensitive raw storage keys outside migration adapters.",
+        "forbiddenBehavior": [
+          "Must not approve lesson/trainer/quiz/flashcard raw v1 keys."
+        ]
+      }
+    ],
+    "keyFormats": [
+      "<domain>_v2::{studyTarget}",
+      "<domain>_v2::{studyTarget}::{id}",
+      "<domain>_v2::{studyTarget}::{sourceLocale}::{id}",
+      "progress/targets/{studyTarget}/*"
+    ]
+  },
+  "domainContracts": [
+    {
+      "domain": "study_target_model",
+      "status": "non_target_contract_domain",
+      "storageShapes": [
+        "study_target_v1",
+        "legacy dev key dev_study_target_lang stays isolated until removed or renamed"
+      ],
+      "sourceArtifactDomain": "study_target_model",
+      "requiresStudyTarget": false,
+      "allowsSourceLocaleDimension": false,
+      "legacyEnglishFallbackAllowedOnlyInMigration": false
+    },
+    {
+      "domain": "target_key_builder",
+      "status": "non_target_contract_domain",
+      "storageShapes": [
+        "<domain>_v2::{studyTarget}",
+        "<domain>_v2::{studyTarget}::{id}",
+        "<domain>_v2::{studyTarget}::{sourceLocale}::{id}"
+      ],
+      "sourceArtifactDomain": "target_key_builder",
+      "requiresStudyTarget": false,
+      "allowsSourceLocaleDimension": true,
+      "legacyEnglishFallbackAllowedOnlyInMigration": false
+    },
+    {
+      "domain": "lesson_progress",
+      "status": "allowed_target_domain",
+      "storageShapes": [
+        "lesson_progress_v2::{studyTarget}::{lessonId}",
+        "lesson_words_v2::{studyTarget}::{lessonId}",
+        "unlocked_lessons_v2::{studyTarget}"
+      ],
+      "sourceArtifactDomain": "lesson_progress",
+      "requiresStudyTarget": true,
+      "allowsSourceLocaleDimension": false,
+      "legacyEnglishFallbackAllowedOnlyInMigration": true
+    },
+    {
+      "domain": "lesson_session_local",
+      "status": "allowed_target_domain",
+      "storageShapes": [
+        "lesson_session_v2::{studyTarget}::{lessonId}",
+        "lesson_error_replay_v2::{studyTarget}::{lessonId}",
+        "quiz_nav_level_v2::{studyTarget}"
+      ],
+      "sourceArtifactDomain": "lesson_session_local",
+      "requiresStudyTarget": true,
+      "allowsSourceLocaleDimension": false,
+      "legacyEnglishFallbackAllowedOnlyInMigration": true
+    },
+    {
+      "domain": "lesson_rewards",
+      "status": "allowed_target_domain",
+      "storageShapes": [
+        "reward_grants_v2::{studyTarget}::{rewardId}",
+        "progress/targets/{studyTarget}/reward_grants"
+      ],
+      "sourceArtifactDomain": "lesson_rewards",
+      "requiresStudyTarget": true,
+      "allowsSourceLocaleDimension": false,
+      "legacyEnglishFallbackAllowedOnlyInMigration": true
+    },
+    {
+      "domain": "level_exams",
+      "status": "allowed_target_domain",
+      "storageShapes": [
+        "level_exam_v2::{studyTarget}::{level}",
+        "certificate_v2::{studyTarget}"
+      ],
+      "sourceArtifactDomain": "level_exams",
+      "requiresStudyTarget": true,
+      "allowsSourceLocaleDimension": false,
+      "legacyEnglishFallbackAllowedOnlyInMigration": true
+    },
+    {
+      "domain": "trainer_practice",
+      "status": "allowed_target_domain",
+      "storageShapes": [
+        "trainer_store_v2::{studyTarget}",
+        "mistake_log_v2::{studyTarget}",
+        "active_recall_v2::{studyTarget}"
+      ],
+      "sourceArtifactDomain": "trainer_practice",
+      "requiresStudyTarget": true,
+      "allowsSourceLocaleDimension": false,
+      "legacyEnglishFallbackAllowedOnlyInMigration": true
+    },
+    {
+      "domain": "personal_practice",
+      "status": "allowed_target_domain",
+      "storageShapes": [
+        "personal_practice_v2::{studyTarget}::{sourceLocale}",
+        "diagnostic_last_v2::{studyTarget}::{sourceLocale}",
+        "open_diagnostic_v2::{studyTarget}"
+      ],
+      "sourceArtifactDomain": "personal_practice",
+      "requiresStudyTarget": true,
+      "allowsSourceLocaleDimension": true,
+      "legacyEnglishFallbackAllowedOnlyInMigration": true
+    },
+    {
+      "domain": "achievements",
+      "status": "allowed_target_domain",
+      "storageShapes": [
+        "achievements_global_v2",
+        "achievements_target_v2::{studyTarget}",
+        "progress/targets/{studyTarget}/achievements"
+      ],
+      "sourceArtifactDomain": "achievements",
+      "requiresStudyTarget": true,
+      "allowsSourceLocaleDimension": false,
+      "legacyEnglishFallbackAllowedOnlyInMigration": true
+    },
+    {
+      "domain": "cloud_sync",
+      "status": "allowed_target_domain",
+      "storageShapes": [
+        "progress/global/*",
+        "progress/targets/{studyTarget}/*",
+        "progress/sourceLocales/{sourceLocale}/*"
+      ],
+      "sourceArtifactDomain": "cloud_sync",
+      "requiresStudyTarget": true,
+      "allowsSourceLocaleDimension": true,
+      "legacyEnglishFallbackAllowedOnlyInMigration": true
+    },
+    {
+      "domain": "flashcards",
+      "status": "allowed_target_domain",
+      "storageShapes": [
+        "flashcards_v2::{studyTarget}",
+        "custom_flashcards_v2::{studyTarget}",
+        "flashcards_progress_v2::{studyTarget}"
+      ],
+      "sourceArtifactDomain": "flashcards",
+      "requiresStudyTarget": true,
+      "allowsSourceLocaleDimension": false,
+      "legacyEnglishFallbackAllowedOnlyInMigration": true
+    },
+    {
+      "domain": "analytics_stats",
+      "status": "allowed_target_domain",
+      "storageShapes": [
+        "stats_global_v2",
+        "stats_target_v2::{studyTarget}",
+        "daily_stats_target_v2::{studyTarget}"
+      ],
+      "sourceArtifactDomain": "analytics_stats",
+      "requiresStudyTarget": true,
+      "allowsSourceLocaleDimension": false,
+      "legacyEnglishFallbackAllowedOnlyInMigration": true
+    },
+    {
+      "domain": "source_locale_preferences",
+      "status": "non_target_contract_domain",
+      "storageShapes": [
+        "app_lang",
+        "progress/sourceLocales/{sourceLocale}/preferences"
+      ],
+      "sourceArtifactDomain": "source_locale_preferences",
+      "requiresStudyTarget": false,
+      "allowsSourceLocaleDimension": true,
+      "legacyEnglishFallbackAllowedOnlyInMigration": false
+    },
+    {
+      "domain": "unknown_target_storage",
+      "status": "blocked_until_classified",
+      "storageShapes": [
+        "blocked until each unknown receives a reviewed target/global/source scope"
+      ],
+      "sourceArtifactDomain": "unknown_target_storage",
+      "requiresStudyTarget": false,
+      "allowsSourceLocaleDimension": false,
+      "legacyEnglishFallbackAllowedOnlyInMigration": false
+    }
+  ],
+  "firstSlice": {
+    "id": "P1A_CORE_CONTRACTS",
+    "files": [
+      "app/study_target.ts",
+      "app/target_storage_keys.ts",
+      "tests/gustav_surface_target_switch.test.ts",
+      "tests/gustav_target_storage_keys.test.ts"
+    ],
+    "dirtyWorktreeOverlaps": [],
+    "mayModifyProductionAppFiles": false
+  },
+  "testContract": {
+    "files": [
+      "tests/gustav_surface_target_switch.test.ts",
+      "tests/gustav_target_storage_keys.test.ts"
+    ],
+    "assertions": [
+      {
+        "id": "P1A-STUDY-TARGET-VALUES",
+        "file": "tests/gustav_surface_target_switch.test.ts",
+        "assertion": "StudyTarget accepts 'en' and 'fr', rejects dev-only 'es', and defaults to 'en'.",
+        "covers": [
+          "StudyTarget",
+          "dev StudyTargetLang isolation"
+        ]
+      },
+      {
+        "id": "P1A-SOURCE-LOCALE-SEPARATION",
+        "file": "tests/gustav_surface_target_switch.test.ts",
+        "assertion": "Switching sourceLocale ru -> uk does not change studyTarget=fr.",
+        "covers": [
+          "sourceLocale separation",
+          "requested target fr"
+        ]
+      },
+      {
+        "id": "P1A-TARGET-KEY-DISTINCTNESS",
+        "file": "tests/gustav_target_storage_keys.test.ts",
+        "assertion": "targetKey returns distinct en/fr keys for every allowed target domain.",
+        "covers": [
+          "targetKey",
+          "target domains"
+        ]
+      },
+      {
+        "id": "P1A-SOURCE-TARGET-KEY-SHAPE",
+        "file": "tests/gustav_target_storage_keys.test.ts",
+        "assertion": "sourceTargetKey includes studyTarget and sourceLocale dimensions without swapping them.",
+        "covers": [
+          "sourceTargetKey",
+          "personal practice sourceLocale feedback"
+        ]
+      },
+      {
+        "id": "P1A-LEGACY-ENGLISH-FALLBACK-LIMIT",
+        "file": "tests/gustav_target_storage_keys.test.ts",
+        "assertion": "legacyEnglishKey is English-only migration metadata and never produces a French target key.",
+        "covers": [
+          "legacy English compatibility",
+          "French clean state"
+        ]
+      },
+      {
+        "id": "P1A-RAW-KEY-GUARD",
+        "file": "tests/gustav_target_storage_keys.test.ts",
+        "assertion": "assertTargetKey rejects raw lesson/trainer/quiz/flashcard v1 keys.",
+        "covers": [
+          "raw storage guard",
+          "target isolation"
+        ]
+      }
+    ]
+  },
+  "findings": [],
+  "notes": [
+    "This contract spec is a planning artifact only; it does not write product files.",
+    "P1A remains blocked until the apply plan is explicitly approved.",
+    "French generation remains blocked until target-isolation implementation and generated-content audit pass."
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-05-19T12:33:33.113Z",
+  "mode": "semantic-audit",
+  "strict": true,
+  "summary": {
+    "findings": 1,
+    "blockers": 0,
+    "warnings": 1,
+    "reviewGroups": 1,
+    "byCode": {
+      "protected-english-term-missing": 1
+    },
+    "bySurface": {
+      "quiz": 1
+    }
+  },
+  "reviewGroups": [
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 115,
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): wasn't.",
+      "sample": "En inglés estándar evitamos doble negación: wasn\\'t nobody. Nobody ya niega la frase.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "protected-english-term-missing",
+      "surface": "quiz",
+      "difficulty": "medium",
+      "ordinal": 115,
+      "locale": "es",
+      "field": "explanations[1]",
+      "message": "Localized explanation is missing protected English term(s): wasn't.",
+      "sample": "En inglés estándar evitamos doble negación: wasn\\'t nobody. Nobody ya niega la frase."
+    }
+  ]
+}

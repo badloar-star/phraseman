@@ -28,6 +28,7 @@ export const APP_ART_BACKDROP_NAMES = [
   'flashcards',
   'progressMap',
   'shardsShop',
+  'levelGifts',
   'statistics',
 ] as const;
 
@@ -168,8 +169,23 @@ const PROGRESS_MAP_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
   minimalDark: require('../assets/images/screen_backdrops/progress_map/progress-map-minimal-dark.webp'),
 };
 
-// Keep route-specific backdrop names while dedicated deep-screen art is not bundled yet.
-const SHARDS_SHOP_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = SETTINGS_BACKDROPS;
+const SHARDS_SHOP_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
+  dark: require('../assets/images/screen_backdrops/shards_shop/shards-shop-dark.webp'),
+  neon: require('../assets/images/screen_backdrops/shards_shop/shards-shop-neon.webp'),
+  gold: require('../assets/images/screen_backdrops/shards_shop/shards-shop-gold.webp'),
+  coral: require('../assets/images/screen_backdrops/shards_shop/shards-shop-coral.webp'),
+  minimalLight: require('../assets/images/screen_backdrops/shards_shop/shards-shop-minimal-light.webp'),
+  minimalDark: require('../assets/images/screen_backdrops/shards_shop/shards-shop-minimal-dark.webp'),
+};
+
+const LEVEL_GIFTS_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
+  dark: require('../assets/images/screen_backdrops/level_gifts/level-gifts-dark.webp'),
+  neon: require('../assets/images/screen_backdrops/level_gifts/level-gifts-neon.webp'),
+  gold: require('../assets/images/screen_backdrops/level_gifts/level-gifts-gold.webp'),
+  coral: require('../assets/images/screen_backdrops/level_gifts/level-gifts-coral.webp'),
+  minimalLight: require('../assets/images/screen_backdrops/level_gifts/level-gifts-minimal-light.webp'),
+  minimalDark: require('../assets/images/screen_backdrops/level_gifts/level-gifts-minimal-dark.webp'),
+};
 
 const STATISTICS_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
   dark: require('../assets/images/statistics/stats-bg-dark.webp'),
@@ -198,6 +214,7 @@ export const APP_ART_BACKDROP_SOURCES: Record<AppArtBackdropName, Record<ThemeMo
   flashcards: FLASHCARDS_BACKDROPS,
   progressMap: PROGRESS_MAP_BACKDROPS,
   shardsShop: SHARDS_SHOP_BACKDROPS,
+  levelGifts: LEVEL_GIFTS_BACKDROPS,
   statistics: STATISTICS_BACKDROPS,
 };
 
@@ -234,6 +251,7 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   community_pack_create: 'flashcards',
   pack_opening: 'flashcards',
   shards_shop: 'shardsShop',
+  level_gifts_inventory: 'levelGifts',
   streak_stats: 'statistics',
   phrase_analytics_screen: 'statistics',
   trainer: 'statistics',
@@ -267,22 +285,63 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   _pos_analytics_audit: 'statistics',
 };
 
-export function resolveAppArtBackdropName(pathname?: string | null): AppArtBackdropName {
+const DEFAULT_ROUTE_BACKDROP: AppArtBackdropName = 'home';
+const warnedRouteBackdropKeys = new Set<string>();
+
+function readRouteBackdrop(pathname?: string | null): {
+  normalized: string;
+  lastSegment: string;
+  backdropName?: AppArtBackdropName;
+} {
   const normalized = normalizePathname(pathname);
   const segments = normalized
     .split('/')
     .map(segment => segment.trim())
     .filter(segment => segment && !segment.startsWith('('));
-  const lastSegment = segments[segments.length - 1] ?? 'home';
+  const routeSegment = segments[segments.length - 1];
+  const lastSegment = routeSegment || DEFAULT_ROUTE_BACKDROP;
 
-  return APP_ART_ROUTE_BACKDROPS[lastSegment] ?? 'home';
+  return {
+    normalized,
+    lastSegment,
+    backdropName: APP_ART_ROUTE_BACKDROPS[lastSegment],
+  };
+}
+
+export function assertAppArtBackdropRoute(pathname?: string | null): AppArtBackdropName {
+  const route = readRouteBackdrop(pathname);
+
+  if (!route.backdropName) {
+    throw new Error(`[AppArtBackdrop] Missing generated backdrop mapping for route "${route.normalized}" (segment "${route.lastSegment}")`);
+  }
+
+  return route.backdropName;
+}
+
+export function resolveAppArtBackdropName(pathname?: string | null): AppArtBackdropName {
+  const route = readRouteBackdrop(pathname);
+
+  if (route.backdropName) {
+    return route.backdropName;
+  }
+
+  if (typeof __DEV__ !== 'undefined' && __DEV__) {
+    const warnKey = `${route.normalized}:${route.lastSegment}`;
+    if (!warnedRouteBackdropKeys.has(warnKey)) {
+      warnedRouteBackdropKeys.add(warnKey);
+      console.warn(`[AppArtBackdrop] Missing generated backdrop mapping for route "${route.normalized}" (segment "${route.lastSegment}"); using home art`);
+    }
+  }
+
+  return DEFAULT_ROUTE_BACKDROP;
 }
 
 export function getAppArtBackdropSource(
   name: AppArtBackdropName,
   themeMode: ThemeMode,
 ): ImageSourcePropType {
-  return APP_ART_BACKDROP_SOURCES[name][themeMode] ?? APP_ART_BACKDROP_SOURCES[name].dark;
+  const source = APP_ART_BACKDROP_SOURCES[name][themeMode];
+  return source;
 }
 
 function normalizePathname(pathname?: string | null): string {

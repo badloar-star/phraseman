@@ -14,6 +14,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { stringsForLang, useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
@@ -34,6 +35,11 @@ import AddToFlashcard from '../components/AddToFlashcard';
 import { recordWordMistake, activateWordForTrainer } from './trainer_store';
 import { logMistake } from './mistake_log';
 import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { irregularVerbsGlobalKey, lessonIrregularShardsGrantedKey, type RuntimeStudyTarget } from './target_storage_keys';
+import {
+  frenchVocabularyGateCopy,
+  vocabularyContentAvailableForTarget,
+} from './vocabulary_target_gate';
 
 export { IRREGULAR_VERB_COUNT_BY_LESSON, LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 
@@ -41,7 +47,8 @@ const REQUIRED = 3;
 const POINTS_PER_VERB = 3;
 /** Как в «Словаре»: короткая пауза на подсветку; озвучка правильного ответа — сразу при тапе (не после таймера). */
 const ANSWER_FEEDBACK_MS = { correct: 800, wrong: 400 } as const;
-export const GLOBAL_IRREGULAR_KEY = 'irregular_verbs_global';
+export const GLOBAL_IRREGULAR_KEY = irregularVerbsGlobalKey();
+export const globalIrregularKeyForTarget = irregularVerbsGlobalKey;
 
 // ── Mini hexagon ──────────────────────────────────────────────────────────────
 // ── Learn Tab (One-form-at-a-time tap mechanic) ────────────────────────────────
@@ -244,7 +251,7 @@ function initialOptionsForFirstStep(verbs: IrregularVerb[], allVerbs: IrregularV
   return make4Options(correct, v0, allVerbs, 'past');
 }
 
-function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy }: {
+function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, studyTarget }: {
   verbs: IrregularVerb[];
   allVerbs: IrregularVerb[];
   lang: Lang;
@@ -253,6 +260,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   onReset: () => void;
   lessonId?: number;
   onNoEnergy: () => void;
+  studyTarget?: RuntimeStudyTarget;
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -293,6 +301,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const hadErrorThisVerb = useRef(false);
   // Счётчик ошибок на глагол для тренера (порог: 2 ошибки → активация)
   const verbMistakeCountRef = useRef<Record<string, number>>({});
+  const irregularStorageKey = useMemo(() => irregularVerbsGlobalKey(studyTarget), [studyTarget]);
 
   const xpTranslateY = useRef(new Animated.Value(40)).current;
   const xpOpacity = useRef(new Animated.Value(0)).current;
@@ -354,7 +363,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     if (curQueue.length === 0) {
       setAllDone(true);
       // Осколок за завершение раздела неправильных глаголов (единоразово) — глобальная модалка в _layout
-      const key = `lesson${lessonId ?? 0}_irregular_shards_granted`;
+      const key = lessonIrregularShardsGrantedKey(lessonId ?? 0, studyTarget);
       void AsyncStorage.getItem(key).then(done => {
         if (!done) {
           void addShards('lesson_completed').catch(() => {});
@@ -366,7 +375,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     setPos(curPos % curQueue.length);
     setQueue(curQueue);
     initVerb(curQueue[curPos % curQueue.length]);
-  }, [initVerb, lessonId]);
+  }, [initVerb, lessonId, studyTarget]);
 
   const handleTap = useCallback(async (word: string, btnIdx: number) => {
     if (locked.current || phase !== 'answering') return;
@@ -408,14 +417,14 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         expected: correct,
         picked: word,
         rawCategory: 'irregular_verbs',
-      });
+      }, studyTarget);
       const prevVerbCount = verbMistakeCountRef.current[vKey] ?? 0;
       const newVerbCount = prevVerbCount + 1;
       verbMistakeCountRef.current[vKey] = newVerbCount;
       if (newVerbCount === 2) {
-        void activateWordForTrainer(vKey, verb.ru, verb.uk, lessonId ?? 0, 'irregular_verbs');
+        void activateWordForTrainer(vKey, verb.ru, verb.uk, lessonId ?? 0, 'irregular_verbs', undefined, studyTarget);
       } else {
-        void recordWordMistake(vKey, verb.ru, verb.uk, lessonId ?? 0, 'irregular_verbs');
+        void recordWordMistake(vKey, verb.ru, verb.uk, lessonId ?? 0, 'irregular_verbs', undefined, studyTarget);
       }
 
       // Тратим энергию при ошибке
@@ -445,13 +454,13 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
           const newCounts = { ...counts, [verb.base]: newCount };
           setCounts(newCounts);
           onUpdate(verb.base, newCount);
-          AsyncStorage.getItem(GLOBAL_IRREGULAR_KEY).then(raw => {
+          AsyncStorage.getItem(irregularStorageKey).then(raw => {
             const g: Record<string, number> = raw ? JSON.parse(raw) : {};
             g[verb.base] = newCount;
-            AsyncStorage.setItem(GLOBAL_IRREGULAR_KEY, JSON.stringify(g));
+            AsyncStorage.setItem(irregularStorageKey, JSON.stringify(g));
           });
           setLearnedCnt(c => c + 1);
-          updateMultipleTaskProgress([{ type: 'verb_learned' }]);
+          updateMultipleTaskProgress([{ type: 'verb_learned' }], { studyTarget });
           if (userName) {
             registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang)
               .then((r) => {
@@ -482,7 +491,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         }
       }
     }, isCorrect ? ANSWER_FEEDBACK_MS.correct : ANSWER_FEEDBACK_MS.wrong);
-  }, [phase, queue, pos, step, options, counts, userName, lang, onUpdate, showXpToast, buildStep, goNextVerb, speakAudio, speechRate, voiceOut]);
+  }, [phase, queue, pos, step, options, counts, userName, lang, onUpdate, showXpToast, buildStep, goNextVerb, speakAudio, speechRate, voiceOut, irregularStorageKey, studyTarget]);
 
   if (allDone) return (
     <>
@@ -670,7 +679,6 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         paddingHorizontal: 16, paddingBottom: 20, paddingTop: 12,
         gap: 10,
         borderTopWidth: 0.5, borderTopColor: t.border,
-        backgroundColor: t.bgPrimary,
       }}>
         {[options.slice(0, 2), options.slice(2, 4)].map((row, rowIdx) => (
           <View key={rowIdx} style={{ flexDirection: 'row', gap: 10 }}>
@@ -896,12 +904,43 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
   );
 }
 
+function FrenchIrregularVerbsUnavailable({ lang, onBack }: { lang: Lang; onBack: () => void }) {
+  const { theme: t, f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  const copy = frenchVocabularyGateCopy('irregular_verbs', lang);
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24, gap: 16 }}>
+      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
+        <Ionicons name="shield-checkmark-outline" size={34} color={sx.second} />
+      </View>
+      <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center' }}>
+        {copy.title}
+      </Text>
+      <Text style={{ color: sx.muted, fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center' }}>
+        {copy.body}
+      </Text>
+      <TouchableOpacity
+        testID="lesson-irregular-verbs-french-source-gate-back"
+        onPress={onBack}
+        activeOpacity={0.82}
+        style={{ marginTop: 8, alignSelf: 'center', backgroundColor: sx.second, borderRadius: 14, paddingHorizontal: 26, paddingVertical: 13 }}
+      >
+        <Text style={{ color: '#06111f', fontSize: f.bodyLg, fontWeight: '800' }}>
+          {copy.action}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
 // ── Root ──────────────────────────────────────────────────────────────────────
 export default function LessonIrregularVerbs() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const rootPack = stringsForLang(lang);
   const { energy, isUnlimited: energyUnlimited } = useEnergy();
   const canTrain = energyUnlimited || energy > 0;
@@ -909,13 +948,15 @@ export default function LessonIrregularVerbs() {
   const lessonId = parseInt(id || '1', 10);
   useEffect(() => {
     let cancelled = false;
-    void shouldBlockLessonAccess(lessonId).then(blocked => {
+    void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
       if (!cancelled && blocked) openLessonAccessGate(router, lessonId);
     });
     return () => { cancelled = true; };
-  }, [lessonId, router]);
-  const allVerbs = IRREGULAR_VERBS_BY_LESSON[lessonId] || [];
-  const allVerbsFlat: IrregularVerb[] = Object.values(IRREGULAR_VERBS_BY_LESSON).flat();
+  }, [lessonId, router, studyTarget]);
+  const frenchIrregularBlocked = !vocabularyContentAvailableForTarget(studyTarget, 'irregular_verbs');
+  const irregularStorageKey = irregularVerbsGlobalKey(studyTarget);
+  const allVerbs = frenchIrregularBlocked ? [] : (IRREGULAR_VERBS_BY_LESSON[lessonId] || []);
+  const allVerbsFlat: IrregularVerb[] = frenchIrregularBlocked ? [] : Object.values(IRREGULAR_VERBS_BY_LESSON).flat();
 
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
   useEffect(() => {
@@ -942,10 +983,10 @@ export default function LessonIrregularVerbs() {
   }, [lessonId]);
 
   useEffect(() => {
-    AsyncStorage.getItem(GLOBAL_IRREGULAR_KEY).then(raw => {
+    AsyncStorage.getItem(irregularStorageKey).then(raw => {
       try { setGlobalCounts(raw ? JSON.parse(raw) : {}); } catch {}
     });
-  }, []);
+  }, [irregularStorageKey]);
 
   const verbsToLearn = allVerbs.filter(v => (globalCounts[v.base] ?? 0) < REQUIRED);
   // В режиме practiceAll тренируем все глаголы урока (прогресс не меняется)
@@ -975,7 +1016,12 @@ export default function LessonIrregularVerbs() {
           </View>
 
           <View style={{ flex: 1 }}>
-            {tab === 'learn' || practiceAll
+            {frenchIrregularBlocked
+              ? <FrenchIrregularVerbsUnavailable
+                  lang={lang}
+                  onBack={() => router.replace({ pathname: '/lesson_menu', params: { id: lessonId } } as any)}
+                />
+              : tab === 'learn' || practiceAll
               ? <LearnTab
                   key={learnTabKey}
                   verbs={verbsForLearnTab}
@@ -983,6 +1029,7 @@ export default function LessonIrregularVerbs() {
                   lang={lang}
                   initCounts={globalCounts}
                   lessonId={lessonId}
+                  studyTarget={studyTarget}
                   onUpdate={(base, count) => setGlobalCounts(prev => ({ ...prev, [base]: count }))}
                   onReset={() => {
                     setPracticeAll(true);
@@ -1007,6 +1054,7 @@ export default function LessonIrregularVerbs() {
           </View>
 
           {/* Tab bar — Словарь first, Учить second */}
+          {!frenchIrregularBlocked && (
           <View style={{ flexDirection: 'row', borderTopWidth: 0.5, borderTopColor: sx.ghost }}>
             {(['dict', 'learn'] as const).map(key => {
               const isActive = tab === key;
@@ -1055,6 +1103,7 @@ export default function LessonIrregularVerbs() {
               );
             })}
           </View>
+          )}
         </ContentWrap>
 
         <NoEnergyModal visible={noEnergyModalOpen} onClose={() => setNoEnergyModalOpen(false)} />

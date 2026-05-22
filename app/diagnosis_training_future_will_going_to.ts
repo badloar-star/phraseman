@@ -5,47 +5,101 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
+const FUTURE_WILL_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre will/going to ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về will/going to này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan will/going to ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu will/going to açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie will/going to nadal wymaga przeglądu po polsku.',
+};
+
 const tri = (
   ru: string,
   uk: string,
   es: string,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? FUTURE_WILL_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = ['will', 'going to', 'instant decision', 'promise', 'prediction', 'plan', 'intention', 'evidence'];
 
 const MODEL = tri(
   'Will чаще звучит как решение прямо сейчас, обещание или мнение о будущем: I will help, I think it will rain. Going to чаще звучит как уже готовый план, намерение или то, что видно по признакам: I am going to study, It is going to rain.',
   'Will частіше звучить як рішення прямо зараз, обіцянка або думка про майбутнє: I will help, I think it will rain. Going to частіше звучить як уже готовий план, намір або те, що видно за ознаками: I am going to study, It is going to rain.',
-  'Will often marks an instant decision, promise, or prediction. Going to often marks a plan, intention, or visible evidence.',
+  'Will suele sonar como decision ahora, promesa u opinion sobre el futuro: I will help, I think it will rain. Going to suele sonar como plan ya preparado, intencion o algo visible por senales: I am going to study, It is going to rain.',
+  {
+    'pt-BR': 'Will costuma soar como uma decisão tomada agora, uma promessa ou uma opinião sobre o futuro: I will help, I think it will rain. Going to costuma soar como um plano já preparado, uma intenção ou algo visível por sinais: I am going to study, It is going to rain.',
+    vi: 'Will thường nghe như quyết định ngay lúc nói, lời hứa hoặc ý kiến về tương lai: I will help, I think it will rain. Going to thường nghe như kế hoạch đã chuẩn bị, ý định hoặc điều nhìn thấy qua dấu hiệu: I am going to study, It is going to rain.',
+    id: 'Will biasanya terdengar seperti keputusan saat ini, janji, atau pendapat tentang masa depan: I will help, I think it will rain. Going to biasanya terdengar seperti rencana yang sudah siap, niat, atau sesuatu yang terlihat dari tanda-tanda: I am going to study, It is going to rain.',
+    tr: 'Will çoğu zaman o anda alınan karar, söz verme ya da gelecek hakkındaki görüş gibi duyulur: I will help, I think it will rain. Going to çoğu zaman hazır plan, niyet ya da görünen işaretler gibi duyulur: I am going to study, It is going to rain.',
+    pl: 'Will często brzmi jak decyzja podjęta teraz, obietnica albo opinia o przyszłości: I will help, I think it will rain. Going to częściej brzmi jak gotowy plan, zamiar albo coś widocznego po oznakach: I am going to study, It is going to rain.',
+  },
 );
+
+const FUTURE_WILL_SKILL_ES: Record<string, string> = {
+  will_promise: 'Promesa = will.',
+  will_instant_decision: 'Decision tomada ahora = will.',
+  will_opinion_prediction: 'I think introduce prediccion/opinion = will.',
+  going_to_plan_i: 'Plan ya preparado = am going to.',
+  going_to_plan_she: 'Con she y plan usa is going to.',
+  going_to_plan_they: 'Con they y plan usa are going to.',
+  will_no_to: 'Despues de will no uses to ni -ing.',
+  going_to_visible_future: 'Senales visibles = going to.',
+  missing_be_going_to: 'Going to necesita am/is/are antes.',
+  evidence_going_to: 'Las nubes son evidencia visible: is going to.',
+  opinion_prediction_will: 'I think suele llevar will para opinion.',
+  instant_decision_vs_plan: 'Recordo y decide ahora: will.',
+  mixed_will_going_to_pair: 'Promesa = will; plan = am going to.',
+  mixed_evidence_opinion: 'Opinion = will; evidencia visible = going to.',
+  mixed_sentence_correction: 'Promesa = will call; plan = am going to study.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = FUTURE_WILL_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? FUTURE_WILL_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function futureWillEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = FUTURE_WILL_SKILL_ES[input.targetSkill] ?? 'Decide si es decision, promesa, prediccion, plan o evidencia.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retry(correct: string, clue: TriText): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала реши смысл: человек решил сейчас, обещает, предполагает, уже планирует или видит признаки?',
       'Спочатку виріши сенс: людина вирішила зараз, обіцяє, припускає, уже планує чи бачить ознаки?',
-      'First decide the meaning: instant decision, promise, prediction, plan, or evidence.',
+      'Primero decide el sentido: decision ahora, promesa, prediccion, plan o evidencia.',
     ),
     clue,
     tri(
       'Потом проверь форму: после will действие идет без to и без -ing; с going to нужен am, is или are.',
       'Потiм перевiр форму: пiсля will дiя йде без to i без -ing; з going to потрiбен am, is або are.',
-      'Then build the chunk: will help / will call or am/is/are going to study.',
+      'Luego arma el bloque: will help / will call o am/is/are going to study.',
     ),
     tri(
       'Здесь выбери вариант, где совпали и смысл будущего, и форма после will или going to.',
       'Тут обери варiант, де збiглися i сенс майбутнього, i форма пiсля will або going to.',
-      `The answer here is: ${correct}.`,
+      `La respuesta aqui es: ${correct}.`,
     ),
   ];
 }
@@ -54,7 +108,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Смысл фразы просит другой кусок будущего. Здесь нужно: ${correct}.`,
     `Майже. Сенс фрази просить інший шматок майбутнього. Тут потрібно: ${correct}.`,
-    `Almost. This meaning needs: ${correct}.`,
+    `Casi. Este sentido pide: ${correct}.`,
   );
 }
 
@@ -72,35 +126,36 @@ function futureStep(input: {
   clue: TriText;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = futureWillEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
-    teachingText: MODEL,
-    explanationBlock: MODEL,
+    translation: withEs(input.translation, esFeedback),
+    teachingText: withEs(MODEL, esFeedback),
+    explanationBlock: withEs(MODEL, esFeedback),
     microTask: tri(
       'Выбери между will и going to по смыслу, а потом проверь форму: will call, I am going to study, she is going to start.',
       'Обери між will і going to за сенсом, а потім перевір форму: will call, I am going to study, she is going to start.',
-      'Choose will or going to by meaning, then check the form.',
+      'Elige will o going to por sentido, luego comprueba la forma.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong?.[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong?.[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(input.correctAnswer, input.clue),
+    retryFeedback: retry(input.correctAnswer, input.clue).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Коротко: will - решил сейчас, обещаю, думаю что будет. Going to - план уже есть или видно, к чему всё идет. После will не ставь to: will call. С going to не пропускай am/is/are: I am going to study.',
       'Коротко: will - вирішив зараз, обіцяю, думаю що буде. Going to - план уже є або видно, до чого все йде. Після will не став to: will call. З going to не пропускай am/is/are: I am going to study.',
-      'Short version: will for instant decisions/promises/predictions; going to for plans/evidence.',
+      'Version corta: will = decidi ahora, prometo, creo que pasara. Going to = ya hay plan o se ve hacia donde va todo. Despues de will no uses to: will call. Con going to no omitas am/is/are.',
     ),
     focusWords: input.focusWords,
   };
@@ -112,25 +167,58 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 27,
-  supportedLocales: ['ru', 'uk'],
-  title: tri('Will / Going to: будущее без гадания', 'Will / Going to: майбутнє без вгадування', 'Will / Going to'),
-  shortTitle: tri('Will / Going to', 'Will / Going to', 'Will / Going to'),
+  supportedLocales: ['ru', 'uk', 'es'],
+  title: tri('Will / Going to: будущее без гадания', 'Will / Going to: майбутнє без вгадування', 'Will / Going to', {
+    'pt-BR': 'Will / Going to: futuro sem chute',
+    vi: 'Will / Going to: nói về tương lai không đoán mò',
+    id: 'Will / Going to: masa depan tanpa menebak',
+    tr: 'Will / Going to: tahmin etmeden gelecek',
+    pl: 'Will / Going to: przyszłość bez zgadywania',
+  }),
+  shortTitle: tri('Will / Going to', 'Will / Going to', 'Will / Going to', {
+    'pt-BR': 'Will / Going to',
+    vi: 'Will / Going to',
+    id: 'Will / Going to',
+    tr: 'Will / Going to',
+    pl: 'Will / Going to',
+  }),
   shortDiagnosis: tri(
     'Ты переводишь оба варианта как "буду" и не различаешь: это решение сейчас, обещание, прогноз, план или видимые признаки.',
     'Ти перекладаєш обидва варіанти як "буду" і не розрізняєш: це рішення зараз, обіцянка, прогноз, план чи видимі ознаки.',
-    'You translate both forms as future and miss the meaning difference.',
+    'Traduces ambas formas como futuro y pierdes la diferencia de sentido.',
+    {
+      'pt-BR': 'Você traduz as duas formas como futuro e não diferencia: é decisão agora, promessa, previsão, plano ou sinais visíveis.',
+      vi: 'Bạn dịch cả hai dạng như tương lai và không phân biệt: đây là quyết định ngay lúc nói, lời hứa, dự đoán, kế hoạch hay dấu hiệu nhìn thấy được.',
+      id: 'Kamu menerjemahkan kedua bentuk sebagai masa depan dan tidak membedakan: ini keputusan saat ini, janji, prediksi, rencana, atau tanda yang terlihat.',
+      tr: 'İki biçimi de gelecek zaman gibi çeviriyorsun ve ayrımı kaçırıyorsun: o anki karar mı, söz mü, tahmin mi, plan mı, yoksa görünen işaret mi?',
+      pl: 'Tłumaczysz obie formy jako przyszłość i nie rozróżniasz: czy to decyzja teraz, obietnica, przewidywanie, plan czy widoczne oznaki.',
+    },
   ),
   diagnosisText: tri(
     'Ошибка появляется не потому, что будущее сложное. Проблема в том, что русский часто дает одно "буду", а английский спрашивает точнее: ты решил это сейчас, обещаешь, предполагаешь, уже планируешь или видишь признаки?',
     'Помилка зʼявляється не тому, що майбутнє складне. Проблема в тому, що українська часто дає одне "буду", а англійська питає точніше: ти вирішив це зараз, обіцяєш, припускаєш, уже плануєш чи бачиш ознаки?',
-    'The mistake appears because English separates instant decisions, promises, predictions, plans, and evidence.',
+    'El error aparece porque el ingles separa decisiones instantaneas, promesas, predicciones, planes y evidencia.',
+    {
+      'pt-BR': 'O erro não aparece porque o futuro é difícil. O problema é que o português muitas vezes usa uma ideia geral de futuro, enquanto o inglês pergunta com mais precisão: você decidiu agora, está prometendo, está prevendo, já planejou ou vê sinais?',
+      vi: 'Lỗi không xuất hiện vì thì tương lai quá khó. Vấn đề là tiếng Việt thường dùng một cách nói chung cho tương lai, còn tiếng Anh hỏi chính xác hơn: bạn vừa quyết định, đang hứa, đang dự đoán, đã có kế hoạch hay nhìn thấy dấu hiệu?',
+      id: 'Kesalahan muncul bukan karena masa depan itu sulit. Masalahnya, bahasa Indonesia sering memberi satu makna umum untuk masa depan, sedangkan bahasa Inggris bertanya lebih tepat: kamu memutuskan sekarang, berjanji, memperkirakan, sudah punya rencana, atau melihat tanda?',
+      tr: 'Hata, gelecek zaman zor olduğu için ortaya çıkmaz. Sorun şu: Türkçe çoğu zaman genel bir gelecek anlamı verir, İngilizce ise daha net sorar: bunu şimdi mi kararlaştırdın, söz mü veriyorsun, tahmin mi ediyorsun, zaten planladın mı, yoksa işaretleri mi görüyorsun?',
+      pl: 'Błąd nie pojawia się dlatego, że przyszłość jest trudna. Problem w tym, że polski często daje jedną ogólną przyszłość, a angielski pyta dokładniej: decydujesz teraz, obiecujesz, przewidujesz, już planujesz czy widzisz oznaki?',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     'Will: I will help you, I will call you later, I think it will rain. Going to: I am going to study tonight, She is going to start a course, Look at the clouds. It is going to rain.',
     'Will: I will help you, I will call you later, I think it will rain. Going to: I am going to study tonight, She is going to start a course, Look at the clouds. It is going to rain.',
-    'Will: decision/promise/prediction. Going to: plan/intention/evidence.',
+    'Will: decision/promesa/prediccion. Going to: plan/intencion/evidencia.',
+    {
+      'pt-BR': 'Will: I will help you, I will call you later, I think it will rain. Going to: I am going to study tonight, She is going to start a course, Look at the clouds. It is going to rain.',
+      vi: 'Will: I will help you, I will call you later, I think it will rain. Going to: I am going to study tonight, She is going to start a course, Look at the clouds. It is going to rain.',
+      id: 'Will: I will help you, I will call you later, I think it will rain. Going to: I am going to study tonight, She is going to start a course, Look at the clouds. It is going to rain.',
+      tr: 'Will: I will help you, I will call you later, I think it will rain. Going to: I am going to study tonight, She is going to start a course, Look at the clouds. It is going to rain.',
+      pl: 'Will: I will help you, I will call you later, I think it will rain. Going to: I am going to study tonight, She is going to start a course, Look at the clouds. It is going to rain.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -158,16 +246,16 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       'Will і going to іноді обидва можливі, але відтінок змінюється: рішення зараз проти вже готового плану.',
     ],
     es: [
-      'Will often marks an instant decision.',
-      'Will often marks a promise.',
-      'Will often marks a prediction or opinion.',
-      'Going to often marks an existing plan.',
-      'Going to often marks intention.',
-      'Going to often marks visible evidence.',
-      'Do not say will to call.',
-      'Do not omit am/is/are in going to.',
-      'Use will call and going to study.',
-      'Will and going to can both be possible, but the meaning changes.',
+      'Will suele marcar una decision instantanea.',
+      'Will suele marcar una promesa.',
+      'Will suele marcar una prediccion u opinion.',
+      'Going to suele marcar un plan existente.',
+      'Going to suele marcar intencion.',
+      'Going to suele marcar evidencia visible.',
+      'No digas will to call.',
+      'No omitas am/is/are con going to.',
+      'Usa will call y going to study.',
+      'Will y going to pueden ser posibles, pero cambia el sentido.',
     ],
     'pt-BR': [
       'Will muitas vezes é usado quando a decisão aparece agora mesmo: The phone is ringing. I will answer it.',
@@ -231,14 +319,14 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
     ],
   },
   examples: [
-    { en: 'I will help you.', ru: 'Я помогу тебе.', uk: 'Я допоможу тобі.', es: 'I will help you.', 'pt-BR': 'Eu vou te ajudar.', vi: 'Tôi sẽ giúp bạn.', id: 'Saya akan membantumu.', tr: 'Sana yardım edeceğim.', pl: 'Pomogę ci.', why: tri('Звучит как обещание или решение помочь.', 'Звучить як обіцянка або рішення допомогти.', 'A promise or decision to help.') },
-    { en: 'The phone is ringing. I will answer it.', ru: 'Телефон звонит. Я отвечу.', uk: 'Телефон дзвонить. Я відповім.', es: 'The phone is ringing. I will answer it.', 'pt-BR': 'O telefone está tocando. Eu vou atender.', vi: 'Điện thoại đang reo. Tôi sẽ nghe máy.', id: 'Teleponnya berdering. Saya akan menjawabnya.', tr: 'Telefon çalıyor. Ben cevap vereceğim.', pl: 'Telefon dzwoni. Odbiorę.', why: tri('Решение появляется в момент речи.', 'Рішення зʼявляється в момент мовлення.', 'The decision happens now.') },
-    { en: 'I think it will be fine.', ru: 'Думаю, всё будет нормально.', uk: 'Думаю, усе буде нормально.', es: 'I think it will be fine.', 'pt-BR': 'Acho que vai ficar tudo bem.', vi: 'Tôi nghĩ mọi chuyện sẽ ổn.', id: 'Saya pikir itu akan baik-baik saja.', tr: 'Bence iyi olacak.', pl: 'Myślę, że będzie dobrze.', why: tri('I think показывает мнение о будущем.', 'I think показує думку про майбутнє.', 'I think introduces a prediction.') },
-    { en: 'I am going to study tonight.', ru: 'Я собираюсь учиться сегодня вечером.', uk: 'Я збираюся вчитися сьогодні ввечері.', es: 'I am going to study tonight.', 'pt-BR': 'Vou estudar hoje à noite.', vi: 'Tối nay tôi sẽ học.', id: 'Saya akan belajar malam ini.', tr: 'Bu gece ders çalışacağım.', pl: 'Zamierzam się uczyć dziś wieczorem.', why: tri('Это звучит как уже готовый план.', 'Це звучить як уже готовий план.', 'This sounds like an existing plan.') },
-    { en: 'She is going to start a new course.', ru: 'Она собирается начать новый курс.', uk: 'Вона збирається почати новий курс.', es: 'She is going to start a new course.', 'pt-BR': 'Ela vai começar um curso novo.', vi: 'Cô ấy sẽ bắt đầu một khóa học mới.', id: 'Dia akan memulai kursus baru.', tr: 'Yeni bir kursa başlayacak.', pl: 'Ona zamierza zacząć nowy kurs.', why: tri('Это намерение, которое уже есть.', 'Це намір, який уже є.', 'This is an intention.') },
-    { en: 'Look at the clouds. It is going to rain.', ru: 'Посмотри на облака. Сейчас будет дождь.', uk: 'Подивися на хмари. Зараз буде дощ.', es: 'Look at the clouds. It is going to rain.', 'pt-BR': 'Olhe as nuvens. Vai chover.', vi: 'Nhìn những đám mây kìa. Trời sắp mưa.', id: 'Lihat awan itu. Sebentar lagi akan hujan.', tr: 'Bulutlara bak. Yağmur yağacak.', pl: 'Spójrz na chmury. Będzie padać.', why: tri('Есть видимые признаки: облака.', 'Є видимі ознаки: хмари.', 'There is visible evidence.') },
-    { en: 'I will call you later.', ru: 'Я позвоню тебе позже.', uk: 'Я подзвоню тобі пізніше.', es: 'I will call you later.', 'pt-BR': 'Eu vou te ligar mais tarde.', vi: 'Tôi sẽ gọi cho bạn sau.', id: 'Saya akan meneleponmu nanti.', tr: 'Seni daha sonra arayacağım.', pl: 'Zadzwonię do ciebie później.', why: tri('Это может звучать как обещание.', 'Це може звучати як обіцянка.', 'This can sound like a promise.') },
-    { en: 'They are going to move next month.', ru: 'Они собираются переехать в следующем месяце.', uk: 'Вони збираються переїхати наступного місяця.', es: 'They are going to move next month.', 'pt-BR': 'Eles vão se mudar no mês que vem.', vi: 'Họ sẽ chuyển nhà vào tháng tới.', id: 'Mereka akan pindah bulan depan.', tr: 'Gelecek ay taşınacaklar.', pl: 'Oni zamierzają się przeprowadzić w przyszłym miesiącu.', why: tri('Это похоже на заранее готовый план.', 'Це схоже на заздалегідь готовий план.', 'This sounds planned.') },
+    { en: 'I will help you.', ru: 'Я помогу тебе.', uk: 'Я допоможу тобі.', es: 'Te ayudare.', 'pt-BR': 'Eu vou te ajudar.', vi: 'Tôi sẽ giúp bạn.', id: 'Saya akan membantumu.', tr: 'Sana yardım edeceğim.', pl: 'Pomogę ci.', why: tri('Звучит как обещание или решение помочь.', 'Звучить як обіцянка або рішення допомогти.', 'Suena como promesa o decision de ayudar.') },
+    { en: 'The phone is ringing. I will answer it.', ru: 'Телефон звонит. Я отвечу.', uk: 'Телефон дзвонить. Я відповім.', es: 'Esta sonando el telefono. Contestare.', 'pt-BR': 'O telefone está tocando. Eu vou atender.', vi: 'Điện thoại đang reo. Tôi sẽ nghe máy.', id: 'Teleponnya berdering. Saya akan menjawabnya.', tr: 'Telefon çalıyor. Ben cevap vereceğim.', pl: 'Telefon dzwoni. Odbiorę.', why: tri('Решение появляется в момент речи.', 'Рішення зʼявляється в момент мовлення.', 'La decision aparece ahora.') },
+    { en: 'I think it will be fine.', ru: 'Думаю, всё будет нормально.', uk: 'Думаю, усе буде нормально.', es: 'Creo que estara bien.', 'pt-BR': 'Acho que vai ficar tudo bem.', vi: 'Tôi nghĩ mọi chuyện sẽ ổn.', id: 'Saya pikir itu akan baik-baik saja.', tr: 'Bence iyi olacak.', pl: 'Myślę, że będzie dobrze.', why: tri('I think показывает мнение о будущем.', 'I think показує думку про майбутнє.', 'I think introduce una prediccion.') },
+    { en: 'I am going to study tonight.', ru: 'Я собираюсь учиться сегодня вечером.', uk: 'Я збираюся вчитися сьогодні ввечері.', es: 'Voy a estudiar esta noche.', 'pt-BR': 'Vou estudar hoje à noite.', vi: 'Tối nay tôi sẽ học.', id: 'Saya akan belajar malam ini.', tr: 'Bu gece ders çalışacağım.', pl: 'Zamierzam się uczyć dziś wieczorem.', why: tri('Это звучит как уже готовый план.', 'Це звучить як уже готовий план.', 'Suena como un plan ya preparado.') },
+    { en: 'She is going to start a new course.', ru: 'Она собирается начать новый курс.', uk: 'Вона збирається почати новий курс.', es: 'Ella va a empezar un curso nuevo.', 'pt-BR': 'Ela vai começar um curso novo.', vi: 'Cô ấy sẽ bắt đầu một khóa học mới.', id: 'Dia akan memulai kursus baru.', tr: 'Yeni bir kursa başlayacak.', pl: 'Ona zamierza zacząć nowy kurs.', why: tri('Это намерение, которое уже есть.', 'Це намір, який уже є.', 'Es una intencion que ya existe.') },
+    { en: 'Look at the clouds. It is going to rain.', ru: 'Посмотри на облака. Сейчас будет дождь.', uk: 'Подивися на хмари. Зараз буде дощ.', es: 'Mira las nubes. Va a llover.', 'pt-BR': 'Olhe as nuvens. Vai chover.', vi: 'Nhìn những đám mây kìa. Trời sắp mưa.', id: 'Lihat awan itu. Sebentar lagi akan hujan.', tr: 'Bulutlara bak. Yağmur yağacak.', pl: 'Spójrz na chmury. Będzie padać.', why: tri('Есть видимые признаки: облака.', 'Є видимі ознаки: хмари.', 'Hay evidencia visible: las nubes.') },
+    { en: 'I will call you later.', ru: 'Я позвоню тебе позже.', uk: 'Я подзвоню тобі пізніше.', es: 'Te llamare mas tarde.', 'pt-BR': 'Eu vou te ligar mais tarde.', vi: 'Tôi sẽ gọi cho bạn sau.', id: 'Saya akan meneleponmu nanti.', tr: 'Seni daha sonra arayacağım.', pl: 'Zadzwonię do ciebie później.', why: tri('Это может звучать как обещание.', 'Це може звучати як обіцянка.', 'Puede sonar como promesa.') },
+    { en: 'They are going to move next month.', ru: 'Они собираются переехать в следующем месяце.', uk: 'Вони збираються переїхати наступного місяця.', es: 'Ellos van a mudarse el mes que viene.', 'pt-BR': 'Eles vão se mudar no mês que vem.', vi: 'Họ sẽ chuyển nhà vào tháng tới.', id: 'Mereka akan pindah bulan depan.', tr: 'Gelecek ay taşınacaklar.', pl: 'Oni zamierzają się przeprowadzić w przyszłym miesiącu.', why: tri('Это похоже на заранее готовый план.', 'Це схоже на заздалегідь готовий план.', 'Suena como un plan ya preparado.') },
   ],
   introBlocks: [
     {
@@ -247,7 +335,7 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты переводишь will и going to одинаково. Но в реальной фразе важно не слово "буду", а причина: решил сейчас, обещал, предположил, запланировал или увидел признаки.',
         'Схоже, ти перекладаєш will і going to однаково. Але в реальній фразі важливе не слово "буду", а причина: вирішив зараз, пообіцяв, припустив, запланував чи побачив ознаки.',
-        'You translate will and going to the same way, but the meaning decides the form.',
+        'Traduces will y going to igual, pero el sentido decide la forma.',
       ),
     },
     {
@@ -256,7 +344,7 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       text: tri(
         'Will держит решения, обещания и прогнозы. Going to держит планы, намерения и видимые признаки.',
         'Will тримає рішення, обіцянки й прогнози. Going to тримає плани, наміри й видимі ознаки.',
-        'Will: decisions, promises, predictions. Going to: plans, intentions, evidence.',
+        'Will: decisiones, promesas, predicciones. Going to: planes, intenciones, evidencia.',
       ),
     },
     {
@@ -265,7 +353,7 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       text: tri(
         'Две частые поломки: I will to call и I going to study. Нормально: I will call и I am going to study.',
         'Дві часті поломки: I will to call і I going to study. Нормально: I will call і I am going to study.',
-        'Two common breaks: I will to call and I going to study. Use I will call and I am going to study.',
+        'Dos errores comunes: I will to call y I going to study. Usa I will call y I am going to study.',
       ),
     },
   ],
@@ -550,7 +638,7 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       wrong: {
         'I will to call you later, but I going to study tonight.': tri('Will to call неправильно. Во второй части не хватает am: I am going to study.', 'Will to call неправильно. У другій частині бракує am: I am going to study.', 'Use I will call / I am going to study.'),
         'I am will call you later, but I am going study tonight.': tri('Am will call неправильно. Во второй части не хватает to: I am going to study.', 'Am will call неправильно. У другій частині бракує to: I am going to study.', 'Use I will call / I am going to study.'),
-        'I will calling you later, but I am going to studying tonight.': tri('После will и going to действие остается в обычной форме, base verb: call / study. Не добавляй -ing.', 'Пiсля will i going to дiя лишається у звичайнiй формi. Не додавай -ing.', 'Use call and study.'),
+        'I will calling you later, but I am going to studying tonight.': tri('После will и going to действие остается в обычной форме: call / study. Не добавляй -ing.', 'Пiсля will i going to дiя лишається у звичайнiй формi: call / study. Не додавай -ing.', 'Use call and study.'),
       },
       clue: tri('Собери два куска: will call + am going to study.', 'Збери два шматки: will call + am going to study.', 'Build two chunks: will call + am going to study.'),
       focusWords: ['will call', 'am going to study'],
@@ -577,10 +665,10 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Показываем смысл будущего: решение сейчас, обещание, прогноз, план или признаки.', 'Показуємо сенс майбутнього: рішення зараз, обіцянка, прогноз, план чи ознаки.', 'Show future meaning first.'),
-    depth2: tri('Показываем готовый кусок: will call или am/is/are going to study.', 'Показуємо готовий шматок: will call або am/is/are going to study.', 'Show the correct chunk.'),
-    depth3: tri('Проверяем частую поломку: нет will to, нет I going to.', 'Перевіряємо часту поломку: немає will to, немає I going to.', 'Check common broken forms.'),
-    depth4: tri('Даем почти готовый ответ и возвращаем в упражнение.', 'Даємо майже готову відповідь і повертаємо у вправу.', 'Give a near-answer and retry.'),
+    depth1: tri('Показываем смысл будущего: решение сейчас, обещание, прогноз, план или признаки.', 'Показуємо сенс майбутнього: рішення зараз, обіцянка, прогноз, план чи ознаки.', 'Mostramos primero el sentido futuro.'),
+    depth2: tri('Показываем готовый кусок: will call или am/is/are going to study.', 'Показуємо готовий шматок: will call або am/is/are going to study.', 'Mostramos el bloque correcto.'),
+    depth3: tri('Проверяем частую поломку: нет will to, нет I going to.', 'Перевіряємо часту поломку: немає will to, немає I going to.', 'Revisamos formas rotas comunes.'),
+    depth4: tri('Даем почти готовый ответ и возвращаем в упражнение.', 'Даємо майже готову відповідь і повертаємо у вправу.', 'Damos casi la respuesta y repetimos.'),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -588,7 +676,7 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       card: tri(
         'Остановись. Решил сейчас / обещаю / думаю = will. Уже планирую / вижу признаки = going to. Форма: will call, I am going to study.',
         'Зупинись. Вирішив зараз / обіцяю / думаю = will. Уже планую / бачу ознаки = going to. Форма: will call, I am going to study.',
-        'Decision/promise/opinion = will. Plan/evidence = going to.',
+        'Decision/promesa/opinion = will. Plan/evidencia = going to.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -596,7 +684,7 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       card: tri(
         'Подсказка по смыслу: система покажет, это решение сейчас, обещание, прогноз, план или видимые признаки, но форму ты выберешь сам.',
         'Підказка за сенсом: система покаже, це рішення зараз, обіцянка, прогноз, план чи видимі ознаки, але форму ти обереш сам.',
-        'Meaning hint first, then retry.',
+        'Pista de sentido primero, luego reintento.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -604,7 +692,7 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим подсказки: сначала выбери смысл, потом собери кусок will или am/is/are going to.',
         'Режим підказки: спочатку обери сенс, потім збери шматок will або am/is/are going to.',
-        'Guided mode: meaning first, chunk second.',
+        'Modo guiado: primero sentido, luego bloque.',
       ),
     },
   },
@@ -612,10 +700,10 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
     enabled: true,
     triggerAfterWrongAttempts: 4,
     tasks: [
-      { id: 'guided_future_001', prompt: tri('После will нужен to?', 'Після will потрібен to?', 'After will, do we need to?'), options: ['да', 'нет'], correctIndex: 1, thenReturnToExerciseId: 'future_contrast_004' },
-      { id: 'guided_future_002', prompt: tri('I going to study - здесь не хватает am?', 'I going to study - тут бракує am?', 'Is am missing in I going to study?'), options: ['да', 'нет'], correctIndex: 0, thenReturnToExerciseId: 'future_contrast_006' },
-      { id: 'guided_future_003', prompt: tri('Если решение принято прямо сейчас, чаще will или going to?', 'Якщо рішення прийняте прямо зараз, частіше will чи going to?', 'Instant decision: will or going to?'), options: ['will', 'going to'], correctIndex: 0, thenReturnToExerciseId: 'future_easy_002' },
-      { id: 'guided_future_004', prompt: tri('Если план уже есть заранее, чаще will или going to?', 'Якщо план уже є заздалегідь, частіше will чи going to?', 'Existing plan: will or going to?'), options: ['will', 'going to'], correctIndex: 1, thenReturnToExerciseId: 'future_contrast_001' },
+      { id: 'guided_future_001', prompt: tri('После will нужен to?', 'Після will потрібен to?', 'Despues de will, hace falta to?'), options: ['да', 'нет'], correctIndex: 1, thenReturnToExerciseId: 'future_contrast_004' },
+      { id: 'guided_future_002', prompt: tri('I going to study - здесь не хватает am?', 'I going to study - тут бракує am?', 'Falta am en I going to study?'), options: ['да', 'нет'], correctIndex: 0, thenReturnToExerciseId: 'future_contrast_006' },
+      { id: 'guided_future_003', prompt: tri('Если решение принято прямо сейчас, чаще will или going to?', 'Якщо рішення прийняте прямо зараз, частіше will чи going to?', 'Decision instantanea: will o going to?'), options: ['will', 'going to'], correctIndex: 0, thenReturnToExerciseId: 'future_easy_002' },
+      { id: 'guided_future_004', prompt: tri('Если план уже есть заранее, чаще will или going to?', 'Якщо план уже є заздалегідь, частіше will чи going to?', 'Plan existente: will o going to?'), options: ['will', 'going to'], correctIndex: 1, thenReturnToExerciseId: 'future_contrast_001' },
     ],
   },
   smartTrainerConfig: {
@@ -660,7 +748,7 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_future_will_going_to_start',
     answer: 'diagnosis_training_future_will_going_to_answer',
     mastery: 'diagnosis_training_future_will_going_to_mastery',
-    fallback: 'diagnosis_training_future_will_going_to_fallback',
+    recovery: 'diagnosis_training_future_will_going_to_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

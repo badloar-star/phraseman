@@ -9,17 +9,18 @@ import * as Clipboard from 'expo-clipboard';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
-import { usePremium } from '../../components/PremiumContext';
+import ScreenGradient from '../../components/ScreenGradient';
 import AvatarView from '../../components/AvatarView';
 import PremiumAvatarHalo from '../../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
+import VipGreenUserName from '../../components/VipGreenUserName';
 import LeagueCrownName from '../../components/LeagueCrownName';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
 import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
 import { getLevelFromXP, getXPProgress, type ThemeMode } from '../../constants/theme';
-import { triLang } from '../../constants/i18n';
+import { triLang, type Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import {
   normalizeProfileCardLevel,
@@ -44,6 +45,7 @@ import {
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import { ensureAnonUser } from '../cloud_sync';
+import { isPremiumProgressActive, isVipProgressActive } from '../premium_progress';
 import { fetchActiveLeagueCrowns } from '../services/league_chest_rewards';
 import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
 import {
@@ -91,6 +93,7 @@ interface FriendProfile {
   weeklyXp: number;
   streak: number;
   isPremium: boolean;
+  isVip?: boolean;
   avatar: string;
   frame: string;
   aura?: string;
@@ -168,6 +171,7 @@ function placeholderFriendProfile(uid: string): FriendProfile {
     weeklyXp: 0,
     streak: 0,
     isPremium: false,
+    isVip: false,
     avatar: String(getBestAvatarForLevel(1)),
     frame: String(getBestFrameForLevel(1).id),
     aura: undefined,
@@ -218,6 +222,7 @@ function mergePublicFriendProfiles(
     weeklyXp: Math.max(primary.weeklyXp, secondary.weeklyXp),
     streak: Math.max(primary.streak, secondary.streak),
     isPremium: primary.isPremium || secondary.isPremium,
+    isVip: primary.isVip || secondary.isVip,
     avatar: primary.avatar || secondary.avatar,
     frame: primary.frame || secondary.frame,
     aura: primary.aura ?? secondary.aura,
@@ -245,6 +250,7 @@ function profileFromLeaderboardDoc(uid: string, data: Record<string, unknown>): 
     weeklyXp: readPublicNumber(data.weekPoints),
     streak: readPublicNumber(data.streak),
     isPremium: data.isPremium === true,
+    isVip: data.isVip === true,
     avatar,
     frame,
     aura,
@@ -272,6 +278,7 @@ function profileFromArenaDoc(uid: string, data: Record<string, unknown>): Friend
     weeklyXp: 0,
     streak: 0,
     isPremium: data.courseIsPremium === true || data.isPremium === true,
+    isVip: data.courseIsVip === true || data.isVip === true,
     avatar,
     frame,
     aura,
@@ -379,7 +386,8 @@ async function fetchMyProfile() {
     const p = (d.progress as Record<string, unknown>) ?? {};
     const totalXp = parseInt((p.user_total_xp as string) ?? '0') || 0;
     const streak = parseInt((p.streak_count as string) ?? '0') || 0;
-    const isPremium = (p.premium_plan as string) === 'monthly' || (p.premium_plan as string) === 'annual';
+    const isPremium = isPremiumProgressActive(p);
+    const isVip = isVipProgressActive(p);
     const level = getLevelFromXP(totalXp);
     const avatarRaw = typeof p.user_avatar === 'string' ? p.user_avatar.trim() : '';
     const frameRaw = typeof p.user_avatar_frame === 'string'
@@ -394,6 +402,7 @@ async function fetchMyProfile() {
       totalXP: totalXp,
       streak: streak ?? null,
       isPremium,
+      isVip,
     };
   } catch { return null; }
 }
@@ -425,7 +434,7 @@ function FriendRow({
 }) {
   const rankColor = rank === 1 ? '#FFD700' : rank === 2 ? '#C0C0C0' : rank === 3 ? '#CD7F32' : t.textMuted;
   const hasLeagueCrown = Number(profile.leagueCrownExpiresAt) > Date.now();
-  const effectiveAura = getEffectiveAvatarAuraId(profile.aura, profile.isPremium);
+  const effectiveAura = getEffectiveAvatarAuraId(profile.aura, profile.isPremium, profile.isVip);
   const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   return (
     <TouchableOpacity
@@ -451,6 +460,8 @@ function FriendRow({
           ? <LeagueCrownName text={profile.name} fontSize={f.body} />
           : profile.isPremium
           ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
+          : profile.isVip
+          ? <VipGreenUserName text={profile.name} fontSize={f.body} />
           : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
         }
         <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
@@ -505,7 +516,7 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
   chrome: FriendsChrome;
 }) {
   const hasLeagueCrown = Number(profile.leagueCrownExpiresAt) > Date.now();
-  const effectiveAura = getEffectiveAvatarAuraId(profile.aura, profile.isPremium);
+  const effectiveAura = getEffectiveAvatarAuraId(profile.aura, profile.isPremium, profile.isVip);
   const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   return (
     <View testID={`friend-request-row-${profile.uid}`} style={{
@@ -521,6 +532,8 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
           ? <LeagueCrownName text={profile.name} fontSize={f.body} />
           : profile.isPremium
           ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
+          : profile.isVip
+          ? <VipGreenUserName text={profile.name} fontSize={f.body} />
           : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
         }
         <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
@@ -591,7 +604,7 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome }
 }) {
   const level = getLevelFromXP(profile.totalXp);
   const hasLeagueCrown = Number(profile.leagueCrownExpiresAt) > Date.now();
-  const effectiveAura = getEffectiveAvatarAuraId(profile.aura, profile.isPremium);
+  const effectiveAura = getEffectiveAvatarAuraId(profile.aura, profile.isPremium, profile.isVip);
   const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   return (
     <View testID="friends-found-user-card" style={{
@@ -608,6 +621,8 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome }
             ? <LeagueCrownName text={profile.name} fontSize={f.h3 ?? f.body + 2} />
             : profile.isPremium
             ? <PremiumGoldUserName text={profile.name} fontSize={f.h3 ?? f.body + 2} />
+            : profile.isVip
+            ? <VipGreenUserName text={profile.name} fontSize={f.h3 ?? f.body + 2} />
             : <Text style={{ color: t.textPrimary, fontSize: f.h3 ?? 18, fontWeight: '800' }}>{profile.name}</Text>
           }
           <Text style={{ color: t.textSecond, fontSize: f.body, marginTop: 2 }}>
@@ -881,28 +896,49 @@ function formatEventTime(ts: number, lang: string): string {
     tr: `${days} gün önce`,
     pl: `${days} dni temu`,
   });
-  const dateLocale =
-    lang === 'uk' ? 'uk-UA'
-    : lang === 'es' ? 'es-ES'
-    : lang === 'pt-BR' ? 'pt-BR'
-    : lang === 'vi' ? 'vi-VN'
-    : lang === 'id' ? 'id-ID'
-    : lang === 'tr' ? 'tr-TR'
-    : lang === 'pl' ? 'pl-PL'
-    : 'ru-RU';
+  const dateLocaleByLang: Record<Lang, string> = {
+    ru: 'ru-RU',
+    uk: 'uk-UA',
+    es: 'es-ES',
+    'pt-BR': 'pt-BR',
+    vi: 'vi-VN',
+    id: 'id-ID',
+    tr: 'tr-TR',
+    pl: 'pl-PL',
+  };
+  const dateLocale = dateLocaleByLang[lang as Lang] ?? dateLocaleByLang.ru;
   return new Date(ts).toLocaleDateString(dateLocale, { day: 'numeric', month: 'short' });
 }
 
 function giftEventLabel(payload: Record<string, string | number>, lang: string): string {
-  const fallback = String(payload.giftLabel ?? payload.giftId ?? '');
-  if (lang === 'pt-BR') return String(payload.giftLabelPtBr ?? fallback);
-  if (lang === 'vi') return String(payload.giftLabelVi ?? fallback);
-  if (lang === 'id') return String(payload.giftLabelId ?? fallback);
-  if (lang === 'tr') return String(payload.giftLabelTr ?? fallback);
-  if (lang === 'pl') return String(payload.giftLabelPl ?? fallback);
-  if (lang === 'es') return String(payload.giftLabelEs ?? fallback);
-  if (lang === 'uk') return String(payload.giftLabelUk ?? fallback);
-  return String(payload.giftLabelRu ?? fallback);
+  const payloadKeyByLang: Record<Lang, keyof typeof payload> = {
+    ru: 'giftLabelRu',
+    uk: 'giftLabelUk',
+    es: 'giftLabelEs',
+    'pt-BR': 'giftLabelPtBr',
+    vi: 'giftLabelVi',
+    id: 'giftLabelId',
+    tr: 'giftLabelTr',
+    pl: 'giftLabelPl',
+  };
+  const catalogLabelByLang: Record<Lang, keyof (typeof FRIEND_GIFT_CATALOG)[number]> = {
+    ru: 'labelRu',
+    uk: 'labelUk',
+    es: 'labelEs',
+    'pt-BR': 'labelPtBr',
+    vi: 'labelVi',
+    id: 'labelId',
+    tr: 'labelTr',
+    pl: 'labelPl',
+  };
+  const safeLang = (lang in payloadKeyByLang ? lang : 'ru') as Lang;
+  const payloadValue = payload[payloadKeyByLang[safeLang]];
+  if (typeof payloadValue === 'string' && payloadValue.trim()) return payloadValue;
+  const catalogItem = FRIEND_GIFT_CATALOG.find((item) => item.id === payload.giftId);
+  const catalogValue = catalogItem?.[catalogLabelByLang[safeLang]];
+  if (typeof catalogValue === 'string' && catalogValue.trim()) return catalogValue;
+  const rawGiftId = payload.giftId;
+  return typeof rawGiftId === 'string' ? rawGiftId : '';
 }
 
 function eventText(event: FriendEvent, friendName: string, lang: string): string {
@@ -1209,8 +1245,9 @@ function AddFriendModal({
   return (
     <Modal visible={visible} animationType="slide" presentationStyle="pageSheet" onRequestClose={onClose}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-        <SafeAreaView style={{ flex: 1, backgroundColor: t.bgPrimary }} edges={['top', 'right', 'bottom', 'left']}>
-        <View style={{ flex: 1 }}>
+        <ScreenGradient artBackdrop="friends">
+          <SafeAreaView style={{ flex: 1 }} edges={['top', 'right', 'bottom', 'left']}>
+          <View style={{ flex: 1 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 }}>
             <Text style={{ flex: 1, fontSize: f.h2 ?? 22, fontWeight: '800', color: t.textPrimary }}>
               {L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn bè', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
@@ -1291,8 +1328,9 @@ function AddFriendModal({
               </View>
             )}
           </ScrollView>
-        </View>
-        </SafeAreaView>
+          </View>
+          </SafeAreaView>
+        </ScreenGradient>
       </SafeAreaProvider>
     </Modal>
   );
@@ -1303,7 +1341,6 @@ function AddFriendModal({
 export default function FriendsTabScreen() {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const { isPremium } = usePremium();
   const router = useRouter();
   const { goHome } = useTabNav();
   const chrome = useMemo(() => makeFriendsChrome(themeMode, t), [themeMode, t]);
@@ -1430,12 +1467,7 @@ export default function FriendsTabScreen() {
       if (gifts.length === 0) return;
       const first = gifts[0];
       const from = first.fromName || L('друг', 'друг', 'amigo', 'amigo', 'bạn bè', 'teman', 'arkadaş', 'znajomy');
-      const gift =
-        lang === 'es'
-          ? first.giftLabelEs || first.giftLabel || first.giftId
-          : lang === 'uk'
-            ? first.giftLabelUk || first.giftLabel || first.giftId
-            : first.giftLabelRu || first.giftLabel || first.giftId;
+      const gift = giftEventLabel(first as unknown as Record<string, string | number>, lang);
       showFeedback(
         gifts.length === 1
           ? L(`${from} подарил: ${gift}`, `${from} подарував: ${gift}`, `${from} te regaló: ${gift}`, `${from} deu um presente: ${gift}`, `${from} đã tặng: ${gift}`, `${from} memberi hadiah: ${gift}`, `${from} hediye verdi: ${gift}`, `${from} podarował: ${gift}`)
@@ -1904,6 +1936,7 @@ export default function FriendsTabScreen() {
       isMe: false,
       uid: profile.uid,
       isPremium: profile.isPremium,
+      isVip: profile.isVip,
       avatar: profile.avatar,
       frame: profile.frame,
       aura: profile.aura,
@@ -1940,7 +1973,8 @@ export default function FriendsTabScreen() {
   // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
-    <View testID="screen-friends" style={{ flex: 1 }}>
+    <ScreenGradient artBackdrop="friends">
+      <View testID="screen-friends" style={{ flex: 1 }}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
@@ -2157,7 +2191,7 @@ export default function FriendsTabScreen() {
           }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
               {giftTarget ? (() => {
-                const effectiveAura = getEffectiveAvatarAuraId(giftTarget.aura, giftTarget.isPremium);
+                const effectiveAura = getEffectiveAvatarAuraId(giftTarget.aura, giftTarget.isPremium, giftTarget.isVip);
                 const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
                 return (
                   <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={44} maskColor={chrome.mask}>
@@ -2327,6 +2361,7 @@ export default function FriendsTabScreen() {
           }
         }}
       />
-    </View>
+      </View>
+    </ScreenGradient>
   );
 }

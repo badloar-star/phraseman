@@ -28,9 +28,18 @@ describe('heisenberg semantic audit helpers', () => {
     const base = 'Use Reading books with helps here.';
     const localized = 'Correcto. La idea funciona como sujeto singular.';
 
-    expect(semantic.missingProtectedTerms(choices, base, localized)).toEqual(
-      expect.arrayContaining(['Reading books', 'helps']),
+    expect(semantic.missingProtectedTerms(choices, base, localized, choices)).toEqual(
+      expect.arrayContaining(['helps']),
     );
+    expect(semantic.missingProtectedTerms(choices, base, localized, choices)).not.toContain('Reading books');
+  });
+
+  it('treats multi-word protected terms as covered when their discriminative content words are present', () => {
+    const choices = ['She reads books every day.', 'She read books every day.'];
+    const base = 'Correct. She reads books every day uses reads with she.';
+    const localized = 'Correcto. Con she en present simple usamos reads.';
+
+    expect(semantic.missingProtectedTerms(choices.slice(0, 1), base, localized, choices)).toEqual([]);
   });
 
   it('reports missing required locale fields', () => {

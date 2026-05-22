@@ -1,0 +1,53 @@
+appId: app.phraseman
+---
+- stopApp
+- openLink: "exp+phraseman://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A8083"
+- runFlow: ./accept_ios_open_prompt.yaml
+- waitForAnimationToEnd:
+    timeout: 8000
+- runFlow:
+    when:
+      visible: "Got it"
+    commands:
+      - tapOn: "Got it"
+      - waitForAnimationToEnd:
+          timeout: 3000
+- runFlow:
+    when:
+      visible: "Continue"
+    commands:
+      - tapOn: "Continue"
+      - waitForAnimationToEnd:
+          timeout: 3000
+- runFlow:
+    when:
+      visible: "DEVELOPMENT SERVERS"
+    commands:
+      - tapOn: "http://localhost:8083"
+      - waitForAnimationToEnd:
+          timeout: 15000
+- runFlow:
+    when:
+      visible: "RECENTLY OPENED"
+    commands:
+      - tapOn:
+          point: "50%,50%"
+      - waitForAnimationToEnd:
+          timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 12000
+- runFlow:
+    when:
+      visible: "DEVELOPMENT SERVERS"
+    commands:
+      - tapOn: "http://localhost:8083"
+      - waitForAnimationToEnd:
+          timeout: 15000
+- runFlow:
+    when:
+      visible: "RECENTLY OPENED"
+    commands:
+      - tapOn:
+          point: "50%,50%"
+      - waitForAnimationToEnd:
+          timeout: 15000

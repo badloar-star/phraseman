@@ -5,23 +5,70 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
+const VERB_PATTERN_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre padrões verbo + preposição ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về mẫu động từ + giới từ này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan pola kata kerja + preposisi ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu fiil + edat kalıbı açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie wzorca czasownik + przyimek nadal wymaga przeglądu po polsku.',
+};
+
 const tri = (
   ru: string,
   uk: string,
   es = ru,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? VERB_PATTERN_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = ['listen to', 'wait for', 'depend on', 'look at', 'talk to', 'think about', 'ask for', 'believe in'];
+
+const VERB_PATTERN_SKILL_ES: Record<string, string> = {
+  listen_to: 'Listen se aprende con to: listen to music.',
+  wait_for: 'Wait se aprende con for cuando esperas a una persona.',
+  wait_for_bus: 'Cuando esperas algo, el bloque normal es wait for.',
+  depend_on: 'Depend se aprende con on, aunque la traduccion empuje a from.',
+  look_at: 'Look at significa dirigir la mirada a algo.',
+  look_for_vs_look_at: 'Look for es buscar; look at es mirar.',
+  talk_to: 'Talk to marca la persona con quien hablas.',
+  think_about: 'Think about marca el tema del pensamiento.',
+  talk_about: 'Talk about marca el tema de la conversacion.',
+  ask_for: 'Ask for significa pedir algo.',
+  believe_in: 'Believe in marca confianza en alguien, algo o uno mismo.',
+  ask_about_topic: 'Ask about se usa para preguntar sobre un tema.',
+  mixed_listen_wait: 'Guarda los bloques completos: listen to y wait for.',
+  mixed_depend_look: 'Guarda los bloques completos: depend on y look at.',
+  mixed_sentence_correction: 'Une cada accion con su cola fija: listen to, wait for, talk to.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = VERB_PATTERN_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? VERB_PATTERN_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function verbPatternEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = VERB_PATTERN_SKILL_ES[input.targetSkill] ?? 'Aprende el verbo con su pequena cola como un solo bloque.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function verbPatternStep(input: {
   id: string;
@@ -40,6 +87,7 @@ function verbPatternStep(input: {
   focusWords: string[];
 }): DiagnosisTrainingStep {
   const correctIndex = input.options.findIndex((option) => option === input.correctAnswer);
+  const esFeedback = verbPatternEsFeedback(input);
 
   return {
     id: input.id,
@@ -47,30 +95,30 @@ function verbPatternStep(input: {
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    teachingText: input.teachingText,
-    translation: input.translation,
-    explanationBlock: input.teachingText,
+    teachingText: withEs(input.teachingText, esFeedback),
+    translation: withEs(input.translation, esFeedback),
+    explanationBlock: withEs(input.teachingText, esFeedback),
     microTask: tri(
       'Выбери маленькое слово, которое живёт вместе с этим действием.',
       'Обери маленьке слово, яке живе разом із цією дією.',
-      'Choose the small word that belongs with this action.',
+      'Elige la palabra pequena que vive junto con esta accion.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex,
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? tri(
+        .map((option) => [option, withEs(input.wrong[option] ?? tri(
           `Почти. Здесь нужен готовый кусок с ${input.correctAnswer}.`,
           `Майже. Тут потрібен готовий шматок з ${input.correctAnswer}.`,
           `Casi. Aqui necesitas el bloque con ${input.correctAnswer}.`,
-        )]),
+        ), esFeedback)]),
     ),
-    retryFeedback: input.retryFeedback,
-    fallbackExplanation: input.fallbackExplanation,
+    retryFeedback: input.retryFeedback.map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
+    fallbackExplanation: withEs(input.fallbackExplanation, esFeedback),
     focusWords: input.focusWords,
   };
 }
@@ -78,7 +126,14 @@ function verbPatternStep(input: {
 const CHUNK_MODEL = tri(
   'Здесь маленькое слово нельзя спокойно выбрать по переводу. Оно хранится вместе с действием: listen to, wait for, depend on.',
   'Тут маленьке слово не варто обирати лише за перекладом. Воно зберігається разом із дією: listen to, wait for, depend on.',
-  'Here the small word is not chosen from translation alone. It is stored with the action: listen to, wait for, depend on.',
+  'Aqui la palabra pequena no se elige solo por traduccion. Se guarda con la accion: listen to, wait for, depend on.',
+  {
+    'pt-BR': 'Aqui a palavrinha não pode ser escolhida só pela tradução. Ela fica guardada junto com a ação: listen to, wait for, depend on.',
+    vi: 'Ở đây không thể chọn từ nhỏ chỉ theo bản dịch. Nó được ghi nhớ cùng hành động: listen to, wait for, depend on.',
+    id: 'Di sini kata kecil tidak bisa dipilih hanya dari terjemahan. Kata itu disimpan bersama tindakannya: listen to, wait for, depend on.',
+    tr: 'Burada küçük kelime yalnızca çeviriye göre seçilemez. Eylemle birlikte saklanır: listen to, wait for, depend on.',
+    pl: 'Tutaj małego słowa nie da się spokojnie wybrać tylko z tłumaczenia. Trzyma się je razem z czynnością: listen to, wait for, depend on.',
+  },
 );
 
 export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
@@ -87,37 +142,79 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 29,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Listen to / Wait for / Depend on: готовые связки',
     'Listen to / Wait for / Depend on: готові звʼязки',
-    'Listen to / Wait for / Depend on: fixed chunks',
+    'Listen to / Wait for / Depend on: bloques fijos',
+    {
+      'pt-BR': 'Listen to / Wait for / Depend on: blocos prontos',
+      vi: 'Listen to / Wait for / Depend on: cụm cố định',
+      id: 'Listen to / Wait for / Depend on: pola tetap',
+      tr: 'Listen to / Wait for / Depend on: hazır kalıplar',
+      pl: 'Listen to / Wait for / Depend on: gotowe połączenia',
+    },
   ),
   shortTitle: tri(
     'Listen to / Wait for',
     'Listen to / Wait for',
     'Listen to / Wait for',
+    {
+      'pt-BR': 'Verbo + preposição',
+      vi: 'Động từ + giới từ',
+      id: 'Kata kerja + preposisi',
+      tr: 'Fiil + edat',
+      pl: 'Czasownik + przyimek',
+    },
   ),
   shortDiagnosis: tri(
     'Ты знаешь слова, но теряешь маленький хвост: listen to, wait for, depend on, look at.',
     'Ти знаєш слова, але губиш маленький хвіст: listen to, wait for, depend on, look at.',
-    'You know the words, but lose the small tail: listen to, wait for, depend on, look at.',
+    'Conoces las palabras, pero pierdes la cola pequena: listen to, wait for, depend on, look at.',
+    {
+      'pt-BR': 'Você conhece as palavras, mas perde a cauda pequena: listen to, wait for, depend on, look at.',
+      vi: 'Bạn biết các từ, nhưng làm mất phần đuôi nhỏ: listen to, wait for, depend on, look at.',
+      id: 'Kamu tahu kata-katanya, tetapi kehilangan ekor kecilnya: listen to, wait for, depend on, look at.',
+      tr: 'Kelimeleri biliyorsun ama küçük kuyruğu kaçırıyorsun: listen to, wait for, depend on, look at.',
+      pl: 'Znasz słowa, ale gubisz mały ogon: listen to, wait for, depend on, look at.',
+    },
   ),
   diagnosisText: tri(
     'Похоже, ты переводишь маленькое слово отдельно. Поэтому появляются listen music, wait me, depend from, look on. В английском такие куски лучше хранить целиком: listen to music, wait for me, depend on the weather, look at the screen.',
     'Схоже, ти перекладаєш маленьке слово окремо. Тому зʼявляються listen music, wait me, depend from, look on. В англійській такі шматки краще зберігати цілими: listen to music, wait for me, depend on the weather, look at the screen.',
-    'It looks like you translate the small word separately. That creates listen music, wait me, depend from, look on. These English chunks are better stored whole.',
+    'Parece que traduces la palabra pequena por separado. Por eso aparecen listen music, wait me, depend from, look on. En ingles conviene guardar estos bloques enteros: listen to music, wait for me, depend on the weather, look at the screen.',
+    {
+      'pt-BR': 'Parece que você traduz a palavrinha separadamente. Por isso aparecem listen music, wait me, depend from, look on. Em inglês, é melhor guardar esses blocos inteiros: listen to music, wait for me, depend on the weather, look at the screen.',
+      vi: 'Có vẻ bạn dịch từ nhỏ riêng lẻ. Vì vậy mới xuất hiện listen music, wait me, depend from, look on. Trong tiếng Anh, tốt hơn là ghi nhớ cả cụm: listen to music, wait for me, depend on the weather, look at the screen.',
+      id: 'Sepertinya kamu menerjemahkan kata kecil itu secara terpisah. Karena itu muncul listen music, wait me, depend from, look on. Dalam bahasa Inggris, lebih baik menyimpan blok ini secara utuh: listen to music, wait for me, depend on the weather, look at the screen.',
+      tr: 'Küçük kelimeyi ayrı ayrı çeviriyor gibisin. Bu yüzden listen music, wait me, depend from, look on gibi hatalar çıkıyor. İngilizcede bu parçaları bütün olarak tutmak daha iyidir: listen to music, wait for me, depend on the weather, look at the screen.',
+      pl: 'Wygląda na to, że tłumaczysz małe słowo osobno. Dlatego pojawiają się listen music, wait me, depend from, look on. W angielskim lepiej przechowywać takie bloki w całości: listen to music, wait for me, depend on the weather, look at the screen.',
+    },
   ),
   mentalModel: tri(
     'Не держи listen отдельно и to отдельно. Держи один кусок: listen to. То же самое: wait for, depend on, look at, talk to, think about, ask for, believe in.',
     'Не тримай listen окремо і to окремо. Тримай один шматок: listen to. Так само: wait for, depend on, look at, talk to, think about, ask for, believe in.',
-    'Do not store listen and to separately. Store one chunk: listen to. Same for wait for, depend on, look at, talk to, think about, ask for, believe in.',
+    'No guardes listen y to por separado. Guarda un solo bloque: listen to. Igual con wait for, depend on, look at, talk to, think about, ask for, believe in.',
+    {
+      'pt-BR': 'Não guarde listen separado de to. Guarde um bloco: listen to. O mesmo vale para wait for, depend on, look at, talk to, think about, ask for, believe in.',
+      vi: 'Đừng ghi nhớ listen tách khỏi to. Hãy giữ một cụm: listen to. Tương tự với wait for, depend on, look at, talk to, think about, ask for, believe in.',
+      id: 'Jangan simpan listen terpisah dari to. Simpan sebagai satu blok: listen to. Sama juga dengan wait for, depend on, look at, talk to, think about, ask for, believe in.',
+      tr: 'Listen ve to parçalarını ayrı tutma. Tek kalıp olarak tut: listen to. Aynısı wait for, depend on, look at, talk to, think about, ask for, believe in için de geçerli.',
+      pl: 'Nie trzymaj listen osobno i to osobno. Trzymaj jeden blok: listen to. Tak samo: wait for, depend on, look at, talk to, think about, ask for, believe in.',
+    },
   ),
   contrastSet: CONTRAST,
   coreRule: tri(
     'listen to music, wait for me, depend on the weather, look at the screen, talk to you, think about it, ask for help, believe in yourself.',
     'listen to music, wait for me, depend on the weather, look at the screen, talk to you, think about it, ask for help, believe in yourself.',
     'listen to music, wait for me, depend on the weather, look at the screen, talk to you, think about it, ask for help, believe in yourself.',
+    {
+      'pt-BR': 'Aprenda estes blocos inteiros: listen to music, wait for me, depend on the weather, look at the screen, talk to you, think about it, ask for help, believe in yourself.',
+      vi: 'Hãy học trọn các cụm này: listen to music, wait for me, depend on the weather, look at the screen, talk to you, think about it, ask for help, believe in yourself.',
+      id: 'Pelajari blok lengkap ini: listen to music, wait for me, depend on the weather, look at the screen, talk to you, think about it, ask for help, believe in yourself.',
+      tr: 'Bu kalıpları bütün olarak öğren: listen to music, wait for me, depend on the weather, look at the screen, talk to you, think about it, ask for help, believe in yourself.',
+      pl: 'Ucz się tych całych bloków: listen to music, wait for me, depend on the weather, look at the screen, talk to you, think about it, ask for help, believe in yourself.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -147,17 +244,17 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       'Головна звичка: вчити не маленьке слово окремо, а весь готовий шматок.',
     ],
     es: [
-      'Listen to = listen to someone or something.',
-      'Wait for = wait for someone or something.',
-      'Depend on = depend on something.',
-      'Look at = direct your eyes at something.',
-      'Look for = search for something.',
-      'Talk to = speak with a person.',
-      'Talk about = speak about a topic.',
-      'Think about = think about a topic.',
-      'Ask for = request something.',
-      'Believe in = have faith in someone, something, or yourself.',
-      'Learn the whole chunk, not the small word alone.',
+      'Listen to = escuchar a alguien o algo: listen to music, listen to me.',
+      'Wait for = esperar a alguien o algo: wait for me, wait for the bus.',
+      'Depend on = depender de algo: It depends on the weather.',
+      'Look at = mirar algo: look at the screen.',
+      'Look for = buscar: look for my keys. No es lo mismo que look at.',
+      'Talk to = hablar con una persona: talk to you.',
+      'Talk about = hablar de un tema: talk about the problem.',
+      'Think about = pensar en un tema: think about your answer.',
+      'Ask for = pedir algo: ask for help.',
+      'Believe in = creer en una persona, una idea o en ti mismo: believe in yourself.',
+      'El habito principal: aprender el bloque completo, no la palabra pequena sola.',
     ],
     'pt-BR': [
       'Listen to = ouvir alguém ou algo.',
@@ -230,97 +327,97 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       en: 'I listen to music every day.',
       ru: 'Я слушаю музыку каждый день.',
       uk: 'Я слухаю музику щодня.',
-      es: 'I listen to music every day.',
+      es: 'Escucho musica todos los dias.',
       'pt-BR': 'Eu ouço música todos os dias.',
       vi: 'Tôi nghe nhạc mỗi ngày.',
       id: 'Saya mendengarkan musik setiap hari.',
       tr: 'Her gün müzik dinlerim.',
       pl: 'Słucham muzyki codziennie.',
-      why: tri('Кусок хранится целиком: listen to music.', 'Шматок зберігається цілим: listen to music.', 'Store the chunk whole: listen to music.'),
+      why: tri('Кусок хранится целиком: listen to music.', 'Шматок зберігається цілим: listen to music.', 'Guarda el bloque entero: listen to music.'),
     },
     {
       en: 'Please wait for me.',
       ru: 'Пожалуйста, подожди меня.',
       uk: 'Будь ласка, почекай мене.',
-      es: 'Please wait for me.',
+      es: 'Por favor, esperame.',
       'pt-BR': 'Por favor, espere por mim.',
       vi: 'Làm ơn chờ tôi.',
       id: 'Tolong tunggu saya.',
       tr: 'Lütfen beni bekle.',
       pl: 'Proszę, poczekaj na mnie.',
-      why: tri('Ждать человека: wait for me.', 'Чекати людину: wait for me.', 'Waiting for a person: wait for me.'),
+      why: tri('Ждать человека: wait for me.', 'Чекати людину: wait for me.', 'Esperar a una persona: wait for me.'),
     },
     {
       en: 'It depends on the weather.',
       ru: 'Это зависит от погоды.',
       uk: 'Це залежить від погоди.',
-      es: 'It depends on the weather.',
+      es: 'Depende del clima.',
       'pt-BR': 'Isso depende do tempo.',
       vi: 'Điều đó phụ thuộc vào thời tiết.',
       id: 'Itu tergantung pada cuaca.',
       tr: 'Bu hava durumuna bağlı.',
       pl: 'To zależy od pogody.',
-      why: tri('Русский подсказывает "от", но английский кусок: depend on.', 'Українська підказує "від", але англійський шматок: depend on.', 'Translation may suggest from, but the English chunk is depend on.'),
+      why: tri('Русский подсказывает "от", но английский кусок: depend on.', 'Українська підказує "від", але англійський шматок: depend on.', 'La traduccion puede sugerir from, pero el bloque ingles es depend on.'),
     },
     {
       en: 'Look at the screen.',
       ru: 'Посмотри на экран.',
       uk: 'Подивися на екран.',
-      es: 'Look at the screen.',
+      es: 'Mira la pantalla.',
       'pt-BR': 'Olhe para a tela.',
       vi: 'Nhìn vào màn hình.',
       id: 'Lihat layarnya.',
       tr: 'Ekrana bak.',
       pl: 'Spójrz na ekran.',
-      why: tri('Направить взгляд: look at the screen.', 'Спрямувати погляд: look at the screen.', 'Direct your eyes: look at the screen.'),
+      why: tri('Направить взгляд: look at the screen.', 'Спрямувати погляд: look at the screen.', 'Dirigir la mirada: look at the screen.'),
     },
     {
       en: 'I need to talk to you.',
       ru: 'Мне нужно поговорить с тобой.',
       uk: 'Мені потрібно поговорити з тобою.',
-      es: 'I need to talk to you.',
+      es: 'Necesito hablar contigo.',
       'pt-BR': 'Preciso falar com você.',
       vi: 'Tôi cần nói chuyện với bạn.',
       id: 'Saya perlu berbicara denganmu.',
       tr: 'Seninle konuşmam gerekiyor.',
       pl: 'Muszę z tobą porozmawiać.',
-      why: tri('Человек, с кем говорим: talk to you.', 'Людина, з ким говоримо: talk to you.', 'The person you speak with: talk to you.'),
+      why: tri('Человек, с кем говорим: talk to you.', 'Людина, з ким говоримо: talk to you.', 'La persona con quien hablas: talk to you.'),
     },
     {
       en: 'Think about your answer.',
       ru: 'Подумай о своём ответе.',
       uk: 'Подумай про свою відповідь.',
-      es: 'Think about your answer.',
+      es: 'Piensa en tu respuesta.',
       'pt-BR': 'Pense na sua resposta.',
       vi: 'Hãy nghĩ về câu trả lời của bạn.',
       id: 'Pikirkan jawabanmu.',
       tr: 'Cevabını düşün.',
       pl: 'Pomyśl o swojej odpowiedzi.',
-      why: tri('Тема мысли: think about your answer.', 'Тема думки: think about your answer.', 'The topic of thought: think about your answer.'),
+      why: tri('Тема мысли: think about your answer.', 'Тема думки: think about your answer.', 'El tema del pensamiento: think about your answer.'),
     },
     {
       en: 'She asked for help.',
       ru: 'Она попросила помощи.',
       uk: 'Вона попросила допомоги.',
-      es: 'She asked for help.',
+      es: 'Ella pidio ayuda.',
       'pt-BR': 'Ela pediu ajuda.',
       vi: 'Cô ấy đã nhờ giúp đỡ.',
       id: 'Dia meminta bantuan.',
       tr: 'Yardım istedi.',
       pl: 'Poprosiła o pomoc.',
-      why: tri('Просить что-то: ask for help.', 'Просити щось: ask for help.', 'Request something: ask for help.'),
+      why: tri('Просить что-то: ask for help.', 'Просити щось: ask for help.', 'Pedir algo: ask for help.'),
     },
     {
       en: 'You have to believe in yourself.',
       ru: 'Ты должен верить в себя.',
       uk: 'Ти маєш вірити в себе.',
-      es: 'You have to believe in yourself.',
+      es: 'Tienes que creer en ti mismo.',
       'pt-BR': 'Você precisa acreditar em si mesmo.',
       vi: 'Bạn phải tin vào chính mình.',
       id: 'Kamu harus percaya pada dirimu sendiri.',
       tr: 'Kendine inanmalısın.',
       pl: 'Musisz wierzyć w siebie.',
-      why: tri('Верить в себя: believe in yourself.', 'Вірити в себе: believe in yourself.', 'Have faith in yourself: believe in yourself.'),
+      why: tri('Верить в себя: believe in yourself.', 'Вірити в себе: believe in yourself.', 'Creer en ti mismo: believe in yourself.'),
     },
   ],
   introBlocks: [
@@ -330,7 +427,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       text: tri(
         'Проблема здесь обычно не в смысле слов. Ты понимаешь listen, wait, depend, look. Но в живой фразе к ним нужен маленький хвост.',
         'Проблема тут зазвичай не в значенні слів. Ти розумієш listen, wait, depend, look. Але в живій фразі до них потрібен маленький хвіст.',
-        'The problem is usually not the meaning of the words. You know listen, wait, depend, look. But in a real phrase they need a small tail.',
+        'El problema normalmente no esta en el significado de las palabras. Entiendes listen, wait, depend, look. Pero en una frase real necesitan una cola pequena.',
       ),
     },
     {
@@ -339,7 +436,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       text: tri(
         'Учить надо блоком: listen to, wait for, depend on, look at. Иначе мозг начинает подбирать "на/о/к/за" прямо во время ответа.',
         'Вчити треба блоком: listen to, wait for, depend on, look at. Інакше мозок починає підбирати "на/про/до/за" прямо під час відповіді.',
-        'Learn the chunk: listen to, wait for, depend on, look at.',
+        'Hay que aprenderlo como bloque: listen to, wait for, depend on, look at.',
       ),
     },
     {
@@ -348,7 +445,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       text: tri(
         'Самые липкие ошибки: listen music, wait me, depend from, look on. Исправляем их короткими готовыми кусками.',
         'Найлипкіші помилки: listen music, wait me, depend from, look on. Виправляємо їх короткими готовими шматками.',
-        'Sticky mistakes: listen music, wait me, depend from, look on. Fix them with short ready chunks.',
+        'Errores pegajosos: listen music, wait me, depend from, look on. Los corregimos con bloques cortos ya listos.',
       ),
     },
   ],
@@ -807,22 +904,22 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
     depth1: tri(
       'Сначала найди действие и вспомни его готовый хвост.',
       'Спочатку знайди дію і згадай її готовий хвіст.',
-      'First find the action and recall its ready-made tail.',
+      'Primero encuentra la accion y recuerda su cola fija.',
     ),
     depth2: tri(
       'Не выбирай по переводу. Выбирай по готовому куску.',
       'Не обирай за перекладом. Обирай за готовим шматком.',
-      'Do not choose by translation. Choose by the ready chunk.',
+      'No elijas por traduccion. Elige por el bloque fijo.',
     ),
     depth3: tri(
       'Сравни ошибку и нормальный кусок: listen music -> listen to music.',
       'Порівняй помилку і нормальний шматок: listen music -> listen to music.',
-      'Compare the mistake and the normal chunk: listen music -> listen to music.',
+      'Compara el error y el bloque normal: listen music -> listen to music.',
     ),
     depth4: tri(
       'Почти подсказка: система покажет нужный готовый кусок.',
       'Майже підказка: система покаже потрібний готовий шматок.',
-      'Almost a hint: the system shows the needed chunk.',
+      'Casi una pista: el sistema muestra el bloque necesario.',
     ),
   },
   failureRecovery: {
@@ -831,7 +928,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       card: tri(
         'Стоп. Не переводим маленькое слово отдельно. Вспоминаем кусок: listen to, wait for, depend on, look at, talk to, think about, ask for, believe in.',
         'Стоп. Не перекладаємо маленьке слово окремо. Згадуємо шматок: listen to, wait for, depend on, look at, talk to, think about, ask for, believe in.',
-        'Stop. Do not translate the small word alone. Recall the chunk: listen to, wait for, depend on, look at.',
+        'Para. No traduzcas la palabra pequena por separado. Recuerda el bloque: listen to, wait for, depend on, look at, talk to, think about, ask for, believe in.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -839,7 +936,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       card: tri(
         'Подсказка: сначала система покажет действие, потом готовые куски рядом с ним.',
         'Підказка: спочатку система покаже дію, потім готові шматки поруч із нею.',
-        'Hint: first the system shows the action, then the ready chunks around it.',
+        'Pista: primero el sistema muestra la accion y despues los bloques fijos que van con ella.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -847,7 +944,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим с подсказками: выбираем не правило, а готовый речевой кусок.',
         'Режим із підказками: обираємо не правило, а готовий мовний шматок.',
-        'Guided mode: choose the ready speech chunk.',
+        'Modo guiado: elegimos el bloque de habla ya listo, no una regla suelta.',
       ),
     },
   },
@@ -857,28 +954,28 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_verb_prep_001',
-        prompt: tri('Какой кусок звучит нормально?', 'Який шматок звучить нормально?', 'Which chunk sounds normal?'),
+        prompt: tri('Какой кусок звучит нормально?', 'Який шматок звучить нормально?', 'Que bloque suena normal?'),
         options: ['listen to music', 'listen music'],
         correctIndex: 0,
         thenReturnToExerciseId: 'verb_prep_easy_001',
       },
       {
         id: 'guided_verb_prep_002',
-        prompt: tri('Какой кусок для "подожди меня"?', 'Який шматок для "почекай мене"?', 'Which chunk means wait for me?'),
+        prompt: tri('Какой кусок для "подожди меня"?', 'Який шматок для "почекай мене"?', 'Que bloque significa "esperame"?'),
         options: ['wait for me', 'wait to me'],
         correctIndex: 0,
         thenReturnToExerciseId: 'verb_prep_easy_002',
       },
       {
         id: 'guided_verb_prep_003',
-        prompt: tri('Какой кусок после depend?', 'Який шматок після depend?', 'Which chunk goes with depend?'),
+        prompt: tri('Какой кусок после depend?', 'Який шматок після depend?', 'Que bloque va con depend?'),
         options: ['depend from', 'depend on'],
         correctIndex: 1,
         thenReturnToExerciseId: 'verb_prep_contrast_001',
       },
       {
         id: 'guided_verb_prep_004',
-        prompt: tri('Look at - это смотреть или искать?', 'Look at - це дивитися чи шукати?', 'Look at: look at or search?'),
+        prompt: tri('Look at - это смотреть или искать?', 'Look at - це дивитися чи шукати?', 'Look at: mirar o buscar?'),
         options: ['смотреть', 'искать'],
         correctIndex: 0,
         thenReturnToExerciseId: 'verb_prep_contrast_002',
@@ -893,7 +990,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
     diagnosisLabel: tri(
       'Listen to / Wait for',
       'Listen to / Wait for',
-      'Listen to / Wait for',
+      'Listen to / Wait for: bloques',
     ),
     contrastSet: CONTRAST,
     focusWords: ['listen to', 'wait for', 'depend on', 'look at', 'talk to', 'think about', 'ask for', 'believe in'],
@@ -932,7 +1029,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_preposition_common_verb_patterns_start',
     answer: 'diagnosis_training_preposition_common_verb_patterns_answer',
     mastery: 'diagnosis_training_preposition_common_verb_patterns_mastery',
-    fallback: 'diagnosis_training_preposition_common_verb_patterns_fallback',
+    recovery: 'diagnosis_training_preposition_common_verb_patterns_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

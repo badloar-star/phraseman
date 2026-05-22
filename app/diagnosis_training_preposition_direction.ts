@@ -3,7 +3,28 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es = ru): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const DIRECTION_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre prepositions of direction ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về prepositions of direction này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan prepositions of direction ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu prepositions of direction açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie prepositions of direction nadal wymaga przeglądu po polsku.',
+};
+
+const tri = (
+  ru: string,
+  uk: string,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? DIRECTION_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'to + destination',
@@ -26,6 +47,48 @@ const SMART_CONTRAST = [
   'movement vs location',
 ];
 
+const DIRECTION_SKILL_ES: Record<string, string> = {
+  to_destination_work: 'Elige por la flecha: work es el destino, asi que usa to.',
+  to_destination_dublin: 'Dublin es el destino del movimiento, no el punto de salida.',
+  home_no_to: 'Home despues de go/come ya funciona como destino; no necesita to.',
+  into_room: 'Into marca entrada hacia dentro de un espacio.',
+  into_car: 'Get into the car significa meterse dentro del coche.',
+  into_bag: 'Las llaves terminan dentro de la bolsa, por eso la flecha es into.',
+  onto_table: 'Onto subraya movimiento hasta una superficie.',
+  jump_onto_sofa: 'El salto termina sobre la superficie del sofa: onto.',
+  onto_chair: 'La bolsa se mueve hasta la superficie de la silla: onto.',
+  from_origin_dublin: 'From responde a la pregunta "de donde?".',
+  out_of_car: 'Out of marca salida desde dentro hacia fuera.',
+  out_of_room: 'La habitacion es un espacio interior; salir de ella es out of.',
+  mixed_to_from: 'To y from son flechas opuestas: hacia un lugar y desde un lugar.',
+  mixed_into_out_of: 'Into entra hacia dentro; out of sale desde dentro.',
+  mixed_sentence_correction: 'Divide la frase en tres flechas: out of, into y onto.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = DIRECTION_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? DIRECTION_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function directionEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = DIRECTION_SKILL_ES[input.targetSkill] ?? 'Dibuja la flecha de movimiento antes de elegir.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
+
 function directionStep(input: {
   id: string;
   order: number;
@@ -43,6 +106,7 @@ function directionStep(input: {
   focusWords: string[];
 }): DiagnosisTrainingStep {
   const correctIndex = input.options.findIndex((option) => option === input.correctAnswer);
+  const esFeedback = directionEsFeedback(input);
 
   return {
     id: input.id,
@@ -50,30 +114,30 @@ function directionStep(input: {
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    teachingText: input.teachingText,
-    translation: input.translation,
-    explanationBlock: input.teachingText,
+    teachingText: withEs(input.teachingText, esFeedback),
+    translation: withEs(input.translation, esFeedback),
+    explanationBlock: withEs(input.teachingText, esFeedback),
     microTask: tri(
       'Выбери маленькое слово по стрелке: к месту, внутрь, на поверхность, откуда или изнутри наружу.',
       'Обери маленьке слово за стрілкою: до місця, всередину, на поверхню, звідки або зсередини назовні.',
-      'Choose the small word by the arrow: to a place, inside, onto a surface, from somewhere, or from inside out.',
+      'Elige la palabra pequena por la flecha: hacia un lugar, hacia dentro, sobre una superficie, desde algun sitio o desde dentro hacia fuera.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex,
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? tri(
+        .map((option) => [option, withEs(input.wrong[option] ?? tri(
           `Почти. Здесь нужен готовый кусок: ${input.correctAnswer}.`,
           `Майже. Тут потрібен готовий шматок: ${input.correctAnswer}.`,
           `Casi. Aqui necesitas el bloque: ${input.correctAnswer}.`,
-        )]),
+        ), esFeedback)]),
     ),
-    retryFeedback: input.retryFeedback,
-    fallbackExplanation: input.fallbackExplanation,
+    retryFeedback: input.retryFeedback.map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
+    fallbackExplanation: withEs(input.fallbackExplanation, esFeedback),
     focusWords: input.focusWords,
   };
 }
@@ -81,7 +145,14 @@ function directionStep(input: {
 const LOCATION_VS_MOVEMENT = tri(
   'Сначала спроси не "как это переводится?", а "куда движется действие?". Так быстрее выбрать маленькое слово.',
   'Спочатку спитай не "як це перекладається?", а "куди рухається дія?". Так легше обрати маленьке слово.',
-  'First ask where the action moves, not how the phrase translates.',
+  'Primero pregunta hacia donde se mueve la accion, no como se traduce la frase.',
+  {
+    'pt-BR': 'Primeiro pergunte não "como isso se traduz?", mas "para onde a ação se move?". Assim fica mais fácil escolher a palavra pequena.',
+    vi: 'Trước tiên đừng hỏi "dịch thế nào?", mà hãy hỏi "hành động di chuyển đi đâu?". Như vậy sẽ dễ chọn từ nhỏ hơn.',
+    id: 'Pertama, jangan tanya "ini diterjemahkan bagaimana?", tetapi "aksinya bergerak ke mana?". Dengan begitu lebih mudah memilih kata kecilnya.',
+    tr: 'Önce "bu nasıl çevrilir?" diye değil, "eylem nereye hareket ediyor?" diye sor. Küçük kelimeyi böyle daha hızlı seçersin.',
+    pl: 'Najpierw zapytaj nie "jak to się tłumaczy?", tylko "dokąd porusza się akcja?". Tak łatwiej wybrać małe słowo.',
+  },
 );
 
 export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
@@ -90,37 +161,79 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 55,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Home / Onto / Out of: последние ловушки направления',
     'Home / Onto / Out of: останні пастки напрямку',
-    'Home / Onto / Out of: direction traps',
+    'Home / Onto / Out of: trampas de direccion',
+    {
+      'pt-BR': 'Home / Onto / Out of: últimas armadilhas de direção',
+      vi: 'Home / Onto / Out of: những bẫy hướng di chuyển cuối cùng',
+      id: 'Home / Onto / Out of: jebakan arah gerakan terakhir',
+      tr: 'Home / Onto / Out of: son yön tuzakları',
+      pl: 'Home / Onto / Out of: ostatnie pułapki kierunku',
+    },
   ),
   shortTitle: tri(
     'Home / Onto / Out of',
     'Home / Onto / Out of',
     'Home / Onto / Out of',
+    {
+      'pt-BR': 'Home / Onto / Out of',
+      vi: 'Home / Onto / Out of',
+      id: 'Home / Onto / Out of',
+      tr: 'Home / Onto / Out of',
+      pl: 'Home / Onto / Out of',
+    },
   ),
   shortDiagnosis: tri(
     'Ты видишь знакомое слово, но выбираешь не тот маленький кусок: to home, on вместо onto, from вместо out of.',
     'Ти бачиш знайоме слово, але обираєш не той маленький шматок: to home, on замість onto, from замість out of.',
-    'You know the words, but pick the wrong small chunk: to home, on instead of onto, from instead of out of.',
+    'Conoces las palabras, pero eliges el bloque pequeno equivocado: to home, on en vez de onto, from en vez de out of.',
+    {
+      'pt-BR': 'Você reconhece a palavra, mas escolhe o bloco pequeno errado: to home, on em vez de onto, from em vez de out of.',
+      vi: 'Bạn thấy một từ quen thuộc, nhưng chọn nhầm mảnh nhỏ: to home, on thay vì onto, from thay vì out of.',
+      id: 'Kamu melihat kata yang familiar, tetapi memilih potongan kecil yang salah: to home, on alih-alih onto, from alih-alih out of.',
+      tr: 'Tanıdık bir kelime görüyorsun, ama yanlış küçük parçayı seçiyorsun: to home, onto yerine on, out of yerine from.',
+      pl: 'Widzisz znajome słowo, ale wybierasz zły mały element: to home, on zamiast onto, from zamiast out of.',
+    },
   ),
   diagnosisText: tri(
     'Похоже, проблема не в словах. Проблема в стрелке. Английский тут смотрит на движение: к месту, внутрь, на поверхность, откуда или изнутри наружу. А ещё есть короткая ловушка: go home и come home обычно без to.',
     'Схоже, проблема не в словах. Проблема у стрілці. Англійська тут дивиться на рух: до місця, всередину, на поверхню, звідки або зсередини назовні. І є коротка пастка: go home та come home зазвичай без to.',
-    'The problem is not the words. It is the arrow: to a place, inside, onto a surface, from somewhere, or from inside out. Also: go home and come home are usually without to.',
+    'El problema no son las palabras. Es la flecha: hacia un lugar, hacia dentro, hacia una superficie, desde algun sitio o desde dentro hacia fuera. Tambien hay una trampa corta: go home y come home suelen ir sin to.',
+    {
+      'pt-BR': 'Parece que o problema não está nas palavras. Está na seta. Aqui o inglês olha para o movimento: para um lugar, para dentro, para uma superfície, de onde, ou de dentro para fora. E há uma armadilha curta: go home e come home geralmente vêm sem to.',
+      vi: 'Có vẻ vấn đề không nằm ở từ vựng. Vấn đề nằm ở mũi tên. Ở đây tiếng Anh nhìn vào chuyển động: đến một nơi, vào bên trong, lên một bề mặt, từ đâu, hoặc từ trong ra ngoài. Cũng có một bẫy ngắn: go home và come home thường không có to.',
+      id: 'Sepertinya masalahnya bukan pada kata-katanya. Masalahnya ada pada panahnya. Di sini bahasa Inggris melihat gerakan: menuju tempat, masuk ke dalam, ke atas permukaan, dari mana, atau dari dalam ke luar. Ada juga jebakan pendek: go home dan come home biasanya tanpa to.',
+      tr: 'Sorun kelimelerde değil gibi. Sorun okta. İngilizce burada harekete bakar: bir yere doğru, içeriye, bir yüzeye, nereden, ya da içeriden dışarıya. Kısa bir tuzak da var: go home ve come home genellikle to almaz.',
+      pl: 'Wygląda na to, że problem nie tkwi w słowach. Problem tkwi w strzałce. Angielski patrzy tu na ruch: do miejsca, do środka, na powierzchnię, skąd albo ze środka na zewnątrz. Jest też krótka pułapka: go home i come home zwykle występują bez to.',
+    },
   ),
   mentalModel: tri(
     'Представь стрелку. To ведёт к месту. Into входит внутрь. Onto кладёт или прыгает на поверхность. From показывает, откуда всё началось. Out of выводит изнутри наружу. Home после go/come часто уже готовый пункт назначения, без to.',
     'Уяви стрілку. To веде до місця. Into заходить усередину. Onto кладе або стрибає на поверхню. From показує, звідки все почалося. Out of виводить зсередини назовні. Home після go/come часто вже готова точка, без to.',
-    'Imagine an arrow. To goes to a place. Into goes inside. Onto lands on a surface. From shows the starting point. Out of goes from inside to outside. Home after go/come is often used without to.',
+    'Imagina una flecha. To va hacia un lugar. Into entra dentro. Onto cae sobre una superficie. From muestra el punto de salida. Out of sale desde dentro hacia fuera. Home despues de go/come suele ir sin to.',
+    {
+      'pt-BR': 'Imagine uma seta. To leva até um lugar. Into entra para dentro. Onto coloca ou pula para uma superfície. From mostra de onde tudo começou. Out of tira de dentro para fora. Home depois de go/come muitas vezes já é um destino pronto, sem to.',
+      vi: 'Hãy tưởng tượng một mũi tên. To dẫn đến một nơi. Into đi vào bên trong. Onto đặt hoặc nhảy lên một bề mặt. From cho biết mọi thứ bắt đầu từ đâu. Out of đưa từ trong ra ngoài. Home sau go/come thường đã là điểm đến sẵn, không cần to.',
+      id: 'Bayangkan sebuah panah. To mengarah ke suatu tempat. Into masuk ke dalam. Onto menaruh atau melompat ke atas permukaan. From menunjukkan dari mana semuanya dimulai. Out of membawa dari dalam ke luar. Home setelah go/come sering sudah menjadi tujuan siap pakai, tanpa to.',
+      tr: 'Bir ok hayal et. To bir yere götürür. Into içeri girer. Onto bir yüzeye koyar ya da sıçratır. From her şeyin nereden başladığını gösterir. Out of içeriden dışarı çıkarır. Go/come sonrası home çoğu zaman zaten hazır hedeftir, to almaz.',
+      pl: 'Wyobraź sobie strzałkę. To prowadzi do miejsca. Into wchodzi do środka. Onto kładzie albo skacze na powierzchnię. From pokazuje, skąd wszystko się zaczęło. Out of wyprowadza ze środka na zewnątrz. Home po go/come często jest już gotowym celem, bez to.',
+    },
   ),
   contrastSet: CONTRAST,
   coreRule: tri(
     'go home, go to work, go into the room, put it onto the table, come from Dublin, get out of the car.',
     'go home, go to work, go into the room, put it onto the table, come from Dublin, get out of the car.',
     'go home, go to work, go into the room, put it onto the table, come from Dublin, get out of the car.',
+    {
+      'pt-BR': 'go home, go to work, go into the room, put it onto the table, come from Dublin, get out of the car.',
+      vi: 'go home, go to work, go into the room, put it onto the table, come from Dublin, get out of the car.',
+      id: 'go home, go to work, go into the room, put it onto the table, come from Dublin, get out of the car.',
+      tr: 'go home, go to work, go into the room, put it onto the table, come from Dublin, get out of the car.',
+      pl: 'go home, go to work, go into the room, put it onto the table, come from Dublin, get out of the car.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -142,13 +255,58 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       'In/on/at часто кажуть, де щось уже є. Into/onto/out of показують сам рух.',
     ],
     es: [
-      'Home after go/come is often without to.',
-      'To = to a place.',
-      'Into = inside movement.',
-      'Onto = onto a surface.',
-      'From = starting point.',
-      'Out of = from inside to outside.',
-      'In/on/at often show where something already is.',
+      'Home despues de go/come suele ir sin to: go home, come home.',
+      'To se usa cuando la flecha va hacia un lugar: go to work, drive to Dublin.',
+      'Into se usa cuando la flecha entra dentro: go into the room, get into the car.',
+      'Onto se usa cuando algo se mueve hasta una superficie: put the phone onto the table.',
+      'From se usa cuando importa el punto de salida: come from Dublin.',
+      'Out of se usa cuando el movimiento va desde dentro hacia fuera: get out of the car.',
+      'In/on/at suelen decir donde algo ya esta. Into/onto/out of muestran el movimiento.',
+    ],
+    'pt-BR': [
+      'Home depois de go/come muitas vezes vem sem to.',
+      'To = para um lugar.',
+      'Into = movimento para dentro.',
+      'Onto = movimento para uma superfície.',
+      'From = ponto de partida.',
+      'Out of = de dentro para fora.',
+      'In/on/at muitas vezes mostram onde algo já está.',
+    ],
+    vi: [
+      'Home sau go/come thường không có to.',
+      'To = đến một nơi.',
+      'Into = chuyển động vào bên trong.',
+      'Onto = chuyển động lên một bề mặt.',
+      'From = điểm bắt đầu.',
+      'Out of = từ bên trong ra bên ngoài.',
+      'In/on/at thường chỉ nơi thứ gì đó đã ở sẵn.',
+    ],
+    id: [
+      'Home setelah go/come sering tanpa to.',
+      'To = menuju suatu tempat.',
+      'Into = gerakan masuk ke dalam.',
+      'Onto = gerakan ke atas permukaan.',
+      'From = titik awal.',
+      'Out of = dari dalam ke luar.',
+      'In/on/at sering menunjukkan tempat sesuatu sudah berada.',
+    ],
+    tr: [
+      'Go/come sonrasında home çoğu zaman to olmadan gelir.',
+      'To = bir yere doğru.',
+      'Into = içeriye doğru hareket.',
+      'Onto = bir yüzeyin üstüne doğru hareket.',
+      'From = başlangıç noktası.',
+      'Out of = içeriden dışarı.',
+      'In/on/at çoğu zaman bir şeyin zaten nerede olduğunu gösterir.',
+    ],
+    pl: [
+      'Home po go/come często występuje bez to.',
+      'To = do miejsca.',
+      'Into = ruch do środka.',
+      'Onto = ruch na powierzchnię.',
+      'From = punkt startowy.',
+      'Out of = ze środka na zewnątrz.',
+      'In/on/at często pokazują, gdzie coś już jest.',
     ],
   },
   examples: [
@@ -156,50 +314,85 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       en: 'I came home late.',
       ru: 'Я пришёл домой поздно.',
       uk: 'Я прийшов додому пізно.',
-      es: 'I came home late.',
-      why: tri('После came слово home уже работает как направление. Не нужно came to home.', 'Після came слово home уже працює як напрямок. Не треба came to home.', 'After came, home already works as direction. Not came to home.'),
+      es: 'Llegue a casa tarde.',
+      'pt-BR': 'Cheguei em casa tarde.',
+      vi: 'Tôi về nhà muộn.',
+      id: 'Saya pulang terlambat.',
+      tr: 'Eve geç geldim.',
+      pl: 'Wróciłem do domu późno.',
+      why: tri('После came слово home уже работает как направление. Не нужно came to home.', 'Після came слово home уже працює як напрямок. Не треба came to home.', 'Despues de came, home ya funciona como direccion. No digas came to home.'),
     },
     {
       en: 'I am going to work.',
       ru: 'Я иду на работу.',
       uk: 'Я йду на роботу.',
-      es: 'I am going to work.',
-      why: tri('Work здесь цель движения: to work.', 'Work тут ціль руху: to work.', 'Work is the goal: to work.'),
+      es: 'Voy al trabajo.',
+      'pt-BR': 'Estou indo para o trabalho.',
+      vi: 'Tôi đang đi làm.',
+      id: 'Saya sedang pergi ke tempat kerja.',
+      tr: 'İşe gidiyorum.',
+      pl: 'Idę do pracy.',
+      why: tri('Work здесь цель движения: to work.', 'Work тут ціль руху: to work.', 'Work aqui es la meta del movimiento: to work.'),
     },
     {
       en: 'She went into the room.',
       ru: 'Она вошла в комнату.',
       uk: 'Вона зайшла в кімнату.',
-      es: 'She went into the room.',
-      why: tri('Стрелка входит внутрь комнаты: into the room.', 'Стрілка заходить усередину кімнати: into the room.', 'The arrow goes inside the room: into the room.'),
+      es: 'Ella entro en la habitacion.',
+      'pt-BR': 'Ela entrou no quarto.',
+      vi: 'Cô ấy đi vào phòng.',
+      id: 'Dia masuk ke ruangan.',
+      tr: 'Odaya girdi.',
+      pl: 'Weszła do pokoju.',
+      why: tri('Стрелка входит внутрь комнаты: into the room.', 'Стрілка заходить усередину кімнати: into the room.', 'La flecha entra dentro de la habitacion: into the room.'),
     },
     {
       en: 'Put the phone onto the table.',
       ru: 'Положи телефон на стол.',
       uk: 'Поклади телефон на стіл.',
-      es: 'Put the phone onto the table.',
-      why: tri('Телефон движется на поверхность стола: onto the table.', 'Телефон рухається на поверхню столу: onto the table.', 'The phone moves onto the table surface.'),
+      es: 'Pon el telefono sobre la mesa.',
+      'pt-BR': 'Coloque o telefone sobre a mesa.',
+      vi: 'Đặt điện thoại lên bàn.',
+      id: 'Letakkan ponsel ke atas meja.',
+      tr: 'Telefonu masanın üstüne koy.',
+      pl: 'Połóż telefon na stole.',
+      why: tri('Телефон движется на поверхность стола: onto the table.', 'Телефон рухається на поверхню столу: onto the table.', 'El telefono se mueve hasta la superficie de la mesa: onto the table.'),
     },
     {
       en: 'He came from Dublin.',
       ru: 'Он приехал из Дублина.',
       uk: 'Він приїхав із Дубліна.',
-      es: 'He came from Dublin.',
-      why: tri('Здесь важно, откуда началось движение: from Dublin.', 'Тут важливо, звідки почався рух: from Dublin.', 'This shows the starting point: from Dublin.'),
+      es: 'El vino de Dublin.',
+      'pt-BR': 'Ele veio de Dublin.',
+      vi: 'Anh ấy đến từ Dublin.',
+      id: 'Dia datang dari Dublin.',
+      tr: "Dublin'den geldi.",
+      pl: 'Przyjechał z Dublina.',
+      why: tri('Здесь важно, откуда началось движение: from Dublin.', 'Тут важливо, звідки почався рух: from Dublin.', 'Aqui importa desde donde empezo el movimiento: from Dublin.'),
     },
     {
       en: 'Get out of the car.',
       ru: 'Выйди из машины.',
       uk: 'Вийди з машини.',
-      es: 'Get out of the car.',
-      why: tri('Ты внутри машины и выходишь наружу: out of the car.', 'Ти всередині машини і виходиш назовні: out of the car.', 'You are inside the car and move outside: out of the car.'),
+      es: 'Sal del coche.',
+      'pt-BR': 'Saia do carro.',
+      vi: 'Ra khỏi xe đi.',
+      id: 'Keluar dari mobil.',
+      tr: 'Arabadan çık.',
+      pl: 'Wysiądź z samochodu.',
+      why: tri('Ты внутри машины и выходишь наружу: out of the car.', 'Ти всередині машини і виходиш назовні: out of the car.', 'Estas dentro del coche y sales hacia fuera: out of the car.'),
     },
     {
       en: 'The cat jumped onto the sofa.',
       ru: 'Кот запрыгнул на диван.',
       uk: 'Кіт застрибнув на диван.',
-      es: 'The cat jumped onto the sofa.',
-      why: tri('Движение заканчивается на поверхности дивана: onto the sofa.', 'Рух закінчується на поверхні дивана: onto the sofa.', 'The movement lands on the sofa surface.'),
+      es: 'El gato salto al sofa.',
+      'pt-BR': 'O gato pulou para cima do sofá.',
+      vi: 'Con mèo nhảy lên ghế sofa.',
+      id: 'Kucing itu melompat ke atas sofa.',
+      tr: 'Kedi kanepeye atladı.',
+      pl: 'Kot wskoczył na sofę.',
+      why: tri('Движение заканчивается на поверхности дивана: onto the sofa.', 'Рух закінчується на поверхні дивана: onto the sofa.', 'El movimiento termina sobre la superficie del sofa: onto the sofa.'),
     },
   ],
   introBlocks: [
@@ -209,7 +402,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       text: tri(
         'Ты не просто путаешь to, into, onto, from и out of. Ты часто выбираешь слово по русскому "в/на/из", а английский в этот момент смотрит на стрелку.',
         'Ти не просто плутаєш to, into, onto, from та out of. Ти часто обираєш слово за українським "в/на/з", а англійська в цей момент дивиться на стрілку.',
-        'You are not just mixing to, into, onto, from, and out of. You are choosing by translation, while English looks at the arrow.',
+        'No solo confundes to, into, onto, from y out of. Muchas veces eliges por traduccion, mientras el ingles mira la flecha.',
       ),
     },
     {
@@ -218,7 +411,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       text: tri(
         'Пять быстрых опор: домой без to, на работу с to, внутрь комнаты с into, на поверхность с onto, наружу из машины с out of.',
         'Пʼять швидких опор: додому без to, на роботу з to, усередину кімнати з into, на поверхню з onto, назовні з машини з out of.',
-        'Five fast anchors: go home, go to work, go into the room, put it onto the table, get out of the car.',
+        'Cinco apoyos rapidos: go home, go to work, go into the room, put it onto the table, get out of the car.',
       ),
     },
     {
@@ -227,7 +420,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       text: tri(
         'Самые липкие ошибки: go to home, went in the room, put it on the table там, где нужно подчеркнуть движение, и get out from the car.',
         'Найлипкіші помилки: go to home, went in the room, put it on the table там, де треба підкреслити рух, і get out from the car.',
-        'Sticky mistakes: go to home, went in the room, put it on the table when movement matters, and get out from the car.',
+        'Errores pegajosos: go to home, went in the room, put it on the table cuando importa el movimiento, y get out from the car.',
       ),
     },
   ],
@@ -711,22 +904,22 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
     depth1: tri(
       'Не переводи слово отдельно. Найди стрелку движения.',
       'Не перекладай слово окремо. Знайди стрілку руху.',
-      'Do not translate the word alone. Find the movement arrow.',
+      'No traduzcas la palabra suelta. Encuentra la flecha del movimiento.',
     ),
     depth2: tri(
       'Спроси: к месту, внутрь, на поверхность, откуда или изнутри наружу?',
       'Спитай: до місця, всередину, на поверхню, звідки або зсередини назовні?',
-      'Ask: to a place, inside, onto a surface, from where, or from inside out?',
+      'Pregunta: hacia un lugar, hacia dentro, sobre una superficie, desde donde o desde dentro hacia fuera?',
     ),
     depth3: tri(
       'Держи опоры по движению: домой без to, к месту с to, внутрь с into, на поверхность с onto, наружу с out of.',
       'Тримай опори за рухом: додому без to, до місця з to, усередину з into, на поверхню з onto, назовні з out of.',
-      'Use the anchors: go home, to work, into the room, onto the table, out of the car.',
+      'Usa los apoyos: go home, to work, into the room, onto the table, out of the car.',
     ),
     depth4: tri(
       'Почти подсказка: выбери готовый кусок по стрелке, не по русскому "в/на/из".',
       'Майже підказка: обери готовий шматок за стрілкою, не за українським "в/на/з".',
-      'Almost a hint: choose the ready chunk by the arrow, not by translation.',
+      'Casi una pista: elige el bloque listo por la flecha, no por traduccion.',
     ),
   },
   failureRecovery: {
@@ -735,7 +928,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       card: tri(
         'Стоп. Нарисуй стрелку: куда идем, внутрь ли заходим, на поверхность ли кладем, откуда выходим или откуда приехали.',
         'Стоп. Намалюй стрілку: куди йдемо, чи всередину заходимо, чи на поверхню кладемо, звідки виходимо або звідки приїхали.',
-        'Stop. Draw the arrow: home without to, to work, into the room, onto the table, from Dublin, out of the car.',
+        'Para. Dibuja la flecha: home sin to, to work, into the room, onto the table, from Dublin, out of the car.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -743,7 +936,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       card: tri(
         'Выбери тип стрелки: к месту, внутрь, на поверхность, откуда, изнутри наружу.',
         'Обери тип стрілки: до місця, всередину, на поверхню, звідки, зсередини назовні.',
-        'Choose the arrow type: to a place, inside, onto a surface, from somewhere, from inside out.',
+        'Elige el tipo de flecha: hacia un lugar, hacia dentro, sobre una superficie, desde algun sitio, desde dentro hacia fuera.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -751,7 +944,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       card: tri(
         'Переходим в режим с подсказками: сначала смысл стрелки, потом готовый английский кусок.',
         'Переходимо в режим із підказками: спочатку сенс стрілки, потім готовий англійський шматок.',
-        'Guided mode: first the arrow meaning, then the English chunk.',
+        'Modo guiado: primero el sentido de la flecha, despues el bloque ingles listo.',
       ),
     },
   },
@@ -761,28 +954,28 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_prep_dir_home',
-        prompt: tri('В came home нужен to?', 'У came home потрібне to?', 'Does came home need to?'),
+        prompt: tri('В came home нужен to?', 'У came home потрібне to?', 'En came home hace falta to?'),
         options: ['нет, came home', 'да, came to home'],
         correctIndex: 0,
         thenReturnToExerciseId: 'prep_dir_easy_003',
       },
       {
         id: 'guided_prep_dir_inside',
-        prompt: tri('Went into the room - это уже внутри или вход внутрь?', 'Went into the room - це вже всередині чи вхід усередину?', 'Went into the room: already inside or movement inside?'),
+        prompt: tri('Went into the room - это уже внутри или вход внутрь?', 'Went into the room - це вже всередині чи вхід усередину?', 'Went into the room: ya esta dentro o entra hacia dentro?'),
         options: ['вход внутрь', 'уже внутри'],
         correctIndex: 0,
         thenReturnToExerciseId: 'prep_dir_contrast_001',
       },
       {
         id: 'guided_prep_dir_surface',
-        prompt: tri('Onto the table - это внутрь стола или на поверхность?', 'Onto the table - це всередину столу чи на поверхню?', 'Onto the table: inside the table or onto the surface?'),
+        prompt: tri('Onto the table - это внутрь стола или на поверхность?', 'Onto the table - це всередину столу чи на поверхню?', 'Onto the table: dentro de la mesa o sobre la superficie?'),
         options: ['на поверхность', 'внутрь стола'],
         correctIndex: 0,
         thenReturnToExerciseId: 'prep_dir_contrast_004',
       },
       {
         id: 'guided_prep_dir_out',
-        prompt: tri('Out of the car - это к машине или изнутри машины наружу?', 'Out of the car - це до машини чи зсередини машини назовні?', 'Out of the car: to the car or from inside the car out?'),
+        prompt: tri('Out of the car - это к машине или изнутри машины наружу?', 'Out of the car - це до машини чи зсередини машини назовні?', 'Out of the car: hacia el coche o desde dentro del coche hacia fuera?'),
         options: ['изнутри наружу', 'к машине'],
         correctIndex: 0,
         thenReturnToExerciseId: 'prep_dir_mixed_002',
@@ -797,7 +990,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
     diagnosisLabel: tri(
       'Home / Onto / Out of',
       'Home / Onto / Out of',
-      'Home / Onto / Out of',
+      'Home / Onto / Out of: direccion',
     ),
     contrastSet: SMART_CONTRAST,
     focusWords: [
@@ -843,7 +1036,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_preposition_direction_start',
     answer: 'diagnosis_training_preposition_direction_answer',
     mastery: 'diagnosis_training_preposition_direction_mastery',
-    fallback: 'diagnosis_training_preposition_direction_fallback',
+    recovery: 'diagnosis_training_preposition_direction_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

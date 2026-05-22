@@ -10,16 +10,13 @@ const tri = (
   uk: string,
   es: string,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (planned[locale]) copy[locale] = planned[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'in + enclosed place',
@@ -42,6 +39,254 @@ const SMART_CONTRAST = [
   'fixed expressions',
 ];
 
+const TIME_PLACE_STEP_TRANSLATIONS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  prep_tp_easy_001: {
+    'pt-BR': 'Estou no quarto.',
+    vi: 'Tôi đang ở trong phòng.',
+    id: 'Saya ada di dalam ruangan.',
+    tr: 'Odadayım.',
+    pl: 'Jestem w pokoju.',
+  },
+  prep_tp_easy_002: {
+    'pt-BR': 'As chaves estão sobre a mesa.',
+    vi: 'Chìa khóa ở trên bàn.',
+    id: 'Kunci ada di atas meja.',
+    tr: 'Anahtarlar masanın üzerinde.',
+    pl: 'Klucze są na stole.',
+  },
+  prep_tp_easy_003: {
+    'pt-BR': 'Estou na porta.',
+    vi: 'Tôi đang ở cửa.',
+    id: 'Saya ada di dekat pintu.',
+    tr: 'Kapıdayım.',
+    pl: 'Jestem przy drzwiach.',
+  },
+  prep_tp_contrast_001: {
+    'pt-BR': 'Eu trabalho na segunda-feira.',
+    vi: 'Tôi làm việc vào thứ Hai.',
+    id: 'Saya bekerja pada hari Senin.',
+    tr: 'Pazartesi çalışıyorum.',
+    pl: 'Pracuję w poniedziałek.',
+  },
+  prep_tp_contrast_002: {
+    'pt-BR': 'A reunião começa às 8.',
+    vi: 'Cuộc họp bắt đầu lúc 8 giờ.',
+    id: 'Rapat dimulai pukul 8.',
+    tr: "Toplantı saat 8'de başlıyor.",
+    pl: 'Spotkanie zaczyna się o 8.',
+  },
+  prep_tp_contrast_003: {
+    'pt-BR': 'Nasci em 1990.',
+    vi: 'Tôi sinh năm 1990.',
+    id: 'Saya lahir pada tahun 1990.',
+    tr: "1990'da doğdum.",
+    pl: 'Urodziłem się w 1990 roku.',
+  },
+  prep_tp_contrast_004: {
+    'pt-BR': 'Ela mora em Dublin.',
+    vi: 'Cô ấy sống ở Dublin.',
+    id: 'Dia tinggal di Dublin.',
+    tr: "Dublin'de yaşıyor.",
+    pl: 'Ona mieszka w Dublinie.',
+  },
+  prep_tp_contrast_005: {
+    'pt-BR': 'Eu normalmente estudo à noite.',
+    vi: 'Tôi thường học vào buổi tối.',
+    id: 'Saya biasanya belajar pada malam hari.',
+    tr: 'Genelde akşam çalışırım.',
+    pl: 'Zwykle uczę się wieczorem.',
+  },
+  prep_tp_contrast_006: {
+    'pt-BR': 'O exame é em 5 de maio.',
+    vi: 'Kỳ thi vào ngày 5 tháng Năm.',
+    id: 'Ujiannya pada tanggal 5 Mei.',
+    tr: "Sınav 5 Mayıs'ta.",
+    pl: 'Egzamin jest 5 maja.',
+  },
+  prep_tp_mixed_001: {
+    'pt-BR': 'Estou no trabalho.',
+    vi: 'Tôi đang ở nơi làm việc.',
+    id: 'Saya sedang di tempat kerja.',
+    tr: 'İşteyim.',
+    pl: 'Jestem w pracy.',
+  },
+  prep_tp_mixed_002: {
+    'pt-BR': 'Ela está no ônibus.',
+    vi: 'Cô ấy đang ở trên xe buýt.',
+    id: 'Dia ada di bus.',
+    tr: 'O otobüste.',
+    pl: 'Ona jest w autobusie.',
+  },
+  prep_tp_mixed_003: {
+    'pt-BR': 'Ele está no carro.',
+    vi: 'Anh ấy đang ở trong xe hơi.',
+    id: 'Dia ada di dalam mobil.',
+    tr: 'O arabada.',
+    pl: 'On jest w samochodzie.',
+  },
+  prep_tp_mixed_004: {
+    'pt-BR': 'no quarto / na segunda-feira',
+    vi: 'trong phòng / vào thứ Hai',
+    id: 'di dalam ruangan / pada hari Senin',
+    tr: 'odada / pazartesi günü',
+    pl: 'w pokoju / w poniedziałek',
+  },
+  prep_tp_mixed_005: {
+    'pt-BR': 'sobre a mesa / às 8 horas',
+    vi: 'trên bàn / lúc 8 giờ',
+    id: 'di atas meja / pukul 8',
+    tr: 'masanın üzerinde / saat 8de',
+    pl: 'na stole / o 8',
+  },
+  prep_tp_mixed_006: {
+    'pt-BR': 'Moro em Dublin, trabalho às segundas-feiras e começo às 8.',
+    vi: 'Tôi sống ở Dublin, làm việc vào các thứ Hai và bắt đầu lúc 8 giờ.',
+    id: 'Saya tinggal di Dublin, bekerja pada hari Senin, dan mulai pukul 8.',
+    tr: "Dublin'de yaşıyorum, pazartesileri çalışıyorum ve saat 8'de başlıyorum.",
+    pl: 'Mieszkam w Dublinie, pracuję w poniedziałki i zaczynam o 8.',
+  },
+};
+
+const TIME_PLACE_SKILL_HINTS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  place_in_room: {
+    'pt-BR': 'A pessoa está dentro de um espaço; o bloco é in the room.',
+    vi: 'Người ở bên trong một không gian; cụm đúng là in the room.',
+    id: 'Orang berada di dalam ruang; frasanya in the room.',
+    tr: 'Kişi bir alanın içinde; kalıp in the room.',
+    pl: 'Osoba jest wewnątrz przestrzeni; blok to in the room.',
+  },
+  place_on_table: {
+    'pt-BR': 'A mesa é superfície; o bloco é on the table.',
+    vi: 'Bàn là bề mặt; cụm đúng là on the table.',
+    id: 'Meja adalah permukaan; frasanya on the table.',
+    tr: 'Masa bir yüzeydir; kalıp on the table.',
+    pl: 'Stół to powierzchnia; blok to on the table.',
+  },
+  place_at_door: {
+    'pt-BR': 'A porta funciona como ponto/local; o bloco é at the door.',
+    vi: 'Cửa hoạt động như một điểm/vị trí; cụm đúng là at the door.',
+    id: 'Pintu berfungsi sebagai titik/lokasi; frasanya at the door.',
+    tr: 'Kapı nokta/konum gibi çalışır; kalıp at the door.',
+    pl: 'Drzwi działają jak punkt/lokalizacja; blok to at the door.',
+  },
+  time_on_monday: {
+    'pt-BR': 'Monday é dia da semana; dias usam on.',
+    vi: 'Monday là ngày trong tuần; ngày dùng on.',
+    id: 'Monday adalah hari; hari memakai on.',
+    tr: 'Monday haftanın günüdür; günlerle on kullanılır.',
+    pl: 'Monday to dzień tygodnia; dni używają on.',
+  },
+  time_at_exact: {
+    'pt-BR': 'Hora exata é ponto no relógio; use at.',
+    vi: 'Giờ chính xác là điểm trên đồng hồ; dùng at.',
+    id: 'Jam tepat adalah titik pada jam; gunakan at.',
+    tr: 'Kesin saat saatte bir noktadır; at kullan.',
+    pl: 'Dokładna godzina to punkt na zegarze; użyj at.',
+  },
+  time_in_year: {
+    'pt-BR': 'Ano é período amplo; use in.',
+    vi: 'Năm là khoảng thời gian rộng; dùng in.',
+    id: 'Tahun adalah periode luas; gunakan in.',
+    tr: 'Yıl geniş dönemdir; in kullan.',
+    pl: 'Rok to szeroki okres; użyj in.',
+  },
+  place_in_city: {
+    'pt-BR': 'Cidade é lugar amplo; use in.',
+    vi: 'Thành phố là nơi rộng; dùng in.',
+    id: 'Kota adalah tempat luas; gunakan in.',
+    tr: 'Şehir geniş yerdir; in kullan.',
+    pl: 'Miasto to duże miejsce; użyj in.',
+  },
+  time_in_evening: {
+    'pt-BR': 'Evening é parte do dia; normalmente in the evening.',
+    vi: 'Evening là một phần trong ngày; thường dùng in the evening.',
+    id: 'Evening adalah bagian dari hari; biasanya in the evening.',
+    tr: 'Evening günün bir bölümüdür; genelde in the evening.',
+    pl: 'Evening to część dnia; zwykle in the evening.',
+  },
+  date_on_may_5: {
+    'pt-BR': 'May 5th é data; datas usam on.',
+    vi: 'May 5th là ngày tháng; ngày tháng dùng on.',
+    id: 'May 5th adalah tanggal; tanggal memakai on.',
+    tr: 'May 5th tarihtir; tarihlerle on kullanılır.',
+    pl: 'May 5th to data; daty używają on.',
+  },
+  fixed_at_work: {
+    'pt-BR': 'At work é bloco fixo para estar no trabalho.',
+    vi: 'At work là cụm cố định cho việc đang ở nơi làm việc.',
+    id: 'At work adalah frasa tetap untuk berada di tempat kerja.',
+    tr: 'At work işte olmak için sabit kalıptır.',
+    pl: 'At work to stały blok dla bycia w pracy.',
+  },
+  fixed_on_bus: {
+    'pt-BR': 'Com ônibus como transporte, o bloco comum é on the bus.',
+    vi: 'Với xe buýt như phương tiện, cụm thường dùng là on the bus.',
+    id: 'Dengan bus sebagai transportasi, frasa umum adalah on the bus.',
+    tr: 'Otobüs ulaşım aracı olarak on the bus kalıbını alır.',
+    pl: 'Z autobusem jako środkiem transportu typowy blok to on the bus.',
+  },
+  fixed_in_car: {
+    'pt-BR': 'Carro é espaço fechado pequeno; use in the car.',
+    vi: 'Xe hơi là không gian kín nhỏ; dùng in the car.',
+    id: 'Mobil adalah ruang tertutup kecil; gunakan in the car.',
+    tr: 'Araba küçük kapalı alandır; in the car kullan.',
+    pl: 'Samochód to mała zamknięta przestrzeń; użyj in the car.',
+  },
+  mixed_time_place_pair: {
+    'pt-BR': 'Separe lugar e tempo: quarto usa in; Monday usa on.',
+    vi: 'Tách nơi chốn và thời gian: phòng dùng in; Monday dùng on.',
+    id: 'Pisahkan tempat dan waktu: room memakai in; Monday memakai on.',
+    tr: 'Yer ve zamanı ayır: room in alır; Monday on alır.',
+    pl: 'Oddziel miejsce i czas: room używa in; Monday używa on.',
+  },
+  mixed_surface_exact_time: {
+    'pt-BR': 'Superfície usa on; hora exata usa at.',
+    vi: 'Bề mặt dùng on; giờ chính xác dùng at.',
+    id: 'Permukaan memakai on; jam tepat memakai at.',
+    tr: 'Yüzey on alır; kesin saat at alır.',
+    pl: 'Powierzchnia używa on; dokładna godzina używa at.',
+  },
+  mixed_sentence_correction: {
+    'pt-BR': 'Monte em blocos: in Dublin, on Mondays, at 8.',
+    vi: 'Ghép theo cụm: in Dublin, on Mondays, at 8.',
+    id: 'Susun sebagai blok: in Dublin, on Mondays, at 8.',
+    tr: 'Bloklarla kur: in Dublin, on Mondays, at 8.',
+    pl: 'Składaj z bloków: in Dublin, on Mondays, at 8.',
+  },
+};
+
+const TIME_PLACE_GENERIC_HINTS: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'Escolha pela imagem: lugar ou tempo, depois escala ou posição.',
+  vi: 'Chọn theo hình dung: nơi chốn hay thời gian, rồi xem thang đo hoặc vị trí.',
+  id: 'Pilih berdasarkan gambaran: tempat atau waktu, lalu skala atau posisi.',
+  tr: 'Görüntüye göre seç: yer mi zaman mı, sonra ölçek veya konum.',
+  pl: 'Wybieraj według obrazu: miejsce czy czas, potem skala albo pozycja.',
+};
+
+function fillPlanned(copy: TriText, planned: Partial<Record<PlannedTrainingLocale, string>>): TriText {
+  const next: TriText = { ...copy };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] && planned[locale]) next[locale] = planned[locale];
+  }
+  return next;
+}
+
+function plannedTimePlaceFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): Record<PlannedTrainingLocale, string> {
+  const focus = input.focusWords.join(' / ');
+  const hints = TIME_PLACE_SKILL_HINTS[input.targetSkill] ?? TIME_PLACE_GENERIC_HINTS;
+  return {
+    'pt-BR': `Use "${input.correctAnswer}"${focus ? ` com ${focus}` : ''}. ${hints['pt-BR']}`,
+    vi: `Dùng "${input.correctAnswer}"${focus ? ` với ${focus}` : ''}. ${hints.vi}`,
+    id: `Gunakan "${input.correctAnswer}"${focus ? ` dengan ${focus}` : ''}. ${hints.id}`,
+    tr: `"${input.correctAnswer}" kullan${focus ? ` (${focus})` : ''}. ${hints.tr}`,
+    pl: `Użyj "${input.correctAnswer}"${focus ? ` z ${focus}` : ''}. ${hints.pl}`,
+  };
+}
+
 function timePlaceStep(input: {
   id: string;
   order: number;
@@ -59,6 +304,8 @@ function timePlaceStep(input: {
   focusWords: string[];
 }): DiagnosisTrainingStep {
   const correctIndex = input.options.findIndex((option) => option === input.correctAnswer);
+  const plannedFeedback = plannedTimePlaceFeedback(input);
+  const plannedTranslation = TIME_PLACE_STEP_TRANSLATIONS[input.id] ?? plannedFeedback;
 
   return {
     id: input.id,
@@ -66,39 +313,53 @@ function timePlaceStep(input: {
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    teachingText: input.teachingText,
-    translation: input.translation,
-    explanationBlock: input.teachingText,
+    teachingText: fillPlanned(input.teachingText, plannedFeedback),
+    translation: fillPlanned(input.translation, plannedTranslation),
+    explanationBlock: fillPlanned(input.teachingText, plannedFeedback),
     microTask: tri(
       'Выбери маленькое слово по смыслу фразы, а не по прямому переводу.',
       'Обери маленьке слово за змістом фрази, а не за прямим перекладом.',
       'Elige la palabra pequeña por el sentido de la frase, no por traducción directa.',
+      {
+        'pt-BR': 'Escolha a palavrinha pelo sentido da frase, não por tradução direta.',
+        vi: 'Chọn từ nhỏ theo nghĩa của câu, không theo bản dịch trực tiếp.',
+        id: 'Pilih kata kecil berdasarkan makna frasa, bukan terjemahan langsung.',
+        tr: 'Küçük kelimeyi doğrudan çeviriye göre değil, cümlenin anlamına göre seç.',
+        pl: 'Wybierz małe słowo według sensu frazy, nie według bezpośredniego tłumaczenia.',
+      },
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex,
-    correctFeedback: input.correctFeedback,
+    correctFeedback: fillPlanned(input.correctFeedback, plannedFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? tri(
+        .map((option) => [option, fillPlanned(input.wrong[option] ?? tri(
           `Почти. Здесь нужен готовый блок: ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
           `Майже. Тут потрібен готовий блок: ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
           `Casi. Aquí necesitas el bloque: ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
-        )]),
+        ), plannedFeedback)]),
     ),
     retryFeedback: [
-      input.retry[0],
-      input.retry[1],
-      input.retry[2],
+      fillPlanned(input.retry[0], plannedFeedback),
+      fillPlanned(input.retry[1], plannedFeedback),
+      fillPlanned(input.retry[2], plannedFeedback),
       tri(
         `Подсказка: произнеси готовый кусок "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
         `Підказка: промов готовий шматок "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
         `Pista: di el bloque completo "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
+        {
+          'pt-BR': `Dica: diga o bloco completo "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
+          vi: `Gợi ý: hãy nói trọn cụm "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
+          id: `Petunjuk: ucapkan frasa lengkap "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
+          tr: `İpucu: "${input.correctAnswer} ${input.focusWords[0] ?? ''}" kalıbını tam söyle.`.trim(),
+          pl: `Wskazówka: powiedz cały blok "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
+        },
       ),
     ],
-    fallbackExplanation: input.fallbackExplanation,
+    fallbackExplanation: fillPlanned(input.fallbackExplanation, plannedFeedback),
     focusWords: input.focusWords,
   };
 }
@@ -109,37 +370,79 @@ export const PREPOSITION_TIME_PLACE_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 54,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'In / On / At: место или время',
     'In / On / At: місце чи час',
     'In / On / At: lugar o tiempo',
+    {
+      'pt-BR': 'In / On / At: lugar ou tempo',
+      vi: 'In / On / At: nơi chốn hay thời gian',
+      id: 'In / On / At: tempat atau waktu',
+      tr: 'In / On / At: yer veya zaman',
+      pl: 'In / On / At: miejsce albo czas',
+    },
   ),
   shortTitle: tri(
     'In / On / At',
     'In / On / At',
     'In / On / At',
+    {
+      'pt-BR': 'In / On / At',
+      vi: 'In / On / At',
+      id: 'In / On / At',
+      tr: 'In / On / At',
+      pl: 'In / On / At',
+    },
   ),
   shortDiagnosis: tri(
     'Ты путаешь in, on и at, потому что переводишь “в/на” напрямую. Здесь нужно сначала понять: это место или время.',
     'Ти плутаєш in, on та at, бо перекладаєш “в/на” напряму. Тут треба спочатку зрозуміти: це місце чи час.',
     'Confundes in, on y at porque traduces directamente. Primero hay que ver si es lugar o tiempo.',
+    {
+      'pt-BR': 'Você confunde in, on e at porque traduz diretamente. Primeiro é preciso ver se é lugar ou tempo.',
+      vi: 'Bạn nhầm in, on và at vì dịch trực tiếp. Trước tiên cần xem đó là nơi chốn hay thời gian.',
+      id: 'Kamu mencampur in, on, dan at karena menerjemahkan langsung. Pertama lihat dulu ini tempat atau waktu.',
+      tr: 'Doğrudan çevirdiğin için in, on ve at karışıyor. Önce bunun yer mi zaman mı olduğunu görmek gerekir.',
+      pl: 'Mylisz in, on i at, bo tłumaczysz bezpośrednio. Najpierw trzeba zobaczyć, czy chodzi o miejsce czy czas.',
+    },
   ),
   diagnosisText: tri(
     'Похоже, ловушка повторяется: ты выбираешь in, on или at по русскому “в/на”. Английский так часто не работает. Сначала нужно увидеть картинку: человек внутри места, на поверхности, у точки; или время как период, день, точный час.',
     'Схоже, пастка повторюється: ти обираєш in, on або at за українським “в/на”. Англійська так часто не працює. Спочатку треба побачити картинку: людина всередині місця, на поверхні, біля точки; або час як період, день, точна година.',
     'Parece que se repite la trampa: eliges in, on o at por traducción directa. Primero mira la imagen: dentro, superficie, punto; o tiempo como periodo, día, hora exacta.',
+    {
+      'pt-BR': 'Parece que a armadilha se repete: você escolhe in, on ou at por tradução direta. Primeiro olhe a imagem: dentro, superfície, ponto; ou tempo como período, dia, hora exata.',
+      vi: 'Có vẻ cái bẫy đang lặp lại: bạn chọn in, on hoặc at theo bản dịch trực tiếp. Trước tiên hãy nhìn hình dung: bên trong, bề mặt, điểm; hoặc thời gian như khoảng thời gian, ngày, giờ chính xác.',
+      id: 'Sepertinya jebakannya berulang: kamu memilih in, on, atau at berdasarkan terjemahan langsung. Lihat dulu gambarnya: di dalam, permukaan, titik; atau waktu sebagai periode, hari, jam tepat.',
+      tr: 'Tuzak tekrarlanıyor gibi: in, on veya at seçimini doğrudan çeviriye göre yapıyorsun. Önce görüntüyü gör: içeride, yüzeyde, noktada; ya da zaman olarak dönem, gün, kesin saat.',
+      pl: 'Wygląda na to, że pułapka się powtarza: wybierasz in, on albo at przez bezpośrednie tłumaczenie. Najpierw zobacz obraz: wnętrze, powierzchnia, punkt; albo czas jako okres, dzień, dokładna godzina.',
+    },
   ),
   mentalModel: tri(
     'Не начинай с перевода. Сначала спроси себя: это место или время? Место: внутри = in, поверхность = on, точка = at. Время: период = in, день/дата = on, точный час = at.',
     'Не починай з перекладу. Спочатку спитай себе: це місце чи час? Місце: всередині = in, поверхня = on, точка = at. Час: період = in, день/дата = on, точна година = at.',
     'No empieces con traducción. Primero pregunta: ¿lugar o tiempo? Lugar: dentro = in, superficie = on, punto = at. Tiempo: periodo = in, día/fecha = on, hora exacta = at.',
+    {
+      'pt-BR': 'Não comece pela tradução. Primeiro pergunte: é lugar ou tempo? Lugar: dentro = in, superfície = on, ponto = at. Tempo: período = in, dia/data = on, hora exata = at.',
+      vi: 'Đừng bắt đầu bằng bản dịch. Trước tiên hãy hỏi: nơi chốn hay thời gian? Nơi chốn: bên trong = in, bề mặt = on, điểm = at. Thời gian: khoảng = in, ngày/ngày tháng = on, giờ chính xác = at.',
+      id: 'Jangan mulai dari terjemahan. Tanyakan dulu: tempat atau waktu? Tempat: di dalam = in, permukaan = on, titik = at. Waktu: periode = in, hari/tanggal = on, jam tepat = at.',
+      tr: 'Çeviriyle başlama. Önce sor: yer mi zaman mı? Yer: içeride = in, yüzey = on, nokta = at. Zaman: dönem = in, gün/tarih = on, kesin saat = at.',
+      pl: 'Nie zaczynaj od tłumaczenia. Najpierw zapytaj: miejsce czy czas? Miejsce: wnętrze = in, powierzchnia = on, punkt = at. Czas: okres = in, dzień/data = on, dokładna godzina = at.',
+    },
   ),
   contrastSet: CONTRAST,
   coreRule: tri(
     'Сначала реши: это место или время. Для места смотри на картинку: внутри, на поверхности или у точки. Для времени смотри на размер: период, день или точный час.',
     'Спочатку виріши: це місце чи час. Для місця дивись на картинку: всередині, на поверхні чи біля точки. Для часу дивись на розмір: період, день чи точна година.',
     'Lugar: in the room, on the table, at the door. Tiempo: in July, on Monday, at 8.',
+    {
+      'pt-BR': 'Lugar: in the room, on the table, at the door. Tempo: in July, on Monday, at 8.',
+      vi: 'Nơi chốn: in the room, on the table, at the door. Thời gian: in July, on Monday, at 8.',
+      id: 'Tempat: in the room, on the table, at the door. Waktu: in July, on Monday, at 8.',
+      tr: 'Yer: in the room, on the table, at the door. Zaman: in July, on Monday, at 8.',
+      pl: 'Miejsce: in the room, on the table, at the door. Czas: in July, on Monday, at 8.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -224,19 +527,19 @@ export const PREPOSITION_TIME_PLACE_TRAINING: DiagnosisTraining = {
     ],
   },
   examples: [
-    { en: 'I am in the room.', ru: 'Я в комнате.', uk: 'Я в кімнаті.', es: 'Estoy en la habitación.', 'pt-BR': 'Estou no quarto.', vi: 'Tôi đang ở trong phòng.', id: 'Saya ada di dalam ruangan.', tr: 'Odadayım.', pl: 'Jestem w pokoju.', why: tri('Комната вокруг человека. Он внутри, поэтому in the room.', 'Кімната навколо людини. Вона всередині, тому in the room.', 'La habitación rodea a la persona. Está dentro, por eso in the room.') },
-    { en: 'The keys are on the table.', ru: 'Ключи на столе.', uk: 'Ключі на столі.', es: 'Las llaves están sobre la mesa.', 'pt-BR': 'As chaves estão sobre a mesa.', vi: 'Chìa khóa ở trên bàn.', id: 'Kunci-kunci ada di atas meja.', tr: 'Anahtarlar masanın üzerinde.', pl: 'Klucze są na stole.', why: tri('Стол - поверхность. Ключи лежат на ней, поэтому on the table.', 'Стіл - поверхня. Ключі лежать на ній, тому on the table.', 'La mesa es superficie. Las llaves están encima, por eso on the table.') },
-    { en: 'I am at the door.', ru: 'Я у двери.', uk: 'Я біля дверей.', es: 'Estoy en la puerta.', 'pt-BR': 'Estou na porta.', vi: 'Tôi đang ở cửa.', id: 'Saya ada di dekat pintu.', tr: 'Kapıdayım.', pl: 'Jestem przy drzwiach.', why: tri('Дверь здесь точка, рядом с которой стоит человек: at the door.', 'Двері тут точка, біля якої стоїть людина: at the door.', 'La puerta funciona como punto: at the door.') },
-    { en: 'I work on Monday.', ru: 'Я работаю в понедельник.', uk: 'Я працюю в понеділок.', es: 'Trabajo el lunes.', 'pt-BR': 'Eu trabalho na segunda-feira.', vi: 'Tôi làm việc vào thứ Hai.', id: 'Saya bekerja pada hari Senin.', tr: 'Pazartesi çalışıyorum.', pl: 'Pracuję w poniedziałek.', why: tri('Monday - день. Для дня нужен блок on Monday.', 'Monday - день. Для дня потрібен блок on Monday.', 'Monday es un día. Con días usamos on Monday.') },
-    { en: 'The meeting starts at 8.', ru: 'Встреча начинается в 8.', uk: 'Зустріч починається о 8.', es: 'La reunión empieza a las 8.', 'pt-BR': 'A reunião começa às 8.', vi: 'Cuộc họp bắt đầu lúc 8 giờ.', id: 'Rapat dimulai pukul 8.', tr: "Toplantı saat 8'de başlıyor.", pl: 'Spotkanie zaczyna się o 8.', why: tri('8 - точный час. Для точного часа нужен at 8.', '8 - точна година. Для точної години потрібен at 8.', '8 es hora exacta. Usamos at 8.') },
-    { en: 'I was born in 1990.', ru: 'Я родился в 1990 году.', uk: 'Я народився у 1990 році.', es: 'Nací en 1990.', 'pt-BR': 'Nasci em 1990.', vi: 'Tôi sinh năm 1990.', id: 'Saya lahir pada tahun 1990.', tr: "1990'da doğdum.", pl: 'Urodziłem się w 1990 roku.', why: tri('1990 - год, широкий период. Поэтому in 1990.', '1990 - рік, широкий період. Тому in 1990.', '1990 es un año, un periodo amplio. Por eso in 1990.') },
-    { en: 'She is on the bus.', ru: 'Она в автобусе.', uk: 'Вона в автобусі.', es: 'Ella está en el autobús.', 'pt-BR': 'Ela está no ônibus.', vi: 'Cô ấy đang ở trên xe buýt.', id: 'Dia ada di bus.', tr: 'O otobüste.', pl: 'Ona jest w autobusie.', why: tri('Для автобуса как транспорта обычный готовый блок - on the bus.', 'Для автобуса як транспорту звичний готовий шматок - on the bus.', 'Con bus como transporte, el bloque normal es on the bus.') },
-    { en: 'He is in the car.', ru: 'Он в машине.', uk: 'Він у машині.', es: 'Él está en el coche.', 'pt-BR': 'Ele está no carro.', vi: 'Anh ấy đang ở trong xe hơi.', id: 'Dia ada di dalam mobil.', tr: 'O arabada.', pl: 'On jest w samochodzie.', why: tri('Машина как маленькое пространство: человек внутри, поэтому in the car.', 'Машина як маленький простір: людина всередині, тому in the car.', 'El coche es un espacio pequeño: la persona está dentro, por eso in the car.') },
+    { en: 'I am in the room.', ru: 'Я в комнате.', uk: 'Я в кімнаті.', es: 'Estoy en la habitación.', 'pt-BR': 'Estou no quarto.', vi: 'Tôi đang ở trong phòng.', id: 'Saya ada di dalam ruangan.', tr: 'Odadayım.', pl: 'Jestem w pokoju.', why: tri('Комната вокруг человека. Он внутри, поэтому in the room.', 'Кімната навколо людини. Вона всередині, тому in the room.', 'La habitación rodea a la persona. Está dentro, por eso in the room.', { 'pt-BR': 'O quarto envolve a pessoa. Ela está dentro, por isso in the room.', vi: 'Căn phòng bao quanh người đó. Người đó ở bên trong, vì vậy dùng in the room.', id: 'Ruangan mengelilingi orangnya. Dia berada di dalam, jadi in the room.', tr: 'Oda kişiyi çevreler. Kişi içeridedir, bu yüzden in the room.', pl: 'Pokój otacza osobę. Jest w środku, więc in the room.' }) },
+    { en: 'The keys are on the table.', ru: 'Ключи на столе.', uk: 'Ключі на столі.', es: 'Las llaves están sobre la mesa.', 'pt-BR': 'As chaves estão sobre a mesa.', vi: 'Chìa khóa ở trên bàn.', id: 'Kunci-kunci ada di atas meja.', tr: 'Anahtarlar masanın üzerinde.', pl: 'Klucze są na stole.', why: tri('Стол - поверхность. Ключи лежат на ней, поэтому on the table.', 'Стіл - поверхня. Ключі лежать на ній, тому on the table.', 'La mesa es superficie. Las llaves están encima, por eso on the table.', { 'pt-BR': 'A mesa é superfície. As chaves estão sobre ela, por isso on the table.', vi: 'Bàn là bề mặt. Chìa khóa nằm trên đó, vì vậy dùng on the table.', id: 'Meja adalah permukaan. Kunci berada di atasnya, jadi on the table.', tr: 'Masa yüzeydir. Anahtarlar onun üzerindedir, bu yüzden on the table.', pl: 'Stół to powierzchnia. Klucze leżą na niej, więc on the table.' }) },
+    { en: 'I am at the door.', ru: 'Я у двери.', uk: 'Я біля дверей.', es: 'Estoy en la puerta.', 'pt-BR': 'Estou na porta.', vi: 'Tôi đang ở cửa.', id: 'Saya ada di dekat pintu.', tr: 'Kapıdayım.', pl: 'Jestem przy drzwiach.', why: tri('Дверь здесь точка, рядом с которой стоит человек: at the door.', 'Двері тут точка, біля якої стоїть людина: at the door.', 'La puerta funciona como punto: at the door.', { 'pt-BR': 'A porta funciona como ponto perto da pessoa: at the door.', vi: 'Cửa ở đây là một điểm gần người đó: at the door.', id: 'Pintu di sini berfungsi sebagai titik tempat orang berdiri: at the door.', tr: 'Kapı burada kişinin yanında durduğu nokta gibidir: at the door.', pl: 'Drzwi są tu punktem, przy którym stoi osoba: at the door.' }) },
+    { en: 'I work on Monday.', ru: 'Я работаю в понедельник.', uk: 'Я працюю в понеділок.', es: 'Trabajo el lunes.', 'pt-BR': 'Eu trabalho na segunda-feira.', vi: 'Tôi làm việc vào thứ Hai.', id: 'Saya bekerja pada hari Senin.', tr: 'Pazartesi çalışıyorum.', pl: 'Pracuję w poniedziałek.', why: tri('Monday - день. Для дня нужен блок on Monday.', 'Monday - день. Для дня потрібен блок on Monday.', 'Monday es un día. Con días usamos on Monday.', { 'pt-BR': 'Monday é um dia. Com dias usamos o bloco on Monday.', vi: 'Monday là một ngày. Với ngày dùng cụm on Monday.', id: 'Monday adalah hari. Dengan hari gunakan on Monday.', tr: 'Monday bir gündür. Günlerle on Monday kullanılır.', pl: 'Monday to dzień. Z dniami używamy bloku on Monday.' }) },
+    { en: 'The meeting starts at 8.', ru: 'Встреча начинается в 8.', uk: 'Зустріч починається о 8.', es: 'La reunión empieza a las 8.', 'pt-BR': 'A reunião começa às 8.', vi: 'Cuộc họp bắt đầu lúc 8 giờ.', id: 'Rapat dimulai pukul 8.', tr: "Toplantı saat 8'de başlıyor.", pl: 'Spotkanie zaczyna się o 8.', why: tri('8 - точный час. Для точного часа нужен at 8.', '8 - точна година. Для точної години потрібен at 8.', '8 es hora exacta. Usamos at 8.', { 'pt-BR': '8 é hora exata. Para hora exata usamos at 8.', vi: '8 là giờ chính xác. Với giờ chính xác dùng at 8.', id: '8 adalah jam tepat. Untuk jam tepat gunakan at 8.', tr: '8 kesin saattir. Kesin saat için at 8 kullanılır.', pl: '8 to dokładna godzina. Dla dokładnej godziny używamy at 8.' }) },
+    { en: 'I was born in 1990.', ru: 'Я родился в 1990 году.', uk: 'Я народився у 1990 році.', es: 'Nací en 1990.', 'pt-BR': 'Nasci em 1990.', vi: 'Tôi sinh năm 1990.', id: 'Saya lahir pada tahun 1990.', tr: "1990'da doğdum.", pl: 'Urodziłem się w 1990 roku.', why: tri('1990 - год, широкий период. Поэтому in 1990.', '1990 - рік, широкий період. Тому in 1990.', '1990 es un año, un periodo amplio. Por eso in 1990.', { 'pt-BR': '1990 é um ano, um período amplo. Por isso in 1990.', vi: '1990 là một năm, một khoảng thời gian rộng. Vì vậy dùng in 1990.', id: '1990 adalah tahun, periode luas. Jadi in 1990.', tr: '1990 bir yıldır, geniş dönemdir. Bu yüzden in 1990.', pl: '1990 to rok, szeroki okres. Dlatego in 1990.' }) },
+    { en: 'She is on the bus.', ru: 'Она в автобусе.', uk: 'Вона в автобусі.', es: 'Ella está en el autobús.', 'pt-BR': 'Ela está no ônibus.', vi: 'Cô ấy đang ở trên xe buýt.', id: 'Dia ada di bus.', tr: 'O otobüste.', pl: 'Ona jest w autobusie.', why: tri('Для автобуса как транспорта обычный готовый блок - on the bus.', 'Для автобуса як транспорту звичний готовий шматок - on the bus.', 'Con bus como transporte, el bloque normal es on the bus.', { 'pt-BR': 'Com bus como transporte, o bloco comum é on the bus.', vi: 'Với bus như phương tiện giao thông, cụm thường dùng là on the bus.', id: 'Dengan bus sebagai transportasi, blok normalnya adalah on the bus.', tr: 'Bus ulaşım aracı olarak normalde on the bus kalıbını alır.', pl: 'Dla autobusu jako transportu zwykły blok to on the bus.' }) },
+    { en: 'He is in the car.', ru: 'Он в машине.', uk: 'Він у машині.', es: 'Él está en el coche.', 'pt-BR': 'Ele está no carro.', vi: 'Anh ấy đang ở trong xe hơi.', id: 'Dia ada di dalam mobil.', tr: 'O arabada.', pl: 'On jest w samochodzie.', why: tri('Машина как маленькое пространство: человек внутри, поэтому in the car.', 'Машина як маленький простір: людина всередині, тому in the car.', 'El coche es un espacio pequeño: la persona está dentro, por eso in the car.', { 'pt-BR': 'O carro é um espaço pequeno: a pessoa está dentro, por isso in the car.', vi: 'Xe hơi là một không gian nhỏ: người đó ở bên trong, vì vậy dùng in the car.', id: 'Mobil adalah ruang kecil: orangnya ada di dalam, jadi in the car.', tr: 'Araba küçük bir alandır: kişi içeridedir, bu yüzden in the car.', pl: 'Samochód to mała przestrzeń: osoba jest w środku, więc in the car.' }) },
   ],
   introBlocks: [
-    { id: 'intro_problem', type: 'diagnosis', text: tri('Здесь ловушка не в одном слове. Ты видишь русское “в/на” и слишком быстро выбираешь in, on или at.', 'Тут пастка не в одному слові. Ти бачиш українське “в/на” і занадто швидко обираєш in, on або at.', 'La trampa no está en una sola palabra. Ves una traducción y eliges demasiado rápido in, on o at.') },
-    { id: 'intro_rule', type: 'rule', text: tri('Сначала раздели фразу: место или время. Потом выбери маленькое слово по картинке: внутри, поверхность, точка; период, день, точный час.', 'Спочатку розділи фразу: місце чи час. Потім обери маленьке слово за картинкою: всередині, поверхня, точка; період, день, точна година.', 'Primero separa: lugar o tiempo. Luego elige por imagen: dentro, superficie, punto; periodo, día, hora exacta.') },
-    { id: 'intro_shame_free', type: 'encouragement', text: tri('Это частая ошибка. Не надо учить длинное правило. Достаточно поймать несколько крепких кусков.', 'Це часта помилка. Не треба вчити довге правило. Достатньо впіймати кілька міцних шматків.', 'Es un error común. No hace falta una regla larga. Basta con fijar varios bloques fuertes.') },
+    { id: 'intro_problem', type: 'diagnosis', text: tri('Здесь ловушка не в одном слове. Ты видишь русское “в/на” и слишком быстро выбираешь in, on или at.', 'Тут пастка не в одному слові. Ти бачиш українське “в/на” і занадто швидко обираєш in, on або at.', 'La trampa no está en una sola palabra. Ves una traducción y eliges demasiado rápido in, on o at.', { 'pt-BR': 'A armadilha aqui não está em uma só palavra. Você vê uma tradução e escolhe in, on ou at rápido demais.', vi: 'Cái bẫy ở đây không nằm trong một từ. Bạn thấy bản dịch rồi chọn in, on hoặc at quá nhanh.', id: 'Jebakannya bukan pada satu kata. Kamu melihat terjemahan lalu terlalu cepat memilih in, on, atau at.', tr: 'Buradaki tuzak tek bir kelimede değil. Çeviriyi görüp in, on veya at seçimini fazla hızlı yapıyorsun.', pl: 'Pułapka nie leży w jednym słowie. Widzisz tłumaczenie i zbyt szybko wybierasz in, on albo at.' }) },
+    { id: 'intro_rule', type: 'rule', text: tri('Сначала раздели фразу: место или время. Потом выбери маленькое слово по картинке: внутри, поверхность, точка; период, день, точный час.', 'Спочатку розділи фразу: місце чи час. Потім обери маленьке слово за картинкою: всередині, поверхня, точка; період, день, точна година.', 'Primero separa: lugar o tiempo. Luego elige por imagen: dentro, superficie, punto; periodo, día, hora exacta.', { 'pt-BR': 'Primeiro separe: lugar ou tempo. Depois escolha pela imagem: dentro, superfície, ponto; período, dia, hora exata.', vi: 'Trước tiên tách ra: nơi chốn hay thời gian. Sau đó chọn theo hình dung: bên trong, bề mặt, điểm; khoảng thời gian, ngày, giờ chính xác.', id: 'Pisahkan dulu: tempat atau waktu. Lalu pilih berdasarkan gambar: di dalam, permukaan, titik; periode, hari, jam tepat.', tr: 'Önce ayır: yer mi zaman mı. Sonra görüntüye göre seç: içeride, yüzey, nokta; dönem, gün, kesin saat.', pl: 'Najpierw rozdziel: miejsce czy czas. Potem wybierz według obrazu: wnętrze, powierzchnia, punkt; okres, dzień, dokładna godzina.' }) },
+    { id: 'intro_shame_free', type: 'encouragement', text: tri('Это частая ошибка. Не надо учить длинное правило. Достаточно поймать несколько крепких кусков.', 'Це часта помилка. Не треба вчити довге правило. Достатньо впіймати кілька міцних шматків.', 'Es un error común. No hace falta una regla larga. Basta con fijar varios bloques fuertes.', { 'pt-BR': 'É um erro comum. Não precisa decorar uma regra longa. Basta fixar alguns blocos fortes.', vi: 'Đây là lỗi thường gặp. Không cần học một quy tắc dài. Chỉ cần nắm vài cụm chắc chắn.', id: 'Ini kesalahan umum. Tidak perlu menghafal aturan panjang. Cukup tangkap beberapa blok kuat.', tr: 'Bu yaygın bir hata. Uzun kural ezberlemek gerekmez. Birkaç sağlam kalıbı yakalamak yeter.', pl: 'To częsty błąd. Nie trzeba uczyć się długiej reguły. Wystarczy złapać kilka mocnych bloków.' }) },
   ],
   steps: [
     timePlaceStep({
@@ -623,10 +926,10 @@ export const PREPOSITION_TIME_PLACE_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Сначала показываем: это место или время.', 'Спочатку показуємо: це місце чи час.', 'Primero mostramos si es lugar o tiempo.'),
-    depth2: tri('Потом сужаем картинку: внутри, поверхность, точка; период, день, точный час.', 'Потім звужуємо картинку: всередині, поверхня, точка; період, день, точна година.', 'Luego reducimos la imagen: dentro, superficie, punto; periodo, día, hora exacta.'),
-    depth3: tri('Показываем готовый кусок рядом: in the room, on Monday, at 8.', 'Показуємо готовий шматок поруч: in the room, on Monday, at 8.', 'Mostramos un bloque listo: in the room, on Monday, at 8.'),
-    depth4: tri('Почти подсказка: называем нужный тип и просим выбрать маленькое слово.', 'Майже підказка: називаємо потрібний тип і просимо обрати маленьке слово.', 'Casi pista: nombramos el tipo y pedimos elegir la palabra pequeña.'),
+    depth1: tri('Сначала показываем: это место или время.', 'Спочатку показуємо: це місце чи час.', 'Primero mostramos si es lugar o tiempo.', { 'pt-BR': 'Primeiro mostramos se é lugar ou tempo.', vi: 'Trước tiên hiển thị đó là nơi chốn hay thời gian.', id: 'Pertama tunjukkan apakah ini tempat atau waktu.', tr: 'Önce bunun yer mi zaman mı olduğunu gösteririz.', pl: 'Najpierw pokazujemy, czy to miejsce czy czas.' }),
+    depth2: tri('Потом сужаем картинку: внутри, поверхность, точка; период, день, точный час.', 'Потім звужуємо картинку: всередині, поверхня, точка; період, день, точна година.', 'Luego reducimos la imagen: dentro, superficie, punto; periodo, día, hora exacta.', { 'pt-BR': 'Depois estreitamos a imagem: dentro, superfície, ponto; período, dia, hora exata.', vi: 'Sau đó thu hẹp hình dung: bên trong, bề mặt, điểm; khoảng, ngày, giờ chính xác.', id: 'Lalu persempit gambarnya: di dalam, permukaan, titik; periode, hari, jam tepat.', tr: 'Sonra görüntüyü daraltırız: içeride, yüzey, nokta; dönem, gün, kesin saat.', pl: 'Potem zawężamy obraz: wnętrze, powierzchnia, punkt; okres, dzień, dokładna godzina.' }),
+    depth3: tri('Показываем готовый кусок рядом: in the room, on Monday, at 8.', 'Показуємо готовий шматок поруч: in the room, on Monday, at 8.', 'Mostramos un bloque listo: in the room, on Monday, at 8.', { 'pt-BR': 'Mostramos um bloco pronto ao lado: in the room, on Monday, at 8.', vi: 'Hiển thị cụm có sẵn bên cạnh: in the room, on Monday, at 8.', id: 'Tampilkan blok siap pakai di samping: in the room, on Monday, at 8.', tr: 'Yanına hazır kalıp koyarız: in the room, on Monday, at 8.', pl: 'Pokazujemy gotowy blok obok: in the room, on Monday, at 8.' }),
+    depth4: tri('Почти подсказка: называем нужный тип и просим выбрать маленькое слово.', 'Майже підказка: називаємо потрібний тип і просимо обрати маленьке слово.', 'Casi pista: nombramos el tipo y pedimos elegir la palabra pequeña.', { 'pt-BR': 'Quase dica: nomeamos o tipo necessário e pedimos escolher a palavrinha.', vi: 'Gần như gợi ý: gọi tên kiểu cần thiết và yêu cầu chọn từ nhỏ.', id: 'Hampir petunjuk: sebutkan jenis yang dibutuhkan dan minta pilih kata kecil.', tr: 'Neredeyse ipucu: gerekli türü söyler ve küçük kelimeyi seçmesini isteriz.', pl: 'Prawie podpowiedź: nazywamy potrzebny typ i prosimy o wybór małego słowa.' }),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -635,6 +938,13 @@ export const PREPOSITION_TIME_PLACE_TRAINING: DiagnosisTraining = {
         'Стоп. Не переводи “в/на”. Сначала выбери картинку: место или время. Потом: внутри = in, поверхность = on, точка = at; период = in, день = on, точный час = at.',
         'Стоп. Не перекладай “в/на”. Спочатку обери картинку: місце чи час. Потім: всередині = in, поверхня = on, точка = at; період = in, день = on, точна година = at.',
         'Alto. No traduzcas directamente. Primero: lugar o tiempo. Luego: dentro = in, superficie = on, punto = at; periodo = in, día = on, hora exacta = at.',
+        {
+          'pt-BR': 'Pare. Não traduza diretamente. Primeiro: lugar ou tempo. Depois: dentro = in, superfície = on, ponto = at; período = in, dia = on, hora exata = at.',
+          vi: 'Dừng lại. Đừng dịch trực tiếp. Trước tiên: nơi chốn hay thời gian. Sau đó: bên trong = in, bề mặt = on, điểm = at; khoảng = in, ngày = on, giờ chính xác = at.',
+          id: 'Berhenti. Jangan menerjemahkan langsung. Pertama: tempat atau waktu. Lalu: di dalam = in, permukaan = on, titik = at; periode = in, hari = on, jam tepat = at.',
+          tr: 'Dur. Doğrudan çevirme. Önce: yer mi zaman mı. Sonra: içeride = in, yüzey = on, nokta = at; dönem = in, gün = on, kesin saat = at.',
+          pl: 'Stop. Nie tłumacz bezpośrednio. Najpierw: miejsce czy czas. Potem: wnętrze = in, powierzchnia = on, punkt = at; okres = in, dzień = on, dokładna godzina = at.',
+        },
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -643,6 +953,13 @@ export const PREPOSITION_TIME_PLACE_TRAINING: DiagnosisTraining = {
         'Подсказка будет только про тип: место или время. Само маленькое слово ты выберешь сам.',
         'Підказка буде тільки про тип: місце чи час. Саме маленьке слово ти обереш сам.',
         'La pista dirá solo el tipo: lugar o tiempo. Tú eliges la palabra.',
+        {
+          'pt-BR': 'A dica será só sobre o tipo: lugar ou tempo. Você mesmo escolhe a palavrinha.',
+          vi: 'Gợi ý sẽ chỉ nói về kiểu: nơi chốn hay thời gian. Bạn tự chọn từ nhỏ.',
+          id: 'Petunjuk hanya tentang jenisnya: tempat atau waktu. Kamu sendiri memilih kata kecilnya.',
+          tr: 'İpucu sadece tür hakkında olacak: yer mi zaman mı. Küçük kelimeyi sen seçeceksin.',
+          pl: 'Podpowiedź będzie tylko o typie: miejsce czy czas. Małe słowo wybierzesz sam.',
+        },
       ),
     },
     afterFourWrongInSameExercise: {
@@ -651,6 +968,13 @@ export const PREPOSITION_TIME_PLACE_TRAINING: DiagnosisTraining = {
         'Переходим мягче: сначала выбираем тип фразы, потом возвращаемся к полному предложению.',
         'Переходимо мʼякше: спочатку обираємо тип фрази, потім повертаємося до повного речення.',
         'Modo guiado: primero elegimos el tipo de frase y luego volvemos a la oración.',
+        {
+          'pt-BR': 'Modo guiado: primeiro escolhemos o tipo de frase e depois voltamos à oração completa.',
+          vi: 'Chế độ hướng dẫn: trước tiên chọn kiểu cụm, sau đó quay lại câu đầy đủ.',
+          id: 'Mode terpandu: pertama pilih jenis frasa, lalu kembali ke kalimat lengkap.',
+          tr: 'Rehberli mod: önce ifade türünü seçeriz, sonra tam cümleye döneriz.',
+          pl: 'Tryb prowadzenia: najpierw wybieramy typ frazy, potem wracamy do pełnego zdania.',
+        },
       ),
     },
   },
@@ -660,28 +984,28 @@ export const PREPOSITION_TIME_PLACE_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_prep_tp_001',
-        prompt: tri('The room - это место внутри, поверхность или точка?', 'The room - це місце всередині, поверхня чи точка?', 'The room: ¿dentro, superficie o punto?'),
+        prompt: tri('The room - это место внутри, поверхность или точка?', 'The room - це місце всередині, поверхня чи точка?', 'The room: ¿dentro, superficie o punto?', { 'pt-BR': 'The room é lugar interno, superfície ou ponto?', vi: 'The room là nơi bên trong, bề mặt hay điểm?', id: 'The room itu tempat bagian dalam, permukaan, atau titik?', tr: 'The room iç yer mi, yüzey mi, nokta mı?', pl: 'The room to miejsce wewnątrz, powierzchnia czy punkt?' }),
         options: ['внутри места', 'поверхность', 'точка рядом'],
         correctIndex: 0,
         thenReturnToExerciseId: 'prep_tp_easy_001',
       },
       {
         id: 'guided_prep_tp_002',
-        prompt: tri('Monday - это день или точный час?', 'Monday - це день чи точна година?', 'Monday: ¿día u hora exacta?'),
+        prompt: tri('Monday - это день или точный час?', 'Monday - це день чи точна година?', 'Monday: ¿día u hora exacta?', { 'pt-BR': 'Monday é dia ou hora exata?', vi: 'Monday là ngày hay giờ chính xác?', id: 'Monday itu hari atau jam tepat?', tr: 'Monday gün mü, kesin saat mi?', pl: 'Monday to dzień czy dokładna godzina?' }),
         options: ['день', 'точный час'],
         correctIndex: 0,
         thenReturnToExerciseId: 'prep_tp_contrast_001',
       },
       {
         id: 'guided_prep_tp_003',
-        prompt: tri('8 - это день или точный час?', '8 - це день чи точна година?', '8: ¿día u hora exacta?'),
+        prompt: tri('8 - это день или точный час?', '8 - це день чи точна година?', '8: ¿día u hora exacta?', { 'pt-BR': '8 é dia ou hora exata?', vi: '8 là ngày hay giờ chính xác?', id: '8 itu hari atau jam tepat?', tr: '8 gün mü, kesin saat mi?', pl: '8 to dzień czy dokładna godzina?' }),
         options: ['день', 'точный час'],
         correctIndex: 1,
         thenReturnToExerciseId: 'prep_tp_contrast_002',
       },
       {
         id: 'guided_prep_tp_004',
-        prompt: tri('Dublin - это город как большое место или поверхность?', 'Dublin - це місто як велике місце чи поверхня?', 'Dublin: ¿ciudad como lugar grande o superficie?'),
+        prompt: tri('Dublin - это город как большое место или поверхность?', 'Dublin - це місто як велике місце чи поверхня?', 'Dublin: ¿ciudad como lugar grande o superficie?', { 'pt-BR': 'Dublin é cidade como lugar grande ou superfície?', vi: 'Dublin là thành phố như nơi rộng hay là bề mặt?', id: 'Dublin itu kota sebagai tempat besar atau permukaan?', tr: 'Dublin büyük yer olarak şehir mi, yüzey mi?', pl: 'Dublin to miasto jako duże miejsce czy powierzchnia?' }),
         options: ['город как место', 'поверхность'],
         correctIndex: 0,
         thenReturnToExerciseId: 'prep_tp_contrast_004',
@@ -697,6 +1021,13 @@ export const PREPOSITION_TIME_PLACE_TRAINING: DiagnosisTraining = {
       'In / On / At: место или время',
       'In / On / At: місце чи час',
       'In / On / At: lugar o tiempo',
+      {
+        'pt-BR': 'In / On / At: lugar ou tempo',
+        vi: 'In / On / At: nơi chốn hay thời gian',
+        id: 'In / On / At: tempat atau waktu',
+        tr: 'In / On / At: yer veya zaman',
+        pl: 'In / On / At: miejsce albo czas',
+      },
     ),
     contrastSet: SMART_CONTRAST,
     focusWords: ['in the room', 'on the table', 'at the door', 'on Monday', 'at 8', 'in Dublin'],
@@ -735,7 +1066,7 @@ export const PREPOSITION_TIME_PLACE_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_preposition_time_place_start',
     answer: 'diagnosis_training_preposition_time_place_answer',
     mastery: 'diagnosis_training_preposition_time_place_mastery',
-    fallback: 'diagnosis_training_preposition_time_place_fallback',
+    recovery: 'diagnosis_training_preposition_time_place_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

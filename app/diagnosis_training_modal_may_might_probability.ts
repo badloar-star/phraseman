@@ -5,21 +5,26 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
+const MAY_MIGHT_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre may/might ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về may/might này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan may/might ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu may/might açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie may/might nadal wymaga przeglądu po polsku.',
+};
+
 const tri = (
   ru: string,
   uk = ru,
   es = ru,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? MAY_MIGHT_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'may + base verb',
@@ -36,26 +41,75 @@ const CONTRAST = [
 const MODEL = tri(
   'May и might говорят не "я умею", а "возможно". It may rain - возможно, будет дождь. She might come - возможно, она придет. Will звучит увереннее. Can чаще про умение или общую возможность.',
   'May і might говорять не "я вмію", а "можливо". It may rain - можливо, буде дощ. She might come - можливо, вона прийде. Will звучить впевненіше. Can частіше про вміння або загальну можливість.',
-  'May/might mean maybe. Will is more certain. Can is often ability or general possibility.',
+  'May/might significan quiza o posiblemente. Will suena mas seguro. Can suele hablar de habilidad o posibilidad general.',
+  {
+    'pt-BR': 'May e might não significam "eu sei fazer", mas "talvez". It may rain: talvez chova. She might come: talvez ela venha. Will soa mais certo. Can costuma falar de habilidade ou possibilidade geral.',
+    vi: 'May và might không nói "tôi biết làm", mà nói "có thể". It may rain: có thể trời mưa. She might come: có thể cô ấy sẽ đến. Will nghe chắc chắn hơn. Can thường nói về khả năng hoặc khả năng chung.',
+    id: 'May dan might bukan berarti "saya bisa", melainkan "mungkin". It may rain: mungkin akan hujan. She might come: mungkin dia akan datang. Will terdengar lebih pasti. Can biasanya tentang kemampuan atau kemungkinan umum.',
+    tr: 'May ve might "yapabiliyorum" değil, "belki" anlamı verir. It may rain: belki yağmur yağar. She might come: belki gelir. Will daha kesin duyulur. Can çoğu zaman beceri ya da genel olasılık anlatır.',
+    pl: 'May i might nie mówią "umiem", tylko "możliwe". It may rain: być może będzie padać. She might come: być może przyjdzie. Will brzmi pewniej. Can częściej mówi o umiejętności albo ogólnej możliwości.',
+  },
 );
+
+const MAY_MIGHT_SKILL_ES: Record<string, string> = {
+  may_rain: 'May rain expresa probabilidad: puede llover.',
+  may_be_busy: 'May be busy es una suposicion, no un hecho.',
+  may_help: 'May help significa que quiza ayude.',
+  might_less_certain: 'Might come suena cauteloso: quiza venga.',
+  might_work: 'Might work significa que quiza funcione.',
+  may_vs_will_certainty: 'Might es menos seguro que will.',
+  may_base_no_to: 'Despues de may usa la forma corta: may know.',
+  might_base_no_to: 'Despues de might usa be, sin to.',
+  may_base_pair: 'Despues de may/might no agregues -s ni to.',
+  may_not_probability: 'May not significa quiza no.',
+  might_not_work: 'Might not work significa que quiza no funcione.',
+  maybe_vs_might: 'Maybe es adverbio separado; might es modal.',
+  mixed_can_may_will: 'Can = habilidad, may = probabilidad, will = certeza.',
+  mixed_may_might_negative: 'May help y might not work son bloques naturales.',
+  mixed_sentence_correction: 'May be y might not answer expresan probabilidad.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = MAY_MIGHT_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? MAY_MIGHT_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function mayMightEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = MAY_MIGHT_SKILL_ES[input.targetSkill] ?? 'Decide si es probabilidad, certeza o habilidad.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retryFor(correct: string, contrast: TriText, finalHint: TriText): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала выбери смысл: это точно, возможно, умение или "возможно нет"?',
       'Спочатку обери зміст: це точно, можливо, вміння чи "можливо ні"?',
-      'First choose the meaning: certain, possible, ability, or maybe not.',
+      'Primero elige el sentido: seguro, posible, habilidad o quiza no.',
     ),
     contrast,
     tri(
       'Потом проверь английский кусок. Нормально: may rain, might come, may know, might not work.',
       'Потім перевір англійський шматок. Нормально: may rain, might come, may know, might not work.',
-      'Then check the chunk: may rain, might come, may know, might not work.',
+      'Luego revisa el bloque: may rain, might come, may know, might not work.',
     ),
     tri(
       `Ответ здесь: ${correct}. Проверь две вещи: это "возможно", а после may/might стоит короткое действие без to, -s и do/does.`,
       `Відповідь тут: ${correct}. Перевір дві речі: це "можливо", а після may/might стоїть коротка дія без to, -s і do/does.`,
-      `The answer here is ${correct}. ${finalHint.es}`,
+      `La respuesta es ${correct}. ${finalHint.es}`,
     ),
   ];
 }
@@ -64,7 +118,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Проверь, это вероятность, уверенность или умение. Здесь нужен вариант: ${correct}.`,
     `Майже. Перевір, це ймовірність, упевненість чи вміння. Тут потрібен варіант: ${correct}.`,
-    `Almost. Check probability, certainty, or ability. Use: ${correct}.`,
+    `Casi. Revisa si es probabilidad, certeza o habilidad. Usa: ${correct}.`,
   );
 }
 
@@ -83,35 +137,36 @@ function modalStep(input: {
   finalHint: TriText;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = mayMightEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: withEs(input.translation, esFeedback),
     teachingText: MODEL,
     explanationBlock: MODEL,
     microTask: tri(
       'Выбери кусок для вероятности: may, might, may not или might not. Не путай с can и will.',
       'Обери шматок для ймовірності: may, might, may not або might not. Не плутай із can і will.',
-      'Choose the probability chunk: may, might, may not, or might not.',
+      'Elige el bloque de probabilidad: may, might, may not o might not.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retryFor(input.correctAnswer, input.contrast, input.finalHint),
+    retryFeedback: retryFor(input.correctAnswer, withEs(input.contrast, esFeedback), withEs(input.finalHint, esFeedback)),
     fallbackExplanation: tri(
       "Коротко: may/might = возможно. will = увереннее. can = чаще умею/могу. Отрицание: may not / might not. После may/might не добавляй to, -s или do/does.",
       "Коротко: may/might = можливо. will = упевненіше. can = частіше вмію/можу. Заперечення: may not / might not. Після may/might не додавай to, -s або do/does.",
-      "Short version: may/might = maybe, will = more certain, can = ability/general possibility.",
+      "Corto: may/might = quiza. will = mas seguro. can = habilidad o posibilidad general.",
     ),
     focusWords: input.focusWords,
   };
@@ -123,29 +178,63 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 48,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'May / Might: возможно, но не точно',
     'May / Might: можливо, але не точно',
     'May / Might',
+    {
+      'pt-BR': 'May / Might: talvez, mas não com certeza',
+      vi: 'May / Might: có thể, nhưng không chắc chắn',
+      id: 'May / Might: mungkin, tetapi tidak pasti',
+      tr: 'May / Might: belki, ama kesin değil',
+      pl: 'May / Might: możliwe, ale nie na pewno',
+    },
   ),
-  shortTitle: tri('may / might', 'may / might', 'may / might'),
+  shortTitle: tri('may / might', 'may / might', 'may / might', {
+    'pt-BR': 'may / might',
+    vi: 'may / might',
+    id: 'may / might',
+    tr: 'may / might',
+    pl: 'may / might',
+  }),
   shortDiagnosis: tri(
     'Ты смешиваешь вероятность с умением, уверенным будущим и ошибками после may/might.',
     'Ти змішуєш ймовірність із умінням, упевненим майбутнім і помилками після may/might.',
-    'You mix probability with ability, certainty, and modal form.',
+    'Mezclas probabilidad con habilidad, certeza y la forma despues de may/might.',
+    {
+      'pt-BR': 'Você mistura probabilidade com habilidade, futuro certo e erros depois de may/might.',
+      vi: 'Bạn trộn khả năng xảy ra với khả năng làm được, tương lai chắc chắn và lỗi sau may/might.',
+      id: 'Kamu mencampur kemungkinan dengan kemampuan, masa depan yang pasti, dan kesalahan setelah may/might.',
+      tr: 'Olasılığı beceriyle, kesin gelecekle ve may/might sonrası biçim hatalarıyla karıştırıyorsun.',
+      pl: 'Mieszasz prawdopodobieństwo z umiejętnością, pewną przyszłością i błędami po may/might.',
+    },
   ),
   diagnosisText: tri(
     'Ошибка часто появляется, когда хочется сказать "может быть", а рука тянется к can или will. It may rain - возможно, будет дождь. It can rain - звучит скорее как "такое вообще бывает". It will rain - звучит увереннее.',
     'Помилка часто зʼявляється, коли хочеться сказати "можливо", а рука тягнеться до can або will. It may rain - можливо, буде дощ. It can rain - звучить радше як "таке взагалі буває". It will rain - звучить упевненіше.',
-    'The mistake appears when maybe gets mixed with can or will.',
+    'El error aparece cuando "quiza" se mezcla con can o will. It may rain = puede que llueva. It will rain suena mas seguro.',
+    {
+      'pt-BR': 'O erro costuma aparecer quando você quer dizer "talvez" e a mão vai para can ou will. It may rain: talvez chova. It can rain soa mais como "isso pode acontecer em geral". It will rain soa mais certo.',
+      vi: 'Lỗi thường xuất hiện khi bạn muốn nói "có thể", nhưng lại dùng can hoặc will. It may rain: có thể trời mưa. It can rain nghe giống "mưa là chuyện có thể xảy ra nói chung". It will rain nghe chắc chắn hơn.',
+      id: 'Kesalahan sering muncul saat kamu ingin mengatakan "mungkin", tetapi tangan memilih can atau will. It may rain: mungkin akan hujan. It can rain lebih terdengar seperti "hujan memang bisa terjadi". It will rain terdengar lebih pasti.',
+      tr: 'Hata çoğu zaman "belki" demek isterken elin can veya will seçmesine kaydığında çıkar. It may rain: belki yağmur yağar. It can rain daha çok "yağmur genel olarak yağabilir" gibi duyulur. It will rain daha kesin duyulur.',
+      pl: 'Błąd często pojawia się, gdy chcesz powiedzieć "może", a ręka idzie do can albo will. It may rain: być może będzie padać. It can rain brzmi raczej jak "deszcz w ogóle może padać". It will rain brzmi pewniej.',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     'May/might показывают вероятность: It may rain, She might come. После них действие остается коротким: may know, might be. Отрицание ставится сразу после may/might: may not, might not.',
     'May/might показують ймовірність: It may rain, She might come. Після них дія залишається короткою: may know, might be. Заперечення ставиться одразу після may/might: may not, might not.',
-    'May/might show probability. Use may know, might be, may not, might not.',
+    'May/might muestran probabilidad. Usa may know, might be, may not, might not.',
+    {
+      'pt-BR': 'May/might mostram probabilidade: It may rain, She might come. Depois deles, a ação fica curta: may know, might be. A negação vem logo depois de may/might: may not, might not.',
+      vi: 'May/might diễn tả khả năng xảy ra: It may rain, She might come. Sau chúng, động từ giữ dạng ngắn: may know, might be. Phủ định đứng ngay sau may/might: may not, might not.',
+      id: 'May/might menunjukkan kemungkinan: It may rain, She might come. Setelah itu, kata kerja tetap pendek: may know, might be. Negasi langsung setelah may/might: may not, might not.',
+      tr: 'May/might olasılık gösterir: It may rain, She might come. Sonrasında eylem kısa kalır: may know, might be. Olumsuzluk doğrudan may/might sonrasına gelir: may not, might not.',
+      pl: 'May/might pokazują prawdopodobieństwo: It may rain, She might come. Po nich czynność zostaje krótka: may know, might be. Przeczenie stoi zaraz po may/might: may not, might not.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -173,16 +262,16 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
       'Maybe - окреме слово: Maybe she will come. З модалом: She might come.',
     ],
     es: [
-      'May shows probability.',
-      'Might shows probability, often more cautious.',
-      'After may/might, the action stays short.',
-      'Do not use may to go.',
-      'Do not add -s after may/might.',
-      'Do not use do/does with may/might.',
-      'May not / might not means maybe not.',
-      'Can is often ability/general possibility.',
-      'Will is more certain.',
-      'Maybe is a separate adverb.',
+      'May muestra probabilidad: It may rain.',
+      'Might tambien muestra probabilidad, a menudo con mas cautela.',
+      'Despues de may/might, la accion queda en forma corta.',
+      'No uses may to go.',
+      'No agregues -s despues de may/might.',
+      'No uses do/does con may/might.',
+      'May not / might not significa quiza no.',
+      'Can suele hablar de habilidad o posibilidad general.',
+      'Will suena mas seguro.',
+      'Maybe es un adverbio separado.',
     ],
     'pt-BR': [
       'May mostra probabilidade.',
@@ -250,97 +339,97 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
       en: 'It may rain tomorrow.',
       ru: 'Возможно, завтра будет дождь.',
       uk: 'Можливо, завтра буде дощ.',
-      es: 'It may rain tomorrow.',
+      es: 'Puede que llueva manana.',
       'pt-BR': 'Pode chover amanhã.',
       vi: 'Có thể ngày mai trời mưa.',
       id: 'Besok mungkin hujan.',
       tr: 'Yarın yağmur yağabilir.',
       pl: 'Jutro może padać.',
-      why: tri('May rain = возможно, будет дождь.', 'May rain = можливо, буде дощ.', 'Probability.'),
+      why: tri('May rain = возможно, будет дождь.', 'May rain = можливо, буде дощ.', 'Probabilidad: puede que llueva.'),
     },
     {
       en: 'It might rain tomorrow.',
       ru: 'Возможно, завтра будет дождь.',
       uk: 'Можливо, завтра буде дощ.',
-      es: 'It might rain tomorrow.',
+      es: 'Quizas llueva manana.',
       'pt-BR': 'Talvez chova amanhã.',
       vi: 'Ngày mai có lẽ trời sẽ mưa.',
       id: 'Besok mungkin akan hujan.',
       tr: 'Belki yarın yağmur yağar.',
       pl: 'Może jutro będzie padać.',
-      why: tri('Might часто звучит чуть осторожнее.', 'Might часто звучить трохи обережніше.', 'Cautious probability.'),
+      why: tri('Might часто звучит чуть осторожнее.', 'Might часто звучить трохи обережніше.', 'Probabilidad mas cautelosa.'),
     },
     {
       en: 'She may be at work.',
       ru: 'Возможно, она на работе.',
       uk: 'Можливо, вона на роботі.',
-      es: 'She may be at work.',
+      es: 'Puede que ella este en el trabajo.',
       'pt-BR': 'Ela pode estar no trabalho.',
       vi: 'Có thể cô ấy đang ở chỗ làm.',
       id: 'Dia mungkin sedang di kantor.',
       tr: 'İşte olabilir.',
       pl: 'Ona może być w pracy.',
-      why: tri('После may нужен be, не is.', 'Після may потрібен be, не is.', 'May be.'),
+      why: tri('После may нужен be, не is.', 'Після may потрібен be, не is.', 'Despues de may usa be.'),
     },
     {
       en: 'He might come later.',
       ru: 'Возможно, он придет позже.',
       uk: 'Можливо, він прийде пізніше.',
-      es: 'He might come later.',
+      es: 'Puede que venga mas tarde.',
       'pt-BR': 'Ele talvez venha mais tarde.',
       vi: 'Có lẽ anh ấy sẽ đến muộn hơn.',
       id: 'Dia mungkin datang nanti.',
       tr: 'Daha sonra gelebilir.',
       pl: 'On może przyjść później.',
-      why: tri('Might come = может быть придет.', 'Might come = може прийде.', 'Uncertain future.'),
+      why: tri('Might come = может быть придет.', 'Might come = може прийде.', 'Futuro incierto.'),
     },
     {
       en: 'This might help.',
       ru: 'Возможно, это поможет.',
       uk: 'Можливо, це допоможе.',
-      es: 'This might help.',
+      es: 'Puede que esto ayude.',
       'pt-BR': 'Isto talvez ajude.',
       vi: 'Điều này có thể giúp.',
       id: 'Ini mungkin membantu.',
       tr: 'Bu yardımcı olabilir.',
       pl: 'To może pomóc.',
-      why: tri('Might help - это шанс, не физическое умение.', 'Might help - це шанс, не фізичне вміння.', 'Maybe it will help.'),
+      why: tri('Might help - это шанс, не физическое умение.', 'Might help - це шанс, не фізичне вміння.', 'Quiza ayude, no habilidad fisica.'),
     },
     {
       en: 'He may not know the answer.',
       ru: 'Возможно, он не знает ответ.',
       uk: 'Можливо, він не знає відповідь.',
-      es: 'He may not know the answer.',
+      es: 'Puede que el no sepa la respuesta.',
       'pt-BR': 'Ele talvez não saiba a resposta.',
       vi: 'Có thể anh ấy không biết câu trả lời.',
       id: 'Dia mungkin tidak tahu jawabannya.',
       tr: 'Cevabı bilmiyor olabilir.',
       pl: 'On może nie znać odpowiedzi.',
-      why: tri('May not = возможно нет.', 'May not = можливо ні.', 'Maybe not.'),
+      why: tri('May not = возможно нет.', 'May not = можливо ні.', 'Quiza no.'),
     },
     {
       en: 'She will come.',
       ru: 'Она придет.',
       uk: 'Вона прийде.',
-      es: 'She will come.',
+      es: 'Ella vendra.',
       'pt-BR': 'Ela virá.',
       vi: 'Cô ấy sẽ đến.',
       id: 'Dia akan datang.',
       tr: 'O gelecek.',
       pl: 'Ona przyjdzie.',
-      why: tri('Will звучит увереннее, чем may/might.', 'Will звучить упевненіше, ніж may/might.', 'More certain.'),
+      why: tri('Will звучит увереннее, чем may/might.', 'Will звучить упевненіше, ніж may/might.', 'Mas seguro.'),
     },
     {
       en: 'She might come.',
       ru: 'Возможно, она придет.',
       uk: 'Можливо, вона прийде.',
-      es: 'She might come.',
+      es: 'Puede que ella venga.',
       'pt-BR': 'Ela talvez venha.',
       vi: 'Có lẽ cô ấy sẽ đến.',
       id: 'Dia mungkin datang.',
       tr: 'O gelebilir.',
       pl: 'Ona może przyjść.',
-      why: tri('Might оставляет сомнение.', 'Might залишає сумнів.', 'Uncertain.'),
+      why: tri('Might оставляет сомнение.', 'Might залишає сумнів.', 'Incierto.'),
     },
   ],
   introBlocks: [
@@ -350,7 +439,7 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты используешь can там, где хочешь сказать "возможно". Can часто про умение. May/might - про вероятность.',
         'Схоже, ти використовуєш can там, де хочеш сказати "можливо". Can часто про вміння. May/might - про ймовірність.',
-        'You may be using can when you mean maybe.',
+        'Parece que usas can cuando quieres decir quiza. Can suele ser habilidad; may/might son probabilidad.',
       ),
     },
     {
@@ -359,7 +448,7 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
       text: tri(
         'May/might ставим, когда говорим "возможно": may rain, might come, may be busy. Это не умение и не уверенное будущее.',
         'May/might ставимо, коли кажемо "можливо": may rain, might come, may be busy. Це не вміння і не впевнене майбутнє.',
-        'May/might + action = maybe.',
+        'Usa may/might cuando dices quiza: may rain, might come, may be busy.',
       ),
     },
     {
@@ -368,7 +457,7 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
       text: tri(
         "Главные поломки такие: добавили to, добавили -s или поставили doesn't. Нормально: may rain, she may know, it might not work.",
         "Головні поломки такі: додали to, додали -s або поставили doesn't. Нормально: may rain, she may know, it might not work.",
-        "Common errors: may to rain, she may knows, it doesn't might work.",
+        "Errores tipicos: may to rain, she may knows, it doesn't might work. Correcto: may rain, she may know, it might not work.",
       ),
     },
   ],
@@ -697,10 +786,10 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Обычное объяснение: показать вероятность, уверенность и форму после may/might.', 'Звичайне пояснення: показати ймовірність, упевненість і форму після may/might.', 'Show probability, certainty, and form.'),
-    depth2: tri('Проще: спросить, это точно, возможно или умение?', 'Простіше: спитати, це точно, можливо чи вміння?', 'Ask: certain, possible, or ability?'),
-    depth3: tri('Еще проще: сравнить will come / might come / can swim.', 'Ще простіше: порівняти will come / might come / can swim.', 'Compare will / might / can.'),
-    depth4: tri('Почти подсказка: показать прямо may, might, may not или might not.', 'Майже підказка: показати прямо may, might, may not або might not.', 'Point to the right chunk.'),
+    depth1: tri('Обычное объяснение: показать вероятность, уверенность и форму после may/might.', 'Звичайне пояснення: показати ймовірність, упевненість і форму після may/might.', 'Muestra probabilidad, certeza y forma despues de may/might.'),
+    depth2: tri('Проще: спросить, это точно, возможно или умение?', 'Простіше: спитати, це точно, можливо чи вміння?', 'Pregunta: seguro, posible o habilidad?'),
+    depth3: tri('Еще проще: сравнить will come / might come / can swim.', 'Ще простіше: порівняти will come / might come / can swim.', 'Compara will / might / can.'),
+    depth4: tri('Почти подсказка: показать прямо may, might, may not или might not.', 'Майже підказка: показати прямо may, might, may not або might not.', 'Senala el bloque correcto.'),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -708,7 +797,7 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
       card: tri(
         'May/might = возможно. После них действие короткое: may be, may know, might come. Not стоит после модала: may not, might not. Do/does не нужен.',
         'May/might = можливо. Після них дія коротка: may be, may know, might come. Not стоїть після модала: may not, might not. Do/does не потрібен.',
-        'May/might = maybe. Use may be, may know, might come, might not work.',
+        'May/might = quiza. Usa may be, may know, might come, might not work.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -716,7 +805,7 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
       card: tri(
         'Подсказка: сначала выбери полку. Это вероятность, уверенность или умение?',
         'Підказка: спочатку обери полицю. Це ймовірність, упевненість чи вміння?',
-        'Hint: choose probability, certainty, or ability first.',
+        'Pista: primero elige probabilidad, certeza o habilidad.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -724,7 +813,7 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим с подсказками: сначала отделяем возможно / точно / умею, потом возвращаемся к полной фразе.',
         'Режим із підказками: спочатку відділяємо можливо / точно / вмію, потім повертаємося до повної фрази.',
-        'Guided mode: separate maybe/certain/ability first.',
+        'Modo guiado: separa quiza / seguro / habilidad primero.',
       ),
     },
   },
@@ -734,28 +823,28 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_modal_may_might_001',
-        prompt: tri('May rain значит точно дождь или возможно дождь?', 'May rain означає точно дощ чи можливо дощ?', 'Does may rain mean certainly rain or maybe rain?'),
+        prompt: tri('May rain значит точно дождь или возможно дождь?', 'May rain означає точно дощ чи можливо дощ?', 'May rain significa seguro que llueve o quiza llueva?'),
         options: ['certainly rain', 'maybe rain'],
         correctIndex: 1,
         thenReturnToExerciseId: 'modal_may_might_easy_001',
       },
       {
         id: 'guided_modal_may_might_002',
-        prompt: tri('После may правильно knows или know?', 'Після may правильно knows чи know?', 'After may, is knows or know correct?'),
+        prompt: tri('После may правильно knows или know?', 'Після may правильно knows чи know?', 'Despues de may, correcto es knows o know?'),
         options: ['knows', 'know'],
         correctIndex: 1,
         thenReturnToExerciseId: 'modal_may_might_contrast_004',
       },
       {
         id: 'guided_modal_may_might_003',
-        prompt: tri('Might not значит возможно нет или точно нет?', 'Might not означає можливо ні чи точно ні?', 'Does might not mean maybe not or definitely not?'),
+        prompt: tri('Might not значит возможно нет или точно нет?', 'Might not означає можливо ні чи точно ні?', 'Might not significa quiza no o definitivamente no?'),
         options: ['maybe not', 'definitely not'],
         correctIndex: 0,
         thenReturnToExerciseId: 'modal_may_might_mixed_002',
       },
       {
         id: 'guided_modal_may_might_004',
-        prompt: tri('Can чаще про умение или вероятность?', 'Can частіше про вміння чи ймовірність?', 'Is can more often ability or probability?'),
+        prompt: tri('Can чаще про умение или вероятность?', 'Can частіше про вміння чи ймовірність?', 'Can suele hablar de habilidad o de probabilidad?'),
         options: ['ability', 'probability'],
         correctIndex: 0,
         thenReturnToExerciseId: 'modal_may_might_mixed_004',
@@ -805,7 +894,7 @@ export const MODAL_MAY_MIGHT_PROBABILITY_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_started',
     answer: 'diagnosis_training_answer',
     mastery: 'diagnosis_training_mastered',
-    fallback: 'diagnosis_training_fallback',
+    recovery: 'diagnosis_training_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

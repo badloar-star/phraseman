@@ -1,6 +1,6 @@
 // ════════════════════════════════════════════════════════════════════════════
 // daily_tasks.ts — Ежедневные задания
-// Хранение: AsyncStorage 'daily_tasks_YYYY-MM-DD' → TaskProgress[]
+// Хранение: English legacy 'daily_tasks_YYYY-MM-DD'; French scoped через dailyTasksProgressKey(day, 'fr').
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getVerifiedPremiumStatus } from './premium_guard';
@@ -10,6 +10,15 @@ import { withStorageLock } from './storage_mutex';
 import { spendShards } from './shards_system';
 import { bumpDailyTaskClaimed } from './lifetime_profile_stats';
 import { DAILY_TASK_STRINGS_ES } from './daily_tasks_es_locale';
+import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
+import {
+  dailyTasksAdminOverrideKey,
+  dailyTasksProgressKey,
+  dailyTasksRerollKey,
+  irregularVerbsGlobalKey,
+  storageStudyTarget,
+  type RuntimeStudyTarget,
+} from './target_storage_keys';
 
 const DAILY_PROGRESS_WRITE_ERR_TOAST_COOLDOWN_MS = 45_000;
 let _lastDailyProgressWriteErrorToastAt = 0;
@@ -73,6 +82,16 @@ export interface DailyTask {
   descUK: string;
   titleES?: string;
   descES?: string;
+  titlePtBr?: string;
+  titleVi?: string;
+  titleId?: string;
+  titleTr?: string;
+  titlePl?: string;
+  descPtBr?: string;
+  descVi?: string;
+  descId?: string;
+  descTr?: string;
+  descPl?: string;
   icon: string;
   target: number;
   xp: number;
@@ -103,765 +122,1737 @@ const ALL_TASKS: DailyTask[] = [
   // daily_active — открыть урок и собрать хотя бы одну фразу
   { id:'da1', type:'daily_active', icon:'☀️', target:1, xp:18,
     titleRU:'Просто зайди', titleUK:'Просто зайди',
+    titlePtBr:'Basta entrar', titleVi:'Chỉ cần vào', titleId:'Cukup masuk', titleTr:'Sadece gir', titlePl:'Po prostu wejdź',
     descRU:'Открой любой урок и собери хотя бы одну фразу.',
+    descPtBr:'Abra qualquer lição e monte pelo menos uma frase.',
+    descVi:'Mở bất kỳ bài học nào và ghép ít nhất một câu.',
+    descId:'Buka pelajaran apa pun dan susun setidaknya satu frasa.',
+    descTr:'Herhangi bir dersi aç ve en az bir ifadeyi kur.',
+    descPl:'Otwórz dowolną lekcję i ułóż co najmniej jedną frazę.',
     descUK:'Відкрий будь-який урок і збери хоча б одну фразу.' },
   { id:'da2', type:'daily_active', icon:'🌅', target:1, xp:18,
     titleRU:'Начни день', titleUK:'Почни день',
+    titlePtBr:'Comece o dia', titleVi:'Bắt đầu ngày mới', titleId:'Mulai hari', titleTr:'Güne başla', titlePl:'Zacznij dzień',
     descRU:'Открой урок и собери хотя бы одну фразу сегодня.',
+    descPtBr:'Abra uma lição e monte pelo menos uma frase hoje.',
+    descVi:'Mở một bài học và ghép ít nhất một câu hôm nay.',
+    descId:'Buka pelajaran dan susun setidaknya satu frasa hari ini.',
+    descTr:'Bugün bir dersi aç ve en az bir ifadeyi kur.',
+    descPl:'Otwórz lekcję i ułóż dziś co najmniej jedną frazę.',
     descUK:'Відкрий урок і збери хоча б одну фразу сьогодні.' },
   { id:'da3', type:'daily_active', icon:'💪', target:1, xp:18,
     titleRU:'Ни дня без урока', titleUK:'Жодного дня без уроку',
+    titlePtBr:'Nenhum dia sem lição', titleVi:'Không ngày nào thiếu bài học', titleId:'Tiada hari tanpa pelajaran', titleTr:'Derssiz gün yok', titlePl:'Ani dnia bez lekcji',
     descRU:'Открой урок и собери хотя бы одну фразу.',
+    descPtBr:'Abra uma lição e monte pelo menos uma frase.',
+    descVi:'Mở một bài học và ghép ít nhất một câu.',
+    descId:'Buka pelajaran dan susun setidaknya satu frasa.',
+    descTr:'Bir dersi aç ve en az bir ifadeyi kur.',
+    descPl:'Otwórz lekcję i ułóż co najmniej jedną frazę.',
     descUK:'Відкрий урок і збери хоча б одну фразу.' },
 
   // total_answers — правильные ответы в уроках (каждый правильный тап по слову = +1)
   { id:'ta1', type:'total_answers', icon:'⚡', target:10, xp:24,
     titleRU:'Разогрев', titleUK:'Розігрів',
+    titlePtBr:'Aquecimento', titleVi:'Khởi động', titleId:'Pemanasan', titleTr:'Isınma', titlePl:'Rozgrzewka',
     descRU:'Собери 10 фраз в уроке.',
+    descPtBr:'Monte 10 frases em uma lição.',
+    descVi:'Ghép 10 câu trong một bài học.',
+    descId:'Susun 10 frasa dalam pelajaran.',
+    descTr:'Bir derste 10 ifadeyi kur.',
+    descPl:'Ułóż 10 fraz w lekcji.',
     descUK:'Збери 10 фраз в уроці.' },
   { id:'ta2', type:'total_answers', icon:'🔥', target:20, xp:36,
     titleRU:'Двадцатка', titleUK:'Двадцятка',
+    titlePtBr:'Vinte', titleVi:'Hai mươi câu', titleId:'Dua puluh', titleTr:'Yirmilik', titlePl:'Dwudziestka',
     descRU:'Собери 20 фраз в уроках за день.',
+    descPtBr:'Monte 20 frases nas lições durante o dia.',
+    descVi:'Ghép 20 câu trong các bài học trong ngày.',
+    descId:'Susun 20 frasa di pelajaran dalam sehari.',
+    descTr:'Gün içinde derslerde 20 ifadeyi kur.',
+    descPl:'Ułóż 20 fraz w lekcjach w ciągu dnia.',
     descUK:'Збери 20 фраз у уроках за день.' },
   { id:'ta3', type:'total_answers', icon:'💥', target:30, xp:48,
     titleRU:'Тридцатник', titleUK:'Тридцятник',
+    titlePtBr:'Trinta', titleVi:'Ba mươi câu', titleId:'Tiga puluh', titleTr:'Otuzluk', titlePl:'Trzydziestka',
     descRU:'Собери 30 фраз в уроках за день.',
+    descPtBr:'Monte 30 frases nas lições durante o dia.',
+    descVi:'Ghép 30 câu trong các bài học trong ngày.',
+    descId:'Susun 30 frasa di pelajaran dalam sehari.',
+    descTr:'Gün içinde derslerde 30 ifadeyi kur.',
+    descPl:'Ułóż 30 fraz w lekcjach w ciągu dnia.',
     descUK:'Збери 30 фраз у уроках за день.' },
   { id:'ta4', type:'total_answers', icon:'🚀', target:50, xp:66,
     titleRU:'Полтинник', titleUK:'П\'ятдесятка',
+    titlePtBr:'Cinquenta', titleVi:'Năm mươi câu', titleId:'Lima puluh', titleTr:'Ellilik', titlePl:'Pięćdziesiątka',
     descRU:'Собери 50 фраз в уроках за день.',
+    descPtBr:'Monte 50 frases nas lições durante o dia.',
+    descVi:'Ghép 50 câu trong các bài học trong ngày.',
+    descId:'Susun 50 frasa di pelajaran dalam sehari.',
+    descTr:'Gün içinde derslerde 50 ifadeyi kur.',
+    descPl:'Ułóż 50 fraz w lekcjach w ciągu dnia.',
     descUK:'Збери 50 фраз у уроках за день.' },
   { id:'ta5', type:'total_answers', icon:'🌪️', target:75, xp:90,
     titleRU:'На всех парах', titleUK:'На повних парах',
+    titlePtBr:'A todo vapor', titleVi:'Tăng hết tốc lực', titleId:'Dengan kecepatan penuh', titleTr:'Tam gaz', titlePl:'Pełną parą',
     descRU:'Собери 75 фраз в уроках за день.',
+    descPtBr:'Monte 75 frases nas lições durante o dia.',
+    descVi:'Ghép 75 câu trong các bài học trong ngày.',
+    descId:'Susun 75 frasa di pelajaran dalam sehari.',
+    descTr:'Gün içinde derslerde 75 ifadeyi kur.',
+    descPl:'Ułóż 75 fraz w lekcjach w ciągu dnia.',
     descUK:'Збери 75 фраз у уроках за день.' },
   { id:'ta6', type:'total_answers', icon:'💯', target:100, xp:120,
     titleRU:'Сотня', titleUK:'Сотня',
+    titlePtBr:'Cem', titleVi:'Một trăm câu', titleId:'Seratus', titleTr:'Yüzlük', titlePl:'Setka',
     descRU:'Собери 100 фраз в уроках за день.',
+    descPtBr:'Monte 100 frases nas lições durante o dia.',
+    descVi:'Ghép 100 câu trong các bài học trong ngày.',
+    descId:'Susun 100 frasa di pelajaran dalam sehari.',
+    descTr:'Gün içinde derslerde 100 ifadeyi kur.',
+    descPl:'Ułóż 100 fraz w lekcjach w ciągu dnia.',
     descUK:'Збери 100 фраз у уроках за день.' },
 
   // correct_streak — N правильных тапов подряд без единой ошибки (сбрасывается при ошибке)
   { id:'cs1', type:'correct_streak', icon:'🎯', target:5, xp:30,
     titleRU:'Первая серия', titleUK:'Перша серія',
+    titlePtBr:'Primeira sequência', titleVi:'Chuỗi đầu tiên', titleId:'Rangkaian pertama', titleTr:'İlk seri', titlePl:'Pierwsza seria',
     descRU:'Собери 5 фраз подряд в уроке — ни одной ошибки.',
+    descPtBr:'Monte 5 frases seguidas em uma lição sem errar.',
+    descVi:'Ghép 5 câu liên tiếp trong một bài học, không mắc lỗi.',
+    descId:'Susun 5 frasa beruntun dalam pelajaran tanpa kesalahan.',
+    descTr:'Bir derste arka arkaya 5 ifadeyi hatasız kur.',
+    descPl:'Ułóż 5 fraz z rzędu w lekcji, bez żadnego błędu.',
     descUK:'Збери 5 фраз поспіль в уроці — жодної помилки.' },
   { id:'cs2', type:'correct_streak', icon:'🎯', target:10, xp:48,
     titleRU:'Горячая десятка', titleUK:'Гаряча десятка',
+    titlePtBr:'Dez em ritmo quente', titleVi:'Mười câu nóng máy', titleId:'Sepuluh panas', titleTr:'Sıcak onlu', titlePl:'Gorąca dziesiątka',
     descRU:'Собери 10 фраз подряд в уроке без единой ошибки.',
+    descPtBr:'Monte 10 frases seguidas em uma lição sem nenhum erro.',
+    descVi:'Ghép 10 câu liên tiếp trong một bài học mà không mắc lỗi nào.',
+    descId:'Susun 10 frasa beruntun dalam pelajaran tanpa satu pun kesalahan.',
+    descTr:'Bir derste arka arkaya 10 ifadeyi tek hata yapmadan kur.',
+    descPl:'Ułóż 10 fraz z rzędu w lekcji bez ani jednego błędu.',
     descUK:'Збери 10 фраз поспіль в уроці без жодної помилки.' },
   { id:'cs3', type:'correct_streak', icon:'⚡', target:15, xp:66,
     titleRU:'15 без промаха', titleUK:'15 без промаху',
+    titlePtBr:'15 sem errar', titleVi:'15 câu không sai', titleId:'15 tanpa meleset', titleTr:'15 hatasız', titlePl:'15 bez pudła',
     descRU:'Собери 15 фраз подряд без ошибок — не сбей серию.',
+    descPtBr:'Monte 15 frases seguidas sem erros; não quebre a sequência.',
+    descVi:'Ghép 15 câu liên tiếp không lỗi; đừng làm đứt chuỗi.',
+    descId:'Susun 15 frasa beruntun tanpa kesalahan; jangan putuskan rangkaian.',
+    descTr:'Arka arkaya 15 ifadeyi hatasız kur; seriyi bozma.',
+    descPl:'Ułóż 15 fraz z rzędu bez błędów; nie przerwij serii.',
     descUK:'Збери 15 фраз поспіль без помилок — не збий серію.' },
   { id:'cs4', type:'correct_streak', icon:'🔥', target:20, xp:84,
     titleRU:'В зоне потока', titleUK:'В зоні потоку',
+    titlePtBr:'No estado de fluxo', titleVi:'Trong trạng thái nhập tâm', titleId:'Dalam zona fokus', titleTr:'Akış bölgesinde', titlePl:'W stanie skupienia',
     descRU:'Собери 20 фраз подряд — войди в состояние потока.',
+    descPtBr:'Monte 20 frases seguidas e entre no estado de fluxo.',
+    descVi:'Ghép 20 câu liên tiếp và vào trạng thái nhập tâm.',
+    descId:'Susun 20 frasa beruntun dan masuk ke zona fokus.',
+    descTr:'Arka arkaya 20 ifadeyi kur ve akışa gir.',
+    descPl:'Ułóż 20 fraz z rzędu i wejdź w stan skupienia.',
     descUK:'Збери 20 фраз поспіль — увійди в стан потоку.' },
 
   // lesson_no_mistakes — N правильных тапов без единой ошибки (тот же счётчик, сбрасывается при ошибке)
   { id:'lnm1', type:'lesson_no_mistakes', icon:'✨', target:10, xp:72,
     titleRU:'Чистая серия', titleUK:'Чиста серія',
+    titlePtBr:'Sequência limpa', titleVi:'Chuỗi sạch', titleId:'Rangkaian bersih', titleTr:'Temiz seri', titlePl:'Czysta seria',
     descRU:'Собери 10 фраз подряд в уроке — ноль ошибок.',
+    descPtBr:'Monte 10 frases seguidas em uma lição com zero erros.',
+    descVi:'Ghép 10 câu liên tiếp trong một bài học với không lỗi nào.',
+    descId:'Susun 10 frasa beruntun dalam pelajaran dengan nol kesalahan.',
+    descTr:'Bir derste arka arkaya 10 ifadeyi sıfır hatayla kur.',
+    descPl:'Ułóż 10 fraz z rzędu w lekcji z zerem błędów.',
     descUK:'Збери 10 фраз поспіль в уроці — нуль помилок.' },
   { id:'lnm2', type:'lesson_no_mistakes', icon:'🎖️', target:15, xp:96,
     titleRU:'Снайпер', titleUK:'Снайпер',
+    titlePtBr:'Atirador de precisão', titleVi:'Xạ thủ', titleId:'Penembak jitu', titleTr:'Nişancı', titlePl:'Snajper',
     descRU:'Собери 15 фраз подряд в уроке — абсолютная точность.',
+    descPtBr:'Monte 15 frases seguidas em uma lição com precisão total.',
+    descVi:'Ghép 15 câu liên tiếp trong một bài học với độ chính xác tuyệt đối.',
+    descId:'Susun 15 frasa beruntun dalam pelajaran dengan akurasi penuh.',
+    descTr:'Bir derste arka arkaya 15 ifadeyi tam isabetle kur.',
+    descPl:'Ułóż 15 fraz z rzędu w lekcji z pełną dokładnością.',
     descUK:'Збери 15 фраз поспіль в уроці — абсолютна точність.' },
   { id:'lnm3', type:'lesson_no_mistakes', icon:'💎', target:20, xp:120,
     titleRU:'Безупречность', titleUK:'Бездоганність',
+    titlePtBr:'Impecável', titleVi:'Hoàn hảo', titleId:'Tanpa cela', titleTr:'Kusursuzluk', titlePl:'Bezbłędność',
     descRU:'Собери 20 фраз подряд без единой ошибки.',
+    descPtBr:'Monte 20 frases seguidas sem nenhum erro.',
+    descVi:'Ghép 20 câu liên tiếp mà không mắc lỗi nào.',
+    descId:'Susun 20 frasa beruntun tanpa satu pun kesalahan.',
+    descTr:'Arka arkaya 20 ifadeyi tek hata yapmadan kur.',
+    descPl:'Ułóż 20 fraz z rzędu bez ani jednego błędu.',
     descUK:'Збери 20 фраз поспіль без жодної помилки.' },
 
   // quiz_hard — правильные ответы в квизе уровня «Сложно» (Premium)
   { id:'qh1', type:'quiz_hard', icon:'💪', target:3, xp:36, minPlayerLevel:15,
     titleRU:'Первый вызов', titleUK:'Перший виклик',
+    titlePtBr:'Primeiro desafio', titleVi:'Thử thách đầu tiên', titleId:'Tantangan pertama', titleTr:'İlk meydan okuma', titlePl:'Pierwsze wyzwanie',
     descRU:'Открой Квизы → Сложно и собери 3 фразы.',
+    descPtBr:'Abra Quizzes → Difícil e monte 3 frases.',
+    descVi:'Mở Quiz → Khó và ghép 3 câu.',
+    descId:'Buka Kuis → Sulit dan susun 3 frasa.',
+    descTr:'Quizler → Zor bölümünü aç ve 3 ifadeyi kur.',
+    descPl:'Otwórz Quizy → Trudne i ułóż 3 frazy.',
     descUK:'Відкрий Квізи → Складно й збери 3 фрази.' },
   { id:'qh2', type:'quiz_hard', icon:'🗡️', target:5, xp:54, minPlayerLevel:15,
     titleRU:'Принял вызов', titleUK:'Прийняв виклик',
+    titlePtBr:'Desafio aceito', titleVi:'Đã nhận thử thách', titleId:'Tantangan diterima', titleTr:'Meydan okumayı kabul ettin', titlePl:'Wyzwanie przyjęte',
     descRU:'Открой Квизы → Сложно и собери 5 фраз.',
+    descPtBr:'Abra Quizzes → Difícil e monte 5 frases.',
+    descVi:'Mở Quiz → Khó và ghép 5 câu.',
+    descId:'Buka Kuis → Sulit dan susun 5 frasa.',
+    descTr:'Quizler → Zor bölümünü aç ve 5 ifadeyi kur.',
+    descPl:'Otwórz Quizy → Trudne i ułóż 5 fraz.',
     descUK:'Відкрий Квізи → Складно й збери 5 фраз.' },
   { id:'qh3', type:'quiz_hard', icon:'🏆', target:10, xp:78, minPlayerLevel:15,
     titleRU:'Хардкорщик', titleUK:'Хардкорщик',
+    titlePtBr:'Fã do modo difícil', titleVi:'Người chơi khó', titleId:'Pemain hardcore', titleTr:'Zor mod oyuncusu', titlePl:'Hardkorowiec',
     descRU:'Открой Квизы → Сложно и собери 10 фраз.',
+    descPtBr:'Abra Quizzes → Difícil e monte 10 frases.',
+    descVi:'Mở Quiz → Khó và ghép 10 câu.',
+    descId:'Buka Kuis → Sulit dan susun 10 frasa.',
+    descTr:'Quizler → Zor bölümünü aç ve 10 ifadeyi kur.',
+    descPl:'Otwórz Quizy → Trudne i ułóż 10 fraz.',
     descUK:'Відкрий Квізи → Складно й збери 10 фраз.' },
   { id:'qh4', type:'quiz_hard', icon:'👑', target:15, xp:102, minPlayerLevel:15,
     titleRU:'Легенда', titleUK:'Легенда',
+    titlePtBr:'Lenda', titleVi:'Huyền thoại', titleId:'Legenda', titleTr:'Efsane', titlePl:'Legenda',
     descRU:'Открой Квизы → Сложно и собери 15 фраз.',
+    descPtBr:'Abra Quizzes → Difícil e monte 15 frases.',
+    descVi:'Mở Quiz → Khó và ghép 15 câu.',
+    descId:'Buka Kuis → Sulit dan susun 15 frasa.',
+    descTr:'Quizler → Zor bölümünü aç ve 15 ifadeyi kur.',
+    descPl:'Otwórz Quizy → Trudne i ułóż 15 fraz.',
     descUK:'Відкрий Квізи → Складно й збери 15 фраз.' },
 
   // quiz_score — XP заработанный в квизах за день
   { id:'qs1', type:'quiz_score', icon:'⭐', target:10, xp:30,
     titleRU:'Первый опыт', titleUK:'Перший досвід',
+    titlePtBr:'Primeira experiência', titleVi:'Trải nghiệm đầu tiên', titleId:'Pengalaman pertama', titleTr:'İlk deneyim', titlePl:'Pierwsze doświadczenie',
     descRU:'Заработай 10 XP в Квизах за день.',
+    descPtBr:'Ganhe 10 XP em Quizzes durante o dia.',
+    descVi:'Kiếm 10 XP trong Quiz trong ngày.',
+    descId:'Dapatkan 10 XP di Kuis dalam sehari.',
+    descTr:'Gün içinde Quizlerde 10 XP kazan.',
+    descPl:'Zdobądź 10 XP w Quizach w ciągu dnia.',
     descUK:'Зароби 10 XP у Квізах за день.' },
   { id:'qs2', type:'quiz_score', icon:'🌟', target:20, xp:48,
     titleRU:'Набираю обороты', titleUK:'Набираю оберти',
+    titlePtBr:'Ganhando ritmo', titleVi:'Tăng nhịp', titleId:'Mulai cepat', titleTr:'Hız kazanıyorum', titlePl:'Nabieram tempa',
     descRU:'Заработай 20 XP в Квизах за день.',
+    descPtBr:'Ganhe 20 XP em Quizzes durante o dia.',
+    descVi:'Kiếm 20 XP trong Quiz trong ngày.',
+    descId:'Dapatkan 20 XP di Kuis dalam sehari.',
+    descTr:'Gün içinde Quizlerde 20 XP kazan.',
+    descPl:'Zdobądź 20 XP w Quizach w ciągu dnia.',
     descUK:'Зароби 20 XP у Квізах за день.' },
   { id:'qs3', type:'quiz_score', icon:'💫', target:30, xp:66,
     titleRU:'Квиз-машина', titleUK:'Квіз-машина',
+    titlePtBr:'Máquina dos quizzes', titleVi:'Cỗ máy quiz', titleId:'Mesin kuis', titleTr:'Quiz makinesi', titlePl:'Maszyna quizowa',
     descRU:'Заработай 30 XP в Квизах за день.',
+    descPtBr:'Ganhe 30 XP em Quizzes durante o dia.',
+    descVi:'Kiếm 30 XP trong Quiz trong ngày.',
+    descId:'Dapatkan 30 XP di Kuis dalam sehari.',
+    descTr:'Gün içinde Quizlerde 30 XP kazan.',
+    descPl:'Zdobądź 30 XP w Quizach w ciągu dnia.',
     descUK:'Зароби 30 XP у Квізах за день.' },
   { id:'qs4', type:'quiz_score', icon:'💥', target:50, xp:90, minPlayerLevel:15,
     titleRU:'Неудержимый', titleUK:'Нестримний',
+    titlePtBr:'Imparável', titleVi:'Không thể cản', titleId:'Tak terbendung', titleTr:'Durdurulamaz', titlePl:'Nie do zatrzymania',
     descRU:'Заработай 50 XP в Квизах за день — играй на Сложно и держи серию.',
+    descPtBr:'Ganhe 50 XP em Quizzes durante o dia: jogue no Difícil e mantenha a sequência.',
+    descVi:'Kiếm 50 XP trong Quiz trong ngày: chơi mức Khó và giữ chuỗi.',
+    descId:'Dapatkan 50 XP di Kuis dalam sehari: mainkan mode Sulit dan pertahankan rangkaian.',
+    descTr:'Gün içinde Quizlerde 50 XP kazan: Zor modda oyna ve seriyi koru.',
+    descPl:'Zdobądź 50 XP w Quizach w ciągu dnia: graj na poziomie Trudne i utrzymaj serię.',
     descUK:'Зароби 50 XP у Квізах за день — грай на Складно і тримай серію.' },
 
   // words_learned — правильные ответы в разделе Слова (каждое выученное слово = +1)
   { id:'wl1', type:'words_learned', icon:'📖', target:3, xp:30,
     titleRU:'Три слова в копилку', titleUK:'Три слова в скарбничку',
+    titlePtBr:'Três palavras na coleção', titleVi:'Ba từ bỏ túi', titleId:'Tiga kata untuk koleksi', titleTr:'Kumbaraya üç kelime', titlePl:'Trzy słowa do skarbca',
     descRU:'Выучи 3 слова в разделе Слова любого урока — пройди их тренировку.',
+    descPtBr:'Aprenda 3 palavras na seção Palavras de qualquer lição: complete o treino delas.',
+    descVi:'Học 3 từ trong phần Từ của bất kỳ bài học nào: hoàn thành phần luyện tập của chúng.',
+    descId:'Pelajari 3 kata di bagian Kata dari pelajaran apa pun: selesaikan latihannya.',
+    descTr:'Herhangi bir dersin Kelimeler bölümünde 3 kelime öğren: alıştırmalarını tamamla.',
+    descPl:'Naucz się 3 słów w sekcji Słowa dowolnej lekcji: ukończ ich trening.',
     descUK:'Вивчи 3 слова в розділі Слова будь-якого уроку — пройди їх тренування.' },
   { id:'wl2', type:'words_learned', icon:'📚', target:5, xp:48,
     titleRU:'Пополняю словарь', titleUK:'Поповнюю словник',
+    titlePtBr:'Aumentando o vocabulário', titleVi:'Mở rộng vốn từ', titleId:'Menambah kosakata', titleTr:'Sözlüğü büyütüyorum', titlePl:'Uzupełniam słownik',
     descRU:'Выучи 5 слов в разделе Слова — пройди тренировку слов в уроке.',
+    descPtBr:'Aprenda 5 palavras na seção Palavras: complete o treino de palavras na lição.',
+    descVi:'Học 5 từ trong phần Từ: hoàn thành bài luyện từ trong bài học.',
+    descId:'Pelajari 5 kata di bagian Kata: selesaikan latihan kata dalam pelajaran.',
+    descTr:'Kelimeler bölümünde 5 kelime öğren: dersteki kelime alıştırmasını tamamla.',
+    descPl:'Naucz się 5 słów w sekcji Słowa: ukończ trening słów w lekcji.',
     descUK:'Вивчи 5 слів в розділі Слова — пройди тренування слів у уроці.' },
   { id:'wl3', type:'words_learned', icon:'🧠', target:10, xp:72,
     titleRU:'Словарный марафон', titleUK:'Словниковий марафон',
+    titlePtBr:'Maratona de vocabulário', titleVi:'Cuộc đua từ vựng', titleId:'Maraton kosakata', titleTr:'Kelime maratonu', titlePl:'Maraton słownictwa',
     descRU:'Выучи 10 слов в разделе Слова — можно в разных уроках.',
+    descPtBr:'Aprenda 10 palavras na seção Palavras; pode ser em lições diferentes.',
+    descVi:'Học 10 từ trong phần Từ; có thể ở nhiều bài học khác nhau.',
+    descId:'Pelajari 10 kata di bagian Kata; boleh dari pelajaran yang berbeda.',
+    descTr:'Kelimeler bölümünde 10 kelime öğren; farklı derslerde olabilir.',
+    descPl:'Naucz się 10 słów w sekcji Słowa; mogą być z różnych lekcji.',
     descUK:'Вивчи 10 слів в розділі Слова — можна в різних уроках.' },
 
   // verb_learned — выучить N неправильных глаголов в разделе Глаголы
   { id:'vl1', type:'verb_learned', icon:'⚙️', target:2, xp:30,
     titleRU:'Первые глаголы', titleUK:'Перші дієслова',
+    titlePtBr:'Primeiros verbos', titleVi:'Những động từ đầu tiên', titleId:'Kata kerja pertama', titleTr:'İlk fiiller', titlePl:'Pierwsze czasowniki',
     descRU:'Выучи 2 неправильных глагола в разделе Глаголы любого урока.',
+    descPtBr:'Aprenda 2 verbos irregulares na seção Verbos de qualquer lição.',
+    descVi:'Học 2 động từ bất quy tắc trong phần Động từ của bất kỳ bài học nào.',
+    descId:'Pelajari 2 kata kerja tidak beraturan di bagian Kata Kerja dari pelajaran apa pun.',
+    descTr:'Herhangi bir dersin Fiiller bölümünde 2 düzensiz fiil öğren.',
+    descPl:'Naucz się 2 czasowników nieregularnych w sekcji Czasowniki dowolnej lekcji.',
     descUK:'Вивчи 2 неправильних дієслова в розділі Дієслова будь-якого уроку.' },
   { id:'vl2', type:'verb_learned', icon:'🔧', target:4, xp:54,
     titleRU:'Глагольный рывок', titleUK:'Дієслівний ривок',
+    titlePtBr:'Arranque dos verbos', titleVi:'Bứt tốc động từ', titleId:'Dorongan kata kerja', titleTr:'Fiil atağı', titlePl:'Czasownikowy zryw',
     descRU:'Выучи 4 неправильных глагола в разделе Глаголы.',
+    descPtBr:'Aprenda 4 verbos irregulares na seção Verbos.',
+    descVi:'Học 4 động từ bất quy tắc trong phần Động từ.',
+    descId:'Pelajari 4 kata kerja tidak beraturan di bagian Kata Kerja.',
+    descTr:'Fiiller bölümünde 4 düzensiz fiil öğren.',
+    descPl:'Naucz się 4 czasowników nieregularnych w sekcji Czasowniki.',
     descUK:'Вивчи 4 неправильних дієслова в розділі Дієслова.' },
   { id:'vl3', type:'verb_learned', icon:'🔩', target:6, xp:78,
     titleRU:'Мастер форм', titleUK:'Майстер форм',
+    titlePtBr:'Mestre das formas', titleVi:'Bậc thầy dạng từ', titleId:'Ahli bentuk', titleTr:'Form ustası', titlePl:'Mistrz form',
     descRU:'Выучи 6 неправильных глаголов в разделе Глаголы.',
+    descPtBr:'Aprenda 6 verbos irregulares na seção Verbos.',
+    descVi:'Học 6 động từ bất quy tắc trong phần Động từ.',
+    descId:'Pelajari 6 kata kerja tidak beraturan di bagian Kata Kerja.',
+    descTr:'Fiiller bölümünde 6 düzensiz fiil öğren.',
+    descPl:'Naucz się 6 czasowników nieregularnych w sekcji Czasowniki.',
     descUK:'Вивчи 6 неправильних дієслів в розділі Дієслова.' },
 
   // open_theory — открыть раздел Теория в уроке
   { id:'ot1', type:'open_theory', icon:'💡', target:1, xp:12,
     titleRU:'Загляни в Теорию', titleUK:'Зазирни в Теорію',
+    titlePtBr:'Veja a Teoria', titleVi:'Xem phần Lý thuyết', titleId:'Lihat Teori', titleTr:'Teoriye bak', titlePl:'Zajrzyj do Teorii',
     descRU:'Открой вкладку Теория в любом уроке и прочитай правило.',
+    descPtBr:'Abra a aba Teoria em qualquer lição e leia a regra.',
+    descVi:'Mở tab Lý thuyết trong bất kỳ bài học nào và đọc quy tắc.',
+    descId:'Buka tab Teori di pelajaran apa pun dan baca aturannya.',
+    descTr:'Herhangi bir derste Teori sekmesini aç ve kuralı oku.',
+    descPl:'Otwórz kartę Teoria w dowolnej lekcji i przeczytaj zasadę.',
     descUK:'Відкрий вкладку Теорія в будь-якому уроці і прочитай правило.' },
   { id:'ot2', type:'open_theory', icon:'📖', target:2, xp:18,
     titleRU:'Теоретик', titleUK:'Теоретик',
+    titlePtBr:'Teórico', titleVi:'Người học lý thuyết', titleId:'Ahli teori', titleTr:'Teorisyen', titlePl:'Teoretyk',
     descRU:'Открой вкладку Теория в 2 разных уроках сегодня.',
+    descPtBr:'Abra a aba Teoria em 2 lições diferentes hoje.',
+    descVi:'Mở tab Lý thuyết trong 2 bài học khác nhau hôm nay.',
+    descId:'Buka tab Teori di 2 pelajaran berbeda hari ini.',
+    descTr:'Bugün 2 farklı derste Teori sekmesini aç.',
+    descPl:'Otwórz dziś kartę Teoria w 2 różnych lekcjach.',
     descUK:'Відкрий вкладку Теорія в 2 різних уроках сьогодні.' },
 
   // flashcard_view — просмотреть N карточек (листать в разделе Карточки)
   { id:'fv1', type:'flashcard_view', icon:'🃏', target:5, xp:24,
     titleRU:'Загляни в карточки', titleUK:'Зазирни в картки',
+    titlePtBr:'Veja os cartões', titleVi:'Xem thẻ ghi nhớ', titleId:'Lihat kartu', titleTr:'Kartlara göz at', titlePl:'Zajrzyj do fiszek',
     descRU:'Открой раздел Карточки и пролистай 5 карточек.',
+    descPtBr:'Abra a seção Cartões e passe por 5 cartões.',
+    descVi:'Mở phần Thẻ ghi nhớ và lướt qua 5 thẻ.',
+    descId:'Buka bagian Kartu dan lihat 5 kartu.',
+    descTr:'Kartlar bölümünü aç ve 5 karta göz at.',
+    descPl:'Otwórz sekcję Fiszki i przejrzyj 5 fiszek.',
     descUK:'Відкрий розділ Картки і перегортай 5 карток.' },
   { id:'fv2', type:'flashcard_view', icon:'🃏', target:10, xp:42,
     titleRU:'Карточный час', titleUK:'Картковий час',
+    titlePtBr:'Hora dos cartões', titleVi:'Giờ thẻ ghi nhớ', titleId:'Waktunya kartu', titleTr:'Kart zamanı', titlePl:'Czas na fiszki',
     descRU:'Открой раздел Карточки и пролистай 10 карточек.',
+    descPtBr:'Abra a seção Cartões e passe por 10 cartões.',
+    descVi:'Mở phần Thẻ ghi nhớ và lướt qua 10 thẻ.',
+    descId:'Buka bagian Kartu dan lihat 10 kartu.',
+    descTr:'Kartlar bölümünü aç ve 10 karta göz at.',
+    descPl:'Otwórz sekcję Fiszki i przejrzyj 10 fiszek.',
     descUK:'Відкрий розділ Картки і перегортай 10 карток.' },
   { id:'fv3', type:'flashcard_view', icon:'🃏', target:20, xp:66,
     titleRU:'Карточный марафон', titleUK:'Картковий марафон',
+    titlePtBr:'Maratona de cartões', titleVi:'Cuộc đua thẻ ghi nhớ', titleId:'Maraton kartu', titleTr:'Kart maratonu', titlePl:'Maraton fiszek',
     descRU:'Открой раздел Карточки и пролистай 20 карточек.',
+    descPtBr:'Abra a seção Cartões e passe por 20 cartões.',
+    descVi:'Mở phần Thẻ ghi nhớ và lướt qua 20 thẻ.',
+    descId:'Buka bagian Kartu dan lihat 20 kartu.',
+    descTr:'Kartlar bölümünü aç ve 20 karta göz at.',
+    descPl:'Otwórz sekcję Fiszki i przejrzyj 20 fiszek.',
     descUK:'Відкрий розділ Картки і перегортай 20 карток.' },
 
   // flashcard_save — сохранить фразу в карточки через кнопку в уроке
   { id:'fs1', type:'flashcard_save', icon:'💾', target:1, xp:18,
     titleRU:'Первая карточка', titleUK:'Перша картка',
+    titlePtBr:'Primeiro cartão', titleVi:'Thẻ đầu tiên', titleId:'Kartu pertama', titleTr:'İlk kart', titlePl:'Pierwsza fiszka',
     descRU:'В уроке нажми Save на любой фразе — она попадёт в Карточки.',
+    descPtBr:'Na lição, toque em Save em qualquer frase; ela irá para Cartões.',
+    descVi:'Trong bài học, nhấn Save ở bất kỳ câu nào; câu đó sẽ vào Thẻ ghi nhớ.',
+    descId:'Di pelajaran, ketuk Save pada frasa apa pun; frasa itu akan masuk ke Kartu.',
+    descTr:'Derste herhangi bir ifadede Save düğmesine dokun; Kartlara eklenir.',
+    descPl:'W lekcji stuknij Save przy dowolnej frazie; trafi do Fiszek.',
     descUK:'В уроці натисни Save на будь-якій фразі — вона потрапить у Картки.' },
   { id:'fs2', type:'flashcard_save', icon:'💾', target:3, xp:36,
     titleRU:'Коллекционер', titleUK:'Колекціонер',
+    titlePtBr:'Colecionador', titleVi:'Nhà sưu tầm', titleId:'Kolektor', titleTr:'Koleksiyoncu', titlePl:'Kolekcjoner',
     descRU:'Сохрани 3 фразы в Карточки через кнопку Save в уроках.',
+    descPtBr:'Salve 3 frases em Cartões usando o botão Save nas lições.',
+    descVi:'Lưu 3 câu vào Thẻ ghi nhớ bằng nút Save trong các bài học.',
+    descId:'Simpan 3 frasa ke Kartu dengan tombol Save di pelajaran.',
+    descTr:'Derslerde Save düğmesini kullanarak 3 ifadeyi Kartlara kaydet.',
+    descPl:'Zapisz 3 frazy do Fiszek przyciskiem Save w lekcjach.',
     descUK:'Збережи 3 фрази у Картки через кнопку Save на уроках.' },
   { id:'fs3', type:'flashcard_save', icon:'💾', target:5, xp:60,
     titleRU:'Пополняю коллекцию', titleUK:'Поповнюю колекцію',
+    titlePtBr:'Aumentando a coleção', titleVi:'Bổ sung bộ sưu tập', titleId:'Menambah koleksi', titleTr:'Koleksiyonu büyütüyorum', titlePl:'Uzupełniam kolekcję',
     descRU:'Сохрани 5 фраз в Карточки через кнопку Save в уроках.',
+    descPtBr:'Salve 5 frases em Cartões usando o botão Save nas lições.',
+    descVi:'Lưu 5 câu vào Thẻ ghi nhớ bằng nút Save trong các bài học.',
+    descId:'Simpan 5 frasa ke Kartu dengan tombol Save di pelajaran.',
+    descTr:'Derslerde Save düğmesini kullanarak 5 ifadeyi Kartlara kaydet.',
+    descPl:'Zapisz 5 fraz do Fiszek przyciskiem Save w lekcjach.',
     descUK:'Збережи 5 фраз у Картки через кнопку Save на уроках.' },
 
   // flashcard_flip — перевернуть карточку чтобы увидеть перевод
   { id:'ff1', type:'flashcard_flip', icon:'🔄', target:5, xp:24,
     titleRU:'Переворот', titleUK:'Переворот',
+    titlePtBr:'Virada', titleVi:'Lật thẻ', titleId:'Balik kartu', titleTr:'Kart çevirme', titlePl:'Odwrócenie',
     descRU:'В разделе Карточки нажми на 5 карточек чтобы увидеть перевод.',
+    descPtBr:'Na seção Cartões, toque em 5 cartões para ver a tradução.',
+    descVi:'Trong phần Thẻ ghi nhớ, nhấn vào 5 thẻ để xem bản dịch.',
+    descId:'Di bagian Kartu, ketuk 5 kartu untuk melihat terjemahannya.',
+    descTr:'Kartlar bölümünde çeviriyi görmek için 5 karta dokun.',
+    descPl:'W sekcji Fiszki stuknij 5 fiszek, aby zobaczyć tłumaczenie.',
     descUK:'В розділі Картки натисни на 5 карток щоб побачити переклад.' },
   { id:'ff2', type:'flashcard_flip', icon:'🔄', target:10, xp:42,
     titleRU:'Двойной переворот', titleUK:'Подвійний переворот',
+    titlePtBr:'Virada dupla', titleVi:'Lật thẻ gấp đôi', titleId:'Balik ganda', titleTr:'Çifte çevirme', titlePl:'Podwójne odwrócenie',
     descRU:'В разделе Карточки нажми на 10 карточек чтобы увидеть переводы.',
+    descPtBr:'Na seção Cartões, toque em 10 cartões para ver as traduções.',
+    descVi:'Trong phần Thẻ ghi nhớ, nhấn vào 10 thẻ để xem các bản dịch.',
+    descId:'Di bagian Kartu, ketuk 10 kartu untuk melihat terjemahannya.',
+    descTr:'Kartlar bölümünde çevirileri görmek için 10 karta dokun.',
+    descPl:'W sekcji Fiszki stuknij 10 fiszek, aby zobaczyć tłumaczenia.',
     descUK:'В розділі Картки натисни на 10 карток щоб побачити переклади.' },
   { id:'ff3', type:'flashcard_flip', icon:'🔄', target:15, xp:60,
     titleRU:'Мастер переворота', titleUK:'Майстер перевороту',
+    titlePtBr:'Mestre da virada', titleVi:'Bậc thầy lật thẻ', titleId:'Ahli membalik kartu', titleTr:'Çevirme ustası', titlePl:'Mistrz odwracania',
     descRU:'В разделе Карточки нажми на 15 карточек — проверь все переводы.',
+    descPtBr:'Na seção Cartões, toque em 15 cartões e confira todas as traduções.',
+    descVi:'Trong phần Thẻ ghi nhớ, nhấn vào 15 thẻ và kiểm tra tất cả bản dịch.',
+    descId:'Di bagian Kartu, ketuk 15 kartu dan periksa semua terjemahan.',
+    descTr:'Kartlar bölümünde 15 karta dokun ve tüm çevirileri kontrol et.',
+    descPl:'W sekcji Fiszki stuknij 15 fiszek i sprawdź wszystkie tłumaczenia.',
     descUK:'В розділі Картки натисни на 15 карток — перевір усі переклади.' },
 
   // recall_session — начать сессию повторения (засчитывается 1 раз за день при первом ответе)
   { id:'rs1', type:'recall_session', icon:'🧠', target:1, xp:24,
     titleRU:'Время повторить', titleUK:'Час повторити',
+    titlePtBr:'Hora de revisar', titleVi:'Đến lúc ôn lại', titleId:'Waktunya mengulang', titleTr:'Tekrar zamanı', titlePl:'Czas na powtórkę',
     descRU:'Открой раздел Повторение и правильно ответь хотя бы на одну карточку — засчитается сессия.',
+    descPtBr:'Abra a seção Revisão e responda corretamente a pelo menos um cartão; isso conta como uma sessão.',
+    descVi:'Mở phần Ôn tập và trả lời đúng ít nhất một thẻ; như vậy sẽ tính là một phiên.',
+    descId:'Buka bagian Pengulangan dan jawab setidaknya satu kartu dengan benar; itu dihitung sebagai sesi.',
+    descTr:'Tekrar bölümünü aç ve en az bir karta doğru cevap ver; bu bir oturum sayılır.',
+    descPl:'Otwórz sekcję Powtórka i odpowiedz poprawnie na co najmniej jedną fiszkę; to zaliczy sesję.',
     descUK:'Відкрий розділ Повторення й відповідай правильно хоча б на одну картку — сесію зарахують.' },
 
   // recall_answers — правильные ответы в Повторении (SESSION_LIMIT=7, т.е. max 7 за сессию)
   { id:'ra1', type:'recall_answers', icon:'🧠', target:5, xp:36,
     titleRU:'Пятёрка на повторе', titleUK:'П\'ятірка на повторенні',
+    titlePtBr:'Cinco na revisão', titleVi:'Năm câu ôn lại', titleId:'Lima dalam pengulangan', titleTr:'Tekrarda beşli', titlePl:'Piątka w powtórce',
     descRU:'Правильно ответь на 5 карточек в разделе Повторение.',
+    descPtBr:'Responda corretamente a 5 cartões na seção Revisão.',
+    descVi:'Trả lời đúng 5 thẻ trong phần Ôn tập.',
+    descId:'Jawab 5 kartu dengan benar di bagian Pengulangan.',
+    descTr:'Tekrar bölümünde 5 karta doğru cevap ver.',
+    descPl:'Odpowiedz poprawnie na 5 fiszek w sekcji Powtórka.',
     descUK:'Відповідай правильно на 5 карток у розділі Повторення.' },
   { id:'ra2', type:'recall_answers', icon:'🧠', target:7, xp:60,
     titleRU:'Мастер повторения', titleUK:'Майстер повторення',
+    titlePtBr:'Mestre da revisão', titleVi:'Bậc thầy ôn tập', titleId:'Ahli pengulangan', titleTr:'Tekrar ustası', titlePl:'Mistrz powtórek',
     descRU:'Правильно ответь на 7 карточек в разделе Повторение — это полная сессия.',
+    descPtBr:'Responda corretamente a 7 cartões na seção Revisão; isso é uma sessão completa.',
+    descVi:'Trả lời đúng 7 thẻ trong phần Ôn tập; đó là một phiên đầy đủ.',
+    descId:'Jawab 7 kartu dengan benar di bagian Pengulangan; itu satu sesi penuh.',
+    descTr:'Tekrar bölümünde 7 karta doğru cevap ver; bu tam bir oturumdur.',
+    descPl:'Odpowiedz poprawnie na 7 fiszek w sekcji Powtórka; to pełna sesja.',
     descUK:'Відповідай правильно на 7 карток у розділі Повторення — це повна сесія.' },
 
   // recall_perfect — сессия Повторения без единой ошибки (минимум 5 карточек)
   { id:'rp1', type:'recall_perfect', icon:'💎', target:1, xp:72,
     titleRU:'Безупречное повторение', titleUK:'Бездоганне повторення',
+    titlePtBr:'Revisão impecável', titleVi:'Ôn tập hoàn hảo', titleId:'Pengulangan sempurna', titleTr:'Kusursuz tekrar', titlePl:'Bezbłędna powtórka',
     descRU:'Пройди сессию Повторения без единой ошибки (нужно минимум 5 карточек).',
+    descPtBr:'Conclua uma sessão de Revisão sem nenhum erro; são necessários pelo menos 5 cartões.',
+    descVi:'Hoàn thành một phiên Ôn tập mà không mắc lỗi nào; cần ít nhất 5 thẻ.',
+    descId:'Selesaikan sesi Pengulangan tanpa satu pun kesalahan; perlu minimal 5 kartu.',
+    descTr:'Bir Tekrar oturumunu tek hata yapmadan tamamla; en az 5 kart gerekir.',
+    descPl:'Ukończ sesję Powtórki bez ani jednego błędu; potrzeba co najmniej 5 fiszek.',
     descUK:'Пройди сесію Повторення без жодної помилки (потрібно мінімум 5 карток).' },
 
   // daily_phrase_read — прочитать фразу дня (1 в день на главном экране)
   { id:'dpr1', type:'daily_phrase_read', icon:'📰', target:1, xp:12,
     titleRU:'Фраза дня', titleUK:'Фраза дня',
+    titlePtBr:'Frase do dia', titleVi:'Câu trong ngày', titleId:'Frasa hari ini', titleTr:'Günün ifadesi', titlePl:'Fraza dnia',
     descRU:'На главном экране найди фразу дня и нажми на неё чтобы прочитать.',
+    descPtBr:'Na tela inicial, encontre a frase do dia e toque nela para ler.',
+    descVi:'Trên màn hình chính, tìm câu trong ngày và nhấn vào đó để đọc.',
+    descId:'Di layar utama, temukan frasa hari ini dan ketuk untuk membacanya.',
+    descTr:'Ana ekranda günün ifadesini bul ve okumak için ona dokun.',
+    descPl:'Na ekranie głównym znajdź frazę dnia i stuknij ją, aby przeczytać.',
     descUK:'На головному екрані знайди фразу дня і натисни на неї щоб прочитати.' },
 
   // daily_phrase_save — сохранить фразу дня в карточки
   { id:'dps1', type:'daily_phrase_save', icon:'⭐', target:1, xp:18,
     titleRU:'Сохрани фразу дня', titleUK:'Збережи фразу дня',
+    titlePtBr:'Salve a frase do dia', titleVi:'Lưu câu trong ngày', titleId:'Simpan frasa hari ini', titleTr:'Günün ifadesini kaydet', titlePl:'Zapisz frazę dnia',
     descRU:'Открой фразу дня на главном экране и сохрани её в Карточки.',
+    descPtBr:'Abra a frase do dia na tela inicial e salve-a em Cartões.',
+    descVi:'Mở câu trong ngày trên màn hình chính và lưu vào Thẻ ghi nhớ.',
+    descId:'Buka frasa hari ini di layar utama dan simpan ke Kartu.',
+    descTr:'Ana ekranda günün ifadesini aç ve Kartlara kaydet.',
+    descPl:'Otwórz frazę dnia na ekranie głównym i zapisz ją do Fiszek.',
     descUK:'Відкрий фразу дня на головному екрані і збережи її в Картки.' },
 
   // diagnostic_complete — пройти диагностический тест полностью (20 вопросов)
   { id:'dc1', type:'diagnostic_complete', icon:'🩺', target:1, xp:96,
     titleRU:'Диагностика', titleUK:'Діагностика',
+    titlePtBr:'Diagnóstico', titleVi:'Chẩn đoán', titleId:'Diagnostik', titleTr:'Tanılama', titlePl:'Diagnoza',
     descRU:'Пройди диагностический тест целиком — все 20 вопросов до конца.',
+    descPtBr:'Conclua o teste diagnóstico inteiro: todas as 20 perguntas até o fim.',
+    descVi:'Hoàn thành toàn bộ bài kiểm tra chẩn đoán: đủ 20 câu hỏi đến cuối.',
+    descId:'Selesaikan tes diagnostik sepenuhnya: semua 20 pertanyaan sampai akhir.',
+    descTr:'Tanılama testinin tamamını bitir: 20 sorunun hepsini sona kadar çöz.',
+    descPl:'Ukończ cały test diagnostyczny: wszystkie 20 pytań do końca.',
     descUK:'Пройди діагностичний тест повністю — усі 20 питань до кінця.' },
 
   // quiz_easy — правильные ответы в квизе уровня «Легко» (бесплатно)
   { id:'qe1', type:'quiz_easy', icon:'🌱', target:5, xp:18,
     titleRU:'Лёгкий старт', titleUK:'Легкий старт',
+    titlePtBr:'Começo fácil', titleVi:'Khởi đầu dễ', titleId:'Awal mudah', titleTr:'Kolay başlangıç', titlePl:'Łatwy start',
     descRU:'Собери 5 фраз в Квизах на уровне Легко.',
+    descPtBr:'Monte 5 frases em Quizzes no nível Fácil.',
+    descVi:'Ghép 5 câu trong Quiz ở mức Dễ.',
+    descId:'Susun 5 frasa di Kuis pada level Mudah.',
+    descTr:'Quizlerde Kolay seviyede 5 ifadeyi kur.',
+    descPl:'Ułóż 5 fraz w Quizach na poziomie Łatwe.',
     descUK:'Збери 5 фраз у Квізах на рівні Легко.' },
   { id:'qe2', type:'quiz_easy', icon:'🌱', target:10, xp:30,
     titleRU:'Разогрев в квизе', titleUK:'Розігрів у квізі',
+    titlePtBr:'Aquecimento no quiz', titleVi:'Khởi động trong quiz', titleId:'Pemanasan di kuis', titleTr:'Quiz ısınması', titlePl:'Rozgrzewka w quizie',
     descRU:'Собери 10 фраз в Квизах на уровне Легко.',
+    descPtBr:'Monte 10 frases em Quizzes no nível Fácil.',
+    descVi:'Ghép 10 câu trong Quiz ở mức Dễ.',
+    descId:'Susun 10 frasa di Kuis pada level Mudah.',
+    descTr:'Quizlerde Kolay seviyede 10 ifadeyi kur.',
+    descPl:'Ułóż 10 fraz w Quizach na poziomie Łatwe.',
     descUK:'Збери 10 фраз у Квізах на рівні Легко.' },
   { id:'qe3', type:'quiz_easy', icon:'🌱', target:20, xp:48,
     titleRU:'Уверенный игрок', titleUK:'Впевнений гравець',
+    titlePtBr:'Jogador confiante', titleVi:'Người chơi tự tin', titleId:'Pemain percaya diri', titleTr:'Kendinden emin oyuncu', titlePl:'Pewny gracz',
     descRU:'Собери 20 фраз в Квизах на уровне Легко.',
+    descPtBr:'Monte 20 frases em Quizzes no nível Fácil.',
+    descVi:'Ghép 20 câu trong Quiz ở mức Dễ.',
+    descId:'Susun 20 frasa di Kuis pada level Mudah.',
+    descTr:'Quizlerde Kolay seviyede 20 ifadeyi kur.',
+    descPl:'Ułóż 20 fraz w Quizach na poziomie Łatwe.',
     descUK:'Збери 20 фраз у Квізах на рівні Легко.' },
 
   // quiz_medium — правильные ответы в квизе уровня «Средне» (Premium)
   { id:'qm1', type:'quiz_medium', icon:'⚔️', target:5, xp:24, minPlayerLevel:8,
     titleRU:'Средний уровень', titleUK:'Середній рівень',
+    titlePtBr:'Nível médio', titleVi:'Cấp độ trung bình', titleId:'Level menengah', titleTr:'Orta seviye', titlePl:'Średni poziom',
     descRU:'Собери 5 фраз в Квизах на уровне Средне.',
+    descPtBr:'Monte 5 frases em Quizzes no nível Médio.',
+    descVi:'Ghép 5 câu trong Quiz ở mức Trung bình.',
+    descId:'Susun 5 frasa di Kuis pada level Menengah.',
+    descTr:'Quizlerde Orta seviyede 5 ifadeyi kur.',
+    descPl:'Ułóż 5 fraz w Quizach na poziomie Średnie.',
     descUK:'Збери 5 фраз у Квізах на рівні Середньо.' },
   { id:'qm2', type:'quiz_medium', icon:'⚔️', target:10, xp:42, minPlayerLevel:8,
     titleRU:'Средний мастер', titleUK:'Середній майстер',
+    titlePtBr:'Mestre do médio', titleVi:'Bậc thầy trung bình', titleId:'Ahli level menengah', titleTr:'Orta seviye ustası', titlePl:'Mistrz średniego poziomu',
     descRU:'Собери 10 фраз в Квизах на уровне Средне.',
+    descPtBr:'Monte 10 frases em Quizzes no nível Médio.',
+    descVi:'Ghép 10 câu trong Quiz ở mức Trung bình.',
+    descId:'Susun 10 frasa di Kuis pada level Menengah.',
+    descTr:'Quizlerde Orta seviyede 10 ifadeyi kur.',
+    descPl:'Ułóż 10 fraz w Quizach na poziomie Średnie.',
     descUK:'Збери 10 фраз у Квізах на рівні Середньо.' },
 
   // quiz_perfect — раунд квиза без ошибок (Premium, любой уровень)
   { id:'qp1', type:'quiz_perfect', icon:'✨', target:1, xp:54, minPlayerLevel:8,
     titleRU:'Идеальный раунд', titleUK:'Ідеальний раунд',
+    titlePtBr:'Rodada perfeita', titleVi:'Vòng hoàn hảo', titleId:'Ronde sempurna', titleTr:'Mükemmel tur', titlePl:'Idealna runda',
     descRU:'Заверши раунд в Квизах без единой ошибки — любой уровень.',
+    descPtBr:'Conclua uma rodada em Quizzes sem nenhum erro, em qualquer nível.',
+    descVi:'Hoàn thành một vòng Quiz không mắc lỗi nào, ở bất kỳ mức nào.',
+    descId:'Selesaikan ronde di Kuis tanpa satu pun kesalahan, di level apa pun.',
+    descTr:'Quizlerde herhangi bir seviyede bir turu tek hata yapmadan tamamla.',
+    descPl:'Ukończ rundę w Quizach bez ani jednego błędu, na dowolnym poziomie.',
     descUK:'Заверши раунд у Квізах без жодної помилки — будь-який рівень.' },
 
   // quiz_hard_perfect — раунд сложного квиза без ошибок (Premium)
   { id:'qhp1', type:'quiz_hard_perfect', icon:'👑', target:1, xp:84, minPlayerLevel:15,
     titleRU:'Хардкор без ошибок', titleUK:'Хардкор без помилок',
+    titlePtBr:'Difícil sem erros', titleVi:'Khó mà không sai', titleId:'Sulit tanpa kesalahan', titleTr:'Hatasız zor mod', titlePl:'Trudny bez błędów',
     descRU:'Заверши раунд Квизов на уровне Сложно без единой ошибки.',
+    descPtBr:'Conclua uma rodada de Quizzes no nível Difícil sem nenhum erro.',
+    descVi:'Hoàn thành một vòng Quiz ở mức Khó mà không mắc lỗi nào.',
+    descId:'Selesaikan ronde Kuis pada level Sulit tanpa satu pun kesalahan.',
+    descTr:'Quizlerde Zor seviyedeki bir turu tek hata yapmadan tamamla.',
+    descPl:'Ukończ rundę Quizów na poziomie Trudne bez ani jednego błędu.',
     descUK:'Заверши раунд Квізів на рівні Складно без жодної помилки.' },
 
   // different_lessons — позаниматься в N разных уроках за день
   { id:'dl1', type:'different_lessons', icon:'📚', target:2, xp:48,
     titleRU:'Два урока за день', titleUK:'Два уроки за день',
+    titlePtBr:'Duas lições no dia', titleVi:'Hai bài trong ngày', titleId:'Dua pelajaran sehari', titleTr:'Günde iki ders', titlePl:'Dwie lekcje dziennie',
     descRU:'Собери хотя бы по одной фразе в 2 разных уроках за день.',
+    descPtBr:'Monte pelo menos uma frase em 2 lições diferentes durante o dia.',
+    descVi:'Ghép ít nhất một câu trong 2 bài học khác nhau trong ngày.',
+    descId:'Susun setidaknya satu frasa di 2 pelajaran berbeda dalam sehari.',
+    descTr:'Gün içinde 2 farklı derste en az birer ifadeyi kur.',
+    descPl:'Ułóż co najmniej po jednej frazie w 2 różnych lekcjach w ciągu dnia.',
     descUK:'Збери хоча б по одній фразі у 2 різних уроках за день.' },
   { id:'dl2', type:'different_lessons', icon:'📚', target:3, xp:78,
     titleRU:'Три урока за день', titleUK:'Три уроки за день',
+    titlePtBr:'Três lições no dia', titleVi:'Ba bài trong ngày', titleId:'Tiga pelajaran sehari', titleTr:'Günde üç ders', titlePl:'Trzy lekcje dziennie',
     descRU:'Собери хотя бы по одной фразе в 3 разных уроках за день.',
+    descPtBr:'Monte pelo menos uma frase em 3 lições diferentes durante o dia.',
+    descVi:'Ghép ít nhất một câu trong 3 bài học khác nhau trong ngày.',
+    descId:'Susun setidaknya satu frasa di 3 pelajaran berbeda dalam sehari.',
+    descTr:'Gün içinde 3 farklı derste en az birer ifadeyi kur.',
+    descPl:'Ułóż co najmniej po jednej frazie w 3 różnych lekcjach w ciągu dnia.',
     descUK:'Збери хоча б по одній фразі у 3 різних уроках за день.' },
 
   // lesson_complete — пройти урок полностью до конца
   { id:'lc1', type:'lesson_complete', icon:'🏁', target:1, xp:60,
     titleRU:'Завершить урок', titleUK:'Завершити урок',
+    titlePtBr:'Concluir a lição', titleVi:'Hoàn thành bài học', titleId:'Selesaikan pelajaran', titleTr:'Dersi tamamla', titlePl:'Ukończ lekcję',
     descRU:'Пройди любой урок полностью — дойди до экрана завершения.',
+    descPtBr:'Conclua qualquer lição inteira até chegar à tela de conclusão.',
+    descVi:'Hoàn thành trọn vẹn bất kỳ bài học nào cho đến màn hình kết thúc.',
+    descId:'Selesaikan pelajaran apa pun sepenuhnya sampai layar selesai.',
+    descTr:'Herhangi bir dersi tamamen bitir ve tamamlama ekranına ulaş.',
+    descPl:'Przejdź dowolną lekcję do końca, aż do ekranu ukończenia.',
     descUK:'Пройди будь-який урок повністю — дійди до екрана завершення.' },
 
   // morning_session — правильные ответы в уроке до 12:00
   { id:'ms1', type:'morning_session', icon:'🌅', target:5, xp:36,
     titleRU:'Ранняя птица', titleUK:'Рання пташка',
+    titlePtBr:'Pessoa madrugadora', titleVi:'Chim dậy sớm', titleId:'Bangun pagi', titleTr:'Erken kalkan', titlePl:'Ranny ptaszek',
     descRU:'Собери 5 фраз в уроке до 12:00 — утренний старт.',
+    descPtBr:'Monte 5 frases em uma lição antes das 12:00: um começo de manhã.',
+    descVi:'Ghép 5 câu trong một bài học trước 12:00: khởi đầu buổi sáng.',
+    descId:'Susun 5 frasa dalam pelajaran sebelum pukul 12.00: awal pagi.',
+    descTr:'12:00’den önce bir derste 5 ifadeyi kur: sabah başlangıcı.',
+    descPl:'Ułóż 5 fraz w lekcji przed 12:00: poranny start.',
     descUK:'Збери 5 фраз в уроці до 12:00 — ранній старт.' },
 
   // evening_session — правильные ответы в уроке после 18:00
   { id:'evs1', type:'evening_session', icon:'🌙', target:5, xp:36,
     titleRU:'Вечерний студент', titleUK:'Вечірній студент',
+    titlePtBr:'Estudante da noite', titleVi:'Học viên buổi tối', titleId:'Pelajar malam', titleTr:'Akşam öğrencisi', titlePl:'Wieczorny uczeń',
     descRU:'Собери 5 фраз в уроке после 18:00 — вечерняя сессия.',
+    descPtBr:'Monte 5 frases em uma lição depois das 18:00: uma sessão noturna.',
+    descVi:'Ghép 5 câu trong một bài học sau 18:00: phiên học buổi tối.',
+    descId:'Susun 5 frasa dalam pelajaran setelah pukul 18.00: sesi malam.',
+    descTr:'18:00’den sonra bir derste 5 ifadeyi kur: akşam oturumu.',
+    descPl:'Ułóż 5 fraz w lekcji po 18:00: wieczorna sesja.',
     descUK:'Збери 5 фраз в уроці після 18:00 — вечірня сесія.' },
 
   // Дополнительные daily_active (разные мотивационные формулировки)
   { id:'da4', type:'daily_active', icon:'🌟', target:1, xp:18,
     titleRU:'Снова в бой', titleUK:'Знову в бій',
+    titlePtBr:'De volta à ação', titleVi:'Trở lại cuộc chơi', titleId:'Kembali beraksi', titleTr:'Tekrar sahada', titlePl:'Znowu do działania',
     descRU:'Открой любой урок и собери хотя бы одну фразу.',
+    descPtBr:'Abra qualquer lição e monte pelo menos uma frase.',
+    descVi:'Mở bất kỳ bài học nào và ghép ít nhất một câu.',
+    descId:'Buka pelajaran apa pun dan susun setidaknya satu frasa.',
+    descTr:'Herhangi bir dersi aç ve en az bir ifadeyi kur.',
+    descPl:'Otwórz dowolną lekcję i ułóż co najmniej jedną frazę.',
     descUK:'Відкрий будь-який урок і збери хоча б одну фразу.' },
   { id:'da5', type:'daily_active', icon:'🎯', target:1, xp:18,
     titleRU:'Держу ритм', titleUK:'Тримаю ритм',
+    titlePtBr:'Mantendo o ritmo', titleVi:'Giữ nhịp', titleId:'Menjaga ritme', titleTr:'Ritmi koruyorum', titlePl:'Trzymam rytm',
     descRU:'Открой урок и собери одну фразу.',
+    descPtBr:'Abra uma lição e monte uma frase.',
+    descVi:'Mở một bài học và ghép một câu.',
+    descId:'Buka pelajaran dan susun satu frasa.',
+    descTr:'Bir dersi aç ve bir ifadeyi kur.',
+    descPl:'Otwórz lekcję i ułóż jedną frazę.',
     descUK:'Відкрий урок і збери одну фразу.' },
   { id:'da6', type:'daily_active', icon:'💫', target:1, xp:18,
     titleRU:'Ещё один день', titleUK:'Ще один день',
+    titlePtBr:'Mais um dia', titleVi:'Thêm một ngày', titleId:'Satu hari lagi', titleTr:'Bir gün daha', titlePl:'Jeszcze jeden dzień',
     descRU:'Открой урок и собери хотя бы одну фразу — маленький шаг в верном направлении.',
+    descPtBr:'Abra uma lição e monte pelo menos uma frase: um pequeno passo na direção certa.',
+    descVi:'Mở một bài học và ghép ít nhất một câu: một bước nhỏ đúng hướng.',
+    descId:'Buka pelajaran dan susun setidaknya satu frasa: langkah kecil ke arah yang tepat.',
+    descTr:'Bir dersi aç ve en az bir ifadeyi kur: doğru yönde küçük bir adım.',
+    descPl:'Otwórz lekcję i ułóż co najmniej jedną frazę: mały krok we właściwym kierunku.',
     descUK:'Відкрий урок і збери хоча б одну фразу — маленький крок у правильному напрямку.' },
   { id:'da7', type:'daily_active', icon:'🌈', target:1, xp:18,
     titleRU:'Маленький шаг', titleUK:'Маленький крок',
+    titlePtBr:'Pequeno passo', titleVi:'Bước nhỏ', titleId:'Langkah kecil', titleTr:'Küçük adım', titlePl:'Mały krok',
     descRU:'Собери хотя бы одну фразу в любом уроке — главное начать.',
+    descPtBr:'Monte pelo menos uma frase em qualquer lição; o importante é começar.',
+    descVi:'Ghép ít nhất một câu trong bất kỳ bài học nào; quan trọng là bắt đầu.',
+    descId:'Susun setidaknya satu frasa di pelajaran apa pun; yang penting mulai.',
+    descTr:'Herhangi bir derste en az bir ifadeyi kur; önemli olan başlamak.',
+    descPl:'Ułóż co najmniej jedną frazę w dowolnej lekcji; najważniejsze to zacząć.',
     descUK:'Збери хоча б одну фразу в будь-якому уроці — головне почати.' },
   { id:'da8', type:'daily_active', icon:'☕', target:1, xp:18,
     titleRU:'Пять минут языка', titleUK:'П\'ять хвилин мови',
+    titlePtBr:'Cinco minutos de idioma', titleVi:'Năm phút học ngôn ngữ', titleId:'Lima menit bahasa', titleTr:'Beş dakika dil', titlePl:'Pięć minut języka',
     descRU:'Выдели сегодня 5 минут языку — открой урок и собери хотя бы одну фразу.',
+    descPtBr:'Reserve 5 minutos para o idioma hoje: abra uma lição e monte pelo menos uma frase.',
+    descVi:'Dành 5 phút cho ngôn ngữ hôm nay: mở một bài học và ghép ít nhất một câu.',
+    descId:'Luangkan 5 menit untuk bahasa hari ini: buka pelajaran dan susun setidaknya satu frasa.',
+    descTr:'Bugün dile 5 dakika ayır: bir dersi aç ve en az bir ifadeyi kur.',
+    descPl:'Poświęć dziś 5 minut językowi: otwórz lekcję i ułóż co najmniej jedną frazę.',
     descUK:'Виділи сьогодні 5 хвилин мові — відкрий урок і збери хоча б одну фразу.' },
 
   // Дополнительные total_answers
   { id:'ta7', type:'total_answers', icon:'📈', target:40, xp:60,
     titleRU:'Набираю темп', titleUK:'Набираю темп',
+    titlePtBr:'Ganhando ritmo', titleVi:'Tăng tốc', titleId:'Menaikkan tempo', titleTr:'Tempo kazanıyorum', titlePl:'Nabieram tempa',
     descRU:'Собери 40 фраз в уроках за день.',
+    descPtBr:'Monte 40 frases nas lições durante o dia.',
+    descVi:'Ghép 40 câu trong các bài học trong ngày.',
+    descId:'Susun 40 frasa di pelajaran dalam sehari.',
+    descTr:'Gün içinde derslerde 40 ifadeyi kur.',
+    descPl:'Ułóż 40 fraz w lekcjach w ciągu dnia.',
     descUK:'Збери 40 фраз у уроках за день.' },
   { id:'ta8', type:'total_answers', icon:'✅', target:15, xp:30,
     titleRU:'Хороший старт', titleUK:'Хороший старт',
+    titlePtBr:'Bom começo', titleVi:'Khởi đầu tốt', titleId:'Awal yang baik', titleTr:'İyi başlangıç', titlePl:'Dobry start',
     descRU:'Собери 15 фраз в уроке.',
+    descPtBr:'Monte 15 frases em uma lição.',
+    descVi:'Ghép 15 câu trong một bài học.',
+    descId:'Susun 15 frasa dalam pelajaran.',
+    descTr:'Bir derste 15 ifadeyi kur.',
+    descPl:'Ułóż 15 fraz w lekcji.',
     descUK:'Збери 15 фраз в уроці.' },
   { id:'ta9', type:'total_answers', icon:'⚡', target:5, xp:14,
     titleRU:'Пять ответов', titleUK:'П\'ять відповідей',
+    titlePtBr:'Cinco respostas', titleVi:'Năm câu trả lời', titleId:'Lima jawaban', titleTr:'Beş cevap', titlePl:'Pięć odpowiedzi',
     descRU:'Собери всего 5 фраз в уроке — разогрев на сегодня.',
+    descPtBr:'Monte apenas 5 frases em uma lição: aquecimento de hoje.',
+    descVi:'Chỉ cần ghép 5 câu trong một bài học: phần khởi động hôm nay.',
+    descId:'Susun hanya 5 frasa dalam pelajaran: pemanasan hari ini.',
+    descTr:'Bir derste sadece 5 ifadeyi kur: bugünün ısınması.',
+    descPl:'Ułóż tylko 5 fraz w lekcji: dzisiejsza rozgrzewka.',
     descUK:'Збери всього 5 фраз в уроці — розігрів на сьогодні.' },
   { id:'ta10', type:'total_answers', icon:'🔥', target:35, xp:54,
     titleRU:'Упорный', titleUK:'Завзятий',
+    titlePtBr:'Persistente', titleVi:'Bền bỉ', titleId:'Gigih', titleTr:'Azimli', titlePl:'Wytrwały',
     descRU:'Собери 35 фраз в уроках за день.',
+    descPtBr:'Monte 35 frases nas lições durante o dia.',
+    descVi:'Ghép 35 câu trong các bài học trong ngày.',
+    descId:'Susun 35 frasa di pelajaran dalam sehari.',
+    descTr:'Gün içinde derslerde 35 ifadeyi kur.',
+    descPl:'Ułóż 35 fraz w lekcjach w ciągu dnia.',
     descUK:'Збери 35 фраз у уроках за день.' },
   { id:'ta11', type:'total_answers', icon:'🚀', target:60, xp:84,
     titleRU:'Шесть десятков', titleUK:'Шість десятків',
+    titlePtBr:'Seis dezenas', titleVi:'Sáu chục', titleId:'Enam puluh', titleTr:'Altı onluk', titlePl:'Sześć dziesiątek',
     descRU:'Собери 60 фраз в уроках за день.',
+    descPtBr:'Monte 60 frases nas lições durante o dia.',
+    descVi:'Ghép 60 câu trong các bài học trong ngày.',
+    descId:'Susun 60 frasa di pelajaran dalam sehari.',
+    descTr:'Gün içinde derslerde 60 ifadeyi kur.',
+    descPl:'Ułóż 60 fraz w lekcjach w ciągu dnia.',
     descUK:'Збери 60 фраз у уроках за день.' },
 
   // Дополнительные correct_streak
   { id:'cs5', type:'correct_streak', icon:'⚡', target:25, xp:102,
     titleRU:'Мастер серий', titleUK:'Майстер серій',
+    titlePtBr:'Mestre das sequências', titleVi:'Bậc thầy chuỗi đúng', titleId:'Ahli rangkaian', titleTr:'Seri ustası', titlePl:'Mistrz serii',
     descRU:'Собери 25 фраз подряд в уроке — не прерви серию.',
+    descPtBr:'Monte 25 frases seguidas em uma lição; não quebre a sequência.',
+    descVi:'Ghép 25 câu liên tiếp trong một bài học; đừng làm đứt chuỗi.',
+    descId:'Susun 25 frasa beruntun dalam pelajaran; jangan putuskan rangkaian.',
+    descTr:'Bir derste arka arkaya 25 ifadeyi kur; seriyi bozma.',
+    descPl:'Ułóż 25 fraz z rzędu w lekcji; nie przerwij serii.',
     descUK:'Збери 25 фраз поспіль в уроці — не переривай серію.' },
   { id:'cs6', type:'correct_streak', icon:'🎯', target:7, xp:38,
     titleRU:'Семь в цель', titleUK:'Сім у ціль',
+    titlePtBr:'Sete no alvo', titleVi:'Bảy câu trúng đích', titleId:'Tujuh tepat sasaran', titleTr:'Yedisi hedefte', titlePl:'Siedem w cel',
     descRU:'Собери 7 фраз подряд в уроке без единой ошибки.',
+    descPtBr:'Monte 7 frases seguidas em uma lição sem nenhum erro.',
+    descVi:'Ghép 7 câu liên tiếp trong một bài học mà không mắc lỗi nào.',
+    descId:'Susun 7 frasa beruntun dalam pelajaran tanpa satu pun kesalahan.',
+    descTr:'Bir derste arka arkaya 7 ifadeyi tek hata yapmadan kur.',
+    descPl:'Ułóż 7 fraz z rzędu w lekcji bez ani jednego błędu.',
     descUK:'Збери 7 фраз поспіль в уроці без жодної помилки.' },
   { id:'cs7', type:'correct_streak', icon:'🔥', target:12, xp:58,
     titleRU:'Дюжина', titleUK:'Дюжина',
+    titlePtBr:'Uma dúzia', titleVi:'Một tá', titleId:'Selusin', titleTr:'Bir düzine', titlePl:'Tuzin',
     descRU:'Собери 12 фраз подряд — держи серию.',
+    descPtBr:'Monte 12 frases seguidas e mantenha a sequência.',
+    descVi:'Ghép 12 câu liên tiếp và giữ chuỗi.',
+    descId:'Susun 12 frasa beruntun dan pertahankan rangkaian.',
+    descTr:'Arka arkaya 12 ifadeyi kur ve seriyi koru.',
+    descPl:'Ułóż 12 fraz z rzędu i utrzymaj serię.',
     descUK:'Збери 12 фраз поспіль — тримай серію.' },
 
   // Дополнительные lesson_no_mistakes
   { id:'lnm4', type:'lesson_no_mistakes', icon:'🌟', target:25, xp:144,
     titleRU:'Идеальная серия', titleUK:'Ідеальна серія',
+    titlePtBr:'Sequência perfeita', titleVi:'Chuỗi hoàn hảo', titleId:'Rangkaian sempurna', titleTr:'Mükemmel seri', titlePl:'Idealna seria',
     descRU:'Собери 25 фраз подряд — максимальная концентрация.',
+    descPtBr:'Monte 25 frases seguidas com concentração máxima.',
+    descVi:'Ghép 25 câu liên tiếp với mức tập trung tối đa.',
+    descId:'Susun 25 frasa beruntun dengan konsentrasi penuh.',
+    descTr:'Arka arkaya 25 ifadeyi maksimum odakla kur.',
+    descPl:'Ułóż 25 fraz z rzędu z maksymalnym skupieniem.',
     descUK:'Збери 25 фраз поспіль — максимальна концентрація.' },
   { id:'lnm5', type:'lesson_no_mistakes', icon:'💎', target:30, xp:180,
     titleRU:'Совершенство', titleUK:'Досконалість',
+    titlePtBr:'Perfeição', titleVi:'Sự hoàn thiện', titleId:'Kesempurnaan', titleTr:'Mükemmellik', titlePl:'Doskonałość',
     descRU:'Собери 30 фраз подряд без единой ошибки — ты неудержим.',
+    descPtBr:'Monte 30 frases seguidas sem nenhum erro; você está imparável.',
+    descVi:'Ghép 30 câu liên tiếp mà không mắc lỗi nào; bạn không thể bị cản.',
+    descId:'Susun 30 frasa beruntun tanpa satu pun kesalahan; kamu tak terbendung.',
+    descTr:'Arka arkaya 30 ifadeyi tek hata yapmadan kur; durdurulamazsın.',
+    descPl:'Ułóż 30 fraz z rzędu bez ani jednego błędu; jesteś nie do zatrzymania.',
     descUK:'Збери 30 фраз поспіль без жодної помилки — ти нестримний.' },
   { id:'lnm6', type:'lesson_no_mistakes', icon:'✨', target:8, xp:60,
     titleRU:'Восьмёрка без промаха', titleUK:'Вісімка без промаху',
+    titlePtBr:'Oito sem errar', titleVi:'Tám câu không trượt', titleId:'Delapan tanpa meleset', titleTr:'Sekiz hatasız', titlePl:'Ósemka bez pudła',
     descRU:'Собери 8 фраз подряд в уроке — хорошая серия.',
+    descPtBr:'Monte 8 frases seguidas em uma lição: uma boa sequência.',
+    descVi:'Ghép 8 câu liên tiếp trong một bài học: một chuỗi tốt.',
+    descId:'Susun 8 frasa beruntun dalam pelajaran: rangkaian yang bagus.',
+    descTr:'Bir derste arka arkaya 8 ifadeyi kur: iyi bir seri.',
+    descPl:'Ułóż 8 fraz z rzędu w lekcji: dobra seria.',
     descUK:'Збери 8 фраз поспіль в уроці — гарна серія.' },
 
   // Дополнительные quiz_easy
   { id:'qe4', type:'quiz_easy', icon:'🌿', target:7, xp:22,
     titleRU:'Семёрка в квизе', titleUK:'Сімка в квізі',
+    titlePtBr:'Sete no quiz', titleVi:'Bảy câu trong quiz', titleId:'Tujuh di kuis', titleTr:'Quizde yedili', titlePl:'Siódemka w quizie',
     descRU:'Собери 7 фраз в Квизах на уровне Легко.',
+    descPtBr:'Monte 7 frases em Quizzes no nível Fácil.',
+    descVi:'Ghép 7 câu trong Quiz ở mức Dễ.',
+    descId:'Susun 7 frasa di Kuis pada level Mudah.',
+    descTr:'Quizlerde Kolay seviyede 7 ifadeyi kur.',
+    descPl:'Ułóż 7 fraz w Quizach na poziomie Łatwe.',
     descUK:'Збери 7 фраз у Квізах на рівні Легко.' },
   { id:'qe5', type:'quiz_easy', icon:'🌱', target:15, xp:38,
     titleRU:'Полтора раунда', titleUK:'Півтора раунду',
+    titlePtBr:'Uma rodada e meia', titleVi:'Một vòng rưỡi', titleId:'Satu setengah ronde', titleTr:'Bir buçuk tur', titlePl:'Półtorej rundy',
     descRU:'Собери 15 фраз в Квизах на уровне Легко — примерно 1,5 раунда.',
+    descPtBr:'Monte 15 frases em Quizzes no nível Fácil: cerca de 1,5 rodada.',
+    descVi:'Ghép 15 câu trong Quiz ở mức Dễ: khoảng 1,5 vòng.',
+    descId:'Susun 15 frasa di Kuis pada level Mudah: sekitar 1,5 ronde.',
+    descTr:'Quizlerde Kolay seviyede 15 ifadeyi kur: yaklaşık 1,5 tur.',
+    descPl:'Ułóż 15 fraz w Quizach na poziomie Łatwe: około 1,5 rundy.',
     descUK:'Збери 15 фраз у Квізах на рівні Легко — приблизно 1,5 раунди.' },
   { id:'qe6', type:'quiz_easy', icon:'🌱', target:4, xp:14,
     titleRU:'Разгон', titleUK:'Розгін',
+    titlePtBr:'Arranque', titleVi:'Tăng tốc ban đầu', titleId:'Pemacu awal', titleTr:'Hızlanma', titlePl:'Rozpęd',
     descRU:'Собери 4 фразы в Квизах на уровне Легко — быстрый разгон.',
+    descPtBr:'Monte 4 frases em Quizzes no nível Fácil: um arranque rápido.',
+    descVi:'Ghép 4 câu trong Quiz ở mức Dễ: tăng tốc nhanh.',
+    descId:'Susun 4 frasa di Kuis pada level Mudah: pemanasan cepat.',
+    descTr:'Quizlerde Kolay seviyede 4 ifadeyi kur: hızlı bir başlangıç.',
+    descPl:'Ułóż 4 frazy w Quizach na poziomie Łatwe: szybki rozpęd.',
     descUK:'Збери 4 фрази у Квізах на рівні Легко — швидкий розгін.' },
 
   // Дополнительные quiz_medium (Premium)
   { id:'qm3', type:'quiz_medium', icon:'⚔️', target:3, xp:18, minPlayerLevel:8,
     titleRU:'Вход на средний', titleUK:'Вхід на середній',
+    titlePtBr:'Entrada no médio', titleVi:'Vào mức trung bình', titleId:'Masuk level menengah', titleTr:'Orta seviyeye giriş', titlePl:'Wejście na średni',
     descRU:'Открой Квизы → Средне и собери 3 фразы.',
+    descPtBr:'Abra Quizzes → Médio e monte 3 frases.',
+    descVi:'Mở Quiz → Trung bình và ghép 3 câu.',
+    descId:'Buka Kuis → Menengah dan susun 3 frasa.',
+    descTr:'Quizler → Orta bölümünü aç ve 3 ifadeyi kur.',
+    descPl:'Otwórz Quizy → Średnie i ułóż 3 frazy.',
     descUK:'Відкрий Квізи → Середньо й збери 3 фрази.' },
   { id:'qm4', type:'quiz_medium', icon:'⚔️', target:15, xp:60, minPlayerLevel:8,
     titleRU:'Средний мастер плюс', titleUK:'Середній майстер плюс',
+    titlePtBr:'Mestre médio plus', titleVi:'Bậc thầy trung bình plus', titleId:'Ahli menengah plus', titleTr:'Orta seviye ustası plus', titlePl:'Mistrz średniego plus',
     descRU:'Собери 15 фраз в Квизах на уровне Средне.',
+    descPtBr:'Monte 15 frases em Quizzes no nível Médio.',
+    descVi:'Ghép 15 câu trong Quiz ở mức Trung bình.',
+    descId:'Susun 15 frasa di Kuis pada level Menengah.',
+    descTr:'Quizlerde Orta seviyede 15 ifadeyi kur.',
+    descPl:'Ułóż 15 fraz w Quizach na poziomie Średnie.',
     descUK:'Збери 15 фраз у Квізах на рівні Середньо.' },
 
   // Дополнительные quiz_hard (Premium)
   { id:'qh5', type:'quiz_hard', icon:'💪', target:7, xp:66, minPlayerLevel:15,
     titleRU:'Семь на сложном', titleUK:'Сім на складному',
+    titlePtBr:'Sete no difícil', titleVi:'Bảy câu mức khó', titleId:'Tujuh di level sulit', titleTr:'Zorda yedili', titlePl:'Siedem na trudnym',
     descRU:'Открой Квизы → Сложно и собери 7 фраз.',
+    descPtBr:'Abra Quizzes → Difícil e monte 7 frases.',
+    descVi:'Mở Quiz → Khó và ghép 7 câu.',
+    descId:'Buka Kuis → Sulit dan susun 7 frasa.',
+    descTr:'Quizler → Zor bölümünü aç ve 7 ifadeyi kur.',
+    descPl:'Otwórz Quizy → Trudne i ułóż 7 fraz.',
     descUK:'Відкрий Квізи → Складно й збери 7 фраз.' },
   { id:'qh6', type:'quiz_hard', icon:'👑', target:20, xp:108, minPlayerLevel:15,
     titleRU:'Двадцать на сложном', titleUK:'Двадцять на складному',
+    titlePtBr:'Vinte no difícil', titleVi:'Hai mươi câu mức khó', titleId:'Dua puluh di level sulit', titleTr:'Zorda yirmi', titlePl:'Dwadzieścia na trudnym',
     descRU:'Собери 20 фраз в Квизах на уровне Сложно.',
+    descPtBr:'Monte 20 frases em Quizzes no nível Difícil.',
+    descVi:'Ghép 20 câu trong Quiz ở mức Khó.',
+    descId:'Susun 20 frasa di Kuis pada level Sulit.',
+    descTr:'Quizlerde Zor seviyede 20 ifadeyi kur.',
+    descPl:'Ułóż 20 fraz w Quizach na poziomie Trudne.',
     descUK:'Збери 20 фраз у Квізах на рівні Складно.' },
 
   // Дополнительные quiz_score
   { id:'qs5', type:'quiz_score', icon:'💥', target:70, xp:114, minPlayerLevel:15,
     titleRU:'Семь десятков', titleUK:'Сім десятків',
+    titlePtBr:'Sete dezenas', titleVi:'Bảy chục', titleId:'Tujuh puluh', titleTr:'Yedi onluk', titlePl:'Siedem dziesiątek',
     descRU:'Заработай 70 XP в Квизах за день — играй на Сложно и держи серию.',
+    descPtBr:'Ganhe 70 XP em Quizzes durante o dia: jogue no Difícil e mantenha a sequência.',
+    descVi:'Kiếm 70 XP trong Quiz trong ngày: chơi mức Khó và giữ chuỗi.',
+    descId:'Dapatkan 70 XP di Kuis dalam sehari: mainkan mode Sulit dan pertahankan rangkaian.',
+    descTr:'Gün içinde Quizlerde 70 XP kazan: Zor modda oyna ve seriyi koru.',
+    descPl:'Zdobądź 70 XP w Quizach w ciągu dnia: graj na poziomie Trudne i utrzymaj serię.',
     descUK:'Зароби 70 XP у Квізах за день — грай на Складно і тримай серію.' },
   { id:'qs6', type:'quiz_score', icon:'⭐', target:5, xp:14,
     titleRU:'Первые очки', titleUK:'Перші очки',
+    titlePtBr:'Primeiros pontos', titleVi:'Điểm đầu tiên', titleId:'Poin pertama', titleTr:'İlk puanlar', titlePl:'Pierwsze punkty',
     descRU:'Заработай 5 XP в Квизах за день — любой уровень.',
+    descPtBr:'Ganhe 5 XP em Quizzes durante o dia, em qualquer nível.',
+    descVi:'Kiếm 5 XP trong Quiz trong ngày, ở bất kỳ mức nào.',
+    descId:'Dapatkan 5 XP di Kuis dalam sehari, di level apa pun.',
+    descTr:'Gün içinde Quizlerde herhangi bir seviyede 5 XP kazan.',
+    descPl:'Zdobądź 5 XP w Quizach w ciągu dnia, na dowolnym poziomie.',
     descUK:'Зароби 5 XP у Квізах за день — будь-який рівень.' },
   { id:'qs7', type:'quiz_score', icon:'🌟', target:15, xp:36,
     titleRU:'Пятнашки', titleUK:'П\'ятнашки',
+    titlePtBr:'Quinze pontos', titleVi:'Mười lăm điểm', titleId:'Lima belas poin', titleTr:'On beşlik', titlePl:'Piętnastka',
     descRU:'Заработай 15 XP в Квизах за день.',
+    descPtBr:'Ganhe 15 XP em Quizzes durante o dia.',
+    descVi:'Kiếm 15 XP trong Quiz trong ngày.',
+    descId:'Dapatkan 15 XP di Kuis dalam sehari.',
+    descTr:'Gün içinde Quizlerde 15 XP kazan.',
+    descPl:'Zdobądź 15 XP w Quizach w ciągu dnia.',
     descUK:'Зароби 15 XP у Квізах за день.' },
 
   // Дополнительные quiz_perfect (Premium)
   { id:'qp2', type:'quiz_perfect', icon:'✨', target:2, xp:96, minPlayerLevel:8,
     titleRU:'Дважды идеально', titleUK:'Двічі ідеально',
+    titlePtBr:'Duas vezes perfeito', titleVi:'Hai lần hoàn hảo', titleId:'Dua kali sempurna', titleTr:'İki kez mükemmel', titlePl:'Dwa razy idealnie',
     descRU:'Заверши 2 раунда в Квизах без единой ошибки сегодня.',
+    descPtBr:'Conclua 2 rodadas em Quizzes sem nenhum erro hoje.',
+    descVi:'Hoàn thành 2 vòng Quiz không mắc lỗi nào hôm nay.',
+    descId:'Selesaikan 2 ronde di Kuis tanpa satu pun kesalahan hari ini.',
+    descTr:'Bugün Quizlerde 2 turu tek hata yapmadan tamamla.',
+    descPl:'Ukończ dziś 2 rundy w Quizach bez ani jednego błędu.',
     descUK:'Заверши 2 раунди в Квізах без жодної помилки сьогодні.' },
 
   // Дополнительный quiz_hard_perfect (Premium)
   { id:'qhp2', type:'quiz_hard_perfect', icon:'💥', target:1, xp:108, minPlayerLevel:15,
     titleRU:'Сложно и чисто', titleUK:'Складно і чисто',
+    titlePtBr:'Difícil e limpo', titleVi:'Khó và sạch lỗi', titleId:'Sulit dan bersih', titleTr:'Zor ve temiz', titlePl:'Trudno i czysto',
     descRU:'Пройди раунд Квизов на уровне Сложно без единой ошибки.',
+    descPtBr:'Conclua uma rodada de Quizzes no nível Difícil sem nenhum erro.',
+    descVi:'Hoàn thành một vòng Quiz ở mức Khó mà không mắc lỗi nào.',
+    descId:'Selesaikan ronde Kuis pada level Sulit tanpa satu pun kesalahan.',
+    descTr:'Quizlerde Zor seviyedeki bir turu tek hata yapmadan tamamla.',
+    descPl:'Ukończ rundę Quizów na poziomie Trudne bez ani jednego błędu.',
     descUK:'Пройди раунд Квізів на рівні Складно без жодної помилки.' },
 
   // Дополнительные flashcard_view
   { id:'fv4', type:'flashcard_view', icon:'🃏', target:3, xp:14,
     titleRU:'Три карточки', titleUK:'Три картки',
+    titlePtBr:'Três cartões', titleVi:'Ba thẻ', titleId:'Tiga kartu', titleTr:'Üç kart', titlePl:'Trzy fiszki',
     descRU:'Открой раздел Карточки и пролистай 3 карточки.',
+    descPtBr:'Abra a seção Cartões e passe por 3 cartões.',
+    descVi:'Mở phần Thẻ ghi nhớ và lướt qua 3 thẻ.',
+    descId:'Buka bagian Kartu dan lihat 3 kartu.',
+    descTr:'Kartlar bölümünü aç ve 3 karta göz at.',
+    descPl:'Otwórz sekcję Fiszki i przejrzyj 3 fiszki.',
     descUK:'Відкрий розділ Картки і перегортай 3 картки.' },
   { id:'fv5', type:'flashcard_view', icon:'🃏', target:15, xp:54,
     titleRU:'Пятнашки в картах', titleUK:'П\'ятнашки в картах',
+    titlePtBr:'Quinze nos cartões', titleVi:'Mười lăm thẻ', titleId:'Lima belas kartu', titleTr:'Kartlarda on beş', titlePl:'Piętnastka w fiszkach',
     descRU:'Открой раздел Карточки и пролистай 15 карточек.',
+    descPtBr:'Abra a seção Cartões e passe por 15 cartões.',
+    descVi:'Mở phần Thẻ ghi nhớ và lướt qua 15 thẻ.',
+    descId:'Buka bagian Kartu dan lihat 15 kartu.',
+    descTr:'Kartlar bölümünü aç ve 15 karta göz at.',
+    descPl:'Otwórz sekcję Fiszki i przejrzyj 15 fiszek.',
     descUK:'Відкрий розділ Картки і перегортай 15 карток.' },
   { id:'fv6', type:'flashcard_view', icon:'🃏', target:7, xp:30,
     titleRU:'Семь карточек', titleUK:'Сім карток',
+    titlePtBr:'Sete cartões', titleVi:'Bảy thẻ', titleId:'Tujuh kartu', titleTr:'Yedi kart', titlePl:'Siedem fiszek',
     descRU:'Открой раздел Карточки и пролистай 7 карточек.',
+    descPtBr:'Abra a seção Cartões e passe por 7 cartões.',
+    descVi:'Mở phần Thẻ ghi nhớ và lướt qua 7 thẻ.',
+    descId:'Buka bagian Kartu dan lihat 7 kartu.',
+    descTr:'Kartlar bölümünü aç ve 7 karta göz at.',
+    descPl:'Otwórz sekcję Fiszki i przejrzyj 7 fiszek.',
     descUK:'Відкрий розділ Картки і перегортай 7 карток.' },
 
   // Дополнительные flashcard_save
   { id:'fs4', type:'flashcard_save', icon:'💾', target:2, xp:30,
     titleRU:'Два в копилку', titleUK:'Два в скарбничку',
+    titlePtBr:'Dois para a coleção', titleVi:'Hai câu bỏ túi', titleId:'Dua untuk koleksi', titleTr:'Kumbaraya iki tane', titlePl:'Dwie do skarbca',
     descRU:'Сохрани 2 фразы в Карточки через кнопку Save в уроках.',
+    descPtBr:'Salve 2 frases em Cartões usando o botão Save nas lições.',
+    descVi:'Lưu 2 câu vào Thẻ ghi nhớ bằng nút Save trong các bài học.',
+    descId:'Simpan 2 frasa ke Kartu dengan tombol Save di pelajaran.',
+    descTr:'Derslerde Save düğmesini kullanarak 2 ifadeyi Kartlara kaydet.',
+    descPl:'Zapisz 2 frazy do Fiszek przyciskiem Save w lekcjach.',
     descUK:'Збережи 2 фрази у Картки через кнопку Save на уроках.' },
   { id:'fs5', type:'flashcard_save', icon:'💾', target:4, xp:48,
     titleRU:'Четыре в коллекции', titleUK:'Чотири в колекції',
+    titlePtBr:'Quatro na coleção', titleVi:'Bốn câu trong bộ sưu tập', titleId:'Empat dalam koleksi', titleTr:'Koleksiyonda dört', titlePl:'Cztery w kolekcji',
     descRU:'Сохрани 4 фразы в Карточки через кнопку Save в уроках.',
+    descPtBr:'Salve 4 frases em Cartões usando o botão Save nas lições.',
+    descVi:'Lưu 4 câu vào Thẻ ghi nhớ bằng nút Save trong các bài học.',
+    descId:'Simpan 4 frasa ke Kartu dengan tombol Save di pelajaran.',
+    descTr:'Derslerde Save düğmesini kullanarak 4 ifadeyi Kartlara kaydet.',
+    descPl:'Zapisz 4 frazy do Fiszek przyciskiem Save w lekcjach.',
     descUK:'Збережи 4 фрази у Картки через кнопку Save на уроках.' },
   { id:'fs6', type:'flashcard_save', icon:'⭐', target:1, xp:18,
     titleRU:'Памятная фраза', titleUK:'Пам\'ятна фраза',
+    titlePtBr:'Frase memorável', titleVi:'Câu đáng nhớ', titleId:'Frasa berkesan', titleTr:'Akılda kalan ifade', titlePl:'Zapamiętana fraza',
     descRU:'Нажми Save на 1 понравившейся фразе в уроке.',
+    descPtBr:'Toque em Save em 1 frase de que você gostou na lição.',
+    descVi:'Nhấn Save ở 1 câu bạn thích trong bài học.',
+    descId:'Ketuk Save pada 1 frasa yang kamu suka di pelajaran.',
+    descTr:'Derste beğendiğin 1 ifadede Save düğmesine dokun.',
+    descPl:'Stuknij Save przy 1 frazie, która spodobała ci się w lekcji.',
     descUK:'Натисни Save біля однієї фрази, яка сподобалась, у уроці.' },
 
   // Дополнительные flashcard_flip
   { id:'ff4', type:'flashcard_flip', icon:'🔄', target:3, xp:14,
     titleRU:'Три поворота', titleUK:'Три поворота',
+    titlePtBr:'Três viradas', titleVi:'Ba lần lật thẻ', titleId:'Tiga balikan', titleTr:'Üç çevirme', titlePl:'Trzy odwrócenia',
     descRU:'В разделе Карточки нажми на 3 карточки чтобы увидеть перевод.',
+    descPtBr:'Na seção Cartões, toque em 3 cartões para ver a tradução.',
+    descVi:'Trong phần Thẻ ghi nhớ, nhấn vào 3 thẻ để xem bản dịch.',
+    descId:'Di bagian Kartu, ketuk 3 kartu untuk melihat terjemahannya.',
+    descTr:'Kartlar bölümünde çeviriyi görmek için 3 karta dokun.',
+    descPl:'W sekcji Fiszki stuknij 3 fiszki, aby zobaczyć tłumaczenie.',
     descUK:'В розділі Картки натисни на 3 картки щоб побачити переклад.' },
   { id:'ff5', type:'flashcard_flip', icon:'🔄', target:20, xp:78,
     titleRU:'Весь набор', titleUK:'Весь набір',
+    titlePtBr:'Conjunto completo', titleVi:'Cả bộ', titleId:'Seluruh set', titleTr:'Tüm set', titlePl:'Cały zestaw',
     descRU:'В разделе Карточки нажми на 20 карточек — проверь переводы всех.',
+    descPtBr:'Na seção Cartões, toque em 20 cartões e confira todas as traduções.',
+    descVi:'Trong phần Thẻ ghi nhớ, nhấn vào 20 thẻ và kiểm tra tất cả bản dịch.',
+    descId:'Di bagian Kartu, ketuk 20 kartu dan periksa semua terjemahan.',
+    descTr:'Kartlar bölümünde 20 karta dokun ve tüm çevirileri kontrol et.',
+    descPl:'W sekcji Fiszki stuknij 20 fiszek i sprawdź wszystkie tłumaczenia.',
     descUK:'В розділі Картки натисни на 20 карток — перевір переклади всіх.' },
   { id:'ff6', type:'flashcard_flip', icon:'🔄', target:7, xp:30,
     titleRU:'Семёрка переворотов', titleUK:'Сімка переворотів',
+    titlePtBr:'Sete viradas', titleVi:'Bảy lần lật thẻ', titleId:'Tujuh balikan', titleTr:'Yedi çevirme', titlePl:'Siedem odwróceń',
     descRU:'В разделе Карточки нажми на 7 карточек чтобы увидеть переводы.',
+    descPtBr:'Na seção Cartões, toque em 7 cartões para ver as traduções.',
+    descVi:'Trong phần Thẻ ghi nhớ, nhấn vào 7 thẻ để xem các bản dịch.',
+    descId:'Di bagian Kartu, ketuk 7 kartu untuk melihat terjemahannya.',
+    descTr:'Kartlar bölümünde çevirileri görmek için 7 karta dokun.',
+    descPl:'W sekcji Fiszki stuknij 7 fiszek, aby zobaczyć tłumaczenia.',
     descUK:'В розділі Картки натисни на 7 карток щоб побачити переклади.' },
 
   // Дополнительные recall_session
   { id:'rs2', type:'recall_session', icon:'🔁', target:1, xp:24,
     titleRU:'Освежаю память', titleUK:'Освіжаю пам\'ять',
+    titlePtBr:'Reavivando a memória', titleVi:'Làm mới trí nhớ', titleId:'Menyegarkan ingatan', titleTr:'Hafızayı tazeliyorum', titlePl:'Odświeżam pamięć',
     descRU:'Открой раздел Повторение и правильно ответь хотя бы на одну карточку — освежи то, что знаешь.',
+    descPtBr:'Abra a seção Revisão e responda corretamente a pelo menos um cartão para refrescar o que você sabe.',
+    descVi:'Mở phần Ôn tập và trả lời đúng ít nhất một thẻ để làm mới những gì bạn biết.',
+    descId:'Buka bagian Pengulangan dan jawab setidaknya satu kartu dengan benar untuk menyegarkan yang kamu tahu.',
+    descTr:'Tekrar bölümünü aç ve bildiklerini tazelemek için en az bir karta doğru cevap ver.',
+    descPl:'Otwórz sekcję Powtórka i odpowiedz poprawnie na co najmniej jedną fiszkę, aby odświeżyć to, co umiesz.',
     descUK:'Відкрий розділ Повторення й відповідай правильно хоча б на одну картку — освіж те, що знаєш.' },
   { id:'rs3', type:'recall_session', icon:'🧩', target:1, xp:24,
     titleRU:'Сессия повторения', titleUK:'Сесія повторення',
+    titlePtBr:'Sessão de revisão', titleVi:'Phiên ôn tập', titleId:'Sesi pengulangan', titleTr:'Tekrar oturumu', titlePl:'Sesja powtórki',
     descRU:'Открой Повторение и правильно ответь хотя бы на одну карточку — система запомнит твой прогресс.',
+    descPtBr:'Abra Revisão e responda corretamente a pelo menos um cartão; o sistema salvará seu progresso.',
+    descVi:'Mở Ôn tập và trả lời đúng ít nhất một thẻ; hệ thống sẽ lưu tiến trình của bạn.',
+    descId:'Buka Pengulangan dan jawab setidaknya satu kartu dengan benar; sistem akan menyimpan progresmu.',
+    descTr:'Tekrarı aç ve en az bir karta doğru cevap ver; sistem ilerlemeni kaydeder.',
+    descPl:'Otwórz Powtórkę i odpowiedz poprawnie na co najmniej jedną fiszkę; system zapisze twój postęp.',
     descUK:'Відкрий Повторення й відповідай правильно хоча б на одну картку — застосунок збереже прогрес.' },
 
   // Дополнительные recall_answers
   { id:'ra3', type:'recall_answers', icon:'🧠', target:3, xp:24,
     titleRU:'Три в повторе', titleUK:'Три в повторенні',
+    titlePtBr:'Três na revisão', titleVi:'Ba câu ôn lại', titleId:'Tiga dalam pengulangan', titleTr:'Tekrarda üç', titlePl:'Trzy w powtórce',
     descRU:'Правильно ответь на 3 карточки в разделе Повторение.',
+    descPtBr:'Responda corretamente a 3 cartões na seção Revisão.',
+    descVi:'Trả lời đúng 3 thẻ trong phần Ôn tập.',
+    descId:'Jawab 3 kartu dengan benar di bagian Pengulangan.',
+    descTr:'Tekrar bölümünde 3 karta doğru cevap ver.',
+    descPl:'Odpowiedz poprawnie na 3 fiszki w sekcji Powtórka.',
     descUK:'Відповідай правильно на 3 картки у розділі Повторення.' },
   { id:'ra4', type:'recall_answers', icon:'🧠', target:10, xp:84,
     titleRU:'Десятка в повторе', titleUK:'Десятка в повторенні',
+    titlePtBr:'Dez na revisão', titleVi:'Mười câu ôn lại', titleId:'Sepuluh dalam pengulangan', titleTr:'Tekrarda on', titlePl:'Dziesiątka w powtórce',
     descRU:'Правильно ответь на 10 карточек в разделе Повторение — понадобятся 2 сессии.',
+    descPtBr:'Responda corretamente a 10 cartões na seção Revisão; serão necessárias 2 sessões.',
+    descVi:'Trả lời đúng 10 thẻ trong phần Ôn tập; sẽ cần 2 phiên.',
+    descId:'Jawab 10 kartu dengan benar di bagian Pengulangan; perlu 2 sesi.',
+    descTr:'Tekrar bölümünde 10 karta doğru cevap ver; 2 oturum gerekir.',
+    descPl:'Odpowiedz poprawnie na 10 fiszek w sekcji Powtórka; potrzebne będą 2 sesje.',
     descUK:'Відповідай правильно на 10 карток у розділі Повторення — знадобляться 2 сесії.' },
   { id:'ra5', type:'recall_answers', icon:'🔮', target:4, xp:30,
     titleRU:'Четыре на повторе', titleUK:'Чотири на повторенні',
+    titlePtBr:'Quatro na revisão', titleVi:'Bốn câu ôn lại', titleId:'Empat dalam pengulangan', titleTr:'Tekrarda dört', titlePl:'Cztery w powtórce',
     descRU:'Правильно ответь на 4 карточки в разделе Повторение сегодня.',
+    descPtBr:'Responda corretamente a 4 cartões na seção Revisão hoje.',
+    descVi:'Trả lời đúng 4 thẻ trong phần Ôn tập hôm nay.',
+    descId:'Jawab 4 kartu dengan benar di bagian Pengulangan hari ini.',
+    descTr:'Bugün Tekrar bölümünde 4 karta doğru cevap ver.',
+    descPl:'Odpowiedz dziś poprawnie na 4 fiszki w sekcji Powtórka.',
     descUK:'Відповідай правильно на 4 картки у розділі Повторення сьогодні.' },
 
   // Дополнительный recall_perfect
   { id:'rp2', type:'recall_perfect', icon:'🌟', target:1, xp:72,
     titleRU:'Идеальная память', titleUK:'Ідеальна пам\'ять',
+    titlePtBr:'Memória perfeita', titleVi:'Trí nhớ hoàn hảo', titleId:'Ingatan sempurna', titleTr:'Mükemmel hafıza', titlePl:'Idealna pamięć',
     descRU:'Пройди сессию Повторения без единой ошибки — нужно минимум 5 карточек.',
+    descPtBr:'Conclua uma sessão de Revisão sem nenhum erro; são necessários pelo menos 5 cartões.',
+    descVi:'Hoàn thành một phiên Ôn tập mà không mắc lỗi nào; cần ít nhất 5 thẻ.',
+    descId:'Selesaikan sesi Pengulangan tanpa satu pun kesalahan; perlu minimal 5 kartu.',
+    descTr:'Bir Tekrar oturumunu tek hata yapmadan tamamla; en az 5 kart gerekir.',
+    descPl:'Ukończ sesję Powtórki bez ani jednego błędu; potrzeba co najmniej 5 fiszek.',
     descUK:'Пройди сесію Повторення без жодної помилки — потрібно мінімум 5 карток.' },
 
   // Дополнительные verb_learned
   { id:'vl4', type:'verb_learned', icon:'🔤', target:1, xp:18,
     titleRU:'Первый глагол', titleUK:'Перше дієслово',
+    titlePtBr:'Primeiro verbo', titleVi:'Động từ đầu tiên', titleId:'Kata kerja pertama', titleTr:'İlk fiil', titlePl:'Pierwszy czasownik',
     descRU:'Выучи 1 неправильный глагол в разделе Глаголы любого урока.',
+    descPtBr:'Aprenda 1 verbo irregular na seção Verbos de qualquer lição.',
+    descVi:'Học 1 động từ bất quy tắc trong phần Động từ của bất kỳ bài học nào.',
+    descId:'Pelajari 1 kata kerja tidak beraturan di bagian Kata Kerja dari pelajaran apa pun.',
+    descTr:'Herhangi bir dersin Fiiller bölümünde 1 düzensiz fiil öğren.',
+    descPl:'Naucz się 1 czasownika nieregularnego w sekcji Czasowniki dowolnej lekcji.',
     descUK:'Вивчи 1 неправильне дієслово в розділі Дієслова будь-якого уроку.' },
   { id:'vl5', type:'verb_learned', icon:'⚙️', target:3, xp:42,
     titleRU:'Три глагола', titleUK:'Три дієслова',
+    titlePtBr:'Três verbos', titleVi:'Ba động từ', titleId:'Tiga kata kerja', titleTr:'Üç fiil', titlePl:'Trzy czasowniki',
     descRU:'Выучи 3 неправильных глагола в разделе Глаголы.',
+    descPtBr:'Aprenda 3 verbos irregulares na seção Verbos.',
+    descVi:'Học 3 động từ bất quy tắc trong phần Động từ.',
+    descId:'Pelajari 3 kata kerja tidak beraturan di bagian Kata Kerja.',
+    descTr:'Fiiller bölümünde 3 düzensiz fiil öğren.',
+    descPl:'Naucz się 3 czasowników nieregularnych w sekcji Czasowniki.',
     descUK:'Вивчи 3 неправильних дієслова в розділі Дієслова.' },
   { id:'vl6', type:'verb_learned', icon:'🔩', target:8, xp:96,
     titleRU:'Восемь форм', titleUK:'Вісім форм',
+    titlePtBr:'Oito formas', titleVi:'Tám dạng', titleId:'Delapan bentuk', titleTr:'Sekiz form', titlePl:'Osiem form',
     descRU:'Выучи 8 неправильных глаголов в разделе Глаголы.',
+    descPtBr:'Aprenda 8 verbos irregulares na seção Verbos.',
+    descVi:'Học 8 động từ bất quy tắc trong phần Động từ.',
+    descId:'Pelajari 8 kata kerja tidak beraturan di bagian Kata Kerja.',
+    descTr:'Fiiller bölümünde 8 düzensiz fiil öğren.',
+    descPl:'Naucz się 8 czasowników nieregularnych w sekcji Czasowniki.',
     descUK:'Вивчи 8 неправильних дієслів в розділі Дієслова.' },
 
   // Дополнительные words_learned
   { id:'wl4', type:'words_learned', icon:'📗', target:15, xp:96,
     titleRU:'Словарный прорыв', titleUK:'Словниковий прорив',
+    titlePtBr:'Avanço de vocabulário', titleVi:'Bứt phá từ vựng', titleId:'Terobosan kosakata', titleTr:'Kelime atılımı', titlePl:'Przełom słownictwa',
     descRU:'Выучи 15 слов в разделе Слова — можно в разных уроках.',
+    descPtBr:'Aprenda 15 palavras na seção Palavras; pode ser em lições diferentes.',
+    descVi:'Học 15 từ trong phần Từ; có thể ở nhiều bài học khác nhau.',
+    descId:'Pelajari 15 kata di bagian Kata; boleh dari pelajaran yang berbeda.',
+    descTr:'Kelimeler bölümünde 15 kelime öğren; farklı derslerde olabilir.',
+    descPl:'Naucz się 15 słów w sekcji Słowa; mogą być z różnych lekcji.',
     descUK:'Вивчи 15 слів в розділі Слова — можна в різних уроках.' },
   { id:'wl5', type:'words_learned', icon:'📝', target:7, xp:60,
     titleRU:'Семь слов', titleUK:'Сім слів',
+    titlePtBr:'Sete palavras', titleVi:'Bảy từ', titleId:'Tujuh kata', titleTr:'Yedi kelime', titlePl:'Siedem słów',
     descRU:'Выучи 7 слов в разделе Слова любого урока.',
+    descPtBr:'Aprenda 7 palavras na seção Palavras de qualquer lição.',
+    descVi:'Học 7 từ trong phần Từ của bất kỳ bài học nào.',
+    descId:'Pelajari 7 kata di bagian Kata dari pelajaran apa pun.',
+    descTr:'Herhangi bir dersin Kelimeler bölümünde 7 kelime öğren.',
+    descPl:'Naucz się 7 słów w sekcji Słowa dowolnej lekcji.',
     descUK:'Вивчи 7 слів у розділі Слова будь-якого уроку.' },
   { id:'wl6', type:'words_learned', icon:'📖', target:2, xp:24,
     titleRU:'Два слова', titleUK:'Два слова',
+    titlePtBr:'Duas palavras', titleVi:'Hai từ', titleId:'Dua kata', titleTr:'İki kelime', titlePl:'Dwa słowa',
     descRU:'Выучи 2 слова в разделе Слова любого урока — быстрое задание.',
+    descPtBr:'Aprenda 2 palavras na seção Palavras de qualquer lição: uma tarefa rápida.',
+    descVi:'Học 2 từ trong phần Từ của bất kỳ bài học nào: nhiệm vụ nhanh.',
+    descId:'Pelajari 2 kata di bagian Kata dari pelajaran apa pun: tugas cepat.',
+    descTr:'Herhangi bir dersin Kelimeler bölümünde 2 kelime öğren: hızlı görev.',
+    descPl:'Naucz się 2 słów w sekcji Słowa dowolnej lekcji: szybkie zadanie.',
     descUK:'Вивчи 2 слова в розділі Слова будь-якого уроку — швидке завдання.' },
 
   // Дополнительный open_theory
   { id:'ot3', type:'open_theory', icon:'📚', target:3, xp:30,
     titleRU:'Три правила', titleUK:'Три правила',
+    titlePtBr:'Três regras', titleVi:'Ba quy tắc', titleId:'Tiga aturan', titleTr:'Üç kural', titlePl:'Trzy zasady',
     descRU:'Открой вкладку Теория в 3 разных уроках — изучи грамматику.',
+    descPtBr:'Abra a aba Teoria em 3 lições diferentes e estude a gramática.',
+    descVi:'Mở tab Lý thuyết trong 3 bài học khác nhau và học ngữ pháp.',
+    descId:'Buka tab Teori di 3 pelajaran berbeda dan pelajari tata bahasa.',
+    descTr:'3 farklı derste Teori sekmesini aç ve dil bilgisini çalış.',
+    descPl:'Otwórz kartę Teoria w 3 różnych lekcjach i przestudiuj gramatykę.',
     descUK:'Відкрий вкладку Теорія в 3 різних уроках — вивчи граматику.' },
   { id:'ot4', type:'open_theory', icon:'💡', target:1, xp:12,
     titleRU:'Открой правило', titleUK:'Відкрий правило',
+    titlePtBr:'Abra a regra', titleVi:'Mở quy tắc', titleId:'Buka aturan', titleTr:'Kuralı aç', titlePl:'Otwórz zasadę',
     descRU:'Загляни в Теорию любого урока — освежи знание правил.',
+    descPtBr:'Veja a Teoria de qualquer lição e revise as regras.',
+    descVi:'Xem phần Lý thuyết của bất kỳ bài học nào để ôn lại quy tắc.',
+    descId:'Lihat Teori dari pelajaran apa pun untuk menyegarkan aturan.',
+    descTr:'Herhangi bir dersin Teori bölümüne bak ve kuralları tazele.',
+    descPl:'Zajrzyj do Teorii dowolnej lekcji i odśwież zasady.',
     descUK:'Зазирни в Теорію будь-якого уроку — освіжи знання правил.' },
 
   // Дополнительные different_lessons
   { id:'dl3', type:'different_lessons', icon:'🗂️', target:4, xp:102,
     titleRU:'Четыре урока за день', titleUK:'Чотири уроки за день',
+    titlePtBr:'Quatro lições no dia', titleVi:'Bốn bài trong ngày', titleId:'Empat pelajaran sehari', titleTr:'Günde dört ders', titlePl:'Cztery lekcje dziennie',
     descRU:'Собери хотя бы по одной фразе в 4 разных уроках за день.',
+    descPtBr:'Monte pelo menos uma frase em 4 lições diferentes durante o dia.',
+    descVi:'Ghép ít nhất một câu trong 4 bài học khác nhau trong ngày.',
+    descId:'Susun setidaknya satu frasa di 4 pelajaran berbeda dalam sehari.',
+    descTr:'Gün içinde 4 farklı derste en az bir ifadeyi kur.',
+    descPl:'Ułóż w ciągu dnia co najmniej jedną frazę w 4 różnych lekcjach.',
     descUK:'Збери хоча б по одній фразі у 4 різних уроках за день.' },
 
   // Дополнительные lesson_complete
   { id:'lc2', type:'lesson_complete', icon:'🏆', target:2, xp:96,
     titleRU:'Два финиша', titleUK:'Два фінішу',
+    titlePtBr:'Dois finais', titleVi:'Hai lần hoàn thành', titleId:'Dua penyelesaian', titleTr:'İki bitiriş', titlePl:'Dwa finisze',
     descRU:'Пройди 2 урока полностью — дойди до экрана завершения в каждом.',
+    descPtBr:'Conclua 2 lições inteiras: chegue à tela de conclusão em cada uma.',
+    descVi:'Hoàn thành trọn vẹn 2 bài học: đến màn hình hoàn thành ở mỗi bài.',
+    descId:'Selesaikan 2 pelajaran sepenuhnya: capai layar selesai di masing-masing pelajaran.',
+    descTr:'2 dersi tamamen bitir: her birinde tamamlama ekranına ulaş.',
+    descPl:'Ukończ w całości 2 lekcje: w każdej dojdź do ekranu zakończenia.',
     descUK:'Пройди 2 уроки повністю — дійди до екрана завершення в кожному.' },
   { id:'lc3', type:'lesson_complete', icon:'🎓', target:3, xp:132,
     titleRU:'Тройной финиш', titleUK:'Потрійний фініш',
+    titlePtBr:'Final triplo', titleVi:'Ba lần hoàn thành', titleId:'Tiga penyelesaian', titleTr:'Üçlü bitiriş', titlePl:'Potrójny finisz',
     descRU:'Пройди 3 урока полностью — академическая сессия за день.',
+    descPtBr:'Conclua 3 lições inteiras: uma sessão acadêmica no dia.',
+    descVi:'Hoàn thành trọn vẹn 3 bài học: một phiên học nghiêm túc trong ngày.',
+    descId:'Selesaikan 3 pelajaran sepenuhnya: sesi belajar serius dalam sehari.',
+    descTr:'3 dersi tamamen bitir: gün içinde ciddi bir çalışma oturumu.',
+    descPl:'Ukończ w całości 3 lekcje: solidna sesja nauki w ciągu dnia.',
     descUK:'Пройди 3 уроки повністю — академічна сесія за день.' },
   { id:'lc4', type:'lesson_complete', icon:'🏁', target:1, xp:60,
     titleRU:'Финишная черта', titleUK:'Фінішна риска',
+    titlePtBr:'Linha de chegada', titleVi:'Vạch đích', titleId:'Garis finis', titleTr:'Bitiş çizgisi', titlePl:'Linia mety',
     descRU:'Пройди любой урок полностью до экрана победы.',
+    descPtBr:'Conclua qualquer lição inteira até a tela de vitória.',
+    descVi:'Hoàn thành trọn vẹn bất kỳ bài học nào đến màn hình chiến thắng.',
+    descId:'Selesaikan pelajaran apa pun sepenuhnya sampai layar kemenangan.',
+    descTr:'Herhangi bir dersi zafer ekranına kadar tamamen bitir.',
+    descPl:'Ukończ dowolną lekcję w całości aż do ekranu zwycięstwa.',
     descUK:'Пройди будь-який урок повністю до екрана перемоги.' },
 
   // Дополнительные morning_session
   { id:'ms2', type:'morning_session', icon:'🌤️', target:3, xp:24,
     titleRU:'Утренние три', titleUK:'Ранкові три',
+    titlePtBr:'Três pela manhã', titleVi:'Ba câu buổi sáng', titleId:'Tiga pagi', titleTr:'Sabah üçlüsü', titlePl:'Poranne trzy',
     descRU:'Собери 3 фразы в уроке до 12:00 — доброе утро, учёба!',
+    descPtBr:'Monte 3 frases em uma lição antes das 12:00: bom dia, estudo!',
+    descVi:'Ghép 3 câu trong một bài học trước 12:00: chào buổi sáng, giờ học!',
+    descId:'Susun 3 frasa dalam pelajaran sebelum 12:00: selamat pagi, waktunya belajar!',
+    descTr:'12:00’den önce bir derste 3 ifadeyi kur: günaydın, çalışma zamanı!',
+    descPl:'Ułóż 3 frazy w lekcji przed 12:00: dzień dobry, czas na naukę!',
     descUK:'Збери 3 фрази в уроці до 12:00 — доброго ранку, навчання!' },
   { id:'ms3', type:'morning_session', icon:'☀️', target:10, xp:66,
     titleRU:'Утренний марафон', titleUK:'Ранковий марафон',
+    titlePtBr:'Maratona matinal', titleVi:'Cuộc đua buổi sáng', titleId:'Maraton pagi', titleTr:'Sabah maratonu', titlePl:'Poranny maraton',
     descRU:'Собери 10 фраз в уроке до 12:00 — серьёзная утренняя сессия.',
+    descPtBr:'Monte 10 frases em uma lição antes das 12:00: uma sessão matinal séria.',
+    descVi:'Ghép 10 câu trong một bài học trước 12:00: một phiên học buổi sáng nghiêm túc.',
+    descId:'Susun 10 frasa dalam pelajaran sebelum 12:00: sesi pagi yang serius.',
+    descTr:'12:00’den önce bir derste 10 ifadeyi kur: ciddi bir sabah oturumu.',
+    descPl:'Ułóż 10 fraz w lekcji przed 12:00: solidna poranna sesja.',
     descUK:'Збери 10 фраз в уроці до 12:00 — серйозна ранкова сесія.' },
   { id:'ms4', type:'morning_session', icon:'🌅', target:7, xp:48,
     titleRU:'Семь до полудня', titleUK:'Сім до полудня',
+    titlePtBr:'Sete antes do meio-dia', titleVi:'Bảy câu trước trưa', titleId:'Tujuh sebelum tengah hari', titleTr:'Öğleden önce yedi', titlePl:'Siedem przed południem',
     descRU:'Собери 7 фраз в уроке до 12:00.',
+    descPtBr:'Monte 7 frases em uma lição antes das 12:00.',
+    descVi:'Ghép 7 câu trong một bài học trước 12:00.',
+    descId:'Susun 7 frasa dalam pelajaran sebelum 12:00.',
+    descTr:'12:00’den önce bir derste 7 ifadeyi kur.',
+    descPl:'Ułóż 7 fraz w lekcji przed 12:00.',
     descUK:'Збери 7 фраз в уроці до 12:00.' },
 
   // Дополнительные evening_session
   { id:'evs2', type:'evening_session', icon:'🌆', target:3, xp:24,
     titleRU:'Вечерние три', titleUK:'Вечірні три',
+    titlePtBr:'Três à noite', titleVi:'Ba câu buổi tối', titleId:'Tiga malam', titleTr:'Akşam üçlüsü', titlePl:'Wieczorne trzy',
     descRU:'Собери 3 фразы в уроке после 18:00 — вечерний ритуал.',
+    descPtBr:'Monte 3 frases em uma lição depois das 18:00: ritual noturno.',
+    descVi:'Ghép 3 câu trong một bài học sau 18:00: nghi thức buổi tối.',
+    descId:'Susun 3 frasa dalam pelajaran setelah 18:00: ritual malam.',
+    descTr:'18:00’den sonra bir derste 3 ifadeyi kur: akşam rutini.',
+    descPl:'Ułóż 3 frazy w lekcji po 18:00: wieczorny rytuał.',
     descUK:'Збери 3 фрази в уроці після 18:00 — вечірній ритуал.' },
   { id:'evs3', type:'evening_session', icon:'🌠', target:10, xp:66,
     titleRU:'Вечерний марафон', titleUK:'Вечірній марафон',
+    titlePtBr:'Maratona noturna', titleVi:'Cuộc đua buổi tối', titleId:'Maraton malam', titleTr:'Akşam maratonu', titlePl:'Wieczorny maraton',
     descRU:'Собери 10 фраз в уроке после 18:00 — мощная вечерняя сессия.',
+    descPtBr:'Monte 10 frases em uma lição depois das 18:00: uma sessão noturna forte.',
+    descVi:'Ghép 10 câu trong một bài học sau 18:00: một phiên học buổi tối mạnh mẽ.',
+    descId:'Susun 10 frasa dalam pelajaran setelah 18:00: sesi malam yang kuat.',
+    descTr:'18:00’den sonra bir derste 10 ifadeyi kur: güçlü bir akşam oturumu.',
+    descPl:'Ułóż 10 fraz w lekcji po 18:00: mocna wieczorna sesja.',
     descUK:'Збери 10 фраз в уроці після 18:00 — потужна вечірня сесія.' },
   { id:'evs4', type:'evening_session', icon:'🌙', target:7, xp:48,
     titleRU:'Семь вечером', titleUK:'Сім ввечері',
+    titlePtBr:'Sete à noite', titleVi:'Bảy câu buổi tối', titleId:'Tujuh malam', titleTr:'Akşam yedisi', titlePl:'Siedem wieczorem',
     descRU:'Собери 7 фраз в уроке после 18:00.',
+    descPtBr:'Monte 7 frases em uma lição depois das 18:00.',
+    descVi:'Ghép 7 câu trong một bài học sau 18:00.',
+    descId:'Susun 7 frasa dalam pelajaran setelah 18:00.',
+    descTr:'18:00’den sonra bir derste 7 ifadeyi kur.',
+    descPl:'Ułóż 7 fraz w lekcji po 18:00.',
     descUK:'Збери 7 фраз в уроці після 18:00.' },
 
   // Дополнительные daily_phrase
   { id:'dpr2', type:'daily_phrase_read', icon:'📰', target:1, xp:12,
     titleRU:'Слово дня', titleUK:'Слово дня',
+    titlePtBr:'Palavra do dia', titleVi:'Từ trong ngày', titleId:'Kata hari ini', titleTr:'Günün kelimesi', titlePl:'Słowo dnia',
     descRU:'Нажми на фразу дня на главном экране и прочитай её.',
+    descPtBr:'Toque na frase do dia na tela inicial e leia-a.',
+    descVi:'Nhấn vào câu trong ngày trên màn hình chính và đọc câu đó.',
+    descId:'Ketuk frasa hari ini di layar utama dan bacalah.',
+    descTr:'Ana ekranda günün ifadesine dokun ve onu oku.',
+    descPl:'Stuknij frazę dnia na ekranie głównym i ją przeczytaj.',
     descUK:'Натисни на фразу дня на головному екрані і прочитай її.' },
   { id:'dpr3', type:'daily_phrase_read', icon:'💬', target:1, xp:12,
     titleRU:'Свежая фраза', titleUK:'Свіжа фраза',
+    titlePtBr:'Frase nova', titleVi:'Câu mới', titleId:'Frasa segar', titleTr:'Yeni ifade', titlePl:'Świeża fraza',
     descRU:'На главном экране найди и прочитай фразу дня.',
+    descPtBr:'Na tela inicial, encontre e leia a frase do dia.',
+    descVi:'Trên màn hình chính, tìm và đọc câu trong ngày.',
+    descId:'Di layar utama, temukan dan baca frasa hari ini.',
+    descTr:'Ana ekranda günün ifadesini bul ve oku.',
+    descPl:'Na ekranie głównym znajdź i przeczytaj frazę dnia.',
     descUK:'На головному екрані знайди і прочитай фразу дня.' },
   { id:'dps2', type:'daily_phrase_save', icon:'⭐', target:1, xp:18,
     titleRU:'Сохрани в память', titleUK:'Збережи в пам\'ять',
+    titlePtBr:'Salve na memória', titleVi:'Lưu vào trí nhớ', titleId:'Simpan ke ingatan', titleTr:'Hafızaya kaydet', titlePl:'Zapisz w pamięci',
     descRU:'Открой фразу дня и нажми Save чтобы добавить в карточки.',
+    descPtBr:'Abra a frase do dia e toque em Save para adicioná-la aos Cartões.',
+    descVi:'Mở câu trong ngày và nhấn Save để thêm vào Thẻ ghi nhớ.',
+    descId:'Buka frasa hari ini dan ketuk Save untuk menambahkannya ke Kartu.',
+    descTr:'Günün ifadesini aç ve Kartlara eklemek için Save düğmesine dokun.',
+    descPl:'Otwórz frazę dnia i stuknij Save, aby dodać ją do Fiszek.',
     descUK:'Відкрий фразу дня і натисни Save щоб додати в картки.' },
   { id:'dps3', type:'daily_phrase_save', icon:'📌', target:1, xp:18,
     titleRU:'Пометить фразу', titleUK:'Позначити фразу',
+    titlePtBr:'Marcar frase', titleVi:'Đánh dấu câu', titleId:'Tandai frasa', titleTr:'İfadeyi işaretle', titlePl:'Oznacz frazę',
     descRU:'Сохрани фразу дня в Карточки — нажми Save на главном экране.',
+    descPtBr:'Salve a frase do dia em Cartões: toque em Save na tela inicial.',
+    descVi:'Lưu câu trong ngày vào Thẻ ghi nhớ: nhấn Save trên màn hình chính.',
+    descId:'Simpan frasa hari ini ke Kartu: ketuk Save di layar utama.',
+    descTr:'Günün ifadesini Kartlara kaydet: ana ekranda Save düğmesine dokun.',
+    descPl:'Zapisz frazę dnia do Fiszek: stuknij Save na ekranie głównym.',
     descUK:'Збережи фразу дня в Картки — натисни Save на головному екрані.' },
 
   // Дополнительный diagnostic_complete
   { id:'dc2', type:'diagnostic_complete', icon:'🩺', target:1, xp:96,
     titleRU:'Повторная диагностика', titleUK:'Повторна діагностика',
+    titlePtBr:'Novo diagnóstico', titleVi:'Chẩn đoán lại', titleId:'Diagnostik ulang', titleTr:'Tekrar tanılama', titlePl:'Ponowna diagnoza',
     descRU:'Снова пройди диагностический тест — проверь свой прогресс.',
+    descPtBr:'Faça o teste diagnóstico novamente e verifique seu progresso.',
+    descVi:'Làm lại bài kiểm tra chẩn đoán để kiểm tra tiến độ của bạn.',
+    descId:'Ikuti tes diagnostik lagi dan periksa progresmu.',
+    descTr:'Tanılama testini tekrar tamamla ve ilerlemeni kontrol et.',
+    descPl:'Wykonaj ponownie test diagnostyczny i sprawdź swoje postępy.',
     descUK:'Знову пройди діагностичний тест — перевір свій прогрес.' },
 
   // Дополнительные варианты для разнообразия
   { id:'ta12', type:'total_answers', icon:'💪', target:25, xp:42,
     titleRU:'Двадцать пять', titleUK:'Двадцять п\'ять',
+    titlePtBr:'Vinte e cinco', titleVi:'Hai mươi lăm', titleId:'Dua puluh lima', titleTr:'Yirmi beş', titlePl:'Dwadzieścia pięć',
     descRU:'Собери 25 фраз в уроках за день.',
+    descPtBr:'Monte 25 frases nas lições durante o dia.',
+    descVi:'Ghép 25 câu trong các bài học trong ngày.',
+    descId:'Susun 25 frasa di pelajaran dalam sehari.',
+    descTr:'Gün içinde derslerde 25 ifadeyi kur.',
+    descPl:'Ułóż 25 fraz w lekcjach w ciągu dnia.',
     descUK:'Збери 25 фраз у уроках за день.' },
   { id:'cs8', type:'correct_streak', icon:'🌪️', target:30, xp:120,
     titleRU:'Тридцать в потоке', titleUK:'Тридцять у потоці',
+    titlePtBr:'Trinta no fluxo', titleVi:'Ba mươi trong dòng tập trung', titleId:'Tiga puluh dalam alur', titleTr:'Akışta otuz', titlePl:'Trzydzieści w skupieniu',
     descRU:'Собери 30 фраз подряд — ты в абсолютном потоке.',
+    descPtBr:'Monte 30 frases seguidas: você está em foco total.',
+    descVi:'Ghép 30 câu liên tiếp: bạn đang hoàn toàn nhập tâm.',
+    descId:'Susun 30 frasa beruntun: kamu berada dalam fokus penuh.',
+    descTr:'Arka arkaya 30 ifadeyi kur: tamamen akıştasın.',
+    descPl:'Ułóż 30 fraz z rzędu: jesteś w pełnym skupieniu.',
     descUK:'Збери 30 фраз поспіль — ти в абсолютному потоці.' },
   { id:'lc5', type:'lesson_complete', icon:'✅', target:1, xp:60,
     titleRU:'До конца', titleUK:'До кінця',
+    titlePtBr:'Até o fim', titleVi:'Đến cuối', titleId:'Sampai selesai', titleTr:'Sonuna kadar', titlePl:'Do końca',
     descRU:'Пройди урок полностью — не останавливайся на полпути.',
+    descPtBr:'Conclua a lição inteira: não pare no meio do caminho.',
+    descVi:'Hoàn thành toàn bộ bài học: đừng dừng lại giữa chừng.',
+    descId:'Selesaikan pelajaran sepenuhnya: jangan berhenti di tengah jalan.',
+    descTr:'Dersi tamamen bitir: yarı yolda durma.',
+    descPl:'Ukończ lekcję w całości: nie zatrzymuj się w połowie.',
     descUK:'Пройди урок повністю — не зупиняйся на півдорозі.' },
   { id:'fv7', type:'flashcard_view', icon:'🃏', target:25, xp:84,
     titleRU:'Коллекция карточек', titleUK:'Колекція карток',
+    titlePtBr:'Coleção de cartões', titleVi:'Bộ sưu tập thẻ', titleId:'Koleksi kartu', titleTr:'Kart koleksiyonu', titlePl:'Kolekcja fiszek',
     descRU:'Открой раздел Карточки и пролистай 25 карточек.',
+    descPtBr:'Abra a seção Cartões e passe por 25 cartões.',
+    descVi:'Mở phần Thẻ ghi nhớ và lướt qua 25 thẻ.',
+    descId:'Buka bagian Kartu dan lihat 25 kartu.',
+    descTr:'Kartlar bölümünü aç ve 25 karta göz at.',
+    descPl:'Otwórz sekcję Fiszki i przejrzyj 25 fiszek.',
     descUK:'Відкрий розділ Картки і перегортай 25 карток.' },
   { id:'ra6', type:'recall_answers', icon:'🧠', target:6, xp:48,
     titleRU:'Шесть на повторе', titleUK:'Шість на повторенні',
+    titlePtBr:'Seis na revisão', titleVi:'Sáu câu ôn lại', titleId:'Enam dalam pengulangan', titleTr:'Tekrarda altı', titlePl:'Sześć w powtórce',
     descRU:'Правильно ответь на 6 карточек в разделе Повторение сегодня.',
+    descPtBr:'Responda corretamente a 6 cartões na seção Revisão hoje.',
+    descVi:'Trả lời đúng 6 thẻ trong phần Ôn tập hôm nay.',
+    descId:'Jawab 6 kartu dengan benar di bagian Pengulangan hari ini.',
+    descTr:'Bugün Tekrar bölümünde 6 karta doğru cevap ver.',
+    descPl:'Odpowiedz dziś poprawnie na 6 fiszek w sekcji Powtórka.',
     descUK:'Відповідай правильно на 6 карток у розділі Повторення сьогодні.' },
   { id:'ms5', type:'morning_session', icon:'🌞', target:5, xp:36,
     titleRU:'Пять утром', titleUK:'П\'ять вранці',
+    titlePtBr:'Cinco pela manhã', titleVi:'Năm câu buổi sáng', titleId:'Lima pagi', titleTr:'Sabah beşi', titlePl:'Pięć rano',
     descRU:'Собери 5 фраз в уроке до 12:00 — яркое начало дня.',
+    descPtBr:'Monte 5 frases em uma lição antes das 12:00: um começo de dia vivo.',
+    descVi:'Ghép 5 câu trong một bài học trước 12:00: khởi đầu ngày mới thật sáng.',
+    descId:'Susun 5 frasa dalam pelajaran sebelum 12:00: awal hari yang cerah.',
+    descTr:'12:00’den önce bir derste 5 ifadeyi kur: güne parlak bir başlangıç.',
+    descPl:'Ułóż 5 fraz w lekcji przed 12:00: jasny początek dnia.',
     descUK:'Збери 5 фраз в уроці до 12:00 — яскравий початок дня.' },
   { id:'evs5', type:'evening_session', icon:'🌃', target:5, xp:36,
     titleRU:'Пять вечером', titleUK:'П\'ять ввечері',
+    titlePtBr:'Cinco à noite', titleVi:'Năm câu buổi tối', titleId:'Lima malam', titleTr:'Akşam beşi', titlePl:'Pięć wieczorem',
     descRU:'Собери 5 фраз в уроке после 18:00 — вечерний режим.',
+    descPtBr:'Monte 5 frases em uma lição depois das 18:00: modo noturno.',
+    descVi:'Ghép 5 câu trong một bài học sau 18:00: chế độ buổi tối.',
+    descId:'Susun 5 frasa dalam pelajaran setelah 18:00: mode malam.',
+    descTr:'18:00’den sonra bir derste 5 ifadeyi kur: akşam modu.',
+    descPl:'Ułóż 5 fraz w lekcji po 18:00: tryb wieczorny.',
     descUK:'Збери 5 фраз в уроці після 18:00 — вечірній режим.' },
   { id:'wl7', type:'words_learned', icon:'📕', target:4, xp:42,
     titleRU:'Четыре слова', titleUK:'Чотири слова',
+    titlePtBr:'Quatro palavras', titleVi:'Bốn từ', titleId:'Empat kata', titleTr:'Dört kelime', titlePl:'Cztery słowa',
     descRU:'Выучи 4 слова в разделе Слова любого урока.',
+    descPtBr:'Aprenda 4 palavras na seção Palavras de qualquer lição.',
+    descVi:'Học 4 từ trong phần Từ của bất kỳ bài học nào.',
+    descId:'Pelajari 4 kata di bagian Kata dari pelajaran apa pun.',
+    descTr:'Herhangi bir dersin Kelimeler bölümünde 4 kelime öğren.',
+    descPl:'Naucz się 4 słów w sekcji Słowa dowolnej lekcji.',
     descUK:'Вивчи 4 слова в розділі Слова будь-якого уроку.' },
   { id:'dl4', type:'different_lessons', icon:'📂', target:2, xp:48,
     titleRU:'Два урока сегодня', titleUK:'Два уроки сьогодні',
+    titlePtBr:'Duas lições hoje', titleVi:'Hai bài hôm nay', titleId:'Dua pelajaran hari ini', titleTr:'Bugün iki ders', titlePl:'Dwie lekcje dzisiaj',
     descRU:'Открой 2 разных урока и собери хотя бы по одной фразе в каждом.',
+    descPtBr:'Abra 2 lições diferentes e monte pelo menos uma frase em cada uma.',
+    descVi:'Mở 2 bài học khác nhau và ghép ít nhất một câu trong mỗi bài.',
+    descId:'Buka 2 pelajaran berbeda dan susun setidaknya satu frasa di masing-masing.',
+    descTr:'2 farklı dersi aç ve her birinde en az bir ifadeyi kur.',
+    descPl:'Otwórz 2 różne lekcje i ułóż co najmniej jedną frazę w każdej.',
     descUK:'Відкрий 2 різні уроки й збери хоча б по одній фразі в кожному.' },
   { id:'qe7', type:'quiz_easy', icon:'🍀', target:8, xp:24,
     titleRU:'Восемь лёгких', titleUK:'Вісім легких',
+    titlePtBr:'Oito fáceis', titleVi:'Tám câu dễ', titleId:'Delapan mudah', titleTr:'Sekiz kolay', titlePl:'Osiem łatwych',
     descRU:'Собери 8 фраз в Квизах на уровне Легко.',
+    descPtBr:'Monte 8 frases em Quizzes no nível Fácil.',
+    descVi:'Ghép 8 câu trong Quiz ở mức Dễ.',
+    descId:'Susun 8 frasa di Kuis pada level Mudah.',
+    descTr:'Quizlerde Kolay seviyede 8 ifadeyi kur.',
+    descPl:'Ułóż 8 fraz w Quizach na poziomie Łatwe.',
     descUK:'Збери 8 фраз у Квізах на рівні Легко.' },
   { id:'vl7', type:'verb_learned', icon:'📋', target:5, xp:66,
     titleRU:'Пять глаголов', titleUK:'П\'ять дієслів',
+    titlePtBr:'Cinco verbos', titleVi:'Năm động từ', titleId:'Lima kata kerja', titleTr:'Beş fiil', titlePl:'Pięć czasowników',
     descRU:'Выучи 5 неправильных глаголов в разделе Глаголы.',
+    descPtBr:'Aprenda 5 verbos irregulares na seção Verbos.',
+    descVi:'Học 5 động từ bất quy tắc trong phần Động từ.',
+    descId:'Pelajari 5 kata kerja tidak beraturan di bagian Kata Kerja.',
+    descTr:'Fiiller bölümünde 5 düzensiz fiil öğren.',
+    descPl:'Naucz się 5 czasowników nieregularnych w sekcji Czasowniki.',
     descUK:'Вивчи 5 неправильних дієслів в розділі Дієслова.' },
   { id:'rp3', type:'recall_perfect', icon:'🏅', target:1, xp:72,
     titleRU:'Чистое повторение', titleUK:'Чисте повторення',
+    titlePtBr:'Revisão limpa', titleVi:'Ôn tập sạch lỗi', titleId:'Pengulangan bersih', titleTr:'Temiz tekrar', titlePl:'Czysta powtórka',
     descRU:'Пройди сессию Повторения без единой ошибки (нужно минимум 5 карточек).',
+    descPtBr:'Conclua uma sessão de Revisão sem nenhum erro; são necessários pelo menos 5 cartões.',
+    descVi:'Hoàn thành một phiên Ôn tập mà không mắc lỗi nào; cần ít nhất 5 thẻ.',
+    descId:'Selesaikan sesi Pengulangan tanpa satu pun kesalahan; perlu minimal 5 kartu.',
+    descTr:'Bir Tekrar oturumunu tek hata yapmadan tamamla; en az 5 kart gerekir.',
+    descPl:'Ukończ sesję Powtórki bez ani jednego błędu; potrzeba co najmniej 5 fiszek.',
     descUK:'Пройди сесію Повторення без жодної помилки (потрібно мінімум 5 карток).' },
 
   // Новый Тренер ошибок: отдельные задания для words / phrases / arena.
   { id:'tw1', type:'trainer_words', icon:'📚', target:3, xp:30,
     titleRU:'Разобрать слова', titleUK:'Розібрати слова',
+    titlePtBr:'Revisar palavras', titleVi:'Rà soát từ', titleId:'Bedah kata', titleTr:'Kelimeleri çözümle', titlePl:'Przejrzyj słowa',
     descRU:'В Моей практике правильно ответь на 3 карточки слов — закрой слабые места в словаре.',
+    descPtBr:'Em Minha prática, responda corretamente a 3 cartões de palavras e feche lacunas no vocabulário.',
+    descVi:'Trong Luyện tập của tôi, trả lời đúng 3 thẻ từ để xử lý điểm yếu trong vốn từ.',
+    descId:'Di Praktik Saya, jawab 3 kartu kata dengan benar untuk menutup kelemahan kosakata.',
+    descTr:'Pratiğim bölümünde 3 kelime kartına doğru cevap ver ve sözlükteki zayıf noktaları kapat.',
+    descPl:'W Mojej praktyce odpowiedz poprawnie na 3 fiszki ze słowami i domknij luki w słownictwie.',
     descUK:'У Моїй практиці правильно відповідай на 3 картки слів — закрий слабкі місця у словнику.' },
   { id:'tw2', type:'trainer_words', icon:'🧠', target:5, xp:48,
     titleRU:'Слова под контроль', titleUK:'Слова під контроль',
+    titlePtBr:'Palavras sob controle', titleVi:'Kiểm soát từ vựng', titleId:'Kata terkendali', titleTr:'Kelimeler kontrol altında', titlePl:'Słowa pod kontrolą',
     descRU:'В Моей практике правильно ответь на 5 карточек слов.',
+    descPtBr:'Em Minha prática, responda corretamente a 5 cartões de palavras.',
+    descVi:'Trong Luyện tập của tôi, trả lời đúng 5 thẻ từ.',
+    descId:'Di Praktik Saya, jawab 5 kartu kata dengan benar.',
+    descTr:'Pratiğim bölümünde 5 kelime kartına doğru cevap ver.',
+    descPl:'W Mojej praktyce odpowiedz poprawnie na 5 fiszek ze słowami.',
     descUK:'У Моїй практиці правильно відповідай на 5 карток слів.' },
   { id:'tp1', type:'trainer_phrases', icon:'💬', target:3, xp:36,
     titleRU:'Починить фразы', titleUK:'Полагодити фрази',
+    titlePtBr:'Consertar frases', titleVi:'Sửa câu', titleId:'Perbaiki frasa', titleTr:'İfadeleri düzelt', titlePl:'Napraw frazy',
     descRU:'В Моей практике правильно собери 3 проблемные фразы.',
+    descPtBr:'Em Minha prática, monte corretamente 3 frases problemáticas.',
+    descVi:'Trong Luyện tập của tôi, ghép đúng 3 câu còn hay sai.',
+    descId:'Di Praktik Saya, susun 3 frasa bermasalah dengan benar.',
+    descTr:'Pratiğim bölümünde 3 sorunlu ifadeyi doğru kur.',
+    descPl:'W Mojej praktyce poprawnie ułóż 3 problematyczne frazy.',
     descUK:'У Моїй практиці правильно склади 3 проблемні фрази.' },
   { id:'tp2', type:'trainer_phrases', icon:'🧩', target:5, xp:60,
     titleRU:'Фразы без провалов', titleUK:'Фрази без провалів',
+    titlePtBr:'Frases sem falhas', titleVi:'Câu không vấp', titleId:'Frasa tanpa gagal', titleTr:'Hatasız ifadeler', titlePl:'Frazy bez potknięć',
     descRU:'В Моей практике правильно ответь на 5 карточек фраз.',
+    descPtBr:'Em Minha prática, responda corretamente a 5 cartões de frases.',
+    descVi:'Trong Luyện tập của tôi, trả lời đúng 5 thẻ câu.',
+    descId:'Di Praktik Saya, jawab 5 kartu frasa dengan benar.',
+    descTr:'Pratiğim bölümünde 5 ifade kartına doğru cevap ver.',
+    descPl:'W Mojej praktyce odpowiedz poprawnie na 5 fiszek z frazami.',
     descUK:'У Моїй практиці правильно відповідай на 5 карток фраз.' },
   { id:'tar1', type:'trainer_arena', icon:'🛡️', target:2, xp:42,
     titleRU:'Разбор ошибок', titleUK:'Розбір помилок',
+    titlePtBr:'Revisão de erros', titleVi:'Phân tích lỗi', titleId:'Ulas kesalahan', titleTr:'Hata analizi', titlePl:'Analiza błędów',
     descRU:'В Моей практике правильно ответь на 2 вопроса, где раньше были ошибки.',
+    descPtBr:'Em Minha prática, responda corretamente a 2 perguntas em que você errou antes.',
+    descVi:'Trong Luyện tập của tôi, trả lời đúng 2 câu hỏi mà trước đây bạn đã sai.',
+    descId:'Di Praktik Saya, jawab 2 pertanyaan yang sebelumnya salah dengan benar.',
+    descTr:'Pratiğim bölümünde daha önce hata yaptığın 2 soruya doğru cevap ver.',
+    descPl:'W Mojej praktyce odpowiedz poprawnie na 2 pytania, w których wcześniej były błędy.',
     descUK:'У Моїй практиці правильно відповідай на 2 питання, де раніше були помилки.' },
   { id:'tar2', type:'trainer_arena', icon:'⚔️', target:4, xp:72,
     titleRU:'Без старых ошибок', titleUK:'Без старих помилок',
+    titlePtBr:'Sem erros antigos', titleVi:'Không lỗi cũ', titleId:'Tanpa kesalahan lama', titleTr:'Eski hatalar yok', titlePl:'Bez starych błędów',
     descRU:'В Моей практике правильно ответь на 4 вопроса из своих ошибок.',
+    descPtBr:'Em Minha prática, responda corretamente a 4 perguntas vindas dos seus erros.',
+    descVi:'Trong Luyện tập của tôi, trả lời đúng 4 câu hỏi lấy từ lỗi của bạn.',
+    descId:'Di Praktik Saya, jawab 4 pertanyaan dari kesalahanmu dengan benar.',
+    descTr:'Pratiğim bölümünde kendi hatalarından gelen 4 soruya doğru cevap ver.',
+    descPl:'W Mojej praktyce odpowiedz poprawnie na 4 pytania ze swoich błędów.',
     descUK:'У Моїй практиці правильно відповідай на 4 питання зі своїх помилок.' },
 
   // energy_spend — потратить N единиц энергии (только Free-аккаунт, Premium — безлимит)
   { id:'es1', type:'energy_spend', icon:'⚡', target:3, xp:30, freeOnly:true,
     titleRU:'Трата энергии', titleUK:'Витрата енергії',
+    titlePtBr:'Gasto de energia', titleVi:'Tiêu hao năng lượng', titleId:'Pemakaian energi', titleTr:'Enerji harcama', titlePl:'Zużycie energii',
     descRU:'Потрать 3 единицы энергии — делай ошибки в уроках или играй в арены.',
+    descPtBr:'Gaste 3 unidades de energia: erre nas lições ou jogue nas Arenas.',
+    descVi:'Tiêu 3 đơn vị năng lượng: mắc lỗi trong bài học hoặc chơi Arena.',
+    descId:'Habiskan 3 unit energi: buat kesalahan di pelajaran atau mainkan Arena.',
+    descTr:'3 enerji birimi harca: derslerde hata yap veya Arenalarda oyna.',
+    descPl:'Zużyj 3 jednostki energii: popełniaj błędy w lekcjach albo graj na Arenach.',
     descUK:'Витрать 3 одиниці енергії — роби помилки на уроках або грай у дуелі.' },
   { id:'es2', type:'energy_spend', icon:'⚡', target:5, xp:48, freeOnly:true,
     titleRU:'Полная отдача', titleUK:'Повна віддача',
+    titlePtBr:'Entrega total', titleVi:'Dốc toàn lực', titleId:'Usaha penuh', titleTr:'Tam verim', titlePl:'Pełne zaangażowanie',
     descRU:'Потрать 5 единиц энергии — делай ошибки в уроках или играй в арены.',
+    descPtBr:'Gaste 5 unidades de energia: erre nas lições ou jogue nas Arenas.',
+    descVi:'Tiêu 5 đơn vị năng lượng: mắc lỗi trong bài học hoặc chơi Arena.',
+    descId:'Habiskan 5 unit energi: buat kesalahan di pelajaran atau mainkan Arena.',
+    descTr:'5 enerji birimi harca: derslerde hata yap veya Arenalarda oyna.',
+    descPl:'Zużyj 5 jednostek energii: popełniaj błędy w lekcjach albo graj na Arenach.',
     descUK:'Витрать 5 одиниць енергії — роби помилки на уроках або грай у дуелі.' },
   { id:'es3', type:'energy_spend', icon:'⚡', target:2, xp:22, freeOnly:true,
     titleRU:'Первые потери', titleUK:'Перші втрати',
+    titlePtBr:'Primeiras perdas', titleVi:'Mất mát đầu tiên', titleId:'Kehilangan pertama', titleTr:'İlk kayıplar', titlePl:'Pierwsze straty',
     descRU:'Потрать 2 единицы энергии — ошибайся в уроках и учись на ошибках.',
+    descPtBr:'Gaste 2 unidades de energia: erre nas lições e aprenda com os erros.',
+    descVi:'Tiêu 2 đơn vị năng lượng: mắc lỗi trong bài học và học từ lỗi đó.',
+    descId:'Habiskan 2 unit energi: buat kesalahan di pelajaran dan belajar dari kesalahan itu.',
+    descTr:'2 enerji birimi harca: derslerde hata yap ve hatalardan öğren.',
+    descPl:'Zużyj 2 jednostki energii: myl się w lekcjach i ucz się na błędach.',
     descUK:'Витрать 2 одиниці енергії — помиляйся на уроках і вчись на помилках.' },
   { id:'es4', type:'energy_spend', icon:'⚡', target:7, xp:66, freeOnly:true,
     titleRU:'Тяжёлый день', titleUK:'Важкий день',
+    titlePtBr:'Dia pesado', titleVi:'Ngày nặng', titleId:'Hari berat', titleTr:'Zor gün', titlePl:'Ciężki dzień',
     descRU:'Потрать 7 единиц энергии за день — интенсивные тренировки в уроках.',
+    descPtBr:'Gaste 7 unidades de energia no dia: treinos intensos nas lições.',
+    descVi:'Tiêu 7 đơn vị năng lượng trong ngày: luyện tập cường độ cao trong bài học.',
+    descId:'Habiskan 7 unit energi dalam sehari: latihan intensif di pelajaran.',
+    descTr:'Gün içinde 7 enerji birimi harca: derslerde yoğun çalışma.',
+    descPl:'Zużyj 7 jednostek energii w ciągu dnia: intensywne treningi w lekcjach.',
     descUK:'Витрать 7 одиниць енергії за день — інтенсивні тренування на уроках.' },
 
   // arena_play — N рейтинг-матчей в день против другого игрока (см. arena_results: не bot_)
   { id:'dp1', type:'arena_play', icon:'⚔️', target:1, xp:24,
     titleRU:'Первая арена', titleUK:'Перша арена',
+    titlePtBr:'Primeira Arena', titleVi:'Arena đầu tiên', titleId:'Arena pertama', titleTr:'İlk arena', titlePl:'Pierwsza arena',
     descRU:'Сыграй 1 рейтинговый матч в Арене против другого игрока.',
+    descPtBr:'Jogue 1 partida ranqueada na Arena contra outro jogador.',
+    descVi:'Chơi 1 trận xếp hạng trong Arena với người chơi khác.',
+    descId:'Mainkan 1 pertandingan berperingkat di Arena melawan pemain lain.',
+    descTr:'Arenada başka bir oyuncuya karşı 1 dereceli maç oyna.',
+    descPl:'Zagraj 1 mecz rankingowy na Arenie przeciwko innemu graczowi.',
     descUK:'Зіграй 1 рейтинговий матч в Арені проти іншого гравця.' },
   { id:'dp2', type:'arena_play', icon:'⚔️', target:3, xp:54,
     titleRU:'Боец', titleUK:'Боєць',
+    titlePtBr:'Lutador', titleVi:'Chiến binh', titleId:'Petarung', titleTr:'Savaşçı', titlePl:'Wojownik',
     descRU:'Сыграй 3 рейтинговых матча в Арене за день против других игроков.',
+    descPtBr:'Jogue 3 partidas ranqueadas na Arena durante o dia contra outros jogadores.',
+    descVi:'Chơi 3 trận xếp hạng trong Arena trong ngày với người chơi khác.',
+    descId:'Mainkan 3 pertandingan berperingkat di Arena dalam sehari melawan pemain lain.',
+    descTr:'Gün içinde Arenada başka oyunculara karşı 3 dereceli maç oyna.',
+    descPl:'Zagraj w ciągu dnia 3 mecze rankingowe na Arenie przeciwko innym graczom.',
     descUK:'Зіграй 3 рейтингові матчі в Арені за день проти інших гравців.' },
   { id:'dp3', type:'arena_play', icon:'⚔️', target:5, xp:84,
     titleRU:'Боец арены', titleUK:'Боєць арени',
+    titlePtBr:'Lutador da Arena', titleVi:'Chiến binh Arena', titleId:'Petarung Arena', titleTr:'Arena savaşçısı', titlePl:'Wojownik areny',
     descRU:'Сыграй 5 рейтинговых матчей в Арене за день против других игроков.',
+    descPtBr:'Jogue 5 partidas ranqueadas na Arena durante o dia contra outros jogadores.',
+    descVi:'Chơi 5 trận xếp hạng trong Arena trong ngày với người chơi khác.',
+    descId:'Mainkan 5 pertandingan berperingkat di Arena dalam sehari melawan pemain lain.',
+    descTr:'Gün içinde Arenada başka oyunculara karşı 5 dereceli maç oyna.',
+    descPl:'Zagraj w ciągu dnia 5 meczów rankingowych na Arenie przeciwko innym graczom.',
     descUK:'Зіграй 5 рейтингових матчів в Арені за день проти інших гравців.' },
   { id:'dp4', type:'arena_play', icon:'⚔️', target:2, xp:42,
     titleRU:'Два поединка', titleUK:'Два поєдинки',
+    titlePtBr:'Dois duelos', titleVi:'Hai trận đấu', titleId:'Dua duel', titleTr:'İki düello', titlePl:'Dwa pojedynki',
     descRU:'Сыграй 2 матча в Арене за день против других игроков.',
+    descPtBr:'Jogue 2 partidas na Arena durante o dia contra outros jogadores.',
+    descVi:'Chơi 2 trận trong Arena trong ngày với người chơi khác.',
+    descId:'Mainkan 2 pertandingan di Arena dalam sehari melawan pemain lain.',
+    descTr:'Gün içinde Arenada başka oyunculara karşı 2 maç oyna.',
+    descPl:'Zagraj w ciągu dnia 2 mecze na Arenie przeciwko innym graczom.',
     descUK:'Зіграй 2 матчі в Арені за день проти інших гравців.' },
   { id:'dp2w1', type:'arena_plays_wins_combo', icon:'🎯', target:2, xp:62,
     arenaCombo: { minPlays: 2, minWins: 1 },
     titleRU:'Два матча и победа', titleUK:'Два матчі й перемога',
+    titlePtBr:'Dois jogos e uma vitória', titleVi:'Hai trận, một chiến thắng', titleId:'Dua pertandingan dan satu kemenangan', titleTr:'İki maç ve bir zafer', titlePl:'Dwa mecze i zwycięstwo',
     descRU:'Сыграй 2 матча в Арене против других игроков и выиграй хотя бы в одном.',
+    descPtBr:'Jogue 2 partidas na Arena contra outros jogadores e vença pelo menos uma.',
+    descVi:'Chơi 2 trận trong Arena với người chơi khác và thắng ít nhất một trận.',
+    descId:'Mainkan 2 pertandingan di Arena melawan pemain lain dan menangkan setidaknya satu.',
+    descTr:'Arenada başka oyunculara karşı 2 maç oyna ve en az birini kazan.',
+    descPl:'Zagraj 2 mecze na Arenie przeciwko innym graczom i wygraj co najmniej jeden.',
     descUK:'Зіграй 2 матчі в Арені проти інших гравців і виграй хоча б в одному.' },
   { id:'dp3w2', type:'arena_plays_wins_combo', icon:'🎖️', target:3, xp:82,
     arenaCombo: { minPlays: 3, minWins: 2 },
     titleRU:'Три матча, две победы', titleUK:'Три матчі, дві перемоги',
+    titlePtBr:'Três jogos, duas vitórias', titleVi:'Ba trận, hai chiến thắng', titleId:'Tiga pertandingan, dua kemenangan', titleTr:'Üç maç, iki zafer', titlePl:'Trzy mecze, dwa zwycięstwa',
     descRU:'Сыграй 3 матча в Арене против других игроков и выиграй как минимум в двух.',
+    descPtBr:'Jogue 3 partidas na Arena contra outros jogadores e vença pelo menos duas.',
+    descVi:'Chơi 3 trận trong Arena với người chơi khác và thắng ít nhất hai trận.',
+    descId:'Mainkan 3 pertandingan di Arena melawan pemain lain dan menangkan setidaknya dua.',
+    descTr:'Arenada başka oyunculara karşı 3 maç oyna ve en az ikisini kazan.',
+    descPl:'Zagraj 3 mecze na Arenie przeciwko innym graczom i wygraj co najmniej dwa.',
     descUK:'Зіграй 3 матчі в Арені проти інших гравців і виграй щонайменше в двох.' },
   { id:'dp5', type:'arena_play', icon:'⚔️', target:4, xp:70,
     titleRU:'Четыре боя', titleUK:'Чотири бої',
+    titlePtBr:'Quatro batalhas', titleVi:'Bốn trận chiến', titleId:'Empat pertarungan', titleTr:'Dört savaş', titlePl:'Cztery walki',
     descRU:'Сыграй 4 матча в Арене за день против других игроков.',
+    descPtBr:'Jogue 4 partidas na Arena durante o dia contra outros jogadores.',
+    descVi:'Chơi 4 trận trong Arena trong ngày với người chơi khác.',
+    descId:'Mainkan 4 pertandingan di Arena dalam sehari melawan pemain lain.',
+    descTr:'Gün içinde Arenada başka oyunculara karşı 4 maç oyna.',
+    descPl:'Zagraj w ciągu dnia 4 mecze na Arenie przeciwko innym graczom.',
     descUK:'Зіграй 4 матчі в Арені за день проти інших гравців.' },
 
   // arena_win — N побед в рейтинге за день
   { id:'dw1', type:'arena_win', icon:'🏅', target:1, xp:36,
     titleRU:'Победитель', titleUK:'Переможець',
+    titlePtBr:'Vencedor', titleVi:'Người chiến thắng', titleId:'Pemenang', titleTr:'Kazanan', titlePl:'Zwycięzca',
     descRU:'Выиграй 1 матч в Арене против другого игрока — набери больше очков, чем соперник.',
+    descPtBr:'Vença 1 partida na Arena contra outro jogador: marque mais pontos que o adversário.',
+    descVi:'Thắng 1 trận trong Arena trước người chơi khác: ghi nhiều điểm hơn đối thủ.',
+    descId:'Menangkan 1 pertandingan di Arena melawan pemain lain: raih skor lebih tinggi dari lawan.',
+    descTr:'Arenada başka bir oyuncuya karşı 1 maç kazan: rakibinden daha fazla puan al.',
+    descPl:'Wygraj 1 mecz na Arenie przeciwko innemu graczowi: zdobądź więcej punktów niż rywal.',
     descUK:'Виграй 1 матч в Арені проти іншого гравця — набери більше очок, ніж суперник.' },
   { id:'dw2', type:'arena_win', icon:'🥇', target:2, xp:66,
     titleRU:'Двойная победа', titleUK:'Подвійна перемога',
+    titlePtBr:'Vitória dupla', titleVi:'Chiến thắng kép', titleId:'Kemenangan ganda', titleTr:'Çifte zafer', titlePl:'Podwójne zwycięstwo',
     descRU:'Выиграй 2 матча в Арене за день против других игроков.',
+    descPtBr:'Vença 2 partidas na Arena durante o dia contra outros jogadores.',
+    descVi:'Thắng 2 trận trong Arena trong ngày trước người chơi khác.',
+    descId:'Menangkan 2 pertandingan di Arena dalam sehari melawan pemain lain.',
+    descTr:'Gün içinde Arenada başka oyunculara karşı 2 maç kazan.',
+    descPl:'Wygraj w ciągu dnia 2 mecze na Arenie przeciwko innym graczom.',
     descUK:'Виграй 2 матчі в Арені за день проти інших гравців.' },
   { id:'dw3', type:'arena_win', icon:'🏆', target:3, xp:96,
     titleRU:'Непобедимый', titleUK:'Непереможний',
+    titlePtBr:'Invencível', titleVi:'Bất bại', titleId:'Tak terkalahkan', titleTr:'Yenilmez', titlePl:'Niepokonany',
     descRU:'Выиграй 3 матча в Арене за день против других игроков.',
+    descPtBr:'Vença 3 partidas na Arena durante o dia contra outros jogadores.',
+    descVi:'Thắng 3 trận trong Arena trong ngày trước người chơi khác.',
+    descId:'Menangkan 3 pertandingan di Arena dalam sehari melawan pemain lain.',
+    descTr:'Gün içinde Arenada başka oyunculara karşı 3 maç kazan.',
+    descPl:'Wygraj w ciągu dnia 3 mecze na Arenie przeciwko innym graczom.',
     descUK:'Виграй 3 матчі в Арені за день проти інших гравців.' },
   { id:'dw4', type:'arena_win', icon:'⚡', target:4, xp:114,
     titleRU:'Четыре победы', titleUK:'Чотири перемоги',
+    titlePtBr:'Quatro vitórias', titleVi:'Bốn chiến thắng', titleId:'Empat kemenangan', titleTr:'Dört zafer', titlePl:'Cztery zwycięstwa',
     descRU:'Выиграй 4 матча в Арене за день против других игроков.',
+    descPtBr:'Vença 4 partidas na Arena durante o dia contra outros jogadores.',
+    descVi:'Thắng 4 trận trong Arena trong ngày trước người chơi khác.',
+    descId:'Menangkan 4 pertandingan di Arena dalam sehari melawan pemain lain.',
+    descTr:'Gün içinde Arenada başka oyunculara karşı 4 maç kazan.',
+    descPl:'Wygraj w ciągu dnia 4 mecze na Arenie przeciwko innym graczom.',
     descUK:'Виграй 4 матчі в Арені за день проти інших гравців.' },
   { id:'dw5', type:'arena_win', icon:'🌟', target:5, xp:138,
     titleRU:'Пять побед', titleUK:'П\'ять перемог',
+    titlePtBr:'Cinco vitórias', titleVi:'Năm chiến thắng', titleId:'Lima kemenangan', titleTr:'Beş zafer', titlePl:'Pięć zwycięstw',
     descRU:'Выиграй 5 матчей в Арене за день против других игроков.',
+    descPtBr:'Vença 5 partidas na Arena durante o dia contra outros jogadores.',
+    descVi:'Thắng 5 trận trong Arena trong ngày trước người chơi khác.',
+    descId:'Menangkan 5 pertandingan di Arena dalam sehari melawan pemain lain.',
+    descTr:'Gün içinde Arenada başka oyunculara karşı 5 maç kazan.',
+    descPl:'Wygraj w ciągu dnia 5 meczów na Arenie przeciwko innym graczom.',
     descUK:'Виграй 5 матчів в Арені за день проти інших гравців.' },
 
   { id:'arup1', type:'arena_rank_promoted', icon:'🚀', target:1, xp:66,
     titleRU:'Вверх по рангу', titleUK:'Вгору за рангом',
+    titlePtBr:'Subindo no ranking', titleVi:'Tăng hạng', titleId:'Naik peringkat', titleTr:'Rütbede yüksel', titlePl:'W górę rankingu',
     descRU:'Повысь ранг в Арене за день: получи повышение уровня или лиги (тира) в рейтинговом матче против другого игрока.',
+    descPtBr:'Suba de ranque na Arena durante o dia: ganhe promoção de nível ou liga em uma partida ranqueada contra outro jogador.',
+    descVi:'Tăng hạng trong Arena trong ngày: được thăng cấp hoặc lên liga trong trận xếp hạng với người chơi khác.',
+    descId:'Naik peringkat di Arena dalam sehari: dapatkan kenaikan level atau liga di pertandingan berperingkat melawan pemain lain.',
+    descTr:'Gün içinde Arenada rütbeni yükselt: başka bir oyuncuya karşı dereceli maçta seviye veya lig terfisi al.',
+    descPl:'Awansuj w rankingu Areny w ciągu dnia: zdobądź awans poziomu lub ligi w meczu rankingowym przeciwko innemu graczowi.',
     descUK:'Підвищ ранг в Арені за день: отримай підвищення рівня чи ліги в рейтинговому матчі проти іншого гравця.' },
 
   { id:'inv1', type:'invite_friend', icon:'👥', target:1, xp:42,
     titleRU:'Пригласи друга', titleUK:'Запроси друга',
+    titlePtBr:'Convide um amigo', titleVi:'Mời bạn bè', titleId:'Undang teman', titleTr:'Arkadaş davet et', titlePl:'Zaproś znajomego',
     descRU:'Открой приглашение друга и отправь ссылку.',
+    descPtBr:'Abra o convite para um amigo e envie o link.',
+    descVi:'Mở lời mời bạn bè và gửi liên kết.',
+    descId:'Buka undangan teman dan kirim tautannya.',
+    descTr:'Arkadaş davetini aç ve bağlantıyı gönder.',
+    descPl:'Otwórz zaproszenie znajomego i wyślij link.',
     descUK:'Відкрий запрошення друга й надішли посилання.' },
 ];
 
@@ -1000,6 +1991,59 @@ const VERB_FALLBACKS: Record<string, string> = {
   vl4: 'ta9',  vl5: 'ta8',  vl6: 'ta3',  vl7: 'ta3',
 };
 
+export const FRENCH_UNAVAILABLE_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
+  'quiz_hard',
+  'quiz_score',
+  'quiz_easy',
+  'quiz_medium',
+  'quiz_perfect',
+  'quiz_hard_perfect',
+  'words_learned',
+  'verb_learned',
+  'daily_phrase_read',
+  'daily_phrase_save',
+  'diagnostic_complete',
+]);
+
+export const FRENCH_LESSON_CONTENT_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
+  'daily_active',
+  'total_answers',
+  'correct_streak',
+  'lesson_no_mistakes',
+  'different_lessons',
+  'lesson_complete',
+  'morning_session',
+  'evening_session',
+  'energy_spend',
+  'flashcard_save',
+  'recall_session',
+  'recall_answers',
+  'recall_perfect',
+  'trainer_words',
+  'trainer_phrases',
+  'trainer_arena',
+]);
+
+export const FRENCH_THEORY_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
+  'open_theory',
+]);
+
+const FRENCH_DAILY_TASK_FALLBACK_IDS = Object.freeze([
+  'dp1',
+  'dw1',
+  'dp2',
+  'dp4',
+  'dp2w1',
+  'dp3w2',
+  'dw2',
+  'dw3',
+  'dp5',
+  'dw4',
+  'dw5',
+  'arup1',
+  'inv1',
+] as const);
+
 // Замены для заданий, недоступных по игровому уровню
 const LEVEL_FALLBACKS: Record<string, string> = {
   // quiz_hard (уровень 15+) → quiz_easy
@@ -1096,7 +2140,6 @@ export const DAILY_TASK_REROLL_COST_SHARDS = 3;
 /** Сколько замен в сутки разрешено. Изменение требует обновления UI-подсказки на экране задач. */
 export const DAILY_TASK_REROLL_MAX_PER_DAY = 1;
 
-const REROLL_STORAGE_KEY = 'daily_tasks_reroll_v1';
 const ADMIN_TASK_OVERRIDE_STORAGE_KEY = 'daily_tasks_admin_override_v1';
 
 interface RerollState {
@@ -1119,9 +2162,9 @@ export type DailyTaskAdminPack = {
   types: TaskType[];
 };
 
-const loadAdminTaskOverride = async (): Promise<AdminTaskOverrideState | null> => {
+const loadAdminTaskOverride = async (studyTarget?: RuntimeStudyTarget): Promise<AdminTaskOverrideState | null> => {
   try {
-    const raw = await AsyncStorage.getItem(ADMIN_TASK_OVERRIDE_STORAGE_KEY);
+    const raw = await AsyncStorage.getItem(dailyTasksAdminOverrideKey(studyTarget));
     if (!raw) return null;
     const parsed = JSON.parse(raw) as AdminTaskOverrideState;
     if (!parsed || parsed.dayKey !== getTodayKey() || !Array.isArray(parsed.taskIds)) return null;
@@ -1132,9 +2175,9 @@ const loadAdminTaskOverride = async (): Promise<AdminTaskOverrideState | null> =
   }
 };
 
-export const clearDailyTasksAdminOverride = async (): Promise<void> => {
+export const clearDailyTasksAdminOverride = async (studyTarget?: RuntimeStudyTarget): Promise<void> => {
   try {
-    await AsyncStorage.removeItem(ADMIN_TASK_OVERRIDE_STORAGE_KEY);
+    await AsyncStorage.removeItem(dailyTasksAdminOverrideKey(studyTarget));
   } catch {}
 };
 
@@ -1177,25 +2220,27 @@ const makeAdminProgressRow = (task: DailyTask, mode: DailyTaskSeedMode): TaskPro
 export const seedDailyTasksAdminPack = async (
   taskIds: string[],
   mode: DailyTaskSeedMode = 'empty',
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<DailyTask[]> => {
-  const tasks = taskIds
+  const requestedTasks = taskIds
     .map((id) => ALL_TASKS.find((t) => t.id === id))
     .filter((t): t is DailyTask => Boolean(t));
+  const tasks = filterDailyTasksForStudyTarget(requestedTasks, studyTarget);
   if (tasks.length === 0) return [];
 
-  await AsyncStorage.setItem(ADMIN_TASK_OVERRIDE_STORAGE_KEY, JSON.stringify({
+  await AsyncStorage.setItem(dailyTasksAdminOverrideKey(studyTarget), JSON.stringify({
     dayKey: getTodayKey(),
     taskIds: tasks.map((t) => t.id),
   }));
-  await saveTodayProgress(tasks.map((task) => makeAdminProgressRow(task, mode)));
+  await saveTodayProgress(tasks.map((task) => makeAdminProgressRow(task, mode)), studyTarget);
   return tasks;
 };
 
 const emptyRerollState = (): RerollState => ({ dayKey: getTodayKey(), replacements: {} });
 
-const loadRerollStateRaw = async (): Promise<RerollState> => {
+const loadRerollStateRaw = async (studyTarget?: RuntimeStudyTarget): Promise<RerollState> => {
   try {
-    const raw = await AsyncStorage.getItem(REROLL_STORAGE_KEY);
+    const raw = await AsyncStorage.getItem(dailyTasksRerollKey(studyTarget));
     if (!raw) return emptyRerollState();
     const parsed = JSON.parse(raw) as RerollState;
     // Сутки кончились — стираем замены, иначе вчерашние ID попадут в сегодняшнюю тройку.
@@ -1207,15 +2252,18 @@ const loadRerollStateRaw = async (): Promise<RerollState> => {
   }
 };
 
-const saveRerollState = async (state: RerollState): Promise<void> => {
+const saveRerollState = async (
+  state: RerollState,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> => {
   try {
-    await AsyncStorage.setItem(REROLL_STORAGE_KEY, JSON.stringify(state));
+    await AsyncStorage.setItem(dailyTasksRerollKey(studyTarget), JSON.stringify(state));
   } catch {}
 };
 
 /** Сколько замен ещё доступно сегодня. */
-export const getDailyRerollsLeftToday = async (): Promise<number> => {
-  const s = await loadRerollStateRaw();
+export const getDailyRerollsLeftToday = async (studyTarget?: RuntimeStudyTarget): Promise<number> => {
+  const s = await loadRerollStateRaw(studyTarget);
   return Math.max(0, DAILY_TASK_REROLL_MAX_PER_DAY - Object.keys(s.replacements).length);
 };
 
@@ -1260,6 +2308,68 @@ const TASK_TYPE_CATEGORY: Record<TaskType, DailyTaskCategory> = {
   diagnostic_complete: 'social',
 };
 
+export function dailyTaskAvailableForStudyTarget(
+  taskOrType: DailyTask | TaskType,
+  studyTarget?: RuntimeStudyTarget,
+): boolean {
+  if (storageStudyTarget(studyTarget) !== 'fr') return true;
+  const type = typeof taskOrType === 'string' ? taskOrType : taskOrType.type;
+  if (FRENCH_UNAVAILABLE_DAILY_TASK_TYPES.has(type)) return false;
+  if (
+    FRENCH_LESSON_CONTENT_DAILY_TASK_TYPES.has(type)
+    && FRENCH_CONTENT_SOURCE_GATE.approvedAppSeedLessonIds.length === 0
+  ) {
+    return false;
+  }
+  if (
+    FRENCH_THEORY_DAILY_TASK_TYPES.has(type)
+    && FRENCH_CONTENT_SOURCE_GATE.approvedIntroLessonIds.length === 0
+  ) {
+    return false;
+  }
+  return true;
+}
+
+const pickFrenchDailyTaskFallback = (
+  usedIds: Set<string>,
+  preferredCategory?: DailyTaskCategory,
+): DailyTask | null => {
+  const fallbackTasks = FRENCH_DAILY_TASK_FALLBACK_IDS
+    .map((id) => ALL_TASKS.find((t) => t.id === id))
+    .filter((task): task is DailyTask => Boolean(task))
+    .filter((task) => dailyTaskAvailableForStudyTarget(task, 'fr'))
+    .filter((task) => !usedIds.has(task.id));
+
+  return fallbackTasks.find((task) => TASK_TYPE_CATEGORY[task.type] === preferredCategory)
+    ?? fallbackTasks[0]
+    ?? null;
+};
+
+export function filterDailyTasksForStudyTarget(
+  tasks: DailyTask[],
+  studyTarget?: RuntimeStudyTarget,
+): DailyTask[] {
+  if (storageStudyTarget(studyTarget) !== 'fr') return tasks;
+
+  const usedIds = new Set(tasks.filter((task) => dailyTaskAvailableForStudyTarget(task, 'fr')).map((task) => task.id));
+  const result: DailyTask[] = [];
+
+  for (const task of tasks) {
+    if (dailyTaskAvailableForStudyTarget(task, 'fr')) {
+      result.push(task);
+      continue;
+    }
+
+    const replacement = pickFrenchDailyTaskFallback(usedIds, TASK_TYPE_CATEGORY[task.type]);
+    if (replacement) {
+      usedIds.add(replacement.id);
+      result.push(replacement);
+    }
+  }
+
+  return result;
+}
+
 /**
  * Применить override замен поверх массива id (используется в getTodayTasksSafe).
  * Если replacement-id неизвестен в ALL_TASKS — игнорируем (storage corruption / старая версия).
@@ -1296,6 +2406,7 @@ const pickRerollCandidate = async (
   currentIds: string[],
   playerLevel: number,
   isPremium: boolean,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<DailyTask | null> => {
   const orig = ALL_TASKS.find((t) => t.id === taskId);
   if (!orig) return null;
@@ -1306,7 +2417,7 @@ const pickRerollCandidate = async (
   let verbsAvailable = Number.POSITIVE_INFINITY;
   if (cat === 'words') {
     try {
-      const raw = await AsyncStorage.getItem('irregular_verbs_global');
+      const raw = await AsyncStorage.getItem(irregularVerbsGlobalKey(studyTarget));
       const learned: Record<string, number> = raw ? JSON.parse(raw) : {};
       const learnedCount = Object.values(learned).filter((v) => v >= 3).length;
       const { IRREGULAR_VERBS_BY_LESSON } = await import('./irregular_verbs_data');
@@ -1323,6 +2434,7 @@ const pickRerollCandidate = async (
     if ((t.minPlayerLevel ?? 1) > playerLevel) return false;
     if (isPremium && t.freeOnly) return false;
     if (t.type === 'verb_learned' && t.target > verbsAvailable) return false;
+    if (!dailyTaskAvailableForStudyTarget(t, studyTarget)) return false;
     return true;
   });
 
@@ -1339,23 +2451,23 @@ const pickRerollCandidate = async (
  * Запрещено реролить уже выполненное (completed) или забранное (claimed) задание —
  * это бы давало бесплатное «получил награду → меняю».
  */
-export const rerollDailyTask = async (taskId: string): Promise<RerollResult> => {
+export const rerollDailyTask = async (taskId: string, studyTarget?: RuntimeStudyTarget): Promise<RerollResult> => {
   try {
-    const left = await getDailyRerollsLeftToday();
+    const left = await getDailyRerollsLeftToday(studyTarget);
     if (left <= 0) return { ok: false, reason: 'limit_reached' };
 
     const [playerLevel, isPremium] = await Promise.all([getUserPlayerLevel(), getUserIsPremium()]);
-    const tasks = await getTodayTasksSafe();
+    const tasks = await getTodayTasksSafe(studyTarget);
     const orig = tasks.find((t) => t.id === taskId);
     if (!orig) return { ok: false, reason: 'task_not_found' };
 
-    const progress = await loadTodayProgress(tasks);
+    const progress = await loadTodayProgress(tasks, studyTarget);
     const pRow = progress.find((p) => p.taskId === taskId);
     if (pRow && (pRow.completed || pRow.claimed)) {
       return { ok: false, reason: 'task_already_completed' };
     }
 
-    const candidate = await pickRerollCandidate(taskId, tasks.map((t) => t.id), playerLevel, isPremium);
+    const candidate = await pickRerollCandidate(taskId, tasks.map((t) => t.id), playerLevel, isPremium, studyTarget);
     if (!candidate) return { ok: false, reason: 'no_candidates' };
 
     const spent = await spendShards(DAILY_TASK_REROLL_COST_SHARDS, 'daily_task_reroll');
@@ -1363,13 +2475,13 @@ export const rerollDailyTask = async (taskId: string): Promise<RerollResult> => 
 
     // Обновляем reroll-state и обнуляем прогресс старого id (чтобы не «висел»).
     await withStorageLock(async () => {
-      const state = await loadRerollStateRaw();
+      const state = await loadRerollStateRaw(studyTarget);
       // Если уже сохранена замена для этого id — обновляем (на случай гонки).
       const replacements = { ...state.replacements, [taskId]: candidate.id };
-      await saveRerollState({ dayKey: getTodayKey(), replacements });
+      await saveRerollState({ dayKey: getTodayKey(), replacements }, studyTarget);
 
       // Прогресс: добавим строку для нового id с нулём, удалим строку для старого.
-      const key = STORAGE_PREFIX + getTodayKey();
+      const key = dailyTasksProgressKey(getTodayKey(), studyTarget);
       const raw = await AsyncStorage.getItem(key);
       const arr: TaskProgress[] = raw ? (JSON.parse(raw) as TaskProgress[]) : [];
       const filtered = Array.isArray(arr) ? arr.filter((p) => p.taskId !== taskId) : [];
@@ -1394,20 +2506,21 @@ export const rerollDailyTask = async (taskId: string): Promise<RerollResult> => 
  * 2. Если пользователь Premium — freeOnly задания (energy_spend) заменяются.
  * 3. Если все глаголы уже выучены — заменяет verb_learned на total_answers.
  */
-export const getTodayTasksSafe = async (): Promise<DailyTask[]> => {
+export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promise<DailyTask[]> => {
   const [playerLevel, isPremium] = await Promise.all([getUserPlayerLevel(), getUserIsPremium()]);
-  const adminOverride = await loadAdminTaskOverride();
+  const adminOverride = await loadAdminTaskOverride(studyTarget);
   if (adminOverride) {
-    return adminOverride.taskIds
+    const adminTasks = adminOverride.taskIds
       .map((id) => ALL_TASKS.find((t) => t.id === id))
       .filter((t): t is DailyTask => Boolean(t));
+    return filterDailyTasksForStudyTarget(adminTasks, studyTarget);
   }
   // Выбираем набор заданий по тиру уровня игрока
   const baseTasks = getTodayTasksByLevel(playerLevel);
 
   // 0. User reroll: подменяем id выбранных юзером заданий ДО уровневых/premium фолбэков,
   //    потому что замена — это уже осознанный выбор и фолбэки не должны её ломать.
-  const rerollState = await loadRerollStateRaw();
+  const rerollState = await loadRerollStateRaw(studyTarget);
   const rerolledIds = applyRerollReplacements(baseTasks.map((t) => t.id), rerollState.replacements);
   let result: DailyTask[] = rerolledIds
     .map((id) => ALL_TASKS.find((t) => t.id === id))
@@ -1432,9 +2545,9 @@ export const getTodayTasksSafe = async (): Promise<DailyTask[]> => {
 
   // 2. Замена verb_learned если глаголов недостаточно
   const hasVerbTask = result.some(t => t.type === 'verb_learned');
-  if (!hasVerbTask) return result;
+  if (!hasVerbTask) return filterDailyTasksForStudyTarget(result, studyTarget);
 
-  const raw = await AsyncStorage.getItem('irregular_verbs_global');
+  const raw = await AsyncStorage.getItem(irregularVerbsGlobalKey(studyTarget));
   const learned: Record<string, number> = raw ? JSON.parse(raw) : {};
   const learnedCount = Object.values(learned).filter(v => v >= 3).length;
 
@@ -1449,7 +2562,7 @@ export const getTodayTasksSafe = async (): Promise<DailyTask[]> => {
     return (fallbackId ? ALL_TASKS.find(t => t.id === fallbackId) : undefined) ?? task;
   });
 
-  return result;
+  return filterDailyTasksForStudyTarget(result, studyTarget);
 };
 
 const STORAGE_PREFIX = 'daily_tasks_';
@@ -1569,14 +2682,17 @@ const reconcileProgressToTasks = (stored: TaskProgress[], tasks: DailyTask[]): T
  * @param tasksForReconcile — if provided, must be the same list the UI used from getTodayTasksSafe()
  *   so progress rows align with visible cards (avoids two async getToday calls diverging).
  */
-export const loadTodayProgress = async (tasksForReconcile?: DailyTask[]): Promise<TaskProgress[]> => {
+export const loadTodayProgress = async (
+  tasksForReconcile?: DailyTask[],
+  studyTarget?: RuntimeStudyTarget,
+): Promise<TaskProgress[]> => {
   try {
-    const tasks = tasksForReconcile ?? (await getTodayTasksSafe());
+    const tasks = tasksForReconcile ?? (await getTodayTasksSafe(studyTarget));
     if (tasks.length === 0) {
       return [];
     }
 
-    const key = STORAGE_PREFIX + getTodayKey();
+    const key = dailyTasksProgressKey(getTodayKey(), studyTarget);
     const raw = await AsyncStorage.getItem(key);
     let stored: TaskProgress[] = [];
     if (raw) {
@@ -1597,9 +2713,12 @@ export const loadTodayProgress = async (tasksForReconcile?: DailyTask[]): Promis
   }
 };
 
-export const saveTodayProgress = async (progress: TaskProgress[]): Promise<void> => {
+export const saveTodayProgress = async (
+  progress: TaskProgress[],
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> => {
   try {
-    const key = STORAGE_PREFIX + getTodayKey();
+    const key = dailyTasksProgressKey(getTodayKey(), studyTarget);
     await AsyncStorage.setItem(key, JSON.stringify(progress));
   } catch {}
 };
@@ -1608,9 +2727,10 @@ export const saveTodayProgress = async (progress: TaskProgress[]): Promise<void>
 export const updateTaskProgress = async (
   type: TaskType,
   increment: number = 1,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<{ completed: TaskProgress | null; allProgress: TaskProgress[] }> => {
-  const tasks = await getTodayTasksSafe();
-  const progress = await loadTodayProgress(tasks);
+  const tasks = await getTodayTasksSafe(studyTarget);
+  const progress = await loadTodayProgress(tasks, studyTarget);
   let newlyCompleted: TaskProgress | null = null;
 
   const updated = progress.map(p => {
@@ -1626,14 +2746,17 @@ export const updateTaskProgress = async (
     return { ...p, current: newCurrent, completed: nowCompleted };
   });
 
-  await saveTodayProgress(updated);
+  await saveTodayProgress(updated, studyTarget);
   return { completed: newlyCompleted, allProgress: updated };
 };
 
 // ── Сброс прогресса задания (например при ошибке в серии) ─────────────────
-export const resetTaskProgress = async (type: TaskType): Promise<void> => {
-  const tasks = await getTodayTasksSafe();
-  const progress = await loadTodayProgress(tasks);
+export const resetTaskProgress = async (
+  type: TaskType,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> => {
+  const tasks = await getTodayTasksSafe(studyTarget);
+  const progress = await loadTodayProgress(tasks, studyTarget);
 
   const updated = progress.map(p => {
     const task = tasks.find(t => t.id === p.taskId);
@@ -1644,16 +2767,17 @@ export const resetTaskProgress = async (type: TaskType): Promise<void> => {
     return { ...p, current: 0 };
   });
 
-  await saveTodayProgress(updated);
+  await saveTodayProgress(updated, studyTarget);
 };
 
 // ── Атомарный сброс нескольких типов + опциональные инкременты (без race condition) ──
 export const resetAndUpdateTaskProgress = async (
   resets: TaskType[],
   updates: { type: TaskType; increment?: number }[] = [],
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<void> => {
-  const tasks = await getTodayTasksSafe();
-  let progress = await loadTodayProgress(tasks);
+  const tasks = await getTodayTasksSafe(studyTarget);
+  let progress = await loadTodayProgress(tasks, studyTarget);
   const wasCompleted = new Set(progress.filter(p => p.completed).map(p => p.taskId));
 
   // Сначала сбрасываем
@@ -1678,7 +2802,7 @@ export const resetAndUpdateTaskProgress = async (
     });
   }
 
-  await saveTodayProgress(progress);
+  await saveTodayProgress(progress, studyTarget);
 
   for (const p of progress) {
     if (p.completed && !wasCompleted.has(p.taskId)) {
@@ -1688,17 +2812,20 @@ export const resetAndUpdateTaskProgress = async (
 };
 
 // ── Отметить задание как полученное (claimed) ─────────────────────────────
-export const claimTask = async (taskId: string): Promise<boolean> => {
+export const claimTask = async (
+  taskId: string,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<boolean> => {
   return withStorageLock(async () => {
-    const tasks = await getTodayTasksSafe();
-    const progress = await loadTodayProgress(tasks);
+    const tasks = await getTodayTasksSafe(studyTarget);
+    const progress = await loadTodayProgress(tasks, studyTarget);
     const pRow = progress.find(p => p.taskId === taskId);
     const task = tasks.find(t => t.id === taskId) ?? ALL_TASKS.find(t => t.id === taskId);
     if (!pRow || !task || pRow.claimed || !pRow.completed) {
       return false;
     }
     const updated = applyClaimForTaskToProgress(progress, tasks, taskId, task);
-    await saveTodayProgress(updated);
+    await saveTodayProgress(updated, studyTarget);
     return true;
   });
 };
@@ -1709,6 +2836,7 @@ export type ClaimTaskWithRewardOptions = {
    * по свежему safe — иначе после смены тира/премиума старый снимок экрана ломал проверку.
    */
   tasksForClaim?: DailyTask[];
+  studyTarget?: RuntimeStudyTarget;
 };
 
 export const claimTaskWithReward = async (
@@ -1724,7 +2852,7 @@ export const claimTaskWithReward = async (
   const resolveTasks = async (): Promise<DailyTask[]> => {
     let fresh: DailyTask[] = [];
     try {
-      fresh = await getTodayTasksSafe();
+      fresh = await getTodayTasksSafe(options?.studyTarget);
     } catch {
       fresh = [];
     }
@@ -1738,7 +2866,7 @@ export const claimTaskWithReward = async (
   // updateMultipleTaskProgress из урока перезаписывает прогресс и «Забрать» молча не срабатывает.
   const eligible = await withStorageLock(async () => {
     const tasks = await resolveTasks();
-    const progress = await loadTodayProgress(tasks);
+    const progress = await loadTodayProgress(tasks, options?.studyTarget);
     const current = progress.find(p => p.taskId === taskId);
     const task = tasks.find(t => t.id === taskId) ?? ALL_TASKS.find(t => t.id === taskId);
     return Boolean(current && task && !current.claimed && current.completed);
@@ -1761,7 +2889,7 @@ export const claimTaskWithReward = async (
 
   const lockResult: LockOut = await withStorageLock(async (): Promise<LockOut> => {
     const tasks = await resolveTasks();
-    const progress = await loadTodayProgress(tasks);
+    const progress = await loadTodayProgress(tasks, options?.studyTarget);
     const current = progress.find(p => p.taskId === taskId);
     const task = tasks.find(t => t.id === taskId) ?? ALL_TASKS.find(t => t.id === taskId);
     if (!current || !task) {
@@ -1774,8 +2902,8 @@ export const claimTaskWithReward = async (
       return { kind: 'abort' };
     }
     const updated = applyClaimForTaskToProgress(progress, tasks, taskId, task);
-    await saveTodayProgress(updated);
-    void bumpDailyTaskClaimed();
+    await saveTodayProgress(updated, options?.studyTarget);
+    void bumpDailyTaskClaimed(options?.studyTarget);
     return { kind: 'fresh', xp: Math.max(0, Math.round(awardedXp)) };
   });
 
@@ -1795,12 +2923,12 @@ export const claimTaskWithReward = async (
 // Используй вместо нескольких updateTaskProgress подряд — иначе race condition
 export const updateMultipleTaskProgress = async (
   updates: { type: TaskType; increment?: number }[],
-  opts?: { pvpArenaMatchFinished?: { won: boolean } },
+  opts?: { pvpArenaMatchFinished?: { won: boolean }; studyTarget?: RuntimeStudyTarget },
 ): Promise<void> => {
   try {
     await withStorageLock(async () => {
-      const tasks = await getTodayTasksSafe();
-      let progress = await loadTodayProgress(tasks);
+      const tasks = await getTodayTasksSafe(opts?.studyTarget);
+      let progress = await loadTodayProgress(tasks, opts?.studyTarget);
 
       // Safety: if progress is empty but tasks exist, reinitialize rather than overwrite with empty
       if (progress.length === 0 && tasks.length > 0) {
@@ -1842,7 +2970,7 @@ export const updateMultipleTaskProgress = async (
 
       // Only save if progress has entries (prevent overwriting with empty array)
       if (progress.length > 0) {
-        await saveTodayProgress(progress);
+        await saveTodayProgress(progress, opts?.studyTarget);
       }
     });
   } catch (error) {
@@ -1856,6 +2984,11 @@ export const updateMultipleTaskProgress = async (
           ru: 'Не удалось сохранить прогресс заданий. Попробуй ещё раз.',
           uk: 'Не вдалося зберегти прогрес завдань. Спробуй ще раз.',
           es: 'No se pudo guardar el progreso. Inténtalo de nuevo.',
+          'pt-BR': 'Não foi possível salvar o progresso das tarefas. Tente de novo.',
+          vi: 'Không thể lưu tiến độ nhiệm vụ. Hãy thử lại.',
+          id: 'Gagal menyimpan progres tugas. Coba lagi.',
+          tr: 'Görev ilerlemesi kaydedilemedi. Tekrar dene.',
+          pl: 'Nie udało się zapisać postępu zadań. Spróbuj ponownie.',
         }),
       );
     }

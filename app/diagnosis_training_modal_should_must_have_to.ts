@@ -5,21 +5,26 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
+const SHOULD_MUST_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre should/must/have to ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về should/must/have to này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan should/must/have to ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu should/must/have to açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie should/must/have to nadal wymaga przeglądu po polsku.',
+};
+
 const tri = (
   ru: string,
   uk = ru,
   es = ru,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? SHOULD_MUST_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'should + base verb',
@@ -47,26 +52,75 @@ const SMART_CONTRAST = [
 const MODEL = tri(
   'Здесь важно не переводить всё одним словом "должен". Should звучит как совет. Must звучит как жесткое правило или запрет. Have to звучит как необходимость из-за работы, расписания или ситуации.',
   'Тут важливо не перекладати все одним словом "повинен". Should звучить як порада. Must звучить як жорстке правило або заборона. Have to звучить як необхідність через роботу, розклад або ситуацію.',
-  'Should is advice. Must is a strong rule or prohibition. Have to is necessity from the situation.',
+  'Should es consejo. Must es regla fuerte o prohibicion. Have to es necesidad por la situacion.',
+  {
+    'pt-BR': 'Aqui é importante não traduzir tudo como uma única ideia de "ter que". Should soa como conselho. Must soa como regra forte ou proibição. Have to soa como necessidade por causa do trabalho, do horário ou da situação.',
+    vi: 'Ở đây điều quan trọng là không dịch tất cả thành một ý "phải". Should nghe như lời khuyên. Must nghe như quy tắc mạnh hoặc lệnh cấm. Have to nghe như sự cần thiết do công việc, lịch trình hoặc tình huống.',
+    id: 'Di sini penting untuk tidak menerjemahkan semuanya sebagai satu makna "harus". Should terdengar seperti saran. Must terdengar seperti aturan kuat atau larangan. Have to terdengar seperti keharusan karena pekerjaan, jadwal, atau situasi.',
+    tr: 'Burada her şeyi tek bir "zorunda" anlamıyla çevirmemek önemlidir. Should tavsiye gibi duyulur. Must güçlü kural ya da yasak gibi duyulur. Have to iş, program ya da durumdan gelen zorunluluk gibi duyulur.',
+    pl: 'Tutaj ważne jest, żeby nie tłumaczyć wszystkiego jednym "musieć". Should brzmi jak rada. Must brzmi jak mocna zasada albo zakaz. Have to brzmi jak konieczność wynikająca z pracy, planu dnia albo sytuacji.',
+  },
 );
+
+const SHOULD_MUST_SKILL_ES: Record<string, string> = {
+  should_advice_rest: 'Should rest es consejo, no orden.',
+  should_base_form: 'Despues de should usa la forma corta: should call.',
+  shouldnt_advice: "Shouldn't es consejo de no hacer algo.",
+  must_rule: 'Must marca una regla fuerte.',
+  must_base_form: 'Despues de must usa la forma corta: must leave.',
+  mustnt_prohibition: "Mustn't significa prohibicion.",
+  have_to_external_necessity: 'Have to marca necesidad por situacion o horario.',
+  has_to: 'Con she usa has to.',
+  question_have_to: 'Las preguntas con have to usan do/does.',
+  dont_have_to_no_obligation: "Don't have to significa no es obligatorio.",
+  doesnt_have_to: "Con she usa doesn't have to.",
+  mustnt_vs_dont_have_to: "Don't have to no es obligatorio; mustn't es prohibido.",
+  mixed_advice_obligation_necessity: 'Should = consejo, must = regla, have to = necesidad.',
+  mixed_have_to_question_negative: 'Do you have to / she does not have to.',
+  mixed_sentence_correction: "Should rest + don't have to go = consejo y no obligacion.",
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = SHOULD_MUST_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? SHOULD_MUST_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function shouldMustEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = SHOULD_MUST_SKILL_ES[input.targetSkill] ?? 'Elige por fuerza: consejo, regla, necesidad, prohibicion o no obligacion.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retryFor(correct: string, contrast: TriText, finalHint: TriText): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала выбери силу фразы: это совет, жесткое правило, запрет, необходимость или просто "не обязательно"?',
       'Спочатку обери силу фрази: це порада, жорстке правило, заборона, необхідність чи просто "не обовʼязково"?',
-      'First choose the force: advice, rule, prohibition, necessity, or no obligation.',
+      'Primero elige la fuerza: consejo, regla, prohibicion, necesidad o no obligacion.',
     ),
     contrast,
     tri(
       'Потом проверь форму после английского куска. Нормально: should call, must leave, have to work, has to go.',
       'Потім перевір форму після англійського шматка. Нормально: should call, must leave, have to work, has to go.',
-      'Then check the chunk: should call, must leave, have to work, has to go.',
+      'Luego revisa el bloque: should call, must leave, have to work, has to go.',
     ),
     tri(
       `Ответ здесь: ${correct}. Проверь силу фразы: совет, правило, необходимость, запрет или "не обязательно".`,
       `Відповідь тут: ${correct}. Перевір силу фрази: порада, правило, необхідність, заборона або "не обовʼязково".`,
-      `The answer here is ${correct}. ${finalHint.es}`,
+      `La respuesta es ${correct}. ${finalHint.es}`,
     ),
   ];
 }
@@ -75,7 +129,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Смысл рядом, но сила фразы другая. Здесь нужен вариант: ${correct}.`,
     `Майже. Зміст поруч, але сила фрази інша. Тут потрібен варіант: ${correct}.`,
-    `Almost. The meaning is close, but the force is different. Use: ${correct}.`,
+    `Casi. El sentido esta cerca, pero la fuerza es distinta. Usa: ${correct}.`,
   );
 }
 
@@ -94,35 +148,36 @@ function modalStep(input: {
   finalHint: TriText;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = shouldMustEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: withEs(input.translation, esFeedback),
     teachingText: MODEL,
     explanationBlock: MODEL,
     microTask: tri(
       'Выбери кусок, который передает нужную силу: совет, правило, запрет, необходимость или "не обязательно".',
       'Обери шматок, який передає потрібну силу: пораду, правило, заборону, необхідність або "не обовʼязково".',
-      'Choose the chunk with the right force.',
+      'Elige el bloque con la fuerza correcta.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retryFor(input.correctAnswer, input.contrast, input.finalHint),
+    retryFeedback: retryFor(input.correctAnswer, withEs(input.contrast, esFeedback), withEs(input.finalHint, esFeedback)),
     fallbackExplanation: tri(
       "Коротко: should = совет. must = жесткое правило или запрет в mustn't. have to = нужно из-за ситуации. don't have to = не обязательно.",
       "Коротко: should = порада. must = жорстке правило або заборона в mustn't. have to = треба через ситуацію. don't have to = не обовʼязково.",
-      "Short version: should = advice, must = rule/prohibition, have to = necessity, don't have to = not necessary.",
+      "Corto: should = consejo, must = regla/prohibicion, have to = necesidad, don't have to = no obligatorio.",
     ),
     focusWords: input.focusWords,
   };
@@ -134,29 +189,63 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 46,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Should / Must / Have to: не все "должен"',
     'Should / Must / Have to: не все "повинен"',
     'Should / Must / Have to',
+    {
+      'pt-BR': 'Should / Must / Have to: nem tudo é "ter que"',
+      vi: 'Should / Must / Have to: không phải tất cả đều là "phải"',
+      id: 'Should / Must / Have to: tidak semuanya berarti "harus"',
+      tr: 'Should / Must / Have to: hepsi "zorunda" değildir',
+      pl: 'Should / Must / Have to: nie wszystko znaczy "musieć"',
+    },
   ),
-  shortTitle: tri('should, must, have to', 'should, must, have to', 'should, must, have to'),
+  shortTitle: tri('should, must, have to', 'should, must, have to', 'should, must, have to', {
+    'pt-BR': 'should, must, have to',
+    vi: 'should, must, have to',
+    id: 'should, must, have to',
+    tr: 'should, must, have to',
+    pl: 'should, must, have to',
+  }),
   shortDiagnosis: tri(
     'Ты смешиваешь совет, жесткое правило, внешнюю необходимость, запрет и "не обязательно".',
     'Ти змішуєш пораду, жорстке правило, зовнішню необхідність, заборону і "не обовʼязково".',
-    'You mix advice, obligation, necessity, prohibition, and no obligation.',
+    'Mezclas consejo, obligacion fuerte, necesidad externa, prohibicion y no obligacion.',
+    {
+      'pt-BR': 'Você mistura conselho, regra forte, necessidade externa, proibição e "não é obrigatório".',
+      vi: 'Bạn đang trộn lẫn lời khuyên, quy tắc mạnh, sự cần thiết bên ngoài, lệnh cấm và "không bắt buộc".',
+      id: 'Kamu mencampur saran, aturan kuat, keharusan dari luar, larangan, dan "tidak wajib".',
+      tr: 'Tavsiye, güçlü kural, dış zorunluluk, yasak ve "gerekli değil" anlamlarını karıştırıyorsun.',
+      pl: 'Mieszasz radę, mocną zasadę, zewnętrzną konieczność, zakaz i "nie trzeba".',
+    },
   ),
   diagnosisText: tri(
     'Ошибка обычно появляется из-за русского "должен". В английском это не одна полка. You should rest - мягкий совет. You must stop - жесткое правило. I have to work - так сложилась ситуация или расписание.',
     'Помилка часто зʼявляється через українське "повинен". В англійській це не одна полиця. You should rest - мʼяка порада. You must stop - жорстке правило. I have to work - так склалася ситуація або розклад.',
-    'The mistake appears when one translation covers several English chunks.',
+    'El error aparece cuando una sola traduccion tapa varios bloques ingleses.',
+    {
+      'pt-BR': 'O erro geralmente aparece porque uma tradução única esconde vários blocos em inglês. You should rest é um conselho suave. You must stop é uma regra forte. I have to work vem de uma situação ou de um horário.',
+      vi: 'Lỗi thường xuất hiện vì một cách dịch duy nhất che mất nhiều khối tiếng Anh khác nhau. You should rest là lời khuyên nhẹ. You must stop là quy tắc mạnh. I have to work đến từ tình huống hoặc lịch trình.',
+      id: 'Kesalahan biasanya muncul karena satu terjemahan menutupi beberapa blok bahasa Inggris. You should rest adalah saran lembut. You must stop adalah aturan kuat. I have to work berasal dari situasi atau jadwal.',
+      tr: 'Hata genellikle tek bir çevirinin birkaç İngilizce kalıbı örtmesinden çıkar. You should rest yumuşak tavsiyedir. You must stop güçlü kuraldır. I have to work durumdan ya da programdan gelen zorunluluktur.',
+      pl: 'Błąd zwykle pojawia się, gdy jedno tłumaczenie zasłania kilka angielskich bloków. You should rest to łagodna rada. You must stop to mocna zasada. I have to work wynika z sytuacji albo planu.',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     "Should дает совет: You should rest. Must дает жесткое правило или запрет: You must stop, You mustn't smoke. Have to дает необходимость из ситуации: I have to work. Don't have to значит не обязательно.",
     "Should дає пораду: You should rest. Must дає жорстке правило або заборону: You must stop, You mustn't smoke. Have to дає необхідність із ситуації: I have to work. Don't have to означає не обовʼязково.",
-    "Should = advice. Must = strong obligation/prohibition. Have to = external necessity. Don't have to = not necessary.",
+    "Should = consejo. Must = obligacion fuerte/prohibicion. Have to = necesidad externa. Don't have to = no obligatorio.",
+    {
+      'pt-BR': "Should dá conselho: You should rest. Must dá regra forte ou proibição: You must stop, You mustn't smoke. Have to dá necessidade por causa da situação: I have to work. Don't have to significa que não é obrigatório.",
+      vi: "Should đưa ra lời khuyên: You should rest. Must diễn tả quy tắc mạnh hoặc lệnh cấm: You must stop, You mustn't smoke. Have to diễn tả sự cần thiết do tình huống: I have to work. Don't have to nghĩa là không bắt buộc.",
+      id: "Should memberi saran: You should rest. Must memberi aturan kuat atau larangan: You must stop, You mustn't smoke. Have to memberi keharusan karena situasi: I have to work. Don't have to berarti tidak wajib.",
+      tr: "Should tavsiye verir: You should rest. Must güçlü kural ya da yasak verir: You must stop, You mustn't smoke. Have to durumdan gelen zorunluluk verir: I have to work. Don't have to gerekli değil demektir.",
+      pl: "Should daje radę: You should rest. Must daje mocną zasadę albo zakaz: You must stop, You mustn't smoke. Have to daje konieczność wynikającą z sytuacji: I have to work. Don't have to znaczy, że nie trzeba.",
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -180,14 +269,14 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       'У питанні з have to потрібен do/does: Do you have to work?',
     ],
     es: [
-      'Should sounds like advice: You should rest.',
-      'Must sounds like a strong rule: You must stop.',
-      "Mustn't means prohibition.",
-      'Have to means necessity from the situation.',
-      'He/she/it uses has to.',
-      "Don't have to means not necessary.",
-      'Use should call, must leave.',
-      'Have to questions use do/does.',
+      'Should suena como consejo: You should rest.',
+      'Must suena como regla fuerte: You must stop.',
+      "Mustn't significa prohibicion.",
+      'Have to significa necesidad por la situacion.',
+      'Con he/she/it usa has to.',
+      "Don't have to significa que no es obligatorio.",
+      'Usa should call, must leave.',
+      'Las preguntas con have to usan do/does.',
     ],
     'pt-BR': [
       'Should soa como conselho: You should rest.',
@@ -245,97 +334,97 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       en: 'You should rest.',
       ru: 'Тебе стоит отдохнуть.',
       uk: 'Тобі варто відпочити.',
-      es: 'You should rest.',
+      es: 'Deberias descansar.',
       'pt-BR': 'Você deveria descansar.',
       vi: 'Bạn nên nghỉ ngơi.',
       id: 'Kamu sebaiknya beristirahat.',
       tr: 'Dinlenmelisin.',
       pl: 'Powinieneś odpocząć.',
-      why: tri('Это совет, не приказ.', 'Це порада, не наказ.', 'Advice, not an order.'),
+      why: tri('Это совет, не приказ.', 'Це порада, не наказ.', 'Consejo, no orden.'),
     },
     {
       en: 'You must wear a seatbelt.',
       ru: 'Ты обязан пристегнуться.',
       uk: 'Ти зобовʼязаний пристебнутися.',
-      es: 'You must wear a seatbelt.',
+      es: 'Debes llevar cinturon de seguridad.',
       'pt-BR': 'Você deve usar cinto de segurança.',
       vi: 'Bạn phải thắt dây an toàn.',
       id: 'Kamu harus memakai sabuk pengaman.',
       tr: 'Emniyet kemeri takmalısın.',
       pl: 'Musisz zapiąć pas bezpieczeństwa.',
-      why: tri('Это правило, поэтому звучит сильнее.', 'Це правило, тому звучить сильніше.', 'A rule sounds stronger.'),
+      why: tri('Это правило, поэтому звучит сильнее.', 'Це правило, тому звучить сильніше.', 'Una regla suena mas fuerte.'),
     },
     {
       en: 'I have to work tomorrow.',
       ru: 'Мне нужно работать завтра.',
       uk: 'Мені потрібно працювати завтра.',
-      es: 'I have to work tomorrow.',
+      es: 'Tengo que trabajar manana.',
       'pt-BR': 'Tenho que trabalhar amanhã.',
       vi: 'Ngày mai tôi phải làm việc.',
       id: 'Saya harus bekerja besok.',
       tr: 'Yarın çalışmak zorundayım.',
       pl: 'Muszę jutro pracować.',
-      why: tri('Необходимость идет из расписания.', 'Необхідність іде з розкладу.', 'The schedule creates the necessity.'),
+      why: tri('Необходимость идет из расписания.', 'Необхідність іде з розкладу.', 'El horario crea la necesidad.'),
     },
     {
       en: 'She has to leave early.',
       ru: 'Ей нужно уйти рано.',
       uk: 'Їй потрібно піти рано.',
-      es: 'She has to leave early.',
+      es: 'Ella tiene que irse temprano.',
       'pt-BR': 'Ela tem que sair cedo.',
       vi: 'Cô ấy phải rời đi sớm.',
       id: 'Dia harus pergi lebih awal.',
       tr: 'Erken ayrılmak zorunda.',
       pl: 'Ona musi wyjść wcześniej.',
-      why: tri('С she нужен кусок has to.', 'З she потрібен шматок has to.', 'She takes has to.'),
+      why: tri('С she нужен кусок has to.', 'З she потрібен шматок has to.', 'Con she usa has to.'),
     },
     {
       en: "You don't have to come.",
       ru: 'Тебе не обязательно приходить.',
       uk: 'Тобі не обовʼязково приходити.',
-      es: "You don't have to come.",
+      es: 'No tienes que venir.',
       'pt-BR': 'Você não precisa vir.',
       vi: 'Bạn không cần đến.',
       id: 'Kamu tidak perlu datang.',
       tr: 'Gelmek zorunda değilsin.',
       pl: 'Nie musisz przychodzić.',
-      why: tri('Это не запрет. Просто нет обязанности.', 'Це не заборона. Просто немає обовʼязку.', 'No obligation, not prohibition.'),
+      why: tri('Это не запрет. Просто нет обязанности.', 'Це не заборона. Просто немає обовʼязку.', 'No hay obligacion, no es prohibicion.'),
     },
     {
       en: "You mustn't smoke here.",
       ru: 'Здесь нельзя курить.',
       uk: 'Тут не можна курити.',
-      es: "You mustn't smoke here.",
+      es: 'No debes fumar aqui.',
       'pt-BR': 'Você não pode fumar aqui.',
       vi: 'Bạn không được hút thuốc ở đây.',
       id: 'Kamu tidak boleh merokok di sini.',
       tr: 'Burada sigara içmemelisin.',
       pl: 'Nie wolno ci tu palić.',
-      why: tri("Mustn't - это запрет.", "Mustn't - це заборона.", "Mustn't means prohibited."),
+      why: tri("Mustn't - это запрет.", "Mustn't - це заборона.", "Mustn't significa prohibido."),
     },
     {
       en: "You shouldn't worry.",
       ru: 'Тебе не стоит переживать.',
       uk: 'Тобі не варто хвилюватися.',
-      es: "You shouldn't worry.",
+      es: 'No deberias preocuparte.',
       'pt-BR': 'Você não deveria se preocupar.',
       vi: 'Bạn không nên lo lắng.',
       id: 'Kamu sebaiknya tidak khawatir.',
       tr: 'Endişelenmemelisin.',
       pl: 'Nie powinieneś się martwić.',
-      why: tri("Shouldn't - совет не делать.", "Shouldn't - порада не робити.", "Advice not to do something."),
+      why: tri("Shouldn't - совет не делать.", "Shouldn't - порада не робити.", 'Consejo de no hacer algo.'),
     },
     {
       en: 'Do you have to work tomorrow?',
       ru: 'Тебе нужно работать завтра?',
       uk: 'Тобі потрібно працювати завтра?',
-      es: 'Do you have to work tomorrow?',
+      es: 'Tienes que trabajar manana?',
       'pt-BR': 'Você tem que trabalhar amanhã?',
       vi: 'Ngày mai bạn có phải làm việc không?',
       id: 'Apakah kamu harus bekerja besok?',
       tr: 'Yarın çalışmak zorunda mısın?',
       pl: 'Czy musisz jutro pracować?',
-      why: tri('В вопросе с have to появляется Do.', 'У питанні з have to зʼявляється Do.', 'Have to questions use Do.'),
+      why: tri('В вопросе с have to появляется Do.', 'У питанні з have to зʼявляється Do.', 'Las preguntas con have to usan Do.'),
     },
   ],
   introBlocks: [
@@ -345,7 +434,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты переводишь should, must и have to через одно "должен". Поэтому английская фраза то звучит слишком мягко, то слишком жестко, то вообще меняет смысл.',
         'Схоже, ти перекладаєш should, must і have to через одне "повинен". Тому англійська фраза то звучить надто мʼяко, то надто жорстко, то взагалі міняє зміст.',
-        'You are using one translation for several English chunks.',
+        'Usas una sola traduccion para varios bloques ingleses, y por eso cambia la fuerza.',
       ),
     },
     {
@@ -354,7 +443,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       text: tri(
         'Три полки: should - совет, must - жесткое правило, have to - необходимость из ситуации.',
         'Три полиці: should - порада, must - жорстке правило, have to - необхідність із ситуації.',
-        'Three shelves: should advice, must rule, have to necessity.',
+        'Tres grupos: should = consejo, must = regla fuerte, have to = necesidad por situacion.',
       ),
     },
     {
@@ -363,7 +452,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       text: tri(
         "Самая опасная пара: don't have to и mustn't. Don't have to = не обязательно. Mustn't = нельзя.",
         "Найнебезпечніша пара: don't have to і mustn't. Don't have to = не обовʼязково. Mustn't = не можна.",
-        "The big trap: don't have to means not necessary; mustn't means prohibited.",
+        "La trampa grande: don't have to = no obligatorio; mustn't = prohibido.",
       ),
     },
   ],
@@ -696,10 +785,10 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Обычное объяснение: показать силу фразы и готовый кусок.', 'Звичайне пояснення: показати силу фрази й готовий шматок.', 'Show force and chunk.'),
-    depth2: tri('Проще: спросить, это совет, правило, запрет или необходимость?', 'Простіше: спитати, це порада, правило, заборона чи необхідність?', 'Ask for force.'),
-    depth3: tri('Еще проще: сравнить should rest / must stop / have to work.', 'Ще простіше: порівняти should rest / must stop / have to work.', 'Compare should / must / have to.'),
-    depth4: tri("Почти подсказка: показать прямо should, must, have to, don't have to или mustn't.", "Майже підказка: показати прямо should, must, have to, don't have to або mustn't.", 'Point to the correct chunk.'),
+    depth1: tri('Обычное объяснение: показать силу фразы и готовый кусок.', 'Звичайне пояснення: показати силу фрази й готовий шматок.', 'Muestra la fuerza de la frase y el bloque listo.'),
+    depth2: tri('Проще: спросить, это совет, правило, запрет или необходимость?', 'Простіше: спитати, це порада, правило, заборона чи необхідність?', 'Pregunta por la fuerza: consejo, regla, prohibicion o necesidad.'),
+    depth3: tri('Еще проще: сравнить should rest / must stop / have to work.', 'Ще простіше: порівняти should rest / must stop / have to work.', 'Compara should rest / must stop / have to work.'),
+    depth4: tri("Почти подсказка: показать прямо should, must, have to, don't have to или mustn't.", "Майже підказка: показати прямо should, must, have to, don't have to або mustn't.", 'Senala el bloque correcto.'),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -707,7 +796,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       card: tri(
         "Should = совет. Must = жесткое правило. Mustn't = нельзя. Have to = нужно из-за ситуации. Don't have to = не обязательно.",
         "Should = порада. Must = жорстке правило. Mustn't = не можна. Have to = треба через ситуацію. Don't have to = не обовʼязково.",
-        "Should = advice. Must = rule. Mustn't = prohibited. Have to = necessity. Don't have to = not necessary.",
+        "Should = consejo. Must = regla. Mustn't = prohibido. Have to = necesidad. Don't have to = no obligatorio.",
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -715,7 +804,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       card: tri(
         'Подсказка: сначала выбери не слово, а силу. Совет? Правило? Запрет? Необходимость? Нет обязанности?',
         'Підказка: спочатку обери не слово, а силу. Порада? Правило? Заборона? Необхідність? Немає обовʼязку?',
-        'Hint: choose the force first.',
+        'Pista: primero elige la fuerza.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -723,7 +812,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим с подсказками: сначала отделяем смысл, потом возвращаемся к полной фразе.',
         'Режим із підказками: спочатку відділяємо зміст, потім повертаємося до повної фрази.',
-        'Guided mode: separate meaning first.',
+        'Modo guiado: primero separa el sentido.',
       ),
     },
   },
@@ -733,28 +822,28 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_modal_smh_001',
-        prompt: tri('Should чаще совет или жесткое правило?', 'Should частіше порада чи жорстке правило?', 'Should is usually advice or a strict rule?'),
+        prompt: tri('Should чаще совет или жесткое правило?', 'Should частіше порада чи жорстке правило?', 'Should normalmente es consejo o regla estricta?'),
         options: ['advice', 'strict obligation'],
         correctIndex: 0,
         thenReturnToExerciseId: 'modal_smh_easy_001',
       },
       {
         id: 'guided_modal_smh_002',
-        prompt: tri("mustn't означает не обязательно или нельзя?", "mustn't означає не обовʼязково чи не можна?", "Does mustn't mean not necessary or prohibited?"),
+        prompt: tri("mustn't означает не обязательно или нельзя?", "mustn't означає не обовʼязково чи не можна?", "Mustn't significa no obligatorio o prohibido?"),
         options: ['not necessary', 'prohibited'],
         correctIndex: 1,
         thenReturnToExerciseId: 'modal_smh_contrast_003',
       },
       {
         id: 'guided_modal_smh_003',
-        prompt: tri("don't have to означает не обязательно или нельзя?", "don't have to означає не обовʼязково чи не можна?", "Does don't have to mean not necessary or prohibited?"),
+        prompt: tri("don't have to означает не обязательно или нельзя?", "don't have to означає не обовʼязково чи не можна?", "Don't have to significa no obligatorio o prohibido?"),
         options: ['not necessary', 'prohibited'],
         correctIndex: 0,
         thenReturnToExerciseId: 'modal_smh_mixed_001',
       },
       {
         id: 'guided_modal_smh_004',
-        prompt: tri('С she нужен has to или have to?', 'З she потрібно has to чи have to?', 'With she, use has to or have to?'),
+        prompt: tri('С she нужен has to или have to?', 'З she потрібно has to чи have to?', 'Con she usas has to o have to?'),
         options: ['has to', 'have to'],
         correctIndex: 0,
         thenReturnToExerciseId: 'modal_smh_contrast_005',
@@ -804,7 +893,7 @@ export const MODAL_SHOULD_MUST_HAVE_TO_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_started',
     answer: 'diagnosis_training_answer',
     mastery: 'diagnosis_training_mastered',
-    fallback: 'diagnosis_training_fallback',
+    recovery: 'diagnosis_training_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

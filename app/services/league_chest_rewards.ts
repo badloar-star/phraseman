@@ -8,6 +8,7 @@ import { LEAGUE_RACE_MIN_PARTICIPANTS } from '../league_race_visibility';
 import { addArenaPlaysBonusForToday } from '../arena_daily_limit';
 import { setRandomPackGiftTrial48h } from '../flashcards/pack_trial_gift';
 import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from '../flashcards/marketplace';
+import type { RuntimeStudyTarget } from '../target_storage_keys';
 import {
   AVATAR_AURA_GIFT_OWNED_KEY,
   AVATAR_AURA_OWNED_KEY,
@@ -444,7 +445,11 @@ async function grantCustomAvatarReward(drop: LeagueChestRewardDrop): Promise<voi
   ]);
 }
 
-async function applyLocalRewardPack(rewardPack: NonNullable<LeagueChestClaim['rewards']>, balance?: number): Promise<void> {
+async function applyLocalRewardPack(
+  rewardPack: NonNullable<LeagueChestClaim['rewards']>,
+  balance?: number,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> {
   const drops = Array.isArray(rewardPack.drops) ? rewardPack.drops : [];
   const expiresAt = Math.max(0, Math.floor(Number(rewardPack.expiresAt) || 0));
   const shardAmount = drops
@@ -500,8 +505,8 @@ async function applyLocalRewardPack(rewardPack: NonNullable<LeagueChestClaim['re
     } else if (drop.kind === 'arena_plays') {
       await addArenaPlaysBonusForToday(rewardAmount(drop) || 5);
     } else if (drop.kind === 'pack_trial_48h') {
-      await setRandomPackGiftTrial48h();
-      await primeMarketplaceBuiltCardsCacheFromAccessibleStorage();
+      const trial = await setRandomPackGiftTrial48h(studyTarget);
+      if (trial) await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget);
     } else if (drop.kind === 'avatar_aura') {
       await grantAvatarAuraReward(drop.auraId);
     } else if (drop.kind === 'custom_avatar') {
@@ -519,6 +524,7 @@ export async function ensureLeagueChestRewards(params: {
   members: LeagueChestMember[];
   chestReady: boolean;
   myContribution: number;
+  studyTarget?: RuntimeStudyTarget;
 }): Promise<LeagueChestClaim> {
   if (!params.chestReady || !params.groupId || !params.weekId) return { claimed: false };
   if (params.members.length < LEAGUE_RACE_MIN_PARTICIPANTS) return { claimed: false };
@@ -541,7 +547,7 @@ export async function ensureLeagueChestRewards(params: {
     if (data.crown?.uid === myUid) {
       emitAppEvent('league_crown_updated', { uid: myUid, expiresAt: data.crown.expiresAt });
     }
-    if (data.rewards) await applyLocalRewardPack(data.rewards, data.balance);
+    if (data.rewards) await applyLocalRewardPack(data.rewards, data.balance, params.studyTarget);
     return data;
   } catch {
     return { claimed: false };

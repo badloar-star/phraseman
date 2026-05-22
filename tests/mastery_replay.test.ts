@@ -1,4 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import fs from 'fs';
+import path from 'path';
 import {
   isLessonFinishedOnce,
   markLessonFinishedOnce,
@@ -7,6 +9,11 @@ import {
   MASTERY_REPLAY_PRICE_STEP_SHARDS,
   computeMasteryReplayPriceFromCount,
 } from '../app/mastery';
+import { emitAppEvent } from '../app/events';
+import {
+  masteryFinishedOnceKey,
+  masteryReplayCountKey,
+} from '../app/target_storage_keys';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
@@ -18,6 +25,7 @@ jest.mock('../app/lifetime_profile_stats', () => ({
 }));
 
 const mockStorage: Record<string, string> = {};
+const ROOT = path.join(__dirname, '..');
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -50,6 +58,28 @@ describe('mastery — finished_once flag', () => {
     await expect(isLessonFinishedOnce(7)).resolves.toBe(true);
     const r2 = await markLessonFinishedOnce(7);
     expect(r2.firstTime).toBe(false);
+  });
+
+  it('keeps French finished/replay flags outside legacy English mastery keys', async () => {
+    mockStorage.shards_balance = '500';
+
+    await expect(markLessonFinishedOnce(3, 'fr')).resolves.toEqual({ firstTime: true });
+    expect(mockStorage[masteryFinishedOnceKey(3, 'fr')]).toBe('1');
+    expect(mockStorage.lesson_finished_once_v1_3).toBeUndefined();
+    expect(emitAppEvent).toHaveBeenCalledWith('lesson_finished_once', {
+      lessonId: 3,
+      studyTarget: 'fr',
+    });
+
+    const r = await executeReplay(3, false, 'fr');
+    expect(r.ok).toBe(true);
+    expect(mockStorage[masteryReplayCountKey(3, 'fr')]).toBe('1');
+    expect(mockStorage.lesson_replay_count_v1_3).toBeUndefined();
+    expect(emitAppEvent).toHaveBeenCalledWith('lesson_replay_started', {
+      lessonId: 3,
+      spent: MASTERY_REPLAY_BASE_SHARDS,
+      studyTarget: 'fr',
+    });
   });
 });
 
@@ -125,5 +155,15 @@ describe('mastery — executeReplay', () => {
     expect(r1.ok).toBe(false);
     const r2 = await executeReplay(NaN, true);
     expect(r2.ok).toBe(false);
+  });
+
+  it('filters mastery lesson-menu events by active study target', () => {
+    const lessonMenuSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8');
+    const eventsSource = fs.readFileSync(path.join(ROOT, 'app', 'events.ts'), 'utf8');
+
+    expect(eventsSource).toContain('lesson_finished_once: { lessonId: number; studyTarget?: string }');
+    expect(eventsSource).toContain('lesson_replay_started: { lessonId: number; spent: number; studyTarget?: string }');
+    expect(lessonMenuSource).toContain("if ((payload.studyTarget ?? 'en') !== storageStudyTarget(studyTarget)) return");
+    expect(lessonMenuSource).toContain("if ((payload?.studyTarget ?? 'en') !== storageStudyTarget(studyTarget)) return");
   });
 });

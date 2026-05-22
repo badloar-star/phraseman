@@ -5,18 +5,21 @@
 import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { Text, View } from 'react-native';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { seedAdminTestReviewSession } from './active_recall';
 
 export default function AdminReviewTestScreen() {
   const router = useRouter();
+  const { studyTarget } = useStudyTarget();
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
-        await seedAdminTestReviewSession();
+        const seeded = await seedAdminTestReviewSession(studyTarget);
         if (!cancelled) {
-          router.replace('/review');
+          if (seeded) router.replace('/review');
+          else router.back();
         }
       } catch {
         if (!cancelled) {
@@ -25,7 +28,7 @@ export default function AdminReviewTestScreen() {
       }
     })();
     return () => { cancelled = true; };
-  }, [router]);
+  }, [router, studyTarget]);
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0f0f13' }}>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
@@ -14,7 +15,8 @@ export default function WebScreen() {
 
   if (!url) {
     return (
-      <View style={[styles.center, { backgroundColor: t.bgPrimary }]}>
+      <ScreenGradient artBackdrop="settings">
+        <View style={styles.center}>
         <Text style={{ color: t.textPrimary }}>
           {triLang(lang, {
             ru: 'Ссылка не указана',
@@ -28,11 +30,13 @@ export default function WebScreen() {
           })}
         </Text>
       </View>
+      </ScreenGradient>
     );
   }
 
   return (
-    <View style={[styles.container, { backgroundColor: t.bgPrimary }]}>
+    <ScreenGradient artBackdrop="settings">
+      <View style={styles.container}>
       <View style={[styles.header, { backgroundColor: t.bgCard, borderBottomColor: t.border }]}>
         <TouchableOpacity onPress={() => router.back()} style={styles.back}>
           <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
@@ -64,6 +68,7 @@ export default function WebScreen() {
         </TouchableOpacity>
       </View>
     </View>
+    </ScreenGradient>
   );
 }
 

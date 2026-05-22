@@ -10,16 +10,13 @@ const tri = (
   uk = ru,
   es = ru,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (planned[locale]) copy[locale] = planned[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = ['adjective+er', 'more + adjective', 'than', 'better', 'worse', 'as ... as'];
 
@@ -27,7 +24,234 @@ const MODEL = tri(
   'В сравнении английский выбирает готовый кусок. Короткие слова часто получают -er: cheap -> cheaper. Длинные часто идут с more: more expensive. После прямого сравнения обычно идет than. Для "такой же ... как" нужна рамка as ... as.',
   'У порівнянні англійська обирає готовий шматок. Короткі слова часто отримують -er: cheap -> cheaper. Довгі часто йдуть із more: more expensive. Після прямого порівняння зазвичай іде than. Для "такий самий ... як" потрібна рамка as ... as.',
   'Comparison uses ready chunks: cheaper, more expensive, better than, as good as.',
+  {
+    'pt-BR': 'A comparação em inglês usa blocos prontos: cheaper, more expensive, better than, as good as.',
+    vi: 'So sánh trong tiếng Anh dùng các cụm có sẵn: cheaper, more expensive, better than, as good as.',
+    id: 'Perbandingan bahasa Inggris memakai potongan siap pakai: cheaper, more expensive, better than, as good as.',
+    tr: 'İngilizcede karşılaştırma hazır parçalarla kurulur: cheaper, more expensive, better than, as good as.',
+    pl: 'Porównanie po angielsku używa gotowych kawałków: cheaper, more expensive, better than, as good as.',
+  },
 );
+
+const COMPARISON_STEP_TRANSLATIONS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  comparison_easy_001: {
+    'pt-BR': 'Esta bolsa é mais barata que a minha.',
+    vi: 'Chiếc túi này rẻ hơn của tôi.',
+    id: 'Tas ini lebih murah daripada punya saya.',
+    tr: 'Bu çanta benimkinden daha ucuz.',
+    pl: 'Ta torba jest tańsza niż moja.',
+  },
+  comparison_easy_002: {
+    'pt-BR': 'Meu carro é mais rápido que o seu.',
+    vi: 'Xe của tôi nhanh hơn xe của bạn.',
+    id: 'Mobil saya lebih cepat daripada mobilmu.',
+    tr: 'Arabam seninkinden daha hızlı.',
+    pl: 'Mój samochód jest szybszy niż twój.',
+  },
+  comparison_easy_003: {
+    'pt-BR': 'Este hotel é mais caro que o anterior.',
+    vi: 'Khách sạn này đắt hơn khách sạn trước.',
+    id: 'Hotel ini lebih mahal daripada yang sebelumnya.',
+    tr: 'Bu otel öncekinden daha pahalı.',
+    pl: 'Ten hotel jest droższy niż poprzedni.',
+  },
+  comparison_contrast_001: {
+    'pt-BR': 'Este quarto é maior que o meu.',
+    vi: 'Căn phòng này lớn hơn phòng của tôi.',
+    id: 'Kamar ini lebih besar daripada kamar saya.',
+    tr: 'Bu oda benimkinden daha büyük.',
+    pl: 'Ten pokój jest większy niż mój.',
+  },
+  comparison_contrast_002: {
+    'pt-BR': 'Hoje está mais quente que ontem.',
+    vi: 'Hôm nay nóng hơn hôm qua.',
+    id: 'Hari ini lebih panas daripada kemarin.',
+    tr: 'Bugün dünden daha sıcak.',
+    pl: 'Dzisiaj jest cieplej niż wczoraj.',
+  },
+  comparison_contrast_003: {
+    'pt-BR': 'Este exercício é mais fácil que o primeiro.',
+    vi: 'Bài tập này dễ hơn bài đầu tiên.',
+    id: 'Latihan ini lebih mudah daripada yang pertama.',
+    tr: 'Bu alıştırma ilkinden daha kolay.',
+    pl: 'To ćwiczenie jest łatwiejsze niż pierwsze.',
+  },
+  comparison_contrast_004: {
+    'pt-BR': 'Esta lição é mais fácil que a anterior.',
+    vi: 'Bài học này dễ hơn bài trước.',
+    id: 'Pelajaran ini lebih mudah daripada yang sebelumnya.',
+    tr: 'Bu ders öncekinden daha kolay.',
+    pl: 'Ta lekcja jest łatwiejsza niż poprzednia.',
+  },
+  comparison_contrast_005: {
+    'pt-BR': 'Esta ferramenta é mais útil que a antiga.',
+    vi: 'Công cụ này hữu ích hơn công cụ cũ.',
+    id: 'Alat ini lebih berguna daripada yang lama.',
+    tr: 'Bu araç eskisinden daha kullanışlı.',
+    pl: 'To narzędzie jest bardziej przydatne niż stare.',
+  },
+  comparison_contrast_006: {
+    'pt-BR': 'Esta opção é melhor que a outra.',
+    vi: 'Phương án này tốt hơn phương án kia.',
+    id: 'Opsi ini lebih baik daripada yang lain.',
+    tr: 'Bu seçenek diğerinden daha iyi.',
+    pl: 'Ta opcja jest lepsza od drugiej.',
+  },
+  comparison_mixed_001: {
+    'pt-BR': 'A situação está pior que antes.',
+    vi: 'Tình hình tệ hơn trước.',
+    id: 'Situasinya lebih buruk dari sebelumnya.',
+    tr: 'Durum eskisinden daha kötü.',
+    pl: 'Sytuacja jest gorsza niż wcześniej.',
+  },
+  comparison_mixed_002: {
+    'pt-BR': 'Escolha o par correto.',
+    vi: 'Chọn cặp đúng.',
+    id: 'Pilih pasangan yang benar.',
+    tr: 'Doğru çifti seç.',
+    pl: 'Wybierz poprawną parę.',
+  },
+  comparison_mixed_003: {
+    'pt-BR': 'Este telefone é tão bom quanto o meu.',
+    vi: 'Điện thoại này tốt như điện thoại của tôi.',
+    id: 'Ponsel ini sama bagusnya dengan punya saya.',
+    tr: 'Bu telefon benimki kadar iyi.',
+    pl: 'Ten telefon jest tak dobry jak mój.',
+  },
+  comparison_mixed_004: {
+    'pt-BR': 'melhor que / tão bom quanto',
+    vi: 'tốt hơn / tốt như',
+    id: 'lebih baik daripada / sama bagusnya dengan',
+    tr: 'daha iyi / kadar iyi',
+    pl: 'lepszy niż / tak dobry jak',
+  },
+  comparison_mixed_005: {
+    'pt-BR': 'Escolha o par correto.',
+    vi: 'Chọn cặp đúng.',
+    id: 'Pilih pasangan yang benar.',
+    tr: 'Doğru çifti seç.',
+    pl: 'Wybierz poprawną parę.',
+  },
+  comparison_mixed_006: {
+    'pt-BR': 'Escolha a frase correta.',
+    vi: 'Chọn câu đúng.',
+    id: 'Pilih kalimat yang benar.',
+    tr: 'Doğru cümleyi seç.',
+    pl: 'Wybierz poprawne zdanie.',
+  },
+};
+
+const COMPARISON_SKILL_HINTS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  cheap_cheaper: {
+    'pt-BR': 'Cheap é curto; use cheaper, não more cheaper.',
+    vi: 'Cheap là từ ngắn; dùng cheaper, không dùng more cheaper.',
+    id: 'Cheap pendek; gunakan cheaper, bukan more cheaper.',
+    tr: 'Cheap kısadır; more cheaper değil cheaper kullan.',
+    pl: 'Cheap jest krótkie; użyj cheaper, nie more cheaper.',
+  },
+  short_adjective_er: {
+    'pt-BR': 'Adjetivo curto costuma usar -er.',
+    vi: 'Tính từ ngắn thường dùng -er.',
+    id: 'Adjektiva pendek biasanya memakai -er.',
+    tr: 'Kısa sıfatlar genelde -er alır.',
+    pl: 'Krótkie przymiotniki zwykle biorą -er.',
+  },
+  more_long_adjective: {
+    'pt-BR': 'Adjetivo longo costuma usar more antes dele.',
+    vi: 'Tính từ dài thường dùng more phía trước.',
+    id: 'Adjektiva panjang biasanya memakai more di depannya.',
+    tr: 'Uzun sıfatlar genelde önüne more alır.',
+    pl: 'Długie przymiotniki zwykle używają more przed sobą.',
+  },
+  double_consonant_bigger: {
+    'pt-BR': 'Big dobra a consoante final: bigger.',
+    vi: 'Big nhân đôi phụ âm cuối: bigger.',
+    id: 'Big menggandakan konsonan akhir: bigger.',
+    tr: 'Big son sessizi çiftler: bigger.',
+    pl: 'Big podwaja końcową spółgłoskę: bigger.',
+  },
+  double_consonant_hotter: {
+    'pt-BR': 'Hot dobra a consoante final: hotter.',
+    vi: 'Hot nhân đôi phụ âm cuối: hotter.',
+    id: 'Hot menggandakan konsonan akhir: hotter.',
+    tr: 'Hot son sessizi çiftler: hotter.',
+    pl: 'Hot podwaja końcową spółgłoskę: hotter.',
+  },
+  y_to_ier: {
+    'pt-BR': 'Easy troca y por i antes de -er: easier.',
+    vi: 'Easy đổi y thành i trước -er: easier.',
+    id: 'Easy mengubah y menjadi i sebelum -er: easier.',
+    tr: 'Easy, -er öncesinde y harfini i yapar: easier.',
+    pl: 'Easy zmienia y na i przed -er: easier.',
+  },
+  than_after_comparison: {
+    'pt-BR': 'Depois de comparação direta, use than.',
+    vi: 'Sau so sánh trực tiếp, dùng than.',
+    id: 'Setelah perbandingan langsung, gunakan than.',
+    tr: 'Doğrudan karşılaştırmadan sonra than kullan.',
+    pl: 'Po bezpośrednim porównaniu użyj than.',
+  },
+  more_useful: {
+    'pt-BR': 'Useful geralmente vira more useful.',
+    vi: 'Useful thường thành more useful.',
+    id: 'Useful biasanya menjadi more useful.',
+    tr: 'Useful genelde more useful olur.',
+    pl: 'Useful zwykle zmienia się w more useful.',
+  },
+  irregular_good_better: {
+    'pt-BR': 'Good é irregular: better.',
+    vi: 'Good là bất quy tắc: better.',
+    id: 'Good tidak beraturan: better.',
+    tr: 'Good düzensizdir: better.',
+    pl: 'Good jest nieregularne: better.',
+  },
+  irregular_bad_worse: {
+    'pt-BR': 'Bad é irregular: worse.',
+    vi: 'Bad là bất quy tắc: worse.',
+    id: 'Bad tidak beraturan: worse.',
+    tr: 'Bad düzensizdir: worse.',
+    pl: 'Bad jest nieregularne: worse.',
+  },
+  as_as_equal_comparison: {
+    'pt-BR': 'Comparação igual usa a moldura as ... as.',
+    vi: 'So sánh ngang bằng dùng khung as ... as.',
+    id: 'Perbandingan setara memakai pola as ... as.',
+    tr: 'Eşit karşılaştırma as ... as kalıbını kullanır.',
+    pl: 'Porównanie równości używa ramy as ... as.',
+  },
+};
+
+const COMPARISON_GENERIC_HINTS: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'Escolha o bloco comparativo correto.',
+  vi: 'Chọn cụm so sánh đúng.',
+  id: 'Pilih potongan perbandingan yang benar.',
+  tr: 'Doğru karşılaştırma parçasını seç.',
+  pl: 'Wybierz właściwy kawałek porównania.',
+};
+
+function fillPlanned(copy: TriText, planned: Partial<Record<PlannedTrainingLocale, string>>): TriText {
+  const next: TriText = { ...copy };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] && planned[locale]) next[locale] = planned[locale];
+  }
+  return next;
+}
+
+function plannedComparisonFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): Record<PlannedTrainingLocale, string> {
+  const focus = input.focusWords.join(' / ');
+  const hints = COMPARISON_SKILL_HINTS[input.targetSkill] ?? COMPARISON_GENERIC_HINTS;
+  return {
+    'pt-BR': `Use "${input.correctAnswer}"${focus ? ` com ${focus}` : ''}. ${hints['pt-BR']}`,
+    vi: `Dùng "${input.correctAnswer}"${focus ? ` với ${focus}` : ''}. ${hints.vi}`,
+    id: `Gunakan "${input.correctAnswer}"${focus ? ` dengan ${focus}` : ''}. ${hints.id}`,
+    tr: `"${input.correctAnswer}" kullan${focus ? ` (${focus})` : ''}. ${hints.tr}`,
+    pl: `Użyj "${input.correctAnswer}"${focus ? ` z ${focus}` : ''}. ${hints.pl}`,
+  };
+}
 
 function retryFor(correct: string, clue: TriText, finalHint: TriText): [TriText, TriText, TriText, TriText] {
   return [
@@ -55,6 +279,13 @@ function defaultWrong(correct: string): TriText {
     `Почти. Форма сравнения не собралась. Здесь нужен вариант: ${correct}.`,
     `Майже. Форма порівняння не зібралася. Тут потрібен варіант: ${correct}.`,
     `Almost. Use: ${correct}.`,
+    {
+      'pt-BR': `Quase. A forma comparativa não ficou montada. Use: ${correct}.`,
+      vi: `Gần đúng. Dạng so sánh chưa được ghép đúng. Dùng: ${correct}.`,
+      id: `Hampir. Bentuk perbandingannya belum tersusun. Gunakan: ${correct}.`,
+      tr: `Neredeyse. Karşılaştırma biçimi kurulmadı. Şunu kullan: ${correct}.`,
+      pl: `Prawie. Forma porównania się nie złożyła. Użyj: ${correct}.`,
+    },
   );
 }
 
@@ -73,35 +304,55 @@ function comparisonStep(input: {
   finalHint: TriText;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const plannedFeedback = plannedComparisonFeedback(input);
+  const plannedTranslation = COMPARISON_STEP_TRANSLATIONS[input.id] ?? plannedFeedback;
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: fillPlanned(input.translation, plannedTranslation),
     teachingText: MODEL,
     explanationBlock: MODEL,
     microTask: tri(
       'Выбери нормальный кусок сравнения.',
       'Обери нормальний шматок порівняння.',
       'Choose the comparison chunk.',
+      {
+        'pt-BR': 'Escolha o bloco comparativo correto.',
+        vi: 'Chọn cụm so sánh đúng.',
+        id: 'Pilih potongan perbandingan yang benar.',
+        tr: 'Doğru karşılaştırma parçasını seç.',
+        pl: 'Wybierz właściwy kawałek porównania.',
+      },
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: fillPlanned(input.correctFeedback, plannedFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, fillPlanned(input.wrong[option] ?? defaultWrong(input.correctAnswer), plannedFeedback)]),
     ),
-    retryFeedback: retryFor(input.correctAnswer, input.clue, input.finalHint),
+    retryFeedback: retryFor(
+      input.correctAnswer,
+      fillPlanned(input.clue, plannedFeedback),
+      fillPlanned(input.finalHint, plannedFeedback),
+    ).map((copy) => fillPlanned(copy, plannedFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Коротко: cheap -> cheaper, big -> bigger, easy -> easier. Длинные слова часто: more expensive, more useful. Good -> better, bad -> worse. Равное сравнение: as good as.',
       'Коротко: cheap -> cheaper, big -> bigger, easy -> easier. Довгі слова часто: more expensive, more useful. Good -> better, bad -> worse. Рівне порівняння: as good as.',
       'Short version: cheaper, bigger, easier, more expensive, better, worse, as good as.',
+      {
+        'pt-BR': 'Resumo: cheaper, bigger, easier, more expensive, better, worse, as good as.',
+        vi: 'Tóm tắt: cheaper, bigger, easier, more expensive, better, worse, as good as.',
+        id: 'Ringkasnya: cheaper, bigger, easier, more expensive, better, worse, as good as.',
+        tr: 'Kısa özet: cheaper, bigger, easier, more expensive, better, worse, as good as.',
+        pl: 'Krótko: cheaper, bigger, easier, more expensive, better, worse, as good as.',
+      },
     ),
     focusWords: input.focusWords,
   };
@@ -117,18 +368,45 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
   title: tri(
     'Cheaper / More Expensive / Better: сравнение без каши',
     'Cheaper / More Expensive / Better: порівняння без каші',
-    'Cheaper / More Expensive / Better',
+    'Cheaper / More Expensive / Better: comparación',
+    {
+      'pt-BR': 'Cheaper / More Expensive / Better: comparação',
+      vi: 'Cheaper / More Expensive / Better: so sánh',
+      id: 'Cheaper / More Expensive / Better: perbandingan',
+      tr: 'Cheaper / More Expensive / Better: karşılaştırma',
+      pl: 'Cheaper / More Expensive / Better: porównanie',
+    },
   ),
-  shortTitle: tri('cheaper / more expensive', 'cheaper / more expensive', 'cheaper / more expensive'),
+  shortTitle: tri('cheaper / more expensive', 'cheaper / more expensive', 'cheaper / more expensive: comparación', {
+    'pt-BR': 'cheaper / more expensive: comparação',
+    vi: 'cheaper / more expensive: so sánh',
+    id: 'cheaper / more expensive: perbandingan',
+    tr: 'cheaper / more expensive: karşılaştırma',
+    pl: 'cheaper / more expensive: porównanie',
+  }),
   shortDiagnosis: tri(
     'Ты смешиваешь короткое сравнение, длинное сравнение, исключения и равное сравнение.',
     'Ти змiшуєш коротке порiвняння, довге порiвняння, винятки i рiвне порiвняння.',
     'You mix -er, more, than, better/worse, and as ... as.',
+    {
+      'pt-BR': 'Você mistura -er, more, than, better/worse e as ... as.',
+      vi: 'Bạn nhầm -er, more, than, better/worse và as ... as.',
+      id: 'Kamu mencampur -er, more, than, better/worse, dan as ... as.',
+      tr: '-er, more, than, better/worse ve as ... as karışıyor.',
+      pl: 'Mylisz -er, more, than, better/worse i as ... as.',
+    },
   ),
   diagnosisText: tri(
     'Ошибка обычно не в смысле. Ты понимаешь "дешевле", "дороже", "лучше", "такой же хороший". Ломается английский кусок: more cheaper, expensiver, gooder, better / than вместо as good as.',
     'Помилка зазвичай не в змісті. Ти розумієш "дешевше", "дорожче", "краще", "такий самий хороший". Ламається англійський шматок: more cheaper, expensiver, gooder, better / than замість as good as.',
     'The meaning is usually clear, but the comparison chunk breaks.',
+    {
+      'pt-BR': 'O sentido geralmente está claro, mas o bloco comparativo quebra: more cheaper, expensiver, gooder ou better / than no lugar de as good as.',
+      vi: 'Nghĩa thường đã rõ, nhưng cụm so sánh bị hỏng: more cheaper, expensiver, gooder hoặc better / than thay vì as good as.',
+      id: 'Maknanya biasanya jelas, tetapi potongan perbandingannya rusak: more cheaper, expensiver, gooder, atau better / than alih-alih as good as.',
+      tr: 'Anlam genelde nettir, ama karşılaştırma parçası bozulur: more cheaper, expensiver, gooder ya da as good as yerine better / than.',
+      pl: 'Znaczenie zwykle jest jasne, ale kawałek porównania się psuje: more cheaper, expensiver, gooder albo better / than zamiast as good as.',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
@@ -136,6 +414,13 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
     'Короткие слова часто получают -er: cheaper, faster, bigger, easier. Длинные чаще идут с more: more expensive, more useful. Good и bad живут отдельно: better, worse. Равное сравнение: as good as.',
     'Короткі слова часто отримують -er: cheaper, faster, bigger, easier. Довгі частіше йдуть із more: more expensive, more useful. Good і bad живуть окремо: better, worse. Рівне порівняння: as good as.',
     'Short words often use -er; long words often use more. Good/bad become better/worse. Equal comparison uses as ... as.',
+    {
+      'pt-BR': 'Palavras curtas muitas vezes usam -er; palavras longas muitas vezes usam more. Good/bad viram better/worse. Comparação igual usa as ... as.',
+      vi: 'Từ ngắn thường dùng -er; từ dài thường dùng more. Good/bad thành better/worse. So sánh ngang bằng dùng as ... as.',
+      id: 'Kata pendek sering memakai -er; kata panjang sering memakai more. Good/bad menjadi better/worse. Perbandingan setara memakai as ... as.',
+      tr: 'Kısa kelimeler çoğu zaman -er alır; uzun kelimeler çoğu zaman more alır. Good/bad, better/worse olur. Eşit karşılaştırma as ... as kullanır.',
+      pl: 'Krótkie słowa często używają -er; długie często używają more. Good/bad zmieniają się w better/worse. Porównanie równości używa as ... as.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -246,7 +531,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
       id: 'Tas ini lebih murah daripada punya saya.',
       tr: 'Bu çanta benimkinden daha ucuz.',
       pl: 'Ta torba jest tańsza niż moja.',
-      why: tri('Cheap короткое, поэтому cheaper. После сравнения than.', 'Cheap коротке, тому cheaper. Після порівняння than.', 'Cheap -> cheaper; use than.'),
+      why: tri('Cheap короткое, поэтому cheaper. После сравнения than.', 'Cheap коротке, тому cheaper. Після порівняння than.', 'Cheap -> cheaper; use than.', { 'pt-BR': 'Cheap é curto, por isso cheaper. Depois da comparação, than.', vi: 'Cheap là từ ngắn, vì vậy dùng cheaper. Sau so sánh dùng than.', id: 'Cheap pendek, jadi cheaper. Setelah perbandingan gunakan than.', tr: 'Cheap kısadır, bu yüzden cheaper. Karşılaştırmadan sonra than gelir.', pl: 'Cheap jest krótkie, więc cheaper. Po porównaniu użyj than.' }),
     },
     {
       en: 'My car is faster than yours.',
@@ -258,7 +543,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
       id: 'Mobil saya lebih cepat daripada mobilmu.',
       tr: 'Arabam seninkinden daha hızlı.',
       pl: 'Mój samochód jest szybszy niż twój.',
-      why: tri('Fast становится faster.', 'Fast стає faster.', 'Fast -> faster.'),
+      why: tri('Fast становится faster.', 'Fast стає faster.', 'Fast -> faster.', { 'pt-BR': 'Fast vira faster.', vi: 'Fast trở thành faster.', id: 'Fast menjadi faster.', tr: 'Fast, faster olur.', pl: 'Fast zmienia się w faster.' }),
     },
     {
       en: 'This hotel is more expensive.',
@@ -270,7 +555,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
       id: 'Hotel ini lebih mahal.',
       tr: 'Bu otel daha pahalı.',
       pl: 'Ten hotel jest droższy.',
-      why: tri('Expensive длинное, поэтому обычно more expensive.', 'Expensive довге, тому зазвичай more expensive.', 'Use more expensive.'),
+      why: tri('Expensive длинное, поэтому обычно more expensive.', 'Expensive довге, тому зазвичай more expensive.', 'Use more expensive.', { 'pt-BR': 'Expensive é longo, por isso geralmente more expensive.', vi: 'Expensive là từ dài, vì vậy thường dùng more expensive.', id: 'Expensive panjang, jadi biasanya more expensive.', tr: 'Expensive uzundur, bu yüzden genelde more expensive.', pl: 'Expensive jest długie, więc zwykle more expensive.' }),
     },
     {
       en: 'This room is bigger than mine.',
@@ -282,7 +567,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
       id: 'Kamar ini lebih besar daripada kamar saya.',
       tr: 'Bu oda benimkinden daha büyük.',
       pl: 'Ten pokój jest większy niż mój.',
-      why: tri('Big получает двойную g: bigger.', 'Big отримує подвійну g: bigger.', 'Big -> bigger.'),
+      why: tri('Big получает двойную g: bigger.', 'Big отримує подвійну g: bigger.', 'Big -> bigger.', { 'pt-BR': 'Big dobra o g: bigger.', vi: 'Big nhân đôi g: bigger.', id: 'Big menggandakan g: bigger.', tr: 'Big g harfini çiftler: bigger.', pl: 'Big podwaja g: bigger.' }),
     },
     {
       en: 'This exercise is easier than the first one.',
@@ -294,7 +579,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
       id: 'Latihan ini lebih mudah daripada yang pertama.',
       tr: 'Bu alıştırma ilkinden daha kolay.',
       pl: 'To ćwiczenie jest łatwiejsze niż pierwsze.',
-      why: tri('Easy меняет y на i: easier.', 'Easy змінює y на i: easier.', 'Easy -> easier.'),
+      why: tri('Easy меняет y на i: easier.', 'Easy змінює y на i: easier.', 'Easy -> easier.', { 'pt-BR': 'Easy troca y por i: easier.', vi: 'Easy đổi y thành i: easier.', id: 'Easy mengubah y menjadi i: easier.', tr: 'Easy y harfini i yapar: easier.', pl: 'Easy zmienia y na i: easier.' }),
     },
     {
       en: 'This option is better than the other one.',
@@ -306,7 +591,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
       id: 'Opsi ini lebih baik daripada yang lain.',
       tr: 'Bu seçenek diğerinden daha iyi.',
       pl: 'Ta opcja jest lepsza od drugiej.',
-      why: tri('Good меняется отдельно: better.', 'Good змінюється окремо: better.', 'Good -> better.'),
+      why: tri('Good меняется отдельно: better.', 'Good змінюється окремо: better.', 'Good -> better.', { 'pt-BR': 'Good muda separadamente: better.', vi: 'Good đổi riêng: better.', id: 'Good berubah khusus: better.', tr: 'Good ayrı değişir: better.', pl: 'Good zmienia się osobno: better.' }),
     },
     {
       en: 'The situation is worse than before.',
@@ -318,7 +603,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
       id: 'Situasinya lebih buruk dari sebelumnya.',
       tr: 'Durum eskisinden daha kötü.',
       pl: 'Sytuacja jest gorsza niż wcześniej.',
-      why: tri('Bad меняется отдельно: worse.', 'Bad змінюється окремо: worse.', 'Bad -> worse.'),
+      why: tri('Bad меняется отдельно: worse.', 'Bad змінюється окремо: worse.', 'Bad -> worse.', { 'pt-BR': 'Bad muda separadamente: worse.', vi: 'Bad đổi riêng: worse.', id: 'Bad berubah khusus: worse.', tr: 'Bad ayrı değişir: worse.', pl: 'Bad zmienia się osobno: worse.' }),
     },
     {
       en: 'This phone is as good as mine.',
@@ -330,7 +615,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
       id: 'Ponsel ini sama bagusnya dengan punya saya.',
       tr: 'Bu telefon benimki kadar iyi.',
       pl: 'Ten telefon jest tak dobry jak mój.',
-      why: tri('Такой же ... как = as ... as.', 'Такий самий ... як = as ... as.', 'Equal comparison uses as ... as.'),
+      why: tri('Такой же ... как = as ... as.', 'Такий самий ... як = as ... as.', 'Equal comparison uses as ... as.', { 'pt-BR': 'Comparação igual usa as ... as.', vi: 'So sánh ngang bằng dùng as ... as.', id: 'Perbandingan setara memakai as ... as.', tr: 'Eşit karşılaştırma as ... as kullanır.', pl: 'Porównanie równości używa as ... as.' }),
     },
   ],
   introBlocks: [
@@ -341,6 +626,13 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
         'Похоже, смысл сравнения ты видишь, но английский кусок собирается не тем способом: more cheaper, expensiver, gooder.',
         'Схоже, зміст порівняння ти бачиш, але англійський шматок збирається не тим способом: more cheaper, expensiver, gooder.',
         'The comparison meaning is clear, but the chunk is broken.',
+        {
+          'pt-BR': 'O sentido da comparação está claro, mas o bloco em inglês é montado do jeito errado: more cheaper, expensiver, gooder.',
+          vi: 'Bạn hiểu nghĩa so sánh, nhưng cụm tiếng Anh được ghép sai: more cheaper, expensiver, gooder.',
+          id: 'Makna perbandingannya jelas, tetapi potongan bahasa Inggris disusun dengan cara yang salah: more cheaper, expensiver, gooder.',
+          tr: 'Karşılaştırmanın anlamını görüyorsun, ama İngilizce parça yanlış kuruluyor: more cheaper, expensiver, gooder.',
+          pl: 'Sens porównania jest jasny, ale angielski kawałek składa się złą metodą: more cheaper, expensiver, gooder.',
+        },
       ),
     },
     {
@@ -350,6 +642,13 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
         'Три главные полки: cheaper/faster, more expensive/more useful, better/worse. Для равного сравнения отдельно: as good as.',
         'Три головні полиці: cheaper/faster, more expensive/more useful, better/worse. Для рівного порівняння окремо: as good as.',
         'Three shelves: cheaper/faster, more expensive, better/worse; equal comparison: as good as.',
+        {
+          'pt-BR': 'Três grupos principais: cheaper/faster, more expensive/more useful, better/worse. Para comparação igual: as good as.',
+          vi: 'Ba nhóm chính: cheaper/faster, more expensive/more useful, better/worse. Với so sánh ngang bằng: as good as.',
+          id: 'Tiga kelompok utama: cheaper/faster, more expensive/more useful, better/worse. Untuk perbandingan setara: as good as.',
+          tr: 'Üç ana raf: cheaper/faster, more expensive/more useful, better/worse. Eşit karşılaştırma için ayrı: as good as.',
+          pl: 'Trzy główne półki: cheaper/faster, more expensive/more useful, better/worse. Dla porównania równości: as good as.',
+        },
       ),
     },
     {
@@ -359,6 +658,13 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
         'Главная ловушка: не добавляй два усилителя сразу. Не more cheaper, не more better, не more usefuler.',
         'Головна пастка: не додавай два підсилювачі одразу. Не more cheaper, не more better, не more usefuler.',
         'Do not combine more and -er.',
+        {
+          'pt-BR': 'A principal armadilha: não coloque dois marcadores de comparação ao mesmo tempo. Não more cheaper, more better ou more usefuler.',
+          vi: 'Bẫy chính: đừng thêm hai dấu so sánh cùng lúc. Không dùng more cheaper, more better, more usefuler.',
+          id: 'Jebakan utama: jangan menambahkan dua penguat sekaligus. Bukan more cheaper, more better, atau more usefuler.',
+          tr: 'Ana tuzak: iki karşılaştırma işaretini aynı anda ekleme. More cheaper, more better, more usefuler olmaz.',
+          pl: 'Główna pułapka: nie dodawaj dwóch wzmocnień naraz. Nie more cheaper, more better ani more usefuler.',
+        },
       ),
     },
   ],
@@ -675,10 +981,10 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Обычное объяснение: показать, какой кусок сравнения нужен.', 'Звичайне пояснення: показати, який шматок порівняння потрібен.', 'Show the comparison chunk.'),
-    depth2: tri('Проще: выбери тип сравнения - короткая форма, длинная форма, исключение или "такой же как".', 'Простiше: обери тип порiвняння - коротка форма, довга форма, виняток або "такий самий як".', 'Choose between -er, more, better/worse, and as ... as.'),
-    depth3: tri('Еще проще: короткое слово часто меняется само, длинному часто нужен отдельный усилитель, а равное сравнение идет рамкой.', 'Ще простiше: коротке слово часто змiнюється саме, довгому часто потрiбен окремий пiдсилювач, а рiвне порiвняння йде рамкою.', 'Compare the key chunks.'),
-    depth4: tri('Почти подсказка: показать правильный готовый кусок.', 'Майже підказка: показати правильний готовий шматок.', 'Point to the correct chunk.'),
+    depth1: tri('Обычное объяснение: показать, какой кусок сравнения нужен.', 'Звичайне пояснення: показати, який шматок порівняння потрібен.', 'Show the comparison chunk.', { 'pt-BR': 'Explicação normal: mostrar qual bloco comparativo é necessário.', vi: 'Giải thích bình thường: cho biết cần cụm so sánh nào.', id: 'Penjelasan biasa: tunjukkan potongan perbandingan yang diperlukan.', tr: 'Normal açıklama: hangi karşılaştırma parçasının gerektiğini göster.', pl: 'Zwykłe wyjaśnienie: pokaż, jaki kawałek porównania jest potrzebny.' }),
+    depth2: tri('Проще: выбери тип сравнения - короткая форма, длинная форма, исключение или "такой же как".', 'Простiше: обери тип порiвняння - коротка форма, довга форма, виняток або "такий самий як".', 'Choose between -er, more, better/worse, and as ... as.', { 'pt-BR': 'Mais simples: escolha o tipo de comparação: forma curta, forma longa, exceção ou "tão ... quanto".', vi: 'Đơn giản hơn: chọn loại so sánh: dạng ngắn, dạng dài, ngoại lệ hoặc "cũng ... như".', id: 'Lebih sederhana: pilih jenis perbandingan: bentuk pendek, bentuk panjang, pengecualian, atau "sama ... seperti".', tr: 'Daha basit: karşılaştırma türünü seç: kısa biçim, uzun biçim, istisna ya da "aynı ... gibi".', pl: 'Prościej: wybierz typ porównania: krótka forma, długa forma, wyjątek albo "tak samo ... jak".' }),
+    depth3: tri('Еще проще: короткое слово часто меняется само, длинному часто нужен отдельный усилитель, а равное сравнение идет рамкой.', 'Ще простiше: коротке слово часто змiнюється саме, довгому часто потрiбен окремий пiдсилювач, а рiвне порiвняння йде рамкою.', 'Compare the key chunks.', { 'pt-BR': 'Ainda mais simples: palavra curta muda sozinha, palavra longa costuma precisar de more, e comparação igual usa uma moldura.', vi: 'Đơn giản hơn nữa: từ ngắn thường tự đổi, từ dài thường cần more, còn so sánh ngang bằng dùng một khung.', id: 'Lebih sederhana lagi: kata pendek sering berubah sendiri, kata panjang sering perlu more, dan perbandingan setara memakai pola bingkai.', tr: 'Daha da basit: kısa kelime çoğu zaman kendisi değişir, uzun kelimeye çoğu zaman more gerekir, eşit karşılaştırma ise kalıpla kurulur.', pl: 'Jeszcze prościej: krótkie słowo często zmienia się samo, długie często potrzebuje more, a porównanie równości idzie ramą.' }),
+    depth4: tri('Почти подсказка: показать правильный готовый кусок.', 'Майже підказка: показати правильний готовий шматок.', 'Point to the correct chunk.', { 'pt-BR': 'Quase uma dica: mostrar o bloco pronto correto.', vi: 'Gần như gợi ý: chỉ cụm đúng đã ghép sẵn.', id: 'Hampir petunjuk: tunjukkan potongan siap pakai yang benar.', tr: 'Neredeyse ipucu: doğru hazır parçayı göster.', pl: 'Prawie podpowiedź: pokaż poprawny gotowy kawałek.' }),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -687,6 +993,13 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
         'Коротко: у коротких слов часто меняется конец, длинные часто идут через more. Хороший и плохой сравниваются отдельными словами. "Такой же как" собирается рамкой.',
         'Коротко: у коротких слiв часто змiнюється кiнець, довгi часто йдуть через more. Хороший i поганий порiвнюються окремими словами. "Такий самий як" збирається рамкою.',
         'Cheaper/faster/easier, more expensive/useful, better/worse, as ... as.',
+        {
+          'pt-BR': 'Resumo: palavras curtas muitas vezes mudam o final; palavras longas muitas vezes usam more. Good/bad usam palavras especiais. Comparação igual usa moldura.',
+          vi: 'Tóm tắt: từ ngắn thường đổi đuôi; từ dài thường dùng more. Good/bad dùng từ riêng. So sánh ngang bằng dùng khung.',
+          id: 'Ringkasnya: kata pendek sering berubah akhirnya; kata panjang sering memakai more. Good/bad memakai kata khusus. Perbandingan setara memakai pola.',
+          tr: 'Kısa özet: kısa kelimelerin sonu çoğu zaman değişir; uzunlar çoğu zaman more alır. Good/bad ayrı kelimelerle karşılaştırılır. Eşit karşılaştırma kalıpla kurulur.',
+          pl: 'Krótko: krótkie słowa często zmieniają końcówkę, długie często idą przez more. Good/bad porównują się osobnymi słowami. Porównanie równości składa się ramą.',
+        },
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -695,6 +1008,13 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
         'Подсказка: сначала реши, это обычное "более", исключение better/worse или равное сравнение.',
         'Підказка: спочатку виріши, це звичайне "більш", виняток better/worse чи рівне порівняння.',
         'Hint: choose the comparison type first.',
+        {
+          'pt-BR': 'Dica: primeiro decida se é "mais" normal, exceção better/worse ou comparação igual.',
+          vi: 'Gợi ý: trước tiên quyết định đây là dạng "hơn" bình thường, ngoại lệ better/worse hay so sánh ngang bằng.',
+          id: 'Petunjuk: tentukan dulu apakah ini "lebih" biasa, pengecualian better/worse, atau perbandingan setara.',
+          tr: 'İpucu: önce bunun normal "daha", better/worse istisnası mı yoksa eşit karşılaştırma mı olduğuna karar ver.',
+          pl: 'Podpowiedź: najpierw zdecyduj, czy to zwykłe "bardziej", wyjątek better/worse, czy porównanie równości.',
+        },
       ),
     },
     afterFourWrongInSameExercise: {
@@ -703,6 +1023,13 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
         'Режим с подсказками: сначала выбираем полку, потом возвращаемся к полной фразе.',
         'Режим із підказками: спочатку обираємо полицю, потім повертаємося до повної фрази.',
         'Guided mode: choose the shelf first.',
+        {
+          'pt-BR': 'Modo guiado: primeiro escolha o grupo, depois volte à frase completa.',
+          vi: 'Chế độ gợi ý: trước tiên chọn nhóm, sau đó quay lại cụm đầy đủ.',
+          id: 'Mode terpandu: pilih kelompoknya dulu, lalu kembali ke frasa lengkap.',
+          tr: 'Rehberli mod: önce rafı seç, sonra tam ifadeye dön.',
+          pl: 'Tryb prowadzony: najpierw wybierz półkę, potem wróć do pełnej frazy.',
+        },
       ),
     },
   },
@@ -712,28 +1039,28 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_comparison_001',
-        prompt: tri('Cheap обычно становится cheaper или more cheap?', 'Cheap зазвичай стає cheaper чи more cheap?', 'Cheap usually becomes cheaper or more cheap?'),
+        prompt: tri('Cheap обычно становится cheaper или more cheap?', 'Cheap зазвичай стає cheaper чи more cheap?', 'Cheap usually becomes cheaper or more cheap?', { 'pt-BR': 'Cheap geralmente vira cheaper ou more cheap?', vi: 'Cheap thường thành cheaper hay more cheap?', id: 'Cheap biasanya menjadi cheaper atau more cheap?', tr: 'Cheap genelde cheaper mı olur, more cheap mi?', pl: 'Cheap zwykle zmienia się w cheaper czy more cheap?' }),
         options: ['cheaper', 'more cheap'],
         correctIndex: 0,
         thenReturnToExerciseId: 'comparison_easy_001',
       },
       {
         id: 'guided_comparison_002',
-        prompt: tri('Для длинного прилагательного обычно меняем конец слова или ставим отдельный усилитель перед ним?', 'Для довгого прикметника зазвичай змiнюємо кiнець слова чи ставимо окремий пiдсилювач перед ним?', 'Expensive usually becomes expensiver or more expensive?'),
+        prompt: tri('Для длинного прилагательного обычно меняем конец слова или ставим отдельный усилитель перед ним?', 'Для довгого прикметника зазвичай змiнюємо кiнець слова чи ставимо окремий пiдсилювач перед ним?', 'Expensive usually becomes expensiver or more expensive?', { 'pt-BR': 'Expensive geralmente vira expensiver ou more expensive?', vi: 'Expensive thường thành expensiver hay more expensive?', id: 'Expensive biasanya menjadi expensiver atau more expensive?', tr: 'Expensive genelde expensiver mı olur, more expensive mı?', pl: 'Expensive zwykle zmienia się w expensiver czy more expensive?' }),
         options: ['expensiver', 'more expensive'],
         correctIndex: 1,
         thenReturnToExerciseId: 'comparison_easy_003',
       },
       {
         id: 'guided_comparison_003',
-        prompt: tri('Good в сравнении становится gooder или better?', 'Good у порівнянні стає gooder чи better?', 'Good becomes gooder or better?'),
+        prompt: tri('Good в сравнении становится gooder или better?', 'Good у порівнянні стає gooder чи better?', 'Good becomes gooder or better?', { 'pt-BR': 'Good na comparação vira gooder ou better?', vi: 'Good trong so sánh thành gooder hay better?', id: 'Good dalam perbandingan menjadi gooder atau better?', tr: 'Good karşılaştırmada gooder mı olur, better mı?', pl: 'Good w porównaniu zmienia się w gooder czy better?' }),
         options: ['gooder', 'better'],
         correctIndex: 1,
         thenReturnToExerciseId: 'comparison_contrast_006',
       },
       {
         id: 'guided_comparison_004',
-        prompt: tri('Такой же хороший, как = better than или as good as?', 'Такий самий хороший, як = better than чи as good as?', 'Equal comparison: better than or as good as?'),
+        prompt: tri('Такой же хороший, как = better than или as good as?', 'Такий самий хороший, як = better than чи as good as?', 'Equal comparison: better than or as good as?', { 'pt-BR': 'Comparação igual: better than ou as good as?', vi: 'So sánh ngang bằng: better than hay as good as?', id: 'Perbandingan setara: better than atau as good as?', tr: 'Eşit karşılaştırma: better than mı as good as mi?', pl: 'Porównanie równości: better than czy as good as?' }),
         options: ['better than', 'as good as'],
         correctIndex: 1,
         thenReturnToExerciseId: 'comparison_mixed_003',
@@ -745,7 +1072,13 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'adjective',
     microDiagnosisId: 'adjective_comparison',
-    diagnosisLabel: tri('Adjective comparison', 'Adjective comparison', 'Adjective comparison'),
+    diagnosisLabel: tri('Adjective comparison', 'Adjective comparison', 'Comparación de adjetivos', {
+      'pt-BR': 'Comparação de adjetivos',
+      vi: 'So sánh tính từ',
+      id: 'Perbandingan adjektiva',
+      tr: 'Sıfat karşılaştırması',
+      pl: 'Stopniowanie przymiotników',
+    }),
     contrastSet: CONTRAST,
     difficultyLevel: 2,
     focusWords: ['cheaper', 'faster', 'more expensive', 'bigger', 'easier', 'better', 'worse', 'as good as'],
@@ -783,7 +1116,7 @@ export const ADJECTIVE_COMPARISON_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_adjective_comparison_start',
     answer: 'diagnosis_training_adjective_comparison_answer',
     mastery: 'diagnosis_training_adjective_comparison_mastery',
-    fallback: 'diagnosis_training_adjective_comparison_fallback',
+    recovery: 'diagnosis_training_adjective_comparison_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

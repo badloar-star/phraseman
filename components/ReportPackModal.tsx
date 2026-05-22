@@ -23,6 +23,7 @@ import {
 } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { hideCommunityPackOnDevice } from '../app/community_packs/communityPackHiddenStorage';
+import type { RuntimeStudyTarget } from '../app/target_storage_keys';
 import { submitPackReport, type PackReportReason } from '../app/user_report';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -33,6 +34,7 @@ interface Props {
   packTitle: string;
   authorStableId?: string | null;
   lang: Lang;
+  studyTarget?: RuntimeStudyTarget;
   onClose: () => void;
   /** Після приховування набору на цьому пристрої (оновити список у батьківському екрані). */
   onPackHiddenOnDevice?: () => void;
@@ -71,6 +73,7 @@ export default function ReportPackModal({
   packTitle,
   authorStableId,
   lang,
+  studyTarget,
   onClose,
   onPackHiddenOnDevice,
 }: Props) {
@@ -107,6 +110,7 @@ export default function ReportPackModal({
         packId,
         packTitle,
         authorStableId,
+        studyTarget,
         reason: selected,
         comment: comment.trim(),
       });
@@ -174,7 +178,7 @@ export default function ReportPackModal({
                     try {
                       hapticTap();
                       setHiding(true);
-                      await hideCommunityPackOnDevice(packId);
+                      await hideCommunityPackOnDevice(packId, studyTarget);
                       onPackHiddenOnDevice?.();
                       hapticSuccess();
                       handleClose();

@@ -4,19 +4,21 @@
 // Cloud Function computeLeaderboardStatsCron пишет leaderboard_stats/global
 // каждый час. Клиент читает его один раз и кэширует на час локально.
 //
-// Каждый пользователь (в любом месте рейтинга) получает точный перцентиль
-// через lookupPercentile() без дополнительных Firestore запросов.
+// Активный пользователь получает точный перцентиль через lookupPercentile()
+// без дополнительных Firestore запросов.
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 
-const CACHE_KEY = 'leaderboard_stats_cache_v1';
+const CACHE_KEY = 'leaderboard_stats_cache_v2';
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 час
+export const MIN_PERCENTILE_SAMPLE_XP = 5000;
 
 export interface GlobalLeaderboardStats {
   totalUsers: number;
   updatedAt: number;
+  minimumSampleXp?: number;
   xpThresholds: number[];
   streakThresholds: number[];
   weekXpThresholds: number[];
@@ -39,7 +41,7 @@ let _memCache: { data: GlobalLeaderboardStats; fetchedAt: number } | null = null
 
 /**
  * Инжектировать mock-данные для тестирования перцентилей без Firestore.
- * Пороги построены так, что пользователь с любым XP > 0 окажется в top 25%.
+ * Mock использует тот же XP-порог активной выборки, что и production stats.
  * Вызывается из _admin_settings_testers.tsx.
  */
 export function injectMockLeaderboardStats(): void {
@@ -53,7 +55,8 @@ export function injectMockLeaderboardStats(): void {
     data: {
       totalUsers: 12847,
       updatedAt: Date.now(),
-      xpThresholds:         makeThresholds(5000),   // у реального юзера обычно 1000-3000 XP → top 30-40%
+      minimumSampleXp: MIN_PERCENTILE_SAMPLE_XP,
+      xpThresholds:         makeThresholds(5000),   // активная выборка начинается с 5000 XP
       streakThresholds:     makeThresholds(60),      // цепочка 7–14д → top 30–50%
       weekXpThresholds:     makeThresholds(500),
       daily7xpThresholds:   makeThresholds(400),
@@ -125,6 +128,11 @@ export function lookupPercentile(thresholds: number[], myValue: number): number 
   return result;
 }
 
+function percentileSampleXpFloor(stats: GlobalLeaderboardStats): number {
+  const configured = Math.trunc(Number(stats.minimumSampleXp));
+  return Number.isFinite(configured) && configured > 0 ? configured : MIN_PERCENTILE_SAMPLE_XP;
+}
+
 export interface AllPercentiles {
   /** По суммарному XP (все время) */
   xp: number | null;
@@ -162,12 +170,14 @@ export async function computeAllPercentiles(opts: {
   const stats = await fetchLeaderboardStats();
   if (!stats) return empty;
 
+  const isInAppSample = opts.myXp >= percentileSampleXpFloor(stats);
+
   return {
-    xp: lookupPercentile(stats.xpThresholds, opts.myXp),
-    streak: lookupPercentile(stats.streakThresholds, opts.myStreak),
-    weekXp: lookupPercentile(stats.weekXpThresholds, opts.myWeekXp),
-    daily7xp: lookupPercentile(stats.daily7xpThresholds, opts.myDaily7xp),
-    daily7timeMs: lookupPercentile(stats.daily7timeMsThresholds, opts.myDaily7timeMs),
+    xp: isInAppSample ? lookupPercentile(stats.xpThresholds, opts.myXp) : null,
+    streak: isInAppSample ? lookupPercentile(stats.streakThresholds, opts.myStreak) : null,
+    weekXp: isInAppSample ? lookupPercentile(stats.weekXpThresholds, opts.myWeekXp) : null,
+    daily7xp: isInAppSample ? lookupPercentile(stats.daily7xpThresholds, opts.myDaily7xp) : null,
+    daily7timeMs: isInAppSample ? lookupPercentile(stats.daily7timeMsThresholds, opts.myDaily7timeMs) : null,
     arenaXp: lookupPercentile(stats.arenaXpThresholds, opts.myArenaXp),
     totalUsers: stats.totalUsers,
   };

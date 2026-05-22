@@ -11,7 +11,7 @@ import {
   View, Text, Modal, Animated, Easing, TouchableOpacity,
   Dimensions, ScrollView, Image, StyleSheet, Pressable,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
@@ -22,7 +22,7 @@ import {
 } from './league_engine';
 import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
-import { premiumMemberNameStyle } from '../components/premiumMemberStyles';
+import { memberNameStatusStyle } from '../components/premiumMemberStyles';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
@@ -1092,7 +1092,7 @@ const PodiumColumn = memo(function PodiumColumn({
   const height = PODIUM_HEIGHTS[place];
   const xp     = member?.totalXp ?? 0;
   const avatar = member?.avatar ?? String(getBestAvatarForLevel(getLevelFromXP(xp)));
-  const effectiveAura = getEffectiveAvatarAuraId(member?.aura, member?.isPremium);
+  const effectiveAura = getEffectiveAvatarAuraId(member?.aura, member?.isPremium, member?.isVip);
   const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   const name   = (member?.name ?? '—').slice(0, 10);
 
@@ -1120,7 +1120,7 @@ const PodiumColumn = memo(function PodiumColumn({
       {/* Имя */}
       <Text
         numberOfLines={1}
-        style={premiumMemberNameStyle(
+        style={memberNameStatusStyle(
           {
             color: member?.isMe ? cfg.primary : t.textPrimary,
             fontSize: f.caption,
@@ -1128,8 +1128,7 @@ const PodiumColumn = memo(function PodiumColumn({
             maxWidth: 90,
             textAlign: 'center',
           },
-          !!member?.isPremium,
-          themeMode,
+          { isPremium: !!member?.isPremium, isVip: !!member?.isVip, themeMode },
         )}
       >
         {name}{member?.isMe ? triLang(lang, {
@@ -1188,7 +1187,7 @@ const GroupRow = memo(function GroupRow({
 }) {
   const xp     = member.totalXp ?? 0;
   const avatar = member.avatar ?? String(getBestAvatarForLevel(getLevelFromXP(xp)));
-  const effectiveAura = getEffectiveAvatarAuraId(member.aura, member.isPremium);
+  const effectiveAura = getEffectiveAvatarAuraId(member.aura, member.isPremium, member.isVip);
   const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   const isTop3 = place <= 3;
   const rowBg  = member.isMe
@@ -1253,15 +1252,14 @@ const GroupRow = memo(function GroupRow({
       {/* Имя */}
       <Text
         numberOfLines={1}
-        style={premiumMemberNameStyle(
+        style={memberNameStatusStyle(
           {
             flex: 1,
             fontSize: f.body,
             color: member.isMe ? t.textPrimary : t.textPrimary,
             fontWeight: member.isMe ? '800' : '600',
           },
-          !!member.isPremium,
-          themeMode,
+          { isPremium: !!member.isPremium, isVip: !!member.isVip, themeMode },
         )}
       >
         {member.name}{member.isMe ? triLang(lang, {

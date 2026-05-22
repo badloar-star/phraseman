@@ -58,6 +58,25 @@ describe('heisenberg localization pipeline core', () => {
     expect(core.shouldSkipRelative('.claude/settings.local.json')).toBe(true);
   });
 
+  it('generates a mandatory agent review board with stable reviewer roles', () => {
+    expect(core.HEISENBERG_AGENT_REVIEW_BOARD.map((agent: any) => agent.id)).toEqual([
+      'chief-editor',
+      'grammar-pedagogy',
+      'runtime-integrity',
+      'surface-owner',
+      'activation-gate',
+    ]);
+
+    const markdown = core.buildAgentReviewBoardMarkdown('pt-br');
+    expect(markdown).toContain('# Heisenberg Agent Review Board: pt-BR');
+    expect(markdown).toContain('Chief Editor');
+    expect(markdown).toContain('Grammar Pedagogy Reviewer');
+    expect(markdown).toContain('Runtime Integrity Reviewer');
+    expect(markdown).toContain('Surface Owner');
+    expect(markdown).toContain('Activation Gate Reviewer');
+    expect(markdown).toContain('BLOCKED');
+  });
+
   it('infers locales from existing field contracts', () => {
     expect(core.inferLocaleFromKey('titleRU')).toBe('ru');
     expect(core.inferLocaleFromKey('messageUk')).toBe('uk');
@@ -205,6 +224,75 @@ describe('heisenberg localization pipeline core', () => {
     expect(ids).toContain('tr:break.tr:Kırmak');
     expect(ids).toContain('pl:break.pl:Łamać');
     expect(ids.some((id: string) => id.includes('plain id'))).toBe(false);
+  });
+
+  it('extracts visible HTML text and localized attributes from admin/public pages', () => {
+    const text = `
+      <!doctype html>
+      <html lang="ru">
+        <head>
+          <title>Поддержка — Phraseman</title>
+          <style>.hidden::before { content: 'Не переводить CSS'; }</style>
+        </head>
+        <body>
+          <button title="Войти через Google" aria-label="Меню">Открыть</button>
+          <input placeholder="Опишите проблему" />
+          <script>const label = 'Не переводить JS';</script>
+        </body>
+      </html>
+    `;
+
+    const items = core.extractHtmlItemsFromText('admin/support.html', text);
+    const ids = items.map((item: any) => `${item.locale}:${item.sourceKind}:${item.keyPath}:${item.text}`);
+
+    expect(ids).toContain('ru:html-text:html.text[0]:Поддержка — Phraseman');
+    expect(ids).toContain('ru:html-text:html.text[1]:Открыть');
+    expect(ids).toContain('ru:html-attribute:html.attr.title[0]:Войти через Google');
+    expect(ids).toContain('ru:html-attribute:html.attr.aria-label[1]:Меню');
+    expect(ids).toContain('ru:html-attribute:html.attr.placeholder[2]:Опишите проблему');
+    expect(ids.some((id: string) => id.includes('Не переводить CSS'))).toBe(false);
+    expect(ids.some((id: string) => id.includes('Не переводить JS'))).toBe(false);
+  });
+
+  it('extracts HTML sidecar strings from data-i18n locale attributes', () => {
+    const text = `
+      <!doctype html>
+      <html lang="ru">
+        <body>
+          <h1 data-i18n-es="Soporte de Phraseman">Phraseman — поддержка</h1>
+          <button lang="es" title="Enviar" data-i18n-es-aria="Enviar mensaje">Enviar</button>
+        </body>
+      </html>
+    `;
+
+    const items = core.extractHtmlItemsFromText('admin/support.html', text);
+    const ids = items.map((item: any) => `${item.locale}:${item.sourceKind}:${item.keyPath}:${item.text}`);
+
+    expect(ids).toContain('ru:html-text:html.text[0]:Phraseman — поддержка');
+    expect(ids).toContain('es:html-attribute:html.attr.data-i18n-es[0]:Soporte de Phraseman');
+    expect(ids).toContain('es:html-attribute:html.attr.title[1]:Enviar');
+    expect(ids).toContain('es:html-attribute:html.attr.data-i18n-es-aria[2]:Enviar mensaje');
+    expect(ids).toContain('es:html-text:html.text[1]:Enviar');
+  });
+
+  it('treats nested text inside a translated HTML sidecar subtree as one covered unit', () => {
+    const text = `
+      <!doctype html>
+      <html lang="ru">
+        <body>
+          <p data-i18n-es="Fuente: users. El botón Guardar actualiza updatedAt.">
+            Источник: <code>users</code>. Кнопка <strong>Сохранить</strong> обновляет <code>updatedAt</code>.
+          </p>
+        </body>
+      </html>
+    `;
+
+    const items = core.extractHtmlItemsFromText('admin/index.html', text);
+    const ids = items.map((item: any) => `${item.locale}:${item.sourceKind}:${item.keyPath}:${item.text}`);
+
+    expect(ids).toContain('es:html-attribute:html.attr.data-i18n-es[0]:Fuente: users. El botón Guardar actualiza updatedAt.');
+    expect(ids.some((id: string) => id.includes('Источник'))).toBe(false);
+    expect(ids.some((id: string) => id.includes('Сохранить'))).toBe(false);
   });
 
   it('reports partial structured batch locale coverage by unit', () => {
@@ -391,14 +479,14 @@ describe('heisenberg localization pipeline core', () => {
     expect(report.integrationBlockers).toEqual([]);
   });
 
-  it('treats batch locales as planned interface slots, not missing app locales', () => {
+  it('treats batch locales as active interface slots after release activation', () => {
     const report = core.guardReport({ files: [], totals: { bySurface: {}, byLocale: {} } }, 'pt-BR');
 
-    expect(report.knownLocaleConflict).toBe(false);
-    expect(report.targetInterfaceStatus).toBe('planned');
+    expect(report.knownLocaleConflict).toBe(true);
+    expect(report.targetInterfaceStatus).toBe('active');
     expect(report.targetRegisteredAsAppLocale).toBe(true);
     expect(report.integrationBlockers).toEqual([]);
-    expect(report.isolationPolicy.join(' ')).toContain('planned/disabled');
+    expect(report.isolationPolicy.join(' ')).not.toContain('planned/disabled');
   });
 
   it('audits an existing UI locale without treating it as a study target', () => {
@@ -452,6 +540,150 @@ describe('heisenberg localization pipeline core', () => {
     expect(audit.blockers.join(' ')).not.toContain('study-target logic');
     expect(core.buildExistingLocaleAuditMarkdown(audit)).toContain('Study target: `en`');
     expect(core.buildExistingLocaleAuditMarkdown(audit)).toContain('Isolated Study-Target Files');
+  });
+
+  it('reports HTML-only existing-locale gaps as backlog instead of app-locale blockers', () => {
+    const inventory = {
+      totals: {
+        filesScanned: 1,
+        localizedItems: 2,
+        byLocale: { ru: 2 },
+        bySurface: { 'admin-site': 1 },
+      },
+      files: [
+        { file: 'admin/support.html', surface: 'admin-site', localizedItems: 2, markers: {} },
+      ],
+      items: [
+        {
+          file: 'admin/support.html',
+          surface: 'admin-site',
+          locale: 'ru',
+          keyPath: 'html.text[0]',
+          sourceKind: 'html-text',
+          text: 'Поддержка',
+        },
+        {
+          file: 'admin/support.html',
+          surface: 'admin-site',
+          locale: 'ru',
+          keyPath: 'html.attr.placeholder[0]',
+          sourceKind: 'html-attribute',
+          text: 'Опишите проблему',
+        },
+      ],
+    };
+
+    const audit = core.buildExistingLocaleAudit(inventory, 'es');
+
+    expect(audit.summary.itemCoverageGapFiles).toBe(0);
+    expect(audit.summary.htmlCoverageBacklogFiles).toBe(1);
+    expect(audit.blockers).toEqual([]);
+    expect(core.buildExistingLocaleAuditMarkdown(audit)).toContain('HTML Coverage Backlog');
+  });
+
+  it('keeps French study-target curriculum out of existing Spanish UI blockers', () => {
+    const inventory = {
+      totals: {
+        filesScanned: 5,
+        localizedItems: 4,
+        byLocale: { ru: 2, uk: 2 },
+        bySurface: { 'app-other': 4 },
+      },
+      files: [
+        {
+          file: 'app/french_lesson_curriculum.ts',
+          surface: 'app-other',
+          localizedItems: 2,
+          markers: { ruFields: 1, ukFields: 1, esFields: 0, studyTargetLang: 1 },
+        },
+        {
+          file: 'app/lesson_titles_for_study_target.ts',
+          surface: 'app-other',
+          localizedItems: 1,
+          markers: { ruFields: 1, ukFields: 0, esFields: 0, studyTargetLang: 1 },
+        },
+        {
+          file: 'app/study_target_lang_dev.ts',
+          surface: 'app-other',
+          localizedItems: 1,
+          markers: { ruFields: 0, ukFields: 1, esFields: 0, enableDevStudyTargetLang: 1, studyTargetLang: 1 },
+        },
+        {
+          file: 'app/home_screen_hydration.ts',
+          surface: 'app-other',
+          localizedItems: 0,
+          markers: { studyTargetLang: 1 },
+        },
+        {
+          file: 'components/MasteryReplayModal.tsx',
+          surface: 'app-other',
+          localizedItems: 0,
+          markers: { studyTargetLang: 1, localeTriples: 1 },
+        },
+      ],
+      items: [
+        { file: 'app/french_lesson_curriculum.ts', surface: 'app-other', locale: 'ru' },
+        { file: 'app/french_lesson_curriculum.ts', surface: 'app-other', locale: 'uk' },
+        { file: 'app/lesson_titles_for_study_target.ts', surface: 'app-other', locale: 'ru' },
+        { file: 'app/study_target_lang_dev.ts', surface: 'app-other', locale: 'uk' },
+      ],
+    };
+
+    const audit = core.buildExistingLocaleAudit(inventory, 'es');
+
+    expect(audit.summary.fieldCoverageGapFiles).toBe(0);
+    expect(audit.summary.itemCoverageGapFiles).toBe(0);
+    expect(audit.summary.isolatedStudyTargetFiles).toBe(5);
+    expect(audit.summary.studyTargetRiskFiles).toBe(0);
+    expect(audit.blockers).toEqual([]);
+  });
+
+  it('reports partial HTML locale coverage after a sidecar HTML translation starts', () => {
+    const inventory = {
+      totals: {
+        filesScanned: 1,
+        localizedItems: 3,
+        byLocale: { ru: 2, es: 1 },
+        bySurface: { 'public-web': 1 },
+      },
+      files: [
+        { file: 'knowly-www/index.html', surface: 'public-web', localizedItems: 3, markers: {} },
+      ],
+      items: [
+        {
+          file: 'knowly-www/index.html',
+          surface: 'public-web',
+          locale: 'ru',
+          keyPath: 'html.text[0]',
+          sourceKind: 'html-text',
+          text: 'Мобильная студия',
+        },
+        {
+          file: 'knowly-www/index.html',
+          surface: 'public-web',
+          locale: 'ru',
+          keyPath: 'html.text[1]',
+          sourceKind: 'html-text',
+          text: 'Связь',
+        },
+        {
+          file: 'knowly-www/index.html',
+          surface: 'public-web',
+          locale: 'es',
+          keyPath: 'html.attr.data-i18n-es[0]',
+          sourceKind: 'html-attribute',
+          text: 'Estudio móvil',
+        },
+      ],
+    };
+
+    const audit = core.buildExistingLocaleAudit(inventory, 'es');
+
+    expect(audit.summary.htmlCoverageBacklogFiles).toBe(0);
+    expect(audit.summary.htmlPartialCoverageFiles).toBe(1);
+    expect(audit.risks.htmlPartialCoverageFiles[0].reason).toContain('Partial HTML es coverage: 1/2');
+    expect(audit.blockers).toEqual([]);
+    expect(core.buildExistingLocaleAuditMarkdown(audit)).toContain('HTML Partial Coverage');
   });
 
   it('treats known Spanish sidecar locale files as coverage for their source files', () => {

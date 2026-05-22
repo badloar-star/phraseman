@@ -2,6 +2,9 @@ import { Image, type ImageSourcePropType } from 'react-native';
 import { Asset } from 'expo-asset';
 import { APP_ART_BACKDROP_NAMES, APP_ART_BACKDROP_SOURCES } from '../components/appArtBackdropRegistry';
 import { FIRST_LESSON_SHEET_IMAGES } from '../components/firstLessonSheetAssets';
+import { LEVEL_GIFT_IMAGE_SOURCES } from '../constants/levelGiftImages';
+import { LEVEL_GIFT_REWARD_ICON_SOURCES } from '../constants/levelGiftRewardIcons';
+import { OSKOLOK_IMAGE_SOURCES } from './oskolok';
 
 // Pre-load critical bundled images so Metro-served assets are already cached in dev.
 // Image.getSize() only works with network URIs, not require() assets.
@@ -82,79 +85,53 @@ const ARENA_ACTION_IMAGES = [
 const LESSON_INTRO_CTA_IMAGES = [
   require('../assets/images/lesson_intro/intro-cta-dark.webp'),
   require('../assets/images/lesson_intro/intro-cta-neon.webp'),
-  require('../assets/images/lesson_intro/intro-cta-gold.webp'),
+  require('../assets/images/lesson_intro/intro-cta-premium-gold.png'),
   require('../assets/images/lesson_intro/intro-cta-coral.webp'),
   require('../assets/images/lesson_intro/intro-cta-minimal-light.webp'),
   require('../assets/images/lesson_intro/intro-cta-minimal-dark.webp'),
-];
-
-const TAB_BACKGROUND_IMAGES = [
-  require('../assets/images/home/home-study-dark.webp'),
-  require('../assets/images/home/home-study-neon.webp'),
-  require('../assets/images/home/home-study-gold.webp'),
-  require('../assets/images/home/home-study-coral.webp'),
-  require('../assets/images/home/home-study-minimal-light.webp'),
-  require('../assets/images/home/home-study-minimal-dark.webp'),
-  require('../assets/images/lessons/lessons-path-dark.webp'),
-  require('../assets/images/lessons/lessons-path-neon.webp'),
-  require('../assets/images/lessons/lessons-path-gold.webp'),
-  require('../assets/images/lessons/lessons-path-coral.webp'),
-  require('../assets/images/lessons/lessons-path-minimal-light.webp'),
-  require('../assets/images/lessons/lessons-path-minimal-dark.webp'),
-  require('../assets/images/arena/knowledge-arena-dark.webp'),
-  require('../assets/images/arena/knowledge-arena-neon.webp'),
-  require('../assets/images/arena/knowledge-arena-gold.webp'),
-  require('../assets/images/arena/knowledge-arena-coral.webp'),
-  require('../assets/images/arena/knowledge-arena-minimal-light.webp'),
-  require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
-  require('../assets/images/friends/friends-guild-dark.webp'),
-  require('../assets/images/friends/friends-guild-neon.webp'),
-  require('../assets/images/friends/friends-guild-gold.webp'),
-  require('../assets/images/friends/friends-guild-coral.webp'),
-  require('../assets/images/friends/friends-guild-minimal-light.webp'),
-  require('../assets/images/friends/friends-guild-minimal-dark.webp'),
-  require('../assets/images/settings/settings-sanctum-dark.webp'),
-  require('../assets/images/settings/settings-sanctum-neon.webp'),
-  require('../assets/images/settings/settings-sanctum-gold.webp'),
-  require('../assets/images/settings/settings-sanctum-coral.webp'),
-  require('../assets/images/settings/settings-sanctum-minimal-light.webp'),
-  require('../assets/images/settings/settings-sanctum-minimal-dark.webp'),
-];
-
-const DEEP_BACKGROUND_IMAGES = [
-  require('../assets/images/statistics/stats-bg-dark.webp'),
-  require('../assets/images/statistics/stats-bg-neon.webp'),
-  require('../assets/images/statistics/stats-bg-gold.webp'),
-  require('../assets/images/statistics/stats-bg-coral.webp'),
-  require('../assets/images/statistics/stats-bg-minimal-light.webp'),
-  require('../assets/images/statistics/stats-bg-minimal-dark.webp'),
-  require('../assets/images/arena_match/arena-match-dark.webp'),
-  require('../assets/images/arena_match/arena-match-neon.webp'),
-  require('../assets/images/arena_match/arena-match-gold.webp'),
-  require('../assets/images/arena_match/arena-match-coral.webp'),
-  require('../assets/images/arena_match/arena-match-minimal-light.webp'),
-  require('../assets/images/arena_match/arena-match-minimal-dark.webp'),
-  require('../assets/images/arena_match/arena-ready-dark.webp'),
-  require('../assets/images/arena_match/arena-ready-neon.webp'),
-  require('../assets/images/arena_match/arena-ready-gold.webp'),
-  require('../assets/images/arena_match/arena-ready-coral.webp'),
-  require('../assets/images/arena_match/arena-ready-minimal-light.webp'),
-  require('../assets/images/arena_match/arena-ready-minimal-dark.webp'),
 ];
 
 const APP_ART_BACKGROUND_IMAGES = APP_ART_BACKDROP_NAMES.flatMap(name =>
   Object.values(APP_ART_BACKDROP_SOURCES[name])
 );
 
+function isDevMetroAssetUri(uri: string) {
+  if (
+    typeof __DEV__ !== 'undefined' &&
+    __DEV__ &&
+    (uri.includes('/assets/?unstable_path=') || uri.includes('%2Fassets%2F'))
+  ) {
+    return true;
+  }
+  return false;
+}
+
+function shouldPrefetchResolvedUri(uri: string) {
+  if (!uri.startsWith('http')) return false;
+  if (isDevMetroAssetUri(uri)) return false;
+  return true;
+}
+
+function shouldLoadResolvedAsset(uri: string) {
+  if (isDevMetroAssetUri(uri)) return false;
+  return true;
+}
+
 async function warmImageSources(sources: readonly ImageSourcePropType[]) {
   const uniqueSources = Array.from(new Set(sources));
+  const assetLoadSources: ImageSourcePropType[] = [];
   const prefetches: Promise<boolean>[] = [];
 
   uniqueSources.forEach(source => {
     try {
       const resolved = Image.resolveAssetSource(source);
-      if (resolved?.uri && resolved.uri.startsWith('http')) {
-        prefetches.push(Image.prefetch(resolved.uri).catch(() => false));
+      if (resolved?.uri) {
+        if (shouldLoadResolvedAsset(resolved.uri)) {
+          assetLoadSources.push(source);
+        }
+        if (shouldPrefetchResolvedUri(resolved.uri)) {
+          prefetches.push(Image.prefetch(resolved.uri).catch(() => false));
+        }
       }
     } catch {
       // Individual asset resolution failure must never crash the app.
@@ -162,14 +139,19 @@ async function warmImageSources(sources: readonly ImageSourcePropType[]) {
   });
 
   await Promise.all([
-    Asset.loadAsync(uniqueSources as any).catch(() => []),
+    assetLoadSources.length > 0 ? Asset.loadAsync(assetLoadSources as any).catch(() => []) : Promise.resolve([]),
     ...prefetches,
   ]);
 }
 
 export const preloadStartupImages = async () => {
   try {
-    await warmImageSources(APP_ART_BACKGROUND_IMAGES);
+    await warmImageSources([
+      ...APP_ART_BACKGROUND_IMAGES,
+      ...LEVEL_GIFT_IMAGE_SOURCES,
+      ...LEVEL_GIFT_REWARD_ICON_SOURCES,
+      ...OSKOLOK_IMAGE_SOURCES,
+    ]);
   } catch {
     // Silently fail - preloading is entirely optional.
   }
@@ -184,8 +166,9 @@ export const preloadImages = async () => {
       ...ARENA_ACTION_IMAGES,
       ...FIRST_LESSON_SHEET_IMAGES,
       ...LESSON_INTRO_CTA_IMAGES,
-      ...TAB_BACKGROUND_IMAGES,
-      ...DEEP_BACKGROUND_IMAGES,
+      ...LEVEL_GIFT_IMAGE_SOURCES,
+      ...LEVEL_GIFT_REWARD_ICON_SOURCES,
+      ...OSKOLOK_IMAGE_SOURCES,
       ...APP_ART_BACKGROUND_IMAGES,
     ];
     await warmImageSources(allImages);

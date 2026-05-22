@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "gustav-french-row-acceptance-work-order-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "lessonId": 1,
+  "batchId": "lesson1_rows_1_3_acceptance_work_order",
+  "studyTarget": "fr",
+  "sourceLocales": ["ru", "uk"],
+  "parentPackets": [
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_row_review_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_3_lexical_evidence_packet.json"
+  ],
+  "activationStatus": "blocked",
+  "containsFrenchTargetText": false,
+  "containsWordsFr": false,
+  "mayWriteAppSeed": false,
+  "mayWriteIntroExamples": false,
+  "mayWriteQuizOrExam": false,
+  "approvalPolicy": {
+    "targetTextAllowedOnlyAfter": [
+      "grammar_form_review_accepted",
+      "ru_meaning_review_accepted",
+      "uk_meaning_review_accepted",
+      "curriculum_placement_accepted",
+      "reviewer_approval_record_written"
+    ],
+    "forbiddenUntilApproved": [
+      "proposedFrench",
+      "wordsFr",
+      "introExamples",
+      "quizPrompts",
+      "examRows"
+    ]
+  },
+  "rows": [
+    {
+      "phraseId": "lesson1_phrase_1",
+      "englishBase": "I am here",
+      "requiredAcceptance": [
+        "grammar_form_review_accepted",
+        "ru_meaning_review_accepted",
+        "uk_meaning_review_accepted",
+        "curriculum_placement_accepted"
+      ],
+      "reviewQuestions": [
+        "Should this row remain an identity/location starter row in French Lesson 1?",
+        "Does the row require a location/deictic note before target text is drafted?",
+        "Are RU and UK meanings accepted as the same communicative function?"
+      ],
+      "reviewerStatus": "not_started",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_2",
+      "englishBase": "You are ready",
+      "requiredAcceptance": [
+        "grammar_form_review_accepted",
+        "tu_vous_policy_accepted",
+        "adjective_agreement_review_accepted",
+        "ru_meaning_review_accepted",
+        "uk_meaning_review_accepted",
+        "curriculum_placement_accepted"
+      ],
+      "reviewQuestions": [
+        "Should this row introduce informal/formal second-person policy now or later?",
+        "Does the adjective agreement requirement fit Lesson 1 or require deferral?",
+        "Are RU and UK meanings accepted without narrowing the English row too early?"
+      ],
+      "reviewerStatus": "not_started",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_3",
+      "englishBase": "He is busy",
+      "requiredAcceptance": [
+        "grammar_form_review_accepted",
+        "personal_state_sense_accepted",
+        "adjective_agreement_review_accepted",
+        "ru_meaning_review_accepted",
+        "uk_meaning_review_accepted",
+        "curriculum_placement_accepted"
+      ],
+      "reviewQuestions": [
+        "Should this personal-state adjective row remain in the first French batch?",
+        "Does adjective agreement make this row too early for Lesson 1 ordering?",
+        "Are RU and UK meanings accepted for the personal-state sense only?"
+      ],
+      "reviewerStatus": "not_started",
+      "activationStatus": "blocked"
+    }
+  ],
+  "nextRequiredAction": "Collect accepted grammar-form and RU/UK meaning review decisions before any French target text is written."
+}

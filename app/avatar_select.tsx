@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
@@ -26,6 +26,7 @@ import {
   AVATAR_AURAS,
   NO_AVATAR_AURA_ID,
   PREMIUM_AVATAR_AURA_ID,
+  VIP_AVATAR_AURA_ID,
   USER_AVATAR_AURA_KEY,
   getAvatarAuraById,
   isAvatarAuraUnlockedByLevel,
@@ -64,6 +65,7 @@ import { emitAppEvent } from './events';
 import { syncToCloud } from './cloud_sync';
 import { pushMyScoreImmediate } from './firestore_leaderboard';
 import { updateMyGroupPoints } from './firestore_leagues';
+import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
 import { parseWeekPointsForWeek } from './hall_of_fame_utils';
 import { COSMETIC_GIFT_OWNED_AVATAR_KEY } from './level_gift_system';
 import { fetchActivityLikeTotal } from './friend_activity_likes';
@@ -270,7 +272,7 @@ const readOwnedAuras = async (): Promise<OwnedAuras> => {
 
 const writeProfileAvatarSnapshot = async (avatar: string, level: number, aura?: string | null) => {
   try {
-    const [[, nameRaw], [, xpRaw], [, langRaw], [, weekRaw], [, streakRaw], [, leagueRaw], [, frameRaw], [, premiumRaw]] =
+    const [[, nameRaw], [, xpRaw], [, langRaw], [, weekRaw], [, streakRaw], [, leagueRaw], [, frameRaw]] =
       await AsyncStorage.multiGet([
         'user_name',
         'user_total_xp',
@@ -279,7 +281,6 @@ const writeProfileAvatarSnapshot = async (avatar: string, level: number, aura?: 
         'streak_count',
         'league_state_v3',
         'user_frame',
-        'premium_plan',
       ]);
     const totalXp = parseInt(xpRaw || '0', 10) || 0;
     const weekPoints = parseWeekPointsForWeek(weekRaw);
@@ -287,6 +288,10 @@ const writeProfileAvatarSnapshot = async (avatar: string, level: number, aura?: 
     try { if (leagueRaw) leagueId = JSON.parse(leagueRaw).leagueId; } catch {}
     const name = (nameRaw || '').trim() || `Level ${level}`;
     const streak = parseInt(streakRaw || '0', 10) || undefined;
+    const [realPremium, vip] = await Promise.all([
+      getVerifiedRealPremiumStatus().catch(() => false),
+      getVerifiedVipStatus().catch(() => false),
+    ]);
     await pushMyScoreImmediate(
       name,
       totalXp,
@@ -296,8 +301,9 @@ const writeProfileAvatarSnapshot = async (avatar: string, level: number, aura?: 
       streak,
       leagueId,
       frameRaw || undefined,
-      !!premiumRaw,
+      realPremium,
       aura || undefined,
+      vip,
     );
     await updateMyGroupPoints(weekPoints);
   } catch {}
@@ -337,8 +343,9 @@ export default function AvatarSelect() {
   const { theme: t, f } = useTheme();
   const avatarAccent = '#A78BFA';
   const avatarPremiumAccent = '#FACC15';
+  const avatarVipAccent = '#22C55E';
   const { lang } = useLang();
-  const { isPremium } = usePremium();
+  const { isPremium, isVip } = usePremium();
   const [level, setLevel] = useState(1);
   const [shards, setShards] = useState(0);
   const [activeAvatar, setActiveAvatar] = useState<string>('1');
@@ -366,7 +373,7 @@ export default function AvatarSelect() {
   const showProfileCardSection = ENABLE_DEV_TOOLS;
   const showProfileCardDevTools = showProfileCardSection;
   const auraExplicitlyDisabled = activeAuraId === NO_AVATAR_AURA_ID;
-  const effectiveAuraId = auraExplicitlyDisabled ? null : activeAuraId || (isPremium ? PREMIUM_AVATAR_AURA_ID : null);
+  const effectiveAuraId = auraExplicitlyDisabled ? null : activeAuraId || (isPremium ? PREMIUM_AVATAR_AURA_ID : isVip ? VIP_AVATAR_AURA_ID : null);
   const profileCardVisual = useMemo(() => getProfileCardPreviewVisual(profileCardSnapshot), [profileCardSnapshot]);
   const profileCardDef = useMemo(() => getProfileCardLevelDef(profileCardSnapshot.level), [profileCardSnapshot.level]);
   const nextProfileCardLevel = useMemo(() => getNextProfileCardLevel(profileCardSnapshot.level), [profileCardSnapshot.level]);
@@ -498,7 +505,8 @@ export default function AvatarSelect() {
         && !isAvatarAuraUnlockedByLevel(storedAuraDef, lvl)
         && !nextOwnedAuras[storedAuraDef.id];
       const storedAuraLockedByPremium = isPremiumAvatarAura(storedAura) && !isPremium;
-      setActiveAuraId(storedAura && !storedAuraLockedByLevel && !storedAuraLockedByPremium ? storedAura : null);
+      const storedAuraLockedByVip = storedAura === VIP_AVATAR_AURA_ID && !isVip;
+      setActiveAuraId(storedAura && !storedAuraLockedByLevel && !storedAuraLockedByPremium && !storedAuraLockedByVip ? storedAura : null);
       setActiveAvatar(avatarRaw || getBestAvatarForLevel(lvl));
       setShards(await getShardsBalance());
       getCanonicalUserId()
@@ -506,7 +514,7 @@ export default function AvatarSelect() {
         .then(setActivityLikeTotal)
         .catch(() => setActivityLikeTotal(0));
     } catch {}
-  }, [isPremium]);
+  }, [isPremium, isVip]);
 
   useEffect(() => {
     load().catch(() => {});
@@ -638,11 +646,16 @@ export default function AvatarSelect() {
       }
 
       const isPremiumAura = aura.premiumOnly === true;
+      const isVipAura = aura.vipOnly === true;
       const unlockedByLevel = isAvatarAuraUnlockedByLevel(aura, level);
-      const isOwned = isPremiumAura ? isPremium : unlockedByLevel || !!ownedAuras[aura.id];
+      const isOwned = isPremiumAura ? isPremium : isVipAura ? isVip : unlockedByLevel || !!ownedAuras[aura.id];
       if (!isOwned) {
         if (isPremiumAura) {
           router.push({ pathname: '/premium_modal', params: { context: 'avatar_aura' } } as any);
+          return;
+        }
+        if (isVipAura) {
+          showToast('info', 'Доступно со статусом VIP');
           return;
         }
         if (aura.unlockLevel !== undefined) {
@@ -1014,9 +1027,10 @@ export default function AvatarSelect() {
             </TouchableOpacity>
             {AVATAR_AURAS.map((aura) => {
               const isPremiumAura = aura.premiumOnly === true;
+              const isVipAura = aura.vipOnly === true;
               const unlockedByLevel = isAvatarAuraUnlockedByLevel(aura, level);
-              const isOwned = isPremiumAura ? isPremium : unlockedByLevel || !!ownedAuras[aura.id];
-              const isGifted = !isPremiumAura && !!ownedAuras[aura.id] && giftedAuraId === aura.id;
+              const isOwned = isPremiumAura ? isPremium : isVipAura ? isVip : unlockedByLevel || !!ownedAuras[aura.id];
+              const isGifted = !isPremiumAura && !isVipAura && !!ownedAuras[aura.id] && giftedAuraId === aura.id;
               const isActive = effectiveAuraId === aura.id;
               return (
                 <TouchableOpacity
@@ -1046,6 +1060,8 @@ export default function AvatarSelect() {
                       ? <Text style={{ color: isGifted ? t.accent : t.textMuted, fontSize: 9, fontWeight: '800' }}>{isGifted ? 'Подарок' : 'Открыта'}</Text>
                       : isPremiumAura
                         ? <Text style={{ color: avatarPremiumAccent, fontSize: 9, fontWeight: '900' }}>Premium</Text>
+                        : isVipAura
+                          ? <Text style={{ color: avatarVipAccent, fontSize: 9, fontWeight: '900' }}>VIP</Text>
                         : aura.unlockLevel !== undefined
                           ? <Text style={{ color: t.textMuted, fontSize: 9, fontWeight: '900' }}>Ур. {aura.unlockLevel}</Text>
                           : <ShardCost amount={AVATAR_AURA_BUY_COST} color={t.textMuted} />}

@@ -2,9 +2,10 @@ import React, { createContext, useCallback, useContext, useEffect, useRef, useSt
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState, InteractionManager } from 'react-native';
 import Purchases from 'react-native-purchases';
-import { getVerifiedPremiumStatus, invalidatePremiumCache } from '../app/premium_guard';
+import { getVerifiedRealPremiumStatus, getVerifiedVipStatus, invalidatePremiumCache } from '../app/premium_guard';
 import { CLOUD_SYNC_ENABLED, DEV_IAP_BYPASS, FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from '../app/config';
-import { onAppEvent } from '../app/events';
+import { emitAppEvent, onAppEvent } from '../app/events';
+import { updateMyPremiumInLeaderboard, updateMyVipInLeaderboard } from '../app/firestore_leaderboard';
 import {
   FOREGROUND_CLOUD_REFRESH_DELAY_MS,
   FOREGROUND_LIGHT_REFRESH_DELAY_MS,
@@ -14,9 +15,14 @@ import {
 import { getTrialReofferBlockedByCooldown } from '../app/premium_trial_eligibility';
 import { anyPackageHasTrialIntro } from '../app/premium_trial_signal';
 import { resolvePremiumPackages } from '../app/revenuecat_init';
+import { processVipGrantForCelebration } from '../app/vip_celebration_state';
+import { getVipProgressState } from '../app/premium_progress';
+import { ensureAnonUser, ensureStableAuthLinkForStableId, restoreFromCloud } from '../app/cloud_sync';
 
 interface PremiumContextValue {
   isPremium: boolean;
+  isVip: boolean;
+  hasPremiumAccess: boolean;
   /**
    * `true`, если магазин реально отдаёт intro free phase:
    *  - локальный кулдаун 90 д. не активен И
@@ -29,12 +35,24 @@ interface PremiumContextValue {
 
 const PremiumContext = createContext<PremiumContextValue>({
   isPremium: false,
+  isVip: false,
+  hasPremiumAccess: false,
   trialEligible: false,
   reload: async () => {},
 });
 
 export function usePremium(): PremiumContextValue {
   return useContext(PremiumContext);
+}
+
+function getFirestoreForPremiumListener(): unknown | null {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return require('@react-native-firebase/firestore').default();
+  } catch {
+    return null;
+  }
 }
 
 async function computeTrialEligible(): Promise<boolean> {
@@ -53,8 +71,12 @@ async function computeTrialEligible(): Promise<boolean> {
 
 export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const [isPremium, setIsPremium] = useState(FORCE_PREMIUM);
+  const [isVip, setIsVip] = useState(false);
+  const [hasPremiumAccess, setHasPremiumAccess] = useState(FORCE_PREMIUM);
   const [trialEligible, setTrialEligible] = useState(false);
   const backgroundedAtRef = useRef<number | null>(null);
+  const vipSnapshotStateRef = useRef<boolean | null>(null);
+  const [premiumListenerRevision, setPremiumListenerRevision] = useState(0);
 
   const reloadTrialEligible = useCallback(async () => {
     const v = await computeTrialEligible();
@@ -64,13 +86,20 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const reload = useCallback(async () => {
     if (FORCE_PREMIUM) {
       setIsPremium(true);
+      setIsVip(false);
+      setHasPremiumAccess(true);
       // Активный премиум — копия про триал нерелевантна
       setTrialEligible(false);
       return;
     }
-    const status = await getVerifiedPremiumStatus();
-    setIsPremium(status);
-    if (status) {
+    const [realPremium, vip] = await Promise.all([
+      getVerifiedRealPremiumStatus(),
+      getVerifiedVipStatus(),
+    ]);
+    setIsPremium(realPremium);
+    setIsVip(vip);
+    setHasPremiumAccess(realPremium || vip);
+    if (realPremium) {
       setTrialEligible(false);
     } else {
       void reloadTrialEligible();
@@ -83,7 +112,6 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       return;
     }
     try {
-      const { restoreFromCloud } = await import('../app/cloud_sync');
       await restoreFromCloud();
     } catch {
       /* premium state can still fall back to local/RevenueCat */
@@ -91,6 +119,16 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     invalidatePremiumCache();
     await reload();
   }, [reload]);
+
+  // Login/merge can swap the canonical stable_id; restart the admin-grant listener on the new users/{stable_id}.
+  useEffect(() => {
+    const sub = onAppEvent('auth_provider_linked', () => {
+      vipSnapshotStateRef.current = null;
+      setPremiumListenerRevision((v) => v + 1);
+      void reloadAfterCloudRefresh();
+    });
+    return () => sub.remove();
+  }, [reloadAfterCloudRefresh]);
 
   // Load on mount; if FORCE_PREMIUM — сбрасываем все флаги отмены премиума
   useEffect(() => {
@@ -102,6 +140,117 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     }
     void reload();
   }, [reload]);
+
+  // Live VIP grants/revokes from admin/index.html write users/{uid}.progress.
+  // Without this, a user who keeps the app open can stay locked until a later cloud restore.
+  useEffect(() => {
+    if (FORCE_PREMIUM || !CLOUD_SYNC_ENABLED || IS_EXPO_GO) return;
+
+    let cancelled = false;
+    let unsubscribe: (() => void) | null = null;
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const clearRetry = () => {
+      if (retryTimer) {
+        clearTimeout(retryTimer);
+        retryTimer = null;
+      }
+    };
+
+    const scheduleRetry = () => {
+      if (cancelled || retryTimer) return;
+      retryTimer = setTimeout(() => {
+        retryTimer = null;
+        void start();
+      }, 2_500);
+    };
+
+    const start = async () => {
+      clearRetry();
+      if (unsubscribe) {
+        unsubscribe();
+        unsubscribe = null;
+      }
+      const db = getFirestoreForPremiumListener() as {
+        collection?: (name: string) => {
+          doc: (id: string) => {
+            onSnapshot: (
+              onNext: (snap: { exists?: boolean; data?: () => Record<string, unknown> | undefined }) => void,
+              onError?: () => void,
+            ) => () => void;
+          };
+        };
+      } | null;
+      if (!db?.collection) return;
+      try {
+        const uid = await ensureAnonUser();
+        if (cancelled || !uid) return;
+        await ensureStableAuthLinkForStableId(uid).catch(() => false);
+
+        unsubscribe = db.collection('users').doc(uid).onSnapshot(
+          (snap) => {
+            if (!snap.exists) return;
+            const data = snap.data ? snap.data() : undefined;
+            const progress = (data?.progress ?? {}) as Record<string, unknown>;
+            const vipState = getVipProgressState(progress);
+            if (!vipState) return;
+
+            void (async () => {
+              const pairs: [string, string][] = [
+                ['vip_active', vipState.active ? 'true' : 'false'],
+                ['vip_plan', vipState.active ? vipState.plan : ''],
+                ['vip_from', vipState.active ? vipState.fromValue : '0'],
+                ['vip_until', vipState.active ? vipState.untilValue : '0'],
+                ['vip_admin_override', vipState.active ? 'true' : 'false'],
+              ];
+              if (vipState.grantAt) pairs.push(['vip_admin_grant_at', vipState.grantAt]);
+              await AsyncStorage.multiSet(pairs).catch(() => {});
+              if (vipState.active) {
+                await processVipGrantForCelebration(vipState.grantAt).catch(() => {});
+              }
+              invalidatePremiumCache();
+
+              const previous = vipSnapshotStateRef.current;
+              vipSnapshotStateRef.current = vipState.active;
+              if (previous === vipState.active) return;
+
+              if (vipState.active) {
+                setIsVip(true);
+                setHasPremiumAccess(true);
+                emitAppEvent('vip_activated');
+                emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
+                void updateMyVipInLeaderboard(true);
+              } else {
+                setIsVip(false);
+                setHasPremiumAccess(isPremium);
+                void reloadTrialEligible();
+                emitAppEvent('vip_deactivated');
+                emitAppEvent('premium_access_changed', { active: isPremium, source: isPremium ? 'premium' : 'none' });
+                void updateMyVipInLeaderboard(false);
+              }
+            })();
+          },
+          () => {
+            if (unsubscribe) {
+              unsubscribe();
+              unsubscribe = null;
+            }
+            scheduleRetry();
+          },
+        );
+      } catch {
+        scheduleRetry();
+      }
+    };
+
+    void start();
+    return () => {
+      cancelled = true;
+      clearRetry();
+      if (unsubscribe) unsubscribe();
+      unsubscribe = null;
+    };
+  }, [isPremium, reloadTrialEligible, premiumListenerRevision]);
 
   // Reload when app comes to foreground; after a background round-trip, refresh cloud admin grants first.
   useEffect(() => {
@@ -153,6 +302,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const sub = onAppEvent('premium_activated', () => {
       setIsPremium(true);
+      setHasPremiumAccess(true);
       setTrialEligible(false);
       invalidatePremiumCache();
       void import('../app/lesson_lock_system')
@@ -161,25 +311,55 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       // Sync cache in background — but don\'t let it override our true state
       // (RC sandbox can have propagation delay, grace period in premium_guard handles it)
       void reload();
+      emitAppEvent('premium_access_changed', { active: true, source: 'premium' });
+      void updateMyPremiumInLeaderboard(true);
     });
     return () => sub.remove();
   }, [reload]);
+
+  // VIP can be activated from the in-app admin panel before the Firestore
+  // listener/reload loop has delivered the new local state.
+  useEffect(() => {
+    const onActivated = onAppEvent('vip_activated', () => {
+      setIsVip(true);
+      setHasPremiumAccess(true);
+      setTrialEligible(false);
+      invalidatePremiumCache();
+      void reload();
+      void updateMyVipInLeaderboard(true);
+    });
+    const onDeactivated = onAppEvent('vip_deactivated', () => {
+      setIsVip(false);
+      setHasPremiumAccess(isPremium);
+      invalidatePremiumCache();
+      void reloadTrialEligible();
+      void reload();
+      void updateMyVipInLeaderboard(false);
+    });
+    return () => {
+      onActivated.remove();
+      onDeactivated.remove();
+    };
+  }, [isPremium, reload, reloadTrialEligible]);
 
   // Instant update on cancellation/expiry / тестер «Снять премиум»
   useEffect(() => {
     const sub = onAppEvent('premium_deactivated', () => {
       setIsPremium(false);
+      setHasPremiumAccess(isVip);
       invalidatePremiumCache();
       void import('../app/lesson_lock_system')
         .then(m => m.recomputeEarnedUnlocks())
         .catch(() => {});
       void reload();
+      emitAppEvent('premium_access_changed', { active: isVip, source: isVip ? 'vip' : 'none' });
+      void updateMyPremiumInLeaderboard(false);
     });
     return () => sub.remove();
-  }, [reload]);
+  }, [isVip, reload]);
 
   return (
-    <PremiumContext.Provider value={{ isPremium, trialEligible, reload }}>
+    <PremiumContext.Provider value={{ isPremium, isVip, hasPremiumAccess, trialEligible, reload }}>
       {children}
     </PremiumContext.Provider>
   );

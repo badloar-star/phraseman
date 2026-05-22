@@ -1,10 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  flashcardsHiddenCommunityPacksKey,
+  type RuntimeStudyTarget,
+} from '../target_storage_keys';
 
-const KEY = 'hidden_community_pack_ids_v1';
-
-export async function loadHiddenCommunityPackIds(): Promise<string[]> {
+export async function loadHiddenCommunityPackIds(studyTarget?: RuntimeStudyTarget): Promise<string[]> {
   try {
-    const raw = await AsyncStorage.getItem(KEY);
+    const raw = await AsyncStorage.getItem(flashcardsHiddenCommunityPacksKey(studyTarget));
     if (!raw) return [];
     const parsed = JSON.parse(raw) as unknown;
     if (!Array.isArray(parsed)) return [];
@@ -14,9 +16,9 @@ export async function loadHiddenCommunityPackIds(): Promise<string[]> {
   }
 }
 
-export async function hideCommunityPackOnDevice(packId: string): Promise<void> {
-  const cur = await loadHiddenCommunityPackIds();
+export async function hideCommunityPackOnDevice(packId: string, studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const cur = await loadHiddenCommunityPackIds(studyTarget);
   if (cur.includes(packId)) return;
   cur.push(packId);
-  await AsyncStorage.setItem(KEY, JSON.stringify(cur));
+  await AsyncStorage.setItem(flashcardsHiddenCommunityPacksKey(studyTarget), JSON.stringify(cur));
 }

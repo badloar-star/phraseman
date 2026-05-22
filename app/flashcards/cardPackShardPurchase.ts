@@ -11,9 +11,20 @@ import {
 import { consumePackGiftTrial, getPackGiftTrial } from './pack_trial_gift';
 import { purchaseCommunityPackWithShards } from '../community_packs/purchaseCommunityPack';
 import { trackCardPackAcquiredAchievement } from './packAchievementTracking';
+import type { RuntimeStudyTarget } from '../target_storage_keys';
+import { flashcardsOfficialPacksAvailableForTarget } from '../flashcards_target_gate';
 
-export type CardPackShardPurchaseResult = 'ok' | 'insufficient' | 'spend_failed' | 'already_owned';
-export type CardPackVoucherRedeemResult = 'ok' | 'no_voucher' | 'not_eligible' | 'already_owned';
+export type CardPackShardPurchaseResult = 'ok' | 'insufficient' | 'spend_failed' | 'already_owned' | 'source_gated';
+export type CardPackVoucherRedeemResult = 'ok' | 'no_voucher' | 'not_eligible' | 'already_owned' | 'source_gated';
+
+function emitSourceGatedPackToast(): void {
+  emitAppEvent('action_toast', {
+    type: 'info',
+    messageRu: 'Французские наборы карточек ещё закрыты до проверки источников.',
+    messageUk: 'Французькі набори карток ще закриті до перевірки джерел.',
+    messageEs: 'Los packs de francés siguen bloqueados hasta la revisión de fuentes.',
+  });
+}
 
 /**
  * Списати осколки й додати набір карток у «Мої».
@@ -21,11 +32,16 @@ export type CardPackVoucherRedeemResult = 'ok' | 'no_voucher' | 'not_eligible' |
  */
 export async function purchaseCardPackWithShards(
   pack: FlashcardMarketPack,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<CardPackShardPurchaseResult> {
   if (pack.isCommunityUgc) {
-    return purchaseCommunityPackWithShards(pack);
+    return purchaseCommunityPackWithShards(pack, studyTarget);
   }
-  const owned = await loadOwnedPackIds();
+  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget)) {
+    emitSourceGatedPackToast();
+    return 'source_gated';
+  }
+  const owned = await loadOwnedPackIds(studyTarget);
   if (owned.includes(pack.id)) return 'already_owned';
   const balance = await getShardsBalance();
   if (balance < pack.priceShards) return 'insufficient';
@@ -39,8 +55,8 @@ export async function purchaseCardPackWithShards(
     });
     return 'spend_failed';
   }
-  await addOwnedPackId(pack.id);
-  await primeMarketplaceBuiltCardsCacheFromOwnedStorage();
+  await addOwnedPackId(pack.id, studyTarget);
+  await primeMarketplaceBuiltCardsCacheFromOwnedStorage(studyTarget);
   const nb = await getShardsBalance();
   emitAppEvent('shards_balance_updated', { balance: nb });
   const toastTitleEs =
@@ -53,7 +69,7 @@ export async function purchaseCardPackWithShards(
   });
   logCardPackPurchasedShards(pack.id, pack.priceShards);
   void trackCardPackPurchase(pack.id);
-  void trackCardPackAcquiredAchievement();
+  void trackCardPackAcquiredAchievement(studyTarget);
   return 'ok';
 }
 
@@ -65,15 +81,20 @@ export async function purchaseCardPackWithShards(
  */
 export async function redeemPackGiftVoucher(
   pack: FlashcardMarketPack,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<CardPackVoucherRedeemResult> {
   if (pack.isCommunityUgc) return 'not_eligible';
-  const trial = await getPackGiftTrial();
+  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget)) {
+    emitSourceGatedPackToast();
+    return 'source_gated';
+  }
+  const trial = await getPackGiftTrial(studyTarget);
   if (!trial) return 'no_voucher';
-  const owned = await loadOwnedPackIds();
+  const owned = await loadOwnedPackIds(studyTarget);
   if (owned.includes(pack.id)) return 'already_owned';
-  await addOwnedPackId(pack.id);
-  await primeMarketplaceBuiltCardsCacheFromOwnedStorage();
-  await consumePackGiftTrial();
+  await addOwnedPackId(pack.id, studyTarget);
+  await primeMarketplaceBuiltCardsCacheFromOwnedStorage(studyTarget);
+  await consumePackGiftTrial(studyTarget);
   const voucherTitleEs =
     pack.titleEs.trim() || pack.titleUk.trim() || pack.titleRu.trim() || pack.id;
   emitAppEvent('action_toast', {
@@ -84,7 +105,7 @@ export async function redeemPackGiftVoucher(
   });
   logCardPackPurchasedShards(pack.id, 0);
   void trackCardPackPurchase(pack.id);
-  void trackCardPackAcquiredAchievement();
+  void trackCardPackAcquiredAchievement(studyTarget);
   return 'ok';
 }
 

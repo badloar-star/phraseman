@@ -71,7 +71,7 @@ export const findAllExplanations = (
     }
   }
 
-  // ── 2. Старые trigger-трапы (fallback) ───────────────────────────────────
+  // ── 2. Старые trigger-трапы (legacy path) ────────────────────────────────
   const normalized = normalizeForComparison(userAnswer);
 
   const sortedTraps = [...errorTraps.traps].sort((a, b) => {
@@ -93,7 +93,7 @@ export const findAllExplanations = (
     }
   }
 
-  // ── 3. Общее правило (последний fallback) ─────────────────────────────────
+  // ── 3. Общее правило (последний запасной путь) ───────────────────────────
   if (!errorTraps.generalRule) return null;
 
   const explanation = quizMode

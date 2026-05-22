@@ -31,7 +31,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SCORE_CONFIG, QUESTIONS_PER_MATCH, type SessionPlayer } from './types/arena';
 import { hapticMediumImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { IS_EXPO_GO } from './config';
-import { emitAppEvent } from './events';
+import { actionToastTri, emitAppEvent } from './events';
 import { logArenaDirectGateBlocked, logEvent } from './firebase';
 import { consumeArenaGameEntry } from './arena_access_gate';
 import { recordMistakeFromArena } from './active_recall';
@@ -49,14 +49,14 @@ import {
 } from '../constants/arena_i18n';
 import { isArenaDuelReactionEmoji, randomArenaDuelReactionEmoji } from '../constants/arena_duel_reaction_emojis';
 import { sendArenaDuelReact } from './services/arena_db';
-import { pickRandomBotName, pickRandomBotNameEs } from './constants/bot_names';
+import { pickRandomBotNameForLang } from './constants/bot_names';
 import { triLang, type Lang } from '../constants/i18n';
 import { ensureArenaAuthUid } from './user_id_policy';
 
 function mockOpponentDisplayName(opp: SessionPlayer | undefined, lang: Lang): string {
   const dn = opp?.displayName?.trim();
   if (dn) return dn;
-  return lang === 'es' ? pickRandomBotNameEs() : pickRandomBotName();
+  return pickRandomBotNameForLang(lang);
 }
 
 export default function DuelGameScreen() {
@@ -89,12 +89,16 @@ export default function DuelGameScreen() {
     let cancelled = false;
     void (async () => {
       if (legacyGhostLink) {
-        emitAppEvent('action_toast', {
-          type: 'info',
-          messageRu: 'Этот режим больше недоступен.',
-          messageUk: 'Цей режим більше недоступний.',
-          messageEs: 'Este modo ya no está disponible.',
-        });
+        emitAppEvent('action_toast', actionToastTri('info', {
+          ru: 'Этот режим больше недоступен.',
+          uk: 'Цей режим більше недоступний.',
+          es: 'Este modo ya no está disponible.',
+          'pt-BR': 'Este modo não está mais disponível.',
+          vi: 'Chế độ này không còn khả dụng.',
+          id: 'Mode ini tidak lagi tersedia.',
+          tr: 'Bu mod artık kullanılamıyor.',
+          pl: 'Ten tryb nie jest już dostępny.',
+        }));
         router.replace('/(tabs)/arena' as any);
         return;
       }
@@ -102,12 +106,16 @@ export default function DuelGameScreen() {
       if (cancelled) return;
       if (!allowed) {
         logArenaDirectGateBlocked(String(sessionId || ''));
-        emitAppEvent('action_toast', {
-          type: 'info',
-          messageRu: 'Открой матч через Арену.',
-          messageUk: 'Відкрий матч через Арену.',
-          messageEs: 'Abre la partida desde Arena.',
-        });
+        emitAppEvent('action_toast', actionToastTri('info', {
+          ru: 'Открой матч через Арену.',
+          uk: 'Відкрий матч через Арену.',
+          es: 'Abre la partida desde Arena.',
+          'pt-BR': 'Abra a partida pela Arena.',
+          vi: 'Hãy mở trận đấu từ Đấu trường.',
+          id: 'Buka pertandingan melalui Arena.',
+          tr: 'Maçı Arena üzerinden aç.',
+          pl: 'Otwórz mecz przez Arenę.',
+        }));
         router.replace('/(tabs)/arena' as any);
         return;
       }

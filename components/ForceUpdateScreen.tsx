@@ -41,6 +41,31 @@ const TEXTS = {
     body: 'Esta versión ya no es compatible. Actualiza la app para continuar.',
     button: 'Actualizar la app',
   },
+  'pt-BR': {
+    title: 'Atualização obrigatória',
+    body: 'Esta versão não é mais compatível. Atualize o app para continuar.',
+    button: 'Atualizar aplicativo',
+  },
+  vi: {
+    title: 'Cần cập nhật',
+    body: 'Phiên bản này không còn được hỗ trợ. Vui lòng cập nhật ứng dụng để tiếp tục.',
+    button: 'Cập nhật ứng dụng',
+  },
+  'id': {
+    title: 'Pembaruan diperlukan',
+    body: 'Versi ini tidak lagi didukung. Perbarui aplikasi untuk melanjutkan.',
+    button: 'Perbarui aplikasi',
+  },
+  tr: {
+    title: 'Güncelleme gerekli',
+    body: 'Bu sürüm artık desteklenmiyor. Devam etmek için lütfen uygulamayı güncelle.',
+    button: 'Uygulamayı güncelle',
+  },
+  pl: {
+    title: 'Wymagana aktualizacja',
+    body: 'Ta wersja nie jest już obsługiwana. Zaktualizuj aplikację, aby kontynuować.',
+    button: 'Zaktualizuj aplikację',
+  },
 } as const;
 
 export default function ForceUpdateScreen({ storeUrl, message }: ForceUpdateScreenProps) {

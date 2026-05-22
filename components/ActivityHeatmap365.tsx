@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { useFocusEffect } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -34,6 +34,7 @@ import {
 } from './RewardModalBackdrop';
 import {
   ACTIVITY_365_GOAL_KEY,
+  activity365NextStepKind,
   type Activity365Analytics,
   type Activity365Day,
   type Activity365Filter,
@@ -41,6 +42,8 @@ import {
   loadActivity365Analytics,
   levelForFilter,
 } from '../app/activity_365_analytics';
+
+type PlannedCopy = { ru: string; uk: string; es: string } & Partial<Record<PlannedInterfaceLang, string>>;
 
 const WINDOW_DAYS = 365;
 const CELL_GAP = 2;
@@ -203,12 +206,12 @@ function activityStatus(activeDays: number, lang: Lang): string {
 }
 
 function filterLabel(filter: Activity365Filter, lang: Lang): string {
-  const labels: Record<Activity365Filter, { ru: string; uk: string; es: string }> = {
-    all: { ru: 'Все', uk: 'Усе', es: 'Todo' },
-    lessons: { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones' },
-    quizzes: { ru: 'Квизы', uk: 'Квізи', es: 'Tests' },
-    review: { ru: 'Повтор', uk: 'Повтор', es: 'Repaso' },
-    arena: { ru: 'Арена', uk: 'Арена', es: 'Arena' },
+  const labels: Record<Activity365Filter, PlannedCopy> = {
+    all: { ru: 'Все', uk: 'Усе', es: 'Todo', 'pt-BR': 'Tudo', vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystko' },
+    lessons: { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', 'pt-BR': 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' },
+    quizzes: { ru: 'Квизы', uk: 'Квізи', es: 'Tests', 'pt-BR': 'Quizzes', vi: 'Quiz', id: 'Kuis', tr: 'Quizler', pl: 'Quizy' },
+    review: { ru: 'Повтор', uk: 'Повтор', es: 'Repaso', 'pt-BR': 'Revisão', vi: 'Ôn tập', id: 'Ulangan', tr: 'Tekrar', pl: 'Powtórka' },
+    arena: { ru: 'Арена', uk: 'Арена', es: 'Arena', 'pt-BR': 'Arena', vi: 'Đấu trường', id: 'Arena', tr: 'Arena', pl: 'Arena' },
   };
   return labels[filter][lang] ?? labels[filter].ru;
 }
@@ -627,38 +630,61 @@ export default function ActivityHeatmap365() {
   const bestMonthText = safeAnalytics.bestMonth ? monthName(safeAnalytics.bestMonth.month, lang) : '-';
   const activeDaysText = activeDaysLabel(safeAnalytics.activeDays, lang);
   const statusText = activityStatus(safeAnalytics.activeDays, lang);
-  const nextStepText = safeAnalytics.activeDays < 7
+  const nextStepKind = activity365NextStepKind(safeAnalytics.activeDays, safeAnalytics.currentStreak);
+  const nextStepText = nextStepKind === 'first_day'
     ? triLang(lang, {
-      ru: 'Начни с 3 коротких занятий на этой неделе.',
-      uk: 'Почни з 3 коротких занять цього тижня.',
-      es: 'Empieza con 3 sesiones cortas esta semana.',
-      'pt-BR': "Comece com 3 sessões curtas nesta semana.",
-      vi: "Bắt đầu với 3 buổi ngắn trong tuần này.",
-      id: "Mulai dengan 3 sesi singkat minggu ini.",
-      tr: "Bu hafta 3 kısa seansla başla.",
-      pl: "Zacznij od 3 krótkich sesji w tym tygodniu.",
+      ru: 'Сделай первое короткое занятие, чтобы появился пульс.',
+      uk: 'Зроби перше коротке заняття, щоб зʼявився пульс.',
+      es: 'Haz tu primera sesión corta para que aparezca el pulso.',
+      'pt-BR': "Faça a primeira sessão curta para o pulso aparecer.",
+      vi: "Hãy làm buổi học ngắn đầu tiên để nhịp xuất hiện.",
+      id: "Mulai sesi singkat pertama agar denyut muncul.",
+      tr: "Nabız görünmesi için ilk kısa seansı yap.",
+      pl: "Zrób pierwszą krótką sesję, żeby pojawił się puls.",
     })
-    : safeAnalytics.currentStreak > 0
+    : nextStepKind === 'warmup'
       ? triLang(lang, {
-        ru: 'Продолжай серию короткой практикой сегодня.',
-        uk: 'Продовж серію короткою практикою сьогодні.',
-        es: 'Mantén la racha con una práctica corta hoy.',
-        'pt-BR': "Mantenha a sequência com uma prática curta hoje.",
-        vi: "Giữ chuỗi bằng một buổi luyện ngắn hôm nay.",
-        id: "Jaga rangkaian dengan latihan singkat hari ini.",
-        tr: "Bugün kısa bir pratikle seriyi koru.",
-        pl: "Utrzymaj serię krótkim ćwiczeniem dziś.",
+        ru: 'Отличный старт. Добавь ещё одну короткую практику, когда будет удобно.',
+        uk: 'Чудовий старт. Додай ще одну коротку практику, коли буде зручно.',
+        es: 'Buen comienzo. Suma otra práctica corta cuando te venga bien.',
+        'pt-BR': "Ótimo começo. Some outra prática curta quando for conveniente.",
+        vi: "Khởi đầu tốt. Thêm một buổi ngắn khi thuận tiện.",
+        id: "Awal bagus. Tambahkan latihan singkat lain saat nyaman.",
+        tr: "İyi başlangıç. Uygun olduğunda kısa bir pratik daha ekle.",
+        pl: "Dobry start. Dodaj kolejne krótkie ćwiczenie, gdy będzie wygodnie.",
       })
-      : triLang(lang, {
-        ru: 'Верни ритм одним коротким занятием сегодня.',
-        uk: 'Поверни ритм одним коротким заняттям сьогодні.',
-        es: 'Recupera el ritmo con una práctica corta hoy.',
-        'pt-BR': "Recupere o ritmo com uma prática curta hoje.",
-        vi: "Lấy lại nhịp bằng một buổi luyện ngắn hôm nay.",
-        id: "Pulihkan ritme dengan latihan singkat hari ini.",
-        tr: "Bugün kısa bir pratikle ritmi geri al.",
-        pl: "Odzyskaj rytm krótkim ćwiczeniem dziś.",
-      });
+      : nextStepKind === 'build_week'
+        ? triLang(lang, {
+          ru: 'Мягкая цель: 3 коротких занятия за неделю.',
+          uk: 'Мʼяка ціль: 3 короткі заняття за тиждень.',
+          es: 'Meta suave: 3 sesiones cortas esta semana.',
+          'pt-BR': "Meta leve: 3 sessões curtas nesta semana.",
+          vi: "Mục tiêu nhẹ: 3 buổi ngắn trong tuần này.",
+          id: "Target ringan: 3 sesi singkat minggu ini.",
+          tr: "Yumuşak hedef: bu hafta 3 kısa seans.",
+          pl: "Łagodny cel: 3 krótkie sesje w tym tygodniu.",
+        })
+        : nextStepKind === 'continue_streak'
+          ? triLang(lang, {
+            ru: 'Продолжай серию короткой практикой сегодня.',
+            uk: 'Продовж серію короткою практикою сьогодні.',
+            es: 'Mantén la racha con una práctica corta hoy.',
+            'pt-BR': "Mantenha a sequência com uma prática curta hoje.",
+            vi: "Giữ chuỗi bằng một buổi luyện ngắn hôm nay.",
+            id: "Jaga rangkaian dengan latihan singkat hari ini.",
+            tr: "Bugün kısa bir pratikle seriyi koru.",
+            pl: "Utrzymaj serię krótkim ćwiczeniem dziś.",
+          })
+          : triLang(lang, {
+            ru: 'Верни ритм одним коротким занятием сегодня.',
+            uk: 'Поверни ритм одним коротким заняттям сьогодні.',
+            es: 'Recupera el ritmo con una práctica corta hoy.',
+            'pt-BR': "Recupere o ritmo com uma prática curta hoje.",
+            vi: "Lấy lại nhịp bằng một buổi luyện ngắn hôm nay.",
+            id: "Pulihkan ritme dengan latihan singkat hari ini.",
+            tr: "Bugün kısa bir pratikle ritmi geri al.",
+            pl: "Odzyskaj rytm krótkim ćwiczeniem dziś.",
+          });
   const insights = safeAnalytics.insights.map(item => insightText(item, lang));
   const goalProgress = Math.min(100, Math.round((safeAnalytics.goal.activeDays / Math.max(1, safeAnalytics.goal.goal)) * 100));
   const luxuryLocations = isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined;

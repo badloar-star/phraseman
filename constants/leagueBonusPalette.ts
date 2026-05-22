@@ -277,7 +277,10 @@ const PALETTES: Record<ThemeMode, LeagueBonusPalette> = {
 };
 
 export function getLeagueBonusPalette(theme: Theme, themeMode: ThemeMode): LeagueBonusPalette {
-  return PALETTES[themeMode] ?? {
+  const palette = PALETTES[themeMode];
+  if (palette) return palette;
+
+  return {
     card: [theme.bgCard, theme.bgSurface, theme.bgCard],
     cardLocations: [0, 0.55, 1],
     border: theme.border,

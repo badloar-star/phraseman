@@ -5,7 +5,14 @@
 import { ALL_LESSONS, LESSON_DATA, getLessonData } from '../app/lesson_data_all';
 import { phraseAnswerAlternatives, phraseCanonicalAnswer } from '../app/phrase_target_utils';
 import { isCorrectAnswer } from '../constants/contractions';
-import { LESSON_NAMES_ES } from '../constants/lessons';
+import {
+  LESSON_NAMES_ES,
+  LESSON_NAMES_ID,
+  LESSON_NAMES_PL,
+  LESSON_NAMES_PT_BR,
+  LESSON_NAMES_TR,
+  LESSON_NAMES_VI,
+} from '../constants/lessons';
 
 /** Phrase count per lesson id (from LESSON_DATA). Update when curriculum changes. */
 const EXPECTED_PHRASE_COUNTS: Record<number, number> = {
@@ -46,6 +53,16 @@ describe('lesson phrases regression', () => {
     }
   });
 
+  it('lesson rows expose planned locale titles without Russian fallback', () => {
+    for (let id = 1; id <= 32; id++) {
+      expect(LESSON_DATA[id]?.titlePtBr).toBe(LESSON_NAMES_PT_BR[id - 1]);
+      expect(LESSON_DATA[id]?.titleVi).toBe(LESSON_NAMES_VI[id - 1]);
+      expect(LESSON_DATA[id]?.titleId).toBe(LESSON_NAMES_ID[id - 1]);
+      expect(LESSON_DATA[id]?.titleTr).toBe(LESSON_NAMES_TR[id - 1]);
+      expect(LESSON_DATA[id]?.titlePl).toBe(LESSON_NAMES_PL[id - 1]);
+    }
+  });
+
   it('lessons 25–32 phrases have non-empty spanish for locale es', () => {
     for (let lessonId = 25; lessonId <= 32; lessonId++) {
       const phrases = LESSON_DATA[lessonId]?.phrases ?? [];
@@ -57,7 +74,98 @@ describe('lesson phrases regression', () => {
     }
   });
 
+  it('keeps English cafe lesson text ASCII-only in learner-facing answers', () => {
+    const phrase = LESSON_DATA[6].phrases.find((row) => row.id === 'lesson6_phrase_50');
+    expect(phrase).toMatchObject({
+      english: 'When do they close the cafe?',
+      russian: 'Когда они закрывают кафе?',
+      ukrainian: 'Коли вони зачиняють кафе?',
+      spanish: '¿Cuándo cierran el café?',
+    });
+    expect(phrase?.english).not.toContain('é');
+    expect(phrase?.wordsEn?.map((word) => word.correct)).toEqual(['When', 'do', 'they', 'close', 'the', 'cafe']);
+  });
+
   it('reported phrase translations stay aligned with English answers', () => {
+    const lesson1Phrase29 = LESSON_DATA[1].phrases.find((phrase) => phrase.id === 'lesson1_phrase_29');
+    expect(lesson1Phrase29).toMatchObject({
+      english: 'You are okay',
+      russian: 'Ты в порядке',
+      ukrainian: 'Ти в порядку',
+      alternatives: ['You are fine'],
+    });
+    expect(lesson1Phrase29?.wordsEn?.map((word) => word.correct)).toEqual(['You', 'are', 'okay']);
+    expect(
+      isCorrectAnswer(
+        'You are fine',
+        phraseCanonicalAnswer(lesson1Phrase29!, 'en'),
+        phraseAnswerAlternatives(lesson1Phrase29!, 'en'),
+      ),
+    ).toBe(true);
+
+    const lesson5Phrase20 = LESSON_DATA[5].phrases.find((phrase) => phrase.id === 'lesson5_phrase_20');
+    expect(lesson5Phrase20).toMatchObject({
+      english: 'Does he call often?',
+      russian: 'Он часто звонит?',
+      ukrainian: 'Він часто телефонує?',
+    });
+    expect(lesson5Phrase20?.wordsEn?.map((word) => word.correct)).toEqual([
+      'Does',
+      'he',
+      'call',
+      'often',
+    ]);
+    expect(phraseCanonicalAnswer(lesson5Phrase20!, 'en')).toBe('Does he call often');
+    expect(
+      isCorrectAnswer(
+        'Does he call often',
+        phraseCanonicalAnswer(lesson5Phrase20!, 'en'),
+        phraseAnswerAlternatives(lesson5Phrase20!, 'en'),
+      ),
+    ).toBe(true);
+
+    const lesson5Phrase23 = LESSON_DATA[5].phrases.find((phrase) => phrase.id === 'lesson5_phrase_23');
+    expect(lesson5Phrase23).toMatchObject({
+      english: 'Does she believe you?',
+      russian: 'Она верит тебе?',
+      ukrainian: 'Вона вірить тобі?',
+    });
+    expect(lesson5Phrase23?.wordsEn?.map((word) => word.correct)).toEqual([
+      'Does',
+      'she',
+      'believe',
+      'you',
+    ]);
+    expect(phraseCanonicalAnswer(lesson5Phrase23!, 'en')).toBe('Does she believe you');
+    expect(
+      isCorrectAnswer(
+        'Does she believe you',
+        phraseCanonicalAnswer(lesson5Phrase23!, 'en'),
+        phraseAnswerAlternatives(lesson5Phrase23!, 'en'),
+      ),
+    ).toBe(true);
+
+    const lesson5Phrase26 = LESSON_DATA[5].phrases.find((phrase) => phrase.id === 'lesson5_phrase_26');
+    expect(lesson5Phrase26).toMatchObject({
+      english: 'Does he drive cars?',
+      russian: 'Он водит машины?',
+      ukrainian: 'Він водить машини?',
+    });
+    expect(lesson5Phrase26?.wordsEn?.map((word) => word.correct)).toEqual([
+      'Does',
+      'he',
+      'drive',
+      'cars',
+    ]);
+    expect(phraseCanonicalAnswer(lesson5Phrase26!, 'en')).toBe('Does he drive cars');
+    expect(
+      isCorrectAnswer(
+        'Does he drive cars',
+        phraseCanonicalAnswer(lesson5Phrase26!, 'en'),
+        phraseAnswerAlternatives(lesson5Phrase26!, 'en'),
+      ),
+    ).toBe(true);
+
     const lesson6Phrase27 = LESSON_DATA[6].phrases.find((phrase) => phrase.id === 'lesson6_phrase_27');
     expect(lesson6Phrase27).toMatchObject({
       english: 'Where does he keep keys?',
@@ -71,6 +179,21 @@ describe('lesson phrases regression', () => {
       'keep',
       'keys',
     ]);
+
+    const lesson6Phrase38 = LESSON_DATA[6].phrases.find((phrase) => phrase.id === 'lesson6_phrase_38');
+    expect(lesson6Phrase38).toMatchObject({
+      english: 'How do we book it?',
+      russian: 'Как нам это забронировать?',
+      ukrainian: 'Як нам це забронювати?',
+    });
+    expect(lesson6Phrase38?.wordsEn?.map((word) => word.correct)).toEqual([
+      'How',
+      'do',
+      'we',
+      'book',
+      'it',
+    ]);
+    expect(phraseCanonicalAnswer(lesson6Phrase38!, 'en')).toBe('How do we book it');
 
     const lesson11Phrase22 = LESSON_DATA[11].phrases.find((phrase) => phrase.id === 'lesson11_phrase_22');
     expect(lesson11Phrase22).toMatchObject({

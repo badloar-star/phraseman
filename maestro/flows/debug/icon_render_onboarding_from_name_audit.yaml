@@ -1,0 +1,31 @@
+appId: app.phraseman
+---
+- takeScreenshot: "icon-audit-onboarding-name"
+- tapOn:
+    id: "onboarding-name-skip"
+- extendedWaitUntil:
+    visible:
+      id: "onboarding-streak-screen"
+    timeout: 30000
+- takeScreenshot: "icon-audit-onboarding-streak"
+- tapOn:
+    id: "onboarding-streak-continue"
+- extendedWaitUntil:
+    visible:
+      id: "onboarding-auth-screen"
+    timeout: 30000
+- takeScreenshot: "icon-audit-onboarding-auth"
+- tapOn:
+    id: "onboarding-auth-later"
+- extendedWaitUntil:
+    visible:
+      id: "first-lesson-later"
+    timeout: 30000
+- takeScreenshot: "icon-audit-first-lesson-sheet"
+- tapOn:
+    id: "first-lesson-later"
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 60000
+- takeScreenshot: "icon-audit-post-onboarding-home"

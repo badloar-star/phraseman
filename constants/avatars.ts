@@ -406,19 +406,235 @@ export const FRAMES: FrameDef[] = [
   },
 ];
 
+const FRAME_NAMES_PT_BR: Record<string, string> = {
+  plain: 'Simples',
+  sprout: 'Broto',
+  arc: 'Arco',
+  ice: 'Gelo',
+  plasma: 'Plasma',
+  magnet: 'Magnetismo',
+  vortex: 'Vórtice',
+  dna: 'Pulsar',
+  runes: 'Runas',
+  gold_crown: 'Átomo dourado',
+  web: 'Teia',
+  hex: 'Hexágono',
+  geometry: 'Geometria',
+  neural: 'Rede neural',
+  aurora_star: 'Aurora',
+  crystal: 'Cristal',
+  legendary: '✦ Absoluto',
+  ach_streak365: 'Guardião do ano',
+  ach_streak500: '500 dias',
+  ach_lesson_absolute: 'Perfeição',
+  ach_combo100: 'Invencível',
+  ach_xp100k: 'Lenda de XP',
+  ach_quiz_god: 'Ás dos quizzes',
+  club_initiator: 'Iniciador',
+  club_adept: 'Adepto',
+  club_seeker: 'Buscador',
+  club_practitioner: 'Praticante',
+  club_analyst: 'Analista',
+  club_erudite: 'Erudito',
+  club_connoisseur: 'Conhecedor',
+  club_expert: 'Especialista',
+  club_magister: 'Mestre',
+  club_thinker: 'Pensador',
+  club_master: 'Mestre',
+  club_professor: 'Professor',
+};
+
+const FRAME_NAMES_VI: Record<string, string> = {
+  plain: 'Đơn giản',
+  sprout: 'Mầm non',
+  arc: 'Vòng cung',
+  ice: 'Băng',
+  plasma: 'Plasma',
+  magnet: 'Từ lực',
+  vortex: 'Xoáy',
+  dna: 'Pulsar',
+  runes: 'Cổ tự',
+  gold_crown: 'Nguyên tử vàng',
+  web: 'Mạng nhện',
+  hex: 'Lục giác',
+  geometry: 'Hình học',
+  neural: 'Mạng nơ-ron',
+  aurora_star: 'Cực quang',
+  crystal: 'Pha lê',
+  legendary: '✦ Tuyệt đối',
+  ach_streak365: 'Người giữ trọn năm',
+  ach_streak500: '500 ngày',
+  ach_lesson_absolute: 'Hoàn hảo',
+  ach_combo100: 'Bất bại',
+  ach_xp100k: 'Huyền thoại XP',
+  ach_quiz_god: 'Cao thủ quiz',
+  club_initiator: 'Người khởi xướng',
+  club_adept: 'Thành thạo',
+  club_seeker: 'Người tìm kiếm',
+  club_practitioner: 'Người luyện tập',
+  club_analyst: 'Nhà phân tích',
+  club_erudite: 'Học giả',
+  club_connoisseur: 'Người am hiểu',
+  club_expert: 'Chuyên gia',
+  club_magister: 'Bậc thầy',
+  club_thinker: 'Nhà tư tưởng',
+  club_master: 'Bậc thầy',
+  club_professor: 'Giáo sư',
+};
+
+const FRAME_NAMES_ID: Record<string, string> = {
+  plain: 'Sederhana',
+  sprout: 'Tunas',
+  arc: 'Busur',
+  ice: 'Es',
+  plasma: 'Plasma',
+  magnet: 'Magnetisme',
+  vortex: 'Pusaran',
+  dna: 'Pulsar',
+  runes: 'Runa',
+  gold_crown: 'Atom emas',
+  web: 'Jaring',
+  hex: 'Heksagon',
+  geometry: 'Geometri',
+  neural: 'Jaringan saraf',
+  aurora_star: 'Aurora',
+  crystal: 'Kristal',
+  legendary: '✦ Absolut',
+  ach_streak365: 'Penjaga tahun',
+  ach_streak500: '500 hari',
+  ach_lesson_absolute: 'Kesempurnaan',
+  ach_combo100: 'Tak terkalahkan',
+  ach_xp100k: 'Legenda XP',
+  ach_quiz_god: 'Jago kuis',
+  club_initiator: 'Inisiator',
+  club_adept: 'Adept',
+  club_seeker: 'Pencari',
+  club_practitioner: 'Praktisi',
+  club_analyst: 'Analis',
+  club_erudite: 'Cendekia',
+  club_connoisseur: 'Pakar',
+  club_expert: 'Ahli',
+  club_magister: 'Magister',
+  club_thinker: 'Pemikir',
+  club_master: 'Master',
+  club_professor: 'Profesor',
+};
+
+const FRAME_NAMES_TR: Record<string, string> = {
+  plain: 'Sade',
+  sprout: 'Filiz',
+  arc: 'Yay',
+  ice: 'Buz',
+  plasma: 'Plazma',
+  magnet: 'Manyetizma',
+  vortex: 'Girdap',
+  dna: 'Pulsar',
+  runes: 'Rünler',
+  gold_crown: 'Altın atom',
+  web: 'Ağ',
+  hex: 'Altıgen',
+  geometry: 'Geometri',
+  neural: 'Sinir ağı',
+  aurora_star: 'Aurora',
+  crystal: 'Kristal',
+  legendary: '✦ Mutlak',
+  ach_streak365: 'Yılın koruyucusu',
+  ach_streak500: '500 gün',
+  ach_lesson_absolute: 'Mükemmellik',
+  ach_combo100: 'Yenilmez',
+  ach_xp100k: 'XP efsanesi',
+  ach_quiz_god: 'Quiz ustası',
+  club_initiator: 'Başlatan',
+  club_adept: 'Usta aday',
+  club_seeker: 'Arayıcı',
+  club_practitioner: 'Uygulayıcı',
+  club_analyst: 'Analist',
+  club_erudite: 'Bilgin',
+  club_connoisseur: 'Uzman',
+  club_expert: 'Eksper',
+  club_magister: 'Magister',
+  club_thinker: 'Düşünür',
+  club_master: 'Usta',
+  club_professor: 'Profesör',
+};
+
+const FRAME_NAMES_PL: Record<string, string> = {
+  plain: 'Prosta',
+  sprout: 'Kiełek',
+  arc: 'Łuk',
+  ice: 'Lód',
+  plasma: 'Plazma',
+  magnet: 'Magnetyzm',
+  vortex: 'Wir',
+  dna: 'Pulsar',
+  runes: 'Runy',
+  gold_crown: 'Złoty atom',
+  web: 'Pajęczyna',
+  hex: 'Sześciokąt',
+  geometry: 'Geometria',
+  neural: 'Sieć neuronowa',
+  aurora_star: 'Aurora',
+  crystal: 'Kryształ',
+  legendary: '✦ Absolut',
+  ach_streak365: 'Strażnik roku',
+  ach_streak500: '500 dni',
+  ach_lesson_absolute: 'Perfekcja',
+  ach_combo100: 'Niezwyciężony',
+  ach_xp100k: 'Legenda XP',
+  ach_quiz_god: 'As quizów',
+  club_initiator: 'Inicjator',
+  club_adept: 'Adept',
+  club_seeker: 'Poszukiwacz',
+  club_practitioner: 'Praktyk',
+  club_analyst: 'Analityk',
+  club_erudite: 'Erudyta',
+  club_connoisseur: 'Znawca',
+  club_expert: 'Ekspert',
+  club_magister: 'Magister',
+  club_thinker: 'Myśliciel',
+  club_master: 'Mistrz',
+  club_professor: 'Profesor',
+};
+
+const FRAME_NAMES_BY_LANG: Partial<Record<Lang, Record<string, string>>> = {
+  'pt-BR': FRAME_NAMES_PT_BR,
+  vi: FRAME_NAMES_VI,
+  id: FRAME_NAMES_ID,
+  tr: FRAME_NAMES_TR,
+  pl: FRAME_NAMES_PL,
+};
+
 export const frameNameForLang = (fr: FrameDef, lang: Lang): string => {
-  if (lang === 'uk') return fr.nameUK;
-  if (lang === 'es') return fr.nameES;
-  return fr.nameRU;
+  const names: Partial<Record<Lang, string>> = {
+    ru: fr.nameRU,
+    uk: fr.nameUK,
+    es: fr.nameES,
+    'pt-BR': FRAME_NAMES_PT_BR[fr.id],
+    vi: FRAME_NAMES_VI[fr.id],
+    id: FRAME_NAMES_ID[fr.id],
+    tr: FRAME_NAMES_TR[fr.id],
+    pl: FRAME_NAMES_PL[fr.id],
+  };
+  const name = names[lang] || FRAME_NAMES_BY_LANG[lang]?.[fr.id];
+  if (name) return name;
+  const defaultName = fr.nameRU;
+  return defaultName;
 };
 
 // ── Хелперы ────────────────────────────────────────────────────────────────────
-export const getFrameById = (id: string): FrameDef =>
-  FRAMES.find(f => f.id === id) ?? FRAMES[0];
+export const getFrameById = (id: string): FrameDef => {
+  const frame = FRAMES.find(f => f.id === id);
+  if (frame) return frame;
+  const defaultFrame = FRAMES[0];
+  return defaultFrame;
+};
 
 export const getBestFrameForLevel = (level: number): FrameDef => {
   const unlocked = FRAMES.filter(f => (f.unlockType ?? 'level') === 'level' && f.unlockLevel <= level);
-  return unlocked[unlocked.length - 1] ?? FRAMES[0];
+  const frame = unlocked[unlocked.length - 1];
+  if (frame) return frame;
+  const defaultFrame = FRAMES[0];
+  return defaultFrame;
 };
 
 export const getBestAvatarForLevel = (level: number): string =>

@@ -1,0 +1,90 @@
+{
+  "generatedAt": "2026-05-20T06:25:24.722Z",
+  "mode": "semantic-audit",
+  "strict": true,
+  "summary": {
+    "findings": 3,
+    "blockers": 0,
+    "warnings": 3,
+    "reviewGroups": 3,
+    "byCode": {
+      "diagnosis-training-es-not-ready": 3
+    },
+    "bySurface": {
+      "diagnosis_training": 3
+    }
+  },
+  "reviewGroups": [
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "modal_can_could_ability_request",
+      "field": "modal_can_could_ability_request.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 114 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix can/could for ability, past ability, request, and form.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "modal_should_must_have_to",
+      "field": "modal_should_must_have_to.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 123 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix advice, obligation, necessity, prohibition, and no obligation.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "noun_possessive_apostrophe_s",
+      "field": "noun_possessive_apostrophe_s.shortTitle",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 2 placeholder(s), 175 English-looking learner-facing item(s) need translation review.",
+      "sample": "This training is available for this interface language.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "modal_can_could_ability_request",
+      "field": "modal_can_could_ability_request.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 114 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix can/could for ability, past ability, request, and form."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "modal_should_must_have_to",
+      "field": "modal_should_must_have_to.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 123 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix advice, obligation, necessity, prohibition, and no obligation."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "noun_possessive_apostrophe_s",
+      "field": "noun_possessive_apostrophe_s.shortTitle",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 2 placeholder(s), 175 English-looking learner-facing item(s) need translation review.",
+      "sample": "This training is available for this interface language."
+    }
+  ]
+}

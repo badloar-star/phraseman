@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import ts from 'typescript';
 
@@ -6,6 +7,7 @@ import { SYSTEM_CARDS } from '../app/flashcards/system-cards';
 import { IDIOMS } from '../app/idioms_data';
 import { IRREGULAR_VERBS_BY_LESSON } from '../app/irregular_verbs_data';
 import { LESSON_WORD_SOURCE_LOCALES_BY_EN } from '../app/lesson_words_source_locales';
+import { getAllDiagnosisTrainings } from '../app/diagnosis_trainings';
 import {
   getQuizPhrases,
   getQuizPoolAuditEntries,
@@ -23,6 +25,8 @@ import {
   type SourceLocale,
 } from '../app/source_locales';
 
+const cjsRequire = createRequire(__filename);
+
 const {
   compactSample,
   containsTerm,
@@ -35,10 +39,17 @@ const {
   localeCopyDifferences,
   missingRequiredFields,
   missingProtectedTerms,
-} = require('./lib/heisenberg_semantic_core.cjs') as typeof import('./lib/heisenberg_semantic_core.cjs');
+} = cjsRequire('./lib/heisenberg_semantic_core.cjs') as typeof import('./lib/heisenberg_semantic_core.cjs');
 
 type Severity = 'blocker' | 'warning';
-type Surface = 'quiz' | 'daily_phrase' | 'flashcards' | 'irregular_verbs' | 'lesson_words' | 'runtime';
+type Surface =
+  | 'quiz'
+  | 'daily_phrase'
+  | 'flashcards'
+  | 'irregular_verbs'
+  | 'lesson_words'
+  | 'diagnosis_training'
+  | 'runtime';
 
 type SemanticFinding = {
   severity: Severity;
@@ -75,9 +86,6 @@ type SemanticReport = {
 };
 
 const DIFFICULTIES: QuizDifficulty[] = ['easy', 'medium', 'hard'];
-const STRUCTURED_LOCALES = HEISENBERG_BATCH_SOURCE_LOCALES.filter(
-  (locale): locale is Exclude<HeisenbergSourceLocale, 'es'> => locale !== 'es',
-);
 const ALL_RUNTIME_LOCALES = HEISENBERG_BATCH_SOURCE_LOCALES as readonly SourceLocale[];
 const DAILY_PHRASE_FIELDS = ['literal', 'meaning', 'text'] as const;
 const FLASHCARD_BATCH_REQUIRED_CATEGORY_IDS = new Set([
@@ -90,6 +98,8 @@ const FLASHCARD_BATCH_REQUIRED_CATEGORY_IDS = new Set([
   'connectors',
 ]);
 type DailyPhraseCopy = Record<(typeof DAILY_PHRASE_FIELDS)[number], string>;
+type DiagnosisPlannedLocale = Exclude<HeisenbergSourceLocale, 'es'>;
+type TriTextLike = { ru: string; uk: string; es: string } & Partial<Record<DiagnosisPlannedLocale, string>>;
 type DailyPhraseSeedRecord = {
   id: number;
   english?: string;
@@ -98,6 +108,10 @@ type DailyPhraseSeedRecord = {
   text_es?: string;
   sourceLocales?: Partial<Record<HeisenbergSourceLocale, Partial<DailyPhraseCopy>>>;
 };
+
+const DIAGNOSIS_PLANNED_LOCALES = HEISENBERG_BATCH_SOURCE_LOCALES.filter(
+  (locale): locale is DiagnosisPlannedLocale => locale !== 'es',
+);
 
 function timestampSlug(): string {
   return new Date().toISOString().replace(/[:.]/g, '-');
@@ -220,7 +234,7 @@ function auditQuizPayload(
     const expectedTerms = expectedProtectedTerms([choice], baseExplanation);
     if (expectedTerms.length === 0) return;
 
-    const missingTerms = missingProtectedTerms([choice], baseExplanation, line);
+    const missingTerms = missingProtectedTerms([choice], baseExplanation, line, entry.choices);
     if (missingTerms.length === 0) return;
 
     const appearsElsewhere = payload.explanations.some(
@@ -250,25 +264,58 @@ function inlineSpanishQuizPayload(entry: QuizPoolAuditEntry): QuizSourceLocalePa
   };
 }
 
+function inlineStructuredQuizPayload(
+  entry: QuizPoolAuditEntry,
+  locale: Exclude<HeisenbergSourceLocale, 'es'>,
+): QuizSourceLocalePayload | null {
+  const payload = entry.sourceLocales?.[locale];
+  if (!payload?.prompt?.trim()) return null;
+  if (!payload.explanations || payload.explanations.length !== 4) return null;
+  return {
+    prompt: payload.prompt,
+    explanations: payload.explanations as [string, string, string, string],
+  };
+}
+
 function completeStructuredQuizPayload(
   difficulty: QuizDifficulty,
   ordinal: number,
   locale: Exclude<HeisenbergSourceLocale, 'es'>,
 ): QuizSourceLocalePayload | null {
+  if (difficulty === 'hard' && ordinal > 297) return null;
   const payload = getStructuredQuizSourceLocalePayload(difficulty, ordinal, locale);
   if (!payload?.prompt?.trim()) return null;
   if (!payload.explanations || payload.explanations.length !== 4) return null;
   return payload;
 }
 
+function resolveQuizSourceLocalePayload(
+  difficulty: QuizDifficulty,
+  entry: QuizPoolAuditEntry,
+  locale: HeisenbergSourceLocale,
+): QuizSourceLocalePayload | null {
+  if (locale === 'es') return inlineSpanishQuizPayload(entry);
+  return inlineStructuredQuizPayload(entry, locale) ?? completeStructuredQuizPayload(difficulty, entry.ordinal, locale);
+}
+
+function isContractedQuizSourceLocaleUnit(difficulty: QuizDifficulty, ordinal: number): boolean {
+  return (difficulty === 'medium' && ordinal >= 111 && ordinal <= 231) ||
+    (difficulty === 'hard' && ordinal >= 1 && ordinal <= 100);
+}
+
 function auditQuizSourceLocaleCoverage(findings: SemanticFinding[]): void {
   for (const difficulty of DIFFICULTIES) {
     const entries = getQuizPoolAuditEntries(difficulty);
     for (const entry of entries) {
+      const payloadsByLocale = HEISENBERG_BATCH_SOURCE_LOCALES.map((locale) => ({
+        locale,
+        payload: resolveQuizSourceLocalePayload(difficulty, entry, locale),
+      }));
+      const hasAnyPlannedPayload = payloadsByLocale.some(({ locale, payload }) => locale !== 'es' && Boolean(payload));
+      if (!isContractedQuizSourceLocaleUnit(difficulty, entry.ordinal) && !hasAnyPlannedPayload) continue;
+
       for (const locale of HEISENBERG_BATCH_SOURCE_LOCALES) {
-        const payload = locale === 'es'
-          ? inlineSpanishQuizPayload(entry)
-          : completeStructuredQuizPayload(difficulty, entry.ordinal, locale);
+        const payload = payloadsByLocale.find((item) => item.locale === locale)?.payload ?? null;
         if (payload) continue;
 
         pushFinding(findings, {
@@ -286,20 +333,18 @@ function auditQuizSourceLocaleCoverage(findings: SemanticFinding[]): void {
   }
 }
 
-function auditInlineSpanishQuizPayloads(findings: SemanticFinding[]): void {
+function auditStructuredQuizPayloads(findings: SemanticFinding[]): void {
+  auditQuizSourceLocaleCoverage(findings);
   for (const difficulty of DIFFICULTIES) {
     const entries = getQuizPoolAuditEntries(difficulty);
     for (const entry of entries) {
-      const payload = inlineSpanishQuizPayload(entry);
-      if (!payload) continue;
-      auditQuizPayload(findings, difficulty, entry, 'es', payload);
+      for (const locale of HEISENBERG_BATCH_SOURCE_LOCALES) {
+        const payload = resolveQuizSourceLocalePayload(difficulty, entry, locale);
+        if (!payload) continue;
+        auditQuizPayload(findings, difficulty, entry, locale, payload);
+      }
     }
   }
-}
-
-function auditStructuredQuizPayloads(findings: SemanticFinding[]): void {
-  auditQuizSourceLocaleCoverage(findings);
-  auditInlineSpanishQuizPayloads(findings);
 
   for (const difficulty of DIFFICULTIES) {
     const entries = getQuizPoolAuditEntries(difficulty);
@@ -320,10 +365,6 @@ function auditStructuredQuizPayloads(findings: SemanticFinding[]): void {
           message: 'Structured payload exists, but quiz pool entry is missing.',
         });
         continue;
-      }
-
-      for (const locale of STRUCTURED_LOCALES) {
-        auditQuizPayload(findings, difficulty, entry, locale, getStructuredQuizSourceLocalePayload(difficulty, ordinal, locale));
       }
     }
   }
@@ -360,6 +401,144 @@ function auditRuntimeEnglishTarget(findings: SemanticFinding[]): void {
         }
       });
     }
+  }
+}
+
+function isTriTextLike(value: unknown): value is TriTextLike {
+  return Boolean(
+    value &&
+      typeof value === 'object' &&
+      typeof (value as TriTextLike).ru === 'string' &&
+      typeof (value as TriTextLike).uk === 'string' &&
+      typeof (value as TriTextLike).es === 'string',
+  );
+}
+
+function collectDiagnosisTriText(
+  value: unknown,
+  out: Array<{ path: string; text: TriTextLike }>,
+  currentPath: string,
+): void {
+  if (!value || typeof value !== 'object') return;
+  if (isTriTextLike(value)) {
+    out.push({ path: currentPath, text: value });
+    return;
+  }
+  if (Array.isArray(value)) {
+    value.forEach((entry, index) => collectDiagnosisTriText(entry, out, `${currentPath}[${index}]`));
+    return;
+  }
+
+  for (const [key, entry] of Object.entries(value)) {
+    if (
+      [
+        'sentence',
+        'answerOptions',
+        'correctAnswerId',
+        'focusWords',
+        'contrastSet',
+        'analyticsEvents',
+        'routing',
+      ].includes(key)
+    ) {
+      continue;
+    }
+    collectDiagnosisTriText(entry, out, `${currentPath}.${key}`);
+  }
+}
+
+function auditDiagnosisTrainingLocaleReadiness(findings: SemanticFinding[]): void {
+  const spanishPlaceholder = 'This training is available for this interface language.';
+
+  for (const training of getAllDiagnosisTrainings()) {
+    const triText: Array<{ path: string; text: TriTextLike }> = [];
+    collectDiagnosisTriText(training, triText, training.id);
+
+    const spanishPlaceholders = triText.filter((item) => item.text.es.trim() === spanishPlaceholder);
+    const weakSpanishSignal = triText.filter((item) => {
+      const text = item.text.es.trim();
+      if (text.length < 32 || text === spanishPlaceholder) return false;
+      if (/^[A-Za-z0-9\s'",.?!:;/()+\-]+$/.test(text) && !localeLanguageSignal('es', text).ok) return true;
+      return false;
+    });
+
+    if (!training.supportedLocales?.includes('es') && (spanishPlaceholders.length > 0 || weakSpanishSignal.length > 0)) {
+      const sample = spanishPlaceholders[0] ?? weakSpanishSignal[0];
+      pushFinding(findings, {
+        severity: 'warning',
+        code: 'diagnosis-training-es-not-ready',
+        surface: 'diagnosis_training',
+        locale: 'es',
+        id: training.id,
+        field: sample?.path,
+        message:
+          `Diagnosis training has ES fields but Spanish is not activated; ${spanishPlaceholders.length} placeholder(s), ` +
+          `${weakSpanishSignal.length} English-looking learner-facing item(s) need translation review.`,
+        sample: sample?.text.es,
+      });
+    }
+  }
+}
+
+function auditDiagnosisTrainingPlannedLocaleFallbacks(findings: SemanticFinding[]): void {
+  const appDir = path.join(process.cwd(), 'app');
+  const files = fs
+    .readdirSync(appDir)
+    .filter((file) => /^diagnosis_training_.+\.ts$/.test(file))
+    .sort();
+
+  for (const file of files) {
+    const source = fs.readFileSync(path.join(appDir, file), 'utf8');
+    if (!/planned\[['"]pt-BR['"]\]\s*\?\?\s*es/.test(source)) continue;
+    if (!/vi:\s*planned\.vi\s*\?\?\s*es/.test(source)) continue;
+    if (!/id:\s*planned\.id\s*\?\?\s*es/.test(source)) continue;
+    if (!/tr:\s*planned\.tr\s*\?\?\s*es/.test(source)) continue;
+    if (!/pl:\s*planned\.pl\s*\?\?\s*es/.test(source)) continue;
+
+    const trainingId = file.replace(/^diagnosis_training_/, '').replace(/\.ts$/, '');
+    pushFinding(findings, {
+      severity: 'warning',
+      code: 'diagnosis-training-planned-locale-es-fallback-risk',
+      surface: 'diagnosis_training',
+      id: trainingId,
+      field: 'tri',
+      message:
+        'Diagnosis training helper falls planned locales back to ES. Add explicit planned-locale copy or change the helper before activating planned languages to avoid language mixing.',
+      sample: file,
+    });
+  }
+}
+
+function auditDiagnosisTrainingPlannedLocaleCatchup(findings: SemanticFinding[]): void {
+  for (const training of getAllDiagnosisTrainings()) {
+    if (!training.supportedLocales?.includes('es')) continue;
+
+    const triText: Array<{ path: string; text: TriTextLike }> = [];
+    collectDiagnosisTriText(training, triText, training.id);
+    const missingByLocale: Partial<Record<DiagnosisPlannedLocale, number>> = {};
+
+    for (const item of triText) {
+      if (!item.text.es.trim()) continue;
+      for (const locale of DIAGNOSIS_PLANNED_LOCALES) {
+        if (!item.text[locale]?.trim()) {
+          missingByLocale[locale] = (missingByLocale[locale] ?? 0) + 1;
+        }
+      }
+    }
+
+    const missingLocales = DIAGNOSIS_PLANNED_LOCALES.filter((locale) => (missingByLocale[locale] ?? 0) > 0);
+    if (missingLocales.length === 0) continue;
+
+    pushFinding(findings, {
+      severity: 'warning',
+      code: 'diagnosis-training-planned-locale-behind-es',
+      surface: 'diagnosis_training',
+      id: training.id,
+      field: 'TriText',
+      message:
+        'Diagnosis training has ES active, but planned source locales are behind ES coverage. Add explicit planned-locale copy before moving all languages together.',
+      sample: missingLocales.map((locale) => `${locale}:${missingByLocale[locale]}`).join(', '),
+    });
   }
 }
 
@@ -413,10 +592,6 @@ function dailyPhraseSeedCopy(seed: DailyPhraseSeedRecord | undefined, locale: So
   }
   if (locale === 'ru' || locale === 'uk') return null;
   return seed.sourceLocales?.[locale] ?? null;
-}
-
-function isCompleteDailyPhraseCopy(copy: Partial<DailyPhraseCopy> | null): copy is DailyPhraseCopy {
-  return missingRequiredFields(copy, DAILY_PHRASE_FIELDS).length === 0;
 }
 
 function auditDailyPhraseSeedSync(
@@ -577,7 +752,7 @@ function auditDailyPhrase(findings: SemanticFinding[]): void {
   }
 }
 
-function uniqueIrregularVerbs(): Array<(typeof IRREGULAR_VERBS_BY_LESSON)[number][number]> {
+function uniqueIrregularVerbs(): (typeof IRREGULAR_VERBS_BY_LESSON)[number][number][] {
   const byBase = new Map<string, (typeof IRREGULAR_VERBS_BY_LESSON)[number][number]>();
   for (const verbs of Object.values(IRREGULAR_VERBS_BY_LESSON)) {
     for (const verb of verbs) {
@@ -975,6 +1150,9 @@ export function runSemanticAudit(strict = false): { report: SemanticReport; outD
   auditFlashcards(findings);
   auditIrregularVerbs(findings);
   auditLessonWordSourceLocaleMap(findings);
+  auditDiagnosisTrainingLocaleReadiness(findings);
+  auditDiagnosisTrainingPlannedLocaleFallbacks(findings);
+  auditDiagnosisTrainingPlannedLocaleCatchup(findings);
   const reviewGroups = buildReviewGroups(findings);
 
   const report: SemanticReport = {

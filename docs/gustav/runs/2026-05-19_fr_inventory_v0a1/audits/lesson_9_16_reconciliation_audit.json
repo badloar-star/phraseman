@@ -1,0 +1,857 @@
+{
+  "schemaVersion": "gustav-lesson-9-16-reconciliation-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "status": "HOLD",
+  "generatedAt": "2026-05-19T18:48:22.705Z",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_lesson_9_16_reconciliation_audit.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "summary": {
+    "currentPhraseCount": 400,
+    "candidatePhraseCount": 400,
+    "lessonsCompared": 8,
+    "totalIdOverlap": 200,
+    "totalEnglishExactMatchesById": 0,
+    "totalSameLessonEnglishTextOverlap": 3,
+    "totalCurrentOnlyIds": 200,
+    "totalCandidateOnlyIds": 200,
+    "candidateMissingIds": 150,
+    "candidateLegacyIds": 50,
+    "candidateDuplicateIds": 0,
+    "candidateInvalidCanonicalIds": 200,
+    "blockerLessons": 8,
+    "highRiskLessons": 0,
+    "blockers": 4,
+    "highRisks": 0,
+    "canAutoPromoteHistoricalCandidate": false,
+    "recommendedPolicy": "do_not_auto_merge"
+  },
+  "inputArtifacts": {
+    "currentSourceGraph": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/source_graph.json",
+    "recoveryCandidate": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_historical_recovery_candidate.json",
+    "recoveryAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/lesson_9_16_source_recovery_audit.json"
+  },
+  "lessonComparisons": [
+    {
+      "lessonId": 9,
+      "currentCount": 50,
+      "candidateCount": 50,
+      "idOverlap": 50,
+      "englishExactMatchesById": 0,
+      "russianExactMatchesById": 0,
+      "ukrainianExactMatchesById": 0,
+      "sameLessonEnglishTextOverlap": 0,
+      "currentOnlyIdCount": 0,
+      "candidateOnlyIdCount": 0,
+      "candidateMissingIdCount": 0,
+      "candidateLegacyIdCount": 0,
+      "candidateDuplicateIdCount": 0,
+      "candidateInvalidCanonicalIdCount": 0,
+      "risk": "blocker",
+      "examples": {
+        "currentOnly": [],
+        "candidateOnly": [],
+        "mismatchedById": [
+          {
+            "id": "lesson9_phrase_1",
+            "currentEnglish": "There is a problem",
+            "candidateEnglish": "There is a bed in my room"
+          },
+          {
+            "id": "lesson9_phrase_2",
+            "currentEnglish": "There are problems",
+            "candidateEnglish": "There are some keys in the bag"
+          },
+          {
+            "id": "lesson9_phrase_3",
+            "currentEnglish": "Is there a question?",
+            "candidateEnglish": "There is a big park in this city"
+          },
+          {
+            "id": "lesson9_phrase_4",
+            "currentEnglish": "Are there questions?",
+            "candidateEnglish": "There are many documents on the table"
+          },
+          {
+            "id": "lesson9_phrase_5",
+            "currentEnglish": "There is no problem",
+            "candidateEnglish": "There is some milk in the fridge"
+          },
+          {
+            "id": "lesson9_phrase_6",
+            "currentEnglish": "There are no problems",
+            "candidateEnglish": "There is a lift in this building"
+          },
+          {
+            "id": "lesson9_phrase_7",
+            "currentEnglish": "There is a phone",
+            "candidateEnglish": "There are many cars in the street"
+          },
+          {
+            "id": "lesson9_phrase_8",
+            "currentEnglish": "There are phones",
+            "candidateEnglish": "There is a pharmacy at the airport"
+          }
+        ],
+        "textOverlap": [],
+        "invalidCandidateIds": []
+      },
+      "recommendation": "Do not auto-promote this lesson. It needs source-truth review against current runtime and lesson intent."
+    },
+    {
+      "lessonId": 10,
+      "currentCount": 50,
+      "candidateCount": 50,
+      "idOverlap": 50,
+      "englishExactMatchesById": 0,
+      "russianExactMatchesById": 0,
+      "ukrainianExactMatchesById": 0,
+      "sameLessonEnglishTextOverlap": 0,
+      "currentOnlyIdCount": 0,
+      "candidateOnlyIdCount": 0,
+      "candidateMissingIdCount": 0,
+      "candidateLegacyIdCount": 0,
+      "candidateDuplicateIdCount": 0,
+      "candidateInvalidCanonicalIdCount": 0,
+      "risk": "blocker",
+      "examples": {
+        "currentOnly": [],
+        "candidateOnly": [],
+        "mismatchedById": [
+          {
+            "id": "lesson10_phrase_1",
+            "currentEnglish": "I can help",
+            "candidateEnglish": "I can translate this document"
+          },
+          {
+            "id": "lesson10_phrase_2",
+            "currentEnglish": "You can start now",
+            "candidateEnglish": "You must sign these papers"
+          },
+          {
+            "id": "lesson10_phrase_3",
+            "currentEnglish": "He can call later",
+            "candidateEnglish": "He can fix my computer"
+          },
+          {
+            "id": "lesson10_phrase_4",
+            "currentEnglish": "She can speak English",
+            "candidateEnglish": "We must buy groceries today"
+          },
+          {
+            "id": "lesson10_phrase_5",
+            "currentEnglish": "We can wait here",
+            "candidateEnglish": "She can cook a delicious dinner"
+          },
+          {
+            "id": "lesson10_phrase_6",
+            "currentEnglish": "They can work today",
+            "candidateEnglish": "They can book this room"
+          },
+          {
+            "id": "lesson10_phrase_7",
+            "currentEnglish": "It can work well",
+            "candidateEnglish": "We must come on time"
+          },
+          {
+            "id": "lesson10_phrase_8",
+            "currentEnglish": "Can you help me?",
+            "candidateEnglish": "You can use my password"
+          }
+        ],
+        "textOverlap": [],
+        "invalidCandidateIds": []
+      },
+      "recommendation": "Do not auto-promote this lesson. It needs source-truth review against current runtime and lesson intent."
+    },
+    {
+      "lessonId": 11,
+      "currentCount": 50,
+      "candidateCount": 50,
+      "idOverlap": 50,
+      "englishExactMatchesById": 0,
+      "russianExactMatchesById": 0,
+      "ukrainianExactMatchesById": 0,
+      "sameLessonEnglishTextOverlap": 0,
+      "currentOnlyIdCount": 0,
+      "candidateOnlyIdCount": 0,
+      "candidateMissingIdCount": 0,
+      "candidateLegacyIdCount": 0,
+      "candidateDuplicateIdCount": 0,
+      "candidateInvalidCanonicalIdCount": 0,
+      "risk": "blocker",
+      "examples": {
+        "currentOnly": [],
+        "candidateOnly": [],
+        "mismatchedById": [
+          {
+            "id": "lesson11_phrase_1",
+            "currentEnglish": "I worked yesterday",
+            "candidateEnglish": "I booked this table two hours ago"
+          },
+          {
+            "id": "lesson11_phrase_2",
+            "currentEnglish": "You helped me yesterday",
+            "candidateEnglish": "She cooked a wonderful dinner yesterday evening"
+          },
+          {
+            "id": "lesson11_phrase_3",
+            "currentEnglish": "He called her yesterday",
+            "candidateEnglish": "We visited our friends last week"
+          },
+          {
+            "id": "lesson11_phrase_4",
+            "currentEnglish": "She cooked dinner yesterday",
+            "candidateEnglish": "They painted that wall three days ago"
+          },
+          {
+            "id": "lesson11_phrase_5",
+            "currentEnglish": "We watched TV yesterday",
+            "candidateEnglish": "You opened a new window this morning"
+          },
+          {
+            "id": "lesson11_phrase_6",
+            "currentEnglish": "They played music yesterday",
+            "candidateEnglish": "They checked their tickets yesterday evening"
+          },
+          {
+            "id": "lesson11_phrase_7",
+            "currentEnglish": "I washed the dishes this morning",
+            "candidateEnglish": "You parked the car here ten minutes ago"
+          },
+          {
+            "id": "lesson11_phrase_8",
+            "currentEnglish": "You opened apps this morning",
+            "candidateEnglish": "We discussed this project last Monday"
+          }
+        ],
+        "textOverlap": [],
+        "invalidCandidateIds": []
+      },
+      "recommendation": "Do not auto-promote this lesson. It needs source-truth review against current runtime and lesson intent."
+    },
+    {
+      "lessonId": 12,
+      "currentCount": 50,
+      "candidateCount": 50,
+      "idOverlap": 50,
+      "englishExactMatchesById": 0,
+      "russianExactMatchesById": 0,
+      "ukrainianExactMatchesById": 0,
+      "sameLessonEnglishTextOverlap": 0,
+      "currentOnlyIdCount": 0,
+      "candidateOnlyIdCount": 0,
+      "candidateMissingIdCount": 0,
+      "candidateLegacyIdCount": 0,
+      "candidateDuplicateIdCount": 0,
+      "candidateInvalidCanonicalIdCount": 0,
+      "risk": "blocker",
+      "examples": {
+        "currentOnly": [],
+        "candidateOnly": [],
+        "mismatchedById": [
+          {
+            "id": "lesson12_phrase_1",
+            "currentEnglish": "I bought bread yesterday",
+            "candidateEnglish": "I bought this fresh bread yesterday"
+          },
+          {
+            "id": "lesson12_phrase_2",
+            "currentEnglish": "She drank coffee this morning",
+            "candidateEnglish": "She drank her hot coffee three hours ago"
+          },
+          {
+            "id": "lesson12_phrase_3",
+            "currentEnglish": "We found keys this morning",
+            "candidateEnglish": "We found your keys this morning"
+          },
+          {
+            "id": "lesson12_phrase_4",
+            "currentEnglish": "They sold tickets last week",
+            "candidateEnglish": "They sold that old boat last month"
+          },
+          {
+            "id": "lesson12_phrase_5",
+            "currentEnglish": "You sent messages yesterday",
+            "candidateEnglish": "You sent that important parcel yesterday"
+          },
+          {
+            "id": "lesson12_phrase_6",
+            "currentEnglish": "They came late yesterday",
+            "candidateEnglish": "They ate that delicious cake yesterday evening"
+          },
+          {
+            "id": "lesson12_phrase_7",
+            "currentEnglish": "You saw him yesterday",
+            "candidateEnglish": "You saw that old photo three days ago"
+          },
+          {
+            "id": "lesson12_phrase_8",
+            "currentEnglish": "We built a plan last week",
+            "candidateEnglish": "We built this new fence last Friday"
+          }
+        ],
+        "textOverlap": [],
+        "invalidCandidateIds": []
+      },
+      "recommendation": "Do not auto-promote this lesson. It needs source-truth review against current runtime and lesson intent."
+    },
+    {
+      "lessonId": 13,
+      "currentCount": 50,
+      "candidateCount": 50,
+      "idOverlap": 0,
+      "englishExactMatchesById": 0,
+      "russianExactMatchesById": 0,
+      "ukrainianExactMatchesById": 0,
+      "sameLessonEnglishTextOverlap": 1,
+      "currentOnlyIdCount": 50,
+      "candidateOnlyIdCount": 50,
+      "candidateMissingIdCount": 50,
+      "candidateLegacyIdCount": 0,
+      "candidateDuplicateIdCount": 0,
+      "candidateInvalidCanonicalIdCount": 50,
+      "risk": "blocker",
+      "examples": {
+        "currentOnly": [
+          {
+            "id": "lesson13_phrase_1",
+            "english": "I will call you tomorrow"
+          },
+          {
+            "id": "lesson13_phrase_2",
+            "english": "She will help us next week"
+          },
+          {
+            "id": "lesson13_phrase_3",
+            "english": "We will meet soon"
+          },
+          {
+            "id": "lesson13_phrase_4",
+            "english": "They will buy food tomorrow"
+          },
+          {
+            "id": "lesson13_phrase_5",
+            "english": "You will bring documents later"
+          },
+          {
+            "id": "lesson13_phrase_6",
+            "english": "He will send messages in ten minutes"
+          },
+          {
+            "id": "lesson13_phrase_7",
+            "english": "We will cook soup soon"
+          },
+          {
+            "id": "lesson13_phrase_8",
+            "english": "She will wear glasses tomorrow"
+          }
+        ],
+        "candidateOnly": [
+          {
+            "id": "",
+            "english": "I will call you tomorrow morning."
+          },
+          {
+            "id": "",
+            "english": "She will help us next week."
+          },
+          {
+            "id": "",
+            "english": "We will meet this new doctor soon."
+          },
+          {
+            "id": "",
+            "english": "They will buy that old house next year."
+          },
+          {
+            "id": "",
+            "english": "You will bring those important documents later."
+          },
+          {
+            "id": "",
+            "english": "He will send that long message in ten minutes."
+          },
+          {
+            "id": "",
+            "english": "We will cook that delicious dinner soon."
+          },
+          {
+            "id": "",
+            "english": "She will wear that blue dress tomorrow evening."
+          }
+        ],
+        "mismatchedById": [],
+        "textOverlap": [
+          "She will help us next week."
+        ],
+        "invalidCandidateIds": [
+          {
+            "id": "",
+            "english": "I will call you tomorrow morning."
+          },
+          {
+            "id": "",
+            "english": "She will help us next week."
+          },
+          {
+            "id": "",
+            "english": "We will meet this new doctor soon."
+          },
+          {
+            "id": "",
+            "english": "They will buy that old house next year."
+          },
+          {
+            "id": "",
+            "english": "You will bring those important documents later."
+          },
+          {
+            "id": "",
+            "english": "He will send that long message in ten minutes."
+          },
+          {
+            "id": "",
+            "english": "We will cook that delicious dinner soon."
+          },
+          {
+            "id": "",
+            "english": "She will wear that blue dress tomorrow evening."
+          }
+        ]
+      },
+      "recommendation": "Do not auto-promote this lesson. It needs source-truth review against current runtime and lesson intent."
+    },
+    {
+      "lessonId": 14,
+      "currentCount": 50,
+      "candidateCount": 50,
+      "idOverlap": 0,
+      "englishExactMatchesById": 0,
+      "russianExactMatchesById": 0,
+      "ukrainianExactMatchesById": 0,
+      "sameLessonEnglishTextOverlap": 2,
+      "currentOnlyIdCount": 50,
+      "candidateOnlyIdCount": 50,
+      "candidateMissingIdCount": 50,
+      "candidateLegacyIdCount": 0,
+      "candidateDuplicateIdCount": 0,
+      "candidateInvalidCanonicalIdCount": 50,
+      "risk": "blocker",
+      "examples": {
+        "currentOnly": [
+          {
+            "id": "lesson14_phrase_1",
+            "english": "This is cheaper"
+          },
+          {
+            "id": "lesson14_phrase_2",
+            "english": "This is more expensive"
+          },
+          {
+            "id": "lesson14_phrase_3",
+            "english": "It is better now"
+          },
+          {
+            "id": "lesson14_phrase_4",
+            "english": "It is worse now"
+          },
+          {
+            "id": "lesson14_phrase_5",
+            "english": "She looks happier today"
+          },
+          {
+            "id": "lesson14_phrase_6",
+            "english": "He looks more serious today"
+          },
+          {
+            "id": "lesson14_phrase_7",
+            "english": "This plan is better"
+          },
+          {
+            "id": "lesson14_phrase_8",
+            "english": "This plan is worse"
+          }
+        ],
+        "candidateOnly": [
+          {
+            "id": "",
+            "english": "This new movie is much more interesting."
+          },
+          {
+            "id": "",
+            "english": "She looks happier today."
+          },
+          {
+            "id": "",
+            "english": "We bought the cheapest ticket."
+          },
+          {
+            "id": "",
+            "english": "That old house is the tallest here."
+          },
+          {
+            "id": "",
+            "english": "You chose a more expensive car."
+          },
+          {
+            "id": "",
+            "english": "That old computer is much slower."
+          },
+          {
+            "id": "",
+            "english": "We found the shortest way."
+          },
+          {
+            "id": "",
+            "english": "She bought more comfortable shoes today."
+          }
+        ],
+        "mismatchedById": [],
+        "textOverlap": [
+          "She looks happier today.",
+          "I feel much better today."
+        ],
+        "invalidCandidateIds": [
+          {
+            "id": "",
+            "english": "This new movie is much more interesting."
+          },
+          {
+            "id": "",
+            "english": "She looks happier today."
+          },
+          {
+            "id": "",
+            "english": "We bought the cheapest ticket."
+          },
+          {
+            "id": "",
+            "english": "That old house is the tallest here."
+          },
+          {
+            "id": "",
+            "english": "You chose a more expensive car."
+          },
+          {
+            "id": "",
+            "english": "That old computer is much slower."
+          },
+          {
+            "id": "",
+            "english": "We found the shortest way."
+          },
+          {
+            "id": "",
+            "english": "She bought more comfortable shoes today."
+          }
+        ]
+      },
+      "recommendation": "Do not auto-promote this lesson. It needs source-truth review against current runtime and lesson intent."
+    },
+    {
+      "lessonId": 15,
+      "currentCount": 50,
+      "candidateCount": 50,
+      "idOverlap": 0,
+      "englishExactMatchesById": 0,
+      "russianExactMatchesById": 0,
+      "ukrainianExactMatchesById": 0,
+      "sameLessonEnglishTextOverlap": 0,
+      "currentOnlyIdCount": 50,
+      "candidateOnlyIdCount": 50,
+      "candidateMissingIdCount": 50,
+      "candidateLegacyIdCount": 0,
+      "candidateDuplicateIdCount": 0,
+      "candidateInvalidCanonicalIdCount": 50,
+      "risk": "blocker",
+      "examples": {
+        "currentOnly": [
+          {
+            "id": "lesson15_phrase_1",
+            "english": "This phone is mine"
+          },
+          {
+            "id": "lesson15_phrase_2",
+            "english": "This bag is yours"
+          },
+          {
+            "id": "lesson15_phrase_3",
+            "english": "This key is his"
+          },
+          {
+            "id": "lesson15_phrase_4",
+            "english": "This ticket is hers"
+          },
+          {
+            "id": "lesson15_phrase_5",
+            "english": "This room is ours"
+          },
+          {
+            "id": "lesson15_phrase_6",
+            "english": "This car is theirs"
+          },
+          {
+            "id": "lesson15_phrase_7",
+            "english": "Is this phone mine?"
+          },
+          {
+            "id": "lesson15_phrase_8",
+            "english": "Is this bag yours?"
+          }
+        ],
+        "candidateOnly": [
+          {
+            "id": "",
+            "english": "That big black umbrella is mine."
+          },
+          {
+            "id": "",
+            "english": "Those new leather gloves are hers."
+          },
+          {
+            "id": "",
+            "english": "This empty glass is yours."
+          },
+          {
+            "id": "",
+            "english": "That old broken chair is his."
+          },
+          {
+            "id": "",
+            "english": "This bright cozy house is ours."
+          },
+          {
+            "id": "",
+            "english": "These modern office buildings are theirs."
+          },
+          {
+            "id": "",
+            "english": "That silver key on the table is mine."
+          },
+          {
+            "id": "",
+            "english": "These important documents in the folder are yours."
+          }
+        ],
+        "mismatchedById": [],
+        "textOverlap": [],
+        "invalidCandidateIds": [
+          {
+            "id": "",
+            "english": "That big black umbrella is mine."
+          },
+          {
+            "id": "",
+            "english": "Those new leather gloves are hers."
+          },
+          {
+            "id": "",
+            "english": "This empty glass is yours."
+          },
+          {
+            "id": "",
+            "english": "That old broken chair is his."
+          },
+          {
+            "id": "",
+            "english": "This bright cozy house is ours."
+          },
+          {
+            "id": "",
+            "english": "These modern office buildings are theirs."
+          },
+          {
+            "id": "",
+            "english": "That silver key on the table is mine."
+          },
+          {
+            "id": "",
+            "english": "These important documents in the folder are yours."
+          }
+        ]
+      },
+      "recommendation": "Do not auto-promote this lesson. It needs source-truth review against current runtime and lesson intent."
+    },
+    {
+      "lessonId": 16,
+      "currentCount": 50,
+      "candidateCount": 50,
+      "idOverlap": 0,
+      "englishExactMatchesById": 0,
+      "russianExactMatchesById": 0,
+      "ukrainianExactMatchesById": 0,
+      "sameLessonEnglishTextOverlap": 0,
+      "currentOnlyIdCount": 50,
+      "candidateOnlyIdCount": 50,
+      "candidateMissingIdCount": 0,
+      "candidateLegacyIdCount": 50,
+      "candidateDuplicateIdCount": 0,
+      "candidateInvalidCanonicalIdCount": 50,
+      "risk": "blocker",
+      "examples": {
+        "currentOnly": [
+          {
+            "id": "lesson16_phrase_1",
+            "english": "I wake up early"
+          },
+          {
+            "id": "lesson16_phrase_2",
+            "english": "You get up late"
+          },
+          {
+            "id": "lesson16_phrase_3",
+            "english": "He puts on glasses"
+          },
+          {
+            "id": "lesson16_phrase_4",
+            "english": "She takes off glasses"
+          },
+          {
+            "id": "lesson16_phrase_5",
+            "english": "We turn on lights"
+          },
+          {
+            "id": "lesson16_phrase_6",
+            "english": "They turn off lights"
+          },
+          {
+            "id": "lesson16_phrase_7",
+            "english": "I look for keys"
+          },
+          {
+            "id": "lesson16_phrase_8",
+            "english": "You clean up rooms"
+          }
+        ],
+        "candidateOnly": [
+          {
+            "id": "l16p1",
+            "english": "I usually wake up early in this bright room."
+          },
+          {
+            "id": "l16p2",
+            "english": "You always put on that warm winter coat."
+          },
+          {
+            "id": "l16p3",
+            "english": "He often looks for his lost keys here."
+          },
+          {
+            "id": "l16p4",
+            "english": "She takes off these uncomfortable shoes at home."
+          },
+          {
+            "id": "l16p5",
+            "english": "We seldom go back to that old city."
+          },
+          {
+            "id": "l16p6",
+            "english": "They sometimes get into that empty taxi."
+          },
+          {
+            "id": "l16p7",
+            "english": "I rarely get out of this old building at night."
+          },
+          {
+            "id": "l16p8",
+            "english": "You often turn on that bright light in the evening."
+          }
+        ],
+        "mismatchedById": [],
+        "textOverlap": [],
+        "invalidCandidateIds": [
+          {
+            "id": "l16p1",
+            "english": "I usually wake up early in this bright room."
+          },
+          {
+            "id": "l16p2",
+            "english": "You always put on that warm winter coat."
+          },
+          {
+            "id": "l16p3",
+            "english": "He often looks for his lost keys here."
+          },
+          {
+            "id": "l16p4",
+            "english": "She takes off these uncomfortable shoes at home."
+          },
+          {
+            "id": "l16p5",
+            "english": "We seldom go back to that old city."
+          },
+          {
+            "id": "l16p6",
+            "english": "They sometimes get into that empty taxi."
+          },
+          {
+            "id": "l16p7",
+            "english": "I rarely get out of this old building at night."
+          },
+          {
+            "id": "l16p8",
+            "english": "You often turn on that bright light in the evening."
+          }
+        ]
+      },
+      "recommendation": "Do not auto-promote this lesson. It needs source-truth review against current runtime and lesson intent."
+    }
+  ],
+  "findings": [
+    {
+      "id": "L916R-001",
+      "severity": "blocker",
+      "title": "Historical candidate has zero exact English matches by id",
+      "detail": "The recovered historical candidate cannot be treated as the source for current runtime because no overlapping id has the same English text.",
+      "files": [
+        "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/source_graph.json",
+        "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_historical_recovery_candidate.json"
+      ]
+    },
+    {
+      "id": "L916R-002",
+      "severity": "blocker",
+      "title": "Historical candidate has invalid or missing phrase ids",
+      "detail": "200 candidate entries do not match the current canonical lessonN_phrase_M id pattern. This includes 150 missing ids and 50 legacy ids.",
+      "files": [
+        "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_historical_recovery_candidate.json"
+      ]
+    },
+    {
+      "id": "L916R-003",
+      "severity": "blocker",
+      "title": "Every lesson 9-16 needs manual source reconciliation",
+      "detail": "8 lessons have blocker-level divergence between the historical candidate and current runtime.",
+      "files": [
+        "app/lesson_data_9_16.ts",
+        "app/lesson_data_9_16_phrases_es.gen.ts"
+      ]
+    },
+    {
+      "id": "L916R-004",
+      "severity": "blocker",
+      "title": "Automatic source promotion is forbidden",
+      "detail": "The safe policy is do_not_auto_merge: either approve a reviewed canonical extraction or keep current generated runtime as read-only evidence with explicit source-truth decision.",
+      "files": [
+        "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/lesson_9_16_source_recovery_audit.md"
+      ]
+    }
+  ],
+  "requiredBeforeFrenchGeneration": [
+    "Choose a lesson 9-16 source-truth policy: reviewed canonical extraction or explicit read-only runtime evidence approval.",
+    "If canonical extraction is chosen, create a non-generated source with stable current ids and current English/RU/UK prompts.",
+    "Rerun source graph, source graph quality, generated source-truth, reconciliation, validator and readiness gates."
+  ],
+  "notes": [
+    "This audit explains why the historical recovery candidate is useful evidence but unsafe as direct source truth.",
+    "It does not write to app files."
+  ]
+}

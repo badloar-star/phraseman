@@ -506,7 +506,8 @@ export const LESSON_1_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson1_phrase_29',
-    english: 'You are fine',
+    english: 'You are okay',
+    alternatives: ['You are fine'],
     russian: 'Ты в порядке',
     ukrainian: 'Ти в порядку',
     spanish: 'Estás bien.',
@@ -518,7 +519,7 @@ export const LESSON_1_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['your', 'yours', 'u', 'ye', 'yew'], category: 'pronoun' },
       { text: 'are', correct: 'are', distractors: ['am', 'is', 'be', 'been', 'being'], category: 'to-be' },
-      { text: 'fine', correct: 'fine', distractors: ['wine', 'mine', 'line', 'pine', 'vine'], category: 'adjective' }
+      { text: 'okay', correct: 'okay', distractors: ['fine', 'OK', 'alright', 'wrong', 'bad'], category: 'adjective' }
     ],
   },
   {
@@ -5523,8 +5524,8 @@ export const LESSON_6_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson6_phrase_38',
     english: 'How do we book it?',
-    russian: 'Как мы бронируем это?',
-    ukrainian: 'Як ми бронюємо це?',
+    russian: 'Как нам это забронировать?',
+    ukrainian: 'Як нам це забронювати?',
     spanish: '¿Cómo lo reservamos?',
     words: [
       { text: '¿', correct: '¿', distractors: ['Cómo', 'lo', 'reservamos', 'nunca', 'siempre'], category: 'puntuacion' }, // D1: marca de enunciación (¿?¡!) típica de calco inglés (cómo).; D2: marca de enunciación (¿?¡!) típica de calco inglés (lo).; D3: marca de enunciación (¿?¡!) típica de calco inglés (reservamos).; D4: marca de enunciación (¿?¡!) típica de calco inglés (nunca).; D5: marca de enunciación (¿?¡!) típica de calco inglés (siempre).
@@ -5783,23 +5784,25 @@ export const LESSON_6_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson6_phrase_50',
-    english: 'When do they close cafés?',
+    english: 'When do they close the cafe?',
     russian: 'Когда они закрывают кафе?',
     ukrainian: 'Коли вони зачиняють кафе?',
-    spanish: '¿Cuándo cierran cafés?',
+    spanish: '¿Cuándo cierran el café?',
     words: [
-      { text: '¿', correct: '¿', distractors: ['Cuándo', 'cierran', 'cafés', 'nunca', 'siempre'], category: 'puntuacion' }, // D1: marca de enunciación (¿?¡!) típica de calco inglés (cuándo).; D2: marca de enunciación (¿?¡!) típica de calco inglés (cierran).; D3: marca de enunciación (¿?¡!) típica de calco inglés (cafés).; D4: marca de enunciación (¿?¡!) típica de calco inglés (nunca).; D5: marca de enunciación (¿?¡!) típica de calco inglés (siempre).
+      { text: '¿', correct: '¿', distractors: ['Cuándo', 'cierran', 'el', 'café', 'siempre'], category: 'puntuacion' }, // D1: marca de enunciación (¿?¡!) típica de calco inglés (cuándo).; D2: marca de enunciación (¿?¡!) típica de calco inglés (cierran).; D3: marca de enunciación (¿?¡!) típica de calco inglés (el).; D4: marca de enunciación (¿?¡!) típica de calco inglés (café).; D5: marca de enunciación (¿?¡!) típica de calco inglés (siempre).
       { text: 'Cuándo', correct: 'Cuándo', distractors: ['Dónde', 'Cómo', 'Por', 'Cuánto', 'Qué'], category: 'interrogativo' }, // D1: palabra interrogativa equivocada (ámbito semántico) (dónde).; D2: palabra interrogativa equivocada (ámbito semántico) (cómo).; D3: palabra interrogativa equivocada (ámbito semántico) (por).; D4: palabra interrogativa equivocada (ámbito semántico) (cuánto).; D5: palabra interrogativa equivocada (ámbito semántico) (qué).
-      { text: 'cierran', correct: 'cierran', distractors: ['Cuándo', 'cafés', 'menos', 'bien', 'mal'], category: 'lexico_oracion' }, // D1: colisión léxica o colocación no idiomática en el hueco (cuándo).; D2: colisión léxica o colocación no idiomática en el hueco (cafés).; D3: colisión léxica o colocación no idiomática en el hueco (menos).; D4: colisión léxica o colocación no idiomática en el hueco (bien).; D5: colisión léxica o colocación no idiomática en el hueco (mal).
-      { text: 'cafés', correct: 'cafés', distractors: ['Cuándo', 'cierran', 'donde', 'cuando', 'allí'], category: 'lexico_oracion' }, // D1: colisión léxica o colocación no idiomática en el hueco (cuándo).; D2: colisión léxica o colocación no idiomática en el hueco (cierran).; D3: colisión léxica o colocación no idiomática en el hueco (donde).; D4: colisión léxica o colocación no idiomática en el hueco (cuando).; D5: colisión léxica o colocación no idiomática en el hueco (allí).
-      { text: '?', correct: '?', distractors: ['Cuándo', 'cierran', 'cafés', 'aquella', 'aquel'], category: 'puntuacion' }, // D1: marca de enunciación (¿?¡!) típica de calco inglés (cuándo).; D2: marca de enunciación (¿?¡!) típica de calco inglés (cierran).; D3: marca de enunciación (¿?¡!) típica de calco inglés (cafés).; D4: marca de enunciación (¿?¡!) típica de calco inglés (aquella).; D5: marca de enunciación (¿?¡!) típica de calco inglés (aquel).
+      { text: 'cierran', correct: 'cierran', distractors: ['Cuándo', 'cierra', 'cerramos', 'cerrar', 'cerró'], category: 'lexico_oracion' }, // D1: colisión léxica o colocación no idiomática en el hueco (cuándo).; D2: forma verbal equivocada (cierra).; D3: forma verbal equivocada (cerramos).; D4: infinitivo no conjugado (cerrar).; D5: tiempo verbal equivocado (cerró).
+      { text: 'el', correct: 'el', distractors: ['la', 'los', 'las', 'un', 'una'], category: 'articulo' }, // D1-D5: género/número o artículo equivocado para café.
+      { text: 'café', correct: 'café', distractors: ['hotel', 'banco', 'restaurante', 'mercado', 'parque'], category: 'sustantivo' }, // D1-D5: sustantivo de lugar equivocado.
+      { text: '?', correct: '?', distractors: ['Cuándo', 'cierran', 'el', 'café', 'aquella'], category: 'puntuacion' }, // D1-D5: marca de cierre interrogativo confundida con tokens de la oración.
     ],
     wordsEn: [
       { text: 'When', correct: 'When', distractors: ['where', 'went', 'want', 'win', 'west'] },
       { text: 'do', correct: 'do', distractors: ['does', 'done', 'did', 'dot', 'dog'] },
       { text: 'they', correct: 'they', distractors: ['them', 'their', 'there', 'thee', 'these'] },
       { text: 'close', correct: 'close', distractors: ['closes', 'closing', 'class', 'clean', 'chose'] },
-      { text: 'cafés', correct: 'cafés', distractors: ['café', 'cave', 'cake', 'cape', 'cage'] }
+      { text: 'the', correct: 'the', distractors: ['then', 'than', 'that', 'this', 'thus'] },
+      { text: 'cafe', correct: 'cafe', distractors: ['cave', 'cake', 'cape', 'cage', 'coffee'] }
     ],
   },
 ];

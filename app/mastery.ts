@@ -19,6 +19,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { spendShards } from './shards_system';
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
+import {
+  masteryFinishedOnceKey,
+  masteryReplayCountKey,
+  storageStudyTarget,
+  type RuntimeStudyTarget,
+} from './target_storage_keys';
 
 /** Стартовая цена первого платного перепрохождения (при счётчике 0). */
 export const MASTERY_REPLAY_BASE_SHARDS = 5;
@@ -29,15 +35,11 @@ export const MASTERY_REPLAY_PRICE_STEP_SHARDS = 5;
 /** @deprecated Используйте BASE / getMasteryReplayPriceShards; оставлено для совместимости (= база первого раза). */
 export const MASTERY_REPLAY_COST_SHARDS = MASTERY_REPLAY_BASE_SHARDS;
 
-/** AsyncStorage ключ-флаг "урок впервые завершён", по lesson id. */
-const finishedOnceKey = (lessonId: number): string => `lesson_finished_once_v1_${lessonId}`;
-const replayCountKey = (lessonId: number): string => `lesson_replay_count_v1_${lessonId}`;
-
 /** Сколько раз уже оформляли перепрохождение урока через mastery (после каждого успешного executeReplay +1). */
-export async function getLessonReplayCount(lessonId: number): Promise<number> {
+export async function getLessonReplayCount(lessonId: number, studyTarget?: RuntimeStudyTarget): Promise<number> {
   if (!Number.isFinite(lessonId) || lessonId <= 0) return 0;
   try {
-    const raw = await AsyncStorage.getItem(replayCountKey(lessonId));
+    const raw = await AsyncStorage.getItem(masteryReplayCountKey(lessonId, studyTarget));
     const n = parseInt(raw || '0', 10);
     return Number.isFinite(n) && n >= 0 ? n : 0;
   } catch (error) {
@@ -52,21 +54,24 @@ export function computeMasteryReplayPriceFromCount(replayCount: number): number 
   return MASTERY_REPLAY_BASE_SHARDS + MASTERY_REPLAY_PRICE_STEP_SHARDS * n;
 }
 
-export async function getMasteryReplayPriceShards(lessonId: number): Promise<number> {
-  const c = await getLessonReplayCount(lessonId);
+export async function getMasteryReplayPriceShards(
+  lessonId: number,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<number> {
+  const c = await getLessonReplayCount(lessonId, studyTarget);
   return computeMasteryReplayPriceFromCount(c);
 }
 
-async function bumpLessonReplayCount(lessonId: number): Promise<void> {
-  const c = await getLessonReplayCount(lessonId);
-  await AsyncStorage.setItem(replayCountKey(lessonId), String(c + 1));
+async function bumpLessonReplayCount(lessonId: number, studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const c = await getLessonReplayCount(lessonId, studyTarget);
+  await AsyncStorage.setItem(masteryReplayCountKey(lessonId, studyTarget), String(c + 1));
 }
 
 /** Пройден ли урок хотя бы один раз (доходил до экрана lesson_complete). */
-export async function isLessonFinishedOnce(lessonId: number): Promise<boolean> {
+export async function isLessonFinishedOnce(lessonId: number, studyTarget?: RuntimeStudyTarget): Promise<boolean> {
   if (!Number.isFinite(lessonId) || lessonId <= 0) return false;
   try {
-    const v = await AsyncStorage.getItem(finishedOnceKey(lessonId));
+    const v = await AsyncStorage.getItem(masteryFinishedOnceKey(lessonId, studyTarget));
     return v === '1';
   } catch (error) {
     DebugLogger.error('mastery:isLessonFinishedOnce', error, 'warning');
@@ -78,13 +83,16 @@ export async function isLessonFinishedOnce(lessonId: number): Promise<boolean> {
  * Вызывается из lesson_complete.tsx при mount экрана. Идемпотентен —
  * повторные вызовы для уже завершённого урока ничего не делают.
  */
-export async function markLessonFinishedOnce(lessonId: number): Promise<{ firstTime: boolean }> {
+export async function markLessonFinishedOnce(
+  lessonId: number,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<{ firstTime: boolean }> {
   if (!Number.isFinite(lessonId) || lessonId <= 0) return { firstTime: false };
   try {
-    const existing = await AsyncStorage.getItem(finishedOnceKey(lessonId));
+    const existing = await AsyncStorage.getItem(masteryFinishedOnceKey(lessonId, studyTarget));
     if (existing === '1') return { firstTime: false };
-    await AsyncStorage.setItem(finishedOnceKey(lessonId), '1');
-    emitAppEvent('lesson_finished_once', { lessonId });
+    await AsyncStorage.setItem(masteryFinishedOnceKey(lessonId, studyTarget), '1');
+    emitAppEvent('lesson_finished_once', { lessonId, studyTarget: storageStudyTarget(studyTarget) });
     return { firstTime: true };
   } catch (error) {
     DebugLogger.error('mastery:markLessonFinishedOnce', error, 'warning');
@@ -103,28 +111,29 @@ export type ExecuteReplayResult =
 export async function executeReplay(
   lessonId: number,
   isPremium: boolean,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<ExecuteReplayResult> {
   if (!Number.isFinite(lessonId) || lessonId <= 0) {
     return { ok: false, reason: 'not_finished_yet' };
   }
-  const finished = await isLessonFinishedOnce(lessonId);
+  const finished = await isLessonFinishedOnce(lessonId, studyTarget);
   if (!finished) return { ok: false, reason: 'not_finished_yet' };
 
   let spent = 0;
   if (!isPremium) {
-    const price = await getMasteryReplayPriceShards(lessonId);
+    const price = await getMasteryReplayPriceShards(lessonId, studyTarget);
     const ok = await spendShards(price, 'lesson_replay');
     if (!ok) return { ok: false, reason: 'insufficient_shards' };
     spent = price;
   }
 
   try {
-    await bumpLessonReplayCount(lessonId);
+    await bumpLessonReplayCount(lessonId, studyTarget);
   } catch (error) {
     DebugLogger.error('mastery:executeReplay:bumpCount', error, 'critical');
   }
 
-  emitAppEvent('lesson_replay_started', { lessonId, spent });
+  emitAppEvent('lesson_replay_started', { lessonId, spent, studyTarget: storageStudyTarget(studyTarget) });
   return { ok: true, spent };
 }
 

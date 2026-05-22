@@ -1,4 +1,4 @@
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import React, { useCallback, useState } from 'react';
 import {
   Image,
@@ -24,6 +24,7 @@ import { oskolokImageForPackShards } from '../app/oskolok';
 import { emitAppEvent } from '../app/events';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { SHARD_MODAL_FRAME_COLORS } from '../constants/shard_modal_chrome';
+import { triLang } from '../constants/i18n';
 import { paywallGlassColor } from './paywallGlass';
 
 type Props = {
@@ -38,8 +39,6 @@ type Props = {
 export default function EnergyRefillShardModal({ visible, onClose }: Props) {
   const router = useRouter();
   const { lang } = useLang();
-  const isUK = lang === 'uk';
-  const isES = lang === 'es';
   const { theme: t, themeMode, f } = useTheme();
   const shardModalCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
   const { energy, maxEnergy, isUnlimited, reload } = useEnergy();
@@ -82,6 +81,11 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
           messageRu: 'Сейчас пополнение не требуется.',
           messageUk: 'Зараз поповнення не потрібне.',
           messageEs: 'Ahora no hace falta recargar energía.',
+          messagePtBr: 'Não é preciso recarregar energia agora.',
+          messageVi: 'Hiện chưa cần nạp năng lượng.',
+          messageId: 'Saat ini tidak perlu mengisi ulang energi.',
+          messageTr: 'Şu anda enerji yenilemeye gerek yok.',
+          messagePl: 'Teraz nie trzeba odnawiać energii.',
         });
       }
     } finally {
@@ -89,24 +93,77 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
     }
   }, [busy, canRefill, cost, energy, isUnlimited, maxEnergy, onClose, reload, router]);
 
-  const title = isUK ? 'Відновити енергію' : isES ? 'Recuperar energía' : 'Восстановить энергию';
-  const closeLabel = isUK ? 'Закрити' : isES ? 'Cerrar' : 'Закрыть';
+  const title = triLang(lang, {
+    ru: 'Восстановить энергию',
+    uk: 'Відновити енергію',
+    es: 'Recuperar energía',
+    'pt-BR': 'Restaurar energia',
+    vi: 'Khôi phục năng lượng',
+    id: 'Pulihkan energi',
+    tr: 'Enerjiyi yenile',
+    pl: 'Odnów energię',
+  });
+  const closeLabel = triLang(lang, {
+    ru: 'Закрыть',
+    uk: 'Закрити',
+    es: 'Cerrar',
+    'pt-BR': 'Fechar',
+    vi: 'Đóng',
+    id: 'Tutup',
+    tr: 'Kapat',
+    pl: 'Zamknij',
+  });
 
-  const hintUnlimited = isUK
-    ? 'У тебе безліміт енергії (Premium або тестовий режим). Осколки на заряд не витрачаються.'
-    : isES
-      ? 'Tienes energía ilimitada (Premium o modo de prueba). Los fragmentos no se gastan en la recarga.'
-      : 'У тебя безлимит энергии (Premium или тестовый режим). Осколки на заряд не тратятся.';
-  const hintFull = isUK
-    ? `Базова енергія вже повна (${maxEnergy} ⚡). Спочатку витрать заряд у уроці або квізі — тоді зможеш купити повне відновлення за осколки.`
-    : isES
-      ? `Tu reserva base de energía ya está llena (${maxEnergy} ⚡). Primero gasta ⚡ en una lección o un cuestionario; después podrás recuperarla a cambio de fragmentos.`
-      : `Базовая энергия уже полная (${maxEnergy} ⚡). Сначала потрать заряд в уроке или квизе — тогда сможешь купить полное восстановление за осколки.`;
-  const hintOk = isUK
-    ? `Повний заряд базової енергії (${maxEnergy} ⚡) за`
-    : isES
-      ? `Recarga completa de la energía base (${maxEnergy} ⚡) por`
-      : `Полный заряд базовой энергии (${maxEnergy} ⚡) за`;
+  const hintUnlimited = triLang(lang, {
+    ru: 'У тебя безлимит энергии (Premium или тестовый режим). Осколки на заряд не тратятся.',
+    uk: 'У тебе безліміт енергії (Premium або тестовий режим). Осколки на заряд не витрачаються.',
+    es: 'Tienes energía ilimitada (Premium o modo de prueba). Los fragmentos no se gastan en la recarga.',
+    'pt-BR': 'Você tem energia ilimitada (Premium ou modo de teste). Fragmentos não são gastos na recarga.',
+    vi: 'Bạn có năng lượng không giới hạn (Premium hoặc chế độ thử nghiệm). Mảnh sẽ không bị dùng để nạp.',
+    id: 'Kamu punya energi tanpa batas (Premium atau mode uji). Shard tidak dipakai untuk isi ulang.',
+    tr: 'Sınırsız enerjin var (Premium veya test modu). Yenileme için parça harcanmaz.',
+    pl: 'Masz energię bez limitu (Premium albo tryb testowy). Odłamki nie są wydawane na odnowienie.',
+  });
+  const hintFull = triLang(lang, {
+    ru: `Базовая энергия уже полная (${maxEnergy} ⚡). Сначала потрать заряд в уроке или квизе — тогда сможешь купить полное восстановление за осколки.`,
+    uk: `Базова енергія вже повна (${maxEnergy} ⚡). Спочатку витрать заряд у уроці або квізі — тоді зможеш купити повне відновлення за осколки.`,
+    es: `Tu reserva base de energía ya está llena (${maxEnergy} ⚡). Primero gasta ⚡ en una lección o un cuestionario; después podrás recuperarla a cambio de fragmentos.`,
+    'pt-BR': `Sua energia base já está cheia (${maxEnergy} ⚡). Primeiro gaste ⚡ em uma lição ou quiz; depois você poderá restaurar tudo com fragmentos.`,
+    vi: `Năng lượng cơ bản đã đầy (${maxEnergy} ⚡). Trước tiên hãy dùng ⚡ trong bài học hoặc quiz; sau đó bạn có thể khôi phục đầy bằng mảnh.`,
+    id: `Energi dasar sudah penuh (${maxEnergy} ⚡). Gunakan ⚡ dulu di pelajaran atau kuis; setelah itu kamu bisa memulihkan penuh dengan shard.`,
+    tr: `Temel enerji zaten dolu (${maxEnergy} ⚡). Önce bir ders veya quizde ⚡ harca; sonra parçalarla tamamen yenileyebilirsin.`,
+    pl: `Podstawowa energia jest już pełna (${maxEnergy} ⚡). Najpierw zużyj ⚡ w lekcji albo quizie; potem możesz odnowić ją za odłamki.`,
+  });
+  const hintOk = triLang(lang, {
+    ru: `Полный заряд базовой энергии (${maxEnergy} ⚡) за`,
+    uk: `Повний заряд базової енергії (${maxEnergy} ⚡) за`,
+    es: `Recarga completa de la energía base (${maxEnergy} ⚡) por`,
+    'pt-BR': `Carga completa da energia base (${maxEnergy} ⚡) por`,
+    vi: `Nạp đầy năng lượng cơ bản (${maxEnergy} ⚡) với`,
+    id: `Isi penuh energi dasar (${maxEnergy} ⚡) dengan`,
+    tr: `Temel enerjiyi tamamen yenile (${maxEnergy} ⚡):`,
+    pl: `Pełne odnowienie energii podstawowej (${maxEnergy} ⚡) za`,
+  });
+  const kicker = triLang(lang, {
+    ru: 'ЭНЕРГИЯ',
+    uk: 'ЕНЕРГІЯ',
+    es: 'ENERGÍA',
+    'pt-BR': 'ENERGIA',
+    vi: 'NĂNG LƯỢNG',
+    id: 'ENERGI',
+    tr: 'ENERJİ',
+    pl: 'ENERGIA',
+  });
+  const refillLabel = triLang(lang, {
+    ru: 'Восстановить',
+    uk: 'Відновити',
+    es: 'Recuperar',
+    'pt-BR': 'Restaurar',
+    vi: 'Khôi phục',
+    id: 'Pulihkan',
+    tr: 'Yenile',
+    pl: 'Odnów',
+  });
 
   const bodyHint = isUnlimited ? hintUnlimited : baseFull ? hintFull : hintOk;
 
@@ -131,7 +188,7 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
           >
             <View style={[styles.card, { backgroundColor: shardModalCardBg }]}>
               <Text style={[styles.kicker, { color: t.gold }]}>
-                {isUK ? 'ЕНЕРГІЯ' : isES ? 'ENERGÍA' : 'ЭНЕРГИЯ'}
+                {kicker}
               </Text>
               <Text style={styles.emoji}>⚡</Text>
               <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.round(f.h2 * 1.08) }]}>{title}</Text>
@@ -157,6 +214,11 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
                       messageUk: 'База вже повна — спочатку витрать ⚡ в уроці або квізі.',
                       messageEs:
                         'Ya tienes la energía al máximo: primero gasta ⚡ en una lección o un cuestionario.',
+                      messagePtBr: 'A energia base já está cheia: primeiro gaste ⚡ em uma lição ou quiz.',
+                      messageVi: 'Năng lượng cơ bản đã đầy: trước tiên hãy dùng ⚡ trong bài học hoặc quiz.',
+                      messageId: 'Energi dasar sudah penuh: gunakan ⚡ dulu di pelajaran atau kuis.',
+                      messageTr: 'Temel enerji zaten dolu: önce bir ders veya quizde ⚡ harca.',
+                      messagePl: 'Podstawowa energia jest już pełna: najpierw zużyj ⚡ w lekcji albo quizie.',
                     });
                     return;
                   }
@@ -171,7 +233,7 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                   <Image source={oskolokImageForPackShards(cost)} style={{ width: 22, height: 22 }} resizeMode="contain" />
                   <Text style={[styles.btnPrimaryText, { fontSize: f.body, color: t.correctText }]}>
-                    {isUK ? 'Відновити' : isES ? 'Recuperar' : 'Восстановить'} · {cost}
+                    {refillLabel} · {cost}
                   </Text>
                 </View>
               </TouchableOpacity>

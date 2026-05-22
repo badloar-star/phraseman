@@ -1,0 +1,76 @@
+appId: app.phraseman
+clearState: true
+---
+- stopApp
+- openLink: "exp+phraseman://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A8081"
+- waitForAnimationToEnd:
+    timeout: 8000
+- runFlow:
+    when:
+      visible: "Got it"
+    commands:
+      - tapOn: "Got it"
+      - waitForAnimationToEnd:
+          timeout: 3000
+- runFlow:
+    when:
+      visible: "Continue"
+    commands:
+      - tapOn: "Continue"
+      - waitForAnimationToEnd:
+          timeout: 3000
+- runFlow:
+    when:
+      visible: "New development server"
+    commands:
+      - tapOn:
+          point: "50%,26%"
+      - waitForAnimationToEnd:
+          timeout: 8000
+- extendedWaitUntil:
+    visible:
+      id: "onboarding-welcome-screen"
+    timeout: 120000
+- takeScreenshot: "icon-audit-onboarding-welcome"
+- tapOn:
+    id: "onboarding-welcome-continue"
+- extendedWaitUntil:
+    visible:
+      id: "onboarding-name-input"
+    timeout: 30000
+- takeScreenshot: "icon-audit-onboarding-name"
+- scrollUntilVisible:
+    element:
+      id: "onboarding-name-skip"
+    direction: DOWN
+    timeout: 10000
+    speed: 60
+    visibilityPercentage: 30
+- tapOn:
+    id: "onboarding-name-skip"
+- extendedWaitUntil:
+    visible:
+      id: "onboarding-streak-screen"
+    timeout: 30000
+- takeScreenshot: "icon-audit-onboarding-streak"
+- tapOn:
+    id: "onboarding-streak-continue"
+- extendedWaitUntil:
+    visible:
+      id: "onboarding-auth-screen"
+    timeout: 30000
+- takeScreenshot: "icon-audit-onboarding-auth"
+- tapOn:
+    id: "onboarding-auth-later"
+- extendedWaitUntil:
+    visible:
+      id: "first-lesson-later"
+    timeout: 30000
+- takeScreenshot: "icon-audit-first-lesson-sheet"
+- tapOn:
+    id: "first-lesson-later"
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 60000
+- takeScreenshot: "icon-audit-post-onboarding-home"

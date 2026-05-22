@@ -1,0 +1,642 @@
+{
+  "generatedAt": "2026-05-19T20:47:25.283Z",
+  "mode": "semantic-audit",
+  "strict": true,
+  "summary": {
+    "findings": 27,
+    "blockers": 0,
+    "warnings": 27,
+    "reviewGroups": 27,
+    "byCode": {
+      "diagnosis-training-es-not-ready": 27
+    },
+    "bySurface": {
+      "diagnosis_training": 27
+    }
+  },
+  "reviewGroups": [
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "object_order_give_me_it",
+      "field": "object_order_give_me_it.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 115 English-looking learner-facing item(s) need translation review.",
+      "sample": "Give me the book / Give it to me",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "word_order_basic_statement",
+      "field": "word_order_basic_statement.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 90 English-looking learner-facing item(s) need translation review.",
+      "sample": "I like coffee: basic statement order",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "word_order_basic_question",
+      "field": "word_order_basic_question.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 132 English-looking learner-facing item(s) need translation review.",
+      "sample": "You are building English questions like statements with intonation.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "imperative_basic",
+      "field": "imperative_basic.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 122 English-looking learner-facing item(s) need translation review.",
+      "sample": "Imperative: commands, requests, and instructions",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "condition_zero_first",
+      "field": "condition_zero_first.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 172 English-looking learner-facing item(s) need translation review.",
+      "sample": "You put will right after if, but English usually keeps will in the result.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "condition_second_basic",
+      "field": "condition_second_basic.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 89 placeholder(s), 101 English-looking learner-facing item(s) need translation review.",
+      "sample": "This training is available for this interface language.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "relative_clauses_who_which_that",
+      "field": "relative_clauses_who_which_that.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 96 placeholder(s), 97 English-looking learner-facing item(s) need translation review.",
+      "sample": "This training is available for this interface language.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "reported_speech_basic",
+      "field": "reported_speech_basic.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 158 English-looking learner-facing item(s) need translation review.",
+      "sample": "He said that...: reported speech",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "verb_past_simple_regular_irregular",
+      "field": "verb_past_simple_regular_irregular.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 133 English-looking learner-facing item(s) need translation review.",
+      "sample": "Past Simple: worked, went, bought",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "verb_past_simple_negative_question",
+      "field": "verb_past_simple_negative_question.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 165 English-looking learner-facing item(s) need translation review.",
+      "sample": "Did / Didn't: past questions and negatives",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "verb_present_perfect_basic",
+      "field": "verb_present_perfect_basic.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 171 English-looking learner-facing item(s) need translation review.",
+      "sample": "You try to talk about a result now, but break the pattern: have saw, has finish, I have lost my keys yesterday.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "present_perfect_vs_past_simple",
+      "field": "present_perfect_vs_past_simple.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 193 English-looking learner-facing item(s) need translation review.",
+      "sample": "Present Perfect vs Past Simple: result now or past time",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "present_perfect_questions_negatives",
+      "field": "present_perfect_questions_negatives.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 185 English-looking learner-facing item(s) need translation review.",
+      "sample": "Present Perfect: questions and haven't / hasn't",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "present_perfect_for_since",
+      "field": "present_perfect_for_since.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 182 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix up for three years and since 2020, so sentences about how long something has continued break.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "past_continuous_basic",
+      "field": "past_continuous_basic.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 167 English-looking learner-facing item(s) need translation review.",
+      "sample": "You want to say an action was in progress, but you miss was/were or the -ing form.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "past_simple_vs_past_continuous",
+      "field": "past_simple_vs_past_continuous.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 204 English-looking learner-facing item(s) need translation review.",
+      "sample": "Past Simple vs Past Continuous: fact or process",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "used_to_basic",
+      "field": "used_to_basic.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 172 English-looking learner-facing item(s) need translation review.",
+      "sample": "Used to: old habit, not true now",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "future_present_continuous_arrangements",
+      "field": "future_present_continuous_arrangements.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 157 English-looking learner-facing item(s) need translation review.",
+      "sample": "Present Continuous for future arrangements",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "verb_was_were",
+      "field": "verb_was_were.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 129 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix was and were or keep am/is/are for past meaning.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "future_will_going_to",
+      "field": "future_will_going_to.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 141 English-looking learner-facing item(s) need translation review.",
+      "sample": "You translate both forms as future and miss the meaning difference.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "infinitive_vs_gerund_basic",
+      "field": "infinitive_vs_gerund_basic.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 103 English-looking learner-facing item(s) need translation review.",
+      "sample": "You guess between to learn and learning.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "too_enough",
+      "field": "too_enough.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 80 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix too and enough, and place enough in the wrong spot.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "modifier_very_really_quite",
+      "field": "modifier_very_really_quite.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 93 English-looking learner-facing item(s) need translation review.",
+      "sample": "You treat very, really, and quite as the same word, so the tone breaks.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "modal_may_might_probability",
+      "field": "modal_may_might_probability.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 115 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix probability with ability, certainty, and modal form.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "modal_can_could_ability_request",
+      "field": "modal_can_could_ability_request.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 114 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix can/could for ability, past ability, request, and form.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "modal_should_must_have_to",
+      "field": "modal_should_must_have_to.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 123 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix advice, obligation, necessity, prohibition, and no obligation.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "id": "noun_possessive_apostrophe_s",
+      "field": "noun_possessive_apostrophe_s.shortTitle",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 2 placeholder(s), 175 English-looking learner-facing item(s) need translation review.",
+      "sample": "This training is available for this interface language.",
+      "count": 1,
+      "locales": [
+        "es"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "object_order_give_me_it",
+      "field": "object_order_give_me_it.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 115 English-looking learner-facing item(s) need translation review.",
+      "sample": "Give me the book / Give it to me"
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "word_order_basic_statement",
+      "field": "word_order_basic_statement.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 90 English-looking learner-facing item(s) need translation review.",
+      "sample": "I like coffee: basic statement order"
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "word_order_basic_question",
+      "field": "word_order_basic_question.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 132 English-looking learner-facing item(s) need translation review.",
+      "sample": "You are building English questions like statements with intonation."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "imperative_basic",
+      "field": "imperative_basic.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 122 English-looking learner-facing item(s) need translation review.",
+      "sample": "Imperative: commands, requests, and instructions"
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "condition_zero_first",
+      "field": "condition_zero_first.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 172 English-looking learner-facing item(s) need translation review.",
+      "sample": "You put will right after if, but English usually keeps will in the result."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "condition_second_basic",
+      "field": "condition_second_basic.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 89 placeholder(s), 101 English-looking learner-facing item(s) need translation review.",
+      "sample": "This training is available for this interface language."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "relative_clauses_who_which_that",
+      "field": "relative_clauses_who_which_that.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 96 placeholder(s), 97 English-looking learner-facing item(s) need translation review.",
+      "sample": "This training is available for this interface language."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "reported_speech_basic",
+      "field": "reported_speech_basic.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 158 English-looking learner-facing item(s) need translation review.",
+      "sample": "He said that...: reported speech"
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "verb_past_simple_regular_irregular",
+      "field": "verb_past_simple_regular_irregular.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 133 English-looking learner-facing item(s) need translation review.",
+      "sample": "Past Simple: worked, went, bought"
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "verb_past_simple_negative_question",
+      "field": "verb_past_simple_negative_question.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 165 English-looking learner-facing item(s) need translation review.",
+      "sample": "Did / Didn't: past questions and negatives"
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "verb_present_perfect_basic",
+      "field": "verb_present_perfect_basic.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 171 English-looking learner-facing item(s) need translation review.",
+      "sample": "You try to talk about a result now, but break the pattern: have saw, has finish, I have lost my keys yesterday."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "present_perfect_vs_past_simple",
+      "field": "present_perfect_vs_past_simple.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 193 English-looking learner-facing item(s) need translation review.",
+      "sample": "Present Perfect vs Past Simple: result now or past time"
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "present_perfect_questions_negatives",
+      "field": "present_perfect_questions_negatives.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 185 English-looking learner-facing item(s) need translation review.",
+      "sample": "Present Perfect: questions and haven't / hasn't"
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "present_perfect_for_since",
+      "field": "present_perfect_for_since.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 182 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix up for three years and since 2020, so sentences about how long something has continued break."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "past_continuous_basic",
+      "field": "past_continuous_basic.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 167 English-looking learner-facing item(s) need translation review.",
+      "sample": "You want to say an action was in progress, but you miss was/were or the -ing form."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "past_simple_vs_past_continuous",
+      "field": "past_simple_vs_past_continuous.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 204 English-looking learner-facing item(s) need translation review.",
+      "sample": "Past Simple vs Past Continuous: fact or process"
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "used_to_basic",
+      "field": "used_to_basic.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 172 English-looking learner-facing item(s) need translation review.",
+      "sample": "Used to: old habit, not true now"
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "future_present_continuous_arrangements",
+      "field": "future_present_continuous_arrangements.title",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 157 English-looking learner-facing item(s) need translation review.",
+      "sample": "Present Continuous for future arrangements"
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "verb_was_were",
+      "field": "verb_was_were.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 129 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix was and were or keep am/is/are for past meaning."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "future_will_going_to",
+      "field": "future_will_going_to.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 141 English-looking learner-facing item(s) need translation review.",
+      "sample": "You translate both forms as future and miss the meaning difference."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "infinitive_vs_gerund_basic",
+      "field": "infinitive_vs_gerund_basic.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 103 English-looking learner-facing item(s) need translation review.",
+      "sample": "You guess between to learn and learning."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "too_enough",
+      "field": "too_enough.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 80 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix too and enough, and place enough in the wrong spot."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "modifier_very_really_quite",
+      "field": "modifier_very_really_quite.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 93 English-looking learner-facing item(s) need translation review.",
+      "sample": "You treat very, really, and quite as the same word, so the tone breaks."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "modal_may_might_probability",
+      "field": "modal_may_might_probability.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 115 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix probability with ability, certainty, and modal form."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "modal_can_could_ability_request",
+      "field": "modal_can_could_ability_request.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 114 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix can/could for ability, past ability, request, and form."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "modal_should_must_have_to",
+      "field": "modal_should_must_have_to.shortDiagnosis",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 0 placeholder(s), 123 English-looking learner-facing item(s) need translation review.",
+      "sample": "You mix advice, obligation, necessity, prohibition, and no obligation."
+    },
+    {
+      "severity": "warning",
+      "code": "diagnosis-training-es-not-ready",
+      "surface": "diagnosis_training",
+      "locale": "es",
+      "id": "noun_possessive_apostrophe_s",
+      "field": "noun_possessive_apostrophe_s.shortTitle",
+      "message": "Diagnosis training has ES fields but Spanish is not activated; 2 placeholder(s), 175 English-looking learner-facing item(s) need translation review.",
+      "sample": "This training is available for this interface language."
+    }
+  ]
+}

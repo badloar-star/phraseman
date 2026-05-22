@@ -1,0 +1,55 @@
+{
+  "generatedAt": "2026-05-19T16:34:52.233Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 615,
+    "triLangCalls": 1548,
+    "staticTriLangCalls": 1548,
+    "dynamicTriLangCalls": 0,
+    "legacyLangHelperCalls": 0,
+    "localeObjectFindings": 1,
+    "triLangMissingLocaleUnits": 0,
+    "triLangMissingAllPlannedUnits": 0,
+    "helperMissingLocaleUnits": 0,
+    "localeObjectMissingLocaleUnits": 5,
+    "localeObjectMissingAllPlannedUnits": 1,
+    "bundleMissingLocaleUnits": 0,
+    "findings": 1,
+    "byCode": {
+      "locale-object-missing-all-planned-locales": 1
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/diagnosis_training_preposition_time_place.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_preposition_time_place.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    }
+  ]
+}

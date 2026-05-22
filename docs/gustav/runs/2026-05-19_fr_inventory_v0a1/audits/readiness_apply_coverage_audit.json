@@ -1,0 +1,697 @@
+{
+  "schemaVersion": "gustav-readiness-apply-coverage-audit-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "generatedAt": "2026-05-19T20:09:54.979Z",
+  "status": "PASS",
+  "command": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/private/tmp/gustav-build/gustav_readiness_apply_coverage_audit.js",
+      "--run",
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+    ],
+    "cwd": "/Users/maksymbabiev/Documents/phraseman",
+    "nodeVersion": "v24.14.1"
+  },
+  "sourceArtifacts": {
+    "readinessGate": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/gustav_readiness_gate.json",
+    "migrationAdapterPlan": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/migration_adapter_plan.json",
+    "applyPlan": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/file_changes.json",
+    "dirtyOverlapPreservationAudit": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/dirty_overlap_preservation_audit.json"
+  },
+  "summary": {
+    "failedReadinessChecks": 10,
+    "planRequiredChecks": 7,
+    "coveredChecks": 8,
+    "deferredChecks": 2,
+    "missingChecks": 0,
+    "requiredAdapters": 12,
+    "coveredAdapters": 12,
+    "missingAdapters": 0,
+    "applyPlanFilesReferenced": 78,
+    "requiredTestEvidence": 20,
+    "coveredTestEvidence": 20,
+    "missingTestEvidence": 0,
+    "requiredFileEvidence": 22,
+    "coveredFileEvidence": 21,
+    "missingFileEvidence": 0,
+    "blockers": 0,
+    "warnings": 0,
+    "applyPlanCoversFailedReadinessChecks": true,
+    "mayStartFrenchGeneration": false,
+    "mayModifyProductionAppFiles": false
+  },
+  "decisions": [
+    {
+      "checkId": "RDY-002",
+      "title": "Run verdict allows generation",
+      "blocks": [
+        "generation",
+        "apply"
+      ],
+      "sourceArtifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/verdict.json",
+      "coverageStatus": "deferred",
+      "policy": "meta_verdict",
+      "requiredAdapters": [],
+      "coveredAdapters": [],
+      "missingAdapters": [],
+      "applyPlanFiles": [],
+      "requiredTestEvidence": [],
+      "coveredTestEvidence": [],
+      "missingTestEvidence": [],
+      "requiredFileEvidence": [],
+      "coveredFileEvidence": [],
+      "missingFileEvidence": [],
+      "requiredBeforeWork": [
+        "Resolve run verdict blockers or keep working in architecture/research mode."
+      ],
+      "note": "Run verdict remains HOLD until the concrete readiness blockers are implemented and re-audited."
+    },
+    {
+      "checkId": "RDY-010",
+      "title": "Storage is target-safe",
+      "blocks": [
+        "generation",
+        "apply"
+      ],
+      "sourceArtifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/inputs/storage_key_inventory.json",
+      "coverageStatus": "covered",
+      "policy": "plan_required",
+      "requiredAdapters": [
+        "target_storage_key_builder",
+        "legacy_english_compat",
+        "raw_storage_guard"
+      ],
+      "coveredAdapters": [
+        "target_storage_key_builder",
+        "legacy_english_compat",
+        "raw_storage_guard"
+      ],
+      "missingAdapters": [],
+      "applyPlanFiles": [
+        "app/(tabs)/home.tsx",
+        "app/(tabs)/lessons.tsx",
+        "app/(tabs)/quizzes.tsx",
+        "app/achievements_screen.tsx",
+        "app/achievements.ts",
+        "app/active_recall.ts",
+        "app/auth_provider.ts",
+        "app/cloud_sync.ts",
+        "app/daily_tasks_screen.tsx",
+        "app/daily_tasks.ts",
+        "app/diagnostic_test.tsx",
+        "app/exam_certificate.ts",
+        "app/firestore_leaderboard.ts",
+        "app/firestore_league_chat.ts",
+        "app/flashcards/storage.ts",
+        "app/global_broadcast_modal.ts",
+        "app/lesson_complete.tsx",
+        "app/lesson_irregular_verbs.tsx",
+        "app/lesson_lock_system.ts",
+        "app/lesson_menu.tsx",
+        "app/lesson_screen_bootstrap.ts",
+        "app/lesson_words.tsx",
+        "app/lesson1.tsx",
+        "app/lessons_tab_state.ts",
+        "app/level_exam.tsx",
+        "app/level_gift_system.ts",
+        "app/lifetime_profile_stats.ts",
+        "app/mastery.ts",
+        "app/medal_utils.ts",
+        "app/mistake_log.ts",
+        "app/notifications.ts",
+        "app/preposition_drill.tsx",
+        "app/quizzes.tsx",
+        "app/referral_bootstrap.ts",
+        "app/release_wave_bonus.ts",
+        "app/services/league_chest_rewards.ts",
+        "app/shards_system.ts",
+        "app/streak_safety.ts",
+        "app/target_storage_keys.ts",
+        "app/trainer_store.ts",
+        "hooks/use-flashcards.ts",
+        "app/exam_readiness.ts",
+        "app/exam.tsx",
+        "app/legacy_english_progress_migration.ts",
+        "tests/gustav_cloud_target_sync.test.ts",
+        "tests/gustav_legacy_english_migration.test.ts",
+        "tests/gustav_surface_target_switch.test.ts",
+        "tests/gustav_target_storage_keys.test.ts"
+      ],
+      "requiredTestEvidence": [
+        "distinct keys for en/fr",
+        "legacy English",
+        "raw storage guard"
+      ],
+      "coveredTestEvidence": [
+        "distinct keys for en/fr",
+        "legacy English",
+        "raw storage guard"
+      ],
+      "missingTestEvidence": [],
+      "requiredFileEvidence": [
+        "target_storage_keys",
+        "legacy_english_progress_migration"
+      ],
+      "coveredFileEvidence": [
+        "target_storage_keys",
+        "legacy_english_progress_migration"
+      ],
+      "missingFileEvidence": [],
+      "requiredBeforeWork": [
+        "Introduce production target key builder.",
+        "Move legacy English learning state into en-only compatibility adapters.",
+        "Reduce target-sensitive unknown storage records to zero."
+      ],
+      "note": "Storage blockers must be covered by target keys, legacy English migration and raw-key guard tests."
+    },
+    {
+      "checkId": "RDY-020",
+      "title": "Cloud sync is target-safe",
+      "blocks": [
+        "generation",
+        "apply"
+      ],
+      "sourceArtifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/cloud_sync_mapping.json",
+      "coverageStatus": "covered",
+      "policy": "plan_required",
+      "requiredAdapters": [
+        "cloud_sync_target_buckets",
+        "legacy_english_compat",
+        "target_stats_store"
+      ],
+      "coveredAdapters": [
+        "cloud_sync_target_buckets",
+        "legacy_english_compat",
+        "target_stats_store"
+      ],
+      "missingAdapters": [],
+      "applyPlanFiles": [
+        "app/auth_provider.ts",
+        "app/cloud_sync.ts",
+        "app/(tabs)/home.tsx",
+        "app/(tabs)/lessons.tsx",
+        "app/(tabs)/quizzes.tsx",
+        "app/achievements_screen.tsx",
+        "app/achievements.ts",
+        "app/active_recall.ts",
+        "app/daily_tasks_screen.tsx",
+        "app/diagnostic_test.tsx",
+        "app/exam_readiness.ts",
+        "app/exam.tsx",
+        "app/flashcards/storage.ts",
+        "app/legacy_english_progress_migration.ts",
+        "app/lesson_complete.tsx",
+        "app/lesson_irregular_verbs.tsx",
+        "app/lesson_lock_system.ts",
+        "app/lesson_menu.tsx",
+        "app/lesson_screen_bootstrap.ts",
+        "app/lesson1.tsx",
+        "app/lessons_tab_state.ts",
+        "app/level_exam.tsx",
+        "app/lifetime_profile_stats.ts",
+        "app/medal_utils.ts",
+        "app/notifications.ts",
+        "app/preposition_drill.tsx",
+        "app/quizzes.tsx",
+        "app/streak_safety.ts",
+        "app/trainer_store.ts",
+        "hooks/use-flashcards.ts",
+        "app/stats_daily_breakdown.ts",
+        "app/target_stats_store.ts"
+      ],
+      "requiredTestEvidence": [
+        "Cloud restore",
+        "legacy English",
+        "target cloud"
+      ],
+      "coveredTestEvidence": [
+        "Cloud restore",
+        "legacy English",
+        "target cloud"
+      ],
+      "missingTestEvidence": [],
+      "requiredFileEvidence": [
+        "cloud_sync",
+        "auth_provider"
+      ],
+      "coveredFileEvidence": [
+        "cloud_sync",
+        "auth_provider"
+      ],
+      "missingFileEvidence": [],
+      "requiredBeforeWork": [
+        "Map cloud learning state under progress/targets/{studyTarget}.",
+        "Split mixed cloud payloads by field.",
+        "Prove legacy cloud state hydrates en only."
+      ],
+      "note": "Cloud sync blockers require target buckets, legacy hydration rules and target/global stats separation."
+    },
+    {
+      "checkId": "RDY-021",
+      "title": "Mixed cloud payloads are split",
+      "blocks": [
+        "generation",
+        "apply"
+      ],
+      "sourceArtifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/mixed_cloud_payload_audit.json",
+      "coverageStatus": "covered",
+      "policy": "plan_required",
+      "requiredAdapters": [
+        "cloud_sync_target_buckets",
+        "achievement_progress_store",
+        "target_stats_store"
+      ],
+      "coveredAdapters": [
+        "cloud_sync_target_buckets",
+        "achievement_progress_store",
+        "target_stats_store"
+      ],
+      "missingAdapters": [],
+      "applyPlanFiles": [
+        "app/auth_provider.ts",
+        "app/cloud_sync.ts",
+        "app/achievement_progress_store.ts",
+        "app/achievements_screen.tsx",
+        "app/achievements.ts",
+        "app/lifetime_profile_stats.ts",
+        "app/stats_daily_breakdown.ts",
+        "app/target_stats_store.ts"
+      ],
+      "requiredTestEvidence": [
+        "Target achievement",
+        "Global engagement",
+        "Cloud restore"
+      ],
+      "coveredTestEvidence": [
+        "Target achievement",
+        "Global engagement",
+        "Cloud restore"
+      ],
+      "missingTestEvidence": [],
+      "requiredFileEvidence": [
+        "achievement_progress_store",
+        "target_stats_store"
+      ],
+      "coveredFileEvidence": [
+        "achievement_progress_store",
+        "target_stats_store"
+      ],
+      "missingFileEvidence": [],
+      "requiredBeforeWork": [
+        "Split achievements_state, daily_stats, user_stats_v1 and stats_daily_breakdown_v1 by global/target policy."
+      ],
+      "note": "Mixed cloud payloads must be split by achievement/global stats policy before apply."
+    },
+    {
+      "checkId": "RDY-030",
+      "title": "Achievements are globally/target classified",
+      "blocks": [
+        "generation",
+        "apply"
+      ],
+      "sourceArtifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/achievement_taxonomy.json",
+      "coverageStatus": "covered",
+      "policy": "plan_required",
+      "requiredAdapters": [
+        "achievement_progress_store"
+      ],
+      "coveredAdapters": [
+        "achievement_progress_store"
+      ],
+      "missingAdapters": [],
+      "applyPlanFiles": [
+        "app/achievement_progress_store.ts",
+        "app/achievements_screen.tsx",
+        "app/achievements.ts"
+      ],
+      "requiredTestEvidence": [
+        "Target achievement",
+        "Global achievement"
+      ],
+      "coveredTestEvidence": [
+        "Target achievement",
+        "Global achievement"
+      ],
+      "missingTestEvidence": [],
+      "requiredFileEvidence": [
+        "achievement_progress_store",
+        "achievements"
+      ],
+      "coveredFileEvidence": [
+        "achievement_progress_store",
+        "achievements"
+      ],
+      "missingFileEvidence": [],
+      "requiredBeforeWork": [
+        "Implement achievement state split or policy decisions before French can affect achievements."
+      ],
+      "note": "Achievement taxonomy blockers require target/global achievement state implementation."
+    },
+    {
+      "checkId": "RDY-040",
+      "title": "Local-only and cloud-synced target keys are decided",
+      "blocks": [
+        "generation",
+        "apply"
+      ],
+      "sourceArtifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/local_cloud_decision_table.json",
+      "coverageStatus": "covered",
+      "policy": "plan_required",
+      "requiredAdapters": [
+        "cloud_sync_target_buckets",
+        "lesson_session_store",
+        "trainer_practice_store",
+        "personal_practice_store",
+        "flashcards_target_store"
+      ],
+      "coveredAdapters": [
+        "cloud_sync_target_buckets",
+        "lesson_session_store",
+        "trainer_practice_store",
+        "personal_practice_store",
+        "flashcards_target_store"
+      ],
+      "missingAdapters": [],
+      "applyPlanFiles": [
+        "app/auth_provider.ts",
+        "app/cloud_sync.ts",
+        "app/lesson_irregular_verbs.tsx",
+        "app/lesson_session_store.ts",
+        "app/lesson_words.tsx",
+        "app/lesson1.tsx",
+        "app/preposition_drill.tsx",
+        "app/active_recall.ts",
+        "app/mistake_log.ts",
+        "app/target_practice_store.ts",
+        "app/trainer_arena_session.tsx",
+        "app/trainer_phrases_session.tsx",
+        "app/trainer_smart_session.tsx",
+        "app/trainer_store.ts",
+        "app/trainer_words_session.tsx",
+        "app/trainer.tsx",
+        "app/diagnostic_store.ts",
+        "app/diagnostic_test.tsx",
+        "app/personal_practice_store.ts",
+        "app/problem_coach.tsx",
+        "app/flashcards_collection.tsx",
+        "app/flashcards_swipe.tsx",
+        "app/flashcards/storage.ts",
+        "app/flashcards/target_storage.ts",
+        "hooks/use-flashcards.ts"
+      ],
+      "requiredTestEvidence": [
+        "Cloud restore",
+        "French trainer",
+        "fr:<id>",
+        "French flashcard"
+      ],
+      "coveredTestEvidence": [
+        "Cloud restore",
+        "French trainer",
+        "fr:<id>",
+        "French flashcard"
+      ],
+      "missingTestEvidence": [],
+      "requiredFileEvidence": [
+        "lesson_session_store",
+        "trainer_store",
+        "personal_practice_store",
+        "flashcards/target_storage"
+      ],
+      "coveredFileEvidence": [
+        "lesson_session_store",
+        "trainer_store",
+        "personal_practice_store",
+        "flashcards/target_storage"
+      ],
+      "missingFileEvidence": [],
+      "requiredBeforeWork": [
+        "Implement target-scoped local-only keys and target cloud buckets according to the decision table."
+      ],
+      "note": "Local/cloud decisions need concrete stores for local-only target state and synced target state."
+    },
+    {
+      "checkId": "RDY-050",
+      "title": "Production target key architecture exists",
+      "blocks": [
+        "generation",
+        "apply"
+      ],
+      "sourceArtifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/target_key_integration_plan.json",
+      "coverageStatus": "covered",
+      "policy": "plan_required",
+      "requiredAdapters": [
+        "production_study_target",
+        "target_storage_key_builder",
+        "legacy_english_compat",
+        "raw_storage_guard"
+      ],
+      "coveredAdapters": [
+        "production_study_target",
+        "target_storage_key_builder",
+        "legacy_english_compat",
+        "raw_storage_guard"
+      ],
+      "missingAdapters": [],
+      "applyPlanFiles": [
+        "app/(tabs)/settings.tsx",
+        "app/spanish_content_gate.ts",
+        "app/study_target_lang_dev.ts",
+        "app/study_target.ts",
+        "components/StudyTargetContext.tsx",
+        "app/(tabs)/home.tsx",
+        "app/(tabs)/lessons.tsx",
+        "app/(tabs)/quizzes.tsx",
+        "app/achievements_screen.tsx",
+        "app/achievements.ts",
+        "app/active_recall.ts",
+        "app/auth_provider.ts",
+        "app/cloud_sync.ts",
+        "app/daily_tasks_screen.tsx",
+        "app/daily_tasks.ts",
+        "app/diagnostic_test.tsx",
+        "app/exam_certificate.ts",
+        "app/firestore_leaderboard.ts",
+        "app/firestore_league_chat.ts",
+        "app/flashcards/storage.ts",
+        "app/global_broadcast_modal.ts",
+        "app/lesson_complete.tsx",
+        "app/lesson_irregular_verbs.tsx",
+        "app/lesson_lock_system.ts",
+        "app/lesson_menu.tsx",
+        "app/lesson_screen_bootstrap.ts",
+        "app/lesson_words.tsx",
+        "app/lesson1.tsx",
+        "app/lessons_tab_state.ts",
+        "app/level_exam.tsx",
+        "app/level_gift_system.ts",
+        "app/lifetime_profile_stats.ts",
+        "app/mastery.ts",
+        "app/medal_utils.ts",
+        "app/mistake_log.ts",
+        "app/notifications.ts",
+        "app/preposition_drill.tsx",
+        "app/quizzes.tsx",
+        "app/referral_bootstrap.ts",
+        "app/release_wave_bonus.ts",
+        "app/services/league_chest_rewards.ts",
+        "app/shards_system.ts",
+        "app/streak_safety.ts",
+        "app/target_storage_keys.ts",
+        "app/trainer_store.ts",
+        "hooks/use-flashcards.ts",
+        "app/exam_readiness.ts",
+        "app/exam.tsx",
+        "app/legacy_english_progress_migration.ts",
+        "tests/gustav_cloud_target_sync.test.ts",
+        "tests/gustav_legacy_english_migration.test.ts",
+        "tests/gustav_surface_target_switch.test.ts",
+        "tests/gustav_target_storage_keys.test.ts"
+      ],
+      "requiredTestEvidence": [
+        "studyTarget remains fr",
+        "distinct keys for en/fr",
+        "raw storage guard"
+      ],
+      "coveredTestEvidence": [
+        "studyTarget remains fr",
+        "distinct keys for en/fr",
+        "raw storage guard"
+      ],
+      "missingTestEvidence": [],
+      "requiredFileEvidence": [
+        "study_target",
+        "StudyTargetContext",
+        "target_storage_keys"
+      ],
+      "coveredFileEvidence": [
+        "study_target",
+        "StudyTargetContext",
+        "target_storage_keys"
+      ],
+      "missingFileEvidence": [],
+      "requiredBeforeWork": [
+        "Create production StudyTarget model.",
+        "Create target_storage_keys builder.",
+        "Route highest-risk lesson/trainer/quiz/flashcard stores through target-aware APIs."
+      ],
+      "note": "Production target architecture needs a separate StudyTarget model, key builder and guard rails."
+    },
+    {
+      "checkId": "RDY-060",
+      "title": "User-facing surfaces are target-safe",
+      "blocks": [
+        "generation",
+        "apply"
+      ],
+      "sourceArtifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/surface_route_inventory.json",
+      "coverageStatus": "covered",
+      "policy": "plan_required",
+      "requiredAdapters": [
+        "route_surface_integration",
+        "production_study_target"
+      ],
+      "coveredAdapters": [
+        "route_surface_integration",
+        "production_study_target"
+      ],
+      "missingAdapters": [],
+      "applyPlanFiles": [
+        "app/_layout.tsx",
+        "app/(tabs)/home.tsx",
+        "app/(tabs)/lessons.tsx",
+        "app/(tabs)/quizzes.tsx",
+        "app/(tabs)/settings.tsx",
+        "app/achievements_screen.tsx",
+        "app/arena_leaderboard.tsx",
+        "app/arena_rating.tsx",
+        "app/avatar_select.tsx",
+        "app/daily_tasks_screen.tsx",
+        "app/diagnostic_test.tsx",
+        "app/exam.tsx",
+        "app/flashcards_collection.tsx",
+        "app/flashcards_swipe.tsx",
+        "app/flashcards.tsx",
+        "app/lesson_complete.tsx",
+        "app/lesson_intro_screens.tsx",
+        "app/lesson_irregular_verbs.tsx",
+        "app/lesson_menu.tsx",
+        "app/lesson_words.tsx",
+        "app/lesson1.tsx",
+        "app/level_exam.tsx",
+        "app/pack_opening.tsx",
+        "app/preposition_drill.tsx",
+        "app/problem_coach.tsx",
+        "app/quizzes.tsx",
+        "app/review.tsx",
+        "app/trainer_arena_session.tsx",
+        "app/trainer_phrases_session.tsx",
+        "app/trainer_smart_session.tsx",
+        "app/trainer_words_session.tsx",
+        "app/trainer.tsx",
+        "components/LangContext.tsx",
+        "components/StudyTargetContext.tsx",
+        "tests/gustav_cloud_target_sync.test.ts",
+        "tests/gustav_legacy_english_migration.test.ts",
+        "tests/gustav_surface_target_switch.test.ts",
+        "tests/gustav_target_storage_keys.test.ts",
+        "app/spanish_content_gate.ts",
+        "app/study_target_lang_dev.ts",
+        "app/study_target.ts"
+      ],
+      "requiredTestEvidence": [
+        "Route smoke matrix",
+        "No user-facing French route"
+      ],
+      "coveredTestEvidence": [
+        "Route smoke matrix",
+        "No user-facing French route"
+      ],
+      "missingTestEvidence": [],
+      "requiredFileEvidence": [
+        "_layout",
+        "(tabs)/home",
+        "(tabs)/lessons",
+        "(tabs)/settings"
+      ],
+      "coveredFileEvidence": [
+        "_layout",
+        "(tabs)/home",
+        "(tabs)/lessons",
+        "(tabs)/settings"
+      ],
+      "missingFileEvidence": [],
+      "requiredBeforeWork": [
+        "Add route-level target-aware adapters for lesson, quiz, trainer, flashcards, achievements and progress surfaces.",
+        "Isolate dev StudyTargetLang from production StudyTarget."
+      ],
+      "note": "User-facing surfaces must receive production studyTarget without confusing it with sourceLocale."
+    },
+    {
+      "checkId": "RDY-080",
+      "title": "Generated content audit passed",
+      "blocks": [
+        "apply"
+      ],
+      "sourceArtifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/generated_content_audit.json",
+      "coverageStatus": "deferred",
+      "policy": "post_generation",
+      "requiredAdapters": [],
+      "coveredAdapters": [],
+      "missingAdapters": [],
+      "applyPlanFiles": [],
+      "requiredTestEvidence": [],
+      "coveredTestEvidence": [],
+      "missingTestEvidence": [],
+      "requiredFileEvidence": [
+        "generated_content_audit"
+      ],
+      "coveredFileEvidence": [],
+      "missingFileEvidence": [
+        "generated_content_audit"
+      ],
+      "requiredBeforeWork": [
+        "After generation, audit French content for grammar, sourceLocale coverage, ids, placeholders, lesson order and runtime shape."
+      ],
+      "note": "Generated content audit is intentionally deferred until after generation; it must block production apply."
+    },
+    {
+      "checkId": "RDY-090",
+      "title": "Apply plan is approved",
+      "blocks": [
+        "apply"
+      ],
+      "sourceArtifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/file_changes.json",
+      "coverageStatus": "covered",
+      "policy": "approval_required",
+      "requiredAdapters": [],
+      "coveredAdapters": [],
+      "missingAdapters": [],
+      "applyPlanFiles": [],
+      "requiredTestEvidence": [],
+      "coveredTestEvidence": [],
+      "missingTestEvidence": [],
+      "requiredFileEvidence": [
+        "file_changes.json",
+        "dirty_overlap_preservation_audit"
+      ],
+      "coveredFileEvidence": [
+        "file_changes.json",
+        "dirty_overlap_preservation_audit"
+      ],
+      "missingFileEvidence": [],
+      "requiredBeforeWork": [
+        "Create explicit apply plan and get explicit approval before touching production app files."
+      ],
+      "note": "Apply approval must stay explicit; coverage can prepare the packet but cannot approve it."
+    }
+  ],
+  "findings": [],
+  "notes": [
+    "This audit validates coverage of failed readiness checks by the migration adapter plan and apply plan.",
+    "A PASS here does not approve production writes and does not allow French generation.",
+    "RDY-080 remains intentionally deferred until generated French content exists.",
+    "RDY-090 remains intentionally approval-gated until the user explicitly approves the apply plan."
+  ]
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, type ViewStyle } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { useRouter } from 'expo-router';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';

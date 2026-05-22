@@ -1,0 +1,665 @@
+{
+  "schemaVersion": "gustav-run-verdict-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "status": "HOLD",
+  "completedAt": "2026-05-19T00:00:00.000Z",
+  "blockers": [
+    {
+      "id": "GVA-050",
+      "severity": "blocker",
+      "title": "Target-sensitive storage remains unresolved",
+      "detail": "The strengthened storage inventory found 116 blockers, 262 high risks and 645 unknown-scope records. French generation remains blocked until legacy English learning state, cloud sync and dynamic storage expressions have target-safe mappings.",
+      "ownerAgent": "App Cartographer Agent",
+      "artifactPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/storage_inventory_report.md"
+    },
+    {
+      "id": "GVA-051",
+      "severity": "blocker",
+      "title": "Flat cloud sync contains target-sensitive progress",
+      "detail": "The automated cloud sync mapping found 42 keys/patterns that must move under studyTarget, 4 block_unknown mixed payloads, and 28 target-sensitive local keys missing from cloud mapping. French generation remains blocked until cloud restore/merge is target-safe.",
+      "ownerAgent": "Cloud Sync Agent",
+      "artifactPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/cloud_sync_mapping.md"
+    },
+    {
+      "id": "GVA-052",
+      "severity": "blocker",
+      "title": "Mixed cloud payloads require field-level split",
+      "detail": "The mixed cloud payload audit found 29 fields across achievements_state, daily_stats, user_stats_v1 and stats_daily_breakdown_v1. It classified 11 target fields, 9 global fields and 9 mixed fields, with 25 blockers before French generation.",
+      "ownerAgent": "Cloud Sync Agent",
+      "artifactPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/mixed_cloud_payload_audit.md"
+    },
+    {
+      "id": "GVA-052A",
+      "severity": "blocker",
+      "title": "Achievement state needs global/target taxonomy migration",
+      "detail": "The achievement taxonomy classified 227 achievements: 101 study-target, 69 global and 57 mixed-policy, with 158 blocker entries. Flat achievements_state cannot be reused for French.",
+      "ownerAgent": "Cloud Sync Agent",
+      "artifactPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/achievement_taxonomy.md"
+    },
+    {
+      "id": "GVA-054",
+      "severity": "blocker",
+      "title": "Target-sensitive local keys need explicit local/cloud decisions",
+      "detail": "The local/cloud decision table resolved 28 target-sensitive local keys missing from cloud mapping: 15 must sync under studyTarget, 7 must remain local-only but target-scoped, and 6 are covered by existing cloud patterns. 22 blocker decisions remain before French generation.",
+      "ownerAgent": "Storage Agent",
+      "artifactPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/local_cloud_decision_table.md"
+    },
+    {
+      "id": "GVA-057",
+      "severity": "blocker",
+      "title": "Production target key builder integration is not implemented",
+      "detail": "The target key integration plan found 14 required domains, 52 files with target storage touchpoints and 348 raw target-sensitive storage records. French generation remains blocked until production StudyTarget, key builder, migration adapters, cloud restore and personal-practice stores are target-safe.",
+      "ownerAgent": "Storage Agent",
+      "artifactPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/target_key_integration_plan.md"
+    },
+    {
+      "id": "GVA-058",
+      "severity": "blocker",
+      "title": "User-facing routes can still expose unscoped target state",
+      "detail": "The surface route inventory found 129 surfaces, 52 target-sensitive surfaces, 18 user-facing target surfaces and 66 blocker surfaces. French remains blocked until lessons, quizzes, trainer, flashcards, achievements, progress, cloud shell and My Practice routes receive production studyTarget isolation.",
+      "ownerAgent": "App Cartographer Agent",
+      "artifactPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/surface_route_inventory.md"
+    },
+    {
+      "id": "GVA-059",
+      "severity": "blocker",
+      "title": "Readiness gate does not permit French generation",
+      "detail": "The Gustav readiness gate returned HOLD: 56 checks, 46 passed, 10 failed, 8 generation blockers and 10 apply blockers. Source graph gates, the translation start/research gates, the French research pack firewall, the French research work order and P1A/P1B pre-apply safety gates now pass, but Gustav must not start French generation or production apply until target isolation, storage, cloud sync and apply gates are resolved.",
+      "ownerAgent": "QA Gate Agent",
+      "artifactPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/gustav_readiness_gate.md"
+    },
+    {
+      "id": "GVA-060",
+      "severity": "blocker",
+      "title": "Migration adapters are planned but not implemented",
+      "detail": "The migration adapter plan defines 6 phases and 16 required adapters covering 35 product modules, 61 source files, 99 storage keys, 348 target-sensitive storage records, 92 surface blockers, 42 cloud target mappings and 28 local/cloud decisions. French generation remains blocked until these adapters are implemented and verified.",
+      "ownerAgent": "App Architecture Agent",
+      "artifactPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/migration_adapter_plan.md"
+    }
+  ],
+  "warnings": [
+    {
+      "id": "GVW-001",
+      "title": "Dirty worktree is pre-existing",
+      "detail": "The repo has many modified and untracked files outside docs/gustav. This run records them as pre-existing risk and does not modify them.",
+      "artifactPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/inputs/command_log.md"
+    },
+    {
+      "id": "GVW-002",
+      "title": "Run validator passed",
+      "detail": "scripts/gustav_validate_run.ts completed 27201 structural and artifact checks with 0 blockers and 0 warnings. This validates run structure only; it does not approve French generation.",
+      "artifactPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/run_validator_report.md"
+    },
+    {
+      "id": "GVW-003",
+      "title": "Automated storage inventory strengthened",
+      "detail": "scripts/gustav_storage_inventory.ts now resolves local arrays, Array.from template keys, simple key variables, selected storage helper wrappers and cloud sync patterns. The inventory remains HOLD because the scan exposed more target-sensitive legacy English storage.",
+      "artifactPath": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/storage_inventory_report.md"
+    },
+    {
+      "id": "GVW-004",
+      "title": "Target progress and cloud sync contracts added",
+      "detail": "Gustav now has draft contracts for target progress migration and cloud sync impact. These contracts define what must be true before French can be generated or applied.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_10.md"
+    },
+    {
+      "id": "GVW-005",
+      "title": "Automated cloud sync mapping created",
+      "detail": "scripts/gustav_cloud_sync_mapping.ts produced machine-readable cloud sync classification for app/cloud_sync.ts SYNC_KEYS and the run validator now checks its structure.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_11.md"
+    },
+    {
+      "id": "GVW-006",
+      "title": "Mixed cloud payload field audit created",
+      "detail": "scripts/gustav_mixed_cloud_payload_audit.ts produced field-level decisions for four mixed payloads and the validator now checks this artifact.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_12.md"
+    },
+    {
+      "id": "GVW-007",
+      "title": "Achievement taxonomy created",
+      "detail": "scripts/gustav_achievement_taxonomy.ts produced a full taxonomy for ALL_ACHIEVEMENTS and the validator now checks this artifact.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_13.md"
+    },
+    {
+      "id": "GVW-008",
+      "title": "Local/cloud decision table created",
+      "detail": "scripts/gustav_local_cloud_decision_table.ts produced explicit decisions for target-sensitive local keys missing from cloud mapping and the validator now checks this artifact.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_14.md"
+    },
+    {
+      "id": "GVW-009",
+      "title": "Target key integration plan created",
+      "detail": "scripts/gustav_target_key_integration_plan.ts produced a domain-level implementation map for production StudyTarget, target key builder, lesson progress, trainer, personal practice, achievements, cloud sync, flashcards and analytics. The run validator now checks this artifact.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_15.md"
+    },
+    {
+      "id": "GVW-010",
+      "title": "Surface route inventory created",
+      "detail": "scripts/gustav_surface_route_inventory.ts produced a route and surface map that connects user-visible screens to target-sensitive storage, dev StudyTarget usage and required French gates. The run validator now checks this artifact.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_16.md"
+    },
+    {
+      "id": "GVW-011",
+      "title": "Readiness gate created",
+      "detail": "scripts/gustav_readiness_gate.ts now decides whether Gustav may start French generation or production apply. It currently returns HOLD and recommends architecture work next.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_17.md"
+    },
+    {
+      "id": "GVW-012",
+      "title": "Migration adapter plan created",
+      "detail": "scripts/gustav_migration_adapter_plan.ts produced an ordered adapter implementation strategy for production StudyTarget, target key builder, legacy English migration, lessons, quizzes, trainer, My Practice, flashcards, achievements, stats, cloud sync, route integration and raw storage guards. The validator now checks this artifact.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_18.md"
+    },
+    {
+      "id": "GVW-013",
+      "title": "Source graph extractor created",
+      "detail": "scripts/gustav_source_graph_extractor.ts produced the first machine-readable English base graph for lessons, phrases, intro screens, quizzes, preposition packs, flashcards, daily phrases, My Practice diagnosis nodes and user-facing surfaces. The validator now checks this artifact.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_19.md"
+    },
+    {
+      "id": "GVW-014",
+      "title": "Source graph quality audit created",
+      "detail": "scripts/gustav_source_graph_quality_audit.ts now checks whether the extracted English graph can be trusted for French generation and records a source-truth policy for generated runtime files.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_20.md"
+    },
+    {
+      "id": "GVW-015",
+      "title": "Generated source-truth audit created",
+      "detail": "scripts/gustav_generated_source_truth_audit.ts now separates generated runtime evidence from canonical source truth and narrows the blocking generated phrase source to lessons 9-16.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_21.md"
+    },
+    {
+      "id": "GVW-016",
+      "title": "Lesson 9-16 recovery audit created",
+      "detail": "scripts/gustav_lesson_9_16_source_recovery_audit.ts now checks git history for non-generated lesson 9-16 source candidates, writes a review-only recovery candidate and feeds readiness gate RDY-073.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_22.md"
+    },
+    {
+      "id": "GVW-017",
+      "title": "Lesson 9-16 reconciliation audit created",
+      "detail": "scripts/gustav_lesson_9_16_reconciliation_audit.ts now compares the current source graph against the recovery candidate and feeds readiness gate RDY-074 with do_not_auto_merge evidence.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_23.md"
+    },
+    {
+      "id": "GVW-018",
+      "title": "Lesson 9-16 canonical draft created",
+      "detail": "scripts/gustav_lesson_9_16_canonical_draft_builder.ts now produces a clean EN/RU/UK review-only source draft and feeds readiness gate RDY-075.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_24.md"
+    },
+    {
+      "id": "GVW-019",
+      "title": "Lesson 9-16 source-truth decision packet created",
+      "detail": "scripts/gustav_lesson_9_16_source_truth_decision_packet.ts now turns lesson 9-16 source truth into an explicit approval workflow and feeds readiness gate RDY-076.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_25.md"
+    },
+    {
+      "id": "GVW-020",
+      "title": "Lesson 9-16 source-truth approval recorded",
+      "detail": "scripts/gustav_lesson_9_16_source_truth_approval_record.ts recorded user approval for clean_canonical_draft, while preserving mayStartFrenchGeneration=false and mayModifyProductionAppFiles=false. RDY-075, RDY-076 and RDY-077 now pass.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_26.md"
+    },
+    {
+      "id": "GVW-021",
+      "title": "Approved draft re-extracted into source graph",
+      "detail": "scripts/gustav_source_graph_extractor.ts now uses the approved lesson 9-16 clean canonical draft as canonical source graph input. Generated source-truth audit is PASS, RDY-073/RDY-074 no longer keep the rejected historical recovery path as an active blocker, and generated-file risk is narrowed to 5 support-runtime files.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_27.md"
+    },
+    {
+      "id": "GVW-022",
+      "title": "Generated support files isolated",
+      "detail": "scripts/gustav_generated_support_isolation_audit.ts proves 5 generated ES support files have 0 source graph refs, 0 source-file entries, 0 blockers and 0 high risks. RDY-078 now passes.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_28.md"
+    },
+    {
+      "id": "GVW-023",
+      "title": "Source graph approved as input",
+      "detail": "scripts/gustav_source_graph_approval_audit.ts approves the English source graph as read-only generation input only. Source graph and source graph quality are now PASS, with 0 unresolved blockers, 0 high risks, 0 generated phrase refs and 0 sourceLocale/target confusions.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_28.md"
+    },
+    {
+      "id": "GVW-024",
+      "title": "Target-isolation apply plan packet created",
+      "detail": "scripts/gustav_target_apply_plan_builder.ts generated a HOLD apply plan with 83 planned files, 79 production files, 4 test files and 20 dirty worktree overlaps. The plan is not approved and mayModifyProductionAppFiles remains false.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_29.md"
+    },
+    {
+      "id": "GVW-025",
+      "title": "Dirty-overlap preservation audit recorded",
+      "detail": "scripts/gustav_dirty_overlap_preservation_audit.ts reviewed 20 planned dirty worktree overlaps, recorded preservation strategies, found 0 missing files, 0 blockers and 0 high risks. Apply plan blockers dropped to 2 while production app writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_30.md"
+    },
+    {
+      "id": "GVW-026",
+      "title": "Readiness apply coverage audit recorded",
+      "detail": "scripts/gustav_readiness_apply_coverage_audit.ts reviewed 10 failed readiness checks: 8 are covered by the migration/apply plan, 2 are intentionally deferred, and 0 checks, adapters, tests or file-evidence requirements are missing. RDY-085 now passes while generation/apply remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_31.md"
+    },
+    {
+      "id": "GVW-027",
+      "title": "Phase dependency audit recorded",
+      "detail": "scripts/gustav_phase_dependency_audit.ts validated 6 phases, 16 adapters and 30 dependencies with 0 missing dependencies, 0 phase-order violations, 0 phase-membership violations and 0 adapters without apply files. RDY-086 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_32.md"
+    },
+    {
+      "id": "GVW-028",
+      "title": "P1 execution slice audit recorded",
+      "detail": "scripts/gustav_p1_execution_slice_audit.ts split P1 into 4 slices, narrowed the first implementation slice to 4 core/test files with 0 dirty overlaps, and deferred 30 mixed-phase files so P1 cannot accidentally include later P2/P3/P4/P5 adapter work. RDY-087 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_33.md"
+    },
+    {
+      "id": "GVW-029",
+      "title": "P1A core contract spec recorded",
+      "detail": "scripts/gustav_p1a_core_contract_spec_audit.ts defined the first P1A StudyTarget and target key builder contract with 7 public APIs, 10 allowed target domains, 1 blocked unknown target domain, 6 test assertions and 0 first-slice dirty overlaps. RDY-088 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_34.md"
+    },
+    {
+      "id": "GVW-030",
+      "title": "P1A implementation preflight recorded",
+      "detail": "scripts/gustav_p1a_preflight_audit.ts verified 4 additive first-slice files, 0 existing first-slice files, 0 first-slice dirty overlaps, 20 dev target entrypoints, 4 deferred dev bridge files and 14 forbidden raw key patterns. RDY-089 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_35.md"
+    },
+    {
+      "id": "GVW-031",
+      "title": "P1A test execution audit recorded",
+      "detail": "scripts/gustav_p1a_test_execution_audit.ts verified the existing Jest/ts-jest setup, 2 planned P1A test files, 6 planned assertions, 3 runnable commands, 3 companion regression tests and 0 missing required mocks. RDY-091 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_36.md"
+    },
+    {
+      "id": "GVW-032",
+      "title": "P1A minimal apply packet recorded",
+      "detail": "scripts/gustav_p1a_minimal_apply_packet.ts narrowed the first approval packet to 4 files: 2 production contract files, 2 test files, 0 dirty overlaps and 3 required commands. RDY-092 now passes while approvalStatus remains not_requested and production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_37.md"
+    },
+    {
+      "id": "GVW-033",
+      "title": "P1A post-apply guard recorded",
+      "detail": "scripts/gustav_p1a_post_apply_guard.ts defined the post-approval guard with 4 allowed files, 10 forbidden write zones, 5 guard rules and 5 guard commands. RDY-093 now passes while postApplyStatus remains not_run and production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_38.md"
+    },
+    {
+      "id": "GVW-034",
+      "title": "P1A rollback checkpoint recorded",
+      "detail": "scripts/gustav_p1a_rollback_checkpoint.ts snapshotted the 4 P1A files as absent, verified 4 parent directories, 0 existing files, 0 content hashes and 4 delete-new-file rollback actions. RDY-094 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_39.md"
+    },
+    {
+      "id": "GVW-035",
+      "title": "P1A Expo route safety audit recorded",
+      "detail": "scripts/gustav_p1a_expo_route_safety_audit.ts defined route-shim and pure-module contracts for the 2 planned app utility files, with 2 existing shim evidence files, 8 forbidden import rules and 14 forbidden pattern rules. RDY-095 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_40.md"
+    },
+    {
+      "id": "GVW-036",
+      "title": "P1A key collision audit recorded",
+      "detail": "scripts/gustav_p1a_key_collision_audit.ts generated 252 target/source/legacy key samples across 10 target domains, 2 study targets, 2 source locales and 8 reserved id samples with 252 unique keys, 0 collisions and 0 separator leaks. RDY-096 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_41.md"
+    },
+    {
+      "id": "GVW-037",
+      "title": "P1A import contract audit recorded",
+      "detail": "scripts/gustav_p1a_import_contract_audit.ts compile-tested 2 planned modules and 2 planned test files through 3 import edges with 0 dependency cycles. The synthetic probe compiled with exitCode=0, and RDY-097 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_42.md"
+    },
+    {
+      "id": "GVW-038",
+      "title": "P1A approval lock audit recorded",
+      "detail": "scripts/gustav_p1a_approval_lock_audit.ts recorded 3 approval receipt candidate paths, found 0 present receipts and 0 exact approval matches, rejected 9 implicit commands including дальше/давай/работа, and proved accidental apply remains blocked. RDY-098 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_43.md"
+    },
+    {
+      "id": "GVW-039",
+      "title": "P1A implementation blueprint audit recorded",
+      "detail": "scripts/gustav_p1a_implementation_blueprint_audit.ts generated 5 blueprint-only files, compiled 2 planned production modules, 2 planned Jest-shaped tests and 1 dry-run runner, then executed 18 runtime checks with exitCode=0. RDY-099 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_44.md"
+    },
+    {
+      "id": "GVW-040",
+      "title": "P1A blueprint hash lock audit recorded",
+      "detail": "scripts/gustav_p1a_blueprint_hash_lock_audit.ts locked 4 P1A target files with SHA-256, found 4 unique hashes, 4 absent targets, 0 target files present and 0 drift. RDY-100 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_45.md"
+    },
+    {
+      "id": "GVW-041",
+      "title": "P1A apply transaction audit recorded",
+      "detail": "scripts/gustav_p1a_apply_transaction_audit.ts planned a 23-step dry-run transaction with 3 preconditions, 4 future copy steps, 4 hash verifications, 3 test steps, 5 post-apply guard steps and 4 rollback steps. canApplyNow remains false while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_46.md"
+    },
+    {
+      "id": "GVW-042",
+      "title": "P1A transaction simulation audit recorded",
+      "detail": "scripts/gustav_p1a_transaction_simulation_audit.ts simulated the exact P1A transaction in /private/tmp: 4 copied files, 4 verified hashes, compile/runtime exitCode=0 and 4 rolled-back simulated target files. RDY-102 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_47.md"
+    },
+    {
+      "id": "GVW-043",
+      "title": "P1A approval receipt firewall audit recorded",
+      "detail": "scripts/gustav_p1a_approval_receipt_firewall_audit.ts checked 3 real receipt paths, found 0 present receipts and 0 exact approval matches, rejected 6 temp fixtures, and proved an exact-shaped receipt outside accepted paths cannot unlock apply. RDY-103 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_48.md"
+    },
+    {
+      "id": "GVW-044",
+      "title": "Post-P1A readiness projection recorded",
+      "detail": "scripts/gustav_post_p1a_readiness_projection_audit.ts projected the readiness state after the future four-file P1A packet and proved 10 failed checks, 8 generation blockers and 10 apply blockers remain. RDY-104 now passes and prevents P1A from being mistaken for a French-generation unlock.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_49.md"
+    },
+    {
+      "id": "GVW-045",
+      "title": "Post-P1A next slice constraint recorded",
+      "detail": "scripts/gustav_post_p1a_next_slice_audit.ts constrained the next safe slice after P1A to P1B_DEV_TARGET_ISOLATION: 4 files, 1 dirty overlap requiring fresh read, route_surface_integration deferred, canStartNextSliceNow=false and exact P1B approval required. RDY-105 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_50.md"
+    },
+    {
+      "id": "GVW-046",
+      "title": "P1B preflight audit recorded",
+      "detail": "scripts/gustav_p1b_preflight_audit.ts verified 4 P1B files, 4 existing files, 1 planned and observed dirty overlap, 1 fresh-read requirement, 0 exact P1B approval receipts and canStartP1BNow=false. RDY-106 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_51.md"
+    },
+    {
+      "id": "GVW-047",
+      "title": "P1B dirty-overlap snapshot recorded",
+      "detail": "scripts/gustav_p1b_dirty_overlap_snapshot_audit.ts recorded metadata hashes for the single user-owned dirty overlap app/(tabs)/settings.tsx, including 1 HEAD snapshot, 1 working-tree snapshot, +17/-9 diff, and a do-not-overwrite preservation policy. RDY-107 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_52.md"
+    },
+    {
+      "id": "GVW-048",
+      "title": "P1B approval receipt firewall recorded",
+      "detail": "scripts/gustav_p1b_approval_receipt_firewall_audit.ts checked 1 real P1B receipt path, found 0 present receipts and 0 exact approval matches, rejected 7 temp fixtures, and proved an exact-shaped P1B receipt outside accepted paths cannot unlock P1B. RDY-108 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_53.md"
+    },
+    {
+      "id": "GVW-049",
+      "title": "P1B approval receipt contract recorded",
+      "detail": "scripts/gustav_p1b_approval_receipt_contract_audit.ts defined the canonical P1B receipt contract: 1 receipt path, 8 required fields, 5 unlock preconditions, 4 approved files, 6 rejected implicit commands and canStartP1BNow=false. RDY-109 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_54.md"
+    },
+    {
+      "id": "GVW-050",
+      "title": "P1B unlock prerequisite matrix recorded",
+      "detail": "scripts/gustav_p1b_unlock_prerequisite_matrix_audit.ts evaluated 6 P1B unlock scenarios, blocked 5 partial-prerequisite scenarios, allowed only 1 future all-prerequisite scenario, found 0 missing-prerequisite unlocks and kept canStartP1BNow=false. RDY-110 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_55.md"
+    },
+    {
+      "id": "GVW-051",
+      "title": "P1B fresh-read receipt contract recorded",
+      "detail": "scripts/gustav_p1b_fresh_read_receipt_contract_audit.ts defined the P1B fresh-read receipt contract for app/(tabs)/settings.tsx: 10 required fields, 5 stale-read probes rejected, freshReadReceiptPresent=false, snapshotHashDriftDetected=true and canStartP1BNow=false. RDY-111 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_56.md"
+    },
+    {
+      "id": "GVW-052",
+      "title": "P1B dirty-overlap drift response recorded",
+      "detail": "scripts/gustav_p1b_dirty_overlap_drift_response_audit.ts recorded 1 drifted dirty overlap, 8 refresh steps, 6 forbidden actions, 7 acceptance criteria, oldSnapshotMayAuthorizeP1B=false and canStartP1BNow=false. RDY-112 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_57.md"
+    },
+    {
+      "id": "GVW-053",
+      "title": "P1B snapshot refresh contract recorded",
+      "detail": "scripts/gustav_p1b_dirty_overlap_snapshot_refresh_contract_audit.ts defined the future P1B snapshot refresh contract: 1 canonical refresh audit path, 14 required fields, 7 rejection rules, 6 refresh probes, refreshAuditPresent=false and refreshAuditAloneMayAuthorizeP1B=false. RDY-113 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_58.md"
+    },
+    {
+      "id": "GVW-054",
+      "title": "P1B narrow write transaction contract recorded",
+      "detail": "scripts/gustav_p1b_narrow_write_transaction_contract_audit.ts defined the future P1B write transaction contract: 4 allowed files, 4 required receipts, 0 receipts present, 9 transaction stages, 7 forbidden scopes, 6 rollback rules and canStartP1BNow=false. RDY-114 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_59.md"
+    },
+    {
+      "id": "GVW-055",
+      "title": "P1B post-write proof contract recorded",
+      "detail": "scripts/gustav_p1b_post_write_proof_contract_audit.ts defined the future P1B post-write proof contract: 18 required fields, 9 rejection rules, 7 proof probes, 6 rejected proof probes, 5 verification commands, postWriteProofPresent=false and canStartP1BNow=false. RDY-115 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_60.md"
+    },
+    {
+      "id": "GVW-056",
+      "title": "P1B post-write proof firewall recorded",
+      "detail": "scripts/gustav_p1b_post_write_proof_firewall_audit.ts rejected 11 temp proof fixtures, kept realProofsPresent=0 and exactProofMatches=0, blocked an exact-shape temp proof by path, and rejected outside-file, missing-hash, missing-receipt, failed-verification and French-generation proof cases. RDY-116 now passes while production writes remain locked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_61.md"
+    },
+    {
+      "id": "GVW-057",
+      "title": "Translation start gate recorded",
+      "detail": "scripts/gustav_translation_start_gate_audit.ts defined the locked French translation start protocol from RU/UK over the approved English source graph: 9 translation domains, 8 translation agents, 8 required pre-translation gates, 10 forbidden early actions, translationStartBlocked=true and mayStartTranslationNow=false. RDY-117 now passes while French content generation remains blocked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_62.md"
+    },
+    {
+      "id": "GVW-058",
+      "title": "French research pack contract recorded",
+      "detail": "scripts/gustav_french_research_pack_contract_audit.ts defined the required French research pack contract: 8 trusted sources, 12 grammar clusters, 16 required research fields, 6 cross-checks, 7 rejected shortcut policies, researchPackPresent=false and mayStartTranslationNow=false. RDY-118 now passes while French content generation remains blocked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_63.md"
+    },
+    {
+      "id": "GVW-059",
+      "title": "French research pack firewall recorded",
+      "detail": "scripts/gustav_french_research_pack_firewall_audit.ts rejected 11 temp research pack fixtures, kept realPacksPresent=0 and exactPackMatches=0, blocked an exact-shape temp pack by path, and rejected single-source, missing-RU/UK, missing-fields, shortcut-enabled and French-output research pack cases. RDY-119 now passes while French content generation remains blocked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_64.md"
+    },
+    {
+      "id": "GVW-060",
+      "title": "French research work order recorded",
+      "detail": "scripts/gustav_french_research_work_order_audit.ts locked 12 cluster work orders, 84 research-only tasks, 10 source graph reference groups, 26 minimum trusted source checks, 12 RU/UK comparisons and 72 signoffs. RDY-120 now passes while French content generation remains blocked.",
+      "artifactPath": "docs/gustav/GUSTAV_ALGORITHM_AUDIT_65.md"
+    }
+  ],
+  "producedArtifacts": [
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/manifest.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/verdict.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/README.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/inputs/command_log.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/inputs/file_inventory.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/inputs/source_refs.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/inputs/storage_key_inventory.seed.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/agent_verdicts/app_cartographer.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/agent_verdicts/qa_gate.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/run_validator_report.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/run_validator_report.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/inputs/storage_key_inventory.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/storage_inventory_report.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/cloud_sync_mapping.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/cloud_sync_mapping.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/mixed_cloud_payload_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/mixed_cloud_payload_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/achievement_taxonomy.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/achievement_taxonomy.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/local_cloud_decision_table.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/local_cloud_decision_table.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/target_key_integration_plan.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/target_key_integration_plan.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/surface_route_inventory.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/surface_route_inventory.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/gustav_readiness_gate.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/gustav_readiness_gate.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/migration_adapter_plan.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/migration_adapter_plan.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/source_graph.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/english_source_graph.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/validation.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/source_graph_summary.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/unresolved.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/source_graph_quality_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/source_graph_quality_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/generated_source_truth_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/generated_source_truth_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/generated_support_isolation_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/generated_support_isolation_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/source_graph_approval_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/source_graph_approval_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/source_graph_approval.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/source_graph_approval.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/file_changes.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/APPLY_PLAN.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/migration_plan.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/rollback_plan.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/tests_required.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/heisenberg_impact.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/english_regression_risk.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/lesson_9_16_source_recovery_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/lesson_9_16_source_recovery_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_historical_recovery_candidate.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_historical_recovery_candidate.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/lesson_9_16_reconciliation_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/lesson_9_16_reconciliation_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_canonical_source_draft.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_canonical_source_draft.ts",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_canonical_source_draft.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/lesson_9_16_canonical_source_draft_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/lesson_9_16_canonical_source_draft_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/lesson_9_16_source_truth_decision_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/lesson_9_16_source_truth_decision_packet.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_source_truth_approval_template.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_source_truth_approval_template.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_source_truth_approval.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/source_graph/recovery/lesson_9_16_source_truth_approval.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/lesson_9_16_source_truth_approval_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/lesson_9_16_source_truth_approval_audit.md",
+    "docs/gustav/GUSTAV_SOURCE_GRAPH_SOURCE_TRUTH_POLICY.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_22.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_23.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_24.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_25.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_26.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_27.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_28.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_29.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/dirty_overlap_preservation_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/dirty_overlap_preservation_audit.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_30.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/readiness_apply_coverage_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/readiness_apply_coverage_audit.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_31.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/phase_dependency_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/phase_dependency_audit.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_32.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1_execution_slice_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1_execution_slice_audit.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_33.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_core_contract_spec.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_core_contract_spec.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_34.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_preflight_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_preflight_audit.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_35.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_test_execution_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_test_execution_audit.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_36.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_minimal_apply_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/P1A_MINIMAL_APPLY_PACKET.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_37.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_post_apply_guard.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_post_apply_guard.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_38.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_rollback_checkpoint.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/P1A_ROLLBACK_CHECKPOINT.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_39.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_expo_route_safety_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_expo_route_safety_audit.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_40.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_key_collision_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_key_collision_audit.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_41.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_import_contract_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_import_contract_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_import_contract_probe/app/study_target.ts",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_import_contract_probe/app/target_storage_keys.ts",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_import_contract_probe/tests/gustav_surface_target_switch.test.ts",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_import_contract_probe/tests/gustav_target_storage_keys.test.ts",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_import_contract_probe/compile.log",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_42.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_approval_lock_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_approval_lock_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/P1A_APPROVAL_LOCK.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_43.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_implementation_blueprint_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_implementation_blueprint_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_implementation_blueprint/app/study_target.ts",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_implementation_blueprint/app/target_storage_keys.ts",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_implementation_blueprint/tests/gustav_surface_target_switch.test.ts",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_implementation_blueprint/tests/gustav_target_storage_keys.test.ts",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_implementation_blueprint/blueprint_runtime_check.ts",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_implementation_blueprint/compile.log",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_implementation_blueprint/runtime.log",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_implementation_blueprint/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_44.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_blueprint_hash_lock_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_blueprint_hash_lock_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/P1A_BLUEPRINT_HASH_LOCK.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_45.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_apply_transaction_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_apply_transaction_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/P1A_APPLY_TRANSACTION.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_46.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_transaction_simulation_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_transaction_simulation_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_transaction_simulation/compile.log",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_transaction_simulation/runtime.log",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_transaction_simulation/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_47.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_approval_receipt_firewall_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_approval_receipt_firewall_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_approval_receipt_firewall/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_48.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/post_p1a_readiness_projection_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/post_p1a_readiness_projection_audit.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_49.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/post_p1a_next_slice_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/post_p1a_next_slice_audit.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_50.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_preflight_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_preflight_audit.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_51.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_dirty_overlap_snapshot_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_dirty_overlap_snapshot_audit.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_52.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_approval_receipt_firewall_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_approval_receipt_firewall_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_approval_receipt_firewall/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_53.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_approval_receipt_contract_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_approval_receipt_contract_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_approval_receipt_contract/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_54.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_unlock_prerequisite_matrix_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_unlock_prerequisite_matrix_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_unlock_prerequisite_matrix/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_55.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_fresh_read_receipt_contract_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_fresh_read_receipt_contract_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_fresh_read_receipt_contract/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_56.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_dirty_overlap_drift_response_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_dirty_overlap_drift_response_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_dirty_overlap_drift_response/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_57.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_dirty_overlap_snapshot_refresh_contract_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_dirty_overlap_snapshot_refresh_contract_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_dirty_overlap_snapshot_refresh_contract/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_58.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_narrow_write_transaction_contract_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_narrow_write_transaction_contract_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_narrow_write_transaction_contract/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_59.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_post_write_proof_contract_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_post_write_proof_contract_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_post_write_proof_contract/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_60.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_post_write_proof_firewall_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_post_write_proof_firewall_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1b_post_write_proof_firewall/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_61.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/translation_start_gate_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/translation_start_gate_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/translation_start_gate/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_62.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/french_research_pack_contract_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/french_research_pack_contract_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/french_research_pack_contract/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_63.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/french_research_pack_firewall_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/french_research_pack_firewall_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/french_research_pack_firewall/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_64.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/french_research_work_order_audit.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/french_research_work_order_audit.md",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/french_research_work_order/README.md",
+    "docs/gustav/GUSTAV_ALGORITHM_AUDIT_65.md"
+  ],
+  "nextAllowedModes": ["inventory", "source_graph", "english_audit", "architecture", "research"]
+}

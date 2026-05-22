@@ -1,0 +1,152 @@
+[
+  {
+    "file": "energy-forest.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 85771,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-forest-frozen.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 85771,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-coral.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 66861,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-coral-frozen.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 66861,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-crimson.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 77000,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-crimson-frozen.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 77000,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-gold.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 76557,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-gold-frozen.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 76557,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-neon.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 88690,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-neon-frozen.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 88690,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-graphite.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 60310,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-graphite-frozen.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 60310,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-sketch.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 71672,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-sketch-frozen.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 71672,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  },
+  {
+    "file": "energy-sketch-premium.webp",
+    "width": 512,
+    "height": 512,
+    "visible": 71672,
+    "borderAlpha": 0,
+    "cornerAlpha": 0,
+    "magentaKeyOpaque": 0,
+    "ok": true
+  }
+]

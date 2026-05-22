@@ -1,0 +1,538 @@
+{
+  "generatedAt": "2026-05-19T17:56:44.064Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 615,
+    "triLangCalls": 1548,
+    "staticTriLangCalls": 1548,
+    "dynamicTriLangCalls": 0,
+    "legacyLangHelperCalls": 0,
+    "localeObjectFindings": 24,
+    "triLangMissingLocaleUnits": 0,
+    "triLangMissingAllPlannedUnits": 0,
+    "helperMissingLocaleUnits": 0,
+    "localeObjectMissingLocaleUnits": 120,
+    "localeObjectMissingAllPlannedUnits": 24,
+    "bundleMissingLocaleUnits": 0,
+    "findings": 24,
+    "byCode": {
+      "locale-object-missing-all-planned-locales": 24
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/diagnosis_training_adjective_comparison.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_adjective_vs_adverb.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_adverb_frequency_position.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_article_a_an.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_article_the_specific.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_article_zero.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_future_present_continuous_arrangements.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_future_will_going_to.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_imperative_basic.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_infinitive_vs_gerund_basic.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_modal_can_could_ability_request.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_modal_force.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_modal_may_might_probability.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_modal_should_must_have_to.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_noun_singular_plural_basic.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_object_order_give_me_it.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_phrasal_particle_pair.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_preposition_common_verb_patterns.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_preposition_direction_to_into_from.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_preposition_duration_for_since.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_preposition_place_in_on_at.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_preposition_time_in_on_at.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_preposition_time_place.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/diagnosis_training_word_order_basic_question.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_adjective_comparison.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_adjective_vs_adverb.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_adverb_frequency_position.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_article_a_an.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_article_the_specific.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_article_zero.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_future_present_continuous_arrangements.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_future_will_going_to.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_imperative_basic.ts",
+      "line": 13,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_infinitive_vs_gerund_basic.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_modal_can_could_ability_request.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_modal_force.ts",
+      "line": 13,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_modal_may_might_probability.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_modal_should_must_have_to.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_noun_singular_plural_basic.ts",
+      "line": 13,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_object_order_give_me_it.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_phrasal_particle_pair.ts",
+      "line": 13,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_preposition_common_verb_patterns.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_preposition_direction_to_into_from.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_preposition_duration_for_since.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_preposition_place_in_on_at.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_preposition_time_in_on_at.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_preposition_time_place.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/diagnosis_training_word_order_basic_question.ts",
+      "line": 14,
+      "column": 25,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    }
+  ]
+}

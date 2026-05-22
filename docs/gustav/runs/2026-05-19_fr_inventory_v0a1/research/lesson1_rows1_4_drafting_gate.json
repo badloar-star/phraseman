@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "gustav-french-drafting-gate-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "lessonId": 1,
+  "gateId": "lesson1_rows1_4_drafting_gate",
+  "studyTarget": "fr",
+  "sourceLocales": ["ru", "uk"],
+  "scope": "prepare-only for Lesson 1 keep-candidate rows 1-4",
+  "parentPackets": [
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_3_lexical_evidence_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows4_10_lexical_evidence_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_10_grammar_form_review_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_10_source_locale_meaning_review_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_10_curriculum_placement_packet.json",
+    "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_10_reviewer_approval_record_scaffold.json"
+  ],
+  "activationStatus": "blocked",
+  "containsFrenchTargetText": false,
+  "containsWordsFr": false,
+  "mayWriteAppSeed": false,
+  "mayWriteIntroExamples": false,
+  "mayWriteQuizOrExam": false,
+  "mayDraftTargetText": false,
+  "approvedForApply": false,
+  "requiredApprovalRecord": {
+    "path": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_rows1_10_reviewer_approval_record_scaffold.json",
+    "requiredStatusBeforeDrafting": "approved_by_reviewer",
+    "currentStatus": "scaffold_only_not_approved"
+  },
+  "allowedNow": [
+    "verify source coverage",
+    "prepare drafting checklist",
+    "define required reviewer decisions",
+    "define forbidden output fields"
+  ],
+  "forbiddenNow": [
+    "proposedFrench",
+    "wordsFr",
+    "introExamples",
+    "quizPrompts",
+    "examRows",
+    "app seed writes",
+    "runtime activation"
+  ],
+  "rows": [
+    {
+      "phraseId": "lesson1_phrase_1",
+      "englishBase": "I am here",
+      "draftingStatus": "blocked_until_reviewer_approval",
+      "draftingChecklist": [
+        "accept lexical evidence for here/location",
+        "accept grammar form for first-person singular",
+        "accept location/status structure",
+        "accept RU meaning",
+        "accept UK meaning",
+        "accept curriculum placement"
+      ],
+      "mustNotWrite": ["proposedFrench", "wordsFr", "introExamples"],
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_2",
+      "englishBase": "You are ready",
+      "draftingStatus": "blocked_until_reviewer_approval",
+      "draftingChecklist": [
+        "accept lexical evidence for ready/readiness",
+        "accept tu/vous policy",
+        "accept adjective agreement policy",
+        "accept RU meaning",
+        "accept UK meaning",
+        "accept curriculum placement"
+      ],
+      "mustNotWrite": ["proposedFrench", "wordsFr", "introExamples"],
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_3",
+      "englishBase": "He is busy",
+      "draftingStatus": "blocked_until_reviewer_approval",
+      "draftingChecklist": [
+        "accept lexical evidence for personal-state busy",
+        "accept masculine singular agreement",
+        "accept personal-state sense",
+        "accept RU meaning",
+        "accept UK meaning",
+        "accept curriculum placement"
+      ],
+      "mustNotWrite": ["proposedFrench", "wordsFr", "introExamples"],
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_4",
+      "englishBase": "She is calm",
+      "draftingStatus": "blocked_until_reviewer_approval",
+      "draftingChecklist": [
+        "accept lexical evidence for personal-state calm",
+        "accept feminine singular agreement",
+        "accept personal-state sense",
+        "accept RU meaning",
+        "accept UK meaning",
+        "accept curriculum placement"
+      ],
+      "mustNotWrite": ["proposedFrench", "wordsFr", "introExamples"],
+      "activationStatus": "blocked"
+    }
+  ],
+  "nextRequiredAction": "Fill a real reviewer approval record before drafting any French target text for rows 1-4."
+}

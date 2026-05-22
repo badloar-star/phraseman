@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Opening PhraseMan...</title>
+  <title data-i18n-key="title">Opening PhraseMan...</title>
   <meta name="robots" content="noindex,nofollow" />
   <style>
     body {
@@ -31,12 +31,64 @@
 </head>
 <body>
   <main>
-    <h1>Opening PhraseMan...</h1>
-    <p class="muted">If nothing happens, tap the link below.</p>
-    <p><a id="open-link" href="phraseman://apple-auth">Open app</a></p>
+    <h1 data-i18n-key="heading">Opening PhraseMan...</h1>
+    <p class="muted" data-i18n-key="openHint">If nothing happens, tap the link below.</p>
+    <p><a id="open-link" href="phraseman://apple-auth" data-i18n-key="open">Open app</a></p>
   </main>
   <script>
     (function () {
+      var translations = {
+        title: {
+          es: 'Abriendo PhraseMan...',
+          'pt-BR': 'Abrindo o PhraseMan...',
+          vi: 'Đang mở PhraseMan...',
+          id: 'Membuka PhraseMan...',
+          tr: 'PhraseMan açılıyor...',
+          pl: 'Otwieramy PhraseMan...',
+        },
+        heading: {
+          es: 'Abriendo PhraseMan...',
+          'pt-BR': 'Abrindo o PhraseMan...',
+          vi: 'Đang mở PhraseMan...',
+          id: 'Membuka PhraseMan...',
+          tr: 'PhraseMan açılıyor...',
+          pl: 'Otwieramy PhraseMan...',
+        },
+        openHint: {
+          es: 'Si no pasa nada, toca el enlace de abajo.',
+          'pt-BR': 'Se nada acontecer, toque no link abaixo.',
+          vi: 'Nếu không có gì xảy ra, hãy chạm vào liên kết bên dưới.',
+          id: 'Jika tidak terjadi apa-apa, ketuk tautan di bawah.',
+          tr: 'Hiçbir şey olmazsa aşağıdaki bağlantıya dokunun.',
+          pl: 'Jeśli nic się nie stanie, dotknij linku poniżej.',
+        },
+        open: {
+          es: 'Abrir app',
+          'pt-BR': 'Abrir app',
+          vi: 'Mở ứng dụng',
+          id: 'Buka aplikasi',
+          tr: 'Uygulamayı aç',
+          pl: 'Otwórz aplikację',
+        },
+      };
+      var locale = new URLSearchParams(window.location.search).get('lang') || navigator.language || '';
+      var normalized = String(locale).toLowerCase();
+      var lang =
+        normalized.startsWith('pt') ? 'pt-BR' :
+        normalized.startsWith('vi') ? 'vi' :
+        normalized.startsWith('id') ? 'id' :
+        normalized.startsWith('tr') ? 'tr' :
+        normalized.startsWith('pl') ? 'pl' :
+        normalized.startsWith('es') ? 'es' :
+        '';
+      if (lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n-key]').forEach(function (node) {
+          var key = node.getAttribute('data-i18n-key');
+          var value = key && translations[key] && translations[key][lang];
+          if (value) node.textContent = value;
+        });
+      }
       var target = 'phraseman://apple-auth' + window.location.search + window.location.hash;
       var link = document.getElementById('open-link');
       link.href = target;

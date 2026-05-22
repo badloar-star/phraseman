@@ -102,9 +102,6 @@
 - [context] inside: Do we go inside?
   RU: "Inside" здесь прямо подчёркивает нахождение во внутренней части объекта или помещения. Сильнее, чем "in".
 
-- [specific] in: Does she believe in luck?
-  RU: "In" нужен в устойчивой конструкции с глаголом/прилагательным: "in luck". Например: believe in, interested in, succeed in.
-
 - [specific] for: Does she look for a job?
   RU: "For" нужен после глаголов ask/wait/look/hope: они требуют именно "for" для указания того, чего просят, ждут или ищут.
 
@@ -1037,4 +1034,3 @@
 
 - [specific] about: They are used to their elderly neighbors complaining about that constant street noise.
   RU: "About" вводит тему разговора, мысли или текста: talk about, think about, a story about. Здесь предлог отвечает на вопрос "о чём?".
-

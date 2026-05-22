@@ -4,6 +4,7 @@ import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED } from './config';
 import { getCanonicalUserId } from './user_id_policy';
+import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 const THROTTLE_KEY = 'last_user_report_ts';
 const THROTTLE_MS = 30_000;
@@ -75,6 +76,7 @@ export const submitPackReport = async (params: {
   packId: string;
   packTitle: string;
   authorStableId?: string | null;
+  studyTarget?: RuntimeStudyTarget;
   reason: PackReportReason;
   comment?: string;
 }): Promise<'sent' | 'throttled'> => {
@@ -95,6 +97,7 @@ export const submitPackReport = async (params: {
       packId:         params.packId,
       packTitle:      params.packTitle,
       authorStableId: params.authorStableId ?? null,
+      studyTarget:    storageStudyTarget(params.studyTarget),
       reason:         params.reason,
       comment:        (params.comment ?? '').slice(0, 500),
       reporterUid:    canonicalUid ?? legacyAnonId ?? 'unknown',

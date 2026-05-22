@@ -10,16 +10,255 @@ const tri = (
   uk: string,
   es: string,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (planned[locale]) copy[locale] = planned[locale];
+  }
+  return copy;
+};
+
+const PLACE_STEP_TRANSLATIONS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  place_easy_001: {
+    'pt-BR': 'Ela está no quarto.',
+    vi: 'Cô ấy ở trong phòng.',
+    id: 'Dia ada di dalam ruangan.',
+    tr: 'O odada.',
+    pl: 'Ona jest w pokoju.',
+  },
+  place_easy_002: {
+    'pt-BR': 'Os documentos estão na caixa.',
+    vi: 'Tài liệu ở trong hộp.',
+    id: 'Dokumen-dokumen ada di dalam kotak.',
+    tr: 'Belgeler kutunun içinde.',
+    pl: 'Dokumenty są w pudełku.',
+  },
+  place_easy_003: {
+    'pt-BR': 'Ele mora na Irlanda.',
+    vi: 'Anh ấy sống ở Ireland.',
+    id: 'Dia tinggal di Irlandia.',
+    tr: "O İrlanda'da yaşıyor.",
+    pl: 'On mieszka w Irlandii.',
+  },
+  place_contrast_001: {
+    'pt-BR': 'O telefone está sobre a mesa.',
+    vi: 'Điện thoại ở trên bàn.',
+    id: 'Telepon ada di atas meja.',
+    tr: 'Telefon masanın üzerinde.',
+    pl: 'Telefon jest na stole.',
+  },
+  place_contrast_002: {
+    'pt-BR': 'Há um quadro na parede.',
+    vi: 'Có một bức tranh trên tường.',
+    id: 'Ada gambar di dinding.',
+    tr: 'Duvarda bir resim var.',
+    pl: 'Na ścianie jest obraz.',
+  },
+  place_contrast_003: {
+    'pt-BR': 'O café fica na Main Street.',
+    vi: 'Quán cà phê nằm trên phố Main.',
+    id: 'Kafe itu berada di Main Street.',
+    tr: 'Kafe Main Street üzerinde.',
+    pl: 'Kawiarnia jest przy Main Street.',
+  },
+  place_contrast_004: {
+    'pt-BR': 'Vou encontrar você na estação.',
+    vi: 'Tôi sẽ gặp bạn ở nhà ga.',
+    id: 'Saya akan bertemu denganmu di stasiun.',
+    tr: 'Seninle istasyonda buluşacağım.',
+    pl: 'Spotkam się z tobą na stacji.',
+  },
+  place_contrast_005: {
+    'pt-BR': 'Ela está no trabalho agora.',
+    vi: 'Bây giờ cô ấy đang ở nơi làm việc.',
+    id: 'Dia sedang di tempat kerja sekarang.',
+    tr: 'O şu anda işte.',
+    pl: 'Ona jest teraz w pracy.',
+  },
+  place_contrast_006: {
+    'pt-BR': 'Eu fiquei em casa ontem.',
+    vi: 'Hôm qua tôi ở nhà.',
+    id: 'Saya tetap di rumah kemarin.',
+    tr: 'Dün evde kaldım.',
+    pl: 'Wczoraj zostałem w domu.',
+  },
+  place_mixed_001: {
+    'pt-BR': 'Eles abriram um novo escritório em Dublin.',
+    vi: 'Họ đã mở một văn phòng mới ở Dublin.',
+    id: 'Mereka membuka kantor baru di Dublin.',
+    tr: "Dublin'de yeni bir ofis açtılar.",
+    pl: 'Otworzyli nowe biuro w Dublinie.',
+  },
+  place_mixed_002: {
+    'pt-BR': 'A reunião é no endereço 18 Park Road.',
+    vi: 'Cuộc họp ở địa chỉ 18 Park Road.',
+    id: 'Rapatnya di alamat 18 Park Road.',
+    tr: 'Toplantı 18 Park Road adresinde.',
+    pl: 'Spotkanie jest pod adresem 18 Park Road.',
+  },
+  place_mixed_003: {
+    'pt-BR': 'Há uma farmácia nesta rua.',
+    vi: 'Có một hiệu thuốc trên con phố này.',
+    id: 'Ada apotek di jalan ini.',
+    tr: 'Bu sokakta bir eczane var.',
+    pl: 'Na tej ulicy jest apteka.',
+  },
+  place_mixed_004: {
+    'pt-BR': 'Meu filho está na escola agora.',
+    vi: 'Con trai tôi bây giờ đang ở trường.',
+    id: 'Anak laki-laki saya sedang di sekolah sekarang.',
+    tr: 'Oğlum şu anda okulda.',
+    pl: 'Mój syn jest teraz w szkole.',
+  },
+  place_mixed_005: {
+    'pt-BR': 'Ela deixou a bolsa no carro.',
+    vi: 'Cô ấy để túi trong xe.',
+    id: 'Dia meninggalkan tasnya di dalam mobil.',
+    tr: 'Çantasını arabada bıraktı.',
+    pl: 'Zostawiła torbę w samochodzie.',
+  },
+  place_mixed_006: {
+    'pt-BR': 'As chaves estão sobre a mesa, e John espera junto à porta.',
+    vi: 'Chìa khóa ở trên bàn, còn John đang chờ ở cửa.',
+    id: 'Kunci ada di atas meja, dan John menunggu di pintu.',
+    tr: 'Anahtarlar masanın üzerinde, John da kapıda bekliyor.',
+    pl: 'Klucze są na stole, a John czeka przy drzwiach.',
+  },
+};
+
+const PLACE_SKILL_HINTS: Record<string, Record<PlannedTrainingLocale, string>> = {
+  inside_space_in: {
+    'pt-BR': 'É um espaço com limites: quando algo está dentro dele, usamos in.',
+    vi: 'Đó là không gian có ranh giới: khi ở bên trong, dùng in.',
+    id: 'Ini ruang berbatas: ketika sesuatu ada di dalamnya, gunakan in.',
+    tr: 'Bu sınırları olan bir alan: içinde olunca in kullanılır.',
+    pl: 'To przestrzeń z granicami: gdy coś jest w środku, używamy in.',
+  },
+  inside_container_in: {
+    'pt-BR': 'É um recipiente: quando algo está dentro dele, usamos in.',
+    vi: 'Đó là vật chứa: khi thứ gì ở bên trong, dùng in.',
+    id: 'Ini wadah: ketika sesuatu ada di dalamnya, gunakan in.',
+    tr: 'Bu bir kap/konteyner: içinde olunca in kullanılır.',
+    pl: 'To pojemnik: gdy coś jest w środku, używamy in.',
+  },
+  city_country_in: {
+    'pt-BR': 'Países e territórios grandes são tratados como espaço, então usamos in.',
+    vi: 'Quốc gia và vùng lãnh thổ lớn được xem như không gian, nên dùng in.',
+    id: 'Negara dan wilayah besar dianggap ruang, jadi gunakan in.',
+    tr: 'Ülkeler ve büyük bölgeler alan gibi düşünülür, bu yüzden in kullanılır.',
+    pl: 'Kraje i duże obszary traktujemy jak przestrzeń, więc używamy in.',
+  },
+  city_in: {
+    'pt-BR': 'Cidades são espaços grandes, então usamos in.',
+    vi: 'Thành phố là không gian lớn, nên dùng in.',
+    id: 'Kota adalah ruang besar, jadi gunakan in.',
+    tr: 'Şehirler geniş alanlardır, bu yüzden in kullanılır.',
+    pl: 'Miasta to duże przestrzenie, więc używamy in.',
+  },
+  surface_on: {
+    'pt-BR': 'É uma superfície: quando algo fica sobre ela, usamos on.',
+    vi: 'Đó là bề mặt: khi thứ gì ở trên đó, dùng on.',
+    id: 'Ini permukaan: ketika sesuatu berada di atasnya, gunakan on.',
+    tr: 'Bu bir yüzey: üzerinde olunca on kullanılır.',
+    pl: 'To powierzchnia: gdy coś leży na niej, używamy on.',
+  },
+  vertical_surface_on: {
+    'pt-BR': 'A parede também é superfície vertical, então usamos on.',
+    vi: 'Tường cũng là bề mặt thẳng đứng, nên dùng on.',
+    id: 'Dinding juga permukaan vertikal, jadi gunakan on.',
+    tr: 'Duvar da dikey bir yüzeydir, bu yüzden on kullanılır.',
+    pl: 'Ściana też jest powierzchnią pionową, więc używamy on.',
+  },
+  street_on: {
+    'pt-BR': 'Uma rua sem número exato funciona como linha, então usamos on.',
+    vi: 'Đường phố không có số nhà cụ thể được xem như đường tuyến, nên dùng on.',
+    id: 'Jalan tanpa nomor tepat dipandang sebagai garis, jadi gunakan on.',
+    tr: 'Kesin numarası olmayan sokak çizgi gibi düşünülür, bu yüzden on kullanılır.',
+    pl: 'Ulica bez dokładnego numeru działa jak linia, więc używamy on.',
+  },
+  point_location_at: {
+    'pt-BR': 'Aqui o lugar funciona como ponto de encontro/local, então usamos at.',
+    vi: 'Ở đây nơi đó là điểm gặp/vị trí, nên dùng at.',
+    id: 'Di sini tempat itu berfungsi sebagai titik temu/lokasi, jadi gunakan at.',
+    tr: 'Burada yer buluşma noktası/konum gibi çalışır, bu yüzden at kullanılır.',
+    pl: 'Tutaj miejsce działa jak punkt spotkania/lokalizacja, więc używamy at.',
+  },
+  functional_place_at: {
+    'pt-BR': 'É um lugar de atividade, não só um espaço físico, então usamos at.',
+    vi: 'Đó là nơi hoạt động, không chỉ là không gian vật lý, nên dùng at.',
+    id: 'Ini tempat kegiatan, bukan sekadar ruang fisik, jadi gunakan at.',
+    tr: 'Bu sadece fiziksel alan değil, etkinlik yeridir; bu yüzden at kullanılır.',
+    pl: 'To miejsce aktywności, nie tylko fizyczna przestrzeń, więc używamy at.',
+  },
+  home_at: {
+    'pt-BR': 'At home é um bloco fixo para "em casa"; sem the.',
+    vi: 'At home là cụm cố định cho "ở nhà"; không có the.',
+    id: 'At home adalah frasa tetap untuk "di rumah"; tanpa the.',
+    tr: 'At home "evde" için sabit kalıptır; the yoktur.',
+    pl: 'At home to stały blok dla "w domu"; bez the.',
+  },
+  exact_address_at: {
+    'pt-BR': 'Número + rua forma endereço exato, então usamos at.',
+    vi: 'Số nhà + tên đường là địa chỉ chính xác, nên dùng at.',
+    id: 'Nomor + jalan membentuk alamat tepat, jadi gunakan at.',
+    tr: 'Numara + sokak kesin adres oluşturur, bu yüzden at kullanılır.',
+    pl: 'Numer + ulica tworzą dokładny adres, więc używamy at.',
+  },
+  school_function_at: {
+    'pt-BR': 'School como lugar de estudo/atividade normalmente usa at.',
+    vi: 'School như nơi học/hoạt động thường dùng at.',
+    id: 'School sebagai tempat belajar/kegiatan biasanya memakai at.',
+    tr: 'School eğitim/etkinlik yeri olarak genelde at alır.',
+    pl: 'School jako miejsce nauki/aktywności zwykle łączy się z at.',
+  },
+  inside_vehicle_in: {
+    'pt-BR': 'O carro funciona como recipiente: dentro dele usamos in.',
+    vi: 'Xe hoạt động như vật chứa: ở bên trong thì dùng in.',
+    id: 'Mobil berfungsi seperti wadah: di dalamnya gunakan in.',
+    tr: 'Araba konteyner gibi düşünülür: içinde olunca in kullanılır.',
+    pl: 'Samochód działa jak pojemnik: gdy coś jest w środku, używamy in.',
+  },
+  mixed_place_type_recognition: {
+    'pt-BR': 'Separe em duas imagens: superfície pede on; ponto de espera pede at.',
+    vi: 'Tách thành hai hình dung: bề mặt dùng on; điểm chờ dùng at.',
+    id: 'Pisahkan menjadi dua gambar: permukaan memakai on; titik tunggu memakai at.',
+    tr: 'İki sahneye ayır: yüzey on ister; bekleme noktası at ister.',
+    pl: 'Rozdziel na dwa obrazy: powierzchnia wymaga on, punkt oczekiwania wymaga at.',
+  },
+};
+
+const PLACE_GENERIC_HINTS: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'Escolha pela imagem do lugar, não pela tradução direta.',
+  vi: 'Hãy chọn theo hình dung nơi chốn, không theo bản dịch trực tiếp.',
+  id: 'Pilih berdasarkan gambaran tempat, bukan terjemahan langsung.',
+  tr: 'Doğrudan çeviriye göre değil, yerin görüntüsüne göre seç.',
+  pl: 'Wybieraj według obrazu miejsca, nie według bezpośredniego tłumaczenia.',
+};
+
+function fillPlanned(copy: TriText, planned: Partial<Record<PlannedTrainingLocale, string>>): TriText {
+  const next: TriText = { ...copy };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] && planned[locale]) next[locale] = planned[locale];
+  }
+  return next;
+}
+
+function plannedPlaceFeedback(input: {
+  id: string;
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): Record<PlannedTrainingLocale, string> {
+  const phrase = `${input.correctAnswer} ${input.focusWords.join(' / ')}`.trim();
+  const hints = PLACE_SKILL_HINTS[input.targetSkill] ?? PLACE_GENERIC_HINTS;
+  return {
+    'pt-BR': `Use "${phrase}". ${hints['pt-BR']}`,
+    vi: `Dùng "${phrase}". ${hints.vi}`,
+    id: `Gunakan "${phrase}". ${hints.id}`,
+    tr: `"${phrase}" kullan. ${hints.tr}`,
+    pl: `Użyj "${phrase}". ${hints.pl}`,
+  };
+}
 
 function placeStep(input: {
   id: string;
@@ -36,45 +275,81 @@ function placeStep(input: {
   focusWords: string[];
 }): DiagnosisTrainingStep {
   const correctIndex = input.options.findIndex((option) => option === input.correctAnswer);
+  const plannedFeedback = plannedPlaceFeedback(input);
+  const plannedTranslation = PLACE_STEP_TRANSLATIONS[input.id] ?? plannedFeedback;
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: fillPlanned(input.translation, plannedTranslation),
     explanationBlock: tri(
       'Не переводи “в/на” напрямую. Сначала представь место: внутри пространства, на поверхности или в точке/локации.',
       'Не перекладай “в/на” напряму. Спочатку уяви місце: всередині простору, на поверхні чи в точці/локації.',
       'No traduzcas “en” directamente. Primero imagina el lugar: dentro de un espacio, sobre una superficie o en un punto/ubicación.',
+      {
+        'pt-BR': 'Não traduza "em/na" diretamente. Primeiro imagine o lugar: dentro de um espaço, sobre uma superfície ou em um ponto/local.',
+        vi: 'Đừng dịch trực tiếp "ở/trên". Trước tiên hãy hình dung nơi đó: bên trong không gian, trên bề mặt hay tại một điểm/vị trí.',
+        id: 'Jangan menerjemahkan "di" secara langsung. Bayangkan dulu tempatnya: di dalam ruang, di atas permukaan, atau di titik/lokasi.',
+        tr: '"-de/-da" anlamını doğrudan çevirme. Önce yeri hayal et: bir alanın içinde mi, bir yüzeyde mi, yoksa bir nokta/konumda mı?',
+        pl: 'Nie tłumacz "w/na" bezpośrednio. Najpierw wyobraź sobie miejsce: wewnątrz przestrzeni, na powierzchni czy w punkcie/lokalizacji.',
+      },
     ),
-    microTask: tri('Выбери правильный предлог места.', 'Обери правильний прийменник місця.', 'Elige la preposición de lugar correcta.'),
+    microTask: tri('Выбери правильный предлог места.', 'Обери правильний прийменник місця.', 'Elige la preposición de lugar correcta.', {
+      'pt-BR': 'Escolha a preposição de lugar correta.',
+      vi: 'Chọn giới từ chỉ nơi chốn đúng.',
+      id: 'Pilih preposisi tempat yang benar.',
+      tr: 'Doğru yer edatını seç.',
+      pl: 'Wybierz właściwy przyimek miejsca.',
+    }),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex,
-    correctFeedback: input.correctFeedback,
+    correctFeedback: fillPlanned(input.correctFeedback, plannedFeedback),
     wrongFeedbackByOption: Object.fromEntries(input.options
       .filter((option) => option !== input.correctAnswer)
-      .map((option) => [option, input.wrong[option] ?? tri(
+      .map((option) => [option, fillPlanned(input.wrong[option] ?? tri(
         'Не совсем. Проверь картинку: in = внутри, on = поверхность/линия, at = точка или функциональная локация.',
         'Не зовсім. Перевір картинку: in = всередині, on = поверхня/лінія, at = точка або функціональна локація.',
         'No exactamente. Revisa la imagen: in = dentro, on = superficie/línea, at = punto o ubicación funcional.',
-      )])),
+        {
+          'pt-BR': 'Não exatamente. Revise a imagem: in = dentro, on = superfície/linha, at = ponto ou local funcional.',
+          vi: 'Chưa đúng hẳn. Hãy xem lại hình dung: in = bên trong, on = bề mặt/đường, at = điểm hoặc vị trí chức năng.',
+          id: 'Belum tepat. Periksa gambarnya: in = di dalam, on = permukaan/garis, at = titik atau lokasi fungsional.',
+          tr: 'Tam değil. Görseli kontrol et: in = içeride, on = yüzey/çizgi, at = nokta veya işlevsel konum.',
+          pl: 'Nie do końca. Sprawdź obraz: in = w środku, on = powierzchnia/linia, at = punkt albo lokalizacja funkcjonalna.',
+        },
+      ), plannedFeedback)])),
     retryFeedback: [
-      input.retry[0],
-      input.retry[1],
-      input.retry[2],
+      fillPlanned(input.retry[0], plannedFeedback),
+      fillPlanned(input.retry[1], plannedFeedback),
+      fillPlanned(input.retry[2], plannedFeedback),
       tri(
         `Подсказка: здесь нужен блок "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
         `Підказка: тут потрібен блок "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
         `Pista: aquí necesitas el bloque "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
+        {
+          'pt-BR': `Dica: aqui você precisa do bloco "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
+          vi: `Gợi ý: ở đây cần cụm "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
+          id: `Petunjuk: di sini perlu frasa "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
+          tr: `İpucu: burada "${input.correctAnswer} ${input.focusWords[0] ?? ''}" kalıbı gerekli.`.trim(),
+          pl: `Wskazówka: tutaj potrzebujesz bloku "${input.correctAnswer} ${input.focusWords[0] ?? ''}".`.trim(),
+        },
       ),
     ],
     fallbackExplanation: tri(
       'Карта места: in для пространства/контейнера/города, on для поверхности или улицы как линии, at для точки, адреса или места деятельности.',
       'Карта місця: in для простору/контейнера/міста, on для поверхні або вулиці як лінії, at для точки, адреси або місця діяльності.',
       'Mapa de lugar: in para espacio/contenedor/ciudad, on para superficie o calle como línea, at para punto, dirección o lugar de actividad.',
+      {
+        'pt-BR': 'Mapa de lugar: in para espaço/recipiente/cidade, on para superfície ou rua como linha, at para ponto, endereço ou local de atividade.',
+        vi: 'Bản đồ nơi chốn: in cho không gian/vật chứa/thành phố, on cho bề mặt hoặc con đường như một đường tuyến, at cho điểm, địa chỉ hoặc nơi hoạt động.',
+        id: 'Peta tempat: in untuk ruang/wadah/kota, on untuk permukaan atau jalan sebagai garis, at untuk titik, alamat, atau tempat kegiatan.',
+        tr: 'Yer haritası: in alan/konteyner/şehir için, on yüzey veya çizgi gibi sokak için, at nokta, adres ya da etkinlik yeri için.',
+        pl: 'Mapa miejsca: in dla przestrzeni/pojemnika/miasta, on dla powierzchni albo ulicy jako linii, at dla punktu, adresu lub miejsca aktywności.',
+      },
     ),
     focusWords: input.focusWords,
   };
@@ -87,28 +362,68 @@ export const PREPOSITION_PLACE_IN_ON_AT_TRAINING: DiagnosisTraining = {
   status: 'active',
   priority: 5,
   supportedLocales: ['ru', 'uk', 'es'],
-  title: tri('In / On / At: место', 'In / On / At: місце', 'In / On / At: lugar'),
-  shortTitle: tri('In / On / At для места', 'In / On / At для місця', 'In / On / At para lugar'),
+  title: tri('In / On / At: место', 'In / On / At: місце', 'In / On / At: lugar', {
+    'pt-BR': 'In / On / At: lugar',
+    vi: 'In / On / At: nơi chốn',
+    id: 'In / On / At: tempat',
+    tr: 'In / On / At: yer',
+    pl: 'In / On / At: miejsce',
+  }),
+  shortTitle: tri('In / On / At для места', 'In / On / At для місця', 'In / On / At para lugar', {
+    'pt-BR': 'In / On / At para lugar',
+    vi: 'In / On / At cho nơi chốn',
+    id: 'In / On / At untuk tempat',
+    tr: 'Yer için In / On / At',
+    pl: 'In / On / At dla miejsca',
+  }),
   shortDiagnosis: tri(
     'Ты путаешь in, on и at для места: внутри, поверхность или точка.',
     'Ти плутаєш in, on і at для місця: всередині, поверхня чи точка.',
     'Confundes in, on y at para lugar: dentro, superficie o punto.',
+    {
+      'pt-BR': 'Você confunde in, on e at para lugar: dentro, superfície ou ponto.',
+      vi: 'Bạn nhầm in, on và at cho nơi chốn: bên trong, bề mặt hay điểm.',
+      id: 'Kamu mencampur in, on, dan at untuk tempat: di dalam, permukaan, atau titik.',
+      tr: 'Yer için in, on ve at karışıyor: içerisi, yüzey veya nokta.',
+      pl: 'Mylisz in, on i at dla miejsca: wnętrze, powierzchnia albo punkt.',
+    },
   ),
   diagnosisText: tri(
     'Ты путаешь in, on и at, когда говоришь о месте. Обычно проблема в том, что ты переводишь предлог как “в/на/у”, а английский смотрит на тип места: внутри пространства, на поверхности или в точке/локации.',
     'Ти плутаєш in, on і at, коли говориш про місце. Зазвичай проблема в тому, що ти перекладаєш прийменник як “в/на/у”, а англійська дивиться на тип місця: всередині простору, на поверхні або в точці/локації.',
     'Confundes in, on y at cuando hablas de lugar. Normalmente el problema es traducir la preposición como “en”, pero el inglés mira el tipo de lugar: dentro de un espacio, sobre una superficie o en un punto/ubicación.',
+    {
+      'pt-BR': 'Você confunde in, on e at quando fala de lugar. Normalmente o problema é traduzir a preposição como "em", mas o inglês olha o tipo de lugar: dentro de um espaço, sobre uma superfície ou em um ponto/local.',
+      vi: 'Bạn nhầm in, on và at khi nói về nơi chốn. Vấn đề thường là dịch giới từ thành "ở/trên", còn tiếng Anh nhìn vào kiểu nơi chốn: bên trong không gian, trên bề mặt hay tại một điểm/vị trí.',
+      id: 'Kamu mencampur in, on, dan at saat berbicara tentang tempat. Biasanya masalahnya adalah menerjemahkan preposisi sebagai "di", padahal bahasa Inggris melihat jenis tempat: di dalam ruang, di atas permukaan, atau di titik/lokasi.',
+      tr: 'Yer hakkında konuşurken in, on ve at karışıyor. Sorun genelde edatı "-de/-da" diye çevirmek; İngilizce ise yer türüne bakar: alanın içinde, yüzeyde ya da bir nokta/konumda.',
+      pl: 'Mylisz in, on i at, gdy mówisz o miejscu. Problem zwykle polega na tłumaczeniu przyimka jako "w/na", a angielski patrzy na typ miejsca: wewnątrz przestrzeni, na powierzchni albo w punkcie/lokalizacji.',
+    },
   ),
   mentalModel: tri(
     'In = внутри пространства. On = на поверхности или линии. At = в точке, месте события или адресной локации.',
     'In = всередині простору. On = на поверхні або лінії. At = у точці, місці події або адресній локації.',
     'In = dentro de un espacio. On = sobre una superficie o línea. At = en un punto, lugar de evento o ubicación.',
+    {
+      'pt-BR': 'In = dentro de um espaço. On = sobre uma superfície ou linha. At = em um ponto, local de evento ou endereço.',
+      vi: 'In = bên trong không gian. On = trên bề mặt hoặc đường tuyến. At = tại một điểm, nơi diễn ra sự kiện hoặc vị trí địa chỉ.',
+      id: 'In = di dalam ruang. On = di atas permukaan atau garis. At = di titik, tempat acara, atau lokasi alamat.',
+      tr: 'In = bir alanın içinde. On = yüzeyde veya çizgide. At = noktada, etkinlik yerinde veya adres konumunda.',
+      pl: 'In = wewnątrz przestrzeni. On = na powierzchni albo linii. At = w punkcie, miejscu wydarzenia albo lokalizacji adresowej.',
+    },
   ),
   contrastSet: ['in', 'on', 'at'],
   coreRule: tri(
     'in the room, in the car, in Dublin. on the table, on the wall, on the street. at home, at school, at the station, at 25 King Street.',
     'in the room, in the car, in Dublin. on the table, on the wall, on the street. at home, at school, at the station, at 25 King Street.',
     'in the room, in the car, in Dublin. on the table, on the wall, on the street. at home, at school, at the station, at 25 King Street.',
+    {
+      'pt-BR': 'in the room, in the car, in Dublin. on the table, on the wall, on the street. at home, at school, at the station, at 25 King Street.',
+      vi: 'in the room, in the car, in Dublin. on the table, on the wall, on the street. at home, at school, at the station, at 25 King Street.',
+      id: 'in the room, in the car, in Dublin. on the table, on the wall, on the street. at home, at school, at the station, at 25 King Street.',
+      tr: 'in the room, in the car, in Dublin. on the table, on the wall, on the street. at home, at school, at the station, at 25 King Street.',
+      pl: 'in the room, in the car, in Dublin. on the table, on the wall, on the street. at home, at school, at the station, at 25 King Street.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -193,19 +508,19 @@ export const PREPOSITION_PLACE_IN_ON_AT_TRAINING: DiagnosisTraining = {
     ],
   },
   examples: [
-    { en: 'She is in the room.', ru: 'Она в комнате.', uk: 'Вона в кімнаті.', es: 'Ella está en la habitación.', 'pt-BR': 'Ela está no quarto.', vi: 'Cô ấy ở trong phòng.', id: 'Dia ada di dalam ruangan.', tr: 'O odada.', pl: 'Ona jest w pokoju.', why: tri('Room - пространство с границами. Она внутри комнаты, поэтому in.', 'Room - простір із межами. Вона всередині кімнати, тому in.', 'Room es un espacio con límites. Ella está dentro, por eso in.') },
-    { en: 'The keys are on the table.', ru: 'Ключи на столе.', uk: 'Ключі на столі.', es: 'Las llaves están sobre la mesa.', 'pt-BR': 'As chaves estão sobre a mesa.', vi: 'Chìa khóa ở trên bàn.', id: 'Kunci-kunci ada di atas meja.', tr: 'Anahtarlar masanın üzerinde.', pl: 'Klucze są na stole.', why: tri('Table - поверхность. Ключи лежат на поверхности, поэтому on.', 'Table - поверхня. Ключі лежать на поверхні, тому on.', 'Table es una superficie. Las llaves están sobre la superficie, por eso on.') },
-    { en: "I'll meet you at the station.", ru: 'Я встречу тебя на станции.', uk: 'Я зустріну тебе на станції.', es: 'Te veré en la estación.', 'pt-BR': 'Vou encontrar você na estação.', vi: 'Tôi sẽ gặp bạn ở nhà ga.', id: 'Saya akan bertemu denganmu di stasiun.', tr: 'Seninle istasyonda buluşacağım.', pl: 'Spotkam się z tobą na stacji.', why: tri('Station здесь воспринимается как точка встречи/локация, поэтому at.', 'Station тут сприймається як точка зустрічі/локація, тому at.', 'Station aquí se percibe como punto de encuentro, por eso at.') },
-    { en: 'He lives in Dublin.', ru: 'Он живет в Дублине.', uk: 'Він живе в Дубліні.', es: 'Él vive en Dublín.', 'pt-BR': 'Ele mora em Dublin.', vi: 'Anh ấy sống ở Dublin.', id: 'Dia tinggal di Dublin.', tr: "Dublin'de yaşıyor.", pl: 'On mieszka w Dublinie.', why: tri('Dublin - город, большое пространство. С городами используется in.', 'Dublin - місто, великий простір. З містами використовується in.', 'Dublin es una ciudad, un espacio grande. Con ciudades usamos in.') },
-    { en: 'The shop is on Main Street.', ru: 'Магазин находится на Мэйн-стрит.', uk: 'Магазин знаходиться на Мейн-стріт.', es: 'La tienda está en Main Street.', 'pt-BR': 'A loja fica na Main Street.', vi: 'Cửa hàng nằm trên phố Main.', id: 'Toko itu berada di Main Street.', tr: 'Dükkan Main Street üzerinde.', pl: 'Sklep jest przy Main Street.', why: tri('Street часто воспринимается как линия. Для улицы без номера обычно используется on.', 'Street часто сприймається як лінія. Для вулиці без номера зазвичай використовується on.', 'Street muchas veces se percibe como una línea. Sin número exacto normalmente usamos on.') },
-    { en: 'The office is at 25 King Street.', ru: 'Офис находится по адресу 25 King Street.', uk: 'Офіс знаходиться за адресою 25 King Street.', es: 'La oficina está en 25 King Street.', 'pt-BR': 'O escritório fica no endereço 25 King Street.', vi: 'Văn phòng ở địa chỉ 25 King Street.', id: 'Kantornya berada di 25 King Street.', tr: 'Ofis 25 King Street adresinde.', pl: 'Biuro jest pod adresem 25 King Street.', why: tri('25 King Street - точный адрес. С точным адресом обычно используется at.', '25 King Street - точна адреса. З точною адресою зазвичай використовується at.', '25 King Street es una dirección exacta. Con dirección exacta usamos at.') },
-    { en: 'She is at school.', ru: 'Она в школе.', uk: 'Вона в школі.', es: 'Ella está en la escuela.', 'pt-BR': 'Ela está na escola.', vi: 'Cô ấy đang ở trường.', id: 'Dia sedang di sekolah.', tr: 'O okulda.', pl: 'Ona jest w szkole.', why: tri('At school часто означает школу как место учебы/деятельности.', 'At school часто означає школу як місце навчання/діяльності.', 'At school muchas veces significa escuela como lugar funcional.') },
-    { en: 'The picture is on the wall.', ru: 'Картина на стене.', uk: 'Картина на стіні.', es: 'El cuadro está en la pared.', 'pt-BR': 'O quadro está na parede.', vi: 'Bức tranh ở trên tường.', id: 'Gambar itu ada di dinding.', tr: 'Resim duvarda.', pl: 'Obraz jest na ścianie.', why: tri('Wall - поверхность. Картина находится на поверхности стены, поэтому on.', 'Wall - поверхня. Картина знаходиться на поверхні стіни, тому on.', 'Wall es una superficie. El cuadro está sobre la superficie, por eso on.') },
+    { en: 'She is in the room.', ru: 'Она в комнате.', uk: 'Вона в кімнаті.', es: 'Ella está en la habitación.', 'pt-BR': 'Ela está no quarto.', vi: 'Cô ấy ở trong phòng.', id: 'Dia ada di dalam ruangan.', tr: 'O odada.', pl: 'Ona jest w pokoju.', why: tri('Room - пространство с границами. Она внутри комнаты, поэтому in.', 'Room - простір із межами. Вона всередині кімнати, тому in.', 'Room es un espacio con límites. Ella está dentro, por eso in.', { 'pt-BR': 'Room é um espaço com limites. Ela está dentro, por isso in.', vi: 'Room là không gian có ranh giới. Cô ấy ở bên trong, vì vậy dùng in.', id: 'Room adalah ruang berbatas. Dia ada di dalamnya, jadi gunakan in.', tr: 'Room sınırları olan bir alandır. O içeride, bu yüzden in.', pl: 'Room to przestrzeń z granicami. Ona jest w środku, więc używamy in.' }) },
+    { en: 'The keys are on the table.', ru: 'Ключи на столе.', uk: 'Ключі на столі.', es: 'Las llaves están sobre la mesa.', 'pt-BR': 'As chaves estão sobre a mesa.', vi: 'Chìa khóa ở trên bàn.', id: 'Kunci-kunci ada di atas meja.', tr: 'Anahtarlar masanın üzerinde.', pl: 'Klucze są na stole.', why: tri('Table - поверхность. Ключи лежат на поверхности, поэтому on.', 'Table - поверхня. Ключі лежать на поверхні, тому on.', 'Table es una superficie. Las llaves están sobre la superficie, por eso on.', { 'pt-BR': 'Table é uma superfície. As chaves estão sobre a superfície, por isso on.', vi: 'Table là bề mặt. Chìa khóa nằm trên bề mặt, vì vậy dùng on.', id: 'Table adalah permukaan. Kunci ada di atas permukaan, jadi gunakan on.', tr: 'Table bir yüzeydir. Anahtarlar yüzeyin üzerinde, bu yüzden on.', pl: 'Table to powierzchnia. Klucze leżą na powierzchni, więc używamy on.' }) },
+    { en: "I'll meet you at the station.", ru: 'Я встречу тебя на станции.', uk: 'Я зустріну тебе на станції.', es: 'Te veré en la estación.', 'pt-BR': 'Vou encontrar você na estação.', vi: 'Tôi sẽ gặp bạn ở nhà ga.', id: 'Saya akan bertemu denganmu di stasiun.', tr: 'Seninle istasyonda buluşacağım.', pl: 'Spotkam się z tobą na stacji.', why: tri('Station здесь воспринимается как точка встречи/локация, поэтому at.', 'Station тут сприймається як точка зустрічі/локація, тому at.', 'Station aquí se percibe como punto de encuentro, por eso at.', { 'pt-BR': 'Station aqui é visto como ponto de encontro/local, por isso at.', vi: 'Station ở đây được xem như điểm gặp/vị trí, vì vậy dùng at.', id: 'Station di sini dipandang sebagai titik temu/lokasi, jadi gunakan at.', tr: 'Station burada buluşma noktası/konum gibi görülür, bu yüzden at.', pl: 'Station jest tu punktem spotkania/lokalizacją, więc używamy at.' }) },
+    { en: 'He lives in Dublin.', ru: 'Он живет в Дублине.', uk: 'Він живе в Дубліні.', es: 'Él vive en Dublín.', 'pt-BR': 'Ele mora em Dublin.', vi: 'Anh ấy sống ở Dublin.', id: 'Dia tinggal di Dublin.', tr: "Dublin'de yaşıyor.", pl: 'On mieszka w Dublinie.', why: tri('Dublin - город, большое пространство. С городами используется in.', 'Dublin - місто, великий простір. З містами використовується in.', 'Dublin es una ciudad, un espacio grande. Con ciudades usamos in.', { 'pt-BR': 'Dublin é uma cidade, um espaço grande. Com cidades usamos in.', vi: 'Dublin là một thành phố, một không gian lớn. Với thành phố dùng in.', id: 'Dublin adalah kota, ruang yang luas. Dengan kota gunakan in.', tr: 'Dublin bir şehir, geniş bir alandır. Şehirlerle in kullanılır.', pl: 'Dublin to miasto, duża przestrzeń. Z miastami używamy in.' }) },
+    { en: 'The shop is on Main Street.', ru: 'Магазин находится на Мэйн-стрит.', uk: 'Магазин знаходиться на Мейн-стріт.', es: 'La tienda está en Main Street.', 'pt-BR': 'A loja fica na Main Street.', vi: 'Cửa hàng nằm trên phố Main.', id: 'Toko itu berada di Main Street.', tr: 'Dükkan Main Street üzerinde.', pl: 'Sklep jest przy Main Street.', why: tri('Street часто воспринимается как линия. Для улицы без номера обычно используется on.', 'Street часто сприймається як лінія. Для вулиці без номера зазвичай використовується on.', 'Street muchas veces se percibe como una línea. Sin número exacto normalmente usamos on.', { 'pt-BR': 'Street muitas vezes é visto como uma linha. Sem número exato, normalmente usamos on.', vi: 'Street thường được xem như một đường tuyến. Không có số nhà cụ thể thì thường dùng on.', id: 'Street sering dipandang sebagai garis. Tanpa nomor tepat, biasanya gunakan on.', tr: 'Street çoğu zaman çizgi gibi düşünülür. Kesin numara yoksa genelde on kullanılır.', pl: 'Street często traktuje się jak linię. Bez dokładnego numeru zwykle używamy on.' }) },
+    { en: 'The office is at 25 King Street.', ru: 'Офис находится по адресу 25 King Street.', uk: 'Офіс знаходиться за адресою 25 King Street.', es: 'La oficina está en 25 King Street.', 'pt-BR': 'O escritório fica no endereço 25 King Street.', vi: 'Văn phòng ở địa chỉ 25 King Street.', id: 'Kantornya berada di 25 King Street.', tr: 'Ofis 25 King Street adresinde.', pl: 'Biuro jest pod adresem 25 King Street.', why: tri('25 King Street - точный адрес. С точным адресом обычно используется at.', '25 King Street - точна адреса. З точною адресою зазвичай використовується at.', '25 King Street es una dirección exacta. Con dirección exacta usamos at.', { 'pt-BR': '25 King Street é um endereço exato. Com endereço exato usamos at.', vi: '25 King Street là địa chỉ chính xác. Với địa chỉ chính xác dùng at.', id: '25 King Street adalah alamat tepat. Dengan alamat tepat gunakan at.', tr: '25 King Street kesin adrestir. Kesin adresle at kullanılır.', pl: '25 King Street to dokładny adres. Z dokładnym adresem używamy at.' }) },
+    { en: 'She is at school.', ru: 'Она в школе.', uk: 'Вона в школі.', es: 'Ella está en la escuela.', 'pt-BR': 'Ela está na escola.', vi: 'Cô ấy đang ở trường.', id: 'Dia sedang di sekolah.', tr: 'O okulda.', pl: 'Ona jest w szkole.', why: tri('At school часто означает школу как место учебы/деятельности.', 'At school часто означає школу як місце навчання/діяльності.', 'At school muchas veces significa escuela como lugar funcional.', { 'pt-BR': 'At school muitas vezes significa escola como lugar de estudo/atividade.', vi: 'At school thường nghĩa là trường như nơi học/hoạt động.', id: 'At school sering berarti sekolah sebagai tempat belajar/kegiatan.', tr: 'At school çoğu zaman okulu eğitim/etkinlik yeri olarak anlatır.', pl: 'At school często oznacza szkołę jako miejsce nauki/aktywności.' }) },
+    { en: 'The picture is on the wall.', ru: 'Картина на стене.', uk: 'Картина на стіні.', es: 'El cuadro está en la pared.', 'pt-BR': 'O quadro está na parede.', vi: 'Bức tranh ở trên tường.', id: 'Gambar itu ada di dinding.', tr: 'Resim duvarda.', pl: 'Obraz jest na ścianie.', why: tri('Wall - поверхность. Картина находится на поверхности стены, поэтому on.', 'Wall - поверхня. Картина знаходиться на поверхні стіни, тому on.', 'Wall es una superficie. El cuadro está sobre la superficie, por eso on.', { 'pt-BR': 'Wall é uma superfície. O quadro está na superfície da parede, por isso on.', vi: 'Wall là bề mặt. Bức tranh nằm trên bề mặt tường, vì vậy dùng on.', id: 'Wall adalah permukaan. Gambar ada di permukaan dinding, jadi gunakan on.', tr: 'Wall bir yüzeydir. Resim duvarın yüzeyinde, bu yüzden on.', pl: 'Wall to powierzchnia. Obraz jest na powierzchni ściany, więc używamy on.' }) },
   ],
   introBlocks: [
-    { id: 'intro_problem', type: 'diagnosis', text: tri('Похоже, ты путаешь in, on и at для места. Русское “в/на” не совпадает один в один с английской логикой.', 'Схоже, ти плутаєш in, on і at для місця. Українські “в/на” не збігаються один в один з англійською логікою.', 'Parece que confundes in, on y at para lugar. El español “en” no coincide exactamente con la lógica inglesa.') },
-    { id: 'intro_rule', type: 'rule', text: tri('Главная модель: in - внутри, on - на поверхности, at - в точке/локации.', 'Головна модель: in - всередині, on - на поверхні, at - у точці/локації.', 'Modelo principal: in - dentro, on - sobre superficie, at - en un punto/ubicación.') },
-    { id: 'intro_warning', type: 'warning', text: tri('Не выбирай предлог по переводу. Выбирай по картинке: внутри пространства, на поверхности или точка на карте?', 'Не обирай прийменник за перекладом. Обирай за картинкою: всередині простору, на поверхні чи точка на мапі?', 'No elijas por traducción. Elige por la imagen: dentro de un espacio, sobre superficie o punto en el mapa?') },
+    { id: 'intro_problem', type: 'diagnosis', text: tri('Похоже, ты путаешь in, on и at для места. Русское “в/на” не совпадает один в один с английской логикой.', 'Схоже, ти плутаєш in, on і at для місця. Українські “в/на” не збігаються один в один з англійською логікою.', 'Parece que confundes in, on y at para lugar. El español “en” no coincide exactamente con la lógica inglesa.', { 'pt-BR': 'Parece que você confunde in, on e at para lugar. O português "em/na" não coincide exatamente com a lógica do inglês.', vi: 'Có vẻ bạn đang nhầm in, on và at cho nơi chốn. Tiếng Việt "ở/trên" không trùng hoàn toàn với logic tiếng Anh.', id: 'Sepertinya kamu mencampur in, on, dan at untuk tempat. Bahasa Indonesia "di" tidak selalu sama dengan logika bahasa Inggris.', tr: 'Yer için in, on ve at karışıyor gibi görünüyor. Türkçedeki "-de/-da" İngilizce mantığıyla bire bir örtüşmez.', pl: 'Wygląda na to, że mylisz in, on i at dla miejsca. Polskie "w/na" nie pokrywa się jeden do jednego z logiką angielską.' }) },
+    { id: 'intro_rule', type: 'rule', text: tri('Главная модель: in - внутри, on - на поверхности, at - в точке/локации.', 'Головна модель: in - всередині, on - на поверхні, at - у точці/локації.', 'Modelo principal: in - dentro, on - sobre superficie, at - en un punto/ubicación.', { 'pt-BR': 'Modelo principal: in = dentro, on = sobre superfície, at = em um ponto/local.', vi: 'Mô hình chính: in = bên trong, on = trên bề mặt, at = tại điểm/vị trí.', id: 'Model utama: in = di dalam, on = di atas permukaan, at = di titik/lokasi.', tr: 'Ana model: in = içeride, on = yüzeyde, at = nokta/konumda.', pl: 'Główny model: in = w środku, on = na powierzchni, at = w punkcie/lokalizacji.' }) },
+    { id: 'intro_warning', type: 'warning', text: tri('Не выбирай предлог по переводу. Выбирай по картинке: внутри пространства, на поверхности или точка на карте?', 'Не обирай прийменник за перекладом. Обирай за картинкою: всередині простору, на поверхні чи точка на мапі?', 'No elijas por traducción. Elige por la imagen: dentro de un espacio, sobre superficie o punto en el mapa?', { 'pt-BR': 'Não escolha pela tradução. Escolha pela imagem: dentro de um espaço, sobre uma superfície ou ponto no mapa?', vi: 'Đừng chọn theo bản dịch. Hãy chọn theo hình dung: bên trong không gian, trên bề mặt hay điểm trên bản đồ?', id: 'Jangan memilih berdasarkan terjemahan. Pilih berdasarkan gambarnya: di dalam ruang, di atas permukaan, atau titik di peta?', tr: 'Çeviriye göre seçme. Görsele göre seç: alanın içinde mi, yüzeyde mi, haritada bir nokta mı?', pl: 'Nie wybieraj według tłumaczenia. Wybierz według obrazu: wewnątrz przestrzeni, na powierzchni czy punkt na mapie?' }) },
   ],
   steps: [
     placeStep({ id: 'place_easy_001', order: 1, difficulty: 'easy', targetSkill: 'inside_space_in', sentence: 'She is ___ the room.', translation: tri('Она в комнате.', 'Вона в кімнаті.', 'Ella está en la habitación.'), options: ['in', 'on', 'at', 'to'], correctAnswer: 'in', correctFeedback: tri('Да. Room - пространство с границами. Она внутри комнаты, поэтому in the room.', 'Так. Room - простір із межами. Вона всередині кімнати, тому in the room.', 'Sí. Room es un espacio con límites. Ella está dentro, por eso in the room.'), wrong: { on: tri('On нужен для поверхности: on the table, on the wall. Room - пространство, и она внутри него. Нужен in.', 'On потрібен для поверхні: on the table, on the wall. Room - простір, і вона всередині нього. Потрібен in.', 'On se usa para superficie. Room es espacio y ella está dentro. Necesitamos in.'), at: tri('At показывает точку/локацию, но здесь важно физически внутри комнаты. Поэтому in.', 'At показує точку/локацію, але тут важливо фізично всередині кімнати. Тому in.', 'At muestra punto/ubicación, pero aquí importa estar dentro de la habitación. Por eso in.'), to: tri('To показывает движение к месту. Здесь она уже находится внутри. Нужен in.', 'To показує рух до місця. Тут вона вже знаходиться всередині. Потрібен in.', 'To muestra movimiento hacia un lugar. Aquí ella ya está dentro. Necesitamos in.') }, retry: [tri('Комната окружает человека. Внутри пространства = in.', 'Кімната оточує людину. Всередині простору = in.', 'La habitación rodea a la persona. Dentro de espacio = in.'), tri('Внутри комнаты - in the room.', 'Всередині кімнати - in the room.', 'Dentro de la habitación - in the room.'), tri('Подсказка: in the room.', 'Підказка: in the room.', 'Pista: in the room.')], focusWords: ['the room'] }),
@@ -236,24 +551,24 @@ export const PREPOSITION_PLACE_IN_ON_AT_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Обычное объяснение: показываем тип места и правильный предлог.', 'Звичайне пояснення: показуємо тип місця і правильний прийменник.', 'Explicación normal: mostramos el tipo de lugar y la preposición correcta.'),
-    depth2: tri('Проще: сводим выбор к картинке in/on/at.', 'Простіше: зводимо вибір до картинки in/on/at.', 'Más simple: reducimos la elección a la imagen in/on/at.'),
-    depth3: tri('Еще проще: показываем готовый блок, например in the room, on the table, at school.', 'Ще простіше: показуємо готовий блок, наприклад in the room, on the table, at school.', 'Aún más simple: mostramos un bloque listo, por ejemplo in the room, on the table, at school.'),
-    depth4: tri('Почти подсказка: прямо указываем тип места.', 'Майже підказка: прямо вказуємо тип місця.', 'Casi pista: indicamos directamente el tipo de lugar.'),
+    depth1: tri('Обычное объяснение: показываем тип места и правильный предлог.', 'Звичайне пояснення: показуємо тип місця і правильний прийменник.', 'Explicación normal: mostramos el tipo de lugar y la preposición correcta.', { 'pt-BR': 'Explicação normal: mostramos o tipo de lugar e a preposição correta.', vi: 'Giải thích bình thường: hiển thị kiểu nơi chốn và giới từ đúng.', id: 'Penjelasan biasa: tampilkan jenis tempat dan preposisi yang benar.', tr: 'Normal açıklama: yer türünü ve doğru edatı gösteririz.', pl: 'Zwykłe wyjaśnienie: pokazujemy typ miejsca i właściwy przyimek.' }),
+    depth2: tri('Проще: сводим выбор к картинке in/on/at.', 'Простіше: зводимо вибір до картинки in/on/at.', 'Más simple: reducimos la elección a la imagen in/on/at.', { 'pt-BR': 'Mais simples: reduzimos a escolha à imagem in/on/at.', vi: 'Đơn giản hơn: đưa lựa chọn về hình dung in/on/at.', id: 'Lebih sederhana: pilihan diringkas menjadi gambar in/on/at.', tr: 'Daha basit: seçimi in/on/at görseline indiririz.', pl: 'Prościej: sprowadzamy wybór do obrazu in/on/at.' }),
+    depth3: tri('Еще проще: показываем готовый блок, например in the room, on the table, at school.', 'Ще простіше: показуємо готовий блок, наприклад in the room, on the table, at school.', 'Aún más simple: mostramos un bloque listo, por ejemplo in the room, on the table, at school.', { 'pt-BR': 'Ainda mais simples: mostramos um bloco pronto, por exemplo in the room, on the table, at school.', vi: 'Đơn giản hơn nữa: hiển thị cụm có sẵn, ví dụ in the room, on the table, at school.', id: 'Lebih sederhana lagi: tampilkan frasa siap pakai, misalnya in the room, on the table, at school.', tr: 'Daha da basit: hazır kalıp gösteririz, örneğin in the room, on the table, at school.', pl: 'Jeszcze prościej: pokazujemy gotowy blok, np. in the room, on the table, at school.' }),
+    depth4: tri('Почти подсказка: прямо указываем тип места.', 'Майже підказка: прямо вказуємо тип місця.', 'Casi pista: indicamos directamente el tipo de lugar.', { 'pt-BR': 'Quase dica: indicamos diretamente o tipo de lugar.', vi: 'Gần như gợi ý: chỉ thẳng kiểu nơi chốn.', id: 'Hampir petunjuk: langsung tunjukkan jenis tempatnya.', tr: 'Neredeyse ipucu: yer türünü doğrudan belirtiriz.', pl: 'Prawie podpowiedź: wskazujemy bezpośrednio typ miejsca.' }),
   },
   failureRecovery: {
-    afterTwoWrongInSameExercise: { action: 'show_simplified_rule_card', card: tri('Остановись. Не переводи “в/на”. Сначала представь картинку: внутри пространства = in, на поверхности = on, точка/локация = at.', 'Зупинись. Не перекладай “в/на”. Спочатку уяви картинку: всередині простору = in, на поверхні = on, точка/локація = at.', 'Detente. No traduzcas “en”. Primero imagina la escena: dentro de espacio = in, sobre superficie = on, punto/ubicación = at.') },
-    afterThreeWrongInSameExercise: { action: 'show_place_type_hint_then_retry', card: tri('Подсказка по типу места: система покажет, это внутри, поверхность или точка, но не выберет предлог за пользователя.', 'Підказка за типом місця: система покаже, це всередині, поверхня чи точка, але не вибере прийменник за користувача.', 'Pista de tipo de lugar: el sistema mostrará si es dentro, superficie o punto, pero no elegirá la preposición por el usuario.') },
-    afterFourWrongInSameExercise: { action: 'switch_to_guided_mode', card: tri('Режим подсказки: сначала выбери тип места. Потом система вернет тебя к in/on/at.', 'Режим підказки: спочатку обери тип місця. Потім система поверне тебе до in/on/at.', 'Modo guiado: primero elige el tipo de lugar. Luego el sistema te devuelve a in/on/at.') },
+    afterTwoWrongInSameExercise: { action: 'show_simplified_rule_card', card: tri('Остановись. Не переводи “в/на”. Сначала представь картинку: внутри пространства = in, на поверхности = on, точка/локация = at.', 'Зупинись. Не перекладай “в/на”. Спочатку уяви картинку: всередині простору = in, на поверхні = on, точка/локація = at.', 'Detente. No traduzcas “en”. Primero imagina la escena: dentro de espacio = in, sobre superficie = on, punto/ubicación = at.', { 'pt-BR': 'Pare. Não traduza "em/na". Primeiro imagine a cena: dentro de espaço = in, sobre superfície = on, ponto/local = at.', vi: 'Dừng lại. Đừng dịch "ở/trên". Trước tiên hãy hình dung: bên trong không gian = in, trên bề mặt = on, điểm/vị trí = at.', id: 'Berhenti. Jangan menerjemahkan "di". Bayangkan dulu: di dalam ruang = in, di atas permukaan = on, titik/lokasi = at.', tr: 'Dur. "-de/-da" diye çevirme. Önce sahneyi düşün: alanın içinde = in, yüzeyde = on, nokta/konum = at.', pl: 'Zatrzymaj się. Nie tłumacz "w/na". Najpierw wyobraź sobie scenę: w przestrzeni = in, na powierzchni = on, punkt/lokalizacja = at.' }) },
+    afterThreeWrongInSameExercise: { action: 'show_place_type_hint_then_retry', card: tri('Подсказка по типу места: система покажет, это внутри, поверхность или точка, но не выберет предлог за пользователя.', 'Підказка за типом місця: система покаже, це всередині, поверхня чи точка, але не вибере прийменник за користувача.', 'Pista de tipo de lugar: el sistema mostrará si es dentro, superficie o punto, pero no elegirá la preposición por el usuario.', { 'pt-BR': 'Dica de tipo de lugar: o sistema mostrará se é dentro, superfície ou ponto, mas não escolherá a preposição pelo usuário.', vi: 'Gợi ý kiểu nơi chốn: hệ thống sẽ cho biết đó là bên trong, bề mặt hay điểm, nhưng không chọn giới từ thay người dùng.', id: 'Petunjuk jenis tempat: sistem akan menunjukkan apakah ini di dalam, permukaan, atau titik, tetapi tidak memilih preposisi untuk pengguna.', tr: 'Yer türü ipucu: sistem bunun içerisi, yüzey veya nokta olduğunu gösterecek, ama edatı kullanıcı adına seçmeyecek.', pl: 'Podpowiedź typu miejsca: system pokaże, czy to wnętrze, powierzchnia czy punkt, ale nie wybierze przyimka za użytkownika.' }) },
+    afterFourWrongInSameExercise: { action: 'switch_to_guided_mode', card: tri('Режим подсказки: сначала выбери тип места. Потом система вернет тебя к in/on/at.', 'Режим підказки: спочатку обери тип місця. Потім система поверне тебе до in/on/at.', 'Modo guiado: primero elige el tipo de lugar. Luego el sistema te devuelve a in/on/at.', { 'pt-BR': 'Modo guiado: primeiro escolha o tipo de lugar. Depois o sistema devolve você para in/on/at.', vi: 'Chế độ hướng dẫn: trước tiên chọn kiểu nơi chốn. Sau đó hệ thống đưa bạn quay lại in/on/at.', id: 'Mode terpandu: pilih dulu jenis tempat. Lalu sistem mengembalikanmu ke in/on/at.', tr: 'Rehberli mod: önce yer türünü seç. Sonra sistem seni in/on/at seçimine döndürür.', pl: 'Tryb prowadzenia: najpierw wybierz typ miejsca. Potem system wróci z tobą do in/on/at.' }) },
   },
   guidedMode: {
     enabled: true,
     triggerAfterWrongAttempts: 4,
     tasks: [
-      { id: 'guided_place_001', prompt: tri('The room - это пространство внутри, поверхность или точка?', 'The room - це простір всередині, поверхня чи точка?', 'The room es espacio interior, superficie o punto?'), options: ['внутри пространства', 'поверхность', 'точка/локация'], correctIndex: 0, thenReturnToExerciseId: 'place_easy_001' },
-      { id: 'guided_place_002', prompt: tri('The table в фразе The phone is ___ the table - это поверхность?', 'The table у фразі The phone is ___ the table - це поверхня?', 'The table en The phone is ___ the table es superficie?'), options: ['да', 'нет'], correctIndex: 0, thenReturnToExerciseId: 'place_contrast_001' },
-      { id: 'guided_place_003', prompt: tri('The station в фразе meet you ___ the station - это точка встречи?', 'The station у фразі meet you ___ the station - це точка зустрічі?', 'The station en meet you ___ the station es punto de encuentro?'), options: ['да', 'нет'], correctIndex: 0, thenReturnToExerciseId: 'place_contrast_004' },
-      { id: 'guided_place_004', prompt: tri('18 Park Road - это точный адрес или просто улица?', '18 Park Road - це точна адреса чи просто вулиця?', '18 Park Road es dirección exacta o solo calle?'), options: ['точный адрес', 'просто улица'], correctIndex: 0, thenReturnToExerciseId: 'place_mixed_002' },
+      { id: 'guided_place_001', prompt: tri('The room - это пространство внутри, поверхность или точка?', 'The room - це простір всередині, поверхня чи точка?', 'The room es espacio interior, superficie o punto?', { 'pt-BR': 'The room é espaço interior, superfície ou ponto?', vi: 'The room là không gian bên trong, bề mặt hay điểm?', id: 'The room itu ruang bagian dalam, permukaan, atau titik?', tr: 'The room iç alan mı, yüzey mi, nokta mı?', pl: 'The room to przestrzeń wewnętrzna, powierzchnia czy punkt?' }), options: ['внутри пространства', 'поверхность', 'точка/локация'], correctIndex: 0, thenReturnToExerciseId: 'place_easy_001' },
+      { id: 'guided_place_002', prompt: tri('The table в фразе The phone is ___ the table - это поверхность?', 'The table у фразі The phone is ___ the table - це поверхня?', 'The table en The phone is ___ the table es superficie?', { 'pt-BR': 'The table em The phone is ___ the table é uma superfície?', vi: 'The table trong The phone is ___ the table có phải là bề mặt không?', id: 'The table dalam The phone is ___ the table adalah permukaan?', tr: 'The phone is ___ the table cümlesinde the table bir yüzey mi?', pl: 'Czy the table w zdaniu The phone is ___ the table to powierzchnia?' }), options: ['да', 'нет'], correctIndex: 0, thenReturnToExerciseId: 'place_contrast_001' },
+      { id: 'guided_place_003', prompt: tri('The station в фразе meet you ___ the station - это точка встречи?', 'The station у фразі meet you ___ the station - це точка зустрічі?', 'The station en meet you ___ the station es punto de encuentro?', { 'pt-BR': 'The station em meet you ___ the station é ponto de encontro?', vi: 'The station trong meet you ___ the station có phải là điểm gặp không?', id: 'The station dalam meet you ___ the station adalah titik temu?', tr: 'meet you ___ the station ifadesinde the station buluşma noktası mı?', pl: 'Czy the station w meet you ___ the station to punkt spotkania?' }), options: ['да', 'нет'], correctIndex: 0, thenReturnToExerciseId: 'place_contrast_004' },
+      { id: 'guided_place_004', prompt: tri('18 Park Road - это точный адрес или просто улица?', '18 Park Road - це точна адреса чи просто вулиця?', '18 Park Road es dirección exacta o solo calle?', { 'pt-BR': '18 Park Road é endereço exato ou apenas rua?', vi: '18 Park Road là địa chỉ chính xác hay chỉ là tên đường?', id: '18 Park Road itu alamat tepat atau hanya jalan?', tr: '18 Park Road kesin adres mi yoksa sadece sokak mı?', pl: 'Czy 18 Park Road to dokładny adres czy tylko ulica?' }), options: ['точный адрес', 'просто улица'], correctIndex: 0, thenReturnToExerciseId: 'place_mixed_002' },
     ],
   },
   smartTrainerConfig: {
@@ -261,7 +576,13 @@ export const PREPOSITION_PLACE_IN_ON_AT_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'preposition',
     microDiagnosisId: 'preposition_place_in_on_at',
-    diagnosisLabel: tri('In / On / At для места', 'In / On / At для місця', 'In / On / At para lugar'),
+    diagnosisLabel: tri('In / On / At для места', 'In / On / At для місця', 'In / On / At para lugar', {
+      'pt-BR': 'In / On / At para lugar',
+      vi: 'In / On / At cho nơi chốn',
+      id: 'In / On / At untuk tempat',
+      tr: 'Yer için In / On / At',
+      pl: 'In / On / At dla miejsca',
+    }),
     contrastSet: ['in', 'on', 'at'],
     focusWords: ['in', 'on', 'at'],
     focusPatterns: ['inside_space_in', 'inside_container_in', 'city_country_in', 'surface_on', 'vertical_surface_on', 'street_on', 'point_location_at', 'functional_place_at', 'home_at', 'exact_address_at', 'school_function_at', 'mixed_place_type_recognition'],
@@ -277,7 +598,7 @@ export const PREPOSITION_PLACE_IN_ON_AT_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_preposition_place_in_on_at_start',
     answer: 'diagnosis_training_preposition_place_in_on_at_answer',
     mastery: 'diagnosis_training_preposition_place_in_on_at_mastery',
-    fallback: 'diagnosis_training_preposition_place_in_on_at_fallback',
+    recovery: 'diagnosis_training_preposition_place_in_on_at_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',
@@ -309,5 +630,3 @@ export const PREPOSITION_PLACE_IN_ON_AT_TRAINING: DiagnosisTraining = {
     hasFallbackRoute: true,
   },
 };
-
-

@@ -2,10 +2,26 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COMMUNITY_PACK_CARD_COUNT_MAX, COMMUNITY_PACK_PRICE_SHARDS } from './schema';
 import { UGC_CARD_THEME_IDS } from './ugcCardThemePresets';
 import { UGC_CARD_BACK_IDS } from '../flashcards/cardBackCatalog';
+import {
+  communityPackCreateDraftKey,
+  type RuntimeSourceLocale,
+  type RuntimeStudyTarget,
+} from '../target_storage_keys';
 
-const STORAGE_KEY = 'community_pack_create_draft_v1';
-
-export type CommunityPackCreateDraftRow = { id: string; en: string; ru: string; uk: string; es?: string };
+export type CommunityPackCreateDraftRow = {
+  id: string;
+  en: string;
+  ru: string;
+  uk: string;
+  es?: string;
+  sourceLocales?: {
+    'pt-BR'?: string;
+    vi?: string;
+    id?: string;
+    tr?: string;
+    pl?: string;
+  };
+};
 
 export type CommunityPackCreateDraftV1 = {
   v: 1;
@@ -20,6 +36,7 @@ export type CommunityPackCreateDraftV1 = {
   draftEn: string;
   draftRu: string;
   draftEs: string;
+  draftPlannedTranslation: string;
   draftNote: string;
 };
 
@@ -37,7 +54,8 @@ function isRow(x: unknown): x is CommunityPackCreateDraftRow {
     typeof o.en === 'string' &&
     typeof o.ru === 'string' &&
     typeof o.uk === 'string' &&
-    (o.es === undefined || typeof o.es === 'string')
+    (o.es === undefined || typeof o.es === 'string') &&
+    (o.sourceLocales === undefined || typeof o.sourceLocales === 'object')
   );
 }
 
@@ -58,6 +76,7 @@ export function communityPackCreateDraftIsMeaningful(d: CommunityPackCreateDraft
     d.draftEn.trim().length > 0 ||
     d.draftRu.trim().length > 0 ||
     d.draftEs.trim().length > 0 ||
+    d.draftPlannedTranslation.trim().length > 0 ||
     d.draftNote.trim().length > 0
   );
 }
@@ -86,6 +105,7 @@ function parseDraft(raw: string | null): CommunityPackCreateDraftV1 | null {
       draftEn: typeof o.draftEn === 'string' ? o.draftEn : '',
       draftRu: typeof o.draftRu === 'string' ? o.draftRu : '',
       draftEs: typeof o.draftEs === 'string' ? o.draftEs : '',
+      draftPlannedTranslation: typeof o.draftPlannedTranslation === 'string' ? o.draftPlannedTranslation : '',
       draftNote: typeof o.draftNote === 'string' ? o.draftNote : '',
     };
   } catch {
@@ -93,21 +113,31 @@ function parseDraft(raw: string | null): CommunityPackCreateDraftV1 | null {
   }
 }
 
-export async function loadCommunityPackCreateDraft(): Promise<CommunityPackCreateDraftV1 | null> {
+export async function loadCommunityPackCreateDraft(
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
+): Promise<CommunityPackCreateDraftV1 | null> {
   try {
-    const raw = await AsyncStorage.getItem(STORAGE_KEY);
+    const raw = await AsyncStorage.getItem(communityPackCreateDraftKey(studyTarget, sourceLocale));
     return parseDraft(raw);
   } catch {
     return null;
   }
 }
 
-export async function hasMeaningfulCommunityPackCreateDraft(): Promise<boolean> {
-  const d = await loadCommunityPackCreateDraft();
+export async function hasMeaningfulCommunityPackCreateDraft(
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
+): Promise<boolean> {
+  const d = await loadCommunityPackCreateDraft(studyTarget, sourceLocale);
   return !!d && communityPackCreateDraftIsMeaningful(d);
 }
 
-export async function saveCommunityPackCreateDraft(d: Omit<CommunityPackCreateDraftV1, 'v'>): Promise<void> {
+export async function saveCommunityPackCreateDraft(
+  d: Omit<CommunityPackCreateDraftV1, 'v'>,
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
+): Promise<void> {
   const body: CommunityPackCreateDraftV1 = {
     v: 1,
     title: d.title,
@@ -120,18 +150,22 @@ export async function saveCommunityPackCreateDraft(d: Omit<CommunityPackCreateDr
     draftEn: d.draftEn,
     draftRu: d.draftRu,
     draftEs: d.draftEs,
+    draftPlannedTranslation: d.draftPlannedTranslation,
     draftNote: d.draftNote,
   };
   try {
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(body));
+    await AsyncStorage.setItem(communityPackCreateDraftKey(studyTarget, sourceLocale), JSON.stringify(body));
   } catch {
     /* ignore */
   }
 }
 
-export async function clearCommunityPackCreateDraft(): Promise<void> {
+export async function clearCommunityPackCreateDraft(
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
+): Promise<void> {
   try {
-    await AsyncStorage.removeItem(STORAGE_KEY);
+    await AsyncStorage.removeItem(communityPackCreateDraftKey(studyTarget, sourceLocale));
   } catch {
     /* ignore */
   }

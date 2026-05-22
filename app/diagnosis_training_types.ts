@@ -2,7 +2,8 @@ import type { Lang, PlannedInterfaceLang, PlannedTriLangCopy } from '../constant
 import type { WordCategory } from './pos_taxonomy';
 import type { PosMicroDiagnosisId } from './pos_micro_diagnosis';
 
-export type TriText = Record<Lang, string> & PlannedTriLangCopy;
+export type CoreTriLangCopy = { ru: string; uk: string; es: string };
+export type TriText = CoreTriLangCopy & PlannedTriLangCopy;
 
 export type DiagnosisTrainingDifficulty = 'easy' | 'contrast' | 'mixed' | 'mixed_review';
 
@@ -82,7 +83,7 @@ export interface DiagnosisTraining {
   mentalModel: TriText;
   contrastSet: string[];
   coreRule?: TriText;
-  whatUserMustLearn?: Record<Lang, string[]> & Partial<Record<PlannedInterfaceLang, string[]>>;
+  whatUserMustLearn?: { ru: string[]; uk: string[]; es: string[] } & Partial<Record<PlannedInterfaceLang, string[]>>;
   examples?: Array<{
     en: string;
     ru: string;
@@ -107,7 +108,7 @@ export interface DiagnosisTraining {
     start: string;
     answer: string;
     mastery: string;
-    fallback: string;
+    recovery?: string;
     [key: string]: unknown;
   };
   routing?: Record<string, string>;
@@ -133,5 +134,3 @@ export interface DiagnosisTrainingRuntimeState {
   recoveredItems: string[];
   attempts: DiagnosisTrainingAttempt[];
 }
-
-

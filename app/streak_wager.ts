@@ -59,6 +59,36 @@ export const WAGER_TIERS: WagerTier[] = [
   { tierIdx: 5, betShards: 15, daysRequired: 100, rewardShards: 60, rewardXP: 15000, label: '×4' },
 ];
 
+export async function getEffectiveWagerStake(tierIdx: number): Promise<{
+  nominalStake: number;
+  stakeToSpend: number;
+  hasDiscount: boolean;
+  premiumFree: boolean;
+}> {
+  const tier = WAGER_TIERS[tierIdx];
+  if (!tier) {
+    return { nominalStake: 0, stakeToSpend: 0, hasDiscount: false, premiumFree: false };
+  }
+
+  const [discRaw, premiumOk, premiumTokenRaw] = await Promise.all([
+    AsyncStorage.getItem(WAGER_DISCOUNT_KEY),
+    getVerifiedPremiumStatus(),
+    AsyncStorage.getItem(PREM_WAGER_TOKEN_KEY),
+  ]);
+  const hasDiscount = discRaw === '0.25';
+  const premiumFree = premiumOk && premiumTokenRaw === '1';
+  const discountedStake = hasDiscount
+    ? Math.max(1, Math.floor(tier.betShards * 0.75))
+    : tier.betShards;
+
+  return {
+    nominalStake: tier.betShards,
+    stakeToSpend: premiumFree ? 0 : discountedStake,
+    hasDiscount,
+    premiumFree,
+  };
+}
+
 export interface WagerState {
   active:         boolean;
   startDate:      string;       // YYYY-MM-DD
@@ -165,6 +195,9 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
     if (hasDisc) {
       toSpend = Math.max(1, Math.floor(tier.betShards * 0.75));
     }
+    if (premiumFree) {
+      toSpend = 0;
+    }
 
     if (premiumFree) {
       await AsyncStorage.removeItem(PREM_WAGER_TOKEN_KEY);
@@ -187,7 +220,7 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
         return false;
       }
     }
-    if (hasDisc) {
+    if (hasDisc && !premiumFree) {
       await AsyncStorage.removeItem(WAGER_DISCOUNT_KEY);
     }
 
@@ -196,7 +229,7 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
       startDate:     today(),
       startStreak:   currentStreak,
       tierIdx:       tier.tierIdx,
-      betShards:     tier.betShards,
+      betShards:     toSpend,
       daysRequired:  tier.daysRequired,
       rewardShards:  tier.rewardShards,
       rewardXP:      tier.rewardXP,

@@ -174,13 +174,28 @@ export const DAILY_TASK_STRINGS_ES: Record<string, DailyTaskSpanishStrings> = {
 };
 
 export function localizedDailyTaskStrings(lang: Lang, task: DailyTask): { title: string; desc: string } {
-  if (lang === 'uk') return { title: task.titleUK, desc: task.descUK };
-  if (lang === 'es') {
+  const fieldByLang: Record<Lang, { title: keyof DailyTask; desc: keyof DailyTask }> = {
+    ru: { title: 'titleRU', desc: 'descRU' },
+    uk: { title: 'titleUK', desc: 'descUK' },
+    es: { title: 'titleES', desc: 'descES' },
+    'pt-BR': { title: 'titlePtBr', desc: 'descPtBr' },
+    vi: { title: 'titleVi', desc: 'descVi' },
+    id: { title: 'titleId', desc: 'descId' },
+    tr: { title: 'titleTr', desc: 'descTr' },
+    pl: { title: 'titlePl', desc: 'descPl' },
+  };
+  const fields = fieldByLang[lang];
+  const directTitle = task[fields.title];
+  const directDesc = task[fields.desc];
+  if (fields.title === 'titleES') {
     const es = DAILY_TASK_STRINGS_ES[task.id];
     return {
-      title: task.titleES ?? es?.title ?? task.titleRU,
-      desc: task.descES ?? es?.desc ?? task.descRU,
+      title: typeof directTitle === 'string' ? directTitle : es?.title ?? '',
+      desc: typeof directDesc === 'string' ? directDesc : es?.desc ?? '',
     };
   }
-  return { title: task.titleRU, desc: task.descRU };
+  return {
+    title: typeof directTitle === 'string' ? directTitle : '',
+    desc: typeof directDesc === 'string' ? directDesc : '',
+  };
 }

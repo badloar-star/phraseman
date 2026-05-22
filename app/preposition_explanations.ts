@@ -1,6 +1,6 @@
 import { PREPOSITION_OVERRIDES } from './preposition_overrides';
 
-export type PrepositionExplanationLevel = 'specific' | 'context' | 'generic' | 'fallback';
+export type PrepositionExplanationLevel = 'specific' | 'context' | 'generic' | 'needs-review';
 
 type Explanation = {
   ru: string;
@@ -50,22 +50,22 @@ function phraseAfter(sentence: string, preposition: string): string {
   return phrase ? `${preposition} ${phrase}` : preposition;
 }
 
-function plannedExplanationFallback(preposition: string, sentence: string): Pick<Explanation, 'pt-BR' | 'ptBr' | 'vi' | 'id' | 'tr' | 'pl'> {
+function plannedExplanationNeedsReview(preposition: string, sentence: string): Pick<Explanation, 'pt-BR' | 'ptBr' | 'vi' | 'id' | 'tr' | 'pl'> {
   const answer = preposition.trim().toLowerCase();
   const chunk = phraseAfter(sentence, answer) || answer;
-  const ptBr = `Aqui a preposição correta é "${answer}" na combinação "${chunk}". Ela mostra a relação entre as palavras da frase; olhe para o sentido completo, não só para uma tradução palavra por palavra.`;
+  const ptBr = `needs-review: preposição "${answer}" na combinação "${chunk}"`;
   return {
     'pt-BR': ptBr,
     ptBr,
-    vi: `Ở đây cần dùng giới từ "${answer}" trong cụm "${chunk}". Giới từ này thể hiện quan hệ giữa các từ trong câu; hãy nhìn vào ý nghĩa cả cụm, không chỉ dịch từng từ.`,
-    id: `Di sini preposisi yang tepat adalah "${answer}" dalam frasa "${chunk}". Preposisi ini menunjukkan hubungan antar kata; lihat makna seluruh frasa, bukan hanya terjemahan kata demi kata.`,
-    tr: `Burada "${chunk}" ifadesinde doğru edat "${answer}". Bu edat kelimeler arasındaki ilişkiyi gösterir; tek tek çeviriye değil, tüm yapının anlamına bak.`,
-    pl: `Tutaj potrzebny jest przyimek "${answer}" w połączeniu "${chunk}". Pokazuje on relację między słowami w całej frazie; patrz na sens konstrukcji, nie tylko na tłumaczenie słowo po słowie.`,
+    vi: `needs-review: giới từ "${answer}" trong cụm "${chunk}"`,
+    id: `needs-review: preposisi "${answer}" dalam frasa "${chunk}"`,
+    tr: `needs-review: "${chunk}" ifadesinde "${answer}" edatı`,
+    pl: `needs-review: przyimek "${answer}" w połączeniu "${chunk}"`,
   };
 }
 
-function withPlannedFallback(preposition: string, sentence: string, explanation: Explanation): Explanation {
-  const planned = plannedExplanationFallback(preposition, sentence);
+function withPlannedNeedsReview(preposition: string, sentence: string, explanation: Explanation): Explanation {
+  const planned = plannedExplanationNeedsReview(preposition, sentence);
   return {
     ...explanation,
     'pt-BR': explanation['pt-BR'] ?? explanation.ptBr ?? planned['pt-BR'],
@@ -469,7 +469,7 @@ const inAbstract = /(danger|trouble|love|peace|silence|hurry|secret|debt|need|ri
 
 function ruleFor(preposition: string, sentence: string): Explanation | null {
   const normalized = normalizeSentence(sentence);
-  const planned = plannedExplanationFallback(preposition, sentence);
+  const planned = plannedExplanationNeedsReview(preposition, sentence);
 
   for (const rule of phraseRules) {
     if (rule.preposition !== preposition) continue;
@@ -1612,12 +1612,12 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
 
 export function explainPrepositionChoice(preposition: string, sentence: string): Explanation {
   const answer = preposition.trim().toLowerCase();
-  const planned = plannedExplanationFallback(answer, sentence);
+  const planned = plannedExplanationNeedsReview(answer, sentence);
 
   const overrideKey = makeOverrideKey(sentence, answer);
   const override = overrideKey ? PREPOSITION_OVERRIDES[overrideKey] : undefined;
   if (override) {
-    return withPlannedFallback(answer, sentence, {
+    return withPlannedNeedsReview(answer, sentence, {
       ru: override.ru,
       uk: override.uk,
       es: override.es,
@@ -1632,7 +1632,7 @@ export function explainPrepositionChoice(preposition: string, sentence: string):
   }
 
   const matched = ruleFor(answer, sentence);
-  if (matched) return withPlannedFallback(answer, sentence, matched);
+  if (matched) return withPlannedNeedsReview(answer, sentence, matched);
 
   const chunk = phraseAfter(sentence, answer);
   const trim = chunk && chunk.length > 0 ? chunk : answer;

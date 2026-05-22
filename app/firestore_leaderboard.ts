@@ -10,7 +10,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { ensureArenaAuthUid, getCanonicalUserId } from './user_id_policy';
 import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../constants/avatar_auras';
 import {
@@ -39,6 +39,7 @@ let _pendingPush: {
   streak?: number;
   leagueId?: number;
   isPremium?: boolean;
+  isVip?: boolean;
 } | null = null;
 
 const PUSH_DEBOUNCE_MS = 30_000; // 30 секунд
@@ -74,6 +75,7 @@ export interface RemoteLeaderEntry {
   streak?: number;
   leagueId?: number;
   isPremium?: boolean;
+  isVip?: boolean;
   profileCardLevel?: number;
   profileCardTheme?: string;
   profileCardMotion?: string;
@@ -118,11 +120,12 @@ export function pushMyScore(
   frame?: string,
   isPremium?: boolean,
   aura?: string,
+  isVip?: boolean,
 ): Promise<void> {
   if (!CLOUD_SYNC_ENABLED || !name) return Promise.resolve();
 
   // Накапливаем последние значения
-  _pendingPush = { name, totalPoints, weekPoints, lang, avatar, frame, aura, streak, leagueId, isPremium };
+  _pendingPush = { name, totalPoints, weekPoints, lang, avatar, frame, aura, streak, leagueId, isPremium, isVip };
 
   // Сбрасываем предыдущий таймер и ставим новый
   if (_pushDebounceTimer) clearTimeout(_pushDebounceTimer);
@@ -132,7 +135,7 @@ export function pushMyScore(
       const p = _pendingPush;
       _pendingPush = null;
       if (!p) { resolve(); return; }
-      await _doPushMyScore(p.name, p.totalPoints, p.weekPoints, p.lang, p.avatar, p.streak, p.leagueId, p.frame, p.isPremium, p.aura);
+      await _doPushMyScore(p.name, p.totalPoints, p.weekPoints, p.lang, p.avatar, p.streak, p.leagueId, p.frame, p.isPremium, p.aura, p.isVip);
       resolve();
     }, PUSH_DEBOUNCE_MS);
   });
@@ -149,13 +152,14 @@ export async function pushMyScoreImmediate(
   frame?: string,
   isPremium?: boolean,
   aura?: string,
+  isVip?: boolean,
 ): Promise<void> {
   if (_pushDebounceTimer) {
     clearTimeout(_pushDebounceTimer);
     _pushDebounceTimer = null;
   }
   _pendingPush = null;
-  await _doPushMyScore(name, totalPoints, weekPoints, lang, avatar, streak, leagueId, frame, isPremium, aura);
+  await _doPushMyScore(name, totalPoints, weekPoints, lang, avatar, streak, leagueId, frame, isPremium, aura, isVip);
 }
 
 async function _doPushMyScore(
@@ -169,11 +173,13 @@ async function _doPushMyScore(
   frame?: string,
   isPremium?: boolean,
   aura?: string,
+  isVip?: boolean,
 ): Promise<void> {
   const db = getFirestore();
   if (!db) return;
   const stableId = await ensureAnonUser();
   if (!stableId) return;
+  await ensureStableAuthLinkForStableId(stableId).catch(() => false);
   let resolvedAvatar = avatar?.trim() || undefined;
   try {
     const storedAvatar = (await AsyncStorage.getItem('user_avatar'))?.trim();
@@ -217,12 +223,14 @@ async function _doPushMyScore(
     const fn = callable<
       {
         name: string; points: number; weekPoints: number; lang: string; avatar?: string | null;
-        frame?: string | null; aura?: string | null; streak?: number | null; leagueId?: number | null; isPremium?: boolean;
+        frame?: string | null; aura?: string | null; streak?: number | null; leagueId?: number | null; isPremium?: boolean; isVip?: boolean;
         profileCardLevel?: number; profileCardTheme?: string; profileCardMotion?: string; profileCardPublicFocus?: string;
+        stableId?: string;
       },
       { ok: boolean; points?: number; weekPoints?: number }
     >('leaderboardPushMyScore');
     await fn({
+      stableId,
       name: name.trim(),
       points: totalPoints,
       weekPoints,
@@ -233,6 +241,7 @@ async function _doPushMyScore(
       streak: streak ?? null,
       leagueId: leagueId ?? null,
       isPremium: isPremium ?? false,
+      isVip: isVip ?? false,
       profileCardLevel,
       profileCardTheme,
       profileCardMotion,
@@ -248,6 +257,7 @@ async function _doPushMyScore(
         courseFrame: frame?.trim() ? frame.trim() : null,
         courseAura: resolvedAura ?? null,
         courseIsPremium: isPremium ?? false,
+        courseIsVip: isVip ?? false,
         courseProfileCardLevel: profileCardLevel,
         courseProfileCardTheme: profileCardTheme,
         courseProfileCardMotion: profileCardMotion,
@@ -264,9 +274,24 @@ export async function updateMyPremiumInLeaderboard(isPremium: boolean): Promise<
   const db = getFirestore();
   if (!db) return;
   try {
-    await ensureAnonUser();
-    const fn = callable<{ isPremium: boolean }, { ok: boolean }>('leaderboardUpdatePremium');
-    await fn({ isPremium });
+    const stableId = await ensureAnonUser();
+    if (!stableId) return;
+    await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+    const fn = callable<{ stableId?: string; isPremium: boolean }, { ok: boolean }>('leaderboardUpdatePremium');
+    await fn({ stableId, isPremium });
+  } catch {}
+}
+
+/** Обновляет только isVip в public profile surfaces. */
+export async function updateMyVipInLeaderboard(isVip: boolean): Promise<void> {
+  const db = getFirestore();
+  if (!db) return;
+  try {
+    const stableId = await ensureAnonUser();
+    if (!stableId) return;
+    await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+    const fn = callable<{ stableId?: string; isVip: boolean }, { ok: boolean }>('leaderboardUpdatePremium');
+    await fn({ stableId, isVip });
   } catch {}
 }
 
@@ -279,9 +304,11 @@ export async function reserveName(
 ): Promise<'ok' | 'taken' | 'error'> {
   if (!CLOUD_SYNC_ENABLED) return 'ok';
   try {
-    await ensureAnonUser();
-    const fn = callable<{ name: string; oldName: string }, { ok: boolean; status: 'ok' | 'taken' }>('nameReserve');
-    const { data } = await fn({ name: name.trim(), oldName: oldName.trim() });
+    const stableId = await ensureAnonUser();
+    if (!stableId) return 'error';
+    await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+    const fn = callable<{ stableId?: string; name: string; oldName: string }, { ok: boolean; status: 'ok' | 'taken' }>('nameReserve');
+    const { data } = await fn({ stableId, name: name.trim(), oldName: oldName.trim() });
     return data.status === 'taken' ? 'taken' : 'ok';
   } catch (e: any) {
     if (String(e?.message ?? '').includes('name_taken') || String(e?.code ?? '').includes('already-exists')) return 'taken';
@@ -294,9 +321,11 @@ export async function reserveName(
 export async function isNameAvailable(name: string): Promise<boolean> {
   if (!CLOUD_SYNC_ENABLED) return true;
   try {
-    await ensureAnonUser();
-    const fn = callable<{ name: string }, { ok: boolean; available: boolean }>('nameCheckAvailability');
-    const { data } = await fn({ name: name.trim() });
+    const stableId = await ensureAnonUser();
+    if (!stableId) return true;
+    await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+    const fn = callable<{ stableId?: string; name: string }, { ok: boolean; available: boolean }>('nameCheckAvailability');
+    const { data } = await fn({ stableId, name: name.trim() });
     return data.available !== false;
   } catch {
     return true; // при ошибке не блокируем
@@ -332,6 +361,7 @@ export async function fetchGlobalLeaderboard(): Promise<RemoteLeaderEntry[]> {
       streak: doc.data().streak ?? undefined,
       leagueId: doc.data().leagueId ?? undefined,
       isPremium: doc.data().isPremium ?? false,
+      isVip: doc.data().isVip ?? false,
       profileCardLevel: normalizeProfileCardLevel(doc.data().profileCardLevel),
       profileCardTheme: normalizeProfileCardTheme(doc.data().profileCardTheme),
       profileCardMotion: normalizeProfileCardMotion(doc.data().profileCardMotion),
@@ -351,11 +381,14 @@ export async function fetchGlobalLeaderboard(): Promise<RemoteLeaderEntry[]> {
       daily7time_ms: typeof doc.data().daily7time_ms === 'number' ? doc.data().daily7time_ms : undefined,
     });
 
-    const passesFilter = (e: RemoteLeaderEntry) =>
-      e.points >= 50 && e.name.trim() !== '' && !(e as any).banned;
+    const passesFilter = (doc: any, e: RemoteLeaderEntry) =>
+      doc.data()?.identityHidden !== true &&
+      e.points >= 50 &&
+      e.name.trim() !== '' &&
+      !(e as any).banned;
 
     const collected: RemoteLeaderEntry[] = [];
-    let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
+    let lastDoc: any = null;
 
     for (let page = 0; page < LEADERBOARD_MAX_PAGES; page++) {
       let q = db.collection(COL).orderBy('points', 'desc').limit(LEADERBOARD_PAGE);
@@ -365,7 +398,7 @@ export async function fetchGlobalLeaderboard(): Promise<RemoteLeaderEntry[]> {
 
       for (const doc of snap.docs) {
         const e = mapDoc(doc);
-        if (passesFilter(e)) collected.push(e);
+        if (passesFilter(doc, e)) collected.push(e);
       }
 
       lastDoc = snap.docs[snap.docs.length - 1] ?? null;
@@ -444,8 +477,9 @@ export async function deleteMyNameReservation(): Promise<void> {
       if (localName && localName.trim()) candidates.add(localName.trim().toLowerCase());
     } catch {}
 
-    const fn = callable<{ names: string[] }, { ok: boolean; deleted: number }>('nameReleaseMine');
-    await fn({ names: Array.from(candidates) });
+    await ensureStableAuthLinkForStableId(canonicalUid).catch(() => false);
+    const fn = callable<{ stableId?: string; names: string[] }, { ok: boolean; deleted: number }>('nameReleaseMine');
+    await fn({ stableId: canonicalUid, names: Array.from(candidates) });
   } catch {}
 }
 

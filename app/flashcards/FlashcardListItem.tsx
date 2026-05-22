@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import { hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
 import { DEV_MODE, IS_BETA_TESTER } from '../config';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
@@ -57,6 +57,33 @@ const OPEN_DETAILS_EASING = REasing.bezier(0.25, 0.1, 0.25, 1);
 const CLOSE_DETAILS_EASING = REasing.bezier(0.4, 0, 0.2, 1);
 /** Final gap between main card and details bubble (smaller than FlatList ItemSeparator) */
 const DETAILS_SPLIT_GAP = 8;
+
+const FLASHCARD_DETAILS_TOGGLE_LABELS: Record<FlashcardContentLang, { collapse: string; expand: string }> = {
+  ru: { collapse: 'Скрыть детали', expand: 'Показать детали' },
+  uk: { collapse: 'Згорнути деталі', expand: 'Розгорнути деталі' },
+  es: { collapse: 'Ocultar detalles', expand: 'Mostrar detalles' },
+  'pt-BR': { collapse: 'Ocultar detalhes', expand: 'Mostrar detalhes' },
+  vi: { collapse: 'Ẩn chi tiết', expand: 'Hiện chi tiết' },
+  id: { collapse: 'Sembunyikan detail', expand: 'Tampilkan detail' },
+  tr: { collapse: 'Ayrıntıları gizle', expand: 'Ayrıntıları göster' },
+  pl: { collapse: 'Ukryj szczegóły', expand: 'Pokaż szczegóły' },
+};
+
+const FLASHCARD_BACK_SPEECH_BY_LANG: Record<FlashcardContentLang, string> = {
+  ru: 'ru-RU',
+  uk: 'uk-UA',
+  es: 'es-ES',
+  'pt-BR': 'pt-BR',
+  vi: 'vi-VN',
+  id: 'id-ID',
+  tr: 'tr-TR',
+  pl: 'pl-PL',
+};
+
+const speechLocaleForFlashcardBack = (lang: FlashcardContentLang): string => {
+  return FLASHCARD_BACK_SPEECH_BY_LANG[lang];
+};
+
 type Props = {
   item: CardItem;
   itemIdx: number;
@@ -159,7 +186,7 @@ function FlashcardListItemImpl({
   const savedBadgesOnRight = activeCat === 'saved';
   const hasDetails = !isModernAbbrevCard && cardHasDetails(item);
   const { height: winH } = useWindowDimensions();
-  /** Fallback if layout measure fails (should be rare) */
+  /** Backup height if layout measure fails (should be rare) */
   const expandSectionMax = Math.min(Math.round(winH * 0.92), 4000);
   const expandMaxSV = useSharedValue(expandSectionMax);
   useEffect(() => {
@@ -195,6 +222,19 @@ function FlashcardListItemImpl({
   const cBackScaleX = flipDrivingAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0, 0, 1] });
   const cFrontOp = flipDrivingAnim.interpolate({ inputRange: [0, 0.499, 0.501, 1], outputRange: [1, 1, 0, 0] });
   const cBackOp = flipDrivingAnim.interpolate({ inputRange: [0, 0.499, 0.501, 1], outputRange: [0, 0, 1, 1] });
+  const [showingBack, setShowingBack] = useState(false);
+
+  useEffect(() => {
+    const getValue = (cAnim as unknown as { __getValue?: () => number }).__getValue;
+    if (typeof getValue === 'function') setShowingBack(getValue.call(cAnim) >= 0.5);
+    const id = cAnim.addListener(({ value }) => {
+      setShowingBack((prev) => {
+        const next = value >= 0.5;
+        return prev === next ? prev : next;
+      });
+    });
+    return () => cAnim.removeListener(id);
+  }, [cAnim, item.id]);
 
   const cardSplitEdgeStyle = useAnimatedStyle(() => {
     if (!hasDetails) return {};
@@ -427,9 +467,13 @@ function FlashcardListItemImpl({
     () => inferExpoSpeechLanguage(voiceTextFront),
     [voiceTextFront],
   );
+  const backSpeakLocale = useMemo(() => speechLocaleForFlashcardBack(lang), [lang]);
   const speakFront = useCallback(() => {
     onSpeak(voiceTextFront, { language: frontSpeakLocale });
   }, [frontSpeakLocale, onSpeak, voiceTextFront]);
+  const speakBack = useCallback(() => {
+    onSpeak(tr, { language: backSpeakLocale });
+  }, [backSpeakLocale, onSpeak, tr]);
 
   if (isLocked) {
     return (
@@ -454,6 +498,9 @@ function FlashcardListItemImpl({
   const isDeleting = deletingId === item.id;
   const usePackFace = !!packCardTheme && isMarketplaceBundleCard;
   const dimAsPeek = usePackFace && !isRowInFocus;
+  const detailsToggleLabel = detailsExpanded
+    ? FLASHCARD_DETAILS_TOGGLE_LABELS[lang].collapse
+    : FLASHCARD_DETAILS_TOGGLE_LABELS[lang].expand;
   /** Область під шапкою: EN + IPA вміщаються за рахунок adjustsFontSizeToFit, без скролу */
   const frontTextMaxH = Math.max(92, cardHeight - 74);
   const overlayOpacity = getOverlayAnim(item.id);
@@ -821,6 +868,7 @@ function FlashcardListItemImpl({
             </Animated.View>
           </TouchableOpacity>
           <View
+            pointerEvents={showingBack ? 'none' : 'auto'}
             onStartShouldSetResponder={() => true}
             style={
               savedBadgesOnRight
@@ -849,6 +897,36 @@ function FlashcardListItemImpl({
               </TouchableOpacity>
             </Animated.View>
           </View>
+          <View
+            pointerEvents={showingBack ? 'auto' : 'none'}
+            onStartShouldSetResponder={() => true}
+            style={
+              savedBadgesOnRight
+                ? { position: 'absolute', top: 8, right: 8, zIndex: 5 }
+                : { position: 'absolute', top: 8, left: 8, zIndex: 5 }
+            }
+          >
+            <Animated.View style={{ opacity: cBackOp }}>
+              <TouchableOpacity
+                onPress={speakBack}
+                accessibilityRole="button"
+                accessibilityLabel={voiceLabel}
+                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderRadius: 15,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: `${t.bgSurface}F0`,
+                  borderWidth: 1,
+                  borderColor: t.border,
+                }}
+              >
+                <Ionicons name="volume-medium" size={15} color={t.accent} />
+              </TouchableOpacity>
+            </Animated.View>
+          </View>
           {hasDetails && (
             <View
               onStartShouldSetResponder={() => true}
@@ -859,19 +937,7 @@ function FlashcardListItemImpl({
                 hitSlop={{ top: 12, bottom: 12, left: 20, right: 20 }}
                 accessibilityRole="button"
                 accessibilityState={{ expanded: detailsExpanded }}
-                accessibilityLabel={
-                  detailsExpanded
-                    ? lang === 'uk'
-                      ? 'Згорнути деталі'
-                      : lang === 'es'
-                        ? 'Ocultar detalles'
-                        : 'Скрыть детали'
-                    : lang === 'uk'
-                      ? 'Розгорнути деталі'
-                      : lang === 'es'
-                        ? 'Mostrar detalles'
-                        : 'Показать детали'
-                }
+                accessibilityLabel={detailsToggleLabel}
                 style={{ padding: 4 }}
               >
                 <Animated.View style={{ transform: [{ translateY: hintY }] }}>

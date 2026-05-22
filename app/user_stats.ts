@@ -5,8 +5,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { syncToCloud } from './cloud_sync';
-
-const KEY = 'user_stats_v1';
+import { userStatsKey, type RuntimeStudyTarget } from './target_storage_keys';
 
 interface UserStats {
   lessonsStarted: number;
@@ -54,38 +53,38 @@ function normalizeStats(parsed: Partial<UserStats> & Record<string, unknown>): U
   };
 }
 
-async function load(): Promise<UserStats> {
+async function load(studyTarget?: RuntimeStudyTarget): Promise<UserStats> {
   try {
-    const raw = await AsyncStorage.getItem(KEY);
+    const raw = await AsyncStorage.getItem(userStatsKey(studyTarget));
     return raw ? normalizeStats(JSON.parse(raw)) : { ...DEFAULT };
   } catch {
     return { ...DEFAULT };
   }
 }
 
-async function save(stats: UserStats): Promise<void> {
+async function save(stats: UserStats, studyTarget?: RuntimeStudyTarget): Promise<void> {
   try {
-    await AsyncStorage.setItem(KEY, JSON.stringify(stats));
+    await AsyncStorage.setItem(userStatsKey(studyTarget), JSON.stringify(stats));
   } catch {}
 }
 
-export async function trackLessonStart(): Promise<void> {
-  const s = await load();
+export async function trackLessonStart(studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const s = await load(studyTarget);
   s.lessonsStarted += 1;
-  await save(s);
+  await save(s, studyTarget);
 }
 
-export async function trackLessonAbandoned(): Promise<void> {
-  const s = await load();
+export async function trackLessonAbandoned(studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const s = await load(studyTarget);
   s.lessonsAbandoned += 1;
-  await save(s);
+  await save(s, studyTarget);
 }
 
-export async function trackAnswer(isCorrect: boolean): Promise<void> {
-  const s = await load();
+export async function trackAnswer(isCorrect: boolean, studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const s = await load(studyTarget);
   s.answersTotal += 1;
   if (isCorrect) s.answersCorrect += 1;
-  await save(s);
+  await save(s, studyTarget);
 }
 
 export async function trackEnergyHit(): Promise<void> {
@@ -100,10 +99,13 @@ export async function trackFeatureOpened(feature: string): Promise<void> {
   await save(s);
 }
 
-export async function trackQuizLevel(level: 'easy' | 'medium' | 'hard'): Promise<void> {
-  const s = await load();
+export async function trackQuizLevel(
+  level: 'easy' | 'medium' | 'hard',
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> {
+  const s = await load(studyTarget);
   s.quizLevels[level] += 1;
-  await save(s);
+  await save(s, studyTarget);
 }
 
 function bumpKey(rec: Record<string, number>, id: string): void {

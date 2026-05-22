@@ -1,5 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { effectiveLessonStarScore } from './lesson_star_score';
+import {
+  lessonBestScoreKey,
+  lessonProgressKey,
+  levelExamKey,
+  storageStudyTarget,
+  unlockedLessonsKey,
+  type RuntimeStudyTarget,
+} from './target_storage_keys';
 
 /** Last loaded lessons list state (session memory — first paint without «zero flash»). */
 export type LessonsTabSnapshot = {
@@ -12,10 +20,10 @@ export type LessonsTabSnapshot = {
   examPassCounts: Record<string, number>;
 };
 
-let lastSnapshot: LessonsTabSnapshot | null = null;
+let lastSnapshotByTarget: Partial<Record<string, LessonsTabSnapshot>> = {};
 
-export function getLessonsTabInitialState(): LessonsTabSnapshot | null {
-  return lastSnapshot;
+export function getLessonsTabInitialState(studyTarget?: RuntimeStudyTarget): LessonsTabSnapshot | null {
+  return lastSnapshotByTarget[storageStudyTarget(studyTarget)] ?? null;
 }
 
 const EXAM_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
@@ -23,19 +31,23 @@ const EXAM_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
 /**
  * Batched read (one multiGet) + in-memory cache for instant tab mount / prefetch on app start.
  */
-export async function loadLessonsTabStateFromStorage(): Promise<LessonsTabSnapshot> {
-  const metaKeys = ['tester_no_limits', 'unlocked_lessons'] as const;
+export async function loadLessonsTabStateFromStorage(
+  studyTarget?: RuntimeStudyTarget,
+): Promise<LessonsTabSnapshot> {
+  const target = storageStudyTarget(studyTarget);
+  const unlockedKey = unlockedLessonsKey(studyTarget);
+  const metaKeys = ['tester_no_limits', unlockedKey] as const;
   const lessonKeys: string[] = [];
   for (let i = 1; i <= 32; i++) {
-    lessonKeys.push(`lesson${i}_best_score`, `lesson${i}_progress`);
+    lessonKeys.push(lessonBestScoreKey(i, studyTarget), lessonProgressKey(i, studyTarget));
   }
   const examKeys: string[] = [];
   for (const lvl of EXAM_LEVELS) {
     examKeys.push(
-      `level_exam_${lvl}_pct`,
-      `level_exam_${lvl}_passed`,
-      `level_exam_${lvl}_best_pct`,
-      `level_exam_${lvl}_pass_count`,
+      levelExamKey(lvl, 'pct', studyTarget),
+      levelExamKey(lvl, 'passed', studyTarget),
+      levelExamKey(lvl, 'best_pct', studyTarget),
+      levelExamKey(lvl, 'pass_count', studyTarget),
     );
   }
   const allKeys = [...metaKeys, ...lessonKeys, ...examKeys];
@@ -44,9 +56,9 @@ export async function loadLessonsTabStateFromStorage(): Promise<LessonsTabSnapsh
 
   const noLimits = map.tester_no_limits === 'true';
   let persistedUnlocked: number[] = [];
-  if (map.unlocked_lessons) {
+  if (map[unlockedKey]) {
     try {
-      persistedUnlocked = JSON.parse(map.unlocked_lessons) as number[];
+      persistedUnlocked = JSON.parse(map[unlockedKey] ?? '[]') as number[];
     } catch {
       persistedUnlocked = [];
     }
@@ -57,9 +69,11 @@ export async function loadLessonsTabStateFromStorage(): Promise<LessonsTabSnapsh
 
   for (let i = 0; i < 32; i++) {
     const num = i + 1;
+    const bestScoreKey = lessonBestScoreKey(num, studyTarget);
+    const progressKey = lessonProgressKey(num, studyTarget);
     const { score, correctCount } = effectiveLessonStarScore(
-      map[`lesson${num}_best_score`],
-      map[`lesson${num}_progress`],
+      map[bestScoreKey],
+      map[progressKey],
     );
     scores[i] = score;
     progCounts[i] = correctCount;
@@ -69,10 +83,10 @@ export async function loadLessonsTabStateFromStorage(): Promise<LessonsTabSnapsh
   const examBestPcts: Record<string, number> = {};
   const examPassCounts: Record<string, number> = {};
   for (const lvl of EXAM_LEVELS) {
-    const pctRaw = map[`level_exam_${lvl}_pct`];
-    const passedRaw = map[`level_exam_${lvl}_passed`];
-    const bestRaw = map[`level_exam_${lvl}_best_pct`];
-    const passRaw = map[`level_exam_${lvl}_pass_count`];
+    const pctRaw = map[levelExamKey(lvl, 'pct', studyTarget)];
+    const passedRaw = map[levelExamKey(lvl, 'passed', studyTarget)];
+    const bestRaw = map[levelExamKey(lvl, 'best_pct', studyTarget)];
+    const passRaw = map[levelExamKey(lvl, 'pass_count', studyTarget)];
     const pct = parseInt(pctRaw || '0', 10) || 0;
     const bestPct = parseInt(bestRaw || '0', 10) || 0;
     const examPass = parseInt(passRaw || '0', 10) || 0;
@@ -90,7 +104,7 @@ export async function loadLessonsTabStateFromStorage(): Promise<LessonsTabSnapsh
     examBestPcts,
     examPassCounts,
   };
-  lastSnapshot = snap;
+  lastSnapshotByTarget[target] = snap;
   return snap;
 }
 

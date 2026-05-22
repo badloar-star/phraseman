@@ -1,0 +1,138 @@
+appId: app.phraseman
+---
+- stopApp
+- openLink: "exp+phraseman://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A8081"
+- waitForAnimationToEnd:
+    timeout: 8000
+- runFlow:
+    when:
+      visible: "Open"
+    commands:
+      - tapOn: "Open"
+      - waitForAnimationToEnd:
+          timeout: 8000
+- runFlow:
+    when:
+      visible: "Open"
+    commands:
+      - tapOn:
+          point: "69%,54%"
+      - waitForAnimationToEnd:
+          timeout: 8000
+- runFlow:
+    when:
+      visible: "Got it"
+    commands:
+      - tapOn: "Got it"
+      - waitForAnimationToEnd:
+          timeout: 3000
+- runFlow:
+    when:
+      visible: "Continue"
+    commands:
+      - tapOn: "Continue"
+      - waitForAnimationToEnd:
+          timeout: 3000
+- runFlow:
+    when:
+      visible: "Go home"
+    commands:
+      - tapOn: "Go home"
+      - waitForAnimationToEnd:
+          timeout: 5000
+- runFlow:
+    when:
+      visible: "New development server"
+    commands:
+      - tapOn:
+          point: "50%,26%"
+      - waitForAnimationToEnd:
+          timeout: 8000
+- runFlow:
+    when:
+      visible: "DEVELOPMENT SERVERS"
+    commands:
+      - tapOn: "http://localhost:8081"
+      - waitForAnimationToEnd:
+          timeout: 12000
+- runFlow:
+    when:
+      visible: "DEVELOPMENT SERVERS"
+    commands:
+      - tapOn:
+          point: "50%,28%"
+      - waitForAnimationToEnd:
+          timeout: 12000
+- runFlow:
+    when:
+      visible: "RECENTLY OPENED"
+    commands:
+      - tapOn:
+          point: "50%,70%"
+      - waitForAnimationToEnd:
+          timeout: 12000
+- waitForAnimationToEnd:
+    timeout: 8000
+- runFlow:
+    when:
+      visible: "Continue"
+    commands:
+      - tapOn: "Continue"
+      - waitForAnimationToEnd:
+          timeout: 5000
+- runFlow:
+    when:
+      visible: "This is the developer menu"
+    commands:
+      - tapOn:
+          point: "50%,85%"
+      - waitForAnimationToEnd:
+          timeout: 5000
+- runFlow:
+    when:
+      visible: "Go home"
+    commands:
+      - tapOn: "Go home"
+      - waitForAnimationToEnd:
+          timeout: 5000
+- runFlow:
+    when:
+      visible: "DEVELOPMENT SERVERS"
+    commands:
+      - tapOn: "http://localhost:8081"
+      - waitForAnimationToEnd:
+          timeout: 15000
+- runFlow:
+    when:
+      visible: "RECENTLY OPENED"
+    commands:
+      - tapOn:
+          point: "50%,50%"
+      - waitForAnimationToEnd:
+          timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 12000
+- runFlow:
+    when:
+      visible: "RECENTLY OPENED"
+    commands:
+      - tapOn:
+          point: "50%,48%"
+      - waitForAnimationToEnd:
+          timeout: 15000
+- runFlow:
+    when:
+      visible: "Phraseman"
+    commands:
+      - tapOn:
+          point: "50%,25%"
+      - waitForAnimationToEnd:
+          timeout: 15000
+- runFlow:
+    when:
+      visible: "Phraseman"
+    commands:
+      - tapOn:
+          point: "50%,48%"
+      - waitForAnimationToEnd:
+          timeout: 15000

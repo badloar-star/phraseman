@@ -1,5 +1,19 @@
 // Flashcards domain model shared across screen, constants, selectors and storage.
 import type { HeisenbergSourceLocale, SourceLocale } from '../source_locales';
+type PlannedFlashcardContentLang = Exclude<HeisenbergSourceLocale, 'es'>;
+
+const PLANNED_FLASHCARD_CONTENT_LANGS = [
+  'pt-BR',
+  'vi',
+  'id',
+  'tr',
+  'pl',
+] as const satisfies readonly PlannedFlashcardContentLang[];
+
+function isPlannedFlashcardContentLang(lang: FlashcardContentLang): lang is PlannedFlashcardContentLang {
+  return (PLANNED_FLASHCARD_CONTENT_LANGS as readonly string[]).includes(lang);
+}
+
 export type CategoryId =
   | 'emotions'
   | 'fillers'
@@ -19,9 +33,19 @@ export interface Category {
   labelRU: string;
   labelUK: string;
   labelES: string;
+  labelPtBr: string;
+  labelVi: string;
+  labelId: string;
+  labelTr: string;
+  labelPl: string;
   fullLabelRU: string;
   fullLabelUK: string;
   fullLabelES: string;
+  fullLabelPtBr: string;
+  fullLabelVi: string;
+  fullLabelId: string;
+  fullLabelTr: string;
+  fullLabelPl: string;
 }
 
 export interface CardItem {
@@ -71,6 +95,7 @@ export function resolveFlashcardBackText(item: CardItem, lang: FlashcardContentL
   };
   if (lang === 'uk') return pick(item.uk) ?? pick(item.ru) ?? '';
   if (lang === 'es') return pick(item.es) ?? pick(item.ru) ?? pick(item.uk) ?? '';
+  if (isPlannedFlashcardContentLang(lang)) return pick(item.sourceLocales?.[lang]) ?? '';
   if (lang !== 'ru') return pick(item.sourceLocales?.[lang]) ?? pick(item.es) ?? pick(item.ru) ?? pick(item.uk) ?? '';
   return pick(item.ru) ?? pick(item.uk) ?? '';
 }

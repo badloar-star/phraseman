@@ -29,5 +29,6 @@ const isLeagueBonusGiftImageTheme = (
 
 export function getLeagueBonusGiftImage(theme: string | null | undefined): ImageSourcePropType {
   const safeTheme = isLeagueBonusGiftImageTheme(theme) ? theme : DEFAULT_THEME;
-  return LEAGUE_BONUS_GIFT_IMAGES[safeTheme];
+  const image = LEAGUE_BONUS_GIFT_IMAGES[safeTheme];
+  return image;
 }

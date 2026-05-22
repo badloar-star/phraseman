@@ -4,7 +4,7 @@ import {
   Easing, Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from './SafeLinearGradient';
 import { useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -22,6 +22,7 @@ import PremiumGoldButton from './PremiumGoldButton';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import { paywallGlassColor } from './paywallGlass';
+import { triLang } from '../constants/i18n';
 
 export type ArenaLimitMode = 'matchmaking' | 'invite';
 
@@ -54,8 +55,6 @@ export default function ArenaLimitModal({
   const { theme: t, themeMode, f } = useTheme();
   const paywallSheetBg = paywallGlassColor(t.bgCard, themeMode, 'card');
   const { lang } = useLang();
-  const isUK = lang === 'uk';
-  const isES = lang === 'es';
   const slideY = useRef(new Animated.Value(SCREEN_H)).current;
   const bgOpacity = useRef(new Animated.Value(0)).current;
   const iconScale = useRef(new Animated.Value(0.6)).current;
@@ -157,6 +156,11 @@ export default function ArenaLimitModal({
           messageRu: 'Не удалось списать осколки. Попробуй ещё раз.',
           messageUk: 'Не вдалося списати осколки. Спробуй ще раз.',
           messageEs: 'No se pudieron usar los fragmentos. Inténtalo de nuevo.',
+          messagePtBr: 'Não foi possível usar os fragmentos. Tente novamente.',
+          messageVi: 'Không thể dùng mảnh. Hãy thử lại.',
+          messageId: 'Tidak dapat memakai shard. Coba lagi.',
+          messageTr: 'Parçalar kullanılamadı. Tekrar dene.',
+          messagePl: 'Nie udało się użyć odłamków. Spróbuj ponownie.',
         });
         return;
       }
@@ -231,8 +235,26 @@ export default function ArenaLimitModal({
           ]}
         >
           {mode === 'matchmaking'
-            ? (isUK ? 'Матчі на сьогодні вичерпано' : isES ? 'No quedan duelos en la Arena hoy' : 'Матчи на сегодня исчерпаны')
-            : (isUK ? 'Запрошення на сьогодні вичерпано' : isES ? 'No quedan invitaciones en la Arena hoy' : 'Приглашения на сегодня исчерпаны')}
+            ? triLang(lang, {
+                ru: 'Матчи на сегодня исчерпаны',
+                uk: 'Матчі на сьогодні вичерпано',
+                es: 'No quedan duelos en la Arena hoy',
+                'pt-BR': 'Duelos da Arena esgotados por hoje',
+                vi: 'Hôm nay đã hết lượt đấu Arena',
+                id: 'Duel Arena hari ini sudah habis',
+                tr: 'Bugünkü Arena düelloları bitti',
+                pl: 'Dzisiejsze pojedynki Areny wyczerpane',
+              })
+            : triLang(lang, {
+                ru: 'Приглашения на сегодня исчерпаны',
+                uk: 'Запрошення на сьогодні вичерпано',
+                es: 'No quedan invitaciones en la Arena hoy',
+                'pt-BR': 'Convites da Arena esgotados por hoje',
+                vi: 'Hôm nay đã hết lượt mời Arena',
+                id: 'Undangan Arena hari ini sudah habis',
+                tr: 'Bugünkü Arena davetleri bitti',
+                pl: 'Dzisiejsze zaproszenia Areny wyczerpane',
+              })}
         </Animated.Text>
 
         <Animated.Text
@@ -242,16 +264,26 @@ export default function ArenaLimitModal({
           ]}
         >
           {mode === 'matchmaking'
-            ? (isUK
-              ? `Ти використав усі ${dailyMax} матчів арени на сьогодні.\nЛіміт оновиться опівночі.`
-              : isES
-                ? `Has usado los ${dailyMax} duelos de la Arena de hoy.\nEl límite se renueva a medianoche.`
-                : `Ты использовал все ${dailyMax} матчей арены на сегодня.\nЛимит обновится в полночь.`)
-            : (isUK
-              ? `Ти використав усі ${dailyMax} запрошень арени на сьогодні.\nЛіміт оновиться опівночі.`
-              : isES
-                ? `Has usado las ${dailyMax} invitaciones en la Arena de hoy.\nEl límite se renueva a medianoche.`
-                : `Ты использовал все ${dailyMax} приглашений арены на сегодня.\nЛимит обновится в полночь.`)}
+            ? triLang(lang, {
+                ru: `Ты использовал все ${dailyMax} матчей арены на сегодня.\nЛимит обновится в полночь.`,
+                uk: `Ти використав усі ${dailyMax} матчів арени на сьогодні.\nЛіміт оновиться опівночі.`,
+                es: `Has usado los ${dailyMax} duelos de la Arena de hoy.\nEl límite se renueva a medianoche.`,
+                'pt-BR': `Você usou todos os ${dailyMax} duelos da Arena de hoje.\nO limite renova à meia-noite.`,
+                vi: `Bạn đã dùng hết ${dailyMax} lượt đấu Arena hôm nay.\nGiới hạn sẽ làm mới lúc nửa đêm.`,
+                id: `Kamu sudah memakai semua ${dailyMax} duel Arena hari ini.\nBatasnya diperbarui tengah malam.`,
+                tr: `Bugünkü ${dailyMax} Arena düellonun hepsini kullandın.\nLimit gece yarısı yenilenir.`,
+                pl: `Wykorzystano dziś wszystkie ${dailyMax} pojedynków Areny.\nLimit odnowi się o północy.`,
+              })
+            : triLang(lang, {
+                ru: `Ты использовал все ${dailyMax} приглашений арены на сегодня.\nЛимит обновится в полночь.`,
+                uk: `Ти використав усі ${dailyMax} запрошень арени на сьогодні.\nЛіміт оновиться опівночі.`,
+                es: `Has usado las ${dailyMax} invitaciones en la Arena de hoy.\nEl límite se renueva a medianoche.`,
+                'pt-BR': `Você usou todos os ${dailyMax} convites da Arena de hoje.\nO limite renova à meia-noite.`,
+                vi: `Bạn đã dùng hết ${dailyMax} lượt mời Arena hôm nay.\nGiới hạn sẽ làm mới lúc nửa đêm.`,
+                id: `Kamu sudah memakai semua ${dailyMax} undangan Arena hari ini.\nBatasnya diperbarui tengah malam.`,
+                tr: `Bugünkü ${dailyMax} Arena davetinin hepsini kullandın.\nLimit gece yarısı yenilenir.`,
+                pl: `Wykorzystano dziś wszystkie ${dailyMax} zaproszeń Areny.\nLimit odnowi się o północy.`,
+              })}
         </Animated.Text>
 
         {/* Индикатор dots — последняя занятая дрожит и светится */}
@@ -281,11 +313,16 @@ export default function ArenaLimitModal({
         </View>
 
         <Text style={[styles.hintPremium, { color: t.textMuted, fontSize: f.sub }]}>
-          {isUK
-            ? 'З Premium — безлімітні матчі щодня'
-            : isES
-              ? 'Con Premium tienes duelos ilimitados cada día'
-              : 'С Premium — безлимитные матчи каждый день'}
+          {triLang(lang, {
+            ru: 'С Premium — безлимитные матчи каждый день',
+            uk: 'З Premium — безлімітні матчі щодня',
+            es: 'Con Premium tienes duelos ilimitados cada día',
+            'pt-BR': 'Com Premium, duelos ilimitados todos os dias',
+            vi: 'Với Premium, bạn có lượt đấu không giới hạn mỗi ngày',
+            id: 'Dengan Premium, duel tak terbatas setiap hari',
+            tr: 'Premium ile her gün sınırsız düello',
+            pl: 'Z Premium masz nielimitowane pojedynki każdego dnia',
+          })}
         </Text>
 
         <PremiumGoldButton
@@ -316,11 +353,16 @@ export default function ArenaLimitModal({
             ) : (
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: '100%' }}>
                 <Text style={{ color: t.textPrimary, fontWeight: '800', fontSize: f.body, flex: 1 }}>
-                  {isUK
-                    ? `Відновити ${ARENA_MATCHES_SHARD_REFILL_SLOTS} спроб за ${ARENA_MATCHES_SHARD_REFILL_COST} осколків`
-                    : isES
-                      ? `Recuperar ${ARENA_MATCHES_SHARD_REFILL_SLOTS} duelos por ${ARENA_MATCHES_SHARD_REFILL_COST} fragmentos`
-                      : `Восстановить ${ARENA_MATCHES_SHARD_REFILL_SLOTS} попыток за ${ARENA_MATCHES_SHARD_REFILL_COST} осколков`}
+                  {triLang(lang, {
+                    ru: `Восстановить ${ARENA_MATCHES_SHARD_REFILL_SLOTS} попыток за ${ARENA_MATCHES_SHARD_REFILL_COST} осколков`,
+                    uk: `Відновити ${ARENA_MATCHES_SHARD_REFILL_SLOTS} спроб за ${ARENA_MATCHES_SHARD_REFILL_COST} осколків`,
+                    es: `Recuperar ${ARENA_MATCHES_SHARD_REFILL_SLOTS} duelos por ${ARENA_MATCHES_SHARD_REFILL_COST} fragmentos`,
+                    'pt-BR': `Restaurar ${ARENA_MATCHES_SHARD_REFILL_SLOTS} tentativas por ${ARENA_MATCHES_SHARD_REFILL_COST} fragmentos`,
+                    vi: `Khôi phục ${ARENA_MATCHES_SHARD_REFILL_SLOTS} lượt với ${ARENA_MATCHES_SHARD_REFILL_COST} mảnh`,
+                    id: `Pulihkan ${ARENA_MATCHES_SHARD_REFILL_SLOTS} percobaan dengan ${ARENA_MATCHES_SHARD_REFILL_COST} shard`,
+                    tr: `${ARENA_MATCHES_SHARD_REFILL_SLOTS} hakkı ${ARENA_MATCHES_SHARD_REFILL_COST} parça ile yenile`,
+                    pl: `Odnów ${ARENA_MATCHES_SHARD_REFILL_SLOTS} próby za ${ARENA_MATCHES_SHARD_REFILL_COST} odłamków`,
+                  })}
                 </Text>
                 <Image
                   source={oskolokImageForPackShards(ARENA_MATCHES_SHARD_REFILL_COST)}
@@ -341,7 +383,16 @@ export default function ArenaLimitModal({
           activeOpacity={0.8}
         >
           <Text style={[styles.btnSecondaryText, { color: t.textMuted, fontSize: f.body }]}>
-            {isUK ? 'Зрозуміло' : isES ? 'Entendido' : 'Понятно'}
+            {triLang(lang, {
+              ru: 'Понятно',
+              uk: 'Зрозуміло',
+              es: 'Entendido',
+              'pt-BR': 'Entendi',
+              vi: 'Đã hiểu',
+              id: 'Mengerti',
+              tr: 'Anladım',
+              pl: 'Rozumiem',
+            })}
           </Text>
         </TouchableOpacity>
       </Animated.View>

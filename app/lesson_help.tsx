@@ -6,8 +6,9 @@ import { Animated, ScrollView, Text, TouchableOpacity, View } from 'react-native
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { lessonNamesForLang } from '../constants/lessons';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
 import XpGainBadge from '../components/XpGainBadge';
@@ -16,6 +17,15 @@ import { registerXP, getCurrentMultiplier } from './xp_manager';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { screenTextOnGradient } from '../constants/theme';
 import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { getLessonIntroScreens } from './lesson_data_all';
+import { getFrenchLessonIntroScreens } from './lesson_intro_screens_fr';
+import type { IntroLine, LessonIntroScreen } from './lesson_data_types';
+import { frenchStudyActive } from './spanish_content_gate';
+import { lessonTheoryXpClaimedKey } from './target_storage_keys';
+import {
+  frenchLessonSupportGateCopy,
+  lessonSupportContentAvailableForTarget,
+} from './lesson_support_target_gate';
 
 // ─── UI компоненты ────────────────────────────────────────────────────────────
 
@@ -378,13 +388,21 @@ type TheoryContent = {
   titleRU: string;
   titleUK: string;
   titleES?: string;
-  spanishStatus?: 'ready' | 'fallback';
+  titlePtBr?: string;
+  titleVi?: string;
+  titleId?: string;
+  titleTr?: string;
+  titlePl?: string;
+  spanishStatus?: 'ready' | 'missing';
   render: (t: any, isUK: boolean, f: any) => React.ReactNode[];
   renderES?: (t: any, f: any) => React.ReactNode[];
 };
 
 function theoryTitleEsFor(lessonId: number, theory?: TheoryContent): string {
-  if (theory?.titleES) return theory.titleES;
+  if (theory?.titleES) {
+    const title = theory.titleES;
+    return title;
+  }
   return lessonId >= 1 && lessonId <= 32
     ? lessonNamesForLang('es')[lessonId - 1] ?? `Lecci\u00f3n ${lessonId}`
     : `Lecci\u00f3n ${lessonId}`;
@@ -431,12 +449,210 @@ const THEORY_TITLE_PLANNED: Record<number, {
   32: { ptBR: 'Aula final mista', vi: 'Bài học tổng hợp cuối cùng', id: 'Pelajaran campuran terakhir', tr: 'Son karma ders', pl: 'Ostatnia lekcja mieszana' },
 };
 
-function plannedTheoryTitle(lessonId: number, locale: keyof (typeof THEORY_TITLE_PLANNED)[number], fallback: string): string {
-  return THEORY_TITLE_PLANNED[lessonId]?.[locale] ?? fallback;
+function plannedTheoryTitle(lessonId: number, locale: keyof (typeof THEORY_TITLE_PLANNED)[number], backup: string): string {
+  return THEORY_TITLE_PLANNED[lessonId]?.[locale] ?? backup;
+}
+
+type PlannedTheoryLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+function plannedTheoryLocale(lang: Lang): PlannedTheoryLocale | null {
+  if (lang === 'pt-BR' || lang === 'vi' || lang === 'id' || lang === 'tr' || lang === 'pl') return lang;
+  return null;
+}
+
+function plannedTheoryTitleKey(locale: PlannedTheoryLocale): keyof (typeof THEORY_TITLE_PLANNED)[number] {
+  return locale === 'pt-BR' ? 'ptBR' : locale;
+}
+
+function theoryTitleForLang(lessonId: number, theory: TheoryContent, lang: Lang, spanishBackup: string): string {
+  const plannedLocale = plannedTheoryLocale(lang);
+  if (!plannedLocale) {
+    const legacyLang = legacyUiLang(lang);
+    const primaryTitle = theory.titleRU;
+    const secondaryTitle = theory.titleUK;
+    const tertiaryTitle = spanishBackup;
+    if (legacyLang === 'uk') return secondaryTitle;
+    if (legacyLang === 'es') return tertiaryTitle;
+    return primaryTitle;
+  }
+  const explicitTitle =
+    plannedLocale === 'pt-BR' ? theory.titlePtBr
+      : plannedLocale === 'vi' ? theory.titleVi
+        : plannedLocale === 'id' ? theory.titleId
+          : plannedLocale === 'tr' ? theory.titleTr
+            : theory.titlePl;
+  return explicitTitle ?? plannedTheoryTitle(lessonId, plannedTheoryTitleKey(plannedLocale), spanishBackup);
 }
 
 function hasSpanishTheoryContent(theory?: TheoryContent): boolean {
-  return theory?.spanishStatus === 'ready' && typeof theory.renderES === 'function';
+  const hasRenderer = typeof theory?.renderES === 'function';
+  return theory?.spanishStatus === 'ready' && hasRenderer;
+}
+
+function introLinePlain(line: IntroLine): string {
+  return line.text ?? line.parts?.map((part) => part.text).join('') ?? '';
+}
+
+function legacyUiLang(lang: Lang): 'ru' | 'uk' | 'es' {
+  const legacyByLang: Record<Lang, 'ru' | 'uk' | 'es'> = {
+    ru: 'ru',
+    uk: 'uk',
+    es: 'es',
+    'pt-BR': 'ru',
+    vi: 'ru',
+    id: 'ru',
+    tr: 'ru',
+    pl: 'ru',
+  };
+  return legacyByLang[lang];
+}
+
+function firstTheoryValue<T>(...values: Array<T | undefined>): T | undefined {
+  for (const value of values) {
+    if (value !== undefined) return value;
+  }
+  return undefined;
+}
+
+function introTitleForUi(screen: LessonIntroScreen, lang: Lang): string {
+  const plannedTitles: Record<PlannedTheoryLocale, string | undefined> = {
+    'pt-BR': screen.titlePtBr,
+    vi: screen.titleVi,
+    id: screen.titleId,
+    tr: screen.titleTr,
+    pl: screen.titlePl,
+  };
+  const plannedLocale = plannedTheoryLocale(lang);
+  if (plannedLocale) return plannedTitles[plannedLocale] ?? '';
+
+  const legacyLang = legacyUiLang(lang);
+  const primaryTitle = firstTheoryValue(screen.titleRU, '') ?? '';
+  const secondaryTitle = firstTheoryValue(screen.titleUK, primaryTitle) ?? primaryTitle;
+  const tertiaryTitle = firstTheoryValue(screen.titleES, primaryTitle) ?? primaryTitle;
+  if (legacyLang === 'uk') return secondaryTitle;
+  if (legacyLang === 'es') return tertiaryTitle;
+  return primaryTitle;
+}
+
+function introLinesForUi(screen: LessonIntroScreen, lang: Lang): IntroLine[] {
+  const plannedLines: Record<PlannedTheoryLocale, IntroLine[] | undefined> = {
+    'pt-BR': screen.linesPtBr,
+    vi: screen.linesVi,
+    id: screen.linesId,
+    tr: screen.linesTr,
+    pl: screen.linesPl,
+  };
+  const plannedLocale = plannedTheoryLocale(lang);
+  if (plannedLocale) return plannedLines[plannedLocale] ?? [];
+
+  const legacyLang = legacyUiLang(lang);
+  const primaryLines = firstTheoryValue(screen.linesRU, []) ?? [];
+  const secondaryLines = firstTheoryValue(screen.linesUK, primaryLines) ?? primaryLines;
+  const tertiaryLines = firstTheoryValue(screen.linesES, primaryLines) ?? primaryLines;
+  if (legacyLang === 'uk') return secondaryLines;
+  if (legacyLang === 'es') return tertiaryLines;
+  return primaryLines;
+}
+
+function introTextForUi(screen: LessonIntroScreen, lang: Lang): string {
+  const plannedText: Record<PlannedTheoryLocale, string | undefined> = {
+    'pt-BR': screen.textPtBr,
+    vi: screen.textVi,
+    id: screen.textId,
+    tr: screen.textTr,
+    pl: screen.textPl,
+  };
+  const plannedLocale = plannedTheoryLocale(lang);
+  let explicit = plannedLocale ? plannedText[plannedLocale] : undefined;
+  if (!plannedLocale) {
+    const legacyLang = legacyUiLang(lang);
+    const primaryText = firstTheoryValue(screen.textRU, screen.textUK);
+    const secondaryText = firstTheoryValue(screen.textUK, screen.textRU);
+    const tertiaryText = firstTheoryValue(screen.textES, screen.textRU);
+    if (legacyLang === 'uk') {
+      explicit = secondaryText;
+    } else if (legacyLang === 'es') {
+      explicit = tertiaryText;
+    } else {
+      explicit = primaryText;
+    }
+  }
+  if (explicit?.trim()) return explicit;
+  return introLinesForUi(screen, lang).map(introLinePlain).filter(Boolean).join(' ');
+}
+
+function introExampleEnglish(example: any): string {
+  if (typeof example?.en === 'string') return example.en;
+  if (Array.isArray(example?.en)) {
+    return example.en.map((part: { text?: string }) => part.text ?? '').join('');
+  }
+  return '';
+}
+
+function introExampleTranslation(example: any, lang: Lang): string {
+  const plannedTranslations: Record<PlannedTheoryLocale, string | undefined> = {
+    'pt-BR': example?.['pt-BR'] ?? example?.trPtBr,
+    vi: example?.vi ?? example?.trVi,
+    id: example?.id ?? example?.trId,
+    tr: example?.tr ?? example?.trTr,
+    pl: example?.pl ?? example?.trPl,
+  };
+  const plannedLocale = plannedTheoryLocale(lang);
+  if (plannedLocale) return plannedTranslations[plannedLocale] ?? '';
+
+  const legacyLang = legacyUiLang(lang);
+  const primaryTranslation = firstTheoryValue(example?.ru, example?.trRU, example?.uk, example?.trUK, '');
+  const secondaryTranslation = firstTheoryValue(example?.uk, example?.trUK, example?.ru, example?.trRU, '');
+  const tertiaryTranslation = firstTheoryValue(example?.es, example?.trES, example?.ru, example?.trRU, '');
+  if (legacyLang === 'uk') return secondaryTranslation;
+  if (legacyLang === 'es') return tertiaryTranslation;
+  return primaryTranslation;
+}
+
+function renderFrenchTheoryFromIntroScreens(
+  screens: LessonIntroScreen[],
+  t: any,
+  lang: Lang,
+  f: any,
+): React.ReactNode[] {
+  return screens.flatMap((screen, screenIndex) => {
+    const lines = introLinesForUi(screen, lang)
+      .map((line, lineIndex) => ({ line, text: introLinePlain(line).trim(), lineIndex }))
+      .filter((entry) => entry.text.length > 0 && entry.line.type !== 'spacer');
+    const examples = screen.examples?.filter((example) => introExampleEnglish(example).trim()).slice(0, 3) ?? [];
+    return [
+      <Section
+        key={`fr-section-${screen.screenId ?? screenIndex}`}
+        t={t}
+        f={f}
+        title={introTitleForUi(screen, lang)}
+      />,
+      <Body
+        key={`fr-body-${screen.screenId ?? screenIndex}`}
+        t={t}
+        f={f}
+        text={introTextForUi(screen, lang)}
+      />,
+      ...lines.slice(0, 8).map(({ line, text, lineIndex }) => {
+        if (line.type === 'wrong') {
+          return <Warn key={`fr-line-${screen.screenId}-${lineIndex}`} t={t} f={f} text={text} />;
+        }
+        if (line.type === 'tip') {
+          return <Tip key={`fr-line-${screen.screenId}-${lineIndex}`} t={t} f={f} text={text} />;
+        }
+        return <Body key={`fr-line-${screen.screenId}-${lineIndex}`} t={t} f={f} text={text} />;
+      }),
+      ...examples.map((example, exampleIndex) => (
+        <Example
+          key={`fr-example-${screen.screenId}-${exampleIndex}`}
+          t={t}
+          f={f}
+          eng={introExampleEnglish(example)}
+          rus={introExampleTranslation(example, lang)}
+        />
+      )),
+    ];
+  });
 }
 
 
@@ -445,6 +661,11 @@ const THEORY: Record<number, TheoryContent> = {
   titleRU: 'To Be: утверждения',
   titleUK: 'To Be: ствердження',
   titleES: 'To Be: afirmaciones',
+  titlePtBr: "To Be: afirmações",
+  titleVi: "To Be: câu khẳng định",
+  titleId: "To Be: pernyataan",
+  titleTr: "To Be: olumlu cümleler",
+  titlePl: "To Be: zdania twierdzące",
   spanishStatus: 'ready',
   renderES: renderLesson1TheoryEs,
   render: (t, isUK, f) => [
@@ -543,7 +764,7 @@ const THEORY: Record<number, TheoryContent> = {
         ['He', 'is', 'He is busy / He is sick / He is strong / He is inside / He is angry / He is calm'],
         ['She', 'is', 'She is calm / She is sad / She is tired / She is happy / She is smart / She is ready'],
         ['It', 'is', 'It is important / It is cheap / It is free / It is serious / It is near / It is broken / It is empty'],
-        ['You', 'are', 'You are ready / You are right / You are late / You are kind / You are fine / You are safe'],
+        ['You', 'are', 'You are ready / You are right / You are late / You are kind / You are okay / You are safe'],
         ['We', 'are', 'We are together / We are safe / We are friends / We are here / We are inside / We are calm / We are ready / We are late / We are okay'],
         ['They', 'are', 'They are happy / They are outside / They are calm / They are ready / They are tired / They are hungry'],
       ]}
@@ -594,7 +815,7 @@ const THEORY: Record<number, TheoryContent> = {
       f={f}
       rows={[
         [isUK ? 'Форма' : 'Форма', isUK ? 'Приклади з уроку' : 'Примеры из урока'],
-        ['You are', 'You are ready / You are right / You are late / You are kind / You are fine / You are safe'],
+        ['You are', 'You are ready / You are right / You are late / You are kind / You are okay / You are safe'],
         ['We are', 'We are together / We are safe / We are friends / We are here / We are inside / We are calm / We are ready / We are late / We are okay'],
         ['They are', 'They are happy / They are outside / They are calm / They are ready / They are tired / They are hungry / They are together'],
       ]}
@@ -700,7 +921,7 @@ const THEORY: Record<number, TheoryContent> = {
         ['You are right', isUK ? 'Ти правий / Ви праві' : 'Ты прав / Вы правы'],
         ['You are late', isUK ? 'Ти запізнюєшся' : 'Ты опаздываешь'],
         ['We are late', isUK ? 'Ми запізнюємося' : 'Мы опаздываем'],
-        ['You are fine', isUK ? 'Ти в порядку' : 'Ты в порядке'],
+        ['You are okay', isUK ? 'Ти в порядку' : 'Ты в порядке'],
       ]}
     />,
     <Tip key="tip5" t={t} f={f} text={isUK ? 'You are late і We are late перекладаються дієсловом «запізнюєшся / запізнюємося», але англійська логіка тут усе одно To Be + late.' : 'You are late и We are late переводятся глаголом «опаздываешь / опаздываем», но английская логика здесь всё равно To Be + late.'} />,
@@ -742,6 +963,11 @@ const THEORY: Record<number, TheoryContent> = {
 2: {
   titleRU: 'To Be: отрицания и вопросы',
   titleUK: 'To Be: заперечення та питання',
+  titlePtBr: "To Be: negações e perguntas",
+  titleVi: "To Be: phủ định và câu hỏi",
+  titleId: "To Be: negatif dan pertanyaan",
+  titleTr: "To Be: olumsuz ve soru cümleleri",
+  titlePl: "To Be: przeczenia i pytania",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -1035,6 +1261,11 @@ const THEORY: Record<number, TheoryContent> = {
 3: {
   titleRU: 'Present Simple: Утверждения',
   titleUK: 'Present Simple: Ствердження',
+  titlePtBr: "Present Simple: afirmações",
+  titleVi: "Present Simple: câu khẳng định",
+  titleId: "Present Simple: pernyataan",
+  titleTr: "Present Simple: olumlu cümleler",
+  titlePl: "Present Simple: zdania twierdzące",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -1406,6 +1637,11 @@ const THEORY: Record<number, TheoryContent> = {
 4: {
   titleRU: 'Present Simple: Отрицание',
   titleUK: 'Present Simple: Заперечення',
+  titlePtBr: "Present Simple: negação",
+  titleVi: "Present Simple: phủ định",
+  titleId: "Present Simple: negatif",
+  titleTr: "Present Simple: olumsuz cümleler",
+  titlePl: "Present Simple: przeczenia",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -1826,6 +2062,11 @@ const THEORY: Record<number, TheoryContent> = {
 5: {
   titleRU: 'Present Simple: Вопросы',
   titleUK: 'Present Simple: Питання',
+  titlePtBr: "Present Simple: perguntas",
+  titleVi: "Present Simple: câu hỏi",
+  titleId: "Present Simple: pertanyaan",
+  titleTr: "Present Simple: sorular",
+  titlePl: "Present Simple: pytania",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -2256,6 +2497,11 @@ const THEORY: Record<number, TheoryContent> = {
 6: {
   titleRU: 'Специальные вопросы: Where, What, When, Why, How',
   titleUK: 'Спеціальні питання: Where, What, When, Why, How',
+  titlePtBr: "Perguntas especiais: Where, What, When, Why, How",
+  titleVi: "Câu hỏi đặc biệt: Where, What, When, Why, How",
+  titleId: "Pertanyaan khusus: Where, What, When, Why, How",
+  titleTr: "Özel sorular: Where, What, When, Why, How",
+  titlePl: "Pytania szczegółowe: Where, What, When, Why, How",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -2609,7 +2855,7 @@ const THEORY: Record<number, TheoryContent> = {
         ['start', 'meetings', 'When do they start meetings?', isUK ? 'Коли вони починають зустрічі?' : 'Когда они начинают встречи?'],
         ['close', 'doors', 'Why do they close doors?', isUK ? 'Чому вони зачиняють двері?' : 'Почему они закрывают двери?'],
         ['close', 'windows', 'Why does she close windows?', isUK ? 'Чому вона зачиняє вікна?' : 'Почему она закрывает окна?'],
-        ['close', 'cafés', 'When do they close cafés?', isUK ? 'Коли вони зачиняють кафе?' : 'Когда они закрывают кафе?'],
+        ['close', 'the cafe', 'When do they close the cafe?', isUK ? 'Коли вони зачиняють кафе?' : 'Когда они закрывают кафе?'],
       ]}
     />,
 
@@ -2757,6 +3003,11 @@ const THEORY: Record<number, TheoryContent> = {
 7: {
   titleRU: 'Have / Has: у меня есть',
   titleUK: 'Have / Has: у мене є',
+  titlePtBr: "Have / Has: eu tenho",
+  titleVi: "Have / Has: tôi có",
+  titleId: "Have / Has: saya punya",
+  titleTr: "Have / Has: sahip olmak",
+  titlePl: "Have / Has: mam",
   render: (t, isUK, f) => [
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
 
@@ -3154,6 +3405,11 @@ const THEORY: Record<number, TheoryContent> = {
 8: {
   titleRU: 'Предлоги времени: at, in, on',
   titleUK: 'Прийменники часу: at, in, on',
+  titlePtBr: "Preposições de tempo: at, in, on",
+  titleVi: "Giới từ chỉ thời gian: at, in, on",
+  titleId: "Preposisi waktu: at, in, on",
+  titleTr: "Zaman edatları: at, in, on",
+  titlePl: "Przyimki czasu: at, in, on",
   render: (t, isUK, f) => [
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
 
@@ -3528,6 +3784,11 @@ const THEORY: Record<number, TheoryContent> = {
 9: {
   titleRU: 'There is / There are: есть / находится',
   titleUK: 'There is / There are: є / знаходиться',
+  titlePtBr: "There is / There are: existe / fica",
+  titleVi: "There is / There are: có / nằm ở",
+  titleId: "There is / There are: ada / terletak",
+  titleTr: "There is / There are: var / bulunur",
+  titlePl: "There is / There are: jest / znajduje się",
   render: (t, isUK, f) => [
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
 
@@ -3904,6 +4165,11 @@ const THEORY: Record<number, TheoryContent> = {
 10: {
   titleRU: 'Модальные глаголы: can, should, must, have to',
   titleUK: 'Модальні дієслова: can, should, must, have to',
+  titlePtBr: "Verbos modais: can, should, must, have to",
+  titleVi: "Động từ khuyết thiếu: can, should, must, have to",
+  titleId: "Kata kerja modal: can, should, must, have to",
+  titleTr: "Modal fiiller: can, should, must, have to",
+  titlePl: "Czasowniki modalne: can, should, must, have to",
   render: (t, isUK, f) => [
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
 
@@ -4287,6 +4553,11 @@ const THEORY: Record<number, TheoryContent> = {
 11: {
   titleRU: 'Past Simple: правильные глаголы',
   titleUK: 'Past Simple: правильні дієслова',
+  titlePtBr: "Past Simple: verbos regulares",
+  titleVi: "Past Simple: động từ có quy tắc",
+  titleId: "Past Simple: kata kerja beraturan",
+  titleTr: "Past Simple: düzenli fiiller",
+  titlePl: "Past Simple: czasowniki regularne",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -4959,6 +5230,11 @@ const THEORY: Record<number, TheoryContent> = {
 12: {
   titleRU: 'Past Simple: неправильные глаголы',
   titleUK: 'Past Simple: неправильні дієслова',
+  titlePtBr: "Past Simple: verbos irregulares",
+  titleVi: "Past Simple: động từ bất quy tắc",
+  titleId: "Past Simple: kata kerja tidak beraturan",
+  titleTr: "Past Simple: düzensiz fiiller",
+  titlePl: "Past Simple: czasowniki nieregularne",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -5628,6 +5904,11 @@ const THEORY: Record<number, TheoryContent> = {
 13: {
   titleRU: 'Future Simple: will',
   titleUK: 'Future Simple: will',
+  titlePtBr: "Future Simple: will",
+  titleVi: "Future Simple: will",
+  titleId: "Future Simple: will",
+  titleTr: "Future Simple: will",
+  titlePl: "Future Simple: will",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -6221,6 +6502,11 @@ const THEORY: Record<number, TheoryContent> = {
 14: {
   titleRU: 'Сравнение: cheaper, better, the best',
   titleUK: 'Порівняння: cheaper, better, the best',
+  titlePtBr: "Comparação: cheaper, better, the best",
+  titleVi: "So sánh: cheaper, better, the best",
+  titleId: "Perbandingan: cheaper, better, the best",
+  titleTr: "Karşılaştırma: cheaper, better, the best",
+  titlePl: "Porównania: cheaper, better, the best",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -6603,6 +6889,11 @@ const THEORY: Record<number, TheoryContent> = {
 15: {
   titleRU: 'Притяжательные формы: my и mine',
   titleUK: 'Присвійні форми: my і mine',
+  titlePtBr: "Formas possessivas: my e mine",
+  titleVi: "Dạng sở hữu: my và mine",
+  titleId: "Bentuk kepemilikan: my dan mine",
+  titleTr: "İyelik biçimleri: my ve mine",
+  titlePl: "Formy dzierżawcze: my i mine",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -7316,6 +7607,11 @@ const THEORY: Record<number, TheoryContent> = {
 16: {
   titleRU: 'Фразовые глаголы',
   titleUK: 'Фразові дієслова',
+  titlePtBr: "Phrasal verbs",
+  titleVi: "Cụm động từ",
+  titleId: "Phrasal verbs",
+  titleTr: "Phrasal verbs",
+  titlePl: "Czasowniki frazowe",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -7994,6 +8290,11 @@ const THEORY: Record<number, TheoryContent> = {
 17: {
   titleRU: 'Present Continuous: действия сейчас',
   titleUK: 'Present Continuous: дії зараз',
+  titlePtBr: "Present Continuous: ações agora",
+  titleVi: "Present Continuous: hành động đang diễn ra",
+  titleId: "Present Continuous: tindakan sekarang",
+  titleTr: "Present Continuous: şu anda olan eylemler",
+  titlePl: "Present Continuous: czynności teraz",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -8748,6 +9049,11 @@ const THEORY: Record<number, TheoryContent> = {
 18: {
   titleRU: 'Просьбы, команды и предложения',
   titleUK: 'Прохання, команди та пропозиції',
+  titlePtBr: "Pedidos, comandos e sugestões",
+  titleVi: "Lời nhờ, mệnh lệnh và gợi ý",
+  titleId: "Permintaan, perintah, dan saran",
+  titleTr: "Ricalar, emirler ve öneriler",
+  titlePl: "Prośby, polecenia i sugestie",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -9119,6 +9425,11 @@ const THEORY: Record<number, TheoryContent> = {
 19: {
   titleRU: 'Предлоги места',
   titleUK: 'Прийменники місця',
+  titlePtBr: "Preposições de lugar",
+  titleVi: "Giới từ chỉ nơi chốn",
+  titleId: "Preposisi tempat",
+  titleTr: "Yer edatları",
+  titlePl: "Przyimki miejsca",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -9378,6 +9689,11 @@ const THEORY: Record<number, TheoryContent> = {
 20: {
   titleRU: 'Артикли: a, an, the',
   titleUK: 'Артиклі: a, an, the',
+  titlePtBr: "Artigos: a, an, the",
+  titleVi: "Mạo từ: a, an, the",
+  titleId: "Artikel: a, an, the",
+  titleTr: "Artikeller: a, an, the",
+  titlePl: "Przedimki: a, an, the",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -10107,6 +10423,11 @@ const THEORY: Record<number, TheoryContent> = {
 21: {
   titleRU: 'Неопределённые местоимения',
   titleUK: 'Неозначені займенники',
+  titlePtBr: "Pronomes indefinidos",
+  titleVi: "Đại từ bất định",
+  titleId: "Kata ganti tak tentu",
+  titleTr: "Belirsiz zamirler",
+  titlePl: "Zaimki nieokreślone",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -10682,6 +11003,11 @@ const THEORY: Record<number, TheoryContent> = {
 22: {
   titleRU: 'Герундий: -ing как действие-идея',
   titleUK: 'Герундій: -ing як дія-ідея',
+  titlePtBr: "Gerúndio: -ing como ideia de ação",
+  titleVi: "Danh động từ: -ing như một ý hành động",
+  titleId: "Gerund: -ing sebagai ide tindakan",
+  titleTr: "Gerund: eylem fikri olarak -ing",
+  titlePl: "Gerund: -ing jako idea czynności",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -11476,6 +11802,11 @@ const THEORY: Record<number, TheoryContent> = {
 23: {
   titleRU: 'Пассивный залог: Present Simple',
   titleUK: 'Пасивний стан: Present Simple',
+  titlePtBr: "Voz passiva: Present Simple",
+  titleVi: "Câu bị động: Present Simple",
+  titleId: "Kalimat pasif: Present Simple",
+  titleTr: "Edilgen çatı: Present Simple",
+  titlePl: "Strona bierna: Present Simple",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -12061,6 +12392,11 @@ const THEORY: Record<number, TheoryContent> = {
 24: {
   titleRU: 'Present Perfect: have / has + V3',
   titleUK: 'Present Perfect (have/has + V3)',
+  titlePtBr: "Present Perfect: have / has + V3",
+  titleVi: "Present Perfect: have / has + V3",
+  titleId: "Present Perfect: have / has + V3",
+  titleTr: "Present Perfect: have / has + V3",
+  titlePl: "Present Perfect: have / has + V3",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -12854,6 +13190,11 @@ const THEORY: Record<number, TheoryContent> = {
 25: {
   titleRU: 'Past Continuous: действие было в процессе',
   titleUK: 'Past Continuous: дія була в процесі',
+  titlePtBr: "Past Continuous: ação em progresso",
+  titleVi: "Past Continuous: hành động đang diễn ra trong quá khứ",
+  titleId: "Past Continuous: tindakan sedang berlangsung",
+  titleTr: "Past Continuous: devam eden geçmiş eylem",
+  titlePl: "Past Continuous: czynność w trakcie",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -13489,6 +13830,11 @@ const THEORY: Record<number, TheoryContent> = {
 26: {
   titleRU: 'Условные предложения: if',
   titleUK: 'Умовні речення: if',
+  titlePtBr: "Orações condicionais: if",
+  titleVi: "Câu điều kiện: if",
+  titleId: "Kalimat pengandaian: if",
+  titleTr: "Koşul cümleleri: if",
+  titlePl: "Zdania warunkowe: if",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -14341,6 +14687,11 @@ const THEORY: Record<number, TheoryContent> = {
 27: {
   titleRU: 'Косвенная речь: said that / told me that',
   titleUK: 'Непряма мова: said that / told me that',
+  titlePtBr: "Discurso indireto: said that / told me that",
+  titleVi: "Câu tường thuật: said that / told me that",
+  titleId: "Kalimat tidak langsung: said that / told me that",
+  titleTr: "Dolaylı anlatım: said that / told me that",
+  titlePl: "Mowa zależna: said that / told me that",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -15250,6 +15601,11 @@ const THEORY: Record<number, TheoryContent> = {
 28: {
   titleRU: 'Возвратные местоимения: myself, yourself',
   titleUK: 'Зворотні займенники: myself, yourself',
+  titlePtBr: "Pronomes reflexivos: myself, yourself",
+  titleVi: "Đại từ phản thân: myself, yourself",
+  titleId: "Kata ganti refleksif: myself, yourself",
+  titleTr: "Dönüşlü zamirler: myself, yourself",
+  titlePl: "Zaimki zwrotne: myself, yourself",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -16120,6 +16476,11 @@ const THEORY: Record<number, TheoryContent> = {
 29: {
   titleRU: 'Used to: раньше было, а сейчас нет',
   titleUK: 'Used to: раніше було, а зараз ні',
+  titlePtBr: "Used to: antes era assim, agora não",
+  titleVi: "Used to: trước đây có, bây giờ không",
+  titleId: "Used to: dulu begitu, sekarang tidak",
+  titleTr: "Used to: eskiden vardı, şimdi yok",
+  titlePl: "Used to: kiedyś tak było, teraz nie",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -16902,6 +17263,11 @@ const THEORY: Record<number, TheoryContent> = {
 30: {
   titleRU: 'Относительные предложения: who, that, where, whose',
   titleUK: 'Відносні речення: who, that, where, whose',
+  titlePtBr: "Orações relativas: who, that, where, whose",
+  titleVi: "Mệnh đề quan hệ: who, that, where, whose",
+  titleId: "Klausa relatif: who, that, where, whose",
+  titleTr: "İlgi cümleleri: who, that, where, whose",
+  titlePl: "Zdania względne: who, that, where, whose",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -17676,6 +18042,11 @@ const THEORY: Record<number, TheoryContent> = {
 31: {
   titleRU: 'Сложные конструкции: make, let, feel, hear, would rather',
   titleUK: 'Складні конструкції: make, let, feel, hear, would rather',
+  titlePtBr: "Construções complexas: make, let, feel, hear, would rather",
+  titleVi: "Cấu trúc phức tạp: make, let, feel, hear, would rather",
+  titleId: "Konstruksi kompleks: make, let, feel, hear, would rather",
+  titleTr: "Karmaşık yapılar: make, let, feel, hear, would rather",
+  titlePl: "Złożone konstrukcje: make, let, feel, hear, would rather",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -18414,6 +18785,11 @@ const THEORY: Record<number, TheoryContent> = {
 32: {
   titleRU: 'Финальный смешанный урок',
   titleUK: 'Фінальний змішаний урок',
+  titlePtBr: "Aula final mista",
+  titleVi: "Bài học tổng hợp cuối cùng",
+  titleId: "Pelajaran campuran terakhir",
+  titleTr: "Son karma ders",
+  titlePl: "Ostatnia lekcja mieszana",
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
@@ -19336,19 +19712,35 @@ export default function LessonHelp() {
   const rawId = Array.isArray(id) ? id[0] : id;
   const rawLessonId = Array.isArray(lessonIdParam) ? lessonIdParam[0] : lessonIdParam;
   const lessonId = Number(rawId || rawLessonId) || 1;
+  const { studyTarget } = useStudyTarget();
   useEffect(() => {
     let cancelled = false;
-    void shouldBlockLessonAccess(lessonId).then(blocked => {
+    void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
       if (!cancelled && blocked) openLessonAccessGate(router, lessonId);
     });
     return () => { cancelled = true; };
-  }, [lessonId, router]);
+  }, [lessonId, router, studyTarget]);
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
+  const isFrenchTarget = frenchStudyActive(studyTarget);
+  const frenchTheoryAllowed = !isFrenchTarget || lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId);
+  const frenchTheoryScreens = isFrenchTarget && frenchTheoryAllowed ? getFrenchLessonIntroScreens(lessonId) : undefined;
   const theory = THEORY[lessonId];
   const theoryTitleEs = theoryTitleEsFor(lessonId, theory);
-  const isUK = lang === 'uk';
+  const plannedLocale = plannedTheoryLocale(lang);
+  const plannedTheoryScreens = plannedLocale && !isFrenchTarget ? getLessonIntroScreens(lessonId, studyTarget) : undefined;
+  const legacyLang = legacyUiLang(lang);
+  const renderLegacyAsUk = legacyLang === 'uk';
+  const renderSpanishTheory = legacyLang === 'es' && theory ? hasSpanishTheoryContent(theory) : false;
+  const showSpanishTheoryNotice = legacyLang === 'es' && !isFrenchTarget && theory ? !hasSpanishTheoryContent(theory) : false;
+  const frenchTheoryTitle = frenchTheoryScreens?.[0]
+    ? introTitleForUi(frenchTheoryScreens[0], lang)
+    : undefined;
+  const frenchTheoryGateCopy = isFrenchTarget && !frenchTheoryAllowed
+    ? frenchLessonSupportGateCopy('lesson_theory', lang, lessonId)
+    : null;
+  const canClaimTheoryXp = !isFrenchTarget || Boolean(frenchTheoryScreens?.length);
   const [xpClaimed, setXpClaimed] = useState(false);
   const [xpShown, setXpShown] = useState(false);
   const [earnedXP, setEarnedXP] = useState(0);
@@ -19356,17 +19748,21 @@ export default function LessonHelp() {
   const xpAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    updateTaskProgress('open_theory', 1).catch(() => {});
-    const key = `theory_xp_claimed_${lessonId}`;
+    if (canClaimTheoryXp) {
+      updateTaskProgress('open_theory', 1, studyTarget).catch(() => {});
+    }
+    const key = lessonTheoryXpClaimedKey(lessonId, studyTarget);
+    setXpClaimed(false);
+    if (!canClaimTheoryXp) return;
     AsyncStorage.getItem(key).then(v => { if (v === '1') setXpClaimed(true); }).catch(() => {});
     getCurrentMultiplier().then(m => {
       setPreviewXP(Math.round(25 * m));
     }).catch(() => {});
-  }, [lessonId]);
+  }, [canClaimTheoryXp, lessonId, studyTarget]);
 
   const handleClaimXP = async () => {
-    if (xpClaimed) return;
-    const key = `theory_xp_claimed_${lessonId}`;
+    if (xpClaimed || !canClaimTheoryXp) return;
+    const key = lessonTheoryXpClaimedKey(lessonId, studyTarget);
     await AsyncStorage.setItem(key, '1');
     setXpClaimed(true);
     // Показываем previewXP сразу, потом обновим на реальный finalDelta
@@ -19394,6 +19790,27 @@ export default function LessonHelp() {
         ]).start(() => setXpShown(false));
       });
   };
+
+  const unavailableTheoryTitle = triLang(lang, {
+    uk: `Урок ${lessonId}`,
+    ru: `Урок ${lessonId}`,
+    es: `Lección ${lessonId}`,
+    'pt-BR': `Lição ${lessonId}`,
+    vi: `Bài ${lessonId}`,
+    id: `Pelajaran ${lessonId}`,
+    tr: `Ders ${lessonId}`,
+    pl: `Lekcja ${lessonId}`,
+  });
+  const unavailableTheoryText = triLang(lang, {
+    uk: `Теорія для уроку ${lessonId} незабаром з'явиться. Продовжуй практикуватись!`,
+    ru: `Теория для урока ${lessonId} скоро появится. Продолжай практиковаться!`,
+    es: `La teoría de la lección ${lessonId} estará disponible pronto. ¡Sigue practicando!`,
+    'pt-BR': `A teoria da lição ${lessonId} estará disponível em breve. Continue praticando!`,
+    vi: `Lý thuyết của bài ${lessonId} sẽ sớm có. Hãy tiếp tục luyện tập!`,
+    id: `Teori untuk pelajaran ${lessonId} akan segera tersedia. Tetap berlatih!`,
+    tr: `${lessonId}. dersin teorisi yakında hazır olacak. Pratik yapmaya devam et!`,
+    pl: `Teoria do lekcji ${lessonId} pojawi się wkrótce. Ćwicz dalej!`,
+  });
 
   return (
     <ScreenGradient>
@@ -19425,27 +19842,11 @@ export default function LessonHelp() {
             })}
           </Text>
           <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }} numberOfLines={1}>
-            {theory
-              ? triLang(lang, {
-                  uk: theory.titleUK,
-                  ru: theory.titleRU,
-                  es: theoryTitleEs,
-                  'pt-BR': plannedTheoryTitle(lessonId, 'ptBR', theoryTitleEs),
-                  vi: plannedTheoryTitle(lessonId, 'vi', theoryTitleEs),
-                  id: plannedTheoryTitle(lessonId, 'id', theoryTitleEs),
-                  tr: plannedTheoryTitle(lessonId, 'tr', theoryTitleEs),
-                  pl: plannedTheoryTitle(lessonId, 'pl', theoryTitleEs),
-                })
-              : triLang(lang, {
-                  uk: `Урок ${lessonId}`,
-                  ru: `Урок ${lessonId}`,
-                  es: `Lección ${lessonId}`,
-                  'pt-BR': `Lição ${lessonId}`,
-                  vi: `Bài ${lessonId}`,
-                  id: `Pelajaran ${lessonId}`,
-                  tr: `Ders ${lessonId}`,
-                  pl: `Lekcja ${lessonId}`,
-                })}
+            {isFrenchTarget
+              ? (frenchTheoryGateCopy?.title ?? frenchTheoryTitle ?? unavailableTheoryTitle)
+              : theory
+              ? theoryTitleForLang(lessonId, theory, lang, theoryTitleEs)
+              : unavailableTheoryTitle}
           </Text>
           <Text style={{ color: sx.muted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
             {triLang(lang, {
@@ -19467,30 +19868,46 @@ export default function LessonHelp() {
         contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
         showsVerticalScrollIndicator={true}
       >
-        {lang === 'es' && theory && !hasSpanishTheoryContent(theory) ? (
+        {showSpanishTheoryNotice ? (
           <Warn
             t={t}
             f={f}
             text="La teoría detallada está, por ahora, solo en ruso o en ucraniano; los ejemplos en inglés no cambian. Poco a poco añadiremos estas explicaciones también en español."
           />
         ) : null}
-        {theory ? (
-          lang === 'es' && hasSpanishTheoryContent(theory) ? theory.renderES!(t, f) : theory.render(t, isUK, f)
-        ) : (
+        {isFrenchTarget && frenchTheoryGateCopy ? (
           <Body
-            key="fallback"
+            key="french-theory-source-gate"
             t={t}
             f={f}
-            text={triLang(lang, {
-              uk: `Теорія для уроку ${lessonId} незабаром з\'явиться. Продовжуй практикуватись!`,
-              ru: `Теория для урока ${lessonId} скоро появится. Продолжай практиковаться!`,
-              es: `La teoría de la lección ${lessonId} estará disponible pronto. ¡Sigue practicando!`,
-              'pt-BR': `A teoria da lição ${lessonId} estará disponível em breve. Continue praticando!`,
-              vi: `Lý thuyết của bài ${lessonId} sẽ sớm có. Hãy tiếp tục luyện tập!`,
-              id: `Teori untuk pelajaran ${lessonId} akan segera tersedia. Tetap berlatih!`,
-              tr: `${lessonId}. dersin teorisi yakında hazır olacak. Pratik yapmaya devam et!`,
-              pl: `Teoria do lekcji ${lessonId} pojawi się wkrótce. Ćwicz dalej!`,
-            })}
+            text={frenchTheoryGateCopy.body}
+          />
+        ) : isFrenchTarget && frenchTheoryScreens?.length ? (
+          renderFrenchTheoryFromIntroScreens(frenchTheoryScreens, t, lang, f)
+        ) : isFrenchTarget ? (
+          <Body
+            key="unavailable"
+            t={t}
+            f={f}
+            text={unavailableTheoryText}
+          />
+        ) : plannedTheoryScreens?.length ? (
+          renderFrenchTheoryFromIntroScreens(plannedTheoryScreens, t, lang, f)
+        ) : plannedLocale ? (
+          <Body
+            key="planned-locale-theory-unavailable"
+            t={t}
+            f={f}
+            text={unavailableTheoryText}
+          />
+        ) : theory ? (
+          renderSpanishTheory ? theory.renderES!(t, f) : theory.render(t, renderLegacyAsUk, f)
+        ) : (
+          <Body
+            key="unavailable"
+            t={t}
+            f={f}
+            text={unavailableTheoryText}
           />
         )}
 
@@ -19502,6 +19919,7 @@ export default function LessonHelp() {
         />
 
         {/* XP reward button at the bottom of theory */}
+        {canClaimTheoryXp ? (
         <View style={{ marginTop: 32, marginBottom: 8, alignItems: 'center' }}>
           <TouchableOpacity
             onPress={handleClaimXP}
@@ -19549,12 +19967,13 @@ export default function LessonHelp() {
               opacity: xpAnim,
               transform: [{ translateY: xpAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }],
             }}>
-              <XpGainBadge amount={earnedXP} visible={xpShown} style={{ color: '#F5A623', fontSize: f.h2, fontWeight: '700' }} />
-            </Animated.View>
+            <XpGainBadge amount={earnedXP} visible={xpShown} style={{ color: '#F5A623', fontSize: f.h2, fontWeight: '700' }} />
+          </Animated.View>
           )}
         </View>
+        ) : null}
       </ScrollView>
-      </ContentWrap>
+    </ContentWrap>
     </SafeAreaView>
     </ScreenGradient>
   );

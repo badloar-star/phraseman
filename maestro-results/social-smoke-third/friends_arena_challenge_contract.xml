@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="iPhone 17 Pro - iOS 26.4 - 4BDF4A55-6A84-4499-BD9E-13825AB77B3D" tests="1" failures="1" time="87.0">
+    <testcase id="friends_arena_challenge_contract" name="friends_arena_challenge_contract" classname="friends_arena_challenge_contract" time="87.0" status="ERROR">
+      <failure>Assertion is false: id: friends-row-.* is visible</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

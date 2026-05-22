@@ -39,6 +39,24 @@ describe('lessonNamesForLang(es)', () => {
   });
 });
 
+describe('lessonNamesForLang planned locales', () => {
+  it.each(['pt-BR', 'vi', 'id', 'tr', 'pl'] as const)('returns 32 localized lesson names for %s', (lang) => {
+    const names = lessonNamesForLang(lang);
+    expect(names).toHaveLength(32);
+    expect(names[0]).toBeTruthy();
+    expect(names[31]).toBeTruthy();
+    expect(names.join(' ')).not.toMatch(/[А-Яа-яЁёЇїІіЄєҐґ]{3,}/);
+  });
+
+  it('does not fall back to Russian lesson names for planned locales', () => {
+    expect(lessonNamesForLang('pt-BR')[0]).toBe('Pronomes pessoais e verbo to be');
+    expect(lessonNamesForLang('vi')[0]).toBe('Đại từ nhân xưng và động từ to be');
+    expect(lessonNamesForLang('id')[0]).toBe('Pronomina persona dan kata kerja to be');
+    expect(lessonNamesForLang('tr')[0]).toBe('Kişi zamirleri ve to be fiili');
+    expect(lessonNamesForLang('pl')[0]).toBe('Zaimki osobowe i czasownik to be');
+  });
+});
+
 describe('buildCelebrationShareBody — ES', () => {
   it('для медали возвращает испаноязычную строку с Phraseman', () => {
     const body = buildCelebrationShareBody('medal', 'es', 4, 88, { medalTier: 'gold' });

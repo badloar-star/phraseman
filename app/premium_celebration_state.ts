@@ -3,8 +3,8 @@
 //
 // Поток:
 //  1. Юзер купил Premium через RevenueCat → premium_modal.tsx → markCelebrationPending()
-//  2. ИЛИ: cloud_sync обнаружил admin_premium_override (выдал админ через index.html)
-//     с новым premium_admin_grant_at → markCelebrationPending()
+//  2. Legacy only: старые admin_grant-маркеры больше не должны поднимать
+//     Premium-модалку; новая админская выдача живет в vip_celebration_state.ts.
 //  3. На следующем mount home.tsx (useFocusEffect) → isCelebrationPending() === true
 //     → PremiumCelebrationModal show → onClose: consumeCelebration(marker)
 //  4. seen_marker запоминается, чтобы повторная админ-выдача с новым timestamp
@@ -58,7 +58,7 @@ export async function getPendingCelebrationMarker(): Promise<string | null> {
 /**
  * Выставить pending. Вызывается из:
  *  - premium_modal.tsx после успешной IAP-покупки,
- *  - cloud_sync.ts когда admin выдал premium через index.html (новый timestamp).
+ *  - legacy callers only; admin/index.html now issues VIP, not Premium.
  */
 export async function markCelebrationPending(marker?: string | null): Promise<void> {
   try {
@@ -74,11 +74,11 @@ export async function markCelebrationPending(marker?: string | null): Promise<vo
 
 /**
  * Погасить pending после показа модалки. seenMarker сохраняется чтобы при
- * повторной админ-выдаче (новый premium_admin_grant_at) celebration сработала
- * снова — а та же выдача дважды не сработала.
+ * повторной legacy-выдаче (новый premium_admin_grant_at) celebration сработала
+ * снова, если старый код еще вызовет этот путь.
  *
  * Для IAP-покупки можно передать `'iap_<productId>_<timestamp>'`.
- * Для admin-grant — timestamp из progress.premium_admin_grant_at.
+ * Для legacy admin-grant — timestamp из progress.premium_admin_grant_at.
  */
 export async function consumeCelebration(seenMarker?: string | null): Promise<void> {
   try {
@@ -124,8 +124,8 @@ async function getLastSeenAdminMarker(): Promise<string | null> {
 }
 
 /**
- * Вызывается из cloud_sync при чтении users/{uid}.progress.
- * Если admin выставил новый premium_admin_grant_at (через admin/index.html) — поднимает pending.
+ * Legacy helper. Новый admin/index.html пишет VIP и должен использовать
+ * vip_celebration_state.ts, чтобы не выдавать золотую Premium-анимацию.
  *
  * grantAt — строка с unix-ms timestamp из cloud doc. null/undefined/'' — игнор.
  */

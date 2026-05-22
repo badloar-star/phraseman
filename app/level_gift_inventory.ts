@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type { GiftDef } from './level_gift_system';
+import { sanitizeLevelGiftForStudyTarget, type GiftDef } from './level_gift_system';
+import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 export const UNCLAIMED_GIFTS_KEY = 'unclaimed_level_gifts';
 export const CLAIMED_GIFTS_KEY = 'claimed_level_gifts';
@@ -29,7 +30,7 @@ export type PendingLevelGiftInventoryItem =
       giftCount: 2;
     };
 
-let pendingInventoryCache: PendingLevelGiftInventoryItem[] | null = null;
+let pendingInventoryCache: { target: ReturnType<typeof storageStudyTarget>; items: PendingLevelGiftInventoryItem[] } | null = null;
 
 const parseJsonRecord = <T>(raw: string | null): Record<number, T> => {
   if (!raw) return {};
@@ -73,8 +74,10 @@ const refreshPendingGiftCountCache = async (): Promise<number> => {
   return count;
 };
 
-export const getPendingLevelGiftInventoryCache = (): PendingLevelGiftInventoryItem[] =>
-  pendingInventoryCache ? [...pendingInventoryCache] : [];
+export const getPendingLevelGiftInventoryCache = (studyTarget?: RuntimeStudyTarget): PendingLevelGiftInventoryItem[] => {
+  const target = storageStudyTarget(studyTarget);
+  return pendingInventoryCache?.target === target ? [...pendingInventoryCache.items] : [];
+};
 
 /** Save claimed gift rarity for display purposes. */
 export const saveClaimedGiftRarity = async (level: number, rarity: string): Promise<void> => {
@@ -230,36 +233,48 @@ export const loadDualClaimedLevels = async (): Promise<Set<number>> => {
   }
 };
 
-export const loadPendingLevelGiftInventory = async (): Promise<PendingLevelGiftInventoryItem[]> => {
+export const loadPendingLevelGiftInventory = async (
+  studyTarget?: RuntimeStudyTarget,
+): Promise<PendingLevelGiftInventoryItem[]> => {
   const [single, dual] = await Promise.all([
     loadUnclaimedGifts(),
     loadUnclaimedDualGifts(),
   ]);
+  const target = storageStudyTarget(studyTarget);
+  const sanitizeGift = (gift: GiftDef): GiftDef => sanitizeLevelGiftForStudyTarget(gift, target);
 
   const singleItems: PendingLevelGiftInventoryItem[] = Object.entries(single)
     .map(([level, gift]) => ({
       kind: 'single' as const,
       level: Number(level),
-      gift,
+      gift: sanitizeGift(gift),
       giftCount: 1 as const,
     }));
   const dualItems: PendingLevelGiftInventoryItem[] = Object.entries(dual)
-    .flatMap(([level, pair]) => ([
-      {
-        kind: 'single' as const,
-        level: Number(level),
-        gift: pair.f2p,
-        giftCount: 1 as const,
-        dualPart: 'f2p' as const,
-      },
-      {
-        kind: 'single' as const,
-        level: Number(level),
-        gift: pair.prem,
-        giftCount: 1 as const,
-        dualPart: 'prem' as const,
-      },
-    ]));
+    .flatMap(([level, pair]) => {
+      const f2p = pair.f2p ? sanitizeGift(pair.f2p) : null;
+      const prem = pair.prem ? sanitizeGift(pair.prem) : null;
+      const items: PendingLevelGiftInventoryItem[] = [];
+      if (f2p) {
+        items.push({
+          kind: 'single' as const,
+          level: Number(level),
+          gift: f2p,
+          giftCount: 1 as const,
+          dualPart: 'f2p' as const,
+        });
+      }
+      if (prem) {
+        items.push({
+          kind: 'single' as const,
+          level: Number(level),
+          gift: prem,
+          giftCount: 1 as const,
+          dualPart: 'prem' as const,
+        });
+      }
+      return items;
+    });
 
   const items = [...singleItems, ...dualItems]
     .filter((item) => Number.isFinite(item.level))
@@ -269,12 +284,12 @@ export const loadPendingLevelGiftInventory = async (): Promise<PendingLevelGiftI
         item.kind === 'single' && item.dualPart === 'prem' ? 1 : 0;
       return partOrder(a) - partOrder(b);
     });
-  pendingInventoryCache = items;
+  pendingInventoryCache = { target, items };
   return items;
 };
 
-export const loadPendingLevelGiftCount = async (): Promise<number> => {
-  const items = await loadPendingLevelGiftInventory();
+export const loadPendingLevelGiftCount = async (studyTarget?: RuntimeStudyTarget): Promise<number> => {
+  const items = await loadPendingLevelGiftInventory(studyTarget);
   const count = items.reduce((sum, item) => sum + item.giftCount, 0);
   await writePendingGiftCountCache(count);
   return count;

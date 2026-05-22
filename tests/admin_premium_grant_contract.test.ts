@@ -4,19 +4,45 @@ import path from 'path';
 describe('admin premium grant contract', () => {
   const html = fs.readFileSync(path.join(process.cwd(), 'admin', 'index.html'), 'utf8');
 
-  it('keeps timed admin premium grants compatible with installed app builds', () => {
-    expect(html).toMatch(/plan\s*=\s*'admin_grant'/);
-    expect(html).toMatch(/'progress\.premium_plan'\s*:\s*plan/);
-    expect(html).toContain('legacy-compatible <code>admin_grant</code>');
+  it('writes admin grants as VIP fields instead of premium fields', () => {
+    expect(html).toMatch(/'progress\.vip_active'\s*:\s*'true'/);
+    expect(html).toMatch(/'progress\.vip_plan'\s*:\s*plan/);
+    expect(html).toMatch(/'progress\.vip_until'\s*:\s*expiryStr/);
+    expect(html).toMatch(/'progress\.vip_admin_grant_at'\s*:\s*grantAt/);
+    expect(html).not.toMatch(/'progress\.premium_plan'\s*:\s*plan/);
   });
 
-  it('keeps forever and bulk grants as annual', () => {
-    expect(html).toMatch(/'progress\.premium_plan'\s*:\s*'annual'/);
+  it('shows VIP as a separate admin section instead of hiding it inside Premium', () => {
+    expect(html).toContain("switchTab('vip')");
+    expect(html).toContain('id="tab-vip"');
+    expect(html).toContain('window.renderVipList');
+    expect(html).toContain('window.loadVipData');
+    expect(html).toContain('💚 Выдать VIP');
+    expect(html).toContain('Снять VIP');
+    expect(html).toContain("if (tab === 'vip'");
+    expect(html).toContain("'premium','vip'");
   });
 
-  it('keeps a repair action for legacy forever admin_grant documents only', () => {
+  it('keeps forever and bulk grants as admin_vip, not annual Premium', () => {
+    expect(html).toMatch(/plan\s*=\s*'admin_vip'/);
+    expect(html).toMatch(/'progress\.vip_plan'\s*:\s*'admin_vip'/);
+    expect(html).not.toMatch(/'progress\.premium_plan'\s*:\s*'annual'/);
+  });
+
+  it('does not allow new manual admin_grant writes through the Premium debug editor', () => {
+    expect(html).toMatch(/allowed\s*=\s*new Set\(\['monthly', 'annual', 'yearly', 'null', ''\]\)/);
+    expect(html).toContain('Для админской выдачи используй VIP');
+    expect(html).not.toContain("new Set(['monthly', 'annual', 'yearly', 'admin_grant'");
+  });
+
+  it('extends timed VIP from the current VIP expiry only, never from real Premium expiry', () => {
+    expect(html).toMatch(/rawProg \|\| \{\}\)\.vip_until \|\| '0'/);
+    expect(html).not.toMatch(/vip_until \|\| \(rawProg \|\| \{\}\)\.premium_expiry/);
+  });
+
+  it('keeps a repair action that migrates legacy admin_grant documents into VIP', () => {
     expect(html).toContain('repairAdminGrantPremiumCompat');
     expect(html).toContain("where('progress.premium_plan', '==', 'admin_grant')");
-    expect(html).toContain('adminOverride && expiry === 0');
+    expect(html).toContain("'progress.vip_migrated_from_admin_grant_at'");
   });
 });

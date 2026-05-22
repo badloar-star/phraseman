@@ -10,11 +10,15 @@ import {
   canUseProfileCardPublicFocus,
   canUseProfileCardTheme,
   getNextProfileCardLevel,
+  getProfileCardPublicFocusDef,
   getProfileCardSnapshot,
+  getProfileCardThemeDef,
   normalizeProfileCardLevel,
   setProfileCardTheme,
   upgradeProfileCardLevel,
 } from '../app/profile_card_system';
+import fs from 'fs';
+import path from 'path';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
@@ -49,6 +53,17 @@ describe('profile_card_system', () => {
     expect(canUseProfileCardMotion(3, 'gleam')).toBe(true);
     expect(canUseProfileCardPublicFocus(3, 'xp')).toBe(false);
     expect(canUseProfileCardPublicFocus(4, 'xp')).toBe(true);
+  });
+
+  it('keeps profile default resolvers away from runtime fallback audit patterns', () => {
+    const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'profile_card_system.ts'), 'utf8');
+    const legacyRuntimeRe = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
+
+    expect(source).toContain('const DEFAULT_PROFILE_CARD_THEME_DEF');
+    expect(source).toContain('const DEFAULT_PROFILE_CARD_PUBLIC_FOCUS_DEF');
+    expect(source).not.toMatch(legacyRuntimeRe);
+    expect(getProfileCardThemeDef('classic').id).toBe('classic');
+    expect(getProfileCardPublicFocusDef('balanced').id).toBe('balanced');
   });
 
   it('reads a normalized snapshot from storage', async () => {

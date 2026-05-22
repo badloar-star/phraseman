@@ -8,8 +8,8 @@
 // `if (__DEV__)` физически не попадает в production-бандл.
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
-import { Redirect } from 'expo-router';
 import { IS_STORE_RELEASE } from './config';
+import { DeferredRedirect } from '../components/DeferredRedirect';
 
 export default function AdminIntroPreviewGate() {
   if (__DEV__ && !IS_STORE_RELEASE) {
@@ -17,5 +17,5 @@ export default function AdminIntroPreviewGate() {
     const Real = require('./_admin_intro_preview').default;
     return <Real />;
   }
-  return <Redirect href={'/(tabs)/' as any} />;
+  return <DeferredRedirect href={'/(tabs)/' as any} />;
 }

@@ -38,9 +38,9 @@ describe('i18n helpers', () => {
     });
   });
 
-  describe('planned interface languages', () => {
-    it('keeps future Heisenberg interface languages visible but not selectable yet', () => {
-      expect(PLANNED_INTERFACE_LANGS).toEqual(['pt-BR', 'vi', 'id', 'tr', 'pl']);
+  describe('Heisenberg interface languages', () => {
+    it('keeps all Heisenberg interface languages visible and selectable', () => {
+      expect(PLANNED_INTERFACE_LANGS).toEqual([]);
       expect(INTERFACE_LANGUAGE_OPTIONS.map((option) => option.code)).toEqual([
         'ru',
         'uk',
@@ -52,13 +52,13 @@ describe('i18n helpers', () => {
         'pl',
       ]);
 
-      for (const lang of PLANNED_INTERFACE_LANGS) {
-        expect(isInterfaceLangEnabled(lang)).toBe(false);
-        expect(coerceInterfaceLang(lang)).toBeNull();
+      for (const lang of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+        expect(isInterfaceLangEnabled(lang)).toBe(true);
+        expect(coerceInterfaceLang(lang)).toBe(lang);
       }
     });
 
-    it('lets triLang store planned locale copy without enabling those locales', () => {
+    it('returns active Heisenberg locale copy from triLang', () => {
       const copy = {
         ru: 'RU',
         uk: 'UK',
@@ -73,7 +73,11 @@ describe('i18n helpers', () => {
       expect(triLang('ru', copy)).toBe('RU');
       expect(triLang('uk', copy)).toBe('UK');
       expect(triLang('es', copy)).toBe('ES');
-      expect(coerceInterfaceLang('pt-BR')).toBeNull();
+      expect(triLang('pt-BR', copy)).toBe('PT');
+      expect(triLang('vi', copy)).toBe('VI');
+      expect(triLang('id', copy)).toBe('ID');
+      expect(triLang('tr', copy)).toBe('TR');
+      expect(triLang('pl', copy)).toBe('PL');
     });
   });
 });

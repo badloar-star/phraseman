@@ -1,0 +1,91 @@
+{
+  "generatedAt": "2026-05-21T11:01:33.399Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 648,
+    "triLangCalls": 1650,
+    "staticTriLangCalls": 1650,
+    "dynamicTriLangCalls": 0,
+    "legacyLangHelperCalls": 0,
+    "localeObjectFindings": 3,
+    "triLangMissingLocaleUnits": 0,
+    "triLangMissingAllPlannedUnits": 0,
+    "helperMissingLocaleUnits": 0,
+    "localeObjectMissingLocaleUnits": 13,
+    "localeObjectMissingAllPlannedUnits": 1,
+    "bundleMissingLocaleUnits": 0,
+    "findings": 3,
+    "byCode": {
+      "locale-object-missing-all-planned-locales": 1,
+      "locale-object-missing-planned-locales": 2
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/community_pack_create.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 9
+    },
+    {
+      "file": "app/community_packs/communityFirestore.ts",
+      "findings": 1,
+      "missingLocaleUnits": 4
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-all-planned-locales",
+      "file": "app/community_pack_create.tsx",
+      "line": 557,
+      "column": 15,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ ...row, en, ru, es: es || undefined, uk: note, sourceLocales: communitySourceLocalesWith(row.sourceLocales, plannedDraftLocale, translation), }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-planned-locales",
+      "file": "app/community_pack_create.tsx",
+      "line": 571,
+      "column": 29,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ id: `c${r.length + 1}`, en, ru, es: es || undefined, uk: note, sourceLocales: communitySourceLocalesWith(undefined, plannedDraftLocale, translation), }"
+    },
+    {
+      "severity": "warning",
+      "code": "locale-object-missing-planned-locales",
+      "file": "app/community_packs/communityFirestore.ts",
+      "line": 244,
+      "column": 14,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "message": "Object literal has ru/uk/es locale keys, but planned interface locales are not present yet.",
+      "sample": "{ id: `${packId}_${id}`, en, ru, uk: ru, es: es || undefined, sourceLocales, description: descriptionNote || undefined, categoryId: 'custom', isSystem: true, source: 'lesson', sour"
+    }
+  ]
+}

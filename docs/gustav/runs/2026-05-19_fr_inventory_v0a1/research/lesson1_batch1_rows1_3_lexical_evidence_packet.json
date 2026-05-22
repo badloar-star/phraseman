@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "gustav-french-row-lexical-evidence-packet-v0",
+  "runId": "2026-05-19_fr_inventory_v0a1",
+  "lessonId": 1,
+  "batchId": "lesson1_rows_1_3_lexical_evidence",
+  "studyTarget": "fr",
+  "sourceLocales": ["ru", "uk"],
+  "parentRowReviewPacket": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_batch1_row_review_packet.json",
+  "activationStatus": "blocked",
+  "containsFrenchTargetText": false,
+  "containsWordsFr": false,
+  "mayWriteAppSeed": false,
+  "mayWriteIntroExamples": false,
+  "rows": [
+    {
+      "phraseId": "lesson1_phrase_1",
+      "englishBase": "I am here",
+      "lexicalFocus": ["be", "here"],
+      "evidenceClaimIds": [
+        "fr-l1-be-lexical-risk-cambridge",
+        "fr-l1-row1-here-cambridge"
+      ],
+      "sourceUrls": [
+        "https://dictionary.cambridge.org/us/dictionary/english-french/be",
+        "https://dictionary.cambridge.org/dictionary/english-french/here"
+      ],
+      "rowDecision": "lexical_evidence_started",
+      "remainingBeforeTargetText": [
+        "grammar form review",
+        "RU meaning acceptance",
+        "UK meaning acceptance",
+        "curriculum placement acceptance"
+      ],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_2",
+      "englishBase": "You are ready",
+      "lexicalFocus": ["be", "ready"],
+      "evidenceClaimIds": [
+        "fr-l1-be-lexical-risk-cambridge",
+        "fr-l1-row2-ready-cambridge"
+      ],
+      "sourceUrls": [
+        "https://dictionary.cambridge.org/us/dictionary/english-french/be",
+        "https://dictionary.cambridge.org/dictionary/english-french/ready"
+      ],
+      "rowDecision": "lexical_evidence_started",
+      "remainingBeforeTargetText": [
+        "tu/vous policy acceptance",
+        "adjective agreement review",
+        "RU meaning acceptance",
+        "UK meaning acceptance"
+      ],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    },
+    {
+      "phraseId": "lesson1_phrase_3",
+      "englishBase": "He is busy",
+      "lexicalFocus": ["be", "busy"],
+      "evidenceClaimIds": [
+        "fr-l1-be-lexical-risk-cambridge",
+        "fr-l1-row3-busy-cambridge"
+      ],
+      "sourceUrls": [
+        "https://dictionary.cambridge.org/us/dictionary/english-french/be",
+        "https://dictionary.cambridge.org/dictionary/english-french/busy"
+      ],
+      "rowDecision": "lexical_evidence_started",
+      "remainingBeforeTargetText": [
+        "personal-state sense acceptance",
+        "adjective agreement review",
+        "RU meaning acceptance",
+        "UK meaning acceptance"
+      ],
+      "reviewerStatus": "needs_review",
+      "activationStatus": "blocked"
+    }
+  ],
+  "nextRequiredAction": "Add grammar-form and RU/UK meaning acceptance for rows 1-3 before any French target text is written."
+}

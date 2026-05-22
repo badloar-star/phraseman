@@ -5,21 +5,26 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
+const CAN_COULD_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre can/could ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về can/could này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan can/could ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu can/could açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie can/could nadal wymaga przeglądu po polsku.',
+};
+
 const tri = (
   ru: string,
   uk = ru,
   es = ru,
   planned: Partial<Record<PlannedTrainingLocale, string>> = {},
-): TriText => ({
-  ru,
-  uk,
-  es,
-  'pt-BR': planned['pt-BR'] ?? es,
-  vi: planned.vi ?? es,
-  id: planned.id ?? es,
-  tr: planned.tr ?? es,
-  pl: planned.pl ?? es,
-});
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? CAN_COULD_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'can + base verb',
@@ -35,26 +40,75 @@ const CONTRAST = [
 const MODEL = tri(
   'Can обычно говорит: я могу сейчас. Could часто говорит: я мог раньше, или звучит вежливее в просьбе. После can и could действие остается коротким: can speak, could help.',
   'Can зазвичай каже: я можу зараз. Could часто каже: я міг раніше, або звучить ввічливіше в проханні. Після can і could дія залишається короткою: can speak, could help.',
-  'Can often means ability now. Could often means past ability or a polite request. After can/could, use the short action form.',
+  'Can suele significar habilidad ahora. Could suele significar habilidad pasada o una peticion mas cortes. Despues de can/could, usa la forma corta.',
+  {
+    'pt-BR': 'Can normalmente diz: eu consigo agora. Could muitas vezes diz: eu conseguia antes, ou soa mais educado em um pedido. Depois de can e could, a ação fica curta: can speak, could help.',
+    vi: 'Can thường nói: tôi có thể bây giờ. Could thường nói: tôi đã có thể trước đây, hoặc nghe lịch sự hơn trong lời yêu cầu. Sau can và could, động từ giữ dạng ngắn: can speak, could help.',
+    id: 'Can biasanya berarti: saya bisa sekarang. Could sering berarti: saya dulu bisa, atau terdengar lebih sopan dalam permintaan. Setelah can dan could, kata kerja tetap pendek: can speak, could help.',
+    tr: 'Can genelde şunu söyler: şimdi yapabiliyorum. Could çoğu zaman eskiden yapabiliyordum anlamı verir ya da istekte daha kibar duyulur. Can ve could sonrasında eylem kısa kalır: can speak, could help.',
+    pl: 'Can zwykle mówi: mogę teraz. Could często mówi: umiałem kiedyś albo brzmi grzeczniej w prośbie. Po can i could czynność zostaje krótka: can speak, could help.',
+  },
 );
+
+const CAN_COULD_SKILL_ES: Record<string, string> = {
+  can_present_ability: 'Can habla de habilidad ahora: I can speak.',
+  can_drive: 'Can no cambia con she: she can drive.',
+  cant_hear: "Can't habla de no poder ahora.",
+  can_base_no_to: 'Despues de can va la forma corta: can wait.',
+  could_base_no_to: 'Despues de could va la forma corta: could help.',
+  she_can_speak_no_s: 'Despues de can no agregues -s: she can speak.',
+  could_past_ability: 'Could marca habilidad pasada.',
+  couldnt_past_negative: "Couldn't marca imposibilidad en el pasado.",
+  past_present_ability_pair: 'Now usa can; when I was a child usa could.',
+  polite_request_could: 'Could you...? suena mas cortes.',
+  permission_could_i: 'Could I...? pide permiso con cortesia.',
+  can_direct_request: 'Can you...? funciona como peticion directa.',
+  mixed_ability_request: 'Can speak = habilidad; Could you help = peticion cortes.',
+  mixed_present_past_negative: "Can = ahora, couldn't = pasado, can't = ahora negativo.",
+  mixed_sentence_correction: "Before usa couldn't; now usa can.",
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = CAN_COULD_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? CAN_COULD_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function canCouldEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = CAN_COULD_SKILL_ES[input.targetSkill] ?? 'Elige por tiempo, tono y forma despues del modal.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retryFor(correct: string, contrast: TriText, finalHint: TriText): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала выбери смысл: умение сейчас, умение раньше, не могу сейчас, не мог раньше или вежливая просьба.',
       'Спочатку обери зміст: уміння зараз, уміння раніше, не можу зараз, не міг раніше або ввічливе прохання.',
-      'First choose the meaning: now, past, negative now, negative past, or polite request.',
+      'Primero elige el sentido: ahora, pasado, negativo ahora, negativo pasado o peticion cortes.',
     ),
     contrast,
     tri(
       'Потом проверь действие после can/could. Нормально: can speak, could help, can drive, couldn\'t sleep.',
       'Потім перевір дію після can/could. Нормально: can speak, could help, can drive, couldn\'t sleep.',
-      'Then check the action after can/could: can speak, could help.',
+      'Luego revisa la accion despues de can/could: can speak, could help.',
     ),
     tri(
       `Ответ здесь: ${correct}. Сначала проверь смысл: сейчас, раньше или просьба. Потом проверь, что после can/could действие короткое.`,
       `Відповідь тут: ${correct}. Спочатку перевір зміст: зараз, раніше чи прохання. Потім перевір, що після can/could дія коротка.`,
-      `The answer here is ${correct}. ${finalHint.es}`,
+      `La respuesta es ${correct}. ${finalHint.es}`,
     ),
   ];
 }
@@ -63,7 +117,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Проверь время, тон просьбы и форму после can/could. Здесь нужен вариант: ${correct}.`,
     `Майже. Перевір час, тон прохання і форму після can/could. Тут потрібен варіант: ${correct}.`,
-    `Almost. Check time, request tone, and the action after can/could. Use: ${correct}.`,
+    `Casi. Revisa el tiempo, el tono de peticion y la accion despues de can/could. Usa: ${correct}.`,
   );
 }
 
@@ -82,35 +136,36 @@ function modalStep(input: {
   finalHint: TriText;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = canCouldEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: withEs(input.translation, esFeedback),
     teachingText: MODEL,
     explanationBlock: MODEL,
     microTask: tri(
       'Выбери кусок, который подходит по времени и тону: can, could, can\'t или couldn\'t.',
       'Обери шматок, який підходить за часом і тоном: can, could, can\'t або couldn\'t.',
-      'Choose the can/could chunk that matches time and tone.',
+      'Elige el bloque can/could que coincide con tiempo y tono.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retryFor(input.correctAnswer, input.contrast, input.finalHint),
+    retryFeedback: retryFor(input.correctAnswer, withEs(input.contrast, esFeedback), withEs(input.finalHint, esFeedback)),
     fallbackExplanation: tri(
       "Коротко: can = могу сейчас. could = мог раньше или вежливая просьба. can't = не могу сейчас. couldn't = не мог раньше. После can/could не добавляй to, -s или -ing.",
       "Коротко: can = можу зараз. could = міг раніше або ввічливе прохання. can't = не можу зараз. couldn't = не міг раніше. Після can/could не додавай to, -s або -ing.",
-      "Short version: can = now, could = past/polite, can't = not now, couldn't = not in the past.",
+      "Corto: can = ahora, could = pasado/cortes, can't = no ahora, couldn't = no en el pasado.",
     ),
     focusWords: input.focusWords,
   };
@@ -122,29 +177,63 @@ export const MODAL_CAN_COULD_ABILITY_REQUEST_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 47,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Can / Could: могу сейчас, мог раньше, просьба',
     'Can / Could: можу зараз, міг раніше, прохання',
     'Can / Could',
+    {
+      'pt-BR': 'Can / Could: consigo agora, conseguia antes, pedido',
+      vi: 'Can / Could: có thể bây giờ, đã có thể trước đây, lời yêu cầu',
+      id: 'Can / Could: bisa sekarang, dulu bisa, permintaan',
+      tr: 'Can / Could: şimdi yapabilirim, eskiden yapabiliyordum, rica',
+      pl: 'Can / Could: mogę teraz, umiałem kiedyś, prośba',
+    },
   ),
-  shortTitle: tri('can / could', 'can / could', 'can / could'),
+  shortTitle: tri('can / could', 'can / could', 'can / could', {
+    'pt-BR': 'can / could',
+    vi: 'can / could',
+    id: 'can / could',
+    tr: 'can / could',
+    pl: 'can / could',
+  }),
   shortDiagnosis: tri(
     'Ты смешиваешь can и could: настоящее умение, прошлое умение, просьбу и форму после модала.',
     'Ти змішуєш can і could: теперішнє вміння, минуле вміння, прохання і форму після модала.',
-    'You mix can/could for ability, past ability, request, and form.',
+    'Mezclas can/could para habilidad actual, habilidad pasada, peticion y forma.',
+    {
+      'pt-BR': 'Você mistura can e could: habilidade atual, habilidade passada, pedido e forma depois do modal.',
+      vi: 'Bạn trộn can và could: khả năng hiện tại, khả năng trong quá khứ, lời yêu cầu và dạng sau modal.',
+      id: 'Kamu mencampur can dan could: kemampuan sekarang, kemampuan masa lalu, permintaan, dan bentuk setelah modal.',
+      tr: 'Can ve could kullanımını karıştırıyorsun: şimdiki beceri, geçmiş beceri, rica ve modal sonrası biçim.',
+      pl: 'Mieszasz can i could: obecną umiejętność, dawną umiejętność, prośbę i formę po modalu.',
+    },
   ),
   diagnosisText: tri(
     'Ошибка обычно не в слове "мочь", а во времени и тоне. I can speak - я могу сейчас. I could swim when I was a child - я мог раньше. Could you help me? - вежливая просьба.',
     'Помилка зазвичай не у слові "могти", а в часі й тоні. I can speak - я можу зараз. I could swim when I was a child - я міг раніше. Could you help me? - ввічливе прохання.',
-    'The mistake is about time and tone, not just the word "can".',
+    'El error esta en el tiempo y el tono, no solo en la palabra "can".',
+    {
+      'pt-BR': 'O erro normalmente não está na ideia de "poder", mas no tempo e no tom. I can speak: consigo agora. I could swim when I was a child: eu conseguia antes. Could you help me?: pedido educado.',
+      vi: 'Lỗi thường không nằm ở nghĩa "có thể", mà ở thời gian và sắc thái. I can speak: tôi có thể bây giờ. I could swim when I was a child: tôi đã có thể trước đây. Could you help me?: lời yêu cầu lịch sự.',
+      id: 'Kesalahan biasanya bukan pada arti "bisa", melainkan pada waktu dan nada. I can speak: saya bisa sekarang. I could swim when I was a child: saya dulu bisa. Could you help me?: permintaan sopan.',
+      tr: 'Hata genelde "yapabilmek" anlamında değil, zaman ve tondadır. I can speak: şimdi yapabiliyorum. I could swim when I was a child: eskiden yapabiliyordum. Could you help me?: kibar bir rica.',
+      pl: 'Błąd zwykle nie leży w znaczeniu "móc", tylko w czasie i tonie. I can speak: mogę teraz. I could swim when I was a child: umiałem kiedyś. Could you help me?: grzeczna prośba.',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     "Can говорит про умение сейчас или прямую просьбу: I can drive, Can you open the window? Could говорит про умение раньше или более вежливую просьбу: I could swim, Could you help me? Негативы: can't / couldn't.",
     "Can говорить про вміння зараз або пряме прохання: I can drive, Can you open the window? Could говорить про вміння раніше або ввічливіше прохання: I could swim, Could you help me? Заперечення: can't / couldn't.",
-    "Can = ability now/direct request. Could = past ability/polite request. Negatives: can't/couldn't.",
+    "Can = habilidad ahora o peticion directa. Could = habilidad pasada o peticion mas cortes. Negativos: can't/couldn't.",
+    {
+      'pt-BR': "Can fala de habilidade agora ou de pedido direto: I can drive, Can you open the window? Could fala de habilidade no passado ou de pedido mais educado: I could swim, Could you help me? Negativos: can't / couldn't.",
+      vi: "Can nói về khả năng hiện tại hoặc lời yêu cầu trực tiếp: I can drive, Can you open the window? Could nói về khả năng trong quá khứ hoặc lời yêu cầu lịch sự hơn: I could swim, Could you help me? Dạng phủ định: can't / couldn't.",
+      id: "Can menyatakan kemampuan sekarang atau permintaan langsung: I can drive, Can you open the window? Could menyatakan kemampuan masa lalu atau permintaan yang lebih sopan: I could swim, Could you help me? Negatif: can't / couldn't.",
+      tr: "Can şimdiki beceriyi ya da doğrudan ricayı anlatır: I can drive, Can you open the window? Could geçmiş beceriyi ya da daha kibar ricayı anlatır: I could swim, Could you help me? Olumsuzlar: can't / couldn't.",
+      pl: "Can mówi o obecnej umiejętności albo bezpośredniej prośbie: I can drive, Can you open the window? Could mówi o dawnej umiejętności albo grzeczniejszej prośbie: I could swim, Could you help me? Przeczenia: can't / couldn't.",
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -170,15 +259,15 @@ export const MODAL_CAN_COULD_ABILITY_REQUEST_TRAINING: DiagnosisTraining = {
       "Couldn't часто означає не міг у минулому: I couldn't sleep last night.",
     ],
     es: [
-      'Can often means ability now.',
-      'Could often means past ability.',
-      'Could makes a request softer.',
-      'Can also makes a direct request.',
-      'After can/could, use the short action form.',
-      'Do not use can to go.',
-      'Do not add -s after can.',
-      "Can't means cannot now.",
-      "Couldn't means could not in the past.",
+      'Can suele significar habilidad ahora.',
+      'Could suele significar habilidad pasada.',
+      'Could hace la peticion mas cortes.',
+      'Can tambien sirve para una peticion directa.',
+      'Despues de can/could, usa la forma corta.',
+      'No uses can to go.',
+      'No agregues -s despues de can.',
+      "Can't significa no puedo ahora.",
+      "Couldn't significa no pude en el pasado.",
     ],
     'pt-BR': [
       'Can muitas vezes indica habilidade agora.',
@@ -241,97 +330,97 @@ export const MODAL_CAN_COULD_ABILITY_REQUEST_TRAINING: DiagnosisTraining = {
       en: 'I can speak English.',
       ru: 'Я могу говорить по-английски.',
       uk: 'Я можу говорити англійською.',
-      es: 'I can speak English.',
+      es: 'Puedo hablar ingles.',
       'pt-BR': 'Posso falar inglês.',
       vi: 'Tôi có thể nói tiếng Anh.',
       id: 'Saya bisa berbicara bahasa Inggris.',
       tr: 'İngilizce konuşabiliyorum.',
       pl: 'Potrafię mówić po angielsku.',
-      why: tri('Это умение сейчас.', 'Це вміння зараз.', 'Ability now.'),
+      why: tri('Это умение сейчас.', 'Це вміння зараз.', 'Habilidad ahora.'),
     },
     {
       en: 'She can drive.',
       ru: 'Она умеет водить.',
       uk: 'Вона вміє водити.',
-      es: 'She can drive.',
+      es: 'Ella sabe conducir.',
       'pt-BR': 'Ela sabe dirigir.',
       vi: 'Cô ấy biết lái xe.',
       id: 'Dia bisa mengemudi.',
       tr: 'Araba kullanabiliyor.',
       pl: 'Ona potrafi prowadzić.',
-      why: tri('С she не говорим cans. Нормально: she can drive.', 'З she не кажемо cans. Нормально: she can drive.', 'No -s after can.'),
+      why: tri('С she не говорим cans. Нормально: she can drive.', 'З she не кажемо cans. Нормально: she can drive.', 'No hay -s despues de can.'),
     },
     {
       en: 'I could swim when I was a child.',
       ru: 'Я умел плавать, когда был ребенком.',
       uk: 'Я вмів плавати, коли був дитиною.',
-      es: 'I could swim when I was a child.',
+      es: 'Sabia nadar cuando era nino.',
       'pt-BR': 'Eu sabia nadar quando era criança.',
       vi: 'Tôi biết bơi khi còn nhỏ.',
       id: 'Saya bisa berenang ketika masih kecil.',
       tr: 'Çocukken yüzebiliyordum.',
       pl: 'Umiałem pływać, gdy byłem dzieckiem.',
-      why: tri('When I was a child уводит в прошлое.', 'When I was a child веде в минуле.', 'Past ability.'),
+      why: tri('When I was a child уводит в прошлое.', 'When I was a child веде в минуле.', 'Habilidad pasada.'),
     },
     {
       en: 'Could you help me?',
       ru: 'Не могли бы вы мне помочь?',
       uk: 'Не могли б ви мені допомогти?',
-      es: 'Could you help me?',
+      es: 'Podria ayudarme?',
       'pt-BR': 'Você poderia me ajudar?',
       vi: 'Bạn có thể giúp tôi được không?',
       id: 'Bisakah Anda membantu saya?',
       tr: 'Bana yardım edebilir misiniz?',
       pl: 'Czy mógłbyś mi pomóc?',
-      why: tri('Could делает просьбу мягче.', 'Could робить прохання мʼякшим.', 'A polite request.'),
+      why: tri('Could делает просьбу мягче.', 'Could робить прохання мʼякшим.', 'Peticion cortes.'),
     },
     {
       en: 'Can you open the window?',
       ru: 'Можешь открыть окно?',
       uk: 'Можеш відкрити вікно?',
-      es: 'Can you open the window?',
+      es: 'Puedes abrir la ventana?',
       'pt-BR': 'Você pode abrir a janela?',
       vi: 'Bạn có thể mở cửa sổ không?',
       id: 'Bisakah kamu membuka jendela?',
       tr: 'Pencereyi açabilir misin?',
       pl: 'Czy możesz otworzyć okno?',
-      why: tri('Can нормально звучит в обычной просьбе.', 'Can нормально звучить у звичайному проханні.', 'A direct request.'),
+      why: tri('Can нормально звучит в обычной просьбе.', 'Can нормально звучить у звичайному проханні.', 'Peticion directa.'),
     },
     {
       en: "I can't hear you.",
       ru: 'Я тебя не слышу.',
       uk: 'Я тебе не чую.',
-      es: "I can't hear you.",
+      es: 'No puedo oirte.',
       'pt-BR': 'Não consigo ouvir você.',
       vi: 'Tôi không nghe thấy bạn.',
       id: 'Saya tidak bisa mendengarmu.',
       tr: 'Seni duyamıyorum.',
       pl: 'Nie słyszę cię.',
-      why: tri("Не могу сейчас = can't.", "Не можу зараз = can't.", 'Cannot now.'),
+      why: tri("Не могу сейчас = can't.", "Не можу зараз = can't.", 'No puedo ahora.'),
     },
     {
       en: "I couldn't sleep last night.",
       ru: 'Я не мог уснуть прошлой ночью.',
       uk: 'Я не міг заснути минулої ночі.',
-      es: "I couldn't sleep last night.",
+      es: 'No pude dormir anoche.',
       'pt-BR': 'Não consegui dormir ontem à noite.',
       vi: 'Tối qua tôi không ngủ được.',
       id: 'Saya tidak bisa tidur tadi malam.',
       tr: 'Dün gece uyuyamadım.',
       pl: 'Nie mogłem spać zeszłej nocy.',
-      why: tri("Last night указывает на прошлое, поэтому couldn't.", "Last night вказує на минуле, тому couldn't.", 'Negative past ability.'),
+      why: tri("Last night указывает на прошлое, поэтому couldn't.", "Last night вказує на минуле, тому couldn't.", 'Imposibilidad en el pasado.'),
     },
     {
       en: 'Could I ask you a question?',
       ru: 'Можно я задам вопрос?',
       uk: 'Можна я поставлю питання?',
-      es: 'Could I ask you a question?',
+      es: 'Podria hacerte una pregunta?',
       'pt-BR': 'Eu poderia fazer uma pergunta?',
       vi: 'Tôi có thể hỏi bạn một câu không?',
       id: 'Bolehkah saya bertanya?',
       tr: 'Size bir soru sorabilir miyim?',
       pl: 'Czy mogę zadać ci pytanie?',
-      why: tri('Could I звучит вежливо.', 'Could I звучить ввічливо.', 'Polite permission/request.'),
+      why: tri('Could I звучит вежливо.', 'Could I звучить ввічливо.', 'Permiso o peticion cortes.'),
     },
   ],
   introBlocks: [
@@ -341,7 +430,7 @@ export const MODAL_CAN_COULD_ABILITY_REQUEST_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты переводишь can и could одним словом "могу". Но английский здесь различает время и тон: сейчас, раньше, обычная просьба, вежливая просьба.',
         'Схоже, ти перекладаєш can і could одним словом "можу". Але англійська тут розрізняє час і тон: зараз, раніше, звичайне прохання, ввічливе прохання.',
-        'Can/could separate time and tone.',
+        'Can/could separan tiempo y tono: ahora, antes, peticion directa o peticion cortes.',
       ),
     },
     {
@@ -350,7 +439,7 @@ export const MODAL_CAN_COULD_ABILITY_REQUEST_TRAINING: DiagnosisTraining = {
       text: tri(
         'Can - могу сейчас. Could - мог раньше или просьба мягче. После них действие не получает to, -s или -ing.',
         'Can - можу зараз. Could - міг раніше або прохання мʼякше. Після них дія не отримує to, -s або -ing.',
-        'Can = now. Could = past/polite. No to/-s/-ing after them.',
+        'Can = ahora. Could = pasado o cortes. Despues no uses to, -s ni -ing.',
       ),
     },
     {
@@ -359,7 +448,7 @@ export const MODAL_CAN_COULD_ABILITY_REQUEST_TRAINING: DiagnosisTraining = {
       text: tri(
         'Главные поломки такие: добавили to, добавили -s или выбрали не то время. Нормально: can go, could help, she can speak.',
         'Головні поломки такі: додали to, додали -s або обрали не той час. Нормально: can go, could help, she can speak.',
-        'Common errors: can to go, could to help, she can speaks.',
+        'Errores tipicos: can to go, could to help, she can speaks. Correcto: can go, could help, she can speak.',
       ),
     },
   ],
@@ -693,10 +782,10 @@ export const MODAL_CAN_COULD_ABILITY_REQUEST_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Обычное объяснение: показать время, тон просьбы и действие после can/could.', 'Звичайне пояснення: показати час, тон прохання і дію після can/could.', 'Show time, tone, and action after can/could.'),
-    depth2: tri('Проще: спросить, это сейчас, раньше или просьба?', 'Простіше: спитати, це зараз, раніше чи прохання?', 'Ask: now, past, or request?'),
-    depth3: tri('Еще проще: сравнить can speak / could swim / Could you help?', 'Ще простіше: порівняти can speak / could swim / Could you help?', 'Compare can/could chunks.'),
-    depth4: tri("Почти подсказка: показать прямо can, could, can't или couldn't.", "Майже підказка: показати прямо can, could, can't або couldn't.", 'Point to the right chunk.'),
+    depth1: tri('Обычное объяснение: показать время, тон просьбы и действие после can/could.', 'Звичайне пояснення: показати час, тон прохання і дію після can/could.', 'Muestra tiempo, tono y accion despues de can/could.'),
+    depth2: tri('Проще: спросить, это сейчас, раньше или просьба?', 'Простіше: спитати, це зараз, раніше чи прохання?', 'Pregunta: ahora, pasado o peticion?'),
+    depth3: tri('Еще проще: сравнить can speak / could swim / Could you help?', 'Ще простіше: порівняти can speak / could swim / Could you help?', 'Compara bloques can/could.'),
+    depth4: tri("Почти подсказка: показать прямо can, could, can't или couldn't.", "Майже підказка: показати прямо can, could, can't або couldn't.", 'Senala el bloque correcto.'),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -704,7 +793,7 @@ export const MODAL_CAN_COULD_ABILITY_REQUEST_TRAINING: DiagnosisTraining = {
       card: tri(
         "Can = могу сейчас. Could = мог раньше или вежливая просьба. Can't = не могу сейчас. Couldn't = не мог раньше. После can/could не добавляй to или -s.",
         "Can = можу зараз. Could = міг раніше або ввічливе прохання. Can't = не можу зараз. Couldn't = не міг раніше. Після can/could не додавай to або -s.",
-        "Can = now. Could = past/polite. Can't = cannot now. Couldn't = could not in the past.",
+        "Can = ahora. Could = pasado/cortes. Can't = no puedo ahora. Couldn't = no pude en el pasado.",
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -712,7 +801,7 @@ export const MODAL_CAN_COULD_ABILITY_REQUEST_TRAINING: DiagnosisTraining = {
       card: tri(
         'Подсказка: сначала выбери время или тон. Сейчас? Раньше? Вежливая просьба?',
         'Підказка: спочатку обери час або тон. Зараз? Раніше? Ввічливе прохання?',
-        'Hint: choose time or tone first.',
+        'Pista: primero elige tiempo o tono.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -720,7 +809,7 @@ export const MODAL_CAN_COULD_ABILITY_REQUEST_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим с подсказками: сначала отделяем время/тон, потом возвращаемся к полной фразе.',
         'Режим із підказками: спочатку відділяємо час/тон, потім повертаємося до повної фрази.',
-        'Guided mode: separate time/tone first.',
+        'Modo guiado: separa primero tiempo y tono.',
       ),
     },
   },
@@ -730,28 +819,28 @@ export const MODAL_CAN_COULD_ABILITY_REQUEST_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_modal_can_could_001',
-        prompt: tri('Can чаще говорит про умение сейчас или раньше?', 'Can частіше говорить про вміння зараз чи раніше?', 'Does can usually talk about ability now or in the past?'),
+        prompt: tri('Can чаще говорит про умение сейчас или раньше?', 'Can частіше говорить про вміння зараз чи раніше?', 'Can suele hablar de habilidad ahora o en el pasado?'),
         options: ['now', 'in the past'],
         correctIndex: 0,
         thenReturnToExerciseId: 'modal_can_could_easy_001',
       },
       {
         id: 'guided_modal_can_could_002',
-        prompt: tri('В I could swim when I was a child слово could про прошлое или настоящее?', 'В I could swim when I was a child слово could про минуле чи теперішнє?', 'Is could past or present here?'),
+        prompt: tri('В I could swim when I was a child слово could про прошлое или настоящее?', 'В I could swim when I was a child слово could про минуле чи теперішнє?', 'Aqui could habla del pasado o del presente?'),
         options: ['past', 'present'],
         correctIndex: 0,
         thenReturnToExerciseId: 'modal_can_could_contrast_004',
       },
       {
         id: 'guided_modal_can_could_003',
-        prompt: tri('После can нужно to speak или speak?', 'Після can потрібно to speak чи speak?', 'After can, do you need to speak or speak?'),
+        prompt: tri('После can нужно to speak или speak?', 'Після can потрібно to speak чи speak?', 'Despues de can necesitas to speak o speak?'),
         options: ['to speak', 'speak'],
         correctIndex: 1,
         thenReturnToExerciseId: 'modal_can_could_contrast_003',
       },
       {
         id: 'guided_modal_can_could_004',
-        prompt: tri('Could you help me звучит прямее или вежливее?', 'Could you help me звучить пряміше чи ввічливіше?', 'Does Could you help me sound direct or more polite?'),
+        prompt: tri('Could you help me звучит прямее или вежливее?', 'Could you help me звучить пряміше чи ввічливіше?', 'Could you help me suena directo o mas cortes?'),
         options: ['direct', 'more polite'],
         correctIndex: 1,
         thenReturnToExerciseId: 'modal_can_could_mixed_001',
@@ -801,7 +890,7 @@ export const MODAL_CAN_COULD_ABILITY_REQUEST_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_started',
     answer: 'diagnosis_training_answer',
     mastery: 'diagnosis_training_mastered',
-    fallback: 'diagnosis_training_fallback',
+    recovery: 'diagnosis_training_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

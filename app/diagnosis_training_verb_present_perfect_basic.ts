@@ -3,7 +3,28 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 // JESSE_REWORKED_PERSONAL_TRAINING
 // This file is protected from legacy replacement unless this exact id is being rebuilt.
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+const PRESENT_PERFECT_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre Present Perfect ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về Present Perfect này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan Present Perfect ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu Present Perfect açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie Present Perfect nadal wymaga przeglądu po polsku.',
+};
+
+const tri = (
+  ru: string,
+  uk: string,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? PRESENT_PERFECT_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
+};
 
 const CONTRAST = [
   'have + V3',
@@ -33,30 +54,84 @@ const SMART_CONTRAST = [
 const MODEL = tri(
   'Present Perfect держится на короткой связке: have или has плюс V3. I have finished. She has seen. Он нужен, когда важен результат сейчас, опыт до этого момента или смысл уже / еще не.',
   'Present Perfect тримається на короткій зв’язці: have або has плюс V3. I have finished. She has seen. Він потрібен, коли важливий результат зараз, досвід до цього моменту або зміст вже / ще не.',
-  'Present Perfect uses a short pattern: have or has plus V3. I have finished. She has seen. Use it for a result now, experience up to now, already, or not yet.',
+  'Present Perfect usa un patron corto: have o has mas V3. I have finished. She has seen. Usalo para resultado ahora, experiencia hasta ahora, already o not yet.',
+  {
+    'pt-BR': 'O Present Perfect usa uma estrutura curta: have ou has + V3. I have finished. She has seen. Ele serve quando importa o resultado agora, a experiência até este momento ou a ideia de already / not yet.',
+    vi: 'Present Perfect dựa trên cấu trúc ngắn: have hoặc has + V3. I have finished. She has seen. Dùng khi kết quả hiện tại quan trọng, khi nói về trải nghiệm đến lúc này, hoặc ý already / not yet.',
+    id: 'Present Perfect memakai pola singkat: have atau has + V3. I have finished. She has seen. Gunakan saat hasilnya penting sekarang, untuk pengalaman sampai saat ini, atau makna already / not yet.',
+    tr: 'Present Perfect kısa bir yapıya dayanır: have veya has + V3. I have finished. She has seen. Sonuç şu anda önemliyse, şimdiye kadarki deneyimden söz ediyorsan ya da already / not yet anlamı varsa kullanılır.',
+    pl: 'Present Perfect opiera się na krótkim układzie: have albo has + V3. I have finished. She has seen. Używa się go, gdy ważny jest wynik teraz, doświadczenie do tej chwili albo sens already / not yet.',
+  },
 );
+
+const PRESENT_PERFECT_SKILL_ES: Record<string, string> = {
+  have_finished: 'Con I usa have y luego V3: finished.',
+  has_finished: 'Con she usa has y luego V3: finished.',
+  have_left: 'Con they usa have; already va antes de left.',
+  have_seen_not_saw: 'Despues de have usa V3: seen, no saw.',
+  has_been_experience: 'Para experiencia con she, usa has been.',
+  has_been: 'Para experiencia con she, usa has been.',
+  have_bought_result: 'Despues de have usa V3: bought.',
+  have_bought: 'Despues de have usa V3: bought.',
+  already_position: 'Already suele ir antes de V3.',
+  yet_negative: 'En negativo, not yet suele cerrar con yet.',
+  yet_question: 'En pregunta, yet suele ir al final.',
+  ever_question: 'Para preguntar por experiencia, usa ever.',
+  ever_experience: 'Para preguntar por experiencia, usa ever.',
+  never_experience: 'Never muestra que la experiencia no existe.',
+  question_order_have: 'En pregunta, have va delante del sujeto.',
+  result_now_lost: 'Con he usa has; lost muestra resultado ahora.',
+  perfect_result_now: 'Con he usa has; V3 muestra resultado ahora.',
+  already_done: 'Already va antes de done.',
+  past_simple_with_yesterday: 'Con yesterday normalmente usa Past Simple.',
+  mixed_sentence_correction: 'Usa already done, has not seen y yet al final.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = PRESENT_PERFECT_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? PRESENT_PERFECT_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function presentPerfectEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = PRESENT_PERFECT_SKILL_ES[input.targetSkill] ?? 'Busca have/has y despues una forma V3.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
 
 function retry(correct: string): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала найди have или has.',
       'Спочатку знайди have або has.',
-      'First find have or has.',
+      'Primero encuentra have o has.',
     ),
     tri(
       'С I, you, we, they обычно идет have. С he, she, it обычно идет has.',
       'З I, you, we, they зазвичай іде have. З he, she, it зазвичай іде has.',
-      'I, you, we, they usually use have. He, she, it usually use has.',
+      'I, you, we, they suelen usar have. He, she, it suelen usar has.',
     ),
     tri(
       'После have или has нужна третья форма глагола. Не обычная форма и не форма с -ing.',
       'Пiсля have або has потрiбна третя форма дiєслова. Не звичайна форма i не форма з -ing.',
-      'After have or has, use V3: done, seen, been, finished, lost.',
+      'Despues de have o has, usa V3: done, seen, been, finished, lost.',
     ),
     tri(
       'Здесь выбери вариант, где есть have или has, третья форма и правильное место для уже/еще.',
       'Тут обери варiант, де є have або has, третя форма i правильне мiсце для вже/ще.',
-      `The answer here is: ${correct}.`,
+      `La respuesta aqui es: ${correct}.`,
     ),
   ];
 }
@@ -65,7 +140,7 @@ function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Проверь have/has и V3. Здесь нужно: ${correct}.`,
     `Майже. Перевір have/has і V3. Тут потрібно: ${correct}.`,
-    `Almost. Check have/has and V3. Use: ${correct}.`,
+    `Casi. Revisa have/has y V3. Usa: ${correct}.`,
   );
 }
 
@@ -82,35 +157,36 @@ function perfectStep(input: {
   wrong: Record<string, TriText>;
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = presentPerfectEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
-    teachingText: MODEL,
-    explanationBlock: MODEL,
+    translation: withEs(input.translation, esFeedback),
+    teachingText: withEs(MODEL, esFeedback),
+    explanationBlock: withEs(MODEL, esFeedback),
     microTask: tri(
       'Выбери вариант, где правильно собраны have/has, V3 и слова already, yet, ever или never.',
       'Обери варіант, де правильно зібрані have/has, V3 і слова already, yet, ever або never.',
-      'Choose the option with correct have/has, V3, and already, yet, ever, or never.',
+      'Elige la opcion con have/has, V3 y already, yet, ever o never correctos.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map((text) => ({ id: text, text })),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((option) => option !== input.correctAnswer)
-        .map((option) => [option, input.wrong[option] ?? defaultWrong(input.correctAnswer)]),
+        .map((option) => [option, withEs(input.wrong[option] ?? defaultWrong(input.correctAnswer), esFeedback)]),
     ),
-    retryFeedback: retry(input.correctAnswer),
+    retryFeedback: retry(input.correctAnswer).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Скелет такой: I have done, she has done. Already чаще ставим перед V3. Yet чаще идет в конце вопроса или отрицания.',
       'Скелет такий: I have done, she has done. Already частіше ставимо перед V3. Yet частіше йде в кінці питання або заперечення.',
-      'Pattern: I have done, she has done. Already often comes before V3. Yet often comes at the end of questions or negatives.',
+      'Patron: I have done, she has done. Already suele ir antes de V3. Yet suele ir al final de preguntas o negaciones.',
     ),
     focusWords: input.focusWords,
   };
@@ -125,29 +201,63 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 38,
-  supportedLocales: ['ru', 'uk'],
+  supportedLocales: ['ru', 'uk', 'es'],
   title: tri(
     'Present Perfect: have/has + V3',
     'Present Perfect: have/has + V3',
     'Present Perfect: have/has + V3',
+    {
+      'pt-BR': 'Present Perfect: have/has + V3',
+      vi: 'Present Perfect: have/has + V3',
+      id: 'Present Perfect: have/has + V3',
+      tr: 'Present Perfect: have/has + V3',
+      pl: 'Present Perfect: have/has + V3',
+    },
   ),
-  shortTitle: tri('Present Perfect', 'Present Perfect', 'Present Perfect'),
+  shortTitle: tri('Present Perfect', 'Present Perfect', 'Present Perfect', {
+    'pt-BR': 'Present Perfect',
+    vi: 'Present Perfect',
+    id: 'Present Perfect',
+    tr: 'Present Perfect',
+    pl: 'Present Perfect',
+  }),
   shortDiagnosis: tri(
     'Ты пытаешься сказать про результат сейчас, но ломаешь связку: have saw, has finish, I have lost my keys yesterday.',
     'Ти намагаєшся сказати про результат зараз, але ламаєш зв’язку: have saw, has finish, I have lost my keys yesterday.',
-    'You try to talk about a result now, but break the pattern: have saw, has finish, I have lost my keys yesterday.',
+    'Intentas hablar de un resultado ahora, pero rompes el patron: have saw, has finish, I have lost my keys yesterday.',
+    {
+      'pt-BR': 'Você tenta falar de um resultado agora, mas quebra a estrutura: have saw, has finish, I have lost my keys yesterday.',
+      vi: 'Bạn đang cố nói về kết quả hiện tại, nhưng làm sai cấu trúc: have saw, has finish, I have lost my keys yesterday.',
+      id: 'Kamu mencoba berbicara tentang hasil sekarang, tetapi merusak polanya: have saw, has finish, I have lost my keys yesterday.',
+      tr: 'Şimdiki sonucu anlatmaya çalışıyorsun ama yapıyı bozuyorsun: have saw, has finish, I have lost my keys yesterday.',
+      pl: 'Próbujesz mówić o wyniku teraz, ale rozbijasz strukturę: have saw, has finish, I have lost my keys yesterday.',
+    },
   ),
   diagnosisText: tri(
     'Ошибка обычно не в идее. Идея нормальная: действие уже случилось, и сейчас есть результат. Ломается форма. Для Present Perfect английскому нужны have или has и V3: have seen, has finished, have done.',
     'Помилка зазвичай не в ідеї. Ідея нормальна: дія вже сталася, і зараз є результат. Ламається форма. Для Present Perfect англійській потрібні have або has і V3: have seen, has finished, have done.',
-    'The idea is usually fine: something has happened, and there is a result now. The form breaks. Present Perfect needs have or has plus V3: have seen, has finished, have done.',
+    'La idea suele estar bien: algo ha pasado y ahora hay un resultado. Lo que se rompe es la forma. Present Perfect necesita have o has mas V3: have seen, has finished, have done.',
+    {
+      'pt-BR': 'O erro geralmente não está na ideia. A ideia faz sentido: a ação já aconteceu e agora há um resultado. O que quebra é a forma. Para o Present Perfect, o inglês precisa de have ou has + V3: have seen, has finished, have done.',
+      vi: 'Lỗi thường không nằm ở ý tưởng. Ý tưởng vẫn đúng: hành động đã xảy ra và hiện tại có kết quả. Phần sai là hình thức. Với Present Perfect, tiếng Anh cần have hoặc has + V3: have seen, has finished, have done.',
+      id: 'Kesalahannya biasanya bukan pada idenya. Idenya masuk akal: sesuatu sudah terjadi dan sekarang ada hasilnya. Yang rusak adalah bentuknya. Present Perfect membutuhkan have atau has + V3: have seen, has finished, have done.',
+      tr: 'Hata genellikle fikirde değildir. Fikir doğru: eylem olmuş ve şimdi bir sonuç var. Bozulan kısım biçimdir. Present Perfect için İngilizcede have veya has + V3 gerekir: have seen, has finished, have done.',
+      pl: 'Błąd zwykle nie leży w samej idei. Idea jest dobra: czynność już się wydarzyła i teraz jest wynik. Psuje się forma. W Present Perfect angielski potrzebuje have albo has + V3: have seen, has finished, have done.',
+    },
   ),
   mentalModel: MODEL,
   contrastSet: CONTRAST,
   coreRule: tri(
     'Для I, you, we, they обычно берем have. Для he, she, it обычно берем has. После этого нужна третья форма глагола. Already чаще стоит перед ней, yet часто уходит в конец вопроса или отрицания.',
     'Для I, you, we, they зазвичай беремо have. Для he, she, it зазвичай беремо has. Пiсля цього потрiбна третя форма дiєслова. Already частiше стоїть перед нею, yet часто йде в кiнець питання або заперечення.',
-    'I/you/we/they have + V3: I have finished. He/she/it has + V3: She has finished. Already often comes before V3. Yet often comes at the end.',
+    'I/you/we/they usan have + V3: I have finished. He/she/it usan has + V3: She has finished. Already suele ir antes de V3. Yet suele ir al final.',
+    {
+      'pt-BR': 'I, you, we, they geralmente usam have + V3: I have finished. He, she, it geralmente usam has + V3: She has finished. Already costuma vir antes de V3. Yet costuma ir no fim.',
+      vi: 'I, you, we, they thường dùng have + V3: I have finished. He, she, it thường dùng has + V3: She has finished. Already thường đứng trước V3. Yet thường đứng cuối câu.',
+      id: 'I, you, we, they biasanya memakai have + V3: I have finished. He, she, it biasanya memakai has + V3: She has finished. Already biasanya sebelum V3. Yet biasanya di akhir.',
+      tr: 'I, you, we, they genellikle have + V3 kullanır: I have finished. He, she, it genellikle has + V3 kullanır: She has finished. Already çoğu zaman V3 önünde durur. Yet çoğu zaman sonda durur.',
+      pl: 'I, you, we, they zwykle używają have + V3: I have finished. He, she, it zwykle używają has + V3: She has finished. Already zwykle stoi przed V3. Yet zwykle idzie na koniec.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -173,15 +283,70 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
       'Якщо є точний минулий час на кшталт yesterday, часто потрібен Past Simple.',
     ],
     es: [
-      'Present Perfect uses have/has + V3.',
-      'I, you, we, they usually use have: I have seen it.',
-      'He, she, it usually use has: she has seen it.',
-      'After have/has, use V3: have seen, not have saw.',
-      'Already often stands before V3: I have already finished.',
-      'Yet often goes at the end of questions or negatives.',
-      'Ever often asks about experience.',
-      'Never says the experience is absent.',
-      'A specific past time like yesterday often needs Past Simple.',
+      'Present Perfect se arma con have/has + V3.',
+      'I, you, we, they suelen usar have: I have seen it.',
+      'He, she, it suelen usar has: she has seen it.',
+      'Despues de have/has, usa V3: have seen, no have saw.',
+      'Already suele estar antes de V3: I have already finished.',
+      'Yet suele ir al final de preguntas o negaciones.',
+      'Ever suele preguntar por experiencia.',
+      'Never dice que esa experiencia no existe.',
+      'Un tiempo pasado especifico como yesterday suele necesitar Past Simple.',
+    ],
+    'pt-BR': [
+      'Present Perfect usa have/has + V3.',
+      'I, you, we, they geralmente usam have: I have seen it.',
+      'He, she, it geralmente usam has: she has seen it.',
+      'Depois de have/has, use V3: have seen, não have saw.',
+      'Already muitas vezes fica antes de V3: I have already finished.',
+      'Yet muitas vezes vai no fim de perguntas ou negativas.',
+      'Ever muitas vezes pergunta sobre experiência.',
+      'Never diz que a experiência não existe.',
+      'Um tempo passado específico como yesterday muitas vezes pede Past Simple.',
+    ],
+    vi: [
+      'Present Perfect dùng have/has + V3.',
+      'I, you, we, they thường dùng have: I have seen it.',
+      'He, she, it thường dùng has: she has seen it.',
+      'Sau have/has, dùng V3: have seen, không phải have saw.',
+      'Already thường đứng trước V3: I have already finished.',
+      'Yet thường đứng cuối câu hỏi hoặc câu phủ định.',
+      'Ever thường hỏi về trải nghiệm.',
+      'Never nói rằng trải nghiệm đó không có.',
+      'Thời gian quá khứ cụ thể như yesterday thường cần Past Simple.',
+    ],
+    id: [
+      'Present Perfect memakai have/has + V3.',
+      'I, you, we, they biasanya memakai have: I have seen it.',
+      'He, she, it biasanya memakai has: she has seen it.',
+      'Setelah have/has, gunakan V3: have seen, bukan have saw.',
+      'Already sering berada sebelum V3: I have already finished.',
+      'Yet sering berada di akhir pertanyaan atau kalimat negatif.',
+      'Ever sering bertanya tentang pengalaman.',
+      'Never berarti pengalaman itu tidak ada.',
+      'Waktu lampau spesifik seperti yesterday sering membutuhkan Past Simple.',
+    ],
+    tr: [
+      'Present Perfect have/has + V3 kullanır.',
+      'I, you, we, they genellikle have alır: I have seen it.',
+      'He, she, it genellikle has alır: she has seen it.',
+      'Have/has sonrasında V3 kullan: have seen, have saw değil.',
+      'Already çoğu zaman V3 önünde durur: I have already finished.',
+      'Yet çoğu zaman soru veya olumsuz cümlenin sonunda durur.',
+      'Ever çoğu zaman deneyimi sorar.',
+      'Never o deneyimin olmadığını söyler.',
+      'Yesterday gibi belirli bir geçmiş zaman çoğu zaman Past Simple ister.',
+    ],
+    pl: [
+      'Present Perfect używa have/has + V3.',
+      'I, you, we, they zwykle używają have: I have seen it.',
+      'He, she, it zwykle używają has: she has seen it.',
+      'Po have/has użyj V3: have seen, nie have saw.',
+      'Already często stoi przed V3: I have already finished.',
+      'Yet często idzie na koniec pytania albo przeczenia.',
+      'Ever często pyta o doświadczenie.',
+      'Never mówi, że takiego doświadczenia nie ma.',
+      'Konkretny czas przeszły jak yesterday często wymaga Past Simple.',
     ],
   },
   examples: [
@@ -189,57 +354,97 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
       en: 'I have finished the lesson.',
       ru: 'Я закончил урок.',
       uk: 'Я закінчив урок.',
-      es: 'I have finished the lesson.',
-      why: tri('Have finished показывает результат сейчас: урок уже закончен.', 'Have finished показує результат зараз: урок уже закінчений.', 'Have finished shows a result now: the lesson is finished.'),
+      es: 'He terminado la leccion.',
+      'pt-BR': 'Eu terminei a lição.',
+      vi: 'Tôi đã hoàn thành bài học.',
+      id: 'Saya sudah menyelesaikan pelajaran.',
+      tr: 'Dersi bitirdim.',
+      pl: 'Skończyłem lekcję.',
+      why: tri('Have finished показывает результат сейчас: урок уже закончен.', 'Have finished показує результат зараз: урок уже закінчений.', 'Have finished muestra un resultado ahora: la leccion ya esta terminada.'),
     },
     {
       en: 'She has finished the lesson.',
       ru: 'Она закончила урок.',
       uk: 'Вона закінчила урок.',
-      es: 'She has finished the lesson.',
-      why: tri('С she нужен has. Дальше идет finished.', 'З she потрібен has. Далі йде finished.', 'She uses has. Then finished.'),
+      es: 'Ella ha terminado la leccion.',
+      'pt-BR': 'Ela terminou a lição.',
+      vi: 'Cô ấy đã hoàn thành bài học.',
+      id: 'Dia sudah menyelesaikan pelajaran.',
+      tr: 'Dersi bitirdi.',
+      pl: 'Ona skończyła lekcję.',
+      why: tri('С she нужен has. Дальше идет finished.', 'З she потрібен has. Далі йде finished.', 'Con she usa has. Luego va finished.'),
     },
     {
       en: 'They have already left.',
       ru: 'Они уже ушли.',
       uk: 'Вони вже пішли.',
-      es: 'They have already left.',
-      why: tri('Already дает смысл "уже", а left - V3 от leave.', 'Already дає зміст "вже", а left - V3 від leave.', 'Already means already, and left is V3 of leave.'),
+      es: 'Ellos ya se han ido.',
+      'pt-BR': 'Eles já foram embora.',
+      vi: 'Họ đã rời đi rồi.',
+      id: 'Mereka sudah pergi.',
+      tr: 'Onlar çoktan ayrıldı.',
+      pl: 'Oni już wyszli.',
+      why: tri('Already дает смысл "уже", а left - V3 от leave.', 'Already дає зміст "вже", а left - V3 від leave.', 'Already da el sentido de "ya", y left es V3 de leave.'),
     },
     {
       en: "I haven't seen this film yet.",
       ru: 'Я еще не видел этот фильм.',
       uk: 'Я ще не бачив цей фільм.',
-      es: "I haven't seen this film yet.",
-      why: tri('Yet в конце отрицания дает смысл "еще не".', 'Yet у кінці заперечення дає зміст "ще не".', 'Yet at the end of a negative means not yet.'),
+      es: 'Todavia no he visto esta pelicula.',
+      'pt-BR': 'Ainda não vi este filme.',
+      vi: 'Tôi vẫn chưa xem bộ phim này.',
+      id: 'Saya belum menonton film ini.',
+      tr: 'Bu filmi henüz izlemedim.',
+      pl: 'Jeszcze nie widziałem tego filmu.',
+      why: tri('Yet в конце отрицания дает смысл "еще не".', 'Yet у кінці заперечення дає зміст "ще не".', 'Yet al final de una negacion significa todavia no.'),
     },
     {
       en: 'Have you ever been to London?',
       ru: 'Ты когда-нибудь был в Лондоне?',
       uk: 'Ти коли-небудь був у Лондоні?',
-      es: 'Have you ever been to London?',
-      why: tri('Ever спрашивает об опыте до текущего момента.', 'Ever питає про досвід до поточного моменту.', 'Ever asks about experience up to now.'),
+      es: 'Has estado alguna vez en Londres?',
+      'pt-BR': 'Você já esteve em Londres?',
+      vi: 'Bạn đã từng đến London chưa?',
+      id: 'Apakah kamu pernah ke London?',
+      tr: 'Hiç Londra’da bulundun mu?',
+      pl: 'Czy byłeś kiedyś w Londynie?',
+      why: tri('Ever спрашивает об опыте до текущего момента.', 'Ever питає про досвід до поточного моменту.', 'Ever pregunta por experiencia hasta ahora.'),
     },
     {
       en: 'I have never tried it.',
       ru: 'Я никогда этого не пробовал.',
       uk: 'Я ніколи цього не пробував.',
-      es: 'I have never tried it.',
-      why: tri('Never показывает, что такого опыта нет.', 'Never показує, що такого досвіду немає.', 'Never shows the experience is absent.'),
+      es: 'Nunca lo he probado.',
+      'pt-BR': 'Nunca experimentei isso.',
+      vi: 'Tôi chưa bao giờ thử nó.',
+      id: 'Saya belum pernah mencobanya.',
+      tr: 'Bunu hiç denemedim.',
+      pl: 'Nigdy tego nie próbowałem.',
+      why: tri('Never показывает, что такого опыта нет.', 'Never показує, що такого досвіду немає.', 'Never muestra que esa experiencia no existe.'),
     },
     {
       en: 'He has lost his keys.',
       ru: 'Он потерял ключи.',
       uk: 'Він загубив ключі.',
-      es: 'He has lost his keys.',
-      why: tri('Результат важен сейчас: ключей нет.', 'Результат важливий зараз: ключів немає.', 'The result matters now: the keys are missing.'),
+      es: 'El ha perdido sus llaves.',
+      'pt-BR': 'Ele perdeu as chaves.',
+      vi: 'Anh ấy đã làm mất chìa khóa.',
+      id: 'Dia kehilangan kuncinya.',
+      tr: 'Anahtarlarını kaybetti.',
+      pl: 'On zgubił klucze.',
+      why: tri('Результат важен сейчас: ключей нет.', 'Результат важливий зараз: ключів немає.', 'El resultado importa ahora: no estan las llaves.'),
     },
     {
       en: 'I lost my keys yesterday.',
       ru: 'Я потерял ключи вчера.',
       uk: 'Я загубив ключі вчора.',
-      es: 'I lost my keys yesterday.',
-      why: tri('Yesterday называет точный момент в прошлом, поэтому здесь Past Simple.', 'Yesterday називає точний момент у минулому, тому тут Past Simple.', 'Yesterday names a specific past time, so Past Simple works here.'),
+      es: 'Perdi mis llaves ayer.',
+      'pt-BR': 'Perdi minhas chaves ontem.',
+      vi: 'Hôm qua tôi đã làm mất chìa khóa.',
+      id: 'Saya kehilangan kunci saya kemarin.',
+      tr: 'Dün anahtarlarımı kaybettim.',
+      pl: 'Zgubiłem klucze wczoraj.',
+      why: tri('Yesterday называет точный момент в прошлом, поэтому здесь Past Simple.', 'Yesterday називає точний момент у минулому, тому тут Past Simple.', 'Yesterday nombra un momento pasado especifico, asi que aqui funciona Past Simple.'),
     },
   ],
   introBlocks: [
@@ -249,7 +454,7 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты либо забываешь have/has, либо после него ставишь не тот вид: have saw, has went, have did.',
         'Схоже, ти або забуваєш have/has, або після нього ставиш не той вигляд: have saw, has went, have did.',
-        'It looks like you either forget have/has or use the wrong form after it: have saw, has went, have did.',
+        'Parece que olvidas have/has o usas la forma incorrecta despues: have saw, has went, have did.',
       ),
     },
     {
@@ -258,7 +463,7 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Формула короткая: сначала have или has, потом третья форма глагола. Если есть "уже", оно обычно стоит перед этой формой.',
         'Формула коротка: спочатку have або has, потiм третя форма дiєслова. Якщо є "вже", воно зазвичай стоїть перед цiєю формою.',
-        'Short pattern: have/has + V3. I have done. She has seen. They have already left.',
+        'Patron corto: have/has + V3. I have done. She has seen. They have already left.',
       ),
     },
     {
@@ -267,7 +472,7 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Не приклеивай Present Perfect к yesterday. Если важен конкретный вчерашний момент, обычно нужен Past Simple.',
         'Не приклеюй Present Perfect до yesterday. Якщо важливий конкретний вчорашній момент, зазвичай потрібен Past Simple.',
-        'Do not attach Present Perfect to yesterday. If the specific past time matters, Past Simple is usually better.',
+        'No pegues Present Perfect a yesterday. Si importa el momento concreto de ayer, normalmente Past Simple suena mejor.',
       ),
     },
   ],
@@ -572,10 +777,10 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Показываем have/has и V3.', 'Показуємо have/has і V3.', 'Show have/has and V3.'),
-    depth2: tri('Проверяем смысл: результат сейчас, опыт, already/yet или точное прошлое время.', 'Перевіряємо зміст: результат зараз, досвід, already/yet або точний минулий час.', 'Check the meaning: result now, experience, already/yet, or specific past time.'),
-    depth3: tri('Еще проще: если важен результат сейчас, бери связку с have или has. Если есть точное прошлое время, чаще нужен обычный прошедший вариант.', 'Ще простiше: якщо важливий результат зараз, бери звʼязку з have або has. Якщо є точний минулий час, частiше потрiбен звичайний минулий варiант.', 'Give the pair: I have done / I did it yesterday.'),
-    depth4: tri('Почти подсказка: выбирай have/has + V3 или Past Simple.', 'Майже підказка: обирай have/has + V3 або Past Simple.', 'Almost a hint: choose have/has + V3 or Past Simple.'),
+    depth1: tri('Показываем have/has и V3.', 'Показуємо have/has і V3.', 'Muestra have/has y V3.'),
+    depth2: tri('Проверяем смысл: результат сейчас, опыт, already/yet или точное прошлое время.', 'Перевіряємо зміст: результат зараз, досвід, already/yet або точний минулий час.', 'Revisa el sentido: resultado ahora, experiencia, already/yet o tiempo pasado especifico.'),
+    depth3: tri('Еще проще: если важен результат сейчас, бери связку с have или has. Если есть точное прошлое время, чаще нужен обычный прошедший вариант.', 'Ще простiше: якщо важливий результат зараз, бери звʼязку з have або has. Якщо є точний минулий час, частiше потрiбен звичайний минулий варiант.', 'Da la pareja: I have done / I did it yesterday.'),
+    depth4: tri('Почти подсказка: выбирай have/has + V3 или Past Simple.', 'Майже підказка: обирай have/has + V3 або Past Simple.', 'Casi una pista: elige have/has + V3 o Past Simple.'),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -583,7 +788,7 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
       card: tri(
         'Стоп. Present Perfect = have/has + V3. I have done. She has seen. Already перед V3. Yet часто в конце вопроса или отрицания.',
         'Стоп. Present Perfect = have/has + V3. I have done. She has seen. Already перед V3. Yet часто в кінці питання або заперечення.',
-        'Stop. Present Perfect = have/has + V3. I have done. She has seen. Already before V3. Yet often at the end of questions or negatives.',
+        'Alto. Present Perfect = have/has + V3. I have done. She has seen. Already antes de V3. Yet suele ir al final de preguntas o negaciones.',
       ),
     },
     afterThreeWrongInSameExercise: {
@@ -591,7 +796,7 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
       card: tri(
         'Система подсветит have или has и напомнит про V3. Ответ она не выбирает.',
         'Система підсвітить have або has і нагадає про V3. Відповідь вона не обирає.',
-        'The system highlights have or has and reminds you about V3. It does not choose the answer.',
+        'El sistema resalta have o has y recuerda V3. No elige la respuesta.',
       ),
     },
     afterFourWrongInSameExercise: {
@@ -599,7 +804,7 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
       card: tri(
         'Режим подсказки: сначала have или has, потом V3, потом already/yet/ever/never.',
         'Режим підказки: спочатку have або has, потім V3, потім already/yet/ever/never.',
-        'Guided mode: first have or has, then V3, then already/yet/ever/never.',
+        'Modo guiado: primero have o has, luego V3, luego already/yet/ever/never.',
       ),
     },
   },
@@ -609,28 +814,28 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_present_perfect_001',
-        prompt: tri('С I нужен have или has?', 'З I потрібен have чи has?', 'With I, do you need have or has?'),
+        prompt: tri('С I нужен have или has?', 'З I потрібен have чи has?', 'Con I, necesitas have o has?'),
         options: ['have', 'has'],
         correctIndex: 0,
         thenReturnToExerciseId: 'present_perfect_easy_001',
       },
       {
         id: 'guided_present_perfect_002',
-        prompt: tri('С she нужен have или has?', 'З she потрібен have чи has?', 'With she, do you need have or has?'),
+        prompt: tri('С she нужен have или has?', 'З she потрібен have чи has?', 'Con she, necesitas have o has?'),
         options: ['have', 'has'],
         correctIndex: 1,
         thenReturnToExerciseId: 'present_perfect_easy_002',
       },
       {
         id: 'guided_present_perfect_003',
-        prompt: tri('После have: saw или seen?', 'Після have: saw чи seen?', 'After have: saw or seen?'),
+        prompt: tri('После have: saw или seen?', 'Після have: saw чи seen?', 'Despues de have: saw o seen?'),
         options: ['saw', 'seen'],
         correctIndex: 1,
         thenReturnToExerciseId: 'present_perfect_contrast_001',
       },
       {
         id: 'guided_present_perfect_004',
-        prompt: tri('Если в фразе есть точное "вчера", какой вариант обычно звучит естественнее?', 'Якщо у фразi є точне "вчора", який варiант зазвичай звучить природнiше?', 'With yesterday, usually Present Perfect or Past Simple?'),
+        prompt: tri('Если в фразе есть точное "вчера", какой вариант обычно звучит естественнее?', 'Якщо у фразi є точне "вчора", який варiант зазвичай звучить природнiше?', 'Con yesterday, normalmente Present Perfect o Past Simple?'),
         options: ['Present Perfect', 'Past Simple'],
         correctIndex: 1,
         thenReturnToExerciseId: 'present_perfect_mixed_005',
@@ -680,7 +885,7 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_verb_present_perfect_basic_start',
     answer: 'diagnosis_training_verb_present_perfect_basic_answer',
     mastery: 'diagnosis_training_verb_present_perfect_basic_mastery',
-    fallback: 'diagnosis_training_verb_present_perfect_basic_fallback',
+    recovery: 'diagnosis_training_verb_present_perfect_basic_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

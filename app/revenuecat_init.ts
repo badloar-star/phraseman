@@ -88,12 +88,15 @@ function resolveRevenueCatPublicApiKey(): string {
 }
 
 const RC_TIMEOUT_MS = 8000; // увеличен с 3000 для аудитории СНГ
+const RC_IDENTITY_SYNC_TTL_MS = 60_000;
 
 const DEV_STORE_BILLING_OPTIONAL =
   typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;
 
 let configurePromise: Promise<void> | null = null;
 let revenueCatLoggingConfigured = false;
+let lastIdentitySyncUserId = '';
+let lastIdentitySyncAt = 0;
 
 function configureRevenueCatLogging(): void {
   if (revenueCatLoggingConfigured) return;
@@ -119,11 +122,69 @@ function configureRevenueCatLogging(): void {
  * - Таймаут 8 секунд на getCustomerInfo().
  * - Логирует ошибки, не блокирует запуск приложения.
  */
-export function initRevenueCat(): Promise<void> {
-  if (configurePromise) return configurePromise;
+export async function initRevenueCat(): Promise<void> {
+  if (!configurePromise) {
+    configurePromise = _doInit();
+  }
+  await configurePromise;
+  await syncRevenueCatIdentity();
+}
 
-  configurePromise = _doInit();
-  return configurePromise;
+function isRevenueCatAnonymousId(raw: unknown): boolean {
+  const id = String(raw ?? '').trim();
+  return id.startsWith('$RCAnonymousID:') || id.startsWith('$RCA');
+}
+
+function customerInfoHasActivePremium(info: unknown): boolean {
+  const customerInfo = info as { entitlements?: { active?: Record<string, unknown> }; activeSubscriptions?: unknown[] } | null | undefined;
+  return (
+    Object.keys(customerInfo?.entitlements?.active ?? {}).length > 0 ||
+    (Array.isArray(customerInfo?.activeSubscriptions) && customerInfo.activeSubscriptions.length > 0)
+  );
+}
+
+export async function syncRevenueCatIdentity(): Promise<boolean> {
+  if (IS_EXPO_GO) return false;
+  if (!(await Purchases.isConfigured().catch(() => false))) return false;
+
+  const canonicalUserId = await getCanonicalUserId().catch(() => null);
+  if (!canonicalUserId) return false;
+
+  const now = Date.now();
+  if (lastIdentitySyncUserId === canonicalUserId && now - lastIdentitySyncAt < RC_IDENTITY_SYNC_TTL_MS) {
+    return true;
+  }
+
+  const currentAppUserId = await Purchases.getAppUserID().catch(() => '');
+  let loginCustomerInfo: unknown = null;
+  if (currentAppUserId && currentAppUserId !== canonicalUserId) {
+    const loginResult = await Purchases.logIn(canonicalUserId).catch(() => null);
+    loginCustomerInfo = (loginResult as { customerInfo?: unknown } | null)?.customerInfo ?? null;
+  }
+
+  const attributes: Record<string, string> = { phraseman_uid: canonicalUserId };
+  if (currentAppUserId && currentAppUserId !== canonicalUserId && isRevenueCatAnonymousId(currentAppUserId)) {
+    attributes.phraseman_previous_rc_app_user_id = currentAppUserId;
+  }
+  await Purchases.setAttributes(attributes).catch(() => {});
+
+  if (customerInfoHasActivePremium(loginCustomerInfo)) {
+    const metadata = revenueCatPremiumMetadata(loginCustomerInfo as any);
+    const plan = inferPremiumPlanFromProductId(
+      metadata.productId ?? (loginCustomerInfo as { activeSubscriptions?: string[] } | null)?.activeSubscriptions?.[0],
+      'monthly',
+    );
+    await persistStorePremiumLocally(plan, metadata);
+  }
+
+  const syncedAppUserId = await Purchases.getAppUserID().catch(() => '');
+  const identityReady = syncedAppUserId === canonicalUserId || currentAppUserId === canonicalUserId;
+
+  if (identityReady) {
+    lastIdentitySyncUserId = canonicalUserId;
+    lastIdentitySyncAt = now;
+  }
+  return identityReady;
 }
 
 async function _doInit(): Promise<void> {
@@ -142,14 +203,13 @@ async function _doInit(): Promise<void> {
   }
 
   try {
-    const canonicalUserId = await getCanonicalUserId().catch(() => null);
     if (!(await Purchases.isConfigured())) {
-      Purchases.configure({ apiKey: RC_API_KEY, appUserID: canonicalUserId || undefined });
+      // Do not pass appUserID here. Older builds created trials under RC's
+      // anonymous id; configuring anonymously first lets Purchases load that
+      // cached id, then logIn(stable_id) below links/transfers it correctly.
+      Purchases.configure({ apiKey: RC_API_KEY });
     }
-    if (canonicalUserId) {
-      await Purchases.logIn(canonicalUserId).catch(() => {});
-      await Purchases.setAttributes({ phraseman_uid: canonicalUserId }).catch(() => {});
-    }
+    await syncRevenueCatIdentity();
     // Параллельно с getCustomerInfo: прогрев getOfferings → кэш цен для мгновенного магазина
     if (DEV_STORE_BILLING_OPTIONAL) {
       return;
@@ -171,27 +231,50 @@ async function _doInit(): Promise<void> {
           'tester_no_premium',
           'admin_premium_override',
           'premium_plan',
+          'premium_expiry',
+          'premium_admin_grant_at',
+          'vip_active',
+          'vip_plan',
+          'vip_admin_grant_at',
         ]);
         const noPremium = pairs.find(p => p[0] === 'tester_no_premium')?.[1];
         const adminOverride = pairs.find(p => p[0] === 'admin_premium_override')?.[1];
-        const existingPlan = pairs.find(p => p[0] === 'premium_plan')?.[1];
+        const existingPlan = String(pairs.find(p => p[0] === 'premium_plan')?.[1] ?? '').trim();
         if (noPremium === 'true') {
           if (__DEV__) console.log('[RevenueCat] init: skip sync premium_active (tester_no_premium)');
         } else {
           const metadata = revenueCatPremiumMetadata(info as any);
+          const legacyAdminVip =
+            adminOverride === 'true' ||
+            (existingPlan.toLowerCase() === 'admin_grant' && adminOverride !== 'false');
+          if (legacyAdminVip) {
+            const now = Date.now();
+            const expiryRaw = Number(pairs.find(p => p[0] === 'premium_expiry')?.[1] ?? 0);
+            const expiry = Number.isFinite(expiryRaw) ? Math.max(0, Math.floor(expiryRaw)) : 0;
+            const active = expiry <= 0 || expiry > now;
+            const grantAt =
+              String(pairs.find(p => p[0] === 'vip_admin_grant_at')?.[1] ?? '').trim() ||
+              String(pairs.find(p => p[0] === 'premium_admin_grant_at')?.[1] ?? '').trim() ||
+              String(now);
+            await AsyncStorage.multiSet([
+              ['vip_active', active ? 'true' : 'false'],
+              ['vip_plan', active ? 'admin_vip' : ''],
+              ['vip_from', grantAt],
+              ['vip_until', expiry > 0 ? String(expiry) : '0'],
+              ['vip_admin_override', active ? 'true' : 'false'],
+              ['vip_admin_grant_at', grantAt],
+              ['admin_premium_override', 'false'],
+            ]);
+          }
           const existingStorePlan =
-            existingPlan === 'monthly' || existingPlan === 'yearly'
+            !legacyAdminVip && (existingPlan === 'monthly' || existingPlan === 'yearly')
               ? existingPlan as PremiumStorePlan
               : null;
-          if (adminOverride === 'true' && existingPlan && existingPlan !== 'null') {
-            await AsyncStorage.setItem('premium_active', 'true');
-          } else {
-            const plan = existingStorePlan ?? inferPremiumPlanFromProductId(
-              metadata.productId ?? (info as any).activeSubscriptions?.[0],
-              'monthly',
-            );
-            await persistStorePremiumLocally(plan, metadata);
-          }
+          const plan = existingStorePlan ?? inferPremiumPlanFromProductId(
+            metadata.productId ?? (info as any).activeSubscriptions?.[0],
+            'monthly',
+          );
+          await persistStorePremiumLocally(plan, metadata);
         }
       }
     }

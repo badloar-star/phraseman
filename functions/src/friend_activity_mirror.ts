@@ -6,18 +6,10 @@
  */
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions/v2';
+import { getLevelFromXP } from './xp_levels';
 
 const REGION = 'us-central1';
 const MAX_EVENTS_PER_FRIEND = 15;
-
-const XP_BASE = 250;
-const XP_EXP_INV = 1 / 1.82;
-const MAX_LEVEL = 50;
-
-function getLevelFromXP(totalXP: number): number {
-  if (totalXP <= 0) return 1;
-  return Math.min(MAX_LEVEL, Math.floor(Math.pow(totalXP / XP_BASE, XP_EXP_INV)) + 1);
-}
 
 function parseProgressInt(v: unknown): number {
   if (typeof v === 'number' && Number.isFinite(v)) return Math.max(0, Math.trunc(v));

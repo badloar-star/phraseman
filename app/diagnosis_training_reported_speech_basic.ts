@@ -4,16 +4,25 @@ import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagno
 
 type PlannedTrainingLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
-const tri = (ru: string, uk = ru, es = ru): TriText => {
-  const plannedFallback = {
-    'pt-BR': es,
-    vi: es,
-    id: es,
-    tr: es,
-    pl: es,
-  } satisfies Record<PlannedTrainingLocale, string>;
+const REPORTED_NEEDS_REVIEW_PLANNED: Record<PlannedTrainingLocale, string> = {
+  'pt-BR': 'needs-review: esta explicação sobre reported speech ainda precisa de revisão para português do Brasil.',
+  vi: 'needs-review: phần giải thích về reported speech này vẫn cần được rà soát cho tiếng Việt.',
+  id: 'needs-review: penjelasan reported speech ini masih perlu ditinjau untuk bahasa Indonesia.',
+  tr: 'needs-review: bu reported speech açıklaması Türkçe için hâlâ gözden geçirilmeli.',
+  pl: 'needs-review: to objaśnienie reported speech nadal wymaga przeglądu po polsku.',
+};
 
-  return { ru, uk, es, ...plannedFallback };
+const tri = (
+  ru: string,
+  uk = ru,
+  es = ru,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = {},
+): TriText => {
+  const copy: TriText = { ru, uk, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    copy[locale] = planned[locale] ?? REPORTED_NEEDS_REVIEW_PLANNED[locale];
+  }
+  return copy;
 };
 
 const CONTRAST = [
@@ -39,12 +48,54 @@ const SMART_CONTRAST = [
 
 const option = (text: string) => ({ id: text, text });
 
+const REPORTED_SKILL_ES: Record<string, string> = {
+  said_he_was_tired: 'I cambia a he y am pasa a was.',
+  said_she_was_busy: 'I cambia a she y am pasa a was.',
+  will_to_would: 'Will normalmente pasa a would en este entrenamiento.',
+  told_me_object: 'Told necesita una persona: told me.',
+  said_not_said_me: 'Said puede ir sin persona; said me no funciona.',
+  can_to_could: 'Can normalmente pasa a could en reported speech basico.',
+  asked_if_busy: 'Pregunta si/no: asked if + orden normal.',
+  asked_if_could_help: 'Can you help? pasa a if I could help.',
+  asked_if_finished: 'Pregunta si/no: usa if y orden normal.',
+  asked_where_i_lived: 'Where se queda, pero el orden es where I lived.',
+  asked_what_i_wanted: 'What se queda; do desaparece y el orden es I wanted.',
+  asked_when_i_would_arrive: 'Will pasa a would y el orden es I would arrive.',
+  mixed_statement_question_pair: 'Declaracion = said that; pregunta si/no = asked if.',
+  mixed_wh_questions: 'Where/what se quedan, pero el orden vuelve a ser normal.',
+  mixed_sentence_correction: 'Cambia can a could, will a would y quita el orden de pregunta.',
+};
+
+function withEs(
+  copy: TriText,
+  es: string,
+  planned: Partial<Record<PlannedTrainingLocale, string>> = REPORTED_NEEDS_REVIEW_PLANNED,
+): TriText {
+  const next: TriText = { ...copy, es };
+  for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    if (!next[locale] || next[locale]?.startsWith('needs-review:')) {
+      next[locale] = planned[locale] ?? REPORTED_NEEDS_REVIEW_PLANNED[locale];
+    }
+  }
+  return next;
+}
+
+function reportedEsFeedback(input: {
+  targetSkill: string;
+  correctAnswer: string;
+  focusWords: string[];
+}): string {
+  const focus = input.focusWords.join(' / ');
+  const hint = REPORTED_SKILL_ES[input.targetSkill] ?? 'Convierte la cita en una frase normal de reported speech.';
+  return `Usa "${input.correctAnswer}"${focus ? ` con ${focus}` : ''}. ${hint}`;
+}
+
 function retry(depth2: TriText, depth3: TriText, depth4: TriText): [TriText, TriText, TriText, TriText] {
   return [
     tri(
       'Сначала реши: это утверждение, вопрос да/нет или вопрос с where/what/when. Потом меняй I/he/she, время и порядок слов.',
       'Спочатку виріши: це твердження, питання так/ні чи питання з where/what/when. Потім міняй I/he/she, час і порядок слів.',
-      'First decide: statement, yes/no question, or where/what/when question. Then change I/he/she, tense, and word order.',
+      'Primero decide: declaracion, pregunta si/no o pregunta con where/what/when. Luego cambia I/he/she, tiempo y orden de palabras.',
     ),
     tri(
       'Теперь убери форму прямой цитаты: в пересказе вопрос становится обычной фразой.',
@@ -78,38 +129,39 @@ function step(input: {
   retryFeedback: [TriText, TriText, TriText];
   focusWords: string[];
 }): DiagnosisTrainingStep {
+  const esFeedback = reportedEsFeedback(input);
   return {
     id: input.id,
     order: input.order,
     difficulty: input.difficulty,
     type: 'single_choice',
     targetSkill: input.targetSkill,
-    translation: input.translation,
+    translation: withEs(input.translation, esFeedback),
     explanationBlock: tri(
       'Пересказ не копирует цитату дословно. В нем меняются I/he/she, время часто уходит на шаг назад, а вопрос становится обычной фразой.',
       'Переказ не копіює цитату дослівно. У ньому змінюються I/he/she, час часто йде на крок назад, а питання стає звичайною фразою.',
-      'Reported speech does not copy the quote exactly. I/he/she can change, tense often moves one step back, and questions use normal word order.',
+      'Reported speech no copia la cita literalmente. I/he/she puede cambiar, el tiempo suele retroceder un paso y las preguntas usan orden normal.',
     ),
     microTask: tri(
       'Выбери форму пересказа: кто сказал, кому сказал, что изменилось и какой порядок слов нужен.',
       'Вибери форму переказу: хто сказав, кому сказав, що змінилося і який порядок слів потрібен.',
-      'Choose the reported form: who said it, who heard it, what changed, and what word order is needed.',
+      'Elige la forma de reported speech: quien lo dijo, quien lo escucho, que cambio y que orden de palabras hace falta.',
     ),
     sentence: input.sentence,
     answerOptions: input.options.map(option),
     correctAnswerId: input.correctAnswer,
     correctIndex: input.options.findIndex((item) => item === input.correctAnswer),
-    correctFeedback: input.correctFeedback,
+    correctFeedback: withEs(input.correctFeedback, esFeedback),
     wrongFeedbackByOption: Object.fromEntries(
       input.options
         .filter((item) => item !== input.correctAnswer)
-        .map((item) => [item, input.wrong[item] ?? tri(`Нужно "${input.correctAnswer}": это нормальный пересказ без порядка слов из цитаты.`, `Потрібно "${input.correctAnswer}": це нормальний переказ без порядку слів із цитати.`, `We need "${input.correctAnswer}": normal reported speech, not quote word order.`)]),
+        .map((item) => [item, withEs(input.wrong[item] ?? tri(`Нужно "${input.correctAnswer}": это нормальный пересказ без порядка слов из цитаты.`, `Потрібно "${input.correctAnswer}": це нормальний переказ без порядку слів із цитати.`, `Necesitamos "${input.correctAnswer}": reported speech normal, no el orden de la cita.`), esFeedback)]),
     ),
-    retryFeedback: retry(...input.retryFeedback),
+    retryFeedback: retry(...input.retryFeedback).map((item) => withEs(item, esFeedback)) as [TriText, TriText, TriText, TriText],
     fallbackExplanation: tri(
       'Утверждение: said that + обычный порядок. Вопрос да/нет: asked if + обычный порядок. Вопрос с where/what/when: asked where/what/when + обычный порядок. Told требует, кому сказали: told me.',
       'Твердження: said that + звичайний порядок. Питання так/ні: asked if + звичайний порядок. Питання з where/what/when: asked where/what/when + звичайний порядок. Told вимагає, кому сказали: told me.',
-      'Statement: said that + normal order. Yes/no question: asked if + normal order. Where/what/when question: asked where/what/when + normal order. Told needs someone: told me.',
+      'Declaracion: said that + orden normal. Pregunta si/no: asked if + orden normal. Pregunta con where/what/when: asked where/what/when + orden normal. Told necesita alguien: told me.',
     ),
     focusWords: input.focusWords,
   };
@@ -121,29 +173,69 @@ export const REPORTED_SPEECH_BASIC_TRAINING: DiagnosisTraining = {
   version: '1.0.0',
   status: 'active',
   priority: 53,
-  supportedLocales: ['ru', 'uk'],
-  title: tri('He said that...: нормальный пересказ', 'He said that...: нормальний переказ', 'He said that...: reported speech'),
-  shortTitle: tri('He said that...', 'He said that...', 'He said that...'),
+  supportedLocales: ['ru', 'uk', 'es'],
+  title: tri('He said that...: нормальный пересказ', 'He said that...: нормальний переказ', 'He said that...: reported speech', {
+    'pt-BR': 'He said that...: reported speech',
+    vi: 'He said that...: reported speech',
+    id: 'He said that...: reported speech',
+    tr: 'He said that...: reported speech',
+    pl: 'He said that...: reported speech',
+  }),
+  shortTitle: tri('He said that...', 'He said that...', 'He said that...', {
+    'pt-BR': 'He said that...',
+    vi: 'He said that...',
+    id: 'He said that...',
+    tr: 'He said that...',
+    pl: 'He said that...',
+  }),
   shortDiagnosis: tri(
     'Ты оставляешь слова как в цитате: I am, where did I live, told that. В пересказе это ломает фразу.',
     'Ти залишаєш слова як у цитаті: I am, where did I live, told that. У переказі це ламає фразу.',
-    'You keep the quote shape: I am, where did I live, told that. In reported speech, that breaks the sentence.',
+    'Mantienes la forma de la cita: I am, where did I live, told that. En reported speech eso rompe la frase.',
+    {
+      'pt-BR': 'Você deixa as palavras como na citação: I am, where did I live, told that. Em reported speech, isso quebra a frase.',
+      vi: 'Bạn giữ nguyên dạng của lời trích dẫn: I am, where did I live, told that. Trong reported speech, như vậy câu sẽ sai.',
+      id: 'Kamu membiarkan kata-kata seperti dalam kutipan: I am, where did I live, told that. Dalam reported speech, ini merusak kalimat.',
+      tr: 'Kelimeleri alıntıdaki gibi bırakıyorsun: I am, where did I live, told that. Reported speech içinde bu cümleyi bozar.',
+      pl: 'Zostawiasz słowa tak jak w cytacie: I am, where did I live, told that. W reported speech to psuje zdanie.',
+    },
   ),
   diagnosisText: tri(
     'Ты смешиваешь прямую цитату и пересказ: не меняешь I/he/she, оставляешь вопросительный порядок после asked или забываешь, что told требует человека.',
     'Ти змішуєш пряму цитату і переказ: не міняєш I/he/she, залишаєш питальний порядок після asked або забуваєш, що told вимагає людину.',
-    'You mix direct speech and reported speech: you do not change I/he/she, keep question order after asked, or forget that told needs a person.',
+    'Mezclas cita directa y reported speech: no cambias I/he/she, mantienes el orden de pregunta despues de asked o olvidas que told necesita una persona.',
+    {
+      'pt-BR': 'Você mistura citação direta e reported speech: não muda I/he/she, mantém a ordem de pergunta depois de asked ou esquece que told precisa de uma pessoa.',
+      vi: 'Bạn đang trộn lời trích trực tiếp với reported speech: không đổi I/he/she, giữ trật tự câu hỏi sau asked, hoặc quên rằng told cần một người nhận lời nói.',
+      id: 'Kamu mencampur kutipan langsung dan reported speech: tidak mengubah I/he/she, mempertahankan urutan pertanyaan setelah asked, atau lupa bahwa told membutuhkan orang.',
+      tr: 'Doğrudan alıntı ile reported speech yapısını karıştırıyorsun: I/he/she değişmiyor, asked sonrasında soru sırası kalıyor ya da told fiilinin kişi istediği unutuluyor.',
+      pl: 'Mieszasz cytat bezpośredni z reported speech: nie zmieniasz I/he/she, zostawiasz szyk pytania po asked albo zapominasz, że told wymaga osoby.',
+    },
   ),
   mentalModel: tri(
     'Цитата - это запись дословно: He said, "I am tired." Пересказ - это нормальная новая фраза: He said that he was tired.',
     'Цитата - це дослівний запис: He said, "I am tired." Переказ - це нормальна нова фраза: He said that he was tired.',
-    'A quote repeats the exact words: He said, "I am tired." Reported speech makes a new normal sentence: He said that he was tired.',
+    'Una cita repite las palabras exactas: He said, "I am tired." Reported speech crea una frase normal nueva: He said that he was tired.',
+    {
+      'pt-BR': 'Uma citação repete as palavras exatas: He said, "I am tired." Reported speech cria uma nova frase normal: He said that he was tired.',
+      vi: 'Lời trích dẫn lặp lại đúng nguyên văn: He said, "I am tired." Reported speech tạo một câu mới bình thường: He said that he was tired.',
+      id: 'Kutipan mengulang kata-kata persis: He said, "I am tired." Reported speech membuat kalimat baru yang normal: He said that he was tired.',
+      tr: 'Alıntı, sözleri birebir tekrar eder: He said, "I am tired." Reported speech ise normal yeni bir cümle kurar: He said that he was tired.',
+      pl: 'Cytat powtarza dokładne słowa: He said, "I am tired." Reported speech tworzy nowe normalne zdanie: He said that he was tired.',
+    },
   ),
   contrastSet: CONTRAST,
   coreRule: tri(
     'Утверждение: He said that he was tired. Told требует человека: He told me that he was tired. Вопрос да/нет: He asked if I was busy. Where-вопрос: He asked where I lived.',
     'Твердження: He said that he was tired. Told вимагає людину: He told me that he was tired. Питання так/ні: He asked if I was busy. Where-питання: He asked where I lived.',
-    'Statement: He said that he was tired. Told needs someone: He told me that he was tired. Yes/no question: He asked if I was busy. Where-question: He asked where I lived.',
+    'Declaracion: He said that he was tired. Told necesita alguien: He told me that he was tired. Pregunta si/no: He asked if I was busy. Pregunta con where: He asked where I lived.',
+    {
+      'pt-BR': 'Declaração: He said that he was tired. Told precisa de uma pessoa: He told me that he was tired. Pergunta sim/não: He asked if I was busy. Pergunta com where: He asked where I lived.',
+      vi: 'Câu tường thuật: He said that he was tired. Told cần một người nhận lời nói: He told me that he was tired. Câu hỏi yes/no: He asked if I was busy. Câu hỏi với where: He asked where I lived.',
+      id: 'Pernyataan: He said that he was tired. Told membutuhkan orang: He told me that he was tired. Pertanyaan ya/tidak: He asked if I was busy. Pertanyaan dengan where: He asked where I lived.',
+      tr: 'Düz cümle: He said that he was tired. Told bir kişi ister: He told me that he was tired. Evet/hayır sorusu: He asked if I was busy. Where sorusu: He asked where I lived.',
+      pl: 'Zdanie oznajmujące: He said that he was tired. Told wymaga osoby: He told me that he was tired. Pytanie tak/nie: He asked if I was busy. Pytanie z where: He asked where I lived.',
+    },
   ),
   whatUserMustLearn: {
     ru: [
@@ -171,16 +263,16 @@ export const REPORTED_SPEECH_BASIC_TRAINING: DiagnosisTraining = {
       'Цей тренер відпрацьовує базовий зсув часу.',
     ],
     es: [
-      'Reported speech retells meaning, not the exact quote.',
-      'After said, that is common.',
-      'Told needs someone: told me.',
-      'I changes by meaning.',
-      'Tense often moves back after said/asked in the past.',
-      'Reported questions use normal word order.',
-      'Yes/no questions use if/whether.',
-      'Where/what/when stay, but order becomes normal.',
-      'The clause usually has no question mark.',
-      'This trainer practices basic backshift.',
+      'Reported speech cuenta el sentido, no copia la cita exacta.',
+      'Despues de said, that es comun: He said that he was tired.',
+      'Told necesita una persona: He told me that he was tired.',
+      'I cambia segun el sentido: I -> he/she, my -> his/her.',
+      'Despues de said/asked en pasado, el tiempo suele retroceder: am/is -> was, will -> would, can -> could.',
+      'Las preguntas en reported speech usan orden normal.',
+      'Las preguntas si/no usan if o whether.',
+      'Where/what/when se quedan, pero el orden se vuelve normal.',
+      'Dentro del reported speech normalmente no hay signo de pregunta.',
+      'Este entrenador practica el backshift basico.',
     ],
     'pt-BR': [
       'Reported speech reconta o sentido, não copia a citação exata.',
@@ -244,14 +336,14 @@ export const REPORTED_SPEECH_BASIC_TRAINING: DiagnosisTraining = {
     ],
   },
   examples: [
-    { en: 'He said that he was tired.', ru: 'He said that he was tired.', uk: 'He said that he was tired.', es: 'He said that he was tired.', 'pt-BR': 'Ele disse que estava cansado.', vi: 'Anh ấy nói rằng anh ấy mệt.', id: 'Dia mengatakan bahwa dia lelah.', tr: 'Yorgun olduğunu söyledi.', pl: 'Powiedział, że jest zmęczony.', why: tri('I am tired становится he was tired.', 'I am tired стає he was tired.', 'I am tired becomes he was tired.') },
-    { en: 'She said that she was busy.', ru: 'She said that she was busy.', uk: 'She said that she was busy.', es: 'She said that she was busy.', 'pt-BR': 'Ela disse que estava ocupada.', vi: 'Cô ấy nói rằng cô ấy bận.', id: 'Dia mengatakan bahwa dia sibuk.', tr: 'Meşgul olduğunu söyledi.', pl: 'Powiedziała, że jest zajęta.', why: tri('I am busy становится she was busy.', 'I am busy стає she was busy.', 'I am busy becomes she was busy.') },
-    { en: 'He told me that he needed help.', ru: 'He told me that he needed help.', uk: 'He told me that he needed help.', es: 'He told me that he needed help.', 'pt-BR': 'Ele me disse que precisava de ajuda.', vi: 'Anh ấy nói với tôi rằng anh ấy cần giúp đỡ.', id: 'Dia memberi tahu saya bahwa dia membutuhkan bantuan.', tr: 'Bana yardıma ihtiyacı olduğunu söyledi.', pl: 'Powiedział mi, że potrzebuje pomocy.', why: tri('Told требует человека: told me.', 'Told вимагає людину: told me.', 'Told needs someone: told me.') },
-    { en: 'She said that she would call me.', ru: 'She said that she would call me.', uk: 'She said that she would call me.', es: 'She said that she would call me.', 'pt-BR': 'Ela disse que me ligaria.', vi: 'Cô ấy nói rằng cô ấy sẽ gọi cho tôi.', id: 'Dia mengatakan bahwa dia akan menelepon saya.', tr: 'Beni arayacağını söyledi.', pl: 'Powiedziała, że do mnie zadzwoni.', why: tri('Will часто становится would.', 'Will часто стає would.', 'Will often becomes would.') },
-    { en: 'He asked if I was busy.', ru: 'He asked if I was busy.', uk: 'He asked if I was busy.', es: 'He asked if I was busy.', 'pt-BR': 'Ele perguntou se eu estava ocupado.', vi: 'Anh ấy hỏi liệu tôi có bận không.', id: 'Dia bertanya apakah saya sibuk.', tr: 'Meşgul olup olmadığımı sordu.', pl: 'Zapytał, czy jestem zajęty.', why: tri('Вопрос да/нет: if + I was, не was I.', 'Питання так/ні: if + I was, не was I.', 'Yes/no question: if + I was, not was I.') },
-    { en: 'She asked where I lived.', ru: 'She asked where I lived.', uk: 'She asked where I lived.', es: 'She asked where I lived.', 'pt-BR': 'Ela perguntou onde eu morava.', vi: 'Cô ấy hỏi tôi sống ở đâu.', id: 'Dia bertanya di mana saya tinggal.', tr: 'Nerede yaşadığımı sordu.', pl: 'Zapytała, gdzie mieszkam.', why: tri('Where остается, но порядок обычный: I lived.', 'Where залишається, але порядок звичайний: I lived.', 'Where stays, but the order is normal: I lived.') },
-    { en: 'He asked me what I wanted.', ru: 'He asked me what I wanted.', uk: 'He asked me what I wanted.', es: 'He asked me what I wanted.', 'pt-BR': 'Ele me perguntou o que eu queria.', vi: 'Anh ấy hỏi tôi muốn gì.', id: 'Dia bertanya kepada saya apa yang saya inginkan.', tr: 'Bana ne istediğimi sordu.', pl: 'Zapytał mnie, czego chcę.', why: tri('What остается, do уходит, wanted идет после I.', 'What залишається, do зникає, wanted іде після I.', 'What stays, do disappears, wanted goes after I.') },
-    { en: "She said that she couldn't come.", ru: "She said that she couldn't come.", uk: "She said that she couldn't come.", es: "She said that she couldn't come.", 'pt-BR': 'Ela disse que não poderia vir.', vi: 'Cô ấy nói rằng cô ấy không thể đến.', id: 'Dia mengatakan bahwa dia tidak bisa datang.', tr: 'Gelemeyeceğini söyledi.', pl: 'Powiedziała, że nie może przyjść.', why: tri("Can часто становится could; отрицание = couldn't.", "Can часто стає could; заперечення = couldn't.", "Can often becomes could; negative = couldn't.") },
+    { en: 'He said that he was tired.', ru: 'He said that he was tired.', uk: 'He said that he was tired.', es: 'El dijo que estaba cansado.', 'pt-BR': 'Ele disse que estava cansado.', vi: 'Anh ấy nói rằng anh ấy mệt.', id: 'Dia mengatakan bahwa dia lelah.', tr: 'Yorgun olduğunu söyledi.', pl: 'Powiedział, że jest zmęczony.', why: tri('I am tired становится he was tired.', 'I am tired стає he was tired.', 'I am tired pasa a he was tired.') },
+    { en: 'She said that she was busy.', ru: 'She said that she was busy.', uk: 'She said that she was busy.', es: 'Ella dijo que estaba ocupada.', 'pt-BR': 'Ela disse que estava ocupada.', vi: 'Cô ấy nói rằng cô ấy bận.', id: 'Dia mengatakan bahwa dia sibuk.', tr: 'Meşgul olduğunu söyledi.', pl: 'Powiedziała, że jest zajęta.', why: tri('I am busy становится she was busy.', 'I am busy стає she was busy.', 'I am busy pasa a she was busy.') },
+    { en: 'He told me that he needed help.', ru: 'He told me that he needed help.', uk: 'He told me that he needed help.', es: 'El me dijo que necesitaba ayuda.', 'pt-BR': 'Ele me disse que precisava de ajuda.', vi: 'Anh ấy nói với tôi rằng anh ấy cần giúp đỡ.', id: 'Dia memberi tahu saya bahwa dia membutuhkan bantuan.', tr: 'Bana yardıma ihtiyacı olduğunu söyledi.', pl: 'Powiedział mi, że potrzebuje pomocy.', why: tri('Told требует человека: told me.', 'Told вимагає людину: told me.', 'Told necesita una persona: told me.') },
+    { en: 'She said that she would call me.', ru: 'She said that she would call me.', uk: 'She said that she would call me.', es: 'Ella dijo que me llamaria.', 'pt-BR': 'Ela disse que me ligaria.', vi: 'Cô ấy nói rằng cô ấy sẽ gọi cho tôi.', id: 'Dia mengatakan bahwa dia akan menelepon saya.', tr: 'Beni arayacağını söyledi.', pl: 'Powiedziała, że do mnie zadzwoni.', why: tri('Will часто становится would.', 'Will часто стає would.', 'Will a menudo pasa a would.') },
+    { en: 'He asked if I was busy.', ru: 'He asked if I was busy.', uk: 'He asked if I was busy.', es: 'El pregunto si yo estaba ocupado.', 'pt-BR': 'Ele perguntou se eu estava ocupado.', vi: 'Anh ấy hỏi liệu tôi có bận không.', id: 'Dia bertanya apakah saya sibuk.', tr: 'Meşgul olup olmadığımı sordu.', pl: 'Zapytał, czy jestem zajęty.', why: tri('Вопрос да/нет: if + I was, не was I.', 'Питання так/ні: if + I was, не was I.', 'Pregunta si/no: if + I was, no was I.') },
+    { en: 'She asked where I lived.', ru: 'She asked where I lived.', uk: 'She asked where I lived.', es: 'Ella pregunto donde vivia yo.', 'pt-BR': 'Ela perguntou onde eu morava.', vi: 'Cô ấy hỏi tôi sống ở đâu.', id: 'Dia bertanya di mana saya tinggal.', tr: 'Nerede yaşadığımı sordu.', pl: 'Zapytała, gdzie mieszkam.', why: tri('Where остается, но порядок обычный: I lived.', 'Where залишається, але порядок звичайний: I lived.', 'Where se queda, pero el orden es normal: I lived.') },
+    { en: 'He asked me what I wanted.', ru: 'He asked me what I wanted.', uk: 'He asked me what I wanted.', es: 'El me pregunto que queria.', 'pt-BR': 'Ele me perguntou o que eu queria.', vi: 'Anh ấy hỏi tôi muốn gì.', id: 'Dia bertanya kepada saya apa yang saya inginkan.', tr: 'Bana ne istediğimi sordu.', pl: 'Zapytał mnie, czego chcę.', why: tri('What остается, do уходит, wanted идет после I.', 'What залишається, do зникає, wanted іде після I.', 'What se queda, do desaparece y wanted va despues de I.') },
+    { en: "She said that she couldn't come.", ru: "She said that she couldn't come.", uk: "She said that she couldn't come.", es: 'Ella dijo que no podia venir.', 'pt-BR': 'Ela disse que não poderia vir.', vi: 'Cô ấy nói rằng cô ấy không thể đến.', id: 'Dia mengatakan bahwa dia tidak bisa datang.', tr: 'Gelemeyeceğini söyledi.', pl: 'Powiedziała, że nie może przyjść.', why: tri("Can часто становится could; отрицание = couldn't.", "Can часто стає could; заперечення = couldn't.", "Can a menudo pasa a could; la negacion es couldn't.") },
   ],
   introBlocks: [
     {
@@ -260,7 +352,7 @@ export const REPORTED_SPEECH_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Похоже, ты пересказываешь фразу так, будто она все еще в кавычках. Поэтому остаются I am, where did I live и told that.',
         'Схоже, ти переказуєш фразу так, ніби вона все ще в лапках. Тому залишаються I am, where did I live і told that.',
-        'It looks like you report the sentence as if it is still inside quotation marks. That leaves I am, where did I live, and told that.',
+        'Parece que cuentas la frase como si siguiera entre comillas. Por eso quedan I am, where did I live y told that.',
       ),
     },
     {
@@ -269,7 +361,7 @@ export const REPORTED_SPEECH_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Утверждение: said that + обычный порядок. Вопрос: asked if/where/what + обычный порядок.',
         'Твердження: said that + звичайний порядок. Питання: asked if/where/what + звичайний порядок.',
-        'Statement: said that + normal order. Question: asked if/where/what + normal order.',
+        'Declaracion: said that + orden normal. Pregunta: asked if/where/what + orden normal.',
       ),
     },
     {
@@ -278,7 +370,7 @@ export const REPORTED_SPEECH_BASIC_TRAINING: DiagnosisTraining = {
       text: tri(
         'Главные ловушки: оставить местоимения как в цитате, сохранить вопросительный порядок или забыть, кому именно сказали. В пересказе фраза собирается заново.',
         'Головнi пастки: залишити займенники як у цитатi, зберегти питальний порядок або забути, кому саме сказали. У переказi фраза збирається заново.',
-        'Main traps: He said I am tired, He asked where did I live, He told that he was busy. Normal: He said he was tired, He asked where I lived, He told me that he was busy.',
+        'Trampas principales: He said I am tired, He asked where did I live, He told that he was busy. Normal: He said he was tired, He asked where I lived, He told me that he was busy.',
       ),
     },
   ],
@@ -311,10 +403,10 @@ export const REPORTED_SPEECH_BASIC_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Обычное объяснение: показываем цитату, кто говорил и что меняется в пересказе.', 'Звичайне пояснення: показуємо цитату, хто говорив і що змінюється у переказі.', 'Normal explanation: show the quote, who said it, and what changes in reported speech.'),
-    depth2: tri('Проще: это утверждение, вопрос да/нет или вопрос с where/what/when?', 'Простіше: це твердження, питання так/ні чи питання з where/what/when?', 'Simpler: is it a statement, a yes/no question, or a where/what/when question?'),
-    depth3: tri('Еще проще: пересказ меняет лицо, часто сдвигает время и убирает вопросительный порядок внутри фразы.', 'Ще простiше: переказ змiнює особу, часто зсуває час i прибирає питальний порядок усерединi фрази.', 'Even simpler: I am -> he was, will -> would, where do you live -> where I lived.'),
-    depth4: tri('Почти подсказка: выбери нужный блок: said that, asked if или asked where.', 'Майже підказка: вибери потрібний блок: said that, asked if або asked where.', 'Almost a hint: choose the needed block: said that, asked if, or asked where.'),
+    depth1: tri('Обычное объяснение: показываем цитату, кто говорил и что меняется в пересказе.', 'Звичайне пояснення: показуємо цитату, хто говорив і що змінюється у переказі.', 'Explicacion normal: muestra la cita, quien hablo y que cambia en reported speech.'),
+    depth2: tri('Проще: это утверждение, вопрос да/нет или вопрос с where/what/when?', 'Простіше: це твердження, питання так/ні чи питання з where/what/when?', 'Mas simple: es declaracion, pregunta si/no o pregunta con where/what/when?'),
+    depth3: tri('Еще проще: пересказ меняет лицо, часто сдвигает время и убирает вопросительный порядок внутри фразы.', 'Ще простiше: переказ змiнює особу, часто зсуває час i прибирає питальний порядок усерединi фрази.', 'Aun mas simple: I am -> he was, will -> would, where do you live -> where I lived.'),
+    depth4: tri('Почти подсказка: выбери нужный блок: said that, asked if или asked where.', 'Майже підказка: вибери потрібний блок: said that, asked if або asked where.', 'Casi una pista: elige el bloque necesario: said that, asked if o asked where.'),
   },
   failureRecovery: {
     afterTwoWrongInSameExercise: {
@@ -322,26 +414,26 @@ export const REPORTED_SPEECH_BASIC_TRAINING: DiagnosisTraining = {
       card: tri(
         'Пересказ не цитата. Утверждение: said that + обычный порядок. Вопрос да/нет: asked if + обычный порядок. Where/what/when: asked where/what/when + обычный порядок. Told требует человека: told me.',
         'Переказ не цитата. Твердження: said that + звичайний порядок. Питання так/ні: asked if + звичайний порядок. Where/what/when: asked where/what/when + звичайний порядок. Told вимагає людину: told me.',
-        'Reported speech is not a quote. Statement: said that + normal order. Yes/no question: asked if + normal order. Where/what/when: asked where/what/when + normal order. Told needs someone: told me.',
+        'Reported speech no es una cita. Declaracion: said that + orden normal. Pregunta si/no: asked if + orden normal. Where/what/when: asked where/what/when + orden normal. Told necesita alguien: told me.',
       ),
     },
     afterThreeWrongInSameExercise: {
       action: 'show_report_type_hint_then_retry',
-      card: tri('Подсказка: система покажет тип исходной фразы, но не выберет весь ответ.', 'Підказка: система покаже тип початкової фрази, але не вибере всю відповідь.', 'Hint: the system shows the type of the original sentence, but does not choose the whole answer.'),
+      card: tri('Подсказка: система покажет тип исходной фразы, но не выберет весь ответ.', 'Підказка: система покаже тип початкової фрази, але не вибере всю відповідь.', 'Pista: el sistema muestra el tipo de frase original, pero no elige toda la respuesta.'),
     },
     afterFourWrongInSameExercise: {
       action: 'switch_to_guided_mode',
-      card: tri('Guided mode: сначала выбери тип фразы. Потом выбери said that, asked if или asked where/what.', 'Guided mode: спочатку вибери тип фрази. Потім вибери said that, asked if або asked where/what.', 'Guided mode: first choose the sentence type. Then choose said that, asked if, or asked where/what.'),
+      card: tri('Guided mode: сначала выбери тип фразы. Потом выбери said that, asked if или asked where/what.', 'Guided mode: спочатку вибери тип фрази. Потім вибери said that, asked if або asked where/what.', 'Modo guiado: primero elige el tipo de frase. Luego elige said that, asked if o asked where/what.'),
     },
   },
   guidedMode: {
     enabled: true,
     triggerAfterWrongAttempts: 4,
     tasks: [
-      { id: 'guided_reported_001', prompt: tri('He said, "I am tired." В пересказе I станет he или I?', 'He said, "I am tired." У переказі I стане he чи I?', 'He said, "I am tired." In reported speech, does I become he or stay I?'), options: ['he', 'I'], correctIndex: 0, thenReturnToExerciseId: 'reported_easy_001' },
-      { id: 'guided_reported_002', prompt: tri('Told обычно требует человека: told me или told that?', 'Told зазвичай вимагає людину: told me чи told that?', 'Told usually needs someone: told me or told that?'), options: ['told me', 'told that'], correctIndex: 0, thenReturnToExerciseId: 'reported_contrast_001' },
-      { id: 'guided_reported_003', prompt: tri('В вопросе да/нет при пересказе нужен обычный порядок слов или порядок вопроса?', 'У питаннi так/нi при переказi потрiбен звичайний порядок слiв чи порядок питання?', 'Are you busy? In reported speech: asked if I was busy or asked was I busy?'), options: ['asked if I was busy', 'asked was I busy'], correctIndex: 0, thenReturnToExerciseId: 'reported_contrast_004' },
-      { id: 'guided_reported_004', prompt: tri('В вопросе со словом where при пересказе оставляем вопросительный порядок или делаем обычную фразу?', 'У питаннi зi словом where при переказi залишаємо питальний порядок чи робимо звичайну фразу?', 'Where do you live? In reported speech: where I lived or where did I live?'), options: ['where I lived', 'where did I live'], correctIndex: 0, thenReturnToExerciseId: 'reported_mixed_001' },
+      { id: 'guided_reported_001', prompt: tri('He said, "I am tired." В пересказе I станет he или I?', 'He said, "I am tired." У переказі I стане he чи I?', 'He said, "I am tired." En reported speech, I pasa a he o se queda I?'), options: ['he', 'I'], correctIndex: 0, thenReturnToExerciseId: 'reported_easy_001' },
+      { id: 'guided_reported_002', prompt: tri('Told обычно требует человека: told me или told that?', 'Told зазвичай вимагає людину: told me чи told that?', 'Told normalmente necesita alguien: told me o told that?'), options: ['told me', 'told that'], correctIndex: 0, thenReturnToExerciseId: 'reported_contrast_001' },
+      { id: 'guided_reported_003', prompt: tri('В вопросе да/нет при пересказе нужен обычный порядок слов или порядок вопроса?', 'У питаннi так/нi при переказi потрiбен звичайний порядок слiв чи порядок питання?', 'Are you busy? En reported speech: asked if I was busy o asked was I busy?'), options: ['asked if I was busy', 'asked was I busy'], correctIndex: 0, thenReturnToExerciseId: 'reported_contrast_004' },
+      { id: 'guided_reported_004', prompt: tri('В вопросе со словом where при пересказе оставляем вопросительный порядок или делаем обычную фразу?', 'У питаннi зi словом where при переказi залишаємо питальний порядок чи робимо звичайну фразу?', 'Where do you live? En reported speech: where I lived o where did I live?'), options: ['where I lived', 'where did I live'], correctIndex: 0, thenReturnToExerciseId: 'reported_mixed_001' },
     ],
   },
   smartTrainerConfig: {
@@ -349,7 +441,7 @@ export const REPORTED_SPEECH_BASIC_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'syntax',
     microDiagnosisId: 'reported_speech_basic',
-    diagnosisLabel: tri('He said that...', 'He said that...', 'He said that...'),
+    diagnosisLabel: tri('He said that...', 'He said that...', 'He said that...: reported speech'),
     contrastSet: SMART_CONTRAST,
     difficultyLevel: 2,
     focusWords: ['said that', 'told me', 'asked if', 'where I lived', 'would call'],
@@ -365,7 +457,7 @@ export const REPORTED_SPEECH_BASIC_TRAINING: DiagnosisTraining = {
     start: 'diagnosis_training_started',
     answer: 'diagnosis_training_answer',
     mastery: 'diagnosis_training_mastered',
-    fallback: 'diagnosis_training_fallback',
+    recovery: 'diagnosis_training_recovery',
     onStart: 'diagnosis_training_started',
     onCorrect: 'diagnosis_training_answer_correct',
     onWrong: 'diagnosis_training_answer_wrong',

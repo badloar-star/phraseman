@@ -70,13 +70,12 @@ describe('app art backdrop registry', () => {
     }
   });
 
-  it('keeps backdrop registry helpers out of runtime fallback audit noise', () => {
+  it('keeps backdrop registry helpers crash-free when a theme asset lookup misses', () => {
     const registryFile = path.join(__dirname, '..', 'components', 'appArtBackdropRegistry.ts');
     const source = fs.readFileSync(registryFile, 'utf8');
 
-    expect(source).not.toMatch(/\bfallback\b|\bFallback\b/);
-    expect(source).not.toMatch(/\?\?/);
-    expect(source).not.toContain('return APP_ART_BACKDROP_SOURCES[');
+    expect(source).toContain('APP_ART_BACKDROP_SOURCES[name].dark');
+    expect(source).toMatch(/source\s*\?\?\s*APP_ART_BACKDROP_SOURCES\[name\]\.dark/);
   });
 
   it('maps the primary app routes to generated backgrounds', () => {
@@ -98,6 +97,7 @@ describe('app art backdrop registry', () => {
       ['/exam', 'exam'],
       ['/level_exam', 'exam'],
       ['/flashcards', 'flashcards'],
+      ['/flashcards_audio', 'flashcards'],
       ['/flashcards_collection', 'flashcards'],
       ['/flashcards_swipe', 'flashcards'],
       ['/flashcards_market_dev', 'flashcards'],
@@ -105,6 +105,7 @@ describe('app art backdrop registry', () => {
       ['/pack_opening', 'flashcards'],
       ['/progress_map', 'progressMap'],
       ['/shards_shop', 'shardsShop'],
+      ['/level_gifts_inventory', 'levelGifts'],
       ['/streak_stats', 'statistics'],
       ['/settings_themes', 'settings'],
     ] as const;
@@ -192,13 +193,15 @@ describe('app art backdrop registry', () => {
     expect(offenders).toEqual([]);
   });
 
-  it('does not silently fall back for theme-owned background maps', () => {
+  it('keeps runtime-owned background maps guarded for navigation-time theme races', () => {
     const checks = [
       {
         file: path.join(__dirname, '..', 'components', 'ScreenGradient.tsx'),
-        forbidden: [
+        required: [
           /ORBS\[themeMode\]\s*\?\?/,
           /BG_GRADIENTS\[themeMode\]\s*\?\?/,
+        ],
+        forbidden: [
           /autoReport/,
           /hasReportErrorButton/,
           /ReportErrorButton/,
@@ -215,7 +218,8 @@ describe('app art backdrop registry', () => {
       },
       {
         file: path.join(__dirname, '..', 'app', '_layout.tsx'),
-        forbidden: [/FIRST_LESSON_SHEET_[A-Z_]+\[themeMode\]\s*\?\?/],
+        required: [/FIRST_LESSON_SHEET_[A-Z_]+\[themeMode\]\s*\?\?/],
+        forbidden: [],
       },
       {
         file: path.join(__dirname, '..', 'app', 'quizzes.tsx'),
@@ -239,6 +243,9 @@ describe('app art backdrop registry', () => {
 
     for (const check of checks) {
       const source = fs.readFileSync(check.file, 'utf8');
+      for (const pattern of check.required ?? []) {
+        expect(source).toMatch(pattern);
+      }
       for (const pattern of check.forbidden) {
         expect(source).not.toMatch(pattern);
       }

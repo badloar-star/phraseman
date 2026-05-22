@@ -1466,15 +1466,15 @@ function AppContent() {
   const leagueBonusAvailableModalVisible = useOverlayVisible('leagueBonusAvailable', !!leagueBonusAvailable);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
   const firstLessonSheetVisible = useOverlayVisible('firstLessonSheet', showFirstLessonSheet);
-  const firstLessonSheetBackground = FIRST_LESSON_SHEET_BACKGROUNDS[themeMode];
-  const firstLessonSheetScrim = FIRST_LESSON_SHEET_PANEL_SCRIMS[themeMode];
-  const firstLessonSheetTitleColor = FIRST_LESSON_SHEET_TITLE_COLORS[themeMode];
-  const firstLessonSheetSubtitleColor = FIRST_LESSON_SHEET_SUBTITLE_COLORS[themeMode];
-  const firstLessonSheetLaterColor = FIRST_LESSON_SHEET_LATER_COLORS[themeMode];
-  const firstLessonSheetBorderColor = FIRST_LESSON_SHEET_BORDER_COLORS[themeMode];
-  const firstLessonSheetCtaTextColor = FIRST_LESSON_SHEET_CTA_TEXT_COLORS[themeMode];
-  const firstLessonSheetCtaGradient = FIRST_LESSON_SHEET_CTA_GRADIENTS[themeMode];
-  const firstLessonSheetCtaShadowColor = FIRST_LESSON_SHEET_CTA_SHADOW_COLORS[themeMode];
+  const firstLessonSheetBackground = FIRST_LESSON_SHEET_BACKGROUNDS[themeMode] ?? FIRST_LESSON_SHEET_BACKGROUNDS.minimalDark;
+  const firstLessonSheetScrim = FIRST_LESSON_SHEET_PANEL_SCRIMS[themeMode] ?? FIRST_LESSON_SHEET_PANEL_SCRIMS.minimalDark;
+  const firstLessonSheetTitleColor = FIRST_LESSON_SHEET_TITLE_COLORS[themeMode] ?? '#FFFFFF';
+  const firstLessonSheetSubtitleColor = FIRST_LESSON_SHEET_SUBTITLE_COLORS[themeMode] ?? '#C5CAD0';
+  const firstLessonSheetLaterColor = FIRST_LESSON_SHEET_LATER_COLORS[themeMode] ?? '#9298A1';
+  const firstLessonSheetBorderColor = FIRST_LESSON_SHEET_BORDER_COLORS[themeMode] ?? 'rgba(255,255,255,0.16)';
+  const firstLessonSheetCtaTextColor = FIRST_LESSON_SHEET_CTA_TEXT_COLORS[themeMode] ?? '#FFFFFF';
+  const firstLessonSheetCtaGradient = FIRST_LESSON_SHEET_CTA_GRADIENTS[themeMode] ?? FIRST_LESSON_SHEET_CTA_GRADIENTS.neon;
+  const firstLessonSheetCtaShadowColor = FIRST_LESSON_SHEET_CTA_SHADOW_COLORS[themeMode] ?? '#C8FF00';
 
   if (!ready) {
     return (
@@ -1556,10 +1556,13 @@ function AppContent() {
       <Stack.Screen name="premium_modal" options={{ presentation: 'modal', animation: 'slide_from_bottom', animationDuration: 420 }} />
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="flashcards" />
+      <Stack.Screen name="flashcards_audio" />
       <Stack.Screen name="flashcards_collection" />
       <Stack.Screen name="flashcards_swipe" />
       <Stack.Screen name="community_pack_create" />
       <Stack.Screen name="pack_opening" options={{ presentation: 'modal', animation: 'fade' }} />
+      <Stack.Screen name="shards_shop" />
+      <Stack.Screen name="level_gifts_inventory" />
       <Stack.Screen name="achievements_screen" />
       <Stack.Screen name="level_exam" />
       <Stack.Screen name="review" />

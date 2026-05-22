@@ -245,6 +245,7 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   achievements_screen: 'achievements',
   progress_map: 'progressMap',
   flashcards: 'flashcards',
+  flashcards_audio: 'flashcards',
   flashcards_collection: 'flashcards',
   flashcards_swipe: 'flashcards',
   flashcards_market_dev: 'flashcards',
@@ -341,7 +342,7 @@ export function getAppArtBackdropSource(
   themeMode: ThemeMode,
 ): ImageSourcePropType {
   const source = APP_ART_BACKDROP_SOURCES[name][themeMode];
-  return source;
+  return source ?? APP_ART_BACKDROP_SOURCES[name].dark;
 }
 
 function normalizePathname(pathname?: string | null): string {

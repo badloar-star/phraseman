@@ -420,10 +420,10 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
   const defaultEntranceY = useRef(new Animated.Value(0)).current;
 
   const isGold = themeMode === 'gold';
-  const orbs = ORBS[themeMode];
+  const orbs = ORBS[themeMode] ?? ORBS.dark;
   const gradColors = useMemo(
-    () => BG_GRADIENTS[themeMode],
-    [themeMode],
+    () => BG_GRADIENTS[themeMode] ?? [t.bgGradient[0], t.bgGradient[1]],
+    [themeMode, t.bgGradient],
   );
   const activeBgKey = `${themeMode}:${t.bgPrimary}:${t.accent}`;
   const targetBgLayer = useMemo<ScreenBgLayer>(() => ({

@@ -1,6 +1,5 @@
 import { Image, type ImageSourcePropType } from 'react-native';
 import { Asset } from 'expo-asset';
-import { APP_ART_BACKDROP_NAMES, APP_ART_BACKDROP_SOURCES } from '../components/appArtBackdropRegistry';
 import { FIRST_LESSON_SHEET_IMAGES } from '../components/firstLessonSheetAssets';
 import { LEVEL_GIFT_IMAGE_SOURCES } from '../constants/levelGiftImages';
 import { LEVEL_GIFT_REWARD_ICON_SOURCES } from '../constants/levelGiftRewardIcons';
@@ -91,10 +90,6 @@ const LESSON_INTRO_CTA_IMAGES = [
   require('../assets/images/lesson_intro/intro-cta-minimal-dark.webp'),
 ];
 
-const APP_ART_BACKGROUND_IMAGES = APP_ART_BACKDROP_NAMES.flatMap(name =>
-  Object.values(APP_ART_BACKDROP_SOURCES[name])
-);
-
 function isDevMetroAssetUri(uri: string) {
   if (
     typeof __DEV__ !== 'undefined' &&
@@ -147,7 +142,6 @@ async function warmImageSources(sources: readonly ImageSourcePropType[]) {
 export const preloadStartupImages = async () => {
   try {
     await warmImageSources([
-      ...APP_ART_BACKGROUND_IMAGES,
       ...LEVEL_GIFT_IMAGE_SOURCES,
       ...LEVEL_GIFT_REWARD_ICON_SOURCES,
       ...OSKOLOK_IMAGE_SOURCES,
@@ -169,7 +163,6 @@ export const preloadImages = async () => {
       ...LEVEL_GIFT_IMAGE_SOURCES,
       ...LEVEL_GIFT_REWARD_ICON_SOURCES,
       ...OSKOLOK_IMAGE_SOURCES,
-      ...APP_ART_BACKGROUND_IMAGES,
     ];
     await warmImageSources(allImages);
   } catch {

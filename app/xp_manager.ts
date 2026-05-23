@@ -112,6 +112,7 @@ export const getLessonDifficultyMultiplier = (lessonNumber: number): number => {
 // Сериализует все вызовы registerXP — предотвращает race condition на user_total_xp
 // при быстрых параллельных ответах (fire-and-forget без await).
 let _xpLock: Promise<unknown> = Promise.resolve();
+const XP_CLOUD_SYNC_DEFER_MS = 3500;
 
 export const registerXP = async (
   amount: number,
@@ -260,7 +261,7 @@ export const registerXP = async (
     }
 
     // Синхронизируем прогресс в облако (fire-and-forget)
-    syncToCloud().catch(() => {});
+    syncToCloud({ deferMs: XP_CLOUD_SYNC_DEFER_MS }).catch(() => {});
 
     // Обновляем leaderboard/{uid} напрямую — не ждём Cloud Function
     if (finalDelta > 0) {

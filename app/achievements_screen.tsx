@@ -14,6 +14,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { safeRouterBack } from './navigation_back';
 import {
   ALL_ACHIEVEMENTS,
   loadAchievementStates,
@@ -535,7 +536,7 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
   return null;
 }
 
-/** Квизы Medium/Hard без Premium недоступны — эти ачивки открываются с подпиской. */
+/** Квизовые достижения доступны всем; Premium-подсказка для них отключена. */
 const PREMIUM_QUIZ_ACHIEVEMENT_IDS = new Set([
   'quiz_medium',
   'quiz_hard',
@@ -552,7 +553,7 @@ const PREMIUM_QUIZ_ACHIEVEMENT_IDS = new Set([
 ]);
 
 export function achievementNeedsPremiumQuiz(id: string): boolean {
-  return PREMIUM_QUIZ_ACHIEVEMENT_IDS.has(id);
+  return false;
 }
 
 // Лейбл уровня для медалей (gem_*)
@@ -915,6 +916,13 @@ const CAT_ICON: Record<string, any> = {
   special: 'rocket',
   medal:   'diamond',
 };
+const CAT_ICON_IMAGE: Record<string, any> = {
+  streak:  require('../assets/images/achievement_categories/achievement-category-streak.webp'),
+  lessons: require('../assets/images/achievement_categories/achievement-category-lessons.webp'),
+  xp:      require('../assets/images/achievement_categories/achievement-category-xp.webp'),
+  combo:   require('../assets/images/achievement_categories/achievement-category-combo.webp'),
+  special: require('../assets/images/achievement_categories/achievement-category-special.webp'),
+};
 const CAT_LABEL_RU: Record<string, string> = {
   streak: 'Цепочка', lessons: 'Уроки', xp: 'Опыт',
   quiz: 'Квизы', combo: 'Серии', special: 'Особые', medal: 'Медали',
@@ -967,6 +975,7 @@ type AchievementListSection = {
   title: string;
   color: string;
   catIcon: string;
+  catIconImage?: any;
   catUnlocked: number;
   catTotal: number;
   data: AchievementGridRow[];
@@ -1046,7 +1055,7 @@ type GridCellProps = {
   shieldW: number;
   shieldOuter: number;
   onSelect: (achievement: Achievement) => void;
-  /** Показать метку Premium (квизы средний/сложный только по подписке). */
+  /** Показать legacy-метку Premium; для квизов отключена. */
   showPremiumQuizGate: boolean;
   revealLockedDetails: boolean;
 };
@@ -1182,6 +1191,94 @@ const AchievementGridCell = memo(function AchievementGridCell({
 });
 
 // ── Щит-значок с PNG фоном ────────────────────────────────────────────────────
+function AchievementImageWithFallback({
+  source,
+  fallbackIconName,
+  size,
+  bodyHeight,
+  tintColor,
+  iconColor,
+  opacity,
+}: {
+  source: any;
+  fallbackIconName: string;
+  size: number;
+  bodyHeight: number;
+  tintColor: string;
+  iconColor: string;
+  opacity: number;
+}) {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [source]);
+
+  return (
+    <View style={{ width: size, height: bodyHeight, alignItems: 'center', justifyContent: 'center' }}>
+      {!loaded ? (
+        <View pointerEvents="none" style={{ width: size, height: bodyHeight, alignItems: 'center', justifyContent: 'center', position: 'absolute' }}>
+          <Image
+            source={require('../assets/images/levels/achivement.webp')}
+            style={{ width: size, height: bodyHeight, tintColor, opacity: 0.82 }}
+            resizeMode="contain"
+          />
+          <Ionicons
+            name={fallbackIconName as any}
+            size={Math.round(size * 0.42)}
+            color={iconColor}
+            style={{ position: 'absolute' }}
+          />
+        </View>
+      ) : null}
+      <Image
+        source={source}
+        style={{ width: size, height: bodyHeight, opacity }}
+        resizeMode="contain"
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(false)}
+      />
+    </View>
+  );
+}
+
+function CategoryIconImageWithFallback({
+  source,
+  fallbackIconName,
+  color,
+}: {
+  source?: any;
+  fallbackIconName: string;
+  color: string;
+}) {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [source]);
+
+  return (
+    <View style={{ width: 46, height: 46, alignItems: 'center', justifyContent: 'center' }}>
+      {!loaded || !source ? (
+        <View pointerEvents="none" style={{ width: 32, height: 32, borderRadius: 10, backgroundColor: color + '22', alignItems: 'center', justifyContent: 'center', position: 'absolute' }}>
+          <Ionicons name={fallbackIconName as any} size={17} color={color} />
+        </View>
+      ) : null}
+      {source ? (
+        <Image
+          source={source}
+          style={{ width: 46, height: 46 }}
+          resizeMode="contain"
+          accessible={false}
+          accessibilityIgnoresInvertColors
+          onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(false)}
+        />
+      ) : null}
+    </View>
+  );
+}
+
 function BadgeShieldInner({
   unlocked, inProgress, color, iconName, size, achievementId,
   isDark,
@@ -1208,10 +1305,14 @@ function BadgeShieldInner({
   if (specificImage) {
     return (
       <View style={{ width: W, alignItems: 'center' }}>
-        <Image
+        <AchievementImageWithFallback
           source={specificImage}
-          style={{ width: W, height: BODY_H, opacity: isLocked ? 0.20 : inProgress ? 0.50 : 1 }}
-          resizeMode="contain"
+          fallbackIconName={iconName}
+          size={W}
+          bodyHeight={BODY_H}
+          tintColor={tintColor}
+          iconColor={iconColor}
+          opacity={isLocked ? 0.20 : inProgress ? 0.50 : 1}
         />
         {levelLabel && (
           <View style={{
@@ -1363,20 +1464,20 @@ function AchievementModal({
               }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
                   {triLang(lang, {
-                    ru: 'Нужен Premium: уровни Medium и Hard в квизах открываются по подписке.',
-                    uk: 'Потрібен Premium: рівні Medium і Hard у квізах відкриваються за підпискою.',
-                    es: 'Requiere Premium: los niveles Medium y Hard del cuestionario están en la suscripción.',
-                    'pt-BR': 'Requer Premium: os níveis Medium e Hard dos quizzes ficam na assinatura.',
-                    vi: 'Cần Premium: cấp Medium và Hard trong quiz chỉ mở với gói đăng ký.',
-                    id: 'Perlu Premium: level Medium dan Hard di kuis tersedia lewat langganan.',
-                    tr: 'Premium gerekir: quizlerde Medium ve Hard seviyeleri abonelikle açılır.',
-                    pl: 'Wymaga Premium: poziomy Medium i Hard w quizach są w subskrypcji.',
+                    ru: 'Квизовые достижения считаются по обычным правилам. Открой квизы и продолжай серию.',
+                    uk: 'Квізові досягнення рахуються за звичайними правилами. Відкрий квізи й продовжуй серію.',
+                    es: 'Los logros de cuestionarios cuentan con las reglas normales. Abre los cuestionarios y continúa la racha.',
+                    'pt-BR': 'As conquistas de quizzes contam pelas regras normais. Abra os quizzes e continue a sequência.',
+                    vi: 'Thành tích quiz được tính theo quy tắc thông thường. Mở quiz và tiếp tục chuỗi.',
+                    id: 'Pencapaian kuis dihitung dengan aturan biasa. Buka kuis dan lanjutkan rentetanmu.',
+                    tr: 'Quiz başarımları normal kurallarla sayılır. Quizleri aç ve seriyi sürdür.',
+                    pl: 'Osiągnięcia quizowe liczą się według zwykłych zasad. Otwórz quizy i kontynuuj serię.',
                   })}
                 </Text>
                 <TouchableOpacity
                   onPress={() => {
                     onClose();
-                    router.push({ pathname: '/premium_modal', params: { context: 'quiz_level' } } as any);
+                    router.push('/quizzes_screen' as any);
                   }}
                   style={{
                     backgroundColor: isDark ? '#6D28D9' : '#7C3AED',
@@ -1386,7 +1487,7 @@ function AchievementModal({
                   }}
                 >
                   <Text style={{ color: '#FEF3C7', fontSize: f.body, fontWeight: '800' }}>
-                    {triLang(lang, { ru: 'Оформить Premium', uk: 'Оформити Premium', es: 'Conseguir Premium', 'pt-BR': 'Assinar Premium', vi: 'Đăng ký Premium', id: 'Dapatkan Premium', tr: 'Premium al', pl: 'Wykup Premium' })}
+                    {triLang(lang, { ru: 'Открыть квизы', uk: 'Відкрити квізи', es: 'Abrir cuestionarios', 'pt-BR': 'Abrir quizzes', vi: 'Mở quiz', id: 'Buka kuis', tr: 'Quizleri aç', pl: 'Otwórz quizy' })}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -1559,14 +1660,22 @@ const AccordionSection = memo(function AccordionSection({
         }}
       >
         <View style={{
-          width: 32,
-          height: 32,
-          borderRadius: 10,
-          backgroundColor: section.color + '22',
+          width: section.catIconImage ? 46 : 32,
+          height: section.catIconImage ? 46 : 32,
+          borderRadius: section.catIconImage ? 14 : 10,
+          backgroundColor: section.catIconImage ? 'transparent' : section.color + '22',
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-          <Ionicons name={section.catIcon as any} size={17} color={section.color} />
+          {section.catIconImage ? (
+            <CategoryIconImageWithFallback
+              source={section.catIconImage}
+              fallbackIconName={section.catIcon}
+              color={section.color}
+            />
+          ) : (
+            <Ionicons name={section.catIcon as any} size={17} color={section.color} />
+          )}
         </View>
         <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', flex: 1 }}>
           {section.title}
@@ -1664,6 +1773,7 @@ export default function AchievementsScreen() {
     const sections = CATEGORIES.flatMap(cat => {
       const color = achievementCategoryColor(cat, themeMode);
       const catIcon = CAT_ICON[cat];
+      const catIconImage = CAT_ICON_IMAGE[cat];
       const title = triLang(lang, { ru: CAT_LABEL_RU[cat], uk: CAT_LABEL_UK[cat], es: CAT_LABEL_ES[cat], 'pt-BR': CAT_LABEL_PTBR[cat], vi: CAT_LABEL_VI[cat], id: CAT_LABEL_ID[cat], tr: CAT_LABEL_TR[cat], pl: CAT_LABEL_PL[cat] });
       const allCatAchs = ALL_ACHIEVEMENTS.filter(a => a.category === cat);
       const catAchs = allCatAchs.filter(a => showAllAchievements || !!stateMap.get(a.id)?.unlockedAt);
@@ -1679,6 +1789,7 @@ export default function AchievementsScreen() {
         title,
         color,
         catIcon,
+        catIconImage,
         catUnlocked,
         catTotal: showAllAchievements ? allCatAchs.length : catUnlocked,
         data: rows,
@@ -1707,7 +1818,7 @@ export default function AchievementsScreen() {
 
         {/* Хедер */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 }}>
-          <TouchableOpacity onPress={() => router.back()} style={{ flexShrink: 0 }}>
+          <TouchableOpacity onPress={() => safeRouterBack(router)} style={{ flexShrink: 0 }}>
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
           <View style={{ flex: 1, marginLeft: 8, minWidth: 0 }}>

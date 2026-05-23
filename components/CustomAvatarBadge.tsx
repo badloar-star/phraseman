@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Svg, { Defs, LinearGradient, Polygon, Stop } from 'react-native-svg';
 import {
   CUSTOM_AVATAR_GRADIENTS,
@@ -59,11 +60,51 @@ const CUSTOM_AVATAR_IMAGE_FITS: Record<string, AvatarImageFit> = {
   'custom-gen-30': { scale: 1.05 },
 };
 
+function CustomAvatarImageWithFallback({
+  source,
+  style,
+  resizeMode,
+  fallbackSize,
+  fallbackColor,
+}: {
+  source: any;
+  style: any;
+  resizeMode: 'contain';
+  fallbackSize: number;
+  fallbackColor: string;
+}) {
+  const [loaded, setLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    setLoaded(false);
+  }, [source]);
+
+  return (
+    <>
+      {!loaded ? (
+        <Ionicons
+          name="sparkles"
+          size={Math.max(14, Math.round(fallbackSize * 0.45))}
+          color={fallbackColor}
+          style={{ position: 'absolute', opacity: 0.9 }}
+        />
+      ) : null}
+      <Image
+        source={source}
+        style={style}
+        resizeMode={resizeMode}
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(false)}
+      />
+    </>
+  );
+}
+
 export default function CustomAvatarBadge({ value, avatarId, gradientId, logoColor, size = 44, style }: Props) {
   const parsed = parseCustomAvatarValue(value);
   const resolvedAvatarId = avatarId ?? parsed?.avatarId;
   const resolvedGradientId = gradientId ?? parsed?.gradientId;
-  const resolvedLogoColor = logoColor ?? parsed?.logoColor ?? 'black';
+  const resolvedLogoColor = logoColor ?? parsed?.logoColor ?? 'white';
   const avatar = resolvedAvatarId ? getCustomAvatarById(resolvedAvatarId) : undefined;
   const gradient = (resolvedGradientId ? getCustomAvatarGradientById(resolvedGradientId) : undefined)
     ?? CUSTOM_AVATAR_GRADIENTS[0];
@@ -91,21 +132,21 @@ export default function CustomAvatarBadge({ value, avatarId, gradientId, logoCol
   const imageSize = Math.round(size * (nativeImage ? imageFit.scale : 0.84));
   const imageTranslateX = Math.round(size * (imageFit.translateX ?? 0));
   const imageTranslateY = Math.round(size * (imageFit.translateY ?? 0));
-  const centeredImageStyle = {
+  const centeredImageLayerStyle = {
     position: 'absolute' as const,
-    left: '50%' as const,
-    top: '50%' as const,
-    marginLeft: -imageSize / 2,
-    marginTop: -imageSize / 2,
-    width: imageSize,
-    height: imageSize,
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: 'center' as const,
+    justifyContent: 'center' as const,
   };
 
   return (
-    <View style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }, style]}>
+    <View style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center', position: 'relative' }, style]}>
       <Svg width={size} height={size} viewBox="0 0 100 100" style={{ position: 'absolute', left: 0, top: 0 }}>
         <Defs>
-          <LinearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
+          <LinearGradient id={gid} x1="0.5" y1="0" x2="0.5" y2="1">
             <Stop offset="0" stopColor={gradient.colors[0]} />
             <Stop offset="0.52" stopColor={gradient.colors[1]} />
             <Stop offset="1" stopColor={gradient.colors[2]} />
@@ -114,27 +155,34 @@ export default function CustomAvatarBadge({ value, avatarId, gradientId, logoCol
         <Polygon points={points} fill={`url(#${gid})`} stroke="rgba(255,255,255,0.58)" strokeWidth={3.5} />
       </Svg>
       {!nativeImage && rimOffsets.map(([x, y]) => (
-        <Image
-          key={`${x}:${y}`}
+        <View key={`${x}:${y}`} pointerEvents="none" style={centeredImageLayerStyle}>
+          <Image
+            source={imageSource}
+            style={{
+              width: imageSize,
+              height: imageSize,
+              opacity: rimOpacity,
+              tintColor: rimColor,
+              transform: [{ translateX: x }, { translateY: y }],
+            }}
+            resizeMode="contain"
+          />
+        </View>
+      ))}
+      <View pointerEvents="none" style={centeredImageLayerStyle}>
+        <CustomAvatarImageWithFallback
           source={imageSource}
           style={{
-            ...centeredImageStyle,
-            opacity: rimOpacity,
-            tintColor: rimColor,
-            transform: [{ translateX: x }, { translateY: y }],
+            width: imageSize,
+            height: imageSize,
+            tintColor: nativeImage ? undefined : logoColorFinal,
+            transform: [{ translateX: imageTranslateX }, { translateY: imageTranslateY }],
           }}
           resizeMode="contain"
+          fallbackSize={size}
+          fallbackColor={logoColorFinal}
         />
-      ))}
-      <Image
-        source={imageSource}
-        style={{
-          ...centeredImageStyle,
-          tintColor: nativeImage ? undefined : logoColorFinal,
-          transform: [{ translateX: imageTranslateX }, { translateY: imageTranslateY }],
-        }}
-        resizeMode="contain"
-      />
+      </View>
     </View>
   );
 }

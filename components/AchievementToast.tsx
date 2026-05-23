@@ -33,6 +33,9 @@ import {
 
 const AUTO_DISMISS_MS = 3800;
 const { width: SW } = Dimensions.get('window');
+const TOAST_ICON_SLOT_SIZE = 64;
+const TOAST_IMAGE_SIZE = 54;
+const TOAST_VECTOR_ICON_SIZE = 38;
 
 /**
  * Тост-баннер в нижней части экрана.
@@ -316,8 +319,8 @@ export default function AchievementToast() {
           {/* Иконка */}
           <View style={[s.iconWrap, { backgroundColor: color + '22', borderColor: color + '55' }]}>
             {ACHIEVEMENT_IMAGE[displayedToast.id]
-              ? <Image source={ACHIEVEMENT_IMAGE[displayedToast.id]} style={{ width: 36, height: 36 }} resizeMode="contain" />
-              : <Ionicons name={iconName} size={28} color={color} />
+              ? <Image source={ACHIEVEMENT_IMAGE[displayedToast.id]} style={s.toastAchievementImage} resizeMode="contain" />
+              : <Ionicons name={iconName} size={TOAST_VECTOR_ICON_SIZE} color={color} />
             }
           </View>
 
@@ -439,12 +442,16 @@ const s = StyleSheet.create({
     elevation:      10,
   },
   iconWrap: {
-    width:         54,
-    height:        54,
-    borderRadius:  14,
+    width:         TOAST_ICON_SLOT_SIZE,
+    height:        TOAST_ICON_SLOT_SIZE,
+    borderRadius:  16,
     borderWidth:   1,
     justifyContent: 'center',
     alignItems:    'center',
+  },
+  toastAchievementImage: {
+    width: TOAST_IMAGE_SIZE,
+    height: TOAST_IMAGE_SIZE,
   },
   textWrap: {
     flex: 1,

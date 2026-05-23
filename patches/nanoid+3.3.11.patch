@@ -1,0 +1,63 @@
+diff --git a/node_modules/nanoid/non-secure/index.cjs b/node_modules/nanoid/non-secure/index.cjs
+index d51fcb6..64d8103 100644
+--- a/node_modules/nanoid/non-secure/index.cjs
++++ b/node_modules/nanoid/non-secure/index.cjs
+@@ -6,6 +6,10 @@
+ // `-26T`, `1983`, `40px`, `75px`, `bush`, `jack`, `mind`, `very`, and `wolf`
+ let urlAlphabet =
+   'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict'
++let randomIndex = size => {
++  let index = (Math.random() * size) | 0
++  return index >= size ? size - 1 : index
++}
+ 
+ let customAlphabet = (alphabet, defaultSize = 21) => {
+   return (size = defaultSize) => {
+@@ -14,7 +18,7 @@ let customAlphabet = (alphabet, defaultSize = 21) => {
+     let i = size | 0
+     while (i--) {
+       // `| 0` is more compact and faster than `Math.floor()`.
+-      id += alphabet[(Math.random() * alphabet.length) | 0]
++      id += alphabet[randomIndex(alphabet.length)]
+     }
+     return id
+   }
+@@ -26,7 +30,7 @@ let nanoid = (size = 21) => {
+   let i = size | 0
+   while (i--) {
+     // `| 0` is more compact and faster than `Math.floor()`.
+-    id += urlAlphabet[(Math.random() * 64) | 0]
++    id += urlAlphabet[randomIndex(urlAlphabet.length)]
+   }
+   return id
+ }
+diff --git a/node_modules/nanoid/non-secure/index.js b/node_modules/nanoid/non-secure/index.js
+index 2ea5827..f6c7c16 100644
+--- a/node_modules/nanoid/non-secure/index.js
++++ b/node_modules/nanoid/non-secure/index.js
+@@ -1,11 +1,15 @@
+ let urlAlphabet =
+   'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict'
++let randomIndex = size => {
++  let index = (Math.random() * size) | 0
++  return index >= size ? size - 1 : index
++}
+ let customAlphabet = (alphabet, defaultSize = 21) => {
+   return (size = defaultSize) => {
+     let id = ''
+     let i = size | 0
+     while (i--) {
+-      id += alphabet[(Math.random() * alphabet.length) | 0]
++      id += alphabet[randomIndex(alphabet.length)]
+     }
+     return id
+   }
+@@ -14,7 +18,7 @@ let nanoid = (size = 21) => {
+   let id = ''
+   let i = size | 0
+   while (i--) {
+-    id += urlAlphabet[(Math.random() * 64) | 0]
++    id += urlAlphabet[randomIndex(urlAlphabet.length)]
+   }
+   return id
+ }

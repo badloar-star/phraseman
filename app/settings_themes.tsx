@@ -13,6 +13,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { DEV_MODE, ENABLE_DEV_TOOLS } from './config';
 import { triLang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
+import { safeRouterBack } from './navigation_back';
 
 type ThemeOption = {
   mode: ThemeMode;
@@ -62,8 +63,7 @@ export default function SettingsThemes() {
           <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
             <TouchableOpacity onPress={() => {
               hapticTap();
-              if (router.canGoBack()) router.back();
-              else router.replace('/(tabs)/home' as any);
+              safeRouterBack(router, '/(tabs)/settings' as any);
             }}>
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
             </TouchableOpacity>

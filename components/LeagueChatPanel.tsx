@@ -367,6 +367,7 @@ export default function LeagueChatPanel({
 
   const closeReportModal = useCallback(() => {
     if (reportSubmitting) return;
+    Keyboard.dismiss();
     setReportTarget(null);
     setReportReason(REPORT_REASONS[0].id);
     setReportDetails('');
@@ -389,6 +390,7 @@ export default function LeagueChatPanel({
       return;
     }
     const reason = REPORT_REASONS.find((item) => item.id === reportReason)?.id ?? 'other';
+    Keyboard.dismiss();
     setReportSubmitting(true);
     try {
       await reportLeagueChatMessage(reportTarget, `${reason}: ${details}`);
@@ -547,7 +549,17 @@ export default function LeagueChatPanel({
       animationType="fade"
       onRequestClose={closeReportModal}
     >
-      <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', justifyContent: 'center', padding: 18 }}>
+      <KeyboardAvoidingView
+        behavior={getLeagueChatKeyboardAvoidingBehavior(Platform.OS)}
+        keyboardVerticalOffset={0}
+        style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', padding: 18 }}
+      >
+        <ScrollView
+          keyboardShouldPersistTaps="handled"
+          keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
+        >
         <View style={{ borderRadius: 18, borderWidth: 0.5, borderColor: t.border, backgroundColor: t.bgCard, padding: 16, gap: 12 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
             <Ionicons name="flag-outline" size={20} color={t.accent} />
@@ -681,7 +693,8 @@ export default function LeagueChatPanel({
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </Modal>
     <KeyboardAvoidingView
       behavior={getLeagueChatKeyboardAvoidingBehavior(Platform.OS)}
@@ -704,18 +717,6 @@ export default function LeagueChatPanel({
           }}
           onContentSizeChange={() => scrollRef.current?.scrollToEnd({ animated: true })}
         >
-          <Text style={{ color: t.textGhost, fontSize: Math.max(11, f.caption - 1), lineHeight: Math.round(f.caption * 1.35), paddingHorizontal: 4, marginBottom: 4 }}>
-            {triLang(lang, {
-  ru: 'Пиши по делу и поддерживай участников. Спам, ссылки и оскорбления могут привести к блокировке аккаунта.',
-  uk: 'Пиши по суті й підтримуй учасників. Спам, посилання та образи можуть призвести до блокування акаунта.',
-  es: 'Escribe con respeto. El spam, los enlaces y los insultos pueden provocar el bloqueo de la cuenta.',
-  "pt-BR": 'Escreva com respeito e ajude os participantes. Spam, links e insultos podem levar ao bloqueio da conta.',
-  vi: 'Hãy viết đúng trọng tâm và hỗ trợ người khác. Spam, liên kết và lời xúc phạm có thể khiến tài khoản bị chặn.',
-  id: 'Tulis yang relevan dan dukung peserta lain. Spam, tautan, dan hinaan bisa membuat akun diblokir.',
-  tr: 'Konuya uygun yaz ve katılımcıları destekle. Spam, bağlantılar ve hakaretler hesabın engellenmesine yol açabilir.',
-  pl: 'Pisz na temat i wspieraj uczestników. Spam, linki i obrazy mogą skończyć się blokadą konta.',
-})}
-          </Text>
           {visibleMessages.length === 0 ? (
             <View testID="league-chat-empty" style={{ alignItems: 'center', paddingHorizontal: 24, gap: 8 }}>
               <Ionicons name="chatbubble-ellipses-outline" size={28} color={t.textGhost} />
@@ -954,6 +955,28 @@ export default function LeagueChatPanel({
               <Ionicons name="send" size={18} color={connectionUi.canSendDraft ? t.correctText : t.textMuted} />
             </TouchableOpacity>
           </View>
+          <Text
+            testID="league-chat-safety-note"
+            style={{
+              color: t.textGhost,
+              fontSize: Math.max(4, Math.round(f.caption / 3)),
+              lineHeight: Math.max(6, Math.round((f.caption / 3) * 1.45)),
+              opacity: 0.34,
+              paddingHorizontal: 4,
+              marginTop: 5,
+            }}
+          >
+            {triLang(lang, {
+  ru: 'Пиши по делу и поддерживай участников. Спам, ссылки и оскорбления могут привести к блокировке аккаунта.',
+  uk: 'Пиши по суті й підтримуй учасників. Спам, посилання та образи можуть призвести до блокування акаунта.',
+  es: 'Escribe con respeto. El spam, los enlaces y los insultos pueden provocar el bloqueo de la cuenta.',
+  "pt-BR": 'Escreva com respeito e ajude os participantes. Spam, links e insultos podem levar ao bloqueio da conta.',
+  vi: 'Hãy viết đúng trọng tâm và hỗ trợ người khác. Spam, liên kết và lời xúc phạm có thể khiến tài khoản bị chặn.',
+  id: 'Tulis yang relevan dan dukung peserta lain. Spam, tautan, dan hinaan bisa membuat akun diblokir.',
+  tr: 'Konuya uygun yaz ve katılımcıları destekle. Spam, bağlantılar ve hakaretler hesabın engellenmesine yol açabilir.',
+  pl: 'Pisz na temat i wspieraj uczestników. Spam, linki i obrazy mogą skończyć się blokadą konta.',
+})}
+          </Text>
         </View>
       </View>
     </KeyboardAvoidingView>

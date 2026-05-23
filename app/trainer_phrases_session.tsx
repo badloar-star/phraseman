@@ -31,6 +31,7 @@ import {
   trainerTranslationForLang,
   type TrainerItem,
 } from './trainer_store';
+import { safeRouterBack } from './navigation_back';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { checkAchievements } from './achievements';
 import {
@@ -426,7 +427,7 @@ export default function TrainerPhrasesSession() {
               wrong={wrong}
               total={deck.length || correct + wrong}
               accent="#40C080"
-              onDone={() => { hapticTap(); router.back(); }}
+              onDone={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
             />
           </ContentWrap>
@@ -464,7 +465,7 @@ export default function TrainerPhrasesSession() {
         <ContentWrap>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={{ padding: 4 }}>
+            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TouchableOpacity>
             <Text style={[styles.headerTitle, { color: sx.primary, fontSize: f.body }]}>

@@ -19,6 +19,7 @@ export type OverlayKey =
   | 'matchFoundToast'
   | 'arenaInvite'
   | 'achievementToast'
+  | 'dailyTaskRewardToast'
   | 'coachToast'
   | 'actionToast';
 
@@ -45,6 +46,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'matchFoundToast',
   'arenaInvite',
   'achievementToast',
+  'dailyTaskRewardToast',
   'coachToast',
   'actionToast',
 ];
@@ -70,6 +72,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   matchFoundToast: false,
   arenaInvite: false,
   achievementToast: false,
+  dailyTaskRewardToast: false,
   coachToast: false,
   actionToast: false,
 };

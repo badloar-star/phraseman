@@ -24,6 +24,7 @@ import { emitAppEvent } from './events';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
+import { safeRouterBack } from './navigation_back';
 
 const RANK_NAMES: Record<RankTier, string> = {
   bronze: 'Бронза', silver: 'Серебро', gold: 'Золото',
@@ -263,7 +264,7 @@ export default function DuelRatingScreen() {
   return (
     <ScreenGradient>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => { if (router.canGoBack()) router.back(); else router.replace('/(tabs)/home' as any); }} style={styles.backBtn}>
+        <TouchableOpacity onPress={() => safeRouterBack(router, '/(tabs)/home' as any)} style={styles.backBtn}>
           <Ionicons name="arrow-back" size={24} color={sx.primary} />
         </TouchableOpacity>
         <View style={{ flex: 1, alignItems: 'center', gap: 6 }}>

@@ -26054,48 +26054,48 @@ export const QUIZ_SOURCE_LOCALE_PAYLOADS: Partial<
     },
     '154': {
       'pt-BR': {
-        prompt: 'Finalmente arranjei tempo para responder aos seus emails',
+        prompt: 'Finalmente arranjei tempo para responder às suas cartas',
         explanations: [
-          'I finally found time for answering your emails é compreensível, mas menos natural. Para “finalmente consegui fazer algo que estava adiando”, usamos got around to.',
-          'Correto. I finally got around to answering your emails significa que você vinha adiando e finalmente fez.',
-          'I finally got around to answer your emails usa answer depois de to, mas em got around to precisamos de -ing: answering.',
-          'I finally got a round of answering your emails transforma got around em a round. A round é uma rodada; aqui precisa ser got around to.'
+          'I finally found time for answering your letters é compreensível, mas menos natural. Para “finalmente consegui fazer algo que estava adiando”, usamos got around to.',
+          'Correto. I finally got around to answering your letters significa que você vinha adiando e finalmente fez.',
+          'I finally got around to answer your letters usa answer depois de to, mas em got around to precisamos de -ing: answering.',
+          'I finally got a round of answering your letters transforma got around em a round. A round é uma rodada; aqui precisa ser got around to.'
         ]
       },
       vi: {
-        prompt: 'Cuối cùng tôi cũng thu xếp được thời gian để trả lời email của bạn',
+        prompt: 'Cuối cùng tôi cũng thu xếp được thời gian để trả lời thư của bạn',
         explanations: [
-          'I finally found time for answering your emails hiểu được, nhưng kém tự nhiên hơn. Với nghĩa “cuối cùng cũng làm việc đã trì hoãn”, dùng got around to.',
-          'Đúng. I finally got around to answering your emails nghĩa là bạn đã trì hoãn và cuối cùng cũng làm.',
-          'I finally got around to answer your emails dùng answer sau to, nhưng trong got around to cần -ing: answering.',
-          'I finally got a round of answering your emails biến got around thành a round. A round là một vòng; ở đây cần got around to.'
+          'I finally found time for answering your letters hiểu được, nhưng kém tự nhiên hơn. Với nghĩa “cuối cùng cũng làm việc đã trì hoãn”, dùng got around to.',
+          'Đúng. I finally got around to answering your letters nghĩa là bạn đã trì hoãn và cuối cùng cũng làm.',
+          'I finally got around to answer your letters dùng answer sau to, nhưng trong got around to cần -ing: answering.',
+          'I finally got a round of answering your letters biến got around thành a round. A round là một vòng; ở đây cần got around to.'
         ]
       },
       id: {
-        prompt: 'Akhirnya saya sempat membalas emailmu',
+        prompt: 'Akhirnya saya sempat membalas surat-suratmu',
         explanations: [
-          'I finally found time for answering your emails bisa dipahami, tetapi kurang natural. Untuk “akhirnya melakukan sesuatu yang tertunda”, gunakan got around to.',
-          'Benar. I finally got around to answering your emails berarti kamu menundanya dan akhirnya melakukannya.',
-          'I finally got around to answer your emails memakai answer setelah to, tetapi dalam got around to perlu -ing: answering.',
-          'I finally got a round of answering your emails mengubah got around menjadi a round. A round adalah satu putaran; di sini perlu got around to.'
+          'I finally found time for answering your letters bisa dipahami, tetapi kurang natural. Untuk “akhirnya melakukan sesuatu yang tertunda”, gunakan got around to.',
+          'Benar. I finally got around to answering your letters berarti kamu menundanya dan akhirnya melakukannya.',
+          'I finally got around to answer your letters memakai answer setelah to, tetapi dalam got around to perlu -ing: answering.',
+          'I finally got a round of answering your letters mengubah got around menjadi a round. A round adalah satu putaran; di sini perlu got around to.'
         ]
       },
       tr: {
-        prompt: 'Sonunda e-postalarına cevap vermeye vakit buldum',
+        prompt: 'Sonunda mektuplarına cevap vermeye vakit buldum',
         explanations: [
-          'I finally found time for answering your emails anlaşılır, ama daha az doğal. Ertelediğin bir şeyi sonunda yapmak için got around to kullanılır.',
-          'Doğru. I finally got around to answering your emails ertelediğin bir işi sonunda yaptığını anlatır.',
-          'I finally got around to answer your emails to sonrasında answer kullanıyor, ama got around to yapısında -ing gerekir: answering.',
-          'I finally got a round of answering your emails got around ifadesini a round yapıyor. A round tur anlamına gelir; burada got around to gerekir.'
+          'I finally found time for answering your letters anlaşılır, ama daha az doğal. Ertelediğin bir şeyi sonunda yapmak için got around to kullanılır.',
+          'Doğru. I finally got around to answering your letters ertelediğin bir işi sonunda yaptığını anlatır.',
+          'I finally got around to answer your letters to sonrasında answer kullanıyor, ama got around to yapısında -ing gerekir: answering.',
+          'I finally got a round of answering your letters got around ifadesini a round yapıyor. A round tur anlamına gelir; burada got around to gerekir.'
         ]
       },
       pl: {
-        prompt: 'W końcu znalazłem czas, żeby odpowiedzieć na twoje maile',
+        prompt: 'W końcu znalazłem czas, żeby odpowiedzieć na twoje listy',
         explanations: [
-          'I finally found time for answering your emails jest zrozumiałe, ale mniej naturalne. Przy “w końcu zabrałem się za coś odkładanego” używamy got around to.',
-          'Dobrze. I finally got around to answering your emails znaczy, że odkładałeś to i w końcu zrobiłeś.',
-          'I finally got around to answer your emails używa answer po to, ale w got around to potrzebujemy -ing: answering.',
-          'I finally got a round of answering your emails zmienia got around w a round. A round to runda; tutaj potrzebujesz got around to.'
+          'I finally found time for answering your letters jest zrozumiałe, ale mniej naturalne. Przy “w końcu zabrałem się za coś odkładanego” używamy got around to.',
+          'Dobrze. I finally got around to answering your letters znaczy, że odkładałeś to i w końcu zrobiłeś.',
+          'I finally got around to answer your letters używa answer po to, ale w got around to potrzebujemy -ing: answering.',
+          'I finally got a round of answering your letters zmienia got around w a round. A round to runda; tutaj potrzebujesz got around to.'
         ]
       }
     },

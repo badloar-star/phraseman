@@ -95,15 +95,9 @@ export function esL2RowToPoolEntry(r: QuizPoolEntryEsL2): QuizPoolEntry {
 }
 
 /** Выбор засчитывается как верный ответ (поддержка нескольких допустимых вариантов). */
-export function isQuizChoiceCorrect(chosen: number, correct: number | number[]): boolean {
-  return Array.isArray(correct) ? correct.includes(chosen) : chosen === correct;
-}
+export { isQuizChoiceCorrect, quizPrimaryCorrectIndex } from './quiz_utils';
 
 /** Индекс пояснения по умолчанию (наименьший из верных), если ответ ещё не выбран. */
-export function quizPrimaryCorrectIndex(correct: number | number[]): number {
-  return Array.isArray(correct) ? Math.min(...correct) : correct;
-}
-
 // ============================================
 // EASY POOL — A1–A2
 // ============================================
@@ -20541,12 +20535,12 @@ const HARD_POOL: QuizPoolEntry[] = [
   {
     ru: `Я наконец-то выкроил время, чтобы ответить на твои письма`,
     uk: `Я нарешті знайшов час, щоб відповісти на твої листи`,
-    es: `Por fin encontré tiempo para responder tus correos`,
+    es: `Por fin encontré tiempo para responder tus cartas`,
     choices: [
-      `I finally found time for answering your emails.`,
-      `I finally got around to answering your emails.`,
-      `I finally got around to answer your emails.`,
-      `I finally got a round of answering your emails.`,
+      `I finally found time for answering your letters.`,
+      `I finally got around to answering your letters.`,
+      `I finally got around to answer your letters.`,
+      `I finally got a round of answering your letters.`,
     ],
     correct: 1,
     explanations: [
@@ -20562,10 +20556,10 @@ const HARD_POOL: QuizPoolEntry[] = [
       `Яка спортивна плутанина! Вираз a round зазвичай означає раунд у боксі або коло напоїв. Вийшло, що ти провів цілий «раунд» відповідей. Тобі потрібне дієслово got around. Прибери зайве слово!`,
     ],
     explanationsES: [
-      `I finally found time for answering your emails se entiende, pero es menos natural. Para “por fin me puse con eso” usamos got around to.`,
-      `Correcto. I finally got around to answering your emails significa que lo habías pospuesto y por fin lo hiciste.`,
-      `I finally got around to answer your emails usa answer después de to, pero en got around to necesitamos -ing: answering.`,
-      `I finally got a round of answering your emails convierte got around en a round. A round es una ronda; aquí necesitas got around to.`,
+      `I finally found time for answering your letters se entiende, pero es menos natural. Para “por fin me puse con eso” usamos got around to.`,
+      `Correcto. I finally got around to answering your letters significa que lo habías pospuesto y por fin lo hiciste.`,
+      `I finally got around to answer your letters usa answer después de to, pero en got around to necesitamos -ing: answering.`,
+      `I finally got a round of answering your letters convierte got around en a round. A round es una ronda; aquí necesitas got around to.`,
     ],
     lessonNum: 0,
     level: 'B2',
@@ -25336,6 +25330,34 @@ export function validateQuizDataPools(): { ok: boolean; errors: string[]; counts
 const getQuizPool = (difficulty: QuizDifficulty): QuizPoolEntry[] =>
   difficulty === 'easy' ? EASY_POOL : difficulty === 'medium' ? MEDIUM_POOL : HARD_POOL;
 
+type RuntimeQuizPoolCandidate = {
+  entry: QuizPoolEntry;
+  ordinal: number;
+};
+
+function isRuntimeQuizPoolEntry(entry: QuizPoolEntry | undefined): entry is QuizPoolEntry {
+  if (!entry) return false;
+  if (!Array.isArray(entry.choices) || entry.choices.length !== 4) return false;
+  const correctIndexes = Array.isArray(entry.correct) ? entry.correct : [entry.correct];
+  if (correctIndexes.length === 0) return false;
+  if (!correctIndexes.every(index => Number.isInteger(index) && index >= 0 && index < entry.choices.length)) return false;
+  if (!Array.isArray(entry.explanations) || entry.explanations.length !== entry.choices.length) return false;
+  if (!Array.isArray(entry.explanationsUK) || entry.explanationsUK.length !== entry.choices.length) return false;
+  return true;
+}
+
+function getRuntimeQuizPoolCandidates(difficulty: QuizDifficulty): RuntimeQuizPoolCandidate[] {
+  const candidates = getQuizPool(difficulty).map((entry, index) => ({ entry, ordinal: index + 1 }));
+  const runtimeSafe = candidates.filter(
+    (item): item is RuntimeQuizPoolCandidate => isRuntimeQuizPoolEntry(item.entry),
+  );
+
+  // The bundled quiz data is validated separately. If the runtime guard ever
+  // rejects the whole pool, prefer showing the bundled questions over a blank
+  // quiz screen.
+  return runtimeSafe.length > 0 ? runtimeSafe : candidates;
+}
+
 export type QuizPoolAuditEntry = {
   ordinal: number;
   ru: string;
@@ -25587,15 +25609,15 @@ export const getQuizPhrases = (
     return [];
   }
 
-  const pool = difficulty === 'easy' ? EASY_POOL : difficulty === 'medium' ? MEDIUM_POOL : HARD_POOL;
+  const pool = getRuntimeQuizPoolCandidates(difficulty);
 
   if (pool.length === 0) return [];
 
   const k = Math.min(count, pool.length);
-  const selected = sampleUniqueRandomIndices(pool.length, k).map((i) => ({
-    entry: pool[i]!,
-    ordinal: i + 1,
-  }));
+  const sampleIndices = sampleUniqueRandomIndices(pool.length, k);
+  const selected = sampleIndices
+    .map((i) => pool[i])
+    .filter((item): item is { entry: QuizPoolEntry; ordinal: number } => !!item);
 
   return selected.map(({ entry, ordinal }) => {
     const rawCorrect = (Array.isArray(entry.correct) ? [...entry.correct] : [entry.correct]).sort((a, b) => a - b);

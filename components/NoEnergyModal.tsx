@@ -16,6 +16,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import { lessonEnergyMessages } from '../app/lesson_locale_utils';
 import { useTheme } from './ThemeContext';
 import { useEnergy } from './EnergyContext';
+import { usePremium } from './PremiumContext';
 import { useLang } from './LangContext';
 import EnergyIcon from './EnergyIcon';
 import { hapticTap, hapticWarning } from '../hooks/use-haptics';
@@ -32,7 +33,76 @@ import { incrementEnergyZeroCount } from '../app/paywall_personalization';
 import PremiumGoldButton from './PremiumGoldButton';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { paywallGlassColor } from './paywallGlass';
+import { shouldRenderNoEnergyModal } from '../app/services/no_energy_modal_visibility';
 import { triLang, type Lang } from '../constants/i18n';
+import type { ThemeMode } from '../constants/theme';
+
+type NoEnergyModalArt = {
+  source: any;
+  glow: string;
+  borderColor: string;
+  scrimColors: [string, string, string];
+  cardGlowColors: [string, string, string];
+  titleColor: string;
+  subtitleColor: string;
+};
+
+const NO_ENERGY_MODAL_ART: Record<ThemeMode, NoEnergyModalArt> = {
+  dark: {
+    source: require('../assets/images/energy/no-energy-modal-dark.webp'),
+    glow: '#F59E0B',
+    borderColor: 'rgba(245,158,11,0.34)',
+    scrimColors: ['rgba(2,8,6,0.08)', 'rgba(2,8,6,0.46)', 'rgba(2,8,6,0.82)'],
+    cardGlowColors: ['rgba(245,158,11,0.24)', 'rgba(16,185,129,0.10)', 'transparent'],
+    titleColor: '#F4FFF7',
+    subtitleColor: '#63E894',
+  },
+  neon: {
+    source: require('../assets/images/energy/no-energy-modal-neon.webp'),
+    glow: '#C8FF00',
+    borderColor: 'rgba(200,255,0,0.36)',
+    scrimColors: ['rgba(2,8,4,0.10)', 'rgba(2,8,4,0.50)', 'rgba(2,8,4,0.84)'],
+    cardGlowColors: ['rgba(200,255,0,0.26)', 'rgba(0,255,170,0.10)', 'transparent'],
+    titleColor: '#FAFFE8',
+    subtitleColor: '#C8FF00',
+  },
+  gold: {
+    source: require('../assets/images/energy/no-energy-modal-gold.webp'),
+    glow: '#D6B35A',
+    borderColor: 'rgba(214,179,90,0.42)',
+    scrimColors: ['rgba(12,8,2,0.08)', 'rgba(12,8,2,0.48)', 'rgba(12,8,2,0.84)'],
+    cardGlowColors: ['rgba(214,179,90,0.28)', 'rgba(120,82,24,0.14)', 'transparent'],
+    titleColor: '#FFF7DE',
+    subtitleColor: '#F4D986',
+  },
+  coral: {
+    source: require('../assets/images/energy/no-energy-modal-coral.webp'),
+    glow: '#FF7A66',
+    borderColor: 'rgba(255,100,100,0.40)',
+    scrimColors: ['rgba(12,3,5,0.10)', 'rgba(12,3,5,0.50)', 'rgba(12,3,5,0.84)'],
+    cardGlowColors: ['rgba(255,122,102,0.28)', 'rgba(255,100,100,0.12)', 'transparent'],
+    titleColor: '#FFF1EF',
+    subtitleColor: '#FF9A8E',
+  },
+  minimalLight: {
+    source: require('../assets/images/energy/no-energy-modal-minimal-light.webp'),
+    glow: '#D8C49C',
+    borderColor: 'rgba(106,83,52,0.34)',
+    scrimColors: ['rgba(255,253,246,0.14)', 'rgba(255,253,246,0.58)', 'rgba(255,253,246,0.82)'],
+    cardGlowColors: ['rgba(255,246,220,0.34)', 'rgba(243,236,220,0.18)', 'transparent'],
+    titleColor: '#171615',
+    subtitleColor: '#273044',
+  },
+  minimalDark: {
+    source: require('../assets/images/energy/no-energy-modal-minimal-dark.webp'),
+    glow: '#6EA8FF',
+    borderColor: 'rgba(110,168,255,0.38)',
+    scrimColors: ['rgba(4,6,12,0.10)', 'rgba(4,6,12,0.52)', 'rgba(4,6,12,0.86)'],
+    cardGlowColors: ['rgba(110,168,255,0.28)', 'rgba(78,112,160,0.12)', 'transparent'],
+    titleColor: '#F5F8FF',
+    subtitleColor: '#9FC6FF',
+  },
+};
 
 type EnergyGateArgs = { required: string; have: string };
 const ENERGY_GATE_MESSAGES_PT_BR: ((r: EnergyGateArgs) => string)[] = [
@@ -96,6 +166,8 @@ interface Props {
    * Покупка тогда вернёт already_full — покажем info-тост.
    */
   qaForceShardCta?: boolean;
+  /** Admin/QA preview: render the no-energy UI even for Premium/VIP accounts. */
+  qaIgnorePremiumAccess?: boolean;
 }
 
 export default function NoEnergyModal({
@@ -107,14 +179,18 @@ export default function NoEnergyModal({
   paywallContext = 'no_energy',
   onBeforeOpenPremium,
   qaForceShardCta = false,
+  qaIgnorePremiumAccess = false,
 }: Props) {
   const router = useRouter();
   const { theme: t, themeMode, f } = useTheme();
+  const art = NO_ENERGY_MODAL_ART[themeMode] ?? NO_ENERGY_MODAL_ART.dark;
   const paywallCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
   const { formattedTime, energy, bonusEnergy, maxEnergy, isUnlimited, reload } = useEnergy();
+  const { hasPremiumAccess } = usePremium();
   const { lang } = useLang();
   const totalAvailable = energy + bonusEnergy;
   const isGate = minRequired != null && minRequired > 0;
+  const modalVisible = shouldRenderNoEnergyModal(visible, hasPremiumAccess, qaIgnorePremiumAccess);
   const [lineText, setLineText] = useState('');
   const [shardBusy, setShardBusy] = useState(false);
 
@@ -174,7 +250,7 @@ export default function NoEnergyModal({
   const haloPulse  = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    if (!visible) {
+    if (!modalVisible) {
       cardScale.setValue(0.85);
       cardOp.setValue(0);
       boltScale.setValue(0);
@@ -217,11 +293,11 @@ export default function NoEnergyModal({
     running.push(pulse);
 
     return () => { running.forEach(a => a.stop()); };
-  }, [visible, cardScale, cardOp, boltScale, boltShake, haloPulse]);
+  }, [modalVisible, cardScale, cardOp, boltScale, boltShake, haloPulse]);
 
   const wasOpenRef = useRef(false);
   useLayoutEffect(() => {
-    if (!visible) {
+    if (!modalVisible) {
       wasOpenRef.current = false;
       setLineText('');
       return;
@@ -244,7 +320,7 @@ export default function NoEnergyModal({
     const list = lessonEnergyMessages(lang);
     const raw = list[Math.floor(Math.random() * list.length)] ?? list[0] ?? '';
     setLineText(raw);
-  }, [visible, isGate, lang, minRequired, totalAvailable]);
+  }, [modalVisible, isGate, lang, minRequired, totalAvailable]);
 
   const recoveryTimeText = formattedTime || triLang(lang, {
     ru: 'несколько минут',
@@ -323,11 +399,9 @@ export default function NoEnergyModal({
     }
   };
 
-  const ENERGY_GLOW = '#F59E0B';
-
   return (
     <Modal
-      visible={visible}
+      visible={modalVisible}
       transparent
       animationType="fade"
       onDismiss={handleModalDismissIos}
@@ -337,7 +411,7 @@ export default function NoEnergyModal({
         {/* Цветной радиальный отблеск над затемнением */}
         <View pointerEvents="none" style={StyleSheet.absoluteFill}>
           <LinearGradient
-            colors={[ENERGY_GLOW + '22', 'transparent']}
+            colors={[art.glow + '22', 'transparent']}
             start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 0.6 }}
             style={StyleSheet.absoluteFill}
           />
@@ -350,15 +424,29 @@ export default function NoEnergyModal({
               backgroundColor: paywallCardBg,
               opacity: cardOp,
               transform: [{ scale: cardScale }],
-              shadowColor: ENERGY_GLOW,
+              shadowColor: art.glow,
               shadowOpacity: 0.45,
               shadowRadius: 24,
+              borderColor: art.borderColor,
             },
           ]}
         >
+          <Image
+            source={art.source}
+            style={styles.cardBackdrop}
+            resizeMode="cover"
+            accessible={false}
+          />
+          <LinearGradient
+            colors={art.scrimColors}
+            locations={[0, 0.5, 1]}
+            start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}
+            style={StyleSheet.absoluteFill}
+            pointerEvents="none"
+          />
           {/* Внутренний градиент сверху карточки */}
           <LinearGradient
-            colors={[ENERGY_GLOW + '24', 'transparent']}
+            colors={art.cardGlowColors}
             start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}
             style={styles.cardGlow}
             pointerEvents="none"
@@ -371,7 +459,7 @@ export default function NoEnergyModal({
               style={[
                 styles.boltHalo,
                 {
-                  backgroundColor: ENERGY_GLOW,
+                  backgroundColor: art.glow,
                   opacity: haloPulse.interpolate({ inputRange: [0, 1], outputRange: [0.18, 0.45] }),
                   transform: [{ scale: haloPulse.interpolate({ inputRange: [0, 1], outputRange: [0.9, 1.18] }) }],
                 },
@@ -399,7 +487,7 @@ export default function NoEnergyModal({
             </Animated.View>
           </View>
 
-          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+          <Text style={[styles.title, { color: art.titleColor, fontSize: f.h2 }]}>
             {isGate
               ? triLang(lang, {
                   ru: 'Недостаточно энергии',
@@ -422,7 +510,7 @@ export default function NoEnergyModal({
                   pl: 'Energia się skończyła',
                 })}
           </Text>
-          <Text style={[styles.subtitle, { color: t.textSecond, fontSize: f.body }]}>
+          <Text style={[styles.subtitle, { color: art.subtitleColor, fontSize: f.body }]}>
             {showBody}
           </Text>
           {showShardRestore && (
@@ -518,19 +606,28 @@ const styles = StyleSheet.create({
     padding: 28,
   },
   card: {
+    alignSelf: 'center',
     borderRadius: 22,
-    padding: 28,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(245,158,11,0.34)',
+    paddingVertical: 26,
+    paddingHorizontal: 24,
     width: '100%',
+    maxWidth: 360,
     alignItems: 'center',
     gap: 14,
     shadowOffset: { width: 0, height: 8 },
     elevation: 20,
     overflow: 'hidden',
   },
+  cardBackdrop: {
+    ...StyleSheet.absoluteFillObject,
+    opacity: 0.95,
+  },
   cardGlow: {
     position: 'absolute',
     top: 0, left: 0, right: 0,
-    height: 180,
+    height: 220,
   },
   boltWrap: {
     width: 88, height: 88,

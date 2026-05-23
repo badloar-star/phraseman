@@ -3,13 +3,13 @@
 Target: `en`
 Category: `kitchen-and-cooking`
 
-This blueprint prepared the first thematic quiz pack. The first 10-item draft
+This blueprint prepared the first thematic quiz pack. The 100-item draft
 now lives in `pack-001.draft.json` and has passed Skyler gate. Future expansion
 should keep the same source, claim, answer_key, locale, and distractor rules.
 
 ## Scope
 
-- First pack size: 10-12 MCQ items.
+- Current pack size: 100 MCQ items used as the category pool.
 - Difficulty ramp: A1 object labels -> A2 tool/action matching -> B1 context and near-miss choices.
 - Source rule: every final item must cite at least two of S1-S4. Social signals prove learner demand only; they cannot prove answers.
 - Locale rule: explanations must be adapted for ru, uk, es, pt-BR, vi, id, tr, pl from source notes, not translated directly.

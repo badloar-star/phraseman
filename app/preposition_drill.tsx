@@ -29,6 +29,7 @@ import {
   frenchVocabularyGateCopy,
   vocabularyContentAvailableForTarget,
 } from './vocabulary_target_gate';
+import { safeRouterBack } from './navigation_back';
 
 const POINTS_PER_CORRECT = 2;
 const POINTS_PER_PERFECT = 10;
@@ -154,7 +155,7 @@ export default function PrepositionDrillScreen() {
     setNoEnergyModalOpen(false);
     // Закрыли модал без пополнения — выходим, иначе остаёмся без права списания.
     if (!energyUnlimitedRef.current && energyRef.current + bonusEnergyRef.current <= 0) {
-      router.back();
+      safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
     }
   }, [router]);
 
@@ -292,7 +293,7 @@ export default function PrepositionDrillScreen() {
           <View style={{ flex: 1, paddingHorizontal: ds.spacing.lg }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 14 }}>
               <TouchableOpacity
-                onPress={() => { hapticTap(); router.back(); }}
+                onPress={() => { hapticTap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
                 style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
               >
                 <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
@@ -446,7 +447,7 @@ export default function PrepositionDrillScreen() {
         <View style={{ flex: 1, paddingHorizontal: ds.spacing.lg }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 14 }}>
             <TouchableOpacity
-              onPress={() => { hapticTap(); router.back(); }}
+              onPress={() => { hapticTap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
               style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
             >
               <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
@@ -659,7 +660,7 @@ export default function PrepositionDrillScreen() {
               </Text>
 
               <TouchableOpacity
-                onPress={() => { hapticTap(); router.back(); }}
+                onPress={() => { hapticTap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
                 style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
               >
                 <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>

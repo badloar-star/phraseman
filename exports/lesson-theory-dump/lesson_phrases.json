@@ -200,7 +200,7 @@
       },
       {
         "id": "lesson1_phrase_29",
-        "english": "You are fine",
+        "english": "You are okay",
         "russian": "Ты в порядке",
         "ukrainian": "Ти в порядку",
         "spanish": "Estás bien."
@@ -2107,10 +2107,10 @@
       },
       {
         "id": "lesson6_phrase_50",
-        "english": "When do they close cafés?",
+        "english": "When do they close the cafe?",
         "russian": "Когда они закрывают кафе?",
         "ukrainian": "Коли вони зачиняють кафе?",
-        "spanish": "¿Cuándo cierran cafés?"
+        "spanish": "¿Cuándo cierran el café?"
       }
     ],
     "7": [
@@ -3566,7 +3566,7 @@
       },
       {
         "id": "lesson11_phrase_7",
-        "english": "I cleaned dishes this morning",
+        "english": "I washed the dishes this morning",
         "russian": "Я помыл посуду сегодня утром",
         "ukrainian": "Я помив посуд сьогодні вранці",
         "spanish": "Lavé los platos esta mañana."
@@ -3867,10 +3867,10 @@
       },
       {
         "id": "lesson11_phrase_50",
-        "english": "You answered an email yesterday",
+        "english": "You answered a letter yesterday",
         "russian": "Ты ответил на письмо вчера",
         "ukrainian": "Ти відповів на листа вчора",
-        "spanish": "Contestaste un correo ayer."
+        "spanish": "Contestaste una carta ayer."
       }
     ],
     "12": [
@@ -6776,17 +6776,17 @@
       },
       {
         "id": "lesson20_phrase_14",
-        "english": "She wrote an email.",
+        "english": "She wrote a letter.",
         "russian": "Она написала письмо.",
         "ukrainian": "Вона написала листа.",
-        "spanish": "Ella escribió un correo."
+        "spanish": "Ella escribió una carta."
       },
       {
         "id": "lesson20_phrase_15",
-        "english": "The email is important.",
+        "english": "The letter is important.",
         "russian": "Письмо важное.",
         "ukrainian": "Лист важливий.",
-        "spanish": "El correo es importante."
+        "spanish": "La carta es importante."
       },
       {
         "id": "lesson20_phrase_16",
@@ -6958,17 +6958,17 @@
       },
       {
         "id": "lesson20_phrase_40",
-        "english": "There is an email in my inbox.",
+        "english": "There is a letter in my inbox.",
         "russian": "В моём ящике есть письмо.",
         "ukrainian": "У моїй скриньці є лист.",
-        "spanish": "Hay un correo en mi bandeja."
+        "spanish": "Hay una carta en mi bandeja."
       },
       {
         "id": "lesson20_phrase_41",
-        "english": "The email is from her.",
+        "english": "The letter is from her.",
         "russian": "Письмо от неё.",
         "ukrainian": "Лист від неї.",
-        "spanish": "El correo es de ella."
+        "spanish": "La carta es de ella."
       },
       {
         "id": "lesson20_phrase_42",
@@ -8184,10 +8184,10 @@
       },
       {
         "id": "lesson24_phrase_13",
-        "english": "He has already sent the email",
+        "english": "He has already sent the letter",
         "russian": "Он уже отправил письмо",
         "ukrainian": "Він вже надіслав листа",
-        "spanish": "Él ya ha enviado el correo"
+        "spanish": "Él ya ha enviado la carta"
       },
       {
         "id": "lesson24_phrase_14",

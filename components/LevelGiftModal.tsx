@@ -4,7 +4,7 @@
  * Цвет карточки зависит от редкости: common=нейтрал, rare=синий, epic=золотой.
  *
  * Кнопка «Не забирать» сохраняет подарок как непринятый — его можно забрать
- * позже в «Пути героя» (progress_map).
+ * позже в разделе подарков.
  */
 
 import { useRouter } from 'expo-router';
@@ -14,8 +14,7 @@ import {
   Animated, Easing, Image, Modal, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import {
-  applyGift, ApplyGiftResult, GiftDef, giftDescForLang, giftRarityUiLabel,
-  giftTitleForLang,
+  applyGift, ApplyGiftResult, GiftDef, giftDisplayDescForLang, giftDisplayTitleForLang, giftRarityUiLabel,
   isEnergyBonusGiftId, rollF2pLevelGiftForUser,
 } from '../app/level_gift_system';
 import { triLang, type Lang } from '../constants/i18n';
@@ -30,10 +29,9 @@ import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
 import { GiftOpenBurst, animTierF2p } from './GiftOpenEffects';
 import {
-  RewardModalBackdrop,
+  RewardModalPanelBackdrop,
   rewardModalAccentColor,
   rewardModalPanelBorder,
-  rewardModalPanelColors,
   rewardModalPrimaryButtonColors,
   rewardModalSoftSurface,
 } from './RewardModalBackdrop';
@@ -324,7 +322,7 @@ export default function LevelGiftModal({
     if (!gift) { onClose(false); return; }
     if (phase === 'opening') return;
     if (storesOnly || saveOnDismiss) {
-      // Save as unclaimed so user can pick it up later in progress_map.
+      // Save as unclaimed so user can pick it up later in the gifts inventory.
       await saveUnclaimedGift(level, gift);
     }
     onClose(false);
@@ -391,12 +389,13 @@ export default function LevelGiftModal({
       ? ['#93C5FD', '#2563EB']
       : rewardModalPrimaryButtonColors(themeMode);
   const canCloseWithIcon = phase !== 'opening' && !choiceBusy;
+  const screenDim = USE_ELITE_LEVEL_GIFT_MODAL
+    ? (themeMode === 'minimalLight' ? 'rgba(24,18,10,0.30)' : 'rgba(0,0,0,0.46)')
+    : 'rgba(0,0,0,0.75)';
 
   return (
     <Modal transparent visible animationType="fade" onRequestClose={handleSkip}>
-      <View style={{ flex: 1, backgroundColor: USE_ELITE_LEVEL_GIFT_MODAL ? 'rgba(3,5,10,0.86)' : 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
-        {USE_ELITE_LEVEL_GIFT_MODAL && <RewardModalBackdrop themeMode={themeMode} intensity="strong" />}
-
+      <View style={{ flex: 1, backgroundColor: screenDim, justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
         <Animated.View testID="level-gift-modal" style={{
           backgroundColor: USE_ELITE_LEVEL_GIFT_MODAL ? 'transparent' : t.bgCard,
           borderRadius: USE_ELITE_LEVEL_GIFT_MODAL ? 30 : 28,
@@ -414,13 +413,7 @@ export default function LevelGiftModal({
           transform: USE_ELITE_LEVEL_GIFT_MODAL ? [{ scale: modalScale }, { translateY: modalY }] : [],
         }}>
           {USE_ELITE_LEVEL_GIFT_MODAL && (
-            <LinearGradient
-              pointerEvents="none"
-              colors={rewardModalPanelColors(themeMode, t)}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={StyleSheet.absoluteFill}
-            />
+            <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" />
           )}
           {USE_ELITE_LEVEL_GIFT_MODAL && (
             <>
@@ -573,10 +566,10 @@ export default function LevelGiftModal({
                     resizeMode="contain"
                   />
                   <Text style={{ color: t.textPrimary, fontSize: f.h2 + 2, fontWeight: '800', marginBottom: 8, textAlign: 'center' }}>
-                    {giftTitleForLang(gift, lang)}
+                    {giftDisplayTitleForLang(gift, lang)}
                   </Text>
                   <Text style={{ color: t.textSecond, fontSize: f.sub, textAlign: 'center', marginBottom: 16 }}>
-                    {giftDescForLang(gift, lang)}
+                    {giftDisplayDescForLang(gift, lang)}
                   </Text>
                   <View style={{ alignSelf: 'stretch', gap: 8, marginBottom: 8 }}>
                     {gift.choices.map((choice) => (
@@ -605,10 +598,10 @@ export default function LevelGiftModal({
                         />
                         <View style={{ flex: 1 }}>
                           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                            {giftTitleForLang(choice, lang)}
+                            {giftDisplayTitleForLang(choice, lang)}
                           </Text>
                           <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} numberOfLines={2}>
-                            {giftDescForLang(choice, lang)}
+                            {giftDisplayDescForLang(choice, lang)}
                           </Text>
                         </View>
                       </TouchableOpacity>
@@ -670,10 +663,10 @@ export default function LevelGiftModal({
               </Text>
 
               <Text style={{ color: t.textPrimary, fontSize: USE_ELITE_LEVEL_GIFT_MODAL ? f.h2 + 4 : f.h2 + 6, fontWeight: '900', marginBottom: 6, textAlign: 'center' }}>
-                {gift ? giftTitleForLang(gift, lang) : ''}
+                {gift ? giftDisplayTitleForLang(gift, lang) : ''}
               </Text>
               <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: USE_ELITE_LEVEL_GIFT_MODAL ? f.body + 6 : undefined, textAlign: 'center', marginBottom: storesOnly ? 10 : (gift?.id && isEnergyBonusGiftId(gift.id)) || xpBoostAlreadyActive ? 12 : 28 }}>
-                {gift ? giftDescForLang(gift, lang) : ''}
+                {gift ? giftDisplayDescForLang(gift, lang) : ''}
               </Text>
               {storesOnly && (
                 <Text style={{ color: t.textGhost, fontSize: f.caption, fontWeight: '700', textAlign: 'center', marginBottom: 18 }}>

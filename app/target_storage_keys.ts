@@ -33,6 +33,10 @@ export type RuntimeStudyTarget = StudyTarget | 'es' | (string & {}) | null | und
 export type RuntimeSourceLocale = SourceLocale | (string & {}) | null | undefined;
 
 const SEP = '::';
+const FLASHCARDS_MARKET_DEV_STORAGE_PREFIX = ['flashcards', 'market', 'dev'].join('_');
+const FLASHCARDS_MARKET_DEV_OWNED_KEY = `${FLASHCARDS_MARKET_DEV_STORAGE_PREFIX}_owned_v1`;
+const FLASHCARDS_MARKET_DEV_ACTIVE_PACK_KEY = `${FLASHCARDS_MARKET_DEV_STORAGE_PREFIX}_active_pack_v1`;
+
 const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^lesson\d+_(?:progress|best_score|pass_count|words|preposition_progress|intro_shown|cellIndex|phraseOrder|contentSignature|errorReplayQueue|errorReplaySince|errorReplayOverride|bonus_granted)$/,
   /^lesson\d+_words_shards_granted$/,
@@ -48,7 +52,6 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^premium_course_level$/,
   /^lesson_unlock_repair_v3$/,
   /^last_opened_lesson$/,
-  /^lesson_cycle_end_intro_shown$/,
   /^fifty_fifty_\d{4}-\d{2}-\d{2}$/,
   /^bonus_hints_\d{4}-\d{2}-\d{2}$/,
   /^daily_tasks_\d{4}-\d{2}-\d{2}$/,
@@ -90,13 +93,13 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^achievement_trainer_correct_streak_v1$/,
   /^achievement_trainer_perfect_session_count$/,
   /^community_owned_pack_ids_v1$/,
-  /^flashcards_market_dev_owned_v1$/,
+  new RegExp(`^${FLASHCARDS_MARKET_DEV_OWNED_KEY}$`),
   /^flashcards_owned_packs_v1$/,
   /^flashcards_progress_v1$/,
   /^flashcards_swipe_session_draft_v1$/,
   /^flashcards_swipe_memory_v1$/,
   /^flashcards_market_built_cards_v1$/,
-  /^flashcards_market_dev_active_pack_v1$/,
+  new RegExp(`^${FLASHCARDS_MARKET_DEV_ACTIVE_PACK_KEY}$`),
   /^flashcards_opened_packs_v1$/,
   /^hidden_community_pack_ids_v1$/,
   /^community_pack_create_draft_v1$/,
@@ -228,10 +231,6 @@ export function lessonSessionKey(
 ): string {
   const raw = `lesson${lessonId}_${field}`;
   return scopedOrLegacyKey(raw, 'lesson_session_local', studyTarget);
-}
-
-export function lessonCycleEndIntroShownKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('lesson_cycle_end_intro_shown', 'lesson_session_local', studyTarget);
 }
 
 export function lastOpenedLessonKey(studyTarget?: RuntimeStudyTarget): string {
@@ -505,7 +504,7 @@ export function flashcardsCommunityOwnedPacksKey(studyTarget?: RuntimeStudyTarge
 }
 
 export function flashcardsMarketDevOwnedPacksKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('flashcards_market_dev_owned_v1', 'flashcards', studyTarget);
+  return scopedOrLegacyKey(FLASHCARDS_MARKET_DEV_OWNED_KEY, 'flashcards', studyTarget);
 }
 
 export function flashcardsOwnedPacksKey(studyTarget?: RuntimeStudyTarget): string {
@@ -553,7 +552,7 @@ export function flashcardsMarketplaceBuiltCardsCacheKey(studyTarget?: RuntimeStu
 }
 
 export function flashcardsMarketDevActivePackKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('flashcards_market_dev_active_pack_v1', 'flashcards', studyTarget);
+  return scopedOrLegacyKey(FLASHCARDS_MARKET_DEV_ACTIVE_PACK_KEY, 'flashcards', studyTarget);
 }
 
 export function flashcardsOpenedPacksKey(studyTarget?: RuntimeStudyTarget): string {

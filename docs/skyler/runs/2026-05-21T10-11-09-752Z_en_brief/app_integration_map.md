@@ -65,8 +65,8 @@ Skyler item to the current `QuizPhrase` shape:
 
 ## Content Status
 
-- 10 items authored.
-- 20 verified claims.
+- 100 items authored.
+- 200 verified claims.
 - 4 official/expert sources.
 - 8 interface locales covered: `ru`, `uk`, `es`, `pt-BR`, `vi`, `id`, `tr`, `pl`.
 - Skyler gate passed with `0` failures and `0` warnings.
@@ -75,4 +75,9 @@ Skyler item to the current `QuizPhrase` shape:
 
 `GO`: content, non-UI adapter, category registry, theme assets, and the main
 quiz selection card are wired. The pack remains isolated from the flat level
-pools.
+pools. The 100-item pack is treated as the category pool; each runtime session
+samples 10 randomized questions and shuffles choices like the standard quiz
+flow. Thematic quiz starts and restarts now share the free-user daily quiz limit
+and keep the existing energy gate. Standalone `/quizzes` and `/quizzes_screen`
+now delegate to the same tab runtime so Skyler, French gate, daily-limit, and
+energy behavior cannot drift by route.

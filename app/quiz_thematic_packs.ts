@@ -67,6 +67,27 @@ type SkylerLocaleReview = {
   notes?: string;
 };
 
+type SkylerVisualAssets = {
+  status?: 'generated' | 'queued' | string;
+  styleBasis?: string;
+  assets?: {
+    family?: string;
+    plaquePrompt?: string;
+    iconPrompt?: string;
+    plaquePath?: string;
+    iconPath?: string;
+  }[];
+};
+
+type SkylerReleasePolicy = {
+  environment?: 'dev-only' | 'production' | string;
+  productionActivation?: 'blocked_until_explicit_user_approval' | 'approved_by_user' | string;
+  approvedBy?: string;
+  approvedAt?: string;
+  approvalSource?: string;
+  notes?: string;
+};
+
 export type SkylerThematicPackItem = {
   id: string;
   type: 'mcq';
@@ -99,6 +120,8 @@ export type SkylerThematicPack = {
   officialSources?: SkylerOfficialSource[];
   claims?: SkylerSourceClaim[];
   localeReviews?: SkylerLocaleReview[];
+  visualAssets?: SkylerVisualAssets;
+  releasePolicy?: SkylerReleasePolicy;
   items: SkylerThematicPackItem[];
 };
 

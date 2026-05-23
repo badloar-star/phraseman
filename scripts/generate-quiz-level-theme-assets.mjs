@@ -233,16 +233,10 @@ function cardOverlaySvg(themeKey, theme, levelKey, level) {
       <stop offset=".48" stop-color="${esc(level.cardAccent)}" stop-opacity=".13"/>
       <stop offset="1" stop-color="${esc(level.cardAccent)}" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="${esc(level.cardAccent2)}" stop-opacity=".62"/>
-      <stop offset=".52" stop-color="${esc(level.cardAccent)}" stop-opacity=".32"/>
-      <stop offset="1" stop-color="${esc(theme.foil)}" stop-opacity=".36"/>
-    </linearGradient>
   </defs>
   <rect width="${CARD_W}" height="${CARD_H}" fill="${esc(theme.bg[1])}" opacity=".44"/>
   <rect width="${CARD_W}" height="${CARD_H}" fill="url(#textVeil)"/>
   <rect width="${CARD_W}" height="${CARD_H}" fill="url(#orb)"/>
-  <rect x="1.5" y="1.5" width="${CARD_W - 3}" height="${CARD_H - 3}" rx="23" fill="none" stroke="url(#rim)" stroke-width="3"/>
 </svg>`);
 }
 
@@ -598,6 +592,8 @@ async function writePreview() {
 }
 
 async function main() {
+  const cardsOnly = process.argv.includes('--cards-only');
+
   await fs.mkdir(CARD_DIR, { recursive: true });
   await fs.mkdir(LOGO_DIR, { recursive: true });
   await fs.mkdir(QA_DIR, { recursive: true });
@@ -610,6 +606,7 @@ async function main() {
   for (const [themeKey, theme] of Object.entries(THEMES)) {
     for (const [levelKey, level] of Object.entries(LEVELS)) {
       const card = await buildCard(themeKey, theme, levelKey, level, candidateSources, dalleCardSources);
+      if (cardsOnly) continue;
       const logo = await buildLogo(themeKey, theme, levelKey, level, dalleLogoSources);
       const cardMeta = await sharp(card.target).metadata();
       const logoMeta = await sharp(logo.target).metadata();
@@ -625,6 +622,11 @@ async function main() {
         logoSize: `${logoMeta.width}x${logoMeta.height}`,
       });
     }
+  }
+
+  if (cardsOnly) {
+    console.log('Generated quiz level cards.');
+    return;
   }
 
   await writePreview();

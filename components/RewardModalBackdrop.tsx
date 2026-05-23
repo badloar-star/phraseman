@@ -17,6 +17,10 @@ type RewardModalBackdropProps = {
   intensity?: 'regular' | 'strong';
 };
 
+type RewardModalPanelBackdropProps = RewardModalBackdropProps & {
+  opacity?: number;
+};
+
 export function RewardModalBackdrop({ themeMode, intensity = 'regular' }: RewardModalBackdropProps) {
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
@@ -32,6 +36,31 @@ export function RewardModalBackdrop({ themeMode, intensity = 'regular' }: Reward
         pointerEvents="none"
         colors={rewardModalScrimColors(themeMode, intensity)}
         locations={[0, 0.52, 1]}
+        style={StyleSheet.absoluteFill}
+      />
+    </View>
+  );
+}
+
+export function RewardModalPanelBackdrop({
+  themeMode,
+  intensity = 'regular',
+  opacity,
+}: RewardModalPanelBackdropProps) {
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      <Image
+        source={REWARD_MODAL_BACKDROPS[themeMode]}
+        resizeMode="cover"
+        style={[
+          StyleSheet.absoluteFill,
+          { opacity: opacity ?? rewardModalPanelImageOpacity(themeMode) },
+        ]}
+      />
+      <LinearGradient
+        pointerEvents="none"
+        colors={rewardModalPanelScrimColors(themeMode, intensity)}
+        locations={[0, 0.46, 1]}
         style={StyleSheet.absoluteFill}
       />
     </View>
@@ -139,6 +168,12 @@ function rewardModalImageOpacity(themeMode: ThemeMode): number {
   return 1;
 }
 
+function rewardModalPanelImageOpacity(themeMode: ThemeMode): number {
+  if (themeMode === 'minimalLight') return 0.82;
+  if (themeMode === 'gold') return 0.88;
+  return 0.92;
+}
+
 function rewardModalScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'strong'): [string, string, string] {
   const strong = intensity === 'strong';
   switch (themeMode) {
@@ -158,5 +193,36 @@ function rewardModalScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'st
       return strong
         ? ['rgba(2,4,8,0.42)', 'rgba(2,4,8,0.54)', 'rgba(0,0,0,0.74)']
         : ['rgba(2,4,8,0.28)', 'rgba(2,4,8,0.42)', 'rgba(0,0,0,0.62)'];
+  }
+}
+
+function rewardModalPanelScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'strong'): [string, string, string] {
+  const strong = intensity === 'strong';
+  switch (themeMode) {
+    case 'minimalLight':
+      return strong
+        ? ['rgba(255,253,246,0.46)', 'rgba(255,253,246,0.62)', 'rgba(78,61,34,0.20)']
+        : ['rgba(255,253,246,0.34)', 'rgba(255,253,246,0.50)', 'rgba(78,61,34,0.12)'];
+    case 'gold':
+      return strong
+        ? ['rgba(12,8,2,0.34)', 'rgba(7,5,2,0.52)', 'rgba(0,0,0,0.76)']
+        : ['rgba(12,8,2,0.24)', 'rgba(7,5,2,0.42)', 'rgba(0,0,0,0.66)'];
+    case 'neon':
+      return strong
+        ? ['rgba(3,8,2,0.30)', 'rgba(1,4,1,0.54)', 'rgba(0,0,0,0.78)']
+        : ['rgba(3,8,2,0.20)', 'rgba(1,4,1,0.44)', 'rgba(0,0,0,0.66)'];
+    case 'coral':
+      return strong
+        ? ['rgba(48,14,18,0.22)', 'rgba(30,8,11,0.48)', 'rgba(0,0,0,0.72)']
+        : ['rgba(48,14,18,0.14)', 'rgba(30,8,11,0.36)', 'rgba(0,0,0,0.62)'];
+    case 'minimalDark':
+      return strong
+        ? ['rgba(6,10,18,0.18)', 'rgba(4,7,12,0.48)', 'rgba(0,0,0,0.78)']
+        : ['rgba(6,10,18,0.12)', 'rgba(4,7,12,0.38)', 'rgba(0,0,0,0.66)'];
+    case 'dark':
+    default:
+      return strong
+        ? ['rgba(3,12,7,0.24)', 'rgba(2,7,4,0.50)', 'rgba(0,0,0,0.76)']
+        : ['rgba(3,12,7,0.16)', 'rgba(2,7,4,0.40)', 'rgba(0,0,0,0.64)'];
   }
 }

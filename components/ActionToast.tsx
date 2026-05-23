@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, Text, View } from 'react-native';
+import { Animated, StyleSheet, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { onAppEvent } from '../app/events';
-import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { hapticError, hapticSoftImpact, hapticSuccess } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
@@ -14,7 +14,7 @@ import {
 } from './animationScheduling';
 
 type ToastPayload = {
-  type: 'success' | 'error' | 'info';
+  type: ToastType;
   messageRu: string;
   messageUk?: string;
   /** ES (UI en español). Si falta y `lang === "es"`, se usa un texto breve según `type`. */
@@ -24,6 +24,67 @@ type ToastPayload = {
   messageId?: string;
   messageTr?: string;
   messagePl?: string;
+};
+
+type ToastType = 'success' | 'error' | 'info';
+
+type ToastTone = {
+  icon: keyof typeof Ionicons.glyphMap;
+  label: Record<string, string>;
+  accent: string;
+  accentSoft: string;
+  border: string;
+};
+
+const TOAST_TONES: Record<ToastType, ToastTone> = {
+  success: {
+    icon: 'checkmark-circle',
+    label: {
+      ru: 'Готово',
+      uk: 'Готово',
+      es: 'Listo',
+      'pt-BR': 'Pronto',
+      vi: 'Xong',
+      id: 'Selesai',
+      tr: 'Tamam',
+      pl: 'Gotowe',
+    },
+    accent: '#65E49A',
+    accentSoft: 'rgba(101,228,154,0.14)',
+    border: 'rgba(101,228,154,0.34)',
+  },
+  error: {
+    icon: 'alert-circle',
+    label: {
+      ru: 'Ошибка',
+      uk: 'Помилка',
+      es: 'Error',
+      'pt-BR': 'Erro',
+      vi: 'Lỗi',
+      id: 'Error',
+      tr: 'Hata',
+      pl: 'Błąd',
+    },
+    accent: '#FF6E78',
+    accentSoft: 'rgba(255,110,120,0.14)',
+    border: 'rgba(255,110,120,0.36)',
+  },
+  info: {
+    icon: 'information-circle',
+    label: {
+      ru: 'Инфо',
+      uk: 'Інфо',
+      es: 'Info',
+      'pt-BR': 'Info',
+      vi: 'Tin',
+      id: 'Info',
+      tr: 'Bilgi',
+      pl: 'Info',
+    },
+    accent: '#74A7FF',
+    accentSoft: 'rgba(116,167,255,0.14)',
+    border: 'rgba(116,167,255,0.34)',
+  },
 };
 
 const AUTO_DISMISS_MS = 3200;
@@ -41,7 +102,6 @@ function toastKey(p: ToastPayload): string {
 }
 
 export default function ActionToast() {
-  const { theme: t } = useTheme();
   const { lang } = useLang();
   const bottomOffset = useGlobalBottomOverlayOffset();
   const [toast, setToast] = useState<ToastPayload | null>(null);
@@ -174,9 +234,6 @@ export default function ActionToast() {
 
   if (!toast || !overlayVisible) return null;
 
-  const border = toast.type === 'error' ? t.wrong : toast.type === 'success' ? t.correct : t.border;
-  const icon = toast.type === 'error' ? '⚠️' : toast.type === 'success' ? '✅' : 'ℹ️';
-  const messageColor = toast.type === 'error' ? t.wrong : toast.type === 'success' ? t.correct : t.textPrimary;
   const esFallback =
     toast.type === 'error'
       ? 'Algo salió mal.'
@@ -192,36 +249,110 @@ export default function ActionToast() {
               : lang === 'tr' ? (toast.messageTr ?? toast.messageRu)
                 : lang === 'pl' ? (toast.messagePl ?? toast.messageRu)
                   : toast.messageRu;
+  const tone = TOAST_TONES[toast.type];
+  const toneLabel = tone.label[lang] ?? tone.label.ru;
 
   return (
     <Animated.View
-      style={{
-        position: 'absolute',
-        left: 14,
-        right: 14,
-        bottom: bottomOffset,
-        zIndex: 9997,
-        transform: [{ translateY: y }],
-        opacity,
-      }}
+      style={[
+        styles.host,
+        {
+          bottom: bottomOffset,
+          transform: [{ translateY: y }],
+          opacity,
+        },
+      ]}
       pointerEvents="none"
     >
       <View
-        style={{
-          backgroundColor: t.bgCard,
-          borderColor: border,
-          borderWidth: 1,
-          borderRadius: 14,
-          paddingHorizontal: 14,
-          paddingVertical: 12,
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: 10,
-        }}
+        style={[
+          styles.toast,
+          {
+            borderColor: tone.border,
+          },
+        ]}
       >
-        <Text style={{ fontSize: 18 }}>{icon}</Text>
-        <Text style={{ color: messageColor, fontSize: 15, fontWeight: '700', flex: 1 }}>{message}</Text>
+        <View style={[styles.accentRail, { backgroundColor: tone.accent }]} />
+        <View
+          style={[
+            styles.iconBadge,
+            {
+              backgroundColor: tone.accentSoft,
+              borderColor: tone.border,
+            },
+          ]}
+        >
+          <Ionicons name={tone.icon} size={21} color={tone.accent} />
+        </View>
+        <View style={styles.copy}>
+          <Text style={[styles.label, { color: tone.accent }]} numberOfLines={1}>
+            {toneLabel}
+          </Text>
+          <Text style={styles.message} numberOfLines={3}>
+            {message}
+          </Text>
+        </View>
       </View>
     </Animated.View>
   );
 }
+
+const styles = StyleSheet.create({
+  host: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    zIndex: 9997,
+    paddingHorizontal: 14,
+    alignItems: 'center',
+  },
+  toast: {
+    width: '100%',
+    maxWidth: 560,
+    minHeight: 66,
+    backgroundColor: '#121419',
+    borderWidth: 1,
+    borderRadius: 16,
+    paddingVertical: 12,
+    paddingLeft: 16,
+    paddingRight: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    overflow: 'hidden',
+  },
+  accentRail: {
+    position: 'absolute',
+    left: 0,
+    top: 11,
+    bottom: 11,
+    width: 3,
+    borderTopRightRadius: 4,
+    borderBottomRightRadius: 4,
+  },
+  iconBadge: {
+    width: 38,
+    height: 38,
+    borderRadius: 12,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  copy: {
+    flex: 1,
+    minWidth: 0,
+    gap: 2,
+  },
+  label: {
+    fontSize: 12,
+    fontWeight: '800',
+    letterSpacing: 0,
+  },
+  message: {
+    color: '#F8FAFC',
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: '700',
+    letterSpacing: 0,
+  },
+});

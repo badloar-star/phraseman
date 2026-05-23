@@ -20,140 +20,84 @@ import { triLang } from '../constants/i18n';
 
 const TEXT = {
   title: {
-    ru: 'Большое обновление PhraseMan',
-    uk: 'Велике оновлення PhraseMan',
-    es: 'Gran actualización de PhraseMan',
-    'pt-BR': 'Grande atualização do PhraseMan',
-    vi: 'Bản cập nhật lớn của PhraseMan',
-    id: 'Pembaruan besar PhraseMan',
-    tr: 'PhraseMan büyük güncelleme',
-    pl: 'Duża aktualizacja PhraseMan',
+    ru: 'PhraseMan стал удобнее',
+    uk: 'PhraseMan став зручнішим',
+    es: 'PhraseMan es más cómodo',
+    'pt-BR': 'O PhraseMan ficou mais prático',
+    vi: 'PhraseMan dễ dùng hơn',
+    id: 'PhraseMan jadi lebih nyaman',
+    tr: 'PhraseMan daha kullanışlı',
+    pl: 'PhraseMan jest wygodniejszy',
   },
   subtitle: {
-    ru: 'Приложение стало взрослее, понятнее и немного серьёзнее.',
-    uk: 'Застосунок став дорослішим, зрозумілішим і трохи серйознішим.',
-    es: 'La app ahora es más clara, más útil y un poco más seria.',
-    'pt-BR': 'O app ficou mais maduro, mais claro e um pouco mais sério.',
-    vi: 'Ứng dụng trưởng thành hơn, rõ ràng hơn và nghiêm túc hơn một chút.',
-    id: 'Aplikasi kini lebih matang, lebih jelas, dan sedikit lebih serius.',
-    tr: 'Uygulama daha olgun, daha anlaşılır ve biraz daha ciddi oldu.',
-    pl: 'Aplikacja stała się dojrzalsza, czytelniejsza i trochę poważniejsza.',
+    ru: 'Небольшие улучшения, которые делают учёбу спокойнее.',
+    uk: 'Невеликі покращення, які роблять навчання спокійнішим.',
+    es: 'Pequeñas mejoras para estudiar con más calma.',
+    'pt-BR': 'Pequenas melhorias para estudar com mais calma.',
+    vi: 'Những cải tiến nhỏ giúp việc học nhẹ nhàng hơn.',
+    id: 'Peningkatan kecil yang membuat belajar lebih tenang.',
+    tr: 'Daha sakin çalışmak için küçük iyileştirmeler.',
+    pl: 'Małe usprawnienia, dzięki którym nauka jest spokojniejsza.',
   },
   chips: {
-    ru: ['Чат лиги', 'Призы за цель', 'Умнее тренировки', 'Сильнее аналитика'],
-    uk: ['Чат ліги', 'Призи за ціль', 'Розумніші тренування', 'Сильніша аналітика'],
-    es: ['Chat de liga', 'Premios por objetivo', 'Entrenos más inteligentes', 'Más analítica'],
-    'pt-BR': ['Chat da liga', 'Prêmios por meta', 'Treinos mais inteligentes', 'Análises melhores'],
-    vi: ['Chat giải đấu', 'Phần thưởng mục tiêu', 'Luyện tập thông minh hơn', 'Phân tích mạnh hơn'],
-    id: ['Chat liga', 'Hadiah target', 'Latihan lebih pintar', 'Analitik lebih kuat'],
-    tr: ['Lig sohbeti', 'Hedef ödülleri', 'Daha akıllı antrenman', 'Daha güçlü analiz'],
-    pl: ['Czat ligi', 'Nagrody za cel', 'Mądrzejsze treningi', 'Lepsza analityka'],
+    ru: ['Визуал', 'Карточки', 'Статистика', 'Чат лиги'],
+    uk: ['Візуал', 'Картки', 'Статистика', 'Чат ліги'],
+    es: ['Visual', 'Tarjetas', 'Estadísticas', 'Chat de liga'],
+    'pt-BR': ['Visual', 'Cartões', 'Estatísticas', 'Chat da liga'],
+    vi: ['Giao diện', 'Thẻ học', 'Thống kê', 'Chat giải đấu'],
+    id: ['Tampilan', 'Kartu', 'Statistik', 'Chat liga'],
+    tr: ['Görsel', 'Kartlar', 'İstatistik', 'Lig sohbeti'],
+    pl: ['Wygląd', 'Fiszki', 'Statystyki', 'Czat ligi'],
   },
   body: {
     ru:
-      'У нас большое обновление. Такое, после которого PhraseMan поправил воротник и сказал: «Ладно, теперь работаем серьёзно».\n\n'
-      + 'Что нового: в лигах появился чат. Он живёт одну неделю — ровно столько, сколько текущая лига. Можно зайти, пожелать удачи другим участникам и сделать вид, что вы не собираетесь их обгонять по XP через пять минут.\n\n'
-      + 'В лигах теперь есть ценные призы за выполнение цели. Не просто «молодец, держи уважение», а настоящая игровая награда за регулярность.\n\n'
-      + 'Персональные тренировки стали умнее: приложение лучше замечает проблемные места и возвращает вас к ним без драмы, но с настойчивостью хорошего тренера.\n\n'
-      + 'Аналитика тоже сильно выросла. Теперь проще понять, где вы ошибаетесь, что уже получается и куда двигаться дальше. Стало нагляднее, честнее и намного полезнее.\n\n'
-      + 'Профиль стал заметнее: аватар, рамки и другие элементы кастомизации теперь помогают выглядеть так, будто прогресс у вас не только внутри, но и снаружи.\n\n'
-      + 'Мы также улучшили уроки, фразы, переводы, арену, лиги и места, где приложение могло вести себя так, будто английский придумали в пятницу вечером.\n\n'
-      + 'Теперь о важном. Есть неприятная новость: все уроки начиная с четвёртого переходят в Premium.\n\n'
-      + 'Понимаем, это не тот момент, где хочется запускать салют. Но PhraseMan сильно вырос: пользователей больше, серверы работают больше, обновления требуют больше времени, а маленькая студия не умеет оплачивать всё одним «спасибо, вы лучшие». Мы проверяли. Банк не засчитал.\n\n'
-      + 'Большая бесплатная часть остаётся доступной: можно учиться, тренироваться, играть, выполнять ежедневные задания, участвовать в лигах и знакомиться с форматом.\n\n'
-      + 'Premium нужен, чтобы мы могли продолжать делать новые уроки, улучшать качество и держать приложение быстрым для всех.\n\n'
-      + 'Спасибо за понимание. Мы не ставим замок ради замка. Мы делаем это, чтобы PhraseMan не остановился.',
+      'Мы немного обновили PhraseMan: освежили визуал уровней, лиг, подарков, энергии и статистики.\n\n'
+      + 'В карточках появилось автопрослушивание — теперь можно спокойно тренировать слух без лишних нажатий.\n\n'
+      + 'Статистика стала понятнее: проще следить за серией, ритмом занятий, заморозкой и прогрессом.\n\n'
+      + 'Чат лиги тоже доработали: непрочитанные сообщения, жалобы, скрытие участников и более стабильное подключение.\n\n'
+      + 'Ещё поправили уроки, подсказки, квизы, Premium-доступ, синхронизацию и несколько ошибок, которые слишком уверенно мешали жить.',
     uk:
-      'У нас велике оновлення. Таке, після якого PhraseMan поправив комір і сказав: «Гаразд, тепер працюємо серйозно».\n\n'
-      + 'Що нового: у лігах з’явився чат. Він живе один тиждень — рівно стільки, скільки поточна ліга. Можна зайти, побажати удачі іншим учасникам і зробити вигляд, що ви не збираєтеся обганяти їх за XP через п’ять хвилин.\n\n'
-      + 'У лігах тепер є цінні призи за виконання цілі. Не просто «молодець, тримай повагу», а справжня ігрова нагорода за регулярність.\n\n'
-      + 'Персональні тренування стали розумнішими: застосунок краще помічає проблемні місця й повертає вас до них без драми, але з наполегливістю хорошого тренера.\n\n'
-      + 'Аналітика теж сильно виросла. Тепер простіше зрозуміти, де ви помиляєтеся, що вже виходить і куди рухатися далі. Стало наочніше, чесніше й набагато корисніше.\n\n'
-      + 'Профіль став помітнішим: аватар, рамки та інші елементи кастомізації тепер допомагають виглядати так, ніби прогрес у вас не лише всередині, а й зовні.\n\n'
-      + 'Ми також покращили уроки, фрази, переклади, арену, ліги й місця, де застосунок міг поводитися так, ніби англійську вигадали в п’ятницю ввечері.\n\n'
-      + 'Тепер про важливе. Є неприємна новина: усі уроки, починаючи з четвертого, переходять у Premium.\n\n'
-      + 'Розуміємо, це не той момент, де хочеться запускати салют. Але PhraseMan сильно виріс: користувачів більше, сервери працюють більше, оновлення потребують більше часу, а маленька студія не вміє оплачувати все одним «дякуємо, ви найкращі». Ми перевіряли. Банк не зарахував.\n\n'
-      + 'Велика безкоштовна частина залишається доступною: можна вчитися, тренуватися, грати, виконувати щоденні завдання, брати участь у лігах і знайомитися з форматом.\n\n'
-      + 'Premium потрібен, щоб ми могли продовжувати робити нові уроки, покращувати якість і тримати застосунок швидким для всіх.\n\n'
-      + 'Дякуємо за розуміння. Ми не ставимо замок заради замка. Ми робимо це, щоб PhraseMan не зупинився.',
+      'Ми трохи оновили PhraseMan: освіжили вигляд рівнів, ліг, подарунків, енергії та статистики.\n\n'
+      + 'У картках з’явилося автопрослуховування — тепер можна спокійно тренувати слух без зайвих натискань.\n\n'
+      + 'Статистика стала зрозумілішою: простіше стежити за серією, ритмом занять, заморозкою та прогресом.\n\n'
+      + 'Чат ліги теж допрацювали: непрочитані повідомлення, скарги, приховування учасників і стабільніше підключення.\n\n'
+      + 'Ще поправили уроки, підказки, квізи, Premium-доступ, синхронізацію і кілька помилок, які надто впевнено заважали жити.',
     es:
-      'Tenemos una actualización grande. De esas en las que PhraseMan se arregla el cuello de la camisa y dice: "Vale, ahora trabajamos en serio".\n\n'
-      + 'Novedades: las ligas ahora tienen chat. Vive una semana, exactamente lo mismo que la liga actual. Puedes entrar, desear suerte a otros participantes y fingir que no vas a adelantarlos en XP dentro de cinco minutos.\n\n'
-      + 'Las ligas ahora también tienen premios valiosos por completar el objetivo. No solo un "bien hecho, toma respeto", sino una recompensa real del juego por tu constancia.\n\n'
-      + 'Los entrenamientos personales son más inteligentes: la app detecta mejor tus puntos débiles y te devuelve a ellos sin drama, pero con la insistencia de un buen entrenador.\n\n'
-      + 'Las estadísticas también han crecido mucho. Ahora es más fácil entender dónde te equivocas, qué ya funciona y hacia dónde seguir. Todo es más claro, más honesto y mucho más útil.\n\n'
-      + 'El perfil también destaca más: el avatar, los marcos y otros elementos de personalización ayudan a que tu progreso se vea por dentro y por fuera.\n\n'
-      + 'También mejoramos lecciones, frases, traducciones, arena, ligas y lugares donde la app se comportaba como si el inglés se hubiera inventado un viernes por la noche.\n\n'
-      + 'Ahora lo importante. Hay una noticia incómoda: todas las lecciones a partir de la cuarta pasan a Premium.\n\n'
-      + 'Sabemos que no es el momento de lanzar fuegos artificiales. Pero PhraseMan ha crecido mucho: hay más usuarios, los servidores trabajan más, las actualizaciones requieren más tiempo y un estudio pequeño no puede pagarlo todo con un "gracias, son los mejores". Lo comprobamos. El banco no lo aceptó.\n\n'
-      + 'Una gran parte gratuita sigue disponible: puedes aprender, entrenar, jugar, completar tareas diarias, participar en ligas y probar el formato.\n\n'
-      + 'Premium nos ayuda a seguir creando lecciones nuevas, mejorar la calidad y mantener la app rápida para todos.\n\n'
-      + 'Gracias por entenderlo. No ponemos un candado por ponerlo. Lo hacemos para que PhraseMan no se detenga.',
+      'Hemos actualizado un poco PhraseMan: renovamos el aspecto de niveles, ligas, regalos, energía y estadísticas.\n\n'
+      + 'Las tarjetas ahora tienen reproducción automática: puedes entrenar el oído sin tocar la pantalla todo el rato.\n\n'
+      + 'Las estadísticas son más claras: es más fácil seguir la racha, el ritmo de estudio, la congelación y el progreso.\n\n'
+      + 'También mejoramos el chat de liga: mensajes no leídos, reportes, ocultar participantes y una conexión más estable.\n\n'
+      + 'Además ajustamos lecciones, pistas, cuestionarios, acceso Premium, sincronización y algunos errores que molestaban con demasiada confianza.',
     'pt-BR':
-      'Temos uma grande atualização. Daquelas em que o PhraseMan ajeita a gola e diz: "Certo, agora vamos trabalhar sério".\n\n'
-      + 'O que há de novo: as ligas agora têm chat. Ele dura uma semana, exatamente o tempo da liga atual. Você pode entrar, desejar boa sorte aos outros participantes e fingir que não pretende passar todo mundo em XP daqui a cinco minutos.\n\n'
-      + 'As ligas agora também têm prêmios valiosos por cumprir a meta. Não é só "muito bem, receba respeito", mas uma recompensa real do jogo pela regularidade.\n\n'
-      + 'Os treinos pessoais ficaram mais inteligentes: o app percebe melhor seus pontos fracos e leva você de volta a eles sem drama, mas com a insistência de um bom treinador.\n\n'
-      + 'A análise também cresceu bastante. Agora fica mais fácil entender onde você erra, o que já funciona e para onde seguir. Ficou mais claro, mais honesto e muito mais útil.\n\n'
-      + 'O perfil também ficou mais visível: avatar, molduras e outros elementos de personalização ajudam seu progresso a aparecer por dentro e por fora.\n\n'
-      + 'Também melhoramos lições, frases, traduções, arena, ligas e lugares em que o app podia se comportar como se o inglês tivesse sido inventado numa sexta-feira à noite.\n\n'
-      + 'Agora o ponto importante. Há uma notícia desconfortável: todas as lições a partir da quarta passam para o Premium.\n\n'
-      + 'Sabemos que este não é o momento de soltar fogos. Mas o PhraseMan cresceu muito: há mais usuários, os servidores trabalham mais, as atualizações exigem mais tempo e um estúdio pequeno não consegue pagar tudo com um "obrigado, vocês são incríveis". Nós testamos. O banco não aceitou.\n\n'
-      + 'Uma grande parte gratuita continua disponível: você pode aprender, treinar, jogar, completar tarefas diárias, participar das ligas e conhecer o formato.\n\n'
-      + 'O Premium nos ajuda a continuar criando novas lições, melhorar a qualidade e manter o app rápido para todos.\n\n'
-      + 'Obrigado por entender. Não colocamos um cadeado por colocar. Fazemos isso para que o PhraseMan não pare.',
+      'Atualizamos um pouco o PhraseMan: renovamos o visual de níveis, ligas, presentes, energia e estatísticas.\n\n'
+      + 'Os cartões agora têm reprodução automática: dá para treinar o ouvido sem ficar tocando na tela toda hora.\n\n'
+      + 'As estatísticas ficaram mais claras: ficou mais fácil acompanhar sequência, ritmo de estudo, congelamento e progresso.\n\n'
+      + 'Também melhoramos o chat da liga: mensagens não lidas, denúncias, ocultar participantes e conexão mais estável.\n\n'
+      + 'Além disso, ajustamos lições, dicas, quizzes, acesso Premium, sincronização e alguns erros que atrapalhavam com confiança demais.',
     vi:
-      'Chúng ta có một bản cập nhật lớn. Kiểu cập nhật mà PhraseMan chỉnh lại cổ áo rồi nói: "Được rồi, giờ làm việc nghiêm túc".\n\n'
-      + 'Có gì mới: các giải đấu giờ có chat. Chat tồn tại trong một tuần, đúng bằng thời gian của giải đấu hiện tại. Bạn có thể vào chúc người khác may mắn và giả vờ rằng mình không định vượt họ về XP sau năm phút nữa.\n\n'
-      + 'Các giải đấu giờ cũng có phần thưởng giá trị khi hoàn thành mục tiêu. Không chỉ là "làm tốt lắm, nhận sự tôn trọng nhé", mà là phần thưởng thật trong game cho sự đều đặn.\n\n'
-      + 'Các buổi luyện tập cá nhân thông minh hơn: ứng dụng nhận ra điểm yếu tốt hơn và đưa bạn quay lại luyện chúng, không kịch tính, nhưng kiên trì như một huấn luyện viên tốt.\n\n'
-      + 'Phần phân tích cũng phát triển nhiều. Giờ bạn dễ hiểu hơn mình sai ở đâu, phần nào đã ổn và nên đi tiếp theo hướng nào. Rõ ràng hơn, thật hơn và hữu ích hơn nhiều.\n\n'
-      + 'Hồ sơ cũng nổi bật hơn: avatar, khung và các yếu tố tùy chỉnh khác giúp tiến bộ của bạn được nhìn thấy cả bên trong lẫn bên ngoài.\n\n'
-      + 'Chúng tôi cũng cải thiện bài học, cụm từ, bản dịch, arena, giải đấu và những chỗ ứng dụng từng hành xử như thể tiếng Anh được nghĩ ra vào tối thứ Sáu.\n\n'
-      + 'Bây giờ là phần quan trọng. Có một tin không dễ chịu: tất cả bài học từ bài thứ tư trở đi sẽ chuyển sang Premium.\n\n'
-      + 'Chúng tôi hiểu đây không phải lúc ai muốn ăn mừng. Nhưng PhraseMan đã lớn hơn rất nhiều: người dùng nhiều hơn, máy chủ chạy nhiều hơn, cập nhật cần nhiều thời gian hơn, và một studio nhỏ không thể chi trả mọi thứ chỉ bằng câu "cảm ơn, các bạn tuyệt lắm". Chúng tôi đã thử. Ngân hàng không chấp nhận.\n\n'
-      + 'Một phần miễn phí lớn vẫn còn: bạn có thể học, luyện tập, chơi, làm nhiệm vụ hằng ngày, tham gia giải đấu và làm quen với cách học.\n\n'
-      + 'Premium giúp chúng tôi tiếp tục tạo bài học mới, nâng chất lượng và giữ ứng dụng nhanh cho tất cả mọi người.\n\n'
-      + 'Cảm ơn bạn đã thông cảm. Chúng tôi không đặt khóa chỉ để đặt khóa. Chúng tôi làm vậy để PhraseMan không dừng lại.',
+      'Chúng tôi đã cập nhật nhẹ PhraseMan: làm mới giao diện cấp độ, giải đấu, quà tặng, năng lượng và thống kê.\n\n'
+      + 'Thẻ học giờ có tự động phát âm thanh, để bạn luyện nghe bình tĩnh hơn mà không cần bấm liên tục.\n\n'
+      + 'Thống kê rõ ràng hơn: dễ theo dõi chuỗi học, nhịp học, đóng băng chuỗi và tiến bộ.\n\n'
+      + 'Chat giải đấu cũng được cải thiện: tin nhắn chưa đọc, báo cáo, ẩn người tham gia và kết nối ổn định hơn.\n\n'
+      + 'Chúng tôi cũng chỉnh bài học, gợi ý, quiz, quyền truy cập Premium, đồng bộ và vài lỗi từng làm phiền khá tự tin.',
     id:
-      'Kami punya pembaruan besar. Jenis pembaruan ketika PhraseMan merapikan kerah dan berkata: "Oke, sekarang kita bekerja serius".\n\n'
-      + 'Yang baru: liga sekarang punya chat. Chat ini aktif selama satu minggu, sama persis dengan durasi liga saat ini. Kamu bisa masuk, mendoakan peserta lain semoga berhasil, lalu pura-pura tidak akan menyalip XP mereka lima menit lagi.\n\n'
-      + 'Liga sekarang juga punya hadiah bernilai untuk menyelesaikan target. Bukan cuma "bagus, ini rasa hormat", tapi hadiah game sungguhan untuk konsistensi.\n\n'
-      + 'Latihan personal menjadi lebih pintar: aplikasi lebih baik mengenali titik lemahmu dan mengembalikanmu ke sana tanpa drama, tapi dengan ketekunan seperti pelatih yang baik.\n\n'
-      + 'Analitik juga berkembang banyak. Sekarang lebih mudah memahami di mana kamu sering salah, apa yang sudah mulai berhasil, dan ke mana harus lanjut. Lebih jelas, lebih jujur, dan jauh lebih berguna.\n\n'
-      + 'Profil juga lebih menonjol: avatar, bingkai, dan elemen kustomisasi lain membantu progresmu terlihat, bukan hanya terasa.\n\n'
-      + 'Kami juga meningkatkan pelajaran, frasa, terjemahan, arena, liga, dan bagian-bagian tempat aplikasi dulu bisa bertingkah seolah bahasa Inggris ditemukan pada Jumat malam.\n\n'
-      + 'Sekarang bagian pentingnya. Ada kabar yang kurang nyaman: semua pelajaran mulai dari pelajaran keempat akan masuk Premium.\n\n'
-      + 'Kami paham ini bukan momen untuk menyalakan kembang api. Tapi PhraseMan sudah tumbuh banyak: pengguna lebih banyak, server bekerja lebih keras, pembaruan butuh lebih banyak waktu, dan studio kecil tidak bisa membayar semuanya hanya dengan "terima kasih, kalian hebat". Kami sudah mencoba. Bank tidak menerimanya.\n\n'
-      + 'Bagian gratis yang besar tetap tersedia: kamu bisa belajar, berlatih, bermain, menyelesaikan tugas harian, ikut liga, dan mencoba formatnya.\n\n'
-      + 'Premium membantu kami terus membuat pelajaran baru, meningkatkan kualitas, dan menjaga aplikasi tetap cepat untuk semua orang.\n\n'
-      + 'Terima kasih sudah memahami. Kami tidak memasang kunci hanya demi memasang kunci. Kami melakukannya agar PhraseMan tidak berhenti.',
+      'Kami sedikit memperbarui PhraseMan: tampilan level, liga, hadiah, energi, dan statistik dibuat lebih segar.\n\n'
+      + 'Kartu sekarang punya pemutaran otomatis, jadi kamu bisa melatih pendengaran tanpa terlalu sering menekan tombol.\n\n'
+      + 'Statistik jadi lebih jelas: lebih mudah melihat streak, ritme belajar, freeze, dan progres.\n\n'
+      + 'Chat liga juga kami rapikan: pesan belum dibaca, laporan, sembunyikan peserta, dan koneksi yang lebih stabil.\n\n'
+      + 'Kami juga memperbaiki pelajaran, petunjuk, kuis, akses Premium, sinkronisasi, dan beberapa bug yang terlalu percaya diri mengganggu.',
     tr:
-      'Büyük bir güncellememiz var. PhraseMan yakasını düzeltip "Tamam, artık ciddi çalışıyoruz" dediği türden bir güncelleme.\n\n'
-      + 'Yenilikler: liglerde artık sohbet var. Bir hafta yaşar; yani mevcut lig ne kadar sürüyorsa tam o kadar. Girip diğer katılımcılara şans dileyebilir ve beş dakika sonra XP ile onları geçmeyecekmiş gibi davranabilirsiniz.\n\n'
-      + 'Liglerde hedefi tamamlayınca artık değerli ödüller de var. Sadece "aferin, saygımızı kazandın" değil; düzenli çalışmanın karşılığı olan gerçek bir oyun ödülü.\n\n'
-      + 'Kişisel antrenmanlar daha akıllı hale geldi: uygulama zayıf noktalarınızı daha iyi fark ediyor ve sizi onlara geri getiriyor. Drama yok, ama iyi bir eğitmen kadar ısrar var.\n\n'
-      + 'Analitik de ciddi şekilde gelişti. Artık nerede hata yaptığınızı, neyin işe yaradığını ve sonra nereye ilerlemeniz gerektiğini anlamak daha kolay. Daha anlaşılır, daha dürüst ve çok daha faydalı oldu.\n\n'
-      + 'Profil de daha görünür hale geldi: avatar, çerçeveler ve diğer kişiselleştirme öğeleri ilerlemenizin yalnızca içeride değil dışarıda da görünmesine yardım ediyor.\n\n'
-      + 'Ayrıca dersleri, ifadeleri, çevirileri, arenayı, ligleri ve uygulamanın İngilizce cuma akşamı icat edilmiş gibi davrandığı yerleri de iyileştirdik.\n\n'
-      + 'Şimdi önemli kısım. Rahatsız edici bir haber var: dördüncü dersten itibaren tüm dersler Premium oluyor.\n\n'
-      + 'Bunun kutlama yapmak isteyeceğiniz bir an olmadığını biliyoruz. Ama PhraseMan çok büyüdü: daha fazla kullanıcı var, sunucular daha fazla çalışıyor, güncellemeler daha çok zaman istiyor ve küçük bir stüdyo her şeyi "teşekkürler, harikasınız" ile ödeyemiyor. Denedik. Banka kabul etmedi.\n\n'
-      + 'Büyük bir ücretsiz bölüm yine açık kalıyor: öğrenebilir, antrenman yapabilir, oynayabilir, günlük görevleri tamamlayabilir, liglere katılabilir ve formatı deneyebilirsiniz.\n\n'
-      + 'Premium, yeni dersler yapmaya, kaliteyi artırmaya ve uygulamayı herkes için hızlı tutmaya devam etmemize yardımcı oluyor.\n\n'
-      + 'Anlayışınız için teşekkürler. Sırf kilit koymuş olmak için kilit koymuyoruz. Bunu PhraseMan durmasın diye yapıyoruz.',
+      'PhraseMan’i biraz güncelledik: seviyeler, ligler, hediyeler, enerji ve istatistiklerin görünümünü yeniledik.\n\n'
+      + 'Kartlara otomatik dinleme eklendi; artık sürekli dokunmadan sakin bir şekilde dinleme çalışması yapabilirsiniz.\n\n'
+      + 'İstatistikler daha anlaşılır oldu: seri, çalışma ritmi, dondurma ve ilerlemeyi takip etmek daha kolay.\n\n'
+      + 'Lig sohbetini de iyileştirdik: okunmamış mesajlar, şikayetler, katılımcı gizleme ve daha stabil bağlantı.\n\n'
+      + 'Ayrıca dersleri, ipuçlarını, quizleri, Premium erişimini, senkronizasyonu ve fazla özgüvenle rahatsız eden birkaç hatayı düzelttik.',
     pl:
-      'Mamy dużą aktualizację. Taką, po której PhraseMan poprawia kołnierzyk i mówi: "Dobra, teraz pracujemy na serio".\n\n'
-      + 'Co nowego: ligi mają teraz czat. Żyje przez tydzień, dokładnie tyle, ile obecna liga. Możesz wejść, życzyć innym powodzenia i udawać, że wcale nie zamierzasz wyprzedzić ich w XP za pięć minut.\n\n'
-      + 'W ligach są też teraz wartościowe nagrody za wykonanie celu. Nie tylko "dobra robota, masz szacunek", ale prawdziwa nagroda w grze za regularność.\n\n'
-      + 'Treningi personalne stały się mądrzejsze: aplikacja lepiej zauważa słabe miejsca i wraca z tobą do nich bez dramatu, ale z uporem dobrego trenera.\n\n'
-      + 'Analityka też mocno urosła. Teraz łatwiej zrozumieć, gdzie robisz błędy, co już działa i dokąd iść dalej. Jest czytelniej, uczciwiej i dużo bardziej użytecznie.\n\n'
-      + 'Profil stał się bardziej widoczny: avatar, ramki i inne elementy personalizacji pomagają pokazać postęp nie tylko w środku, ale też na zewnątrz.\n\n'
-      + 'Poprawiliśmy też lekcje, frazy, tłumaczenia, arenę, ligi i miejsca, w których aplikacja zachowywała się tak, jakby angielski wymyślono w piątek wieczorem.\n\n'
-      + 'Teraz ważna sprawa. Jest niewygodna wiadomość: wszystkie lekcje od czwartej przechodzą do Premium.\n\n'
-      + 'Rozumiemy, że to nie jest moment na fajerwerki. Ale PhraseMan bardzo urósł: jest więcej użytkowników, serwery pracują więcej, aktualizacje wymagają więcej czasu, a małe studio nie potrafi opłacić wszystkiego jednym "dziękujemy, jesteście najlepsi". Sprawdziliśmy. Bank nie uznał.\n\n'
-      + 'Duża część darmowa zostaje dostępna: możesz się uczyć, trenować, grać, wykonywać codzienne zadania, brać udział w ligach i poznać format.\n\n'
-      + 'Premium pomaga nam dalej tworzyć nowe lekcje, podnosić jakość i utrzymywać aplikację szybką dla wszystkich.\n\n'
-      + 'Dziękujemy za zrozumienie. Nie zakładamy blokady dla samej blokady. Robimy to, żeby PhraseMan się nie zatrzymał.',
+      'Trochę odświeżyliśmy PhraseMan: wygląd poziomów, lig, prezentów, energii i statystyk.\n\n'
+      + 'Fiszki mają teraz automatyczne odtwarzanie, więc można spokojnie ćwiczyć słuch bez ciągłego klikania.\n\n'
+      + 'Statystyki są czytelniejsze: łatwiej śledzić serię, rytm nauki, zamrożenie i postęp.\n\n'
+      + 'Dopracowaliśmy też czat ligi: nieprzeczytane wiadomości, zgłoszenia, ukrywanie uczestników i stabilniejsze połączenie.\n\n'
+      + 'Poprawiliśmy też lekcje, podpowiedzi, quizy, dostęp Premium, synchronizację i kilka błędów, które przeszkadzały z podejrzaną pewnością siebie.',
   },
   cta: {
     ru: 'Понятно, продолжаем',
@@ -207,14 +151,14 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
   }), [lang]);
   const chips = useMemo(() => pickReleaseNotesCopy(lang, TEXT.chips), [lang]);
   const versionLabel = useMemo(() => pickReleaseNotesCopy(lang, {
-    ru: 'Новая версия',
-    uk: 'Нова версія',
-    es: 'Nueva versión',
-    'pt-BR': 'Nova versão',
-    vi: 'Phiên bản mới',
-    id: 'Versi baru',
-    tr: 'Yeni sürüm',
-    pl: 'Nowa wersja',
+    ru: 'Обновление',
+    uk: 'Оновлення',
+    es: 'Actualización',
+    'pt-BR': 'Atualização',
+    vi: 'Cập nhật',
+    id: 'Pembaruan',
+    tr: 'Güncelleme',
+    pl: 'Aktualizacja',
   }), [lang]);
   const body = useMemo(() => triLang(lang, {
     ru: TEXT.body.ru,
@@ -403,12 +347,12 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
                   <Ionicons
                     name={
                       index === 0
-                        ? 'chatbubble-ellipses-outline'
+                        ? 'color-palette-outline'
                         : index === 1
-                          ? 'trophy-outline'
+                          ? 'volume-high-outline'
                           : index === 3
-                            ? 'analytics-outline'
-                            : 'checkmark'
+                            ? 'chatbubble-ellipses-outline'
+                            : 'analytics-outline'
                     }
                     size={13}
                     color="#1B2330"
@@ -422,11 +366,11 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
           </View>
 
             {paragraphs.map((paragraph, index) => {
-              const premiumBlock = index === 2;
-              return premiumBlock ? (
+              const featureBlock = index === 1;
+              return featureBlock ? (
                 <View key={paragraph} style={styles.premiumBlock}>
                   <View style={styles.premiumBlockIcon}>
-                    <Ionicons name="lock-closed" size={15} color="#1B2330" />
+                    <Ionicons name="volume-high-outline" size={15} color="#1B2330" />
                   </View>
                   <Text style={[styles.premiumBlockText, { fontSize: bodySize }]}>{paragraph}</Text>
                 </View>

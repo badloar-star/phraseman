@@ -1,6 +1,6 @@
 # Стартує вікно AVD із більш передбачуваним рендерингом GPU.
 # Якщо емулятор «не показує вікно», чорний екран або в лозі Qt: UpdateLayeredWindowIndirect failed — спробуйте
-# режим swiftshader_indirect (за замовчуванням) замість апаратного GPU.
+# режим swiftshader_indirect замість апаратного GPU.
 #
 # Запуск:  .\scripts\start-android-emulator.ps1
 #          .\scripts\start-android-emulator.ps1 -Avd Pixel_8_Pro -GpuMode host
@@ -8,7 +8,7 @@
 param(
   [string]$Avd = "Pixel_8",
   [ValidateSet("swiftshader_indirect", "host", "angle_indirect")]
-  [string]$GpuMode = "swiftshader_indirect"
+  [string]$GpuMode = "host"
 )
 
 $ErrorActionPreference = "Stop"

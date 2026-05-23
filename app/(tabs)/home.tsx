@@ -45,6 +45,7 @@ import { checkAchievements } from '../achievements';
 import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
 import EnergyIcon from '../../components/EnergyIcon';
 import { getAdaptiveEnergyIconLayout } from '../../components/energyIconLayout';
+import { StreakChainIcon } from '../../components/StreakChainIcon';
 import { loadAllMedals, countMedals } from '../medal_utils';
 import { getTrainerTotalDue } from '../trainer_store';
 import { getCurrentMultiplier } from '../xp_manager';
@@ -76,12 +77,15 @@ import { lessonNameForStudyTarget, lessonNamesForStudyTarget } from '../lesson_t
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { formatLeagueChatUnreadBadge } from '../league_chat_unread';
 import { useLeagueChatUnread } from '../use_league_chat_unread';
+import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../../constants/streakIconAssets';
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
 const ENERGY_TOOLTIP_W = 220;
 const CONTENT_W = Math.min(SCREEN_W, 640);
 const CARD_W = (CONTENT_W - 32 - 10) / 2;
 const USE_ELITE_HOME_STATUS = true;
+// Android Fabric/Yoga can abort when NativeAnimated mutates Home view props during startup.
+const HOME_ANIMATION_USE_NATIVE_DRIVER = false;
 /** Сесійний прапор: після першого успішного loadData дочірні mounts не показують «рівень 1» кадр. */
 let homeStatsLoadedOnce = false;
 const GREETINGS_RU = [
@@ -296,10 +300,37 @@ export default function HomeScreen() {
     const { studyTarget } = useStudyTarget();
     const insets = useSafeAreaInsets();
     const { goToTab, activeIdx, focusTick } = useTabNav();
+    const firstHomeFrameEmittedRef = useRef(false);
+    const notifyFirstHomeFrameReady = useCallback(() => {
+        if (firstHomeFrameEmittedRef.current)
+            return;
+        firstHomeFrameEmittedRef.current = true;
+        const emitFirstHomeFrameReady = () => emitAppEvent('app_first_content_ready');
+        requestAnimationFrame(() => {
+            emitFirstHomeFrameReady();
+            setTimeout(emitFirstHomeFrameReady, 32);
+            setTimeout(emitFirstHomeFrameReady, 120);
+        });
+    }, []);
+    useEffect(() => {
+        notifyFirstHomeFrameReady();
+    }, [notifyFirstHomeFrameReady]);
     const hh = homeStatsLoadedOnce ? peekHomeScreenHydration(studyTarget) : null;
     const [userName, setUserName] = useState(() => hh?.userName ?? '');
     const [streak, setStreak] = useState(() => hh?.streak ?? 0);
     const [displayStreak, setDisplayStreak] = useState(() => hh?.displayStreak ?? hh?.streak ?? 0);
+    const homeStreakDaysLabel = displayStreak === 1
+        ? triLang(lang, {
+            ru: 'день',
+            uk: 'день',
+            es: 'día',
+            'pt-BR': 'dia',
+            vi: 'ngày',
+            id: 'hari',
+            tr: 'gün',
+            pl: 'dzień',
+        })
+        : s.home.streakDays;
     const streakScaleAnim = useRef(new Animated.Value(1)).current;
     const [totalXP, setTotalXP] = useState(() => hh?.totalXP ?? 0);
     const [homeStatsReady, setHomeStatsReady] = useState(() => !!(homeStatsLoadedOnce && hh));
@@ -367,6 +398,7 @@ export default function HomeScreen() {
     const [medalCounts, setMedalCounts] = useState({ bronze: 0, silver: 0, gold: 0 });
     const [totalXPMulti, setTotalXPMulti] = useState(() => hh?.totalXPMulti ?? 1);
     const { energy: energyCount, bonusEnergy: energyBonus, maxEnergy: energyMax, recoveryIntervalMs: energyRecoveryIntervalMs, formattedTime: timeUntilNextEnergy, isUnlimited: energyUnlimited } = useEnergy();
+    const showHomeEnergy = !hasPremiumAccess;
     const energyRecoveryMinutes = Math.max(1, Math.round(energyRecoveryIntervalMs / 60000));
     const isSketchLightTheme = themeMode === 'minimalLight';
     const isLightTheme = isSketchLightTheme;
@@ -391,7 +423,6 @@ export default function HomeScreen() {
     const leagueBonusPalette = getLeagueBonusPalette(t, themeMode);
     const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
     const BONUS_ENERGY_COLOR = isGoldTheme ? goldBright : '#FFD700';
-    const PREMIUM_BLUE = isGoldTheme ? goldMetal : '#4FC3F7';
     const lightPanelBg = isSketchLightTheme ? 'rgba(255,252,246,0.94)' : 'rgba(255,255,255,0.50)';
     const lightPanelBorder = isSketchLightTheme ? 'rgba(52,45,35,0.28)' : 'rgba(255,255,255,0.48)';
     const lightPanelIconBg = isSketchLightTheme ? 'rgba(63,55,44,0.13)' : 'rgba(255,255,255,0.28)';
@@ -399,12 +430,35 @@ export default function HomeScreen() {
     const energyEmptyTint = isSketchLightTheme
         ? 'rgba(47,49,59,0.42)'
         : 'rgba(255,245,252,0.38)';
-    const premiumEnergyTint = energyUnlimited ? (isLightTheme ? '#004F8C' : PREMIUM_BLUE) : undefined;
-    const energyFilledTint = premiumEnergyTint;
-    const energyFilledColor = energyUnlimited ? (isLightTheme ? '#004F8C' : PREMIUM_BLUE) : t.gold;
+    const energyFilledColor = t.gold;
     const sketchShardAccent = isSketchLightTheme ? '#6245B2' : '#A78BFA';
-    const sketchFreezeAccent = isSketchLightTheme ? '#1F6EA5' : '#64B4FF';
-    const sketchFlameAccent = isSketchLightTheme ? '#A24F18' : '#FF8A3D';
+    const streakFireIconVariant = getStreakFireIconVariant(themeMode, streak);
+    const streakFreezeIconVariant = getStreakFreezeIconVariant(themeMode);
+    const streakIconVariant = freezeActive ? streakFreezeIconVariant : streakFireIconVariant;
+    const streakIconInactive = !freezeActive && streak <= 0;
+    const streakIconGlowStyle = streakIconInactive
+        ? null
+        : {
+            shadowColor: streakIconVariant.accentColor,
+            shadowOpacity: 0.16 + streakIconVariant.intensity * 0.10,
+            shadowRadius: 4 + streakIconVariant.intensity * 4,
+            shadowOffset: { width: 0, height: 2 },
+            elevation: 3,
+        };
+    const homeFrozenStreakIconFrameStyle = freezeActive
+        ? {
+            borderRadius: 14,
+            backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.20)' : 'rgba(100,210,255,0.24)',
+            borderWidth: 1,
+            borderColor: streakFreezeIconVariant.borderColor,
+            shadowColor: streakFreezeIconVariant.accentColor,
+            shadowOpacity: 0.36,
+            shadowRadius: 9,
+            shadowOffset: { width: 0, height: 2 },
+            elevation: 6,
+        }
+        : null;
+    const homeStreakIconFrameStyle = homeFrozenStreakIconFrameStyle ?? streakIconGlowStyle;
     /** Последний валидный measureInWindow — если очередное измерение вернёт 0 (Android/Fabric). */
     const energyAnchorCacheRef = useRef<EnergyTooltipAnchor | null>(null);
     const [energyTooltip, setEnergyTooltip] = useState<{
@@ -450,6 +504,7 @@ export default function HomeScreen() {
     const eliteQuickTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
     const eliteActivityTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
     const showEnergyTooltip = () => {
+        if (!showHomeEnergy) return;
         hapticTap();
         const scheduleHide = () => {
             energyTooltipAnim.setValue(0);
@@ -496,7 +551,7 @@ export default function HomeScreen() {
     useEffect(() => {
         loadData();
         fadeAnim.setValue(0);
-        Animated.timing(fadeAnim, { toValue: 1, duration: 380, useNativeDriver: true }).start();
+        Animated.timing(fadeAnim, { toValue: 1, duration: 380, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }).start();
     }, [lang, studyTarget]);
     useEffect(() => {
         if (!USE_ELITE_HOME_STATUS)
@@ -505,9 +560,9 @@ export default function HomeScreen() {
         eliteQuickTileEntrance.forEach((anim) => anim.setValue(1));
         eliteActivityTileEntrance.forEach((anim) => anim.setValue(1));
         const shimmerLoop = Animated.loop(Animated.sequence([
-            Animated.timing(eliteStatusShimmer, { toValue: 1, duration: 2800, useNativeDriver: true }),
+            Animated.timing(eliteStatusShimmer, { toValue: 1, duration: 2800, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
             Animated.delay(1100),
-            Animated.timing(eliteStatusShimmer, { toValue: 0, duration: 0, useNativeDriver: true }),
+            Animated.timing(eliteStatusShimmer, { toValue: 0, duration: 0, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
         ]));
         shimmerLoop.start();
         return () => {
@@ -570,13 +625,13 @@ export default function HomeScreen() {
                 setShardsBonusText(`+${payload.amount} 💎`);
                 shardsBonusAnim.setValue(0);
                 Animated.sequence([
-                    Animated.timing(shardsBonusAnim, { toValue: 1, duration: 300, useNativeDriver: true }),
+                    Animated.timing(shardsBonusAnim, { toValue: 1, duration: 300, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
                     Animated.delay(900),
-                    Animated.timing(shardsBonusAnim, { toValue: 0, duration: 400, useNativeDriver: true }),
+                    Animated.timing(shardsBonusAnim, { toValue: 0, duration: 400, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
                 ]).start();
                 Animated.sequence([
-                    Animated.spring(shardsAnim, { toValue: 1.35, useNativeDriver: true, friction: 3 }),
-                    Animated.spring(shardsAnim, { toValue: 1, useNativeDriver: true, friction: 5 }),
+                    Animated.spring(shardsAnim, { toValue: 1.35, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER, friction: 3 }),
+                    Animated.spring(shardsAnim, { toValue: 1, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER, friction: 5 }),
                 ]).start();
             });
         });
@@ -646,8 +701,8 @@ export default function HomeScreen() {
             statsPulseSessionRef.current = true;
             setShowStatsPulseHint(true);
             pulseLoop = Animated.loop(Animated.sequence([
-                Animated.timing(statsHintPulseAnim, { toValue: 1.07, duration: 650, useNativeDriver: true }),
-                Animated.timing(statsHintPulseAnim, { toValue: 1, duration: 650, useNativeDriver: true }),
+                Animated.timing(statsHintPulseAnim, { toValue: 1.07, duration: 650, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
+                Animated.timing(statsHintPulseAnim, { toValue: 1, duration: 650, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
             ]));
             pulseLoop.start();
             hideTimer = setTimeout(() => {
@@ -734,8 +789,8 @@ export default function HomeScreen() {
                     streakTimerRef.current = setTimeout(() => {
                         setDisplayStreak(currentStreakNum);
                         Animated.sequence([
-                            Animated.spring(streakScaleAnim, { toValue: 1.6, useNativeDriver: true, friction: 3, tension: 200 }),
-                            Animated.spring(streakScaleAnim, { toValue: 1, useNativeDriver: true, friction: 5, tension: 150 }),
+                            Animated.spring(streakScaleAnim, { toValue: 1.6, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER, friction: 3, tension: 200 }),
+                            Animated.spring(streakScaleAnim, { toValue: 1, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER, friction: 5, tension: 150 }),
                         ]).start();
                     }, 800);
                     onStreakUpdated(currentStreakNum).then((earned) => {
@@ -1046,7 +1101,7 @@ export default function HomeScreen() {
             }
         }
     };
-    const FREEZE_COST_SHARDS = 1;
+    const FREEZE_COST_SHARDS = 10;
     const handleFreezeStreak = async () => {
         hapticTap();
         const today = new Date().toISOString().split('T')[0];
@@ -1311,7 +1366,14 @@ export default function HomeScreen() {
         const eliteStatsCompact = CONTENT_W < 370;
         const eliteAvatarSize = eliteStatsCompact ? 54 : 60;
         const eliteStreakColumnWidth = eliteStatsCompact ? 102 : 116;
-        const eliteStreakIconBox = eliteStatsCompact ? 30 : 34;
+        const eliteStreakIconBox = freezeActive
+            ? (eliteStatsCompact ? 36 : 40)
+            : (eliteStatsCompact ? 30 : 34);
+        const eliteStreakIconSize = freezeActive
+            ? (eliteStatsCompact ? 31 : 34)
+            : (eliteStatsCompact ? 28 : 31);
+        const homeLargeStreakIconBox = freezeActive ? 42 : 38;
+        const homeLargeStreakIconSize = freezeActive ? 37 : 36;
         const eliteStreakValueSize = displayStreak >= 1000
             ? (eliteStatsCompact ? 29 : 31)
             : (eliteStatsCompact ? 33 : 36);
@@ -1327,6 +1389,9 @@ export default function HomeScreen() {
         const eliteShimmerX = eliteStatusShimmer.interpolate({ inputRange: [0, 1], outputRange: [-90, Math.max(320, CONTENT_W)] });
         const homeHeaderShardIconSource = oskolokImageForPackShards(Math.max(1, shardsBalance));
         const homeHeaderShardIconSize = 38;
+        const homeHeaderAccessLayout = !showHomeEnergy;
+        const homeHeaderAccessTitleShiftY = homeHeaderAccessLayout ? 46 : 0;
+        const homeHeaderAccessTitleRightReserve = homeHeaderAccessLayout ? 132 : 0;
         const homeHeaderEnergyClusterMaxWidth = Math.max(112, CONTENT_W - 184);
         const homeHeaderEnergySlots = Math.max(1, energyMax + Math.max(0, energyBonus));
         const homeEnergyLayout = getAdaptiveEnergyIconLayout({
@@ -1352,10 +1417,12 @@ export default function HomeScreen() {
           <Animated.View style={sectionStyle(0)}>
           <View style={{ flexDirection: 'row', alignItems: 'flex-start', padding: 20, paddingBottom: 12, gap: 8 }}>
             <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={{ color: t.heroTextMuted, fontSize: f.caption }}>{greeting}</Text>
-              {homeLeagueRaceVisible && homeLeagueCrownExpiresAt > Date.now() ? (<View style={{ marginTop: 2, alignSelf: 'flex-start', maxWidth: '100%' }}>
-                  <LeagueCrownName text={userName || 'Phraseman'} fontSize={f.h1}/>
-                </View>) : isPremium ? (<PremiumGoldUserName text={userName || 'Phraseman'} fontSize={f.h1} onGradient/>) : isVip ? (<VipGreenUserName text={userName || 'Phraseman'} fontSize={f.h1}/>) : (<Text style={{ color: t.heroTextPrimary, fontSize: f.h1, fontWeight: '700', marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.62}>{userName || 'Phraseman'}</Text>)}
+              <View pointerEvents="box-none" style={[{ paddingRight: homeHeaderAccessTitleRightReserve }, homeHeaderAccessLayout ? { transform: [{ translateY: homeHeaderAccessTitleShiftY }] } : null]}>
+                <Text style={{ color: t.heroTextMuted, fontSize: f.caption }}>{greeting}</Text>
+                {homeLeagueRaceVisible && homeLeagueCrownExpiresAt > Date.now() ? (<View style={{ marginTop: 2, alignSelf: 'flex-start', maxWidth: '100%' }}>
+                    <LeagueCrownName text={userName || 'Phraseman'} fontSize={f.h1}/>
+                  </View>) : isPremium ? (<PremiumGoldUserName text={userName || 'Phraseman'} fontSize={f.h1} onGradient/>) : isVip ? (<VipGreenUserName text={userName || 'Phraseman'} fontSize={f.h1}/>) : (<Text style={{ color: t.heroTextPrimary, fontSize: f.h1, fontWeight: '700', marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.62}>{userName || 'Phraseman'}</Text>)}
+              </View>
               {/* Анимация начисления осколков */}
               <Animated.Text style={{
                 position: 'absolute', top: -18, right: 0,
@@ -1365,12 +1432,12 @@ export default function HomeScreen() {
             }}>{shardsBonusText}</Animated.Text>
               {/* Energy + shards — в одной строке */}
               <View style={{ flexDirection: 'row-reverse', alignItems: 'center', justifyContent: 'space-between', marginTop: 6, gap: 8 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
+                {showHomeEnergy && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
                   <View ref={energyIconRef} collapsable={false} style={{ flexDirection: 'row', alignItems: 'center', flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
                 <TouchableOpacity activeOpacity={0.7} onPress={showEnergyTooltip} style={{ flexDirection: homeEnergyHeaderStacked ? 'column' : 'row', alignItems: homeEnergyHeaderStacked ? 'flex-end' : 'center', gap: homeEnergyHeaderStacked ? 2 : 4, flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', flexShrink: 0, width: homeEnergyIconsWidth, maxWidth: '100%' }}>
                     {Array.from({ length: energyMax }).map((_, i) => (<View key={i} style={{ marginLeft: i > 0 ? homeEnergyIconOverlap : 0 }}>
-                        <EnergyIcon filled={i < energyCount} themeColor={i < energyCount ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeEnergyIconSize} animateChange={true} shouldShake={false} themeMode={themeMode} tintColor={i < energyCount ? energyFilledTint : undefined} isPremium={energyUnlimited}/>
+                        <EnergyIcon filled={i < energyCount} themeColor={i < energyCount ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeEnergyIconSize} animateChange={true} shouldShake={false} themeMode={themeMode}/>
                       </View>))}
                     {energyBonus > 0 && Array.from({ length: energyBonus }).map((_, i) => (<View key={`bonus_${i}`} style={{ marginLeft: homeEnergyIconOverlap }}>
                         <EnergyIcon filled={true} themeColor={BONUS_ENERGY_COLOR} size={homeEnergyIconSize} animateChange={false} shouldShake={false} themeMode={themeMode} tintColor={BONUS_ENERGY_COLOR}/>
@@ -1390,7 +1457,7 @@ export default function HomeScreen() {
                     </Text>)}
                 </TouchableOpacity>
                   </View>
-                </View>
+                </View>)}
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, flexShrink: 0 }}>
                   <TouchableOpacity activeOpacity={0.75} onPress={() => {
@@ -1437,18 +1504,6 @@ export default function HomeScreen() {
                         <AvatarView avatar={userAvatar} level={level} size={eliteAvatarSize} auraId={effectiveUserAvatarAura}/>
                       </TouchableOpacity>
                       <View style={{ flex: 1, minWidth: eliteStatsCompact ? 74 : 112 }}>
-                        <Text allowFontScaling={false} style={{ color: t.textMuted, fontSize: eliteLabelFontSize, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 5 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
-                          {triLang(lang, {
-                    ru: 'Статус игрока',
-                    uk: 'Статус гравця',
-                    es: 'Estado del jugador',
-                    'pt-BR': "Status do jogador",
-                    vi: "Trạng thái người chơi",
-                    id: "Status pemain",
-                    tr: "Oyuncu durumu",
-                    pl: "Status gracza",
-                })}
-                        </Text>
                         <View style={{
                     alignSelf: 'flex-start',
                     flexDirection: 'row',
@@ -1481,32 +1536,21 @@ export default function HomeScreen() {
                     </View>
 
                     <View style={{ alignItems: 'flex-end', width: eliteStreakColumnWidth, flexShrink: 0 }}>
-                      <Text allowFontScaling={false} style={{ color: t.textMuted, fontSize: eliteLabelFontSize, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 3, textAlign: 'right', width: '100%' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>
-                        {s.home.streakLabel}
-                      </Text>
                       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 5, width: '100%' }}>
                         <Animated.Text allowFontScaling={false} style={{ color: t.textPrimary, fontSize: eliteStreakValueSize, fontWeight: '900', lineHeight: eliteStreakValueSize + 5, transform: [{ scale: streakScaleAnim }], minWidth: eliteStreakColumnWidth - eliteStreakIconBox - 7, textAlign: 'right', includeFontPadding: false }} numberOfLines={1}>
                           {displayStreak}
                         </Animated.Text>
-                        <View style={{
+                        <View style={[{
                     width: eliteStreakIconBox,
                     height: eliteStreakIconBox,
-                    borderRadius: eliteStreakIconBox / 2,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: freezeActive
-                        ? (isGoldTheme ? goldSoftBg : 'rgba(100,180,255,0.16)')
-                        : (isGoldTheme ? goldSoftBg : 'rgba(255,107,53,0.16)'),
-                    borderWidth: 1,
-                    borderColor: freezeActive
-                        ? (isGoldTheme ? goldHairline : 'rgba(100,180,255,0.52)')
-                        : (isGoldTheme ? goldHairline : 'rgba(255,138,61,0.46)'),
-                }}>
-                          <Ionicons name={freezeActive ? 'snow-outline' : 'flame'} size={eliteStatsCompact ? 20 : 23} color={freezeActive ? (isGoldTheme ? GOLD_RICH.champagne : sketchFreezeAccent) : (streak > 0 ? (isGoldTheme ? GOLD_RICH.metalGold : sketchFlameAccent) : t.textGhost)}/>
+                }, homeStreakIconFrameStyle]}>
+                          <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={eliteStreakIconSize}/>
                         </View>
                       </View>
                       <Text allowFontScaling={false} style={{ color: t.textSecond, fontSize: eliteMetaFontSize, fontWeight: '700', textAlign: 'right', width: '100%', lineHeight: eliteMetaFontSize + 4 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
-                        {s.home.streakDays}
+                        {homeStreakDaysLabel}
                       </Text>
                     </View>
                   </View>
@@ -1636,12 +1680,18 @@ export default function HomeScreen() {
                   </View>
                 </View>
                 <View style={{ alignItems: 'flex-end', marginLeft: 12 }}>
-                  <Text style={{ color: t.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>{s.home.streakLabel}</Text>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                     <Animated.Text style={{ color: t.textPrimary, fontSize: 34, fontWeight: '800', lineHeight: 38, transform: [{ scale: streakScaleAnim }] }}>{displayStreak}</Animated.Text>
-                    <Ionicons name={freezeActive ? 'snow-outline' : 'flame'} size={30} color={freezeActive ? (isGoldTheme ? GOLD_RICH.champagne : sketchFreezeAccent) : (streak > 0 ? (isGoldTheme ? GOLD_RICH.metalGold : isSketchLightTheme ? '#A24F18' : '#FF6B35') : t.textGhost)}/>
+                    <View style={[{
+                        width: homeLargeStreakIconBox,
+                        height: homeLargeStreakIconBox,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }, homeStreakIconFrameStyle]}>
+                      <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={homeLargeStreakIconSize}/>
+                    </View>
                   </View>
-                  <Text style={{ color: t.textSecond, fontSize: 13 }} numberOfLines={1}>{s.home.streakDays}</Text>
+                  <Text style={{ color: t.textSecond, fontSize: 13 }} numberOfLines={1}>{homeStreakDaysLabel}</Text>
                 </View>
               </View>
 
@@ -2248,7 +2298,7 @@ export default function HomeScreen() {
         ? energyTTAnchor.x + energyTTAnchor.w / 2
         : energyTooltipLeftClamped + 28;
     const energyArrowLeft = Math.min(ENERGY_TOOLTIP_W - 26, Math.max(12, Math.round(energyIconCenterX - energyTooltipLeftClamped - 7)));
-    return (<View testID="screen-home" style={{ flex: 1 }}>
+    return (<View testID="screen-home" style={{ flex: 1 }} onLayout={notifyFirstHomeFrameReady}>
       <ScreenGradient>
       <View style={{ flex: 1 }}>
       {renderNewHome()}
@@ -2256,7 +2306,7 @@ export default function HomeScreen() {
       </View>
 
       {/* Energy Tooltip — Modal чтобы не обрезался */}
-      <Modal visible={energyTooltip.visible} transparent animationType="none" onRequestClose={() => setEnergyTooltip((p) => ({ ...p, visible: false }))}>
+      <Modal visible={showHomeEnergy && energyTooltip.visible} transparent animationType="none" onRequestClose={() => setEnergyTooltip((p) => ({ ...p, visible: false }))}>
         <TouchableOpacity style={{ flex: 1 }} activeOpacity={1} onPress={() => setEnergyTooltip((p) => ({ ...p, visible: false }))}>
           <Animated.View pointerEvents="none" style={{
             position: 'absolute',

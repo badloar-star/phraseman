@@ -1245,7 +1245,7 @@ function AddFriendModal({
   return (
     <Modal visible={visible} animationType="slide" presentationStyle="pageSheet" onRequestClose={onClose}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-        <ScreenGradient artBackdrop="friends">
+        <ScreenGradient forceFullBleed artBackdrop="friends">
           <SafeAreaView style={{ flex: 1 }} edges={['top', 'right', 'bottom', 'left']}>
           <View style={{ flex: 1 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 }}>
@@ -1400,13 +1400,6 @@ export default function FriendsTabScreen() {
   const mountedRef = useRef(true);
   /** Был непустой список в SWR-кеше для текущего uid — блокируем пустой локальный onSnapshot Firestore. */
   const swrHadFriendsRef = useRef(false);
-  /** После сверки с диском / uid; до этого не показываем финальный «нет друзей». */
-  const [friendsCacheReady, setFriendsCacheReady] = useState(() => peekFriendsTabSwrWarm() != null);
-  /** Можно показывать пустой список как финальный (кеш пустой или уже пришёл надёжный снимок / таймаут). */
-  const [friendsLiveResolved, setFriendsLiveResolved] = useState(() => {
-    const w = peekFriendsTabSwrWarm();
-    return w != null && w.friends.length === 0;
-  });
   /** Локальный кеш профилей с TTL — инициализируется из модульного peekProfilesCache() (переживает ремаунты). */
   const profilesCacheRef = useRef<Record<string, ProfileCacheEntry>>(peekProfilesCache());
 
@@ -1500,15 +1493,6 @@ export default function FriendsTabScreen() {
     let cancelled = false;
     let unsubFriends: () => void = () => {};
     let unsubRequests: () => void = () => {};
-    let liveResolveTimer: ReturnType<typeof setTimeout> | null = null;
-    const LIVE_RESOLVE_MS = 12_000;
-
-    const clearLiveResolveTimer = () => {
-      if (liveResolveTimer) {
-        clearTimeout(liveResolveTimer);
-        liveResolveTimer = null;
-      }
-    };
 
     void (async () => {
       await startFriendsTabSwrPrime();
@@ -1527,10 +1511,8 @@ export default function FriendsTabScreen() {
       profilesCacheRef.current = { ...profilesCache };
 
       const w = peekFriendsTabSwrWarm();
-      let hadSwrForUser = false;
 
       if (canonical && w && w.canonicalUid === canonical) {
-        hadSwrForUser = true;
         swrHadFriendsRef.current = w.friends.length > 0;
         setFriends(w.friends);
         if (w.friends.length > 0) {
@@ -1555,16 +1537,6 @@ export default function FriendsTabScreen() {
         swrHadFriendsRef.current = false;
       }
 
-      setFriendsCacheReady(true);
-
-      if (hadSwrForUser && !swrHadFriendsRef.current) {
-        setFriendsLiveResolved(true);
-      } else {
-        liveResolveTimer = setTimeout(() => {
-          if (!cancelled) setFriendsLiveResolved(true);
-        }, LIVE_RESOLVE_MS);
-      }
-
       const uid = await ensureAnonUser();
       if (!uid || cancelled) return;
 
@@ -1575,12 +1547,10 @@ export default function FriendsTabScreen() {
         if (cancelled) return;
         const fromCache = meta?.fromCache === true;
         if (data.length === 0 && fromCache && swrHadFriendsRef.current) return;
-        clearLiveResolveTimer();
         setFriends(data);
         if (data.length > 0) {
           void checkAchievements({ type: 'friend_added', totalFriends: data.length }).catch(() => {});
         }
-        setFriendsLiveResolved(true);
       });
 
       unsubRequests = subscribeToIncomingRequests(
@@ -1591,7 +1561,6 @@ export default function FriendsTabScreen() {
 
     return () => {
       cancelled = true;
-      clearLiveResolveTimer();
       unsubFriends();
       unsubRequests();
     };
@@ -1963,9 +1932,6 @@ export default function FriendsTabScreen() {
     [friends, profiles],
   );
 
-  const showFriendsEmpty =
-    friendsCacheReady && friendsLiveResolved && sortedFriends.length === 0;
-
   const friendUids = useMemo(() => friends.map(f => f.uid), [friends]);
 
   const PX = 16;
@@ -2095,25 +2061,7 @@ export default function FriendsTabScreen() {
               )}
             </View>
 
-            {sortedFriends.length === 0 ? (
-              !showFriendsEmpty ? null : (
-              <View testID="friends-empty-state" style={{
-                backgroundColor: chrome.cardSoft, borderRadius: 20, padding: 32,
-                alignItems: 'center', gap: 12, borderWidth: 0.5, borderColor: chrome.border,
-              }}>
-                <View style={{ width: 60, height: 60, borderRadius: 30, backgroundColor: chrome.surface, justifyContent: 'center', alignItems: 'center' }}>
-                  <Ionicons name="people-outline" size={28} color={t.textMuted} />
-                </View>
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                  {L('Пока нет друзей', 'Поки немає друзів', 'Sin amigos aún', 'Ainda sem amigos', 'Chưa có bạn bè', 'Belum ada teman', 'Henüz arkadaş yok', 'Brak znajomych')}
-                </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: 20 }}>
-                  {L('Нажмите иконку + вверху справа', 'Натисніть іконку + вгорі праворуч', 'Pulsa el ícono + arriba a la derecha', 'Toque no ícone + no canto superior direito', 'Nhấn biểu tượng + ở góc trên bên phải', 'Ketuk ikon + di kanan atas', 'Sağ üstteki + simgesine dokun', 'Stuknij ikonę + w prawym górnym rogu')}
-                </Text>
-              </View>
-              )
-            ) : (
-              sortedFriends.map((profile, i) => (
+            {sortedFriends.map((profile, i) => (
                 <FriendRow
                   key={profile.uid}
                   profile={profile}
@@ -2123,8 +2071,7 @@ export default function FriendsTabScreen() {
                   onGift={() => openGiftPicker(profile)}
                   lang={lang} t={t} f={f} chrome={chrome}
                 />
-              ))
-            )}
+            ))}
           </>
         )}
         {activeTab === 'activity' && (

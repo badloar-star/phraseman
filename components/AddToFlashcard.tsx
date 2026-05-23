@@ -104,12 +104,17 @@ export default function AddToFlashcard({
     blockStaleStorageHydrationRef.current = false;
     setSaved(isEnSavedInCacheSync(en, activeStudyTarget));
     let cancelled = false;
-    isFlashcardSaved(en, activeStudyTarget).then(result => {
-      if (cancelled) return;
-      if (blockStaleStorageHydrationRef.current) return;
-      setSaved(result);
+    const hydrationTask = InteractionManager.runAfterInteractions(() => {
+      isFlashcardSaved(en, activeStudyTarget).then(result => {
+        if (cancelled) return;
+        if (blockStaleStorageHydrationRef.current) return;
+        setSaved(result);
+      });
     });
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      hydrationTask.cancel?.();
+    };
   }, [activeStudyTarget, en]);
 
   const applyStorageTruthFor = useCallback((enSnap: string) => {
@@ -122,7 +127,11 @@ export default function AddToFlashcard({
   useFocusEffect(
     useCallback(() => {
       if (inFlightRef.current) return;
-      applyStorageTruthFor(en);
+      const focusHydrationTask = InteractionManager.runAfterInteractions(() => {
+        if (inFlightRef.current) return;
+        applyStorageTruthFor(en);
+      });
+      return () => focusHydrationTask.cancel?.();
     }, [en, applyStorageTruthFor]),
   );
 

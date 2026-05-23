@@ -10,6 +10,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { coerceInterfaceLang, INTERFACE_LANGUAGE_OPTIONS } from '../constants/i18n';
+import { safeRouterBack } from './navigation_back';
 
 export default function SettingsLanguage() {
   const router = useRouter();
@@ -25,8 +26,7 @@ export default function SettingsLanguage() {
               testID="settings-language-back"
               onPress={() => {
                 hapticTap();
-                if (router.canGoBack()) router.back();
-                else router.replace('/(tabs)/settings' as any);
+                safeRouterBack(router, '/(tabs)/settings' as any);
               }}
             >
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />

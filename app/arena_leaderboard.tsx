@@ -33,6 +33,7 @@ import { logFeatureOpened } from './firebase';
 import { trackFeatureOpened } from './user_stats';
 import { ensureAnonUser } from './cloud_sync';
 import { ensureArenaAuthUid } from './user_id_policy';
+import { safeRouterBack } from './navigation_back';
 import type { RankTier } from './types/arena';
 import {
   loadArenaTop100,
@@ -374,7 +375,7 @@ export default function ArenaLeaderboardScreen() {
               <TouchableOpacity
                 onPress={() => {
                   hapticTap();
-                  router.back();
+                  safeRouterBack(router, '/(tabs)/arena' as any);
                 }}
                 style={{
                   width: 44,

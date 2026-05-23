@@ -3,6 +3,7 @@ node_modules
 
 # Scripts and docs (не выгружать весь scripts/, но гейт для EAS production обязан быть в архиве)
 scripts/*
+!scripts/release_keys_gate.mjs
 !scripts/eas_production_version_gate.mjs
 docs/
 qa-artifacts/
@@ -19,8 +20,19 @@ graphify-out/
 .claude-flow/
 .claude/
 .expo/
+.codex-tmp/
 .agents/
 .planning/
+dist/
+maestro-results/
+lingman-scenarist-pipeline/
+tools/
+docs/gustav/
+docs/heisenberg/
+docs/skyler/
+docs/pipelines/
+exports/youtube-video-factory/
+qa-artifacts/skyler-thematic-assets/
 
 # Test files
 tests/

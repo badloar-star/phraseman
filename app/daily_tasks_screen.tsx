@@ -5,7 +5,6 @@ import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform, } from 'react-native';
-import { getVerifiedPremiumStatus } from './premium_guard';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
@@ -18,8 +17,10 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
+import { safeRouterBack } from './navigation_back';
 import GoldBevel from '../components/GoldBevel';
 import { checkAchievements } from './achievements';
+import { getDailyTaskBonusCardBackdrop, getDailyTaskCardBackdrop, type DailyTaskCardBackdropState } from './daily_task_card_backdrops';
 import { claimTaskWithReward, countClaimedForTaskList, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
 import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 import { getCurrentMultiplier, registerXP } from './xp_manager';
@@ -33,9 +34,8 @@ import { lastOpenedLessonKey, quizNavLevelKey } from './target_storage_keys';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
 import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
 import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate';
-const PREMIUM_TASK_TYPES = new Set([
-    'quiz_hard', 'quiz_medium', 'quiz_perfect', 'quiz_hard_perfect',
-]);
+const PREMIUM_TASK_TYPES = new Set<TaskType>([]);
+const DAILY_TASK_CARD_BACKDROP_OVERSCAN = 22;
 type DailyTaskUiMeta = {
     stage: string;
     label: string;
@@ -44,6 +44,16 @@ type DailyTaskUiMeta = {
     minutes: string;
     icon: keyof typeof Ionicons.glyphMap;
     tone: string;
+};
+
+const dailyTaskCardBackdropScrim = (state: DailyTaskCardBackdropState): [string, string, string] => {
+    if (state === 'claimed') {
+        return ['rgba(2,8,10,0.56)', 'rgba(2,8,10,0.34)', 'rgba(2,8,10,0.42)'];
+    }
+    if (state === 'completed') {
+        return ['rgba(0,14,12,0.32)', 'rgba(0,12,10,0.10)', 'rgba(0,10,12,0.16)'];
+    }
+    return ['rgba(2,8,14,0.50)', 'rgba(2,8,14,0.22)', 'rgba(2,8,14,0.32)'];
 };
 
 function slavicPlural(count: number, one: string, few: string, many: string): string {
@@ -1659,7 +1669,6 @@ export default function DailyTasksScreen() {
     const [userName, setUserName] = useState('');
     const [claimedXP, setClaimedXP] = useState<number | null>(null);
     const [xpMultiplier, setXpMultiplier] = useState(1);
-    const [hasPremium, setHasPremium] = useState(false);
     /** Награда «3 осколка за тройку дня» уже забрана сегодня (AsyncStorage / облако). */
     const [trioShardsClaimed, setTrioShardsClaimed] = useState(false);
     /** Сколько замен ещё доступно сегодня (max DAILY_TASK_REROLL_MAX_PER_DAY). */
@@ -1702,7 +1711,6 @@ export default function DailyTasksScreen() {
         AsyncStorage.getItem('user_name').then(n => { if (n)
             setUserName(n); });
         getCurrentMultiplier().then(setXpMultiplier).catch(() => { });
-        getVerifiedPremiumStatus().then(setHasPremium).catch(() => { });
     }, []);
     // Список заданий и прогресс с экрана должны ссылаться на один и тот же набор task id
     // (после смены уровня/премиума/подмен заданий), и прогресс в storage — быть с ним согласован.
@@ -1958,24 +1966,17 @@ export default function DailyTasksScreen() {
         });
     const trioRewardCount = SHARD_REWARDS.daily_tasks_all;
     const trioClaimButtonEnabled = allTasksObjectivesDone && !trioShardsClaimed;
+    const bonusBackdropState: DailyTaskCardBackdropState = trioShardsClaimed ? 'claimed' : trioClaimButtonEnabled ? 'completed' : 'active';
+    const bonusBackdrop = getDailyTaskBonusCardBackdrop(bonusBackdropState !== 'active');
     const bonusAccent = isGoldTheme
         ? (trioClaimButtonEnabled ? GOLD_RICH.champagne : GOLD_RICH.paleGold)
         :
-            trioClaimButtonEnabled ? t.correct : '#C9A860';
+            trioShardsClaimed ? '#9CA3AF' : bonusBackdrop.accent;
     const taskProgressById = new Map(progress.map((row) => [row.taskId, row]));
     const objectivesDoneCount = tasks.filter((task) => taskProgressById.get(task.id)?.completed).length;
     const handleTaskNav = async (task: DailyTask) => {
         if (!dailyTaskAvailableForStudyTarget(task, studyTarget)) {
             router.replace('/(tabs)/lessons' as any);
-            return;
-        }
-        if (PREMIUM_TASK_TYPES.has(task.type) && !hasPremium) {
-            const paywallContext = task.type === 'quiz_hard'
-                ? 'quiz_hard'
-                : task.type === 'quiz_medium'
-                    ? 'quiz_medium'
-                    : 'quiz_level';
-            router.push({ pathname: '/premium_modal', params: { context: paywallContext } } as any);
             return;
         }
         const lastLesson = await AsyncStorage.getItem(lastOpenedLessonKey(studyTarget));
@@ -2003,11 +2004,11 @@ export default function DailyTasksScreen() {
                     messageUk: copy.title,
                     messageEs: 'French quizzes are still behind source gate.',
                 });
-                router.replace('/(tabs)/quizzes' as any);
+                router.replace('/quizzes_screen' as any);
                 return;
             }
             await AsyncStorage.setItem(quizNavLevelKey(studyTarget), level);
-            router.replace('/(tabs)/quizzes');
+            router.replace('/quizzes_screen');
         };
         const openDiagnosticOrFrenchGate = () => {
             if (!diagnosticContentAvailableForTarget(studyTarget)) {
@@ -2152,7 +2153,7 @@ export default function DailyTasksScreen() {
       <ContentWrap>
       <View style={{ flex: 1 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: sx.ghost }}>
-        <TouchableOpacity onPress={() => router.back()} style={{ marginRight: 12, padding: 4 }}>
+        <TouchableOpacity onPress={() => safeRouterBack(router)} style={{ marginRight: 12, padding: 4 }}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TouchableOpacity>
         <View style={{ flex: 1 }}>
@@ -2212,7 +2213,7 @@ export default function DailyTasksScreen() {
                 borderColor: trioShardsClaimed
                     ? (t.border)
                     : trioClaimButtonEnabled
-                        ? (isGoldTheme ? goldHairline : t.correct + '55')
+                        ? (isGoldTheme ? goldHairline : bonusAccent + '80')
                         : (isGoldTheme ? goldHairline : bonusAccent + '44'),
                 borderRadius: isGoldTheme ? 16 : 18,
             },
@@ -2220,6 +2221,12 @@ export default function DailyTasksScreen() {
             null,
         ]}>
           {isGoldTheme && <GoldBevel radius={16} intensity={trioClaimButtonEnabled ? 'strong' : trioShardsClaimed ? 'quiet' : 'normal'}/>}
+          {!isGoldTheme && (
+            <View pointerEvents="none" style={[dailyTaskStyles.taskBackdropClip, { borderRadius: 18 }]}>
+              <Image pointerEvents="none" source={bonusBackdrop.source} style={[dailyTaskStyles.taskBackdropImage, bonusBackdropState === 'claimed' ? dailyTaskStyles.taskBackdropImageClaimed : null]} contentFit="cover" contentPosition="center" cachePolicy="memory-disk"/>
+              <LinearGradient pointerEvents="none" colors={dailyTaskCardBackdropScrim(bonusBackdropState)} locations={[0, 0.58, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={dailyTaskStyles.taskBackdropScrim}/>
+            </View>
+          )}
           <View style={dailyTaskStyles.taskMainRow}>
             <View style={[dailyTaskStyles.taskIconFrame, { backgroundColor: isGoldTheme ? goldSoftBg : bonusAccent + '22' }]}>
               <Image source={oskolokImageForPackShards(trioRewardCount)} style={[{
@@ -2343,10 +2350,12 @@ export default function DailyTasksScreen() {
             const isPremiumTask = PREMIUM_TASK_TYPES.has(task.type);
             const meta = getDailyTaskUiMeta(task.type, lang);
             const achievementIcon = DAILY_TASK_ID_ACHIEVEMENT_ICONS[task.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[task.type];
+            const taskBackdropState: DailyTaskCardBackdropState = claimed ? 'claimed' : completed ? 'completed' : 'active';
+            const taskBackdrop = getDailyTaskCardBackdrop(task.type, taskBackdropState);
             const taskAccent = isGoldTheme
                 ? goldTaskAccent(task.type, { completed, claimed })
                 :
-                    claimed ? t.textMuted : completed ? t.correct : meta.tone;
+                    claimed ? t.textMuted : taskBackdrop.accent || meta.tone;
             return (<Animated.View key={task.id} style={[dailyTaskStyles.taskOuterAnim, { transform: [{ scale: anim }] }, isGoldTheme ? goldShadow(completed && !claimed ? 2 : 1) : null, null]}>
             <TouchableOpacity activeOpacity={completed && !claimed ? 1 : (claimed ? 1 : 0.88)} onPress={completed && !claimed ? undefined : (claimed ? undefined : () => handleTaskNav(task))}>
             <LinearGradient colors={isGoldTheme
@@ -2360,11 +2369,17 @@ export default function DailyTasksScreen() {
                         borderColor: claimed
                             ? (t.border)
                             : completed
-                                ? (isGoldTheme ? goldHairline : t.correct + '55')
+                                ? (isGoldTheme ? goldHairline : taskAccent + '80')
                                 : (isGoldTheme ? goldHairline : taskAccent + '44'),
                         borderRadius: isGoldTheme ? 16 : 18,
                     }]}>
                 {isGoldTheme && <GoldBevel radius={16} intensity={completed && !claimed ? 'strong' : claimed ? 'quiet' : 'normal'}/>}
+                {!isGoldTheme && (
+                  <View pointerEvents="none" style={[dailyTaskStyles.taskBackdropClip, { borderRadius: 18 }]}>
+                    <Image pointerEvents="none" source={taskBackdrop.source} style={[dailyTaskStyles.taskBackdropImage, taskBackdropState === 'claimed' ? dailyTaskStyles.taskBackdropImageClaimed : null]} contentFit="cover" contentPosition="center" cachePolicy="memory-disk"/>
+                    <LinearGradient pointerEvents="none" colors={dailyTaskCardBackdropScrim(taskBackdropState)} locations={[0, 0.58, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={dailyTaskStyles.taskBackdropScrim}/>
+                  </View>
+                )}
                 {/* Плашка Premium */}
                 {isPremiumTask && (<Animated.View pointerEvents="box-none" style={{
                         position: 'absolute', bottom: -1, right: -1, zIndex: 10,
@@ -2656,11 +2671,33 @@ const dailyTaskStyles = StyleSheet.create({
         padding: 12,
         borderWidth: 1,
         overflow: 'hidden',
+        position: 'relative',
+    },
+    taskBackdropClip: {
+        ...StyleSheet.absoluteFillObject,
+        overflow: 'hidden',
+        zIndex: 0,
+    },
+    taskBackdropImage: {
+        position: 'absolute',
+        top: -DAILY_TASK_CARD_BACKDROP_OVERSCAN,
+        right: -DAILY_TASK_CARD_BACKDROP_OVERSCAN,
+        bottom: -DAILY_TASK_CARD_BACKDROP_OVERSCAN,
+        left: -DAILY_TASK_CARD_BACKDROP_OVERSCAN,
+        opacity: 0.94,
+    },
+    taskBackdropImageClaimed: {
+        opacity: 0.74,
+    },
+    taskBackdropScrim: {
+        ...StyleSheet.absoluteFillObject,
     },
     taskMainRow: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 10,
+        position: 'relative',
+        zIndex: 1,
     },
     taskArtworkRow: {
         alignItems: 'flex-start',
@@ -2702,6 +2739,8 @@ const dailyTaskStyles = StyleSheet.create({
     taskProgressBlock: {
         gap: 4,
         marginTop: 8,
+        position: 'relative',
+        zIndex: 1,
     },
     taskProgressTrack: {
         height: 4,
@@ -2714,12 +2753,16 @@ const dailyTaskStyles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.10)',
         marginTop: 8,
         marginHorizontal: -12,
+        position: 'relative',
+        zIndex: 1,
     },
     taskFooter: {
         paddingTop: 8,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+        position: 'relative',
+        zIndex: 1,
     },
     taskActions: {
         flexDirection: 'row',

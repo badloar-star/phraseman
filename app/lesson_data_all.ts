@@ -3,68 +3,7 @@
 
 import { LessonData, LessonIntroScreen, LessonPhrase } from './lesson_data_types';
 
-// === Lessons 1-8 ===
-import {
-  LESSON_1_INTRO_SCREENS, LESSON_1_ENCOURAGEMENT_SCREENS, LESSON_1_PHRASES,
-  LESSON_2_INTRO_SCREENS, LESSON_2_PHRASES,
-  LESSON_3_INTRO_SCREENS, LESSON_3_ENCOURAGEMENT_SCREENS, LESSON_3_PHRASES,
-  LESSON_4_INTRO_SCREENS, LESSON_4_PHRASES,
-  LESSON_5_INTRO_SCREENS, LESSON_5_ENCOURAGEMENT_SCREENS, LESSON_5_PHRASES,
-  LESSON_6_INTRO_SCREENS, LESSON_6_ENCOURAGEMENT_SCREENS, LESSON_6_PHRASES,
-  LESSON_7_INTRO_SCREENS, LESSON_7_ENCOURAGEMENT_SCREENS, LESSON_7_PHRASES,
-  LESSON_8_INTRO_SCREENS, LESSON_8_PHRASES } from './lesson_data_1_8';
-
-// === Lessons 9-16 ===
-import {
-  LESSON_9_INTRO_SCREENS, LESSON_9_PHRASES,
-  LESSON_10_INTRO_SCREENS, LESSON_10_PHRASES,
-  LESSON_11_INTRO_SCREENS, LESSON_11_PHRASES,
-  LESSON_12_INTRO_SCREENS, LESSON_12_PHRASES,
-  LESSON_13_INTRO_SCREENS, LESSON_13_PHRASES,
-  LESSON_14_INTRO_SCREENS, LESSON_14_PHRASES,
-  LESSON_15_INTRO_SCREENS, LESSON_15_PHRASES,
-  LESSON_16_INTRO_SCREENS, LESSON_16_PHRASES } from './lesson_data_9_16';
-
-// === Lessons 17-24 ===
-import {
-  LESSON_17_INTRO_SCREENS, LESSON_17_PHRASES,
-  LESSON_18_INTRO_SCREENS, LESSON_18_PHRASES,
-  LESSON_19_INTRO_SCREENS, LESSON_19_PHRASES,
-  LESSON_20_INTRO_SCREENS, LESSON_20_PHRASES,
-  LESSON_21_INTRO_SCREENS, LESSON_21_PHRASES,
-  LESSON_22_INTRO_SCREENS, LESSON_22_PHRASES,
-  LESSON_23_INTRO_SCREENS, LESSON_23_PHRASES,
-  LESSON_24_INTRO_SCREENS, LESSON_24_PHRASES } from './lesson_data_17_24';
-
-// === Lessons 25-32 ===
-import {
-  LESSON_25_INTRO_SCREENS,
-  LESSON_26_INTRO_SCREENS,
-  LESSON_27_INTRO_SCREENS,
-  LESSON_28_INTRO_SCREENS,
-  LESSON_29_INTRO_SCREENS,
-  LESSON_30_INTRO_SCREENS,
-  LESSON_31_INTRO_SCREENS,
-  LESSON_32_INTRO_SCREENS,
-  LESSON_25_PHRASES,
-  LESSON_26_PHRASES,
-  LESSON_27_PHRASES,
-  LESSON_28_PHRASES,
-  LESSON_29_PHRASES,
-  LESSON_30_PHRASES,
-  LESSON_31_PHRASES,
-  LESSON_32_PHRASES } from './lesson_data_25_32';
-
 import { EXTRA_INTRO_SCREENS } from './lesson_intro_screens_9_32';
-import {
-  LESSON_1_INTRO_SCREENS as LESSON_1_INTRO_ES_L2,
-  LESSON_2_INTRO_SCREENS as LESSON_2_INTRO_ES_L2,
-  LESSON_3_INTRO_SCREENS as LESSON_3_INTRO_ES_L2,
-  LESSON_4_INTRO_SCREENS as LESSON_4_INTRO_ES_L2,
-  LESSON_5_INTRO_SCREENS as LESSON_5_INTRO_ES_L2,
-  LESSON_6_INTRO_SCREENS as LESSON_6_INTRO_ES_L2,
-  LESSON_7_INTRO_SCREENS as LESSON_7_INTRO_ES_L2,
-  LESSON_8_INTRO_SCREENS as LESSON_8_INTRO_ES_L2 } from './lesson_intro_screens_es_l2';
 import { getFrenchLessonIntroScreens } from './lesson_intro_screens_fr';
 import { frenchStudyActive, spanishStudyActive } from './spanish_content_gate';
 import type { StudyTargetLang } from './study_target_lang_dev';
@@ -80,17 +19,55 @@ import {
   LESSON_NAMES_VI,
 } from '../constants/lessons';
 
-/** Теория 1–8 для dev-режима «учим испанский» (слайды es L2). */
-const INTRO_SCREENS_ES_L2_1_8: Record<number, LessonIntroScreen[]> = {
-  1: LESSON_1_INTRO_ES_L2,
-  2: LESSON_2_INTRO_ES_L2,
-  3: LESSON_3_INTRO_ES_L2,
-  4: LESSON_4_INTRO_ES_L2,
-  5: LESSON_5_INTRO_ES_L2,
-  6: LESSON_6_INTRO_ES_L2,
-  7: LESSON_7_INTRO_ES_L2,
-  8: LESSON_8_INTRO_ES_L2 };
+type LessonGroupModule = Record<string, LessonIntroScreen[] | LessonPhrase[] | undefined>;
+type EsIntroModule = Record<string, LessonIntroScreen[] | undefined>;
 
+const LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
+const lazyLessonMetaCache: Record<number, LessonData> = {};
+let esL2IntroModule: EsIntroModule | null = null;
+
+function loadLessonGroupModule(lessonId: number): LessonGroupModule {
+  if (lessonId >= 1 && lessonId <= 8) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- lazy sync require avoids evaluating every lesson group for one lesson.
+    return require('./lesson_data_1_8') as LessonGroupModule;
+  }
+  if (lessonId >= 9 && lessonId <= 16) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- lazy sync require avoids evaluating every lesson group for one lesson.
+    return require('./lesson_data_9_16') as LessonGroupModule;
+  }
+  if (lessonId >= 17 && lessonId <= 24) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- lazy sync require avoids evaluating every lesson group for one lesson.
+    return require('./lesson_data_17_24') as LessonGroupModule;
+  }
+  if (lessonId >= 25 && lessonId <= 32) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- lazy sync require avoids evaluating every lesson group for one lesson.
+    return require('./lesson_data_25_32') as LessonGroupModule;
+  }
+  return {};
+}
+
+function getBaseLessonPhrases(lessonId: number): LessonPhrase[] {
+  return (loadLessonGroupModule(lessonId)[`LESSON_${lessonId}_PHRASES`] as LessonPhrase[] | undefined) ?? [];
+}
+
+function getBaseLessonIntroScreens(lessonId: number): LessonIntroScreen[] {
+  return (loadLessonGroupModule(lessonId)[`LESSON_${lessonId}_INTRO_SCREENS`] as LessonIntroScreen[] | undefined) ?? [];
+}
+
+function getBaseLessonEncouragementScreens(lessonId: number): LessonIntroScreen[] {
+  return (loadLessonGroupModule(lessonId)[`LESSON_${lessonId}_ENCOURAGEMENT_SCREENS`] as LessonIntroScreen[] | undefined) ?? [];
+}
+
+function getSpanishL2IntroScreens(lessonId: number): LessonIntroScreen[] | undefined {
+  if (lessonId < 1 || lessonId > 8) return undefined;
+  if (!esL2IntroModule) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- only needed when Spanish L2 lesson intros are requested.
+    esL2IntroModule = require('./lesson_intro_screens_es_l2') as EsIntroModule;
+  }
+  return esL2IntroModule[`LESSON_${lessonId}_INTRO_SCREENS`];
+}
+
+/** Теория 1–8 для dev-режима «учим испанский» (слайды es L2). */
 function introLinesText(lines: LessonIntroScreen['linesES']): string {
   if (!lines?.length) return '';
   return lines
@@ -176,83 +153,44 @@ function lessonTitles(id: number) {
 }
 
 // === ALL_LESSONS === (совпадает с упражнениями и LESSON_NAMES_*)
-export const ALL_LESSONS = [
-  { id: 1, ...lessonTitles(1), introScreens: LESSON_1_INTRO_SCREENS, phrases: LESSON_1_PHRASES },
-  { id: 2, ...lessonTitles(2), introScreens: LESSON_2_INTRO_SCREENS, phrases: LESSON_2_PHRASES },
-  { id: 3, ...lessonTitles(3), introScreens: LESSON_3_INTRO_SCREENS, phrases: LESSON_3_PHRASES },
-  { id: 4, ...lessonTitles(4), introScreens: LESSON_4_INTRO_SCREENS, phrases: LESSON_4_PHRASES },
-  { id: 5, ...lessonTitles(5), introScreens: LESSON_5_INTRO_SCREENS, phrases: LESSON_5_PHRASES },
-  { id: 6, ...lessonTitles(6), introScreens: LESSON_6_INTRO_SCREENS, phrases: LESSON_6_PHRASES },
-  { id: 7, ...lessonTitles(7), introScreens: LESSON_7_INTRO_SCREENS, phrases: LESSON_7_PHRASES },
-  { id: 8, ...lessonTitles(8), introScreens: LESSON_8_INTRO_SCREENS, phrases: LESSON_8_PHRASES },
-  { id: 9, ...lessonTitles(9), introScreens: LESSON_9_INTRO_SCREENS, phrases: LESSON_9_PHRASES },
-  { id: 10, ...lessonTitles(10), introScreens: LESSON_10_INTRO_SCREENS, phrases: LESSON_10_PHRASES },
-  { id: 11, ...lessonTitles(11), introScreens: LESSON_11_INTRO_SCREENS, phrases: LESSON_11_PHRASES },
-  { id: 12, ...lessonTitles(12), introScreens: LESSON_12_INTRO_SCREENS, phrases: LESSON_12_PHRASES },
-  { id: 13, ...lessonTitles(13), introScreens: LESSON_13_INTRO_SCREENS, phrases: LESSON_13_PHRASES },
-  { id: 14, ...lessonTitles(14), introScreens: LESSON_14_INTRO_SCREENS, phrases: LESSON_14_PHRASES },
-  { id: 15, ...lessonTitles(15), introScreens: LESSON_15_INTRO_SCREENS, phrases: LESSON_15_PHRASES },
-  { id: 16, ...lessonTitles(16), introScreens: LESSON_16_INTRO_SCREENS, phrases: LESSON_16_PHRASES },
-  { id: 17, ...lessonTitles(17), introScreens: LESSON_17_INTRO_SCREENS, phrases: LESSON_17_PHRASES },
-  { id: 18, ...lessonTitles(18), introScreens: LESSON_18_INTRO_SCREENS, phrases: LESSON_18_PHRASES },
-  { id: 19, ...lessonTitles(19), introScreens: LESSON_19_INTRO_SCREENS, phrases: LESSON_19_PHRASES },
-  { id: 20, ...lessonTitles(20), introScreens: LESSON_20_INTRO_SCREENS, phrases: LESSON_20_PHRASES },
-  { id: 21, ...lessonTitles(21), introScreens: LESSON_21_INTRO_SCREENS, phrases: LESSON_21_PHRASES },
-  { id: 22, ...lessonTitles(22), introScreens: LESSON_22_INTRO_SCREENS, phrases: LESSON_22_PHRASES },
-  { id: 23, ...lessonTitles(23), introScreens: LESSON_23_INTRO_SCREENS, phrases: LESSON_23_PHRASES },
-  { id: 24, ...lessonTitles(24), introScreens: LESSON_24_INTRO_SCREENS, phrases: LESSON_24_PHRASES },
-  { id: 25, ...lessonTitles(25), introScreens: LESSON_25_INTRO_SCREENS, phrases: LESSON_25_PHRASES },
-  { id: 26, ...lessonTitles(26), introScreens: LESSON_26_INTRO_SCREENS, phrases: LESSON_26_PHRASES },
-  { id: 27, ...lessonTitles(27), introScreens: LESSON_27_INTRO_SCREENS, phrases: LESSON_27_PHRASES },
-  { id: 28, ...lessonTitles(28), introScreens: LESSON_28_INTRO_SCREENS, phrases: LESSON_28_PHRASES },
-  { id: 29, ...lessonTitles(29), introScreens: LESSON_29_INTRO_SCREENS, phrases: LESSON_29_PHRASES },
-  { id: 30, ...lessonTitles(30), introScreens: LESSON_30_INTRO_SCREENS, phrases: LESSON_30_PHRASES },
-  { id: 31, ...lessonTitles(31), introScreens: LESSON_31_INTRO_SCREENS, phrases: LESSON_31_PHRASES },
-  { id: 32, ...lessonTitles(32), introScreens: LESSON_32_INTRO_SCREENS, phrases: LESSON_32_PHRASES },
-];
+function buildLazyLessonMeta(lessonId: number): LessonData {
+  return {
+    id: lessonId,
+    ...lessonTitles(lessonId),
+    get introScreens() {
+      return getBaseLessonIntroScreens(lessonId);
+    },
+    get phrases() {
+      return getBaseLessonPhrases(lessonId);
+    },
+  };
+}
+
+function getLazyLessonMeta(lessonId: number): LessonData {
+  lazyLessonMetaCache[lessonId] ??= buildLazyLessonMeta(lessonId);
+  return lazyLessonMetaCache[lessonId];
+}
+
+export const ALL_LESSONS = LESSON_IDS.map(getLazyLessonMeta);
 
 // === LESSON_DATA ===
-export const LESSON_DATA: Record<number, LessonData> = {
-  1: { id: 1, ...lessonTitles(1), introScreens: LESSON_1_INTRO_SCREENS, phrases: LESSON_1_PHRASES },
-  2: { id: 2, ...lessonTitles(2), introScreens: LESSON_2_INTRO_SCREENS, phrases: LESSON_2_PHRASES },
-  3: { id: 3, ...lessonTitles(3), introScreens: LESSON_3_INTRO_SCREENS, phrases: LESSON_3_PHRASES },
-  4: { id: 4, ...lessonTitles(4), introScreens: LESSON_4_INTRO_SCREENS, phrases: LESSON_4_PHRASES },
-  5: { id: 5, ...lessonTitles(5), introScreens: LESSON_5_INTRO_SCREENS, phrases: LESSON_5_PHRASES },
-  6: { id: 6, ...lessonTitles(6), introScreens: LESSON_6_INTRO_SCREENS, phrases: LESSON_6_PHRASES },
-  7: { id: 7, ...lessonTitles(7), introScreens: LESSON_7_INTRO_SCREENS, phrases: LESSON_7_PHRASES },
-  8: { id: 8, ...lessonTitles(8), introScreens: LESSON_8_INTRO_SCREENS, phrases: LESSON_8_PHRASES },
-  9: { id: 9, ...lessonTitles(9), introScreens: LESSON_9_INTRO_SCREENS, phrases: LESSON_9_PHRASES },
-  10: { id: 10, ...lessonTitles(10), introScreens: LESSON_10_INTRO_SCREENS, phrases: LESSON_10_PHRASES },
-  11: { id: 11, ...lessonTitles(11), introScreens: LESSON_11_INTRO_SCREENS, phrases: LESSON_11_PHRASES },
-  12: { id: 12, ...lessonTitles(12), introScreens: LESSON_12_INTRO_SCREENS, phrases: LESSON_12_PHRASES },
-  13: { id: 13, ...lessonTitles(13), introScreens: LESSON_13_INTRO_SCREENS, phrases: LESSON_13_PHRASES },
-  14: { id: 14, ...lessonTitles(14), introScreens: LESSON_14_INTRO_SCREENS, phrases: LESSON_14_PHRASES },
-  15: { id: 15, ...lessonTitles(15), introScreens: LESSON_15_INTRO_SCREENS, phrases: LESSON_15_PHRASES },
-  16: { id: 16, ...lessonTitles(16), introScreens: LESSON_16_INTRO_SCREENS, phrases: LESSON_16_PHRASES },
-  17: { id: 17, ...lessonTitles(17), introScreens: LESSON_17_INTRO_SCREENS, phrases: LESSON_17_PHRASES },
-  18: { id: 18, ...lessonTitles(18), introScreens: LESSON_18_INTRO_SCREENS, phrases: LESSON_18_PHRASES },
-  19: { id: 19, ...lessonTitles(19), introScreens: LESSON_19_INTRO_SCREENS, phrases: LESSON_19_PHRASES },
-  20: { id: 20, ...lessonTitles(20), introScreens: LESSON_20_INTRO_SCREENS ?? [], phrases: LESSON_20_PHRASES },
-  21: { id: 21, ...lessonTitles(21), introScreens: LESSON_21_INTRO_SCREENS ?? [], phrases: LESSON_21_PHRASES },
-  22: { id: 22, ...lessonTitles(22), introScreens: LESSON_22_INTRO_SCREENS ?? [], phrases: LESSON_22_PHRASES },
-  23: { id: 23, ...lessonTitles(23), introScreens: LESSON_23_INTRO_SCREENS, phrases: LESSON_23_PHRASES },
-  24: { id: 24, ...lessonTitles(24), introScreens: LESSON_24_INTRO_SCREENS, phrases: LESSON_24_PHRASES },
-  25: { id: 25, ...lessonTitles(25), introScreens: LESSON_25_INTRO_SCREENS ?? [], phrases: LESSON_25_PHRASES },
-  26: { id: 26, ...lessonTitles(26), introScreens: LESSON_26_INTRO_SCREENS ?? [], phrases: LESSON_26_PHRASES },
-  27: { id: 27, ...lessonTitles(27), introScreens: LESSON_27_INTRO_SCREENS ?? [], phrases: LESSON_27_PHRASES },
-  28: { id: 28, ...lessonTitles(28), introScreens: LESSON_28_INTRO_SCREENS ?? [], phrases: LESSON_28_PHRASES },
-  29: { id: 29, ...lessonTitles(29), introScreens: LESSON_29_INTRO_SCREENS ?? [], phrases: LESSON_29_PHRASES },
-  30: { id: 30, ...lessonTitles(30), introScreens: LESSON_30_INTRO_SCREENS ?? [], phrases: LESSON_30_PHRASES },
-  31: { id: 31, ...lessonTitles(31), introScreens: LESSON_31_INTRO_SCREENS ?? [], phrases: LESSON_31_PHRASES },
-  32: { id: 32, ...lessonTitles(32), introScreens: LESSON_32_INTRO_SCREENS ?? [], phrases: LESSON_32_PHRASES } };
+export const LESSON_DATA: Record<number, LessonData> = Object.fromEntries(
+  LESSON_IDS.map((lessonId) => [lessonId, getLazyLessonMeta(lessonId)]),
+) as Record<number, LessonData>;
 
 // === LESSON_ENCOURAGEMENT_SCREENS ===
-export const LESSON_ENCOURAGEMENT_SCREENS: Record<number, LessonIntroScreen[]> = {
-  1: LESSON_1_ENCOURAGEMENT_SCREENS,
-  3: LESSON_3_ENCOURAGEMENT_SCREENS,
-  5: LESSON_5_ENCOURAGEMENT_SCREENS,
-  6: LESSON_6_ENCOURAGEMENT_SCREENS,
-  7: LESSON_7_ENCOURAGEMENT_SCREENS };
+export const LESSON_ENCOURAGEMENT_SCREENS: Record<number, LessonIntroScreen[]> = Object.defineProperties(
+  {},
+  Object.fromEntries(
+    [1, 3, 5, 6, 7].map((lessonId) => [
+      lessonId,
+      {
+        enumerable: true,
+        get: () => getBaseLessonEncouragementScreens(lessonId),
+      },
+    ]),
+  ),
+) as Record<number, LessonIntroScreen[]>;
 
 // === Helper functions ===
 export function getLessonData(lessonId: number): LessonPhrase[] {
@@ -355,7 +293,7 @@ export function getLessonIntroScreens(
   const extra = EXTRA_INTRO_SCREENS[lessonId];
   if (extra && extra.length > 0) return withSpanishIntroFallback(extra);
   if (lessonId >= 1 && lessonId <= 8 && spanishStudyActive(studyTarget)) {
-    const esL2 = INTRO_SCREENS_ES_L2_1_8[lessonId];
+    const esL2 = getSpanishL2IntroScreens(lessonId);
     if (esL2?.length) return withSpanishIntroFallback(esL2);
   }
   const primary = LESSON_DATA[lessonId]?.introScreens;

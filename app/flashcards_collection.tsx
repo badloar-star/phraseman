@@ -32,6 +32,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
+import { FLASHCARDS_MARKET_DEV_ROUTE } from '../constants/devRoutes';
 import { getCardPackPaywallTheme, getCommunityUgcPackPaywallTheme } from './flashcards/cardPackPaywallTheme';
 import { Flashcard, loadFlashcards, removeFlashcard, saveFlashcards } from '../hooks/use-flashcards';
 import { updateMultipleTaskProgress } from './daily_tasks';
@@ -91,6 +92,7 @@ import {
   flashcardsOfficialPacksAvailableForTarget,
   flashcardsSystemCardsForTarget,
 } from './flashcards_target_gate';
+import { safeRouterBack } from './navigation_back';
 
 /** Монотонний фліп (timing замість spring) + різке opacity — без «моргання» біля 0.5. */
 const FLASHCARD_FLIP_DURATION_MS = 280;
@@ -302,6 +304,7 @@ export default function FlashcardsScreen() {
 
   const s        = STR[strLang];
   const insets   = useSafeAreaInsets();
+  const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
   const { height: screenH, width: screenW } = useWindowDimensions();
   /**
    * Назва набору / категорії в шапці колекції — навмисно менша за звичайний h2 екрана,
@@ -325,11 +328,7 @@ export default function FlashcardsScreen() {
   const isDevMarketEnabled = DEV_MODE || IS_BETA_TESTER;
   /** На хаб карток (або pop у стеку), а не на головне меню — зручніше при відкритті з підбірки / набору. */
   const leaveCollection = useCallback(() => {
-    if (typeof router.canGoBack === 'function' && router.canGoBack()) {
-      router.back();
-    } else {
-      router.replace('/flashcards' as any);
-    }
+    safeRouterBack(router, '/flashcards' as any);
   }, [router]);
 
   // ── State ──────────────────────────────────────────────────────────────────
@@ -383,6 +382,7 @@ export default function FlashcardsScreen() {
   const [, setIsFlipped]              = useState(false);
   const [allFlipped, setAllFlipped]   = useState(false);
   const cardFlipAnims                 = useRef<Record<string, Animated.Value>>({});
+  const cardFlippedState              = useRef<Record<string, boolean>>({});
   // Instant paint when session cache exists (re-open); first cold open still waits on AsyncStorage
   const [loading, setLoading]         = useState(
     () => savedCardsCache === null && customCardsCache === null,
@@ -462,6 +462,14 @@ export default function FlashcardsScreen() {
   // Card delete animation
   const cardDeleteAnims = useRef<Record<string, { opacity: Animated.Value; scale: Animated.Value }>>({});
   const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  const resetCardFlipState = useCallback(() => {
+    setIsFlipped(false);
+    setAllFlipped(false);
+    flipAnim.setValue(0);
+    Object.values(cardFlipAnims.current ?? {}).forEach((a) => a.setValue(0));
+    cardFlippedState.current = {};
+  }, [flipAnim]);
 
   /** Власні картки користувача окремо від куплених наборів; куплений набір — лише з `?pack=`. */
   const collectionCustomCards = useMemo(() => {
@@ -961,7 +969,13 @@ export default function FlashcardsScreen() {
     router,
   ]);
 
-  // ── Category / data / pack: filter + scroll position + flip reset
+  // ── Category / pack changes reset position + flips. Data refreshes must not undo a user's flip.
+  useEffect(() => {
+    setIndex(0);
+    resetCardFlipState();
+  }, [activeCat, packDeeplink, resetCardFlipState]);
+
+  // ── Data-dependent filter sync. Runs on async card refresh, but intentionally preserves flip state.
   useEffect(() => {
     const packFilter =
       packDeeplink && activeCat === 'custom' ? (`lesson:DEV:${packDeeplink}` as const) : null;
@@ -973,21 +987,16 @@ export default function FlashcardsScreen() {
     } else {
       setActiveFilter('all');
     }
+  }, [activeCat, cards, packDeeplink]);
+
+  // ── Restore saved scroll index after async cards load without resetting any already-flipped card.
+  useEffect(() => {
     const restore = pendingRestoreRef.current;
-    if (restore && restore.cat === activeCat) {
-      const safeIdx = Math.min(restore.idx, Math.max(0, cards.length - 1));
-      pendingRestoreRef.current = null;
-      setIndex(safeIdx);
-    } else {
-      setIndex(0);
-    }
-    setIsFlipped(false);
-    setAllFlipped(false);
-    flipAnim.setValue(0);
-    Object.values(cardFlipAnims.current ?? {}).forEach((a) => a.setValue(0));
-    cardFlippedState.current = {};
-    // Reset flip-back animation state to prevent stale callbacks after category switch
-  }, [activeCat, cards, packDeeplink, flipAnim]);
+    if (!restore || restore.cat !== activeCat || loading) return;
+    const safeIdx = Math.min(restore.idx, Math.max(0, cards.length - 1));
+    pendingRestoreRef.current = null;
+    setIndex(safeIdx);
+  }, [activeCat, cards.length, loading]);
 
   // ── User changed filter: go to first card in filtered list
   useEffect(() => {
@@ -1144,9 +1153,6 @@ export default function FlashcardsScreen() {
       setDeletingId(null);
     });
   }, [deleteCardById, getDeleteAnim]);
-
-  // ── Flip individual card by index (for list mode where all cards visible) ──
-  const cardFlippedState = useRef<Record<string, boolean>>({});
 
   const handleFlipCard = useCallback((cardId: string) => {
     const cardAnim = getCardFlipAnim(cardId);
@@ -1314,13 +1320,13 @@ export default function FlashcardsScreen() {
     const canSave = draftEN.trim().length > 0 && draftTR.trim().length > 0;
     return (
       <ScreenGradient artBackdrop="flashcards">
-      <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
-        <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
+      <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]} edges={['left', 'right', 'bottom']}>
+        <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         <KeyboardAvoidingView style={{ flex:1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
 
           {/* Header */}
-          <View style={[st.header, { borderBottomColor: t.border }]}>
-            <TouchableOpacity onPress={cancelCreate} style={{ width: 40 }}>
+          <View style={[st.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 12 }]}>
+            <TouchableOpacity onPress={cancelCreate} style={{ width: 40 }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="close" size={26} color={t.textMuted} />
             </TouchableOpacity>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
@@ -1442,11 +1448,11 @@ export default function FlashcardsScreen() {
   // ── Empty state ────────────────────────────────────────────────────────────
   if (!loading && filteredCards.length === 0) return (
     <ScreenGradient artBackdrop="flashcards">
-    <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
-      <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
+    <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]} edges={['left', 'right', 'bottom']}>
+      <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
       <ContentWrap>
-        <View style={[st.header, { borderBottomColor: t.border }]}>
-          <TouchableOpacity testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={leaveCollection} style={{ width: 40 }}>
+        <View style={[st.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 12 }]}>
+          <TouchableOpacity testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={leaveCollection} style={{ width: 40 }} hitSlop={{ top:12,bottom:12,left:12,right:12 }}>
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
           </TouchableOpacity>
           <Text
@@ -1463,26 +1469,6 @@ export default function FlashcardsScreen() {
         <View style={st.centerState}>
           <Ionicons name={activeCat === 'custom' ? 'pencil-outline' : 'bookmark-outline'} size={56} color={t.textGhost} />
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight:'700', marginTop: 12 }}>{s.empty}</Text>
-          <Text style={{ color: t.textMuted, fontSize: f.body, textAlign:'center', marginTop: 6 }}>{s.emptySub}</Text>
-          {activeCat !== 'custom' && (
-            <TouchableOpacity
-              onPress={leaveCollection}
-              style={{ marginTop: 14, paddingHorizontal: 12, paddingVertical: 8 }}
-            >
-              <Text style={{ color: t.textSecond, fontSize: f.sub, textDecorationLine: 'underline' }}>
-                {triLang(lang, {
-                  ru: 'К выбору категорий',
-                  uk: 'До вибору категорій',
-                  es: 'Volver al menú de cartas',
-                  'pt-BR': 'Voltar às categorias',
-                  vi: 'Quay lại chọn danh mục',
-                  id: 'Kembali ke pilihan kategori',
-                  tr: 'Kategori seçimine dön',
-                  pl: 'Wróć do wyboru kategorii',
-                })}
-              </Text>
-            </TouchableOpacity>
-          )}
           {loadError && (
             <TouchableOpacity
               onPress={loadAll}
@@ -1535,7 +1521,7 @@ export default function FlashcardsScreen() {
       </ContentWrap>
       {isDevMarketEnabled && (
         <TouchableOpacity
-          onPress={() => router.push('/flashcards_market_dev' as any)}
+              onPress={() => router.push(FLASHCARDS_MARKET_DEV_ROUTE as any)}
           style={{
             position: 'absolute',
             right: 14,
@@ -1562,11 +1548,11 @@ export default function FlashcardsScreen() {
 
   return (
     <ScreenGradient artBackdrop="flashcards">
-    <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
+    <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]} edges={['left', 'right', 'bottom']}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
 
         {/* Header */}
-        <View style={[st.header, { borderBottomColor: t.border }]}>
+        <View style={[st.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 12 }]}>
           <TouchableOpacity testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={leaveCollection} style={{ width: 40 }} hitSlop={{ top:12,bottom:12,left:12,right:12 }}>
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
           </TouchableOpacity>
@@ -1582,7 +1568,7 @@ export default function FlashcardsScreen() {
           <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 8, flexShrink: 0 }}>
             {isDevMarketEnabled && (
               <TouchableOpacity
-                onPress={() => router.push('/flashcards_market_dev' as any)}
+                onPress={() => router.push(FLASHCARDS_MARKET_DEV_ROUTE as any)}
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                 style={{
                   flexDirection: 'row',
@@ -2035,7 +2021,7 @@ export default function FlashcardsScreen() {
 
       {isDevMarketEnabled && (
         <TouchableOpacity
-          onPress={() => router.push('/flashcards_market_dev' as any)}
+          onPress={() => router.push(FLASHCARDS_MARKET_DEV_ROUTE as any)}
           style={{
             position: 'absolute',
             right: 14,

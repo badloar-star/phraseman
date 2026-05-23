@@ -8,6 +8,13 @@ import { Animated, StyleSheet, View } from 'react-native';
 
 export type GiftAnimTier = 'sparkle' | 'confetti' | 'epic' | 'premium';
 
+type BurstParticle = {
+  x: Animated.Value;
+  y: Animated.Value;
+  o: Animated.Value;
+  s: Animated.Value;
+};
+
 const C = {
   sparkle:  ['#94A3B8', '#CBD5E1', '#E2E8F0', '#A78BFA'] as const,
   confetti: ['#60A5FA', '#34D399', '#FBBF24', '#F472B6', '#A78BFA'] as const,
@@ -18,16 +25,24 @@ const pick = (arr: readonly string[], i: number) => arr[i % arr.length]!;
 
 export function GiftOpenBurst({ tier, size = 100 }: { tier: GiftAnimTier; size?: number }) {
   const n = tier === 'sparkle' ? 12 : tier === 'confetti' ? 32 : 44;
-  const parts = useRef(
-    Array.from({ length: n }, () => ({
+  const partsRef = useRef<BurstParticle[] | null>(null);
+  const ringRef = useRef<Animated.Value | null>(null);
+  const flashRef = useRef<Animated.Value | null>(null);
+
+  if (!partsRef.current || partsRef.current.length !== n) {
+    partsRef.current = Array.from({ length: n }, () => ({
       x: new Animated.Value(0),
       y: new Animated.Value(0),
       o: new Animated.Value(0),
       s: new Animated.Value(0.4),
-    })),
-  ).current;
-  const ring  = useRef(new Animated.Value(0.2)).current;
-  const flash = useRef(new Animated.Value(0)).current;
+    }));
+  }
+  if (!ringRef.current) ringRef.current = new Animated.Value(0.2);
+  if (!flashRef.current) flashRef.current = new Animated.Value(0);
+
+  const parts = partsRef.current;
+  const ring = ringRef.current;
+  const flash = flashRef.current;
 
   useEffect(() => {
     const dur = tier === 'sparkle' ? 480 : 720;

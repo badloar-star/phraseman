@@ -289,6 +289,7 @@ export const LESSON_17_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson17_phrase_15',
     english: "She is cleaning her room",
+    alternatives: ["She is cleaning up her room"],
     russian: "Она убирает свою комнату",
     ukrainian: "Вона прибирає свою кімнату",
     spanish: "Está limpiando su habitación.",
@@ -3465,10 +3466,10 @@ export const LESSON_20_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson20_phrase_14',
-    english: "She wrote an email.",
+    english: "She wrote a letter.",
     russian: "Она написала письмо.",
     ukrainian: "Вона написала листа.",
-    spanish: "Ella escribió un correo.",
+    spanish: "Ella escribió una carta.",
     words: [
       { text: "Она", correct: "Она", distractors: ["Он", "Я", "Ты", "Мы", "Они"] },
       { text: "написала", correct: "написала", distractors: ["прочитала", "отправила", "получила", "открыла", "проверила"] },
@@ -3477,23 +3478,23 @@ export const LESSON_20_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: "She", correct: "She", distractors: ["he", "I", "you", "we", "they"] },
       { text: "wrote", correct: "wrote", distractors: ["read", "sent", "received", "opened", "saw"] },
-      { text: "an", correct: "an", distractors: ["a", "the", "my", "this", "that"], category: "article" },
-      { text: "email", correct: "email", distractors: ["message", "idea", "app", "umbrella", "document"] },
+      { text: "a", correct: "a", distractors: ["an", "the", "my", "this", "that"], category: "article" },
+      { text: "letter", correct: "letter", distractors: ["email", "message", "idea", "app", "document"] },
     ],
   },
   {
     id: 'lesson20_phrase_15',
-    english: "The email is important.",
+    english: "The letter is important.",
     russian: "Письмо важное.",
     ukrainian: "Лист важливий.",
-    spanish: "El correo es importante.",
+    spanish: "La carta es importante.",
     words: [
       { text: "Письмо", correct: "Письмо", distractors: ["сообщение", "идея", "приложение", "зонт", "документ"] },
       { text: "важное", correct: "важное", distractors: ["хорошее", "плохое", "новое", "старое", "интересное"] },
     ],
     wordsEn: [
       { text: "The", correct: "The", distractors: ["a", "an", "my", "this", "that"], category: "article" },
-      { text: "email", correct: "email", distractors: ["message", "idea", "app", "umbrella", "document"] },
+      { text: "letter", correct: "letter", distractors: ["email", "message", "idea", "app", "document"] },
       { text: "is", correct: "is", distractors: ["are", "am", "was", "has", "does"] },
       { text: "important", correct: "important", distractors: ["good", "bad", "new", "old", "interesting"] },
     ],
@@ -3928,10 +3929,10 @@ export const LESSON_20_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson20_phrase_40',
-    english: "There is an email in my inbox.",
+    english: "There is a letter in my inbox.",
     russian: "В моём ящике есть письмо.",
     ukrainian: "У моїй скриньці є лист.",
-    spanish: "Hay un correo en mi bandeja.",
+    spanish: "Hay una carta en mi bandeja.",
     words: [
       { text: "моём", correct: "моём", distractors: ["твоём", "его", "её", "нашем", "их"] },
       { text: "ящике", correct: "ящике", distractors: ["кошельке", "столе", "коробке", "комнате", "кармане"] },
@@ -3940,8 +3941,8 @@ export const LESSON_20_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: "There", correct: "There", distractors: ["here", "where", "their", "they", "then"] },
       { text: "is", correct: "is", distractors: ["are", "am", "was", "has", "does"] },
-      { text: "an", correct: "an", distractors: ["a", "the", "my", "this", "that"], category: "article" },
-      { text: "email", correct: "email", distractors: ["message", "idea", "app", "umbrella", "document"] },
+      { text: "a", correct: "a", distractors: ["an", "the", "my", "this", "that"], category: "article" },
+      { text: "letter", correct: "letter", distractors: ["email", "message", "idea", "app", "document"] },
       { text: "in", correct: "in", distractors: ["on", "at", "to", "by", "of"], category: "preposition" },
       { text: "my", correct: "my", distractors: ["your", "his", "her", "our", "their"] },
       { text: "inbox", correct: "inbox", distractors: ["wallet", "table", "box", "room", "pocket"] },
@@ -3949,17 +3950,17 @@ export const LESSON_20_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson20_phrase_41',
-    english: "The email is from her.",
+    english: "The letter is from her.",
     russian: "Письмо от неё.",
     ukrainian: "Лист від неї.",
-    spanish: "El correo es de ella.",
+    spanish: "La carta es de ella.",
     words: [
       { text: "Письмо", correct: "Письмо", distractors: ["сообщение", "идея", "приложение", "зонт", "документ"] },
       { text: "неё", correct: "неё", distractors: ["него", "меня", "тебя", "нас", "них"] },
     ],
     wordsEn: [
       { text: "The", correct: "The", distractors: ["a", "an", "my", "this", "that"], category: "article" },
-      { text: "email", correct: "email", distractors: ["message", "idea", "app", "umbrella", "document"] },
+      { text: "letter", correct: "letter", distractors: ["email", "message", "idea", "app", "document"] },
       { text: "is", correct: "is", distractors: ["are", "am", "was", "has", "does"] },
       { text: "from", correct: "from", distractors: ["to", "with", "by", "for", "of"], category: "preposition" },
       { text: "her", correct: "her", distractors: ["him", "me", "you", "us", "them"] },
@@ -4081,8 +4082,8 @@ export const LESSON_20_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson20_phrase_48',
     english: "She found a wallet outside the shop.",
-    russian: "Она нашла кошелёк около магазина.",
-    ukrainian: "Вона знайшла гаманець біля магазину.",
+    russian: "Она нашла кошелёк снаружи магазина.",
+    ukrainian: "Вона знайшла гаманець зовні магазину.",
     spanish: "Ella encontró una billetera fuera de la tienda.",
     words: [
       { text: "Она", correct: "Она", distractors: ["Он", "Я", "Ты", "Мы", "Они"] },
@@ -5419,10 +5420,10 @@ export const LESSON_24_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson24_phrase_13',
-    english: 'He has already sent the email',
+    english: 'He has already sent the letter',
     russian: 'Он уже отправил письмо',
     ukrainian: 'Він вже надіслав листа',
-    spanish: 'Él ya ha enviado el correo',
+    spanish: 'Él ya ha enviado la carta',
     words: [
       { text: 'Он', correct: 'Он', distractors: ['Его', 'Ему', 'Она', 'я', 'ты'], category: 'pronoun' },
       { text: 'уже', correct: 'уже', distractors: ['еще', 'никогда', 'всегда', 'я', 'ты'] },
@@ -5435,7 +5436,7 @@ export const LESSON_24_PHRASES: LessonPhrase[] = [
       { text: 'already', correct: 'already', distractors: ['just', 'yet', 'ever', 'never', 'still'] },
       { text: 'sent', correct: 'sent', distractors: ['send', 'sending', 'sends', 'wrote', 'called'] },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'these'] },
-      { text: 'email', correct: 'email', distractors: ['emails', 'emailed', 'emailing', 'message', 'call'] },
+      { text: 'letter', correct: 'letter', distractors: ['email', 'letters', 'message', 'document', 'call'] },
     ],
   },
   {

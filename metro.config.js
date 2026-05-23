@@ -20,6 +20,7 @@ const escapePathForRegex = (filePath) =>
 const ignoredRootFolders = [
   '.claude',
   '.claude-flow',
+  '.codex-tmp',
   '.cursor',
   '.firebase',
   '.git',
@@ -39,6 +40,7 @@ const ignoredRootFolders = [
   'invite',
   'knowly-www',
   'legal',
+  'lingman-scenarist-pipeline',
   'maestro',
   'mocks',
   'qa-artifacts',
@@ -80,12 +82,46 @@ config.server = {
 
 const defaultResolveRequest = config.resolver.resolveRequest;
 const routerContextPath = path.join(__dirname, 'router.ctx.js');
+const storeReleaseDevModuleStubPath = path.join(__dirname, 'app', '_store_release_dev_module_stub.tsx');
+const storeReleaseVipSurveyDevAuthStubPath = path.join(
+  __dirname,
+  'store_release_stubs',
+  'vip_survey_dev_auth_stub.ts',
+);
+const storeReleaseDevModules = new Set([
+  './_admin_settings_testers',
+  './_admin_intro_preview',
+  './_admin_review_test',
+  './_admin_premium_delivery_test',
+  './_pos_analytics_audit',
+  './flashcards_market_dev',
+]);
 
 config.resolver.resolveRequest = (context, moduleName, platform) => {
   if (moduleName === 'expo-router/_ctx') {
     return {
       type: 'sourceFile',
       filePath: routerContextPath,
+    };
+  }
+
+  if (
+    process.env.EXPO_PUBLIC_STORE_RELEASE === '1' &&
+    moduleName === './vip_survey_dev_auth'
+  ) {
+    return {
+      type: 'sourceFile',
+      filePath: storeReleaseVipSurveyDevAuthStubPath,
+    };
+  }
+
+  if (
+    process.env.EXPO_PUBLIC_STORE_RELEASE === '1' &&
+    storeReleaseDevModules.has(moduleName)
+  ) {
+    return {
+      type: 'sourceFile',
+      filePath: storeReleaseDevModuleStubPath,
     };
   }
 

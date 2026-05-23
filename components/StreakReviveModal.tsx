@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated,
   Easing,
@@ -18,7 +18,12 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { PAYWALL_MODAL } from './paywallModalPalette';
 import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
-import { reviveStreak, dismissReviveOffer, type StreakReviveOffer } from '../app/streak_revive';
+import {
+  REVIVE_COST_PER_MISSED_DAY_SHARDS,
+  reviveStreak,
+  dismissReviveOffer,
+  type StreakReviveOffer,
+} from '../app/streak_revive';
 import { getShardsBalance } from '../app/shards_system';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import { emitAppEvent } from '../app/events';
@@ -39,19 +44,20 @@ interface StreakReviveModalProps {
   onRevived?: (restoredStreak: number) => void;
 }
 
-function formatRemaining(ms: number, lang: Lang): string {
-  const totalMin = Math.max(0, Math.floor(ms / 60_000));
-  const h = Math.floor(totalMin / 60);
-  const m = totalMin % 60;
+function formatStreakDays(count: number, lang: Lang): string {
+  const safeCount = Math.max(0, Math.floor(Number(count) || 0));
+  const ruWord = safeCount === 1 ? 'дня' : 'дней';
+  const ukWord = safeCount === 1 ? 'дня' : 'днів';
+
   return triLang(lang, {
-    ru: h > 0 ? `${h} ч ${m} мин` : `${m} мин`,
-    uk: h > 0 ? `${h} год ${m} хв` : `${m} хв`,
-    es: h > 0 ? `${h} h ${m} min` : `${m} min`,
-    'pt-BR': h > 0 ? `${h} h ${m} min` : `${m} min`,
-    vi: h > 0 ? `${h} giờ ${m} phút` : `${m} phút`,
-    id: h > 0 ? `${h} jam ${m} menit` : `${m} menit`,
-    tr: h > 0 ? `${h} sa ${m} dk` : `${m} dk`,
-    pl: h > 0 ? `${h} godz. ${m} min` : `${m} min`,
+    ru: `${safeCount} ${ruWord}`,
+    uk: `${safeCount} ${ukWord}`,
+    es: `${safeCount} día${safeCount === 1 ? '' : 's'}`,
+    'pt-BR': `${safeCount} dia${safeCount === 1 ? '' : 's'}`,
+    vi: `${safeCount} ngày`,
+    id: `${safeCount} hari`,
+    tr: `${safeCount} gün`,
+    pl: `${safeCount} ${safeCount === 1 ? 'dzień' : 'dni'}`,
   });
 }
 
@@ -98,36 +104,32 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
     transform: [{ scale: flameAnim.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1.08] }) }],
   };
 
-  const remainingMs = useMemo(() => {
-    if (!offer) return 0;
-    return Math.max(0, offer.expiresAt - Date.now());
-  }, [offer]);
-
   const cost = offer?.costShards ?? 0;
   const lostStreak = offer?.lostStreak ?? 0;
-  const remainingText = formatRemaining(remainingMs, lang);
+  const missedDays = offer?.missedDays ?? 1;
+  const lostStreakText = formatStreakDays(lostStreak, lang);
 
   // ── Копирайт: пользовательское слово «цепочка» ─────────────────────────
   const title = triLang(lang, {
-    ru: 'Цепочка оборвалась',
-    uk: 'Ланцюжок обірвався',
-    es: 'Has perdido la racha',
-    'pt-BR': 'Sua sequência foi interrompida',
-    vi: 'Chuỗi của bạn đã bị ngắt',
-    id: 'Streak kamu terputus',
-    tr: 'Serin koptu',
-    pl: 'Twoja seria została przerwana',
+    ru: 'Цепочка прервалась',
+    uk: 'Ланцюжок перервався',
+    es: 'La racha se interrumpió',
+    'pt-BR': 'A sequência foi interrompida',
+    vi: 'Chuỗi của bạn đã bị gián đoạn',
+    id: 'Rangkaian terputus',
+    tr: 'Serin kesildi',
+    pl: 'Seria została przerwana',
   });
 
   const subtitle = triLang(lang, {
-    ru: `Твоя серия из ${lostStreak} ${lostStreak === 1 ? 'дня' : 'дней'} оборвалась. Ещё ${remainingText} — восстанови и продолжай с той же отметки.`,
-    uk: `Твій ланцюжок із ${lostStreak} ${lostStreak === 1 ? 'дня' : 'днів'} обірвався. Є ще ${remainingText} — відновлюй і продовжуй з того ж місця.`,
-    es: `Tu racha de ${lostStreak} días se rompió. Tienes ${remainingText} para recuperarla y continuar desde donde lo dejaste.`,
-    'pt-BR': `Sua sequência de ${lostStreak} dias foi interrompida. Você ainda tem ${remainingText} para restaurá-la e continuar de onde parou.`,
-    vi: `Chuỗi ${lostStreak} ngày của bạn đã bị ngắt. Bạn còn ${remainingText} để khôi phục và tiếp tục từ điểm cũ.`,
-    id: `Streak ${lostStreak} hari kamu terputus. Masih ada ${remainingText} untuk memulihkannya dan lanjut dari titik yang sama.`,
-    tr: `${lostStreak} günlük serin koptu. Yenileyip kaldığın yerden devam etmek için ${remainingText} süren var.`,
-    pl: `Twoja seria ${lostStreak} dni została przerwana. Masz jeszcze ${remainingText}, aby ją odnowić i kontynuować od tego miejsca.`,
+    ru: `Вы потеряли серию из ${lostStreakText}. Хотите восстановить свой рекорд или начать новую цепочку?`,
+    uk: `Ви втратили серію з ${lostStreakText}. Хочете відновити свій рекорд чи почати новий ланцюжок?`,
+    es: `Perdiste una racha de ${lostStreakText}. ¿Quieres recuperar tu récord o empezar una nueva racha?`,
+    'pt-BR': `Você perdeu uma sequência de ${lostStreakText}. Quer restaurar seu recorde ou começar uma nova sequência?`,
+    vi: `Bạn đã mất chuỗi ${lostStreakText}. Bạn muốn khôi phục kỷ lục hay bắt đầu chuỗi mới?`,
+    id: `Kamu kehilangan rangkaian ${lostStreakText}. Mau memulihkan rekor atau mulai rangkaian baru?`,
+    tr: `${lostStreakText} serini kaybettin. Rekorunu yenilemek mi, yoksa yeni bir seri başlatmak mı istersin?`,
+    pl: `Utraciłeś serię ${lostStreakText}. Chcesz odnowić swój rekord czy zacząć nową serię?`,
   });
 
   const streakUnit = triLang(lang, {
@@ -141,25 +143,56 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
     pl: 'dni z rzędu',
   });
 
+  const priceTitle = triLang(lang, {
+    ru: 'Цена восстановления',
+    uk: 'Ціна відновлення',
+    es: 'Precio de recuperación',
+    'pt-BR': 'Preço da restauração',
+    vi: 'Giá khôi phục',
+    id: 'Harga pemulihan',
+    tr: 'Yenileme ücreti',
+    pl: 'Cena odnowienia',
+  });
+  const unitPriceLabel = triLang(lang, {
+    ru: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} за 1 день`,
+    uk: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} за 1 день`,
+    es: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} por 1 día`,
+    'pt-BR': `${REVIVE_COST_PER_MISSED_DAY_SHARDS} por 1 dia`,
+    vi: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} cho 1 ngày`,
+    id: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} untuk 1 hari`,
+    tr: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} / 1 gün`,
+    pl: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} za 1 dzień`,
+  });
+  const totalPriceLabel = triLang(lang, {
+    ru: `Итого: ${cost} за ${missedDays} ${missedDays === 1 ? 'день' : 'дн.'}`,
+    uk: `Разом: ${cost} за ${missedDays} ${missedDays === 1 ? 'день' : 'дн.'}`,
+    es: `Total: ${cost} por ${missedDays} día${missedDays === 1 ? '' : 's'}`,
+    'pt-BR': `Total: ${cost} por ${missedDays} dia${missedDays === 1 ? '' : 's'}`,
+    vi: `Tổng: ${cost} cho ${missedDays} ngày`,
+    id: `Total: ${cost} untuk ${missedDays} hari`,
+    tr: `Toplam: ${cost} / ${missedDays} gün`,
+    pl: `Razem: ${cost} za ${missedDays} ${missedDays === 1 ? 'dzień' : 'dni'}`,
+  });
+
   const ctaLabel = triLang(lang, {
-    ru: `Восстановить · ${cost}`,
-    uk: `Відновити · ${cost}`,
-    es: `Recuperar · ${cost}`,
-    'pt-BR': `Restaurar · ${cost}`,
-    vi: `Khôi phục · ${cost}`,
-    id: `Pulihkan · ${cost}`,
-    tr: `Yenile · ${cost}`,
-    pl: `Odnów · ${cost}`,
+    ru: 'Восстановить рекорд',
+    uk: 'Відновити рекорд',
+    es: 'Recuperar récord',
+    'pt-BR': 'Restaurar recorde',
+    vi: 'Khôi phục kỷ lục',
+    id: 'Pulihkan rekor',
+    tr: 'Rekoru yenile',
+    pl: 'Odnów rekord',
   });
   const dismissLabel = triLang(lang, {
-    ru: 'Не сейчас',
-    uk: 'Не зараз',
-    es: 'Ahora no',
-    'pt-BR': 'Agora não',
-    vi: 'Để sau',
-    id: 'Nanti saja',
-    tr: 'Şimdi değil',
-    pl: 'Nie teraz',
+    ru: 'Начать заново',
+    uk: 'Почати заново',
+    es: 'Empezar de nuevo',
+    'pt-BR': 'Começar de novo',
+    vi: 'Bắt đầu lại',
+    id: 'Mulai lagi',
+    tr: 'Yeniden başla',
+    pl: 'Zacznij od nowa',
   });
 
   const onConfirm = useCallback(async () => {
@@ -332,6 +365,29 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
               <Text style={[styles.streakUnit, { color: PAYWALL_MODAL.subtitle }]}>{streakUnit}</Text>
             </View>
 
+            <View
+              style={[
+                styles.pricePill,
+                {
+                  backgroundColor: rewardModalSoftSurface(themeMode, t),
+                  borderColor: rewardModalPanelBorder(themeMode, t),
+                },
+              ]}
+            >
+              <Image
+                source={oskolokImageForPackShards(REVIVE_COST_PER_MISSED_DAY_SHARDS)}
+                style={styles.priceIcon}
+                resizeMode="contain"
+              />
+              <View style={styles.priceTextWrap}>
+                <Text style={[styles.priceLabel, { color: PAYWALL_MODAL.subtitle }]}>{priceTitle}</Text>
+                <Text style={[styles.priceValue, { color: modalAccent }]}>{unitPriceLabel}</Text>
+                {missedDays > 1 && (
+                  <Text style={[styles.priceTotal, { color: PAYWALL_MODAL.subtitle }]}>{totalPriceLabel}</Text>
+                )}
+              </View>
+            </View>
+
             {/* Трата осколков — стиль как «Восстановить энергию» в NoEnergyModal */}
             <TouchableOpacity
               onPress={() => { hapticTap(); void onConfirm(); }}
@@ -453,6 +509,40 @@ const styles = StyleSheet.create({
   },
   streakNum: { fontSize: 32, fontWeight: '900' },
   streakUnit: { fontSize: 13, fontWeight: '600' },
+  pricePill: {
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    borderRadius: 18,
+    borderWidth: 1,
+    marginTop: 2,
+  },
+  priceIcon: {
+    width: 28,
+    height: 28,
+    flexShrink: 0,
+  },
+  priceTextWrap: {
+    flex: 1,
+    minWidth: 0,
+  },
+  priceLabel: {
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  priceValue: {
+    fontSize: 15,
+    fontWeight: '900',
+    marginTop: 2,
+  },
+  priceTotal: {
+    fontSize: 12,
+    fontWeight: '700',
+    marginTop: 2,
+  },
   shardBtnIconSlot: {
     position: 'absolute',
     left: 16,

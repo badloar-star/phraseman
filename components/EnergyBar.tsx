@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Pressable, Text, useWindowDimensions, View } from 'react-native';
 import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING } from '../constants/motion';
 import { useEnergy } from './EnergyContext';
+import { usePremium } from './PremiumContext';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
@@ -10,8 +11,6 @@ import { getAdaptiveEnergyIconLayout } from './energyIconLayout';
 import EnergyRefillShardModal from './EnergyRefillShardModal';
 import { hapticTap } from '../hooks/use-haptics';
 import { BRAND_SHARDS_ES } from '../constants/terms_es';
-
-const PREMIUM_BLUE = '#4FC3F7';
 
 interface Props {
   size?: number; // icon size, default 30
@@ -26,6 +25,7 @@ const BONUS_COLOR = '#FFD700'; // gold for bonus slots
 
 export default function EnergyBar({ size = 30, maxWidth }: Props) {
   const { energy, bonusEnergy, maxEnergy, formattedTime, isUnlimited } = useEnergy();
+  const { hasPremiumAccess } = usePremium();
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();
   const { width: windowWidth } = useWindowDimensions();
@@ -51,6 +51,12 @@ export default function EnergyBar({ size = 30, maxWidth }: Props) {
   const bonusScaleAnims = useRef(
     Array.from({ length: 4 }, () => new Animated.Value(1))
   ).current;
+  const bonusTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  useEffect(() => () => {
+    bonusTimersRef.current.forEach(clearTimeout);
+    bonusTimersRef.current = [];
+  }, []);
 
   const prevEnergyRef = useRef(energy);
   useEffect(() => {
@@ -83,7 +89,8 @@ export default function EnergyBar({ size = 30, maxWidth }: Props) {
       for (let i = prev; i < bonusEnergy && i < bonusScaleAnims.length; i++) {
         const idx = i;
         const delay = (idx - prev) * 200;
-        setTimeout(() => {
+        const timer = setTimeout(() => {
+          bonusTimersRef.current = bonusTimersRef.current.filter(item => item !== timer);
           Animated.sequence([
             Animated.timing(bonusScaleAnims[idx], {
               toValue: MOTION_SCALE.energyRefill,
@@ -98,14 +105,13 @@ export default function EnergyBar({ size = 30, maxWidth }: Props) {
             }),
           ]).start();
         }, delay);
+        bonusTimersRef.current.push(timer);
       }
     }
   }, [bonusEnergy, bonusScaleAnims]);
 
-  const premiumAccent = PREMIUM_BLUE;
   const bonusAccent = BONUS_COLOR;
-  const filledTint = isUnlimited ? premiumAccent : undefined;
-  const filledColor = isUnlimited ? premiumAccent : t.gold;
+  const filledColor = t.gold;
   const emptyColor = t.textGhost;
 
   const safeBonus = Math.min(bonusEnergy, bonusScaleAnims.length);
@@ -116,6 +122,8 @@ export default function EnergyBar({ size = 30, maxWidth }: Props) {
     maxWidth: maxWidth ?? Math.min(156, Math.max(size, windowWidth * 0.36)),
   });
   const overlap = energyLayout.marginLeft;
+
+  if (hasPremiumAccess) return null;
 
   return (
     <View style={{ alignItems: 'center' }}>
@@ -137,8 +145,6 @@ export default function EnergyBar({ size = 30, maxWidth }: Props) {
               animateChange={true}
               shouldShake={false}
               themeMode={themeMode}
-              tintColor={i < energy ? filledTint : undefined}
-              isPremium={isUnlimited}
             />
           </Animated.View>
         ))}

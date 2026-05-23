@@ -440,6 +440,22 @@ export default function LessonComplete() {
   const scaleAnim  = useRef(new Animated.Value(0)).current;
   const fadeAnim   = useRef(new Animated.Value(0)).current;
   const bounceAnim = useRef(new Animated.Value(0)).current;
+  const lessonCompleteNotifTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearLessonCompleteNotifTimer = useCallback(() => {
+    if (lessonCompleteNotifTimerRef.current) {
+      clearTimeout(lessonCompleteNotifTimerRef.current);
+      lessonCompleteNotifTimerRef.current = null;
+    }
+  }, []);
+
+  const scheduleActiveNotif = useCallback((notif: Notif, delayMs: number) => {
+    clearLessonCompleteNotifTimer();
+    lessonCompleteNotifTimerRef.current = setTimeout(() => {
+      lessonCompleteNotifTimerRef.current = null;
+      setActiveNotif(notif);
+    }, delayMs);
+  }, [clearLessonCompleteNotifTimer]);
 
   const canApplyCompletionRewards = useCallback(async (): Promise<boolean> => {
     if (!frenchStudyActive(studyTarget)) return true;
@@ -460,7 +476,7 @@ export default function LessonComplete() {
     setNotifQueue(prev => {
       const rest = prev.slice(1);
       if (rest.length > 0) {
-        setTimeout(() => setActiveNotif(rest[0]), 400);
+        scheduleActiveNotif(rest[0], 400);
         return rest;
       }
       return rest;
@@ -596,7 +612,7 @@ export default function LessonComplete() {
     // Появление иконки
     Animated.spring(scaleAnim, { toValue: 1, friction: 4, useNativeDriver: true }).start();
     // Текст чуть позже
-    setTimeout(() => {
+    const fadeInTimer = setTimeout(() => {
       Animated.timing(fadeAnim, { toValue: 1, duration: 500, useNativeDriver: true }).start();
     }, 300);
     // Мягкое покачивание
@@ -606,7 +622,7 @@ export default function LessonComplete() {
         Animated.timing(bounceAnim, { toValue: 0,  duration: 700, useNativeDriver: true }),
       ])
     );
-    setTimeout(() => bounce.start(), 400);
+    const bounceStartTimer = setTimeout(() => bounce.start(), 400);
 
     let cancelled = false;
     void (async () => {
@@ -678,9 +694,9 @@ export default function LessonComplete() {
           queue.push({ kind: 'lingman_exam_unlock' });
         }
 
-        if (queue.length > 0) {
+        if (!cancelled && queue.length > 0) {
           setNotifQueue(queue);
-          setTimeout(() => setActiveNotif(queue[0]), 1200);
+          scheduleActiveNotif(queue[0], 1200);
         }
 
         // Gem achievements
@@ -697,9 +713,12 @@ export default function LessonComplete() {
     setLessonCefr(cefr);
     return () => {
       cancelled = true;
+      clearTimeout(fadeInTimer);
+      clearTimeout(bounceStartTimer);
+      clearLessonCompleteNotifTimer();
       bounce.stop();
     };
-  }, [bounceAnim, canApplyCompletionRewards, fadeAnim, grantBonus, lessonId, router, scaleAnim, studyTarget]);
+  }, [bounceAnim, canApplyCompletionRewards, clearLessonCompleteNotifTimer, fadeAnim, grantBonus, lessonId, router, scaleAnim, scheduleActiveNotif, studyTarget]);
 
   // ── Триггер регистрационной модалки после первого урока ────────────────────
   // Показывается ровно один раз: только для урока 1, только если юзер ещё не залогинен
@@ -748,7 +767,7 @@ export default function LessonComplete() {
         router.replace({ pathname: '/lesson_menu', params: { id: next } });
       })();
     } else {
-      router.replace('/(tabs)' as any);
+      router.replace('/(tabs)/home' as any);
     }
   };
 
@@ -913,7 +932,7 @@ export default function LessonComplete() {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity testID="lesson-complete-back-home" style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)' as any); }}>
+          <TouchableOpacity testID="lesson-complete-back-home" style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}>
             <Text style={{ color: t.textMuted, fontSize: 16 }}>{c.backHome}</Text>
           </TouchableOpacity>
         </Animated.View>

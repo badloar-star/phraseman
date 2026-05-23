@@ -12,14 +12,13 @@ import {
   Image,
   Modal,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import {
-  applyGift, ApplyGiftResult, GiftDef, giftDescForLang, giftRarityUiLabel,
-  giftTitleForLang, isEnergyBonusGiftId,
+  applyGift, ApplyGiftResult, GiftDef, giftDisplayDescForLang, giftDisplayTitleForLang, giftRarityUiLabel,
+  isEnergyBonusGiftId,
   rollF2pLevelGiftForUser, rollPremiumLevelGiftForUser,
 } from '../app/level_gift_system';
 import { triLang, type Lang } from '../constants/i18n';
@@ -31,13 +30,13 @@ import { GiftOpenBurst, animTierF2p, animTierPrem, type GiftAnimTier } from './G
 import AvatarAura from './AvatarAura';
 import AvatarView from './AvatarView';
 import CustomAvatarBadge from './CustomAvatarBadge';
+import LevelGiftArt from './LevelGiftArt';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
 import {
-  RewardModalBackdrop,
+  RewardModalPanelBackdrop,
   rewardModalAccentColor,
   rewardModalPanelBorder,
-  rewardModalPanelColors,
   rewardModalPrimaryButtonColors,
   rewardModalPrimaryButtonText,
   rewardModalSoftSurface,
@@ -65,7 +64,7 @@ export {
 /** Подписи сундуков/карточек — не «F2P»/англ. жаргон, а нормальные RU/UK/ES. */
 const DUAL_UI = {
   firstChest:  { ru: 'Подарок за уровень', uk: 'Подарунок за рівень', es: 'Regalo por nivel', 'pt-BR': 'Presente de nível', vi: 'Quà cấp độ', id: 'Hadiah level', tr: 'Seviye hediyesi', pl: 'Prezent za poziom' },
-  secondChest: { ru: 'Бонус премиум',     uk: 'Преміум-бонус',     es: 'Bono premium',      'pt-BR': 'Bônus premium',    vi: 'Thưởng premium', id: 'Bonus premium', tr: 'Premium bonus',   pl: 'Bonus premium' },
+  secondChest: { ru: 'Бонус',             uk: 'Бонус',             es: 'Bono',              'pt-BR': 'Bônus',            vi: 'Thưởng',         id: 'Bonus',         tr: 'Bonus',           pl: 'Bonus' },
 } as const;
 
 const firstChestLabel = (lang: Lang) => triLang(lang, {
@@ -504,6 +503,9 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
   const primaryButtonColors = rewardModalPrimaryButtonColors(themeMode);
   const primaryButtonText = rewardModalPrimaryButtonText(themeMode);
   const canCloseWithIcon = !opening && (opened.size === 0 || opened.size === 2);
+  const screenDim = USE_ELITE_DUAL_LEVEL_GIFT_MODAL
+    ? (themeMode === 'minimalLight' ? 'rgba(24,18,10,0.32)' : 'rgba(0,0,0,0.48)')
+    : 'rgba(0,0,0,0.78)';
 
   const onRequestCloseModal = () => {
     if (opened.size === 2 && f2pGift && premGift) {
@@ -515,8 +517,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
 
   return (
     <Modal transparent visible animationType="fade" onRequestClose={onRequestCloseModal}>
-      <View style={{ flex: 1, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(3,5,10,0.88)' : 'rgba(0,0,0,0.78)', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
-        {USE_ELITE_DUAL_LEVEL_GIFT_MODAL && <RewardModalBackdrop themeMode={themeMode} intensity="strong" />}
+      <View style={{ flex: 1, backgroundColor: screenDim, justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
         <Animated.View testID="level-gift-dual-modal" style={{
           backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'transparent' : t.bgCard,
           borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 30 : 28,
@@ -532,13 +533,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
           transform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? [{ scale: modalScale }, { translateY: modalY }] : [],
         }}>
           {USE_ELITE_DUAL_LEVEL_GIFT_MODAL && (
-            <LinearGradient
-              pointerEvents="none"
-              colors={rewardModalPanelColors(themeMode, t)}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={StyleSheet.absoluteFill}
-            />
+            <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" />
           )}
           {USE_ELITE_DUAL_LEVEL_GIFT_MODAL && (
             <>
@@ -650,14 +645,11 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                           { translateX: fShake },
                         ],
                       }}>
-                        <Image
-                          source={getLevelGiftRewardIcon(f2pGift.id, themeMode)}
-                          style={{
-                            width: DUAL_CHEST_IMAGE_SIZE,
-                            height: DUAL_CHEST_IMAGE_SIZE,
-                            opacity: opening === 'f2p' ? 0.72 : 1,
-                          }}
-                          resizeMode="contain"
+                        <LevelGiftArt
+                          themeMode={themeMode}
+                          variant={f2pGift?.rarity ?? 'common'}
+                          size={DUAL_CHEST_IMAGE_SIZE}
+                          opacity={opening === 'f2p' ? 0.72 : 1}
                         />
                       </Animated.View>
                     </TouchableOpacity>
@@ -697,14 +689,11 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                           { translateX: pShake },
                         ],
                       }}>
-                        <Image
-                          source={getLevelGiftRewardIcon(premGift.id, themeMode)}
-                          style={{
-                            width: DUAL_CHEST_IMAGE_SIZE,
-                            height: DUAL_CHEST_IMAGE_SIZE,
-                            opacity: opening === 'prem' ? 0.72 : 1,
-                          }}
-                          resizeMode="contain"
+                        <LevelGiftArt
+                          themeMode={themeMode}
+                          variant="premium"
+                          size={DUAL_CHEST_IMAGE_SIZE}
+                          opacity={opening === 'prem' ? 0.72 : 1}
                         />
                       </Animated.View>
                     </TouchableOpacity>
@@ -962,7 +951,7 @@ function MiniRewardPeek({ gift, lang, theme: t, fonts: f, themeMode, burstTier, 
           paddingHorizontal: 2,
         }}
       >
-        {giftTitleForLang(gift, lang)}
+        {giftDisplayTitleForLang(gift, lang)}
       </Text>
     </Animated.View>
   );
@@ -1027,8 +1016,10 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
         <Image source={getLevelGiftRewardIcon(g.id, themeMode)} style={{ width: DETAIL_REWARD_ICON_SIZE, height: DETAIL_REWARD_ICON_SIZE }} resizeMode="contain" />
         <View style={{ flex: 1 }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2 - 2, fontWeight: '900' }}>{giftTitleForLang(g, lang)}</Text>
-          <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 2 }}>{giftDescForLang(g, lang)}</Text>
+          <Text style={{ color: t.textPrimary, fontSize: f.h2 - 2, fontWeight: '900' }}>{giftDisplayTitleForLang(g, lang)}</Text>
+          {!!giftDisplayDescForLang(g, lang) && (
+            <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 2 }}>{giftDisplayDescForLang(g, lang)}</Text>
+          )}
         </View>
       </View>
       {g.id && isEnergyBonusGiftId(g.id) && (

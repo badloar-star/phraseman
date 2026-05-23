@@ -61,6 +61,7 @@ import {
 import { getCanonicalUserId } from './user_id_policy';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { getTextInputSystemEditMenuProps } from './textInputSystemMenuProps';
+import { safeRouterBack } from './navigation_back';
 
 type Row = {
   id: string;
@@ -758,7 +759,7 @@ export default function CommunityPackCreateScreen() {
           tr: updatePackId ? 'Değişiklikler incelemeye gönderildi.' : 'Paket incelemeye gönderildi.',
           pl: updatePackId ? 'Zmiany wysłane do sprawdzenia.' : 'Zestaw wysłany do sprawdzenia.',
         }));
-        router.back();
+        safeRouterBack(router, '/flashcards' as any);
       } catch (e: unknown) {
         const msg = e && typeof e === 'object' && 'message' in e ? String((e as Error).message) : String(e);
         const short = msg.slice(0, 140);
@@ -815,7 +816,7 @@ export default function CommunityPackCreateScreen() {
             <TouchableOpacity
               onPress={() => {
                 Keyboard.dismiss();
-                router.back();
+                safeRouterBack(router, '/flashcards' as any);
               }}
               hitSlop={12}
               style={{ width: 40 }}
@@ -845,7 +846,7 @@ export default function CommunityPackCreateScreen() {
             <TouchableOpacity
               onPress={() => {
                 Keyboard.dismiss();
-                router.back();
+                safeRouterBack(router, '/flashcards' as any);
               }}
               hitSlop={12}
               style={{ width: 40 }}
@@ -879,7 +880,7 @@ export default function CommunityPackCreateScreen() {
             <TouchableOpacity
               onPress={() => {
                 Keyboard.dismiss();
-                router.back();
+                safeRouterBack(router, '/flashcards' as any);
               }}
               hitSlop={12}
               style={{ width: 40 }}

@@ -1,7 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { effectiveLessonStarScore } from './lesson_star_score';
+import { normalizeLessonPassCount } from './medal_utils';
 import {
   lessonBestScoreKey,
+  lessonPassCountKey,
   lessonProgressKey,
   levelExamKey,
   storageStudyTarget,
@@ -15,6 +17,7 @@ export type LessonsTabSnapshot = {
   persistedUnlocked: number[];
   scores: number[];
   progCounts: number[];
+  passCounts: number[];
   examResults: Record<string, { pct: number; passed: boolean }>;
   examBestPcts: Record<string, number>;
   examPassCounts: Record<string, number>;
@@ -39,7 +42,11 @@ export async function loadLessonsTabStateFromStorage(
   const metaKeys = ['tester_no_limits', unlockedKey] as const;
   const lessonKeys: string[] = [];
   for (let i = 1; i <= 32; i++) {
-    lessonKeys.push(lessonBestScoreKey(i, studyTarget), lessonProgressKey(i, studyTarget));
+    lessonKeys.push(
+      lessonBestScoreKey(i, studyTarget),
+      lessonProgressKey(i, studyTarget),
+      lessonPassCountKey(i, studyTarget),
+    );
   }
   const examKeys: string[] = [];
   for (const lvl of EXAM_LEVELS) {
@@ -66,17 +73,23 @@ export async function loadLessonsTabStateFromStorage(
 
   const scores: number[] = new Array(32);
   const progCounts: number[] = new Array(32);
+  const passCounts: number[] = new Array(32);
 
   for (let i = 0; i < 32; i++) {
     const num = i + 1;
     const bestScoreKey = lessonBestScoreKey(num, studyTarget);
     const progressKey = lessonProgressKey(num, studyTarget);
+    const passCountKey = lessonPassCountKey(num, studyTarget);
     const { score, correctCount } = effectiveLessonStarScore(
       map[bestScoreKey],
       map[progressKey],
     );
     scores[i] = score;
     progCounts[i] = correctCount;
+    passCounts[i] = normalizeLessonPassCount(
+      parseInt(map[passCountKey] || '0', 10) || 0,
+      score,
+    );
   }
 
   const examResults: Record<string, { pct: number; passed: boolean }> = {};
@@ -100,6 +113,7 @@ export async function loadLessonsTabStateFromStorage(
     persistedUnlocked,
     scores,
     progCounts,
+    passCounts,
     examResults,
     examBestPcts,
     examPassCounts,

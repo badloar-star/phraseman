@@ -22,6 +22,7 @@ import { updateMultipleTaskProgress } from './daily_tasks';
 import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import type { Lang } from '../constants/i18n';
+import { safeRouterBack } from './navigation_back';
 
 const REFEREE_BONUS = 15;
 const REFERRER_BONUS = 20;
@@ -348,7 +349,7 @@ export default function SettingsInviteFriend() {
           <TouchableOpacity
             onPress={() => {
               hapticTap();
-              router.back();
+              safeRouterBack(router, '/(tabs)/settings' as any);
             }}
             style={{ marginRight: 12, padding: 4 }}
           >

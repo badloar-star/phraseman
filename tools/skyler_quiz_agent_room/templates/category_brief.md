@@ -37,9 +37,29 @@ cannot prove a fact, rule, answer key, or explanation.
 - Item types:
 - Required locales:
 
+## Release Policy
+
+- Environment: `dev-only`
+- Production activation: `blocked_until_explicit_user_approval`
+- Production mapping notes:
+
+## Visual Asset Plan
+
+Complete the AI visual asset pass before quiz drafting. Generate DALL-E/imagegen
+theme card backgrounds and theme logos for all active app theme modes: `forest`,
+`dark`, `neon`, `neonGreen`, `gold`, `coral`, `minimalLight`, `minimalDark`.
+
+- Existing style reference:
+- Theme card background asset paths:
+- Theme logo asset paths:
+- Source image paths:
+- Generated asset manifest:
+- Notes on fit/no text/no watermark:
+
 ## Blockers
 
 - [ ] Missing official source
+- [ ] Missing AI visual asset pass
 - [ ] Ambiguous grammar/fact
 - [ ] Weak distractors
 - [ ] Locale review missing

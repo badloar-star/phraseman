@@ -19,6 +19,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
+import { safeRouterBack } from './navigation_back';
 import {
   AVATAR_AURA_BUY_COST,
   AVATAR_AURA_GIFT_OWNED_KEY,
@@ -766,7 +767,7 @@ export default function AvatarSelect() {
       <View style={{ paddingTop: insets.top + 8, paddingHorizontal: 16, paddingBottom: 10, flexDirection: 'row', alignItems: 'center' }}>
         <TouchableOpacity
           style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginRight: 12 }}
-          onPress={() => { hapticTap(); router.back(); }}
+          onPress={() => { hapticTap(); safeRouterBack(router); }}
           activeOpacity={0.7}
         >
           <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
@@ -989,12 +990,27 @@ export default function AvatarSelect() {
                   paddingVertical: 8,
                 }}
               >
-                <View style={{ width: '100%', height: CUSTOM_AVATAR_SLOT_SIZE, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                  <CustomAvatarBadge avatarId={avatar.id} gradientId={gradientId} logoColor={logoColor} size={CUSTOM_AVATAR_BADGE_SIZE} />
+                <View style={{ width: '100%', height: CUSTOM_AVATAR_SLOT_SIZE, alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
+                  <CustomAvatarBadge
+                    avatarId={avatar.id}
+                    gradientId={gradientId}
+                    logoColor={logoColor}
+                    size={CUSTOM_AVATAR_BADGE_SIZE}
+                    style={{ alignSelf: 'center' }}
+                  />
                 </View>
-                <View style={{ marginTop: 6, minHeight: 17, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ width: '100%', marginTop: 6, minHeight: 17, alignItems: 'center', justifyContent: 'center' }}>
                   {isOwned
-                    ? <Text style={{ color: isGifted ? t.accent : t.textPrimary, fontSize: 10, fontWeight: '900' }}>{isGifted ? 'Подарок' : 'Куплен'}</Text>
+                    ? (
+                      <Text
+                        numberOfLines={1}
+                        adjustsFontSizeToFit
+                        minimumFontScale={0.78}
+                        style={{ width: '100%', color: isGifted ? t.accent : t.textPrimary, fontSize: 10, fontWeight: '900', textAlign: 'center' }}
+                      >
+                        {isGifted ? 'Получено' : 'Куплен'}
+                      </Text>
+                    )
                     : <ShardCost amount={CUSTOM_AVATAR_BUY_COST} color={t.textMuted} />}
                 </View>
               </TouchableOpacity>

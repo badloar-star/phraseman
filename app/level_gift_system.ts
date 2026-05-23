@@ -14,6 +14,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { InteractionManager } from 'react-native';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { addArenaPlaysBonusForToday } from './arena_daily_limit';
 import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
@@ -43,7 +44,7 @@ import {
   AVATAR_AURAS,
   USER_AVATAR_AURA_KEY,
 } from '../constants/avatar_auras';
-import { lessonBonusHintsKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { lessonBonusHintsKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 export type GiftRarity = 'common' | 'rare' | 'epic';
 
@@ -264,6 +265,36 @@ export function giftDescForLang(g: GiftDef, lang: Lang): string {
     tr: planned?.tr ?? g.descES ?? g.descRU,
     pl: planned?.pl ?? g.descES ?? g.descRU,
   });
+}
+
+const PREMIUM_GIFT_GENERIC_DESC_IDS = new Set<GiftId>([
+  'prem_shards_10',
+  'prem_shards_15',
+  'prem_shards_20',
+]);
+
+const isPremiumLevelGiftCopy = (id: GiftId): boolean =>
+  id.startsWith('prem_') || id.startsWith('premium_');
+
+const stripPremiumGiftMarker = (value: string): string => {
+  const stripped = value
+    .replace(/\s*\((?:premium|премиум|преміум)\)\s*/gi, ' ')
+    .replace(/(^|\s)(?:premium|премиум|преміум)[-\s]+/gi, '$1')
+    .replace(/\s+(?:premium|премиум|преміум)\b/gi, ' ')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+  return stripped ? stripped.charAt(0).toLocaleUpperCase() + stripped.slice(1) : value;
+};
+
+export function giftDisplayTitleForLang(g: GiftDef, lang: Lang): string {
+  const title = giftTitleForLang(g, lang);
+  return isPremiumLevelGiftCopy(g.id) ? stripPremiumGiftMarker(title) : title;
+}
+
+export function giftDisplayDescForLang(g: GiftDef, lang: Lang): string {
+  if (PREMIUM_GIFT_GENERIC_DESC_IDS.has(g.id)) return '';
+  const desc = giftDescForLang(g, lang);
+  return isPremiumLevelGiftCopy(g.id) ? stripPremiumGiftMarker(desc) : desc;
 }
 
 export function giftLocaleStrings(lang: Lang, g: GiftDef): { title: string; desc: string } {
@@ -1100,6 +1131,29 @@ export interface ApplyGiftResult {
   cosmeticUnlocked?: GiftCosmeticUnlock;
 }
 
+const MARKETPLACE_CACHE_PRIME_DELAY_MS = 1400;
+const scheduledMarketplaceCachePrimeTargets = new Set<string>();
+
+const scheduleMarketplaceCachePrime = (studyTarget?: RuntimeStudyTarget): void => {
+  const target = storageStudyTarget(studyTarget);
+  if (scheduledMarketplaceCachePrimeTargets.has(target)) return;
+  scheduledMarketplaceCachePrimeTargets.add(target);
+
+  const schedule = () => {
+    const timer = setTimeout(() => {
+      scheduledMarketplaceCachePrimeTargets.delete(target);
+      void primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget).catch(() => {});
+    }, MARKETPLACE_CACHE_PRIME_DELAY_MS);
+    (timer as any)?.unref?.();
+  };
+
+  try {
+    InteractionManager.runAfterInteractions(schedule);
+  } catch {
+    schedule();
+  }
+};
+
 const applyEnergyBonusN = async (
   n: 1 | 2 | 3,
   currentEnergy: number,
@@ -1253,13 +1307,13 @@ export const applyGift = async (
       case 'prem_pack_48h': {
         const trial = await setRandomPackGiftTrial48h(opts?.studyTarget);
         if (!trial) return { success: false };
-        await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(opts?.studyTarget);
+        scheduleMarketplaceCachePrime(opts?.studyTarget);
         break;
       }
       case 'pack_voucher_48h': {
         const trial = await setRandomPackGiftTrial48h(opts?.studyTarget);
         if (!trial) return { success: false };
-        await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(opts?.studyTarget);
+        scheduleMarketplaceCachePrime(opts?.studyTarget);
         break;
       }
       case 'prem_level_unlock_negotiator':
@@ -1271,7 +1325,7 @@ export const applyGift = async (
         if (!packIdGift) break;
         await addOwnedPackId(packIdGift, opts?.studyTarget);
         await pushPremiumPackUnlockGiftReceivedPackId(packIdGift);
-        await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(opts?.studyTarget);
+        scheduleMarketplaceCachePrime(opts?.studyTarget);
         break;
       }
       default:

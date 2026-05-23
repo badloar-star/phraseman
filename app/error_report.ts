@@ -22,7 +22,7 @@ const getFirestore = () => {
 };
 
 /**
- * Структурированный репорт.
+ * Structured bug report.
  *
  * dataId  — машинно-читаемый ключ для поиска в коде:
  *   "lesson_5_phrase_42"         → grep lesson 5 data, index 42
@@ -34,11 +34,13 @@ const getFirestore = () => {
  *   "theory_lesson_7"            → lesson_help.tsx, lessonId=7
  *   "review_she_insisted"        → grep phrase в active_recall data
  */
-export const ERROR_REPORT_COMMENT_MIN_LEN = 5;
+export const ERROR_REPORT_COMMENT_MIN_LEN = 10;
+export const ERROR_REPORT_FREE_TEXT_CATEGORY = 'free_text';
 
 export interface ErrorReportPayload {
   screen: string;
-  category: string;
+  /** Legacy/admin grouping field. The app now submits free-text reports only. */
+  category?: string;
   dataId: string;
   dataText: string;
   /** What the user actually entered/assembled before sending the report. */
@@ -125,11 +127,12 @@ export function buildCopyText(
   payload: ErrorReportPayload,
   meta: Awaited<ReturnType<typeof collectMetadata>>,
 ): string {
+  const category = payload.category?.trim() || ERROR_REPORT_FREE_TEXT_CATEGORY;
   const lines = [
     '=== PHRASEMAN BUG REPORT ===',
     `dataId:    ${payload.dataId}`,
     `screen:    ${payload.screen}`,
-    `category:  ${payload.category}`,
+    `category:  ${category}`,
     `user:      ${meta.userName} #${meta.uid.slice(-4)} | Lv${meta.userLevel} | ${meta.userXP} XP | streak ${meta.userStreak} | premium: ${meta.userPremium} | days: ${meta.userDaysInApp}`,
     `device:    ${meta.deviceOS} ${meta.deviceOSVersion} | ${meta.deviceModel} | ${meta.screenWidth}x${meta.screenHeight} @${meta.pixelRatio}x | app v${meta.appVersion}`,
     `lang:      ${meta.userLanguage}`,
@@ -154,6 +157,7 @@ export const submitErrorReport = async (
   if (commentTrimmed.length < ERROR_REPORT_COMMENT_MIN_LEN) {
     return 'invalid_comment';
   }
+  const category = payload.category?.trim() || ERROR_REPORT_FREE_TEXT_CATEGORY;
 
   const now = Date.now();
   const lastRaw = await AsyncStorage.getItem(THROTTLE_KEY);
@@ -169,7 +173,7 @@ export const submitErrorReport = async (
     db.collection('error_reports').add({
       // Content
       screen:    payload.screen,
-      category:  payload.category,
+      category,
       dataId:    payload.dataId,
       dataText:  payload.dataText,
       userAnswer: (payload.userAnswer ?? '').trim(),
@@ -192,7 +196,7 @@ export const submitErrorReport = async (
       userLanguage:   meta.userLanguage,
       userDaysInApp:  meta.userDaysInApp,
       // Meta
-      copyText:  buildCopyText(payload, meta),
+      copyText:  buildCopyText({ ...payload, category, comment: commentTrimmed }, meta),
       createdAt: new Date().toISOString(),
       status: 'new',
     }).catch(() => {/* Firestore недоступен — XP уже выдан */});

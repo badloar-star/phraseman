@@ -6,6 +6,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
+import { safeRouterBack } from './navigation_back';
 
 export default function WebScreen() {
   const { url, title } = useLocalSearchParams<{ url?: string; title?: string }>();
@@ -38,7 +39,7 @@ export default function WebScreen() {
     <ScreenGradient artBackdrop="settings">
       <View style={styles.container}>
       <View style={[styles.header, { backgroundColor: t.bgCard, borderBottomColor: t.border }]}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.back}>
+        <TouchableOpacity onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)} style={styles.back}>
           <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
         </TouchableOpacity>
         {title ? (

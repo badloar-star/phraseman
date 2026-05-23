@@ -17,6 +17,7 @@
   "exclude": [
     "functions",
     "subscription-recovery",
+    "tmp",
     "node_modules"
   ]
 }

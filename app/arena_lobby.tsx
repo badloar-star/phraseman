@@ -40,16 +40,33 @@ import { getLevelFromXP } from '../constants/theme';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AvatarView from '../components/AvatarView';
 import GoldBevel from '../components/GoldBevel';
-import { backgroundTransitionKey, usePersistentBackgroundLayers } from '../components/backgroundTransition';
-import { getAppArtBackdropSource } from '../components/appArtBackdropRegistry';
+import {
+    backgroundTransitionKey,
+    FABRIC_BACKGROUND_TRANSITIONS_ENABLED,
+    usePersistentBackgroundLayers,
+} from '../components/backgroundTransition';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { subscribeTodayArenaHillThrone, type ArenaHillThrone } from './services/arena_hill';
 import { subscribeArenaFeatureFlags, type ArenaFeatureFlags, } from './services/arena_feature_flags';
-/** Підказка idle «скільки шукають у мережі» (день 1–7, ніч 1–2): спільний кеш, оновлення ~1 хв. */
-const IDLE_QUEUE_HINT_TTL_MS = 60 * 1000;
+import { safeRouterBack } from './navigation_back';
+import {
+    getOrRefreshIdleQueueHintCount,
+    IDLE_QUEUE_HINT_TTL_MS,
+    sanitizeArenaIdleQueueHintCount,
+} from './arena_queue_hint';
 const USE_ELITE_ARENA_LOBBY = true;
 const ARENA_HERO_BACKGROUND_FADE_MS = 980;
 const ARENA_HERO_BACKGROUND_FADE_OUT_DELAY_MS = 80;
+const ARENA_STAGE_BACKDROP_SCALE = 1.20;
+const ARENA_STAGE_BACKDROP_SHIFT_X = 26;
+const ARENA_STAGE_BACKDROPS = {
+    dark: require('../assets/images/arena/knowledge-arena-dark.webp'),
+    neon: require('../assets/images/arena/knowledge-arena-neon.webp'),
+    gold: require('../assets/images/arena/knowledge-arena-gold.webp'),
+    coral: require('../assets/images/arena/knowledge-arena-coral.webp'),
+    minimalLight: require('../assets/images/arena/knowledge-arena-minimal-light.webp'),
+    minimalDark: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
+} as const;
 const ARENA_TICKET_ICONS = {
     dark: require('../assets/images/arena_tickets/ticket-dark.webp'),
     neon: require('../assets/images/arena_tickets/ticket-neon.webp'),
@@ -58,12 +75,6 @@ const ARENA_TICKET_ICONS = {
     minimalLight: require('../assets/images/arena_tickets/ticket-minimal-light.webp'),
     minimalDark: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
 } as const;
-type IdleQueueHintCache = {
-    value: number;
-    at: number;
-    night: boolean;
-};
-let idleQueueHintCache: IdleQueueHintCache | null = null;
 function alphaColor(color: string, alpha: number, defaultRgb = '255,255,255'): string {
     if (/^#[0-9a-f]{6}$/i.test(color)) {
         const r = parseInt(color.slice(1, 3), 16);
@@ -72,11 +83,6 @@ function alphaColor(color: string, alpha: number, defaultRgb = '255,255,255'): s
         return `rgba(${r},${g},${b},${alpha})`;
     }
     return `rgba(${defaultRgb},${alpha})`;
-}
-/** 20:00–08:00 за локальним часом пристрою — показуємо не більше 2 «у пошуку». */
-function isNightArenaIdleQueueHint(): boolean {
-    const h = new Date().getHours();
-    return h >= 20 || h < 8;
 }
 /** Склонение для «+N осколк…» в подсказке ставки (RU). */
 function ruWinShardsPhrase(count: number): string {
@@ -88,20 +94,6 @@ function ruWinShardsPhrase(count: number): string {
     if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14))
         return `${n} осколка`;
     return `${n} осколков`;
-}
-function getOrRefreshIdleQueueHintCount(): number {
-    const now = Date.now();
-    const night = isNightArenaIdleQueueHint();
-    const staleByTime = !idleQueueHintCache || now - idleQueueHintCache.at >= IDLE_QUEUE_HINT_TTL_MS;
-    const staleByDaySegment = !!idleQueueHintCache && idleQueueHintCache.night !== night;
-    if (!idleQueueHintCache || staleByTime || staleByDaySegment) {
-        idleQueueHintCache = {
-            value: night ? Math.floor(Math.random() * 2) + 1 : Math.floor(Math.random() * 7) + 1,
-            at: now,
-            night,
-        };
-    }
-    return idleQueueHintCache.value;
 }
 function formatElapsed(ms: number): string {
     const s = Math.floor(ms / 1000);
@@ -181,6 +173,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const [rawSearchingTotal, setRawSearchingTotal] = useState(0);
     /** Підказка «скільки шукають матч» у idle: день 1–7, ніч 20:00–08:00 — 1–2; не частіше ніж раз на хвилину. */
     const [idleQueueHintDisplayCount, setIdleQueueHintDisplayCount] = useState(getOrRefreshIdleQueueHintCount);
+    const idleQueueHintCount = sanitizeArenaIdleQueueHintCount(idleQueueHintDisplayCount);
     /** Ставка осколками на следующий рейтинг-матч (только «Найти матч» / бот из очереди). */
     const [rankedWagerPending, setRankedWagerPending] = useState<ArenaRankedPendingWager | null>(null);
     /** Пока false — не показываем строку «при выигрыше +…» до чтения AsyncStorage. */
@@ -1175,8 +1168,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
         const db = (() => {
             if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED)
                 return null;
-            // eslint-disable-next-line @typescript-eslint/no-require-imports
             try {
+                // eslint-disable-next-line @typescript-eslint/no-require-imports
                 return require('@react-native-firebase/firestore').default();
             }
             catch {
@@ -1349,35 +1342,21 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 : gold
                     ? ['rgba(0,0,0,0.18)', 'rgba(3,3,3,0.16)', 'rgba(0,0,0,0.74)']
                     : ['rgba(0,0,0,0.16)', 'rgba(0,0,0,0.24)', 'rgba(0,0,0,0.72)'],
-            screenHeroOpacity: light ? 0.06 : gold ? 0.19 : neon ? 0.10 : 0.14,
-            screenHeroScrimColors: light
-                ? ['rgba(255,255,255,0.72)', 'rgba(255,255,255,0.58)', 'rgba(255,255,255,0.86)']
-                : gold
-                    ? ['rgba(0,0,0,0.60)', 'rgba(0,0,0,0.38)', 'rgba(0,0,0,0.92)']
-                    : ['rgba(0,0,0,0.64)', 'rgba(0,0,0,0.44)', 'rgba(0,0,0,0.90)'],
         };
     }, [t, themeMode]);
-    const arenaScreenHeroOpacity = arenaHeroEntrance.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, arenaGlass.screenHeroOpacity],
-    });
-    const arenaScreenHeroScale = arenaHeroEntrance.interpolate({
-        inputRange: [0, 1],
-        outputRange: [1.28, 1.18],
-    });
     const arenaHeroOpacity = arenaHeroEntrance.interpolate({
         inputRange: [0, 1],
         outputRange: [0, arenaGlass.heroOpacity],
     });
     const arenaHeroScale = arenaHeroEntrance.interpolate({
         inputRange: [0, 1],
-        outputRange: [1.12, 1],
+        outputRange: [ARENA_STAGE_BACKDROP_SCALE + 0.08, ARENA_STAGE_BACKDROP_SCALE],
     });
     const arenaHeroTranslateY = arenaHeroEntrance.interpolate({
         inputRange: [0, 1],
         outputRange: [8, 0],
     });
-    const arenaBackdropSource = getAppArtBackdropSource('arena', themeMode);
+    const arenaBackdropSource = ARENA_STAGE_BACKDROPS[themeMode] ?? ARENA_STAGE_BACKDROPS.dark;
     const { layers: arenaBackdropLayers } = usePersistentBackgroundLayers({
         value: arenaBackdropSource,
         transitionKey: `${themeMode}:${backgroundTransitionKey(arenaBackdropSource)}`,
@@ -1387,22 +1366,6 @@ export default function DuelLobbyScreen({ isTab = false }: {
         maxLayers: 1,
     });
     return (<ScreenGradient>
-      {!isTab && <View pointerEvents="none" style={styles.arenaScreenHeroLayer}>
-        {arenaBackdropLayers.map(layer => (<Animated.View key={`screen-hero-${layer.id}`} pointerEvents="none" style={[styles.arenaScreenHeroImage, { opacity: layer.opacity }]}>
-          <Animated.Image source={layer.value as any} resizeMode="cover" fadeDuration={0} style={[
-              styles.arenaScreenHeroImage,
-              {
-                  opacity: arenaScreenHeroOpacity,
-                  transform: [{ scale: arenaScreenHeroScale }],
-              },
-          ]}/>
-        </Animated.View>))}
-        <LinearGradient colors={arenaGlass.screenHeroScrimColors as [
-            string,
-            string,
-            string
-        ]} locations={[0, 0.48, 1]} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={styles.arenaScreenHeroScrim}/>
-      </View>}
       <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}
     /* В режиме таба верхний inset уже даёт (tabs)/_layout (paddingTop: insets.top). */
     edges={isTab ? [] : ['top', 'bottom']}>
@@ -1413,11 +1376,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
             if (isTab) {
                 goHome();
             }
-            else if (router.canGoBack()) {
-                router.back();
-            }
             else {
-                router.replace('/(tabs)/home' as any);
+                safeRouterBack(router, '/(tabs)/home' as any);
             }
         }} style={[styles.backBtn, { backgroundColor: 'rgba(255,255,255,0.075)', borderColor: 'rgba(255,255,255,0.14)' }]}>
           <Ionicons name="chevron-back" size={20} color={t.textPrimary}/>
@@ -1704,15 +1664,28 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 themeMode === 'gold' ? goldShadow(3) : null,
                 null,
             ]}>
-                {arenaBackdropLayers.map(layer => (<Animated.View key={`card-hero-${layer.id}`} pointerEvents="none" style={[styles.arenaHeroImage, { opacity: layer.opacity }]}>
+                {arenaBackdropLayers.map(layer => (FABRIC_BACKGROUND_TRANSITIONS_ENABLED ? (<Animated.View key={`card-hero-${layer.id}`} pointerEvents="none" style={[styles.arenaHeroImage, { opacity: layer.opacity }]}>
                   <Animated.Image source={layer.value as any} resizeMode="cover" fadeDuration={0} style={[
+                      styles.arenaHeroImage,
+                      {
+                          opacity: arenaHeroOpacity,
+                          transform: [
+                              { scale: arenaHeroScale },
+                              { translateX: ARENA_STAGE_BACKDROP_SHIFT_X },
+                              { translateY: arenaHeroTranslateY },
+                          ],
+                      },
+                  ]}/>
+                </Animated.View>) : (<Image key={`card-hero-${layer.id}`} source={layer.value as any} resizeMode="cover" fadeDuration={0} style={[
                     styles.arenaHeroImage,
                     {
-                        opacity: arenaHeroOpacity,
-                        transform: [{ scale: arenaHeroScale }, { translateY: arenaHeroTranslateY }],
+                        opacity: arenaGlass.heroOpacity,
+                        transform: [
+                            { scale: ARENA_STAGE_BACKDROP_SCALE },
+                            { translateX: ARENA_STAGE_BACKDROP_SHIFT_X },
+                        ],
                     },
-                ]}/>
-                </Animated.View>))}
+                ]}/>)))}
                 <LinearGradient pointerEvents="none" colors={arenaGlass.heroScrimColors as [
             string,
             string,
@@ -1725,29 +1698,14 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     <View style={[styles.arenaStatusDot, { backgroundColor: arenaGlass.live }]}/>
                     <Text style={[styles.arenaStatusText, { color: arenaGlass.liveText, fontSize: f.caption }]}>
                       {triLang(lang, {
-                ru: `${idleQueueHintDisplayCount} в поиске`,
-                uk: `${idleQueueHintDisplayCount} у пошуку`,
-                es: `${idleQueueHintDisplayCount} buscando`,
-                'pt-BR': `${idleQueueHintDisplayCount} procurando`,
-                vi: `${idleQueueHintDisplayCount} đang tìm`,
-                id: `${idleQueueHintDisplayCount} mencari`,
-                tr: `${idleQueueHintDisplayCount} arıyor`,
-                pl: `${idleQueueHintDisplayCount} szuka`,
-            })}
-                    </Text>
-                  </View>
-                  <View style={[styles.arenaModePill, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
-                    <Ionicons name="trophy-outline" size={14} color={arenaGlass.warm}/>
-                    <Text style={[styles.arenaModeText, { color: arenaGlass.warm, fontSize: f.caption }]}>
-                      {triLang(lang, {
-                ru: 'Рейтинг',
-                uk: 'Рейтинг',
-                es: 'Clasificatoria',
-                'pt-BR': "Ranqueado",
-                vi: "Xếp hạng",
-                id: "Peringkat",
-                tr: "Sıralamalı",
-                pl: "Rankingowy",
+                ru: `${idleQueueHintCount} в поиске`,
+                uk: `${idleQueueHintCount} у пошуку`,
+                es: `${idleQueueHintCount} buscando`,
+                'pt-BR': `${idleQueueHintCount} procurando`,
+                vi: `${idleQueueHintCount} đang tìm`,
+                id: `${idleQueueHintCount} mencari`,
+                tr: `${idleQueueHintCount} arıyor`,
+                pl: `${idleQueueHintCount} szuka`,
             })}
                     </Text>
                   </View>
@@ -2181,18 +2139,6 @@ const styles = StyleSheet.create({
     infoZone: {
         minHeight: 0,
     },
-    arenaScreenHeroLayer: {
-        ...StyleSheet.absoluteFillObject,
-        overflow: 'hidden',
-    },
-    arenaScreenHeroImage: {
-        ...StyleSheet.absoluteFillObject,
-        width: '100%',
-        height: '100%',
-    },
-    arenaScreenHeroScrim: {
-        ...StyleSheet.absoluteFillObject,
-    },
     card: { borderRadius: 20, borderWidth: 1, padding: 20, gap: 14 },
     cardLabel: { fontWeight: '500' },
     sizeButtons: { flexDirection: 'row', gap: 10 },
@@ -2276,17 +2222,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#58E58B',
     },
     arenaStatusText: { fontWeight: '900' },
-    arenaModePill: {
-        minHeight: 34,
-        borderRadius: 17,
-        borderWidth: 1,
-        paddingHorizontal: 11,
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 6,
-        backgroundColor: 'rgba(255,255,255,0.055)',
-    },
-    arenaModeText: { fontWeight: '900' },
     arenaStageCopy: {
         gap: 2,
     },

@@ -20,6 +20,7 @@ import {
   getNotifSettingsSnapshot,
 } from './notifications';
 import { triLang, type Lang } from '../constants/i18n';
+import { safeRouterBack } from './navigation_back';
 
 const DAYS_RU = ['Понедельник','Вторник','Среда','Четвер','Пятница','Суббота','Воскресенье'];
 const DAYS_UK = ['Понеділок','Вівторок','Середа','Четвер','П\'ятниця','Субота','Неділя'];
@@ -214,8 +215,7 @@ export default function SettingsNotifications() {
       <View style={{ flexDirection:'row', alignItems:'center', padding:15, borderBottomWidth:0.5, borderBottomColor:t.border }}>
         <TouchableOpacity onPress={() => {
           hapticTap();
-          if (router.canGoBack()) router.back();
-          else router.replace('/(tabs)/home' as any);
+          safeRouterBack(router, '/(tabs)/home' as any);
         }}>
           <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
         </TouchableOpacity>

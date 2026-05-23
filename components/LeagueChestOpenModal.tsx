@@ -59,7 +59,7 @@ const REWARD_COSMETIC_ICON_SIZE = 58;
 const PREVIEW_REWARDS: LeagueChestRewardDrop[] = [
   { id: 'preview_shards', kind: 'shards', rarity: 'common', amount: 24 },
   { id: 'preview_energy', kind: 'energy_fast_recovery', rarity: 'rare', recoveryMs: 5 * 60 * 1000 },
-  { id: 'preview_aura', kind: 'avatar_aura', rarity: 'epic', auraId: 'aura-gold' },
+  { id: 'preview_aura', kind: 'avatar_aura', rarity: 'epic', auraId: 'aura-violet' },
   { id: 'preview_gold', kind: 'gold_theme', rarity: 'legendary' },
 ];
 
@@ -195,7 +195,7 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
   }
 
   if (drop.kind === 'avatar_aura') {
-    const aura = getAvatarAuraById(drop.auraId) ?? getAvatarAuraById('aura-gold')!;
+    const aura = getAvatarAuraById(drop.auraId) ?? getAvatarAuraById('aura-violet')!;
     const preview = cosmeticPreviewAvatar();
     return {
       title: triLang(lang, {

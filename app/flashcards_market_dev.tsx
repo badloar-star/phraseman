@@ -24,6 +24,8 @@ import { logFeatureOpened } from './firebase';
 import { actionToastTri, emitAppEvent } from './events';
 import { DEV_MODE, IS_BETA_TESTER } from './config';
 import { flashcardsOfficialPacksAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
+import { FLASHCARDS_MARKET_DEV_ROUTE_NAME } from '../constants/devRoutes';
+import { safeRouterBack } from './navigation_back';
 
 import { oskolokImageForPackShards } from './oskolok';
 
@@ -79,7 +81,7 @@ export default function FlashcardsMarketDevScreen() {
 
   useEffect(() => {
     loadData();
-    logFeatureOpened('flashcards_market_dev');
+    logFeatureOpened(FLASHCARDS_MARKET_DEV_ROUTE_NAME);
   }, [loadData]);
 
   const title = triLang(lang, {
@@ -202,7 +204,7 @@ export default function FlashcardsMarketDevScreen() {
         <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
           <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingTop: 10, paddingBottom: 8, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TouchableOpacity onPress={() => router.back()} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <TouchableOpacity onPress={() => safeRouterBack(router, '/flashcards' as any)} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
             </TouchableOpacity>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>{title}</Text>
@@ -230,7 +232,7 @@ export default function FlashcardsMarketDevScreen() {
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
 
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingTop: 10, paddingBottom: 8, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-          <TouchableOpacity onPress={() => router.back()} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+          <TouchableOpacity onPress={() => safeRouterBack(router, '/flashcards' as any)} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
           </TouchableOpacity>
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>{title}</Text>

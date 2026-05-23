@@ -84,6 +84,49 @@ const SHARD_TEAL_DIM = 'rgba(46,196,182,0.35)';
 
 const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
+function ShopIconImageWithFallback({
+  source,
+  size,
+  fallbackName,
+  fallbackColor,
+  recyclingKey,
+}: {
+  source?: any;
+  size: number;
+  fallbackName: keyof typeof Ionicons.glyphMap;
+  fallbackColor: string;
+  recyclingKey?: string;
+}) {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [source, recyclingKey]);
+
+  return (
+    <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
+      {!loaded || !source ? (
+        <Ionicons
+          name={fallbackName}
+          size={Math.max(15, Math.round(size * 0.62))}
+          color={fallbackColor}
+          style={{ position: 'absolute', opacity: 0.9 }}
+        />
+      ) : null}
+      {source ? (
+        <Image
+          recyclingKey={recyclingKey}
+          source={source}
+          style={{ width: size, height: size }}
+          contentFit="contain"
+          onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(false)}
+        />
+      ) : null}
+    </View>
+  );
+}
+
 function isPaywallAtmosphereMode(mode: ThemeMode): boolean {
   return mode === 'dark' || mode === 'neon' || mode === 'gold';
 }
@@ -1141,11 +1184,12 @@ export default function ShardsShopScreen() {
                       justifyContent: 'center',
                     }}
                   >
-                    <Image
+                    <ShopIconImageWithFallback
                       recyclingKey={pack.productId}
                       source={packShardImg}
-                      style={{ width: packPileDisplay, height: packPileDisplay }}
-                      contentFit="contain"
+                      size={packPileDisplay}
+                      fallbackName="diamond"
+                      fallbackColor={paywallMood ? SHARD_TEAL : t.accent}
                     />
                   </View>
                 </PulsingShardFrame>
@@ -1497,11 +1541,13 @@ export default function ShardsShopScreen() {
                               overflow: 'hidden',
                             }}
                           >
-                            {packArt ? (
-                              <Image source={packArt} style={{ width: 50, height: 50 }} contentFit="contain" />
-                            ) : (
-                              <Ionicons name={packIon} size={30} color={t.textPrimary} />
-                            )}
+                            <ShopIconImageWithFallback
+                              source={packArt}
+                              size={50}
+                              fallbackName={packIon}
+                              fallbackColor={t.textPrimary}
+                              recyclingKey={pack.id}
+                            />
                           </View>
                           <View style={{ flex: 1, minWidth: 0 }}>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>

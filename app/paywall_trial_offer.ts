@@ -1,5 +1,5 @@
 export type PaywallCloseReason = 'close' | 'continue_free';
-export type PaywallViewMode = 'purchase' | 'manage' | 'success';
+export type PaywallViewMode = 'purchase' | 'manage';
 
 export function shouldShowPrimaryTrialUi(params: {
   forceTrialUI: boolean;

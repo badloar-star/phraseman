@@ -44,6 +44,10 @@ let _pendingPush: {
 
 const PUSH_DEBOUNCE_MS = 30_000; // 30 секунд
 
+function isJestRuntime(): boolean {
+  return typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
+}
+
 // ── Кэш глобального рейтинга — читаем Firestore не чаще 1 раза в 10 минут ──
 /** Экспорт для сброса при pull-to-refresh в Зале славы. */
 export const GLOBAL_LB_ASYNC_CACHE_KEY = 'global_lb_cache_v4';
@@ -52,7 +56,7 @@ const LB_CACHE_TTL = 3 * 60 * 1000; // 3 минуты
 
 /** Прогрев кэша глобального топа при старте — экран «Зал славы» открывается без ожидания сети. */
 export function prefetchGlobalLeaderboard(): void {
-  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return;
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO || isJestRuntime()) return;
   void fetchGlobalLeaderboard().catch(() => {});
 }
 
@@ -123,6 +127,7 @@ export function pushMyScore(
   isVip?: boolean,
 ): Promise<void> {
   if (!CLOUD_SYNC_ENABLED || !name) return Promise.resolve();
+  if (isJestRuntime()) return Promise.resolve();
 
   // Накапливаем последние значения
   _pendingPush = { name, totalPoints, weekPoints, lang, avatar, frame, aura, streak, leagueId, isPremium, isVip };
@@ -138,6 +143,7 @@ export function pushMyScore(
       await _doPushMyScore(p.name, p.totalPoints, p.weekPoints, p.lang, p.avatar, p.streak, p.leagueId, p.frame, p.isPremium, p.aura, p.isVip);
       resolve();
     }, PUSH_DEBOUNCE_MS);
+    (_pushDebounceTimer as any)?.unref?.();
   });
 }
 
@@ -154,6 +160,7 @@ export async function pushMyScoreImmediate(
   aura?: string,
   isVip?: boolean,
 ): Promise<void> {
+  if (isJestRuntime()) return;
   if (_pushDebounceTimer) {
     clearTimeout(_pushDebounceTimer);
     _pushDebounceTimer = null;

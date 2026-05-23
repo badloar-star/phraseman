@@ -15,6 +15,7 @@ import {
 } from './phrase_analytics';
 import { getMistakeLogDebugSnapshot, type MistakeLogDebugSnapshot } from './mistake_log';
 import { hapticTap } from '../hooks/use-haptics';
+import { safeRouterBack } from './navigation_back';
 
 function StatCard({
   label,
@@ -136,7 +137,7 @@ export default function PosAnalyticsAuditScreen() {
     <ScreenGradient>
       <SafeAreaView testID="screen-pos-analytics-audit" style={{ flex: 1 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingVertical: 14 }}>
-          <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} hitSlop={12} style={{ padding: 4 }}>
+          <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/phrase_analytics_screen' as any); }} hitSlop={12} style={{ padding: 4 }}>
             <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
           </TouchableOpacity>
           <View style={{ flex: 1 }}>

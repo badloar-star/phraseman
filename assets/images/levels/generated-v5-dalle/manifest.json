@@ -1,0 +1,491 @@
+{
+  "version": "generated-v6-custom-avatar-hex",
+  "generatedAt": "2026-05-22T21:55:29.229Z",
+  "intent": "Level avatar hexes regenerated as the paid custom avatar card hex underlay only: no icon/logo, transparent corners, one centered number, and a smooth 60-step light-to-red progression.",
+  "finalCanvasSize": 512,
+  "referenceComponent": "components/CustomAvatarBadge.tsx",
+  "referenceViewBoxPoints": "50,3.5 93,26 93,74 50,96.5 7,74 7,26",
+  "referenceCanvasPoints": "256.0,18.0 476.0,133.0 476.0,379.0 256.0,494.0 36.0,379.0 36.0,133.0",
+  "levels": [
+    {
+      "level": 1,
+      "file": "assets/images/levels/generated-v5-dalle/1.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 31406
+    },
+    {
+      "level": 2,
+      "file": "assets/images/levels/generated-v5-dalle/2.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 33484
+    },
+    {
+      "level": 3,
+      "file": "assets/images/levels/generated-v5-dalle/3.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 34472
+    },
+    {
+      "level": 4,
+      "file": "assets/images/levels/generated-v5-dalle/4.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 32104
+    },
+    {
+      "level": 5,
+      "file": "assets/images/levels/generated-v5-dalle/5.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 33202
+    },
+    {
+      "level": 6,
+      "file": "assets/images/levels/generated-v5-dalle/6.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 34786
+    },
+    {
+      "level": 7,
+      "file": "assets/images/levels/generated-v5-dalle/7.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 33852
+    },
+    {
+      "level": 8,
+      "file": "assets/images/levels/generated-v5-dalle/8.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 35504
+    },
+    {
+      "level": 9,
+      "file": "assets/images/levels/generated-v5-dalle/9.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 35728
+    },
+    {
+      "level": 10,
+      "file": "assets/images/levels/generated-v5-dalle/10.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 36174
+    },
+    {
+      "level": 11,
+      "file": "assets/images/levels/generated-v5-dalle/11.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 35434
+    },
+    {
+      "level": 12,
+      "file": "assets/images/levels/generated-v5-dalle/12.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 37014
+    },
+    {
+      "level": 13,
+      "file": "assets/images/levels/generated-v5-dalle/13.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 38390
+    },
+    {
+      "level": 14,
+      "file": "assets/images/levels/generated-v5-dalle/14.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 36994
+    },
+    {
+      "level": 15,
+      "file": "assets/images/levels/generated-v5-dalle/15.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 38120
+    },
+    {
+      "level": 16,
+      "file": "assets/images/levels/generated-v5-dalle/16.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 38722
+    },
+    {
+      "level": 17,
+      "file": "assets/images/levels/generated-v5-dalle/17.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 37654
+    },
+    {
+      "level": 18,
+      "file": "assets/images/levels/generated-v5-dalle/18.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 39846
+    },
+    {
+      "level": 19,
+      "file": "assets/images/levels/generated-v5-dalle/19.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 38846
+    },
+    {
+      "level": 20,
+      "file": "assets/images/levels/generated-v5-dalle/20.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 40200
+    },
+    {
+      "level": 21,
+      "file": "assets/images/levels/generated-v5-dalle/21.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 38626
+    },
+    {
+      "level": 22,
+      "file": "assets/images/levels/generated-v5-dalle/22.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 40272
+    },
+    {
+      "level": 23,
+      "file": "assets/images/levels/generated-v5-dalle/23.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 41860
+    },
+    {
+      "level": 24,
+      "file": "assets/images/levels/generated-v5-dalle/24.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 40664
+    },
+    {
+      "level": 25,
+      "file": "assets/images/levels/generated-v5-dalle/25.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 42134
+    },
+    {
+      "level": 26,
+      "file": "assets/images/levels/generated-v5-dalle/26.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 42756
+    },
+    {
+      "level": 27,
+      "file": "assets/images/levels/generated-v5-dalle/27.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 41272
+    },
+    {
+      "level": 28,
+      "file": "assets/images/levels/generated-v5-dalle/28.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43144
+    },
+    {
+      "level": 29,
+      "file": "assets/images/levels/generated-v5-dalle/29.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43062
+    },
+    {
+      "level": 30,
+      "file": "assets/images/levels/generated-v5-dalle/30.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43606
+    },
+    {
+      "level": 31,
+      "file": "assets/images/levels/generated-v5-dalle/31.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 41658
+    },
+    {
+      "level": 32,
+      "file": "assets/images/levels/generated-v5-dalle/32.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 44274
+    },
+    {
+      "level": 33,
+      "file": "assets/images/levels/generated-v5-dalle/33.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43296
+    },
+    {
+      "level": 34,
+      "file": "assets/images/levels/generated-v5-dalle/34.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 41898
+    },
+    {
+      "level": 35,
+      "file": "assets/images/levels/generated-v5-dalle/35.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43100
+    },
+    {
+      "level": 36,
+      "file": "assets/images/levels/generated-v5-dalle/36.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43382
+    },
+    {
+      "level": 37,
+      "file": "assets/images/levels/generated-v5-dalle/37.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 42054
+    },
+    {
+      "level": 38,
+      "file": "assets/images/levels/generated-v5-dalle/38.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43596
+    },
+    {
+      "level": 39,
+      "file": "assets/images/levels/generated-v5-dalle/39.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43916
+    },
+    {
+      "level": 40,
+      "file": "assets/images/levels/generated-v5-dalle/40.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 42558
+    },
+    {
+      "level": 41,
+      "file": "assets/images/levels/generated-v5-dalle/41.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 40846
+    },
+    {
+      "level": 42,
+      "file": "assets/images/levels/generated-v5-dalle/42.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 42750
+    },
+    {
+      "level": 43,
+      "file": "assets/images/levels/generated-v5-dalle/43.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 42952
+    },
+    {
+      "level": 44,
+      "file": "assets/images/levels/generated-v5-dalle/44.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 41666
+    },
+    {
+      "level": 45,
+      "file": "assets/images/levels/generated-v5-dalle/45.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43158
+    },
+    {
+      "level": 46,
+      "file": "assets/images/levels/generated-v5-dalle/46.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43518
+    },
+    {
+      "level": 47,
+      "file": "assets/images/levels/generated-v5-dalle/47.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 41826
+    },
+    {
+      "level": 48,
+      "file": "assets/images/levels/generated-v5-dalle/48.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43478
+    },
+    {
+      "level": 49,
+      "file": "assets/images/levels/generated-v5-dalle/49.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43504
+    },
+    {
+      "level": 50,
+      "file": "assets/images/levels/generated-v5-dalle/50.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 44482
+    },
+    {
+      "level": 51,
+      "file": "assets/images/levels/generated-v5-dalle/51.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 42528
+    },
+    {
+      "level": 52,
+      "file": "assets/images/levels/generated-v5-dalle/52.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 44734
+    },
+    {
+      "level": 53,
+      "file": "assets/images/levels/generated-v5-dalle/53.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 45312
+    },
+    {
+      "level": 54,
+      "file": "assets/images/levels/generated-v5-dalle/54.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43984
+    },
+    {
+      "level": 55,
+      "file": "assets/images/levels/generated-v5-dalle/55.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 45306
+    },
+    {
+      "level": 56,
+      "file": "assets/images/levels/generated-v5-dalle/56.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 45646
+    },
+    {
+      "level": 57,
+      "file": "assets/images/levels/generated-v5-dalle/57.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 43936
+    },
+    {
+      "level": 58,
+      "file": "assets/images/levels/generated-v5-dalle/58.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 45756
+    },
+    {
+      "level": 59,
+      "file": "assets/images/levels/generated-v5-dalle/59.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 46042
+    },
+    {
+      "level": 60,
+      "file": "assets/images/levels/generated-v5-dalle/60.webp",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 46078
+    }
+  ]
+}

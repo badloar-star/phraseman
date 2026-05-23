@@ -4,7 +4,7 @@ Run: `2026-05-19_fr_inventory_v0a1`
 
 Decision: `HOLD`
 
-Generated at: 2026-05-22T08:31:15.255Z
+Generated at: 2026-05-22T14:02:49.239Z
 
 ## Readiness
 
@@ -34,7 +34,7 @@ Next recommended work:
 
 Severity: `blocker`
 Blocks: `generation`, `apply`
-Artifact: `docs/gustav/runs/2026-05-19_fr_inventory_v0a1/verdict.json`
+Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\verdict.json`
 
 Run verdict is HOLD, so generation/apply work is not allowed.
 
@@ -45,7 +45,7 @@ Required before work:
 
 Severity: `blocker`
 Blocks: `generation`, `apply`
-Artifact: `docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/achievement_taxonomy.json`
+Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\audits\achievement_taxonomy.json`
 
 Achievement taxonomy is HOLD with 42 blockers, 116 target achievements and 42 mixed achievements.
 
@@ -56,7 +56,7 @@ Required before work:
 
 Severity: `blocker`
 Blocks: `generation`, `apply`
-Artifact: `docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/local_cloud_decision_table.json`
+Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\audits\local_cloud_decision_table.json`
 
 Local/cloud decision table is HOLD with 22 blockers.
 
@@ -67,7 +67,7 @@ Required before work:
 
 Severity: `blocker`
 Blocks: `generation`, `apply`
-Artifact: `docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/target_key_integration_plan.json`
+Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\audits\target_key_integration_plan.json`
 
 Target key integration plan is HOLD with 14 blocker domains and 330 raw target-sensitive storage records.
 
@@ -80,7 +80,7 @@ Required before work:
 
 Severity: `blocker`
 Blocks: `generation`, `apply`
-Artifact: `docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/surface_route_inventory.json`
+Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\audits\surface_route_inventory.json`
 
 Surface inventory is HOLD with 66 blocker surfaces, 18 user-facing target surfaces and 9 dev StudyTarget surfaces.
 
@@ -92,7 +92,7 @@ Required before work:
 
 Severity: `blocker`
 Blocks: `apply`
-Artifact: `docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/generated_content_audit.json`
+Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\audits\generated_content_audit.json`
 
 No generated content audit exists. This is expected before generation starts, but it blocks production apply.
 
@@ -103,7 +103,7 @@ Required before work:
 
 Severity: `blocker`
 Blocks: `apply`
-Artifact: `docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/file_changes.json`
+Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\apply_plan\file_changes.json`
 
 Apply plan exists with status HOLD, approvalStatus=not_requested, files=83, dirty overlaps=20, plan blockers=2, mayModifyProductionAppFiles=false. Production app files must not be changed yet.
 

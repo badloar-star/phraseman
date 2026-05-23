@@ -9,5 +9,5 @@ export default function PosAnalyticsAuditGate() {
     const Real = require('./_pos_analytics_audit').default;
     return <Real />;
   }
-  return <DeferredRedirect href={'/(tabs)/' as any} />;
+  return <DeferredRedirect href={'/(tabs)/home' as any} />;
 }

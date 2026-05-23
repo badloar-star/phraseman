@@ -20,7 +20,7 @@
  *   Неправильно → красный фидбэк + правильный ответ → markReviewed(false) → далее вручную
  *
  * Связь с home.tsx:
- *   После сессии router.back() → focusTick → countDueItemsToday() → бейдж обновляется
+ *   После сессии safeRouterBack() → focusTick → countDueItemsToday() → бейдж обновляется
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
@@ -64,6 +64,7 @@ import { logMistake, type MistakeTokenMeta } from './mistake_log';
 import { resolvePhraseMistakeToken, resolveSlotMistake } from './mistake_token_resolver';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { registerXP } from './xp_manager';
+import { safeRouterBack } from './navigation_back';
 import ReportErrorButton from '../components/ReportErrorButton';
 import {
   buildMeaningOptions,
@@ -1039,7 +1040,7 @@ export default function ReviewScreen() {
       <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 12 }}>
-          <TouchableOpacity onPress={() => router.back()} style={{ padding: 4 }}>
+          <TouchableOpacity onPress={() => safeRouterBack(router)} style={{ padding: 4 }}>
             <Ionicons name="chevron-back" size={26} color={sx.primary} />
           </TouchableOpacity>
           <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
@@ -1082,7 +1083,7 @@ export default function ReviewScreen() {
             })}
           </Text>
           <TouchableOpacity
-            onPress={() => router.back()}
+            onPress={() => safeRouterBack(router)}
             style={{ marginTop: 32, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 28, paddingVertical: 14 }}
           >
             <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
@@ -1189,9 +1190,9 @@ export default function ReviewScreen() {
               pl: "Frazy z błędami wrócą jutro",
             })}
           </Text>
-          {/* router.back() → home.tsx обновит dueCount через focusTick → бейдж исчезнет */}
+          {/* safeRouterBack() -> home.tsx обновит dueCount через focusTick -> бейдж исчезнет */}
           <TouchableOpacity
-            onPress={() => router.back()}
+            onPress={() => safeRouterBack(router)}
             style={{ marginTop: 32, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 28, paddingVertical: 14 }}
           >
             <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
@@ -1261,7 +1262,7 @@ export default function ReviewScreen() {
               pl: "Nie udało się wczytać karty. Stuknij \"Wstecz\" i spróbuj ponownie.",
             })}
           </Text>
-          <TouchableOpacity onPress={() => router.back()} style={{ marginTop: 24, padding: 14 }}>
+          <TouchableOpacity onPress={() => safeRouterBack(router)} style={{ marginTop: 24, padding: 14 }}>
             <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '700' }}>
               {triLang(lang, {
                 ru: 'Назад',
@@ -1304,7 +1305,7 @@ export default function ReviewScreen() {
 
       {/* Хедер: назад + заголовок + счётчик */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 12, gap: 12 }}>
-        <TouchableOpacity onPress={() => router.back()} style={{ padding: 4 }}>
+        <TouchableOpacity onPress={() => safeRouterBack(router)} style={{ padding: 4 }}>
           <Ionicons name="chevron-back" size={26} color={sx.primary} />
         </TouchableOpacity>
         <View style={{ flex: 1 }}>

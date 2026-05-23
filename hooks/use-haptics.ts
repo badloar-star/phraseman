@@ -3,7 +3,7 @@ import * as Haptics from 'expo-haptics';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 let cachedHapticTap: boolean | null = null;
-export const HAPTIC_TAP_COOLDOWN_MS = 180;
+export const HAPTIC_TAP_COOLDOWN_MS = 80;
 export const HAPTIC_FEEDBACK_COOLDOWN_MS = 4_500;
 let lastTapHapticAt = Number.NEGATIVE_INFINITY;
 let lastFeedbackHapticAt = Number.NEGATIVE_INFINITY;

@@ -44,6 +44,7 @@ import {
   studyTargetsForSourceLocale,
 } from '../study_target';
 import { triLang, type Lang } from '../../constants/i18n';
+import { SETTINGS_TESTERS_ROUTE } from '../../constants/devRoutes';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
 import { reserveName } from '../firestore_leaderboard';
 import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
@@ -708,7 +709,7 @@ export default function SettingsMain() {
           <Row
             icon="construct-outline"
             label={L('Админ панель', 'Адмін панель', 'Panel admin', 'Painel admin', 'Bảng quản trị', 'Panel admin', 'Yönetici paneli', 'Panel admina')}
-            onPress={() => router.push('/settings_testers' as any)}
+            onPress={() => router.push(SETTINGS_TESTERS_ROUTE as any)}
             testID="settings-open-testers"
           />
         )}

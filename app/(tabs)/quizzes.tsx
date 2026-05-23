@@ -6,6 +6,7 @@ import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { ImageSourcePropType } from 'react-native';
 import {
   Animated,
   Easing,
@@ -24,6 +25,7 @@ import {
 
 import AddToFlashcard from '../../components/AddToFlashcard';
 import BonusXPCard from '../../components/BonusXPCard';
+import CoachToast from '../../components/CoachToast';
 import ContentWrap from '../../components/ContentWrap';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from '../../components/LangContext';
@@ -52,8 +54,9 @@ import NoEnergyModal from '../../components/NoEnergyModal';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { pointsForAnswer, streakMultiplier } from '../hall_of_fame_utils';
 import { useAudio } from '../../hooks/use-audio';
-import { isQuizChoiceCorrect, quizPrimaryCorrectIndex, type QuizPhrase } from '../quiz_data';
-import { getQuizPhrasesLoaded } from '../quiz_phrases_loader';
+import type { QuizPhrase } from '../quiz_data';
+import { ensureQuizPhrasesLoaded, getQuizPhrasesLoaded, prefetchQuizPhrases } from '../quiz_phrases_loader';
+import { isQuizChoiceCorrect, quizPrimaryCorrectIndex } from '../quiz_utils';
 import { DEFAULT_SETTINGS, loadSettings, saveSettings, UserSettings as Settings } from '../settings_edu';
 import { useTabNav } from '../TabContext';
 import { tabSwipeLock } from '../tabSwipeLock';
@@ -61,14 +64,16 @@ import { calculateRewardWithBonus } from '../variable_reward_system';
 import { registerXP } from '../xp_manager';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 import { recordMistake } from '../active_recall';
+import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from '../coach_toast_trigger';
 import { logMistake } from '../mistake_log';
 import { resolvePhraseMistakeToken } from '../mistake_token_resolver';
+import { safeRouterBack } from '../navigation_back';
+import type { PhraseMistakeInput } from '../phrase_analytics';
 import {
   QUIZ_E2E_OPEN_RESULTS_KEY,
   QUIZ_LEVEL_CARD_BACKGROUNDS,
   QUIZ_LEVEL_LOGOS,
 } from '../quizzes/constants';
-import { incrementHardPaywallBlock } from '../paywall_personalization';
 import {
   consumeFreeDailyQuizStart,
   FREE_DAILY_QUIZ_LIMIT,
@@ -91,6 +96,9 @@ import {
   type ThematicQuizCategory,
   type ThematicQuizCategoryId,
 } from '../quiz_thematic_registry';
+
+const QUIZ_ENTRY_REPEATING_MOTION_ENABLED = true;
+const QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER = true;
 
 const stripPunct = (w: string) => w.replace(/[^a-zA-Z0-9']/g, '').toLowerCase();
 function diffWords(wrong: string, correct: string): { word: string; isWrong: boolean }[] {
@@ -251,9 +259,145 @@ const LEVEL_CONFIG = {
 };
 type Level = 'easy'|'medium'|'hard';
 type QuizMenuSelection = Level | ThematicQuizCategoryId;
+type QuizIconName = React.ComponentProps<typeof Ionicons>['name'];
 
 const isLevelSelection = (selection: QuizMenuSelection | null): selection is Level =>
   selection === 'easy' || selection === 'medium' || selection === 'hard';
+
+const QUIZ_LEVEL_FALLBACK_ICONS: Record<Level, QuizIconName> = {
+  easy: 'leaf-outline',
+  medium: 'flame-outline',
+  hard: 'diamond-outline',
+};
+
+const thematicQuizFallbackIcon = (categoryId: ThematicQuizCategoryId): QuizIconName => {
+  switch (categoryId) {
+    case 'kitchen-and-cooking':
+      return 'restaurant-outline';
+    case 'home-and-rooms':
+      return 'home-outline';
+    case 'at-the-doctor':
+      return 'medical-outline';
+    default:
+      return 'sparkles-outline';
+  }
+};
+
+function QuizCardBackgroundImageWithFallback({
+  source,
+  accent,
+  opacity,
+  locked,
+  themeMode,
+}: {
+  source: ImageSourcePropType;
+  accent: string;
+  opacity: number;
+  locked: boolean;
+  themeMode: ThemeMode;
+}) {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [source]);
+
+  const light = themeMode === 'minimalLight';
+  const fallbackOpacity = loaded ? (locked ? 0.08 : 0.18) : (locked ? 0.18 : 0.72);
+
+  return (
+    <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { zIndex: 0 }]}>
+      <LinearGradient
+        colors={light
+          ? ['rgba(255,255,255,0.54)', `${accent}30`, 'rgba(255,255,255,0.10)']
+          : [`${accent}3D`, 'rgba(0,0,0,0.04)', `${accent}18`]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={[StyleSheet.absoluteFillObject, { opacity: fallbackOpacity }]}
+      />
+      <View
+        style={{
+          position: 'absolute',
+          right: -30,
+          top: -42,
+          width: 148,
+          height: 148,
+          borderRadius: 74,
+          backgroundColor: light ? 'rgba(255,255,255,0.30)' : `${accent}24`,
+          opacity: fallbackOpacity,
+        }}
+      />
+      <View
+        style={{
+          position: 'absolute',
+          left: -34,
+          bottom: -48,
+          width: 132,
+          height: 132,
+          borderRadius: 66,
+          backgroundColor: light ? `${accent}1F` : 'rgba(255,255,255,0.055)',
+          opacity: fallbackOpacity,
+        }}
+      />
+      <Image
+        pointerEvents="none"
+        source={source}
+        style={[StyleSheet.absoluteFillObject, { opacity }]}
+        contentFit="cover"
+        cachePolicy="memory-disk"
+        transition={120}
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(false)}
+      />
+    </View>
+  );
+}
+
+function QuizCardLogoImageWithFallback({
+  source,
+  fallbackName,
+  accent,
+  locked,
+}: {
+  source: ImageSourcePropType;
+  fallbackName: QuizIconName;
+  accent: string;
+  locked: boolean;
+}) {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [source]);
+
+  return (
+    <View style={{ width: 94, height: 94, alignItems: 'center', justifyContent: 'center', opacity: locked ? 0.28 : 1 }}>
+      {!loaded && (
+        <View style={{
+          width: 66,
+          height: 66,
+          borderRadius: 20,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: `${accent}24`,
+          borderWidth: 1,
+          borderColor: `${accent}55`,
+        }}>
+          <Ionicons name={fallbackName} size={34} color={accent} />
+        </View>
+      )}
+      <Image
+        source={source}
+        style={StyleSheet.absoluteFillObject}
+        contentFit="contain"
+        cachePolicy="memory-disk"
+        transition={120}
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(false)}
+      />
+    </View>
+  );
+}
 
 // Тип фразы для квиза — используем QuizPhrase из quiz_data
 // level передаётся из QuizGame
@@ -262,48 +406,65 @@ function ThematicQuizLevelCard({
   category,
   lang,
   themeMode,
+  t,
   f,
   isSelected,
+  locked,
+  lockedLabel,
   startTrackW,
   onPick,
+  onLockedPress,
   onStart,
 }: {
   category: ThematicQuizCategory;
   lang: Lang;
   themeMode: ThemeMode;
+  t: any;
   f: any;
   isSelected: boolean;
+  locked: boolean;
+  lockedLabel: string;
   startTrackW: number;
   onPick: () => void;
+  onLockedPress: () => void;
   onStart: (categoryId: ThematicQuizCategoryId, fillAnim: Animated.Value) => void;
 }) {
   const fillAnim = useRef(new Animated.Value(0)).current;
   const pulseAnim = useRef(new Animated.Value(1)).current;
   const title = category.title[lang];
   const subtitle = category.subtitle[lang];
-  const accent = category.accent;
+  const accent = locked ? t.textMuted : category.accent;
   const textPalette = THEME_TEXT[themeMode];
-  const textCol = textPalette.primary;
-  const textCol2 = textPalette.secondary;
+  const textCol = locked ? t.textSecond : textPalette.primary;
+  const textCol2 = locked ? t.textMuted : textPalette.secondary;
+  const gradA = locked ? t.bgCard : themeMode === 'minimalLight' ? '#F8EFE1' : '#10261F';
+  const gradB = locked ? t.bgSurface : themeMode === 'minimalLight' ? '#E3C9A9' : '#03100C';
   const cardBackground = themedQuizAsset(category.cardBackgrounds, themeMode);
   const categoryLogo = themedQuizAsset(category.logos, themeMode);
+  const visualSelected = isSelected && !locked;
   const fillTx = fillAnim.interpolate({
     inputRange: [0, 1],
     outputRange: [-startTrackW, 0],
   });
 
   useEffect(() => {
+    if (!QUIZ_ENTRY_REPEATING_MOTION_ENABLED) {
+      pulseAnim.stopAnimation();
+      pulseAnim.setValue(1);
+      return undefined;
+    }
+
     const loop = Animated.loop(
       Animated.sequence([
         Animated.timing(pulseAnim, {
           toValue: MOTION_SCALE.nudge,
           duration: 740,
-          useNativeDriver: true,
+          useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
         }),
         Animated.timing(pulseAnim, {
           toValue: 1.0,
           duration: 740,
-          useNativeDriver: true,
+          useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
         }),
       ])
     );
@@ -316,6 +477,7 @@ function ThematicQuizLevelCard({
       <TouchableOpacity
         onPress={() => {
           hapticTap();
+          if (locked) { onLockedPress(); return; }
           if (isSelected) { onStart(category.id, fillAnim); return; }
           onPick();
         }}
@@ -323,35 +485,32 @@ function ThematicQuizLevelCard({
       >
         <LinearGradient
           collapsable={false}
-          colors={[themeMode === 'minimalLight' ? '#F8EFE1' : '#10261F', themeMode === 'minimalLight' ? '#E3C9A9' : '#03100C']}
+          colors={[gradA, gradB]}
           start={{ x: 0, y: 0.5 }}
           end={{ x: 1, y: 0.5 }}
           style={{
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
-            borderBottomLeftRadius: isSelected ? 0 : 20,
-            borderBottomRightRadius: isSelected ? 0 : 20,
-            borderWidth: isSelected ? 2 : 1,
-            borderColor: isSelected ? accent : `${accent}40`,
-            borderBottomColor: isSelected ? 'transparent' : undefined,
+            borderBottomLeftRadius: visualSelected ? 0 : 20,
+            borderBottomRightRadius: visualSelected ? 0 : 20,
+            borderWidth: visualSelected ? 2 : 1,
+            borderColor: visualSelected ? accent : (locked ? t.border : `${accent}40`),
+            borderBottomColor: visualSelected ? 'transparent' : undefined,
             flexDirection: 'row',
             alignItems: 'center',
             minHeight: 82,
             overflow: 'hidden',
+            position: 'relative',
           }}
         >
-          <Image
-            pointerEvents="none"
+          <QuizCardBackgroundImageWithFallback
             source={cardBackground}
-            style={[
-              StyleSheet.absoluteFillObject,
-              { opacity: themeMode === 'minimalLight' ? 0.9 : 0.94 },
-            ]}
-            contentFit="cover"
-            cachePolicy="memory-disk"
-            transition={120}
+            accent={accent}
+            opacity={locked ? 0.16 : themeMode === 'minimalLight' ? 0.9 : 0.94}
+            locked={locked}
+            themeMode={themeMode}
           />
-          <View collapsable={false} style={{ flex: 1, paddingVertical: 14, paddingHorizontal: 16 }}>
+          <View collapsable={false} style={{ flex: 1, paddingVertical: 14, paddingLeft: 16, paddingRight: 116, zIndex: 1 }}>
             <View style={{ flexDirection:'row', alignItems:'center', gap:8, marginBottom:4 }}>
               <View style={{
                 backgroundColor: `${accent}25`,
@@ -365,6 +524,14 @@ function ThematicQuizLevelCard({
                   {category.badge}
                 </Text>
               </View>
+              {locked && (
+                <View style={{ flexDirection:'row', alignItems:'center', gap:4, backgroundColor: t.accentBg, borderRadius:6, paddingHorizontal:7, paddingVertical:2 }}>
+                  <Ionicons name="lock-closed" size={10} color={t.textSecond}/>
+                  <Text style={{ color:t.textSecond, fontSize: f.label, fontWeight:'700' }}>
+                    {lockedLabel}
+                  </Text>
+                </View>
+              )}
             </View>
             <View style={{ flexDirection:'column', gap:4, marginTop:4 }}>
               <Text style={{ color: textCol, fontSize: f.h1, fontWeight:'900' }}>{title}</Text>
@@ -372,19 +539,32 @@ function ThematicQuizLevelCard({
             </View>
           </View>
 
-          <Animated.View collapsable={false} style={{ transform: [{ scale: pulseAnim }], width: 104, paddingRight: 10, alignItems: 'center' }}>
-            <Image
+          <Animated.View
+            collapsable={false}
+            pointerEvents="none"
+            style={{
+              position: 'absolute',
+              right: 8,
+              top: 0,
+              bottom: 0,
+              width: 104,
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 2,
+              transform: [{ scale: locked ? 1 : pulseAnim }],
+            }}
+          >
+            <QuizCardLogoImageWithFallback
               source={categoryLogo}
-              style={{ width: 94, height: 94 }}
-              contentFit="contain"
-              cachePolicy="memory-disk"
-              transition={120}
+              fallbackName={thematicQuizFallbackIcon(category.id)}
+              accent={accent}
+              locked={locked}
             />
           </Animated.View>
         </LinearGradient>
       </TouchableOpacity>
 
-      {isSelected && (
+      {visualSelected && (
         <TouchableOpacity
           onPress={() => { hapticTap(); onStart(category.id, fillAnim); }}
           activeOpacity={1}
@@ -416,14 +596,14 @@ function ThematicQuizLevelCard({
           />
           <Text style={{ color: accent, fontSize: f.body, fontWeight:'800', zIndex: 1 }}>
             {triLang(lang, {
-  ru: 'Начать пак',
-  uk: 'Почати пак',
-  es: 'Empezar pack',
-  "pt-BR": 'Começar pacote',
-  vi: 'Bắt đầu gói',
-  id: 'Mulai paket',
-  tr: 'Paketi başlat',
-  pl: 'Rozpocznij pakiet',
+  ru: 'Начать квиз',
+  uk: 'Почати квіз',
+  es: 'Empezar cuestionario',
+  "pt-BR": 'Começar quiz',
+  vi: 'Bắt đầu quiz',
+  id: 'Mulai kuis',
+  tr: 'Quize başla',
+  pl: 'Rozpocznij quiz',
 })} · {title}
           </Text>
         </TouchableOpacity>
@@ -524,6 +704,10 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     [studyTarget],
   );
 
+  useEffect(() => {
+    prefetchQuizPhrases();
+  }, []);
+
   // Fill animation per level
   const fillAnims = useRef<Record<Level, Animated.Value>>({
     easy:   new Animated.Value(0),
@@ -539,11 +723,19 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
   }).current;
 
   useEffect(() => {
+    if (!QUIZ_ENTRY_REPEATING_MOTION_ENABLED) {
+      (Object.keys(pulseAnims) as Level[]).forEach((lv) => {
+        pulseAnims[lv].stopAnimation();
+        pulseAnims[lv].setValue(1);
+      });
+      return undefined;
+    }
+
     const loops = (Object.keys(pulseAnims) as Level[]).map((lv, i) => {
       const anim = Animated.loop(
         Animated.sequence([
-          Animated.timing(pulseAnims[lv], { toValue: MOTION_SCALE.nudge, duration: 680 + i * 90, useNativeDriver: true }),
-          Animated.timing(pulseAnims[lv], { toValue: 1.0, duration: 680 + i * 90, useNativeDriver: true }),
+          Animated.timing(pulseAnims[lv], { toValue: MOTION_SCALE.nudge, duration: 680 + i * 90, useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER }),
+          Animated.timing(pulseAnims[lv], { toValue: 1.0, duration: 680 + i * 90, useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER }),
         ])
       );
       anim.start();
@@ -560,8 +752,23 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     return () => { cancelled = true; };
   }, []);
 
-  const consumeFreeSlotForStart = async (lv: Level): Promise<boolean> => {
-    if (DEV_MODE || isPremium || lv !== 'easy') return true;
+  const quizLimitLabel = triLang(lang, {
+    ru: 'Лимит',
+    uk: 'Ліміт',
+    es: 'Límite',
+    "pt-BR": 'Limite',
+    vi: 'Giới hạn',
+    id: 'Batas',
+    tr: 'Limit',
+    pl: 'Limit',
+  });
+
+  const openQuizLimitPaywall = useCallback(() => {
+    router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
+  }, [router]);
+
+  const consumeFreeSlotForStart = async (selection: QuizMenuSelection): Promise<boolean> => {
+    if (DEV_MODE || isPremium) return true;
 
     const nextState = await consumeFreeDailyQuizStart();
     if (nextState) {
@@ -570,7 +777,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     }
 
     setFreeQuizState(await getFreeDailyQuizState());
-    router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
+    openQuizLimitPaywall();
     return false;
   };
 
@@ -583,6 +790,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
       return;
     }
     startInFlightRef.current = true;
+    const quizDataReady = ensureQuizPhrasesLoaded();
     void consumeFreeSlotForStart(lv).then((canStart) => {
       if (!canStart) {
         startInFlightRef.current = false;
@@ -594,14 +802,19 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
         toValue: 1,
         duration: 420,
         easing: Easing.out(Easing.cubic),
-        useNativeDriver: true,
+        useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
       }).start(({ finished }) => {
         if (!finished) {
           startInFlightRef.current = false;
           return;
         }
         anim.setValue(0);
-        onSelect(lv);
+        quizDataReady
+          .then(() => onSelect(lv))
+          .catch(() => onSelect(lv))
+          .finally(() => {
+            startInFlightRef.current = false;
+          });
       });
     }).catch(() => {
       startInFlightRef.current = false;
@@ -617,17 +830,25 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
       return;
     }
     startInFlightRef.current = true;
-    anim.setValue(0);
-    Animated.timing(anim, {
-      toValue: 1,
-      duration: 420,
-      easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
-    }).start(({ finished }) => {
-      startInFlightRef.current = false;
-      if (!finished) return;
+    void consumeFreeSlotForStart(categoryId).then((canStart) => {
+      if (!canStart) {
+        startInFlightRef.current = false;
+        return;
+      }
       anim.setValue(0);
-      onSelect(categoryId);
+      Animated.timing(anim, {
+        toValue: 1,
+        duration: 420,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
+      }).start(({ finished }) => {
+        startInFlightRef.current = false;
+        if (!finished) return;
+        anim.setValue(0);
+        onSelect(categoryId);
+      });
+    }).catch(() => {
+      startInFlightRef.current = false;
     });
   };
 
@@ -643,8 +864,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
           style={{ width:38, height:38, borderRadius:19, backgroundColor:t.bgCard, borderWidth:0.5, borderColor:t.border, justifyContent:'center', alignItems:'center' }}
           onPress={() => {
             hapticTap();
-            if (router.canGoBack()) router.back();
-            else router.replace('/(tabs)/home' as any);
+            safeRouterBack(router, '/(tabs)/home' as any);
           }}
         >
           <Ionicons name="chevron-back" size={22} color={t.textPrimary}/>
@@ -673,7 +893,20 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
         />
       </View>
 
-      <View style={{ flex:1, justifyContent:'center', paddingHorizontal:20, gap:8 }}>
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: 'center',
+          paddingHorizontal: 20,
+          paddingTop: 24,
+          paddingBottom: Math.max(24, insets.bottom + 24),
+          gap: 8,
+        }}
+        showsVerticalScrollIndicator
+        persistentScrollbar
+        indicatorStyle={themeMode === 'minimalLight' ? 'black' : 'white'}
+      >
         {(Object.keys(LEVEL_CONFIG) as Level[]).map(lv => {
           const c        = LEVEL_CONFIG[lv];
           const lbl      = triLang(lang, {
@@ -696,9 +929,8 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
   tr: c.tagTR,
   pl: c.tagPL,
 });
-          const lockedByLevel = !DEV_MODE && !isPremium && lv !== 'easy';
-          const lockedByDailyLimit = !DEV_MODE && !isPremium && lv === 'easy' && freeQuizState.exhausted;
-          const locked   = lockedByLevel || lockedByDailyLimit;
+          const lockedByDailyLimit = !DEV_MODE && !isPremium && freeQuizState.exhausted;
+          const locked   = lockedByDailyLimit;
           const palette  = THEME_PALETTES[themeMode][lv];
           const txt      = THEME_TEXT[themeMode];
           const gradA    = locked ? t.bgCard    : palette.gradA;
@@ -707,6 +939,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
           const textCol  = locked ? t.textSecond : txt.primary;
           const textCol2 = locked ? t.textMuted  : txt.secondary;
           const isSelected = selected === lv;
+          const visualSelected = isSelected && !locked;
           const cardBackground = QUIZ_LEVEL_CARD_BACKGROUNDS[themeMode][lv];
           const levelLogo = QUIZ_LEVEL_LOGOS[themeMode][lv];
 
@@ -717,11 +950,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
                 onPress={() => {
                   hapticTap();
                   if (locked) {
-                    if (lv === 'hard') incrementHardPaywallBlock();
-                    router.push({
-                      pathname: '/premium_modal',
-                      params: { context: lockedByDailyLimit ? 'quiz_limit' : lv === 'hard' ? 'quiz_hard' : 'quiz_medium' },
-                    } as any);
+                    openQuizLimitPaywall();
                     return;
                   }
                   if (isSelected) { handleStart(lv); return; }
@@ -736,30 +965,27 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
                   style={{
                     borderTopLeftRadius: 20,
                     borderTopRightRadius: 20,
-                    borderBottomLeftRadius: isSelected ? 0 : 20,
-                    borderBottomRightRadius: isSelected ? 0 : 20,
-                    borderWidth: isSelected ? 2 : 1,
-                    borderColor: isSelected ? accent : (locked ? t.border : `${accent}40`),
-                    borderBottomColor: isSelected ? 'transparent' : undefined,
+                    borderBottomLeftRadius: visualSelected ? 0 : 20,
+                    borderBottomRightRadius: visualSelected ? 0 : 20,
+                    borderWidth: visualSelected ? 2 : 1,
+                    borderColor: visualSelected ? accent : (locked ? t.border : `${accent}40`),
+                    borderBottomColor: visualSelected ? 'transparent' : undefined,
                     flexDirection: 'row',
                     alignItems: 'center',
                     minHeight: 82,
                     overflow: 'hidden',
+                    position: 'relative',
                   }}
                 >
                   {/* Контент */}
-                  <Image
-                    pointerEvents="none"
+                  <QuizCardBackgroundImageWithFallback
                     source={cardBackground}
-                    style={[
-                      StyleSheet.absoluteFillObject,
-                      { opacity: locked ? 0.16 : themeMode === 'minimalLight' ? 0.86 : 0.92 },
-                    ]}
-                    contentFit="cover"
-                    cachePolicy="memory-disk"
-                    transition={120}
+                    accent={accent}
+                    opacity={locked ? 0.16 : themeMode === 'minimalLight' ? 0.86 : 0.92}
+                    locked={locked}
+                    themeMode={themeMode}
                   />
-                  <View style={{ flex: 1, paddingVertical: 14, paddingHorizontal: 16 }}>
+                  <View style={{ flex: 1, paddingVertical: 14, paddingLeft: 16, paddingRight: 116, zIndex: 1 }}>
                     <View style={{ flexDirection:'row', alignItems:'center', gap:8, marginBottom:4 }}>
                       <View style={{
                         backgroundColor: `${accent}25`, borderRadius: 6,
@@ -797,20 +1023,32 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
                   </View>
 
                   {/* Иконка справа */}
-                  <Animated.View style={{ transform: [{ scale: locked ? 1 : pulseAnims[lv] }], width: 104, paddingRight: 10, alignItems: 'center' }}>
-                    <Image
+                  <Animated.View
+                    pointerEvents="none"
+                    style={{
+                      position: 'absolute',
+                      right: 8,
+                      top: 0,
+                      bottom: 0,
+                      width: 104,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      zIndex: 2,
+                      transform: [{ scale: locked ? 1 : pulseAnims[lv] }],
+                    }}
+                  >
+                    <QuizCardLogoImageWithFallback
                       source={levelLogo}
-                      style={{ width: 94, height: 94, opacity: locked ? 0.28 : 1 }}
-                      contentFit="contain"
-                      cachePolicy="memory-disk"
-                      transition={120}
+                      fallbackName={QUIZ_LEVEL_FALLBACK_ICONS[lv]}
+                      accent={accent}
+                      locked={locked}
                     />
                   </Animated.View>
                 </LinearGradient>
               </TouchableOpacity>
 
               {/* ── Кнопка «Начать» прямо на карточке ── */}
-              {isSelected && !locked && (() => {
+              {visualSelected && (() => {
                 const fillTx = fillAnims[lv].interpolate({
                   inputRange: [0, 1],
                   outputRange: [-startTrackW, 0],
@@ -859,19 +1097,26 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
             </View>
           );
         })}
-        {thematicCategories.map(category => (
-          <ThematicQuizLevelCard
-            key={category.id}
-            category={category}
-            lang={lang}
-            themeMode={themeMode}
-            f={f}
-            isSelected={selected === category.id}
-            startTrackW={startTrackW}
-            onPick={() => setSelected(category.id)}
-            onStart={handleStartThematic}
-          />
-        ))}
+        {thematicCategories.map(category => {
+          const thematicLockedByDailyLimit = !DEV_MODE && !isPremium && freeQuizState.exhausted;
+          return (
+            <ThematicQuizLevelCard
+              key={category.id}
+              category={category}
+              lang={lang}
+              themeMode={themeMode}
+              t={t}
+              f={f}
+              isSelected={selected === category.id}
+              locked={thematicLockedByDailyLimit}
+              lockedLabel={quizLimitLabel}
+              startTrackW={startTrackW}
+              onPick={() => setSelected(category.id)}
+              onLockedPress={openQuizLimitPaywall}
+              onStart={handleStartThematic}
+            />
+          );
+        })}
         {!DEV_MODE && !isPremium && (
           <View style={{
             marginTop: 8,
@@ -904,7 +1149,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
             </Text>
           </View>
         )}
-      </View>
+      </ScrollView>
       </ContentWrap>
 
       <NoEnergyModal
@@ -1006,6 +1251,8 @@ function QuizGame({
   const [hardWrongCount,   setHardWrongCount]   = useState(0);
   const [showBonus, setShowBonus] = useState(false);
   const [bonusXP, setBonusXP] = useState(0);
+  const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
+  const wrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
   const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
   const { energy: currentEnergy, isUnlimited: testerEnergyDisabled, spendOne } = useEnergy();
   const currentEnergyRef = useRef(currentEnergy);
@@ -1077,6 +1324,8 @@ function QuizGame({
     setReviewing(false);
     setReviewQ([]);
     setRIdx(0);
+    setCoachToast(null);
+    wrongMistakesRef.current = [];
     quizCompletedRef.current = true;
     if (timerRef.current) {
       clearInterval(timerRef.current);
@@ -1178,7 +1427,12 @@ function QuizGame({
 
   useEffect(() => {
     if (!done || reviewing) return;
-  }, [done, reviewing]);
+    let cancelled = false;
+    void checkCoachToastNeededWithAnalytics(wrongMistakesRef.current, studyTarget, lang === 'uk' ? 'uk' : 'ru').then((decision) => {
+      if (!cancelled && decision.show) setCoachToast(decision);
+    });
+    return () => { cancelled = true; };
+  }, [done, lang, reviewing, studyTarget]);
 
   // Синхронизируем isTabActive — но таймер не останавливаем
   useEffect(() => {
@@ -1242,13 +1496,17 @@ function QuizGame({
 
   const current = reviewing ? reviewQ[rIdx] : (idx < phrases.length ? phrases[idx] : undefined);
 
+  if (!quizBankAvailable) {
+    return <FrenchQuizUnavailable />;
+  }
+
   if (phrases.length === 0) {
     return (
       <ScreenGradient forceFullBleed artBackdrop="quizzes">
-      <View style={{ flex:1, justifyContent:'center', alignItems:'center' }}>
         <ContentWrap>
-        <Text style={{ color:onGradMuted, fontSize: f.body }}>
-          {triLang(lang, {
+          <View style={{ flex:1, justifyContent:'center', alignItems:'center', paddingHorizontal:24 }}>
+            <Text style={{ color:onGradMuted, fontSize: f.body, lineHeight: f.body * 1.35, textAlign:'center' }}>
+              {triLang(lang, {
   ru: 'Вопросы временно недоступны',
   uk: 'Питання тимчасово недоступні',
   es: 'No hay preguntas disponibles por ahora.',
@@ -1258,9 +1516,9 @@ function QuizGame({
   tr: 'Sorular şu anda kullanılamıyor.',
   pl: 'Pytania są chwilowo niedostępne.',
 })}
-        </Text>
+            </Text>
+          </View>
         </ContentWrap>
-      </View>
       </ScreenGradient>
     );
   }
@@ -1295,7 +1553,7 @@ function QuizGame({
       Animated.timing(insertAnim,  { toValue:1, duration:MOTION_DURATION.slow, useNativeDriver:true }),
       Animated.spring(insertScale, {
         toValue: 1,
-        useNativeDriver: true,
+        useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
         tension: MOTION_SPRING.ui.tension,
         friction: MOTION_SPRING.ui.friction,
       }),
@@ -1332,6 +1590,7 @@ function QuizGame({
         tokenMeta,
         studyTarget,
       );
+      wrongMistakesRef.current.push(tokenMeta ? { phrase: current.answer, ...tokenMeta } : current.answer);
     }
 
     if (!reviewing) {
@@ -1561,7 +1820,7 @@ function QuizGame({
               // Отменяем все pending таймеры от предыдущей игры
               if (autoAdvanceTimerRef.current) { clearTimeout(autoAdvanceTimerRef.current); autoAdvanceTimerRef.current = null; }
               if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
-              if (!thematicCategoryId && !DEV_MODE && !isPremium) {
+              if (!DEV_MODE && !isPremium) {
                 const nextState = await consumeFreeDailyQuizStart();
                 if (!nextState) {
                   router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
@@ -1575,6 +1834,8 @@ function QuizGame({
               setIdx(0); setChosen(null); setScore(0); setEarnedXP(0);
               setStreak(0); streakRef.current = 0;
               setResults([]); setDone(false); setReviewing(false);
+              setCoachToast(null);
+              wrongMistakesRef.current = [];
               setTyped(''); setTypedOk(null);
               xpAnimStarted.current = false;
               quizCompletedRef.current = false;
@@ -1654,6 +1915,35 @@ function QuizGame({
             onDismiss={() => setShowBonus(false)}
             position="center"
             duration={2000}
+          />
+        )}
+        {coachToast?.show && (
+          <CoachToast
+            category={coachToast.category}
+            labelRu={coachToast.labelRu}
+            labelUk={coachToast.labelUk}
+            labelEs={coachToast.labelEs}
+            labelPtBr={coachToast.labelPtBr}
+            labelVi={coachToast.labelVi}
+            labelId={coachToast.labelId}
+            labelTr={coachToast.labelTr}
+            labelPl={coachToast.labelPl}
+            mistakeCount={coachToast.mistakeCount}
+            weaknessScore={coachToast.weaknessScore}
+            priorityScore={coachToast.priorityScore}
+            recoveryScore={coachToast.recoveryScore}
+            focusWords={coachToast.focusWords}
+            microDiagnosisId={coachToast.microDiagnosisId}
+            microLabelRu={coachToast.microLabelRu}
+            microLabelUk={coachToast.microLabelUk}
+            microLabelEs={coachToast.microLabelEs}
+            microLabelPtBr={coachToast.microLabelPtBr}
+            microLabelVi={coachToast.microLabelVi}
+            microLabelId={coachToast.microLabelId}
+            microLabelTr={coachToast.microLabelTr}
+            microLabelPl={coachToast.microLabelPl}
+            diagnosisEvidenceCount={coachToast.diagnosisEvidenceCount}
+            onDismiss={() => setCoachToast(null)}
           />
         )}
       </View>
@@ -2250,12 +2540,7 @@ export default function QuizzesScreen() {
               await AsyncStorage.removeItem(navKey);
               return;
             }
-            if (!DEV_MODE && !isPremium && nav !== 'easy') {
-              await AsyncStorage.removeItem(navKey);
-              router.push({ pathname: '/premium_modal', params: { context: nav === 'hard' ? 'quiz_hard' : 'quiz_medium' } } as any);
-              return;
-            }
-            if (!DEV_MODE && !isPremium && nav === 'easy' && !(await hasFreeDailyQuizzesLeft())) {
+            if (!DEV_MODE && !isPremium && !(await hasFreeDailyQuizzesLeft())) {
               await AsyncStorage.removeItem(navKey);
               router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
               return;
@@ -2271,7 +2556,7 @@ export default function QuizzesScreen() {
               });
               return;
             }
-            if (!DEV_MODE && !isPremium && nav === 'easy') {
+            if (!DEV_MODE && !isPremium) {
               const nextState = await consumeFreeDailyQuizStart();
               if (!nextState) {
                 await AsyncStorage.removeItem(navKey);
@@ -2310,7 +2595,7 @@ export default function QuizzesScreen() {
     <View style={{ flex: 1 }}>
       {selection
         ? <QuizGame key={`${gameKey}:${selection}`} level={selectedLevel} thematicCategoryId={selectedThematicCategoryId} e2eInjectResults={e2eInjectResults} onBack={() => {
-            if (fromTaskRef.current) { fromTaskRef.current = false; setE2eInjectResults(false); router.back(); return; }
+            if (fromTaskRef.current) { fromTaskRef.current = false; setE2eInjectResults(false); safeRouterBack(router, '/(tabs)/home' as any); return; }
             setE2eInjectResults(false);
             setSelection(null); setGameKey(k => k + 1);
           }}/>

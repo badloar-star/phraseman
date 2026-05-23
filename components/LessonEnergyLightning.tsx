@@ -5,13 +5,13 @@ import { useLang } from './LangContext';
 import EnergyIcon from './EnergyIcon';
 import { getAdaptiveEnergyIconLayout } from './energyIconLayout';
 import { useEnergy } from './EnergyContext';
+import { usePremium } from './PremiumContext';
 import { getTimeUntilNextRecovery, formatTimeUntilRecovery } from '../app/energy_system';
 import EnergyRefillShardModal from './EnergyRefillShardModal';
 import { triLang } from '../constants/i18n';
 import { BRAND_SHARDS_ES } from '../constants/terms_es';
 import { hapticTap } from '../hooks/use-haptics';
 
-const PREMIUM_BLUE = '#4FC3F7';
 const ENERGY_ICON_SIZE = 30;
 
 interface Props {
@@ -29,6 +29,7 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
   const { isUnlimited } = useEnergy();
+  const { hasPremiumAccess } = usePremium();
   const { width: windowWidth } = useWindowDimensions();
   const energyLongPressHint = triLang(lang, {
     ru: 'Долгое нажатие — восстановить энергию за осколки',
@@ -41,9 +42,7 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
     pl: 'Przytrzymaj, aby odzyskać energię za odłamki',
   });
   const [refillModal, setRefillModal] = useState(false);
-  const premiumTint = isUnlimited ? PREMIUM_BLUE : undefined;
-  const filledTint = premiumTint;
-  const filledColor = isUnlimited ? PREMIUM_BLUE : t.gold;
+  const filledColor = t.gold;
   const [timeUntilNextEnergy, setTimeUntilNextEnergy] = useState<string | null>(null);
   const energyLayout = getAdaptiveEnergyIconLayout({
     slotCount: maxEnergy,
@@ -53,7 +52,7 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
 
   // Update timer every second when energy is not at max
   useEffect(() => {
-    if (energyCount >= maxEnergy) {
+    if (hasPremiumAccess || energyCount >= maxEnergy) {
       setTimeUntilNextEnergy(null);
       return;
     }
@@ -69,7 +68,9 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
     updateTimer();
     const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
-  }, [energyCount, maxEnergy]);
+  }, [energyCount, hasPremiumAccess, maxEnergy]);
+
+  if (hasPremiumAccess) return null;
 
   return (
     <View style={styles.container}>
@@ -92,8 +93,6 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
               animateChange={true}
               shouldShake={shouldShake}
               themeMode={themeMode}
-              tintColor={i < energyCount ? filledTint : undefined}
-              isPremium={isUnlimited}
             />
           </View>
         ))}

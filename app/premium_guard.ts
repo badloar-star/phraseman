@@ -115,7 +115,7 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
         // Cloud sync intentionally does not persist `premium_active`; real paid
         // state is represented by store plan + RC expiry metadata. If RevenueCat
         // has an identity/cache hiccup but our server-synced RC expiry is still
-        // in the future, keep access instead of dropping the user to free tier.
+        // in the future, keep access instead of dropping the user to non-premium mode.
         if (rcExpiryActive && await restorePaidProgressLocally()) {
           return cacheReal(true);
         }

@@ -1,4 +1,5 @@
 import type { Lang } from '../constants/i18n';
+import { FLASHCARDS_MARKET_DEV_ROUTE } from '../constants/devRoutes';
 import type { CardItem } from './flashcards/types';
 import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
@@ -44,7 +45,7 @@ export function flashcardsSourceGateForTarget(
     studyTarget: 'fr',
     surface,
     reason: 'french_flashcards_source_gate',
-    blockedRoutes: ['/flashcards', '/flashcards_collection', '/flashcards_swipe', '/flashcards_audio', '/flashcards_market_dev', '/pack_opening', '/shards_shop'],
+    blockedRoutes: ['/flashcards', '/flashcards_collection', '/flashcards_swipe', '/flashcards_audio', FLASHCARDS_MARKET_DEV_ROUTE, '/pack_opening', '/shards_shop'],
     requiredEvidence: FRENCH_FLASHCARDS_REQUIRED_EVIDENCE,
   };
 }

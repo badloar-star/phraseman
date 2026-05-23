@@ -96,6 +96,9 @@ Gate-level requirements:
 
 - Do not show internal evidence language to learners: no `source-backed`,
   `source IDs`, `verified claim`, or similar audit wording inside explanations.
+- Do not explain taxonomy to the learner. The explanation must be about the
+  tapped English word, its meaning, and the contrast with the correct word, not
+  that a word lands in a kitchen/category/section.
 - Do not force an explicit `Лайфхак:`, `Truco:`, `Dica:`, `Mẹo nhớ:`,
   `Trik:`, `İpucu:`, or `Sztuczka:` label in explanations. If
   the cue is genuinely useful, write it as normal feedback. If it is not useful,
@@ -141,7 +144,8 @@ Blocked explanation patterns:
   or “the prompt asks...”.
 - Meta wording like “подсказка говорит/просит” instead of explaining the
   selected option directly.
-- One explanation reused for multiple choices.
+- One explanation, or one long generated explanation tail, reused for multiple
+  choices.
 - Locale bundles copied from another locale.
 
 ## Distractor Style

@@ -34,6 +34,7 @@ import LessonIntroScreens from './lesson_intro_screens';
 import { getLessonIntroScreens } from './lesson_data_all';
 import { DEV_MODE } from './config';
 import { lessonIntroShownKey } from './target_storage_keys';
+import { safeRouterBack } from './navigation_back';
 
 const SCREEN_W = Dimensions.get('window').width;
 
@@ -354,7 +355,7 @@ export default function AdminIntroPreview() {
             backgroundColor: 'rgba(13,0,0,0.92)',
           }}
         >
-          <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}>
+          <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/settings_testers' as any); }} hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}>
             <Ionicons name="chevron-back" size={28} color={RED} />
           </TouchableOpacity>
           <View style={{ flex: 1, marginLeft: 8 }}>

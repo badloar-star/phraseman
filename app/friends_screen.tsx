@@ -51,6 +51,7 @@ import {
   type FriendGiftId,
 } from './friend_gifts';
 import { checkAchievements } from './achievements';
+import { safeRouterBack } from './navigation_back';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -837,7 +838,7 @@ export default function FriendsScreen() {
       <ScreenGradient>
         <SafeAreaView style={styles.flex1}>
           <View style={styles.header}>
-            <TouchableOpacity onPress={() => { doHaptic(); router.back(); }}>
+            <TouchableOpacity onPress={() => { doHaptic(); safeRouterBack(router, '/(tabs)/home' as any); }}>
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
             </TouchableOpacity>
             <Text style={styles.headerTitle}>
@@ -858,7 +859,7 @@ export default function FriendsScreen() {
     <ScreenGradient>
       <SafeAreaView testID="screen-friends" style={styles.flex1}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => { doHaptic(); router.back(); }}>
+          <TouchableOpacity onPress={() => { doHaptic(); safeRouterBack(router, '/(tabs)/home' as any); }}>
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>

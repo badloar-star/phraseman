@@ -1,10 +1,9 @@
 import React, { useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
-import { View, Text, TouchableOpacity, StyleSheet, StatusBar, Animated, Easing, useWindowDimensions, type ImageSourcePropType } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, StatusBar, Animated, Easing } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useLang } from '../../components/LangContext';
 import { useTheme } from '../../components/ThemeContext';
 import { useScreen } from '../../hooks/use-screen';
@@ -13,18 +12,56 @@ import TabSlider from '../TabSlider';
 import { TabProvider, useTabNav } from '../TabContext';
 import { hapticTap } from '../../hooks/use-haptics';
 import { HOME_ENTRANCE } from '../../constants/motion';
-import { emitAppEvent } from '../events';
+import { emitAppEvent, onAppEvent } from '../events';
 import { scheduleAnimatedStateUpdate, type ScheduledAnimatedStateUpdate } from '../../components/animationScheduling';
-import { backgroundTransitionKey, usePersistentBackgroundLayers } from '../../components/backgroundTransition';
-import { rememberAppArtBackdrop } from '../../components/AppArtBackdrop';
-import type { AppArtBackdropName } from '../../components/appArtBackdropRegistry';
 import HomeScreen       from './home';
-import LessonsScreen    from './lessons';
-import ArenaTabScreen   from './arena';
-import FriendsScreen    from './friends';
-import SettingsScreen   from './settings';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
+
+type TabScreenComponent = React.ComponentType;
+type DeferredTabModule = { default: TabScreenComponent };
+
+let deferredLessonsScreen: TabScreenComponent | null = null;
+let deferredArenaScreen: TabScreenComponent | null = null;
+let deferredFriendsScreen: TabScreenComponent | null = null;
+let deferredSettingsScreen: TabScreenComponent | null = null;
+
+function loadLessonsScreen(): TabScreenComponent {
+  deferredLessonsScreen ??= (require('./lessons') as DeferredTabModule).default;
+  return deferredLessonsScreen;
+}
+
+function loadArenaScreen(): TabScreenComponent {
+  deferredArenaScreen ??= (require('./arena') as DeferredTabModule).default;
+  return deferredArenaScreen;
+}
+
+function loadFriendsScreen(): TabScreenComponent {
+  deferredFriendsScreen ??= (require('./friends') as DeferredTabModule).default;
+  return deferredFriendsScreen;
+}
+
+function loadSettingsScreen(): TabScreenComponent {
+  deferredSettingsScreen ??= (require('./settings') as DeferredTabModule).default;
+  return deferredSettingsScreen;
+}
+
+function prewarmDeferredTabScreens() {
+  const loaders = [loadLessonsScreen, loadArenaScreen, loadFriendsScreen, loadSettingsScreen];
+  loaders.forEach((loadScreen) => {
+    try {
+      loadScreen();
+    } catch {
+      /* Route-level render will surface real module errors when the user opens that tab. */
+    }
+  });
+}
+
+function DeferredTabScreen({ shouldLoad, loadScreen }: { shouldLoad: boolean; loadScreen: () => TabScreenComponent }) {
+  const Screen = shouldLoad ? loadScreen() : null;
+  if (!Screen) return <View style={s.deferredTabPlaceholder} collapsable={false} />;
+  return <Screen />;
+}
 
 type TabDef = {
   key: string;
@@ -58,53 +95,16 @@ const IDX_TO_TAB_ROUTE: Record<number, string> = {
   4: '/(tabs)/settings',
 };
 
-const HOME_THEME_BACKDROPS = {
-  dark: require('../../assets/images/home/home-study-dark.webp'),
-  neon: require('../../assets/images/home/home-study-neon.webp'),
-  gold: require('../../assets/images/home/home-study-gold.webp'),
-  coral: require('../../assets/images/home/home-study-coral.webp'),
-  minimalLight: require('../../assets/images/home/home-study-minimal-light.webp'),
-  minimalDark: require('../../assets/images/home/home-study-minimal-dark.webp'),
-} as const;
-
-const LESSONS_THEME_BACKDROPS = {
-  dark: require('../../assets/images/lessons/lessons-path-dark.webp'),
-  neon: require('../../assets/images/lessons/lessons-path-neon.webp'),
-  gold: require('../../assets/images/lessons/lessons-path-gold.webp'),
-  coral: require('../../assets/images/lessons/lessons-path-coral.webp'),
-  minimalLight: require('../../assets/images/lessons/lessons-path-minimal-light.webp'),
-  minimalDark: require('../../assets/images/lessons/lessons-path-minimal-dark.webp'),
-} as const;
-
-const ARENA_THEME_BACKDROPS = {
-  dark: require('../../assets/images/arena/knowledge-arena-dark.webp'),
-  neon: require('../../assets/images/arena/knowledge-arena-neon.webp'),
-  gold: require('../../assets/images/arena/knowledge-arena-gold.webp'),
-  coral: require('../../assets/images/arena/knowledge-arena-coral.webp'),
-  minimalLight: require('../../assets/images/arena/knowledge-arena-minimal-light.webp'),
-  minimalDark: require('../../assets/images/arena/knowledge-arena-minimal-dark.webp'),
-} as const;
-
-const FRIENDS_THEME_BACKDROPS = {
-  dark: require('../../assets/images/friends/friends-guild-dark.webp'),
-  neon: require('../../assets/images/friends/friends-guild-neon.webp'),
-  gold: require('../../assets/images/friends/friends-guild-gold.webp'),
-  coral: require('../../assets/images/friends/friends-guild-coral.webp'),
-  minimalLight: require('../../assets/images/friends/friends-guild-minimal-light.webp'),
-  minimalDark: require('../../assets/images/friends/friends-guild-minimal-dark.webp'),
-} as const;
-
-const SETTINGS_THEME_BACKDROPS = {
-  dark: require('../../assets/images/settings/settings-sanctum-dark.webp'),
-  neon: require('../../assets/images/settings/settings-sanctum-neon.webp'),
-  gold: require('../../assets/images/settings/settings-sanctum-gold.webp'),
-  coral: require('../../assets/images/settings/settings-sanctum-coral.webp'),
-  minimalLight: require('../../assets/images/settings/settings-sanctum-minimal-light.webp'),
-  minimalDark: require('../../assets/images/settings/settings-sanctum-minimal-dark.webp'),
-} as const;
+function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
+  if (idx < 0 || prev.has(idx)) return prev;
+  const next = new Set(prev);
+  next.add(idx);
+  return next;
+}
 
 const TAB_BACKGROUND_TRANSITION_MS = 900;
-const TAB_BACKDROP_IMAGE_SCALE_END = 1.18;
+const TAB_CHROME_TRANSITIONS_ENABLED = false;
+const TAB_CHROME_TRANSITION_USE_NATIVE_DRIVER = false;
 
 /** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп). */
 const SEGMENT_TO_TAB_IDX: Record<string, number> = {
@@ -142,6 +142,7 @@ function tabIdxFromRouter(pathnameRaw: string, segments: readonly string[]): num
 /** Синхронно с URL — чтобы при заходе на /(tabs)/arena не было кадра с activeIdx=0 и лишней анимации TabSlider. */
 function tabIdxFromPathname(pathnameRaw: string): number | null {
   const p = pathnameRaw.replace(/\/$/, '');
+  if (p === '' || p === '/') return PATHNAME_TO_IDX['/home'];
   if (p === '/(tabs)' || p.endsWith('/(tabs)')) return PATHNAME_TO_IDX['/home'];
   for (const suf of TAB_PATH_SUFFIXES) {
     if (p === suf || p.endsWith(suf)) {
@@ -168,14 +169,6 @@ const TABS: TabDef[] = [
 
 type TabScaffoldProps = { tabScreens: React.ReactNode[]; currentRouteIsTab: boolean };
 
-type TabBackdropState = {
-  key: string;
-  source: ImageSourcePropType;
-  imageOpacity: number;
-  imageTranslateX: number;
-  scrim: [string, string, string];
-  edgeScrim: [string, string, string, string];
-};
 type TabChromeLayer = {
   id: number;
   wrapBg: string;
@@ -184,6 +177,24 @@ type TabChromeLayer = {
   fade: Animated.Value;
 };
 
+function renderTabChromeLayer(layer: TabChromeLayer, keyPrefix: string, backgroundColor: string) {
+  if (!TAB_CHROME_TRANSITIONS_ENABLED) {
+    return (
+      <View
+        key={`${keyPrefix}-${layer.id}`}
+        style={[s.tabChromeFill, { backgroundColor }]}
+      />
+    );
+  }
+
+  return (
+    <Animated.View
+      key={`${keyPrefix}-${layer.id}`}
+      style={[s.tabChromeFill, { backgroundColor, opacity: layer.fade }]}
+    />
+  );
+}
+
 /**
  * Один full-screen ScreenGradient (орбы/градиент) под системным статус-баром + paddingTop по insets
  * (без SafeAreaView сверху — иначе над контентом оставалась «плашка» из bgPrimary).
@@ -191,147 +202,17 @@ type TabChromeLayer = {
 function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
   const { lang } = useLang();
   const { theme: t, f, ds, themeMode, statusBarLight } = useTheme();
-  const { width: viewportW } = useWindowDimensions();
   const { contentMaxW, tabBarHeight, bottomInset: PB } = useScreen();
   const insets = useSafeAreaInsets();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const isUK = lang === 'uk';
   const isES = lang === 'es';
   const isMinimal = themeMode === 'minimalLight' || themeMode === 'minimalDark';
-  const isHomeBackdrop = activeIdx === 0;
-  const isLessonsBackdrop = activeIdx === 1;
-  const isArenaBackdrop = activeIdx === 2;
-  const isFriendsBackdrop = activeIdx === 3;
-  const isSettingsBackdrop = activeIdx === 4;
-  const activeTabArtBackdropName: AppArtBackdropName =
-    isHomeBackdrop ? 'home' :
-    isLessonsBackdrop ? 'lessons' :
-    isArenaBackdrop ? 'arena' :
-    isFriendsBackdrop ? 'friends' :
-    'settings';
-  const activeTabBackdropSource =
-    isHomeBackdrop
-      ? (HOME_THEME_BACKDROPS[themeMode] ?? HOME_THEME_BACKDROPS.dark)
-      : isLessonsBackdrop
-        ? (LESSONS_THEME_BACKDROPS[themeMode] ?? LESSONS_THEME_BACKDROPS.dark)
-      : isArenaBackdrop
-      ? (ARENA_THEME_BACKDROPS[themeMode] ?? ARENA_THEME_BACKDROPS.dark)
-      : isFriendsBackdrop
-        ? (FRIENDS_THEME_BACKDROPS[themeMode] ?? FRIENDS_THEME_BACKDROPS.dark)
-      : isSettingsBackdrop
-        ? (SETTINGS_THEME_BACKDROPS[themeMode] ?? SETTINGS_THEME_BACKDROPS.dark)
-        : null;
-  const showTabBackdrop = currentRouteIsTab && activeTabBackdropSource !== null;
-  const tabBackdropOpacity = isHomeBackdrop
-    ? themeMode === 'minimalLight' ? 0.16 :
-      themeMode === 'minimalDark' ? 0.18 :
-      themeMode === 'neon' ? 0.20 :
-      themeMode === 'gold' ? 0.30 :
-      themeMode === 'coral' ? 0.22 :
-      0.24
-    : isLessonsBackdrop
-      ? themeMode === 'minimalLight' ? 0.17 :
-        themeMode === 'minimalDark' ? 0.22 :
-        themeMode === 'neon' ? 0.24 :
-        themeMode === 'gold' ? 0.34 :
-        themeMode === 'coral' ? 0.26 :
-        0.28
-    : isSettingsBackdrop
-    ? themeMode === 'minimalLight' ? 0.20 :
-      themeMode === 'minimalDark' ? 0.24 :
-      themeMode === 'neon' ? 0.26 :
-      themeMode === 'gold' ? 0.36 :
-      themeMode === 'coral' ? 0.30 :
-      0.32
-    : isFriendsBackdrop
-      ? themeMode === 'minimalLight' ? 0.18 :
-        themeMode === 'minimalDark' ? 0.24 :
-        themeMode === 'neon' ? 0.26 :
-        themeMode === 'gold' ? 0.34 :
-        themeMode === 'coral' ? 0.28 :
-        0.32
-    : themeMode === 'minimalLight' ? 0.16 :
-      themeMode === 'gold' ? 0.10 :
-      themeMode === 'neon' ? 0.08 :
-      0.11;
-  const tabBackdropScrim = useMemo<[string, string, string]>(() => (
-    isHomeBackdrop
-      ? themeMode === 'minimalLight'
-        ? ['rgba(0,0,0,0.14)', 'rgba(0,0,0,0.08)', 'rgba(0,0,0,0.28)']
-        : themeMode === 'gold'
-          ? ['rgba(0,0,0,0.58)', 'rgba(0,0,0,0.42)', 'rgba(0,0,0,0.86)']
-          : ['rgba(0,0,0,0.48)', 'rgba(0,0,0,0.30)', 'rgba(0,0,0,0.78)']
-      : isLessonsBackdrop
-        ? themeMode === 'minimalLight'
-          ? ['rgba(0,0,0,0.12)', 'rgba(0,0,0,0.06)', 'rgba(0,0,0,0.24)']
-          : themeMode === 'gold'
-            ? ['rgba(0,0,0,0.60)', 'rgba(0,0,0,0.44)', 'rgba(0,0,0,0.88)']
-            : ['rgba(0,0,0,0.42)', 'rgba(0,0,0,0.24)', 'rgba(0,0,0,0.72)']
-      : isFriendsBackdrop || isSettingsBackdrop
-        ? themeMode === 'minimalLight'
-          ? ['rgba(0,0,0,0.10)', 'rgba(0,0,0,0.04)', 'rgba(0,0,0,0.22)']
-          : themeMode === 'gold'
-            ? ['rgba(0,0,0,0.60)', 'rgba(0,0,0,0.42)', 'rgba(0,0,0,0.86)']
-            : ['rgba(0,0,0,0.30)', 'rgba(0,0,0,0.16)', 'rgba(0,0,0,0.66)']
-      : themeMode === 'minimalLight'
-        ? ['rgba(0,0,0,0.08)', 'rgba(0,0,0,0.04)', 'rgba(0,0,0,0.18)']
-        : themeMode === 'gold'
-          ? ['rgba(0,0,0,0.72)', 'rgba(0,0,0,0.54)', 'rgba(0,0,0,0.94)']
-          : ['rgba(0,0,0,0.64)', 'rgba(0,0,0,0.44)', 'rgba(0,0,0,0.90)']
-  ), [isFriendsBackdrop, isHomeBackdrop, isLessonsBackdrop, isSettingsBackdrop, themeMode]);
-  const tabBackdropEdgeScrim = useMemo<[string, string, string, string]>(() => (
-    themeMode === 'minimalLight'
-      ? ['rgba(255,252,246,0.44)', 'rgba(255,252,246,0)', 'rgba(255,252,246,0)', 'rgba(255,252,246,0.26)']
-      : themeMode === 'gold'
-        ? ['rgba(0,0,0,0.42)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.28)']
-        : themeMode === 'minimalDark'
-          ? ['rgba(0,0,0,0.34)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.22)']
-          : ['rgba(0,0,0,0.30)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.20)']
-  ), [themeMode]);
-  const tabBackdropImageTranslateX = showTabBackdrop
-    ? isHomeBackdrop
-      ? -Math.round(Math.min(30, Math.max(16, viewportW * 0.052)))
-      : isLessonsBackdrop
-        ? 0
-      : isFriendsBackdrop
-        ? -Math.round(Math.min(22, Math.max(10, viewportW * 0.034)))
-        : isSettingsBackdrop
-          ? -Math.round(Math.min(16, Math.max(8, viewportW * 0.024)))
-          : 0
-    : 0;
   const tabChromeSolidBg = isMinimal ? t.bgCard : t.bgPrimary;
-  const tabChromeBackdropBg =
-    themeMode === 'minimalLight' ? 'rgba(255,252,246,0.94)' :
-    themeMode === 'gold' ? 'rgba(3,3,3,0.88)' :
-    themeMode === 'minimalDark' ? 'rgba(18,18,18,0.78)' :
-    'rgba(6,8,10,0.76)';
-  const tabChromeWrapBg = showTabBackdrop ? 'rgba(0,0,0,0)' : t.bgPrimary;
-  const tabChromeBarBg = showTabBackdrop ? tabChromeBackdropBg : tabChromeSolidBg;
+  const tabChromeWrapBg = t.bgPrimary;
+  const tabChromeBarBg = tabChromeSolidBg;
   const tabChromeSafeBg = tabChromeBarBg;
-  const tabChromeKey = `${themeMode}:${showTabBackdrop ? 'art' : 'plain'}:${tabChromeWrapBg}:${tabChromeBarBg}:${tabChromeSafeBg}`;
-  const tabBackdropKey = showTabBackdrop && activeTabBackdropSource
-    ? `${activeIdx}:${themeMode}:${Math.round(viewportW)}:${backgroundTransitionKey(activeTabBackdropSource)}`
-    : 'none';
-  const targetTabBackdrop = useMemo<TabBackdropState | null>(() => {
-    if (!showTabBackdrop || !activeTabBackdropSource) return null;
-
-    return {
-      key: tabBackdropKey,
-      source: activeTabBackdropSource,
-      imageOpacity: tabBackdropOpacity,
-      imageTranslateX: tabBackdropImageTranslateX,
-      scrim: tabBackdropScrim as [string, string, string],
-      edgeScrim: tabBackdropEdgeScrim,
-    };
-  }, [activeTabBackdropSource, showTabBackdrop, tabBackdropEdgeScrim, tabBackdropImageTranslateX, tabBackdropKey, tabBackdropOpacity, tabBackdropScrim]);
-  const { layers: tabBackdropLayers } = usePersistentBackgroundLayers({
-    value: targetTabBackdrop,
-    transitionKey: tabBackdropKey,
-    fadeInDuration: TAB_BACKGROUND_TRANSITION_MS,
-    fadeOutDuration: TAB_BACKGROUND_TRANSITION_MS,
-    fadeOutDelay: TAB_BACKGROUND_TRANSITION_MS,
-    maxLayers: 4,
-  });
+  const tabChromeKey = `${themeMode}:plain:${tabChromeWrapBg}:${tabChromeBarBg}:${tabChromeSafeBg}`;
   const [tabChromeLayers, setTabChromeLayers] = useState<TabChromeLayer[]>(() => [{
     id: 0,
     wrapBg: tabChromeWrapBg,
@@ -344,15 +225,15 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
   const activeTabChromeKeyRef = useRef(tabChromeKey);
   const tabChromeLayerCleanupTasksRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
   const firstContentReadyEmittedRef = useRef(false);
-  useEffect(() => {
-    rememberAppArtBackdrop(activeTabArtBackdropName, themeMode, viewportW);
-  }, [activeTabArtBackdropName, themeMode, viewportW]);
 
   const notifyFirstContentReady = useCallback(() => {
     if (!currentRouteIsTab || activeIdx === 0 || firstContentReadyEmittedRef.current) return;
     firstContentReadyEmittedRef.current = true;
+    const emitFirstContentReady = () => emitAppEvent('app_first_content_ready');
     requestAnimationFrame(() => {
-      setTimeout(() => emitAppEvent('app_first_content_ready'), 160);
+      emitFirstContentReady();
+      setTimeout(emitFirstContentReady, 32);
+      setTimeout(emitFirstContentReady, 120);
     });
   }, [activeIdx, currentRouteIsTab]);
 
@@ -387,8 +268,24 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
   useEffect(() => {
     if (activeTabChromeKeyRef.current === tabChromeKey) return;
     activeTabChromeKeyRef.current = tabChromeKey;
+    cancelTabChromeLayerCleanupTasks();
 
     const previousLayers = tabChromeLayersRef.current;
+    previousLayers.forEach(layer => {
+      layer.fade.stopAnimation();
+    });
+
+    if (!TAB_CHROME_TRANSITIONS_ENABLED) {
+      setTabChromeLayers([{
+        id: ++tabChromeLayerSeqRef.current,
+        wrapBg: tabChromeWrapBg,
+        barBg: tabChromeBarBg,
+        safeBg: tabChromeSafeBg,
+        fade: new Animated.Value(1),
+      }]);
+      return;
+    }
+
     const nextLayer: TabChromeLayer = {
       id: ++tabChromeLayerSeqRef.current,
       wrapBg: tabChromeWrapBg,
@@ -398,12 +295,11 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
     };
 
     previousLayers.forEach(layer => {
-      layer.fade.stopAnimation();
       Animated.timing(layer.fade, {
         toValue: 0,
         duration: TAB_BACKGROUND_TRANSITION_MS,
         easing: Easing.inOut(Easing.cubic),
-        useNativeDriver: true,
+        useNativeDriver: TAB_CHROME_TRANSITION_USE_NATIVE_DRIVER,
       }).start(({ finished }) => {
         if (!finished) return;
         removeTabChromeLayerAfterCommit(layer.id);
@@ -415,62 +311,13 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
       toValue: 1,
       duration: TAB_BACKGROUND_TRANSITION_MS,
       easing: Easing.inOut(Easing.cubic),
-      useNativeDriver: true,
+      useNativeDriver: TAB_CHROME_TRANSITION_USE_NATIVE_DRIVER,
     }).start();
-  }, [removeTabChromeLayerAfterCommit, tabChromeBarBg, tabChromeKey, tabChromeSafeBg, tabChromeWrapBg]);
+  }, [cancelTabChromeLayerCleanupTasks, removeTabChromeLayerAfterCommit, tabChromeBarBg, tabChromeKey, tabChromeSafeBg, tabChromeWrapBg]);
 
   return (
-    <ScreenGradient artBackdrop={false} style={{ flex: 1 }} staticParallaxY={HOME_ENTRANCE.bgDriftPx}>
+    <ScreenGradient artBackdrop="home" style={{ flex: 1 }} staticParallaxY={HOME_ENTRANCE.bgDriftPx}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
-      {tabBackdropLayers.some(layer => layer.value) && (
-        <View pointerEvents="none" style={s.tabBackdropLayer}>
-          {tabBackdropLayers.map(layer => {
-            const backdrop = layer.value;
-            if (!backdrop) return null;
-
-            const imageOpacity = layer.opacity.interpolate({
-              inputRange: [0, 1],
-              outputRange: [0, backdrop.imageOpacity],
-            });
-
-            return (
-              <React.Fragment key={layer.id}>
-                <Animated.Image
-                  source={backdrop.source}
-                  resizeMode="cover"
-                  fadeDuration={0}
-                  style={[
-                    s.tabBackdropImage,
-                    {
-                      opacity: imageOpacity,
-                      transform: [
-                        { scale: TAB_BACKDROP_IMAGE_SCALE_END },
-                        { translateX: backdrop.imageTranslateX },
-                      ],
-                    },
-                  ]}
-                />
-                <Animated.View pointerEvents="none" style={[s.tabBackdropScrim, { opacity: layer.opacity }]}>
-                  <LinearGradient
-                    colors={backdrop.scrim}
-                    locations={[0, 0.48, 1]}
-                    start={{ x: 0.5, y: 0 }}
-                    end={{ x: 0.5, y: 1 }}
-                    style={s.tabBackdropScrim}
-                  />
-                  <LinearGradient
-                    colors={backdrop.edgeScrim}
-                    locations={[0, 0.20, 0.82, 1]}
-                    start={{ x: 0, y: 0.5 }}
-                    end={{ x: 1, y: 0.5 }}
-                    style={s.tabBackdropScrim}
-                  />
-                </Animated.View>
-              </React.Fragment>
-            );
-          })}
-        </View>
-      )}
       <View
         onLayout={notifyFirstContentReady}
         style={{ flex: 1, paddingTop: insets.top }}
@@ -486,12 +333,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
           </View>
           <View style={s.tabBarWrap}>
             <View pointerEvents="none" style={s.tabChromeFill}>
-              {tabChromeLayers.map(layer => (
-                <Animated.View
-                  key={`wrap-${layer.id}`}
-                  style={[s.tabChromeFill, { backgroundColor: layer.wrapBg, opacity: layer.fade }]}
-                />
-              ))}
+              {tabChromeLayers.map(layer => renderTabChromeLayer(layer, 'wrap', layer.wrapBg))}
             </View>
             <View
               style={[
@@ -510,12 +352,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
               ]}
             >
               <View pointerEvents="none" style={s.tabChromeFill}>
-                {tabChromeLayers.map(layer => (
-                  <Animated.View
-                    key={`bar-${layer.id}`}
-                    style={[s.tabChromeFill, { backgroundColor: layer.barBg, opacity: layer.fade }]}
-                  />
-                ))}
+                {tabChromeLayers.map(layer => renderTabChromeLayer(layer, 'bar', layer.barBg))}
               </View>
               {TABS.map((tab, i) => {
                 const focused = activeIdx === i;
@@ -549,12 +386,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
             </View>
             <View style={[s.tabSafeInset, { height: PB }]}>
               <View pointerEvents="none" style={s.tabChromeFill}>
-                {tabChromeLayers.map(layer => (
-                  <Animated.View
-                    key={`safe-${layer.id}`}
-                    style={[s.tabChromeFill, { backgroundColor: layer.safeBg, opacity: layer.fade }]}
-                  />
-                ))}
+                {tabChromeLayers.map(layer => renderTabChromeLayer(layer, 'safe', layer.safeBg))}
               </View>
             </View>
           </View>
@@ -577,9 +409,10 @@ export default function TabLayout() {
   // Начальный таб всегда в visited — чтобы первый рендер не был плейсхолдером.
   const [visitedTabs, setVisitedTabs] = useState(() => {
     const initial = tabIdxFromRouter(pathname, segments) ?? 0;
-    return new Set<number>([0, 1, initial]);
+    return new Set<number>([0, initial]);
   });
   const router = useRouter();
+  const deferredTabPrewarmStartedRef = useRef(false);
   /** Пока router.replace ещё не обновил pathname, useLayoutEffect не должен откатить вкладку по старому URL. */
   const pendingTabIdxRef = useRef<number | null>(null);
 
@@ -592,8 +425,12 @@ export default function TabLayout() {
     }
     if (pendingTabIdxRef.current !== null) {
       const hold = pendingTabIdxRef.current;
+      setVisitedTabs((prev) => addVisitedTab(prev, hold));
       setActiveIdx((prev) => (prev === hold ? prev : hold));
       return;
+    }
+    if (fromRouter !== null) {
+      setVisitedTabs((prev) => addVisitedTab(prev, fromRouter));
     }
     setActiveIdx((prev) => {
       if (fromRouter === null) return prev;
@@ -603,21 +440,31 @@ export default function TabLayout() {
 
   useFocusEffect(useCallback(() => { setFocusTick(tick => tick + 1); }, []));
 
-  const rememberVisitedTab = useCallback((idx: number) => {
-    if (idx <= 1) return;
-    setVisitedTabs((prev) => {
-      if (prev.has(idx)) return prev;
-      const next = new Set(prev);
-      next.add(idx);
-      return next;
-    });
+  useEffect(() => {
+    const startPrewarm = () => {
+      if (deferredTabPrewarmStartedRef.current) return;
+      deferredTabPrewarmStartedRef.current = true;
+      setTimeout(() => {
+        requestAnimationFrame(prewarmDeferredTabScreens);
+      }, 120);
+    };
+
+    const sub = onAppEvent('app_first_content_ready', startPrewarm);
+    const fallbackTimer = setTimeout(startPrewarm, 900);
+    return () => {
+      clearTimeout(fallbackTimer);
+      sub.remove();
+    };
   }, []);
 
-  /** Вызывается в момент отпускания пальца (до анимации) — обновляем таббар и монтируем экран назначения.
-   *  Нативный driver изолирован от JS-потока, поэтому React-mount нового экрана не прерывает анимацию. */
+  const rememberVisitedTab = useCallback((idx: number) => {
+    setVisitedTabs((prev) => addVisitedTab(prev, idx));
+  }, []);
+
+  /** Вызывается в момент отпускания пальца (до анимации) — только гарантируем наличие экрана назначения.
+   *  Активный таб/хром переключаются после UI-thread анимации, чтобы React-рендер не дергал свайп. */
   const handleSwipeStart = useCallback((idx: number) => {
     if (idx === activeIdxRef.current) return;
-    setActiveIdx(idx);
     rememberVisitedTab(idx);
   }, [rememberVisitedTab]);
 
@@ -648,28 +495,47 @@ export default function TabLayout() {
     navigateTo(idx);
   }, [navigateTo, rememberVisitedTab]);
 
-  /** Свайп завершён — обновляем URL асинхронно (UI уже обновлён в handleSwipeStart). */
+  /** Свайп завершён — теперь обновляем активный таб/хром и затем URL. */
   const handleSwipeComplete = useCallback((idx: number) => {
+    if (idx !== activeIdxRef.current) {
+      setActiveIdx(idx);
+      rememberVisitedTab(idx);
+    }
     navigateTo(idx);
-  }, [navigateTo]);
+  }, [navigateTo, rememberVisitedTab]);
+
+  const currentRouteIsTab = tabIdxFromRouter(pathname, segments) !== null;
 
   const tabScreens = useMemo(() => {
-    // Головна (0) і Уроки (1) завжди в дереві. Решальные табы монтируются в handleSwipeStart/handleTabChange
-    // (добавляются в visitedTabs), но не раньше — чтобы не строить тяжёлые экраны при старте.
-    const show = (i: number) => i === 0 || i === 1 || visitedTabs.has(i);
+    // Головна (0) завжди в дереві; інші таби зберігають слот, але реальний екран підключається лише коли таб активний.
+    // Решальные табы добавляются в visitedTabs в handleSwipeStart/handleTabChange, чтобы не строить тяжёлые экраны при старте.
     const placeholder = (k: string) => (
       <View key={k} style={{ width: tabPaneWidth, flex: 1, backgroundColor: 'transparent' }} collapsable={false} />
     );
+    if (!currentRouteIsTab) {
+      return [
+        placeholder('ph-home-hidden'),
+        placeholder('ph-index-hidden'),
+        placeholder('ph-arena-hidden'),
+        placeholder('ph-friends-hidden'),
+        placeholder('ph-settings-hidden'),
+      ];
+    }
+
+    const show = (i: number) => i === 0 || i === activeIdx || visitedTabs.has(i);
+    const shouldLoad = (i: number) => i === activeIdx || visitedTabs.has(i);
     return [
       show(0) ? <HomeScreen       key="home" />         : placeholder('ph-home'),
-      show(1) ? <LessonsScreen    key="index" />        : placeholder('ph-index'),
-      show(2) ? <ArenaTabScreen   key="arena" />        : placeholder('ph-arena'),
-      show(3) ? <FriendsScreen    key="friends" />      : placeholder('ph-friends'),
-      show(4) ? <SettingsScreen   key="settings" />     : placeholder('ph-settings'),
+      show(1) ? <DeferredTabScreen key="index" shouldLoad={shouldLoad(1)} loadScreen={loadLessonsScreen} /> : placeholder('ph-index'),
+      show(2) ? <DeferredTabScreen key="arena" shouldLoad={shouldLoad(2)} loadScreen={loadArenaScreen} /> : placeholder('ph-arena'),
+      show(3) ? <DeferredTabScreen key="friends" shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /> : placeholder('ph-friends'),
+      show(4) ? <DeferredTabScreen key="settings" shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /> : placeholder('ph-settings'),
     ];
-  }, [visitedTabs, tabPaneWidth]);
+  }, [activeIdx, currentRouteIsTab, visitedTabs, tabPaneWidth]);
 
-  const currentRouteIsTab = tabIdxFromRouter(pathname, segments) !== null;
+  if (!currentRouteIsTab) {
+    return <View style={s.hiddenStackUnderlay} collapsable={false} />;
+  }
 
   return (
     <TabProvider activeIdx={activeIdx} onTabChange={handleTabChange} onSwipeStart={handleSwipeStart} onSwipeComplete={handleSwipeComplete} focusTick={focusTick}>
@@ -679,17 +545,10 @@ export default function TabLayout() {
 }
 
 const s = StyleSheet.create({
-  tabBackdropLayer: {
-    ...StyleSheet.absoluteFillObject,
-    overflow: 'hidden',
-  },
-  tabBackdropImage: {
-    ...StyleSheet.absoluteFillObject,
-    width: '100%',
-    height: '100%',
-  },
-  tabBackdropScrim: {
-    ...StyleSheet.absoluteFillObject,
+  hiddenStackUnderlay: { flex: 1, backgroundColor: 'transparent' },
+  deferredTabPlaceholder: {
+    flex: 1,
+    backgroundColor: 'transparent',
   },
   /** Область свайпа табов; minHeight:0 — иначе flex не даёт скроллу сжиматься (RN). Фон прозрачный — градиент с TabScaffold, без белого «просвета». */
   tabContent: { flex: 1, minHeight: 0, width: '100%', backgroundColor: 'transparent' },

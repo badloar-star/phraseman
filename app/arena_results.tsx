@@ -42,6 +42,7 @@ import { reserveArenaGameEntry } from './arena_access_gate';
 import { recordArenaClubWarContribution, type ArenaClubWarContributionResult } from './services/arena_club_wars';
 import { recordArenaRoomRun, subscribeArenaRoomRuns, type ArenaRoomRun } from './services/arena_rooms_live';
 import { publishArenaPulseEvent } from './services/arena_pulse';
+import { safeRouterBack } from './navigation_back';
 
 type ArenaReviewItem = {
   question: string;
@@ -1370,8 +1371,7 @@ export default function DuelResultsScreen() {
 
   const goBackFromResults = useCallback(async () => {
     await cancelMyPendingIfAny();
-    if (router.canGoBack()) router.back();
-    else router.replace('/(tabs)/arena' as any);
+    safeRouterBack(router, '/(tabs)/arena' as any);
   }, [cancelMyPendingIfAny, router]);
 
   return (

@@ -15,6 +15,8 @@ students.
 - Interface locales come from Heisenberg/source-locale architecture. Skyler must
   follow `app/source_locales.ts` instead of inventing or freezing its own list.
   Current active baseline: `ru`, `uk`, `es`, `pt-BR`, `vi`, `id`, `tr`, `pl`.
+- Active app visual families for thematic assets: `forest`, `dark`, `neon`,
+  `neonGreen`, `gold`, `coral`, `minimalLight`, `minimalDark`.
 
 ## Architecture Rule For "Smartest"
 
@@ -33,6 +35,13 @@ future game loops without polluting lesson progress.
 - Source Librarian: builds the official source matrix and rejects weak sources.
 - Fact Checker: verifies claims, examples, answer keys, and nuance.
 - Quiz Architect: designs item types, difficulty ramp, and category structure.
+- Visual Asset Producer: runs the visual asset kickoff / AI visual asset pass as
+  the first creation step by generating DALL-E/imagegen theme card backgrounds
+  and theme logos (the topic plaque and topic icon) for every active app visual
+  family / all active app theme modes before quiz drafting.
+- Visual Asset Director: verifies that the AI visual asset pass matches existing
+  thematic quiz style, keeps card art text-safe on the left, and records source
+  files plus final WebP outputs.
 - English Quiz Writer: writes English-learning items from English references.
 - French Quiz Writer: writes French-learning items from French/FLE references.
 - Smartest Writer: writes general-knowledge items with cited facts.
@@ -61,15 +70,23 @@ future game loops without polluting lesson progress.
 
 ## Creation Flow
 
-1. Build a source matrix before writing questions.
-2. Write the category brief.
-3. Read `QUIZ_STYLE_CONTRACT.md` and sample `app/quiz_data.ts` plus
+1. Run the visual asset kickoff / AI visual asset pass before quiz drafting:
+   create DALL-E/imagegen theme card backgrounds and theme logos (the topic
+   plaque and topic icon) for every active app visual family / all active app
+   theme modes (`forest`, `dark`, `neon`, `neonGreen`, `gold`, `coral`,
+   `minimalLight`, `minimalDark`) in the style of existing Phraseman thematic
+   assets. Exact active app visual family coverage string: `forest`, `dark`,
+   `neon`, `neonGreen`, `gold`, `coral`, `minimalLight`, `minimalDark`.
+   This is the mandatory DALL-E topic plaque and topic icon start gate.
+2. Build a source matrix before writing questions.
+3. Write the category brief.
+4. Read `QUIZ_STYLE_CONTRACT.md` and sample `app/quiz_data.ts` plus
    `app/quiz_source_locale_payloads.ts`.
-4. Draft the first pack with a concrete `styleProfile`.
-5. Attach source IDs to every item and claim.
-6. Attach locale review notes for every active interface locale.
-7. Run the gate.
-8. Fix only the failed gate areas.
+5. Draft the first pack with a concrete `styleProfile`.
+6. Attach source IDs to every item and claim.
+7. Attach locale review notes for every active interface locale.
+8. Run the gate.
+9. Fix only the failed gate areas.
 
 ## Hard Editorial Rules
 
@@ -110,6 +127,11 @@ future game loops without polluting lesson progress.
 - G1 Source matrix: every factual/grammar claim has source IDs, and official
   source records have unique source URLs, distinct source hosts, and no unused
   official sources.
+- G1.5 Visual asset kickoff: a selected category must complete the AI visual
+  asset pass before quiz drafting, with DALL-E/imagegen theme card backgrounds
+  and theme logos (the topic plaque and topic icon), `visual_asset_plan.md`,
+  source files, and manifest coverage for every active app visual family / all
+  active app theme modes before production mapping.
 - G2 Track fit: `en`, `fr`, and `smartest` use the correct schema and references.
 - G3 Item validity: four unique choices, one correct answer, no ambiguous keys.
 - G4 Distractor quality: wrong options are plausible learner errors but clearly
@@ -141,6 +163,11 @@ future game loops without polluting lesson progress.
   source IDs and a concrete reviewer owner.
   Exact gate phrase: locale review needs at least two distinct source IDs.
 - G7 App fit: output can be mapped to the existing quiz or future Smartest schema.
+- G7.5 Visual assets: the DALL-E visual pass is complete before quiz drafting;
+  theme card backgrounds and theme logos (topic plaques and topic icons) cover
+  every active app visual family / all active app theme modes, use optimized
+  WebP/transparent logo assets where appropriate, contain no text or watermark,
+  and match the existing thematic quiz asset style.
 - G8 Human choice: new categories are selected by the user before pack drafting.
 - G9 Drift guard: Skyler locale requirements must match Heisenberg
   `ACTIVE_INTERFACE_SOURCE_LOCALES`; French locale requirements must match the
@@ -180,6 +207,11 @@ future game loops without polluting lesson progress.
   belongs only to French, `skillTag` belongs only to language-learning items,
   and `factTag` belongs only to Smartest items. Track tags must be stable
   lowercase machine tokens.
+- G12.5 Release isolation: Skyler-generated packs stay `dev-only` with
+  `productionActivation: blocked_until_explicit_user_approval` until the user
+  explicitly approves production activation. After approval, the pack may use
+  `releasePolicy.environment: production`,
+  `productionActivation: approved_by_user`, and concrete approval metadata.
 
 ## Draft Pack Minimum
 
@@ -191,6 +223,10 @@ The gate expects a JSON object with:
 - `categoryTitle`: concrete product-facing title
 - `researchPolicy.directTranslationUsed`: `false`
 - `researchPolicy.notes`: concrete research/adaptation notes
+- `releasePolicy.environment`: `dev-only` or `production`
+- `releasePolicy.productionActivation`: `blocked_until_explicit_user_approval`
+  for dev-only packs, or `approved_by_user` for explicitly approved production
+  packs.
 - `socialListening.status`: `validated` or `seed-only`
 - `socialListening.signals`: if status is `validated`, signals must be
   at least two non-placeholder distinct social signals.
@@ -198,6 +234,10 @@ The gate expects a JSON object with:
   sampled `app/quiz_data.ts` and `app/quiz_source_locale_payloads.ts` and
   followed `QUIZ_STYLE_CONTRACT.md` for prompt, explanation, reader reward, and
   distractor style.
+- `visualAssets`: proof that the visual asset kickoff / AI visual asset pass ran
+  first, with DALL-E/imagegen theme card backgrounds and theme logos (the topic
+  plaque and topic icon) covering every active app visual family / all active
+  app theme modes before production mapping.
 - `officialSources`: at least two Tier A/B source records with publisher type,
   http(s) URL, concrete `usedFor`, non-future `YYYY-MM-DD` checked date, and
   limitations. Source URLs must be unique, source hosts must be distinct, and
@@ -231,9 +271,15 @@ A Skyler run is complete only when:
 
 - The user chose one category from three candidates.
 - The source matrix exists.
+- The visual asset plan exists and records DALL-E/imagegen theme card
+  backgrounds and theme logos (the topic plaque and topic icon) for every active
+  app visual family / all active app theme modes.
 - The first draft pack has no direct-translation flag.
 - Every item has source IDs.
 - Every active locale has review notes, localized prompts, and explanations.
+- The AI visual asset pass has produced theme card backgrounds and theme logos
+  (topic plaques and topic icons) for every active app visual family / all active
+  app theme modes before quiz drafting or app integration.
 - The gate report decision is `GO`.
 - French packs remain blocked from production activation until the app-level
   French quiz source gate is updated with approved evidence.

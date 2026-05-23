@@ -23,6 +23,7 @@ import { registerXP } from './xp_manager';
 import { awardOneTime } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
+import { safeRouterBack } from './navigation_back';
 import { checkAchievements } from './achievements';
 import { DEV_MODE, STORE_URL } from './config';
 import { shuffle } from './utils_shuffle';
@@ -716,7 +717,7 @@ export default function ExamScreen() {
   if (frenchExamBlocked) return (
     <FrenchLingmanExamUnavailable
       lang={lang}
-      onBack={() => router.back()}
+      onBack={() => safeRouterBack(router)}
       onLessons={() => router.replace('/(tabs)/lessons' as any)}
       sx={sx}
       t={t}
@@ -735,7 +736,7 @@ export default function ExamScreen() {
     <ScreenGradient artBackdrop="exam">
     <SafeAreaView style={{flex:1}}>
       <View style={{flexDirection:'row',alignItems:'center',padding:15,borderBottomWidth:0.5,borderBottomColor:t.border}}>
-        <TouchableOpacity onPress={()=>router.back()}>
+        <TouchableOpacity onPress={() => safeRouterBack(router)}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TouchableOpacity>
         <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
@@ -767,7 +768,7 @@ export default function ExamScreen() {
             {lessonsCompleted} {t3('из 32 уроков завершено', 'з 32 уроків завершено', 'de 32 lecciones completadas', 'de 32 lições concluídas', 'trong 32 bài học đã hoàn thành', 'dari 32 pelajaran selesai', '/ 32 ders tamamlandı', 'z 32 lekcji ukończono')}
           </Text>
         </View>
-        <TouchableOpacity style={{marginTop:24}} onPress={()=>router.replace('/(tabs)/' as any)}>
+        <TouchableOpacity style={{marginTop:24}} onPress={()=>router.replace('/(tabs)/lessons' as any)}>
           <Text style={{color:sx.second,fontSize:f.bodyLg,textDecorationLine:'underline'}}>
             {t3('Перейти к урокам →', 'Перейти до уроків →', 'Ir a las lecciones →', 'Ir para as lições →', 'Đi tới bài học →', 'Ke pelajaran →', 'Derslere git →', 'Przejdź do lekcji →')}
           </Text>
@@ -785,7 +786,7 @@ export default function ExamScreen() {
     <ScreenGradient artBackdrop="exam">
     <SafeAreaView style={{flex:1}}>
       <View style={{flexDirection:'row',alignItems:'center',padding:15,borderBottomWidth:0.5,borderBottomColor:t.border}}>
-        <TouchableOpacity onPress={() => certificate ? setPhase('cert') : router.back()}>
+        <TouchableOpacity onPress={() => certificate ? setPhase('cert') : safeRouterBack(router)}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TouchableOpacity>
         <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
@@ -1298,8 +1299,7 @@ export default function ExamScreen() {
       )}
       <View style={{flexDirection:'row',alignItems:'center',padding:15,borderBottomWidth:0.5,borderBottomColor:t.border}}>
         <TouchableOpacity onPress={() => {
-          if (router.canGoBack()) router.back();
-          else router.replace('/(tabs)/home' as any);
+          safeRouterBack(router);
         }}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TouchableOpacity>

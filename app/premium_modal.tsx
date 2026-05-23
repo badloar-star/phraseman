@@ -31,6 +31,7 @@ import {
   markSubscriptionOrTrialFlowConsumedNow,
 } from './premium_trial_eligibility';
 import { storeProductHasTrialIntro } from './premium_trial_signal';
+import { safeRouterBack } from './navigation_back';
 import {
   persistStorePremiumLocally,
   revenueCatPremiumMetadata,
@@ -57,10 +58,9 @@ import {
   shouldShowExitTrialOffer,
   shouldShowPrimaryTrialUi,
   type PaywallCloseReason,
-  type PaywallViewMode,
 } from './paywall_trial_offer';
 import { hapticTap } from '../hooks/use-haptics';
-import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
+import { MOTION_SPRING } from '../constants/motion';
 import { triLang, type Lang } from '../constants/i18n';
 import { getPremiumCourseLevel } from './lesson_lock_system';
 import type { ThemeMode } from '../constants/theme';
@@ -291,29 +291,28 @@ const PAYWALL_COPY: Record<PremiumContext, PaywallCopy> = {
     subtitleEs: 'Con Premium estudia sin frenos y mantén tu ritmo diario.',
   },
   quiz_level: {
-    titleRu: 'Ты готов к следующему уровню',
-    titleUk: 'Ти готовий до наступного рівня',
-    titleEs: 'Estás listo para el siguiente nivel',
-    subtitleRu: 'Открой более сильную практику и ускорь рост языка.',
-    subtitleUk: 'Відкрий сильнішу практику та пришвидш свій прогрес.',
-    subtitleEs: 'Accede a una práctica más exigente y acelera tu progreso.',
+    titleRu: 'Больше квизов каждый день',
+    titleUk: 'Більше квізів щодня',
+    titleEs: 'Más cuestionarios cada día',
+    subtitleRu: 'В бесплатной версии доступно 3 квиза в день. Premium снимает дневной лимит, чтобы можно было тренироваться без пауз.',
+    subtitleUk: 'У безкоштовній версії доступно 3 квізи на день. Premium знімає денний ліміт, щоб можна було тренуватися без пауз.',
+    subtitleEs: 'La versión gratis incluye 3 cuestionarios al día. Premium quita el límite diario para que puedas practicar sin pausas.',
   },
   quiz_medium: {
-    // Пейволл при тапе на Medium: пользователь мог ни разу не играть в Easy — не пишем «легкий пройден».
-    titleRu: 'Средняя сложность — сильнее прогресс',
-    titleUk: 'Середня складність — сильніший прогрес',
-    titleEs: 'Nivel medio: más progreso',
-    subtitleRu: 'Средние квизы дают больше практики, глубже закрепляют материал и ускоряют прогресс.',
-    subtitleUk: 'Середні квізи дають більше практики, глибше закріплюють матеріал і прискорюють прогрес.',
-    subtitleEs: 'Los quizzes medios dan más práctica, consolidan mejor el contenido y aceleran el progreso.',
+    titleRu: 'Больше квизов каждый день',
+    titleUk: 'Більше квізів щодня',
+    titleEs: 'Más cuestionarios cada día',
+    subtitleRu: 'В бесплатной версии доступно 3 квиза в день. Premium снимает дневной лимит, чтобы можно было тренироваться без пауз.',
+    subtitleUk: 'У безкоштовній версії доступно 3 квізи на день. Premium знімає денний ліміт, щоб можна було тренуватися без пауз.',
+    subtitleEs: 'La versión gratis incluye 3 cuestionarios al día. Premium quita el límite diario para que puedas practicar sin pausas.',
   },
   quiz_hard: {
-    titleRu: 'Сложный уровень - максимум роста',
-    titleUk: 'Складний рівень - максимум росту',
-    titleEs: 'Nivel difícil: máximo potencial',
-    subtitleRu: 'Hard-квизы помогают выйти из плато и быстрее прокачать уверенное владение языком.',
-    subtitleUk: 'Hard-квізи допомагають вийти з плато й швидше прокачати впевнене володіння мовою.',
-    subtitleEs: 'Los quizzes difíciles te ayudan a salir del estancamiento y dominar el idioma con más confianza.',
+    titleRu: 'Больше квизов каждый день',
+    titleUk: 'Більше квізів щодня',
+    titleEs: 'Más cuestionarios cada día',
+    subtitleRu: 'В бесплатной версии доступно 3 квиза в день. Premium снимает дневной лимит, чтобы можно было тренироваться без пауз.',
+    subtitleUk: 'У безкоштовній версії доступно 3 квізи на день. Premium знімає денний ліміт, щоб можна було тренуватися без пауз.',
+    subtitleEs: 'La versión gratis incluye 3 cuestionarios al día. Premium quita el límite diario para que puedas practicar sin pausas.',
   },
   flashcard_limit: {
     titleRu: 'Твоя база карточек не должна иметь лимит',
@@ -414,12 +413,12 @@ const PAYWALL_COPY: Record<PremiumContext, PaywallCopy> = {
 };
 
 PAYWALL_COPY.quiz_limit = {
-  titleRu: '3 бесплатных квиза на сегодня использованы',
-  titleUk: '3 безкоштовні квізи на сьогодні використано',
+  titleRu: 'Лимит квизов на сегодня исчерпан',
+  titleUk: 'Ліміт квізів на сьогодні вичерпано',
   titleEs: 'Ya usaste tus 3 cuestionarios gratis de hoy',
-  subtitleRu: 'Free-аккаунту доступны 3 легких квиза в день. Premium снимает дневной лимит и открывает средний и сложный уровни.',
-  subtitleUk: 'Free-акаунту доступні 3 легкі квізи на день. Premium знімає денний ліміт і відкриває середній та складний рівні.',
-  subtitleEs: 'La cuenta gratis tiene 3 cuestionarios fáciles al día. Premium quita el límite diario y abre los niveles medio y difícil.',
+  subtitleRu: 'В бесплатной версии доступно 3 квиза в день. Premium снимает дневной лимит, чтобы можно было тренироваться без пауз.',
+  subtitleUk: 'У безкоштовній версії доступно 3 квізи на день. Premium знімає денний ліміт, щоб можна було тренуватися без пауз.',
+  subtitleEs: 'La versión gratis incluye 3 cuestionarios al día. Premium quita el límite diario para que puedas practicar sin pausas.',
 };
 
 const PAYWALL_PLANNED_COPY: Record<PremiumContext, PremiumPlannedHeroCopy> = {
@@ -446,43 +445,43 @@ const PAYWALL_PLANNED_COPY: Record<PremiumContext, PremiumPlannedHeroCopy> = {
   course_after_lesson3: COURSE_AFTER_LESSON3_PLANNED_COPY,
   lesson_b1: COURSE_AFTER_LESSON3_PLANNED_COPY,
   quiz_limit: {
-    title: { 'pt-BR': 'Você já usou os 3 quizzes grátis de hoje', vi: 'Bạn đã dùng 3 quiz miễn phí hôm nay', id: '3 kuis gratis hari ini sudah dipakai', tr: 'Bugünkü 3 ücretsiz quiz kullanıldı', pl: '3 darmowe quizy na dziś są już użyte' },
+    title: { 'pt-BR': 'O limite de quizzes de hoje acabou', vi: 'Đã hết lượt quiz hôm nay', id: 'Batas kuis hari ini habis', tr: 'Bugünkü quiz sınırı doldu', pl: 'Dzisiejszy limit quizów został wykorzystany' },
     subtitle: {
-      'pt-BR': 'A conta grátis tem 3 quizzes fáceis por dia. Premium remove o limite diário e abre os níveis médio e difícil.',
-      vi: 'Tài khoản miễn phí có 3 quiz dễ mỗi ngày. Premium bỏ giới hạn hằng ngày và mở mức trung bình, khó.',
-      id: 'Akun gratis mendapat 3 kuis mudah per hari. Premium menghapus batas harian dan membuka level sedang serta sulit.',
-      tr: 'Ücretsiz hesapta günde 3 kolay quiz var. Premium günlük sınırı kaldırır ve orta ile zor seviyeleri açar.',
-      pl: 'Darmowe konto ma 3 łatwe quizy dziennie. Premium usuwa limit dzienny i otwiera poziom średni oraz trudny.',
+      'pt-BR': 'A versão grátis inclui 3 quizzes por dia. Premium remove o limite diário para você praticar sem pausas.',
+      vi: 'Bản miễn phí có 3 quiz mỗi ngày. Premium bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
+      id: 'Versi gratis mencakup 3 kuis per hari. Premium menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
+      tr: 'Ücretsiz sürüm günde 3 quiz içerir. Premium günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
+      pl: 'Wersja darmowa obejmuje 3 quizy dziennie. Premium usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
     },
   },
   quiz_level: {
-    title: { 'pt-BR': 'Você está pronto para o próximo nível', vi: 'Bạn đã sẵn sàng cho cấp tiếp theo', id: 'Kamu siap untuk level berikutnya', tr: 'Sonraki seviyeye hazırsın', pl: 'Jesteś gotowy na kolejny poziom' },
+    title: { 'pt-BR': 'Mais quizzes todos os dias', vi: 'Thêm quiz mỗi ngày', id: 'Lebih banyak kuis setiap hari', tr: 'Her gün daha fazla quiz', pl: 'Więcej quizów każdego dnia' },
     subtitle: {
-      'pt-BR': 'Acesse uma prática mais forte e acelere seu avanço no idioma.',
-      vi: 'Mở phần luyện tập mạnh hơn và tăng tốc kỹ năng ngôn ngữ.',
-      id: 'Buka latihan yang lebih kuat dan percepat perkembangan bahasa.',
-      tr: 'Daha güçlü pratik aç ve dil gelişimini hızlandır.',
-      pl: 'Otwórz mocniejszą praktykę i przyspiesz rozwój języka.',
+      'pt-BR': 'A versão grátis inclui 3 quizzes por dia. Premium remove o limite diário para você praticar sem pausas.',
+      vi: 'Bản miễn phí có 3 quiz mỗi ngày. Premium bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
+      id: 'Versi gratis mencakup 3 kuis per hari. Premium menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
+      tr: 'Ücretsiz sürüm günde 3 quiz içerir. Premium günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
+      pl: 'Wersja darmowa obejmuje 3 quizy dziennie. Premium usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
     },
   },
   quiz_medium: {
-    title: { 'pt-BR': 'Dificuldade média: mais progresso', vi: 'Mức trung bình: tiến bộ mạnh hơn', id: 'Tingkat sedang: progres lebih kuat', tr: 'Orta seviye: daha güçlü ilerleme', pl: 'Średni poziom: mocniejszy postęp' },
+    title: { 'pt-BR': 'Mais quizzes todos os dias', vi: 'Thêm quiz mỗi ngày', id: 'Lebih banyak kuis setiap hari', tr: 'Her gün daha fazla quiz', pl: 'Więcej quizów każdego dnia' },
     subtitle: {
-      'pt-BR': 'Quizzes médios dão mais prática, fixam melhor o conteúdo e aceleram o progresso.',
-      vi: 'Quiz trung bình cho nhiều luyện tập hơn, củng cố sâu hơn và tăng tốc tiến bộ.',
-      id: 'Kuis sedang memberi lebih banyak latihan, memperkuat materi, dan mempercepat progres.',
-      tr: 'Orta quizler daha çok pratik sağlar, konuyu daha iyi pekiştirir ve ilerlemeyi hızlandırır.',
-      pl: 'Średnie quizy dają więcej praktyki, lepiej utrwalają materiał i przyspieszają postęp.',
+      'pt-BR': 'A versão grátis inclui 3 quizzes por dia. Premium remove o limite diário para você praticar sem pausas.',
+      vi: 'Bản miễn phí có 3 quiz mỗi ngày. Premium bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
+      id: 'Versi gratis mencakup 3 kuis per hari. Premium menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
+      tr: 'Ücretsiz sürüm günde 3 quiz içerir. Premium günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
+      pl: 'Wersja darmowa obejmuje 3 quizy dziennie. Premium usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
     },
   },
   quiz_hard: {
-    title: { 'pt-BR': 'Nível difícil: máximo crescimento', vi: 'Mức khó: tăng trưởng tối đa', id: 'Level sulit: pertumbuhan maksimal', tr: 'Zor seviye: maksimum gelişim', pl: 'Trudny poziom: maksymalny wzrost' },
+    title: { 'pt-BR': 'Mais quizzes todos os dias', vi: 'Thêm quiz mỗi ngày', id: 'Lebih banyak kuis setiap hari', tr: 'Her gün daha fazla quiz', pl: 'Więcej quizów każdego dnia' },
     subtitle: {
-      'pt-BR': 'Quizzes Hard ajudam a sair do platô e ganhar domínio mais confiante do idioma.',
-      vi: 'Quiz Hard giúp bạn vượt giai đoạn chững lại và dùng ngôn ngữ tự tin hơn.',
-      id: 'Kuis Hard membantu keluar dari plateau dan menguasai bahasa dengan lebih percaya diri.',
-      tr: 'Hard quizler platodan çıkmana ve dili daha özgüvenli kullanmana yardım eder.',
-      pl: 'Quizy Hard pomagają wyjść z plateau i szybciej zbudować pewniejsze użycie języka.',
+      'pt-BR': 'A versão grátis inclui 3 quizzes por dia. Premium remove o limite diário para você praticar sem pausas.',
+      vi: 'Bản miễn phí có 3 quiz mỗi ngày. Premium bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
+      id: 'Versi gratis mencakup 3 kuis per hari. Premium menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
+      tr: 'Ücretsiz sürüm günde 3 quiz içerir. Premium günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
+      pl: 'Wersja darmowa obejmuje 3 quizy dziennie. Premium usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
     },
   },
   flashcard_limit: {
@@ -874,19 +873,19 @@ const CONTEXT_BENEFITS: Record<PremiumContext, ({ ru: string; uk: string; es: st
     { ru: 'Больше XP и пользы сессий', uk: 'Більше XP і користі від сесій', es: 'Más XP y valor en cada sesión', 'pt-BR': 'Mais XP e mais valor por sessão', vi: 'Thêm XP và giá trị từ mỗi phiên', id: 'Lebih banyak XP dan manfaat sesi', tr: 'Oturumlardan daha fazla XP ve fayda', pl: 'Więcej XP i korzyści z sesji' },
   ],
   quiz_level: [
-    { ru: 'Доступ к более сильной практике', uk: 'Доступ до сильнішої практики', es: 'Acceso a una práctica más exigente', 'pt-BR': 'Acesso a uma prática mais forte', vi: 'Mở luyện tập mạnh hơn', id: 'Akses ke latihan yang lebih kuat', tr: 'Daha güçlü pratiğe erişim', pl: 'Dostęp do mocniejszej praktyki' },
-    { ru: 'Быстрее рост языкового навыка', uk: 'Швидше зростання мовної навички', es: 'Progreso del idioma más rápido', 'pt-BR': 'Crescimento mais rápido da habilidade', vi: 'Kỹ năng ngôn ngữ tăng nhanh hơn', id: 'Kemampuan bahasa tumbuh lebih cepat', tr: 'Dil becerisi daha hızlı gelişir', pl: 'Szybszy wzrost umiejętności językowej' },
-    { ru: 'Меньше ощущения плато', uk: 'Менше відчуття плато', es: 'Menos sensación de estancamiento', 'pt-BR': 'Menos sensação de platô', vi: 'Ít cảm giác chững lại hơn', id: 'Lebih sedikit rasa plateau', tr: 'Daha az plato hissi', pl: 'Mniej poczucia plateau' },
+    { ru: 'Без дневного лимита на квизы', uk: 'Без денного ліміту на квізи', es: 'Sin límite diario de cuestionarios', 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
+    { ru: 'Больше практики в удобном ритме', uk: 'Більше практики у зручному ритмі', es: 'Más práctica a tu ritmo', 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
+    { ru: 'Больше практики и XP каждый день', uk: 'Більше практики та XP щодня', es: 'Más práctica y XP cada día', 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
   ],
   quiz_medium: [
-    { ru: 'Сложнее задания и богаче контексты', uk: 'Складніші завдання і багатші контексти', es: 'Ejercicios más ricos en contexto', 'pt-BR': 'Tarefas mais ricas em contexto', vi: 'Bài tập khó hơn và nhiều ngữ cảnh hơn', id: 'Tugas lebih sulit dan konteks lebih kaya', tr: 'Daha zor görevler ve daha zengin bağlamlar', pl: 'Trudniejsze zadania i bogatsze konteksty' },
-    { ru: 'Глубже закрепление материала', uk: 'Глибше закріплення матеріалу', es: 'Consolidación más profunda', 'pt-BR': 'Fixação mais profunda do conteúdo', vi: 'Củng cố kiến thức sâu hơn', id: 'Materi lebih melekat', tr: 'Konuyu daha derin pekiştirme', pl: 'Głębsze utrwalenie materiału' },
-    { ru: 'Сильнее прогресс каждую неделю', uk: 'Сильніший прогрес щотижня', es: 'Progreso más marcado cada semana', 'pt-BR': 'Progresso mais forte a cada semana', vi: 'Tiến bộ rõ hơn mỗi tuần', id: 'Progres lebih kuat tiap minggu', tr: 'Her hafta daha güçlü ilerleme', pl: 'Silniejszy postęp co tydzień' },
+    { ru: 'Без дневного лимита на квизы', uk: 'Без денного ліміту на квізи', es: 'Sin límite diario de cuestionarios', 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
+    { ru: 'Больше практики в удобном ритме', uk: 'Більше практики у зручному ритмі', es: 'Más práctica a tu ritmo', 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
+    { ru: 'Больше практики и XP каждый день', uk: 'Більше практики та XP щодня', es: 'Más práctica y XP cada día', 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
   ],
   quiz_hard: [
-    { ru: 'Hard-уровень для максимального роста', uk: 'Hard-рівень для максимального росту', es: 'Nivel difícil para el máximo rendimiento', 'pt-BR': 'Nível Hard para máximo crescimento', vi: 'Mức Hard để tăng trưởng tối đa', id: 'Level Hard untuk pertumbuhan maksimal', tr: 'Maksimum gelişim için Hard seviye', pl: 'Poziom Hard dla maksymalnego wzrostu' },
-    { ru: 'Выход из языкового плато', uk: 'Вихід з мовного плато', es: 'Sales del plató del idioma', 'pt-BR': 'Saída do platô do idioma', vi: 'Thoát khỏi giai đoạn chững của ngôn ngữ', id: 'Keluar dari plateau bahasa', tr: 'Dil platosundan çıkış', pl: 'Wyjście z językowego plateau' },
-    { ru: 'Быстрее уверенное владение языком', uk: 'Швидше впевнене володіння мовою', es: 'Dominio del idioma con más soltura', 'pt-BR': 'Domínio mais confiante mais rápido', vi: 'Tự tin dùng ngôn ngữ nhanh hơn', id: 'Penguasaan bahasa lebih percaya diri', tr: 'Daha hızlı ve güvenli dil kullanımı', pl: 'Szybsze, pewniejsze użycie języka' },
+    { ru: 'Без дневного лимита на квизы', uk: 'Без денного ліміту на квізи', es: 'Sin límite diario de cuestionarios', 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
+    { ru: 'Больше практики в удобном ритме', uk: 'Більше практики у зручному ритмі', es: 'Más práctica a tu ritmo', 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
+    { ru: 'Больше практики и XP каждый день', uk: 'Більше практики та XP щодня', es: 'Más práctica y XP cada día', 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
   ],
   flashcard_limit: [
     { ru: 'Безлимит на личную базу карточек', uk: 'Безліміт на особисту базу карток', es: 'Tu colección de tarjetas sin límite', 'pt-BR': 'Sem limite para sua base de cartões', vi: 'Không giới hạn kho thẻ cá nhân', id: 'Tanpa batas untuk koleksi kartu pribadi', tr: 'Kişisel kart arşivinde sınır yok', pl: 'Bez limitu własnej bazy fiszek' },
@@ -1156,14 +1155,14 @@ const MANAGE_VIEW_PREMIUM_BENEFITS: ({ ru: string; uk: string; es: string } & Pr
     pl: 'Lekcje obecnego poziomu są w pełni otwarte. Kolejne poziomy odblokowują się po egzaminach.',
   },
   {
-    ru: 'Квизы доступны на уровнях Medium и Hard, а не только Easy.',
-    uk: 'Квізи доступні на рівнях Medium і Hard, а не лише Easy.',
-    es: 'Los quizzes están disponibles en Medium y Hard, no solo en Easy.',
-    'pt-BR': 'Os quizzes ficam disponíveis em Medium e Hard, não só em Easy.',
-    vi: 'Quiz có ở mức Medium và Hard, không chỉ Easy.',
-    id: 'Kuis tersedia di Medium dan Hard, bukan hanya Easy.',
-    tr: 'Quizler yalnızca Easy değil, Medium ve Hard seviyelerinde de açılır.',
-    pl: 'Quizy są dostępne na poziomach Medium i Hard, nie tylko Easy.',
+    ru: 'Квизы можно проходить регулярно без дневного лимита.',
+    uk: 'Квізи можна проходити регулярно без денного ліміту.',
+    es: 'Puedes hacer cuestionarios con regularidad, sin límite diario.',
+    'pt-BR': 'Você pode fazer quizzes com regularidade, sem limite diário.',
+    vi: 'Bạn có thể làm quiz đều đặn mà không bị giới hạn hằng ngày.',
+    id: 'Kamu bisa mengerjakan kuis secara rutin tanpa batas harian.',
+    tr: 'Quizleri günlük sınıra takılmadan düzenli çözebilirsin.',
+    pl: 'Możesz regularnie robić quizy bez dziennego limitu.',
   },
   {
     ru: 'Неограниченное количество сохранённых карточек.',
@@ -1208,8 +1207,8 @@ const MANAGE_VIEW_PREMIUM_BENEFITS: ({ ru: string; uk: string; es: string } & Pr
 ];
 
 CONTEXT_BENEFITS.quiz_limit = [
-  { ru: 'Без дневного лимита на легкие квизы', uk: 'Без денного ліміту на легкі квізи', es: 'Sin límite diario en cuestionarios fáciles', 'pt-BR': 'Sem limite diário para quizzes fáceis', vi: 'Không giới hạn quiz dễ mỗi ngày', id: 'Tanpa batas harian untuk kuis mudah', tr: 'Kolay quizlerde günlük sınır yok', pl: 'Bez dziennego limitu łatwych quizów' },
-  { ru: 'Средний и сложный уровни открыты', uk: 'Середній і складний рівні відкриті', es: 'Niveles medio y difícil desbloqueados', 'pt-BR': 'Níveis médio e difícil desbloqueados', vi: 'Mở mức trung bình và khó', id: 'Level sedang dan sulit terbuka', tr: 'Orta ve zor seviyeler açılır', pl: 'Poziom średni i trudny odblokowane' },
+  { ru: 'Без дневного лимита на квизы', uk: 'Без денного ліміту на квізи', es: 'Sin límite diario de cuestionarios', 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
+  { ru: 'Больше практики в удобном ритме', uk: 'Більше практики у зручному ритмі', es: 'Más práctica a tu ritmo', 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
   { ru: 'Больше практики и XP каждый день', uk: 'Більше практики та XP щодня', es: 'Más práctica y XP cada día', 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
 ];
 
@@ -1235,24 +1234,24 @@ const CONTEXT_BENEFITS_PLANNED: Record<PremiumContext, PremiumPlannedCopy[]> = {
     { 'pt-BR': 'Os próximos níveis abrem com exames', vi: 'Cấp tiếp theo mở qua bài kiểm tra', id: 'Level berikutnya terbuka lewat ujian', tr: 'Sonraki seviyeler sınavlarla açılır', pl: 'Kolejne poziomy otwierają się przez egzaminy' },
   ],
   quiz_limit: [
-    { 'pt-BR': 'Sem limite diário para quizzes fáceis', vi: 'Không giới hạn quiz dễ mỗi ngày', id: 'Tanpa batas harian untuk kuis mudah', tr: 'Kolay quizlerde günlük sınır yok', pl: 'Bez dziennego limitu łatwych quizów' },
-    { 'pt-BR': 'Níveis médio e difícil desbloqueados', vi: 'Mở mức trung bình và khó', id: 'Level sedang dan sulit terbuka', tr: 'Orta ve zor seviyeler açılır', pl: 'Poziom średni i trudny odblokowane' },
+    { 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
+    { 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
     { 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
   ],
   quiz_level: [
-    { 'pt-BR': 'Acesso a uma prática mais forte', vi: 'Mở luyện tập mạnh hơn', id: 'Akses ke latihan yang lebih kuat', tr: 'Daha güçlü pratiğe erişim', pl: 'Dostęp do mocniejszej praktyki' },
-    { 'pt-BR': 'Crescimento mais rápido da habilidade', vi: 'Kỹ năng ngôn ngữ tăng nhanh hơn', id: 'Kemampuan bahasa tumbuh lebih cepat', tr: 'Dil becerisi daha hızlı gelişir', pl: 'Szybszy wzrost umiejętności językowej' },
-    { 'pt-BR': 'Menos sensação de platô', vi: 'Ít cảm giác chững lại hơn', id: 'Lebih sedikit rasa plateau', tr: 'Daha az plato hissi', pl: 'Mniej poczucia plateau' },
+    { 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
+    { 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
+    { 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
   ],
   quiz_medium: [
-    { 'pt-BR': 'Tarefas mais ricas em contexto', vi: 'Bài tập khó hơn và nhiều ngữ cảnh hơn', id: 'Tugas lebih sulit dan konteks lebih kaya', tr: 'Daha zor görevler ve daha zengin bağlamlar', pl: 'Trudniejsze zadania i bogatsze konteksty' },
-    { 'pt-BR': 'Fixação mais profunda do conteúdo', vi: 'Củng cố kiến thức sâu hơn', id: 'Materi lebih melekat', tr: 'Konuyu daha derin pekiştirme', pl: 'Głębsze utrwalenie materiału' },
-    { 'pt-BR': 'Progresso mais forte a cada semana', vi: 'Tiến bộ rõ hơn mỗi tuần', id: 'Progres lebih kuat tiap minggu', tr: 'Her hafta daha güçlü ilerleme', pl: 'Silniejszy postęp co tydzień' },
+    { 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
+    { 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
+    { 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
   ],
   quiz_hard: [
-    { 'pt-BR': 'Nível Hard para máximo crescimento', vi: 'Mức Hard để tăng trưởng tối đa', id: 'Level Hard untuk pertumbuhan maksimal', tr: 'Maksimum gelişim için Hard seviye', pl: 'Poziom Hard dla maksymalnego wzrostu' },
-    { 'pt-BR': 'Saída do platô do idioma', vi: 'Thoát khỏi giai đoạn chững của ngôn ngữ', id: 'Keluar dari plateau bahasa', tr: 'Dil platosundan çıkış', pl: 'Wyjście z językowego plateau' },
-    { 'pt-BR': 'Domínio mais confiante mais rápido', vi: 'Tự tin dùng ngôn ngữ nhanh hơn', id: 'Penguasaan bahasa lebih percaya diri', tr: 'Daha hızlı ve güvenli dil kullanımı', pl: 'Szybsze, pewniejsze użycie języka' },
+    { 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
+    { 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
+    { 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
   ],
   flashcard_limit: [
     { 'pt-BR': 'Sem limite para sua base de cartões', vi: 'Không giới hạn kho thẻ cá nhân', id: 'Tanpa batas untuk koleksi kartu pribadi', tr: 'Kişisel kart arşivinde sınır yok', pl: 'Bez limitu własnej bazy fiszek' },
@@ -1413,25 +1412,13 @@ const formatDate = (ts: number, lang: Lang) =>
  * проверки реального intro phase из App Store / Google Play.
  */
 
-// ── Список открываемых фич для celebrate-модалки ──────────────────────────────
-const UNLOCK_ITEMS: ({ icon: string; textRu: string; textUk: string; textEs: string } & PremiumPlannedCopy)[] = [
-  { icon: '⚡', textRu: 'Безлимитная энергия', textUk: 'Необмежена енергія', textEs: 'Energía ilimitada', 'pt-BR': 'Energia ilimitada', vi: 'Năng lượng không giới hạn', id: 'Energi tanpa batas', tr: 'Sınırsız enerji', pl: 'Nieograniczona energia' },
-  { icon: '🎓', textRu: 'Уровень целиком без замков', textUk: 'Рівень повністю без замків', textEs: 'Nivel completo sin candados', 'pt-BR': 'Nível completo sem bloqueios', vi: 'Toàn bộ cấp không bị khóa', id: 'Level penuh tanpa kunci', tr: 'Kilitsiz tam seviye', pl: 'Cały poziom bez blokad' },
-  { icon: '🧠', textRu: 'Квиз Средний', textUk: 'Квіз Середній', textEs: 'Quiz medio', 'pt-BR': 'Quiz médio', vi: 'Quiz trung bình', id: 'Kuis sedang', tr: 'Orta quiz', pl: 'Quiz średni' },
-  { icon: '💜', textRu: 'Квиз Сложный', textUk: 'Квіз Складний', textEs: 'Quiz difícil', 'pt-BR': 'Quiz difícil', vi: 'Quiz khó', id: 'Kuis sulit', tr: 'Zor quiz', pl: 'Quiz trudny' },
-  { icon: '🎨', textRu: 'Темы Forest и Neon', textUk: 'Теми Forest і Neon', textEs: 'Temas Forest y Neon', 'pt-BR': 'Temas Forest e Neon', vi: 'Chủ đề Forest và Neon', id: 'Tema Forest dan Neon', tr: 'Forest ve Neon temaları', pl: 'Motywy Forest i Neon' },
-  { icon: '❄️', textRu: 'Заморозка цепочки', textUk: 'Заморозка стріку', textEs: 'Protección de racha', 'pt-BR': 'Proteção de sequência', vi: 'Bảo vệ chuỗi ngày', id: 'Perlindungan streak', tr: 'Seri koruması', pl: 'Ochrona serii' },
-  { icon: '📚', textRu: 'Безлимитные карточки', textUk: 'Безліміт карток', textEs: 'Tarjetas ilimitadas', 'pt-BR': 'Cartões ilimitados', vi: 'Thẻ không giới hạn', id: 'Kartu tanpa batas', tr: 'Sınırsız kartlar', pl: 'Nieograniczone fiszki' },
-];
-
 // ── Компонент ─────────────────────────────────────────────────────────────────
 export default function PremiumModal() {
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const insets = useSafeAreaInsets();
   const goBack = () => {
-    if (router.canGoBack()) router.back();
-    else router.replace('/(tabs)/home' as any);
+    safeRouterBack(router);
   };
   const params = useLocalSearchParams<{
     context?: string;
@@ -1441,7 +1428,6 @@ export default function PremiumModal() {
     level?: string;
     manage?: string;
     source?: string;
-    _preview_success?: string;
     _force_trial_ui?: string;
   }>();
   const manageRaw = params.manage;
@@ -1500,7 +1486,6 @@ export default function PremiumModal() {
         animateChange={false}
         shouldShake={false}
         themeMode={themeMode}
-        isPremium
       />
     </View>
   );
@@ -1524,7 +1509,7 @@ export default function PremiumModal() {
   const [trialReofferBlocked, setTrialReofferBlocked] = useState(false);
 
   // manage-view state
-  type ViewMode = PaywallViewMode;
+  type ViewMode = 'purchase' | 'manage';
   const [viewMode,    setViewMode]   = useState<ViewMode>(openManageFromSettings ? 'manage' : 'purchase');
   const [activePlan,  setActivePlan]  = useState<Plan | null>(null);
   const [isAdminGrantedPremium, setIsAdminGrantedPremium] = useState(false);
@@ -1534,8 +1519,6 @@ export default function PremiumModal() {
   const [cancelSurveyOtherText, setCancelSurveyOtherText] = useState('');
   const [exitTrialOfferVisible, setExitTrialOfferVisible] = useState(false);
   const exitTrialOfferSeenRef = useRef(false);
-  const successScale   = useRef(new Animated.Value(0.6)).current;
-  const successOpacity = useRef(new Animated.Value(0)).current;
   const purchasingRef  = useRef(false);
   const ctaPulse       = useRef(new Animated.Value(1)).current;
   const badgeSparkle   = useRef(new Animated.Value(0)).current;
@@ -1545,19 +1528,6 @@ export default function PremiumModal() {
   const entranceOpacity    = useRef(new Animated.Value(0)).current;
   const entranceTranslateY = useRef(new Animated.Value(52)).current;
   const entranceScale      = useRef(new Animated.Value(0.97)).current;
-  const successTimer   = useRef<ReturnType<typeof setTimeout> | null>(null);
-  // Celebrate modal — per-item reveal animations
-  const [openedLocks, setOpenedLocks] = useState<boolean[]>(UNLOCK_ITEMS.map(() => false));
-  const itemAnims = useRef(UNLOCK_ITEMS.map(() => ({
-    cardOpacity:    new Animated.Value(0),
-    cardTranslateY: new Animated.Value(22),
-    grayOverlay:    new Animated.Value(1),   // 1=gray, 0=colorful
-    lockOpacity:    new Animated.Value(0),
-    lockScale:      new Animated.Value(0.5),
-    lockRot:        new Animated.Value(0),   // raw degrees value
-  }))).current;
-  const celebrateTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const [canClose, setCanClose] = useState(false);
 
   const resolveCurrentPremiumState = useCallback(async () => {
     const verified = await getVerifiedRealPremiumStatus().catch(() => false);
@@ -1606,76 +1576,6 @@ export default function PremiumModal() {
       setLoadingPackages(false);
     }
   }, []);
-
-  const startCelebrationSequence = useCallback(() => {
-    celebrateTimers.current.forEach(t => clearTimeout(t));
-    celebrateTimers.current = [];
-
-    const STAGGER = 340; // ms between each item start
-
-    UNLOCK_ITEMS.forEach((_, idx) => {
-      const base = idx * STAGGER;
-
-      // Step 1 (t=base): card slides in, gray
-      const t1 = setTimeout(() => {
-        const a = itemAnims[idx];
-        Animated.parallel([
-          Animated.timing(a.cardOpacity,    { toValue: 1, duration: 220, useNativeDriver: true }),
-          Animated.spring(a.cardTranslateY, { toValue: 0, useNativeDriver: true, tension: 90, friction: 11 }),
-        ]).start();
-      }, base);
-
-      // Step 2 (t=base+180): lock pops in
-      const t2 = setTimeout(() => {
-        const a = itemAnims[idx];
-        Animated.parallel([
-          Animated.timing(a.lockOpacity, { toValue: 1, duration: 150, useNativeDriver: true }),
-          Animated.spring(a.lockScale,   { toValue: 1, useNativeDriver: true, tension: 150, friction: 8 }),
-        ]).start();
-      }, base + 180);
-
-      // Step 3 (t=base+340): lock wobbles (shake)
-      const t3 = setTimeout(() => {
-        const a = itemAnims[idx];
-        Animated.sequence([
-          Animated.timing(a.lockRot, { toValue: -18, duration: 70, useNativeDriver: true, easing: Easing.out(Easing.quad) }),
-          Animated.timing(a.lockRot, { toValue:  14, duration: 70, useNativeDriver: true }),
-          Animated.timing(a.lockRot, { toValue: -10, duration: 60, useNativeDriver: true }),
-          Animated.timing(a.lockRot, { toValue:   6, duration: 55, useNativeDriver: true }),
-          Animated.timing(a.lockRot, { toValue:   0, duration: 45, useNativeDriver: true }),
-        ]).start();
-      }, base + 340);
-
-      // Step 4 (t=base+680): switch icon → lock-open + rotate open
-      const t4 = setTimeout(() => {
-        setOpenedLocks(prev => {
-          const next = [...prev];
-          next[idx] = true;
-          return next;
-        });
-        const a = itemAnims[idx];
-        Animated.timing(a.lockRot, { toValue: -38, duration: 200, useNativeDriver: true, easing: Easing.out(Easing.cubic) }).start();
-      }, base + 680);
-
-      // Step 5 (t=base+880): lock fades out + gray overlay fades out → card goes colorful
-      const t5 = setTimeout(() => {
-        const a = itemAnims[idx];
-        Animated.parallel([
-          Animated.timing(a.lockOpacity, { toValue: 0, duration: 280, useNativeDriver: true }),
-          Animated.timing(a.grayOverlay, { toValue: 0, duration: 320, useNativeDriver: true }),
-        ]).start();
-      }, base + 880);
-
-      celebrateTimers.current.push(t1, t2, t3, t4, t5);
-    });
-
-    // Show continue button after last item fully reveals
-    const lastDone = (UNLOCK_ITEMS.length - 1) * STAGGER + 880 + 350;
-    const tClose = setTimeout(() => setCanClose(true), lastDone);
-    celebrateTimers.current.push(tClose);
-  }, [itemAnims]);
-
-  useEffect(() => () => { if (successTimer.current) clearTimeout(successTimer.current); }, []);
 
   // Entrance animation при каждом маунте экрана
   useEffect(() => {
@@ -1744,29 +1644,6 @@ export default function PremiumModal() {
     sparkleLoop.start();
     return () => { pulseLoop.stop(); sparkleLoop.stop(); };
   }, [ctaPulse, badgeSparkle]);
-
-  // Запускаем анимацию всякий раз как входим в success-режим
-  useEffect(() => {
-    if (viewMode === 'success') {
-      successScale.setValue(0.6);
-      successOpacity.setValue(0);
-      Animated.parallel([
-        Animated.spring(successScale, {
-          toValue: 1,
-          useNativeDriver: true,
-          tension: MOTION_SPRING.panel.tension,
-          friction: MOTION_SPRING.panel.friction,
-        }),
-        Animated.timing(successOpacity, { toValue: 1, duration: MOTION_DURATION.normal, useNativeDriver: true }),
-      ]).start();
-      startCelebrationSequence();
-    }
-  }, [viewMode, startCelebrationSequence, successOpacity, successScale]);
-
-  // Превью из тестерского экрана
-  useEffect(() => {
-    if (params._preview_success === '1') setViewMode('success');
-  }, [params._preview_success]);
 
   /** Открытие с «Настроек»: без `[params]` в deps — объект params у роутера часто новый каждый кадр → эффект крутился бы снова и сбрасывал дату. */
   useEffect(() => {
@@ -1839,12 +1716,12 @@ export default function PremiumModal() {
   const yearlyPrice = storePriceTrim(packages.yearly?.product.priceString);
   const monthlyPrice = storePriceTrim(packages.monthly?.product.priceString);
   const missingStorePriceLabel = loadingPackages || !packagesLoadAttempted
-    ? LP('Загрузка...', 'Завантаження...', 'Cargando...', {
-        'pt-BR': 'Carregando...',
-        vi: 'Đang tải...',
-        id: 'Memuat...',
-        tr: 'Yükleniyor...',
-        pl: 'Ładowanie...',
+    ? LP('Цена скоро появится', 'Ціна скоро зʼявиться', 'Price pending', {
+        'pt-BR': 'Preço pendente',
+        vi: 'Sắp có giá',
+        id: 'Harga segera tersedia',
+        tr: 'Fiyat hazırlanıyor',
+        pl: 'Cena wkrótce',
       })
     : LP('Повторить', 'Повторити', 'Reintentar', {
         'pt-BR': 'Repetir',
@@ -1937,27 +1814,14 @@ export default function PremiumModal() {
     }
   };
 
-  const showSuccess = () => {
+  const finishPremiumActivationAndReturn = () => {
     invalidatePremiumCache();
     AsyncStorage.setItem('had_premium_ever', '1').catch(() => {});
     void getPremiumCourseLevel().catch(() => {});
     emitAppEvent('premium_activated');
     reloadEnergy();
-    setOpenedLocks(UNLOCK_ITEMS.map(() => false));
-    setCanClose(false);
-    itemAnims.forEach(a => {
-      a.cardOpacity.setValue(0);
-      a.cardTranslateY.setValue(22);
-      a.grayOverlay.setValue(1);
-      a.lockOpacity.setValue(0);
-      a.lockScale.setValue(0.5);
-      a.lockRot.setValue(0);
-    });
-    setViewMode('success');
+    goBack();
   };
-
-  // Cleanup celebration timers on unmount
-  useEffect(() => () => { celebrateTimers.current.forEach(t => clearTimeout(t)); }, []);
 
   const handlePurchase = async (plan: Plan) => {
     // Defensive guard: if premium is already active locally, don\'t start a second flow.
@@ -1991,8 +1855,9 @@ export default function PremiumModal() {
       await savePremiumLocally(plan);
       await markSubscriptionOrTrialFlowConsumedNow();
       await activateFreezeIfNeeded();
-      showSuccess();
       purchasingRef.current = false;
+      await markCelebrationPending();
+      finishPremiumActivationAndReturn();
       return;
     }
     await initRevenueCat();
@@ -2054,6 +1919,7 @@ export default function PremiumModal() {
       purchasingRef.current = false;
       return;
     }
+    let returnedAfterActivation = false;
     setPurchasing(true);
     try {
       // Android: для free trial иногда нужно явно выбрать subscriptionOption с триальной фазой.
@@ -2081,8 +1947,10 @@ export default function PremiumModal() {
       await activateFreezeIfNeeded();
       // Подняли pending для PremiumCelebrationModal — на следующем mount home.tsx
       // юзер увидит celebration с замочками и короной.
-      void markCelebrationPending();
-      showSuccess();
+      await markCelebrationPending();
+      returnedAfterActivation = true;
+      finishPremiumActivationAndReturn();
+      return;
     } catch (e: any) {
       const msg = String(e?.message ?? e ?? '');
       const code = String(e?.code ?? '');
@@ -2102,8 +1970,9 @@ export default function PremiumModal() {
             await savePremiumLocally(restoredPlan, revenueCatPremiumMetadata(info));
             await markSubscriptionOrTrialFlowConsumedNow();
             await activateFreezeIfNeeded();
-            void markCelebrationPending();
-            showSuccess();
+            await markCelebrationPending();
+            returnedAfterActivation = true;
+            finishPremiumActivationAndReturn();
             return;
           }
         } catch {
@@ -2120,7 +1989,7 @@ export default function PremiumModal() {
         });
       }
     } finally {
-      setPurchasing(false);
+      if (!returnedAfterActivation) setPurchasing(false);
       purchasingRef.current = false;
     }
   };
@@ -2138,7 +2007,7 @@ export default function PremiumModal() {
         await markSubscriptionOrTrialFlowConsumedNow();
         // Restore = первый раз на этом устройстве (или после reset) — celebration уместна,
         // чтобы юзер видел что premium «активирован» и понимал что разблокировано.
-        void markCelebrationPending();
+        await markCelebrationPending();
         emitAppEvent('premium_activated');
         reloadEnergy();
         emitAppEvent('action_toast', {
@@ -2177,166 +2046,6 @@ export default function PremiumModal() {
     });
     Linking.openURL(getSubscriptionManageUrl());
   };
-
-  // ── Success / Celebrate view ──────────────────────────────────────────────────
-  if (viewMode === 'success') {
-    return (
-      <PremiumScreenShell>
-        <SafeAreaView style={{ flex: 1 }}>
-          {/* Close button — always visible */}
-          <View style={{ flexDirection: 'row', justifyContent: 'flex-end', padding: 16, paddingBottom: 0 }}>
-            <TouchableOpacity
-              onPress={() => {
-                hapticTap();
-                celebrateTimers.current.forEach(t => clearTimeout(t));
-                invalidatePremiumCache();
-                emitAppEvent('premium_activated');
-                goBack();
-              }}
-              style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: paywallChromeBg, justifyContent: 'center', alignItems: 'center' }}
-            >
-              <Ionicons name="close" size={20} color={t.textMuted} />
-            </TouchableOpacity>
-          </View>
-
-          <ScrollView contentContainerStyle={{ padding: 24, paddingTop: 12, alignItems: 'center' }} showsVerticalScrollIndicator={false}>
-            {/* Header badge */}
-            <Animated.View style={{ alignItems: 'center', transform: [{ scale: successScale }], opacity: successOpacity, marginBottom: 28 }}>
-              <View style={{ width: 90, height: 90, borderRadius: 45, backgroundColor: t.correct + '22', borderWidth: 2, borderColor: t.correct, justifyContent: 'center', alignItems: 'center', marginBottom: 14 }}>
-                {renderPremiumShardGlyph(62)}
-              </View>
-              <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '800', textAlign: 'center' }}>
-                {LP('Premium активирован! 🎉', 'Premium активовано! 🎉', '¡Premium activado! 🎉', {
-                  'pt-BR': 'Premium ativado! 🎉',
-                  vi: 'Đã kích hoạt Premium! 🎉',
-                  id: 'Premium aktif! 🎉',
-                  tr: 'Premium etkinleştirildi! 🎉',
-                  pl: 'Premium aktywowany! 🎉',
-                })}
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 6 }}>
-                {LP('Открываем все возможности…', 'Відкриваємо всі можливості…', 'Abriendo todas las funciones…', {
-                  'pt-BR': 'Abrindo todos os recursos…',
-                  vi: 'Đang mở tất cả tính năng…',
-                  id: 'Membuka semua fitur…',
-                  tr: 'Tüm özellikler açılıyor…',
-                  pl: 'Otwieramy wszystkie funkcje…',
-                })}
-              </Text>
-            </Animated.View>
-
-            {/* Unlocked feature items */}
-            <View style={{ width: '100%', gap: 10 }}>
-              {UNLOCK_ITEMS.map((item, idx) => {
-                const anim = itemAnims[idx];
-                const lockRotDeg = anim.lockRot.interpolate({
-                  inputRange: [-40, 40],
-                  outputRange: ['-40deg', '40deg'],
-                  extrapolate: 'clamp',
-                });
-                const isOpen = openedLocks[idx];
-                return (
-                  <Animated.View
-                    key={idx}
-                    style={{
-                      opacity: anim.cardOpacity,
-                      transform: [{ translateY: anim.cardTranslateY }],
-                    }}
-                  >
-                    {/* Card with relative positioning for overlays */}
-                    <View style={{ borderRadius: 14, overflow: 'hidden' }}>
-                      {/* Colorful card (always present underneath) */}
-                      <View style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        backgroundColor: paywallCardBg,
-                        borderRadius: 14,
-                        padding: 16,
-                        borderWidth: 1,
-                        borderColor: t.correct + '55',
-                        gap: 12,
-                        minHeight: 62,
-                      }}>
-                        {isEnergyGlyph(item.icon)
-                          ? renderPremiumEnergyGlyph(30)
-                          : <Text style={{ fontSize: 26 }}>{item.icon}</Text>}
-                        <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-                          {LP(item.textRu, item.textUk, item.textEs, item)}
-                        </Text>
-                      </View>
-
-                      {/* Gray overlay — fades out on unlock */}
-                      <Animated.View
-                        pointerEvents="none"
-                        style={{
-                          position: 'absolute',
-                          top: 0, left: 0, right: 0, bottom: 0,
-                          backgroundColor: paywallCardBg,
-                          opacity: anim.grayOverlay,
-                          borderRadius: 14,
-                          borderWidth: 1,
-                          borderColor: t.border,
-                        }}
-                      />
-
-                      {/* Lock — centered, animates open then fades */}
-                      <Animated.View
-                        pointerEvents="none"
-                        style={{
-                          position: 'absolute',
-                          top: 0, left: 0, right: 0, bottom: 0,
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          opacity: anim.lockOpacity,
-                        }}
-                      >
-                        <Animated.View style={{
-                          transform: [
-                            { rotate: lockRotDeg },
-                            { scale: anim.lockScale },
-                          ],
-                        }}>
-                          <Ionicons
-                            name={isOpen ? 'lock-open' : 'lock-closed'}
-                            size={34}
-                            color={isOpen ? t.correct : t.textPrimary}
-                          />
-                        </Animated.View>
-                      </Animated.View>
-                    </View>
-                  </Animated.View>
-                );
-              })}
-            </View>
-
-            {/* Continue button appears after all items */}
-            {canClose && (
-              <TouchableOpacity
-                onPress={() => {
-                  hapticTap();
-                  invalidatePremiumCache();
-                  emitAppEvent('premium_activated');
-                  goBack();
-                }}
-                style={{ marginTop: 28, backgroundColor: t.correct, borderRadius: 14, paddingVertical: 16, paddingHorizontal: 40, width: '100%', alignItems: 'center' }}
-              >
-                <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
-                  {LP('Начать учиться →', 'Почати навчання →', 'Empezar a aprender →', {
-                    'pt-BR': 'Começar a aprender →',
-                    vi: 'Bắt đầu học →',
-                    id: 'Mulai belajar →',
-                    tr: 'Öğrenmeye başla →',
-                    pl: 'Zacznij naukę →',
-                  })}
-                </Text>
-              </TouchableOpacity>
-            )}
-            <View style={{ height: 32 }} />
-          </ScrollView>
-        </SafeAreaView>
-      </PremiumScreenShell>
-    );
-  }
 
   // ── Manage view ─────────────────────────────────────────────────────────────
   if (viewMode === 'manage' && !activePlan) {
@@ -3900,12 +3609,12 @@ export default function PremiumModal() {
                   });
               const ctaLabel = !canPurchaseSelectedPlan
                 ? loadingPackages
-                  ? LP('Загрузка цены...', 'Завантаження ціни...', 'Cargando precio...', {
-                      'pt-BR': 'Carregando preço...',
-                      vi: 'Đang tải giá...',
-                      id: 'Memuat harga...',
-                      tr: 'Fiyat yükleniyor...',
-                      pl: 'Ładowanie ceny...',
+                  ? LP('Цена скоро появится', 'Ціна скоро зʼявиться', 'Price pending', {
+                      'pt-BR': 'Preço pendente',
+                      vi: 'Sắp có giá',
+                      id: 'Harga segera tersedia',
+                      tr: 'Fiyat hazırlanıyor',
+                      pl: 'Cena wkrótce',
                     })
                   : LP('Загрузить цену', 'Завантажити ціну', 'Cargar precio', {
                       'pt-BR': 'Carregar preço',

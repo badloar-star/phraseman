@@ -191,7 +191,7 @@
             [
               "You",
               "are",
-              "You are ready / You are right / You are late / You are kind / You are fine / You are safe"
+              "You are ready / You are right / You are late / You are kind / You are okay / You are safe"
             ],
             [
               "We",
@@ -381,7 +381,7 @@
             ],
             [
               "You are",
-              "You are ready / You are right / You are late / You are kind / You are fine / You are safe"
+              "You are ready / You are right / You are late / You are kind / You are okay / You are safe"
             ],
             [
               "We are",
@@ -853,7 +853,7 @@
               }
             ],
             [
-              "You are fine",
+              "You are okay",
               {
                 "uk": "Ти в порядку",
                 "ru": "Ты в порядке"
@@ -5457,8 +5457,8 @@
             ],
             [
               "close",
-              "cafés",
-              "When do they close cafés?",
+              "the cafe",
+              "When do they close the cafe?",
               {
                 "uk": "Коли вони зачиняють кафе?",
                 "ru": "Когда они закрывают кафе?"
@@ -10603,9 +10603,9 @@
               "They played music yesterday"
             ],
             [
-              "clean",
-              "cleaned",
-              "I cleaned dishes this morning"
+              "wash",
+              "washed",
+              "I washed the dishes this morning"
             ],
             [
               "open",
@@ -10862,7 +10862,7 @@
                 "uk": "сьогодні вранці",
                 "ru": "сегодня утром"
               },
-              "I cleaned dishes this morning"
+              "I washed the dishes this morning"
             ],
             [
               "last week",
@@ -10954,7 +10954,7 @@
             ],
             [
               "this morning",
-              "cleaned dishes this morning / opened apps this morning / missed a call this morning"
+              "washed the dishes this morning / opened apps this morning / missed a call this morning"
             ],
             [
               "last week",
@@ -22064,8 +22064,8 @@
         {
           "type": "Body",
           "text": {
-            "uk": "An працює як a, але використовується перед голосним звуком. У цьому уроці є an email, an idea, an app, an umbrella, an option.",
-            "ru": "An работает как a, но используется перед гласным звуком. В этом уроке есть an email, an idea, an app, an umbrella, an option."
+            "uk": "An працює як a, але використовується перед голосним звуком. У цьому уроці є an idea, an app, an umbrella, an option.",
+            "ru": "An работает как a, но используется перед гласным звуком. В этом уроке есть an idea, an app, an umbrella, an option."
           }
         },
         {
@@ -22079,8 +22079,8 @@
               }
             ],
             [
-              "an email",
-              "She wrote an email / There is an email in my inbox"
+              "an idea",
+              "He has an idea / We chose an option"
             ],
             [
               "an idea",
@@ -22162,8 +22162,8 @@
               "The charger is near the phone"
             ],
             [
-              "She wrote an email",
-              "The email is important"
+              "She wrote a letter",
+              "The letter is important"
             ],
             [
               "He has an idea",
@@ -22442,10 +22442,10 @@
               }
             ],
             [
-              "She wrote an email",
+              "She wrote a letter",
               {
-                "uk": "один новий email",
-                "ru": "один новый email"
+                "uk": "один новий лист",
+                "ru": "одно новое письмо"
               }
             ],
             [
@@ -22481,8 +22481,8 @@
         {
           "type": "Warn",
           "text": {
-            "uk": "❌ She wrote a email → ✅ She wrote an email. Перед email потрібне an.",
-            "ru": "❌ She wrote a email → ✅ She wrote an email. Перед email нужно an."
+            "uk": "❌ He has a idea → ✅ He has an idea. Перед idea потрібне an.",
+            "ru": "❌ He has a idea → ✅ He has an idea. Перед idea нужно an."
           }
         },
         {
@@ -22595,7 +22595,7 @@
               "There are books on the table"
             ],
             [
-              "There is an email in my inbox",
+              "There is a letter in my inbox",
               "There is coffee in the cup"
             ]
           ]
@@ -22646,8 +22646,8 @@
               "The key is small"
             ],
             [
-              "There is an email in my inbox",
-              "The email is from her"
+              "There is a letter in my inbox",
+              "The letter is from her"
             ],
             [
               "There are books on the table",
@@ -22778,8 +22778,8 @@
         {
           "type": "Body",
           "text": {
-            "uk": "У фразі The email is from her блок from her означає \"від неї\". Her тут стоїть після прийменника from.",
-            "ru": "Во фразе The email is from her блок from her означает \"от неё\". Her здесь стоит после предлога from."
+            "uk": "У фразі The letter is from her блок from her означає \"від неї\". Her тут стоїть після прийменника from.",
+            "ru": "Во фразе The letter is from her блок from her означает \"от неё\". Her здесь стоит после предлога from."
           }
         },
         {
@@ -22792,8 +22792,8 @@
         {
           "type": "Warn",
           "text": {
-            "uk": "❌ The email is from she → ✅ The email is from her. Після from потрібна форма her.",
-            "ru": "❌ The email is from she → ✅ The email is from her. После from нужна форма her."
+            "uk": "❌ The letter is from she → ✅ The letter is from her. Після from потрібна форма her.",
+            "ru": "❌ The letter is from she → ✅ The letter is from her. После from нужна форма her."
           }
         },
         {
@@ -22871,8 +22871,8 @@
         {
           "type": "Body",
           "text": {
-            "uk": "Артиклі краще тренувати через готові пари: a phone → the phone, a bag → the bag, an email → the email.",
-            "ru": "Артикли лучше тренировать через готовые пары: a phone → the phone, a bag → the bag, an email → the email."
+            "uk": "Артиклі краще тренувати через готові пари: a phone → the phone, a bag → the bag, a letter → the letter.",
+            "ru": "Артикли лучше тренировать через готовые пары: a phone → the phone, a bag → the bag, a letter → the letter."
           }
         },
         {
@@ -22924,7 +22924,7 @@
               }
             ],
             [
-              "an email → the email",
+              "a letter → the letter",
               {
                 "uk": "спочатку лист, потім цей лист",
                 "ru": "сначала письмо, потом это письмо"
@@ -23007,7 +23007,7 @@
               }
             ],
             [
-              "She wrote an email",
+              "She wrote a letter",
               {
                 "uk": "Вона написала листа",
                 "ru": "Она написала письмо"
@@ -23018,7 +23018,7 @@
               }
             ],
             [
-              "The email is important",
+              "The letter is important",
               {
                 "uk": "Лист важливий",
                 "ru": "Письмо важное"
@@ -23075,15 +23075,15 @@
         {
           "type": "Warn",
           "text": {
-            "uk": "❌ There is email in my inbox → ✅ There is an email in my inbox. Один email потребує an.",
-            "ru": "❌ There is email in my inbox → ✅ There is an email in my inbox. Один email требует an."
+            "uk": "❌ There is letter in my inbox → ✅ There is a letter in my inbox. Один лист потребує a.",
+            "ru": "❌ There is letter in my inbox → ✅ There is a letter in my inbox. Одно письмо требует a."
           }
         },
         {
           "type": "Warn",
           "text": {
-            "uk": "❌ The email is from she → ✅ The email is from her. Після from потрібна форма her.",
-            "ru": "❌ The email is from she → ✅ The email is from her. После from нужна форма her."
+            "uk": "❌ The letter is from she → ✅ The letter is from her. Після from потрібна форма her.",
+            "ru": "❌ The letter is from she → ✅ The letter is from her. После from нужна форма her."
           }
         },
         {
@@ -27213,7 +27213,7 @@
             [
               "send",
               "sent",
-              "They have just sent documents / He has already sent the email"
+              "They have just sent documents / He has already sent the letter"
             ],
             [
               "pay",
@@ -27424,7 +27424,7 @@
               }
             ],
             [
-              "He has already sent the email",
+              "He has already sent the letter",
               {
                 "uk": "Він вже надіслав листа",
                 "ru": "Он уже отправил письмо"
@@ -27484,8 +27484,8 @@
         {
           "type": "Warn",
           "text": {
-            "uk": "❌ He already has sent the email → ✅ He has already sent the email. У цій моделі already стоїть після has.",
-            "ru": "❌ He already has sent the email → ✅ He has already sent the email. В этой модели already стоит после has."
+            "uk": "❌ He already has sent the letter → ✅ He has already sent the letter. У цій моделі already стоїть після has.",
+            "ru": "❌ He already has sent the letter → ✅ He has already sent the letter. В этой модели already стоит после has."
           }
         },
         {
@@ -28075,8 +28075,8 @@
               "He has just opened the door / Has he opened the door yet?"
             ],
             [
-              "the email",
-              "He has already sent the email"
+              "the letter",
+              "He has already sent the letter"
             ],
             [
               "the message",
@@ -28280,7 +28280,7 @@
               }
             ],
             [
-              "has already sent the email",
+              "has already sent the letter",
               {
                 "uk": "вже надіслав листа",
                 "ru": "уже отправил письмо"
@@ -28531,8 +28531,8 @@
         {
           "type": "Warn",
           "text": {
-            "uk": "❌ He has already send the email → ✅ He has already sent the email. Send → sent.",
-            "ru": "❌ He has already send the email → ✅ He has already sent the email. Send → sent."
+            "uk": "❌ He has already send the letter → ✅ He has already sent the letter. Send → sent.",
+            "ru": "❌ He has already send the letter → ✅ He has already sent the letter. Send → sent."
           }
         },
         {

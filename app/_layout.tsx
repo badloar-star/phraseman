@@ -3,14 +3,14 @@ import 'react-native-reanimated';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { Stack, usePathname, useRouter } from 'expo-router';
+import { Stack, useGlobalSearchParams, usePathname, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
 import Constants from 'expo-constants';
 import * as Linking from 'expo-linking';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, AppState, Image, ImageBackground, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, AppState, Easing, Image, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
 import AchievementToast from '../components/AchievementToast';
@@ -40,7 +40,6 @@ import { registerInLeagueGroupSilently } from './firestore_leagues';
 import { PlayInstallReferrer } from 'react-native-play-install-referrer';
 import { migrateWeekPointsIfNeeded, updateStreakOnActivity } from './hall_of_fame_utils';
 import { preloadImages, preloadStartupImages } from './image_preload';
-import { prefetchQuizPhrases } from './quiz_phrases_loader';
 import {
   checkLeagueOvertakeNotification, getNotifSettingsSnapshot, hydrateNotifSettingsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhrasOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler,
 } from './notifications';
@@ -57,6 +56,7 @@ import { getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromClo
 import { MatchmakingProvider } from '../contexts/MatchmakingContext';
 import MatchFoundToast from '../components/MatchFoundToast';
 import ActionToast from '../components/ActionToast';
+import DailyTaskRewardToast from '../components/DailyTaskRewardToast';
 import ArenaFriendInviteHost from '../components/ArenaFriendInviteHost';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
@@ -77,18 +77,18 @@ import { applyContentDeliveryMigration } from './content_delivery_migration';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
+import { rememberNavigationPath } from './navigation_back';
 import {
   cancelScheduledAnimatedStateUpdates,
   scheduleTrackedAnimatedStateUpdate,
   type ScheduledAnimatedStateUpdate,
 } from '../components/animationScheduling';
-import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
+import { GOLD_GRADIENTS, GOLD_RICH, goldShadow } from '../constants/goldTheme';
 import GoldBevel from '../components/GoldBevel';
 import {
-  RewardModalBackdrop,
+  RewardModalPanelBackdrop,
   rewardModalAccentColor,
   rewardModalPanelBorder,
-  rewardModalPanelColors,
   rewardModalSoftSurface,
 } from '../components/RewardModalBackdrop';
 import {
@@ -98,14 +98,13 @@ import {
 } from './services/league_chest_rewards';
 import { FIRST_LESSON_SHEET_BACKGROUNDS } from '../components/firstLessonSheetAssets';
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS } from '../constants/devRoutes';
 
 LogBox.ignoreLogs([
   '[expo-notifications] Error reading persisted server registration info',
 ]);
 
 /** Список друзей с диска в память до открытия вкладки — чтобы первый кадр вкладки мог сразу показать строки. */
-startFriendsTabSwrPrime();
-
 // Нативный сплэш из app.json — скрываем только когда AppContent сообщает ready (см. hideAsync в useEffect).
 void SplashScreen.preventAutoHideAsync().catch(() => {});
 
@@ -117,7 +116,16 @@ DefaultText.defaultProps = {
 };
 
 const STARTUP_SPLASH_BG = '#101214';
+const FIRST_CONTENT_READY_FALLBACK_MS = 900;
 const USE_ELITE_LEVEL_UP_MODAL = true;
+const POST_ONBOARDING_GOLD_BRIDGE_MS = 3000;
+const POST_ONBOARDING_GOLD_BRIDGE_SCREEN = ['rgba(255,224,144,0.34)', 'rgba(163,104,24,0.16)', 'rgba(18,14,6,0.08)'] as const;
+const POST_ONBOARDING_GOLD_BRIDGE_PANEL = ['rgba(122,75,12,0.44)', 'rgba(54,34,8,0.30)', 'rgba(11,9,5,0.12)'] as const;
+const POST_ONBOARDING_GOLD_BRIDGE_CTA = ['#FFF0B5', '#E2A923'] as const;
+const POST_ONBOARDING_GOLD_BRIDGE_TEXT = '#3F2C08';
+const FIRST_LESSON_SHEET_ENTER_MS = 280;
+const FIRST_LESSON_SHEET_START_OFFSET_Y = 520;
+const FIRST_LESSON_SHEET_BACKDROP_OPACITY = 0.58;
 const FIRST_LESSON_SHEET_PANEL_SCRIMS: Record<ThemeMode, string> = {
   dark: 'rgba(3,10,6,0.56)',
   neon: 'rgba(3,12,3,0.50)',
@@ -211,19 +219,36 @@ function normalizeWarmDeepLink(url: string): string | null {
 }
 
 function isDevUtilityRoutePath(path: string | null | undefined): boolean {
-  if (!path) return false;
-  return (
-    path.startsWith('/settings_testers') ||
-    path.startsWith('/pos_analytics_audit') ||
-    path.startsWith('/admin_review_test') ||
-    path.startsWith('/admin_intro_preview') ||
-    path.startsWith('/admin_premium_delivery_test')
-  );
+  if (!ENABLE_DEV_TOOLS || !path) return false;
+  return DEV_UTILITY_ROUTE_PATHS.some((prefix) => path.startsWith(prefix));
 }
 
 function isTabsGroupRoutePath(path: string): boolean {
   const cleanPath = path.split(/[?#]/)[0]?.replace(/\/$/, '') || '';
   return cleanPath === '/(tabs)' || cleanPath.startsWith('/(tabs)/');
+}
+
+function buildNavigationPathSignature(
+  pathname: string | null | undefined,
+  params: Record<string, unknown>,
+): string | null {
+  const path = pathname && pathname.length > 0 ? pathname : null;
+  if (!path) {
+    return null;
+  }
+
+  const query = Object.entries(params)
+    .filter(([, value]) => value !== undefined)
+    .map(([key, value]) => {
+      const normalizedValue = Array.isArray(value)
+        ? value.map((item) => String(item)).join(',')
+        : String(value);
+      return `${encodeURIComponent(key)}=${encodeURIComponent(normalizedValue)}`;
+    })
+    .sort()
+    .join('&');
+
+  return query ? `${path}?${query}` : path;
 }
 
 function StartupSplashHold({ visible }: { visible: boolean }) {
@@ -560,6 +585,9 @@ function GlobalLevelUpHandler() {
   const levelUpGlowOpacity = levelUpGlow.interpolate({ inputRange: [0, 1], outputRange: [0.14, 0.44] });
   const levelUpModalScale = levelUpOpacity.interpolate({ inputRange: [0, 1], outputRange: USE_ELITE_LEVEL_UP_MODAL ? [0.9, 1] : [0.85, 1] });
   const levelUpAccent = rewardModalAccentColor(themeMode, t);
+  const levelUpScreenDim = USE_ELITE_LEVEL_UP_MODAL
+    ? (themeMode === 'minimalLight' ? 'rgba(24,18,10,0.32)' : 'rgba(0,0,0,0.46)')
+    : 'rgba(0,0,0,0.6)';
 
   useEffect(() => {
     if (!showLevelUp || !levelUpOverlayVisible) return;
@@ -575,8 +603,7 @@ function GlobalLevelUpHandler() {
         statusBarTranslucent
         onRequestClose={() => {}}
       >
-        <View style={{ flex: 1, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? 'rgba(0,0,0,0.90)' : 'rgba(3,5,10,0.86)') : 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 24, overflow: 'hidden' }}>
-          {USE_ELITE_LEVEL_UP_MODAL && <RewardModalBackdrop themeMode={themeMode} intensity="strong" />}
+        <View style={{ flex: 1, backgroundColor: levelUpScreenDim, justifyContent: 'center', alignItems: 'center', padding: 24, overflow: 'hidden' }}>
           <Animated.View testID="level-up-modal" style={{
             transform: [
               { translateY: levelUpTranslateY },
@@ -593,8 +620,8 @@ function GlobalLevelUpHandler() {
             ...(USE_ELITE_LEVEL_UP_MODAL && isGoldTheme ? goldShadow(3) : {}),
           }}>
             <LinearGradient
-              colors={USE_ELITE_LEVEL_UP_MODAL ? rewardModalPanelColors(themeMode, t) : t.cardGradient}
-              locations={USE_ELITE_LEVEL_UP_MODAL && isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+              colors={USE_ELITE_LEVEL_UP_MODAL ? ['transparent', 'transparent', 'transparent'] : t.cardGradient}
+              locations={undefined}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={{
@@ -604,6 +631,7 @@ function GlobalLevelUpHandler() {
               borderWidth: 1,
               borderColor: USE_ELITE_LEVEL_UP_MODAL ? rewardModalPanelBorder(themeMode, t) : t.textSecond + '44',
             }}>
+              {USE_ELITE_LEVEL_UP_MODAL && <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" />}
               {USE_ELITE_LEVEL_UP_MODAL && isGoldTheme && <GoldBevel radius={32} intensity="strong" />}
               {USE_ELITE_LEVEL_UP_MODAL && (
                 <>
@@ -762,8 +790,37 @@ function AppContent() {
   const onboardingPathRef = useRef(false);
   const deferLessonPrimeRef = useRef(false);
   const firstContentReadyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const runHeavyInitRef = useRef<(() => void) | null>(null);
+  const heavyInitStartedRef = useRef(false);
   /** Гард от повторного тапа «Поехали» в листе первого урока (router.replace + push не должны исполняться дважды). */
   const firstLessonStartHandledRef = useRef(false);
+  const postOnboardingGoldBridgeAnim = useRef(new Animated.Value(0)).current;
+  const firstLessonSheetAnim = useRef(new Animated.Value(0)).current;
+  const [postOnboardingGoldBridgeVisible, setPostOnboardingGoldBridgeVisible] = useState(false);
+  const [postOnboardingGoldBridgeArmed, setPostOnboardingGoldBridgeArmed] = useState(false);
+
+  const armPostOnboardingGoldBridge = useCallback(() => {
+    postOnboardingGoldBridgeAnim.stopAnimation();
+    postOnboardingGoldBridgeAnim.setValue(1);
+    setPostOnboardingGoldBridgeVisible(true);
+    setPostOnboardingGoldBridgeArmed(true);
+  }, [postOnboardingGoldBridgeAnim]);
+
+  const beginPostOnboardingGoldBridgeFade = useCallback(() => {
+    postOnboardingGoldBridgeAnim.stopAnimation();
+    Animated.timing(postOnboardingGoldBridgeAnim, {
+      toValue: 0,
+      duration: POST_ONBOARDING_GOLD_BRIDGE_MS,
+      useNativeDriver: true,
+    }).start(({ finished }) => {
+      if (!finished) return;
+      setPostOnboardingGoldBridgeVisible(false);
+    });
+  }, [postOnboardingGoldBridgeAnim]);
+
+  useEffect(() => () => {
+    postOnboardingGoldBridgeAnim.stopAnimation();
+  }, [postOnboardingGoldBridgeAnim]);
 
   useEffect(() => {
     if (!updateInfo) {
@@ -783,8 +840,11 @@ function AppContent() {
   const { theme: tTheme, themeMode } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
+  const globalSearchParams = useGlobalSearchParams();
+  const navigationPathSignature = buildNavigationPathSignature(pathname, globalSearchParams);
   const currentDevUtilityRoute = ENABLE_DEV_TOOLS && isDevUtilityRoutePath(pathname);
   const effectiveShowOnboarding = showOnboarding && !currentDevUtilityRoute;
+  const isRootIndexRoute = !pathname || pathname === '/';
   const insets = useSafeAreaInsets();
   const globalBottomOverlay = useGlobalBottomOverlayOffset();
   const lastPathRef = useRef<string | null>(null);
@@ -792,6 +852,10 @@ function AppContent() {
   useEffect(() => {
     setRootNavigationReady(true);
   }, []);
+
+  useEffect(() => {
+    rememberNavigationPath(navigationPathSignature);
+  }, [navigationPathSignature]);
 
   useEffect(() => {
     const sub = Linking.addEventListener('url', ({ url }) => {
@@ -827,6 +891,13 @@ function AppContent() {
   }, [isBanned, pendingWarmDeepLink, ready, rootNavigationReady, router, showOnboarding]);
 
   useEffect(() => {
+    if (!ready || !rootNavigationReady || effectiveShowOnboarding || isBanned || !isRootIndexRoute) return;
+    router.replace('/(tabs)/home' as any);
+    const retry = setTimeout(() => router.replace('/(tabs)/home' as any), 120);
+    return () => clearTimeout(retry);
+  }, [effectiveShowOnboarding, isBanned, isRootIndexRoute, ready, rootNavigationReady, router]);
+
+  useEffect(() => {
     if (!ready || !pathname || lastPathRef.current === pathname) return;
     const previous = lastPathRef.current;
     lastPathRef.current = pathname;
@@ -857,10 +928,11 @@ function AppContent() {
     };
   }, []);
 
+  const nativeSplashCanHide = ready && (effectiveShowOnboarding || isBanned || firstContentReady);
   useEffect(() => {
-    if (!ready) return;
+    if (!nativeSplashCanHide) return;
     void SplashScreen.hideAsync();
-  }, [ready]);
+  }, [nativeSplashCanHide]);
 
   useEffect(() => {
     const sub = onAppEvent('app_first_content_ready', () => {
@@ -868,7 +940,7 @@ function AppContent() {
       firstContentReadyTimerRef.current = setTimeout(() => {
         firstContentReadyTimerRef.current = null;
         setFirstContentReady(true);
-      }, 80);
+      }, 32);
     });
     return () => {
       sub.remove();
@@ -880,16 +952,23 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    if (!ready || showOnboarding || isBanned || firstContentReady) return;
-    const timer = setTimeout(() => setFirstContentReady(true), 12000);
+    if (!ready || effectiveShowOnboarding || isBanned || firstContentReady || isRootIndexRoute) return;
+    const timer = setTimeout(() => setFirstContentReady(true), FIRST_CONTENT_READY_FALLBACK_MS);
     return () => clearTimeout(timer);
-  }, [firstContentReady, isBanned, ready, showOnboarding]);
+  }, [effectiveShowOnboarding, firstContentReady, isBanned, isRootIndexRoute, ready]);
 
   useEffect(() => {
-    if (!ready || !pathname || showOnboarding || isBanned || firstContentReady) return;
-    const timer = setTimeout(() => setFirstContentReady(true), 1200);
-    return () => clearTimeout(timer);
-  }, [firstContentReady, isBanned, pathname, ready, showOnboarding]);
+    if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady || heavyInitStartedRef.current) return;
+    heavyInitStartedRef.current = true;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const task = InteractionManager.runAfterInteractions(() => {
+      timer = setTimeout(() => runHeavyInitRef.current?.(), 250);
+    });
+    return () => {
+      if (timer) clearTimeout(timer);
+      task.cancel?.();
+    };
+  }, [effectiveShowOnboarding, firstContentReady, isBanned, ready]);
 
   useEffect(() => {
     void hydratePlatformUiPreviewFromStorage();
@@ -1139,8 +1218,8 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    // Страховка: UI не дольше 4s даже при сбое bootstrap (раньше 10s из-за await RC)
-    const safetyTimer = setTimeout(() => setReady(true), 2800);
+    // Startup must reveal the first screen quickly; optional warmups continue below.
+    const safetyTimer = setTimeout(() => setReady(true), 1200);
 
     // Гидратация облака запускается рано (в bootstrap) и используется здесь,
     // чтобы остальной runHeavyInit ждал её завершения, а не дублировал.
@@ -1157,6 +1236,7 @@ function AppContent() {
     };
 
     const runHeavyInit = () => {
+      void startFriendsTabSwrPrime().catch(() => {});
       const startShopWarm = async () => {
         await initFirebaseAppCheckIfAvailable().catch(() => {});
         if (!IS_EXPO_GO) void initRevenueCat();
@@ -1253,7 +1333,6 @@ function AppContent() {
       incrementSessionCount().catch(() => {});
       preloadImages().catch(() => {});
       InteractionManager.runAfterInteractions(() => {
-        prefetchQuizPhrases();
         void import('./flashcards_swipe').catch(() => {});
         import('./flashcards_collection')
           .then((m) => m.primeFlashcardsCollectionCache())
@@ -1270,37 +1349,40 @@ function AppContent() {
         __DEV__ &&
         process.env.EXPO_PUBLIC_FORCE_ONBOARDING_QA === '1';
 
-      // ВАЖНО: запускаем гидратацию из облака как можно раньше (параллельно
-      // локальной подготовке), и потом подождём её ниже с таймаутом 2.5с
-      // ДО чтения 'onboarding_done'. Иначе на холодном старте после очистки
-      // AsyncStorage юзеру повторно показывается онбординг — а параллельно
-      // авто-имя (Psi5552 и т.п.) затирает реальный ник в облаке.
+      // Start cloud hydration early, but do not hold the first app frame on network/app-check.
       if (!IS_EXPO_GO && !forceOnboardingForQA) {
-        await Promise.race([
+        const appCheckWarmup = Promise.race([
           initFirebaseAppCheckIfAvailable(),
           new Promise<void>((resolve) => setTimeout(resolve, 1200)),
         ]).catch(() => {});
         cloudHydratePromise = (async () => {
+          await appCheckWarmup;
           try {
             await ensureAnonUser();
             await restoreFromCloud();
           } catch {}
         })();
-        runContentDeliveryMigration(cloudHydratePromise);
+        void runContentDeliveryMigration(cloudHydratePromise);
       }
 
-      // Синхронные снимки тумблеров (настройки обучения, тактильный отклик, расписание пушей) — до setReady
-      await Promise.all([
+      // Tiny local hydration budget: keep first paint fast even if storage is slow.
+      const startupLocalHydration = Promise.all([
         hydrateUserSettingsFromStorage().catch(() => {}),
         hydrateHapticsTapFromStorage().catch(() => {}),
         hydrateNotifSettingsFromStorage().catch(() => {}),
       ]);
+      await Promise.race([
+        startupLocalHydration,
+        new Promise<void>((resolve) => setTimeout(resolve, 350)),
+      ]).catch(() => {});
+      void startupLocalHydration.catch(() => {});
       // Сразу читаем осколки в фоне — к моменту «Главной» peekLastKnownShardsBalance уже с кэшем.
       void getShardsBalance()
         .then(balance => getShardAchievementEligibleBalance(balance))
         .then(balance => checkAchievements({ type: 'shards', balance }).catch(() => {}))
         .catch(() => {});
 
+      let shouldPrimeLessonsAfterReveal = false;
       try {
         const prevXPRaw = await AsyncStorage.getItem('user_prev_xp');
         if (!prevXPRaw) {
@@ -1350,11 +1432,7 @@ function AppContent() {
 	        if (willShowOnboarding) {
 	          deferLessonPrimeRef.current = true;
 	        } else {
-	          await Promise.race([
-	            runContentDeliveryMigration(cloudHydratePromise),
-	            new Promise<void>((resolve) => setTimeout(resolve, 2500)),
-	          ]).catch(() => {});
-	          await primeAllLessonsFromStorageOnAppLaunch(studyTarget).catch(() => {});
+            shouldPrimeLessonsAfterReveal = true;
 	        }
 
         if (!handledByReferrer) {
@@ -1363,24 +1441,22 @@ function AppContent() {
       } catch {}
 
       const iconFontsReady = preloadVectorIconFonts();
-      await Promise.all([
-        Promise.race([
-          iconFontsReady,
-          new Promise<void>((resolve) => setTimeout(resolve, 1800)),
-        ]),
-        Promise.race([
-          preloadStartupImages(),
-          new Promise<void>((resolve) => setTimeout(resolve, 450)),
-        ]),
-      ]).catch(() => {});
       void iconFontsReady.catch(() => {});
+      void preloadStartupImages().catch(() => {});
 
       clearTimeout(safetyTimer);
       setReady(true);
       setTimeout(flushPending, 280);
-      runHeavyInit();
+      if (shouldPrimeLessonsAfterReveal) {
+        InteractionManager.runAfterInteractions(() => {
+          void runContentDeliveryMigration(cloudHydratePromise)
+            .then(() => primeAllLessonsFromStorageOnAppLaunch(studyTarget))
+            .catch(() => {});
+        });
+      }
     };
 
+    runHeavyInitRef.current = runHeavyInit;
     bootstrap();
 
     // Event-driven flush: слушаем событие от achievements.ts вместо polling каждые 4с.
@@ -1405,7 +1481,13 @@ function AppContent() {
       firstLessonStartHandledRef.current = false;
       setShow(true);
     });
-    return () => { sub.remove(); subShards.remove(); subDelete.remove(); };
+    return () => {
+      clearTimeout(safetyTimer);
+      runHeavyInitRef.current = null;
+      sub.remove();
+      subShards.remove();
+      subDelete.remove();
+    };
   }, [flushPending]);
 
   useEffect(() => {
@@ -1438,12 +1520,18 @@ function AppContent() {
     if (onboardingDoneHandledRef.current) return;
     onboardingDoneHandledRef.current = true;
     await AsyncStorage.setItem('xp_migration_v2', '1');
+    armPostOnboardingGoldBridge();
+    if (firstContentReadyTimerRef.current) {
+      clearTimeout(firstContentReadyTimerRef.current);
+      firstContentReadyTimerRef.current = null;
+    }
+    setFirstContentReady(true);
     setShow(false);
     // Не показываем тутор энергии на «Главной» одновременно с этим листом (ждём «Позже» или возврат с урока)
     setDeferEnergyOnboardingForPostOnboardingFirstLesson(true);
     // Небольшая задержка чтобы анимация закрытия онбординга успела завершиться
     setTimeout(() => setShowFirstLessonSheet(true), 400);
-  }, []);
+  }, [armPostOnboardingGoldBridge]);
 
   // После закрытия онбординга и монтирования Stack — переходим на нужный экран
   useEffect(() => {
@@ -1456,6 +1544,19 @@ function AppContent() {
     }
   }, [isBanned, pendingRoute, ready, rootNavigationReady, router, showOnboarding]);
 
+  useEffect(() => {
+    if (!postOnboardingGoldBridgeArmed || !ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
+    setPostOnboardingGoldBridgeArmed(false);
+    beginPostOnboardingGoldBridgeFade();
+  }, [
+    beginPostOnboardingGoldBridgeFade,
+    effectiveShowOnboarding,
+    firstContentReady,
+    isBanned,
+    postOnboardingGoldBridgeArmed,
+    ready,
+  ]);
+
 
   // ── Очередь модалок: ровно одна показывается за раз ─────────────────────
   // Приоритет: update > releaseNotes > broadcast > notifNudge (releaseWave не подключён).
@@ -1466,6 +1567,29 @@ function AppContent() {
   const leagueBonusAvailableModalVisible = useOverlayVisible('leagueBonusAvailable', !!leagueBonusAvailable);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
   const firstLessonSheetVisible = useOverlayVisible('firstLessonSheet', showFirstLessonSheet);
+  useEffect(() => {
+    if (!firstLessonSheetVisible) {
+      firstLessonSheetAnim.stopAnimation();
+      firstLessonSheetAnim.setValue(0);
+      return;
+    }
+
+    firstLessonSheetAnim.stopAnimation();
+    firstLessonSheetAnim.setValue(0);
+    const frame = requestAnimationFrame(() => {
+      Animated.timing(firstLessonSheetAnim, {
+        toValue: 1,
+        duration: FIRST_LESSON_SHEET_ENTER_MS,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }).start();
+    });
+
+    return () => {
+      cancelAnimationFrame(frame);
+      firstLessonSheetAnim.stopAnimation();
+    };
+  }, [firstLessonSheetAnim, firstLessonSheetVisible]);
   const firstLessonSheetBackground = FIRST_LESSON_SHEET_BACKGROUNDS[themeMode] ?? FIRST_LESSON_SHEET_BACKGROUNDS.minimalDark;
   const firstLessonSheetScrim = FIRST_LESSON_SHEET_PANEL_SCRIMS[themeMode] ?? FIRST_LESSON_SHEET_PANEL_SCRIMS.minimalDark;
   const firstLessonSheetTitleColor = FIRST_LESSON_SHEET_TITLE_COLORS[themeMode] ?? '#FFFFFF';
@@ -1475,6 +1599,32 @@ function AppContent() {
   const firstLessonSheetCtaTextColor = FIRST_LESSON_SHEET_CTA_TEXT_COLORS[themeMode] ?? '#FFFFFF';
   const firstLessonSheetCtaGradient = FIRST_LESSON_SHEET_CTA_GRADIENTS[themeMode] ?? FIRST_LESSON_SHEET_CTA_GRADIENTS.neon;
   const firstLessonSheetCtaShadowColor = FIRST_LESSON_SHEET_CTA_SHADOW_COLORS[themeMode] ?? '#C8FF00';
+  const postOnboardingScreenTintOpacity = postOnboardingGoldBridgeAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 1],
+  });
+  const postOnboardingPanelTintOpacity = postOnboardingGoldBridgeAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 1],
+  });
+  const postOnboardingCtaTintOpacity = postOnboardingGoldBridgeAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 1],
+  });
+  const firstLessonSheetCtaLabel = lang === 'es'
+    ? '¡Vamos! 🔥'
+    : lang === 'uk'
+      ? 'Так, поїхали! 🔥'
+      : 'Да, поехали! 🔥';
+
+  const firstLessonSheetBackdropOpacity = firstLessonSheetAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, FIRST_LESSON_SHEET_BACKDROP_OPACITY],
+  });
+  const firstLessonSheetTranslateY = firstLessonSheetAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [FIRST_LESSON_SHEET_START_OFFSET_Y, 0],
+  });
 
   if (!ready) {
     return (
@@ -1525,9 +1675,12 @@ function AppContent() {
       screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor: appShellReady ? tTheme.bgPrimary : STARTUP_SPLASH_BG },
-        // Без fade: глобальный fade на native-stack даёт поздний белый кроссфейд при каждом push/replace.
-        // Нужен мягкий переход — только у отдельных экранов (например pack_opening).
+        // Без native-stack transitions: Android/Fabric падал на открытии вложенных экранов и Back.
         animation: 'none',
+        animationDuration: 0,
+        freezeOnBlur: false,
+        gestureEnabled: false,
+        fullScreenGestureEnabled: false,
         headerBackButtonMenuEnabled: false,
       }}
     >
@@ -1553,25 +1706,22 @@ function AppContent() {
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" />
       <Stack.Screen name="daily_tasks_screen" />
-      <Stack.Screen name="premium_modal" options={{ presentation: 'modal', animation: 'slide_from_bottom', animationDuration: 420 }} />
+      <Stack.Screen name="premium_modal" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="flashcards" />
       <Stack.Screen name="flashcards_audio" />
       <Stack.Screen name="flashcards_collection" />
       <Stack.Screen name="flashcards_swipe" />
       <Stack.Screen name="community_pack_create" />
-      <Stack.Screen name="pack_opening" options={{ presentation: 'modal', animation: 'fade' }} />
+      <Stack.Screen name="pack_opening" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
       <Stack.Screen name="shards_shop" />
       <Stack.Screen name="level_gifts_inventory" />
       <Stack.Screen name="achievements_screen" />
       <Stack.Screen name="level_exam" />
       <Stack.Screen name="review" />
-      {ENABLE_DEV_TOOLS && <Stack.Screen name="admin_review_test" />}
-      {ENABLE_DEV_TOOLS && <Stack.Screen name="admin_intro_preview" />}
-      {ENABLE_DEV_TOOLS && <Stack.Screen name="admin_premium_delivery_test" />}
-      {ENABLE_DEV_TOOLS && <Stack.Screen name="settings_testers" />}
-      {ENABLE_DEV_TOOLS && <Stack.Screen name="pos_analytics_audit" />}
-      <Stack.Screen name="progress_map" />
+      {ENABLE_DEV_TOOLS && DEV_UTILITY_ROUTE_NAMES.map((name) => (
+        <Stack.Screen key={name} name={name} />
+      ))}
       <Stack.Screen name="beta_testers" />
       <Stack.Screen name="privacy_screen" />
       <Stack.Screen name="terms_screen" />
@@ -1592,6 +1742,22 @@ function AppContent() {
       <Stack.Screen name="phrase_analytics_screen" />
       <Stack.Screen name="problem_coach" />
     </Stack>
+
+    {postOnboardingGoldBridgeVisible && (
+      <Animated.View
+        pointerEvents="none"
+        style={[styles.postOnboardingGoldBridge, { opacity: postOnboardingScreenTintOpacity }]}
+      >
+        <LinearGradient
+          pointerEvents="none"
+          colors={POST_ONBOARDING_GOLD_BRIDGE_SCREEN}
+          locations={[0, 0.55, 1]}
+          start={{ x: 0.1, y: 0 }}
+          end={{ x: 0.9, y: 1 }}
+          style={StyleSheet.absoluteFillObject}
+        />
+      </Animated.View>
+    )}
 
     <NotificationPermissionModal
       visible={appOverlaysEnabled && notifNudgeModalVisible}
@@ -1681,7 +1847,7 @@ function AppContent() {
       <Modal
         transparent
         visible={firstLessonSheetVisible}
-        animationType="slide"
+        animationType="none"
         statusBarTranslucent
         onRequestClose={() => {
           setShowFirstLessonSheet(false);
@@ -1690,6 +1856,13 @@ function AppContent() {
         }}
       >
         <View style={styles.firstLessonSheetOverlay}>
+          <Animated.View
+            pointerEvents="none"
+            style={[
+              styles.firstLessonSheetBackdrop,
+              { opacity: firstLessonSheetBackdropOpacity },
+            ]}
+          />
           <TouchableOpacity
             style={{ flex: 1 }}
             activeOpacity={1}
@@ -1699,88 +1872,144 @@ function AppContent() {
               emitAppEvent('energy_onboarding_may_show');
             }}
           />
-          <ImageBackground
-            source={firstLessonSheetBackground}
-            resizeMode="cover"
-            imageStyle={styles.firstLessonSheetBackgroundImage}
+          <Animated.View
             style={[
               styles.firstLessonSheetPanel,
               {
-                paddingBottom: Math.max(insets.bottom + 18, 46),
                 borderColor: firstLessonSheetBorderColor,
                 shadowColor: firstLessonSheetCtaShadowColor,
+                transform: [{ translateY: firstLessonSheetTranslateY }],
               },
             ]}
           >
+            <Image
+              source={firstLessonSheetBackground}
+              resizeMode="cover"
+              style={styles.firstLessonSheetBackgroundImage}
+            />
             <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { backgroundColor: firstLessonSheetScrim }]} />
-            <Text style={[styles.firstLessonSheetTitle, { color: firstLessonSheetTitleColor }]}>
-              {lang === 'es' ? '¿Empezamos la primera lección?' : lang === 'uk' ? 'Почнемо перший урок?' : 'Начнём первый урок?'}
-            </Text>
-            <Text style={[styles.firstLessonSheetSubtitle, { color: firstLessonSheetSubtitleColor }]}>
-              {lang === 'es'
-                ? 'La primera lección dura unos 10 minutos. Después ya sabrás 50 frases útiles.'
-                : lang === 'uk'
-                ? 'Перший урок займе ~10 хвилин. Вже після нього ти знатимеш 50 живих фраз.'
-                : 'Первый урок займёт ~10 минут. Уже после него ты будешь знать 50 живых фраз.'}
-            </Text>
-            <TouchableOpacity
-              style={[styles.firstLessonSheetCtaTouchable, { shadowColor: firstLessonSheetCtaShadowColor }]}
-              onPress={() => {
-                if (firstLessonStartHandledRef.current) return;
-                firstLessonStartHandledRef.current = true;
-                setShowFirstLessonSheet(false);
-                setDeferEnergyOnboardingForPostOnboardingFirstLesson(true);
-                void markWentToFirstLessonFromAfterOnboardingSheet();
-                // Сначала фиксируем (tabs)/home как корень стека, затем кладём поверх lesson_menu
-                // и lesson1 — чтобы из урока можно было вернуться в меню урока, а из меню — на главную.
-                // Раньше один router.replace('/lesson1') оставлял пустой стек: кнопка «назад» в lesson_menu
-                // (router.back()) не срабатывала, юзер застревал.
-                router.replace('/(tabs)/home' as any);
-                setTimeout(() => {
-                  router.push({ pathname: '/lesson_menu', params: { id: 1 } } as any);
-                  setTimeout(() => {
-                    router.push({ pathname: '/lesson1', params: { id: 1, from: 'lesson_menu' } } as any);
-                  }, 30);
-                }, 30);
-              }}
-              activeOpacity={0.85}
-            >
-              <LinearGradient
-                colors={firstLessonSheetCtaGradient}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={[
-                  styles.firstLessonSheetCta,
-                  {
-                    borderColor: firstLessonSheetBorderColor,
-                  },
-                ]}
+            {postOnboardingGoldBridgeVisible && (
+              <Animated.View
+                pointerEvents="none"
+                style={[StyleSheet.absoluteFillObject, { opacity: postOnboardingPanelTintOpacity }]}
               >
-                <Text
-                  numberOfLines={1}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.78}
-                  style={[styles.firstLessonSheetCtaText, { color: firstLessonSheetCtaTextColor }]}
-                >
-                  {lang === 'es' ? '¡Vamos! 🔥' : lang === 'uk' ? 'Так, поїхали! 🔥' : 'Да, поехали! 🔥'}
-                </Text>
-              </LinearGradient>
-            </TouchableOpacity>
-            <TouchableOpacity
-              testID="first-lesson-later"
-              style={styles.firstLessonSheetLaterButton}
-              onPress={() => {
-                setShowFirstLessonSheet(false);
-                setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
-                emitAppEvent('energy_onboarding_may_show');
-              }}
-              activeOpacity={0.7}
+                <LinearGradient
+                  pointerEvents="none"
+                  colors={POST_ONBOARDING_GOLD_BRIDGE_PANEL}
+                  locations={[0, 0.62, 1]}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={StyleSheet.absoluteFillObject}
+                />
+              </Animated.View>
+            )}
+            <View
+              style={[
+                styles.firstLessonSheetContent,
+                { paddingBottom: Math.max(insets.bottom + 18, 46) },
+              ]}
             >
-              <Text style={[styles.firstLessonSheetLaterText, { color: firstLessonSheetLaterColor }]}>
-                {lang === 'es' ? 'Más tarde' : lang === 'uk' ? 'Пізніше' : 'Позже'}
+              <Text style={[styles.firstLessonSheetTitle, { color: firstLessonSheetTitleColor }]}>
+                {lang === 'es' ? '¿Empezamos la primera lección?' : lang === 'uk' ? 'Почнемо перший урок?' : 'Начнём первый урок?'}
               </Text>
-            </TouchableOpacity>
-          </ImageBackground>
+              <Text style={[styles.firstLessonSheetSubtitle, { color: firstLessonSheetSubtitleColor }]}>
+                {lang === 'es'
+                  ? 'La primera lección dura unos 10 minutos. Después ya sabrás 50 frases útiles.'
+                  : lang === 'uk'
+                  ? 'Перший урок займе ~10 хвилин. Вже після нього ти знатимеш 50 живих фраз.'
+                  : 'Первый урок займёт ~10 минут. Уже после него ты будешь знать 50 живых фраз.'}
+              </Text>
+              <TouchableOpacity
+                style={[styles.firstLessonSheetCtaTouchable, { shadowColor: firstLessonSheetCtaShadowColor }]}
+                onPress={() => {
+                  if (firstLessonStartHandledRef.current) return;
+                  firstLessonStartHandledRef.current = true;
+                  setShowFirstLessonSheet(false);
+                  setDeferEnergyOnboardingForPostOnboardingFirstLesson(true);
+                  void markWentToFirstLessonFromAfterOnboardingSheet();
+                  // Сначала фиксируем (tabs)/home как корень стека, затем кладём поверх lesson_menu
+                  // и lesson1 — чтобы из урока можно было вернуться в меню урока, а из меню — на главную.
+                  // Раньше один router.replace('/lesson1') оставлял пустой стек: кнопка «назад» в lesson_menu
+                  // не срабатывала, юзер застревал.
+                  router.replace('/(tabs)/home' as any);
+                  setTimeout(() => {
+                    router.push({ pathname: '/lesson_menu', params: { id: 1 } } as any);
+                    setTimeout(() => {
+                      router.push({ pathname: '/lesson1', params: { id: 1, from: 'lesson_menu' } } as any);
+                    }, 30);
+                  }, 30);
+                }}
+                activeOpacity={0.85}
+              >
+                <LinearGradient
+                  colors={firstLessonSheetCtaGradient}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={[
+                    styles.firstLessonSheetCta,
+                    {
+                      borderColor: firstLessonSheetBorderColor,
+                    },
+                  ]}
+                >
+                  {postOnboardingGoldBridgeVisible && (
+                    <Animated.View
+                      pointerEvents="none"
+                      style={[StyleSheet.absoluteFillObject, { opacity: postOnboardingCtaTintOpacity }]}
+                    >
+                      <LinearGradient
+                        pointerEvents="none"
+                        colors={POST_ONBOARDING_GOLD_BRIDGE_CTA}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 1 }}
+                        style={StyleSheet.absoluteFillObject}
+                      />
+                    </Animated.View>
+                  )}
+                  <Text
+                    numberOfLines={1}
+                    adjustsFontSizeToFit
+                    minimumFontScale={0.78}
+                    style={[styles.firstLessonSheetCtaText, { color: firstLessonSheetCtaTextColor }]}
+                  >
+                    {firstLessonSheetCtaLabel}
+                  </Text>
+                  {postOnboardingGoldBridgeVisible && (
+                    <Animated.Text
+                      pointerEvents="none"
+                      numberOfLines={1}
+                      adjustsFontSizeToFit
+                      minimumFontScale={0.78}
+                      style={[
+                        styles.firstLessonSheetCtaText,
+                        styles.firstLessonSheetCtaTextBridge,
+                        {
+                          color: POST_ONBOARDING_GOLD_BRIDGE_TEXT,
+                          opacity: postOnboardingCtaTintOpacity,
+                        },
+                      ]}
+                    >
+                      {firstLessonSheetCtaLabel}
+                    </Animated.Text>
+                  )}
+                </LinearGradient>
+              </TouchableOpacity>
+              <TouchableOpacity
+                testID="first-lesson-later"
+                style={styles.firstLessonSheetLaterButton}
+                onPress={() => {
+                  setShowFirstLessonSheet(false);
+                  setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
+                  emitAppEvent('energy_onboarding_may_show');
+                }}
+                activeOpacity={0.7}
+              >
+                <Text style={[styles.firstLessonSheetLaterText, { color: firstLessonSheetLaterColor }]}>
+                  {lang === 'es' ? 'Más tarde' : lang === 'uk' ? 'Пізніше' : 'Позже'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </Animated.View>
         </View>
       </Modal>
     )}
@@ -1824,20 +2053,28 @@ const styles = StyleSheet.create({
     elevation: 50,
     backgroundColor: STARTUP_SPLASH_BG,
   },
+  postOnboardingGoldBridge: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 8,
+    elevation: 8,
+  },
   firstLessonSheetOverlay: {
     flex: 1,
     justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0,0,0,0.58)',
+    alignItems: 'stretch',
+    backgroundColor: 'transparent',
+  },
+  firstLessonSheetBackdrop: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: '#000000',
   },
   firstLessonSheetPanel: {
     width: '100%',
+    alignSelf: 'stretch',
     overflow: 'hidden',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     borderTopWidth: 1,
-    paddingHorizontal: 28,
-    paddingTop: 44,
-    alignItems: 'center',
     backgroundColor: '#111315',
     shadowOffset: { width: 0, height: -10 },
     shadowOpacity: 0.28,
@@ -1845,8 +2082,17 @@ const styles = StyleSheet.create({
     elevation: 18,
   },
   firstLessonSheetBackgroundImage: {
+    ...StyleSheet.absoluteFillObject,
+    width: '100%',
+    height: '100%',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+  },
+  firstLessonSheetContent: {
+    width: '100%',
+    paddingHorizontal: 28,
+    paddingTop: 44,
+    alignItems: 'center',
   },
   firstLessonSheetTitle: {
     fontSize: 24,
@@ -1891,6 +2137,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     letterSpacing: 0,
   },
+  firstLessonSheetCtaTextBridge: {
+    position: 'absolute',
+    left: 24,
+    right: 24,
+  },
   firstLessonSheetLaterButton: {
     minHeight: 48,
     paddingVertical: 12,
@@ -1921,6 +2172,7 @@ export default function RootLayout() {
                   <OverlayArbiterProvider>
                     <AppContent />
                     <AchievementToast />
+                    <DailyTaskRewardToast />
                     <ActionToast />
                     <ArenaFriendInviteHost />
                     <MatchFoundToast />

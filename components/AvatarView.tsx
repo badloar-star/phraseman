@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import { Image } from 'expo-image';
 import LevelBadge from './LevelBadge';
 import { getAvatarImageByIndex } from '../constants/avatars';
@@ -14,6 +15,39 @@ interface Props {
   size?: number;
   style?: any;
   auraId?: string | null;
+}
+
+function AvatarImageWithFallback({
+  source,
+  size,
+  fallbackLevel,
+}: {
+  source: any;
+  size: number;
+  fallbackLevel: number;
+}) {
+  const [loaded, setLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    setLoaded(false);
+  }, [source]);
+
+  return (
+    <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
+      {!loaded ? (
+        <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0 }}>
+          <LevelBadge level={fallbackLevel} size={size} centeredNumber />
+        </View>
+      ) : null}
+      <Image
+        source={source}
+        style={{ width: size, height: size }}
+        contentFit="contain"
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(false)}
+      />
+    </View>
+  );
 }
 
 export default function AvatarView({ avatar, totalXP, level, size = 44, style, auraId }: Props) {
@@ -33,7 +67,7 @@ export default function AvatarView({ avatar, totalXP, level, size = 44, style, a
   return (
     <AvatarAura auraId={auraId} size={size} style={style}>
       {avatarImage
-        ? <Image source={avatarImage} style={{ width: size, height: size }} contentFit="contain" />
+        ? <AvatarImageWithFallback source={avatarImage} size={size} fallbackLevel={fallbackLevel} />
         : <LevelBadge level={fallbackLevel} size={size} />
       }
     </AvatarAura>

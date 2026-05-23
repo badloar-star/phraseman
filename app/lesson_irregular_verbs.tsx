@@ -28,6 +28,7 @@ import { updateMultipleTaskProgress } from './daily_tasks';
 import { MOTION_SCALE } from '../constants/motion';
 import { loadSettings } from './settings_edu';
 import { IRREGULAR_VERBS_BY_LESSON, IrregularVerb } from './irregular_verbs_data';
+import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -520,7 +521,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         )}
         <TouchableOpacity
           style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
-          onPress={() => router.back()}
+          onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
         >
           <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>
             {triLang(lang, { ru: '← К уроку', uk: '← До уроку', es: '← Volver a la lección', 'pt-BR': '← Voltar à lição', vi: '← Về bài học', id: '← Kembali ke pelajaran', tr: '← Derse dön', pl: '← Do lekcji' })}
@@ -595,27 +596,22 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
       <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 10, justifyContent: 'space-between' }}>
 
         {/* Progress */}
-        <View style={{ marginBottom: 8 }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 }}>
-            <Text style={{ color: sx.muted, fontSize: f.label }}>
-              {triLang(lang, {
-                ru: `${learnedCnt} / ${verbs.length} выучено`,
-                uk: `${learnedCnt} / ${verbs.length} вивчено`,
-                es: `${learnedCnt} / ${verbs.length} aprendidos`,
-                'pt-BR': `${learnedCnt} / ${verbs.length} aprendidos`,
-                vi: `${learnedCnt} / ${verbs.length} đã học`,
-                id: `${learnedCnt} / ${verbs.length} dipelajari`,
-                tr: `${learnedCnt} / ${verbs.length} öğrenildi`,
-                pl: `${learnedCnt} / ${verbs.length} opanowano`,
-              })}
-            </Text>
-            <Text style={{ color: learnedCnt > 0 ? sx.second : sx.muted, fontSize: f.label, fontWeight: '600' }}>
-              {Math.min(Math.round((learnedCnt / Math.max(verbs.length, 1)) * 100), 100)}%
-            </Text>
-          </View>
-          <View style={{ height: 4, backgroundColor: sx.ghost, borderRadius: 2, overflow: 'hidden' }}>
-            <View style={{ height: '100%', width: `${Math.min((learnedCnt / Math.max(verbs.length, 1)) * 100, 100)}%` as any, backgroundColor: t.correct, borderRadius: 2 }} />
-          </View>
+        <View style={{ width: '100%', marginBottom: 14, alignItems: 'flex-end' }}>
+          <Text
+            testID="lesson-irregular-verbs-progress-counter"
+            style={{ color: learnedCnt > 0 ? sx.second : sx.muted, fontSize: f.label, fontWeight: '700' }}
+          >
+            {triLang(lang, {
+              ru: `${learnedCnt} / ${verbs.length} выучено`,
+              uk: `${learnedCnt} / ${verbs.length} вивчено`,
+              es: `${learnedCnt} / ${verbs.length} aprendidos`,
+              'pt-BR': `${learnedCnt} / ${verbs.length} aprendidos`,
+              vi: `${learnedCnt} / ${verbs.length} đã học`,
+              id: `${learnedCnt} / ${verbs.length} dipelajari`,
+              tr: `${learnedCnt} / ${verbs.length} öğrenildi`,
+              pl: `${learnedCnt} / ${verbs.length} opanowano`,
+            })}
+          </Text>
         </View>
 
         {/* Card */}
@@ -698,7 +694,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
                 <TouchableOpacity
                   key={idx}
                   disabled={phase !== 'answering'}
-                  onPress={() => { hapticTap(); handleTap(word, idx); }}
+                  onPressIn={() => { void hapticTap(); }}
+                  onPress={() => { handleTap(word, idx); }}
                   activeOpacity={0.75}
                   style={{
                     flex: 1, paddingVertical: 16, borderRadius: 16,
@@ -1008,7 +1005,7 @@ export default function LessonIrregularVerbs() {
         <ContentWrap>
           {/* Header */}
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 13, borderBottomWidth: 0.5, borderBottomColor: sx.ghost }}>
-            <TouchableOpacity onPress={() => { hapticTap(); Keyboard.dismiss(); router.back(); }}>
+            <TouchableOpacity onPress={() => { hapticTap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TouchableOpacity>
             <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '600', flex: 1, textAlign: 'center', marginHorizontal: 8 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.75}>{lessonId}. {title}</Text>

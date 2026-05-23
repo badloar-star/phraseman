@@ -9,6 +9,7 @@ import { triLang } from '../constants/i18n';
 import { useEnergy } from '../components/EnergyContext';
 import { useLang } from '../components/LangContext';
 import { joinArenaFriendRoomAsGuest } from './arena_friend_room_guest';
+import { safeRouterBack } from './navigation_back';
 
 type RoomStatus = 'loading' | 'waiting' | 'not_found' | 'expired' | 'joining';
 
@@ -84,8 +85,7 @@ export default function DuelJoinScreen() {
   };
 
   const goBack = useCallback(() => {
-    if (router.canGoBack()) router.back();
-    else router.replace('/(tabs)/home' as any);
+    safeRouterBack(router, '/(tabs)/home' as any);
   }, [router]);
 
   return (
@@ -150,7 +150,7 @@ export default function DuelJoinScreen() {
                 })}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => router.replace('/(tabs)/' as any)} style={styles.decline}>
+            <TouchableOpacity onPress={() => router.replace('/(tabs)/home' as any)} style={styles.decline}>
               <Text style={[{ color: t.textMuted, fontSize: f.body }]}>
                 {triLang(lang, { ru: 'Отказаться', uk: 'Відмовитися', es: 'Rechazar', 'pt-BR': 'Recusar', vi: 'Từ chối', id: 'Tolak', tr: 'Reddet', pl: 'Odrzuć' })}
               </Text>
@@ -187,7 +187,7 @@ export default function DuelJoinScreen() {
                 {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => router.replace('/(tabs)/' as any)} style={[styles.btn, { backgroundColor: t.bgSurface }]}>
+            <TouchableOpacity onPress={() => router.replace('/(tabs)/home' as any)} style={[styles.btn, { backgroundColor: t.bgSurface }]}>
               <Text style={[{ color: t.textPrimary, fontSize: f.body }]}>
                 {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
               </Text>
@@ -222,7 +222,7 @@ export default function DuelJoinScreen() {
                 pl: 'Poproś znajomego o utworzenie nowego pokoju.',
               })}
             </Text>
-            <TouchableOpacity onPress={() => router.replace('/(tabs)/' as any)} style={[styles.btn, { backgroundColor: t.bgSurface }]}>
+            <TouchableOpacity onPress={() => router.replace('/(tabs)/home' as any)} style={[styles.btn, { backgroundColor: t.bgSurface }]}>
               <Text style={[{ color: t.textPrimary, fontSize: f.body }]}>
                 {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
               </Text>

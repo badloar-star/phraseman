@@ -33,6 +33,7 @@ import {
   type PosDrillType,
   type PosWorkoutProfile,
 } from './pos_workout_engine';
+import { safeRouterBack } from './navigation_back';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 
@@ -665,7 +666,7 @@ export default function TrainerSmartSession() {
               pl: "Nie ma jeszcze nic do powtórki",
             })}
           </Text>
-          <TouchableOpacity onPress={() => router.back()} style={[styles.primaryBtn, { backgroundColor: meta.accent, marginTop: 18 }]}>
+          <TouchableOpacity onPress={() => safeRouterBack(router, '/trainer' as any)} style={[styles.primaryBtn, { backgroundColor: meta.accent, marginTop: 18 }]}>
             <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
               {triLang(lang, {
                 ru: 'Готово',
@@ -772,7 +773,7 @@ export default function TrainerSmartSession() {
                     })}
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={[styles.nextBtn, { backgroundColor: meta.accent }]}>
+                <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }} style={[styles.nextBtn, { backgroundColor: meta.accent }]}>
                   <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
                     {triLang(lang, {
                       ru: 'Готово',
@@ -801,7 +802,7 @@ export default function TrainerSmartSession() {
       <SafeAreaView style={{ flex: 1 }} testID="screen-trainer-smart-session">
         <ContentWrap>
           <View style={styles.header}>
-            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={{ padding: 4 }}>
+            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TouchableOpacity>
             <View style={{ flex: 1 }}>

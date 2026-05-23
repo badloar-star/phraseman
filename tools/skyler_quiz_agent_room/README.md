@@ -25,15 +25,22 @@ categories or a source-checked thematic quiz pack.
 npm run skyler:quiz -- --mode brief --target <en|fr|smartest> --category <category-id>
 ```
 
-9. Build the first quiz draft only after the source matrix, style contract, and
-   QA checklist are created.
-10. Gate any draft with:
+9. Run the visual asset kickoff / AI visual asset pass as the first creation
+   step before quiz drafting: inspect the existing thematic asset style,
+   generate DALL-E/imagegen theme card backgrounds and theme logos (the topic
+   plaque and topic icon) for every active app visual family / all active app
+   theme modes (`forest`, `dark`, `neon`, `neonGreen`, `gold`, `coral`,
+   `minimalLight`, `minimalDark`), save the source images, final WebP assets,
+   and `generated_assets/manifest.json`, then visually check the results.
+10. Build the first quiz draft only after the source matrix, style contract,
+   visual asset plan, and QA checklist are created.
+11. Gate any draft with:
 
 ```bash
 npm run skyler:quiz -- --mode gate --draft <path-to-skyler-pack.json>
 ```
 
-11. Report done only when the gate decision is `GO`.
+12. Report done only when the gate decision is `GO`.
 
 ## Non-Negotiable Rules
 
@@ -70,8 +77,20 @@ npm run skyler:quiz -- --mode gate --draft <path-to-skyler-pack.json>
 - The active locale list is owned by Heisenberg/source-locale architecture in
   `app/source_locales.ts`; `npm run skyler:quiz:check` must fail if Skyler drifts
   from it.
+- Every selected thematic category needs a visual asset kickoff / AI visual
+  asset pass before quiz drafting: generate DALL-E/imagegen theme card
+  backgrounds and theme logos (the topic plaque and topic icon) for every active
+  app visual family / all active app theme modes, keep art text-free, preserve
+  the existing left-side text-safe card layout, and store a visual asset
+  manifest. Generated bitmaps must not include text, letters, numbers,
+  watermarks, diagnosis claims, treatment claims, or unsafe medical imagery.
 - The final pack must include source notes, a current-pool style profile, locale
-  review notes, and a QA report.
+  review notes, visual asset notes, release policy, and a QA report.
+- New Skyler quiz packs are dev-only by default. Keep
+  `releasePolicy.environment: dev-only` and
+  `productionActivation: blocked_until_explicit_user_approval`; do not add them
+  to production registry, production navigation, or release-channel mapping until
+  the user explicitly approves production activation.
 
 ## Commands
 
@@ -92,6 +111,10 @@ Each run writes to `docs/skyler/runs/<runId>/`:
 - `topic_candidates.md`
 - `agent_board.md`
 - `source_matrix.md`
+- `visual_asset_plan.md`
+- `generated_assets/<category-id>/manifest.json` or
+  `qa-artifacts/skyler-thematic-assets/<category-id>/manifest.json` after the
+  visual asset kickoff
 - `quality_gates.md`
 - `work_order.md`
 - `gate_report.json` and `gate_report.md` when a draft is checked

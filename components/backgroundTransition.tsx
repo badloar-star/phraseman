@@ -6,6 +6,8 @@ export const BACKGROUND_BLUR_SWITCH_MAX_RADIUS = 0;
 export const BACKGROUND_BLUR_SWITCH_IN_MS = 0;
 export const BACKGROUND_BLUR_SWITCH_OUT_MS = 0;
 export const BACKGROUND_LAYER_FADE_MS = 720;
+export const FABRIC_BACKGROUND_TRANSITIONS_ENABLED = false;
+export const BACKGROUND_TRANSITION_USE_NATIVE_DRIVER = false;
 
 export function backgroundTransitionKey(value: unknown): string {
   if (value == null) return 'none';
@@ -128,23 +130,28 @@ export function usePersistentBackgroundLayers<T>({
     cleanupTasksRef.current.forEach(task => task.cancel());
     cleanupTasksRef.current = [];
 
-    const singleLayerMode = disabled || maxLayers <= 1;
-    const nextLayer: PersistentBackgroundLayer<T> = {
-      id: ++layerSeqRef.current,
-      key: transitionKey,
-      value: pendingValueRef.current,
-      opacity: new Animated.Value(singleLayerMode ? 1 : 0),
-    };
-
     const previousLayers = layersRef.current;
     previousLayers.forEach(layer => {
       layer.opacity.stopAnimation();
     });
 
-    if (singleLayerMode) {
-      setLayers([nextLayer]);
+    const transitionsEnabled = FABRIC_BACKGROUND_TRANSITIONS_ENABLED && !disabled && maxLayers > 1;
+    if (!transitionsEnabled) {
+      setLayers([{
+        id: ++layerSeqRef.current,
+        key: transitionKey,
+        value: pendingValueRef.current,
+        opacity: new Animated.Value(1),
+      }]);
       return;
     }
+
+    const nextLayer: PersistentBackgroundLayer<T> = {
+      id: ++layerSeqRef.current,
+      key: transitionKey,
+      value: pendingValueRef.current,
+      opacity: new Animated.Value(0),
+    };
 
     const exitAnimations = previousLayers.map(layer => {
       const fadeOut = Animated.sequence([
@@ -153,7 +160,7 @@ export function usePersistentBackgroundLayers<T>({
           toValue: 0,
           duration: fadeOutDuration,
           easing: Easing.inOut(Easing.cubic),
-          useNativeDriver: true,
+          useNativeDriver: BACKGROUND_TRANSITION_USE_NATIVE_DRIVER,
         }),
       ]);
 
@@ -183,7 +190,7 @@ export function usePersistentBackgroundLayers<T>({
       toValue: 1,
       duration: fadeInDuration,
       easing: Easing.inOut(Easing.cubic),
-      useNativeDriver: true,
+      useNativeDriver: BACKGROUND_TRANSITION_USE_NATIVE_DRIVER,
     }).start();
 
     return () => {

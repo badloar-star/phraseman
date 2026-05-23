@@ -32,6 +32,7 @@ import { getVisibleIntroLearningBlocks } from './personal_training_intro_blocks'
 import { personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
 import { isStudyTargetSourceUiLang } from './study_target_lang_dev';
 import type { DiagnosisTrainingRuntimeState } from './diagnosis_training_types';
+import { safeRouterBack } from './navigation_back';
 
 type Stage = 'intro' | 'practice' | 'done';
 
@@ -89,8 +90,7 @@ export default function ProblemCoach() {
 
   const handleBack = () => {
     hapticTap();
-    if (router.canGoBack()) router.back();
-    else router.replace('/trainer' as any);
+    safeRouterBack(router, '/trainer' as any);
   };
 
   const handleSelect = (idx: number) => {
@@ -157,8 +157,7 @@ export default function ProblemCoach() {
       studyTarget,
       sourceLocale,
     });
-    if (router.canGoBack()) router.back();
-    else router.replace('/trainer' as any);
+    safeRouterBack(router, '/trainer' as any);
   };
 
   if (!accessChecked || !diagnosisTraining) {

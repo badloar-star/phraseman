@@ -9,7 +9,7 @@
 //  3. Юзер тратит осколки → reviveStreak(): восстанавливает streak_count,
 //     гасит оффер, эмитит 'streak_revived'.
 //
-// Цена: лесенка — чем больше дней, тем дороже. Капается на 150 для серий ≥200.
+// Цена: каждый пропущенный день стоит REVIVE_COST_PER_MISSED_DAY_SHARDS.
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { spendShards } from './shards_system';
@@ -20,6 +20,7 @@ import { withStorageLock } from './storage_mutex';
 const STORAGE_KEY = 'streak_revive_v1';
 /** Окно показа модалки после потери цепочки. После — оффер сгорает. */
 export const REVIVE_WINDOW_MS = 24 * 60 * 60 * 1000;
+export const REVIVE_COST_PER_MISSED_DAY_SHARDS: number = 15;
 /** Минимальная длина потерянной цепочки — один день подряд восстанавливать не предлагаем. */
 const MIN_REVIVABLE_STREAK = 2;
 
@@ -27,6 +28,7 @@ export interface StreakReviveOfferRaw {
   lostStreak: number;
   lostAt: number;     // unix ms
   used?: boolean;
+  missedDays?: number;
   /** Дата, когда цепочку обнулили (для стат/дебага). */
   lostDate?: string;
 }
@@ -35,26 +37,21 @@ export interface StreakReviveOffer {
   lostStreak: number;
   lostAt: number;
   expiresAt: number;
+  missedDays: number;
   costShards: number;
 }
 
 /**
- * Лесенка цены: «чем больше дней — тем дороже». Дороже даёт сильнее эмоциональный
- * крючок (юзер не хочет терять 200-дневную цепочку за условные 30 осколков).
- * Кап 150 — чтобы не превращать в спам IAP-нытьё.
+ * Цена восстановления считается по пропущенным дням: каждый пропущенный день стоит 15 осколков.
  */
-export function computeReviveCost(streak: number): number {
-  const s = Math.max(0, Math.floor(streak));
-  if (s < 7) return 5;
-  if (s < 14) return 10;
-  if (s < 30) return 20;
-  if (s < 60) return 35;
-  if (s < 100) return 60;
-  if (s < 200) return 100;
-  return 150;
+export function computeReviveCost(missedDays: number): number {
+  const days = Math.max(1, Math.floor(Number(missedDays) || 0));
+  return days * REVIVE_COST_PER_MISSED_DAY_SHARDS;
 }
 
 const todayKey = (): string => new Date().toISOString().split('T')[0];
+
+const normalizeMissedDays = (value: unknown): number => Math.max(1, Math.floor(Number(value) || 0));
 
 const readRaw = async (): Promise<StreakReviveOfferRaw | null> => {
   try {
@@ -76,30 +73,39 @@ const readRaw = async (): Promise<StreakReviveOfferRaw | null> => {
  * Если активный оффер уже есть (несколько обнулений в окне 24ч — редкий кейс)
  * сохраняем больший lostStreak, чтобы юзер не «потерял в цене».
  */
-export async function markStreakLost(streak: number): Promise<void> {
+export async function markStreakLost(streak: number, missedDays: number = 1): Promise<void> {
   try {
     if (!Number.isFinite(streak) || streak < MIN_REVIVABLE_STREAK) return;
+    const safeLostStreak = Math.floor(streak);
+    const safeMissedDays = normalizeMissedDays(missedDays);
     await withStorageLock(async () => {
       const existing = await readRaw();
       const now = Date.now();
-      // Если есть активный (не used, не expired) оффер с бо́льшей длиной цепочки — не понижаем.
+      const existingMissedDays = existing ? normalizeMissedDays(existing.missedDays) : 1;
+      // Если есть активный (не used, не expired) оффер с большей цепочкой и не меньшим числом пропусков — не понижаем.
       if (
         existing &&
         !existing.used &&
         now - existing.lostAt < REVIVE_WINDOW_MS &&
-        existing.lostStreak >= streak
+        existing.lostStreak >= safeLostStreak &&
+        existingMissedDays >= safeMissedDays
       ) {
         return;
       }
       const next: StreakReviveOfferRaw = {
-        lostStreak: Math.floor(streak),
+        lostStreak: existing && !existing.used && now - existing.lostAt < REVIVE_WINDOW_MS
+          ? Math.max(existing.lostStreak, safeLostStreak)
+          : safeLostStreak,
         lostAt: now,
         used: false,
+        missedDays: existing && !existing.used && now - existing.lostAt < REVIVE_WINDOW_MS
+          ? Math.max(existingMissedDays, safeMissedDays)
+          : safeMissedDays,
         lostDate: todayKey(),
       };
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next));
     });
-    emitAppEvent('streak_revive_offer', { lostStreak: Math.floor(streak) });
+    emitAppEvent('streak_revive_offer', { lostStreak: safeLostStreak, missedDays: safeMissedDays });
   } catch (error) {
     DebugLogger.error('streak_revive:markStreakLost', error, 'warning');
   }
@@ -116,11 +122,13 @@ export async function getReviveOffer(): Promise<StreakReviveOffer | null> {
   if (!raw || raw.used) return null;
   const expiresAt = raw.lostAt + REVIVE_WINDOW_MS;
   if (Date.now() >= expiresAt) return null;
+  const missedDays = normalizeMissedDays(raw.missedDays);
   return {
     lostStreak: raw.lostStreak,
     lostAt: raw.lostAt,
     expiresAt,
-    costShards: computeReviveCost(raw.lostStreak),
+    missedDays,
+    costShards: computeReviveCost(missedDays),
   };
 }
 

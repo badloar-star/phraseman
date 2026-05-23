@@ -17,5 +17,5 @@ export default function AdminIntroPreviewGate() {
     const Real = require('./_admin_intro_preview').default;
     return <Real />;
   }
-  return <DeferredRedirect href={'/(tabs)/' as any} />;
+  return <DeferredRedirect href={'/(tabs)/home' as any} />;
 }

@@ -1,157 +1,36 @@
 import React, { useMemo } from 'react';
-import { Animated, Text, View, StyleSheet } from 'react-native';
+import { Animated, Image, Text, View, StyleSheet } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
-import Svg, {
-  Defs,
-  RadialGradient,
-  LinearGradient as SvgLinearGradient,
-  Stop,
-  Circle,
-  Path,
-  G,
-} from 'react-native-svg';
 import type { MedalTier } from '../app/medal_utils';
 import { triLang, type Lang } from '../constants/i18n';
+import type { ThemeMode } from '../constants/theme';
+import { getMedalToastThemeStyle } from './medalToastThemeStyles';
 
 interface MedalPalette {
   primary: string;
-  light: string;
-  dark: string;
   glow: string;
-  ribbonStart: string;
-  ribbonEnd: string;
 }
 
 const TIER_PALETTES: Record<Exclude<MedalTier, 'none'>, MedalPalette> = {
   bronze: {
     primary: '#D08C4A',
-    light: '#F4C28A',
-    dark: '#7A4318',
     glow: 'rgba(208,140,74,0.45)',
-    ribbonStart: '#A0522D',
-    ribbonEnd: '#5C2C0F',
   },
   silver: {
-    primary: '#D7D9DB',
-    light: '#F5F6F7',
-    dark: '#7A7B7E',
-    glow: 'rgba(215,217,219,0.45)',
-    ribbonStart: '#9AA0A4',
-    ribbonEnd: '#4F5256',
+    primary: '#72D8FF',
+    glow: 'rgba(114,216,255,0.45)',
   },
   gold: {
     primary: '#F2C44A',
-    light: '#FFE89B',
-    dark: '#8C6517',
     glow: 'rgba(242,196,74,0.55)',
-    ribbonStart: '#C58A1A',
-    ribbonEnd: '#6E460A',
   },
 };
 
-interface PremiumMedalProps {
-  tier: Exclude<MedalTier, 'none'>;
-  size?: number;
-}
-
-function PremiumMedal({ tier, size = 56 }: PremiumMedalProps) {
-  const p = TIER_PALETTES[tier];
-  const idSuffix = tier;
-  return (
-    <Svg width={size} height={size * 1.15} viewBox="0 0 56 64">
-      <Defs>
-        <SvgLinearGradient id={`ribbon-${idSuffix}`} x1="0" y1="0" x2="0" y2="1">
-          <Stop offset="0" stopColor={p.ribbonStart} />
-          <Stop offset="1" stopColor={p.ribbonEnd} />
-        </SvgLinearGradient>
-        <RadialGradient id={`disc-${idSuffix}`} cx="0.4" cy="0.35" rx="0.7" ry="0.7">
-          <Stop offset="0" stopColor={p.light} />
-          <Stop offset="0.55" stopColor={p.primary} />
-          <Stop offset="1" stopColor={p.dark} />
-        </RadialGradient>
-        <SvgLinearGradient id={`rim-${idSuffix}`} x1="0" y1="0" x2="0" y2="1">
-          <Stop offset="0" stopColor={p.light} stopOpacity={0.95} />
-          <Stop offset="1" stopColor={p.dark} stopOpacity={0.8} />
-        </SvgLinearGradient>
-        <SvgLinearGradient id={`shine-${idSuffix}`} x1="0" y1="0" x2="1" y2="1">
-          <Stop offset="0" stopColor="#FFFFFF" stopOpacity={0.55} />
-          <Stop offset="1" stopColor="#FFFFFF" stopOpacity={0} />
-        </SvgLinearGradient>
-      </Defs>
-
-      {/* Лента */}
-      <Path
-        d="M14 4 L20 36 L28 44 L36 36 L42 4 Z"
-        fill={`url(#ribbon-${idSuffix})`}
-        opacity={0.92}
-      />
-      <Path
-        d="M14 4 L20 36 L28 44 Z"
-        fill="#000"
-        opacity={0.18}
-      />
-
-      {/* Внешнее свечение под диском */}
-      <Circle cx="28" cy="40" r="20" fill={p.glow} opacity={0.55} />
-
-      {/* Внешний обод */}
-      <Circle
-        cx="28"
-        cy="40"
-        r="18"
-        fill={`url(#rim-${idSuffix})`}
-      />
-
-      {/* Сам диск */}
-      <Circle
-        cx="28"
-        cy="40"
-        r="15.2"
-        fill={`url(#disc-${idSuffix})`}
-      />
-
-      {/* Внутренний обод-канавка */}
-      <Circle
-        cx="28"
-        cy="40"
-        r="15.2"
-        fill="none"
-        stroke={p.dark}
-        strokeOpacity={0.45}
-        strokeWidth={0.6}
-      />
-      <Circle
-        cx="28"
-        cy="40"
-        r="12"
-        fill="none"
-        stroke={p.light}
-        strokeOpacity={0.55}
-        strokeWidth={0.6}
-      />
-
-      {/* Звезда в центре */}
-      <G transform="translate(28 40)">
-        <Path
-          d="M0 -8 L2 -2.5 L7.6 -2.5 L3.1 1 L4.7 6.5 L0 3.2 L-4.7 6.5 L-3.1 1 L-7.6 -2.5 L-2 -2.5 Z"
-          fill={p.dark}
-          opacity={0.85}
-        />
-        <Path
-          d="M0 -7 L1.7 -2.2 L6.6 -2.2 L2.7 0.9 L4.1 5.6 L0 2.8 L-4.1 5.6 L-2.7 0.9 L-6.6 -2.2 L-1.7 -2.2 Z"
-          fill={p.light}
-        />
-      </G>
-
-      {/* Стеклянный блик */}
-      <Path
-        d="M16 32 Q22 26 32 26 Q26 30 22 38 Z"
-        fill={`url(#shine-${idSuffix})`}
-        opacity={0.7}
-      />
-    </Svg>
-  );
-}
+const MEDAL_IMAGES: Record<Exclude<MedalTier, 'none'>, any> = {
+  bronze: require('../assets/images/levels/bronza.webp'),
+  silver: require('../assets/images/levels/serebro.webp'),
+  gold: require('../assets/images/levels/zoloto.webp'),
+};
 
 interface MedalToastProps {
   tier: MedalTier;
@@ -162,6 +41,8 @@ interface MedalToastProps {
   bg: string;
   /** Whether the active theme is light (drives text colors) */
   isLightTheme: boolean;
+  /** Active app theme, used for theme-specific medal toast treatment */
+  themeMode?: ThemeMode;
   /** Bottom offset in px */
   bottom?: number;
   lang: Lang;
@@ -322,6 +203,7 @@ export default function MedalToast({
   anim,
   bg,
   isLightTheme,
+  themeMode,
   bottom = 120,
   lang,
   spanishUiActive,
@@ -336,11 +218,10 @@ export default function MedalToast({
   const palette = TIER_PALETTES[tier];
 
   // Цвета фона/текста под тему
-  const cardBgStart = isLightTheme ? 'rgba(255,255,255,0.92)' : 'rgba(28,30,36,0.94)';
-  const cardBgEnd   = isLightTheme ? 'rgba(248,250,252,0.92)' : 'rgba(20,22,28,0.96)';
-  const titleColor  = isLightTheme ? '#1A1B1F' : '#FFFFFF';
-  const subtitleColor = isLightTheme ? 'rgba(26,27,31,0.62)' : 'rgba(255,255,255,0.66)';
-  const accent = promoted ? palette.primary : (isLightTheme ? palette.dark : palette.primary);
+  const visualTheme = getMedalToastThemeStyle(themeMode ?? (isLightTheme ? 'minimalLight' : 'minimalDark'));
+  const tierAccent = visualTheme.tierAccents[tier] ?? palette.primary;
+  const tierGlow = visualTheme.tierGlows[tier] ?? palette.glow;
+  const accent = promoted ? tierAccent : visualTheme.badgeDownColor;
 
   return (
     <Animated.View
@@ -354,7 +235,7 @@ export default function MedalToast({
             { translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [22, 0] }) },
             { scale: anim.interpolate({ inputRange: [0, 1], outputRange: [0.92, 1] }) },
           ],
-          shadowColor: palette.primary,
+          shadowColor: tierAccent,
         },
       ]}
     >
@@ -363,35 +244,68 @@ export default function MedalToast({
         pointerEvents="none"
         style={[
           styles.halo,
-          { backgroundColor: palette.glow },
+          {
+            backgroundColor: tierGlow,
+            opacity: visualTheme.haloOpacity,
+          },
+        ]}
+      />
+      <View
+        pointerEvents="none"
+        style={[
+          styles.aura,
+          { backgroundColor: visualTheme.auraColor },
         ]}
       />
 
       <LinearGradient
-        colors={[cardBgStart, cardBgEnd]}
+        colors={visualTheme.cardBgColors}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={[
           styles.card,
           {
-            borderColor: isLightTheme
-              ? `${palette.dark}40`
-              : `${palette.primary}55`,
+            borderColor: visualTheme.borderColor,
             backgroundColor: bg,
           },
         ]}
       >
         {/* Тонкий хайлайт-полоска сверху */}
+        <View
+          pointerEvents="none"
+          style={[
+            styles.texture,
+            {
+              backgroundColor: visualTheme.textureColor,
+              opacity: visualTheme.textureOpacity,
+            },
+          ]}
+        />
         <LinearGradient
-          colors={[`${palette.light}00`, `${palette.light}AA`, `${palette.light}00`]}
+          colors={visualTheme.topShineColors}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
-          style={styles.topShine}
+          style={[
+            styles.topShine,
+            { opacity: visualTheme.topShineOpacity },
+          ]}
           pointerEvents="none"
         />
 
-        <View style={styles.medalSlot}>
-          <PremiumMedal tier={tier} size={54} />
+        <View
+          style={[
+            styles.medalSlot,
+            {
+              backgroundColor: visualTheme.medalPlateBg,
+              borderColor: visualTheme.medalPlateBorder,
+            },
+          ]}
+        >
+          <Image
+            source={MEDAL_IMAGES[tier]}
+            style={styles.medalImage}
+            resizeMode="contain"
+          />
         </View>
 
         <View style={styles.textWrap}>
@@ -402,13 +316,13 @@ export default function MedalToast({
             {tierBadgeText(tier, promoted, lang, spanishUiActive)}
           </Text>
           <Text
-            style={[styles.title, { color: titleColor }]}
+            style={[styles.title, { color: visualTheme.titleColor }]}
             numberOfLines={1}
           >
             {labels.title}
           </Text>
           <Text
-            style={[styles.subtitle, { color: subtitleColor }]}
+            style={[styles.subtitle, { color: visualTheme.subtitleColor }]}
             numberOfLines={2}
           >
             {labels.subtitle}
@@ -457,7 +371,15 @@ const styles = StyleSheet.create({
     right: -10,
     bottom: -10,
     borderRadius: 28,
-    opacity: 0.35,
+  },
+  aura: {
+    position: 'absolute',
+    top: 4,
+    left: 8,
+    right: 8,
+    height: 28,
+    borderRadius: 22,
+    opacity: 0.72,
   },
   card: {
     borderRadius: 22,
@@ -469,6 +391,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     overflow: 'hidden',
   },
+  texture: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
   topShine: {
     position: 'absolute',
     top: 0,
@@ -478,10 +407,16 @@ const styles = StyleSheet.create({
     opacity: 0.9,
   },
   medalSlot: {
-    width: 54,
-    height: 62,
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  medalImage: {
+    width: 70,
+    height: 70,
   },
   textWrap: {
     flex: 1,

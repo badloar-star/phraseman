@@ -33,6 +33,7 @@ import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '.
 import { levelExamKey } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
 import { recordLevelExamAttempt } from './level_exam_attempts';
+import { safeRouterBack } from './navigation_back';
 
 const MEDAL_IMAGES_EXAM: Record<string, any> = {
   bronze:  require('../assets/images/levels/bronza.webp'),
@@ -762,7 +763,7 @@ export default function LevelExam() {
     return (
       <FrenchLevelExamUnavailable
         lang={lang}
-        onBack={() => { hapticTap(); router.back(); }}
+        onBack={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }}
         onLessons={() => { hapticTap(); router.replace('/(tabs)/lessons' as any); }}
         f={f}
       />
@@ -785,7 +786,7 @@ export default function LevelExam() {
               borderBottomColor: LX.cardLine,
             }}
           >
-            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
             </TouchableOpacity>
           </View>
@@ -965,7 +966,7 @@ export default function LevelExam() {
               borderBottomColor: LX.cardLine,
             }}
           >
-            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
             </TouchableOpacity>
           </View>
@@ -1127,7 +1128,7 @@ export default function LevelExam() {
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }}>
+            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }}>
               <Ionicons name="chevron-back" size={26} color={sx.primary} />
             </TouchableOpacity>
             <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', marginLeft: 10 }}>{title}</Text>
@@ -1362,7 +1363,7 @@ export default function LevelExam() {
               </LinearGradient>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => { hapticTap(); router.back(); }}
+              onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }}
               style={{
                 borderRadius: 14,
                 borderWidth: isGoldTheme ? 1 : 0,
@@ -1621,7 +1622,7 @@ export default function LevelExam() {
         onCancel={() => setExitExamConfirm(false)}
         onConfirm={() => {
           setExitExamConfirm(false);
-          router.back();
+          safeRouterBack(router, '/(tabs)/lessons' as any);
         }}
         confirmVariant="accent"
       />

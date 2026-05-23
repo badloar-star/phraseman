@@ -39,6 +39,10 @@ import {
 let _groupPtsTimer: ReturnType<typeof setTimeout> | null = null;
 let _pendingGroupPts: number | null = null;
 
+function isJestRuntime(): boolean {
+  return typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
+}
+
 const getFirestore = () => {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   try {
@@ -735,6 +739,7 @@ export async function fetchLeagueTopMembers(
 // очки при закрытии приложения через 10-20 сек после занятия.
 export function updateMyGroupPoints(weekPoints: number): Promise<void> {
   if (!CLOUD_SYNC_ENABLED) return Promise.resolve();
+  if (isJestRuntime()) return Promise.resolve();
   _pendingGroupPts = weekPoints;
   if (_groupPtsTimer) clearTimeout(_groupPtsTimer);
   return new Promise(resolve => {
@@ -746,6 +751,7 @@ export function updateMyGroupPoints(weekPoints: number): Promise<void> {
       await _doUpdateGroupPoints(pts);
       resolve();
     }, 8_000);
+    (_groupPtsTimer as any)?.unref?.();
   });
 }
 

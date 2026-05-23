@@ -13,6 +13,9 @@ import Animated, {
 import { useScreen } from '../hooks/use-screen';
 import { tabSwipeLocked } from './tabSwipeLock';
 
+const TAB_SWIPE_ACTIVE_OFFSET_X = 22;
+const TAB_SWIPE_FAIL_OFFSET_Y = 12;
+
 interface Props {
   activeIndex: number;
   onTabChange: (idx: number) => void;
@@ -69,9 +72,9 @@ export default function TabSlider({
 
   const pan = Gesture.Pan()
     .enabled(swipeEnabled)
-    // Захват только при явном горизонтальном движении
-    .activeOffsetX([-10, 10])
-    .failOffsetY([-8, 8])
+    // Require a deliberate horizontal drag so child buttons keep normal tap priority.
+    .activeOffsetX([-TAB_SWIPE_ACTIVE_OFFSET_X, TAB_SWIPE_ACTIVE_OFFSET_X])
+    .failOffsetY([-TAB_SWIPE_FAIL_OFFSET_Y, TAB_SWIPE_FAIL_OFFSET_Y])
     .onUpdate((e) => {
       'worklet';
       if (isAnimating.value) return;

@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SETTINGS_KEY = 'user_settings';
 const MIN_SPEECH_RATE = 0.5;
-const MAX_SPEECH_RATE = 1.0;
+const MAX_SPEECH_RATE = 2.5;
 
 export const DEFAULT_SETTINGS = {
   autoCheck: false,

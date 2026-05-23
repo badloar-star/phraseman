@@ -13,11 +13,11 @@ export const RELEASE_NOTES_MIN_BUILD_ID = 73;
 
 /**
  * Установки с первого запуска не раньше этого момента (UTC) считаются «новыми» — окно не показываем.
- * Для текущего релиза берём сегодняшнюю дату: новые установки 16 мая 2026 и позже не видят окно.
+ * Для текущего релиза новые установки 23 мая 2026 и позже не видят окно.
  */
-export const RELEASE_NOTES_NEW_USER_CUTOFF_MS = Date.UTC(2026, 4, 16, 0, 0, 0, 0);
+export const RELEASE_NOTES_NEW_USER_CUTOFF_MS = Date.UTC(2026, 4, 23, 0, 0, 0, 0);
 
-const DISMISS_KEY = 'release_notes_dismissed_2026_05_15_premium_v1';
+const DISMISS_KEY = 'release_notes_dismissed_2026_05_23_polish_v1';
 
 export async function shouldOfferReleaseNotesModal(): Promise<boolean> {
   if (!RELEASE_NOTES_MODAL_ENABLED) return false;

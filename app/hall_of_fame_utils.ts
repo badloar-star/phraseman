@@ -16,6 +16,21 @@ export const LEVEL_BASE: Record<string, number> = { easy: 5, medium: 7, hard: 10
 const notificationLangFromStorageValue = (value: string | null): Lang =>
   value === 'uk' ? 'uk' : value === 'es' ? 'es' : 'ru';
 
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+const dateKeyToUtcMs = (dateKey: string): number | null => {
+  const [year, month, day] = dateKey.split('-').map(Number);
+  if (!year || !month || !day) return null;
+  return Date.UTC(year, month - 1, day);
+};
+
+const countMissedDays = (lastActive: string, today: string): number => {
+  const lastMs = dateKeyToUtcMs(lastActive);
+  const todayMs = dateKeyToUtcMs(today);
+  if (lastMs === null || todayMs === null || todayMs <= lastMs) return 1;
+  return Math.max(1, Math.floor((todayMs - lastMs) / DAY_MS) - 1);
+};
+
 export const streakMultiplier = (s: number): number =>
   s >= 30 ? 1.8 : s >= 14 ? 1.6 : s >= 7 ? 1.4 : s >= 3 ? 1.2 : 1;
 
@@ -166,6 +181,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
       const dayBefore = new Date();
       dayBefore.setDate(dayBefore.getDate() - 2);
       const dayBeforeStr = dayBefore.toISOString().split('T')[0];
+      const missedDays = lastActive ? countMissedDays(lastActive, today) : 1;
 
       const freezeRaw = await AsyncStorage.getItem('streak_freeze');
       const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
@@ -200,7 +216,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
             const prevStreak = streak;
             logStreakLost(prevStreak);
             AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
-            void markStreakLost(prevStreak);
+            void markStreakLost(prevStreak, missedDays);
             incrementStreakLostCount();
             streak = 1;
           }
@@ -208,7 +224,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
           const prevStreak = streak;
           logStreakLost(prevStreak);
           AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
-          void markStreakLost(prevStreak);
+          void markStreakLost(prevStreak, missedDays);
           incrementStreakLostCount();
           streak = 1;
         }
@@ -218,7 +234,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
         const prevStreak = streak;
         logStreakLost(prevStreak);
         AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
-        void markStreakLost(prevStreak);
+        void markStreakLost(prevStreak, missedDays);
         incrementStreakLostCount();
         streak = 1;
       }
@@ -281,10 +297,10 @@ export const addOrUpdateScore = async (
 
   // DEV-ONLY: трейс источника XP. Помогает отлаживать "12 опыта на этой неделе"
   // в начале новой недели — ловим какой кодпуть начислил и со стэком вызовов.
-  if (__DEV__) {
+  const isJestRuntime = typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
+  if (__DEV__ && !isJestRuntime) {
     try {
       const stack = (new Error().stack || '').split('\n').slice(2, 7).join('\n');
-      // eslint-disable-next-line no-console
       console.log(
         `[addOrUpdateScore] +${delta} XP for "${name}" (lang=${lang}, weekKey=${getWeekKey(new Date())})\n${stack}`,
       );

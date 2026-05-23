@@ -5,7 +5,7 @@
 //  1. В ключевых точках приложения инкрементируем счётчики:
 //     - energy_zero_count_v1      (NoEnergyModal.tsx onShow)
 //     - streak_lost_count_v1      (hall_of_fame_utils.ts при streak reset)
-//     - hard_paywall_blocks_v1    (quizzes.tsx / premium_modal context='quiz_hard')
+//     - hard_paywall_blocks_v1    legacy quiz-limit attempts counter
 //  2. premium_modal.tsx вызывает pickPaywallTags() → получает top-3 тега по «боли».
 //  3. UI рендерит pill-карточки над hero-блоком.
 //
@@ -44,7 +44,7 @@ export function incrementStreakLostCount(): void {
   void bumpCounter(STREAK_LOST_COUNT_KEY);
 }
 
-/** Вызывать при тапе на Hard-квиз если !premium. */
+/** Legacy counter retained for old callers; quiz access now uses the daily limit. */
 export function incrementHardPaywallBlock(): void {
   void bumpCounter(HARD_PAYWALL_BLOCKS_KEY);
 }
@@ -155,14 +155,14 @@ const GENERIC_TAGS: PersonalizedTag[] = [
   {
     key: 'generic_quizhard',
     emoji: '🥇',
-    ru: 'Сложные квизы и расширенные задания',
-    uk: 'Складні квізи та розширені завдання',
-    es: 'Quizzes difíciles y tareas avanzadas',
-    'pt-BR': 'Quizzes difíceis e tarefas avançadas',
-    vi: 'Quiz khó và bài tập nâng cao',
-    id: 'Kuis sulit dan latihan lanjutan',
-    tr: 'Zor quizler ve gelişmiş görevler',
-    pl: 'Trudne quizy i rozszerzone zadania',
+    ru: 'Квизы без дневного лимита и расширенные задания',
+    uk: 'Квізи без денного ліміту та розширені завдання',
+    es: 'Cuestionarios sin límite diario y tareas avanzadas',
+    'pt-BR': 'Quizzes sem limite diário e tarefas avançadas',
+    vi: 'Quiz không giới hạn mỗi ngày và bài tập nâng cao',
+    id: 'Kuis tanpa batas harian dan latihan lanjutan',
+    tr: 'Günlük limitsiz quizler ve gelişmiş görevler',
+    pl: 'Quizy bez dziennego limitu i zadania zaawansowane',
     weight: 12,
   },
 ];
@@ -217,21 +217,21 @@ export function pickPaywallTags(stats: PaywallStats, max = 3): PersonalizedTag[]
     });
   }
 
-  // 4. Hard-квизы заблокированы N раз
+  // 4. Дневной лимит квизов срабатывал N раз
   if (stats.hardPaywallBlocks > 0) {
     const n = stats.hardPaywallBlocks;
     const weight = n >= 5 ? 80 : n >= 2 ? 70 : 45;
     tags.push({
       key: 'hard_blocks',
       emoji: '💪',
-      ru: `Hard квизы заблокированы — ты заходил ${n} ${ru_times(n)}`,
-      uk: `Hard квізи заблоковані — ти заходив ${n} ${uk_times(n)}`,
-      es: `Los quizzes Hard están bloqueados — intentaste ${n} ${es_times(n)}`,
-      'pt-BR': `Quizzes Hard bloqueados — você tentou ${n}x`,
-      vi: `Quiz Hard đang khóa — bạn đã thử ${n} lần`,
-      id: `Kuis Hard terkunci — kamu mencoba ${n} kali`,
-      tr: `Hard quizler kilitli — ${n} kez denedin`,
-      pl: `Quizy Hard są zablokowane — próbowano ${n} razy`,
+      ru: `Дневной лимит квизов срабатывал — ты возвращался ${n} ${ru_times(n)}`,
+      uk: `Денний ліміт квізів спрацьовував — ти повертався ${n} ${uk_times(n)}`,
+      es: `El límite diario de cuestionarios se activó ${n} ${es_times(n)}`,
+      'pt-BR': `O limite diário de quizzes apareceu ${n}x`,
+      vi: `Giới hạn quiz hằng ngày đã xuất hiện ${n} lần`,
+      id: `Batas harian kuis muncul ${n} kali`,
+      tr: `Günlük quiz limiti ${n} kez devreye girdi`,
+      pl: `Dzienny limit quizów pojawił się ${n} razy`,
       weight,
     });
   }

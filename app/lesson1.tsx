@@ -8,7 +8,6 @@ import {
   BackHandler,
   Easing,
   KeyboardAvoidingView,
-  Modal,
   Platform,
   Pressable,
   ScrollView,
@@ -58,7 +57,6 @@ import {
   dailyTaskLessonVisitedKey,
   fiftyFiftyUsageKey,
   grammarHintSeenKey,
-  lessonCycleEndIntroShownKey,
   lessonIntroShownKey,
   lessonProgressKey,
   lessonSessionKey,
@@ -89,12 +87,15 @@ import {
 } from './lesson_screen_bootstrap';
 import { getBonusHintsToday } from './level_gift_system';
 import { lessonPhraseReportDataId } from './error_report';
+
+const LESSON_ENTRY_REPEATING_MOTION_ENABLED = false;
 import ReportErrorButton from '../components/ReportErrorButton';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { MOTION_DURATION } from '../constants/motion';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
+import { safeRouterBack } from './navigation_back';
 
 const GRAMMAR_HINTS = [
   {
@@ -201,14 +202,31 @@ function phrasePromptForInterface(phrase: any, lang: Lang): string {
 const isZeroArticlePosition = (phraseWords: string[], idx: number): boolean =>
   idx >= 0 && idx < phraseWords.length && stripMarkers(phraseWords[idx]) === '';
 
+const phraseTokensCache = new WeakMap<object, Map<StudyTargetLang, string[]>>();
+
 // Returns the canonical word token list for a phrase (language depends on learnTarget).
 const getPhraseTokens = (phrase: any, studyTarget: StudyTargetLang): string[] => {
   if (!phrase) return [];
-  const rows = phraseWordRowsForStudyTarget(phrase, studyTarget);
-  if (rows.length > 0) {
-    return rows.map((w: any) => w.correct ?? w.text);
+  if (typeof phrase === 'object') {
+    const cached = phraseTokensCache.get(phrase as object)?.get(studyTarget);
+    if (cached) return cached;
   }
-  return getPhraseWords(phrase?.english ?? '');
+  const rows = phraseWordRowsForStudyTarget(phrase, studyTarget);
+  let tokens: string[];
+  if (rows.length > 0) {
+    tokens = rows.map((w: any) => w.correct ?? w.text);
+  } else {
+    tokens = getPhraseWords(phrase?.english ?? '');
+  }
+  if (typeof phrase === 'object') {
+    let targetCache = phraseTokensCache.get(phrase as object);
+    if (!targetCache) {
+      targetCache = new Map<StudyTargetLang, string[]>();
+      phraseTokensCache.set(phrase as object, targetCache);
+    }
+    targetCache.set(studyTarget, tokens);
+  }
+  return tokens;
 };
 
 /** Word-bank phrase is ready to grade (all slots filled or early match on an accepted alternative). */
@@ -235,27 +253,92 @@ const dedupeOptions = (opts: string[]): string[] => {
   return opts.filter(w => { const k = w.toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; });
 };
 
+const phraseDistractsCache = new WeakMap<object, Map<string, string[]>>();
+
+const phraseDistractsCacheKey = (wordIndex: number, studyTarget: StudyTargetLang): string => `${studyTarget}:${wordIndex}`;
+
+const getCachedPhraseDistracts = (
+  phrase: any,
+  wordIndex: number,
+  studyTarget: StudyTargetLang
+): string[] | null => {
+  if (!phrase || typeof phrase !== 'object') return null;
+  return phraseDistractsCache.get(phrase as object)?.get(phraseDistractsCacheKey(wordIndex, studyTarget)) ?? null;
+};
+
+const setCachedPhraseDistracts = (
+  phrase: any,
+  wordIndex: number,
+  studyTarget: StudyTargetLang,
+  options: string[]
+): string[] => {
+  if (!phrase || typeof phrase !== 'object') return options;
+  let phraseCache = phraseDistractsCache.get(phrase as object);
+  if (!phraseCache) {
+    phraseCache = new Map<string, string[]>();
+    phraseDistractsCache.set(phrase as object, phraseCache);
+  }
+  phraseCache.set(phraseDistractsCacheKey(wordIndex, studyTarget), options);
+  return options;
+};
+
+const PREWARM_DISTRACTS_CHUNK_MS = 6;
+let phraseDistractsPrewarmRunId = 0;
+
 const safeGetDistracts = (phrase: any, wordIndex: number, studyTarget: StudyTargetLang): string[] => {
+  const cached = getCachedPhraseDistracts(phrase, wordIndex, studyTarget);
+  if (cached) return cached;
+
   const result = getPerWordDistracts(phrase, wordIndex, studyTarget);
   // Same token list as handleWordPress (phrase.words authoritative; avoids tokenization mismatch)
   const correctWord = getPhraseTokens(phrase, studyTarget)[wordIndex];
   if (result.length > 0) {
     if (correctWord && !result.some((w: string) => w.toLowerCase() === correctWord.toLowerCase())) {
-      return dedupeOptions([...result.slice(0, result.length - 1), correctWord]);
+      return setCachedPhraseDistracts(phrase, wordIndex, studyTarget, dedupeOptions([...result.slice(0, result.length - 1), correctWord]));
     }
-    return dedupeOptions(result);
+    return setCachedPhraseDistracts(phrase, wordIndex, studyTarget, dedupeOptions(result));
   }
   // Walk back to find the last position with data
   for (let i = wordIndex - 1; i >= 0; i--) {
     const reserveOptions = getPerWordDistracts(phrase, i, studyTarget);
     if (reserveOptions.length > 0) {
       if (correctWord && !reserveOptions.some((w: string) => w.toLowerCase() === correctWord.toLowerCase())) {
-        return dedupeOptions([...reserveOptions.slice(0, reserveOptions.length - 1), correctWord]);
+        return setCachedPhraseDistracts(phrase, wordIndex, studyTarget, dedupeOptions([...reserveOptions.slice(0, reserveOptions.length - 1), correctWord]));
       }
-      return dedupeOptions(reserveOptions);
+      return setCachedPhraseDistracts(phrase, wordIndex, studyTarget, dedupeOptions(reserveOptions));
     }
   }
-  return result;
+  return setCachedPhraseDistracts(phrase, wordIndex, studyTarget, result);
+};
+
+const cancelPrewarmSafeDistracts = (): void => {
+  phraseDistractsPrewarmRunId += 1;
+};
+
+const prewarmSafeDistracts = (phrase: any, studyTarget: StudyTargetLang): void => {
+  const phraseWords = getPhraseTokens(phrase, studyTarget);
+  const runId = phraseDistractsPrewarmRunId + 1;
+  phraseDistractsPrewarmRunId = runId;
+  let idx = 0;
+
+  const warmChunk = () => {
+    const startedAt = Date.now();
+    while (
+      idx < phraseWords.length
+      && phraseDistractsPrewarmRunId === runId
+      && Date.now() - startedAt <= PREWARM_DISTRACTS_CHUNK_MS
+    ) {
+      if (!isZeroArticlePosition(phraseWords, idx)) {
+        safeGetDistracts(phrase, idx, studyTarget);
+      }
+      idx += 1;
+    }
+    if (idx < phraseWords.length && phraseDistractsPrewarmRunId === runId) {
+      setTimeout(warmChunk, 0);
+    }
+  };
+
+  warmChunk();
 };
 
 let tapHintShownThisSession = false;
@@ -299,8 +382,8 @@ function LessonPressable({
       disabled={disabled}
       android_ripple={disabled || suppressFeedback ? undefined : { color: 'rgba(255,255,255,0.08)' }}
       onPressIn={(event) => {
-        if (!disabled && !suppressFeedback) animateTo(pressScale);
         onPressIn?.(event);
+        if (!disabled && !suppressFeedback) animateTo(pressScale);
       }}
       onPressOut={(event) => {
         if (!disabled && !suppressFeedback) {
@@ -341,129 +424,12 @@ const DEFAULT_SETTINGS: Settings = {
 // LessonHexProgress is now imported from components/LessonHexProgress.tsx
 
 // ── Модалка "Конец цикла урока" ───────────────────────────────────────────────
-export const CYCLE_END_SHOWN_KEY = lessonCycleEndIntroShownKey();
-
-function LessonCycleEndModal({ visible, hasErrors, lang, studyTarget, t, f, onClose }: {
-  visible: boolean;
-  hasErrors: boolean;
-  lang: Lang;
-  studyTarget: StudyTargetLang;
-  t: any;
-  f: any;
-  onClose: () => void;
-}) {
-  const scaleAnim = useRef(new Animated.Value(0.85)).current;
-  const opacityAnim = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    if (visible) {
-      Animated.parallel([
-        Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true, tension: 60, friction: 8 }),
-        Animated.timing(opacityAnim, { toValue: 1, duration: 250, useNativeDriver: true }),
-      ]).start();
-    } else {
-      scaleAnim.setValue(0.85);
-      opacityAnim.setValue(0);
-    }
-  }, [visible]);
-
-  if (!visible) return null;
-
-  const isES = spanishLessonUiStringsActive(lang, studyTarget);
-  const title = isES ? '🎉 ¡Has cerrado todo el ciclo!' : triLang(lang, {
-    ru: '🎉 Ты прошёл весь урок!',
-    uk: '🎉 Ти пройшов увесь урок!',
-    es: '🎉 ¡Has cerrado todo el ciclo!',
-    'pt-BR': '🎉 Você concluiu toda a lição!',
-    vi: '🎉 Bạn đã hoàn thành toàn bộ bài học!',
-    id: '🎉 Kamu sudah menyelesaikan seluruh pelajaran!',
-    tr: '🎉 Tüm dersi tamamladın!',
-    pl: '🎉 Cała lekcja ukończona!',
-  });
-  const subtitle = isES ? 'Puedes seguir todas las vueltas que quieras; cada nueva ronda afianza mejor tu resultado.' : triLang(lang, {
-    ru: 'Можешь проходить сколько угодно раз — каждый новый круг улучшает твой результат.',
-    uk: 'Можеш продовжувати скільки завгодно разів — кожне нове коло покращує твій результат.',
-    es: 'Puedes seguir todas las vueltas que quieras; cada nueva ronda afianza mejor tu resultado.',
-    'pt-BR': 'Você pode repetir quantas vezes quiser; cada nova rodada consolida melhor o resultado.',
-    vi: 'Bạn có thể luyện lại bao nhiêu vòng tùy thích; mỗi vòng mới giúp kết quả chắc hơn.',
-    id: 'Kamu bisa mengulang sebanyak yang kamu mau; setiap putaran baru membuat hasilmu lebih kuat.',
-    tr: 'İstediğin kadar tur devam edebilirsin; her yeni tur sonucu daha iyi pekiştirir.',
-    pl: 'Możesz powtarzać tyle razy, ile chcesz; każda kolejna runda lepiej utrwala wynik.',
-  });
-  const errorText = isES ? 'Hubo errores: repásalo otra vez para corregirlos y fijar lo aprendido.' : triLang(lang, {
-    ru: 'У тебя были ошибки — пройди ещё раз, чтобы исправить их и закрепить знания.',
-    uk: 'У тебе були помилки — пройди ще раз, щоб виправити їх і закріпити знання.',
-    es: 'Hubo errores: repásalo otra vez para corregirlos y fijar lo aprendido.',
-    'pt-BR': 'Houve erros: revise mais uma vez para corrigi-los e fixar o que aprendeu.',
-    vi: 'Bạn có lỗi sai: hãy ôn lại một vòng nữa để sửa và ghi nhớ chắc hơn.',
-    id: 'Ada kesalahan: ulangi sekali lagi untuk memperbaikinya dan menguatkan materi.',
-    tr: 'Hatalar vardı: düzeltmek ve öğrendiklerini pekiştirmek için bir kez daha gözden geçir.',
-    pl: 'Były błędy: przejdź jeszcze raz, żeby je poprawić i utrwalić materiał.',
-  });
-  const btnLabel = isES ? 'Continuar' : triLang(lang, {
-    ru: 'Продолжить',
-    uk: 'Продовжити',
-    es: 'Continuar',
-    'pt-BR': 'Continuar',
-    vi: 'Tiếp tục',
-    id: 'Lanjut',
-    tr: 'Devam et',
-    pl: 'Kontynuuj',
-  });
-
-  return (
-    <Modal transparent visible={visible} animationType="none" onRequestClose={onClose}>
-      <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.55)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24 }}>
-        <Animated.View style={{
-          backgroundColor: t.bgCard,
-          borderRadius: 24,
-          padding: 28,
-          width: '100%',
-          maxWidth: 360,
-          alignItems: 'center',
-          opacity: opacityAnim,
-          transform: [{ scale: scaleAnim }],
-          shadowColor: '#000',
-          shadowOpacity: 0.25,
-          shadowRadius: 20,
-          elevation: 12,
-        }}>
-          <Text style={{ fontSize: 48, marginBottom: 12 }}>🏆</Text>
-          <Text style={{ fontSize: f.h2, fontWeight: '700', color: t.textPrimary, textAlign: 'center', marginBottom: 10 }}>
-            {title}
-          </Text>
-          <Text style={{ fontSize: f.body, color: t.textSecond, textAlign: 'center', lineHeight: 22, marginBottom: hasErrors ? 12 : 24 }}>
-            {subtitle}
-          </Text>
-          {hasErrors && (
-            <View style={{ backgroundColor: t.accentBg, borderRadius: 12, padding: 12, marginBottom: 24, width: '100%' }}>
-              <Text style={{ fontSize: f.body, color: t.accent, textAlign: 'center', lineHeight: 20 }}>
-                {errorText}
-              </Text>
-            </View>
-          )}
-          <TouchableOpacity
-            onPress={onClose}
-            activeOpacity={0.8}
-            style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 40, width: '100%', alignItems: 'center' }}
-          >
-            <Text style={{ fontSize: f.bodyLg, fontWeight: '700', color: t.correctText }}>{btnLabel}</Text>
-          </TouchableOpacity>
-        </Animated.View>
-      </View>
-    </Modal>
-  );
-}
-
 /**
- * LessonContent: Renders the lesson UI (intro screens, encouragement, or main lesson).
+ * LessonContent: Renders the lesson UI after the full-screen intro has been handled.
  * Extracted as separate component to ensure SafeAreaView receives exactly ONE child.
  */
 interface LessonContentProps {
-  showIntroScreens: boolean;
   introGateReady: boolean;
-  setShowIntroScreens: (val: boolean) => void;
-  onIntroDone: () => void;
   lessonId: number;
   // All the main lesson UI props
   compact: boolean;
@@ -534,10 +500,7 @@ interface LessonContentProps {
 }
 
 const LessonContent = React.memo(function LessonContent({
-  showIntroScreens,
   introGateReady,
-  setShowIntroScreens,
-  onIntroDone,
   lessonId,
   compact,
   isSmallScreen,
@@ -617,13 +580,16 @@ const LessonContent = React.memo(function LessonContent({
   const [grammarHintText, setGrammarHintText] = useState<string | null>(null);
   const grammarHintAnim = useRef(new Animated.Value(0)).current;
   const grammarHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const grammarHintLookupTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const focusInputTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prewarmDistractsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const questionEnterAnim = useRef(new Animated.Value(1)).current;
   const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
   const phraseTokens = phrase ? getPhraseTokens(phrase, studyTarget) : [];
   const selectedAnswer = selectedWords.join(' ');
   const reportUserAnswer = (settings.hardMode ? typedText : selectedAnswer).trim();
-  const gradeTarget = phrase ? phraseCanonicalAnswer(phrase, studyTarget) : '';
-  const gradeAlts = phrase ? phraseAnswerAlternatives(phrase, studyTarget) : undefined;
+  const gradeTarget = useMemo(() => phrase ? phraseCanonicalAnswer(phrase, studyTarget) : '', [phraseEnterKey, phrase, studyTarget]);
+  const gradeAlts = useMemo(() => phrase ? phraseAnswerAlternatives(phrase, studyTarget) : undefined, [phraseEnterKey, phrase, studyTarget]);
   const currentCorrectWord = phraseTokens[phraseWordIdx] ?? null;
   const currentNextCorrectWord = phraseTokens[phraseWordIdx + 1] ?? null;
   const currentValidContraction = currentCorrectWord && currentNextCorrectWord
@@ -667,6 +633,31 @@ const LessonContent = React.memo(function LessonContent({
     && status === 'playing'
     && (phraseWordIdx >= phraseTokens.length || selectedAnswerMatchesAlternative);
 
+  useEffect(() => () => {
+    if (grammarHintTimerRef.current) clearTimeout(grammarHintTimerRef.current);
+    if (grammarHintLookupTimerRef.current) clearTimeout(grammarHintLookupTimerRef.current);
+    if (focusInputTimerRef.current) clearTimeout(focusInputTimerRef.current);
+    if (prewarmDistractsTimerRef.current) clearTimeout(prewarmDistractsTimerRef.current);
+    cancelPrewarmSafeDistracts();
+  }, []);
+
+  useEffect(() => {
+    if (!phrase || status !== 'playing' || settings.hardMode) return;
+    cancelPrewarmSafeDistracts();
+    if (prewarmDistractsTimerRef.current) clearTimeout(prewarmDistractsTimerRef.current);
+    prewarmDistractsTimerRef.current = setTimeout(() => {
+      prewarmDistractsTimerRef.current = null;
+      prewarmSafeDistracts(phrase, studyTarget);
+    }, 0);
+    return () => {
+      if (prewarmDistractsTimerRef.current) {
+        clearTimeout(prewarmDistractsTimerRef.current);
+        prewarmDistractsTimerRef.current = null;
+      }
+      cancelPrewarmSafeDistracts();
+    };
+  }, [phraseEnterKey, phrase, status, settings.hardMode, studyTarget]);
+
   const triggerGrammarHint = useCallback(async (currentWord: string, force = false) => {
     if (lessonHintSupportBlocked) return;
     if (!currentWord) return;
@@ -701,8 +692,18 @@ const LessonContent = React.memo(function LessonContent({
     if (!phrase) return;
     const tokens = getPhraseTokens(phrase, studyTarget);
     const word = tokens[phraseWordIdx] ?? '';
-    triggerGrammarHint(word, false);
-    return hideGrammarHint;
+    if (grammarHintLookupTimerRef.current) clearTimeout(grammarHintLookupTimerRef.current);
+    grammarHintLookupTimerRef.current = setTimeout(() => {
+      grammarHintLookupTimerRef.current = null;
+      void triggerGrammarHint(word, false);
+    }, 120);
+    return () => {
+      if (grammarHintLookupTimerRef.current) {
+        clearTimeout(grammarHintLookupTimerRef.current);
+        grammarHintLookupTimerRef.current = null;
+      }
+      hideGrammarHint();
+    };
   }, [phrase?.english, phrase?.spanish, phraseWordIdx, studyTarget, triggerGrammarHint, hideGrammarHint]);
 
   useEffect(() => {
@@ -750,18 +751,6 @@ const LessonContent = React.memo(function LessonContent({
 
   if (!introGateReady) {
     return <View style={{ flex: 1 }} />;
-  }
-
-  // Show intro screens on first visit
-  if (showIntroScreens) {
-    return (
-      <LessonIntroScreens
-        introScreens={getLessonIntroScreens(lessonId, studyTarget)}
-        lessonId={lessonId}
-        onComplete={onIntroDone}
-        onBack={onHeaderBack}
-      />
-    );
   }
 
   // Main lesson UI
@@ -964,8 +953,7 @@ const LessonContent = React.memo(function LessonContent({
                       const first = cleaned[0].charAt(0).toUpperCase() + cleaned[0].slice(1).toLowerCase();
                       const rest = cleaned.slice(1).map((w, j) => {
                         const wordIdx = j + 1;
-                        const rowsLive = phrase ? phraseWordRowsForStudyTarget(phrase, studyTarget) : [];
-                        const canonical = rowsLive[wordIdx]?.correct as string | undefined;
+                        const canonical = phraseTokens[wordIdx] as string | undefined;
                         if (w.toLowerCase() === 'i') return 'I';
                         if (canonical && /^[A-ZÁÉÍÓÚÑ]/.test(canonical)) {
                           return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
@@ -1099,6 +1087,9 @@ const LessonContent = React.memo(function LessonContent({
                       testID={isCorrectOption ? 'lesson1-word-option-correct' : `lesson1-word-option-${i}`}
                       style={{ width: '100%', backgroundColor: t.bgCard, paddingVertical: compact ? 9 : 14, alignItems: 'center', borderRadius: 12, borderWidth: themeMode === 'neon' ? 1 : 0.5, borderColor: t.border, ...getCardShadow(themeMode, t.glow) }}
                       suppressFeedback={isDimmed}
+                      onPressIn={() => {
+                        if (!isDimmed) void hapticTap();
+                      }}
                       onPress={() => {
                         if (isDimmed) return;
                         if (showTapHint) setShowTapHint(false);
@@ -1107,11 +1098,14 @@ const LessonContent = React.memo(function LessonContent({
                           const w = stripMarkers(word);
                           const current = typedText.trimEnd();
                           setTypedText(current ? current + ' ' + w : w);
-                          setTimeout(() => textInputRef.current?.focus(), 50);
+                          if (focusInputTimerRef.current) clearTimeout(focusInputTimerRef.current);
+                          focusInputTimerRef.current = setTimeout(() => {
+                            focusInputTimerRef.current = null;
+                            textInputRef.current?.focus();
+                          }, 50);
                         } else {
                           handleWordPress(word);
                         }
-                        requestAnimationFrame(() => { void hapticTap(); });
                       }}
                     >
                       <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '500' }} adjustsFontSizeToFit numberOfLines={1}>{displayText}</Text>
@@ -1423,7 +1417,12 @@ export default function LessonScreen() {
   const [bonusHints, setBonusHints] = useState(0);
   const [dimmedWords, setDimmedWords] = useState<Set<string>>(new Set());
   // Сбрасываем затемнение при смене набора слов (новое слово/фраза)
-  useEffect(() => { setDimmedWords(new Set()); }, [shuffled]);
+  useEffect(() => {
+    setDimmedWords((prev) => {
+      if (prev.size === 0) return prev;
+      return new Set();
+    });
+  }, [shuffled]);
   const [passCount, setPassCount]   = useState(0);
   const [insufficientEnergy, setInsufficientEnergy] = useState(false);
   const [showEnergyModal, setShowEnergyModal] = useState(false);
@@ -1438,8 +1437,6 @@ export default function LessonScreen() {
   const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
   const [failedTapCount, setFailedTapCount] = useState(0);
   const [recoveryTimeText, setRecoveryTimeText] = useState('');
-  const [showCycleEndModal, setShowCycleEndModal] = useState(false);
-  const [cycleEndHasErrors, setCycleEndHasErrors] = useState(false);
   /**
    * false until loadData finishes, unless we primed from AsyncStorage before navigation
    * (see lesson_menu / primeLessonScreenFromStorage) — then first paint is already at saved cell.
@@ -1447,15 +1444,19 @@ export default function LessonScreen() {
   const [lessonHydrated, setLessonHydrated] = useState(
     () => isLessonScreenPrimedThisSession(lessonId, LESSON_DATA.length, effectiveTotal, studyTarget)
   );
-  // Ref для хранения колбека после закрытия модалки (навигация на lesson_complete)
-  const cycleEndCallbackRef = useRef<(() => void) | null>(null);
-
   const fadeAnim    = useRef(new Animated.Value(0)).current;
   const toastAnim   = useRef(new Animated.Value(0)).current;
   const cursorAnim  = useRef(new Animated.Value(1)).current;
   const hintPulseAnim = useRef(new Animated.Value(0.4)).current;
   const hintLoopRef = useRef<Animated.CompositeAnimation | null>(null);
   const autoTimer   = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const noEnergyDelayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const shakeResetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lessonCompleteDelayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const shardReloadTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const replayAudioTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const emptyTapFlashTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const focusInputTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const textInputRef = useRef<any>(null);
   const sessionAnswerCount = useRef(0);   // кол-во ответов в текущей сессии
   const lessonWrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
@@ -1469,6 +1470,24 @@ export default function LessonScreen() {
   const [overridePhraseCell, setOverridePhraseCell] = useState<number | null>(null); // если задан — показываем эту фразу вместо текущей
   const overridePhraseCellRef = useRef<number | null>(null);
   useEffect(() => { overridePhraseCellRef.current = overridePhraseCell; }, [overridePhraseCell]);
+
+  useEffect(() => () => {
+    [
+      noEnergyDelayTimerRef,
+      shakeResetTimerRef,
+      lessonCompleteDelayTimerRef,
+      shardReloadTimerRef,
+      replayAudioTimerRef,
+      emptyTapFlashTimerRef,
+      focusInputTimerRef,
+      autoTimer,
+    ].forEach((ref) => {
+      if (ref.current) {
+        clearTimeout(ref.current);
+        ref.current = null;
+      }
+    });
+  }, []);
 
   const persistErrorReplayToStorage = useCallback((overrideForStore?: number | null) => {
     const q = errorQueueRef.current;
@@ -1519,7 +1538,7 @@ export default function LessonScreen() {
 
   // CHANGE v5: cursor blinks only when no words are selected yet; stays solid while composing
   useEffect(() => {
-    if (selectedWords.length > 0) {
+    if (selectedWords.length > 0 || !LESSON_ENTRY_REPEATING_MOTION_ENABLED) {
       cursorAnim.setValue(1);
       return;
     }
@@ -1620,13 +1639,20 @@ export default function LessonScreen() {
     const line = phraseAnswerDisplayLine(phrase, studyTarget, lang);
     if (!line) return;
     stopAudio();
-    setTimeout(() => {
+    if (replayAudioTimerRef.current) clearTimeout(replayAudioTimerRef.current);
+    replayAudioTimerRef.current = setTimeout(() => {
+      replayAudioTimerRef.current = null;
       speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) });
     }, Platform.OS === 'android' ? 90 : 30);
   }, [lang, phrase, settings.speechRate, speakAudio, status, stopAudio, studyTarget]);
 
   // Pulsing animation for to-be hint (only on first phrase of lesson 1)
   useEffect(() => {
+    if (!LESSON_ENTRY_REPEATING_MOTION_ENABLED) {
+      hintPulseAnim.setValue(0.4);
+      return undefined;
+    }
+
     if (showToBeHint && cellIndex < 2) {
       hintLoopRef.current = Animated.loop(
         Animated.sequence([
@@ -1695,7 +1721,11 @@ export default function LessonScreen() {
     if (isShowingEnergyFeedbackRef.current) return;
     isShowingEnergyFeedbackRef.current = true;
     setShouldShake(true);
-    setTimeout(() => setShouldShake(false), 800);
+    if (shakeResetTimerRef.current) clearTimeout(shakeResetTimerRef.current);
+    shakeResetTimerRef.current = setTimeout(() => {
+      shakeResetTimerRef.current = null;
+      setShouldShake(false);
+    }, 800);
     logEnergyLimitHit('lesson');
     trackEnergyHit().catch(() => {});
     setShowNoEnergyModal(true);
@@ -1713,7 +1743,7 @@ export default function LessonScreen() {
           return;
         }
         if (router.canGoBack()) {
-          router.back();
+          safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
           return;
         }
         router.dismissTo({ pathname: '/lesson_menu', params: { id: String(lessonId) } });
@@ -1724,14 +1754,10 @@ export default function LessonScreen() {
         .catch(popToMenu);
       return;
     }
-    if (router.canGoBack()) {
-      router.back();
-    } else {
-      // Стек пуст (например, deeplink или router.replace без истории) — возвращаемся на главную,
-      // а не на /lesson_menu: иначе lesson_menu тоже окажется без истории, и его «назад»
-      // не сработает (юзер застрянет, как в сценарии после онбординга).
-      router.replace('/(tabs)/home' as any);
-    }
+    // Стек пуст (например, deeplink или router.replace без истории) — возвращаемся на главную,
+    // а не на /lesson_menu: иначе lesson_menu тоже окажется без истории, и его «назад»
+    // не сработает (юзер застрянет, как в сценарии после онбординга).
+    safeRouterBack(router, '/(tabs)/home' as any);
   }, [router, from, lessonId]);
 
   const handleLessonHeaderBack = useCallback(() => {
@@ -1739,6 +1765,13 @@ export default function LessonScreen() {
     trackLessonAbandoned(studyTargetRef.current).catch(() => {});
     navigateUpFromLessonScreen();
   }, [lessonId, cellIndex, navigateUpFromLessonScreen]);
+
+  const handleIntroComplete = useCallback(async () => {
+    if (replayIntro) consumedReplayIntroTokenRef.current = replayIntroToken || 'manual';
+    await AsyncStorage.setItem(INTRO_SHOWN_KEY, 'true').catch(() => {});
+    syncLessonIntroShownFlagNow();
+    setShowIntroScreens(false);
+  }, [INTRO_SHOWN_KEY, replayIntro, replayIntroToken]);
 
   const resetNoEnergyModal = useCallback(() => {
     setShowNoEnergyModal(false);
@@ -2226,7 +2259,11 @@ export default function LessonScreen() {
               { studyTarget: studyTargetRef.current },
             ).catch(() => {});
             if (currentEnergyRef.current === 0 && bonusEnergyRef.current === 0) {
-              setTimeout(() => { showEnergyEmptyFeedbackRef.current(); }, 1000);
+              if (noEnergyDelayTimerRef.current) clearTimeout(noEnergyDelayTimerRef.current);
+              noEnergyDelayTimerRef.current = setTimeout(() => {
+                noEnergyDelayTimerRef.current = null;
+                showEnergyEmptyFeedbackRef.current();
+              }, 1000);
             }
           }
         }).catch(() => {});
@@ -2271,7 +2308,7 @@ export default function LessonScreen() {
       // НЕ сбрасываем phraseOrderRef здесь: пока экран «результат» виден ~1.5 с, phrase =
       // getPhraseForCell(cellIndex) ещё должен использовать тот же shuffle — иначе русский/
       // эталон EN перескакивают на LESSON_DATA[cell], а selectedWords остаются от реальной фразы.
-      setTimeout(async () => {
+      const finalizeLessonCompletion = async () => {
         const resetShuffleForNextPass = () => {
           phraseOrderRef.current = [];
           AsyncStorage.removeItem(ORDER_KEY).catch(() => {});
@@ -2302,7 +2339,11 @@ export default function LessonScreen() {
             .catch(() => {});
           void import('./shards_system')
             .then((m) => {
-              setTimeout(() => m.loadShardsFromCloud().catch(() => {}), 2000);
+              if (shardReloadTimerRef.current) clearTimeout(shardReloadTimerRef.current);
+              shardReloadTimerRef.current = setTimeout(() => {
+                shardReloadTimerRef.current = null;
+                m.loadShardsFromCloud().catch(() => {});
+              }, 2000);
             })
             .catch(() => {});
         }
@@ -2332,19 +2373,12 @@ export default function LessonScreen() {
           coachRouteParams = {};
         }
 
-        const navigate = () => {
-          resetShuffleForNextPass();
-          lessonWrongMistakesRef.current = [];
-          router.replace({
-            pathname: '/lesson_complete',
-            params: { id: String(lessonId), unlocked: didUnlock ? '1' : '0', ...coachRouteParams },
-          });
-        };
-
-        const hasErrors = np.some(x => x !== 'correct' && x !== 'replay_correct');
-        cycleEndCallbackRef.current = navigate;
-        setCycleEndHasErrors(hasErrors);
-        setShowCycleEndModal(true);
+        resetShuffleForNextPass();
+        lessonWrongMistakesRef.current = [];
+        router.replace({
+          pathname: '/lesson_complete',
+          params: { id: String(lessonId), unlocked: didUnlock ? '1' : '0', ...coachRouteParams },
+        });
         } catch (e) {
           void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');
           // Fallback: navigate to lesson_complete even if tracking fails
@@ -2352,11 +2386,13 @@ export default function LessonScreen() {
           lessonWrongMistakesRef.current = [];
           router.replace({ pathname: '/lesson_complete', params: { id: String(lessonId), unlocked: '0' } });
         }
-      }, 1500);
+      };
+      void finalizeLessonCompletion();
       return;
     }
 
     if (settings.autoAdvance && isRight) {
+      if (autoTimer.current) clearTimeout(autoTimer.current);
       autoTimer.current = setTimeout(() => goNext(np), 4000);
     }
   }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, persistErrorReplayToStorage]);
@@ -2364,6 +2400,9 @@ export default function LessonScreen() {
   const goNext = useCallback(async (_currentProgress?: string[]) => {
     if (effectiveTotal <= 0) return;
     if (autoTimer.current) clearTimeout(autoTimer.current);
+    if (isCompletingRef.current) {
+      return;
+    }
 
     // [IMMEDIATE ERROR REPLAY] Определяем ДО того как двигать cellIndex
     questionsSinceErrorRef.current += 1;
@@ -2386,7 +2425,13 @@ export default function LessonScreen() {
     setPhraseWordIdx(0);    // CHANGE v5: reset contraction branching
     setContrExpanded(null); // CHANGE v5
     fadeAnim.setValue(0);
-    if (settings.hardMode) setTimeout(() => textInputRef.current?.focus(), 50);
+    if (settings.hardMode) {
+      if (focusInputTimerRef.current) clearTimeout(focusInputTimerRef.current);
+      focusInputTimerRef.current = setTimeout(() => {
+        focusInputTimerRef.current = null;
+        textInputRef.current?.focus();
+      }, 50);
+    }
 
     setOverridePhraseCell(replayCell);
     setReplaySolvedCorrectly(false); // сбрасываем зелёный флаг — стрелка возвращается на текущую позицию
@@ -2503,12 +2548,14 @@ export default function LessonScreen() {
     // Early completion: assembled answer already matches an alternative (e.g. optional word skipped)
     const assembled = newSel.join(' ');
     const stEarly = studyTargetRef.current;
-    const canonEarly = phrase ? phraseCanonicalAnswer(phrase, stEarly) : '';
     const altsEarly = phrase ? phraseAnswerAlternatives(phrase, stEarly) : undefined;
-    if (altsEarly?.length && phrase && isCorrectAnswer(assembled, canonEarly, altsEarly)) {
-      setShuffled([]);
-      if (settings.autoCheck) checkAnswer(assembled);
-      return;
+    if (altsEarly?.length && phrase) {
+      const canonEarly = phraseCanonicalAnswer(phrase, stEarly);
+      if (isCorrectAnswer(assembled, canonEarly, altsEarly)) {
+        setShuffled([]);
+        if (settings.autoCheck) checkAnswer(assembled);
+        return;
+      }
     }
 
     if (newIdx >= totalPhraseWords) {
@@ -2635,12 +2682,20 @@ export default function LessonScreen() {
     if (selectedWords.length === 0) {
       // 0 слов — мигаем жёлтым, не считаем за ошибку
       setEmptyTapFlash(true);
-      setTimeout(() => setEmptyTapFlash(false), 700);
+      if (emptyTapFlashTimerRef.current) clearTimeout(emptyTapFlashTimerRef.current);
+      emptyTapFlashTimerRef.current = setTimeout(() => {
+        emptyTapFlashTimerRef.current = null;
+        setEmptyTapFlash(false);
+      }, 700);
     } else {
       // Не оцениваем неполную фразу по тапу фона — иначе ложные ошибки при промахе мимо чипов
       if (!isPhraseAssemblyComplete(phrase, studyTarget, selectedWords, phraseWordIdx)) {
         setEmptyTapFlash(true);
-        setTimeout(() => setEmptyTapFlash(false), 700);
+        if (emptyTapFlashTimerRef.current) clearTimeout(emptyTapFlashTimerRef.current);
+        emptyTapFlashTimerRef.current = setTimeout(() => {
+          emptyTapFlashTimerRef.current = null;
+          setEmptyTapFlash(false);
+        }, 700);
         return;
       }
       checkAnswer(selectedWords.join(' '));
@@ -2686,6 +2741,16 @@ export default function LessonScreen() {
   const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows;
   const lessonTheorySupportBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId);
   const lessonHintSupportBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_hint', lessonId);
+  const lessonOverlayModals = (
+    <>
+      <NoEnergyModal
+        visible={showNoEnergyModal}
+        onClose={resetNoEnergyModal}
+        onGotIt={dismissEnergyModal}
+        paywallContext="no_energy"
+      />
+    </>
+  );
 
   if (frenchLessonSourceGateBlocked) {
     return (
@@ -2741,6 +2806,20 @@ export default function LessonScreen() {
     );
   }
 
+  if (introGateReady && showIntroScreens) {
+    return (
+      <>
+        <LessonIntroScreens
+          introScreens={getLessonIntroScreens(lessonId, studyTarget)}
+          lessonId={lessonId}
+          onComplete={handleIntroComplete}
+          onBack={handleLessonHeaderBack}
+        />
+        {lessonOverlayModals}
+      </>
+    );
+  }
+
   return (
     <>
     <TouchableWithoutFeedback onPress={settings.hardMode ? undefined : handleBgTap}>
@@ -2748,15 +2827,7 @@ export default function LessonScreen() {
         <LessonArtBackdrop variant="practice" />
         <SafeAreaView style={{ flex: 1 }}>
           <LessonContent
-            showIntroScreens={showIntroScreens}
             introGateReady={introGateReady}
-            setShowIntroScreens={setShowIntroScreens}
-            onIntroDone={async () => {
-              if (replayIntro) consumedReplayIntroTokenRef.current = replayIntroToken || 'manual';
-              await AsyncStorage.setItem(INTRO_SHOWN_KEY, 'true').catch(() => {});
-              syncLessonIntroShownFlagNow();
-              setShowIntroScreens(false);
-            }}
             lessonId={lessonId}
             compact={compact}
             isSmallScreen={isSmallScreen}
@@ -2833,6 +2904,7 @@ export default function LessonScreen() {
             anim={medalToastAnim}
             bg={t.bgCard}
             isLightTheme={themeMode === 'minimalLight'}
+            themeMode={themeMode}
             lang={lang}
             spanishUiActive={spanishLessonUiStringsActive(lang, studyTarget)}
           />
@@ -2840,25 +2912,7 @@ export default function LessonScreen() {
         {/* ────────────────────────────── */}
       </ScreenGradient>
     </TouchableWithoutFeedback>
-    <NoEnergyModal
-      visible={showNoEnergyModal}
-      onClose={resetNoEnergyModal}
-      onGotIt={dismissEnergyModal}
-      paywallContext="no_energy"
-    />
-    <LessonCycleEndModal
-      visible={showCycleEndModal}
-      hasErrors={cycleEndHasErrors}
-      lang={lang}
-      studyTarget={studyTarget}
-      t={t}
-      f={f}
-      onClose={() => {
-        setShowCycleEndModal(false);
-        cycleEndCallbackRef.current?.();
-        cycleEndCallbackRef.current = null;
-      }}
-    />
+    {lessonOverlayModals}
     </>
   );
 }

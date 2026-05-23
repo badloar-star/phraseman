@@ -17,13 +17,15 @@ import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
 import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
 import {
-  giftDescForLang,
+  giftDisplayDescForLang,
+  giftDisplayTitleForLang,
   giftRarityUiLabel,
   giftShardAmount,
   giftTitleForLang,
   type GiftDef,
 } from './level_gift_system';
 import { oskolokImageForPackShards } from './oskolok';
+import { safeRouterBack } from './navigation_back';
 import {
   getPendingLevelGiftInventoryCache,
   loadPendingLevelGiftInventory,
@@ -37,6 +39,9 @@ import {
 
 const giftAccent = (rarity: string): string =>
   rarity === 'epic' ? '#FFD700' : rarity === 'rare' ? '#60A5FA' : '#D6B85C';
+
+const giftBonusLabel = (lang: Parameters<typeof giftTitleForLang>[1]): string =>
+  triLang(lang, { ru: 'Бонус', uk: 'Бонус', es: 'Bono', 'pt-BR': 'Bônus', vi: 'Thưởng', id: 'Bonus', tr: 'Bonus', pl: 'Bonus' });
 
 function GiftIcon({ gift, themeMode }: { gift: GiftDef; themeMode: Parameters<typeof oskolokImageForPackShards>[1] }) {
   return (
@@ -56,6 +61,8 @@ function GiftLine({ gift, label, lang, muted, primary, themeMode }: {
   primary: string;
   themeMode: Parameters<typeof oskolokImageForPackShards>[1];
 }) {
+  const desc = giftDisplayDescForLang(gift, lang);
+
   return (
     <View style={{ flexDirection: 'row', gap: 10, alignItems: 'flex-start', minWidth: 0 }}>
       <View style={{ width: 42, height: 42, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.06)' }}>
@@ -68,11 +75,13 @@ function GiftLine({ gift, label, lang, muted, primary, themeMode }: {
           </Text>
         )}
         <Text style={{ color: primary, fontSize: 15, lineHeight: 19, fontWeight: '900' }}>
-          {giftTitleForLang(gift, lang)}
+          {giftDisplayTitleForLang(gift, lang)}
         </Text>
-        <Text style={{ color: muted, fontSize: 12, lineHeight: 16, marginTop: 2 }}>
-          {giftDescForLang(gift, lang)}
-        </Text>
+        {!!desc && (
+          <Text style={{ color: muted, fontSize: 12, lineHeight: 16, marginTop: 2 }}>
+            {desc}
+          </Text>
+        )}
       </View>
     </View>
   );
@@ -85,7 +94,7 @@ const dualPartLabel = (
 ): string => (
   part === 'f2p'
     ? triLang(lang, { ru: 'ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð·Ð° ÑƒÑ€Ð¾Ð²ÐµÐ½ÑŒ', uk: 'ÐŸÐ¾Ð´Ð°Ñ€ÑƒÐ½Ð¾Ðº Ð·Ð° Ñ€Ñ–Ð²ÐµÐ½ÑŒ', es: 'Regalo por nivel', 'pt-BR': 'Presente de n\u00edvel', vi: 'Qu\u00e0 c\u1ea5p \u0111\u1ed9', id: 'Hadiah level', tr: 'Seviye hediyesi', pl: 'Prezent za poziom' })
-    : triLang(lang, { ru: 'Ð‘Ð¾Ð½ÑƒÑ Ð¿Ñ€ÐµÐ¼Ð¸ÑƒÐ¼', uk: 'ÐŸÑ€ÐµÐ¼Ñ–ÑƒÐ¼-Ð±Ð¾Ð½ÑƒÑ', es: 'Bono premium', 'pt-BR': 'B\u00f4nus premium', vi: 'Th\u01b0\u1edfng premium', id: 'Bonus premium', tr: 'Premium bonus', pl: 'Bonus premium' })
+    : giftBonusLabel(lang)
 );
 
 export default function LevelGiftsInventoryScreen() {
@@ -124,7 +133,7 @@ export default function LevelGiftsInventoryScreen() {
       <SafeAreaView testID="screen-level-gifts-inventory" style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 15, paddingTop: Platform.OS === 'android' ? 28 : 15, paddingBottom: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TouchableOpacity onPress={() => router.back()} hitSlop={12}>
+            <TouchableOpacity onPress={() => safeRouterBack(router)} hitSlop={12}>
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
             </TouchableOpacity>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginLeft: 8, flex: 1 }} numberOfLines={1}>
@@ -251,10 +260,13 @@ export default function LevelGiftsInventoryScreen() {
                   : primaryGift.rarity;
                 const accent = giftAccent(strongestRarity);
                 const singleShardAmount = item.kind === 'single' ? giftShardAmount(item.gift.id) : 0;
-                const rowArtSize = singleShardAmount > 0 ? 56 : 62;
+                const rowArtSize = singleShardAmount > 0 ? 74 : 68;
                 const rowKey = item.kind === 'single' && item.dualPart
                   ? `${item.kind}-${item.level}-${item.dualPart}`
                   : `${item.kind}-${item.level}`;
+                const singleDescription = item.kind === 'single'
+                  ? giftDisplayDescForLang(item.gift, lang)
+                  : '';
                 return (
                   <LinearGradient
                     key={rowKey}
@@ -263,8 +275,8 @@ export default function LevelGiftsInventoryScreen() {
                     end={{ x: 1, y: 1 }}
                     style={{ borderRadius: 22, padding: 14, borderWidth: 1, borderColor: `${accent}88`, overflow: 'hidden' }}
                   >
-                    <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10 }}>
-                      <View style={{ width: 68, height: 68, alignItems: 'center', justifyContent: 'center', padding: 4, flexShrink: 0 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                      <View style={{ width: 78, minHeight: 96, alignItems: 'center', justifyContent: 'center', padding: 2, flexShrink: 0 }}>
                         {singleShardAmount > 0 ? (
                           <Image
                             source={oskolokImageForPackShards(singleShardAmount, themeMode)}
@@ -292,7 +304,7 @@ export default function LevelGiftsInventoryScreen() {
                             pl: `Poziom ${item.level} · ${giftRarityUiLabel(strongestRarity, lang)}`,
                           })}
                         </Text>
-                        <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, lineHeight: f.bodyLg + 5, fontWeight: '900', marginTop: 2 }}>
+                        <Text style={{ color: t.textPrimary, fontSize: f.h2 + 1, lineHeight: f.h2 + 6, fontWeight: '900', marginTop: 3 }}>
                           {item.kind === 'dual'
                             ? triLang(lang, {
                                 ru: 'Два подарка',
@@ -304,7 +316,7 @@ export default function LevelGiftsInventoryScreen() {
                                 tr: 'İki hediye',
                                 pl: 'Dwa prezenty',
                               })
-                            : giftTitleForLang(item.gift, lang)}
+                            : giftDisplayTitleForLang(item.gift, lang)}
                         </Text>
                         <TouchableOpacity
                           testID={`gift-inventory-apply-${rowKey}`}
@@ -313,7 +325,7 @@ export default function LevelGiftsInventoryScreen() {
                             hapticTap();
                             setSelected(item);
                           }}
-                          style={{ borderRadius: 16, paddingHorizontal: 16, paddingVertical: 11, backgroundColor: accent, minWidth: 118, alignSelf: 'flex-start', alignItems: 'center', marginTop: 10 }}
+                          style={{ borderRadius: 16, paddingHorizontal: 16, paddingVertical: 11, minHeight: 44, backgroundColor: accent, minWidth: 118, alignSelf: 'flex-start', alignItems: 'center', justifyContent: 'center', marginTop: 10 }}
                         >
                           <Text style={{ color: strongestRarity === 'epic' ? '#1A1200' : '#FFFFFF', fontSize: f.sub, fontWeight: '900' }}>
                             {triLang(lang, {
@@ -331,8 +343,9 @@ export default function LevelGiftsInventoryScreen() {
                       </View>
                     </View>
 
-                    <View style={{ height: 12 }} />
                     {item.kind === 'dual' ? (
+                      <>
+                      <View style={{ height: 12 }} />
                       <View style={{ gap: 9 }}>
                         <GiftLine
                           gift={item.pair.f2p}
@@ -344,17 +357,23 @@ export default function LevelGiftsInventoryScreen() {
                         />
                         <GiftLine
                           gift={item.pair.prem}
-                          label={triLang(lang, { ru: 'Бонус премиум', uk: 'Преміум-бонус', es: 'Bono premium', 'pt-BR': 'Bônus premium', vi: 'Thưởng premium', id: 'Bonus premium', tr: 'Premium bonus', pl: 'Bonus premium' })}
+                          label={giftBonusLabel(lang)}
                           lang={lang}
                           muted={t.textMuted}
                           primary={t.textPrimary}
                           themeMode={themeMode}
                         />
                       </View>
-                    ) : (
+                      </>
+                    ) : singleDescription ? (
+                      <>
+                      <View style={{ height: 12 }} />
                       <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 5 }}>
-                        {giftDescForLang(item.gift, lang)}
+                        {singleDescription}
                       </Text>
+                      </>
+                    ) : (
+                      null
                     )}
                   </LinearGradient>
                 );

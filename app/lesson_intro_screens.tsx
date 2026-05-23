@@ -34,7 +34,7 @@ function isPlannedIntroLang(lang: Lang): lang is PlannedIntroLang {
   return PLANNED_INTRO_LANGS.has(lang);
 }
 
-function firstDefined<T>(...values: Array<T | undefined>): T | undefined {
+function firstDefined<T>(...values: (T | undefined)[]): T | undefined {
   for (const value of values) {
     if (value !== undefined) return value;
   }

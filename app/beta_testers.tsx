@@ -10,6 +10,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { triLang } from '../constants/i18n';
 import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
+import { safeRouterBack } from './navigation_back';
 
 export default function BetaTesters() {
   const router = useRouter();
@@ -45,7 +46,7 @@ export default function BetaTesters() {
       <SafeAreaView style={{ flex: 1 }}>
         {/* Header */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-          <TouchableOpacity onPress={() => router.back()}>
+          <TouchableOpacity onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}>
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
           <View style={{ flex: 1, marginLeft: 8 }}>

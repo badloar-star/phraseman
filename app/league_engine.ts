@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loadWeekLeaderboard } from './hall_of_fame_utils';
 import { getOrCreateLeagueGroup, updateMyGroupPoints } from './firestore_leagues';
 import { getCanonicalUserId } from './user_id_policy';
+import { rememberLeagueStateSnapshot } from './league_open_cache_policy';
 
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 
@@ -32,7 +33,7 @@ export interface ClubDef {
 
 export const CLUBS: ClubDef[] = [
   {
-    id: 0, ionIcon: 'flag-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-med-ascendant.webp"), color: '#7B9BB5', frameId: 'club_initiator',
+    id: 0, ionIcon: 'flag-outline', imageUri: require("../assets/images/levels/league-v5-heraldry/lig-med-heraldry-clean.webp"), color: '#7B9BB5', frameId: 'club_initiator',
     nameRU: 'Медная лига',  nameUK: 'Мідь', nameES: 'Cobre',
     shortRU: 'Медная лига', shortUK: 'Мідь',
     tagRU: 'Бонус: +0% XP', tagUK: 'Бонус: +0% XP', tagES: 'Bonificación: +0% XP',
@@ -42,7 +43,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ласкаво просимо, ініціаторе! Кожен експерт колись стояв на твоєму місці. Головне — почати.',
   },
   {
-    id: 1, ionIcon: 'flame', imageUri: require("../assets/images/levels/league-v4-icons/lig-bronz-ascendant.webp"), color: '#5BA88B', frameId: 'club_adept',
+    id: 1, ionIcon: 'flame', imageUri: require("../assets/images/levels/league-v5-heraldry/lig-bronz-heraldry-clean.webp"), color: '#5BA88B', frameId: 'club_adept',
     nameRU: 'Бронзовая лига', nameUK: 'Бронза', nameES: 'Bronce',
     shortRU: 'Бронзовая лига', shortUK: 'Бронза',
     tagRU: 'Бонус: +10% XP',  tagUK: 'Бонус: +10% XP', tagES: 'Bonificación: +10% XP',
@@ -52,7 +53,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Твою відданість помічено! Адепти знають: повторення — мати навчання. Продовжуй в тому ж дусі!',
   },
   {
-    id: 2, ionIcon: 'compass-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-serebro-ascendant.webp"), color: '#4A90A4', frameId: 'club_seeker',
+    id: 2, ionIcon: 'compass-outline', imageUri: require("../assets/images/levels/league-v5-heraldry/lig-serebro-heraldry-clean.webp"), color: '#4A90A4', frameId: 'club_seeker',
     nameRU: 'Серебряная лига', nameUK: 'Срібло', nameES: 'Plata',
     shortRU: 'Серебряная лига', shortUK: 'Срібло',
     tagRU: 'Бонус: +20% XP', tagUK: 'Бонус: +20% XP', tagES: 'Bonificación: +20% XP',
@@ -62,7 +63,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти на вірному шляху, шукачу! Кожен новий урок — це відкриття нового горизонту.',
   },
   {
-    id: 3, ionIcon: 'hammer-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-zoloto-ascendant.webp"), color: '#7BA84A', frameId: 'club_practitioner',
+    id: 3, ionIcon: 'hammer-outline', imageUri: require("../assets/images/levels/league-v5-heraldry/lig-zoloto-heraldry-clean.webp"), color: '#7BA84A', frameId: 'club_practitioner',
     nameRU: 'Золотая лига',   nameUK: 'Золото', nameES: 'Oro',
     shortRU: 'Золотая лига',  shortUK: 'Золото',
     tagRU: 'Бонус: +30% XP', tagUK: 'Бонус: +30% XP', tagES: 'Bonificación: +30% XP',
@@ -72,7 +73,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Справа майстра боїться! Практики будують знання цеглина за цеглиною. Ти у відмінній формі!',
   },
   {
-    id: 4, ionIcon: 'analytics-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-platina-ascendant.webp"), color: '#C8A84A', frameId: 'club_analyst',
+    id: 4, ionIcon: 'analytics-outline', imageUri: require("../assets/images/levels/league-v5-heraldry/lig-platina-heraldry-clean.webp"), color: '#C8A84A', frameId: 'club_analyst',
     nameRU: 'Платиновая лига', nameUK: 'Платина', nameES: 'Platino',
     shortRU: 'Платиновая лига', shortUK: 'Платина',
     tagRU: 'Бонус: +40% XP', tagUK: 'Бонус: +40% XP', tagES: 'Bonificación: +40% XP',
@@ -82,7 +83,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Твій розум гостріший, ніж учора! Аналітики перетворюють складність на ясність. Ти мислиш системно!',
   },
   {
-    id: 5, ionIcon: 'library-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-izumrud-ascendant.webp"), color: '#CD7F32', frameId: 'club_erudite',
+    id: 5, ionIcon: 'library-outline', imageUri: require("../assets/images/levels/league-v5-heraldry/lig-izumrud-heraldry-clean.webp"), color: '#CD7F32', frameId: 'club_erudite',
     nameRU: 'Изумрудная лига', nameUK: 'Смарагд', nameES: 'Esmeralda',
     shortRU: 'Изумрудная лига', shortUK: 'Смарагд',
     tagRU: 'Бонус: +50% XP', tagUK: 'Бонус: +50% XP', tagES: 'Bonificación: +50% XP',
@@ -92,7 +93,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Знання — твоя сила! Ерудити — люди, яким завжди є що сказати. Ти заслужено тут!',
   },
   {
-    id: 6, ionIcon: 'diamond', imageUri: require("../assets/images/levels/league-v4-icons/lig-sapfir-ascendant.webp"), color: '#4A90D9', frameId: 'club_connoisseur',
+    id: 6, ionIcon: 'diamond', imageUri: require("../assets/images/levels/league-v5-heraldry/lig-sapfir-heraldry-clean.webp"), color: '#4A90D9', frameId: 'club_connoisseur',
     nameRU: 'Сапфировая лига', nameUK: 'Сапфір', nameES: 'Zafiro',
     shortRU: 'Сапфировая лига', shortUK: 'Сапфір',
     tagRU: 'Бонус: +60% XP', tagUK: 'Бонус: +60% XP', tagES: 'Bonificación: +60% XP',
@@ -102,7 +103,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти знаєш мову зсередини! Знавці помічають те, що інші пропускають. Ти в еліті!',
   },
   {
-    id: 7, ionIcon: 'medal', imageUri: require("../assets/images/levels/league-v4-icons/lig-rubin-ascendant.webp"), color: '#9B59B6', frameId: 'club_expert',
+    id: 7, ionIcon: 'flame-outline', imageUri: require("../assets/images/levels/league-v5-heraldry/lig-rubin-heraldry-clean.webp"), color: '#9B59B6', frameId: 'club_expert',
     nameRU: 'Рубиновая лига', nameUK: 'Рубін', nameES: 'Rubí',
     shortRU: 'Рубиновая лига', shortUK: 'Рубін',
     tagRU: 'Бонус: +70% XP', tagUK: 'Бонус: +70% XP', tagES: 'Bonificación: +70% XP',
@@ -112,7 +113,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Експертний рівень! Твої знання виходять за межі підручника. Ти говориш — всі слухають!',
   },
   {
-    id: 8, ionIcon: 'school-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-almaz-ascendant.webp"), color: '#A8B4C0', frameId: 'club_magister',
+    id: 8, ionIcon: 'school-outline', imageUri: require("../assets/images/levels/league-v5-heraldry/lig-almaz-heraldry-clean.webp"), color: '#A8B4C0', frameId: 'club_magister',
     nameRU: 'Алмазная лига', nameUK: 'Діамант', nameES: 'Diamante',
     shortRU: 'Алмазная лига', shortUK: 'Діамант',
     tagRU: 'Бонус: +80% XP',  tagUK: 'Бонус: +80% XP', tagES: 'Bonificación: +80% XP',
@@ -122,7 +123,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Магістерська мантія тобі личить! Ти в абсолютній еліті тих, хто вивчає англійську. Капелюх долу!',
   },
   {
-    id: 9, ionIcon: 'bulb-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-cherniy-almaz-ascendant.webp"), color: '#E87E30', frameId: 'club_thinker',
+    id: 9, ionIcon: 'sparkles-outline', imageUri: require("../assets/images/levels/league-v5-heraldry/lig-cherniy-almaz-heraldry-clean.webp"), color: '#E87E30', frameId: 'club_thinker',
     nameRU: 'Лига Черного Алмаза', nameUK: 'Чорний Діамант', nameES: 'Diamante negro',
     shortRU: 'Лига Черного Алмаза', shortUK: 'Чорний Діамант',
     tagRU: 'Бонус: +90% XP',   tagUK: 'Бонус: +90% XP', tagES: 'Bonificación: +90% XP',
@@ -132,7 +133,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти мислиш англійською! Це найвищий рівень занурення. Мислителі — рідкість і гордість ліги!',
   },
   {
-    id: 10, ionIcon: 'hammer', imageUri: require("../assets/images/levels/league-v4-icons/lig-efir-ascendant.webp"), color: '#D4A017', frameId: 'club_master',
+    id: 10, ionIcon: 'hammer', imageUri: require("../assets/images/levels/league-v5-heraldry/lig-efir-heraldry-clean.webp"), color: '#D4A017', frameId: 'club_master',
     nameRU: 'Эфирная лига',  nameUK: 'Ефір', nameES: 'Éter',
     shortRU: 'Эфирная лига', shortUK: 'Ефір',
     tagRU: 'Бонус: +100% XP',   tagUK: 'Бонус: +100% XP', tagES: 'Bonificación: +100% XP',
@@ -142,7 +143,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Майстер слова! Ти серед найкращих у додатку. Твоя англійська — це мистецтво. Ми пишаємось тобою!',
   },
   {
-    id: 11, ionIcon: 'trophy-outline', imageUri: require("../assets/images/levels/league-v4-icons/lig-vishaya-ascendant.webp"), color: '#FFD700', frameId: 'club_professor',
+    id: 11, ionIcon: 'trophy-outline', imageUri: require("../assets/images/levels/league-v5-heraldry/lig-vishaya-heraldry-clean.webp"), color: '#FFD700', frameId: 'club_professor',
     nameRU: 'Высшая лига',   nameUK: 'Вища Ліга', nameES: 'Liga suprema',
     shortRU: 'Высшая лига',  shortUK: 'Вища Ліга',
     tagRU: 'Бонус: +110% XP', tagUK: 'Бонус: +110% XP', tagES: 'Bonificación: +110% XP',
@@ -503,11 +504,16 @@ export const getWeekId = (): string => {
 export const loadLeagueState = async (): Promise<LeagueState | null> => {
   try {
     const s = await AsyncStorage.getItem(STATE_KEY);
-    return s ? JSON.parse(s) : null;
-  } catch { return null; }
+    const parsed = s ? JSON.parse(s) : null;
+    return rememberLeagueStateSnapshot(parsed);
+  } catch {
+    rememberLeagueStateSnapshot(null);
+    return null;
+  }
 };
 
 const saveLeagueState = async (s: LeagueState) => {
+  rememberLeagueStateSnapshot(s);
   try { await AsyncStorage.setItem(STATE_KEY, JSON.stringify(s)); } catch {}
 };
 
@@ -659,6 +665,7 @@ export const checkLeagueOnAppOpen = async (
 
   let state: LeagueState | null = null;
   try { state = stateRaw ? JSON.parse(stateRaw) : null; } catch { state = null; }
+  rememberLeagueStateSnapshot(state);
 
   if (pending) {
     const safePending = await repairPendingResultForCurrentUser(pending, myName, myUid);
@@ -673,6 +680,8 @@ export const checkLeagueOnAppOpen = async (
     };
     if (state && state.leagueId !== safePending.newLeagueId) {
       await saveLeagueState(fallbackState).catch(() => {});
+    } else {
+      rememberLeagueStateSnapshot(fallbackState);
     }
     return { needShowResult: true, result: safePending, state: fallbackState };
   }
@@ -685,6 +694,7 @@ export const checkLeagueOnAppOpen = async (
     // Записываем в стабильный state только если получили реальную группу из Firestore.
     // Иначе локальная группа (1 человек) затрёт настоящих участников при следующем открытии.
     if (remote) await saveLeagueState(state);
+    else rememberLeagueStateSnapshot(state);
     return { needShowResult: false, result: null, state };
   }
 
@@ -714,6 +724,7 @@ export const checkLeagueOnAppOpen = async (
       group:    finalGroup,
     };
     if (remote) await saveLeagueState(newState);
+    else rememberLeagueStateSnapshot(newState);
     return { needShowResult: true, result, state: newState };
   }
 
@@ -728,6 +739,7 @@ export const checkLeagueOnAppOpen = async (
   // Сохраняем только если remote отдал данные — иначе оставляем предыдущий state
   // как был (включая прошлый список участников, чтобы не терять их при разовом сбое).
   if (freshGroup) await saveLeagueState(updatedState);
+  else rememberLeagueStateSnapshot(updatedState);
   return { needShowResult: false, result: null, state: updatedState };
 };
 

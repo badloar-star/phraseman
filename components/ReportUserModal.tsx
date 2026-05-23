@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Modal, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Keyboard, KeyboardAvoidingView, Modal, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { submitUserReport } from '../app/user_report';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -19,6 +19,15 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
   const { theme: t, themeMode, f } = useTheme();
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    if (visible) Keyboard.dismiss();
+  }, [visible]);
+
+  const handleClose = () => {
+    Keyboard.dismiss();
+    onClose();
+  };
   const tx = {
     preview: triLang(lang, {
       ru: '✅ Превью: без отправки в Firestore',
@@ -84,7 +93,7 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
       hapticSuccess();
       setTimeout(() => {
         setDone(false);
-        onClose();
+        handleClose();
       }, 1400);
     } catch {
       setLoading(false);
@@ -93,18 +102,23 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
   };
 
   return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      <TouchableOpacity
-        style={{
-          flex: 1,
-          backgroundColor: 'rgba(0,0,0,0.53)',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-        activeOpacity={1}
-        onPress={() => {
-          hapticTap();
-          onClose();
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+      >
+        <TouchableOpacity
+          style={{
+            flex: 1,
+            backgroundColor: 'rgba(0,0,0,0.53)',
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingHorizontal: 18,
+          }}
+          activeOpacity={1}
+          onPress={() => {
+            hapticTap();
+            handleClose();
         }}
       >
         <TouchableOpacity activeOpacity={1} onPress={() => {}}>
@@ -149,7 +163,7 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
                   <TouchableOpacity
                     onPress={() => {
                       hapticTap();
-                      onClose();
+                      handleClose();
                     }}
                     style={{
                       flex: 1, paddingVertical: 11, borderRadius: 10,
@@ -177,6 +191,7 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
           </View>
         </TouchableOpacity>
       </TouchableOpacity>
+      </KeyboardAvoidingView>
     </Modal>
   );
 }

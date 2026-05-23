@@ -49,6 +49,14 @@ exists.
     "directTranslationUsed": false,
     "notes": "All locales were adapted from source notes."
   },
+  "releasePolicy": {
+    "environment": "dev-only",
+    "productionActivation": "blocked_until_explicit_user_approval",
+    "approvedBy": "",
+    "approvedAt": "",
+    "approvalSource": "",
+    "notes": "New Skyler quiz packs stay in dev until the user explicitly approves production activation."
+  },
   "styleProfile": {
     "basedOnExistingPools": true,
     "sampledFiles": ["app/quiz_data.ts", "app/quiz_source_locale_payloads.ts"],
@@ -56,6 +64,17 @@ exists.
     "explanationPattern": "Each explanation is a reader-worthy mini reward: useful, option-specific, lightly playful, and not a dry dictionary gloss.",
     "readerRewardPattern": "Each explanation gives a natural memory cue, mini-scene, useful contrast, or source-backed fact; do not force explicit lifehack labels; historical/etymology notes require verified claim IDs and source IDs.",
     "distractorPattern": "Distractors mirror current pools: plausible learner errors, false friends, wrong context, or same-domain confusions."
+  },
+  "visualAssets": {
+    "status": "queued",
+    "styleBasis": "DALL-E visual kickoff follows existing Phraseman home_menu and achievement assets: premium mobile-game polish, centered object, bevels, rim light, no bitmap text.",
+    "assets": [
+      {
+        "family": "forest",
+        "plaquePrompt": "Generate a forest-family topic plaque for this category in existing Phraseman style, with no text.",
+        "iconPrompt": "Generate a forest-family compact topic icon for this category in existing Phraseman style, with no text."
+      }
+    ]
   },
   "socialListening": {
     "status": "validated",
@@ -208,6 +227,21 @@ exists.
   `distractorPattern` notes. The gate blocks generic prompt shells like
   `Which word fits`, `Kitchen — object`, and flat `Correct/Wrong label
   prefixes`.
+- Every pack must include `releasePolicy`. New packs start with
+  `releasePolicy.environment: dev-only` and `releasePolicy.productionActivation:
+  blocked_until_explicit_user_approval`. After explicit user approval, a pack may
+  use `releasePolicy.environment: production` and
+  `releasePolicy.productionActivation: approved_by_user` with concrete
+  `approvedBy`, `approvedAt`, and `approvalSource` metadata before production
+  mapping.
+- Every pack must include `visualAssets` so the DALL-E plaque/icon kickoff is
+  tracked before quiz drafting. `visualAssets.status` may be `queued` during
+  authoring or `generated` after workspace assets exist. Entries must cover
+  `forest`, `dark`, `neon`, `neonGreen`, `gold`, `coral`, `minimalLight`, and
+  `minimalDark`, each with distinct plaque and icon prompts. Generated entries
+  must also record existing workspace plaque and icon paths under
+  `assets/images/quizzes/theme_cards/` and
+  `assets/images/quizzes/theme_logos/`.
 - `localizedPrompts` must include every required interface locale with
   locale-adapted prompt text. A localized prompt must not copy the English
   author prompt, and prompt copy must not be duplicated across locales.
@@ -235,6 +269,10 @@ exists.
   as `source-backed`, `source IDs`, or `verified claim` to the learner. Mention
   the selected English choice or the correct English contrast so feedback stays
   tied to the chosen option.
+- Explanations must describe the tapped word, its meaning, and the contrast
+  with the correct word. Do not tell the learner that a word "lands in" a
+  kitchen/category/section, and do not reuse one long generated tail across all
+  four answer choices.
 - Do not use formulaic pseudo-lifehack shorthand such as `water + dishes +
   kitchen = sink` or `recipe = roadmap for food`; write a natural image,
   contrast, or usage cue instead.
@@ -268,7 +306,8 @@ exists.
   matches the item `id` and whose `answerIndex` matches the selected
   `correctIndex`.
 - Each item's `choiceRationales` and each locale's four explanations must be
-  unique per choice; repeated generic feedback is blocked.
+  unique per choice; repeated generic feedback and copied long explanation
+  fragments are blocked.
 
 Repeat `localizedPrompts` and `explanations` for every required active
 interface locale in real packs. French packs use only the current French source

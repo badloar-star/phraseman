@@ -1,12 +1,12 @@
 /**
- * Quiz phrase pools are bundled with the app (no dynamic import) so the quiz
- * screen renders immediately with no "loading questions" state.
+ * Quiz phrase pools are bundled with the app so the quiz screen never races an
+ * async module load while rendering the first question.
  */
-import type { QuizPhrase, QuizStudyTargetLang } from './quiz_data';
+import type { QuizDifficulty, QuizPhrase, QuizStudyTargetLang } from './quiz_data';
 import * as quizData from './quiz_data';
 import type { Lang } from '../constants/i18n';
 
-/** @deprecated No-op; data is always available. Kept for call-site compatibility. */
+/** @deprecated No-op; data is bundled. Kept for call-site compatibility. */
 export async function ensureQuizPhrasesLoaded(): Promise<void> {
   // intentionally empty
 }
@@ -17,7 +17,7 @@ export function prefetchQuizPhrases(): void {
 }
 
 export function getQuizPhrasesLoaded(
-  difficulty: 'easy' | 'medium' | 'hard',
+  difficulty: QuizDifficulty,
   count: number = 10,
   lang: Lang = 'ru',
   studyTarget: QuizStudyTargetLang = 'en',

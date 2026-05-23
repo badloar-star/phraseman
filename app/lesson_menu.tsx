@@ -17,10 +17,11 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { LESSONS_WITH_WORDS, WORD_COUNT_BY_LESSON, WORD_KEYS_BY_LESSON } from './lesson_words';
+import { safeRouterBack } from './navigation_back';
 import { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
 import { getLessonPrepositionPack, hasLessonPrepositionDrillForTarget } from './lesson_prepositions';
 import CircularProgress from '../components/CircularProgress';
-import { getMedalTier, getNextMedalHint, loadMedalInfo, getEarnedDots } from './medal_utils';
+import { getMedalTier, loadMedalInfo, getEarnedDots } from './medal_utils';
 import {
   isLessonUnlocked,
   getLessonLockInfo,
@@ -76,6 +77,7 @@ type LessonMenuCache = {
 };
 
 const lessonMenuCacheById: Record<string, LessonMenuCache> = {};
+const LESSON_MENU_PREP_HINT_SEEN_KEY = 'lesson_menu_prep_hint_seen_v1';
 
 function lessonMenuCacheKey(lessonId: number, studyTarget?: RuntimeStudyTarget): string {
   return `${storageStudyTarget(studyTarget)}:${lessonId}`;
@@ -247,6 +249,7 @@ export default function LessonMenu() {
 
   // Состояние блокировки урока
   const [isLessonLocked, setIsLessonLocked] = useState(false);
+  const [lockStateLoaded, setLockStateLoaded] = useState(false);
   const [lockReason, setLockReason] = useState<'premium' | 'level' | 'progress'>('progress');
   const [lockInfo, setLockInfo] = useState<Awaited<ReturnType<typeof getLessonLockInfo>> | null>(null);
   const [showLockModal, setShowLockModal] = useState(false);
@@ -256,8 +259,20 @@ export default function LessonMenu() {
   const [isPremium, setIsPremium] = useState(false);
   const [showMasteryModal, setShowMasteryModal] = useState(false);
   const [masteryReplayPrice, setMasteryReplayPrice] = useState(MASTERY_REPLAY_BASE_SHARDS);
+  const [lessonPrepHintVisible, setLessonPrepHintVisible] = useState(false);
 
   const showMasteryPaywall = finishedOnce && !isPremium && !isLessonLocked;
+  const canShowLessonPrepHint = !hideEnglishOnlyAuxiliary && !frenchTheorySourceGated;
+  const lessonPrepHintText = triLang(lang, {
+    ru: 'Перед уроком можно заглянуть в «Словарь» и потренировать новые слова. А в разделе «Теория» подробно разобраны правила и конструкции. К этим материалам можно вернуться в любой момент.',
+    uk: 'Перед уроком можна зазирнути до «Словника» і потренувати нові слова. А в розділі «Теорія» докладно розібрані правила й конструкції. До цих матеріалів можна повернутися будь-коли.',
+    es: 'Antes de la lección puedes abrir «Vocabulario» y practicar palabras nuevas. En «Teoría» encontrarás reglas y estructuras explicadas en detalle. Puedes volver a estos materiales en cualquier momento.',
+    'pt-BR': 'Antes da lição, você pode abrir o «Vocabulário» e treinar palavras novas. Em «Teoria», as regras e estruturas estão explicadas em detalhe. Você pode voltar a esses materiais quando quiser.',
+    vi: 'Trước bài học, bạn có thể mở «Từ vựng» và luyện các từ mới. Trong «Lý thuyết», các quy tắc và cấu trúc được giải thích chi tiết. Bạn có thể quay lại các phần này bất cứ lúc nào.',
+    id: 'Sebelum pelajaran, kamu bisa membuka «Kosakata» dan melatih kata-kata baru. Di «Teori», aturan dan struktur dijelaskan dengan rinci. Materi ini bisa dibuka lagi kapan saja.',
+    tr: 'Dersten önce «Kelimeler» bölümüne bakıp yeni kelimeleri çalışabilirsin. «Teori» bölümünde kurallar ve yapılar ayrıntılı açıklanır. Bu materyallere istediğin zaman dönebilirsin.',
+    pl: 'Przed lekcją możesz zajrzeć do „Słownika” i przećwiczyć nowe słowa. W sekcji „Teoria” znajdziesz szczegółowe omówienie zasad i konstrukcji. Do tych materiałów możesz wrócić w każdej chwili.',
+  });
 
   useEffect(() => {
     let cancelled = false;
@@ -271,6 +286,30 @@ export default function LessonMenu() {
     });
     return () => { cancelled = true; };
   }, [lessonId, studyTarget]);
+
+  useEffect(() => {
+    if (!canShowLessonPrepHint) {
+      setLessonPrepHintVisible(false);
+      return;
+    }
+    let cancelled = false;
+    AsyncStorage.getItem(LESSON_MENU_PREP_HINT_SEEN_KEY)
+      .then((seen) => {
+        if (!cancelled) setLessonPrepHintVisible(seen !== '1');
+      })
+      .catch(() => {
+        if (!cancelled) setLessonPrepHintVisible(true);
+      });
+    return () => { cancelled = true; };
+  }, [canShowLessonPrepHint]);
+
+  useEffect(() => {
+    if (!lessonPrepHintVisible || !canShowLessonPrepHint || isLessonLocked || !lockStateLoaded) return;
+    const timer = setTimeout(() => {
+      void AsyncStorage.setItem(LESSON_MENU_PREP_HINT_SEEN_KEY, '1').catch(() => {});
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, [canShowLessonPrepHint, isLessonLocked, lessonPrepHintVisible, lockStateLoaded]);
 
   useEffect(() => {
     if (!showMasteryPaywall) return;
@@ -302,68 +341,73 @@ export default function LessonMenu() {
 
   const loadLockState = useCallback(() => {
     // Проверить, заблокирован ли урок (с учётом тестерской функции "Без ограничений")
+    setLockStateLoaded(false);
     (async () => {
-      const noLimits = await AsyncStorage.getItem('tester_no_limits');
-      if (noLimits === 'true') {
-        setIsLessonLocked(false);
-        setLockReason('progress');
-        setLockInfo(null);
-        return;
-      }
-
-      const premiumNow = await getVerifiedPremiumStatus();
-      setIsPremium(premiumNow);
-
-      if (!premiumNow && requiresPremiumForLesson(lessonId)) {
-        setIsLessonLocked(true);
-        setLockReason('premium');
-        setLockInfo(await getLessonLockInfo(lessonId, studyTarget));
-        return;
-      }
-
-      if (premiumNow) {
-        const premiumUnlocked = await isLessonUnlockedByPremiumCourse(lessonId, studyTarget);
-        setIsLessonLocked(!premiumUnlocked);
-        setLockReason(premiumUnlocked ? 'progress' : 'level');
-        setLockInfo(premiumUnlocked ? null : await getLessonLockInfo(lessonId, studyTarget));
-        return;
-      }
-
-      if (isFreeLesson(lessonId)) {
-        setIsLessonLocked(false);
-        setLockReason('progress');
-        setLockInfo(null);
-        return;
-      }
-
-      let unlocked = await isLessonUnlocked(lessonId, studyTarget);
-      // Fallback: если урок не в persisted unlock list, проверяем предыдущий урок
-      // через best_score или динамически через прогресс (как в index.tsx)
-      if (!unlocked && lessonId > 1) {
-        const prevId = lessonId - 1;
-        const prevBestRaw = await AsyncStorage.getItem(lessonBestScoreKey(prevId, studyTarget));
-        let prevScore = parseFloat(prevBestRaw ?? '0') || 0;
-
-        // Если best_score ещё не записан — считаем из прогресса (урок в процессе)
-        if (prevScore === 0) {
-          const savedProg = await AsyncStorage.getItem(lessonProgressKey(prevId, studyTarget));
-          prevScore = effectiveLessonStarScore(prevBestRaw, savedProg).score;
+      try {
+        const noLimits = await AsyncStorage.getItem('tester_no_limits');
+        if (noLimits === 'true') {
+          setIsLessonLocked(false);
+          setLockReason('progress');
+          setLockInfo(null);
+          return;
         }
 
-        if (prevScore >= 2.5) {
-          const { unlockLesson } = await import('./lesson_lock_system');
-          await unlockLesson(lessonId, studyTarget);
-          unlocked = true;
-        }
-      }
+        const premiumNow = await getVerifiedPremiumStatus();
+        setIsPremium(premiumNow);
 
-      setIsLessonLocked(!unlocked);
-      if (!unlocked) {
-        setLockReason('progress');
-        const info = await getLessonLockInfo(lessonId, studyTarget);
-        setLockInfo(info);
-      } else {
-        setLockInfo(null);
+        if (!premiumNow && requiresPremiumForLesson(lessonId)) {
+          setIsLessonLocked(true);
+          setLockReason('premium');
+          setLockInfo(await getLessonLockInfo(lessonId, studyTarget));
+          return;
+        }
+
+        if (premiumNow) {
+          const premiumUnlocked = await isLessonUnlockedByPremiumCourse(lessonId, studyTarget);
+          setIsLessonLocked(!premiumUnlocked);
+          setLockReason(premiumUnlocked ? 'progress' : 'level');
+          setLockInfo(premiumUnlocked ? null : await getLessonLockInfo(lessonId, studyTarget));
+          return;
+        }
+
+        if (isFreeLesson(lessonId)) {
+          setIsLessonLocked(false);
+          setLockReason('progress');
+          setLockInfo(null);
+          return;
+        }
+
+        let unlocked = await isLessonUnlocked(lessonId, studyTarget);
+        // Fallback: если урок не в persisted unlock list, проверяем предыдущий урок
+        // через best_score или динамически через прогресс (как в index.tsx)
+        if (!unlocked && lessonId > 1) {
+          const prevId = lessonId - 1;
+          const prevBestRaw = await AsyncStorage.getItem(lessonBestScoreKey(prevId, studyTarget));
+          let prevScore = parseFloat(prevBestRaw ?? '0') || 0;
+
+          // Если best_score ещё не записан — считаем из прогресса (урок в процессе)
+          if (prevScore === 0) {
+            const savedProg = await AsyncStorage.getItem(lessonProgressKey(prevId, studyTarget));
+            prevScore = effectiveLessonStarScore(prevBestRaw, savedProg).score;
+          }
+
+          if (prevScore >= 2.5) {
+            const { unlockLesson } = await import('./lesson_lock_system');
+            await unlockLesson(lessonId, studyTarget);
+            unlocked = true;
+          }
+        }
+
+        setIsLessonLocked(!unlocked);
+        if (!unlocked) {
+          setLockReason('progress');
+          const info = await getLessonLockInfo(lessonId, studyTarget);
+          setLockInfo(info);
+        } else {
+          setLockInfo(null);
+        }
+      } finally {
+        setLockStateLoaded(true);
       }
     })();
   }, [lessonId, studyTarget]);
@@ -922,8 +966,7 @@ export default function LessonMenu() {
           <PremiumCard level={1} onPress={()=>{
             hapticTap();
             // Safe-back: после онбординга стек может быть пуст — возвращаемся на список уроков.
-            if (router.canGoBack()) router.back();
-            else router.replace('/(tabs)/lessons' as any);
+            safeRouterBack(router, '/(tabs)/lessons' as any);
           }}
             style={{width:38,height:38,borderRadius:19}}
             innerStyle={{width:38,height:38,borderRadius:19,justifyContent:'center',alignItems:'center'}}
@@ -1019,8 +1062,7 @@ export default function LessonMenu() {
         <PremiumCard testID="lesson-menu-back" level={1} onPress={()=>{
           hapticTap();
           // Safe-back: после онбординга стек может быть пуст — возвращаемся на список уроков.
-          if (router.canGoBack()) router.back();
-          else router.replace('/(tabs)/lessons' as any);
+          safeRouterBack(router, '/(tabs)/lessons' as any);
         }}
           style={{width:38,height:38,borderRadius:19}}
           innerStyle={{width:38,height:38,borderRadius:19,justifyContent:'center',alignItems:'center'}}
@@ -1091,14 +1133,6 @@ export default function LessonMenu() {
                   {progress}/50  ★ {score.toFixed(1)}
                 </Text>
               )}
-              {(() => {
-                const hint = getNextMedalHint(score, lang);
-                return hint ? (
-                  <Text style={{color:t.heroTextMuted,fontSize:f.sub,textAlign:'center'}}>
-                    {hint}
-                  </Text>
-                ) : null;
-              })()}
             </View>
           );
         })()}
@@ -1213,6 +1247,51 @@ export default function LessonMenu() {
           </PremiumCard>
         ))}
       </View>
+
+      {lessonPrepHintVisible && canShowLessonPrepHint && !isLessonLocked && lockStateLoaded ? (
+        <View testID="lesson-menu-prep-hint" style={{ paddingHorizontal: 16, marginTop: 12 }}>
+          <LinearGradient
+            colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : ['rgba(255,255,255,0.070)', 'rgba(255,255,255,0.045)', 'rgba(255,255,255,0.035)']}
+            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{
+              borderRadius: 18,
+              borderWidth: 1,
+              borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
+              paddingHorizontal: 16,
+              paddingVertical: 14,
+              flexDirection: 'row',
+              alignItems: 'flex-start',
+              gap: 12,
+              overflow: 'hidden',
+            }}
+          >
+            {isGoldTheme && <GoldBevel radius={18} intensity="quiet" />}
+            <View
+              style={{
+                width: 34,
+                height: 34,
+                borderRadius: 17,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: isGoldTheme ? 'rgba(232,195,108,0.10)' : t.bgSurface,
+                borderWidth: 1,
+                borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
+              }}
+            >
+              <Ionicons
+                name="information-circle-outline"
+                size={20}
+                color={isGoldTheme ? GOLD_RICH.champagne : t.accent}
+              />
+            </View>
+            <Text style={{ flex: 1, color: t.heroTextMuted, fontSize: f.sub, lineHeight: 20 }}>
+              {lessonPrepHintText}
+            </Text>
+          </LinearGradient>
+        </View>
+      ) : null}
 
       </ScrollView>
       {/* Модальное окно блокировки */}

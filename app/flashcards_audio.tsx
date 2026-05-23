@@ -3,6 +3,8 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
+  Easing,
+  Platform,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -53,12 +55,22 @@ import {
 } from './flashcards_target_gate';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getUserSettingsSnapshot } from './user_settings_store';
+import { safeRouterBack } from './navigation_back';
 
 type Phase = 'select' | 'play' | 'done';
 type PauseOption = 900 | 1500 | 2300;
+type AudioCardSnapshot = { card: TrainingCard; side: AudioFlashcardSide };
+type AudioCardTransition = { from: AudioCardSnapshot; to: AudioCardSnapshot; direction: 1 | -1 };
+type CardRotateValue = string | Animated.AnimatedInterpolation<string | number>;
 
 const FLIP_DURATION_MS = 300;
+const SWIPE_DURATION_MS = 240;
+const SWIPE_TRAVEL_MULTIPLIER = 1.16;
 const DEFAULT_PAUSE_MS: PauseOption = 1500;
+
+function cardWidthFor(windowWidth: number): number {
+  return Math.min(windowWidth - 32, 520);
+}
 
 export default function FlashcardsAudioScreen() {
   const router = useRouter();
@@ -68,6 +80,7 @@ export default function FlashcardsAudioScreen() {
     owned?: string | string[];
   }>();
   const insets = useSafeAreaInsets();
+  const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
   const { width } = useWindowDimensions();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -119,8 +132,10 @@ export default function FlashcardsAudioScreen() {
   const [pauseMs, setPauseMs] = useState<PauseOption>(DEFAULT_PAUSE_MS);
   const [shuffle, setShuffle] = useState(false);
   const [playbackNonce, setPlaybackNonce] = useState(0);
+  const [cardTransition, setCardTransition] = useState<AudioCardTransition | null>(null);
 
   const flipAnim = useRef(new Animated.Value(0)).current;
+  const swipeAnim = useRef(new Animated.Value(0)).current;
   const hasVisibleSourcesRef = useRef(initialSources.length > 0);
   const viewedRef = useRef<Set<string>>(new Set());
   const flippedRef = useRef<Set<string>>(new Set());
@@ -221,14 +236,14 @@ export default function FlashcardsAudioScreen() {
         pl: 'W wybranych zestawach nie ma fiszek do odsłuchania.',
       }),
       loading: triLang(lang, {
-        ru: 'Загружаю...',
-        uk: 'Завантажую...',
-        es: 'Cargando...',
-        'pt-BR': 'Carregando...',
-        vi: 'Đang tải...',
-        id: 'Memuat...',
-        tr: 'Yükleniyor...',
-        pl: 'Ladowanie...',
+        ru: '...',
+        uk: '...',
+        es: '...',
+        'pt-BR': '...',
+        vi: '...',
+        id: '...',
+        tr: '...',
+        pl: '...',
       }),
       reload: triLang(lang, {
         ru: 'Обновить',
@@ -372,6 +387,24 @@ export default function FlashcardsAudioScreen() {
 
   const currentCard = phase === 'play' || phase === 'done' ? deck[cardIndex] : undefined;
   const progress = deck.length > 0 ? (cardIndex + (side === 'back' ? 1 : 0.35)) / deck.length : 0;
+  const swipeDistance = cardWidthFor(width) * SWIPE_TRAVEL_MULTIPLIER;
+  const transitionDirection = cardTransition?.direction ?? 1;
+  const outgoingCardTranslateX = swipeAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, -transitionDirection * swipeDistance],
+  });
+  const incomingCardTranslateX = swipeAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [transitionDirection * swipeDistance, 0],
+  });
+  const outgoingCardOpacity = swipeAnim.interpolate({
+    inputRange: [0, 0.88, 1],
+    outputRange: [1, 0.94, 0],
+  });
+  const incomingCardOpacity = swipeAnim.interpolate({
+    inputRange: [0, 0.18, 1],
+    outputRange: [0.9, 1, 1],
+  });
 
   const registerViewed = useCallback((card: TrainingCard) => {
     if (viewedRef.current.has(card.trainingKey)) return;
@@ -391,21 +424,80 @@ export default function FlashcardsAudioScreen() {
     if (phase === 'play' && currentCard) registerViewed(currentCard);
   }, [currentCard, phase, registerViewed]);
 
-  const finishSession = useCallback(() => {
-    stopPlaybackNow();
-    setIsPlaying(false);
-    setPhase('done');
-    void hapticSuccess();
-  }, [stopPlaybackNow]);
+  const resetCardTransition = useCallback(() => {
+    swipeAnim.stopAnimation(() => {
+      swipeAnim.setValue(0);
+    });
+    setCardTransition(null);
+  }, [swipeAnim]);
 
-  const goToPosition = useCallback((index: number, nextSide: AudioFlashcardSide, play = true) => {
-    stopPlaybackNow();
+  const commitPosition = useCallback((index: number, nextSide: AudioFlashcardSide, play = true) => {
     setCardIndex(index);
     setSide(nextSide);
     flipAnim.setValue(nextSide === 'back' ? 1 : 0);
+    swipeAnim.setValue(0);
+    setCardTransition(null);
     setIsPlaying(play);
     setPlaybackNonce((value) => value + 1);
-  }, [flipAnim, stopPlaybackNow]);
+  }, [flipAnim, swipeAnim]);
+
+  const animateCardReplacement = useCallback(
+    (index: number, nextSide: AudioFlashcardSide, play = true, guardToken?: number) => {
+      const targetCard = deck[index];
+      if (!currentCard || !targetCard || index === cardIndex) {
+        commitPosition(index, nextSide, play);
+        return;
+      }
+
+      const direction: 1 | -1 = index > cardIndex ? 1 : -1;
+      swipeAnim.stopAnimation(() => {
+        swipeAnim.setValue(0);
+        setCardTransition({
+          from: { card: currentCard, side },
+          to: { card: targetCard, side: nextSide },
+          direction,
+        });
+        Animated.timing(swipeAnim, {
+          toValue: 1,
+          duration: SWIPE_DURATION_MS,
+          easing: Easing.out(Easing.cubic),
+          useNativeDriver: true,
+        }).start(({ finished }) => {
+          if (!finished) return;
+          if (guardToken !== undefined && runTokenRef.current !== guardToken) return;
+          commitPosition(index, nextSide, play);
+        });
+      });
+    },
+    [cardIndex, commitPosition, currentCard, deck, side, swipeAnim],
+  );
+
+  const finishSession = useCallback(() => {
+    stopPlaybackNow();
+    resetCardTransition();
+    setIsPlaying(false);
+    setPhase('done');
+    void hapticSuccess();
+  }, [resetCardTransition, stopPlaybackNow]);
+
+  const goToPosition = useCallback((index: number, nextSide: AudioFlashcardSide, play = true) => {
+    stopPlaybackNow();
+    if (index !== cardIndex && currentCard && deck[index]) {
+      setIsPlaying(false);
+      animateCardReplacement(index, nextSide, play);
+      return;
+    }
+    resetCardTransition();
+    commitPosition(index, nextSide, play);
+  }, [
+    animateCardReplacement,
+    cardIndex,
+    commitPosition,
+    currentCard,
+    deck,
+    resetCardTransition,
+    stopPlaybackNow,
+  ]);
 
   const goToNextCard = useCallback(() => {
     if (deck.length === 0) return;
@@ -456,9 +548,7 @@ export default function FlashcardsAudioScreen() {
             if (runTokenRef.current === token) setSide('back');
           });
         } else {
-          flipAnim.setValue(0);
-          setCardIndex(next.index);
-          setSide('front');
+          animateCardReplacement(next.index, 'front', true, token);
         }
       }, pauseMs);
     };
@@ -489,6 +579,7 @@ export default function FlashcardsAudioScreen() {
   }, [
     cardContentLang,
     cardIndex,
+    animateCardReplacement,
     clearPlaybackTimers,
     currentCard,
     deck.length,
@@ -538,6 +629,7 @@ export default function FlashcardsAudioScreen() {
       viewedRef.current = new Set();
       flippedRef.current = new Set();
       stopPlaybackNow();
+      resetCardTransition();
       setDeck(nextDeck);
       setCardIndex(0);
       setSide('front');
@@ -552,13 +644,23 @@ export default function FlashcardsAudioScreen() {
     } finally {
       setStarting(false);
     }
-  }, [cardContentLang, flipAnim, selectedSources, shuffle, stopPlaybackNow, text.noCards, text.nothingSelected]);
+  }, [
+    cardContentLang,
+    flipAnim,
+    resetCardTransition,
+    selectedSources,
+    shuffle,
+    stopPlaybackNow,
+    text.noCards,
+    text.nothingSelected,
+  ]);
 
   const pausePlayback = useCallback(() => {
     void hapticTap();
     stopPlaybackNow();
+    resetCardTransition();
     setIsPlaying(false);
-  }, [stopPlaybackNow]);
+  }, [resetCardTransition, stopPlaybackNow]);
 
   const resumePlayback = useCallback(() => {
     void hapticTap();
@@ -569,16 +671,18 @@ export default function FlashcardsAudioScreen() {
   const replayCurrentSide = useCallback(() => {
     void hapticTap();
     stopPlaybackNow();
+    resetCardTransition();
     setIsPlaying(true);
     setPlaybackNonce((value) => value + 1);
-  }, [stopPlaybackNow]);
+  }, [resetCardTransition, stopPlaybackNow]);
 
   const backToSetup = useCallback(() => {
     void hapticTap();
     stopPlaybackNow();
+    resetCardTransition();
     setIsPlaying(false);
     setPhase('select');
-  }, [stopPlaybackNow]);
+  }, [resetCardTransition, stopPlaybackNow]);
 
   const frontRotate = flipAnim.interpolate({
     inputRange: [0, 1],
@@ -588,11 +692,11 @@ export default function FlashcardsAudioScreen() {
     inputRange: [0, 1],
     outputRange: ['180deg', '360deg'],
   });
-  const cardWidth = Math.min(width - 32, 520);
+  const cardWidth = cardWidthFor(width);
   const cardHeight = Math.max(260, Math.min(360, cardWidth * 0.74));
 
   const renderHeader = (onBack: () => void) => (
-    <View style={[styles.header, { borderBottomColor: t.border }]}>
+    <View style={[styles.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 8 }]}>
       <View style={styles.headerSide}>
         <TouchableOpacity
           testID="flashcards-audio-header-back"
@@ -636,7 +740,7 @@ export default function FlashcardsAudioScreen() {
 
   const renderSelect = () => (
     <>
-      {renderHeader(() => router.back())}
+      {renderHeader(() => safeRouterBack(router, '/flashcards' as any))}
       <ScrollView
         style={styles.scroll}
         contentContainerStyle={[styles.selectContent, { paddingBottom: Math.max(insets.bottom, 16) + 20 }]}
@@ -786,8 +890,67 @@ export default function FlashcardsAudioScreen() {
   );
 
   const renderPlayer = () => {
-    const frontText = currentCard ? audioTextForSide(currentCard, 'front', cardContentLang) : '';
-    const backText = currentCard ? audioTextForSide(currentCard, 'back', cardContentLang) : '';
+    const renderCardLayer = (
+      frame: AudioCardSnapshot,
+      frontFaceRotate: CardRotateValue,
+      backFaceRotate: CardRotateValue,
+    ) => {
+      const frontText = audioTextForSide(frame.card, 'front', cardContentLang);
+      const backText = audioTextForSide(frame.card, 'back', cardContentLang);
+
+      return (
+        <>
+          <Animated.View
+            style={[
+              styles.cardFace,
+              {
+                backgroundColor: t.bgCard,
+                borderColor: t.border,
+                transform: [{ perspective: 900 }, { rotateY: frontFaceRotate }],
+              },
+            ]}
+          >
+            <Text style={[styles.sideLabel, { color: t.textSecond, fontSize: f.caption }]}>{text.front}</Text>
+            <Text
+              style={[styles.cardText, { color: t.textPrimary, fontSize: Math.min(31, f.numLg + 1) }]}
+              adjustsFontSizeToFit
+              minimumFontScale={0.58}
+              numberOfLines={5}
+            >
+              {frontText}
+            </Text>
+            <Text style={[styles.sourceLabel, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
+              {frame.card.trainingSourceTitle ?? ''}
+            </Text>
+          </Animated.View>
+          <Animated.View
+            style={[
+              styles.cardFace,
+              styles.cardFaceBack,
+              {
+                backgroundColor: t.bgCard,
+                borderColor: t.border,
+                transform: [{ perspective: 900 }, { rotateY: backFaceRotate }],
+              },
+            ]}
+          >
+            <Text style={[styles.sideLabel, { color: t.textSecond, fontSize: f.caption }]}>{text.back}</Text>
+            <Text
+              style={[styles.cardText, { color: t.textPrimary, fontSize: Math.min(30, f.numLg) }]}
+              adjustsFontSizeToFit
+              minimumFontScale={0.55}
+              numberOfLines={5}
+            >
+              {backText}
+            </Text>
+            <Text style={[styles.sourceLabel, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
+              {frame.card.trainingSourceTitle ?? ''}
+            </Text>
+          </Animated.View>
+        </>
+      );
+    };
+
     return (
       <>
         {renderHeader(backToSetup)}
@@ -801,54 +964,47 @@ export default function FlashcardsAudioScreen() {
             </Text>
           </View>
 
-          <View style={[styles.cardStage, { width: cardWidth, height: cardHeight }]}>
-            <Animated.View
-              style={[
-                styles.cardFace,
-                {
-                  backgroundColor: t.bgCard,
-                  borderColor: t.border,
-                  transform: [{ perspective: 900 }, { rotateY: frontRotate }],
-                },
-              ]}
-            >
-              <Text style={[styles.sideLabel, { color: t.textSecond, fontSize: f.caption }]}>{text.front}</Text>
-              <Text
-                style={[styles.cardText, { color: t.textPrimary, fontSize: Math.min(31, f.numLg + 1) }]}
-                adjustsFontSizeToFit
-                minimumFontScale={0.58}
-                numberOfLines={5}
-              >
-                {frontText}
-              </Text>
-              <Text style={[styles.sourceLabel, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
-                {currentCard?.trainingSourceTitle ?? ''}
-              </Text>
-            </Animated.View>
-            <Animated.View
-              style={[
-                styles.cardFace,
-                styles.cardFaceBack,
-                {
-                  backgroundColor: t.bgCard,
-                  borderColor: t.border,
-                  transform: [{ perspective: 900 }, { rotateY: backRotate }],
-                },
-              ]}
-            >
-              <Text style={[styles.sideLabel, { color: t.textSecond, fontSize: f.caption }]}>{text.back}</Text>
-              <Text
-                style={[styles.cardText, { color: t.textPrimary, fontSize: Math.min(30, f.numLg) }]}
-                adjustsFontSizeToFit
-                minimumFontScale={0.55}
-                numberOfLines={5}
-              >
-                {backText}
-              </Text>
-              <Text style={[styles.sourceLabel, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
-                {currentCard?.trainingSourceTitle ?? ''}
-              </Text>
-            </Animated.View>
+          <View style={styles.cardSlot}>
+            <View style={[styles.cardStage, { width: cardWidth, height: cardHeight }]}>
+              {cardTransition ? (
+                <>
+                  <Animated.View
+                    style={[
+                      styles.cardLayer,
+                      {
+                        opacity: outgoingCardOpacity,
+                        transform: [{ translateX: outgoingCardTranslateX }],
+                      },
+                    ]}
+                  >
+                    {renderCardLayer(
+                      cardTransition.from,
+                      cardTransition.from.side === 'back' ? '180deg' : '0deg',
+                      cardTransition.from.side === 'back' ? '360deg' : '180deg',
+                    )}
+                  </Animated.View>
+                  <Animated.View
+                    style={[
+                      styles.cardLayer,
+                      {
+                        opacity: incomingCardOpacity,
+                        transform: [{ translateX: incomingCardTranslateX }],
+                      },
+                    ]}
+                  >
+                    {renderCardLayer(
+                      cardTransition.to,
+                      cardTransition.to.side === 'back' ? '180deg' : '0deg',
+                      cardTransition.to.side === 'back' ? '360deg' : '180deg',
+                    )}
+                  </Animated.View>
+                </>
+              ) : currentCard ? (
+                <Animated.View style={styles.cardLayer}>
+                  {renderCardLayer({ card: currentCard, side }, frontRotate, backRotate)}
+                </Animated.View>
+              ) : null}
+            </View>
           </View>
 
           <View style={styles.controlRow}>
@@ -906,7 +1062,7 @@ export default function FlashcardsAudioScreen() {
 
   return (
     <ScreenGradient artBackdrop="flashcards">
-      <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
+      <SafeAreaView style={styles.safe} edges={['left', 'right']}>
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         <ContentWrap>
           <View style={[styles.container, { backgroundColor: 'transparent' }]}>
@@ -1091,7 +1247,7 @@ const styles = StyleSheet.create({
   player: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     paddingHorizontal: 16,
     paddingTop: 18,
   },
@@ -1114,6 +1270,16 @@ const styles = StyleSheet.create({
   },
   cardStage: {
     alignSelf: 'center',
+  },
+  cardLayer: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  cardSlot: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 300,
   },
   cardFace: {
     ...StyleSheet.absoluteFillObject,
@@ -1155,6 +1321,7 @@ const styles = StyleSheet.create({
   controlRow: {
     width: '100%',
     maxWidth: 420,
+    minHeight: 72,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',

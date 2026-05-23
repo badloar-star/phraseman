@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setHapticCacheEnabled } from '../hooks/use-haptics';
 
 let cached: boolean = true;
 
@@ -9,6 +10,7 @@ export async function hydrateHapticsTapFromStorage(): Promise<void> {
   } catch {
     cached = true;
   }
+  setHapticCacheEnabled(cached);
 }
 
 export function getHapticsTapSnapshot(): boolean {
@@ -17,6 +19,7 @@ export function getHapticsTapSnapshot(): boolean {
 
 export function setHapticsTapCache(v: boolean): void {
   cached = v;
+  setHapticCacheEnabled(v);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

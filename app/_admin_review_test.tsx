@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { seedAdminTestReviewSession } from './active_recall';
+import { safeRouterBack } from './navigation_back';
 
 export default function AdminReviewTestScreen() {
   const router = useRouter();
@@ -19,11 +20,11 @@ export default function AdminReviewTestScreen() {
         const seeded = await seedAdminTestReviewSession(studyTarget);
         if (!cancelled) {
           if (seeded) router.replace('/review');
-          else router.back();
+          else safeRouterBack(router);
         }
       } catch {
         if (!cancelled) {
-          router.back();
+          safeRouterBack(router);
         }
       }
     })();

@@ -9,7 +9,6 @@ import {
   Platform,
   ScrollView,
   Keyboard,
-  ActivityIndicator,
   type GestureResponderEvent,
 } from 'react-native';
 import { useTheme } from './ThemeContext';
@@ -473,7 +472,6 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
               onPressIn={handleConfirmDelete}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                {deleting && <ActivityIndicator size="small" color="#fff" />}
                 <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700', opacity: deleting ? 0.72 : 1 }}>
                   {deleting
                     ? L({

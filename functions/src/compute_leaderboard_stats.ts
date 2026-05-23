@@ -9,6 +9,26 @@ function readProgressInt(value: unknown): number {
   return Number.isFinite(n) ? n : 0;
 }
 
+function getWeekKey(date = new Date()): string {
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  const week = Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+  return `${d.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
+}
+
+function readCurrentWeekPoints(value: unknown, currentWeekKey: string): number {
+  try {
+    const parsed = typeof value === 'string' ? JSON.parse(value) : value;
+    if (!parsed || typeof parsed !== 'object') return 0;
+    const weekKey = (parsed as Record<string, unknown>).weekKey;
+    if (weekKey !== currentWeekKey) return 0;
+    return Math.max(0, readProgressInt((parsed as Record<string, unknown>).points));
+  } catch {
+    return 0;
+  }
+}
+
 /**
  * Для массива значений строит таблицу перцентильных порогов p1..p99.
  * pN = минимальное значение, чтобы быть «выше N% пользователей».
@@ -72,6 +92,10 @@ export async function computeLeaderboardStats(): Promise<void> {
   // Lifetime XP must come from the real progress document, not from leaderboard
   // mirrors that can lag behind or be jump-clamped by the callable guard.
   const xpVals: number[] = [];
+  const streakVals: number[] = [];
+  const weekXpVals: number[] = [];
+  const eligibleUserIds = new Set<string>();
+  const currentWeekKey = getWeekKey();
   let lastUserDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
 
   while (true) {
@@ -85,41 +109,48 @@ export async function computeLeaderboardStats(): Promise<void> {
     for (const doc of snap.docs) {
       const progress = doc.data()?.progress ?? {};
       const xp = readProgressInt(progress.user_total_xp);
-      if (xp >= MIN_PERCENTILE_SAMPLE_XP) xpVals.push(xp);
+      if (xp >= MIN_PERCENTILE_SAMPLE_XP) {
+        eligibleUserIds.add(doc.id);
+        xpVals.push(xp);
+        streakVals.push(Math.max(0, readProgressInt(progress.streak_count)));
+        weekXpVals.push(readCurrentWeekPoints(progress.week_points_v2, currentWeekKey));
+      }
     }
 
     lastUserDoc = snap.docs[snap.docs.length - 1] ?? null;
     if (snap.size < 500) break;
   }
 
-  const streakVals: number[] = [];
-  const weekXpVals: number[] = [];
   const daily7xpVals: number[] = [];
   const daily7timeMsVals: number[] = [];
+  const dailyAnalyticsSeenUserIds = new Set<string>();
 
   let lastLbDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
 
   while (true) {
     let q: FirebaseFirestore.Query = db.collection('leaderboard')
-      .where('points', '>=', MIN_PERCENTILE_SAMPLE_XP)
-      .orderBy('points')
+      .orderBy('__name__')
       .limit(500);
     if (lastLbDoc) q = q.startAfter(lastLbDoc);
     const snap = await q.get();
     if (snap.empty) break;
 
     for (const doc of snap.docs) {
+      if (!eligibleUserIds.has(doc.id)) continue;
       const d = doc.data();
-      const xp = typeof d.points === 'number' ? d.points : 0;
-      if (xp <= 0) continue;
-      if (typeof d.streak === 'number' && d.streak > 0) streakVals.push(d.streak);
-      if (typeof d.weekPoints === 'number' && d.weekPoints > 0) weekXpVals.push(d.weekPoints);
-      if (typeof d.daily7xp === 'number' && d.daily7xp > 0) daily7xpVals.push(d.daily7xp);
-      if (typeof d.daily7time_ms === 'number' && d.daily7time_ms > 0) daily7timeMsVals.push(d.daily7time_ms);
+      dailyAnalyticsSeenUserIds.add(doc.id);
+      daily7xpVals.push(Math.max(0, readProgressInt(d.daily7xp)));
+      daily7timeMsVals.push(Math.max(0, readProgressInt(d.daily7time_ms)));
     }
 
     lastLbDoc = snap.docs[snap.docs.length - 1] ?? null;
     if (snap.size < 500) break;
+  }
+
+  const missingDailyAnalytics = Math.max(0, eligibleUserIds.size - dailyAnalyticsSeenUserIds.size);
+  for (let i = 0; i < missingDailyAnalytics; i++) {
+    daily7xpVals.push(0);
+    daily7timeMsVals.push(0);
   }
 
   // ── 2. Читаем arena_profiles (xp) ────────────────────────────────────────────

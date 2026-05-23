@@ -279,6 +279,7 @@ const REVIEWED_GLOBAL_LITERAL_KEYS = new Set([
   'leaderboard',
   'leaderboard_cache_v1',
   'leaderboard_stats_cache_v1',
+  'leaderboard_stats_cache_v2',
   'monthly_recap_notif_id',
   'monthly_recap_scheduled',
   'notification_settings',
@@ -332,6 +333,7 @@ const REVIEWED_GLOBAL_LITERAL_KEYS = new Set([
 const REVIEWED_GLOBAL_KEY_PATTERNS = [
   /^achievement_(?!lesson_)/,
   /^achievements_/,
+  /^release_notes_dismissed_/,
 ] as const;
 
 const STORAGE_WRAPPER_OPS = new Map<string, Operation>([
@@ -390,6 +392,12 @@ function normalizeTemplate(raw: string): string {
   return raw.replace(/\$\{[^}]+\}/g, '${...}');
 }
 
+function resolveTemplateString(raw: string, values: Map<string, string>): string {
+  return raw.replace(/\$\{\s*([A-Za-z_$][\w$]*)\s*\}/g, (_match, name: string) => (
+    values.get(name) ?? '${...}'
+  ));
+}
+
 function candidateFromLiteral(quote: string, value: string): KeyCandidate {
   return quote === '`' && value.includes('${')
     ? { keyPattern: normalizeTemplate(value) }
@@ -412,7 +420,7 @@ function extractStringLiterals(text: string): string[] {
   return strings;
 }
 
-function extractConstKeys(text: string): Map<string, string> {
+function extractConstKeys(text: string, constStringValues: Map<string, string>): Map<string, string> {
   const map = new Map<string, string>();
   const re = /(?:const|export const)\s+([A-Z0-9_]*KEY[A-Z0-9_]*)\s*=\s*(['"`])((?:\\.|(?!\2)[\s\S])*?)\2/g;
   let match: RegExpExecArray | null;
@@ -420,13 +428,23 @@ function extractConstKeys(text: string): Map<string, string> {
     const name = match[1];
     const quote = match[2];
     const value = match[3] ?? '';
-    map.set(name, quote === '`' ? normalizeTemplate(value) : value);
+    map.set(name, quote === '`' ? resolveTemplateString(value, constStringValues) : value);
   }
   return map;
 }
 
 function extractConstStringValues(text: string): Map<string, string> {
   const map = new Map<string, string>();
+  const arrayJoinRe = /(?:const|let|export const)\s+([A-Za-z_$][\w$]*)\s*(?::[^=;]+)?=\s*\[([\s\S]*?)\]\s*\.join\(\s*(['"`])((?:\\.|(?!\3)[\s\S])*?)\3\s*\)\s*;?/g;
+  let arrayJoin: RegExpExecArray | null;
+  while ((arrayJoin = arrayJoinRe.exec(text))) {
+    const name = arrayJoin[1];
+    const body = arrayJoin[2] ?? '';
+    const sep = arrayJoin[4] ?? '';
+    const parts = extractStringLiterals(body).filter((part) => !part.includes('${'));
+    if (parts.length > 0) map.set(name, parts.join(sep));
+  }
+
   const re = /(?:const|let|export const)\s+([A-Za-z_$][\w$]*)\s*(?::[^=;]+)?=\s*(['"`])((?:\\.|(?!\2)[\s\S])*?)\2\s*;?/g;
   let match: RegExpExecArray | null;
   while ((match = re.exec(text))) {
@@ -434,7 +452,7 @@ function extractConstStringValues(text: string): Map<string, string> {
     const quote = match[2];
     const value = match[3] ?? '';
     if (!value.includes('\n') && value.length <= 200) {
-      map.set(name, quote === '`' ? normalizeTemplate(value) : value);
+      map.set(name, quote === '`' ? resolveTemplateString(value, map) : value);
     }
   }
   return map;
@@ -643,7 +661,8 @@ function classifyKey(input: {
 }): Pick<StorageRecord, 'scope' | 'learningState' | 'targetNamespaceRequired' | 'risk' | 'confidence' | 'notes'> {
   const raw = input.key ?? input.keyPattern ?? input.keyExpression ?? '';
   const key = raw.toLowerCase();
-  const source = input.sourcePath.toLowerCase();
+  const sourcePath = input.sourcePath.replace(/\\/g, '/');
+  const source = sourcePath.toLowerCase();
   const notes: string[] = [];
   const helperName = input.keyExpression?.match(/\b([A-Za-z_$][\w$]*)\s*\(/)?.[1];
 
@@ -663,6 +682,25 @@ function classifyKey(input: {
 
   if (key === 'dev_study_target_lang') {
     return { scope: 'dev_only', learningState: false, targetNamespaceRequired: false, risk: 'low', confidence: 'high', notes: ['Dev-only target switch; not production multi-target storage.'] };
+  }
+
+  if (
+    source === 'app/target_storage_keys.ts' &&
+    (
+      key === 'flashcards_market_dev_owned_v1' ||
+      key === 'flashcards_market_dev_active_pack_v1' ||
+      key === '${...}_owned_v1' ||
+      key === '${...}_active_pack_v1'
+    )
+  ) {
+    return {
+      scope: 'dev_only',
+      learningState: false,
+      targetNamespaceRequired: false,
+      risk: 'low',
+      confidence: 'high',
+      notes: ['Reviewed flashcards market dev compatibility key; runtime access is routed through target-aware helper functions.'],
+    };
   }
 
   if (key === 'lang' || key === 'app_lang') {
@@ -717,7 +755,7 @@ function classifyKey(input: {
   }
 
   if (
-    input.sourcePath === 'app/cloud_sync.ts' &&
+    source === 'app/cloud_sync.ts' &&
     input.operation === 'multiSet' &&
     (key === 'flashcards' || key === 'flashcards_v1')
   ) {
@@ -732,6 +770,16 @@ function classifyKey(input: {
   }
 
   if (input.keyExpression) {
+    if (source === 'app/cloud_sync.ts' && key === 'dailylessonhelperkeys') {
+      return {
+        scope: 'study_target',
+        learningState: true,
+        targetNamespaceRequired: false,
+        risk: 'low',
+        confidence: 'high',
+        notes: ['Reviewed daily lesson helper sync list; entries are built with fiftyFiftyUsageKey/lessonBonusHintsKey for en/fr.'],
+      };
+    }
     if (key.includes('french_target_sync_keys') || key.includes('restorablekeys')) {
       return {
         scope: 'study_target',
@@ -762,7 +810,7 @@ function classifyKey(input: {
         notes: ['Storage routed through reviewed cloud sync allowlist; per-key scope is audited separately.'],
       };
     }
-    if (input.sourcePath === 'app/cloud_sync.ts' && key === 'toremove') {
+    if (source === 'app/cloud_sync.ts' && key === 'toremove') {
       return {
         scope: 'global',
         learningState: false,
@@ -772,7 +820,7 @@ function classifyKey(input: {
         notes: ['Reviewed account wipe set; populated from SYNC_KEYS plus explicit English/French scoped cleanup keys.'],
       };
     }
-    if (input.sourcePath === 'app/content_delivery_migration.ts' && key.includes('contentrefreshkeys')) {
+    if (source === 'app/content_delivery_migration.ts' && key.includes('contentrefreshkeys')) {
       return {
         scope: 'study_target',
         learningState: true,
@@ -784,7 +832,18 @@ function classifyKey(input: {
     }
   }
 
-  if (input.sourcePath === 'app/achievements.ts' && key === '${...}:${...}') {
+  if (source === 'app/cloud_sync.ts' && key === '${...}:${...}') {
+    return {
+      scope: 'study_target',
+      learningState: true,
+      targetNamespaceRequired: false,
+      risk: 'low',
+      confidence: 'high',
+      notes: ['Reviewed dailyLessonHelperKeysForToday restore loop; keys are generated through target-aware helper functions.'],
+    };
+  }
+
+  if (source === 'app/achievements.ts' && key === '${...}:${...}') {
     return {
       scope: 'global',
       learningState: false,
@@ -820,7 +879,7 @@ function classifyKey(input: {
   }
 
   if (
-    input.sourcePath === 'app/daily_phrase_system.ts' &&
+    source === 'app/daily_phrase_system.ts' &&
     (
       key === 'daily_phrase_v3' ||
       key === 'last_phrase_date_v3' ||
@@ -840,7 +899,7 @@ function classifyKey(input: {
   }
 
   if (
-    input.sourcePath === 'app/trainer_session.ts' &&
+    source === 'app/trainer_session.ts' &&
     (
       key === 'trainer_free_session_v1' ||
       key === 'trainer_session_entry_v1'
@@ -914,8 +973,8 @@ function classifyKey(input: {
     if (
       input.operation === 'constant' &&
       (
-        (input.sourcePath === 'app/exam_certificate.ts' && key === 'lingman_certificate_v1') ||
-        (input.sourcePath === 'hooks/use-flashcards.ts' && key === 'flashcards_v1')
+        (source === 'app/exam_certificate.ts' && key === 'lingman_certificate_v1') ||
+        (source === 'hooks/use-flashcards.ts' && key === 'flashcards_v1')
       )
     ) {
       notes.push('Reviewed legacy English constant; runtime reads/writes through target-aware storage helpers.');
@@ -982,7 +1041,7 @@ function classifyKey(input: {
     };
   }
 
-  if ((input.keyExpression || input.keyPattern) && REVIEWED_GLOBAL_DYNAMIC_STORAGE_SOURCES.some((pattern) => pattern.test(input.sourcePath))) {
+  if ((input.keyExpression || input.keyPattern) && REVIEWED_GLOBAL_DYNAMIC_STORAGE_SOURCES.some((pattern) => pattern.test(source))) {
     notes.push('Reviewed dynamic account/global storage expression; not a study-target learning bucket.');
     return {
       scope: 'global',
@@ -1063,9 +1122,9 @@ function extractMultiSetKeys(body: string): string[] {
 function scanFile(repoRoot: string, filePath: string, cloudSyncKeys: CloudSyncKeys): StorageRecord[] {
   const text = fs.readFileSync(filePath, 'utf8');
   if (!text.includes('AsyncStorage') && !text.includes('SYNC_KEYS') && !text.includes('_KEY')) return [];
-  const sourcePath = path.relative(repoRoot, filePath);
-  const constKeys = extractConstKeys(text);
+  const sourcePath = path.relative(repoRoot, filePath).replace(/\\/g, '/');
   const constStringValues = extractConstStringValues(text);
+  const constKeys = extractConstKeys(text, constStringValues);
   const helperExpressionValues = extractStorageHelperExpressionValues(text);
   const arrayCandidates = extractArrayKeyCandidates(text);
   const records: StorageRecord[] = [];

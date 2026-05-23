@@ -26,5 +26,5 @@ export default function SettingsTestersGate() {
     const Real = require('./_admin_settings_testers').default;
     return <Real />;
   }
-  return <DeferredRedirect href={'/(tabs)/' as any} />;
+  return <DeferredRedirect href={'/(tabs)/home' as any} />;
 }

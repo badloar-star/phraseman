@@ -33,6 +33,61 @@ export const STREAK_WAGER_TIER_DAYS_ID = ['7 hari', '14 hari', '21 hari', '30 ha
 export const STREAK_WAGER_TIER_DAYS_TR = ['7 gün', '14 gün', '21 gün', '30 gün', '50 gün', '100 gün'] as const;
 export const STREAK_WAGER_TIER_DAYS_PL = ['7 dni', '14 dni', '21 dni', '30 dni', '50 dni', '100 dni'] as const;
 
+const STREAK_WEEKLY_TIME_MINUTES_HINT_BY_LANG: Record<Lang, string> = {
+  ru: 'Сумма минут за 7 дней.',
+  uk: 'Сума хвилин за 7 днів.',
+  es: 'Minutos totales de 7 días.',
+  'pt-BR': 'Minutos totais de 7 dias.',
+  vi: 'Tổng phút trong 7 ngày.',
+  id: 'Total menit selama 7 hari.',
+  tr: '7 günün toplam dakikası.',
+  pl: 'Łączne minuty z 7 dni.',
+};
+
+const STREAK_WEEKLY_TIME_HOURS_HINT_BY_LANG: Record<Lang, string> = {
+  ru: 'Сумма часов за 7 дней.',
+  uk: 'Сума годин за 7 днів.',
+  es: 'Horas totales de 7 días.',
+  'pt-BR': 'Horas totais de 7 dias.',
+  vi: 'Tổng giờ trong 7 ngày.',
+  id: 'Total jam selama 7 hari.',
+  tr: '7 günün toplam saati.',
+  pl: 'Łączne godziny z 7 dni.',
+};
+
+const STREAK_WEEKLY_TIME_HOURS_MINUTES_HINT_BY_LANG: Record<Lang, string> = {
+  ru: 'Суммарное время за 7 дней.',
+  uk: 'Сумарний час за 7 днів.',
+  es: 'Tiempo total de 7 días.',
+  'pt-BR': 'Tempo total de 7 dias.',
+  vi: 'Tổng thời gian trong 7 ngày.',
+  id: 'Total waktu selama 7 hari.',
+  tr: '7 günün toplam süresi.',
+  pl: 'Łączny czas z 7 dni.',
+};
+
+const STREAK_WEEKLY_EXPERIENCE_LABEL_BY_LANG: Record<Lang, string> = {
+  ru: 'Опыт',
+  uk: 'Досвід',
+  es: 'XP',
+  'pt-BR': 'XP',
+  vi: 'XP',
+  id: 'XP',
+  tr: 'XP',
+  pl: 'XP',
+};
+
+const STREAK_WEEKLY_EXPERIENCE_HINT_BY_LANG: Record<Lang, string> = {
+  ru: 'Сумма опыта за последние 7 дней.',
+  uk: 'Сума досвіду за останні 7 днів.',
+  es: 'XP total de los últimos 7 días.',
+  'pt-BR': 'XP total dos últimos 7 dias.',
+  vi: 'Tổng XP trong 7 ngày qua.',
+  id: 'Total XP 7 hari terakhir.',
+  tr: 'Son 7 günün toplam XP’si.',
+  pl: 'Łączne XP z ostatnich 7 dni.',
+};
+
 export type StreakWagerTierIndex = 0 | 1 | 2 | 3 | 4 | 5;
 
 const STREAK_CAL_WDAYS_BY_LANG: Record<Lang, readonly string[]> = {
@@ -84,4 +139,28 @@ export function streakWeekRowShort(lang: Lang): readonly string[] {
 export function streakWagerTierDaysLabel(lang: Lang, tierIdx: number): string {
   const i = Math.max(0, Math.min(5, Math.floor(tierIdx))) as StreakWagerTierIndex;
   return STREAK_WAGER_TIER_DAYS_BY_LANG[lang][i];
+}
+
+export function streakWeeklyTimeTotalHint(lang: Lang, minutes: number): string {
+  const safeMinutes = Math.max(0, Math.round(Number(minutes) || 0));
+  const hasHours = safeMinutes >= 60;
+  const hasMinutes = safeMinutes % 60 > 0;
+
+  if (hasHours && hasMinutes) {
+    return STREAK_WEEKLY_TIME_HOURS_MINUTES_HINT_BY_LANG[lang];
+  }
+
+  if (hasHours) {
+    return STREAK_WEEKLY_TIME_HOURS_HINT_BY_LANG[lang];
+  }
+
+  return STREAK_WEEKLY_TIME_MINUTES_HINT_BY_LANG[lang];
+}
+
+export function streakWeeklyExperienceLabel(lang: Lang): string {
+  return STREAK_WEEKLY_EXPERIENCE_LABEL_BY_LANG[lang];
+}
+
+export function streakWeeklyExperienceHint(lang: Lang): string {
+  return STREAK_WEEKLY_EXPERIENCE_HINT_BY_LANG[lang];
 }

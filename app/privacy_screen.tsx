@@ -12,6 +12,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import PRIVACY_POLICY_EN from './legal/privacy_policy_en.json';
 import PRIVACY_POLICY_EN_IOS from './legal/privacy_policy_en_ios.json';
 import { useEffectivePlatformOS } from './platform_ui_preview';
+import { safeRouterBack } from './navigation_back';
 
 type PolicySection = { heading: string; body: string };
 
@@ -33,7 +34,7 @@ export default function PrivacyScreen() {
           paddingHorizontal: 16, paddingVertical: 14,
           borderBottomWidth: 0.5, borderBottomColor: t.border,
         }}>
-          <TouchableOpacity onPress={() => router.back()} style={{ marginRight: 12, padding: 4 }}>
+          <TouchableOpacity onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)} style={{ marginRight: 12, padding: 4 }}>
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', flex: 1 }} numberOfLines={1}>

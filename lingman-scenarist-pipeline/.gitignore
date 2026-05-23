@@ -6,6 +6,7 @@ __pycache__/
 docx_render_check/
 docx_render_check_lesson1_v3/
 docx_render_check_*/
+capcut_outputs/
 
 # Transfer artifacts generated from this repo
 *.bundle

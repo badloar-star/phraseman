@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Svg, { Circle, G, Line, Path, Rect } from 'react-native-svg';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
@@ -27,8 +26,9 @@ import { choosePersonalTrainingCandidate } from './personal_training_taxonomy';
 import { lessonNameForStudyTarget } from './lesson_titles_for_study_target';
 import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_lang_dev';
 import { GOLD_RICH } from '../constants/goldTheme';
-import { trainerThemeIconPalette, type TrainerThemeIconKind } from '../constants/trainerThemeIcons';
+import { trainerThemeIconSource, type TrainerThemeIconKind } from '../constants/trainerThemeIcons';
 import type { ThemeMode } from '../constants/theme';
+import { safeRouterBack } from './navigation_back';
 type RoutePath = '/trainer_words_session' | '/trainer_phrases_session' | '/trainer_arena_session';
 type PlannedCopy = { ru: string; uk: string; es: string } & Partial<Record<PlannedInterfaceLang, string>>;
 interface SectionInfo {
@@ -56,42 +56,15 @@ function TrainerThemeIcon({
     themeMode: ThemeMode;
     size?: number;
 }) {
-    const p = trainerThemeIconPalette(themeMode);
-    if (kind === 'phrases') {
-        return (<Svg width={size} height={size} viewBox="0 0 64 64">
-          <Path d="M12 28C12 17 22 10 35 10C48 10 56 18 56 29C56 40 46 47 33 47H29L18 55L20 44C15 40 12 35 12 28Z" fill={p.primary} opacity={0.72} stroke={p.stroke} strokeWidth={2.8} strokeLinejoin="round"/>
-          <Path d="M28 37C28 29 36 24 47 24C57 24 62 30 62 38C62 46 54 52 44 52H40L32 58L34 49C30 46 28 42 28 37Z" fill={p.secondary} opacity={0.88} stroke={p.stroke} strokeWidth={2.4} strokeLinejoin="round"/>
-          <Path d="M9 19C7 22 6 26 7 31M16 11C13 13 11 16 10 19" stroke={p.tertiary} strokeWidth={3.3} strokeLinecap="round" opacity={0.8}/>
-          <Circle cx={46} cy={14} r={2.1} fill={p.tertiary}/>
-          <Path d="M52 9L54 13L58 15L54 17L52 21L50 17L46 15L50 13Z" fill={p.tertiary}/>
-        </Svg>);
-    }
-    if (kind === 'words') {
-        return (<Svg width={size} height={size} viewBox="0 0 64 64">
-          <G transform="rotate(-8 32 32)">
-            <Rect x={20} y={17} width={31} height={37} rx={6} fill={p.muted} opacity={0.8} stroke={p.stroke} strokeWidth={2.3}/>
-            <Rect x={16} y={12} width={31} height={37} rx={6} fill={p.primary} opacity={0.92} stroke={p.stroke} strokeWidth={2.5}/>
-            <Path d="M22 12V43L27 39L32 44V13Z" fill={p.secondary} opacity={0.95}/>
-            <Path d="M29 26L37 20L35 29L43 29L32 37L34 28Z" fill={p.tertiary} opacity={0.95}/>
-          </G>
-          <Rect x={47} y={40} width={10} height={8} rx={2.5} fill={p.secondary} stroke={p.stroke} strokeWidth={1.7}/>
-          <Rect x={48} y={51} width={9} height={7} rx={2.2} fill={p.primary} opacity={0.82} stroke={p.stroke} strokeWidth={1.5}/>
-          <Circle cx={21} cy={10} r={2.2} fill={p.tertiary}/>
-        </Svg>);
-    }
-    return (<Svg width={size} height={size} viewBox="0 0 64 64">
-      <Rect x={9} y={40} width={7} height={13} rx={1.6} fill={p.primary} opacity={0.7} stroke={p.stroke} strokeWidth={1.6}/>
-      <Rect x={21} y={34} width={7} height={19} rx={1.6} fill={p.secondary} opacity={0.82} stroke={p.stroke} strokeWidth={1.6}/>
-      <Rect x={33} y={27} width={7} height={26} rx={1.6} fill={p.primary} opacity={0.86} stroke={p.stroke} strokeWidth={1.6}/>
-      <Path d="M12 33L24 24L36 30L50 15" fill="none" stroke={p.tertiary} strokeWidth={3.2} strokeLinecap="round" strokeLinejoin="round"/>
-      <Circle cx={12} cy={33} r={4} fill={p.primary} stroke={p.stroke} strokeWidth={2}/>
-      <Circle cx={24} cy={24} r={4} fill={p.secondary} stroke={p.stroke} strokeWidth={2}/>
-      <Circle cx={36} cy={30} r={4} fill={p.primary} stroke={p.stroke} strokeWidth={2}/>
-      <Circle cx={50} cy={15} r={4} fill={p.secondary} stroke={p.stroke} strokeWidth={2}/>
-      <Circle cx={48} cy={43} r={9} fill="none" stroke={p.stroke} strokeWidth={3.4}/>
-      <Line x1={54} y1={50} x2={61} y2={57} stroke={p.stroke} strokeWidth={4} strokeLinecap="round"/>
-      <Path d="M10 16L13 19M13 16L10 19M51 25L55 29M55 25L51 29" stroke={p.secondary} strokeWidth={2.4} strokeLinecap="round"/>
-    </Svg>);
+    return (
+      <Image
+        accessibilityIgnoresInvertColors
+        fadeDuration={0}
+        resizeMode="contain"
+        source={trainerThemeIconSource(themeMode, kind)}
+        style={{ width: size, height: size }}
+      />
+    );
 }
 const SECTIONS: SectionInfo[] = [
     {
@@ -615,7 +588,7 @@ export default function TrainerScreen() {
       <SafeAreaView style={{ flex: 1 }} testID="screen-trainer">
         <ContentWrap>
           <View style={styles.headerRow}>
-            <TouchableOpacity accessibilityRole="button" accessibilityLabel="Back" onPress={() => router.back()} style={{ padding: 4, marginRight: 12 }}>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel="Back" onPress={() => safeRouterBack(router)} style={{ padding: 4, marginRight: 12 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary}/>
             </TouchableOpacity>
             <View style={{ flex: 1 }}>

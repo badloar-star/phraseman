@@ -36,6 +36,7 @@ import {
   type ArenaRoomChatMessage,
 } from './services/arena_rooms_live';
 import { reserveArenaGameEntry } from './arena_access_gate';
+import { safeRouterBack } from './navigation_back';
 
 type ArenaRoomConfirmDialog = {
   title: string;
@@ -545,7 +546,7 @@ export default function ArenaRoomScreen() {
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
           <TouchableOpacity
             testID="arena-room-header-back"
-            onPress={() => router.back()}
+            onPress={() => safeRouterBack(router, '/(tabs)/arena' as any)}
             style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
           >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />

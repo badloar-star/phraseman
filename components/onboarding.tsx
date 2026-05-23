@@ -10,6 +10,7 @@ import {
   type ViewStyle,
 } from 'react-native';
 import { Image as ExpoImage } from 'expo-image';
+import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -1659,7 +1660,7 @@ function OnboardingScreenShell({
         hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
         style={[styles.onboardingCloseButton, { top: closeTop }]}
       >
-        <Text style={styles.onboardingCloseText} maxFontSizeMultiplier={1}>×</Text>
+        <Ionicons name="close" size={18} color="#9A9A9A" />
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -1734,21 +1735,10 @@ const styles = StyleSheet.create({
     right: 14,
     width: 44,
     height: 44,
-    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 30,
     elevation: 30,
-    backgroundColor: 'rgba(0,0,0,0.28)',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.14)',
-  },
-  onboardingCloseText: {
-    color: '#D8CCB5',
-    fontSize: 27,
-    lineHeight: 31,
-    fontWeight: '500',
-    textAlign: 'center',
   },
   onboardingBg: {
     ...StyleSheet.absoluteFillObject,

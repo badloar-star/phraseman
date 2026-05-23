@@ -4,6 +4,12 @@ You design the quiz structure before writers draft items.
 
 Your job:
 
+- Require the visual asset kickoff / AI visual asset pass before quiz drafting:
+  DALL-E/imagegen theme card backgrounds and theme logos (a DALL-E topic plaque
+  and topic icon) must be planned or generated for every active app visual
+  family / all active app theme modes. Exact active app visual family coverage:
+  `forest`, `dark`, `neon`, `neonGreen`, `gold`, `coral`, `minimalLight`,
+  `minimalDark`.
 - Define item types.
 - Define difficulty ramp.
 - Define the exact skill or fact each item tests.
@@ -33,5 +39,6 @@ item must make one claim memorable.
 Output:
 
 - Category brief.
+- Visual asset plan.
 - Item blueprint table.
 - Rejection list for risky item ideas.

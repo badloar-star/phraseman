@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   Animated,
   PanResponder,
+  Platform,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -48,6 +49,7 @@ import {
 } from './flashcards_swipe_session';
 import { peekCustomCardsCache, readCustomCards } from './flashcards/storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './flashcards/types';
+import { safeRouterBack } from './navigation_back';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getCanonicalUserId } from './user_id_policy';
 import { flashcardsSwipeMemoryKey, type RuntimeStudyTarget } from './target_storage_keys';
@@ -769,6 +771,7 @@ export default function FlashcardsSwipeScreen() {
     owned?: string | string[];
   }>();
   const insets = useSafeAreaInsets();
+  const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
   const { width, height } = useWindowDimensions();
   const { lang } = useLang();
   const { theme: t, statusBarLight, f, ds } = useTheme();
@@ -875,16 +878,6 @@ export default function FlashcardsSwipeScreen() {
         id: "Pengaturan",
         tr: "Ayarlar",
         pl: "Ustawienia",
-      }),
-      subtitle: triLang(lang, {
-        ru: 'Умная очередь сама поднимает слабые, новые и те, которые пора повторить.',
-        uk: 'Розумна черга сама піднімає слабкі, нові та ті, які час повторити.',
-        es: 'La cola inteligente prioriza tarjetas débiles, nuevas y listas para repasar.',
-        'pt-BR': "A fila inteligente prioriza cartões fracos, novos e prontos para revisar.",
-        vi: "Hàng đợi thông minh ưu tiên thẻ yếu, thẻ mới và thẻ đã sẵn sàng ôn lại.",
-        id: "Antrean pintar memprioritaskan kartu lemah, baru, dan siap diulang.",
-        tr: "Akıllı sıra zayıf, yeni ve tekrar hazır kartlara öncelik verir.",
-        pl: "Inteligentna kolejka priorytetowo traktuje słabe, nowe i gotowe do powtórki fiszki.",
       }),
       start: triLang(lang, {
         ru: 'Начать',
@@ -1713,7 +1706,7 @@ export default function FlashcardsSwipeScreen() {
   const exitTraining = useCallback(() => {
     void hapticTap();
     draftRestoreAttemptedRef.current = true;
-    router.back();
+    safeRouterBack(router, '/flashcards' as any);
   }, [router]);
 
   const openSettings = useCallback(() => {
@@ -1997,7 +1990,7 @@ export default function FlashcardsSwipeScreen() {
     >
       <View style={styles.topBar}>
         <TouchableOpacity
-          onPress={() => router.back()}
+          onPress={() => safeRouterBack(router, '/flashcards' as any)}
           style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           accessibilityLabel={triLang(lang, {
@@ -2016,7 +2009,6 @@ export default function FlashcardsSwipeScreen() {
       </View>
 
       <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>{text.settingsTitle}</Text>
-      <Text style={[styles.subtitle, { color: t.textMuted, fontSize: f.body }]}>{text.subtitle}</Text>
 
       <View style={[styles.heroCard, { backgroundColor: t.bgSurface, borderColor: t.border, shadowColor: t.cardShadow }]}>
         <View style={styles.heroTop}>
@@ -2446,7 +2438,7 @@ export default function FlashcardsSwipeScreen() {
   const renderNoCards = () => (
     <View style={[styles.quickStartWrap, { paddingHorizontal: ds.spacing.lg }]}>
       <TouchableOpacity
-        onPress={() => router.back()}
+        onPress={() => safeRouterBack(router, '/flashcards' as any)}
         style={[styles.noCardsBack, styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
         accessibilityLabel={triLang(lang, {
           ru: 'Назад',
@@ -2503,8 +2495,8 @@ export default function FlashcardsSwipeScreen() {
 
   return (
     <ScreenGradient artBackdrop="flashcards">
-      <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
-      <SafeAreaView style={styles.safe}>
+      <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
+      <SafeAreaView style={[styles.safe, { paddingTop: topSafeInset }]} edges={['left', 'right', 'bottom']}>
         <ContentWrap>
           <View style={styles.screen}>{renderScreen()}</View>
         </ContentWrap>

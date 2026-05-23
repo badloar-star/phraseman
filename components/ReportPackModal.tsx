@@ -14,7 +14,10 @@
 
 import React, { useState } from 'react';
 import {
+  Keyboard,
+  KeyboardAvoidingView,
   Modal,
+  Platform,
   ScrollView,
   Text,
   TextInput,
@@ -97,6 +100,7 @@ export default function ReportPackModal({
   };
 
   const handleClose = () => {
+    Keyboard.dismiss();
     reset();
     onClose();
   };
@@ -132,18 +136,22 @@ export default function ReportPackModal({
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose}>
-      <TouchableOpacity
-        style={{
-          flex: 1,
-          backgroundColor: overlayBg,
-          justifyContent: 'center',
-          alignItems: 'center',
-          paddingHorizontal: 18,
-        }}
-        activeOpacity={1}
-        onPress={handleClose}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
       >
-        <TouchableOpacity activeOpacity={1} onPress={() => {}} style={{ width: '100%', maxWidth: 460 }}>
+        <TouchableOpacity
+          style={{
+            flex: 1,
+            backgroundColor: overlayBg,
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingHorizontal: 18,
+          }}
+          activeOpacity={1}
+          onPress={handleClose}
+        >
+          <TouchableOpacity activeOpacity={1} onPress={() => {}} style={{ width: '100%', maxWidth: 460 }}>
           <View
             style={{
               backgroundColor: t.bgCard,
@@ -285,7 +293,12 @@ export default function ReportPackModal({
                   {packTitle}
                 </Text>
 
-                <ScrollView style={{ maxHeight: 320 }} showsVerticalScrollIndicator={false}>
+                <ScrollView
+                  style={{ maxHeight: 320 }}
+                  showsVerticalScrollIndicator={false}
+                  keyboardShouldPersistTaps="handled"
+                  keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
+                >
                   {reasons.map((r) => {
                     const active = selected === r.id;
                     return (
@@ -399,8 +412,9 @@ export default function ReportPackModal({
               </>
             )}
           </View>
+          </TouchableOpacity>
         </TouchableOpacity>
-      </TouchableOpacity>
+      </KeyboardAvoidingView>
     </Modal>
   );
 }

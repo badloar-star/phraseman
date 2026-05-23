@@ -23,6 +23,7 @@ import { useLang } from './LangContext';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import type { Theme } from '../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
+import { statsAccent, statsBorder, statsGlowStyle, statsHairline, statsSoftBg } from '../constants/statsThemeChrome';
 import GoldBevel from './GoldBevel';
 import StatsCardArtSurface from './StatsCardArtSurface';
 import {
@@ -91,7 +92,7 @@ function lerpRgb(bg: { r: number; g: number; b: number }, fg: { r: number; g: nu
   return `rgb(${Math.round(bg.r + (fg.r - bg.r) * t)},${Math.round(bg.g + (fg.g - bg.g) * t)},${Math.round(bg.b + (fg.b - bg.b) * t)})`;
 }
 
-function heatmapPalette(t: Theme): { empty: string; l1: string; l2: string; l3: string; l4: string } {
+function heatmapPalette(t: Theme, activeColor?: string): { empty: string; l1: string; l2: string; l3: string; l4: string } {
   if (t.bgPrimary === GOLD_RICH.blackVoid) {
     return {
       empty: GOLD_RICH.graphite,
@@ -102,14 +103,15 @@ function heatmapPalette(t: Theme): { empty: string; l1: string; l2: string; l3: 
     };
   }
   const bg = parseThemeHex(t.bgSurface2) ?? parseThemeHex(t.bgCard);
-  const fg = parseThemeHex(t.correct) ?? parseThemeHex(t.accent);
-  if (!bg || !fg) return { empty: t.bgSurface2, l1: t.correctBg, l2: t.correct, l3: t.correct, l4: t.correct };
+  const finalActiveColor = activeColor ?? t.correct;
+  const fg = parseThemeHex(finalActiveColor) ?? parseThemeHex(t.correct) ?? parseThemeHex(t.accent);
+  if (!bg || !fg) return { empty: t.bgSurface2, l1: t.correctBg, l2: finalActiveColor, l3: finalActiveColor, l4: finalActiveColor };
   return {
     empty: t.bgSurface2,
     l1: lerpRgb(bg, fg, 0.22),
     l2: lerpRgb(bg, fg, 0.48),
     l3: lerpRgb(bg, fg, 0.76),
-    l4: t.correct,
+    l4: finalActiveColor,
   };
 }
 
@@ -575,7 +577,8 @@ export default function ActivityHeatmap365() {
   const [gridInnerW, setGridInnerW] = useState(0);
   const revealAnim = useRef(new Animated.Value(0)).current;
 
-  const heatPalette = useMemo(() => heatmapPalette(t), [t]);
+  const heatmapAccent = isGoldTheme ? undefined : statsAccent(themeMode, 'activity');
+  const heatPalette = useMemo(() => heatmapPalette(t, heatmapAccent), [t, heatmapAccent]);
   const days = analytics?.days ?? [];
   const yearGrid = useMemo(() => {
     const w = gridInnerW > 8 ? gridInnerW : Math.max(120, Math.round(screenW - 64));
@@ -689,19 +692,21 @@ export default function ActivityHeatmap365() {
   const goalProgress = Math.min(100, Math.round((safeAnalytics.goal.activeDays / Math.max(1, safeAnalytics.goal.goal)) * 100));
   const luxuryLocations = isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined;
   const cardGradient = isGoldTheme ? GOLD_GRADIENTS.premiumPanel : t.cardGradient;
-  const activeAccent = isGoldTheme ? GOLD_RICH.champagne : t.correct;
-  const weakAccent = isGoldTheme ? GOLD_RICH.antiqueGold : '#FFB020';
-  const quietPanel = isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.045)';
+  const activeAccent = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'activity');
+  const weakAccent = isGoldTheme ? GOLD_RICH.antiqueGold : statsAccent(themeMode, 'wager');
+  const activityBorder = isGoldTheme ? GOLD_RICH.hairline : statsBorder(themeMode, 'activity', 'medium');
+  const activityHairline = isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'activity');
+  const quietPanel = isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'activity', 'quiet');
   const revealStyle = {
     opacity: revealAnim,
     transform: [{ translateY: revealAnim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
   };
 
   return (
-    <StatsCardArtSurface testID="activity-365-card" name="weekRhythm" theme={t} isGoldTheme={isGoldTheme} gradientColors={cardGradient} gradientLocations={luxuryLocations} radius={18} style={[styles.card, { borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border }, isGoldTheme ? goldShadow(2) : null]}>
+    <StatsCardArtSurface testID="activity-365-card" name="weekRhythm" theme={t} isGoldTheme={isGoldTheme} gradientColors={cardGradient} gradientLocations={luxuryLocations} radius={18} style={[styles.card, { borderColor: activityBorder }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'activity')]}>
       {isGoldTheme && <GoldBevel radius={18} intensity="normal" />}
       <TouchableOpacity testID="activity-365-toggle" activeOpacity={0.88} onPress={() => setExpanded(prev => !prev)} style={styles.topBar}>
-        <View style={[styles.iconOrb, { backgroundColor: isGoldTheme ? GOLD_RICH.wash : t.correct + '1F' }]}>
+        <View style={[styles.iconOrb, { backgroundColor: isGoldTheme ? GOLD_RICH.wash : statsSoftBg(themeMode, 'activity') }]}>
           <Ionicons name="pulse-outline" size={22} color={activeAccent} />
         </View>
         <View style={{ flex: 1, minWidth: 0 }}>
@@ -733,7 +738,7 @@ export default function ActivityHeatmap365() {
             }) : statusText}
           </Text>
         </View>
-        <View style={[styles.headerStatusPill, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : t.correct + '1A', borderColor: isGoldTheme ? GOLD_RICH.hairline : t.correct + '33' }]}>
+        <View style={[styles.headerStatusPill, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'activity', 'quiet'), borderColor: activityHairline }]}>
           <Text style={{ color: activeAccent, fontSize: f.caption - 1, fontWeight: '900' }}>{goalProgress}%</Text>
         </View>
         <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={19} color={t.textMuted} />
@@ -792,7 +797,7 @@ export default function ActivityHeatmap365() {
           >
             <Ionicons name="chevron-back" size={18} color={t.textMuted} />
           </TouchableOpacity>
-          <View style={[styles.filterChipBig, { backgroundColor: isGoldTheme ? GOLD_RICH.paleGold : t.correct }]}>
+          <View style={[styles.filterChipBig, { backgroundColor: isGoldTheme ? GOLD_RICH.paleGold : activeAccent }]}>
             <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
               {filterLabel(filter, lang)}
             </Text>
@@ -811,7 +816,7 @@ export default function ActivityHeatmap365() {
         testID={expanded ? 'activity-365-map-expanded' : 'activity-365-map-collapsed'}
         activeOpacity={expanded ? 1 : 0.92}
         onPress={() => setExpanded(true)}
-        style={[styles.mapShell, { backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}
+        style={[styles.mapShell, { backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderColor: activityHairline }]}
         onLayout={onGridLayout}
       >
         <View
@@ -855,16 +860,16 @@ export default function ActivityHeatmap365() {
         </View>
       </TouchableOpacity>
 
-      <View style={[styles.nextStepBar, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : t.correct + '12', borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.correct + '26' }]}>
+      <View style={[styles.nextStepBar, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'activity', 'quiet'), borderColor: activityHairline }]}>
         <Ionicons name="sparkles-outline" size={16} color={activeAccent} />
-        <Text style={{ color: isGoldTheme ? GOLD_RICH.ivoryMuted : t.textSecond, fontSize: f.caption, fontWeight: '800', flex: 1, lineHeight: f.caption * 1.25 }}>
+        <Text style={{ color: isGoldTheme ? GOLD_RICH.ivoryMuted : activeAccent, fontSize: f.caption, fontWeight: '800', flex: 1, lineHeight: f.caption * 1.25 }}>
           {nextStepText}
         </Text>
       </View>
 
       {expanded && analytics ? (
         <Animated.View style={revealStyle}>
-          <View testID="activity-365-goal-card" style={[styles.goalCard, { backgroundColor: quietPanel, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}>
+          <View testID="activity-365-goal-card" style={[styles.goalCard, { backgroundColor: quietPanel, borderColor: activityHairline }]}>
             <View style={styles.headerRow}>
               <View style={{ flex: 1 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }}>
@@ -916,7 +921,7 @@ export default function ActivityHeatmap365() {
                   key={goal}
                   activeOpacity={0.82}
                   onPress={() => void updateGoal(goal)}
-                  style={[styles.goalBtn, { backgroundColor: safeAnalytics.goal.goal === goal ? (isGoldTheme ? GOLD_RICH.paleGold : t.correct) : 'transparent', borderColor: safeAnalytics.goal.goal === goal ? activeAccent : isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}
+                  style={[styles.goalBtn, { backgroundColor: safeAnalytics.goal.goal === goal ? (isGoldTheme ? GOLD_RICH.paleGold : activeAccent) : 'transparent', borderColor: safeAnalytics.goal.goal === goal ? activeAccent : activityHairline }]}
                 >
                   <Text style={{ color: safeAnalytics.goal.goal === goal ? t.correctText : t.textMuted, fontSize: f.caption, fontWeight: '900' }}>{goal}</Text>
                 </TouchableOpacity>
@@ -925,7 +930,7 @@ export default function ActivityHeatmap365() {
           </View>
 
           <View style={styles.periodGrid}>
-            <LinearGradient colors={isGoldTheme ? [GOLD_RICH.washStrong, GOLD_RICH.mist] : ['rgba(90,200,120,0.16)', 'rgba(90,200,120,0.04)']} style={[styles.periodCard, { borderColor: isGoldTheme ? GOLD_RICH.hairline : 'rgba(90,200,120,0.34)' }]}>
+            <LinearGradient colors={isGoldTheme ? [GOLD_RICH.washStrong, GOLD_RICH.mist] : [statsSoftBg(themeMode, 'activity'), statsSoftBg(themeMode, 'activity', 'quiet')]} style={[styles.periodCard, { borderColor: activityHairline }]}>
               <Ionicons name="trending-up-outline" size={18} color={activeAccent} />
               <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900', marginTop: 8 }}>
                 {triLang(lang, {
@@ -946,7 +951,7 @@ export default function ActivityHeatmap365() {
                 {safeAnalytics.bestMonth ? `${safeAnalytics.bestMonth.activeDays} / ${safeAnalytics.bestMonth.totalXp} XP` : '-'}
               </Text>
             </LinearGradient>
-            <LinearGradient colors={isGoldTheme ? [GOLD_RICH.bronzeWashStrong, 'rgba(60,42,11,0.04)'] : ['rgba(255,176,32,0.16)', 'rgba(255,176,32,0.04)']} style={[styles.periodCard, { borderColor: isGoldTheme ? GOLD_RICH.hairlineDark : 'rgba(255,176,32,0.34)' }]}>
+            <LinearGradient colors={isGoldTheme ? [GOLD_RICH.bronzeWashStrong, 'rgba(60,42,11,0.04)'] : [statsSoftBg(themeMode, 'wager'), statsSoftBg(themeMode, 'wager', 'quiet')]} style={[styles.periodCard, { borderColor: isGoldTheme ? GOLD_RICH.hairlineDark : statsHairline(themeMode, 'wager') }]}>
               <Ionicons name="warning-outline" size={18} color={weakAccent} />
               <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900', marginTop: 8 }}>
                 {triLang(lang, {
@@ -979,8 +984,8 @@ export default function ActivityHeatmap365() {
           </View>
 
           {insights.map((insight, idx) => (
-            <LinearGradient key={`${insight.title}-${idx}`} colors={isGoldTheme ? (idx === 0 ? [GOLD_RICH.washStrong, GOLD_RICH.mist] : [GOLD_RICH.bronzeWash, 'rgba(0,0,0,0)']) : idx === 0 ? ['rgba(255,215,0,0.16)', 'rgba(255,215,0,0.04)'] : ['rgba(82,160,255,0.14)', 'rgba(82,160,255,0.04)']} style={[styles.insightCard, { borderColor: isGoldTheme ? (idx === 0 ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet) : idx === 0 ? 'rgba(255,215,0,0.38)' : 'rgba(82,160,255,0.30)' }]}>
-              <Ionicons name={idx === 0 ? 'sparkles-outline' : 'bulb-outline'} size={20} color={isGoldTheme ? (idx === 0 ? GOLD_RICH.champagne : GOLD_RICH.antiqueGold) : idx === 0 ? '#FFD166' : t.accent} />
+            <LinearGradient key={`${insight.title}-${idx}`} colors={isGoldTheme ? (idx === 0 ? [GOLD_RICH.washStrong, GOLD_RICH.mist] : [GOLD_RICH.bronzeWash, 'rgba(0,0,0,0)']) : idx === 0 ? [statsSoftBg(themeMode, 'multipliers'), statsSoftBg(themeMode, 'multipliers', 'quiet')] : [statsSoftBg(themeMode, 'archiveMap'), statsSoftBg(themeMode, 'archiveMap', 'quiet')]} style={[styles.insightCard, { borderColor: isGoldTheme ? (idx === 0 ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet) : idx === 0 ? statsHairline(themeMode, 'multipliers') : statsHairline(themeMode, 'archiveMap') }]}>
+              <Ionicons name={idx === 0 ? 'sparkles-outline' : 'bulb-outline'} size={20} color={isGoldTheme ? (idx === 0 ? GOLD_RICH.champagne : GOLD_RICH.antiqueGold) : idx === 0 ? statsAccent(themeMode, 'multipliers') : statsAccent(themeMode, 'archiveMap')} />
               <View style={{ flex: 1 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }}>{insight.title}</Text>
                 <Text style={{ color: t.textSecond, fontSize: f.caption, lineHeight: f.caption * 1.35, marginTop: 3 }}>{insight.body}</Text>
@@ -1000,7 +1005,7 @@ export default function ActivityHeatmap365() {
               pl: "Mniej",
             })}</Text>
             {([0, 1, 2, 3, 4] as const).map((lv) => (
-              <View key={lv} style={{ width: legendApprox, height: legendApprox, borderRadius: Math.max(1, legendApprox / 5), backgroundColor: levelColor(lv, heatPalette), borderColor: t.border, borderWidth: StyleSheet.hairlineWidth }} />
+              <View key={lv} style={{ width: legendApprox, height: legendApprox, borderRadius: Math.max(1, legendApprox / 5), backgroundColor: levelColor(lv, heatPalette), borderColor: activityHairline, borderWidth: StyleSheet.hairlineWidth }} />
             ))}
             <Text style={{ color: t.textGhost, fontSize: f.caption - 2 }}>{triLang(lang, {
               ru: 'Больше',
@@ -1012,7 +1017,7 @@ export default function ActivityHeatmap365() {
               tr: "Daha çok",
               pl: "Więcej",
             })}</Text>
-            <TouchableOpacity testID="activity-365-report-open" activeOpacity={0.8} onPress={() => setReportOpen(true)} style={[styles.reportBtn, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
+            <TouchableOpacity testID="activity-365-report-open" activeOpacity={0.8} onPress={() => setReportOpen(true)} style={[styles.reportBtn, { borderColor: activityHairline, backgroundColor: t.bgSurface2 }]}>
               <Ionicons name="document-text-outline" size={14} color={t.textMuted} />
               <Text style={{ color: t.textMuted, fontSize: f.caption - 2, fontWeight: '800' }}>
                 {triLang(lang, {

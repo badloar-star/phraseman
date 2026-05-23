@@ -22,6 +22,7 @@ import {
   normalizeSpeechRate,
   type UserSettings,
 } from './user_settings_store';
+import { safeRouterBack } from './navigation_back';
 
 export {
   DEFAULT_SETTINGS,
@@ -179,8 +180,7 @@ export default function SettingsEdu() {
               style={{ width: 38, height: 38, alignItems: 'center', justifyContent: 'center' }}
               onPress={() => {
                 hapticTap();
-                if (router.canGoBack()) router.back();
-                else router.replace('/(tabs)/home' as any);
+                safeRouterBack(router, '/(tabs)/home' as any);
               }}
             >
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
@@ -232,7 +232,7 @@ export default function SettingsEdu() {
                 <Slider
                   style={{ width: '100%', height: 44 }}
                   minimumValue={0.5}
-                  maximumValue={1.0}
+                  maximumValue={2.5}
                   step={0.1}
                   value={normalizeSpeechRate(s.speechRate)}
                   onValueChange={v => setS(prev => ({ ...prev, speechRate: normalizeSpeechRate(v) }))}

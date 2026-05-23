@@ -144,13 +144,10 @@ function FlippableCard({
   cardLang,
 }: FlippableCardProps) {
   const { theme: t, themeMode, f } = useTheme();
-  const scale = useRef(new Animated.Value(1)).current;
-  const faceOpacity = useRef(new Animated.Value(1)).current;
-  const lift = useRef(new Animated.Value(0)).current;
+  const flipProgress = useRef(new Animated.Value(flipped ? 1 : 0)).current;
   const glow = useRef(new Animated.Value(0)).current;
   const pulse = useRef(new Animated.Value(0)).current;
   const previousFlipped = useRef(flipped);
-  const [showBack, setShowBack] = useState(flipped);
 
   // Idle pulse на «рубашці» — м’яке дихання
   useEffect(() => {
@@ -165,118 +162,56 @@ function FlippableCard({
     return () => loop.stop();
   }, [flipped, pulse]);
 
-  // Keep the card as one animated layer. Two rotating faces can desync on iOS
-  // and look like the card opens in separate pieces.
   useEffect(() => {
     const wasFlipped = previousFlipped.current;
     previousFlipped.current = flipped;
 
-    scale.stopAnimation();
-    faceOpacity.stopAnimation();
-    lift.stopAnimation();
+    flipProgress.stopAnimation();
     glow.stopAnimation();
 
     if (!flipped) {
-      setShowBack(false);
-      scale.setValue(1);
-      faceOpacity.setValue(1);
-      lift.setValue(0);
+      flipProgress.setValue(0);
       glow.setValue(0);
       return;
     }
 
     if (wasFlipped) {
-      setShowBack(true);
-      scale.setValue(1);
-      faceOpacity.setValue(1);
-      lift.setValue(0);
+      flipProgress.setValue(1);
       glow.setValue(0);
       return;
     }
 
-    setShowBack(false);
-    scale.setValue(1);
-    faceOpacity.setValue(1);
-    lift.setValue(0);
+    flipProgress.setValue(0);
     glow.setValue(0);
 
-    let cancelled = false;
-    let showFace: Animated.CompositeAnimation | null = null;
-    const hideFace = Animated.parallel([
-      Animated.timing(scale, {
-        toValue: 0.94,
-        duration: 130,
-        easing: Easing.out(Easing.quad),
-        useNativeDriver: true,
-      }),
-      Animated.timing(faceOpacity, {
-        toValue: 0.18,
-        duration: 120,
-        easing: Easing.out(Easing.quad),
-        useNativeDriver: true,
-      }),
-      Animated.timing(lift, {
-        toValue: -4,
-        duration: 130,
-        easing: Easing.out(Easing.quad),
-        useNativeDriver: true,
-      }),
-      Animated.timing(glow, {
+    const openFlip = Animated.parallel([
+      Animated.timing(flipProgress, {
         toValue: 1,
-        duration: 150,
-        easing: Easing.out(Easing.quad),
+        duration: 300,
+        easing: Easing.out(Easing.cubic),
         useNativeDriver: true,
       }),
-    ]);
-
-    hideFace.start(({ finished }) => {
-      if (!finished || cancelled) return;
-      setShowBack(true);
-      faceOpacity.setValue(0.18);
-
-      showFace = Animated.sequence([
-        Animated.parallel([
-          Animated.timing(scale, {
-            toValue: 1.04,
-            duration: 150,
-            easing: Easing.out(Easing.cubic),
-            useNativeDriver: true,
-          }),
-          Animated.timing(faceOpacity, {
-            toValue: 1,
-            duration: 150,
-            easing: Easing.out(Easing.cubic),
-            useNativeDriver: true,
-          }),
-          Animated.timing(lift, {
-            toValue: 0,
-            duration: 150,
-            easing: Easing.out(Easing.cubic),
-            useNativeDriver: true,
-          }),
-        ]),
-        Animated.spring(scale, {
+      Animated.sequence([
+        Animated.timing(glow, {
           toValue: 1,
-          friction: 7,
-          tension: 120,
+          duration: 130,
+          easing: Easing.out(Easing.quad),
           useNativeDriver: true,
         }),
         Animated.timing(glow, {
           toValue: 0,
-          duration: 480,
+          duration: 520,
           easing: Easing.out(Easing.quad),
           useNativeDriver: true,
         }),
-      ]);
-      showFace.start();
-    });
+      ]),
+    ]);
 
+    openFlip.start();
     return () => {
-      cancelled = true;
-      hideFace.stop();
-      showFace?.stop();
+      openFlip.stop();
     };
-  }, [flipped, scale, faceOpacity, lift, glow]);
+  }, [flipped, flipProgress, glow]);
 
   const onPress = useCallback(() => {
     if (flipped) return;
@@ -286,13 +221,29 @@ function FlippableCard({
 
   const pulseScale = pulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.03] });
   const glowOpacity = glow.interpolate({ inputRange: [0, 1], outputRange: [0, 0.55] });
+  const flipScale = flipProgress.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, 1.04, 1] });
+  const flipLift = flipProgress.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0, -5, 0] });
+  const cardBackRotate = flipProgress.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '180deg'] });
+  const cardContentRotate = flipProgress.interpolate({ inputRange: [0, 1], outputRange: ['-180deg', '0deg'] });
+  const cardBackOpacity = flipProgress.interpolate({
+    inputRange: [0, 0.499, 0.501, 1],
+    outputRange: [1, 1, 0, 0],
+  });
+  const cardContentOpacity = flipProgress.interpolate({
+    inputRange: [0, 0.499, 0.501, 1],
+    outputRange: [0, 0, 1, 1],
+  });
 
   const cardTransform = {
-    opacity: faceOpacity,
     transform: [
-      { scale: flipped ? scale : pulseScale },
-      { translateY: lift },
+      { scale: flipped ? flipScale : pulseScale },
+      { translateY: flipLift },
     ],
+  };
+  const faceChrome = {
+    backgroundColor: t.bgCard,
+    borderColor: accent,
+    ...getVolumetricShadow(themeMode, t, 2),
   };
 
   return (
@@ -312,20 +263,23 @@ function FlippableCard({
           ]}
         />
 
-        {/* One physical card surface; content swaps at the hidden midpoint. */}
         <Animated.View
           style={[
-            styles.cardFace,
-            showBack && styles.cardFaceFront,
+            styles.cardFlipShell,
             cardTransform,
-            {
-              backgroundColor: t.bgCard,
-              borderColor: accent,
-              ...getVolumetricShadow(themeMode, t, 2),
-            },
           ]}
         >
-          {showBack ? (
+          <Animated.View
+            style={[
+              styles.cardFace,
+              styles.cardFaceFront,
+              faceChrome,
+              {
+                opacity: cardContentOpacity,
+                transform: [{ perspective: 900 }, { rotateY: cardContentRotate }],
+              },
+            ]}
+          >
             <>
               <Text
                 style={[styles.cardEN, { color: t.textPrimary, fontSize: f.h3 }]}
@@ -342,7 +296,18 @@ function FlippableCard({
                 {resolveFlashcardBackText(card, cardLang)}
               </Text>
             </>
-          ) : (
+          </Animated.View>
+
+          <Animated.View
+            style={[
+              styles.cardFace,
+              faceChrome,
+              {
+                opacity: cardBackOpacity,
+                transform: [{ perspective: 900 }, { rotateY: cardBackRotate }],
+              },
+            ]}
+          >
             <>
               <LinearGradient
                 colors={[accent, t.bgCard]}
@@ -368,7 +333,7 @@ function FlippableCard({
                 })}
               </Text>
             </>
-          )}
+          </Animated.View>
         </Animated.View>
       </View>
     </Pressable>
@@ -644,7 +609,7 @@ export default function PackOpeningScreen() {
         <View style={styles.grid}>
           {cards.map((card, idx) => (
             <FlippableCard
-              key={card.id ?? `${packId}_${idx}`}
+              key={`${packId}:${card.id || 'card'}:${idx}`}
               card={card}
               index={idx}
               cardWidth={cardWidth}
@@ -762,6 +727,13 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
+  cardFlipShell: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
   cardFace: {
     position: 'absolute',
     top: 0,
@@ -774,6 +746,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 12,
     overflow: 'hidden',
+    backfaceVisibility: 'hidden',
   },
   cardFaceFront: {
     justifyContent: 'flex-start',

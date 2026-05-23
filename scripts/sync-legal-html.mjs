@@ -1,5 +1,6 @@
 /**
  * Reads canonical legal/terms_of_use_en.json + legal/privacy_policy_en.json and writes:
+ * - app/legal/*.json
  * - terms.html
  * - privacy.html
  * - admin/oauth-privacy.html
@@ -16,6 +17,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 const LEGAL = path.join(ROOT, 'legal');
+const APP_LEGAL = path.join(ROOT, 'app', 'legal');
 const KNOWLY_WWW = path.join(ROOT, 'knowly-www');
 
 function escapeHtml(s) {
@@ -243,11 +245,11 @@ function dataDeletionPage({ date }) {
         </p>
 
         <h2>How to request deletion</h2>
-        <p>Open Phraseman and go to Settings &gt; Account &gt; Delete account. Confirm the deletion in the app. The app sends an authenticated deletion request to Knowly, then signs you out and clears local app data from the device after the server confirms the request.</p>
-        <p>If you cannot access the app, email <a href="mailto:support.phraseman@gmail.com?subject=Delete%20My%20Data">support.phraseman@gmail.com</a> with subject "Delete My Data". Include the email or sign-in method you used with Phraseman. We may need to verify your request before deleting account data.</p>
+        <p>Open Phraseman and go to Settings &gt; Account &gt; Delete account. Confirm the deletion in the app. The app starts an authenticated deletion request to Knowly, then may sign you out and clear local app data from the device while server-side deletion continues in the background.</p>
+        <p>If you cannot access the app, if the in-app deletion request does not complete, or if you want follow-up, email <a href="mailto:support.phraseman@gmail.com?subject=Delete%20My%20Data">support.phraseman@gmail.com</a> with subject "Delete My Data". Include the email, sign-in method, or other account details you used with Phraseman. We may need to verify your request before deleting account data.</p>
 
         <h2>Data deleted or de-identified</h2>
-        <p>The deletion flow is designed to delete or de-identify active account data controlled by Knowly, including your Firebase Auth user, users/{stable_id} cloud profile and progress data, leaderboard/profile records, authentication links, friend/referral indexes, social and multiplayer records, community pack records, chat/report/moderation records linked to the account where deletion is appropriate, app activity/error records linked to the account, RevenueCat-linked app records controlled by Knowly, and local app data on the device.</p>
+        <p>The deletion flow is designed to delete or de-identify active account data controlled by Knowly, including your Firebase Auth user, users/{stable_id} cloud profile and progress data, leaderboard/profile records, authentication links, friend/referral indexes, social and multiplayer records, community pack records, chat/report/moderation records linked to the account where deletion is appropriate, reactions, poll votes, survey records, app activity/error records linked to the account, RevenueCat-linked app records controlled by Knowly, and local app data on the device.</p>
 
         <h2>Data that may be retained</h2>
         <p>Some records may remain where retention is required or permitted for legal compliance, payment, tax, accounting, fraud prevention, security, dispute handling, chargebacks/refunds, moderation integrity, backups, or records held by app stores and third-party processors under their own policies.</p>
@@ -282,7 +284,21 @@ function writeFileEnsured(filePath, contents) {
   fs.writeFileSync(filePath, contents, 'utf8');
 }
 
+function syncAppLegalJsons() {
+  fs.mkdirSync(APP_LEGAL, { recursive: true });
+  [
+    'terms_of_use_en.json',
+    'terms_of_use_en_ios.json',
+    'privacy_policy_en.json',
+    'privacy_policy_en_ios.json',
+  ].forEach((name) => {
+    fs.copyFileSync(path.join(LEGAL, name), path.join(APP_LEGAL, name));
+  });
+}
+
 function main() {
+  syncAppLegalJsons();
+
   const terms = JSON.parse(fs.readFileSync(path.join(LEGAL, 'terms_of_use_en.json'), 'utf8'));
   const privacy = JSON.parse(fs.readFileSync(path.join(LEGAL, 'privacy_policy_en.json'), 'utf8'));
   const termsDate = extractDate(terms);
@@ -309,7 +325,7 @@ function main() {
     dataDeletionPage({ date: privacyDate }),
   );
 
-  console.log('Wrote root, admin, and knowly-www legal HTML from legal/*.json');
+  console.log('Wrote app/legal JSON, root, admin, and knowly-www legal HTML from legal/*.json');
 }
 
 main();

@@ -75,6 +75,8 @@ const TILE_RADIUS = 18;
 const STAGGER_MS = 42;
 const STAGGER_CAP = 14;
 const ENTRANCE_DURATION = 400;
+const FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED = false;
+const FLASHCARD_HUB_REPEATING_MOTION_ENABLED = false;
 
 const HUB_CATEGORY_PLANNED_LABELS: Record<string, { ptBR: string; vi: string; id: string; tr: string; pl: string }> = {
   saved: { ptBR: 'Salvos', vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane' },
@@ -189,7 +191,7 @@ function UnownedMarketPackCard({
   const ctaScale = useSharedValue(1);
 
   useEffect(() => {
-    if (reduceMotion) {
+    if (reduceMotion || !FLASHCARD_HUB_REPEATING_MOTION_ENABLED) {
       ctaScale.value = 1;
       return;
     }
@@ -606,7 +608,7 @@ export default function FlashcardsCategoryHub({
       return (
         <Reanimated.View
           key={`mkt_${pack.id}`}
-          {...(!reduceMotion ? { entering: enteringForIndex(i) } : {})}
+          {...(!reduceMotion && FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? { entering: enteringForIndex(i) } : {})}
           style={{ width: tileW, alignItems: 'center', paddingBottom: 6, position: 'relative' }}
         >
           <HubTileShell
@@ -772,7 +774,7 @@ export default function FlashcardsCategoryHub({
       return (
         <Reanimated.View
           key={cat.id}
-          {...(!reduceMotion ? { entering: enteringForIndex(i) } : {})}
+          {...(!reduceMotion && FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? { entering: enteringForIndex(i) } : {})}
           style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
         >
           <HubTileShell
@@ -829,7 +831,7 @@ export default function FlashcardsCategoryHub({
     return (
       <Reanimated.View
         key="training"
-        {...(!reduceMotion ? { entering: enteringForIndex(i) } : {})}
+        {...(!reduceMotion && FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? { entering: enteringForIndex(i) } : {})}
         style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
       >
         <HubTileShell
@@ -881,7 +883,7 @@ export default function FlashcardsCategoryHub({
     return (
       <Reanimated.View
         key="audio"
-        {...(!reduceMotion ? { entering: enteringForIndex(i) } : {})}
+        {...(!reduceMotion && FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? { entering: enteringForIndex(i) } : {})}
         style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
       >
         <HubTileShell
@@ -1023,16 +1025,16 @@ export default function FlashcardsCategoryHub({
             </TouchableOpacity>
             {visibleCommunityPacks.length === 0 ? (
               communityPacks.length === 0 ? (
-                <Text style={{ color: isGradientSurface ? hubLabelMuted : t.textMuted, fontSize: labelSize + 2, marginBottom: 8 }}>
+                <Text style={{ width: hubBarW, color: isGradientSurface ? hubLabelMuted : t.textMuted, fontSize: labelSize + 2, textAlign: 'center', marginBottom: 8 }}>
                   {triLang(lang, {
-                    ru: 'Здесь появятся наборы после публикации и модерации.',
-                    uk: 'Тут з\'являться набори після публікації та модерації.',
-                    es: 'Aquí verás packs tras publicarlos y moderarlos.',
-                    'pt-BR': 'Os pacotes aparecerão aqui após publicação e moderação.',
-                    vi: 'Các bộ thẻ sẽ xuất hiện ở đây sau khi đăng và kiểm duyệt.',
-                    id: 'Paket akan muncul di sini setelah dipublikasikan dan dimoderasi.',
-                    tr: 'Paketler yayınlanıp incelendikten sonra burada görünür.',
-                    pl: 'Zestawy pojawią się tutaj po publikacji i moderacji.',
+                    ru: 'Вы можете создать свой собственный набор и опубликовать его для других пользователей. После модерации его смогут увидеть все пользователи.',
+                    uk: 'Ви можете створити власний набір і опублікувати його для інших користувачів. Після модерації його зможуть побачити всі користувачі.',
+                    es: 'Puedes crear tu propio pack y publicarlo para otros usuarios. Tras la moderación, todos los usuarios podrán verlo.',
+                    'pt-BR': 'Você pode criar seu próprio pacote e publicá-lo para outros usuários. Após a moderação, todos os usuários poderão vê-lo.',
+                    vi: 'Bạn có thể tạo bộ thẻ riêng và đăng cho người dùng khác. Sau khi kiểm duyệt, mọi người dùng đều có thể thấy bộ thẻ đó.',
+                    id: 'Kamu bisa membuat paket sendiri dan menerbitkannya untuk pengguna lain. Setelah moderasi, semua pengguna dapat melihatnya.',
+                    tr: 'Kendi paketini oluşturup diğer kullanıcılar için yayımlayabilirsin. Moderasyondan sonra tüm kullanıcılar görebilir.',
+                    pl: 'Możesz utworzyć własny zestaw i opublikować go dla innych użytkowników. Po moderacji zobaczą go wszyscy użytkownicy.',
                   })}
                 </Text>
               ) : null

@@ -16,6 +16,7 @@ export default function GlobalShardsEarnedHost() {
   const visible = useOverlayVisible('shardsEarned', active != null);
   const queueRef = useRef<Queued[]>([]);
   const activeRef = useRef<Queued | null>(null);
+  const pumpTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   activeRef.current = active;
 
   const pump = useCallback(() => {
@@ -26,7 +27,11 @@ export default function GlobalShardsEarnedHost() {
 
   const handleClose = useCallback(() => {
     setActive(null);
-    setTimeout(pump, 80);
+    if (pumpTimerRef.current) clearTimeout(pumpTimerRef.current);
+    pumpTimerRef.current = setTimeout(() => {
+      pumpTimerRef.current = null;
+      pump();
+    }, 80);
   }, [pump]);
 
   useEffect(() => {
@@ -38,7 +43,13 @@ export default function GlobalShardsEarnedHost() {
       queueRef.current.push({ amount: p.amount, reason });
       pump();
     });
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      if (pumpTimerRef.current) {
+        clearTimeout(pumpTimerRef.current);
+        pumpTimerRef.current = null;
+      }
+    };
   }, [lang, pump]);
 
   return (

@@ -4,11 +4,11 @@ const path = require('path');
 
 const SPLASH_BG = '#101214';
 
-function upsertStyleItem(styleXml, styleName, itemName, value) {
+function upsertStyleItem(styleXml, styleName, itemName, value, attrs = '') {
   const styleRe = new RegExp(`(<style[^>]*name="${styleName}"[^>]*>)([\\s\\S]*?)(</style>)`);
   return styleXml.replace(styleRe, (match, open, body, close) => {
     const itemRe = new RegExp(`\\s*<item\\s+name="${itemName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>[^<]*</item>`);
-    const item = `\n    <item name="${itemName}">${value}</item>`;
+    const item = `\n    <item name="${itemName}"${attrs}>${value}</item>`;
     if (itemRe.test(body)) {
       return `${open}${body.replace(itemRe, item)}\n  ${close}`;
     }
@@ -28,7 +28,10 @@ function patchStyles(stylesPath) {
   if (!fs.existsSync(stylesPath)) return;
   let xml = fs.readFileSync(stylesPath, 'utf8');
   xml = upsertStyleItem(xml, 'AppTheme', 'android:windowBackground', '@color/splashscreen_background');
-  xml = upsertStyleItem(xml, 'AppTheme', 'android:statusBarColor', '@color/splashscreen_background');
+  xml = upsertStyleItem(xml, 'AppTheme', 'android:statusBarColor', '@android:color/transparent');
+  xml = upsertStyleItem(xml, 'AppTheme', 'android:windowLightStatusBar', 'false');
+  xml = upsertStyleItem(xml, 'AppTheme', 'android:enforceStatusBarContrast', 'false', ' tools:targetApi="29"');
+  xml = upsertStyleItem(xml, 'AppTheme', 'android:windowLayoutInDisplayCutoutMode', 'shortEdges', ' tools:targetApi="28"');
   xml = upsertStyleItem(xml, 'AppTheme', 'android:navigationBarColor', '@color/splashscreen_background');
   xml = upsertStyleItem(xml, 'Theme.App.SplashScreen', 'windowSplashScreenBackground', '@color/splashscreen_background');
   xml = upsertStyleItem(xml, 'Theme.App.SplashScreen', 'windowSplashScreenAnimatedIcon', '@drawable/splashscreen_logo');

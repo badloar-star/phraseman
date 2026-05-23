@@ -189,6 +189,7 @@
     .report-uid { font-size: 11px; color: #555; font-family: monospace; }
     .report-date { font-size: 11px; color: #666; }
     .report-cat-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.4px; }
+    .cat-free_text { background: #1e293b; color: #93c5fd; }
     .cat-wrong_answer { background: #3b1a1a; color: #f87171; }
     .cat-typo { background: #1a2a3b; color: #60a5fa; }
     .cat-translation { background: #1a3b2a; color: #4ade80; }
@@ -5654,6 +5655,7 @@
     </select>
     <select id="r-filter-cat" onchange="filterReports()">
       <option value="" data-i18n-es="Todas las categorías">Все категории</option>
+      <option value="free_text" data-i18n-es="Free text">Текстовый репорт</option>
       <option value="wrong_answer" data-i18n-es="Respuesta incorrecta">Неверный ответ</option>
       <option value="typo" data-i18n-es="Errata">Опечатка</option>
       <option value="translation" data-i18n-es="Traducción">Перевод</option>
@@ -10902,6 +10904,7 @@
   let _allReports = [];
 
   const CATEGORY_LABELS = {
+    free_text: 'Текстовый репорт',
     wrong_answer: 'Неверный ответ',
     typo: 'Опечатка',
     translation: 'Перевод',
@@ -10910,9 +10913,9 @@
   };
 
   function extractCategory(context) {
-    if (!context) return 'other';
+    if (!context) return 'free_text';
     const m = context.match(/^\[([a-z_]+)\]/);
-    return m ? m[1] : 'other';
+    return m ? m[1] : 'free_text';
   }
 
   function extractContext(context) {
@@ -10921,9 +10924,14 @@
   }
 
   function catBadge(cat) {
-    const safeKey = cat && /^[a-z_]+$/.test(cat) ? cat : 'other';
-    const label = CATEGORY_LABELS[safeKey] || cat || 'other';
+    const safeKey = cat && /^[a-z_]+$/.test(cat) ? cat : 'free_text';
+    const label = CATEGORY_LABELS[safeKey] || cat || CATEGORY_LABELS.free_text;
     return `<span class="report-cat-badge cat-${safeKey}">${escapeHtml(label)}</span>`;
+  }
+
+  function reportCategoryLabel(cat) {
+    const safeKey = cat && /^[a-z_]+$/.test(cat) ? cat : 'free_text';
+    return CATEGORY_LABELS[safeKey] || cat || CATEGORY_LABELS.free_text;
   }
 
   function formatReportDate(iso) {
@@ -11100,7 +11108,7 @@
     }).join('');
   }
 
-  const SEVERITY_ORDER = { wrong_answer: 0, audio: 1, translation: 2, typo: 3, other: 4 };
+  const SEVERITY_ORDER = { wrong_answer: 0, audio: 1, translation: 2, typo: 3, free_text: 4, other: 5 };
   function severityFor(cat) {
     if (cat === 'wrong_answer') return 'high';
     if (cat === 'audio' || cat === 'translation') return 'medium';
@@ -11944,10 +11952,10 @@
       if (!auth.currentUser) return;
       await addDoc(collection(db, 'error_reports'), {
         screen: 'quiz',
-        category: 'wrong_answer',
+        category: 'free_text',
         dataId: 'quiz_easy_run_out_of',
         dataText: 'RU: закончиться\nВарианты: run away | [✓run out of] | run over | run through\nПравильный: run out of',
-        comment: 'Тестовый репорт из админки',
+        comment: 'Тестовый текстовый репорт из админки',
         uid: 'test_uid_abc123',
         userName: 'Admin Test',
         userLevel: 8,
@@ -11963,7 +11971,7 @@
         screenHeight: 852,
         pixelRatio: 3,
         appVersion: '1.6.0',
-        copyText: '=== PHRASEMAN BUG REPORT ===\ndataId:    quiz_easy_run_out_of\nscreen:    quiz\ncategory:  wrong_answer\nuser:      Admin Test #c123 | Lv8 | 1850 XP | streak 5 | premium: false | days: 14\ndevice:    ios 17.4 | iPhone 15 Pro | 393x852 @3x | app v1.6.0\nlang:      ru\ncontent:\n  RU: закончиться\n  Варианты: run away | [✓run out of] | run over | run through\n  Правильный: run out of\ncomment:   Тестовый репорт из админки\n===========================',
+        copyText: '=== PHRASEMAN BUG REPORT ===\ndataId:    quiz_easy_run_out_of\nscreen:    quiz\ncategory:  free_text\nuser:      Admin Test #c123 | Lv8 | 1850 XP | streak 5 | premium: false | days: 14\ndevice:    ios 17.4 | iPhone 15 Pro | 393x852 @3x | app v1.6.0\nlang:      ru\ncontent:\n  RU: закончиться\n  Варианты: run away | [✓run out of] | run over | run through\n  Правильный: run out of\ncomment:   Тестовый текстовый репорт из админки\n===========================',
         createdAt: new Date().toISOString(),
         status: 'new',
       });
@@ -13703,7 +13711,7 @@
         : `🐛 Ошибка: <b>${(r.dataId||r.screen||'—').replace(/</g,'&lt;')}</b>`;
       const sub = isUser
         ? `От: ${(r.reporterName||'?').replace(/</g,'&lt;')} · ${r.screen||'—'} · ${r.status}`
-        : `${(r.userName||'?').replace(/</g,'&lt;')} · ${r.screen||'—'} · ${r.category||'—'}`;
+        : `${(r.userName||'?').replace(/</g,'&lt;')} · ${r.screen||'—'} · ${reportCategoryLabel(r.category || extractCategory(r.context))}`;
       const date = (r.createdAt||'').slice(0,10);
       return `
         <div class="report-card" style="opacity:0.75;border-left:3px solid #333;cursor:pointer;transition:opacity 0.15s,border-color 0.15s"
@@ -13771,7 +13779,7 @@
         </div>` : ''}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
           ${fieldRow('Экран', r.screen)}
-          ${fieldRow('Категория', r.category)}
+          ${fieldRow('Тип репорта', reportCategoryLabel(r.category || extractCategory(r.context)))}
           ${fieldRow('Статус', r.status)}
           ${fieldRow('Дата', (r.createdAt||'').replace('T',' ').slice(0,19))}
           ${r.fixedAt ? fieldRow('Пофикшено', r.fixedAt.replace('T',' ').slice(0,19)) : ''}

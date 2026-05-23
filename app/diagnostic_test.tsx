@@ -23,6 +23,7 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { checkAchievements } from './achievements';
 import { updateMultipleTaskProgress } from './daily_tasks';
+import { safeRouterBack } from './navigation_back';
 import { loadSettings } from './settings_edu';
 import { shuffle } from './utils_shuffle';
 import { isCorrectAnswer } from '../constants/contractions';
@@ -43,9 +44,6 @@ import { getHomeMenuImages } from './home_menu_icons';
 const TIMER_SEC = 30;
 
 function examMenuImage(themeMode: ThemeMode) {
-  if (themeMode === 'gold' || themeMode === 'minimalDark') {
-    return require('../assets/images/levels/examen forest.webp');
-  }
   return getHomeMenuImages(themeMode).exam;
 }
 
@@ -725,6 +723,35 @@ const POOL: Question[] = [
 // POOL: expanded for more random 4/level draws (pickQuestions + shuffle)
 ];
 
+const STRICT_DIAGNOSTIC_POOL: Question[] = [
+  {phrase:'She ___ from Spain, but her parents are from Italy.', hintRU:'Она ___ из Испании, но её родители из Италии.', hintUK:'Вона ___ з Іспанії, але її батьки з Італії.', hintES:'Ella ___ de España, pero sus padres son de Italia.', opts:['am','is','are','be'], correct:1, level:'A1'},
+  {phrase:'I have ___ umbrella in my bag.', hintRU:'У меня в сумке ___ зонт.', hintUK:'У мене в сумці ___ парасоля.', hintES:'Tengo ___ paraguas en mi bolso.', opts:['a','an','the','-'], correct:1, level:'A1'},
+  {phrase:'These ___ my keys, not yours.', hintRU:'Это мои ключи, не твои.', hintUK:'Це мої ключі, не твої.', hintES:'Estas ___ mis llaves, no las tuyas.', opts:['is','am','are','be'], correct:2, level:'A1'},
+  {phrase:'___ your brother at home now?', hintRU:'Твой брат сейчас дома?', hintUK:'Твій брат зараз удома?', hintES:'¿Tu hermano está en casa ahora?', opts:['Is','Are','Do','Does'], correct:0, level:'A1'},
+
+  {phrase:'She usually drinks coffee, but today she ___ tea.', hintRU:'Обычно она пьёт кофе, но сегодня пьёт чай.', hintUK:'Зазвичай вона п\'є каву, але сьогодні п\'є чай.', hintES:'Normalmente toma café, pero hoy está tomando té.', opts:['drinks','is drinking','drink','drank'], correct:1, level:'A2'},
+  {phrase:"He doesn't ___ to work on Sundays.", hintRU:'Он не ходит на работу по воскресеньям.', hintUK:'Він не ходить на роботу щонеділі.', hintES:'No va al trabajo los domingos.', opts:['goes','go','went','going'], correct:1, level:'A2'},
+  {phrase:"I ___ my keys yesterday, so I couldn't open the door.", hintRU:'Вчера я потерял ключи, поэтому не смог открыть дверь.', hintUK:'Учора я загубив ключі, тому не зміг відчинити двері.', hintES:'Ayer perdí las llaves, así que no pude abrir la puerta.', opts:['lose','lost','have lost','was losing'], correct:1, level:'A2'},
+  {phrase:'There ___ a lot of people in the room five minutes ago.', hintRU:'Пять минут назад в комнате было много людей.', hintUK:'П\'ять хвилин тому в кімнаті було багато людей.', hintES:'Hace cinco minutos había mucha gente en la habitación.', opts:['is','are','was','were'], correct:3, level:'A2'},
+
+  {phrase:"I've known her ___ we were children.", hintRU:'Я знаю её с тех пор, как мы были детьми.', hintUK:'Я знаю її відтоді, як ми були дітьми.', hintES:'La conozco desde que éramos niños.', opts:['for','since','during','from'], correct:1, level:'B1'},
+  {phrase:'If it rains tomorrow, we ___ at home.', hintRU:'Если завтра пойдёт дождь, мы останемся дома.', hintUK:'Якщо завтра піде дощ, ми залишимося вдома.', hintES:'Si mañana llueve, nos quedaremos en casa.', opts:['stay','stayed','will stay','would stay'], correct:2, level:'B1'},
+  {phrase:'This is the hotel ___ we stayed last summer.', hintRU:'Это отель, где мы останавливались прошлым летом.', hintUK:'Це готель, де ми зупинялися минулого літа.', hintES:'Este es el hotel donde nos alojamos el verano pasado.', opts:['which','where','who','whose'], correct:1, level:'B1'},
+  {phrase:'I was cooking when somebody ___ the doorbell.', hintRU:'Я готовил, когда кто-то позвонил в дверь.', hintUK:'Я готував, коли хтось подзвонив у двері.', hintES:'Estaba cocinando cuando alguien llamó al timbre.', opts:['rings','rang','has rung','was ringing'], correct:1, level:'B1'},
+
+  {phrase:'By the time we arrived, the film ___.', hintRU:'К тому моменту, как мы приехали, фильм уже начался.', hintUK:'Коли ми приїхали, фільм уже почався.', hintES:'Cuando llegamos, la película ya había empezado.', opts:['started','has started','had started','was starting'], correct:2, level:'B2'},
+  {phrase:'I wish I ___ more careful yesterday.', hintRU:'Жаль, что вчера я не был осторожнее.', hintUK:'Шкода, що вчора я не був обережнішим.', hintES:'Ojalá hubiera sido más cuidadoso ayer.', opts:['am','was','had been','would be'], correct:2, level:'B2'},
+  {phrase:'The report is expected ___ by Friday.', hintRU:'Ожидается, что отчёт будет готов к пятнице.', hintUK:'Очікується, що звіт буде готовий до п\'ятниці.', hintES:'Se espera que el informe esté terminado para el viernes.', opts:['finish','to finish','to be finished','finished'], correct:2, level:'B2'},
+  {phrase:'Hardly had we sat down ___ the lights went out.', hintRU:'Едва мы сели, как погас свет.', hintUK:'Ледве ми сіли, як згасло світло.', hintES:'Apenas nos sentamos, se apagaron las luces.', opts:['than','when','then','while'], correct:1, level:'B2'},
+
+  {phrase:'Had I known the truth, I ___ differently.', hintRU:'Если бы я знал правду, я бы поступил иначе.', hintUK:'Якби я знав правду, я б вчинив інакше.', hintES:'Si hubiera sabido la verdad, habría actuado de otra manera.', opts:['will act','would act','would have acted','had acted'], correct:2, level:'C1'},
+  {phrase:'Not until the meeting ended ___ what had happened.', hintRU:'Только когда встреча закончилась, я понял, что произошло.', hintUK:'Лише коли зустріч завершилася, я зрозумів, що сталося.', hintES:'Solo cuando terminó la reunión entendí lo que había pasado.', opts:['I understood','did I understand','had I understood','I had understood'], correct:1, level:'C1'},
+  {phrase:'The proposal was rejected, ___ surprised everyone in the room.', hintRU:'Предложение отклонили, что удивило всех в комнате.', hintUK:'Пропозицію відхилили, що здивувало всіх у кімнаті.', hintES:'La propuesta fue rechazada, lo cual sorprendió a todos en la sala.', opts:['what','that','which','who'], correct:2, level:'C1'},
+  {phrase:'Rarely ___ such a convincing argument.', hintRU:'Редко я слышал такой убедительный аргумент.', hintUK:'Рідко я чув такий переконливий аргумент.', hintES:'Rara vez he oído un argumento tan convincente.', opts:['I have heard','have I heard','I had heard','did I heard'], correct:1, level:'C1'},
+];
+
+const ACTIVE_DIAGNOSTIC_POOL = STRICT_DIAGNOSTIC_POOL;
+
 // Result thresholds (based on 20 questions)
 const LEVEL_RESULTS = [
   {min:0,  level:'A1', ru:'Начальный ориентир',    uk:'Початковий орієнтир',    es:'Nivel inicial (orientativo)', 'pt-BR':'Nível inicial (orientativo)', vi:'Mức khởi đầu (tham khảo)', id:'Level awal (orientatif)', tr:'Başlangıç seviyesi (tahmini)', pl:'Poziom początkowy (orientacyjnie)',
@@ -844,7 +871,7 @@ function diagnosticDateLocale(lang: Lang): string {
 const pickQuestions = () => {
   const result: Question[] = [];
   for (const lv of ['A1','A2','B1','B2','C1'] as const) {
-    const lvPool = shuffle(POOL.filter(q => q.level === lv));
+    const lvPool = shuffle(ACTIVE_DIAGNOSTIC_POOL.filter(q => q.level === lv));
     result.push(...lvPool.slice(0, 4));
   }
   return result;
@@ -944,12 +971,21 @@ export default function DiagnosticTest() {
   const handleTimeUpRef = useRef<() => void>(() => {});
   const timerAnim   = useRef(new Animated.Value(1)).current;
   const timerRef    = useRef<ReturnType<typeof setInterval> | null>(null);
+  const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const timeUpFired = useRef(false);
   const answersRef  = useRef<boolean[]>([]);
   const userNameRef = useRef<string>('');
 
+  const clearAutoAdvanceTimer = () => {
+    if (autoAdvanceTimerRef.current) {
+      clearTimeout(autoAdvanceTimerRef.current);
+      autoAdvanceTimerRef.current = null;
+    }
+  };
+
   const tryStartDiagnosticQuiz = async () => {
     hapticTap();
+    clearAutoAdvanceTimer();
     if (frenchDiagnosticBlocked) {
       void trackFeatureBlocked('diagnostic', 'start', 'french_diagnostic_source_gate', { studyTarget }, 'diagnostic_test');
       return;
@@ -969,6 +1005,7 @@ export default function DiagnosticTest() {
 
   const tryRestartDiagnosticQuiz = async () => {
     hapticTap();
+    clearAutoAdvanceTimer();
     if (frenchDiagnosticBlocked) {
       void trackFeatureBlocked('diagnostic', 'restart', 'french_diagnostic_source_gate', { studyTarget }, 'diagnostic_test');
       return;
@@ -1094,6 +1131,7 @@ export default function DiagnosticTest() {
   }, [idx, phase, questions]);
 
   const advance = (newScore: number) => {
+    clearAutoAdvanceTimer();
     if (idx + 1 >= questions.length) {
       const res = getResult(newScore, questions, answersRef.current);
       const lastPayload = {
@@ -1124,6 +1162,14 @@ export default function DiagnosticTest() {
     }
   };
 
+  const scheduleDiagnosticAdvance = (newScore: number, delayMs: number) => {
+    clearAutoAdvanceTimer();
+    autoAdvanceTimerRef.current = setTimeout(() => {
+      autoAdvanceTimerRef.current = null;
+      advance(newScore);
+    }, delayMs);
+  };
+
   const stopQuestionTimer = () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
@@ -1131,6 +1177,11 @@ export default function DiagnosticTest() {
     }
     timerAnim.stopAnimation();
   };
+
+  useEffect(() => () => {
+    clearAutoAdvanceTimer();
+    stopQuestionTimer();
+  }, []);
 
   /** Время вышло: без выбора варианта и без показа правильного ответа — сразу дальше, как неверно. */
   const handleTimeUp = () => {
@@ -1152,7 +1203,7 @@ export default function DiagnosticTest() {
     answersRef.current = [...answersRef.current, false];
     const qq = questions[idx];
     if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
-    setTimeout(() => advance(score), 900);
+    scheduleDiagnosticAdvance(score, 900);
   };
   handleSkipRef.current = handleSkip;
   handleTimeUpRef.current = handleTimeUp;
@@ -1182,7 +1233,7 @@ export default function DiagnosticTest() {
       const qq = questions[idx];
       if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
     }
-    if (autoAdvance) setTimeout(() => advance(ns), 1500);
+    if (autoAdvance) scheduleDiagnosticAdvance(ns, 1500);
   };
 
   const handleTypeSubmit = () => {
@@ -1208,7 +1259,7 @@ export default function DiagnosticTest() {
       const qq = questions[idx];
       if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
     }
-    if (autoAdvance) setTimeout(() => advance(ns), 1500);
+    if (autoAdvance) scheduleDiagnosticAdvance(ns, 1500);
   };
 
   const handleBuildSubmit = () => {
@@ -1233,14 +1284,14 @@ export default function DiagnosticTest() {
       const qq = questions[idx];
       if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
     }
-    if (autoAdvance) setTimeout(() => advance(ns), 1500);
+    if (autoAdvance) scheduleDiagnosticAdvance(ns, 1500);
   };
 
   if (frenchDiagnosticBlocked) {
     return (
       <FrenchDiagnosticUnavailable
         lang={lang}
-        onBack={() => router.back()}
+        onBack={() => safeRouterBack(router)}
         onLessons={() => router.replace('/(tabs)/lessons' as any)}
         sx={sx}
         t={t}
@@ -1262,7 +1313,7 @@ export default function DiagnosticTest() {
               <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center' }}>
                 {diagnosticUi.loadError}
               </Text>
-              <TouchableOpacity onPress={() => router.back()} style={{ marginTop: 20 }}>
+              <TouchableOpacity onPress={() => safeRouterBack(router)} style={{ marginTop: 20 }}>
                 <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '700' }}>
                   {diagnosticUi.back}
                 </Text>
@@ -1285,7 +1336,7 @@ export default function DiagnosticTest() {
       <ContentWrap>
       <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
         {!isFromOnboarding && (
-          <TouchableOpacity onPress={() => router.back()}>
+          <TouchableOpacity onPress={() => safeRouterBack(router)}>
             <Ionicons name="chevron-back" size={28} color={sx.primary} />
           </TouchableOpacity>
         )}
@@ -1491,7 +1542,7 @@ export default function DiagnosticTest() {
             {s.diagnostic.again}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)' as any); }}>
+        <TouchableOpacity style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}>
           <Text style={{ color: sx.second, fontSize: f.body }}>{s.diagnostic.backHome}</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -1517,13 +1568,13 @@ export default function DiagnosticTest() {
         <ContentWrap>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15 }}>
           {isFromOnboarding ? (
-            <TouchableOpacity onPress={() => { AsyncStorage.removeItem(diagnosticOpenFlagKey(studyTarget)); router.replace('/(tabs)' as any); }} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+            <TouchableOpacity onPress={() => { AsyncStorage.removeItem(diagnosticOpenFlagKey(studyTarget)); router.replace('/(tabs)/home' as any); }} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
               <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '600' }}>
                 {diagnosticUi.cancel}
               </Text>
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity onPress={() => router.back()}>
+            <TouchableOpacity onPress={() => safeRouterBack(router)}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TouchableOpacity>
           )}

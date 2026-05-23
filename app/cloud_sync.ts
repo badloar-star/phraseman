@@ -556,6 +556,16 @@ let lastActivityStampAt = 0;
 let stableAuthLinkPromise: Promise<boolean> | null = null;
 let stableAuthLinkKey = '';
 
+function isJestRuntime(): boolean {
+  return typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
+}
+
+function setCloudSyncTimer(callback: () => void, ms: number): ReturnType<typeof setTimeout> {
+  const timer = setTimeout(callback, ms);
+  (timer as any)?.unref?.();
+  return timer;
+}
+
 function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
   const deadline = new Promise<never>((_, reject) => {
@@ -820,6 +830,18 @@ function removeCloudOnlyDailyTaskSnapshots(data: Record<string, string | null>):
   delete data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY];
 }
 
+function dailyLessonHelperKeysForToday(todayKey: string = getTodayKey()): string[] {
+  return [
+    fiftyFiftyUsageKey(todayKey, 'en'),
+    fiftyFiftyUsageKey(todayKey, 'fr'),
+    lessonBonusHintsKey(todayKey, 'en'),
+    lessonBonusHintsKey(todayKey, 'fr'),
+    ...SYNC_STUDY_TARGETS.flatMap((target) =>
+      GRAMMAR_HINT_STORAGE_IDS.map((id) => grammarHintSeenKey(id, target)),
+    ),
+  ];
+}
+
 async function addTodayDailyTaskSnapshots(data: Record<string, string | null>): Promise<void> {
   const todayKey = getTodayKey();
   const [englishTodayTasks, frenchTodayTasks] = await Promise.all([
@@ -833,6 +855,13 @@ async function addTodayDailyTaskSnapshots(data: Record<string, string | null>): 
   if (frenchTodayTasks) {
     data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY] = frenchTodayTasks;
     data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY] = todayKey;
+  }
+  const dailyLessonHelperKeys = dailyLessonHelperKeysForToday(todayKey);
+  const dailyLessonHelperValues = await AsyncStorage.multiGet(dailyLessonHelperKeys);
+  for (const [key, value] of dailyLessonHelperValues) {
+    if (value !== null && value !== undefined && value !== '') {
+      data[key] = value;
+    }
   }
 }
 
@@ -978,7 +1007,7 @@ export function getCurrentUid(): string | null {
 
 // ── Синхронизировать прогресс в облако ───────────────────────────────────────
 // Вызывать после важных событий: завершение урока, изменение XP, streak и т.д.
-export async function syncToCloud(options?: { forceNow?: boolean }): Promise<void> {
+export async function syncToCloud(options?: { forceNow?: boolean; deferMs?: number }): Promise<void> {
   pendingSync = true;
   if (syncInFlight) return;
   if (options?.forceNow) {
@@ -989,6 +1018,16 @@ export async function syncToCloud(options?: { forceNow?: boolean }): Promise<voi
     await runSyncNow();
     return;
   }
+  if (isJestRuntime()) return;
+  if (options?.deferMs !== undefined) {
+    if (syncTimer) return;
+    const waitMs = Math.max(0, Math.floor(options.deferMs));
+    syncTimer = setCloudSyncTimer(() => {
+      syncTimer = null;
+      runSyncNow().catch(() => {});
+    }, waitMs);
+    return;
+  }
   const now = Date.now();
   const elapsed = now - lastSuccessfulSyncAt;
   if (elapsed >= SYNC_DEBOUNCE_MS) {
@@ -997,7 +1036,7 @@ export async function syncToCloud(options?: { forceNow?: boolean }): Promise<voi
   }
   if (syncTimer) return;
   const waitMs = Math.max(500, SYNC_DEBOUNCE_MS - elapsed);
-  syncTimer = setTimeout(() => {
+  syncTimer = setCloudSyncTimer(() => {
     syncTimer = null;
     runSyncNow().catch(() => {});
   }, waitMs);
@@ -1011,7 +1050,7 @@ async function runSyncNow(): Promise<void> {
       syncInFlight = null;
       if (pendingSync) {
         if (syncTimer) clearTimeout(syncTimer);
-        syncTimer = setTimeout(() => {
+        syncTimer = setCloudSyncTimer(() => {
           syncTimer = null;
           runSyncNow().catch(() => {});
         }, SYNC_DEBOUNCE_MS);
@@ -1366,6 +1405,12 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
         restoredDailyTaskTargets.push('fr');
       }
     }
+    for (const key of dailyLessonHelperKeysForToday()) {
+      const value = cloudData[key];
+      if (value === null || value === undefined) continue;
+      const localValue = await AsyncStorage.getItem(key);
+      if (!localValue) stickyPairs.push([key, cloudProgressStorageValue(key, value)]);
+    }
     const cloudLeaguePending = cloudData['league_result_pending'];
     const cloudLeaguePendingSig = leagueResultSignature(cloudLeaguePending);
     const localConsumedSig = await AsyncStorage.getItem('league_result_consumed_sig');
@@ -1453,6 +1498,12 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     const localDailyForMerge = await AsyncStorage.getItem(dk);
     pairs.push([dk, mergeDailyTasksProgressForRestore(localDailyForMerge, String(frenchDailyBlob))]);
     fullRestoreDailyTargets.push('fr');
+  }
+  for (const key of dailyLessonHelperKeysForToday()) {
+    const value = cloudData[key];
+    if (value !== null && value !== undefined) {
+      pairs.push([key, cloudProgressStorageValue(key, value)]);
+    }
   }
   if (pairs.length > 0) {
     await AsyncStorage.multiSet(pairs);

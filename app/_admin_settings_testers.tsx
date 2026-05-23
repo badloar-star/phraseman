@@ -19,6 +19,7 @@ import { useEnergy } from '../components/EnergyContext';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang } from '../constants/i18n';
+import type { ThemeMode } from '../constants/theme';
 import { configureAccordionLayout } from '../constants/layoutAnimation';
 import { AVATARS, unlockAllFrames } from '../constants/avatars';
 import AvatarView from '../components/AvatarView';
@@ -104,7 +105,6 @@ import {
 import {
   DAILY_FREE_SESSION_KEY,
 } from './trainer_session';
-import { lessonCycleEndIntroShownKey } from './target_storage_keys';
 import { clearTrainerStore, devSeedTrainerScenario } from './trainer_store';
 import { devSeedActivity365Scenario } from './activity_365_analytics';
 import { getTopMistakePhrases, clearMistakeLog, logMistake, getMistakeLogDebugSnapshot } from './mistake_log';
@@ -142,6 +142,7 @@ import {
   frenchPersonalPracticeGateCopy,
   personalPracticeCoachEnabledForTarget,
 } from './personal_practice_target_gate';
+import { safeRouterBack } from './navigation_back';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -176,6 +177,63 @@ const RED_BG = '#190000';
 const RED_BORDER = 'rgba(255,32,32,0.58)';
 const RED_BORDER_SOFT = 'rgba(255,32,32,0.34)';
 const DAILY_TASK_QA_PACKS = getDailyTaskAdminPacks(3);
+const ADMIN_DAILY_TASK_REWARD_TOAST_PREVIEWS: Array<{
+  themeMode: ThemeMode;
+  icon: string;
+  label: string;
+  sub: string;
+  taskTitle: string;
+  xpBase: number;
+}> = [
+  {
+    themeMode: 'dark',
+    icon: 'leaf-outline',
+    label: 'Daily reward toast — dark',
+    sub: 'Forest green reward style, preview-only',
+    taskTitle: 'Dark theme daily task preview',
+    xpBase: 35,
+  },
+  {
+    themeMode: 'neon',
+    icon: 'flash-outline',
+    label: 'Daily reward toast — neon',
+    sub: 'Lime HUD style, preview-only',
+    taskTitle: 'Neon theme daily task preview',
+    xpBase: 40,
+  },
+  {
+    themeMode: 'gold',
+    icon: 'trophy-outline',
+    label: 'Daily reward toast — gold',
+    sub: 'Black-gold premium style, preview-only',
+    taskTitle: 'Gold theme daily task preview',
+    xpBase: 55,
+  },
+  {
+    themeMode: 'coral',
+    icon: 'flame-outline',
+    label: 'Daily reward toast — coral',
+    sub: 'Warm coral burst style, preview-only',
+    taskTitle: 'Coral theme daily task preview',
+    xpBase: 45,
+  },
+  {
+    themeMode: 'minimalLight',
+    icon: 'ribbon-outline',
+    label: 'Daily reward toast — minimal light',
+    sub: 'Clean paper style, preview-only',
+    taskTitle: 'Minimal light daily task preview',
+    xpBase: 30,
+  },
+  {
+    themeMode: 'minimalDark',
+    icon: 'diamond-outline',
+    label: 'Daily reward toast — minimal dark',
+    sub: 'Graphite-blue style, preview-only',
+    taskTitle: 'Minimal dark daily task preview',
+    xpBase: 50,
+  },
+];
 const ADMIN_RESET_LESSON_IDS = Array.from({ length: 32 }, (_, i) => i + 1);
 const ADMIN_RESET_EXAM_LEVEL_IDS = ['A1', 'A2', 'B1', 'B2'] as const;
 const ADMIN_RESET_LEGACY_NUMERIC_EXAM_IDS = ['1', '2', '3', '4'] as const;
@@ -580,8 +638,8 @@ export default function SettingsTestersFunctions() {
         nav.dismissAll();
       } else if (typeof nav.canDismiss === 'function' && nav.canDismiss()) {
         nav.dismiss?.(1);
-      } else if (router.canGoBack()) {
-        router.back();
+      } else {
+        safeRouterBack(router);
       }
     } catch {
       // keep going to the replace retries
@@ -652,6 +710,7 @@ export default function SettingsTestersFunctions() {
     shardsEarned: false,
     reportModal: false,
     actionToast: false,
+    dailyTaskRewardToast: false,
     updateModal: false,
     releaseNotes: false,
     globalBroadcast: false,
@@ -789,7 +848,7 @@ export default function SettingsTestersFunctions() {
       { id: 'admin_league_shards', kind: 'shards', rarity: 'common', amount: 24 },
       { id: 'admin_league_energy', kind: 'energy_fast_recovery', rarity: 'rare', recoveryMs: 5 * 60 * 1000 },
       { id: 'admin_league_xp', kind: 'xp_boost', rarity: 'rare', multiplier: 2, uses: 3 },
-      { id: 'admin_league_aura', kind: 'avatar_aura', rarity: 'epic', auraId: 'aura-gold' },
+      { id: 'admin_league_aura', kind: 'avatar_aura', rarity: 'epic', auraId: 'aura-violet' },
       { id: 'admin_league_avatar', kind: 'custom_avatar', rarity: 'epic', customAvatarId: 'future-league-avatar' },
       { id: 'admin_league_gold', kind: 'gold_theme', rarity: 'legendary' },
     ];
@@ -1115,6 +1174,18 @@ export default function SettingsTestersFunctions() {
     markQa('matchFoundToast');
   };
 
+  const showDailyTaskRewardToastPreview = (previewThemeMode: ThemeMode) => {
+    const preview = ADMIN_DAILY_TASK_REWARD_TOAST_PREVIEWS.find((item) => item.themeMode === previewThemeMode)
+      ?? ADMIN_DAILY_TASK_REWARD_TOAST_PREVIEWS[0];
+    if (!preview) return;
+    emitAppEvent('daily_task_reward_toast_preview', {
+      themeMode: preview.themeMode,
+      taskTitle: preview.taskTitle,
+      xpBase: preview.xpBase,
+    });
+    markQa('dailyTaskRewardToast');
+  };
+
   const showVipSurveyNotificationPreview = async () => {
     if (vipSurveyPreviewBusyRef.current) return;
     vipSurveyPreviewBusyRef.current = true;
@@ -1216,6 +1287,9 @@ export default function SettingsTestersFunctions() {
           );
           markQa('actionToast');
         }, 400);
+        break;
+      case 'dailyTaskRewardToast':
+        showDailyTaskRewardToastPreview(themeMode);
         break;
       case 'updateModal':
         setUpdateModalVisible(true);
@@ -1693,25 +1767,59 @@ export default function SettingsTestersFunctions() {
 
   const performStripPremium = async () => {
     try {
-      await AsyncStorage.multiSet([['premium_active', 'false'], ['premium_plan', ''], ['tester_no_limits', 'false'], ['tester_energy_disabled', 'false'], ['tester_no_premium', 'true']]);
+      const stripAt = String(Date.now());
+      await AsyncStorage.multiSet([
+        ['premium_active', 'false'],
+        ['premium_plan', ''],
+        ['tester_no_limits', 'false'],
+        ['tester_energy_disabled', 'false'],
+        ['tester_no_premium', 'true'],
+        ['vip_active', 'false'],
+        ['vip_plan', ''],
+        ['vip_from', '0'],
+        ['vip_until', stripAt],
+        ['vip_admin_override', 'false'],
+        ['vip_admin_grant_at', ''],
+      ]);
+      const uid = await ensureAnonUser().catch(() => null);
+      if (uid) {
+        await ensureStableAuthLinkForStableId(uid).catch(() => false);
+        const db = getAdminFirestoreDb();
+        if (db) {
+          await db.collection('users').doc(uid).set({
+            progress: {
+              vip_active: 'false',
+              vip_plan: '',
+              vip_from: '0',
+              vip_until: stripAt,
+              vip_admin_override: 'false',
+              vip_revoked_at: stripAt,
+            },
+            updatedAt: Date.now(),
+          }, { merge: true });
+        }
+      }
       await recomputeEarnedUnlocks(studyTarget);
       invalidatePremiumCache();
       setNoLimitsEnabled(false);
       setEnergyDisabled(false);
       setNoPremiumEnabled(true);
+      await consumeVipCelebration(stripAt).catch(() => {});
       emitAppEvent('premium_deactivated');
+      emitAppEvent('vip_deactivated');
+      emitAppEvent('premium_access_changed', { active: false, source: 'none' });
       await reloadEnergy();
       emitAppEvent(
         'action_toast',
         actionToastTri('success', {
-          ru: 'Премиум снят',
-          uk: 'Преміум знято',
-          es: 'Premium desactivado.',
-          'pt-BR': 'Premium desativado',
-          vi: 'Đã tắt Premium',
-          id: 'Premium dinonaktifkan',
-          tr: 'Premium devre dışı bırakıldı',
-          pl: 'Premium wyłączony',
+          ru: 'Премиум и VIP сняты',
+          uk: 'Преміум і VIP знято',
+          es: 'Premium y VIP desactivados.',
+          'pt-BR': 'Premium e VIP desativados',
+          vi: 'Đã tắt Premium và VIP',
+          id: 'Premium dan VIP dinonaktifkan',
+          tr: 'Premium ve VIP devre dışı bırakıldı',
+          pl: 'Premium i VIP wyłączone',
         }),
       );
     } catch {
@@ -1844,8 +1952,7 @@ export default function SettingsTestersFunctions() {
         {/* Header */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: RED_BORDER, backgroundColor: ADMIN_HEADER_BG }}>
           <TouchableOpacity onPress={() => {
-            if (router.canGoBack()) router.back();
-            else router.replace('/(tabs)/home' as any);
+            safeRouterBack(router);
           }}>
             <Ionicons name="chevron-back" size={28} color={RED} />
           </TouchableOpacity>
@@ -2101,7 +2208,7 @@ export default function SettingsTestersFunctions() {
             <ButtonRow
               icon="diamond-outline"
               label="Снять премиум"
-              sub="Переключить аккаунт в режим без премиума"
+              sub="Переключить аккаунт в режим без премиума и снять VIP, если он есть"
               danger
               t={t} f={f} doHaptic={doHaptic}
               onPress={() => {
@@ -2400,7 +2507,7 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── 3. МОДАЛКИ УРОКОВ ── */}
-          <AccordionSection id="lesson_modals" icon="school-outline" title="Модалки — Уроки" badge={7}
+          <AccordionSection id="lesson_modals" icon="school-outline" title="Модалки — Уроки" badge={5}
             open={openSection === 'lesson_modals'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             {([5, 4, 3, 2] as const).map(score => (
               <ButtonRow key={`lc_${score}`} icon="school-outline"
@@ -2409,29 +2516,6 @@ export default function SettingsTestersFunctions() {
                 onPress={() => router.push({ pathname: '/lesson_complete', params: { id: '2', unlocked: score === 5 ? '1' : '0' } } as any)}
                 t={t} f={f} doHaptic={doHaptic} />
             ))}
-            <ButtonRow icon="refresh-circle-outline" label="↺ Сбросить флаг модалки цикла"
-              sub="Чтобы модалка показалась снова при следующем завершении"
-              onPress={async () => {
-                await AsyncStorage.multiRemove([lessonCycleEndIntroShownKey('en'), lessonCycleEndIntroShownKey('fr')]);
-                emitAppEvent(
-                  'action_toast',
-                  actionToastTri('success', {
-                    ru: 'Флаг сброшен',
-                    uk: 'Прапор скинуто',
-                    es: 'Marcador reiniciado.',
-                    'pt-BR': 'Marcador reiniciado.',
-                    vi: 'Đã đặt lại cờ.',
-                    id: 'Penanda direset.',
-                    tr: 'Bayrak sıfırlandı.',
-                    pl: 'Flaga zresetowana.',
-                  }),
-                );
-              }}
-              t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="map-outline" label="🗺️ Карта прогресса"
-              sub="Открыть экран карты уровней"
-              onPress={() => router.push('/progress_map' as any)}
-              t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="ribbon-outline" label="🎓 Сертификат Профессора Лингмана — превью"
               sub="Редактируемые поля + текстовый share + засеять/удалить мой сертификат"
               onPress={() => setCertificatePreviewVisible(true)}
@@ -2536,10 +2620,6 @@ export default function SettingsTestersFunctions() {
               }}
               t={t} f={f} doHaptic={doHaptic}
             />
-            <ButtonRow icon="diamond-outline" label="💎 Экран успеха Premium"
-              sub="Красивый экран после покупки"
-              onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'generic', _preview_success: '1' } } as any)}
-              t={t} f={f} doHaptic={doHaptic} />
             {PREMIUM_PREVIEW_CONTEXTS.map(({ label, sub, params: p }) => (
               <ButtonRow
                 key={p.context + JSON.stringify(p)}
@@ -3426,7 +3506,7 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── 5. ТОСТЫ И НОТИФИКАЦИИ ── */}
-          <AccordionSection id="toasts" icon="notifications-outline" title="Тосты и нотификации" badge={ALL_ACHIEVEMENTS.slice(0, 5).length + 1}
+          <AccordionSection id="toasts" icon="notifications-outline" title="Тосты и нотификации" badge={ALL_ACHIEVEMENTS.slice(0, 5).length + 1 + ADMIN_DAILY_TASK_REWARD_TOAST_PREVIEWS.length}
             open={openSection === 'toasts'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             {ALL_ACHIEVEMENTS.slice(0, 5).map(ach => (
               <ButtonRow key={`ach_${ach.id}`} icon="star-half-outline"
@@ -3439,6 +3519,19 @@ export default function SettingsTestersFunctions() {
               sub="Показать тост с наградой"
               onPress={() => { const a = ALL_ACHIEVEMENTS.find(a => a.id === 'streak_7') ?? ALL_ACHIEVEMENTS[0]; if (a) showAchievement(a); }}
               t={t} f={f} doHaptic={doHaptic} />
+            {ADMIN_DAILY_TASK_REWARD_TOAST_PREVIEWS.map((preview) => (
+              <ButtonRow
+                key={`daily_reward_toast_${preview.themeMode}`}
+                icon={preview.icon}
+                label={preview.label}
+                sub={preview.sub}
+                testID={`admin-daily-task-reward-toast-${preview.themeMode}`}
+                onPress={() => showDailyTaskRewardToastPreview(preview.themeMode)}
+                t={t}
+                f={f}
+                doHaptic={doHaptic}
+              />
+            ))}
           </AccordionSection>
 
           {/* ── 5b. МЕДАЛЬНЫЕ ТОСТЫ (premium MedalToast) ── */}
@@ -3540,7 +3633,11 @@ export default function SettingsTestersFunctions() {
           <AccordionSection id="onboarding" icon="play-circle-outline" title="Онбординг" badge={3}
             open={openSection === 'onboarding'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             <ButtonRow icon="play-circle-outline" label="👋 Онбординг — просмотреть повторно"
-              onPress={async () => { await AsyncStorage.multiRemove(['onboarding_done', 'onboarding_step']); emitAppEvent('account_deleted'); }}
+              onPress={async () => {
+                await AsyncStorage.multiRemove(['onboarding_done', 'onboarding_step']);
+                emitAppEvent('account_deleted');
+                router.replace('/(tabs)/home' as any);
+              }}
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="flash-outline" label="⚡ Онбординг энергии"
               sub="Показать подсказку про энергию"
@@ -3748,6 +3845,7 @@ export default function SettingsTestersFunctions() {
               ['shardsEarned', 'ShardsEarnedModal / GlobalShardsEarnedHost'],
               ['reportModal', 'ReportUserModal preview'],
               ['actionToast', 'ActionToast (all types)'],
+              ['dailyTaskRewardToast', 'Daily task reward toast themes'],
               ['updateModal', 'UpdateModal'],
               ['releaseNotes', 'ReleaseNotesModal'],
               ['globalBroadcast', 'GlobalBroadcastModal preview-only'],
@@ -3788,6 +3886,7 @@ export default function SettingsTestersFunctions() {
                 shardsEarned: false,
                 reportModal: false,
                 actionToast: false,
+                dailyTaskRewardToast: false,
                 updateModal: false,
                 releaseNotes: false,
                 globalBroadcast: false,
@@ -3929,6 +4028,7 @@ export default function SettingsTestersFunctions() {
         minRequired={noEnergyPreview?.minRequired}
         paywallContext={noEnergyPreview?.paywallContext ?? 'no_energy'}
         qaForceShardCta={noEnergyPreview?.qaForceShardCta === true}
+        qaIgnorePremiumAccess
       />
       <ArenaLimitModal
         visible={arenaLimitMode !== null}
@@ -4155,14 +4255,14 @@ export default function SettingsTestersFunctions() {
   pl: 'Usunąć Premium?',
 })}
         message={triLang(lang, {
-  uk: 'Акаунт буде переведено в режим без преміуму. RevenueCat не буде змінено.',
-  ru: 'Аккаунт будет переведён в режим без премиума. RevenueCat не будет затронут.',
-  es: 'La cuenta pasará a modo sin Premium. RevenueCat no se altera.',
-  "pt-BR": 'A conta será colocada no modo sem Premium. O RevenueCat não será alterado.',
-  vi: 'Tài khoản sẽ chuyển sang chế độ không Premium. RevenueCat không bị thay đổi.',
-  id: 'Akun akan dipindahkan ke mode tanpa Premium. RevenueCat tidak diubah.',
-  tr: 'Hesap Premium olmayan moda alınır. RevenueCat değişmez.',
-  pl: 'Konto przejdzie w tryb bez Premium. RevenueCat nie zostanie zmieniony.',
+  uk: 'Акаунт буде переведено в режим без преміуму. VIP теж буде знято, якщо він є. RevenueCat не буде змінено.',
+  ru: 'Аккаунт будет переведён в режим без премиума. VIP тоже будет снят, если он есть. RevenueCat не будет затронут.',
+  es: 'La cuenta pasará a modo sin Premium. VIP también se quitará si existe. RevenueCat no se altera.',
+  "pt-BR": 'A conta será colocada no modo sem Premium. O VIP também será removido, se existir. O RevenueCat não será alterado.',
+  vi: 'Tài khoản sẽ chuyển sang chế độ không Premium. VIP cũng sẽ bị gỡ nếu có. RevenueCat không bị thay đổi.',
+  id: 'Akun akan dipindahkan ke mode tanpa Premium. VIP juga akan dihapus jika ada. RevenueCat tidak diubah.',
+  tr: 'Hesap Premium olmayan moda alınır. Varsa VIP de kaldırılır. RevenueCat değişmez.',
+  pl: 'Konto przejdzie w tryb bez Premium. VIP też zostanie usunięty, jeśli istnieje. RevenueCat nie zostanie zmieniony.',
 })}
         cancelLabel={triLang(lang, {
   uk: 'Скасувати',
@@ -4306,12 +4406,13 @@ export default function SettingsTestersFunctions() {
           anim={medalPreviewAnim}
           bg={t.bgCard}
           isLightTheme={isLightTheme}
+          themeMode={themeMode}
           lang={lang}
           spanishUiActive={lang === 'es'}
         />
       )}
 
-      {/* ─── Active monetization preview modals (admin only) ─── */}
+          {/* ─── Active monetization preview modals (admin only) ─── */}
       <PremiumCelebrationModal
         visible={softMonetizationPreview === 'celebration'}
         onClose={() => setSoftMonetizationPreview(null)}

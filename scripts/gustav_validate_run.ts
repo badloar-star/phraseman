@@ -201,6 +201,23 @@ function exists(filePath: string, findings: Finding[], code: string): boolean {
   return false;
 }
 
+function toArtifactPath(filePath: string): string {
+  return filePath.split(path.sep).join('/');
+}
+
+function relativeArtifactPath(repoRoot: string, filePath: string): string {
+  return toArtifactPath(path.relative(repoRoot, filePath));
+}
+
+function sha256File(filePath: string): string {
+  return crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
+}
+
+function sha256TextFileWithNormalizedNewlines(filePath: string): string {
+  const normalized = fs.readFileSync(filePath, 'utf8').replace(/\r\n/g, '\n');
+  return crypto.createHash('sha256').update(normalized, 'utf8').digest('hex');
+}
+
 function pushFinding(
   findings: Finding[],
   severity: FindingSeverity,
@@ -3757,8 +3774,9 @@ function validateP1ABlueprintHashLockAudit(runDir: string, runId: string | null,
       if (!fs.existsSync(absoluteBlueprint)) {
         pushFinding(findings, 'blocker', 'p1a_hash_lock_blueprint_missing', `P1A hash lock blueprint file missing on disk: ${blueprintPath}`, auditPath);
       } else {
-        const actualHash = crypto.createHash('sha256').update(fs.readFileSync(absoluteBlueprint)).digest('hex');
-        if (actualHash !== hash) {
+        const actualHash = sha256File(absoluteBlueprint);
+        const newlineStableHash = sha256TextFileWithNormalizedNewlines(absoluteBlueprint);
+        if (actualHash !== hash && newlineStableHash !== hash) {
           pushFinding(findings, 'blocker', 'p1a_hash_lock_hash_mismatch', `P1A hash lock digest mismatch for ${blueprintPath}.`, auditPath);
         }
       }
@@ -4218,14 +4236,14 @@ function validateP1AApprovalReceiptFirewallAudit(runDir: string, runId: string |
     if (typeof contract.requiredApprovalText !== 'string' || contract.requiredApprovalText.length < 80) {
       pushFinding(findings, 'blocker', 'p1a_receipt_firewall_required_text_missing', 'P1A approval receipt firewall must record the exact required approval text.', auditPath);
     }
-    if (contract.approvedPacket !== path.relative(repoRoot, path.join(runDir, 'apply_plan', 'p1a_minimal_apply_packet.json'))) {
+    if (contract.approvedPacket !== relativeArtifactPath(repoRoot, path.join(runDir, 'apply_plan', 'p1a_minimal_apply_packet.json'))) {
       pushFinding(findings, 'blocker', 'p1a_receipt_firewall_packet_mismatch', 'P1A approval receipt firewall approvedPacket must point to p1a_minimal_apply_packet.json.', auditPath);
     }
     const acceptedReceiptPaths = Array.isArray(contract.acceptedReceiptPaths) ? contract.acceptedReceiptPaths as unknown[] : null;
     const rejectedImplicitCommands = Array.isArray(contract.rejectedImplicitCommands) ? contract.rejectedImplicitCommands as unknown[] : null;
     if (!acceptedReceiptPaths || acceptedReceiptPaths.length !== 3) {
       pushFinding(findings, 'blocker', 'p1a_receipt_firewall_paths_missing', 'P1A approval receipt firewall must record exactly 3 accepted receipt paths.', auditPath);
-    } else if (!acceptedReceiptPaths.includes(path.relative(repoRoot, path.join(runDir, 'apply_plan', 'p1a_approval_receipt.json')))) {
+    } else if (!acceptedReceiptPaths.includes(relativeArtifactPath(repoRoot, path.join(runDir, 'apply_plan', 'p1a_approval_receipt.json')))) {
       pushFinding(findings, 'blocker', 'p1a_receipt_firewall_canonical_json_path_missing', 'P1A approval receipt firewall must include canonical JSON receipt path.', auditPath);
     }
     if (!rejectedImplicitCommands || !rejectedImplicitCommands.includes('дальше') || !rejectedImplicitCommands.includes('approve')) {

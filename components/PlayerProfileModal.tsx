@@ -128,6 +128,10 @@ const DEFAULT_PROFILE_CARD_SNAPSHOT: ProfileCardSnapshot = {
   motion: 'none',
   publicFocus: 'balanced',
 };
+const PROFILE_HEADER_ACTION_SIZE = 44;
+const PROFILE_HEADER_ACTION_TOP = 14;
+const PROFILE_HEADER_ACTION_RIGHT = 14;
+const PROFILE_HEADER_ACTION_GAP = 10;
 
 const PROFILE_CARD_VISUALS: Record<ProfileCardTheme, Omit<ProfileCardVisual, 'theme' | 'motion'>> = {
   classic: {
@@ -713,12 +717,12 @@ function PlayerProfileModalBody({
           }}
           style={{
             position: 'absolute',
-            top: 14,
-            right: 14,
+            top: PROFILE_HEADER_ACTION_TOP,
+            right: PROFILE_HEADER_ACTION_RIGHT,
             zIndex: 30,
-            width: 38,
-            height: 38,
-            borderRadius: 19,
+            width: PROFILE_HEADER_ACTION_SIZE,
+            height: PROFILE_HEADER_ACTION_SIZE,
+            borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: prestigeActive ? 'rgba(0,0,0,0.28)' : 'rgba(255,255,255,0.10)',
@@ -728,6 +732,47 @@ function PlayerProfileModalBody({
         >
           <Ionicons name="close" size={22} color={prestigeActive ? '#FFFFFF' : t.textPrimary} />
         </TouchableOpacity>
+        {showAddFriend ? (
+          <Pressable
+            testID="player-profile-add-friend"
+            onPress={handleFriendButtonPress}
+            disabled={friendRequestBusy}
+            style={{
+              position: 'absolute',
+              top: PROFILE_HEADER_ACTION_TOP + PROFILE_HEADER_ACTION_SIZE + PROFILE_HEADER_ACTION_GAP,
+              right: PROFILE_HEADER_ACTION_RIGHT,
+              zIndex: 30,
+              width: PROFILE_HEADER_ACTION_SIZE,
+              height: PROFILE_HEADER_ACTION_SIZE,
+              borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
+              backgroundColor: prestigeActive ? 'rgba(0,0,0,0.28)' : 'rgba(255,255,255,0.10)',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderWidth: 1,
+              borderColor: isAlreadyFriend
+                ? (t.wrong ?? t.border)
+                : (prestigeActive ? cardVisual.accentStrong : 'rgba(255,255,255,0.14)'),
+              opacity: friendRequestBusy ? 0.55 : 1,
+            }}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang as Lang, {
+              ru: 'Добавить в друзья',
+              uk: 'Додати до друзів',
+              es: 'Añadir amigo',
+              'pt-BR': "Adicionar amigo",
+              vi: "Thêm bạn bè",
+              id: "Tambah teman",
+              tr: "Arkadaş ekle",
+              pl: "Dodaj znajomego",
+            })}
+          >
+            <Ionicons
+              name={isAlreadyFriend ? 'person-remove-outline' : 'person-add-outline'}
+              size={22}
+              color={isAlreadyFriend ? (t.wrong ?? t.accent) : t.accent}
+            />
+          </Pressable>
+        ) : null}
         {prestigeActive && (
           <>
             <LinearGradient
@@ -901,47 +946,7 @@ function PlayerProfileModalBody({
                 {getTitleString(level, lang)}
               </Text>
             </View>
-            <View style={{ width: 44, alignItems: 'center', justifyContent: 'flex-start', minHeight: 76 }}>
-              {showAddFriend ? (
-                <Pressable
-                  testID="player-profile-add-friend"
-                  onPress={handleFriendButtonPress}
-                  disabled={friendRequestBusy}
-                  style={{
-                    width: 44,
-                    height: 44,
-                    borderRadius: 22,
-                    backgroundColor: t.bgSurface,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderWidth: 1,
-                    borderColor: isAlreadyFriend ? (t.wrong ?? t.border) : t.border,
-                    opacity: friendRequestBusy ? 0.55 : 1,
-                  }}
-                  accessibilityRole="button"
-                  accessibilityLabel={triLang(lang as Lang, {
-                    ru: 'Добавить в друзья',
-                    uk: 'Додати до друзів',
-                    es: 'Añadir amigo',
-                    'pt-BR': "Adicionar amigo",
-                    vi: "Thêm bạn bè",
-                    id: "Tambah teman",
-                    tr: "Arkadaş ekle",
-                    pl: "Dodaj znajomego",
-                  })}
-                >
-                  {false && friendRequestBusy ? (
-                    <View />
-                  ) : (
-                    <Ionicons
-                      name={isAlreadyFriend ? 'person-remove-outline' : 'person-add-outline'}
-                      size={22}
-                      color={isAlreadyFriend ? (t.wrong ?? t.accent) : t.accent}
-                    />
-                  )}
-                </Pressable>
-              ) : null}
-            </View>
+            <View style={{ width: PROFILE_HEADER_ACTION_SIZE }} />
           </View>
         </View>
         <View style={{ flexDirection: 'row', gap: 10, marginBottom: 10 }}>

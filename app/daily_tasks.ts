@@ -23,10 +23,22 @@ import {
 const DAILY_PROGRESS_WRITE_ERR_TOAST_COOLDOWN_MS = 45_000;
 let _lastDailyProgressWriteErrorToastAt = 0;
 
+function dailyTaskEventPayload(taskId: string, studyTarget?: RuntimeStudyTarget) {
+  return studyTarget == null ? { taskId } : { taskId, studyTarget };
+}
+
+function emitDailyTaskCompleted(taskId: string, studyTarget?: RuntimeStudyTarget): void {
+  emitAppEvent('daily_task_completed', dailyTaskEventPayload(taskId, studyTarget));
+}
+
+function emitDailyTaskRewardClaimed(taskId: string, studyTarget?: RuntimeStudyTarget): void {
+  emitAppEvent('daily_task_reward_claimed', dailyTaskEventPayload(taskId, studyTarget));
+}
+
 export type TaskType =
   | 'correct_streak'      // N правильных подряд в уроке
   | 'lesson_no_mistakes'  // урок без ошибок (N подряд)
-  | 'quiz_hard'           // N фраз на сложном квизе (Premium)
+  | 'quiz_hard'           // N правильных ответов на сложном квизе
   | 'quiz_score'          // набрать N XP в квизах за день
   | 'words_learned'       // выучить N слов в разделе Слова
   | 'total_answers'       // собрать N фраз в уроках за день
@@ -45,10 +57,10 @@ export type TaskType =
   | 'daily_phrase_read'   // прочитать фразу дня на главном экране
   | 'daily_phrase_save'   // сохранить фразу дня в карточки
   | 'diagnostic_complete' // пройти диагностический тест целиком (20 вопросов)
-  | 'quiz_easy'           // N фраз на лёгком квизе
-  | 'quiz_medium'         // N фраз на среднем квизе (Premium)
-  | 'quiz_perfect'        // раунд квиза без ошибок (Premium)
-  | 'quiz_hard_perfect'   // раунд сложного квиза без ошибок (Premium)
+  | 'quiz_easy'           // N правильных ответов на лёгком квизе
+  | 'quiz_medium'         // N правильных ответов на среднем квизе
+  | 'quiz_perfect'        // раунд квиза без ошибок
+  | 'quiz_hard_perfect'   // раунд сложного квиза без ошибок
   | 'different_lessons'   // заниматься в N разных уроках за день
   | 'lesson_complete'     // завершить урок полностью до экрана финиша
   | 'morning_session'     // N фраз в уроке до 12:00
@@ -119,37 +131,37 @@ export const getArenaComboRequirement = (task: DailyTask): ArenaComboRequirement
 
 // ── 90 заданий (30 дней × 3) ─────────────────────────────────────────────
 const ALL_TASKS: DailyTask[] = [
-  // daily_active — открыть урок и собрать хотя бы одну фразу
-  { id:'da1', type:'daily_active', icon:'☀️', target:1, xp:18,
-    titleRU:'Просто зайди', titleUK:'Просто зайди',
-    titlePtBr:'Basta entrar', titleVi:'Chỉ cần vào', titleId:'Cukup masuk', titleTr:'Sadece gir', titlePl:'Po prostu wejdź',
-    descRU:'Открой любой урок и собери хотя бы одну фразу.',
-    descPtBr:'Abra qualquer lição e monte pelo menos uma frase.',
-    descVi:'Mở bất kỳ bài học nào và ghép ít nhất một câu.',
-    descId:'Buka pelajaran apa pun dan susun setidaknya satu frasa.',
-    descTr:'Herhangi bir dersi aç ve en az bir ifadeyi kur.',
-    descPl:'Otwórz dowolną lekcję i ułóż co najmniej jedną frazę.',
-    descUK:'Відкрий будь-який урок і збери хоча б одну фразу.' },
-  { id:'da2', type:'daily_active', icon:'🌅', target:1, xp:18,
-    titleRU:'Начни день', titleUK:'Почни день',
-    titlePtBr:'Comece o dia', titleVi:'Bắt đầu ngày mới', titleId:'Mulai hari', titleTr:'Güne başla', titlePl:'Zacznij dzień',
-    descRU:'Открой урок и собери хотя бы одну фразу сегодня.',
-    descPtBr:'Abra uma lição e monte pelo menos uma frase hoje.',
-    descVi:'Mở một bài học và ghép ít nhất một câu hôm nay.',
-    descId:'Buka pelajaran dan susun setidaknya satu frasa hari ini.',
-    descTr:'Bugün bir dersi aç ve en az bir ifadeyi kur.',
-    descPl:'Otwórz lekcję i ułóż dziś co najmniej jedną frazę.',
-    descUK:'Відкрий урок і збери хоча б одну фразу сьогодні.' },
-  { id:'da3', type:'daily_active', icon:'💪', target:1, xp:18,
-    titleRU:'Ни дня без урока', titleUK:'Жодного дня без уроку',
-    titlePtBr:'Nenhum dia sem lição', titleVi:'Không ngày nào thiếu bài học', titleId:'Tiada hari tanpa pelajaran', titleTr:'Derssiz gün yok', titlePl:'Ani dnia bez lekcji',
-    descRU:'Открой урок и собери хотя бы одну фразу.',
-    descPtBr:'Abra uma lição e monte pelo menos uma frase.',
-    descVi:'Mở một bài học và ghép ít nhất một câu.',
-    descId:'Buka pelajaran dan susun setidaknya satu frasa.',
-    descTr:'Bir dersi aç ve en az bir ifadeyi kur.',
-    descPl:'Otwórz lekcję i ułóż co najmniej jedną frazę.',
-    descUK:'Відкрий урок і збери хоча б одну фразу.' },
+  // da* — ежедневный слот вместо слишком лёгкого daily_active: завершить урок полностью
+  { id:'da1', type:'lesson_complete', icon:'☀️', target:1, xp:60,
+    titleRU:'До финиша', titleUK:'До фінішу',
+    titlePtBr:'Até o fim', titleVi:'Đến đích', titleId:'Sampai akhir', titleTr:'Bitişe kadar', titlePl:'Do mety',
+    descRU:'Пройди любой урок полностью — дойди до экрана завершения.',
+    descPtBr:'Conclua qualquer lição inteira até chegar à tela de conclusão.',
+    descVi:'Hoàn thành trọn vẹn bất kỳ bài học nào cho đến màn hình kết thúc.',
+    descId:'Selesaikan pelajaran apa pun sepenuhnya sampai layar selesai.',
+    descTr:'Herhangi bir dersi tamamen bitir ve tamamlama ekranına ulaş.',
+    descPl:'Przejdź dowolną lekcję do końca, aż do ekranu ukończenia.',
+    descUK:'Пройди будь-який урок повністю — дійди до екрана завершення.' },
+  { id:'da2', type:'lesson_complete', icon:'🌅', target:1, xp:60,
+    titleRU:'Закрой урок', titleUK:'Закрий урок',
+    titlePtBr:'Feche a lição', titleVi:'Hoàn tất bài học', titleId:'Tuntaskan pelajaran', titleTr:'Dersi kapat', titlePl:'Zamknij lekcję',
+    descRU:'Заверши любой урок сегодня до финального экрана.',
+    descPtBr:'Conclua qualquer lição hoje até a tela final.',
+    descVi:'Hoàn thành bất kỳ bài học nào hôm nay đến màn hình cuối.',
+    descId:'Selesaikan pelajaran apa pun hari ini sampai layar akhir.',
+    descTr:'Bugün herhangi bir dersi son ekrana kadar tamamla.',
+    descPl:'Ukończ dziś dowolną lekcję aż do ekranu końcowego.',
+    descUK:'Заверши будь-який урок сьогодні до фінального екрана.' },
+  { id:'da3', type:'lesson_complete', icon:'💪', target:1, xp:60,
+    titleRU:'Полный урок', titleUK:'Повний урок',
+    titlePtBr:'Lição completa', titleVi:'Bài học trọn vẹn', titleId:'Pelajaran penuh', titleTr:'Tam ders', titlePl:'Pełna lekcja',
+    descRU:'Пройди урок от начала до конца — задание засчитается на экране завершения.',
+    descPtBr:'Faça uma lição do começo ao fim; a tarefa conta na tela de conclusão.',
+    descVi:'Học một bài từ đầu đến cuối; nhiệm vụ được tính ở màn hình hoàn thành.',
+    descId:'Kerjakan satu pelajaran dari awal sampai akhir; tugas dihitung di layar selesai.',
+    descTr:'Bir dersi baştan sona bitir; görev tamamlama ekranında sayılır.',
+    descPl:'Przejdź lekcję od początku do końca; zadanie zaliczy się na ekranie ukończenia.',
+    descUK:'Пройди урок від початку до кінця — завдання зарахується на екрані завершення.' },
 
   // total_answers — правильные ответы в уроках (каждый правильный тап по слову = +1)
   { id:'ta1', type:'total_answers', icon:'⚡', target:10, xp:24,
@@ -287,47 +299,47 @@ const ALL_TASKS: DailyTask[] = [
     descPl:'Ułóż 20 fraz z rzędu bez ani jednego błędu.',
     descUK:'Збери 20 фраз поспіль без жодної помилки.' },
 
-  // quiz_hard — правильные ответы в квизе уровня «Сложно» (Premium)
+  // quiz_hard — правильные ответы в квизе уровня «Сложно»
   { id:'qh1', type:'quiz_hard', icon:'💪', target:3, xp:36, minPlayerLevel:15,
     titleRU:'Первый вызов', titleUK:'Перший виклик',
     titlePtBr:'Primeiro desafio', titleVi:'Thử thách đầu tiên', titleId:'Tantangan pertama', titleTr:'İlk meydan okuma', titlePl:'Pierwsze wyzwanie',
-    descRU:'Открой Квизы → Сложно и собери 3 фразы.',
-    descPtBr:'Abra Quizzes → Difícil e monte 3 frases.',
-    descVi:'Mở Quiz → Khó và ghép 3 câu.',
-    descId:'Buka Kuis → Sulit dan susun 3 frasa.',
-    descTr:'Quizler → Zor bölümünü aç ve 3 ifadeyi kur.',
-    descPl:'Otwórz Quizy → Trudne i ułóż 3 frazy.',
-    descUK:'Відкрий Квізи → Складно й збери 3 фрази.' },
+    descRU:'Открой Квизы → Сложно и ответь правильно на 3 вопроса.',
+    descPtBr:'Abra Quizzes → Difícil e responda corretamente a 3 perguntas.',
+    descVi:'Mở Quiz → Khó và trả lời đúng 3 câu hỏi.',
+    descId:'Buka Kuis → Sulit dan jawab 3 pertanyaan dengan benar.',
+    descTr:'Quizler → Zor bölümünü aç ve 3 soruyu doğru yanıtla.',
+    descPl:'Otwórz Quizy → Trudne i odpowiedz poprawnie na 3 pytania.',
+    descUK:'Відкрий Квізи → Складно й дай правильну відповідь на 3 запитання.' },
   { id:'qh2', type:'quiz_hard', icon:'🗡️', target:5, xp:54, minPlayerLevel:15,
     titleRU:'Принял вызов', titleUK:'Прийняв виклик',
     titlePtBr:'Desafio aceito', titleVi:'Đã nhận thử thách', titleId:'Tantangan diterima', titleTr:'Meydan okumayı kabul ettin', titlePl:'Wyzwanie przyjęte',
-    descRU:'Открой Квизы → Сложно и собери 5 фраз.',
-    descPtBr:'Abra Quizzes → Difícil e monte 5 frases.',
-    descVi:'Mở Quiz → Khó và ghép 5 câu.',
-    descId:'Buka Kuis → Sulit dan susun 5 frasa.',
-    descTr:'Quizler → Zor bölümünü aç ve 5 ifadeyi kur.',
-    descPl:'Otwórz Quizy → Trudne i ułóż 5 fraz.',
-    descUK:'Відкрий Квізи → Складно й збери 5 фраз.' },
+    descRU:'Открой Квизы → Сложно и ответь правильно на 5 вопросов.',
+    descPtBr:'Abra Quizzes → Difícil e responda corretamente a 5 perguntas.',
+    descVi:'Mở Quiz → Khó và trả lời đúng 5 câu hỏi.',
+    descId:'Buka Kuis → Sulit dan jawab 5 pertanyaan dengan benar.',
+    descTr:'Quizler → Zor bölümünü aç ve 5 soruyu doğru yanıtla.',
+    descPl:'Otwórz Quizy → Trudne i odpowiedz poprawnie na 5 pytań.',
+    descUK:'Відкрий Квізи → Складно й дай правильну відповідь на 5 запитань.' },
   { id:'qh3', type:'quiz_hard', icon:'🏆', target:10, xp:78, minPlayerLevel:15,
     titleRU:'Хардкорщик', titleUK:'Хардкорщик',
     titlePtBr:'Fã do modo difícil', titleVi:'Người chơi khó', titleId:'Pemain hardcore', titleTr:'Zor mod oyuncusu', titlePl:'Hardkorowiec',
-    descRU:'Открой Квизы → Сложно и собери 10 фраз.',
-    descPtBr:'Abra Quizzes → Difícil e monte 10 frases.',
-    descVi:'Mở Quiz → Khó và ghép 10 câu.',
-    descId:'Buka Kuis → Sulit dan susun 10 frasa.',
-    descTr:'Quizler → Zor bölümünü aç ve 10 ifadeyi kur.',
-    descPl:'Otwórz Quizy → Trudne i ułóż 10 fraz.',
-    descUK:'Відкрий Квізи → Складно й збери 10 фраз.' },
+    descRU:'Открой Квизы → Сложно и ответь правильно на 10 вопросов.',
+    descPtBr:'Abra Quizzes → Difícil e responda corretamente a 10 perguntas.',
+    descVi:'Mở Quiz → Khó và trả lời đúng 10 câu hỏi.',
+    descId:'Buka Kuis → Sulit dan jawab 10 pertanyaan dengan benar.',
+    descTr:'Quizler → Zor bölümünü aç ve 10 soruyu doğru yanıtla.',
+    descPl:'Otwórz Quizy → Trudne i odpowiedz poprawnie na 10 pytań.',
+    descUK:'Відкрий Квізи → Складно й дай правильну відповідь на 10 запитань.' },
   { id:'qh4', type:'quiz_hard', icon:'👑', target:15, xp:102, minPlayerLevel:15,
     titleRU:'Легенда', titleUK:'Легенда',
     titlePtBr:'Lenda', titleVi:'Huyền thoại', titleId:'Legenda', titleTr:'Efsane', titlePl:'Legenda',
-    descRU:'Открой Квизы → Сложно и собери 15 фраз.',
-    descPtBr:'Abra Quizzes → Difícil e monte 15 frases.',
-    descVi:'Mở Quiz → Khó và ghép 15 câu.',
-    descId:'Buka Kuis → Sulit dan susun 15 frasa.',
-    descTr:'Quizler → Zor bölümünü aç ve 15 ifadeyi kur.',
-    descPl:'Otwórz Quizy → Trudne i ułóż 15 fraz.',
-    descUK:'Відкрий Квізи → Складно й збери 15 фраз.' },
+    descRU:'Открой Квизы → Сложно и ответь правильно на 15 вопросов.',
+    descPtBr:'Abra Quizzes → Difícil e responda corretamente a 15 perguntas.',
+    descVi:'Mở Quiz → Khó và trả lời đúng 15 câu hỏi.',
+    descId:'Buka Kuis → Sulit dan jawab 15 pertanyaan dengan benar.',
+    descTr:'Quizler → Zor bölümünü aç ve 15 soruyu doğru yanıtla.',
+    descPl:'Otwórz Quizy → Trudne i odpowiedz poprawnie na 15 pytań.',
+    descUK:'Відкрий Квізи → Складно й дай правильну відповідь на 15 запитань.' },
 
   // quiz_score — XP заработанный в квизах за день
   { id:'qs1', type:'quiz_score', icon:'⭐', target:10, xp:30,
@@ -639,57 +651,57 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qe1', type:'quiz_easy', icon:'🌱', target:5, xp:18,
     titleRU:'Лёгкий старт', titleUK:'Легкий старт',
     titlePtBr:'Começo fácil', titleVi:'Khởi đầu dễ', titleId:'Awal mudah', titleTr:'Kolay başlangıç', titlePl:'Łatwy start',
-    descRU:'Собери 5 фраз в Квизах на уровне Легко.',
-    descPtBr:'Monte 5 frases em Quizzes no nível Fácil.',
-    descVi:'Ghép 5 câu trong Quiz ở mức Dễ.',
-    descId:'Susun 5 frasa di Kuis pada level Mudah.',
-    descTr:'Quizlerde Kolay seviyede 5 ifadeyi kur.',
-    descPl:'Ułóż 5 fraz w Quizach na poziomie Łatwe.',
-    descUK:'Збери 5 фраз у Квізах на рівні Легко.' },
+    descRU:'Ответь правильно на 5 вопросов в Квизах на уровне Легко.',
+    descPtBr:'Responda corretamente a 5 perguntas em Quizzes no nível Fácil.',
+    descVi:'Trả lời đúng 5 câu hỏi trong Quiz ở mức Dễ.',
+    descId:'Jawab 5 pertanyaan dengan benar di Kuis pada level Mudah.',
+    descTr:'Quizlerde Kolay seviyede 5 soruyu doğru yanıtla.',
+    descPl:'Odpowiedz poprawnie na 5 pytań w Quizach na poziomie Łatwe.',
+    descUK:'Дай правильну відповідь на 5 запитань у Квізах на рівні Легко.' },
   { id:'qe2', type:'quiz_easy', icon:'🌱', target:10, xp:30,
     titleRU:'Разогрев в квизе', titleUK:'Розігрів у квізі',
     titlePtBr:'Aquecimento no quiz', titleVi:'Khởi động trong quiz', titleId:'Pemanasan di kuis', titleTr:'Quiz ısınması', titlePl:'Rozgrzewka w quizie',
-    descRU:'Собери 10 фраз в Квизах на уровне Легко.',
-    descPtBr:'Monte 10 frases em Quizzes no nível Fácil.',
-    descVi:'Ghép 10 câu trong Quiz ở mức Dễ.',
-    descId:'Susun 10 frasa di Kuis pada level Mudah.',
-    descTr:'Quizlerde Kolay seviyede 10 ifadeyi kur.',
-    descPl:'Ułóż 10 fraz w Quizach na poziomie Łatwe.',
-    descUK:'Збери 10 фраз у Квізах на рівні Легко.' },
+    descRU:'Ответь правильно на 10 вопросов в Квизах на уровне Легко.',
+    descPtBr:'Responda corretamente a 10 perguntas em Quizzes no nível Fácil.',
+    descVi:'Trả lời đúng 10 câu hỏi trong Quiz ở mức Dễ.',
+    descId:'Jawab 10 pertanyaan dengan benar di Kuis pada level Mudah.',
+    descTr:'Quizlerde Kolay seviyede 10 soruyu doğru yanıtla.',
+    descPl:'Odpowiedz poprawnie na 10 pytań w Quizach na poziomie Łatwe.',
+    descUK:'Дай правильну відповідь на 10 запитань у Квізах на рівні Легко.' },
   { id:'qe3', type:'quiz_easy', icon:'🌱', target:20, xp:48,
     titleRU:'Уверенный игрок', titleUK:'Впевнений гравець',
     titlePtBr:'Jogador confiante', titleVi:'Người chơi tự tin', titleId:'Pemain percaya diri', titleTr:'Kendinden emin oyuncu', titlePl:'Pewny gracz',
-    descRU:'Собери 20 фраз в Квизах на уровне Легко.',
-    descPtBr:'Monte 20 frases em Quizzes no nível Fácil.',
-    descVi:'Ghép 20 câu trong Quiz ở mức Dễ.',
-    descId:'Susun 20 frasa di Kuis pada level Mudah.',
-    descTr:'Quizlerde Kolay seviyede 20 ifadeyi kur.',
-    descPl:'Ułóż 20 fraz w Quizach na poziomie Łatwe.',
-    descUK:'Збери 20 фраз у Квізах на рівні Легко.' },
+    descRU:'Ответь правильно на 20 вопросов в Квизах на уровне Легко.',
+    descPtBr:'Responda corretamente a 20 perguntas em Quizzes no nível Fácil.',
+    descVi:'Trả lời đúng 20 câu hỏi trong Quiz ở mức Dễ.',
+    descId:'Jawab 20 pertanyaan dengan benar di Kuis pada level Mudah.',
+    descTr:'Quizlerde Kolay seviyede 20 soruyu doğru yanıtla.',
+    descPl:'Odpowiedz poprawnie na 20 pytań w Quizach na poziomie Łatwe.',
+    descUK:'Дай правильну відповідь на 20 запитань у Квізах на рівні Легко.' },
 
-  // quiz_medium — правильные ответы в квизе уровня «Средне» (Premium)
+  // quiz_medium — правильные ответы в квизе уровня «Средне»
   { id:'qm1', type:'quiz_medium', icon:'⚔️', target:5, xp:24, minPlayerLevel:8,
     titleRU:'Средний уровень', titleUK:'Середній рівень',
     titlePtBr:'Nível médio', titleVi:'Cấp độ trung bình', titleId:'Level menengah', titleTr:'Orta seviye', titlePl:'Średni poziom',
-    descRU:'Собери 5 фраз в Квизах на уровне Средне.',
-    descPtBr:'Monte 5 frases em Quizzes no nível Médio.',
-    descVi:'Ghép 5 câu trong Quiz ở mức Trung bình.',
-    descId:'Susun 5 frasa di Kuis pada level Menengah.',
-    descTr:'Quizlerde Orta seviyede 5 ifadeyi kur.',
-    descPl:'Ułóż 5 fraz w Quizach na poziomie Średnie.',
-    descUK:'Збери 5 фраз у Квізах на рівні Середньо.' },
+    descRU:'Ответь правильно на 5 вопросов в Квизах на уровне Средне.',
+    descPtBr:'Responda corretamente a 5 perguntas em Quizzes no nível Médio.',
+    descVi:'Trả lời đúng 5 câu hỏi trong Quiz ở mức Trung bình.',
+    descId:'Jawab 5 pertanyaan dengan benar di Kuis pada level Menengah.',
+    descTr:'Quizlerde Orta seviyede 5 soruyu doğru yanıtla.',
+    descPl:'Odpowiedz poprawnie na 5 pytań w Quizach na poziomie Średnie.',
+    descUK:'Дай правильну відповідь на 5 запитань у Квізах на рівні Середньо.' },
   { id:'qm2', type:'quiz_medium', icon:'⚔️', target:10, xp:42, minPlayerLevel:8,
     titleRU:'Средний мастер', titleUK:'Середній майстер',
     titlePtBr:'Mestre do médio', titleVi:'Bậc thầy trung bình', titleId:'Ahli level menengah', titleTr:'Orta seviye ustası', titlePl:'Mistrz średniego poziomu',
-    descRU:'Собери 10 фраз в Квизах на уровне Средне.',
-    descPtBr:'Monte 10 frases em Quizzes no nível Médio.',
-    descVi:'Ghép 10 câu trong Quiz ở mức Trung bình.',
-    descId:'Susun 10 frasa di Kuis pada level Menengah.',
-    descTr:'Quizlerde Orta seviyede 10 ifadeyi kur.',
-    descPl:'Ułóż 10 fraz w Quizach na poziomie Średnie.',
-    descUK:'Збери 10 фраз у Квізах на рівні Середньо.' },
+    descRU:'Ответь правильно на 10 вопросов в Квизах на уровне Средне.',
+    descPtBr:'Responda corretamente a 10 perguntas em Quizzes no nível Médio.',
+    descVi:'Trả lời đúng 10 câu hỏi trong Quiz ở mức Trung bình.',
+    descId:'Jawab 10 pertanyaan dengan benar di Kuis pada level Menengah.',
+    descTr:'Quizlerde Orta seviyede 10 soruyu doğru yanıtla.',
+    descPl:'Odpowiedz poprawnie na 10 pytań w Quizach na poziomie Średnie.',
+    descUK:'Дай правильну відповідь на 10 запитань у Квізах на рівні Середньо.' },
 
-  // quiz_perfect — раунд квиза без ошибок (Premium, любой уровень)
+  // quiz_perfect — раунд квиза без ошибок, любой уровень
   { id:'qp1', type:'quiz_perfect', icon:'✨', target:1, xp:54, minPlayerLevel:8,
     titleRU:'Идеальный раунд', titleUK:'Ідеальний раунд',
     titlePtBr:'Rodada perfeita', titleVi:'Vòng hoàn hảo', titleId:'Ronde sempurna', titleTr:'Mükemmel tur', titlePl:'Idealna runda',
@@ -701,7 +713,7 @@ const ALL_TASKS: DailyTask[] = [
     descPl:'Ukończ rundę w Quizach bez ani jednego błędu, na dowolnym poziomie.',
     descUK:'Заверши раунд у Квізах без жодної помилки — будь-який рівень.' },
 
-  // quiz_hard_perfect — раунд сложного квиза без ошибок (Premium)
+  // quiz_hard_perfect — раунд сложного квиза без ошибок
   { id:'qhp1', type:'quiz_hard_perfect', icon:'👑', target:1, xp:84, minPlayerLevel:15,
     titleRU:'Хардкор без ошибок', titleUK:'Хардкор без помилок',
     titlePtBr:'Difícil sem erros', titleVi:'Khó mà không sai', titleId:'Sulit tanpa kesalahan', titleTr:'Hatasız zor mod', titlePl:'Trudny bez błędów',
@@ -771,57 +783,57 @@ const ALL_TASKS: DailyTask[] = [
     descPl:'Ułóż 5 fraz w lekcji po 18:00: wieczorna sesja.',
     descUK:'Збери 5 фраз в уроці після 18:00 — вечірня сесія.' },
 
-  // Дополнительные daily_active (разные мотивационные формулировки)
-  { id:'da4', type:'daily_active', icon:'🌟', target:1, xp:18,
-    titleRU:'Снова в бой', titleUK:'Знову в бій',
-    titlePtBr:'De volta à ação', titleVi:'Trở lại cuộc chơi', titleId:'Kembali beraksi', titleTr:'Tekrar sahada', titlePl:'Znowu do działania',
-    descRU:'Открой любой урок и собери хотя бы одну фразу.',
-    descPtBr:'Abra qualquer lição e monte pelo menos uma frase.',
-    descVi:'Mở bất kỳ bài học nào và ghép ít nhất một câu.',
-    descId:'Buka pelajaran apa pun dan susun setidaknya satu frasa.',
-    descTr:'Herhangi bir dersi aç ve en az bir ifadeyi kur.',
-    descPl:'Otwórz dowolną lekcję i ułóż co najmniej jedną frazę.',
-    descUK:'Відкрий будь-який урок і збери хоча б одну фразу.' },
-  { id:'da5', type:'daily_active', icon:'🎯', target:1, xp:18,
-    titleRU:'Держу ритм', titleUK:'Тримаю ритм',
-    titlePtBr:'Mantendo o ritmo', titleVi:'Giữ nhịp', titleId:'Menjaga ritme', titleTr:'Ritmi koruyorum', titlePl:'Trzymam rytm',
-    descRU:'Открой урок и собери одну фразу.',
-    descPtBr:'Abra uma lição e monte uma frase.',
-    descVi:'Mở một bài học và ghép một câu.',
-    descId:'Buka pelajaran dan susun satu frasa.',
-    descTr:'Bir dersi aç ve bir ifadeyi kur.',
-    descPl:'Otwórz lekcję i ułóż jedną frazę.',
-    descUK:'Відкрий урок і збери одну фразу.' },
-  { id:'da6', type:'daily_active', icon:'💫', target:1, xp:18,
-    titleRU:'Ещё один день', titleUK:'Ще один день',
-    titlePtBr:'Mais um dia', titleVi:'Thêm một ngày', titleId:'Satu hari lagi', titleTr:'Bir gün daha', titlePl:'Jeszcze jeden dzień',
-    descRU:'Открой урок и собери хотя бы одну фразу — маленький шаг в верном направлении.',
-    descPtBr:'Abra uma lição e monte pelo menos uma frase: um pequeno passo na direção certa.',
-    descVi:'Mở một bài học và ghép ít nhất một câu: một bước nhỏ đúng hướng.',
-    descId:'Buka pelajaran dan susun setidaknya satu frasa: langkah kecil ke arah yang tepat.',
-    descTr:'Bir dersi aç ve en az bir ifadeyi kur: doğru yönde küçük bir adım.',
-    descPl:'Otwórz lekcję i ułóż co najmniej jedną frazę: mały krok we właściwym kierunku.',
-    descUK:'Відкрий урок і збери хоча б одну фразу — маленький крок у правильному напрямку.' },
-  { id:'da7', type:'daily_active', icon:'🌈', target:1, xp:18,
-    titleRU:'Маленький шаг', titleUK:'Маленький крок',
-    titlePtBr:'Pequeno passo', titleVi:'Bước nhỏ', titleId:'Langkah kecil', titleTr:'Küçük adım', titlePl:'Mały krok',
-    descRU:'Собери хотя бы одну фразу в любом уроке — главное начать.',
-    descPtBr:'Monte pelo menos uma frase em qualquer lição; o importante é começar.',
-    descVi:'Ghép ít nhất một câu trong bất kỳ bài học nào; quan trọng là bắt đầu.',
-    descId:'Susun setidaknya satu frasa di pelajaran apa pun; yang penting mulai.',
-    descTr:'Herhangi bir derste en az bir ifadeyi kur; önemli olan başlamak.',
-    descPl:'Ułóż co najmniej jedną frazę w dowolnej lekcji; najważniejsze to zacząć.',
-    descUK:'Збери хоча б одну фразу в будь-якому уроці — головне почати.' },
-  { id:'da8', type:'daily_active', icon:'☕', target:1, xp:18,
-    titleRU:'Пять минут языка', titleUK:'П\'ять хвилин мови',
-    titlePtBr:'Cinco minutos de idioma', titleVi:'Năm phút học ngôn ngữ', titleId:'Lima menit bahasa', titleTr:'Beş dakika dil', titlePl:'Pięć minut języka',
-    descRU:'Выдели сегодня 5 минут языку — открой урок и собери хотя бы одну фразу.',
-    descPtBr:'Reserve 5 minutos para o idioma hoje: abra uma lição e monte pelo menos uma frase.',
-    descVi:'Dành 5 phút cho ngôn ngữ hôm nay: mở một bài học và ghép ít nhất một câu.',
-    descId:'Luangkan 5 menit untuk bahasa hari ini: buka pelajaran dan susun setidaknya satu frasa.',
-    descTr:'Bugün dile 5 dakika ayır: bir dersi aç ve en az bir ifadeyi kur.',
-    descPl:'Poświęć dziś 5 minut językowi: otwórz lekcję i ułóż co najmniej jedną frazę.',
-    descUK:'Виділи сьогодні 5 хвилин мові — відкрий урок і збери хоча б одну фразу.' },
+  // Дополнительные da*-слоты: тот же визуальный ряд, но задача — полный урок
+  { id:'da4', type:'lesson_complete', icon:'🌟', target:1, xp:60,
+    titleRU:'Финишный рывок', titleUK:'Фінішний ривок',
+    titlePtBr:'Arrancada final', titleVi:'Nước rút về đích', titleId:'Dorongan akhir', titleTr:'Son hamle', titlePl:'Finiszowy zryw',
+    descRU:'Дойди до конца любого урока и открой экран завершения.',
+    descPtBr:'Chegue ao fim de qualquer lição e abra a tela de conclusão.',
+    descVi:'Đi đến cuối bất kỳ bài học nào và mở màn hình hoàn thành.',
+    descId:'Capai akhir pelajaran apa pun dan buka layar selesai.',
+    descTr:'Herhangi bir dersin sonuna ulaş ve tamamlama ekranını aç.',
+    descPl:'Dotrzyj do końca dowolnej lekcji i otwórz ekran ukończenia.',
+    descUK:'Дійди до кінця будь-якого уроку й відкрий екран завершення.' },
+  { id:'da5', type:'lesson_complete', icon:'🎯', target:1, xp:60,
+    titleRU:'Держи ритм', titleUK:'Тримай ритм',
+    titlePtBr:'Mantenha o ritmo', titleVi:'Giữ nhịp', titleId:'Jaga ritme', titleTr:'Ritmi koru', titlePl:'Trzymaj rytm',
+    descRU:'Заверши один урок полностью сегодня.',
+    descPtBr:'Conclua uma lição inteira hoje.',
+    descVi:'Hoàn thành trọn vẹn một bài học hôm nay.',
+    descId:'Selesaikan satu pelajaran penuh hari ini.',
+    descTr:'Bugün bir dersi tamamen tamamla.',
+    descPl:'Ukończ dziś jedną pełną lekcję.',
+    descUK:'Заверши один урок повністю сьогодні.' },
+  { id:'da6', type:'lesson_complete', icon:'💫', target:1, xp:60,
+    titleRU:'Ещё один финиш', titleUK:'Ще один фініш',
+    titlePtBr:'Mais um final', titleVi:'Thêm một lần về đích', titleId:'Satu akhir lagi', titleTr:'Bir bitiş daha', titlePl:'Jeszcze jeden finisz',
+    descRU:'Пройди любой урок до конца — не останавливайся на старте.',
+    descPtBr:'Conclua qualquer lição até o fim; não pare logo no começo.',
+    descVi:'Hoàn thành bất kỳ bài học nào đến cuối; đừng dừng ngay lúc bắt đầu.',
+    descId:'Selesaikan pelajaran apa pun sampai akhir; jangan berhenti di awal.',
+    descTr:'Herhangi bir dersi sonuna kadar bitir; başlangıçta durma.',
+    descPl:'Ukończ dowolną lekcję do końca; nie zatrzymuj się na starcie.',
+    descUK:'Пройди будь-який урок до кінця — не зупиняйся на старті.' },
+  { id:'da7', type:'lesson_complete', icon:'🌈', target:1, xp:60,
+    titleRU:'Шаг до конца', titleUK:'Крок до кінця',
+    titlePtBr:'Passo até o fim', titleVi:'Bước đến cuối', titleId:'Langkah sampai akhir', titleTr:'Sona bir adım', titlePl:'Krok do końca',
+    descRU:'Заверши любой урок полностью и забери прогресс.',
+    descPtBr:'Conclua qualquer lição inteira e garanta o progresso.',
+    descVi:'Hoàn thành trọn vẹn bất kỳ bài học nào và nhận tiến độ.',
+    descId:'Selesaikan pelajaran apa pun sepenuhnya dan ambil progresnya.',
+    descTr:'Herhangi bir dersi tamamen tamamla ve ilerlemeyi al.',
+    descPl:'Ukończ dowolną lekcję w całości i odbierz postęp.',
+    descUK:'Заверши будь-який урок повністю й забери прогрес.' },
+  { id:'da8', type:'lesson_complete', icon:'☕', target:1, xp:60,
+    titleRU:'Полная сессия', titleUK:'Повна сесія',
+    titlePtBr:'Sessão completa', titleVi:'Phiên học trọn vẹn', titleId:'Sesi penuh', titleTr:'Tam oturum', titlePl:'Pełna sesja',
+    descRU:'Продолжи урок до финала — нужна полная завершённая сессия.',
+    descPtBr:'Continue a lição até o final; é preciso uma sessão concluída.',
+    descVi:'Tiếp tục bài học đến cuối; cần một phiên học hoàn thành trọn vẹn.',
+    descId:'Lanjutkan pelajaran sampai akhir; perlu sesi yang selesai penuh.',
+    descTr:'Dersi finale kadar sürdür; tam bitmiş bir oturum gerekir.',
+    descPl:'Kontynuuj lekcję do finału; potrzebna jest pełna ukończona sesja.',
+    descUK:'Продовж урок до фіналу — потрібна повна завершена сесія.' },
 
   // Дополнительные total_answers
   { id:'ta7', type:'total_answers', icon:'📈', target:40, xp:60,
@@ -943,77 +955,77 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qe4', type:'quiz_easy', icon:'🌿', target:7, xp:22,
     titleRU:'Семёрка в квизе', titleUK:'Сімка в квізі',
     titlePtBr:'Sete no quiz', titleVi:'Bảy câu trong quiz', titleId:'Tujuh di kuis', titleTr:'Quizde yedili', titlePl:'Siódemka w quizie',
-    descRU:'Собери 7 фраз в Квизах на уровне Легко.',
-    descPtBr:'Monte 7 frases em Quizzes no nível Fácil.',
-    descVi:'Ghép 7 câu trong Quiz ở mức Dễ.',
-    descId:'Susun 7 frasa di Kuis pada level Mudah.',
-    descTr:'Quizlerde Kolay seviyede 7 ifadeyi kur.',
-    descPl:'Ułóż 7 fraz w Quizach na poziomie Łatwe.',
-    descUK:'Збери 7 фраз у Квізах на рівні Легко.' },
+    descRU:'Ответь правильно на 7 вопросов в Квизах на уровне Легко.',
+    descPtBr:'Responda corretamente a 7 perguntas em Quizzes no nível Fácil.',
+    descVi:'Trả lời đúng 7 câu hỏi trong Quiz ở mức Dễ.',
+    descId:'Jawab 7 pertanyaan dengan benar di Kuis pada level Mudah.',
+    descTr:'Quizlerde Kolay seviyede 7 soruyu doğru yanıtla.',
+    descPl:'Odpowiedz poprawnie na 7 pytań w Quizach na poziomie Łatwe.',
+    descUK:'Дай правильну відповідь на 7 запитань у Квізах на рівні Легко.' },
   { id:'qe5', type:'quiz_easy', icon:'🌱', target:15, xp:38,
     titleRU:'Полтора раунда', titleUK:'Півтора раунду',
     titlePtBr:'Uma rodada e meia', titleVi:'Một vòng rưỡi', titleId:'Satu setengah ronde', titleTr:'Bir buçuk tur', titlePl:'Półtorej rundy',
-    descRU:'Собери 15 фраз в Квизах на уровне Легко — примерно 1,5 раунда.',
-    descPtBr:'Monte 15 frases em Quizzes no nível Fácil: cerca de 1,5 rodada.',
-    descVi:'Ghép 15 câu trong Quiz ở mức Dễ: khoảng 1,5 vòng.',
-    descId:'Susun 15 frasa di Kuis pada level Mudah: sekitar 1,5 ronde.',
-    descTr:'Quizlerde Kolay seviyede 15 ifadeyi kur: yaklaşık 1,5 tur.',
-    descPl:'Ułóż 15 fraz w Quizach na poziomie Łatwe: około 1,5 rundy.',
-    descUK:'Збери 15 фраз у Квізах на рівні Легко — приблизно 1,5 раунди.' },
+    descRU:'Ответь правильно на 15 вопросов в Квизах на уровне Легко — примерно 1,5 раунда.',
+    descPtBr:'Responda corretamente a 15 perguntas em Quizzes no nível Fácil: cerca de 1,5 rodada.',
+    descVi:'Trả lời đúng 15 câu hỏi trong Quiz ở mức Dễ: khoảng 1,5 vòng.',
+    descId:'Jawab 15 pertanyaan dengan benar di Kuis pada level Mudah: sekitar 1,5 ronde.',
+    descTr:'Quizlerde Kolay seviyede 15 soruyu doğru yanıtla: yaklaşık 1,5 tur.',
+    descPl:'Odpowiedz poprawnie na 15 pytań w Quizach na poziomie Łatwe: około 1,5 rundy.',
+    descUK:'Дай правильну відповідь на 15 запитань у Квізах на рівні Легко — приблизно півтора раунду.' },
   { id:'qe6', type:'quiz_easy', icon:'🌱', target:4, xp:14,
     titleRU:'Разгон', titleUK:'Розгін',
     titlePtBr:'Arranque', titleVi:'Tăng tốc ban đầu', titleId:'Pemacu awal', titleTr:'Hızlanma', titlePl:'Rozpęd',
-    descRU:'Собери 4 фразы в Квизах на уровне Легко — быстрый разгон.',
-    descPtBr:'Monte 4 frases em Quizzes no nível Fácil: um arranque rápido.',
-    descVi:'Ghép 4 câu trong Quiz ở mức Dễ: tăng tốc nhanh.',
-    descId:'Susun 4 frasa di Kuis pada level Mudah: pemanasan cepat.',
-    descTr:'Quizlerde Kolay seviyede 4 ifadeyi kur: hızlı bir başlangıç.',
-    descPl:'Ułóż 4 frazy w Quizach na poziomie Łatwe: szybki rozpęd.',
-    descUK:'Збери 4 фрази у Квізах на рівні Легко — швидкий розгін.' },
+    descRU:'Ответь правильно на 4 вопроса в Квизах на уровне Легко — быстрый разгон.',
+    descPtBr:'Responda corretamente a 4 perguntas em Quizzes no nível Fácil: um arranque rápido.',
+    descVi:'Trả lời đúng 4 câu hỏi trong Quiz ở mức Dễ: tăng tốc nhanh.',
+    descId:'Jawab 4 pertanyaan dengan benar di Kuis pada level Mudah: pemanasan cepat.',
+    descTr:'Quizlerde Kolay seviyede 4 soruyu doğru yanıtla: hızlı bir başlangıç.',
+    descPl:'Odpowiedz poprawnie na 4 pytania w Quizach na poziomie Łatwe: szybki rozpęd.',
+    descUK:'Дай правильну відповідь на 4 запитання у Квізах на рівні Легко — швидкий розгін.' },
 
-  // Дополнительные quiz_medium (Premium)
+  // Дополнительные quiz_medium
   { id:'qm3', type:'quiz_medium', icon:'⚔️', target:3, xp:18, minPlayerLevel:8,
     titleRU:'Вход на средний', titleUK:'Вхід на середній',
     titlePtBr:'Entrada no médio', titleVi:'Vào mức trung bình', titleId:'Masuk level menengah', titleTr:'Orta seviyeye giriş', titlePl:'Wejście na średni',
-    descRU:'Открой Квизы → Средне и собери 3 фразы.',
-    descPtBr:'Abra Quizzes → Médio e monte 3 frases.',
-    descVi:'Mở Quiz → Trung bình và ghép 3 câu.',
-    descId:'Buka Kuis → Menengah dan susun 3 frasa.',
-    descTr:'Quizler → Orta bölümünü aç ve 3 ifadeyi kur.',
-    descPl:'Otwórz Quizy → Średnie i ułóż 3 frazy.',
-    descUK:'Відкрий Квізи → Середньо й збери 3 фрази.' },
+    descRU:'Открой Квизы → Средне и ответь правильно на 3 вопроса.',
+    descPtBr:'Abra Quizzes → Médio e responda corretamente a 3 perguntas.',
+    descVi:'Mở Quiz → Trung bình và trả lời đúng 3 câu hỏi.',
+    descId:'Buka Kuis → Menengah dan jawab 3 pertanyaan dengan benar.',
+    descTr:'Quizler → Orta bölümünü aç ve 3 soruyu doğru yanıtla.',
+    descPl:'Otwórz Quizy → Średnie i odpowiedz poprawnie na 3 pytania.',
+    descUK:'Відкрий Квізи → Середньо й дай правильну відповідь на 3 запитання.' },
   { id:'qm4', type:'quiz_medium', icon:'⚔️', target:15, xp:60, minPlayerLevel:8,
     titleRU:'Средний мастер плюс', titleUK:'Середній майстер плюс',
     titlePtBr:'Mestre médio plus', titleVi:'Bậc thầy trung bình plus', titleId:'Ahli menengah plus', titleTr:'Orta seviye ustası plus', titlePl:'Mistrz średniego plus',
-    descRU:'Собери 15 фраз в Квизах на уровне Средне.',
-    descPtBr:'Monte 15 frases em Quizzes no nível Médio.',
-    descVi:'Ghép 15 câu trong Quiz ở mức Trung bình.',
-    descId:'Susun 15 frasa di Kuis pada level Menengah.',
-    descTr:'Quizlerde Orta seviyede 15 ifadeyi kur.',
-    descPl:'Ułóż 15 fraz w Quizach na poziomie Średnie.',
-    descUK:'Збери 15 фраз у Квізах на рівні Середньо.' },
+    descRU:'Ответь правильно на 15 вопросов в Квизах на уровне Средне.',
+    descPtBr:'Responda corretamente a 15 perguntas em Quizzes no nível Médio.',
+    descVi:'Trả lời đúng 15 câu hỏi trong Quiz ở mức Trung bình.',
+    descId:'Jawab 15 pertanyaan dengan benar di Kuis pada level Menengah.',
+    descTr:'Quizlerde Orta seviyede 15 soruyu doğru yanıtla.',
+    descPl:'Odpowiedz poprawnie na 15 pytań w Quizach na poziomie Średnie.',
+    descUK:'Дай правильну відповідь на 15 запитань у Квізах на рівні Середньо.' },
 
-  // Дополнительные quiz_hard (Premium)
+  // Дополнительные quiz_hard
   { id:'qh5', type:'quiz_hard', icon:'💪', target:7, xp:66, minPlayerLevel:15,
     titleRU:'Семь на сложном', titleUK:'Сім на складному',
     titlePtBr:'Sete no difícil', titleVi:'Bảy câu mức khó', titleId:'Tujuh di level sulit', titleTr:'Zorda yedili', titlePl:'Siedem na trudnym',
-    descRU:'Открой Квизы → Сложно и собери 7 фраз.',
-    descPtBr:'Abra Quizzes → Difícil e monte 7 frases.',
-    descVi:'Mở Quiz → Khó và ghép 7 câu.',
-    descId:'Buka Kuis → Sulit dan susun 7 frasa.',
-    descTr:'Quizler → Zor bölümünü aç ve 7 ifadeyi kur.',
-    descPl:'Otwórz Quizy → Trudne i ułóż 7 fraz.',
-    descUK:'Відкрий Квізи → Складно й збери 7 фраз.' },
+    descRU:'Открой Квизы → Сложно и ответь правильно на 7 вопросов.',
+    descPtBr:'Abra Quizzes → Difícil e responda corretamente a 7 perguntas.',
+    descVi:'Mở Quiz → Khó và trả lời đúng 7 câu hỏi.',
+    descId:'Buka Kuis → Sulit dan jawab 7 pertanyaan dengan benar.',
+    descTr:'Quizler → Zor bölümünü aç ve 7 soruyu doğru yanıtla.',
+    descPl:'Otwórz Quizy → Trudne i odpowiedz poprawnie na 7 pytań.',
+    descUK:'Відкрий Квізи → Складно й дай правильну відповідь на 7 запитань.' },
   { id:'qh6', type:'quiz_hard', icon:'👑', target:20, xp:108, minPlayerLevel:15,
     titleRU:'Двадцать на сложном', titleUK:'Двадцять на складному',
     titlePtBr:'Vinte no difícil', titleVi:'Hai mươi câu mức khó', titleId:'Dua puluh di level sulit', titleTr:'Zorda yirmi', titlePl:'Dwadzieścia na trudnym',
-    descRU:'Собери 20 фраз в Квизах на уровне Сложно.',
-    descPtBr:'Monte 20 frases em Quizzes no nível Difícil.',
-    descVi:'Ghép 20 câu trong Quiz ở mức Khó.',
-    descId:'Susun 20 frasa di Kuis pada level Sulit.',
-    descTr:'Quizlerde Zor seviyede 20 ifadeyi kur.',
-    descPl:'Ułóż 20 fraz w Quizach na poziomie Trudne.',
-    descUK:'Збери 20 фраз у Квізах на рівні Складно.' },
+    descRU:'Ответь правильно на 20 вопросов в Квизах на уровне Сложно.',
+    descPtBr:'Responda corretamente a 20 perguntas em Quizzes no nível Difícil.',
+    descVi:'Trả lời đúng 20 câu hỏi trong Quiz ở mức Khó.',
+    descId:'Jawab 20 pertanyaan dengan benar di Kuis pada level Sulit.',
+    descTr:'Quizlerde Zor seviyede 20 soruyu doğru yanıtla.',
+    descPl:'Odpowiedz poprawnie na 20 pytań w Quizach na poziomie Trudne.',
+    descUK:'Дай правильну відповідь на 20 запитань у Квізах на рівні Складно.' },
 
   // Дополнительные quiz_score
   { id:'qs5', type:'quiz_score', icon:'💥', target:70, xp:114, minPlayerLevel:15,
@@ -1047,7 +1059,7 @@ const ALL_TASKS: DailyTask[] = [
     descPl:'Zdobądź 15 XP w Quizach w ciągu dnia.',
     descUK:'Зароби 15 XP у Квізах за день.' },
 
-  // Дополнительные quiz_perfect (Premium)
+  // Дополнительные quiz_perfect
   { id:'qp2', type:'quiz_perfect', icon:'✨', target:2, xp:96, minPlayerLevel:8,
     titleRU:'Дважды идеально', titleUK:'Двічі ідеально',
     titlePtBr:'Duas vezes perfeito', titleVi:'Hai lần hoàn hảo', titleId:'Dua kali sempurna', titleTr:'İki kez mükemmel', titlePl:'Dwa razy idealnie',
@@ -1059,7 +1071,7 @@ const ALL_TASKS: DailyTask[] = [
     descPl:'Ukończ dziś 2 rundy w Quizach bez ani jednego błędu.',
     descUK:'Заверши 2 раунди в Квізах без жодної помилки сьогодні.' },
 
-  // Дополнительный quiz_hard_perfect (Premium)
+  // Дополнительный quiz_hard_perfect
   { id:'qhp2', type:'quiz_hard_perfect', icon:'💥', target:1, xp:108, minPlayerLevel:15,
     titleRU:'Сложно и чисто', titleUK:'Складно і чисто',
     titlePtBr:'Difícil e limpo', titleVi:'Khó và sạch lỗi', titleId:'Sulit dan bersih', titleTr:'Zor ve temiz', titlePl:'Trudno i czysto',
@@ -1575,13 +1587,13 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qe7', type:'quiz_easy', icon:'🍀', target:8, xp:24,
     titleRU:'Восемь лёгких', titleUK:'Вісім легких',
     titlePtBr:'Oito fáceis', titleVi:'Tám câu dễ', titleId:'Delapan mudah', titleTr:'Sekiz kolay', titlePl:'Osiem łatwych',
-    descRU:'Собери 8 фраз в Квизах на уровне Легко.',
-    descPtBr:'Monte 8 frases em Quizzes no nível Fácil.',
-    descVi:'Ghép 8 câu trong Quiz ở mức Dễ.',
-    descId:'Susun 8 frasa di Kuis pada level Mudah.',
-    descTr:'Quizlerde Kolay seviyede 8 ifadeyi kur.',
-    descPl:'Ułóż 8 fraz w Quizach na poziomie Łatwe.',
-    descUK:'Збери 8 фраз у Квізах на рівні Легко.' },
+    descRU:'Ответь правильно на 8 вопросов в Квизах на уровне Легко.',
+    descPtBr:'Responda corretamente a 8 perguntas em Quizzes no nível Fácil.',
+    descVi:'Trả lời đúng 8 câu hỏi trong Quiz ở mức Dễ.',
+    descId:'Jawab 8 pertanyaan dengan benar di Kuis pada level Mudah.',
+    descTr:'Quizlerde Kolay seviyede 8 soruyu doğru yanıtla.',
+    descPl:'Odpowiedz poprawnie na 8 pytań w Quizach na poziomie Łatwe.',
+    descUK:'Дай правильну відповідь на 8 запитань у Квізах на рівні Легко.' },
   { id:'vl7', type:'verb_learned', icon:'📋', target:5, xp:66,
     titleRU:'Пять глаголов', titleUK:'П\'ять дієслів',
     titlePtBr:'Cinco verbos', titleVi:'Năm động từ', titleId:'Lima kata kerja', titleTr:'Beş fiil', titlePl:'Pięć czasowników',
@@ -2732,6 +2744,7 @@ export const updateTaskProgress = async (
   const tasks = await getTodayTasksSafe(studyTarget);
   const progress = await loadTodayProgress(tasks, studyTarget);
   let newlyCompleted: TaskProgress | null = null;
+  const completedTaskIds: string[] = [];
 
   const updated = progress.map(p => {
     const task = tasks.find(t => t.id === p.taskId);
@@ -2740,13 +2753,15 @@ export const updateTaskProgress = async (
     const nowCompleted = newCurrent >= task.target;
     if (nowCompleted && !p.completed) {
         newlyCompleted = { ...p, current: newCurrent, completed: true };
-        // Уведомляем глобальный тост о том, что задание выполнено и готово к получению
-        emitAppEvent('daily_task_completed', { taskId: task.id });
+        completedTaskIds.push(task.id);
       }
     return { ...p, current: newCurrent, completed: nowCompleted };
   });
 
   await saveTodayProgress(updated, studyTarget);
+  for (const taskId of completedTaskIds) {
+    emitDailyTaskCompleted(taskId, studyTarget);
+  }
   return { completed: newlyCompleted, allProgress: updated };
 };
 
@@ -2806,7 +2821,7 @@ export const resetAndUpdateTaskProgress = async (
 
   for (const p of progress) {
     if (p.completed && !wasCompleted.has(p.taskId)) {
-      emitAppEvent('daily_task_completed', { taskId: p.taskId });
+      emitDailyTaskCompleted(p.taskId, studyTarget);
     }
   }
 };
@@ -2910,7 +2925,7 @@ export const claimTaskWithReward = async (
   // Вне storage lock: слушатели могут дергать loadTodayProgress/updateMultipleTaskProgress —
   // emit внутри lock теоретически давал бы взаимную блокировку на общем mutex.
   if (lockResult.kind === 'fresh') {
-    emitAppEvent('daily_task_reward_claimed', { taskId });
+    emitDailyTaskRewardClaimed(taskId, options?.studyTarget);
     return { claimed: true, awardedXp: lockResult.xp };
   }
   if (lockResult.kind === 'already') {
@@ -2925,6 +2940,7 @@ export const updateMultipleTaskProgress = async (
   updates: { type: TaskType; increment?: number }[],
   opts?: { pvpArenaMatchFinished?: { won: boolean }; studyTarget?: RuntimeStudyTarget },
 ): Promise<void> => {
+  const completedTaskIds = new Set<string>();
   try {
     await withStorageLock(async () => {
       const tasks = await getTodayTasksSafe(opts?.studyTarget);
@@ -2946,7 +2962,7 @@ export const updateMultipleTaskProgress = async (
           const newCurrent = Math.round(Math.min(p.current + increment, task.target) * 10) / 10;
           const nowCompleted = newCurrent >= task.target;
           if (nowCompleted) {
-            emitAppEvent('daily_task_completed', { taskId: task.id });
+            completedTaskIds.add(task.id);
           }
           return { ...p, current: newCurrent, completed: nowCompleted };
         });
@@ -2962,7 +2978,7 @@ export const updateMultipleTaskProgress = async (
           const wins = (p.comboWins ?? 0) + (won ? 1 : 0);
           const completed = plays >= req.minPlays && wins >= req.minWins;
           if (completed && !p.completed) {
-            emitAppEvent('daily_task_completed', { taskId: task.id });
+            completedTaskIds.add(task.id);
           }
           return { ...p, comboPlays: plays, comboWins: wins, current: Math.min(plays, req.minPlays), completed };
         });
@@ -2973,6 +2989,9 @@ export const updateMultipleTaskProgress = async (
         await saveTodayProgress(progress, opts?.studyTarget);
       }
     });
+    for (const taskId of completedTaskIds) {
+      emitDailyTaskCompleted(taskId, opts?.studyTarget);
+    }
   } catch (error) {
     DebugLogger.error('daily_tasks:updateMultipleTaskProgress', error, 'warning');
     const now = Date.now();

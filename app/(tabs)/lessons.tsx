@@ -4,7 +4,6 @@ import { useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
 import { lessonPaywallContext, requiresPremiumForLesson, resolveLessonAccess } from '../monetization_policy';
 import { useTabNav } from '../TabContext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
@@ -16,38 +15,24 @@ import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, go
 import GoldBevel from '../../components/GoldBevel';
 import { DEV_MODE } from '../config';
 import { hapticTap } from '../../hooks/use-haptics';
-import { getExamMedalTier, getEarnedDots, normalizeLessonPassCount } from '../medal_utils';
+import { getExamMedalTier, getEarnedDots } from '../medal_utils';
 import { prefetchLessonMenuCache } from '../lesson_menu';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ThemedChoiceModal from '../../components/ThemedChoiceModal';
-import { effectiveLessonStarScore } from '../lesson_star_score';
 import EnergyBar from '../../components/EnergyBar';
 import { getCourseLevelForLesson, getCourseLevelIndex, getPreviousCourseLevel, type CourseLevel, } from '../course_levels';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { examContentAvailableForTarget, frenchExamGateCopy } from '../exam_target_gate';
 import {
-    lessonBestScoreKey,
-    lessonPassCountKey,
-    lessonProgressKey,
-    levelExamKey,
     storageStudyTarget,
-    unlockedLessonsKey,
 } from '../target_storage_keys';
+import {
+    getLessonsTabInitialState,
+    loadLessonsTabStateFromStorage,
+    type LessonsTabSnapshot,
+} from '../lessons_tab_state';
 /** Снимок UI списку уроків: survives remount між сесіями таба (див. `_layout.tsx` lazy tabs). */
-type LessonsUiCache = {
-    scores: number[];
-    progCounts: number[];
-    passCounts: number[];
-    examBestPcts: Record<string, number>;
-    examPassCounts: Record<string, number>;
-    examResults: Record<string, {
-        pct: number;
-        passed: boolean;
-    }>;
-    persistedUnlocked: number[];
-    noLimits: boolean;
-};
-let lessonsUiSessionCacheByTarget: Partial<Record<string, LessonsUiCache>> = {};
+let lessonsUiSessionCacheByTarget: Partial<Record<string, LessonsTabSnapshot>> = {};
 /**
  * Единый стиль карточек списка уроков (как «Туман» / «Графит»).
  * Объявлено на уровне модуля (не внутри компонента): имя начинается с `use` — внутри функции
@@ -219,7 +204,9 @@ export default function LessonsTab() {
     const { height: SCREEN_H } = useWindowDimensions();
     const VIEWPORT_H = SCREEN_H - 90; // approx tab bar + status bar
     const lessonCacheTarget = storageStudyTarget(studyTarget);
-    const boot = lessonsUiSessionCacheByTarget[lessonCacheTarget] ?? null;
+    const lessonCacheTargetRef = useRef(lessonCacheTarget);
+    lessonCacheTargetRef.current = lessonCacheTarget;
+    const boot = lessonsUiSessionCacheByTarget[lessonCacheTarget] ?? getLessonsTabInitialState(studyTarget);
     const [noLimits, setNoLimits] = useState(() => boot?.noLimits ?? false);
     const { hasPremiumAccess: isPremium } = usePremium();
     const [scores, setScores] = useState<number[]>(() => boot?.scores ?? new Array(32).fill(0));
@@ -258,6 +245,10 @@ export default function LessonsTab() {
         lessonNum: number;
     }>(null);
     const mountedRef = useRef(true);
+    const scoresLoadRef = useRef<{
+        target: string;
+        promise: Promise<LessonsTabSnapshot>;
+    } | null>(null);
     useEffect(() => {
         mountedRef.current = true;
         return () => { mountedRef.current = false; };
@@ -269,84 +260,36 @@ export default function LessonsTab() {
     }, [activeIdx]);
     const loadScores = useCallback(async () => {
         try {
-            const [noLimitsRaw, unlockedRaw] = await Promise.all([
-                AsyncStorage.getItem('tester_no_limits'),
-                AsyncStorage.getItem(unlockedLessonsKey(studyTarget)),
-            ]);
-            const nextNoLimits = noLimitsRaw === 'true';
-            let nextPersisted: number[] = [];
-            if (unlockedRaw) {
-                try {
-                    const arr = JSON.parse(unlockedRaw);
-                    nextPersisted = Array.isArray(arr) ? arr.filter((n: unknown) => typeof n === 'number') : [];
-                }
-                catch {
-                    nextPersisted = [];
-                }
-            }
-            const lessonResults = await Promise.all(Array.from({ length: 32 }, (_, i) => i).map(async (i) => {
-                try {
-                    const n = i + 1;
-                    const [bestRaw, progRaw] = await Promise.all([
-                        AsyncStorage.getItem(lessonBestScoreKey(n, studyTarget)),
-                        AsyncStorage.getItem(lessonProgressKey(n, studyTarget)),
-                    ]);
-                    const { score, correctCount } = effectiveLessonStarScore(bestRaw, progRaw);
-                    return { score, correct: correctCount };
-                }
-                catch {
-                    return { score: 0, correct: 0 };
-                }
-            }));
-            const nextScores = lessonResults.map(r => r.score);
-            const nextProg = lessonResults.map(r => r.correct);
-            const nextPass = await Promise.all(Array.from({ length: 32 }, (_, i) => AsyncStorage.getItem(lessonPassCountKey(i + 1, studyTarget)).then(v => normalizeLessonPassCount(parseInt(v || '0', 10) || 0, nextScores[i] ?? 0))));
-            const examRows = await Promise.all(['A1', 'A2', 'B1', 'B2'].map(async (lvl) => {
-                const [pctRaw, passedRaw, bestRaw, examPassRaw] = await Promise.all([
-                    AsyncStorage.getItem(levelExamKey(lvl, 'pct', studyTarget)),
-                    AsyncStorage.getItem(levelExamKey(lvl, 'passed', studyTarget)),
-                    AsyncStorage.getItem(levelExamKey(lvl, 'best_pct', studyTarget)),
-                    AsyncStorage.getItem(levelExamKey(lvl, 'pass_count', studyTarget)),
-                ]);
-                return {
-                    lvl,
-                    pct: parseInt(pctRaw || '0') || 0,
-                    passed: passedRaw === '1',
-                    bestPct: parseInt(bestRaw || '0') || 0,
-                    examPass: parseInt(examPassRaw || '0') || 0,
+            let entry = scoresLoadRef.current;
+            if (!entry || entry.target !== lessonCacheTarget) {
+                const nextEntry = {
+                    target: lessonCacheTarget,
+                    promise: loadLessonsTabStateFromStorage(studyTarget),
                 };
-            }));
-            const nextExamResults: Record<string, {
-                pct: number;
-                passed: boolean;
-            }> = {};
-            const nextBest: Record<string, number> = {};
-            const nextExamPass: Record<string, number> = {};
-            examRows.forEach(r => {
-                nextExamResults[r.lvl] = { pct: r.pct, passed: r.passed };
-                nextBest[r.lvl] = r.bestPct;
-                nextExamPass[r.lvl] = r.examPass;
-            });
-            if (!mountedRef.current)
+                entry = nextEntry;
+                scoresLoadRef.current = nextEntry;
+                nextEntry.promise.then(() => {
+                    if (scoresLoadRef.current === nextEntry) {
+                        scoresLoadRef.current = null;
+                    }
+                }, () => {
+                    if (scoresLoadRef.current === nextEntry) {
+                        scoresLoadRef.current = null;
+                    }
+                });
+            }
+            const snapshot = await entry.promise;
+            if (!mountedRef.current || entry.target !== lessonCacheTargetRef.current)
                 return;
-            setNoLimits(nextNoLimits);
-            setPersistedUnlocked(nextPersisted);
-            setScores(nextScores);
-            setProgCounts(nextProg);
-            setPassCounts(nextPass);
-            setExamResults(nextExamResults);
-            setExamBestPcts(nextBest);
-            setExamPassCounts(nextExamPass);
-            lessonsUiSessionCacheByTarget[lessonCacheTarget] = {
-                scores: nextScores,
-                progCounts: nextProg,
-                passCounts: nextPass,
-                examBestPcts: nextBest,
-                examPassCounts: nextExamPass,
-                examResults: nextExamResults,
-                persistedUnlocked: nextPersisted,
-                noLimits: nextNoLimits,
-            };
+            setNoLimits(snapshot.noLimits);
+            setPersistedUnlocked(snapshot.persistedUnlocked);
+            setScores(snapshot.scores);
+            setProgCounts(snapshot.progCounts);
+            setPassCounts(snapshot.passCounts);
+            setExamResults(snapshot.examResults);
+            setExamBestPcts(snapshot.examBestPcts);
+            setExamPassCounts(snapshot.examPassCounts);
+            lessonsUiSessionCacheByTarget[lessonCacheTarget] = snapshot;
         }
         catch {
             /* ignore */

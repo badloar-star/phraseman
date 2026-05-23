@@ -35,6 +35,14 @@ appId: app.phraseman
           timeout: 3000
 - runFlow:
     when:
+      visible: "Connected to:"
+    commands:
+      - tapOn:
+          point: "90%,10%"
+      - waitForAnimationToEnd:
+          timeout: 3000
+- runFlow:
+    when:
       visible: "Go home"
     commands:
       - tapOn: "Go home"
@@ -52,7 +60,7 @@ appId: app.phraseman
     when:
       visible: "DEVELOPMENT SERVERS"
     commands:
-      - tapOn: "http://localhost:8081"
+      - tapOn: 'http://(localhost|127\.0\.0\.1|10\.0\.2\.2):8081'
       - waitForAnimationToEnd:
           timeout: 12000
 - runFlow:
@@ -82,6 +90,14 @@ appId: app.phraseman
           timeout: 5000
 - runFlow:
     when:
+      visible: "Connected to:"
+    commands:
+      - tapOn:
+          point: "90%,10%"
+      - waitForAnimationToEnd:
+          timeout: 3000
+- runFlow:
+    when:
       visible: "This is the developer menu"
     commands:
       - tapOn:
@@ -99,7 +115,7 @@ appId: app.phraseman
     when:
       visible: "DEVELOPMENT SERVERS"
     commands:
-      - tapOn: "http://localhost:8081"
+      - tapOn: 'http://(localhost|127\.0\.0\.1|10\.0\.2\.2):8081'
       - waitForAnimationToEnd:
           timeout: 15000
 - runFlow:

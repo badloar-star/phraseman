@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { BackHandler, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { BackHandler, InteractionManager, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
@@ -31,6 +31,8 @@ import {
   flashcardsCommunityPacksAvailableForTarget,
   flashcardsOfficialPacksAvailableForTarget,
 } from './flashcards_target_gate';
+import { FLASHCARDS_MARKET_DEV_ROUTE } from '../constants/devRoutes';
+import { safeRouterBack } from './navigation_back';
 
 export default function FlashcardsHubScreen() {
   const router = useRouter();
@@ -44,6 +46,7 @@ export default function FlashcardsHubScreen() {
   const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
   const insets = useSafeAreaInsets();
   const isDevMarketEnabled = DEV_MODE || IS_BETA_TESTER;
+  const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
   const scrollBottomPadding = Math.max(insets.bottom, 16) + 12;
 
   const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(
@@ -57,11 +60,7 @@ export default function FlashcardsHubScreen() {
 
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
   const leaveFlashcardsHub = useCallback(() => {
-    if (typeof router.canGoBack === 'function' && router.canGoBack()) {
-      router.back();
-    } else {
-      router.replace('/(tabs)/home' as any);
-    }
+    safeRouterBack(router, '/(tabs)/home' as any);
   }, [router]);
 
   /** Throttle Firestore-запросов: повторный focus не должен пересохранять list при беглом переключении. */
@@ -190,9 +189,14 @@ export default function FlashcardsHubScreen() {
   useFocusEffect(
     useCallback(() => {
       primeCustomFlashcardsCache(studyTarget);
-      void import('./flashcards_swipe').catch(() => {});
-      void import('./flashcards_audio').catch(() => {});
       void loadHubMarket();
+      const warmImportsTask = InteractionManager.runAfterInteractions(() => {
+        void import('./flashcards_swipe').catch(() => {});
+        void import('./flashcards_audio').catch(() => {});
+      });
+      return () => {
+        warmImportsTask.cancel?.();
+      };
     }, [loadHubMarket, studyTarget]),
   );
 
@@ -209,10 +213,10 @@ export default function FlashcardsHubScreen() {
     <ScreenGradient artBackdrop="flashcards">
       <SafeAreaView
         style={[styles.safe, { backgroundColor: 'transparent' }]}
-        edges={['top', 'left', 'right']}
+        edges={['left', 'right']}
       >
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
-        <View style={[styles.header, { borderBottomColor: t.border }]}>
+        <View style={[styles.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 12 }]}>
           <TouchableOpacity
             testID="flashcards-header-back"
             accessibilityLabel="qa-flashcards-header-back"
@@ -226,7 +230,7 @@ export default function FlashcardsHubScreen() {
           <View style={{ flex: 1 }} />
           {isDevMarketEnabled ? (
             <TouchableOpacity
-              onPress={() => router.push('/flashcards_market_dev' as any)}
+              onPress={() => router.push(FLASHCARDS_MARKET_DEV_ROUTE as any)}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               style={{
                 flexDirection: 'row',

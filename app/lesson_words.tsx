@@ -28,6 +28,7 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import CoachToast from '../components/CoachToast';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { loadFlashcards } from '../hooks/use-flashcards';
+import { safeRouterBack } from './navigation_back';
 import { useAudio } from '../hooks/use-audio';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { loadSettings } from './settings_edu';
@@ -2648,6 +2649,13 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
 
   // Блокировка: не даём запустить обработку дважды
   const locked = useRef(false);
+  const answerTransitionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const noEnergyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => () => {
+    if (answerTransitionTimerRef.current) clearTimeout(answerTransitionTimerRef.current);
+    if (noEnergyTimerRef.current) clearTimeout(noEnergyTimerRef.current);
+  }, []);
 
   useEffect(() => {
     if (!userNameProp) AsyncStorage.getItem('user_name').then(n => { if(n) setUserName(n); });
@@ -2710,7 +2718,9 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
       void hapticError();
     }
 
-    setTimeout(() => {
+    if (answerTransitionTimerRef.current) clearTimeout(answerTransitionTimerRef.current);
+    answerTransitionTimerRef.current = setTimeout(() => {
+      answerTransitionTimerRef.current = null;
       const newQueue = [...queue];
 
       if (isRight) {
@@ -2803,7 +2813,11 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           const energyBefore = currentEnergyRef.current;
           spendOneRef.current().then(success => {
             if (success && energyBefore === 1) {
-              setTimeout(() => { onNoEnergyRef.current(); }, 800);
+              if (noEnergyTimerRef.current) clearTimeout(noEnergyTimerRef.current);
+              noEnergyTimerRef.current = setTimeout(() => {
+                noEnergyTimerRef.current = null;
+                onNoEnergyRef.current();
+              }, 800);
             }
           }).catch(() => {});
         }
@@ -2876,7 +2890,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         <TouchableOpacity
           testID="lesson-words-complete-back"
           style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
-          onPress={() => router.back()}
+          onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
         >
           <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>{pickTriLang(lang, { ru: '← К уроку', uk: '← До уроку', es: '← A la lección', 'pt-BR': '← Para a lição', vi: '← Về bài học', id: '← Ke pelajaran', tr: '← Derse', pl: '← Do lekcji' })}</Text>
         </TouchableOpacity>
@@ -3040,7 +3054,8 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
             <TouchableOpacity key={i}
               testID={isCorrect ? 'lesson-words-option-correct' : `lesson-words-option-${i}`}
               style={{ width:'48%', minHeight:68, paddingVertical:12, paddingHorizontal:10, borderRadius:16, alignItems:'center', justifyContent:'center', borderWidth:bw, backgroundColor:bg, borderColor }}
-              onPress={() => { hapticTap(); handleChoice(opt); }}
+              onPressIn={() => { void hapticTap(); }}
+              onPress={() => { handleChoice(opt); }}
               activeOpacity={0.72}
               disabled={chosen !== null}
             >
@@ -3256,7 +3271,11 @@ export default function LessonWords() {
     if (energyUnlimited || energy > 0) setNoEnergyModalOpen(false);
   }, [energyUnlimited, energy]);
   useEffect(() => {
-    if (tab === 'list') void loadFlashcards(studyTarget);
+    if (tab !== 'list') return;
+    const flashcardLoadTask = InteractionManager.runAfterInteractions(() => {
+      void loadFlashcards(studyTarget);
+    });
+    return () => flashcardLoadTask.cancel?.();
   }, [studyTarget, tab]);
   const [learnedCounts, setLearnedCounts] = useState<Record<string,number>>({});
   /** +1 после завершения чтения lesson words key (в т.ч. пусто) — тренажёр подмешивает прогресс без спиннера. */
@@ -3267,20 +3286,29 @@ export default function LessonWords() {
     [learnedCounts],
   );
   const [userName, setUserName] = useState('');
+  const lastProgressScopeRef = useRef<string | null>(null);
 
   useEffect(() => {
     AsyncStorage.getItem('user_name').then(n => { if (n) setUserName(n); });
   }, []);
 
   useLayoutEffect(() => {
+    const progressScope = `${storageKey}:${initialTab ?? 'auto'}`;
+    if (lastProgressScopeRef.current === null) {
+      lastProgressScopeRef.current = progressScope;
+      return;
+    }
+    if (lastProgressScopeRef.current === progressScope) return;
+    lastProgressScopeRef.current = progressScope;
     setLearnedCounts({});
     setWordProgressVersion(0);
     setUserTab(initialTab);
-  }, [initialTab, lessonId, storageKey]);
+  }, [initialTab, storageKey]);
 
   useEffect(() => {
     let cancelled = false;
-    AsyncStorage.getItem(storageKey)
+    const loadWordProgress = () => {
+      AsyncStorage.getItem(storageKey)
       .then(v => {
         if (cancelled) return;
         if (v) {
@@ -3308,8 +3336,17 @@ export default function LessonWords() {
         }
       })
       .finally(() => { if (!cancelled) setWordProgressVersion(ver => ver + 1); });
+    };
+    if (tab === 'list') {
+      const progressLoadTask = InteractionManager.runAfterInteractions(loadWordProgress);
+      return () => {
+        cancelled = true;
+        progressLoadTask.cancel?.();
+      };
+    }
+    loadWordProgress();
     return () => { cancelled = true; };
-  }, [lessonId, storageKey]);
+  }, [lessonId, storageKey, tab]);
 
   return (
     <ScreenGradient>
@@ -3319,8 +3356,7 @@ export default function LessonWords() {
         <TouchableOpacity
           testID="lesson-words-header-back"
           onPress={() => {
-            if (router.canGoBack()) router.back();
-            else router.replace({ pathname: '/lesson_menu', params: { id: lessonId } } as any);
+            safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
           }}
         >
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
@@ -3334,6 +3370,20 @@ export default function LessonWords() {
           <FrenchVocabularyUnavailable
             lang={lang}
             onBack={() => router.replace({ pathname: '/lesson_menu', params: { id: lessonId } } as any)}
+          />
+        ) : tab === 'list' ? (
+          <WordList
+            words={words}
+            learnedCounts={learnedCounts}
+            lang={lang}
+            lessonId={lessonId}
+            onStartTraining={() => {
+              if (!canTrain) {
+                setNoEnergyModalOpen(true);
+                return;
+              }
+              setUserTab('train');
+            }}
           />
         ) : !wordProgressReady ? (
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 12 }}>
@@ -3351,20 +3401,6 @@ export default function LessonWords() {
               })}
             </Text>
           </View>
-        ) : tab === 'list' ? (
-          <WordList
-            words={words}
-            learnedCounts={learnedCounts}
-            lang={lang}
-            lessonId={lessonId}
-            onStartTraining={() => {
-              if (!canTrain) {
-                setNoEnergyModalOpen(true);
-                return;
-              }
-              setUserTab('train');
-            }}
-          />
         ) : (
           <Training
             key={storageKey}

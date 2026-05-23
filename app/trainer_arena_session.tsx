@@ -28,6 +28,7 @@ import {
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
 import { logTrainerDirectGateBlocked } from './firebase';
+import { safeRouterBack } from './navigation_back';
 import TrainerSessionReport from './trainer_session_report';
 import { checkAchievements } from './achievements';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
@@ -184,7 +185,7 @@ export default function TrainerArenaSession() {
               wrong={wrong}
               total={items.length || correct + wrong}
               accent="#E05050"
-              onDone={() => { hapticTap(); router.back(); }}
+              onDone={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
             />
           </ContentWrap>
@@ -203,7 +204,7 @@ export default function TrainerArenaSession() {
         <ContentWrap>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={{ padding: 4 }}>
+            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TouchableOpacity>
             <Text style={{ color: sx.muted, fontSize: f.caption }}>

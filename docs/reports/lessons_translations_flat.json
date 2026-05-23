@@ -198,7 +198,7 @@
   {
     "lesson": 1,
     "id": "lesson1_phrase_29",
-    "en": "You are fine",
+    "en": "You are okay",
     "ru": "Ты в порядке",
     "uk": "Ти в порядку"
   },
@@ -2095,7 +2095,7 @@
   {
     "lesson": 6,
     "id": "lesson6_phrase_50",
-    "en": "When do they close cafés?",
+    "en": "When do they close the cafe?",
     "ru": "Когда они закрывают кафе?",
     "uk": "Коли вони зачиняють кафе?"
   },
@@ -3845,7 +3845,7 @@
   {
     "lesson": 11,
     "id": "lesson11_phrase_50",
-    "en": "You answered an email yesterday",
+    "en": "You answered a letter yesterday",
     "ru": "Ты ответил на письмо вчера",
     "uk": "Ти відповів на листа вчора"
   },
@@ -6736,14 +6736,14 @@
   {
     "lesson": 20,
     "id": "lesson20_phrase_14",
-    "en": "She wrote an email.",
+    "en": "She wrote a letter.",
     "ru": "Она написала письмо.",
     "uk": "Вона написала листа."
   },
   {
     "lesson": 20,
     "id": "lesson20_phrase_15",
-    "en": "The email is important.",
+    "en": "The letter is important.",
     "ru": "Письмо важное.",
     "uk": "Лист важливий."
   },
@@ -6918,14 +6918,14 @@
   {
     "lesson": 20,
     "id": "lesson20_phrase_40",
-    "en": "There is an email in my inbox.",
+    "en": "There is a letter in my inbox.",
     "ru": "В моём ящике есть письмо.",
     "uk": "У моїй скриньці є лист."
   },
   {
     "lesson": 20,
     "id": "lesson20_phrase_41",
-    "en": "The email is from her.",
+    "en": "The letter is from her.",
     "ru": "Письмо от неё.",
     "uk": "Лист від неї."
   },
@@ -8136,7 +8136,7 @@
   {
     "lesson": 24,
     "id": "lesson24_phrase_13",
-    "en": "He has already sent the email",
+    "en": "He has already sent the letter",
     "ru": "Он уже отправил письмо",
     "uk": "Він вже надіслав листа"
   },

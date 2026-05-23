@@ -229,6 +229,7 @@ const SKIP_PATH_PARTS = [
   'scripts/missing_edits_dump',
   'scripts/out',
   'docs/heisenberg',
+  'qa-artifacts/ota-export-check',
   'subscription-recovery/node_modules',
   'tmp',
 ];
@@ -413,6 +414,7 @@ const SPANISH_STUDY_TARGET_ISOLATED_FILES = new Set([
   'app/(tabs)/settings.tsx',
   'app/config.ts',
   'app/french_lesson_curriculum.ts',
+  'app/flashcards_audio.tsx',
   'app/flashcards_collection.tsx',
   'app/flashcards_swipe.tsx',
   'app/home_screen_hydration.ts',
@@ -423,10 +425,12 @@ const SPANISH_STUDY_TARGET_ISOLATED_FILES = new Set([
   'app/lesson_locale_utils.ts',
   'app/lesson_titles_for_study_target.ts',
   'app/pack_opening.tsx',
+  'app/phrase_analytics_screen.tsx',
   'app/phrase_target_utils.ts',
   'app/review.tsx',
   'app/spanish_content_gate.ts',
   'app/study_target_lang_dev.ts',
+  'app/trainer.tsx',
   'components/MasteryReplayModal.tsx',
   'components/StudyTargetContext.tsx',
 ]);
@@ -573,6 +577,7 @@ function classifySurface(rel) {
   if (/^tests\//.test(file)) return 'tests';
   if (/^docs\//.test(file)) return 'docs';
   if (/^exports\//.test(file)) return 'docs';
+  if (/^lingman-scenarist-pipeline\//.test(file)) return 'docs';
   if (/^scripts\/|^tools\//.test(file)) return 'scripts-tools';
   return 'app-other';
 }

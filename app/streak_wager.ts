@@ -14,7 +14,6 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getVerifiedPremiumStatus } from './premium_guard';
 import { registerXP } from './xp_manager';
 import { spendShards, addShardsRaw } from './shards_system';
 import { trackActivity } from './app_activity';
@@ -37,7 +36,6 @@ function logWagerHealth(
 }
 
 const WAGER_DISCOUNT_KEY = 'wager_discount';
-/** Преміум: безкоштовна перша ставка після level-up, раз на календарний місяць */
 const PREM_WAGER_TOKEN_KEY = 'premium_wager_free_after_levelup_v1';
 const PREM_WAGER_MONTH_KEY = 'premium_wager_free_month_issued_v1';
 
@@ -70,22 +68,17 @@ export async function getEffectiveWagerStake(tierIdx: number): Promise<{
     return { nominalStake: 0, stakeToSpend: 0, hasDiscount: false, premiumFree: false };
   }
 
-  const [discRaw, premiumOk, premiumTokenRaw] = await Promise.all([
-    AsyncStorage.getItem(WAGER_DISCOUNT_KEY),
-    getVerifiedPremiumStatus(),
-    AsyncStorage.getItem(PREM_WAGER_TOKEN_KEY),
-  ]);
+  const discRaw = await AsyncStorage.getItem(WAGER_DISCOUNT_KEY);
   const hasDiscount = discRaw === '0.25';
-  const premiumFree = premiumOk && premiumTokenRaw === '1';
   const discountedStake = hasDiscount
     ? Math.max(1, Math.floor(tier.betShards * 0.75))
     : tier.betShards;
 
   return {
     nominalStake: tier.betShards,
-    stakeToSpend: premiumFree ? 0 : discountedStake,
+    stakeToSpend: discountedStake,
     hasDiscount,
-    premiumFree,
+    premiumFree: false,
   };
 }
 
@@ -107,10 +100,53 @@ const KEY = 'streak_wager_v2';
 
 const today = () => new Date().toISOString().split('T')[0];
 
+const chargeLegacyZeroStakeWager = async (wager: WagerState): Promise<WagerState> => {
+  if (!wager.active || wager.result !== 'pending' || (Number(wager.betShards) || 0) > 0) {
+    return wager;
+  }
+  const tier = WAGER_TIERS[wager.tierIdx];
+  if (!tier) return wager;
+
+  const [discRaw, legacyPremiumFreeToken] = await Promise.all([
+    AsyncStorage.getItem(WAGER_DISCOUNT_KEY),
+    AsyncStorage.getItem(PREM_WAGER_TOKEN_KEY),
+  ]);
+  const hasDisc = discRaw === '0.25';
+  const toSpend = hasDisc
+    ? Math.max(1, Math.floor(tier.betShards * 0.75))
+    : tier.betShards;
+
+  const spent = await spendShards(toSpend, 'wager_bet');
+  if (!spent) {
+    logWagerHealth('streak_wager:legacy_zero_stake_spend_failed', new Error('spendShards returned false'), {
+      tierIdx: wager.tierIdx,
+      toSpend,
+      hasDisc,
+    });
+    return wager;
+  }
+
+  const chargedWager: WagerState = { ...wager, betShards: toSpend };
+  await AsyncStorage.setItem(KEY, JSON.stringify(chargedWager));
+  if (legacyPremiumFreeToken === '1') {
+    await AsyncStorage.multiRemove([PREM_WAGER_TOKEN_KEY, PREM_WAGER_MONTH_KEY]);
+  }
+  if (hasDisc) {
+    await AsyncStorage.removeItem(WAGER_DISCOUNT_KEY);
+  }
+  await trackActivity('streak_wager:legacy_zero_stake_charged', {
+    feature: 'streak_wager',
+    screen: 'streak_stats',
+    result: 'success',
+    tags: { tierIdx: wager.tierIdx, toSpend, hasDisc, premiumFree: false },
+  });
+  return chargedWager;
+};
+
 export const loadWager = async (): Promise<WagerState | null> => {
   try {
     const raw = await AsyncStorage.getItem(KEY);
-    return raw ? JSON.parse(raw) : null;
+    return raw ? chargeLegacyZeroStakeWager(JSON.parse(raw)) : null;
   } catch { return null; }
 };
 
@@ -119,16 +155,11 @@ const saveWager = async (w: WagerState) => {
 };
 
 /**
- * Преміум: один безкоштовний запуск пари в календарному місяці (перше підвищення рівня в місяці).
+ * Legacy cleanup: wagers always charge their effective shard stake.
  */
 export async function tryGrantPremiumMonthlyWagerFromLevelUp(): Promise<void> {
   try {
-    if (!await getVerifiedPremiumStatus()) return;
-    const ym = new Date().toISOString().slice(0, 7);
-    const issued = await AsyncStorage.getItem(PREM_WAGER_MONTH_KEY);
-    if (issued === ym) return;
-    await AsyncStorage.setItem(PREM_WAGER_TOKEN_KEY, '1');
-    await AsyncStorage.setItem(PREM_WAGER_MONTH_KEY, ym);
+    await AsyncStorage.multiRemove([PREM_WAGER_TOKEN_KEY, PREM_WAGER_MONTH_KEY]);
   } catch { /* empty */ }
 }
 
@@ -136,7 +167,6 @@ export async function tryGrantPremiumMonthlyWagerFromLevelUp(): Promise<void> {
  * Разместить пари выбранного тира.
  * Списывает betShards осколков.
  * Скидка 25% из подарка уровня: ключ wager_discount, одно применение.
- * Преміум-токен: 0 осколків, один раз після level-up (див. tryGrantPremiumMonthlyWagerFromLevelUp).
  * Возвращает false если уже активно пари или недостаточно осколков.
  */
 export const placeWager = async (currentStreak: number, tierIdx: number = 0): Promise<boolean> => {
@@ -185,42 +215,38 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
       return false;
     }
 
-    const discRaw = await AsyncStorage.getItem(WAGER_DISCOUNT_KEY);
+    const [discRaw, legacyPremiumFreeToken] = await Promise.all([
+      AsyncStorage.getItem(WAGER_DISCOUNT_KEY),
+      AsyncStorage.getItem(PREM_WAGER_TOKEN_KEY),
+    ]);
     const hasDisc = discRaw === '0.25';
-    const premiumFree =
-      (await getVerifiedPremiumStatus()) &&
-      (await AsyncStorage.getItem(PREM_WAGER_TOKEN_KEY)) === '1';
 
     let toSpend = tier.betShards;
     if (hasDisc) {
       toSpend = Math.max(1, Math.floor(tier.betShards * 0.75));
     }
-    if (premiumFree) {
-      toSpend = 0;
-    }
 
-    if (premiumFree) {
-      await AsyncStorage.removeItem(PREM_WAGER_TOKEN_KEY);
-    } else {
-      const spent = await spendShards(toSpend, 'wager_bet');
-      if (!spent) {
-        await trackActivity('streak_wager:place_blocked', {
-          feature: 'streak_wager',
-          screen: 'streak_stats',
-          result: 'blocked',
-          tags: { reason: 'insufficient_shards_or_spend_failed', tierIdx, toSpend, hasDisc, premiumFree },
-        });
-        logWagerHealth('streak_wager:spend_failed', new Error('spendShards returned false'), {
-          currentStreak,
-          tierIdx,
-          toSpend,
-          hasDisc,
-          premiumFree,
-        });
-        return false;
-      }
+    const spent = await spendShards(toSpend, 'wager_bet');
+    if (!spent) {
+      await trackActivity('streak_wager:place_blocked', {
+        feature: 'streak_wager',
+        screen: 'streak_stats',
+        result: 'blocked',
+        tags: { reason: 'insufficient_shards_or_spend_failed', tierIdx, toSpend, hasDisc, premiumFree: false },
+      });
+      logWagerHealth('streak_wager:spend_failed', new Error('spendShards returned false'), {
+        currentStreak,
+        tierIdx,
+        toSpend,
+        hasDisc,
+        premiumFree: false,
+      });
+      return false;
     }
-    if (hasDisc && !premiumFree) {
+    if (legacyPremiumFreeToken === '1') {
+      await AsyncStorage.multiRemove([PREM_WAGER_TOKEN_KEY, PREM_WAGER_MONTH_KEY]);
+    }
+    if (hasDisc) {
       await AsyncStorage.removeItem(WAGER_DISCOUNT_KEY);
     }
 
@@ -242,7 +268,7 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
       feature: 'streak_wager',
       screen: 'streak_stats',
       result: 'success',
-      tags: { currentStreak, tierIdx, betShards: tier.betShards, toSpend, hasDisc, premiumFree },
+      tags: { currentStreak, tierIdx, betShards: tier.betShards, toSpend, hasDisc, premiumFree: false },
     });
     return true;
   } catch (e) {

@@ -20,7 +20,7 @@ const TabContext = createContext<TabCtx>({
 
 export const useTabNav = () => useContext(TabContext);
 
-export const TAB_KEYS = ['home', 'lessons', 'arena', 'settings'];
+export const TAB_KEYS = ['home', 'lessons', 'arena', 'friends', 'settings'] as const;
 
 export function TabProvider({ children, activeIdx, onTabChange, onSwipeStart, onSwipeComplete, focusTick }: {
   children: React.ReactNode;

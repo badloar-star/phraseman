@@ -20,5 +20,5 @@ export default function AdminReviewTestGate() {
     const Real = require('./_admin_review_test').default;
     return <Real />;
   }
-  return <DeferredRedirect href={'/(tabs)/' as any} />;
+  return <DeferredRedirect href={'/(tabs)/home' as any} />;
 }

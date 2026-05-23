@@ -9,6 +9,12 @@ const EXTRA_INTROS = path.join(ROOT, 'app', 'lesson_intro_screens_9_32.ts');
 const REPORT = path.join(ROOT, 'tools', 'audit', 'lesson_intro_alignment_audit.md');
 
 const LESSONS = Array.from({ length: 32 }, (_, i) => i + 1);
+const LESSON_GROUP_FILES = [
+  { from: 1, to: 8, file: path.join(ROOT, 'app', 'lesson_data_1_8.ts') },
+  { from: 9, to: 16, file: path.join(ROOT, 'app', 'lesson_data_9_16.ts') },
+  { from: 17, to: 24, file: path.join(ROOT, 'app', 'lesson_data_17_24.ts') },
+  { from: 25, to: 32, file: path.join(ROOT, 'app', 'lesson_data_25_32.ts') },
+];
 
 function findMatching(src, openIndex, openChar, closeChar) {
   let depth = 0;
@@ -108,6 +114,35 @@ function parseLessonData(src) {
   return rows;
 }
 
+function usesLazyLessonMeta(src) {
+  return (
+    src.includes('function buildLazyLessonMeta') &&
+    src.includes('getBaseLessonIntroScreens(lessonId)') &&
+    src.includes('getBaseLessonPhrases(lessonId)') &&
+    src.includes('export const ALL_LESSONS = LESSON_IDS.map(getLazyLessonMeta)') &&
+    src.includes('export const LESSON_DATA: Record<number, LessonData> = Object.fromEntries')
+  );
+}
+
+function parseLazyAllLessons(src) {
+  if (!usesLazyLessonMeta(src)) return new Map();
+  return new Map(LESSONS.map((id) => [id, {
+    intro: expectedIntro(id),
+    phrases: expectedPhrase(id),
+    lazy: true,
+  }]));
+}
+
+function parseLazyLessonData(src) {
+  if (!usesLazyLessonMeta(src)) return new Map();
+  return new Map(LESSONS.map((id) => [id, {
+    rowId: id,
+    intro: expectedIntro(id),
+    phrases: expectedPhrase(id),
+    lazy: true,
+  }]));
+}
+
 function parseExtraIntroMap(src) {
   const body = extractBlock(src, 'export const EXTRA_INTRO_SCREENS', '{', '}');
   const rows = new Map();
@@ -125,6 +160,17 @@ function expectedPhrase(id) {
   return `LESSON_${id}_PHRASES`;
 }
 
+function lessonGroupFileFor(id) {
+  const group = LESSON_GROUP_FILES.find((row) => id >= row.from && id <= row.to);
+  if (!group) throw new Error(`No lesson group configured for L${id}`);
+  return group.file;
+}
+
+function fileContainsSymbol(filePath, symbol) {
+  const src = fs.readFileSync(filePath, 'utf8');
+  return new RegExp(`\\b${symbol}\\b`).test(src);
+}
+
 function checkIntroExpression(expr, id, location, critical) {
   if (expr === '[]') {
     critical.push(`L${id}: ${location} has empty introScreens: [].`);
@@ -139,8 +185,9 @@ function checkIntroExpression(expr, id, location, critical) {
 function main() {
   const src = fs.readFileSync(DATA_ALL, 'utf8');
   const extraSrc = fs.readFileSync(EXTRA_INTROS, 'utf8');
-  const allLessons = parseAllLessons(src);
-  const lessonData = parseLessonData(src);
+  const lazyData = usesLazyLessonMeta(src);
+  const allLessons = lazyData ? parseLazyAllLessons(src) : parseAllLessons(src);
+  const lessonData = lazyData ? parseLazyLessonData(src) : parseLessonData(src);
   const extraIntros = parseExtraIntroMap(extraSrc);
   const critical = [];
   const warnings = [];
@@ -203,11 +250,25 @@ function main() {
     report.push(`| ${id} | \`${allIntro}\` | \`${dataIntro}\` | \`${extraIntro}\` | ${rowIssues.length ? rowIssues.join('; ') : 'OK'} |`);
   }
 
-  for (const id of LESSONS) {
-    const symbol = expectedIntro(id);
-    const occurrences = src.split(symbol).length - 1;
-    if (occurrences < 3) {
-      critical.push(`L${id}: ${symbol} is referenced ${occurrences} time(s) in lesson_data_all.ts; expected import plus ALL_LESSONS plus LESSON_DATA.`);
+  if (lazyData) {
+    for (const id of LESSONS) {
+      const groupFile = lessonGroupFileFor(id);
+      const introSymbol = expectedIntro(id);
+      const phraseSymbol = expectedPhrase(id);
+      if (!fileContainsSymbol(groupFile, introSymbol)) {
+        critical.push(`L${id}: ${introSymbol} is not exported by ${path.relative(ROOT, groupFile)} for lazy lesson loading.`);
+      }
+      if (!fileContainsSymbol(groupFile, phraseSymbol)) {
+        critical.push(`L${id}: ${phraseSymbol} is not exported by ${path.relative(ROOT, groupFile)} for lazy lesson loading.`);
+      }
+    }
+  } else {
+    for (const id of LESSONS) {
+      const symbol = expectedIntro(id);
+      const occurrences = src.split(symbol).length - 1;
+      if (occurrences < 3) {
+        critical.push(`L${id}: ${symbol} is referenced ${occurrences} time(s) in lesson_data_all.ts; expected import plus ALL_LESSONS plus LESSON_DATA.`);
+      }
     }
   }
 

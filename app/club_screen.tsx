@@ -50,18 +50,7 @@ import {
   KEY_CLUB_PREV_RANK, RankDelta,
 } from './rank_change';
 import RankChangeBanner from '../components/RankChangeBanner';
-import { getShardsBalance } from './shards_system';
-import { actionToastTri, emitAppEvent, onAppEvent } from './events';
-import {
-  LEAGUE_PERSONAL_BOOSTS,
-  LeaguePersonalBoostDef,
-  LeaguePersonalBoostState,
-  buyAndActivateLeagueBoost,
-  formatLeagueBoostTimeLeft,
-  getLeagueBoostDef,
-  loadActiveLeagueBoost,
-} from './league_personal_boosts';
-import { oskolokImageForPackShards } from './oskolok';
+import { actionToastTri, emitAppEvent } from './events';
 import { subscribeMyArenaClubWarEvent } from './services/arena_club_wars';
 import {
   LEAGUE_BONUS_ADMIN_PREVIEW_KEY,
@@ -75,17 +64,21 @@ import {
   type LeagueChestRewardDrop,
 } from './services/league_chest_rewards';
 import { shouldShowLeagueRace } from './league_race_visibility';
+import { getCachedLeagueStateSync, shouldShowLeagueEmptyParticipants } from './league_open_cache_policy';
 import LeagueChatPanel from '../components/LeagueChatPanel';
 import { formatLeagueChatUnreadBadge } from './league_chat_unread';
 import { useLeagueChatUnread } from './use_league_chat_unread';
 import { checkAchievements } from './achievements';
 import { GOLD_RICH } from '../constants/goldTheme';
+import { safeRouterBack } from './navigation_back';
 
 // v2 — bumped после фикса race на signInAnonymously + остановки резервной записи
 // в league_state_v3. Старый таймер мог хранить «не обновлять» с момента, когда
 // fetchGroupForUser возвращал только пользователя из-за PERMISSION_DENIED.
 const CLUB_REMOTE_REFRESH_AT_KEY = 'club_remote_refresh_at_v2';
 const CLUB_REMOTE_REFRESH_MS = 6 * 60 * 60 * 1000;
+const CLUB_ENTRY_REPEATING_MOTION_ENABLED = false;
+const CLUB_ANIMATION_USE_NATIVE_DRIVER = false;
 
 /** Локальный календарный день — для «первый заход в лигу за день». */
 const LEAGUE_PROMO_HINT_DAY_KEY = 'league_promo_hint_seen_calendar_day_v1';
@@ -95,7 +88,7 @@ function buildLeagueChestPreviewRewards(isCrownWinner: boolean): LeagueChestRewa
     { id: 'preview_league_shards', kind: 'shards', rarity: 'common', amount: 24 },
     { id: 'preview_league_energy', kind: 'energy_fast_recovery', rarity: 'rare', recoveryMs: 5 * 60 * 1000 },
     { id: 'preview_league_xp', kind: 'xp_boost', rarity: 'rare', multiplier: 2, uses: 3 },
-    { id: 'preview_league_aura_gold', kind: 'avatar_aura', rarity: 'epic', auraId: 'aura-gold' },
+    { id: 'preview_league_aura_violet', kind: 'avatar_aura', rarity: 'epic', auraId: 'aura-violet' },
     { id: 'preview_league_avatar', kind: 'custom_avatar', rarity: 'epic', customAvatarId: 'future-league-avatar' },
     { id: 'preview_league_gold_theme', kind: 'gold_theme', rarity: 'legendary' },
   ];
@@ -158,6 +151,52 @@ function leaguePromotionHintText(lang: Lang, promotionCutoff: number): string {
 }
 
 // ── League icon renderer ──────────────────────────────────────────────────────
+function LeagueIconImageWithFallback({
+  source,
+  iconName,
+  color,
+  size,
+  opacity,
+}: {
+  source?: any;
+  iconName: string;
+  color: string;
+  size: number;
+  opacity: number;
+}) {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [source]);
+
+  return (
+    <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
+      {!loaded || !source ? (
+        <Ionicons
+          name={iconName as any}
+          size={Math.max(14, Math.round(size * 0.8))}
+          color={color}
+          style={{ position: 'absolute', opacity }}
+        />
+      ) : null}
+      {source ? (
+        <Image
+          source={source}
+          style={{
+            width: size,
+            height: size,
+            opacity,
+          }}
+          resizeMode="contain"
+          onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(false)}
+        />
+      ) : null}
+    </View>
+  );
+}
+
 function LeagueIcon({
   league,
   size = 24,
@@ -174,11 +213,16 @@ function LeagueIcon({
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    if (!pulse) return;
+    if (!pulse || !CLUB_ENTRY_REPEATING_MOTION_ENABLED) {
+      scaleAnim.stopAnimation();
+      scaleAnim.setValue(1);
+      return undefined;
+    }
+
     const anim = Animated.loop(
       Animated.sequence([
-        Animated.timing(scaleAnim, { toValue: 1.08, duration: 1100, useNativeDriver: true }),
-        Animated.timing(scaleAnim, { toValue: 1.0,  duration: 1100, useNativeDriver: true }),
+        Animated.timing(scaleAnim, { toValue: 1.08, duration: 1100, useNativeDriver: CLUB_ANIMATION_USE_NATIVE_DRIVER }),
+        Animated.timing(scaleAnim, { toValue: 1.0,  duration: 1100, useNativeDriver: CLUB_ANIMATION_USE_NATIVE_DRIVER }),
       ])
     );
     anim.start();
@@ -188,14 +232,12 @@ function LeagueIcon({
   const iconName = (league as any).ionIcon ?? 'trophy';
   const imageUri = (league as any).imageUri;
   const icon = imageUri ? (
-    <Image
+    <LeagueIconImageWithFallback
       source={imageUri}
-      style={{
-        width: size,
-        height: size,
-        opacity: locked ? 0.55 : (active ? 1 : 0.65),
-      }}
-      resizeMode="contain"
+      iconName={iconName}
+      color={locked ? '#7A7A7A' : (active ? league.color : '#7F8793')}
+      size={size}
+      opacity={locked ? 0.55 : (active ? 1 : 0.65)}
     />
   ) : (
     <Ionicons
@@ -220,17 +262,19 @@ export default function ClubScreen() {
   const leagueCrownAccent = themeMode === 'gold'
     ? GOLD_RICH.metalGold
       : LEAGUE_CROWN_NICK_COLOR;
-  const leagueBoostCostAccent = themeMode === 'gold'
-    ? GOLD_RICH.metalGold
-      : '#A78BFA';
   const leagueBonusPalette = getLeagueBonusPalette(t, themeMode);
   const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const initialLeagueStateRef = useRef<LeagueState | null | undefined>(undefined);
+  if (initialLeagueStateRef.current === undefined) {
+    initialLeagueStateRef.current = getCachedLeagueStateSync();
+  }
+  const initialLeagueState = initialLeagueStateRef.current;
 
-  const [myLeagueId, setMyLeagueId]     = useState(0);
-  const [selectedLeagueId, setSelectedLeagueId] = useState(0);
-  const [group, setGroup]               = useState<GroupMember[]>([]);
+  const [myLeagueId, setMyLeagueId]     = useState(initialLeagueState?.leagueId ?? 0);
+  const [selectedLeagueId, setSelectedLeagueId] = useState(initialLeagueState?.leagueId ?? 0);
+  const [group, setGroup]               = useState<GroupMember[]>(() => initialLeagueState?.group ?? []);
   const [descModal, setDescModal]       = useState<(typeof LEAGUES)[number] | null>(null);
   const [profilePlayer, setProfile]     = useState<UnifiedPlayerInfo | null>(null);
   const [myAvatarEmoji, setMyAvatarEmoji] = useState('🐣');
@@ -238,24 +282,9 @@ export default function ClubScreen() {
   const [myAuraId, setMyAuraId]           = useState('');
   const [userName, setUserName]         = useState('');
   const [playerXP, setPlayerXP]         = useState(0);
+  const [localLeagueHydrated, setLocalLeagueHydrated] = useState(initialLeagueState != null);
   const [clubTab, setClubTab] = useState<'rank' | 'chat'>('rank');
   const [rankDelta, setRankDelta] = useState<RankDelta | null>(null);
-  const [shardsBalance, setShardsBalance] = useState(0);
-  const [boostMenuVisible, setBoostMenuVisible] = useState(false);
-  const [x2Expanded, setX2Expanded] = useState(false);
-  const [x3Expanded, setX3Expanded] = useState(false);
-  const [gameAlert, setGameAlert] = useState<{
-    title: string;
-    message: string;
-    intent?: 'boostSuccess';
-    meta?: {
-      multiplier?: number;
-      duration?: string;
-    };
-    actions: { label: string; style?: 'cancel' | 'default'; onPress?: () => void | Promise<void> }[];
-  } | null>(null);
-  const [activeLeagueBoost, setActiveLeagueBoost] = useState<LeaguePersonalBoostState | null>(null);
-  const [activeLeagueBoostTime, setActiveLeagueBoostTime] = useState('');
   const [pendingLeagueResult, setPendingLeagueResult] = useState<LeagueResult | null>(null);
   const dismissedLeagueResultThisSessionRef = useRef<boolean>(false);
   const railScrollX = useRef(new Animated.Value(0)).current;
@@ -271,7 +300,10 @@ export default function ClubScreen() {
   const [contentViewportHeight, setContentViewportHeight] = useState(0);
   const [leaderboardTopY, setLeaderboardTopY] = useState<number | null>(null);
   const lastSnapLeagueRef = useRef<number | null>(null);
-  const [railSideInset, setRailSideInset] = useState(12);
+  const [leagueRailPositioned, setLeagueRailPositioned] = useState(false);
+  const railSideInset = leagueRailWidth > 0
+    ? Math.max(12, Math.round((leagueRailWidth - LEAGUE_ITEM_SIZE) / 2))
+    : 12;
   /** Совпадает с RankChangeTestModal / тестовым превью — не менять без синхронизации. */
   const CLUB_LEADERBOARD_AVATAR_SIZE = 56;
   const ROW_HEIGHT_CLUB = 84;
@@ -488,7 +520,6 @@ export default function ClubScreen() {
 
       setUserName(n);
       setPlayerXP(xpNum);
-      setShardsBalance(await getShardsBalance());
       setMyAvatarEmoji((avatar && avatar.trim()) || getBestAvatarForLevel(getLevelFromXP(xpNum)));
       if (frame) setMyFrameId(frame);
       setMyAuraId(aura ?? '');
@@ -506,6 +537,7 @@ export default function ClubScreen() {
           false,
         );
       }
+      setLocalLeagueHydrated(true);
 
       // ── Фаза 2: сетевой апдейт не чаще 6 часов (или по force) ───────────────
       // ВАЖНО: 6h-троттл должен бить только Firestore-refetch группы, а не проверку
@@ -581,50 +613,31 @@ export default function ClubScreen() {
       });
   }, [clubTab, leagueGroupMeta, loadData]);
 
-  const refreshActiveBoost = useCallback(async () => {
-    const active = await loadActiveLeagueBoost();
-    if (!isMountedRef.current) return;
-    setActiveLeagueBoost(active);
-    setActiveLeagueBoostTime(active ? formatLeagueBoostTimeLeft(active.expiresAt) : '');
-  }, []);
-
   useEffect(() => {
-    refreshActiveBoost();
-  }, [refreshActiveBoost]);
-
-  useEffect(() => {
-    const sub = onAppEvent('shards_balance_updated', ({ balance }) => {
-      setShardsBalance(Math.max(0, Math.floor(balance || 0)));
-    });
-    return () => sub.remove();
-  }, []);
-
-  useEffect(() => {
-    if (!activeLeagueBoost) return;
-    const id = setInterval(() => {
-      const left = formatLeagueBoostTimeLeft(activeLeagueBoost.expiresAt);
-      if (!isMountedRef.current) return;
-      setActiveLeagueBoostTime(left);
-      if (left === '00:00') {
-        refreshActiveBoost();
-      }
-    }, 1000);
-    return () => clearInterval(id);
-  }, [activeLeagueBoost, refreshActiveBoost]);
-
-  useEffect(() => {
+    if (clubTab === 'chat') {
+      setLeagueRailPositioned(false);
+      return;
+    }
     if (!leagueRailRef.current || leagueRailWidth <= 0) return;
-    const idx = LEAGUES.findIndex((l) => l.id === myLeagueId);
-    const targetX = Math.max(0, idx * LEAGUE_ITEM_FULL);
-    const id = setTimeout(() => {
-      leagueRailRef.current?.scrollTo({ x: targetX, y: 0, animated: true });
-    }, 20);
-    return () => clearTimeout(id);
-  }, [myLeagueId, leagueRailWidth, LEAGUE_ITEM_FULL]);
+    const idx = Math.max(0, LEAGUES.findIndex((l) => l.id === myLeagueId));
+    const targetX = idx * LEAGUE_ITEM_FULL;
+    setLeagueRailPositioned(false);
+    const frame = requestAnimationFrame(() => {
+      railScrollX.setValue(targetX);
+      lastSnapLeagueRef.current = LEAGUES[idx]?.id ?? 0;
+      leagueRailRef.current?.scrollTo({ x: targetX, y: 0, animated: false });
+      if (isMountedRef.current) setLeagueRailPositioned(true);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [LEAGUE_ITEM_FULL, clubTab, leagueRailWidth, myLeagueId, railScrollX]);
 
   const myLeague = LEAGUES[myLeagueId];
 
   const sortedGroup = [...group].sort((a, b) => b.points - a.points);
+  const showEmptyParticipants = shouldShowLeagueEmptyParticipants({
+    localLeagueHydrated,
+    participantCount: sortedGroup.length,
+  });
   const zoneSize = getLeagueResultZoneSize(sortedGroup.length);
   const promotionCutoff = sortedGroup.length >= 2 && myLeagueId < LEAGUES.length - 1 ? zoneSize : 0;
   const relegationStartIndex = sortedGroup.length >= 2 ? Math.max(0, sortedGroup.length - zoneSize) : sortedGroup.length;
@@ -632,7 +645,9 @@ export default function ClubScreen() {
   const total       = sortedGroup.length;
   const myRowIndex = myRank > 0 ? myRank - 1 : -1;
   const leagueBonusAdminActive = !!leagueBonusAdminPreview && Date.now() < leagueBonusAdminPreview.expiresAt;
-  const leagueRaceVisible = leagueBonusAdminActive || shouldShowLeagueRace(sortedGroup.length, userName);
+  const leagueRaceVisible = localLeagueHydrated && (
+    leagueBonusAdminActive || shouldShowLeagueRace(sortedGroup.length, userName)
+  );
   const myArenaClubPoints = arenaClubStableUid
     ? Math.max(0, Math.floor(Number((arenaClubEvent?.members ?? {})[arenaClubStableUid]?.points) || 0))
     : 0;
@@ -808,14 +823,7 @@ export default function ClubScreen() {
     }
   }, [LEAGUE_ITEM_FULL]);
 
-  useEffect(() => {
-    if (leagueRailWidth <= 0) return;
-    setRailSideInset(Math.max(12, Math.round((leagueRailWidth - LEAGUE_ITEM_SIZE) / 2)));
-  }, [leagueRailWidth, LEAGUE_ITEM_SIZE]);
-
   const snapOffsets = LEAGUES.map((_, idx) => idx * LEAGUE_ITEM_FULL);
-  const x2BoostOptions = LEAGUE_PERSONAL_BOOSTS.filter((b) => b.multiplier === 2);
-  const x3BoostDef = getLeagueBoostDef('x3_15m');
 
   useEffect(() => {
     if (!contentScrollRef.current || leaderboardTopY == null || contentViewportHeight <= 0 || myRowIndex < 0) return;
@@ -830,239 +838,6 @@ export default function ClubScreen() {
     }, 80);
     return () => clearTimeout(id);
   }, [ROW_HEIGHT_CLUB, contentViewportHeight, group.length, leaderboardTopY, myLeagueId, myRowIndex]);
-
-  const boostLabel = (boost: LeaguePersonalBoostDef): string => {
-    if (boost.id === 'x2_30m') return triLang(lang, {
-      ru: '30 минут',
-      uk: '30 хвилин',
-      es: '30 minutos',
-      'pt-BR': "30 minutos",
-      vi: "30 phút",
-      id: "30 menit",
-      tr: "30 dakika",
-      pl: "30 minut",
-    });
-    if (boost.id === 'x2_1h') return triLang(lang, {
-      ru: '1 час',
-      uk: '1 година',
-      es: '1 hora',
-      'pt-BR': "1 hora",
-      vi: "1 giờ",
-      id: "1 jam",
-      tr: "1 saat",
-      pl: "1 godzina",
-    });
-    if (boost.id === 'x2_2h') return triLang(lang, {
-      ru: '2 часа',
-      uk: '2 години',
-      es: '2 horas',
-      'pt-BR': "2 horas",
-      vi: "2 giờ",
-      id: "2 jam",
-      tr: "2 saat",
-      pl: "2 godziny",
-    });
-    return triLang(lang, {
-      ru: '15 минут',
-      uk: '15 хвилин',
-      es: '15 minutos',
-      'pt-BR': "15 minutos",
-      vi: "15 phút",
-      id: "15 menit",
-      tr: "15 dakika",
-      pl: "15 minut",
-    });
-  };
-
-  const buyBoost = async (id: 'x2_30m' | 'x2_1h' | 'x2_2h' | 'x3_15m') => {
-    if (activeLeagueBoost) {
-      setGameAlert({
-        title: triLang(lang, {
-          ru: 'Буст уже активен',
-          uk: 'Буст вже активний',
-          es: 'Ya tienes un impulso activo',
-          'pt-BR': "Impulso já ativo",
-          vi: "Tăng tốc đang hoạt động",
-          id: "Boost sudah aktif",
-          tr: "Takviye zaten aktif",
-          pl: "Wzmocnienie jest już aktywne",
-        }),
-        message: triLang(lang, {
-          ru: 'Дождись окончания текущего буста.',
-          uk: 'Дочекайся завершення поточного буста.',
-          es: 'Espera a que termine el impulso actual antes de activar otro.',
-          'pt-BR': "Aguarde o impulso atual terminar antes de ativar outro.",
-          vi: "Hãy chờ tăng tốc hiện tại kết thúc trước khi bật cái khác.",
-          id: "Tunggu boost saat ini selesai sebelum mengaktifkan yang lain.",
-          tr: "Başka bir takviye açmadan önce mevcut takviyenin bitmesini bekle.",
-          pl: "Poczekaj, aż obecne wzmocnienie się skończy, zanim włączysz kolejne.",
-        }),
-        actions: [{ label: 'OK', style: 'default' }],
-      });
-      return;
-    }
-    const result = await buyAndActivateLeagueBoost(id);
-    if (!result.ok) {
-      if (result.reason === 'not_enough_shards') {
-        setGameAlert({
-          title: triLang(lang, {
-            ru: 'Недостаточно осколков',
-            uk: 'Недостатньо осколків',
-            es: 'No tienes suficientes fragmentos de conocimiento',
-            'pt-BR': "Fragmentos insuficientes",
-            vi: "Không đủ mảnh kiến thức",
-            id: "Pecahan belum cukup",
-            tr: "Yeterli parça yok",
-            pl: "Za mało odłamków",
-          }),
-          message: triLang(lang, {
-            ru: 'Пополни баланс, чтобы активировать буст.',
-            uk: 'Поповни баланс, щоб активувати буст.',
-            es: 'Consigue más fragmentos para poder activar el impulso.',
-            'pt-BR': "Aumente seu saldo para ativar o impulso.",
-            vi: "Hãy nạp thêm số dư để bật tăng tốc.",
-            id: "Tambah saldo agar bisa mengaktifkan boost.",
-            tr: "Takviyeyi etkinleştirmek için bakiyeni artır.",
-            pl: "Uzupełnij saldo, aby aktywować wzmocnienie.",
-          }),
-          actions: [{ label: 'OK', style: 'default' }],
-        });
-      } else {
-        setGameAlert({
-          title: triLang(lang, {
-            ru: 'Не удалось активировать',
-            uk: 'Не вдалося активувати',
-            es: 'No se pudo activar el impulso',
-            'pt-BR': "Não foi possível ativar",
-            vi: "Không thể kích hoạt",
-            id: "Tidak dapat mengaktifkan",
-            tr: "Etkinleştirilemedi",
-            pl: "Nie udało się aktywować",
-          }),
-          message: triLang(lang, {
-            ru: 'Попробуй ещё раз чуть позже.',
-            uk: 'Спробуй ще раз трохи пізніше.',
-            es: 'Inténtalo de nuevo un poco más tarde.',
-            'pt-BR': "Tente novamente um pouco mais tarde.",
-            vi: "Hãy thử lại sau một chút.",
-            id: "Coba lagi beberapa saat lagi.",
-            tr: "Biraz sonra tekrar dene.",
-            pl: "Spróbuj ponownie za chwilę.",
-          }),
-          actions: [{ label: 'OK', style: 'default' }],
-        });
-      }
-      return;
-    }
-    setShardsBalance(await getShardsBalance());
-    await refreshActiveBoost();
-    const def = getLeagueBoostDef(id);
-    void checkAchievements({ type: 'league_boost', multiplier: def?.multiplier ?? (id === 'x3_15m' ? 3 : 2) });
-    setGameAlert({
-      intent: 'boostSuccess',
-      title: triLang(lang, {
-        ru: 'Буст включён',
-        uk: 'Буст увімкнено',
-        es: 'Impulso activado',
-        'pt-BR': 'Impulso ativado',
-        vi: 'Đã bật tăng tốc',
-        id: 'Boost diaktifkan',
-        tr: 'Takviye açıldı',
-        pl: 'Wzmocnienie włączone',
-      }),
-      message: triLang(lang, {
-        ru: `${def ? `×${def.multiplier} к опыту` : 'Бонус к опыту'} активен ${def ? `на ${boostLabel(def)}` : 'сразу'}. Новые очки будут считаться с этим множителем.`,
-        uk: `${def ? `×${def.multiplier} до досвіду` : 'Бонус до досвіду'} активний ${def ? `на ${boostLabel(def)}` : 'одразу'}. Нові очки рахуватимуться з цим множником.`,
-        es: `${def ? `×${def.multiplier} XP` : 'El bonus de XP'} está activo ${def ? `durante ${boostLabel(def)}` : 'ahora'}. Los nuevos puntos usarán este multiplicador.`,
-        'pt-BR': `${def ? `×${def.multiplier} XP` : 'O bônus de XP'} já está ativo${def ? ` por ${boostLabel(def)}` : ''}. Os novos pontos usarão este multiplicador.`,
-        vi: `${def ? `×${def.multiplier} XP` : 'Bonus XP'} đã hoạt động${def ? ` trong ${boostLabel(def)}` : ''}. Điểm mới sẽ dùng hệ số này.`,
-        id: `${def ? `×${def.multiplier} XP` : 'Bonus XP'} aktif${def ? ` selama ${boostLabel(def)}` : ''}. Poin baru akan memakai pengali ini.`,
-        tr: `${def ? `×${def.multiplier} XP` : 'XP bonusu'} aktif${def ? `: ${boostLabel(def)}` : ''}. Yeni puanlar bu çarpanla hesaplanır.`,
-        pl: `${def ? `×${def.multiplier} XP` : 'Bonus XP'} jest aktywny${def ? ` przez ${boostLabel(def)}` : ''}. Nowe punkty użyją tego mnożnika.`,
-      }),
-      meta: {
-        multiplier: def?.multiplier,
-        duration: def ? boostLabel(def) : undefined,
-      },
-      actions: [{ label: triLang(lang, {
-        ru: 'Отлично',
-        uk: 'Чудово',
-        es: 'Perfecto',
-        'pt-BR': 'Perfeito',
-        vi: 'Tuyệt',
-        id: 'Mantap',
-        tr: 'Harika',
-        pl: 'Super',
-      }), style: 'default' }],
-    });
-  };
-
-  const confirmAndBuyBoost = (id: 'x2_30m' | 'x2_1h' | 'x2_2h' | 'x3_15m') => {
-    const def = LEAGUE_PERSONAL_BOOSTS.find((b) => b.id === id);
-    if (!def) return;
-    const buyVerb = triLang(lang, {
-      ru: 'Купить',
-      uk: 'Купити',
-      es: 'Comprar',
-      'pt-BR': "Comprar",
-      vi: "Mua",
-      id: "Beli",
-      tr: "Satın al",
-      pl: "Kup",
-    });
-    const forPrep = triLang(lang, {
-      ru: 'за',
-      uk: 'за',
-      es: 'por',
-      'pt-BR': "por",
-      vi: "với giá",
-      id: "seharga",
-      tr: "karşılığında",
-      pl: "za",
-    });
-    setGameAlert({
-      title: triLang(lang, {
-        ru: 'Подтвердить покупку',
-        uk: 'Підтвердити покупку',
-        es: 'Confirmar la compra',
-        'pt-BR': "Confirmar compra",
-        vi: "Xác nhận mua",
-        id: "Konfirmasi pembelian",
-        tr: "Satın almayı onayla",
-        pl: "Potwierdź zakup",
-      }),
-      message: `${buyVerb} x${def.multiplier} • ${boostLabel(def)} ${forPrep} ${def.costShards}?`,
-      actions: [
-        { label: triLang(lang, {
-          ru: 'Отмена',
-          uk: 'Скасувати',
-          es: 'Cancelar',
-          'pt-BR': "Cancelar",
-          vi: "Hủy",
-          id: "Batal",
-          tr: "İptal",
-          pl: "Anuluj",
-        }), style: 'cancel' },
-        {
-          label: buyVerb,
-          style: 'default',
-          onPress: async () => {
-            await buyBoost(id);
-            setBoostMenuVisible(false);
-            setX2Expanded(false);
-            setX3Expanded(false);
-          },
-        },
-      ],
-    });
-  };
-
-  useEffect(() => {
-    if (clubTab === 'chat') setBoostMenuVisible(false);
-  }, [clubTab]);
-
-  const gameAlertIsBoostSuccess = gameAlert?.intent === 'boostSuccess';
-  const gameAlertAccent = gameAlertIsBoostSuccess ? leagueBoostCostAccent : t.accent;
 
   return (
     <ScreenGradient>
@@ -1087,8 +862,7 @@ export default function ClubScreen() {
           hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
           onPress={() => {
             Haptics.selectionAsync().catch(() => {});
-            if (router.canGoBack()) router.back();
-            else router.replace('/(tabs)/home' as any);
+            safeRouterBack(router, '/(tabs)/home' as any);
           }}
           style={{ width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' }}
         >
@@ -1106,39 +880,6 @@ export default function ClubScreen() {
             pl: "Liga tygodnia",
           })}
         </Text>
-        {clubTab === 'rank' && (
-          <TouchableOpacity
-            activeOpacity={0.85}
-            disabled={!!activeLeagueBoost}
-            onPress={() => setBoostMenuVisible(true)}
-            style={{
-              paddingHorizontal:12,
-              paddingVertical:7,
-              borderRadius:12,
-              borderWidth:0.5,
-              borderColor:t.border,
-              backgroundColor: activeLeagueBoost ? '#3A3A3A' : t.bgCard,
-              flexDirection:'row',
-              alignItems:'center',
-              gap:6,
-              opacity: activeLeagueBoost ? 0.9 : 1,
-            }}
-          >
-            <Ionicons name="flash-outline" size={15} color={activeLeagueBoost ? '#CFCFCF' : t.textPrimary} />
-            <Text style={{ color: activeLeagueBoost ? '#CFCFCF' : t.textPrimary, fontSize:f.sub, fontWeight:'800' }}>
-              {activeLeagueBoost ? activeLeagueBoostTime : triLang(lang, {
-                ru: 'Буст',
-                uk: 'Буст',
-                es: 'Impulso',
-                'pt-BR': "Impulso",
-                vi: "Tăng tốc",
-                id: "Boost",
-                tr: "Takviye",
-                pl: "Wzmocnienie",
-              })}
-            </Text>
-          </TouchableOpacity>
-        )}
       </View>
 
       <ScrollView
@@ -1245,6 +986,7 @@ export default function ClubScreen() {
         <>
         {/* ── Горизонтальная лента лиг ── */}
         <View
+          pointerEvents={leagueRailPositioned ? 'auto' : 'none'}
           onLayout={(e) => setLeagueRailWidth(e.nativeEvent.layout.width)}
           style={{ paddingVertical: 12, overflow: 'visible' }}
         >
@@ -1266,7 +1008,7 @@ export default function ClubScreen() {
               { useNativeDriver: true }
             )}
             scrollEventThrottle={16}
-            style={{ overflow: 'visible' }}
+            style={{ overflow: 'visible', opacity: leagueRailPositioned ? 1 : 0 }}
             contentContainerStyle={{ paddingHorizontal: railSideInset, paddingVertical: 6, gap: LEAGUE_ITEM_GAP }}
           >
             {LEAGUES.map((league, idx) => {
@@ -1574,7 +1316,7 @@ export default function ClubScreen() {
           onLayout={(e) => setLeaderboardTopY(e.nativeEvent.layout.y)}
           style={{ backgroundColor:t.bgCard, borderRadius:16, borderWidth:0.5, borderColor:t.border, overflow:'hidden', marginTop:8 }}
         >
-          {sortedGroup.length === 0 ? (
+          {showEmptyParticipants ? (
             <Text style={{ color:t.textGhost, fontSize: f.sub, padding:16, textAlign:'center' }}>
               {triLang(lang, {
                 uk: 'Ще немає учасників',
@@ -1587,7 +1329,7 @@ export default function ClubScreen() {
                 pl: "Nie ma jeszcze uczestników",
               })}
             </Text>
-          ) : (
+          ) : sortedGroup.length > 0 ? (
             sortedGroup.map((p, i) => {
               const isPromotionZone = promotionCutoff > 0 && i < promotionCutoff;
               const isRelegationZone = i >= relegationStartIndex;
@@ -1605,10 +1347,6 @@ export default function ClubScreen() {
               const rowMask = rowFinalBg === 'transparent' ? t.bgCard : rowFinalBg;
               const rowEffectiveAura = getEffectiveAvatarAuraId(p.isMe ? myAuraId : p.aura, p.isPremium, p.isVip);
               const rowUsesPremiumAura = rowEffectiveAura === PREMIUM_AVATAR_AURA_ID;
-              const boostMult = p.leagueBoostMultiplier;
-              const boostUntil = p.leagueBoostExpiresAt ?? 0;
-              const showLeagueBoost =
-                typeof boostMult === 'number' && boostMult > 1 && boostUntil > Date.now();
               const hasLeagueCrown = leagueRaceVisible && !!p.uid && (
                 p.uid === leagueCrownWinnerUid ||
                 Number(leagueCrownsByUid[p.uid]?.expiresAt) > Date.now()
@@ -1704,11 +1442,6 @@ export default function ClubScreen() {
                   </View>
                 )}
                 <View style={{ flexDirection:'row', alignItems:'center', gap:5, flexShrink: 0 }}>
-                  {showLeagueBoost && (
-                    <Text style={{ fontSize: 12, fontWeight: '800', color: '#f472b6' }}>
-                      ×{boostMult}⚡
-                    </Text>
-                  )}
                   <Ionicons name="star" size={11} color={i < 3 ? t.gold : t.textMuted} />
                   <Text style={{ color: i < 3 ? t.gold : t.textMuted, fontSize: f.body, fontWeight:'600' }}>
                     {p.points}
@@ -1736,7 +1469,7 @@ export default function ClubScreen() {
               </View>
             );
             })
-          )}
+          ) : null}
         </View>
         </>
         )}
@@ -1769,94 +1502,6 @@ export default function ClubScreen() {
         }}
         onClose={() => setProfile(null)}
       />
-
-      <Modal
-        visible={boostMenuVisible}
-        transparent
-        animationType="fade"
-        onRequestClose={() => setBoostMenuVisible(false)}
-      >
-        <Pressable style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', padding:24 }} onPress={() => setBoostMenuVisible(false)}>
-          <Pressable onPress={() => {}}>
-            <View style={{ backgroundColor:t.bgCard, borderRadius:18, padding:14, width:'90%', maxWidth:280, borderWidth:0.5, borderColor:t.border, gap:10 }}>
-              <TouchableOpacity
-                activeOpacity={0.85}
-                onPress={() => {
-                  setX2Expanded((prev) => !prev);
-                  setX3Expanded(false);
-                }}
-                style={{ backgroundColor:t.bgSurface, borderRadius:12, paddingVertical:10, paddingHorizontal:12, borderWidth:0.5, borderColor:t.border, flexDirection:'row', alignItems:'center', justifyContent:'space-between' }}
-              >
-                <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'800' }}>{triLang(lang, {
-                  ru: 'x2 опыта',
-                  uk: 'x2 досвід',
-                  es: '×2 XP',
-                  'pt-BR': "?2 XP",
-                  vi: "?2 XP",
-                  id: "?2 XP",
-                  tr: "?2 XP",
-                  pl: "?2 XP",
-                })}</Text>
-                <Ionicons name={x2Expanded ? 'chevron-down' : 'chevron-forward'} size={18} color={t.textMuted} />
-              </TouchableOpacity>
-
-              {x2Expanded && (
-                <View style={{ gap:8, marginTop:-4 }}>
-                  {x2BoostOptions.map((boost) => (
-                    <TouchableOpacity
-                      key={boost.id}
-                      activeOpacity={0.85}
-                      onPress={() => confirmAndBuyBoost(boost.id)}
-                      style={{ marginHorizontal:6, backgroundColor:t.bgSurface, borderRadius:10, paddingVertical:9, paddingHorizontal:10, borderWidth:0.5, borderColor:t.border, flexDirection:'row', alignItems:'center', justifyContent:'space-between' }}
-                    >
-                      <Text style={{ color:t.textPrimary, fontSize:f.sub, fontWeight:'700' }}>{boostLabel(boost)}</Text>
-                      <View style={{ flexDirection:'row', alignItems:'center', gap:4 }}>
-                        <Text style={{ color:leagueBoostCostAccent, fontSize:f.sub, fontWeight:'800' }}>{boost.costShards}</Text>
-                        <Image source={oskolokImageForPackShards(boost.costShards)} style={{ width:13, height:13 }} resizeMode="contain" />
-                      </View>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-              )}
-
-              <TouchableOpacity
-                activeOpacity={0.85}
-                onPress={() => {
-                  setX3Expanded((prev) => !prev);
-                  setX2Expanded(false);
-                }}
-                style={{ backgroundColor:t.bgSurface, borderRadius:12, paddingVertical:10, paddingHorizontal:12, borderWidth:0.5, borderColor:t.border, flexDirection:'row', alignItems:'center', justifyContent:'space-between' }}
-              >
-                <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'800' }}>{triLang(lang, {
-                  ru: 'x3 опыта',
-                  uk: 'x3 досвід',
-                  es: '×3 XP',
-                  'pt-BR': "?3 XP",
-                  vi: "?3 XP",
-                  id: "?3 XP",
-                  tr: "?3 XP",
-                  pl: "?3 XP",
-                })}</Text>
-                <Ionicons name={x3Expanded ? 'chevron-down' : 'flash'} size={16} color={leagueBoostCostAccent} />
-              </TouchableOpacity>
-
-              {x3Expanded && x3BoostDef && (
-                <TouchableOpacity
-                  activeOpacity={0.85}
-                  onPress={() => confirmAndBuyBoost('x3_15m')}
-                  style={{ marginTop:-4, marginHorizontal:6, backgroundColor:t.bgSurface, borderRadius:10, paddingVertical:9, paddingHorizontal:10, borderWidth:0.5, borderColor:t.border, flexDirection:'row', alignItems:'center', justifyContent:'space-between' }}
-                >
-                  <Text style={{ color:t.textPrimary, fontSize:f.sub, fontWeight:'700' }}>{boostLabel(x3BoostDef)}</Text>
-                  <View style={{ flexDirection:'row', alignItems:'center', gap:4 }}>
-                    <Text style={{ color:leagueBoostCostAccent, fontSize:f.sub, fontWeight:'800' }}>{x3BoostDef.costShards}</Text>
-                    <Image source={oskolokImageForPackShards(x3BoostDef.costShards)} style={{ width:13, height:13 }} resizeMode="contain" />
-                  </View>
-                </TouchableOpacity>
-              )}
-            </View>
-          </Pressable>
-        </Pressable>
-      </Modal>
 
       {/* Описание лиги — попап при тапе на иконку */}
       <Modal
@@ -1894,131 +1539,6 @@ export default function ClubScreen() {
               >
                 <Text style={{ color:t.correctText, fontWeight:'700', fontSize:f.body }}>OK</Text>
               </TouchableOpacity>
-            </View>
-          </Pressable>
-        </Pressable>
-      </Modal>
-
-      <Modal
-        visible={gameAlert !== null}
-        transparent
-        animationType="fade"
-        onRequestClose={() => setGameAlert(null)}
-      >
-        <Pressable
-          style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', padding:24 }}
-          onPress={() => setGameAlert(null)}
-        >
-          <Pressable onPress={() => {}}>
-            <View style={{
-              backgroundColor:t.bgCard,
-              borderRadius: gameAlertIsBoostSuccess ? 24 : 18,
-              padding: gameAlertIsBoostSuccess ? 22 : 18,
-              width:'90%',
-              maxWidth: gameAlertIsBoostSuccess ? 360 : 320,
-              borderWidth:1,
-              borderColor: gameAlertIsBoostSuccess ? `${gameAlertAccent}66` : t.border,
-              overflow:'hidden',
-              shadowColor: gameAlertAccent,
-              shadowOpacity: gameAlertIsBoostSuccess ? 0.28 : 0.16,
-              shadowRadius: gameAlertIsBoostSuccess ? 22 : 10,
-              shadowOffset:{ width:0, height:12 },
-              elevation: gameAlertIsBoostSuccess ? 16 : 8,
-            }}>
-              {gameAlertIsBoostSuccess && (
-                <>
-                  <LinearGradient
-                    colors={[`${gameAlertAccent}24`, 'transparent']}
-                    style={{ position:'absolute', top:0, left:0, right:0, height:132 }}
-                    pointerEvents="none"
-                  />
-                  <View style={{ alignItems:'center', marginBottom:14 }}>
-                    <View style={{
-                      width:66,
-                      height:66,
-                      borderRadius:20,
-                      alignItems:'center',
-                      justifyContent:'center',
-                      backgroundColor:`${gameAlertAccent}22`,
-                      borderWidth:1,
-                      borderColor:`${gameAlertAccent}66`,
-                    }}>
-                      <Ionicons name="flash" size={34} color={gameAlertAccent} />
-                    </View>
-                  </View>
-                </>
-              )}
-              <Text style={{
-                color:t.textPrimary,
-                fontSize:f.h2,
-                fontWeight:'800',
-                marginBottom:10,
-                textAlign: gameAlertIsBoostSuccess ? 'center' : 'left',
-              }}>
-                {gameAlert?.title}
-              </Text>
-              {gameAlertIsBoostSuccess && (
-                <View style={{
-                  alignSelf:'center',
-                  flexDirection:'row',
-                  alignItems:'center',
-                  gap:8,
-                  paddingVertical:8,
-                  paddingHorizontal:12,
-                  borderRadius:999,
-                  backgroundColor:`${gameAlertAccent}18`,
-                  borderWidth:1,
-                  borderColor:`${gameAlertAccent}44`,
-                  marginBottom:12,
-                }}>
-                  <Text style={{ color:gameAlertAccent, fontSize:f.body, fontWeight:'900' }}>
-                    {gameAlert.meta?.multiplier ? `×${gameAlert.meta.multiplier}` : 'XP'}
-                  </Text>
-                  {!!gameAlert.meta?.duration && (
-                    <Text style={{ color:t.textPrimary, fontSize:f.sub, fontWeight:'800' }}>
-                      {gameAlert.meta.duration}
-                    </Text>
-                  )}
-                </View>
-              )}
-              <Text style={{
-                color:t.textSecond,
-                fontSize:f.body,
-                lineHeight:22,
-                textAlign: gameAlertIsBoostSuccess ? 'center' : 'left',
-              }}>
-                {gameAlert?.message}
-              </Text>
-              <View style={{
-                marginTop: gameAlertIsBoostSuccess ? 20 : 18,
-                flexDirection:'row',
-                justifyContent: gameAlertIsBoostSuccess ? 'center' : 'flex-end',
-                gap:10,
-              }}>
-                {(gameAlert?.actions ?? []).map((action, idx) => (
-                  <TouchableOpacity
-                    key={`${action.label}-${idx}`}
-                    onPress={async () => {
-                      setGameAlert(null);
-                      await action.onPress?.();
-                    }}
-                    style={{
-                      paddingVertical:10,
-                      paddingHorizontal: gameAlertIsBoostSuccess ? 28 : 14,
-                      minHeight:44,
-                      justifyContent:'center',
-                      borderRadius: gameAlertIsBoostSuccess ? 14 : 10,
-                      backgroundColor: action.style === 'cancel' ? t.bgSurface : gameAlertAccent,
-                      borderWidth:1,
-                      borderColor: action.style === 'cancel' ? t.border : gameAlertAccent,
-                    }}
-                  >
-                    <Text style={{ color: action.style === 'cancel' ? t.textPrimary : t.correctText, fontSize:f.sub, fontWeight:'800' }}>
-                      {action.label}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
             </View>
           </Pressable>
         </Pressable>

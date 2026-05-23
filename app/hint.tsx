@@ -13,6 +13,7 @@ import {
   frenchLessonSupportGateCopy,
   lessonSupportContentAvailableForTarget,
 } from './lesson_support_target_gate';
+import { safeRouterBack } from './navigation_back';
 
 function L(
   lang: Lang,
@@ -1348,7 +1349,7 @@ export default function HintScreen() {
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
       <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-        <TouchableOpacity onPress={() => { if (router.canGoBack()) router.back(); else router.replace('/'); }} style={{ marginRight: 12 }}>
+        <TouchableOpacity onPress={() => safeRouterBack(router, '/(tabs)/home' as any)} style={{ marginRight: 12 }}>
           <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
         </TouchableOpacity>
         <View style={{ flex: 1 }}>
@@ -1376,7 +1377,7 @@ export default function HintScreen() {
         ) : hint.render(t, lang, f)}
         <TouchableOpacity
           style={{ backgroundColor: t.bgSurface, borderRadius: 14, padding: 16, alignItems: 'center', marginTop: 8 }}
-          onPress={() => { if (router.canGoBack()) router.back(); else router.replace('/'); }}
+          onPress={() => safeRouterBack(router, '/(tabs)/home' as any)}
         >
           <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
             {frenchHintCopy?.action ?? triLang(lang, {

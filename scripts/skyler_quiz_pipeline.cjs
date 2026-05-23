@@ -12,6 +12,7 @@ const FALLBACK_FRENCH_SOURCE_UI_LOCALES = ['ru', 'uk'];
 const TARGETS = ['en', 'fr', 'smartest'];
 const MODES = ['discover', 'brief', 'gate'];
 const MIN_VALIDATED_SOCIAL_SIGNALS = 2;
+const ACTIVE_APP_VISUAL_FAMILIES = ['forest', 'dark', 'neon', 'neonGreen', 'gold', 'coral', 'minimalLight', 'minimalDark'];
 const SOURCE_PUBLISHER_TYPES = [
   'official_institution',
   'academic_or_university',
@@ -86,10 +87,12 @@ const REQUIRED_PROTOCOL_FILES = [
   'ROOM.md',
   'QUIZ_STYLE_CONTRACT.md',
   'templates/category_brief.md',
+  'templates/visual_asset_plan.md',
   'templates/quiz_pack.schema.md',
   'prompts/00_SKYLER_ORCHESTRATOR.md',
   'prompts/10_SOCIAL_LISTENING_ANALYST.md',
   'prompts/20_TOPIC_TAXONOMIST.md',
+  'prompts/25_VISUAL_ASSET_DIRECTOR.md',
   'prompts/30_SOURCE_LIBRARIAN.md',
   'prompts/40_FACT_CHECKER.md',
   'prompts/50_QUIZ_ARCHITECT.md',
@@ -364,6 +367,7 @@ function renderAgentBoard(target, category) {
     '| Skyler Orchestrator | scope, user choice, decision | prompts/00_SKYLER_ORCHESTRATOR.md |',
     '| Social Listening Analyst | learner pain signals | prompts/10_SOCIAL_LISTENING_ANALYST.md |',
     '| Topic Taxonomist | three category candidates | prompts/20_TOPIC_TAXONOMIST.md |',
+    '| Visual Asset Producer / Visual Asset Director | AI visual asset pass for theme card backgrounds and theme logos before drafting | prompts/25_VISUAL_ASSET_DIRECTOR.md |',
     '| Source Librarian | official source matrix | prompts/30_SOURCE_LIBRARIAN.md |',
     '| Fact Checker | claims and answer keys | prompts/40_FACT_CHECKER.md |',
     '| Quiz Architect | item blueprint | prompts/50_QUIZ_ARCHITECT.md |',
@@ -403,6 +407,13 @@ function renderSourceMatrix(target, category) {
   ].join('\n');
 }
 
+function renderVisualAssetPlan(target, category) {
+  const templatePath = path.join(ROOM_DIR, 'templates', 'visual_asset_plan.md');
+  return readText(templatePath)
+    .replace('Category id: `<category-id>`', `Category id: \`${category || 'pending'}\``)
+    .replace('Target: `<en|fr|smartest>`', `Target: \`${target}\``);
+}
+
 function renderQualityGates(target) {
   const localeLine = target === 'fr'
     ? `${FRENCH_SOURCE_UI_LOCALES.join(', ')} only while the French source gate is closed`
@@ -414,12 +425,15 @@ function renderQualityGates(target) {
     '',
     '- G0 Social evidence: validated demand has at least two distinct social signals, or seed-only label.',
     '- G1 Source matrix: at least two strong sources.',
+    '- G1.5 Visual asset kickoff: DALL-E / AI visual asset pass starts before quiz drafting; generated theme card backgrounds and theme logos must cover all active app theme modes before production mapping.',
     '- G2 Track fit: no English-bank reuse for French; Smartest is not a language.',
     '- G3 Item validity: four unique choices, one valid correct index.',
     '- G4 Distractors: plausible, specific, and clearly wrong.',
     '- G5 Fact truth: every claim has official/institution-backed source IDs.',
     `- G6 Locale quality: ${localeLine}; copy is adapted from research notes.`,
     '- G7 App fit: schema can map to current quiz bank or future Smartest hub.',
+    '- G7.5 Visual assets: AI visual asset pass completed before quiz drafting; theme card backgrounds and theme logos cover all active app theme modes.',
+    '- G7.7 Release isolation: new Skyler quiz packs remain dev-only until explicit user approval; approved packs must record production approval metadata.',
     '- G8 User choice: one selected category before drafting.',
     '',
   ].join('\n');
@@ -435,12 +449,14 @@ function renderWorkOrder(target, category) {
     '## Steps',
     '',
     '- [ ] Confirm the user selected this category.',
+    '- [ ] Start the DALL-E / AI visual asset pass before quiz drafting: generate or queue theme card backgrounds and theme logos for all active app theme modes.',
     '- [ ] Complete source matrix with at least two strong sources.',
     '- [ ] Write category brief.',
     '- [ ] Build item blueprint.',
     '- [ ] Draft first quiz pack.',
     '- [ ] Attach source IDs to every item.',
     '- [ ] Add locale review notes for all active interface locales.',
+    '- [ ] Mark the pack `dev-only`, or record `approved_by_user` production metadata after explicit user approval.',
     '- [ ] Run `npm run skyler:quiz -- --mode gate --draft <pack.json>`.',
     '',
     '## Track-Specific Note',
@@ -500,6 +516,7 @@ function runBrief(args) {
   const category = slugify(args.category);
   const { runDir, manifest } = createRun(args, 'brief', { category });
   writeText(path.join(runDir, 'agent_board.md'), renderAgentBoard(args.target, category));
+  writeText(path.join(runDir, 'visual_asset_plan.md'), renderVisualAssetPlan(args.target, category));
   writeText(path.join(runDir, 'source_matrix.md'), renderSourceMatrix(args.target, category));
   writeText(path.join(runDir, 'quality_gates.md'), renderQualityGates(args.target));
   writeText(path.join(runDir, 'work_order.md'), renderWorkOrder(args.target, category));
@@ -707,6 +724,26 @@ function normalizeTextBlock(value) {
     .trim();
 }
 
+function longExplanationFragments(value) {
+  return String(value || '')
+    .split(/[.!?;:]\s+/u)
+    .map(normalizeTextBlock)
+    .filter((fragment) => fragment.length >= 55);
+}
+
+function repeatedExplanationFragmentReason(explanations) {
+  const fragmentCounts = new Map();
+  for (const explanation of explanations) {
+    for (const fragment of new Set(longExplanationFragments(explanation))) {
+      fragmentCounts.set(fragment, (fragmentCounts.get(fragment) || 0) + 1);
+    }
+  }
+  const repeated = [...fragmentCounts.entries()].find(([, count]) => count > 1);
+  return repeated
+    ? 'reuses the same long explanation fragment across answer choices; each choice needs its own selected-word contrast'
+    : null;
+}
+
 function languagePackNeedsQuizStyleProfile(target) {
   return target === 'en' || target === 'fr';
 }
@@ -806,6 +843,15 @@ const GENERIC_EXPLANATION_FRAGMENTS = [
   'dictionary gloss',
 ];
 
+const TAXONOMY_META_EXPLANATION_PATTERNS = [
+  /\b(?:section|category)\b/iu,
+  /\b(?:this|the)?\s*(?:word|answer|choice)?\s*(?:lands?|goes|fits)\s+in\s+(?:the\s+)?(?:kitchen\s+)?(?:section|category)\b/iu,
+  /\u043f\u043e\u043f\u0430\u0434\p{L}*\s+\u0432\s+\u043a\u0443\u0445\u043d/iu,
+  /(?:^|[^\p{L}])\u0440\u0430\u0437\u0434\u0435\u043b(?:\u0430|\u0435|\u0443|\u043e\u043c|\u044b|\u0430\u0445|\u0430\u043c|\u0430\u043c\u0438)?(?:$|[^\p{L}])/iu,
+  /(?:^|[^\p{L}])\u043a\u0430\u0442\u0435\u0433\u043e\u0440(?:\u0438\u044f|\u0438\u0438|\u0438\u044e|\u0438\u0435\u0439|\u0438\u0439|\u0438\u044f\u0445|\u0438\u044f\u043c|\u0438\u044f\u043c\u0438)?(?:$|[^\p{L}])/iu,
+  /(?:^|[^\p{L}])\u0440\u043e\u0437\u0434\u0456\u043b(?:\u0443|\u0456|\u043e\u043c|\u0438|\u0430\u0445|\u0430\u043c|\u0430\u043c\u0438)?(?:$|[^\p{L}])/iu,
+];
+
 const FORMULAIC_READER_REWARD_PATTERNS = [
   /[\p{L}\d][^.!?;:]{0,55}\s\+\s[^.!?;:]{1,55}\s\+\s[^.!?;:]{1,55}/u,
   /[\p{L}\d][^.!?;:]{0,65}\s=\s[^.!?;:]{1,65}[\p{L}\d]/u,
@@ -898,6 +944,9 @@ function explanationStyleReason(value, locale) {
   if (GENERIC_EXPLANATION_FRAGMENTS.some((fragment) => normalized.includes(normalizeTextBlock(fragment)))) {
     return 'uses generic category filler instead of a choice-specific explanation';
   }
+  if (TAXONOMY_META_EXPLANATION_PATTERNS.some((pattern) => pattern.test(raw))) {
+    return 'uses learner-facing taxonomy meta; explain only the selected word, meaning, usage boundary, or contrast';
+  }
   if (FORMULAIC_READER_REWARD_PATTERNS.some((pattern) => pattern.test(raw))) {
     return 'uses a formulaic pseudo-lifehack; write a human image, contrast, or usage cue instead';
   }
@@ -960,6 +1009,81 @@ function validatePack(pack) {
   }
   if (pack.target !== 'smartest' && pack.trackPolicy !== undefined) {
     fail('trackIsolation.trackPolicy', 'Only Smartest packs may include trackPolicy metadata.');
+  }
+  if (!isObject(pack.releasePolicy)) {
+    fail('releasePolicy', 'New Skyler quiz packs must stay dev-only until explicit production approval.');
+  } else {
+    if (pack.releasePolicy.environment === 'dev-only') {
+      if (pack.releasePolicy.productionActivation !== 'blocked_until_explicit_user_approval') {
+        fail('releasePolicy.productionActivation', 'dev-only productionActivation must stay blocked_until_explicit_user_approval.');
+      }
+    } else if (pack.releasePolicy.environment === 'production') {
+      if (pack.releasePolicy.productionActivation !== 'approved_by_user') {
+        fail('releasePolicy.productionActivation', 'production activation requires productionActivation: approved_by_user.');
+      }
+      const approvedByReason = weakTextReason(pack.releasePolicy.approvedBy, 4);
+      if (approvedByReason) fail('releasePolicy.approvedBy', `approvedBy ${approvedByReason}.`);
+      const approvalSourceReason = weakTextReason(pack.releasePolicy.approvalSource, 12);
+      if (approvalSourceReason) fail('releasePolicy.approvalSource', `approvalSource ${approvalSourceReason}.`);
+      const approvedAt = parseDateOnly(pack.releasePolicy.approvedAt);
+      if (!approvedAt) {
+        fail('releasePolicy.approvedAt', 'approvedAt must be a real YYYY-MM-DD date.');
+      } else {
+        const now = new Date();
+        const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+        if (approvedAt.getTime() > today.getTime()) fail('releasePolicy.approvedAt', 'approvedAt cannot be in the future.');
+      }
+    } else {
+      fail('releasePolicy.environment', 'releasePolicy.environment must be dev-only or production.');
+    }
+    const releaseNotesReason = weakTextReason(pack.releasePolicy.notes, 30);
+    if (releaseNotesReason) fail('releasePolicy.notes', `releasePolicy.notes ${releaseNotesReason}.`);
+  }
+  if (!isObject(pack.visualAssets)) {
+    fail('visualAssets', 'visualAssets is required so the DALL-E plaque/icon kickoff is tracked before quiz drafting.');
+  } else {
+    if (!['generated', 'queued'].includes(pack.visualAssets.status)) {
+      fail('visualAssets.status', 'visualAssets.status must be generated or queued.');
+    }
+    const styleBasisReason = weakTextReason(pack.visualAssets.styleBasis, 35);
+    if (styleBasisReason) fail('visualAssets.styleBasis', `visualAssets.styleBasis ${styleBasisReason}.`);
+    const assets = Array.isArray(pack.visualAssets.assets) ? pack.visualAssets.assets : [];
+    const assetByFamily = new Map();
+    for (const [index, asset] of assets.entries()) {
+      if (!isObject(asset)) {
+        fail(`visualAssets.assets.${index}`, 'Visual asset entry must be an object.');
+        continue;
+      }
+      if (!ACTIVE_APP_VISUAL_FAMILIES.includes(asset.family)) {
+        fail(`visualAssets.assets.${index}.family`, `Visual asset family must be one of ${ACTIVE_APP_VISUAL_FAMILIES.join(', ')}.`);
+      } else if (assetByFamily.has(asset.family)) {
+        fail(`visualAssets.assets.${index}.duplicate`, `Duplicate visual asset family ${asset.family}.`);
+      } else {
+        assetByFamily.set(asset.family, asset);
+      }
+      for (const key of ['plaquePrompt', 'iconPrompt']) {
+        const promptReason = weakTextReason(asset[key], 45);
+        if (promptReason) fail(`visualAssets.assets.${index}.${key}`, `${key} ${promptReason}.`);
+      }
+      if (pack.visualAssets.status === 'generated') {
+        for (const key of ['plaquePath', 'iconPath']) {
+          const pathReason = weakTextReason(asset[key], 12);
+          if (pathReason) fail(`visualAssets.assets.${index}.${key}`, `${key} ${pathReason}.`);
+          else {
+            const resolvedAssetPath = path.resolve(ROOT, asset[key]);
+            const assetRelativePath = path.relative(ROOT, resolvedAssetPath);
+            if (assetRelativePath.startsWith('..') || path.isAbsolute(assetRelativePath)) {
+              fail(`visualAssets.assets.${index}.${key}`, `${key} must stay inside the workspace.`);
+            } else if (!fs.existsSync(resolvedAssetPath)) {
+              fail(`visualAssets.assets.${index}.${key}`, `${key} must point to an existing generated workspace asset.`);
+            }
+          }
+        }
+      }
+    }
+    for (const family of ACTIVE_APP_VISUAL_FAMILIES) {
+      if (!assetByFamily.has(family)) fail(`visualAssets.assets.${family}`, `Missing plaque/icon prompt entry for ${family}.`);
+    }
   }
   const requiredLocales = requiredLocalesForTarget(pack.target);
   const allowedLocales = allowedLocalesForTarget(pack.target);
@@ -1396,6 +1520,8 @@ function validatePack(pack) {
           if (duplicateValues(explanationKeys).length) {
             fail(`${label}.explanations.${locale}.unique`, `Explanations for ${locale} must be unique and specific to each choice.`);
           }
+          const repeatedFragmentReason = repeatedExplanationFragmentReason(explanation);
+          if (repeatedFragmentReason) fail(`${label}.explanations.${locale}.repeatedFragment`, repeatedFragmentReason);
           const bundleKey = normalizeTextBlock(explanation);
           if (bundleKey && explanationBundles.has(bundleKey)) {
             fail(`${label}.explanations.${locale}.duplicateLocaleCopy`, `Explanations duplicate ${explanationBundles.get(bundleKey)}; required locales need adapted copy.`);
@@ -1467,7 +1593,7 @@ function runGate(args) {
   writeJson(path.join(runDir, 'gate_report.json'), report);
   writeText(path.join(runDir, 'gate_report.md'), renderGateMarkdown(report));
   console.log(JSON.stringify(report, null, 2));
-  if (decision === 'BLOCK') process.exitCode = 1;
+  if (decision !== 'GO') process.exitCode = 1;
 }
 
 function runProtocolCheck() {
@@ -1495,8 +1621,17 @@ function runProtocolCheck() {
   for (const locale of FRENCH_SOURCE_UI_LOCALES) {
     if (!room.includes(locale)) failures.push(`ROOM.md does not mention French source UI locale ${locale}`);
   }
-  for (const token of ['Direct translation', 'Social posts are pain signals', 'French quiz packs cannot reuse', 'Heisenberg', 'content vertical', 'copy-pasted across locales', 'unique per choice', 'localizedPrompts', 'unique source URLs', 'distinct source hosts', 'unused official sources', 'at least two distinct social signals', 'distinct social signals', 'categoryTitle', 'researchPolicy.notes', 'styleProfile', 'readerRewardPattern', 'QUIZ_STYLE_CONTRACT.md', 'Prompt, localizedPrompts, choices, and learningGoal', 'target-appropriate content claim', 'locale review needs at least two distinct source IDs', 'stable source, claim, and item IDs', 'stable answer_key itemId', 'stable skillTag/factTag', 'reviewer owner', 'distinct claimIds', 'Track isolation', 'source ID required by', 'distinct Tier A/B source IDs', 'itemId', 'answerIndex', 'source-backed fact', 'Prompt/choice granularity']) {
+  for (const token of ['Direct translation', 'Social posts are pain signals', 'French quiz packs cannot reuse', 'Heisenberg', 'content vertical', 'copy-pasted across locales', 'unique per choice', 'localizedPrompts', 'unique source URLs', 'distinct source hosts', 'unused official sources', 'at least two distinct social signals', 'distinct social signals', 'categoryTitle', 'researchPolicy.notes', 'styleProfile', 'readerRewardPattern', 'QUIZ_STYLE_CONTRACT.md', 'Prompt, localizedPrompts, choices, and learningGoal', 'target-appropriate content claim', 'locale review needs at least two distinct source IDs', 'stable source, claim, and item IDs', 'stable answer_key itemId', 'stable skillTag/factTag', 'reviewer owner', 'distinct claimIds', 'Track isolation', 'Release isolation', 'dev-only', 'blocked_until_explicit_user_approval', 'source ID required by', 'distinct Tier A/B source IDs', 'itemId', 'answerIndex', 'source-backed fact', 'Prompt/choice granularity', 'visual asset kickoff', 'AI visual asset pass', 'theme card backgrounds', 'theme logos', 'all active app theme modes', 'before quiz drafting', 'Visual Asset Producer', 'Visual Asset Director']) {
     if (!room.includes(token)) failures.push(`ROOM.md missing rule: ${token}`);
+  }
+
+  const visualAssetTokens = ['AI visual asset pass', 'theme card backgrounds', 'theme logos', 'all active app theme modes', 'before quiz drafting'];
+  for (const file of ['README.md', 'prompts/00_SKYLER_ORCHESTRATOR.md', 'prompts/25_VISUAL_ASSET_DIRECTOR.md', 'prompts/50_QUIZ_ARCHITECT.md', 'templates/visual_asset_plan.md']) {
+    const abs = path.join(ROOM_DIR, file);
+    const text = fs.existsSync(abs) ? readText(abs) : '';
+    for (const token of visualAssetTokens) {
+      if (!text.includes(token)) failures.push(`${file} missing visual asset rule: ${token}`);
+    }
   }
 
   const styleContractPath = path.join(ROOM_DIR, 'QUIZ_STYLE_CONTRACT.md');

@@ -1,6 +1,21 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { DeviceEventEmitter } from 'react-native';
 import type { Lang } from '../constants/i18n';
+
+type AsyncStorageAdapter = {
+  getItem(key: string): Promise<string | null>;
+  setItem(key: string, value: string): Promise<void>;
+};
+
+type DeviceEventEmitterAdapter = {
+  emit(event: string): void;
+};
+
+function getAsyncStorage(): AsyncStorageAdapter {
+  return require('@react-native-async-storage/async-storage').default as AsyncStorageAdapter;
+}
+
+function getDeviceEventEmitter(): DeviceEventEmitterAdapter {
+  return require('react-native').DeviceEventEmitter as DeviceEventEmitterAdapter;
+}
 
 export type StudyTarget = 'en' | 'fr';
 export type SourceLocale = 'ru' | 'uk';
@@ -60,11 +75,12 @@ export function studyTargetsForSourceLocale(uiLang: Lang): readonly ProductionSt
 }
 
 export function emitStudyTargetChanged(): void {
-  DeviceEventEmitter.emit(STUDY_TARGET_CHANGED);
+  getDeviceEventEmitter().emit(STUDY_TARGET_CHANGED);
 }
 
 export async function getStoredStudyTarget(uiLang: Lang): Promise<ProductionStudyTarget> {
   if (!isStudyTargetSourceLocale(uiLang)) return DEFAULT_STUDY_TARGET;
+  const AsyncStorage = getAsyncStorage();
   const raw = await AsyncStorage.getItem(STUDY_TARGET_STORAGE_KEY);
   if (isProductionStudyTarget(raw)) return raw;
   if (raw != null) await AsyncStorage.setItem(STUDY_TARGET_STORAGE_KEY, DEFAULT_STUDY_TARGET);
@@ -75,6 +91,7 @@ export async function setStoredStudyTarget(target: StudyTarget, uiLang: Lang): P
   const next = isStudyTargetSourceLocale(uiLang) && isProductionStudyTarget(target)
     ? target
     : DEFAULT_STUDY_TARGET;
+  const AsyncStorage = getAsyncStorage();
   await AsyncStorage.setItem(STUDY_TARGET_STORAGE_KEY, next);
   emitStudyTargetChanged();
   return next;

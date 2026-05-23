@@ -3,7 +3,11 @@ import { View, Animated, StyleSheet, Dimensions, Easing, type ViewStyle } from '
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from './ThemeContext';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS } from '../constants/goldTheme';
-import { usePersistentBackgroundLayers } from './backgroundTransition';
+import {
+  FABRIC_BACKGROUND_TRANSITIONS_ENABLED,
+  usePersistentBackgroundLayers,
+  type PersistentBackgroundLayer,
+} from './backgroundTransition';
 import AppArtBackdrop, { AppRouteArtBackdrop } from './AppArtBackdrop';
 import type { AppArtBackdropName } from './appArtBackdropRegistry';
 import type { ThemeMode } from '../constants/theme';
@@ -11,6 +15,17 @@ import type { ThemeMode } from '../constants/theme';
 const GradientActiveCtx = React.createContext(false);
 
 const { width: W, height: H } = Dimensions.get('window');
+const SCREEN_GRADIENT_MOTION_ENABLED = true;
+const SCREEN_GRADIENT_USE_NATIVE_DRIVER = true;
+
+const MOTION_OVERLAY_OPACITY: Record<ThemeMode, number> = {
+  dark: 0.72,
+  neon: 0.68,
+  gold: 0.88,
+  coral: 0.66,
+  minimalLight: 0.34,
+  minimalDark: 0.62,
+};
 
 type OrbSpec = { x: number; y: number; r: number; color: string; opacity: number };
 type ScreenBgLayer = {
@@ -114,19 +129,25 @@ function Orb({ x, y, r, color, opacity, delay }: {
   const pulse = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    if (!SCREEN_GRADIENT_MOTION_ENABLED) {
+      pulse.stopAnimation();
+      pulse.setValue(0);
+      return undefined;
+    }
+
     const anim = Animated.loop(
       Animated.sequence([
         Animated.timing(pulse, {
           toValue: 1,
           duration: 7600 + delay * 900,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
+          useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
         Animated.timing(pulse, {
           toValue: 0,
           duration: 7600 + delay * 900,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
+          useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
       ])
     );
@@ -138,6 +159,24 @@ function Orb({ x, y, r, color, opacity, delay }: {
   const translateX = pulse.interpolate({ inputRange: [0, 1], outputRange: [0, delay % 2 === 0 ? 12 : -10] });
   const translateY = pulse.interpolate({ inputRange: [0, 1], outputRange: [0, delay % 2 === 0 ? -10 : 12] });
   const animatedOpacity = pulse.interpolate({ inputRange: [0, 1], outputRange: [opacity * 0.76, opacity] });
+
+  if (!SCREEN_GRADIENT_MOTION_ENABLED) {
+    return (
+      <View
+        pointerEvents="none"
+        style={{
+          position: 'absolute',
+          left: x - r,
+          top: y - r,
+          width: r * 2,
+          height: r * 2,
+          borderRadius: r,
+          backgroundColor: color,
+          opacity: opacity * 0.76,
+        }}
+      />
+    );
+  }
 
   return (
     <Animated.View
@@ -194,19 +233,31 @@ function GoldFabricFlow() {
   const sweep = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    if (!SCREEN_GRADIENT_MOTION_ENABLED) {
+      main.stopAnimation();
+      cross.stopAnimation();
+      threads.stopAnimation();
+      sweep.stopAnimation();
+      main.setValue(0);
+      cross.setValue(0);
+      threads.setValue(0);
+      sweep.setValue(0);
+      return undefined;
+    }
+
     const mainAnim = Animated.loop(
       Animated.sequence([
         Animated.timing(main, {
           toValue: 1,
           duration: 15000,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
+          useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
         Animated.timing(main, {
           toValue: 0,
           duration: 15000,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
+          useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
       ])
     );
@@ -216,13 +267,13 @@ function GoldFabricFlow() {
           toValue: 1,
           duration: 18000,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
+          useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
         Animated.timing(cross, {
           toValue: 0,
           duration: 18000,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
+          useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
       ])
     );
@@ -232,13 +283,13 @@ function GoldFabricFlow() {
           toValue: 1,
           duration: 12500,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
+          useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
         Animated.timing(threads, {
           toValue: 0,
           duration: 12500,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
+          useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
       ])
     );
@@ -248,13 +299,13 @@ function GoldFabricFlow() {
           toValue: 1,
           duration: 14000,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
+          useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
         Animated.timing(sweep, {
           toValue: 0,
           duration: 14000,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
+          useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
       ])
     );
@@ -285,6 +336,27 @@ function GoldFabricFlow() {
   const threadOpacity = threads.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.26, 0.42, 0.26] });
   const sweepX = sweep.interpolate({ inputRange: [0, 1], outputRange: [-W * 1.40, W * 0.92] });
   const sweepOpacity = sweep.interpolate({ inputRange: [0, 0.28, 0.62, 1], outputRange: [0, 0.70, 0.38, 0] });
+
+  if (!SCREEN_GRADIENT_MOTION_ENABLED) {
+    return (
+      <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+        <LinearGradient
+          colors={['rgba(246,227,161,0.040)', 'rgba(184,144,58,0.018)', 'rgba(0,0,0,0)']}
+          locations={[0, 0.36, 1]}
+          start={{ x: 0.12, y: 0 }}
+          end={{ x: 0.88, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+        <LinearGradient
+          colors={['rgba(0,0,0,0.16)', 'rgba(0,0,0,0.04)', 'rgba(0,0,0,0.38)']}
+          locations={[0, 0.46, 1]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+      </View>
+    );
+  }
 
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
@@ -346,53 +418,91 @@ function GoldFabricFlow() {
   );
 }
 
-function ScreenGradientBackgroundLayer({ layer }: { layer: ScreenBgLayer }) {
+function ScreenGradientBackgroundLayer({
+  layer,
+  effectsOnly = false,
+}: {
+  layer: ScreenBgLayer;
+  effectsOnly?: boolean;
+}) {
   return (
     <View
       pointerEvents="none"
       collapsable={false}
       style={[
         StyleSheet.absoluteFill,
-        { backgroundColor: layer.backgroundColor },
+        !effectsOnly ? { backgroundColor: layer.backgroundColor } : null,
       ]}
     >
-      <LinearGradient
-        colors={layer.gradColors as any}
-        locations={layer.isGold ? GOLD_SURFACE_LOCATIONS : undefined}
-        start={{ x: 0.3, y: 0 }}
-        end={{ x: 0.7, y: 1 }}
-        style={StyleSheet.absoluteFill}
-      />
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { overflow: 'visible' }]}>
-        {layer.isGold ? (
-          <GoldFabricFlow />
-        ) : (
-          <>
-            {layer.orbs.map((o, i) => (
-              <Orb key={`${layer.key}-${i}`} {...o} delay={i} />
-            ))}
-            <View style={{
-              position: 'absolute', top: 0, right: -80,
-              width: 220,
-              height: 220,
-              borderRadius: 110,
-              backgroundColor: layer.key.startsWith('minimalLight:')
-                ? 'rgba(52,56,66,0.13)'
-                : `${layer.accent}18`,
-              transform: [{ rotate: '30deg' }, { scaleX: 2.2 }],
-            }} />
-          </>
-        )}
+      {!effectsOnly ? (
         <LinearGradient
-          colors={layer.isGold
-            ? ['rgba(0,0,0,0.26)', 'rgba(0,0,0,0.18)', 'rgba(0,0,0,0.54)']
-              : ['rgba(0,0,0,0.00)', 'rgba(0,0,0,0.08)']}
-          start={{ x: 0.5, y: 0.5 }}
-          end={{ x: 0.5, y: 1 }}
+          colors={layer.gradColors as any}
+          locations={layer.isGold ? GOLD_SURFACE_LOCATIONS : undefined}
+          start={{ x: 0.3, y: 0 }}
+          end={{ x: 0.7, y: 1 }}
           style={StyleSheet.absoluteFill}
         />
+      ) : null}
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { overflow: 'visible' }]}>
+        {effectsOnly ? (
+          layer.isGold ? (
+            <GoldFabricFlow />
+          ) : (
+            <>
+              {layer.orbs.map((o, i) => (
+                <Orb key={`${layer.key}-${i}`} {...o} delay={i} />
+              ))}
+              <View style={{
+                position: 'absolute', top: 0, right: -80,
+                width: 220,
+                height: 220,
+                borderRadius: 110,
+                backgroundColor: layer.key.startsWith('minimalLight:')
+                  ? 'rgba(52,56,66,0.13)'
+                  : `${layer.accent}18`,
+                transform: [{ rotate: '30deg' }, { scaleX: 2.2 }],
+              }} />
+            </>
+          )
+        ) : null}
+        {!effectsOnly ? (
+          <LinearGradient
+            colors={layer.isGold
+              ? ['rgba(0,0,0,0.26)', 'rgba(0,0,0,0.18)', 'rgba(0,0,0,0.54)']
+                : ['rgba(0,0,0,0.00)', 'rgba(0,0,0,0.08)']}
+            start={{ x: 0.5, y: 0.5 }}
+            end={{ x: 0.5, y: 1 }}
+            style={StyleSheet.absoluteFill}
+          />
+        ) : null}
       </View>
     </View>
+  );
+}
+
+function renderBackgroundLayer(
+  layer: PersistentBackgroundLayer<ScreenBgLayer>,
+  effectsOnly = false,
+  overlayOpacity = 1,
+) {
+  const key = effectsOnly ? `${layer.id}:effects` : layer.id;
+
+  if (!FABRIC_BACKGROUND_TRANSITIONS_ENABLED) {
+    return (
+      <View key={key} pointerEvents="none" style={[StyleSheet.absoluteFill, effectsOnly ? { opacity: overlayOpacity } : null]}>
+        <ScreenGradientBackgroundLayer layer={layer.value} effectsOnly={effectsOnly} />
+      </View>
+    );
+  }
+
+  return (
+    <Animated.View
+      key={key}
+      pointerEvents="none"
+      style={[StyleSheet.absoluteFill, { opacity: effectsOnly ? overlayOpacity : layer.opacity }]}
+    >
+      <ScreenGradientBackgroundLayer layer={layer.value} effectsOnly={effectsOnly} />
+    </Animated.View>
   );
 }
 
@@ -440,7 +550,7 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
     maxLayers: 4,
   });
   const childHasExplicitArtBackdrop = useMemo(() => hasExplicitArtBackdrop(children), [children]);
-  const routeArtBackdropEnabled = artBackdrop === undefined && !childHasExplicitArtBackdrop;
+  const routeArtBackdropEnabled = (artBackdrop === undefined || artBackdrop === false) && !childHasExplicitArtBackdrop;
   const fixedArtBackdrop = typeof artBackdrop === 'string' ? artBackdrop : null;
   // Nested tab content lets the parent gradient show through.
   if (isNested && !forceFullBleed) {
@@ -449,7 +559,7 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
 
   const staticY = staticParallaxY;
   const animatedY =
-    staticParallaxY === undefined ? (entranceOffsetY ?? defaultEntranceY) : undefined;
+    SCREEN_GRADIENT_MOTION_ENABLED && staticParallaxY === undefined ? (entranceOffsetY ?? defaultEntranceY) : undefined;
 
   const bgLayerStyle: ViewStyle = {
     ...StyleSheet.absoluteFillObject,
@@ -459,27 +569,24 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
         ? { transform: [{ translateY: animatedY }] }
         : {}),
   };
+  const backgroundLayers = (
+    <>
+      {bgLayers.map(layer => renderBackgroundLayer(layer))}
+      {fixedArtBackdrop ? <AppArtBackdrop name={fixedArtBackdrop} /> : routeArtBackdropEnabled ? <AppRouteArtBackdrop /> : null}
+      {bgLayers.map(layer => renderBackgroundLayer(layer, true, MOTION_OVERLAY_OPACITY[themeMode]))}
+    </>
+  );
 
   return (
     <GradientActiveCtx.Provider value={true}>
       <View style={[{ flex: 1, backgroundColor: t.bgPrimary, overflow: 'visible' }, style]}>
-        {staticY !== undefined ? (
+        {animatedY === undefined ? (
           <View pointerEvents="none" collapsable={false} style={bgLayerStyle}>
-            {bgLayers.map(layer => (
-              <Animated.View key={layer.id} pointerEvents="none" style={[StyleSheet.absoluteFill, { opacity: layer.opacity }]}>
-                <ScreenGradientBackgroundLayer layer={layer.value} />
-              </Animated.View>
-            ))}
-            {fixedArtBackdrop ? <AppArtBackdrop name={fixedArtBackdrop} /> : routeArtBackdropEnabled ? <AppRouteArtBackdrop /> : null}
+            {backgroundLayers}
           </View>
         ) : (
           <Animated.View pointerEvents="none" collapsable={false} style={bgLayerStyle}>
-            {bgLayers.map(layer => (
-              <Animated.View key={layer.id} pointerEvents="none" style={[StyleSheet.absoluteFill, { opacity: layer.opacity }]}>
-                <ScreenGradientBackgroundLayer layer={layer.value} />
-              </Animated.View>
-            ))}
-            {fixedArtBackdrop ? <AppArtBackdrop name={fixedArtBackdrop} /> : routeArtBackdropEnabled ? <AppRouteArtBackdrop /> : null}
+            {backgroundLayers}
           </Animated.View>
         )}
         {children}

@@ -49,6 +49,8 @@ export function injectMockLeaderboardStats(): void {
   // с типичными данными оказывался примерно в 70-85 перцентиле.
   const makeThresholds = (max: number): number[] =>
     Array.from({ length: 99 }, (_, i) => Math.round((max / 99) * i));
+  const makeThresholdsAboveFloor = (floor: number, spread: number): number[] =>
+    Array.from({ length: 99 }, (_, i) => floor + Math.round((spread / 99) * i));
 
   _memCache = {
     fetchedAt: Date.now(),
@@ -56,7 +58,7 @@ export function injectMockLeaderboardStats(): void {
       totalUsers: 12847,
       updatedAt: Date.now(),
       minimumSampleXp: MIN_PERCENTILE_SAMPLE_XP,
-      xpThresholds:         makeThresholds(5000),   // активная выборка начинается с 5000 XP
+      xpThresholds:         makeThresholdsAboveFloor(MIN_PERCENTILE_SAMPLE_XP, 95_000),
       streakThresholds:     makeThresholds(60),      // цепочка 7–14д → top 30–50%
       weekXpThresholds:     makeThresholds(500),
       daily7xpThresholds:   makeThresholds(400),

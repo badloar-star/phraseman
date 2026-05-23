@@ -76,7 +76,7 @@ const RU = {
     theme: 'Тема', themeDark: 'Тёмная', themeLight: 'Светлая',
     learning: 'Обучение', learnSet: 'Настройки обучения',
     help: 'Помощь',
-    premium: 'Premium', premiumSub: 'Уровни, квизы и практика — по подписке',
+    premium: 'Premium', premiumSub: 'Уроки, лимиты и практика — по подписке',
     changeName: 'Изменить имя', cancel: 'Отмена', save: 'Сохранить',
     nameError: 'Введите имя', namePlaceholder: 'Введите имя...',
   },
@@ -135,12 +135,12 @@ const RU = {
     nameError: 'Введите имя чтобы продолжить',
   },
   premium: {
-    locked: 'Premium открывает уроки после первых 3\nи квизы Medium/Hard',
+    locked: 'Premium открывает уроки после первых 3\nи снимает дневные лимиты',
     freeCont: 'Продолжить бесплатно (Урок 1)',
     cta: 'Получить Premium',
     ctaSub: 'Оформить подписку',
     legal: 'Отмена в любое время в настройках App Store / Google Play.',
-    features: ['Уроки после первых 3','Квизы всех уровней','Голосовой ввод','Подробная статистика'],
+    features: ['Уроки после первых 3','Квизы без дневного лимита','Голосовой ввод','Подробная статистика'],
   },
 };
 
@@ -214,7 +214,7 @@ const UK: typeof RU = {
     theme: 'Тема', themeDark: 'Темна', themeLight: 'Світла',
     learning: 'Навчання', learnSet: 'Налаштування навчання',
     help: 'Допомога',
-    premium: 'Premium', premiumSub: 'Рівні, квізи й практика — за підпискою',
+    premium: 'Premium', premiumSub: 'Уроки, ліміти й практика — за підпискою',
     changeName: 'Змінити ім\'я', cancel: 'Скасувати', save: 'Зберегти',
     nameError: 'Введіть ім\'я', namePlaceholder: 'Введіть ім\'я...',
   },
@@ -273,12 +273,12 @@ const UK: typeof RU = {
     nameError: 'Введіть ім\'я щоб продовжити',
   },
   premium: {
-    locked: 'Premium відкриває уроки після перших 3\nі квізи Medium/Hard',
+    locked: 'Premium відкриває уроки після перших 3\nі знімає денні ліміти',
     freeCont: 'Продовжити безкоштовно (Урок 1)',
     cta: 'Отримати Premium',
     ctaSub: 'Оформити підписку',
     legal: 'Скасування будь-коли в налаштуваннях App Store / Google Play.',
-    features: ['Уроки після перших 3','Квізи всіх рівнів','Голосове введення','Докладна статистика'],
+    features: ['Уроки після перших 3','Квізи без денного ліміту','Голосове введення','Докладна статистика'],
   },
 };
 
@@ -352,7 +352,7 @@ const ES: typeof RU = {
     theme: 'Tema', themeDark: 'Oscuro', themeLight: 'Claro',
     learning: 'Aprendizaje', learnSet: 'Ajustes del aprendizaje',
     help: 'Ayuda',
-    premium: 'Premium', premiumSub: 'Niveles, cuestionarios y práctica — con suscripción',
+    premium: 'Premium', premiumSub: 'Lecciones, límites y práctica — con suscripción',
     changeName: 'Cambiar nombre', cancel: 'Cancelar', save: 'Guardar',
     nameError: 'Escribe un nombre', namePlaceholder: 'Tu nombre...',
   },
@@ -411,14 +411,14 @@ const ES: typeof RU = {
     nameError: 'Escribe tu nombre para continuar',
   },
   premium: {
-    locked: 'Premium abre las lecciones después de las 3 primeras\ny quizzes Medium/Hard',
+    locked: 'Premium abre las lecciones después de las 3 primeras\ny elimina los límites diarios',
     freeCont: 'Seguir gratis (Lección 1)',
     cta: 'Obtener Premium',
     ctaSub: 'Contratar suscripción',
     legal: 'Puedes cancelar cuando quieras desde los ajustes de App Store o Google Play.',
     features: [
       'Lecciones después de las 3 primeras',
-      'Cuestionarios de todos los niveles',
+      'Cuestionarios sin límite diario',
       'Respuestas por voz',
       'Estadísticas detalladas',
     ],
@@ -495,7 +495,7 @@ const PT_BR: typeof RU = {
     theme: 'Tema', themeDark: 'Escuro', themeLight: 'Claro',
     learning: 'Estudo', learnSet: 'Configurações de estudo',
     help: 'Ajuda',
-    premium: 'Premium', premiumSub: 'Níveis, quizzes e prática — por assinatura',
+    premium: 'Premium', premiumSub: 'Lições, limites e prática — por assinatura',
     changeName: 'Alterar nome', cancel: 'Cancelar', save: 'Salvar',
     nameError: 'Digite um nome', namePlaceholder: 'Digite um nome...',
   },
@@ -554,12 +554,12 @@ const PT_BR: typeof RU = {
     nameError: 'Digite um nome para continuar',
   },
   premium: {
-    locked: 'Premium abre as lições depois das 3 primeiras\ne quizzes Medium/Hard',
+    locked: 'Premium abre as lições depois das 3 primeiras\ne remove limites diários',
     freeCont: 'Continuar grátis (Lição 1)',
     cta: 'Obter Premium',
     ctaSub: 'Assinar',
     legal: 'Cancele quando quiser nas configurações da App Store / Google Play.',
-    features: ['Lições depois das 3 primeiras','Quizzes de todos os níveis','Entrada por voz','Estatísticas detalhadas'],
+    features: ['Lições depois das 3 primeiras','Quizzes sem limite diário','Entrada por voz','Estatísticas detalhadas'],
   },
 };
 
@@ -633,7 +633,7 @@ const VI: typeof RU = {
     theme: 'Chủ đề', themeDark: 'Tối', themeLight: 'Sáng',
     learning: 'Học tập', learnSet: 'Cài đặt học tập',
     help: 'Trợ giúp',
-    premium: 'Premium', premiumSub: 'Cấp độ, quiz và luyện tập — theo gói đăng ký',
+    premium: 'Premium', premiumSub: 'Bài học, giới hạn và luyện tập — theo gói đăng ký',
     changeName: 'Đổi tên', cancel: 'Hủy', save: 'Lưu',
     nameError: 'Nhập tên', namePlaceholder: 'Nhập tên...',
   },
@@ -692,12 +692,12 @@ const VI: typeof RU = {
     nameError: 'Nhập tên để tiếp tục',
   },
   premium: {
-    locked: 'Premium mở các bài sau 3 bài đầu\nvà quiz Medium/Hard',
+    locked: 'Premium mở các bài sau 3 bài đầu\nvà bỏ giới hạn hằng ngày',
     freeCont: 'Tiếp tục miễn phí (Bài 1)',
     cta: 'Nhận Premium',
     ctaSub: 'Đăng ký',
     legal: 'Có thể hủy bất cứ lúc nào trong cài đặt App Store / Google Play.',
-    features: ['Bài học sau 3 bài đầu','Quiz mọi cấp độ','Nhập bằng giọng nói','Thống kê chi tiết'],
+    features: ['Bài học sau 3 bài đầu','Quiz không giới hạn mỗi ngày','Nhập bằng giọng nói','Thống kê chi tiết'],
   },
 };
 
@@ -771,7 +771,7 @@ const ID: typeof RU = {
     theme: 'Tema', themeDark: 'Gelap', themeLight: 'Terang',
     learning: 'Belajar', learnSet: 'Pengaturan belajar',
     help: 'Bantuan',
-    premium: 'Premium', premiumSub: 'Level, kuis, dan latihan — lewat langganan',
+    premium: 'Premium', premiumSub: 'Pelajaran, batas, dan latihan — lewat langganan',
     changeName: 'Ubah nama', cancel: 'Batal', save: 'Simpan',
     nameError: 'Masukkan nama', namePlaceholder: 'Masukkan nama...',
   },
@@ -830,12 +830,12 @@ const ID: typeof RU = {
     nameError: 'Masukkan nama untuk melanjutkan',
   },
   premium: {
-    locked: 'Premium membuka pelajaran setelah 3 pertama\ndan kuis Medium/Hard',
+    locked: 'Premium membuka pelajaran setelah 3 pertama\ndan menghapus batas harian',
     freeCont: 'Lanjut gratis (Pelajaran 1)',
     cta: 'Dapatkan Premium',
     ctaSub: 'Ambil langganan',
     legal: 'Batalkan kapan saja di pengaturan App Store / Google Play.',
-    features: ['Pelajaran setelah 3 pertama','Kuis semua level','Input suara','Statistik detail'],
+    features: ['Pelajaran setelah 3 pertama','Kuis tanpa batas harian','Input suara','Statistik detail'],
   },
 };
 
@@ -909,7 +909,7 @@ const TR: typeof RU = {
     theme: 'Tema', themeDark: 'Koyu', themeLight: 'Açık',
     learning: 'Öğrenme', learnSet: 'Öğrenme ayarları',
     help: 'Yardım',
-    premium: 'Premium', premiumSub: 'Seviyeler, quizler ve pratik — abonelikle',
+    premium: 'Premium', premiumSub: 'Dersler, limitler ve pratik — abonelikle',
     changeName: 'Adı değiştir', cancel: 'İptal', save: 'Kaydet',
     nameError: 'Ad gir', namePlaceholder: 'Adını gir...',
   },
@@ -968,12 +968,12 @@ const TR: typeof RU = {
     nameError: 'Devam etmek için ad gir',
   },
   premium: {
-    locked: 'Premium ilk 3 dersten sonrasını\nve Medium/Hard quizleri açar',
+    locked: 'Premium ilk 3 dersten sonrasını açar\nve günlük limitleri kaldırır',
     freeCont: 'Ücretsiz devam et (Ders 1)',
     cta: 'Premium al',
     ctaSub: 'Abonelik başlat',
     legal: 'App Store / Google Play ayarlarından istediğin zaman iptal edebilirsin.',
-    features: ['İlk 3 dersten sonraki dersler','Tüm seviyelerde quizler','Sesli giriş','Detaylı istatistikler'],
+    features: ['İlk 3 dersten sonraki dersler','Günlük limitsiz quizler','Sesli giriş','Detaylı istatistikler'],
   },
 };
 
@@ -1047,7 +1047,7 @@ const PL: typeof RU = {
     theme: 'Motyw', themeDark: 'Ciemny', themeLight: 'Jasny',
     learning: 'Nauka', learnSet: 'Ustawienia nauki',
     help: 'Pomoc',
-    premium: 'Premium', premiumSub: 'Poziomy, quizy i praktyka — w subskrypcji',
+    premium: 'Premium', premiumSub: 'Lekcje, limity i praktyka — w subskrypcji',
     changeName: 'Zmień imię', cancel: 'Anuluj', save: 'Zapisz',
     nameError: 'Wpisz imię', namePlaceholder: 'Wpisz imię...',
   },
@@ -1106,12 +1106,12 @@ const PL: typeof RU = {
     nameError: 'Wpisz imię, aby kontynuować',
   },
   premium: {
-    locked: 'Premium otwiera lekcje po pierwszych 3\ni quizy Medium/Hard',
+    locked: 'Premium otwiera lekcje po pierwszych 3\ni usuwa dzienne limity',
     freeCont: 'Kontynuuj za darmo (Lekcja 1)',
     cta: 'Pobierz Premium',
     ctaSub: 'Wykup subskrypcję',
     legal: 'Anuluj w dowolnym momencie w ustawieniach App Store / Google Play.',
-    features: ['Lekcje po pierwszych 3','Quizy wszystkich poziomów','Wprowadzanie głosowe','Szczegółowe statystyki'],
+    features: ['Lekcje po pierwszych 3','Quizy bez dziennego limitu','Wprowadzanie głosowe','Szczegółowe statystyki'],
   },
 };
 

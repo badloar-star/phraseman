@@ -1,3 +1,4 @@
+import type { ImageSourcePropType } from 'react-native';
 import type { ThemeMode } from './theme';
 
 export type TrainerThemeIconKind = 'phrases' | 'words' | 'analytics';
@@ -55,10 +56,84 @@ const THEME_ICON_PALETTES: Record<ThemeMode, TrainerThemeIconPalette> = {
   },
 };
 
+export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThemeIconKind, string>> = {
+  dark: {
+    phrases: 'assets/images/trainer_theme_icons/dark/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/dark/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/dark/analytics.webp',
+  },
+  neon: {
+    phrases: 'assets/images/trainer_theme_icons/neon/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/neon/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/neon/analytics.webp',
+  },
+  gold: {
+    phrases: 'assets/images/trainer_theme_icons/gold/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/gold/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/gold/analytics.webp',
+  },
+  coral: {
+    phrases: 'assets/images/trainer_theme_icons/coral/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/coral/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/coral/analytics.webp',
+  },
+  minimalLight: {
+    phrases: 'assets/images/trainer_theme_icons/minimalLight/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/minimalLight/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/minimalLight/analytics.webp',
+  },
+  minimalDark: {
+    phrases: 'assets/images/trainer_theme_icons/minimalDark/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/minimalDark/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/minimalDark/analytics.webp',
+  },
+};
+
+const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind, ImageSourcePropType>> = {
+  dark: {
+    phrases: require('../assets/images/trainer_theme_icons/dark/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/dark/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/dark/analytics.webp'),
+  },
+  neon: {
+    phrases: require('../assets/images/trainer_theme_icons/neon/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/neon/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/neon/analytics.webp'),
+  },
+  gold: {
+    phrases: require('../assets/images/trainer_theme_icons/gold/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/gold/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/gold/analytics.webp'),
+  },
+  coral: {
+    phrases: require('../assets/images/trainer_theme_icons/coral/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/coral/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/coral/analytics.webp'),
+  },
+  minimalLight: {
+    phrases: require('../assets/images/trainer_theme_icons/minimalLight/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/minimalLight/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/minimalLight/analytics.webp'),
+  },
+  minimalDark: {
+    phrases: require('../assets/images/trainer_theme_icons/minimalDark/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/minimalDark/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/minimalDark/analytics.webp'),
+  },
+};
+
 export function trainerThemeIconPalette(
   themeMode: ThemeMode,
 ): TrainerThemeIconPalette {
   const selectedPalette = THEME_ICON_PALETTES[themeMode];
   const darkPalette = THEME_ICON_PALETTES.dark;
   return selectedPalette ?? darkPalette;
+}
+
+export function trainerThemeIconSource(
+  themeMode: ThemeMode,
+  kind: TrainerThemeIconKind,
+): ImageSourcePropType {
+  const selectedTheme = TRAINER_THEME_ICON_SOURCES[themeMode] ?? TRAINER_THEME_ICON_SOURCES.dark;
+  return selectedTheme[kind] ?? selectedTheme.phrases;
 }

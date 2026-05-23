@@ -1,10 +1,17 @@
 import { DeviceEventEmitter } from 'react-native';
 import type { PlannedTriLangCopy } from '../constants/i18n';
+import type { ThemeMode } from '../constants/theme';
+import type { RuntimeStudyTarget } from './target_storage_keys';
 
 /** Анти-бурст для `action_toast` внутри ~400 мс (мульти-тап); дальше фильтрует ActionToast. */
 let _lastActionToastKey = '';
 let _lastActionToastEmitAt = 0;
 const ACTION_TOAST_EMIT_BURST_MS = 400;
+let appFirstContentReadyFired = false;
+
+function isJestRuntime(): boolean {
+  return typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
+}
 
 export type AppEventMap = {
   xp_changed: undefined;
@@ -48,14 +55,16 @@ export type AppEventMap = {
   pack_trial_gift_set: undefined;
   /** Ваучер «згорів» — використано для покупки набору або вийшов час; UI має повернути іконки осколків */
   pack_trial_gift_consumed: undefined;
-  daily_task_completed: { taskId: string };
+  daily_task_completed: { taskId: string; studyTarget?: RuntimeStudyTarget };
   /** Тост или экран забрал награду — обновить список на daily_tasks / главной. */
-  daily_task_reward_claimed: { taskId: string };
+  daily_task_reward_claimed: { taskId: string; studyTarget?: RuntimeStudyTarget };
+  /** Dev/admin preview only: показать reward-toast без storage/XP claim. */
+  daily_task_reward_toast_preview: { themeMode: ThemeMode; taskTitle?: string; xpBase?: number };
   /** Пользователь сменил дневное задание за осколки — UI обязан перечитать список и прогресс. */
   daily_task_rerolled: { oldTaskId: string; newTaskId: string };
   energy_purchased_shards: undefined;
   /** Цепочка только что обнулена, доступен оффер восстановления (24ч). home.tsx показывает модалку. */
-  streak_revive_offer: { lostStreak: number };
+  streak_revive_offer: { lostStreak: number; missedDays?: number };
   /** Цепочка восстановлена за осколки — home/UI должны мгновенно обновить отображение. */
   streak_revived: { restoredStreak: number; spent: number };
   streak_freeze_updated: { active: boolean };
@@ -111,6 +120,10 @@ export function emitAppEvent<K extends keyof AppEventMap>(
   event: K,
   payload?: AppEventMap[K]
 ): void {
+  const shouldTrackEvent = event !== 'app_first_content_ready';
+  if (event === 'app_first_content_ready') {
+    appFirstContentReadyFired = true;
+  }
   if (event === 'action_toast' && payload !== undefined) {
     const p = payload as AppEventMap['action_toast'];
     const k = `${p.type}\u0001${p.messageRu.replace(/\s+/g, ' ').trim()}`;
@@ -123,37 +136,55 @@ export function emitAppEvent<K extends keyof AppEventMap>(
   }
   if (payload === undefined) {
     DeviceEventEmitter.emit(event);
-    void import('./app_activity')
-      .then(({ trackActivity }) =>
-        trackActivity(`event:${String(event)}`, {
-          feature: 'app_event',
-          result: 'info',
-          tags: { hasPayload: false },
-        }),
-      )
-      .catch(() => {});
+    if (shouldTrackEvent && !isJestRuntime()) {
+      void import('./app_activity')
+        .then(({ trackActivity }) =>
+          trackActivity(`event:${String(event)}`, {
+            feature: 'app_event',
+            result: 'info',
+            tags: { hasPayload: false },
+          }),
+        )
+        .catch(() => {});
+    }
     return;
   }
   DeviceEventEmitter.emit(event, payload);
-  void import('./app_activity')
-    .then(({ trackActivity }) =>
-      trackActivity(`event:${String(event)}`, {
-        feature: event === 'action_toast' ? 'toast' : 'app_event',
-        result: event === 'action_toast' ? (payload as AppEventMap['action_toast']).type : 'info',
-        tags: {
-          hasPayload: true,
-          payload: JSON.stringify(payload).slice(0, 220),
-        },
-      }),
-    )
-    .catch(() => {});
+  if (shouldTrackEvent && !isJestRuntime()) {
+    void import('./app_activity')
+      .then(({ trackActivity }) =>
+        trackActivity(`event:${String(event)}`, {
+          feature: event === 'action_toast' ? 'toast' : 'app_event',
+          result: event === 'action_toast' ? (payload as AppEventMap['action_toast']).type : 'info',
+          tags: {
+            hasPayload: true,
+            payload: JSON.stringify(payload).slice(0, 220),
+          },
+        }),
+      )
+      .catch(() => {});
+  }
 }
 
 export function onAppEvent<K extends keyof AppEventMap>(
   event: K,
   handler: (payload: AppEventMap[K]) => void
 ): { remove: () => void } {
-  return DeviceEventEmitter.addListener(event, handler as (...args: unknown[]) => void);
+  const sub = DeviceEventEmitter.addListener(event, handler as (...args: unknown[]) => void);
+  if (event !== 'app_first_content_ready' || !appFirstContentReadyFired) {
+    return sub;
+  }
+
+  const replayTimer = setTimeout(() => {
+    handler(undefined as AppEventMap[K]);
+  }, 0);
+
+  return {
+    remove: () => {
+      clearTimeout(replayTimer);
+      sub.remove();
+    },
+  };
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

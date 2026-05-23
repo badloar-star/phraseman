@@ -26,6 +26,7 @@ import {
   frenchLessonSupportGateCopy,
   lessonSupportContentAvailableForTarget,
 } from './lesson_support_target_gate';
+import { safeRouterBack } from './navigation_back';
 
 // ─── UI компоненты ────────────────────────────────────────────────────────────
 
@@ -9778,8 +9779,8 @@ const THEORY: Record<number, TheoryContent> = {
       t={t}
       f={f}
       text={isUK
-        ? 'An працює як a, але використовується перед голосним звуком. У цьому уроці є an email, an idea, an app, an umbrella, an option.'
-        : 'An работает как a, но используется перед гласным звуком. В этом уроке есть an email, an idea, an app, an umbrella, an option.'
+        ? 'An працює як a, але використовується перед голосним звуком. У цьому уроці є an idea, an app, an umbrella, an option.'
+        : 'An работает как a, но используется перед гласным звуком. В этом уроке есть an idea, an app, an umbrella, an option.'
       }
     />,
 
@@ -9789,7 +9790,7 @@ const THEORY: Record<number, TheoryContent> = {
       f={f}
       rows={[
         ['an + noun', isUK ? 'Приклад з уроку' : 'Пример из урока'],
-        ['an email', 'She wrote an email / There is an email in my inbox'],
+        ['an idea', 'He has an idea / We chose an option'],
         ['an idea', 'He has an idea'],
         ['an app', 'We use an app'],
         ['an umbrella', 'I brought an umbrella'],
@@ -9840,7 +9841,7 @@ const THEORY: Record<number, TheoryContent> = {
         ['He has a key', 'The key is in the bag'],
         ['We bought a ticket', 'The ticket is in my wallet'],
         ['They found a charger', 'The charger is near the phone'],
-        ['She wrote an email', 'The email is important'],
+        ['She wrote a letter', 'The letter is important'],
         ['He has an idea', 'The idea is good'],
         ['We use an app', 'The app works well'],
         ['I brought an umbrella', 'The umbrella is near the door'],
@@ -10007,7 +10008,7 @@ const THEORY: Record<number, TheoryContent> = {
         [isUK ? 'Фраза з уроку' : 'Фраза из урока', isUK ? 'Що важливо' : 'Что важно'],
         ['We bought a ticket', isUK ? 'один новий ticket' : 'один новый ticket'],
         ['They found a charger', isUK ? 'один новий charger' : 'один новый charger'],
-        ['She wrote an email', isUK ? 'один новий email' : 'один новый email'],
+        ['She wrote a letter', isUK ? 'один новий лист' : 'одно новое письмо'],
         ['I brought an umbrella', isUK ? 'одна нова umbrella' : 'один новый umbrella'],
         ['I saw a man near the hotel', isUK ? 'один новий man' : 'один новый man'],
         ['She found a wallet outside the shop', isUK ? 'один новий wallet' : 'один новый wallet'],
@@ -10020,8 +10021,8 @@ const THEORY: Record<number, TheoryContent> = {
       t={t}
       f={f}
       text={isUK
-        ? '❌ She wrote a email → ✅ She wrote an email. Перед email потрібне an.'
-        : '❌ She wrote a email → ✅ She wrote an email. Перед email нужно an.'
+        ? '❌ He has a idea → ✅ He has an idea. Перед idea потрібне an.'
+        : '❌ He has a idea → ✅ He has an idea. Перед idea нужно an.'
       }
     />,
 
@@ -10081,7 +10082,7 @@ const THEORY: Record<number, TheoryContent> = {
       rows={[
         [isUK ? 'Один предмет' : 'Один предмет', isUK ? 'Множина / речовина' : 'Множественное число / вещество'],
         ['There is a key on the desk', 'There are books on the table'],
-        ['There is an email in my inbox', 'There is coffee in the cup'],
+        ['There is a letter in my inbox', 'There is coffee in the cup'],
       ]}
     />,
 
@@ -10124,7 +10125,7 @@ const THEORY: Record<number, TheoryContent> = {
       rows={[
         [isUK ? 'Вводимо предмет' : 'Вводим предмет', isUK ? 'Говоримо про нього' : 'Говорим о нём'],
         ['There is a key on the desk', 'The key is small'],
-        ['There is an email in my inbox', 'The email is from her'],
+        ['There is a letter in my inbox', 'The letter is from her'],
         ['There are books on the table', 'The books are old'],
         ['There is coffee in the cup', 'The cup is on the desk'],
         ['I saw a man near the hotel', 'The man was tired'],
@@ -10215,8 +10216,8 @@ const THEORY: Record<number, TheoryContent> = {
       t={t}
       f={f}
       text={isUK
-        ? 'У фразі The email is from her блок from her означає "від неї". Her тут стоїть після прийменника from.'
-        : 'Во фразе The email is from her блок from her означает "от неё". Her здесь стоит после предлога from.'
+        ? 'У фразі The letter is from her блок from her означає "від неї". Her тут стоїть після прийменника from.'
+        : 'Во фразе The letter is from her блок from her означает "от неё". Her здесь стоит после предлога from.'
       }
     />,
 
@@ -10224,7 +10225,7 @@ const THEORY: Record<number, TheoryContent> = {
       key="e1"
       t={t}
       f={f}
-      eng="The email is from her"
+      eng="The letter is from her"
       rus={isUK ? 'Лист від неї' : 'Письмо от неё'}
     />,
 
@@ -10233,8 +10234,8 @@ const THEORY: Record<number, TheoryContent> = {
       t={t}
       f={f}
       text={isUK
-        ? '❌ The email is from she → ✅ The email is from her. Після from потрібна форма her.'
-        : '❌ The email is from she → ✅ The email is from her. После from нужна форма her.'
+        ? '❌ The letter is from she → ✅ The letter is from her. Після from потрібна форма her.'
+        : '❌ The letter is from she → ✅ The letter is from her. После from нужна форма her.'
       }
     />,
 
@@ -10275,8 +10276,8 @@ const THEORY: Record<number, TheoryContent> = {
       t={t}
       f={f}
       text={isUK
-        ? 'Артиклі краще тренувати через готові пари: a phone → the phone, a bag → the bag, an email → the email.'
-        : 'Артикли лучше тренировать через готовые пары: a phone → the phone, a bag → the bag, an email → the email.'
+        ? 'Артиклі краще тренувати через готові пари: a phone → the phone, a bag → the bag, a letter → the letter.'
+        : 'Артикли лучше тренировать через готовые пары: a phone → the phone, a bag → the bag, a letter → the letter.'
       }
     />,
 
@@ -10291,7 +10292,7 @@ const THEORY: Record<number, TheoryContent> = {
         ['a key → the key', isUK ? 'спочатку ключ, потім цей ключ' : 'сначала ключ, потом этот ключ'],
         ['a ticket → the ticket', isUK ? 'спочатку квиток, потім цей квиток' : 'сначала билет, потом этот билет'],
         ['a charger → the charger', isUK ? 'спочатку зарядка, потім ця зарядка' : 'сначала зарядка, потом эта зарядка'],
-        ['an email → the email', isUK ? 'спочатку лист, потім цей лист' : 'сначала письмо, потом это письмо'],
+        ['a letter → the letter', isUK ? 'спочатку лист, потім цей лист' : 'сначала письмо, потом это письмо'],
         ['an idea → the idea', isUK ? 'спочатку ідея, потім ця ідея' : 'сначала идея, потом эта идея'],
         ['an app → the app', isUK ? 'спочатку застосунок, потім цей застосунок' : 'сначала приложение, потом это приложение'],
         ['an umbrella → the umbrella', isUK ? 'спочатку парасолька, потім ця парасолька' : 'сначала зонт, потом этот зонт'],
@@ -10318,8 +10319,8 @@ const THEORY: Record<number, TheoryContent> = {
         [isUK ? 'Англійська' : 'Английский', isUK ? 'Природний переклад' : 'Естественный перевод', isUK ? 'Логіка' : 'Логика'],
         ['I have a phone', isUK ? 'У мене є телефон' : 'У меня есть телефон', isUK ? 'новий предмет у розмові' : 'новый предмет в разговоре'],
         ['The phone is on the table', isUK ? 'Телефон на столі' : 'Телефон на столе', isUK ? 'той самий телефон' : 'тот самый телефон'],
-        ['She wrote an email', isUK ? 'Вона написала листа' : 'Она написала письмо', isUK ? 'новий лист' : 'новое письмо'],
-        ['The email is important', isUK ? 'Лист важливий' : 'Письмо важное', isUK ? 'той самий лист' : 'то самое письмо'],
+        ['She wrote a letter', isUK ? 'Вона написала листа' : 'Она написала письмо', isUK ? 'новий лист' : 'новое письмо'],
+        ['The letter is important', isUK ? 'Лист важливий' : 'Письмо важное', isUK ? 'той самий лист' : 'то самое письмо'],
       ]}
     />,
 
@@ -10380,8 +10381,8 @@ const THEORY: Record<number, TheoryContent> = {
       t={t}
       f={f}
       text={isUK
-        ? '❌ There is email in my inbox → ✅ There is an email in my inbox. Один email потребує an.'
-        : '❌ There is email in my inbox → ✅ There is an email in my inbox. Один email требует an.'
+        ? '❌ There is letter in my inbox → ✅ There is a letter in my inbox. Один лист потребує a.'
+        : '❌ There is letter in my inbox → ✅ There is a letter in my inbox. Одно письмо требует a.'
       }
     />,
 
@@ -10390,8 +10391,8 @@ const THEORY: Record<number, TheoryContent> = {
       t={t}
       f={f}
       text={isUK
-        ? '❌ The email is from she → ✅ The email is from her. Після from потрібна форма her.'
-        : '❌ The email is from she → ✅ The email is from her. После from нужна форма her.'
+        ? '❌ The letter is from she → ✅ The letter is from her. Після from потрібна форма her.'
+        : '❌ The letter is from she → ✅ The letter is from her. После from нужна форма her.'
       }
     />,
 
@@ -12522,7 +12523,7 @@ const THEORY: Record<number, TheoryContent> = {
       rows={[
         [isUK ? 'Базова форма' : 'Базовая форма', 'V3', isUK ? 'Приклад з уроку' : 'Пример из урока'],
         ['find', 'found', 'We have just found the keys / We have not found the keys yet'],
-        ['send', 'sent', 'They have just sent documents / He has already sent the email'],
+        ['send', 'sent', 'They have just sent documents / He has already sent the letter'],
         ['pay', 'paid', 'I have already paid'],
         ['buy', 'bought', 'She has already bought tickets'],
         ['see', 'seen', 'They have already seen it / Have you ever seen this?'],
@@ -12616,7 +12617,7 @@ const THEORY: Record<number, TheoryContent> = {
         [isUK ? 'Фраза з уроку' : 'Фраза из урока', isUK ? 'Переклад' : 'Перевод'],
         ['I have already paid', isUK ? 'Я вже заплатив' : 'Я уже заплатил'],
         ['You have already checked it', isUK ? 'Ти вже перевірив це' : 'Ты уже проверил это'],
-        ['He has already sent the email', isUK ? 'Він вже надіслав листа' : 'Он уже отправил письмо'],
+        ['He has already sent the letter', isUK ? 'Він вже надіслав листа' : 'Он уже отправил письмо'],
         ['She has already bought tickets', isUK ? 'Вона вже купила квитки' : 'Она уже купила билеты'],
         ['We have already finished', isUK ? 'Ми вже закінчили' : 'Мы уже закончили'],
         ['They have already seen it', isUK ? 'Вони вже бачили це' : 'Они уже видели это'],
@@ -12632,8 +12633,8 @@ const THEORY: Record<number, TheoryContent> = {
       t={t}
       f={f}
       text={isUK
-        ? '❌ He already has sent the email → ✅ He has already sent the email. У цій моделі already стоїть після has.'
-        : '❌ He already has sent the email → ✅ He has already sent the email. В этой модели already стоит после has.'
+        ? '❌ He already has sent the letter → ✅ He has already sent the letter. У цій моделі already стоїть після has.'
+        : '❌ He already has sent the letter → ✅ He has already sent the letter. В этой модели already стоит после has.'
       }
     />,
 
@@ -12946,7 +12947,7 @@ const THEORY: Record<number, TheoryContent> = {
         [isUK ? 'Блок' : 'Блок', isUK ? 'Приклад з уроку' : 'Пример из урока'],
         ['the keys', 'We have just found the keys / We have not found the keys yet'],
         ['the door', 'He has just opened the door / Has he opened the door yet?'],
-        ['the email', 'He has already sent the email'],
+        ['the letter', 'He has already sent the letter'],
         ['the message', 'She has already read the message'],
         ['the problem', 'We have already discussed the problem'],
         ['the password', 'He has already changed the password'],
@@ -13021,7 +13022,7 @@ const THEORY: Record<number, TheoryContent> = {
         [isUK ? 'Блок' : 'Блок', isUK ? 'Значення' : 'Значение'],
         ['have already paid', isUK ? 'вже заплатив' : 'уже заплатил'],
         ['have already checked it', isUK ? 'вже перевірив це' : 'уже проверил это'],
-        ['has already sent the email', isUK ? 'вже надіслав листа' : 'уже отправил письмо'],
+        ['has already sent the letter', isUK ? 'вже надіслав листа' : 'уже отправил письмо'],
         ['has already bought tickets', isUK ? 'вже купила квитки' : 'уже купила билеты'],
         ['have already finished', isUK ? 'вже закінчили' : 'уже закончили'],
         ['have already seen it', isUK ? 'вже бачили це' : 'уже видели это'],
@@ -13107,8 +13108,8 @@ const THEORY: Record<number, TheoryContent> = {
       t={t}
       f={f}
       text={isUK
-        ? '❌ He has already send the email → ✅ He has already sent the email. Send → sent.'
-        : '❌ He has already send the email → ✅ He has already sent the email. Send → sent.'
+        ? '❌ He has already send the letter → ✅ He has already sent the letter. Send → sent.'
+        : '❌ He has already send the letter → ✅ He has already sent the letter. Send → sent.'
       }
     />,
 
@@ -19825,7 +19826,7 @@ export default function LessonHelp() {
         borderBottomWidth: 0.5,
         borderBottomColor: t.border,
       }}>
-        <TouchableOpacity onPress={() => router.back()} style={{ marginRight: 12, padding: 4 }}>
+        <TouchableOpacity onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)} style={{ marginRight: 12, padding: 4 }}>
           <Ionicons name="arrow-back" size={24} color={sx.primary} />
         </TouchableOpacity>
         <View style={{ flex: 1 }}>

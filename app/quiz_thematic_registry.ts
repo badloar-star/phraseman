@@ -10,8 +10,9 @@ import {
 import type { QuizPhrase } from './quiz_data';
 import { ACTIVE_INTERFACE_SOURCE_LOCALES, type SourceLocale } from './source_locales';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { sampleUniqueRandomIndices, shuffle } from './utils_shuffle';
 
-export type ThematicQuizCategoryId = 'kitchen-and-cooking';
+export type ThematicQuizCategoryId = 'kitchen-and-cooking' | 'home-and-rooms' | 'at-the-doctor';
 
 type ThemeAssetMap = Record<string, ImageSourcePropType>;
 type LocalizedCategoryCopy = Record<SourceLocale, string>;
@@ -27,6 +28,12 @@ export type ThematicQuizCategory = {
   cardBackgrounds: ThemeAssetMap;
   logos: ThemeAssetMap;
 };
+
+type ThematicQuizPhrasesOptions = SkylerThematicPackAdapterOptions & {
+  count?: number;
+};
+
+const DEFAULT_THEMATIC_QUIZ_SESSION_SIZE = 10;
 
 const kitchenCardBackgrounds: ThemeAssetMap = {
   forest: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-forest.webp'),
@@ -80,16 +87,69 @@ const KITCHEN_AND_COOKING_CATEGORY: ThematicQuizCategory = {
   logos: kitchenLogos,
 };
 
+export const IN_PROGRESS_THEMATIC_QUIZZES_DEV_ONLY = true;
+export const SKYLER_THEMATIC_QUIZZES_DEV_ONLY = IN_PROGRESS_THEMATIC_QUIZZES_DEV_ONLY;
 export const THEMATIC_QUIZ_CATEGORIES = [
   KITCHEN_AND_COOKING_CATEGORY,
 ] as const satisfies readonly ThematicQuizCategory[];
+
+export function skylerThematicQuizzesEnabledForRuntime(): boolean {
+  return !SKYLER_THEMATIC_QUIZZES_DEV_ONLY || (
+    typeof __DEV__ !== 'undefined' &&
+    __DEV__ === true &&
+    process.env.EXPO_PUBLIC_STORE_RELEASE !== '1'
+  );
+}
+
+export function inProgressThematicQuizzesEnabledForRuntime(): boolean {
+  return skylerThematicQuizzesEnabledForRuntime();
+}
+
+let cachedDevThematicQuizCategories: readonly ThematicQuizCategory[] | null = null;
+
+function loadDevThematicQuizCategories(): readonly ThematicQuizCategory[] {
+  if (typeof __DEV__ !== 'undefined' && __DEV__ && process.env.EXPO_PUBLIC_STORE_RELEASE !== '1') {
+    if (!cachedDevThematicQuizCategories) {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports -- intentional: Metro drops this dev-only module from prod bundles behind literal __DEV__
+      const { DEV_THEMATIC_QUIZ_CATEGORIES } = require('./quiz_thematic_dev_registry') as {
+        DEV_THEMATIC_QUIZ_CATEGORIES: readonly ThematicQuizCategory[];
+      };
+      cachedDevThematicQuizCategories = DEV_THEMATIC_QUIZ_CATEGORIES;
+    }
+    return cachedDevThematicQuizCategories ?? [];
+  }
+  return [];
+}
+
+function thematicQuizCategoryEnabledForRuntime(category: ThematicQuizCategory): boolean {
+  if (category.pack.releasePolicy?.environment !== 'dev-only') return true;
+  return skylerThematicQuizzesEnabledForRuntime();
+}
+
+function getRuntimeThematicQuizCategories(): readonly ThematicQuizCategory[] {
+  return [
+    ...THEMATIC_QUIZ_CATEGORIES,
+    ...loadDevThematicQuizCategories(),
+  ].filter(thematicQuizCategoryEnabledForRuntime);
+}
+
+function isRuntimeQuizPhrase(phrase: QuizPhrase | undefined): phrase is QuizPhrase {
+  if (!phrase) return false;
+  if (!Array.isArray(phrase.choices) || phrase.choices.length !== 4) return false;
+  const correctIndexes = Array.isArray(phrase.correct) ? phrase.correct : [phrase.correct];
+  if (correctIndexes.length === 0) return false;
+  if (!correctIndexes.every(index => Number.isInteger(index) && index >= 0 && index < phrase.choices.length)) return false;
+  if (!Array.isArray(phrase.explanations) || phrase.explanations.length !== phrase.choices.length) return false;
+  if (!Array.isArray(phrase.explanationsUK) || phrase.explanationsUK.length !== phrase.choices.length) return false;
+  return true;
+}
 
 export function getThematicQuizCategory(
   id: ThematicQuizCategoryId,
   studyTarget?: RuntimeStudyTarget,
 ): ThematicQuizCategory | undefined {
   const normalizedTarget = storageStudyTarget(studyTarget);
-  const category = THEMATIC_QUIZ_CATEGORIES.find(item =>
+  const category = getRuntimeThematicQuizCategories().find(item =>
     item.id === id &&
     item.target === 'en' &&
     thematicQuizPackAvailableForTarget(item.pack, normalizedTarget)
@@ -99,7 +159,7 @@ export function getThematicQuizCategory(
 
 export function getAvailableThematicQuizCategories(studyTarget?: RuntimeStudyTarget): ThematicQuizCategory[] {
   const normalizedTarget = storageStudyTarget(studyTarget);
-  const categories = THEMATIC_QUIZ_CATEGORIES.filter(category =>
+  const categories = getRuntimeThematicQuizCategories().filter(category =>
     category.target === 'en' &&
     thematicQuizPackAvailableForTarget(category.pack, normalizedTarget)
   );
@@ -108,11 +168,51 @@ export function getAvailableThematicQuizCategories(studyTarget?: RuntimeStudyTar
 
 export function getThematicQuizPhrases(
   categoryId: ThematicQuizCategoryId,
-  options: SkylerThematicPackAdapterOptions = {},
+  options: ThematicQuizPhrasesOptions = {},
 ): QuizPhrase[] {
   const category = getThematicQuizCategory(categoryId, options.studyTarget);
   if (!category) return [];
-  return skylerThematicPackToQuizPhrases(category.pack, options);
+  const pool = skylerThematicPackToQuizPhrases(category.pack, options).filter(isRuntimeQuizPhrase);
+  const count = Math.max(0, Math.min(Math.floor(options.count ?? DEFAULT_THEMATIC_QUIZ_SESSION_SIZE), pool.length));
+  return sampleUniqueRandomIndices(pool.length, count)
+    .map(index => pool[index])
+    .filter((phrase): phrase is QuizPhrase => !!phrase)
+    .map(shuffleThematicQuizPhraseChoices);
+}
+
+function reorderByIndices(values: readonly string[] | undefined, indices: number[]): string[] | undefined {
+  if (!values || values.length !== indices.length) return values ? [...values] : undefined;
+  return indices.map(index => values[index]!);
+}
+
+function shuffleThematicQuizPhraseChoices(phrase: QuizPhrase): QuizPhrase {
+  const indices = shuffle(phrase.choices.map((_, index) => index));
+  const correctIndexes = Array.isArray(phrase.correct) ? phrase.correct : [phrase.correct];
+  const shuffledCorrect = correctIndexes
+    .map(index => indices.indexOf(index))
+    .filter(index => index >= 0);
+  const sourceLocales = phrase.sourceLocales
+    ? Object.fromEntries(Object.entries(phrase.sourceLocales).map(([locale, copy]) => [
+        locale,
+        copy
+          ? {
+              ...copy,
+              explanations: reorderByIndices(copy.explanations, indices) ?? [...copy.explanations],
+            }
+          : copy,
+      ])) as QuizPhrase['sourceLocales']
+    : phrase.sourceLocales;
+
+  return {
+    ...phrase,
+    choices: indices.map(index => phrase.choices[index]!),
+    correct: shuffledCorrect.length === 1 ? shuffledCorrect[0]! : shuffledCorrect,
+    explanations: reorderByIndices(phrase.explanations, indices) ?? [...phrase.explanations],
+    explanationsUK: reorderByIndices(phrase.explanationsUK, indices) ?? [...phrase.explanationsUK],
+    explanationsES: reorderByIndices(phrase.explanationsES, indices) ?? [...phrase.explanationsES],
+    sourceExplanations: reorderByIndices(phrase.sourceExplanations, indices),
+    sourceLocales,
+  };
 }
 
 export function themedQuizAsset<T>(

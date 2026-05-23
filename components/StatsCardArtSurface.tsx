@@ -8,6 +8,8 @@ import {
   type ViewStyle,
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
+import { useTheme } from './ThemeContext';
+import type { ThemeMode } from '../constants/theme';
 
 export const STATS_CARD_ART = {
   streak: require('../assets/images/statistics/cards/stats-card-streak.webp'),
@@ -20,6 +22,63 @@ export const STATS_CARD_ART = {
 } as const satisfies Record<string, ImageSourcePropType>;
 
 export type StatsCardArtName = keyof typeof STATS_CARD_ART;
+
+export const STATS_CARD_ART_BY_THEME = {
+  dark: {
+    streak: require('../assets/images/statistics/cards/dark/stats-card-streak-dark.webp'),
+    multipliers: require('../assets/images/statistics/cards/dark/stats-card-multipliers-dark.webp'),
+    practiceBalance: require('../assets/images/statistics/cards/dark/stats-card-practice-balance-dark.webp'),
+    weekRhythm: require('../assets/images/statistics/cards/dark/stats-card-week-rhythm-dark.webp'),
+    percentiles: require('../assets/images/statistics/cards/dark/stats-card-percentiles-dark.webp'),
+    archiveMap: require('../assets/images/statistics/cards/dark/stats-card-archive-map-dark.webp'),
+    wager: require('../assets/images/statistics/cards/dark/stats-card-wager-dark.webp'),
+  },
+  neon: {
+    streak: require('../assets/images/statistics/cards/neon/stats-card-streak-neon.webp'),
+    multipliers: require('../assets/images/statistics/cards/neon/stats-card-multipliers-neon.webp'),
+    practiceBalance: require('../assets/images/statistics/cards/neon/stats-card-practice-balance-neon.webp'),
+    weekRhythm: require('../assets/images/statistics/cards/neon/stats-card-week-rhythm-neon.webp'),
+    percentiles: require('../assets/images/statistics/cards/neon/stats-card-percentiles-neon.webp'),
+    archiveMap: require('../assets/images/statistics/cards/neon/stats-card-archive-map-neon.webp'),
+    wager: require('../assets/images/statistics/cards/neon/stats-card-wager-neon.webp'),
+  },
+  gold: {
+    streak: require('../assets/images/statistics/cards/gold/stats-card-streak-gold.webp'),
+    multipliers: require('../assets/images/statistics/cards/gold/stats-card-multipliers-gold.webp'),
+    practiceBalance: require('../assets/images/statistics/cards/gold/stats-card-practice-balance-gold.webp'),
+    weekRhythm: require('../assets/images/statistics/cards/gold/stats-card-week-rhythm-gold.webp'),
+    percentiles: require('../assets/images/statistics/cards/gold/stats-card-percentiles-gold.webp'),
+    archiveMap: require('../assets/images/statistics/cards/gold/stats-card-archive-map-gold.webp'),
+    wager: require('../assets/images/statistics/cards/gold/stats-card-wager-gold.webp'),
+  },
+  coral: {
+    streak: require('../assets/images/statistics/cards/coral/stats-card-streak-coral.webp'),
+    multipliers: require('../assets/images/statistics/cards/coral/stats-card-multipliers-coral.webp'),
+    practiceBalance: require('../assets/images/statistics/cards/coral/stats-card-practice-balance-coral.webp'),
+    weekRhythm: require('../assets/images/statistics/cards/coral/stats-card-week-rhythm-coral.webp'),
+    percentiles: require('../assets/images/statistics/cards/coral/stats-card-percentiles-coral.webp'),
+    archiveMap: require('../assets/images/statistics/cards/coral/stats-card-archive-map-coral.webp'),
+    wager: require('../assets/images/statistics/cards/coral/stats-card-wager-coral.webp'),
+  },
+  minimalLight: {
+    streak: require('../assets/images/statistics/cards/minimal-light/stats-card-streak-minimal-light.webp'),
+    multipliers: require('../assets/images/statistics/cards/minimal-light/stats-card-multipliers-minimal-light.webp'),
+    practiceBalance: require('../assets/images/statistics/cards/minimal-light/stats-card-practice-balance-minimal-light.webp'),
+    weekRhythm: require('../assets/images/statistics/cards/minimal-light/stats-card-week-rhythm-minimal-light.webp'),
+    percentiles: require('../assets/images/statistics/cards/minimal-light/stats-card-percentiles-minimal-light.webp'),
+    archiveMap: require('../assets/images/statistics/cards/minimal-light/stats-card-archive-map-minimal-light.webp'),
+    wager: require('../assets/images/statistics/cards/minimal-light/stats-card-wager-minimal-light.webp'),
+  },
+  minimalDark: {
+    streak: require('../assets/images/statistics/cards/minimal-dark/stats-card-streak-minimal-dark.webp'),
+    multipliers: require('../assets/images/statistics/cards/minimal-dark/stats-card-multipliers-minimal-dark.webp'),
+    practiceBalance: require('../assets/images/statistics/cards/minimal-dark/stats-card-practice-balance-minimal-dark.webp'),
+    weekRhythm: require('../assets/images/statistics/cards/minimal-dark/stats-card-week-rhythm-minimal-dark.webp'),
+    percentiles: require('../assets/images/statistics/cards/minimal-dark/stats-card-percentiles-minimal-dark.webp'),
+    archiveMap: require('../assets/images/statistics/cards/minimal-dark/stats-card-archive-map-minimal-dark.webp'),
+    wager: require('../assets/images/statistics/cards/minimal-dark/stats-card-wager-minimal-dark.webp'),
+  },
+} as const satisfies Record<ThemeMode, Record<StatsCardArtName, ImageSourcePropType>>;
 
 type StatsArtTheme = {
   bgCard?: string;
@@ -88,6 +147,10 @@ function defaultGradientOpacity(theme?: StatsArtTheme, isGoldTheme?: boolean): n
   return 0.36;
 }
 
+function resolveStatsCardArt(name: StatsCardArtName, themeMode: ThemeMode): ImageSourcePropType {
+  return STATS_CARD_ART_BY_THEME[themeMode]?.[name] ?? STATS_CARD_ART[name];
+}
+
 export default function StatsCardArtSurface({
   children,
   name,
@@ -102,10 +165,12 @@ export default function StatsCardArtSurface({
   style,
   testID,
 }: StatsCardArtSurfaceProps) {
+  const { themeMode } = useTheme();
+
   return (
     <ImageBackground
       testID={testID}
-      source={STATS_CARD_ART[name]}
+      source={resolveStatsCardArt(name, themeMode)}
       resizeMode="cover"
       imageStyle={[{ borderRadius: radius }, imageStyle]}
       style={[{ backgroundColor: theme?.bgCard, overflow: 'hidden' }, style]}

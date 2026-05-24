@@ -135,6 +135,37 @@ class LingmanMontazherTests(unittest.TestCase):
                     with self.assertRaisesRegex(ValueError, "speaker must be a string"):
                         montazher.load_transcript(transcript_path)
 
+    def test_latest_complete_take_wins_for_duplicate_explanation(self):
+        preset = montazher.load_preset(ROOT / "presets" / "default_director.json")
+        segments = [
+            montazher.TranscriptSegment("seg_0001", 0.0, 3.0, "I am ready means I am prepared."),
+            montazher.TranscriptSegment("seg_0002", 5.0, 7.0, "стоп не то"),
+            montazher.TranscriptSegment("seg_0003", 9.0, 13.0, "I am ready means I am prepared for the action."),
+        ]
+
+        decisions = montazher.build_edit_decisions(segments, preset)
+        selected = [item for item in decisions if item.decision_type == "take_selected"]
+        rejected = [item for item in decisions if item.decision_type == "take_rejected"]
+
+        self.assertEqual([item.segment_id for item in selected], ["seg_0003"])
+        self.assertEqual([item.segment_id for item in rejected], ["seg_0001"])
+        self.assertIn("latest complete take", selected[0].reason)
+
+    def test_reset_marker_and_long_gap_are_cut(self):
+        preset = montazher.load_preset(ROOT / "presets" / "default_director.json")
+        segments = [
+            montazher.TranscriptSegment("seg_0001", 0.0, 2.0, "Today we start with I am ready."),
+            montazher.TranscriptSegment("seg_0002", 4.2, 5.0, "заново"),
+            montazher.TranscriptSegment("seg_0003", 8.0, 10.0, "I am ready means Я готов."),
+        ]
+
+        decisions = montazher.build_edit_decisions(segments, preset)
+        cut_types = [item.decision_type for item in decisions]
+
+        self.assertIn("pause_trimmed", cut_types)
+        self.assertIn("filler_trimmed", cut_types)
+        self.assertTrue(any(item.segment_id == "seg_0002" for item in decisions if item.decision_type == "filler_trimmed"))
+
 
 if __name__ == "__main__":
     unittest.main()

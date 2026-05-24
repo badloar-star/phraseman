@@ -1,0 +1,14 @@
+# Opens Lesson 1 words training and taps the correct option. Guards against
+# crashes where a delayed queue transition tries to read `word` from an
+# undefined queue entry after answering.
+appId: app.phraseman
+---
+- runFlow: ../../dev_only/lesson_words_short_contract.yaml
+- tapOn:
+    id: "lesson-words-option-correct"
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertNotVisible:
+    text: "Cannot read property 'word' of undefined"
+- assertNotVisible:
+    text: "Uncaught Error"

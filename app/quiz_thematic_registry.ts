@@ -174,10 +174,22 @@ export function getThematicQuizPhrases(
   if (!category) return [];
   const pool = skylerThematicPackToQuizPhrases(category.pack, options).filter(isRuntimeQuizPhrase);
   const count = Math.max(0, Math.min(Math.floor(options.count ?? DEFAULT_THEMATIC_QUIZ_SESSION_SIZE), pool.length));
-  return sampleUniqueRandomIndices(pool.length, count)
+  const selected = sampleUniqueRandomIndices(pool.length, count)
     .map(index => pool[index])
-    .filter((phrase): phrase is QuizPhrase => !!phrase)
-    .map(shuffleThematicQuizPhraseChoices);
+    .filter((phrase): phrase is QuizPhrase => !!phrase);
+
+  if (selected.length < count) {
+    const selectedIds = new Set(selected.map(phrase => phrase.questionId));
+    for (const phrase of pool) {
+      if (selected.length >= count) break;
+      if (!selectedIds.has(phrase.questionId)) {
+        selected.push(phrase);
+        selectedIds.add(phrase.questionId);
+      }
+    }
+  }
+
+  return selected.map(shuffleThematicQuizPhraseChoices);
 }
 
 function reorderByIndices(values: readonly string[] | undefined, indices: number[]): string[] | undefined {

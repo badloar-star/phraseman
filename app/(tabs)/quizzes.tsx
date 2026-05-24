@@ -128,179 +128,6 @@ type Phrase = QuizPhrase;
 type LegacyQuizThemeMode = 'light' | 'ocean' | 'sakura';
 type QuizVisualThemeMode = ThemeMode | LegacyQuizThemeMode;
 
-const EMERGENCY_QUIZ_PHRASES: Phrase[] = [
-  {
-    ru: 'Она живет в большом городе',
-    uk: 'Вона живе у великому місті',
-    es: 'Ella vive en una ciudad grande',
-    choices: ['She lives in a big city.', 'She live in a big city.', 'She living in a big city.', 'She lives on a big city.'],
-    correct: 0,
-    answer: 'She lives in a big city.',
-    explanations: [
-      'Верно: with he/she/it in Present Simple we add -s to the verb.',
-      'После she нужен глагол lives, не live.',
-      'Living без is не образует обычное предложение.',
-      'Для города используем in, не on.',
-    ],
-    explanationsUK: [
-      'Правильно: з he/she/it у Present Simple додаємо -s до дієслова.',
-      'Після she потрібне lives, не live.',
-      'Living без is не утворює звичайне речення.',
-      'Для міста використовуємо in, не on.',
-    ],
-    explanationsES: [
-      'Correcto: con he/she/it en Present Simple añadimos -s al verbo.',
-      'Después de she hace falta lives, no live.',
-      'Living sin is no forma una oración normal.',
-      'Para una ciudad usamos in, no on.',
-    ],
-    sourceLocale: 'ru',
-    sourceText: 'Она живет в большом городе',
-    lessonNum: 1,
-    level: 'A1',
-    quizItemType: 'emergency_builtin',
-  },
-  {
-    ru: 'Я вчера играл в футбол',
-    uk: 'Я вчора грав у футбол',
-    es: 'Ayer jugué al fútbol',
-    choices: ['Yesterday I played football.', 'Yesterday I play football.', 'Yesterday I am played football.', 'Yesterday I pray football.'],
-    correct: 0,
-    answer: 'Yesterday I played football.',
-    explanations: [
-      'Верно: yesterday требует Past Simple, поэтому played.',
-      'Play в настоящем времени не подходит к yesterday.',
-      'Am played не используется для Past Simple.',
-      'Pray означает молиться, не играть.',
-    ],
-    explanationsUK: [
-      'Правильно: yesterday вимагає Past Simple, тому played.',
-      'Play у теперішньому часі не підходить до yesterday.',
-      'Am played не використовується для Past Simple.',
-      'Pray означає молитися, не грати.',
-    ],
-    explanationsES: [
-      'Correcto: yesterday pide Past Simple, por eso played.',
-      'Play en presente no encaja con yesterday.',
-      'Am played no se usa para Past Simple.',
-      'Pray significa rezar, no jugar.',
-    ],
-    sourceLocale: 'ru',
-    sourceText: 'Я вчера играл в футбол',
-    lessonNum: 2,
-    level: 'A1',
-    quizItemType: 'emergency_builtin',
-  },
-  {
-    ru: 'Мы не пьем кофе вечером',
-    uk: 'Ми не п’ємо каву ввечері',
-    es: 'No bebemos café por la noche',
-    choices: ["We don't drink coffee in the evening.", "We doesn't drink coffee in the evening.", "We not drink coffee in the evening.", "We don't drinks coffee in the evening."],
-    correct: 0,
-    answer: "We don't drink coffee in the evening.",
-    explanations: [
-      'Верно: с we используем do not / don’t и базовую форму drink.',
-      'Doesn’t используется с he/she/it, не с we.',
-      'В отрицании нужен вспомогательный do.',
-      'После don’t глагол остается без -s: drink.',
-    ],
-    explanationsUK: [
-      'Правильно: з we використовуємо do not / don’t і базову форму drink.',
-      'Doesn’t використовується з he/she/it, не з we.',
-      'У запереченні потрібне допоміжне do.',
-      'Після don’t дієслово без -s: drink.',
-    ],
-    explanationsES: [
-      'Correcto: con we usamos do not / don’t y la forma base drink.',
-      'Doesn’t se usa con he/she/it, no con we.',
-      'En la negación hace falta do.',
-      'Después de don’t el verbo va sin -s: drink.',
-    ],
-    sourceLocale: 'ru',
-    sourceText: 'Мы не пьем кофе вечером',
-    lessonNum: 3,
-    level: 'A1',
-    quizItemType: 'emergency_builtin',
-  },
-  {
-    ru: 'Ты можешь помочь мне?',
-    uk: 'Ти можеш допомогти мені?',
-    es: '¿Puedes ayudarme?',
-    choices: ['Can you help me?', 'Can you helps me?', 'Do you can help me?', 'Can you to help me?'],
-    correct: 0,
-    answer: 'Can you help me?',
-    explanations: [
-      'Верно: после can идет базовая форма help.',
-      'После can не добавляем -s.',
-      'Can сам образует вопрос, do не нужен.',
-      'После can не ставим to перед глаголом.',
-    ],
-    explanationsUK: [
-      'Правильно: після can іде базова форма help.',
-      'Після can не додаємо -s.',
-      'Can сам утворює питання, do не потрібен.',
-      'Після can не ставимо to перед дієсловом.',
-    ],
-    explanationsES: [
-      'Correcto: después de can va la forma base help.',
-      'Después de can no añadimos -s.',
-      'Can ya forma la pregunta; do no hace falta.',
-      'Después de can no ponemos to antes del verbo.',
-    ],
-    sourceLocale: 'ru',
-    sourceText: 'Ты можешь помочь мне?',
-    lessonNum: 4,
-    level: 'A1',
-    quizItemType: 'emergency_builtin',
-  },
-  {
-    ru: 'Он сейчас читает книгу',
-    uk: 'Він зараз читає книгу',
-    es: 'Ahora está leyendo un libro',
-    choices: ['He is reading a book now.', 'He reads a book now.', 'He reading a book now.', 'He is read a book now.'],
-    correct: 0,
-    answer: 'He is reading a book now.',
-    explanations: [
-      'Верно: now часто требует Present Continuous: is reading.',
-      'Reads описывает привычку, не действие прямо сейчас.',
-      'Reading нужно с is.',
-      'После is нужна форма -ing: reading.',
-    ],
-    explanationsUK: [
-      'Правильно: now часто вимагає Present Continuous: is reading.',
-      'Reads описує звичку, не дію прямо зараз.',
-      'Reading потрібно з is.',
-      'Після is потрібна форма -ing: reading.',
-    ],
-    explanationsES: [
-      'Correcto: now suele pedir Present Continuous: is reading.',
-      'Reads describe un hábito, no una acción ahora mismo.',
-      'Reading necesita is.',
-      'Después de is va la forma -ing: reading.',
-    ],
-    sourceLocale: 'ru',
-    sourceText: 'Он сейчас читает книгу',
-    lessonNum: 5,
-    level: 'A1',
-    quizItemType: 'emergency_builtin',
-  },
-];
-
-function emergencyQuizPhrases(count = 10): Phrase[] {
-  return Array.from({ length: count }, (_, index) => {
-    const phrase = EMERGENCY_QUIZ_PHRASES[index % EMERGENCY_QUIZ_PHRASES.length]!;
-    return {
-      ...phrase,
-      choices: [...phrase.choices],
-      explanations: [...phrase.explanations],
-      explanationsUK: [...phrase.explanationsUK],
-      explanationsES: [...phrase.explanationsES],
-      sourceExplanations: [...phrase.explanations],
-      questionId: `emergency_builtin_${index + 1}`,
-    };
-  });
-}
-
 function quizExplanationIndexForAnswer(phrase: Phrase, chosen: number | null, typedOk: boolean | null): number {
   if (chosen !== null) return chosen;
   if (typedOk === true) return quizPrimaryCorrectIndex(phrase.correct);
@@ -868,6 +695,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     exhausted: false,
   });
   const startInFlightRef = useRef(false);
+  const startInFlightTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const screenTitleColor = t.textPrimary;
   const { width: windowWidth } = useWindowDimensions();
   /** Ширина трека полоски: translateX + native driver (без скачков interpolate от onLayout) */
@@ -880,6 +708,24 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
   useEffect(() => {
     prefetchQuizPhrases();
   }, []);
+
+  const releaseStartInFlight = useCallback(() => {
+    if (startInFlightTimeoutRef.current) {
+      clearTimeout(startInFlightTimeoutRef.current);
+      startInFlightTimeoutRef.current = null;
+    }
+    startInFlightRef.current = false;
+  }, []);
+
+  const armStartInFlightWatchdog = useCallback(() => {
+    if (startInFlightTimeoutRef.current) clearTimeout(startInFlightTimeoutRef.current);
+    startInFlightTimeoutRef.current = setTimeout(() => {
+      startInFlightRef.current = false;
+      startInFlightTimeoutRef.current = null;
+    }, 2500);
+  }, []);
+
+  useEffect(() => releaseStartInFlight, [releaseStartInFlight]);
 
   // Fill animation per level
   const fillAnims = useRef<Record<Level, Animated.Value>>({
@@ -963,13 +809,22 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
       return;
     }
     startInFlightRef.current = true;
-    const quizDataReady = ensureQuizPhrasesLoaded();
+    armStartInFlightWatchdog();
+    void ensureQuizPhrasesLoaded().catch(() => {});
     void consumeFreeSlotForStart(lv).then((canStart) => {
       if (!canStart) {
-        startInFlightRef.current = false;
+        releaseStartInFlight();
         return;
       }
       const anim = fillAnims[lv];
+      let completed = false;
+      const finishStart = () => {
+        if (completed) return;
+        completed = true;
+        anim.setValue(0);
+        releaseStartInFlight();
+        onSelect(lv);
+      };
       anim.setValue(0);
       Animated.timing(anim, {
         toValue: 1,
@@ -977,20 +832,19 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
         easing: Easing.out(Easing.cubic),
         useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
       }).start(({ finished }) => {
+        if (completed) return;
         if (!finished) {
-          startInFlightRef.current = false;
+          releaseStartInFlight();
           return;
         }
-        anim.setValue(0);
-        quizDataReady
-          .then(() => onSelect(lv))
-          .catch(() => onSelect(lv))
-          .finally(() => {
-            startInFlightRef.current = false;
-          });
+        finishStart();
       });
+      setTimeout(() => {
+        anim.stopAnimation();
+        finishStart();
+      }, 520);
     }).catch(() => {
-      startInFlightRef.current = false;
+      releaseStartInFlight();
     });
   };
 
@@ -1003,11 +857,20 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
       return;
     }
     startInFlightRef.current = true;
+    armStartInFlightWatchdog();
     void consumeFreeSlotForStart(categoryId).then((canStart) => {
       if (!canStart) {
-        startInFlightRef.current = false;
+        releaseStartInFlight();
         return;
       }
+      let completed = false;
+      const finishStart = () => {
+        if (completed) return;
+        completed = true;
+        anim.setValue(0);
+        releaseStartInFlight();
+        onSelect(categoryId);
+      };
       anim.setValue(0);
       Animated.timing(anim, {
         toValue: 1,
@@ -1015,19 +878,25 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
         easing: Easing.out(Easing.cubic),
         useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
       }).start(({ finished }) => {
-        startInFlightRef.current = false;
-        if (!finished) return;
-        anim.setValue(0);
-        onSelect(categoryId);
+        if (completed) return;
+        if (!finished) {
+          releaseStartInFlight();
+          return;
+        }
+        finishStart();
       });
+      setTimeout(() => {
+        anim.stopAnimation();
+        finishStart();
+      }, 520);
     }).catch(() => {
-      startInFlightRef.current = false;
+      releaseStartInFlight();
     });
   };
 
   return (
     <ScreenGradient forceFullBleed artBackdrop="quizzes">
-    <View style={{ flex:1 }}>
+    <View testID="quiz-game-screen" accessibilityLabel="qa-quiz-game-screen" style={{ flex:1 }}>
       <ContentWrap>
       <View style={{ flexDirection:'row', alignItems:'center', padding:16, paddingTop: 16 + insets.top, borderBottomWidth:0.5, borderBottomColor: t.border }}>
         <TouchableOpacity
@@ -1120,6 +989,8 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
             <View key={lv} style={{ borderRadius: 20, overflow: 'hidden' }}>
               {/* ── Карточка уровня ── */}
               <TouchableOpacity
+                testID={`quiz-level-card-${lv}`}
+                accessibilityLabel={`qa-quiz-level-card-${lv}`}
                 onPress={() => {
                   hapticTap();
                   if (locked) {
@@ -1127,6 +998,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
                     return;
                   }
                   if (isSelected) { handleStart(lv); return; }
+                  releaseStartInFlight();
                   setSelected(lv);
                 }}
                 activeOpacity={0.85}
@@ -1228,6 +1100,8 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
                 });
                 return (
                   <TouchableOpacity
+                    testID={`quiz-level-start-${lv}`}
+                    accessibilityLabel={`qa-quiz-level-start-${lv}`}
                     onPress={() => { hapticTap(); handleStart(lv); }}
                     activeOpacity={1}
                     style={{
@@ -1284,7 +1158,10 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
               locked={thematicLockedByDailyLimit}
               lockedLabel={quizLimitLabel}
               startTrackW={startTrackW}
-              onPick={() => setSelected(category.id)}
+              onPick={() => {
+                releaseStartInFlight();
+                setSelected(category.id);
+              }}
               onLockedPress={openQuizLimitPaywall}
               onStart={handleStartThematic}
             />
@@ -1364,6 +1241,7 @@ function QuizGame({
   const onGradSecondary = isLightTheme ? quizGradTxt.secondary : t.textSecond;
   const thematicCategory = thematicCategoryId ? getThematicQuizCategory(thematicCategoryId, studyTarget) : undefined;
   const cfg = LEVEL_CONFIG[level] ?? LEVEL_CONFIG['easy'];
+  const quizLevel: Level = LEVEL_CONFIG[level] ? level : 'easy';
   const levelAccent = thematicCategory?.accent ?? cfg.color;
   const label = thematicCategory
     ? thematicCategory.title[lang]
@@ -1381,14 +1259,10 @@ function QuizGame({
 
   const [retryCount, setRetryCount] = useState(0);
 
-  const loadedPhrases = useMemo((): Phrase[] => {
+  const phrases = useMemo((): Phrase[] => {
     if (!quizBankAvailable) {
       return [];
     }
-
-    const nonEmpty = (items: Phrase[]) => items.length > 0 ? items : emergencyQuizPhrases(10);
-    const standardLevelPhrases = () => nonEmpty(getQuizPhrasesLoaded(level, 10, lang, studyTarget));
-
     try {
       if (thematicCategoryId) {
         const result = getThematicQuizPhrases(thematicCategoryId, {
@@ -1396,19 +1270,28 @@ function QuizGame({
           studyTarget,
           level: 'A1',
         });
-        return result.length > 0 ? result : standardLevelPhrases();
+        return result.length > 0 ? result : [];
       }
-      return standardLevelPhrases();
+      const result = getQuizPhrasesLoaded(quizLevel, 10, lang);
+      if (result.length > 0) return result;
+
+      const sameLevelEnglish = getQuizPhrasesLoaded(quizLevel, 10, lang);
+      if (sameLevelEnglish.length > 0) return sameLevelEnglish;
+
+      for (const fallbackLevel of ['easy', 'medium', 'hard'] as const) {
+        const fallback = getQuizPhrasesLoaded(fallbackLevel, 10, lang);
+        if (fallback.length > 0) return fallback;
+      }
+      return [];
     } catch (e) {
       DebugLogger.error('quizzes.tsx:loadPhrases', e, 'warning');
-      try {
-        return standardLevelPhrases();
-      } catch {
-        return emergencyQuizPhrases(10);
+      for (const fallbackLevel of ['easy', 'medium', 'hard'] as const) {
+        const fallback = getQuizPhrasesLoaded(fallbackLevel, 10, lang);
+        if (fallback.length > 0) return fallback;
       }
+      return [];
     }
-  }, [lang, level, quizBankAvailable, retryCount, studyTarget, thematicCategoryId]);
-  const phrases = loadedPhrases.length > 0 || !quizBankAvailable ? loadedPhrases : emergencyQuizPhrases(10);
+  }, [lang, quizBankAvailable, quizLevel, retryCount, studyTarget, thematicCategoryId]);
 
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
   const { speak: speakAudio, stop: stopAudio } = useAudio();
@@ -1688,14 +1571,14 @@ function QuizGame({
           <View style={{ flex:1, justifyContent:'center', alignItems:'center', paddingHorizontal:24 }}>
             <Text style={{ color:onGradMuted, fontSize: f.body, lineHeight: f.body * 1.35, textAlign:'center' }}>
               {triLang(lang, {
-  ru: 'Запускаю квиз...',
-  uk: 'Запускаю квіз...',
-  es: 'Iniciando quiz...',
-  "pt-BR": 'Iniciando quiz...',
-  vi: 'Đang mở quiz...',
-  id: 'Memulai kuis...',
-  tr: 'Quiz başlatılıyor...',
-  pl: 'Uruchamiam quiz...',
+  ru: 'Вопросы временно недоступны',
+  uk: 'Питання тимчасово недоступні',
+  es: 'No hay preguntas disponibles por ahora.',
+  "pt-BR": 'As perguntas estão temporariamente indisponíveis.',
+  vi: 'Hiện chưa có câu hỏi.',
+  id: 'Pertanyaan sementara tidak tersedia.',
+  tr: 'Sorular şu anda kullanılamıyor.',
+  pl: 'Pytania są chwilowo niedostępne.',
 })}
             </Text>
           </View>
@@ -2781,10 +2664,14 @@ export default function QuizzesScreen() {
             setSelection(null); setGameKey(k => k + 1);
           }}/>
         : <LevelSelect onSelect={(nextSelection) => {
-            const eventLevel = isLevelSelection(nextSelection) ? nextSelection : `thematic:${nextSelection}`;
-            logQuizLevelSelected(eventLevel);
-            if (isLevelSelection(nextSelection)) trackQuizLevel(nextSelection, studyTarget).catch(() => {});
             setSelection(nextSelection);
+            try {
+              const eventLevel = isLevelSelection(nextSelection) ? nextSelection : `thematic:${nextSelection}`;
+              logQuizLevelSelected(eventLevel);
+              if (isLevelSelection(nextSelection)) trackQuizLevel(nextSelection, studyTarget).catch(() => {});
+            } catch {
+              // Quiz opening must not depend on analytics/storage side effects.
+            }
           }}/>
       }
     </View>

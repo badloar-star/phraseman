@@ -3,10 +3,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
-  ActivityIndicator,
   Animated,
   Easing,
-  InteractionManager,
+  ScrollView,
   SectionList,
   Text,
   TouchableOpacity,
@@ -19,7 +18,6 @@ import { triLang as pickTriLang, type Lang } from '../constants/i18n';
 import { isCorrectAnswer } from '../constants/contractions';
 import { screenTextOnGradient } from '../constants/theme';
 import { useLang } from '../components/LangContext';
-import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useEnergy } from '../components/EnergyContext';
@@ -28,7 +26,6 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import CoachToast from '../components/CoachToast';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { loadFlashcards } from '../hooks/use-flashcards';
-import { safeRouterBack } from './navigation_back';
 import { useAudio } from '../hooks/use-audio';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { loadSettings } from './settings_edu';
@@ -46,16 +43,6 @@ import { bumpStatsDaily } from './stats_daily_breakdown';
 import { LESSON_DATA } from './lesson_data_all';
 import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { buildLessonWordOptions } from './lesson_word_options';
-import {
-  lessonWordsKey,
-  lessonWordsShardsGrantedKey,
-  type RuntimeStudyTarget,
-} from './target_storage_keys';
-import {
-  frenchVocabularyGateCopy,
-  vocabularyContentAvailableForTarget,
-} from './vocabulary_target_gate';
-import { DEV_MODE } from './config';
 
 const shuffle = <T,>(arr: T[]): T[] => {
   const a = [...arr];
@@ -63,12 +50,21 @@ const shuffle = <T,>(arr: T[]): T[] => {
   return a;
 };
 
-const shuffleNoConsecutive = (arr: Card[]): Card[] => {
-  const result = shuffle(arr);
+const isTrainingCard = (card: Card | undefined | null): card is Card =>
+  !!card?.word?.en && Array.isArray(card.options) && card.options.length > 0;
+
+const sanitizeTrainingQueue = (queue: Array<Card | undefined | null>): Card[] =>
+  queue.filter(isTrainingCard);
+
+const shuffleNoConsecutive = (arr: Array<Card | undefined | null>): Card[] => {
+  const result = shuffle(sanitizeTrainingQueue(arr));
   for (let i = 1; i < result.length; i++) {
-    if (result[i].word.en === result[i - 1].word.en) {
+    const currentWord = result[i]?.word?.en;
+    const previousWord = result[i - 1]?.word?.en;
+    if (!currentWord || !previousWord) continue;
+    if (currentWord === previousWord) {
       for (let j = i + 1; j < result.length; j++) {
-        if (result[j].word.en !== result[i - 1].word.en) {
+        if (result[j]?.word?.en && result[j].word.en !== previousWord) {
           [result[i], result[j]] = [result[j], result[i]];
           break;
         }
@@ -109,45 +105,15 @@ interface Word {
   definition?:string;
 }
 
-function prioritizeQaFocusWords(words: Word[], focusParam?: string | string[]): Word[] {
-  if (!__DEV__ && !DEV_MODE) return words;
-  const raw = Array.isArray(focusParam) ? focusParam.join(',') : focusParam;
-  const focus = raw
-    ?.split(',')
-    .map(part => part.trim().toLowerCase())
-    .filter(Boolean);
-  if (!focus?.length) return words;
-
-  const rank = new Map(focus.map((word, index) => [word, index]));
-  const focused: Word[] = [];
-  const rest: Word[] = [];
-  for (const word of words) {
-    if (rank.has(word.en.toLowerCase())) focused.push(word);
-    else rest.push(word);
-  }
-  focused.sort((a, b) => (rank.get(a.en.toLowerCase()) ?? 0) - (rank.get(b.en.toLowerCase()) ?? 0));
-  return focused.length ? [...focused, ...rest] : words;
-}
-
 function vocabularyProgressMetrics(
   words: Word[],
   counts: Record<string, number>,
-): { totalWords: number; fullyLearned: number } {
+): { correctSteps: number; totalSteps: number; fullyLearned: number; pct: number } {
   const fullyLearned = words.filter(w => (counts[w.en] ?? 0) >= REQUIRED).length;
-  return { totalWords: words.length, fullyLearned };
-}
-
-function vocabularyLearnedCounterLabel(lang: Lang, learned: number, total: number): string {
-  return pickTriLang(lang, {
-    ru: `${learned} / ${total} слов`,
-    uk: `${learned} / ${total} слів`,
-    es: `${learned} / ${total} palabras`,
-    'pt-BR': `${learned} / ${total} palavras`,
-    vi: `${learned} / ${total} từ`,
-    id: `${learned} / ${total} kata`,
-    tr: `${learned} / ${total} kelime`,
-    pl: `${learned} / ${total} słów`,
-  });
+  const totalSteps = words.length;
+  const correctSteps = fullyLearned;
+  const pct = totalSteps > 0 ? Math.min(100, Math.round((correctSteps / totalSteps) * 100)) : 0;
+  return { correctSteps, totalSteps, fullyLearned, pct };
 }
 
 const POS_LABELS_RU: Record<POS,string> = {
@@ -683,7 +649,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'and', ru: 'И', uk: 'І; та', es: 'y', pos: 'nouns' },
     { en: 'insurance', ru: 'Страховка', uk: 'Страховка', es: 'seguro', pos: 'nouns' },
     { en: 'driver', ru: 'Водитель', uk: 'Водій', es: 'conductor', pos: 'nouns' },
-    { en: 'license', ru: 'Лицензия / разрешение', uk: 'Ліцензія / дозвіл', es: 'licencia / permiso', pos: 'nouns' },
+    { en: 'license', ru: 'Водительские права', uk: 'Посвідчення водія', es: 'permiso de conducir', pos: 'nouns' },
     { en: 'free', ru: 'Свободный (о времени)', uk: 'Вільний (про час)', es: 'libre', pos: 'adjectives' },
     { en: 'time', ru: 'Время', uk: 'Час', es: 'tiempo', pos: 'nouns' },
     { en: 'allergy', ru: 'Аллергия', uk: 'Алергія', es: 'alergia', pos: 'nouns' },
@@ -1990,7 +1956,8 @@ function canonicalLemmaVerb(lower: string, lex: Set<string>): string {
     if (others.length) cand = others;
   }
   cand.sort((a, b) => a.localeCompare(b));
-  return cand[0]!;
+  const best = cand[0]!;
+  return best === lower && regularLemma !== lower ? regularLemma : best;
 }
 
 const NOUN_PLURAL_SURFACE_EXCEPTIONS = new Set([
@@ -2077,7 +2044,7 @@ function canonicalLemmaNoun(lower: string): string {
 
 function canonicalDictionaryEnglish(w: Word, verbLex: Set<string>): string {
   const lower = w.en.trim().toLowerCase();
-  if (w.pos === 'verbs') return lower;
+  if (w.pos === 'verbs') return canonicalLemmaVerb(lower, verbLex);
   if (w.pos === 'nouns') return canonicalLemmaNoun(lower);
   return lower;
 }
@@ -2192,7 +2159,7 @@ function knownSupplementalWordsForLesson(
 }
 
 /**
- * Слова урока для словаря/тренажёра: сохраняем явную EN-форму для `verbs`, без повторов внутри урока
+ * Слова урока для словаря/тренажёра: лемма EN для `verbs`, без повторов леммы внутри урока
  * и без повторов между уроками (первое вхождение по номеру урока сохраняется).
  * `irregular_verbs` живут в отдельном источнике для экрана неправильных глаголов; здесь они только поддержаны
  * на уровне типа для старых сохранений/тестов.
@@ -2317,7 +2284,6 @@ const groupByPOS = (words: Word[], lang: Lang) => {
   return (['phrases','pronouns','verbs','articles','prepositions','conjunctions','adjectives','adverbs','nouns'] as POS[])
     .filter(k => map[k]?.length)
     .map(k => ({
-      key: k,
       title: pickTriLang(lang, {
         ru: POS_LABELS_RU[k],
         uk: POS_LABELS_UK[k],
@@ -2577,7 +2543,7 @@ function makeTrainingQueueState(
 }
 
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
-function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, wordProgressVersion, onCountUpdate, userName: userNameProp = '', onNoEnergy, studyTarget }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; wordProgressVersion:number; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; studyTarget?: RuntimeStudyTarget }) {
+function Training({ words, storageKey, lessonId, lang, initialLearned, initialCounts, wordProgressVersion, onCountUpdate, userName: userNameProp = '', onNoEnergy }: { words:Word[]; storageKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; wordProgressVersion:number; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme:t, f, themeMode } = useTheme();
@@ -2601,12 +2567,11 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
 
   // Состояние прогресса слов (сколько раундов пройдено). Окно рисуется сразу; с диска подмешиваем после (см. effect).
   const [counts, setCounts] = useState<Record<string, number>>({ ...initialCounts });
-  const [queue, setQueue] = useState<Card[]>([]);
+  const [queue, setQueue] = useState<Card[]>(() => makeTrainingQueueState(words, initialLearned, initialCounts, lang).queue);
   const [qIdx,       setQIdx]       = useState(0);
   const [chosen,     setChosen]     = useState<string|null>(null);
   const [totalPts,   setTotalPts]   = useState(0);
   const [learnedCnt, setLearnedCnt] = useState(initialLearned.length);
-  const [trainingReady, setTrainingReady] = useState(false);
   const sessionTouchedRef = useRef(false);
   // Счётчик ошибок на слово в этой сессии (для порога тренера: 2+ ошибки → активация)
   const wordMistakeCountRef = useRef<Record<string, number>>({});
@@ -2649,13 +2614,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
 
   // Блокировка: не даём запустить обработку дважды
   const locked = useRef(false);
-  const answerTransitionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const noEnergyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => () => {
-    if (answerTransitionTimerRef.current) clearTimeout(answerTransitionTimerRef.current);
-    if (noEnergyTimerRef.current) clearTimeout(noEnergyTimerRef.current);
-  }, []);
 
   useEffect(() => {
     if (!userNameProp) AsyncStorage.getItem('user_name').then(n => { if(n) setUserName(n); });
@@ -2665,40 +2623,30 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   useEffect(() => {
     if (!allDone) return;
     let cancelled = false;
-    void checkCoachToastNeededWithAnalytics(wrongMistakesRef.current, studyTarget, lang === 'uk' ? 'uk' : 'ru').then((decision) => {
+    void checkCoachToastNeededWithAnalytics(wrongMistakesRef.current).then((decision) => {
       if (!cancelled && decision.show) setCoachToast(decision);
     });
     return () => { cancelled = true; };
-  }, [allDone, lang, studyTarget]);
+  }, [allDone]);
 
-  // Сборка вариантов может быть заметной на слабых телефонах. Даём экрану
-  // отрисоваться первым кадром, а очередь готовим сразу после интеракций.
+  // AsyncStorage догнал: пересобрать очередь по сохранённому прогрессу, но только пока юзер ещё не ответил.
   useEffect(() => {
     if (wordProgressVersion < 1) return;
     if (sessionTouchedRef.current) return;
-    let cancelled = false;
-    setTrainingReady(false);
-    const task = InteractionManager.runAfterInteractions(() => {
-      if (cancelled) return;
-      const next = makeTrainingQueueState(words, initialLearned, initialCounts, lang);
-      if (cancelled) return;
-      setCounts(next.counts);
-      setQueue(next.queue);
-      setLearnedCnt(next.learnedCnt);
-      setQIdx(0);
-      setChosen(null);
-      setAllDone(false);
-      setTotalPts(0);
-      locked.current = false;
-      setTrainingReady(true);
-    });
-    return () => {
-      cancelled = true;
-      task.cancel?.();
-    };
+    if (Object.keys(initialCounts).length === 0) return;
+    const s = makeTrainingQueueState(words, initialLearned, initialCounts, lang);
+    setCounts(s.counts);
+    setQueue(s.queue);
+    setLearnedCnt(s.learnedCnt);
+    setQIdx(0);
+    setChosen(null);
+    setAllDone(false);
+    setTotalPts(0);
+    locked.current = false;
   }, [wordProgressVersion, words, lang, initialLearned, initialCounts]);
 
-  const current: Card | undefined = queue[qIdx % Math.max(queue.length, 1)];
+  const validQueue = useMemo(() => sanitizeTrainingQueue(queue), [queue]);
+  const current: Card | undefined = validQueue[qIdx % Math.max(validQueue.length, 1)];
 
   const handleChoice = async (opt: string) => {
     if (locked.current || chosen !== null || !current) return;
@@ -2718,10 +2666,15 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
       void hapticError();
     }
 
-    if (answerTransitionTimerRef.current) clearTimeout(answerTransitionTimerRef.current);
-    answerTransitionTimerRef.current = setTimeout(() => {
-      answerTransitionTimerRef.current = null;
-      const newQueue = [...queue];
+    setTimeout(() => {
+      const newQueue = sanitizeTrainingQueue(queue);
+      if (newQueue.length === 0 || !isTrainingCard(current)) {
+        setQueue([]);
+        setAllDone(true);
+        setChosen(null);
+        locked.current = false;
+        return;
+      }
 
       if (isRight) {
         // Читаем counts через ref чтобы избежать stale closure
@@ -2732,7 +2685,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         onCountUpdate(wordEn, newCount);
 
         // Сохраняем полный объект counts напрямую — без read-modify-write (нет race condition)
-        void AsyncStorage.setItem(storageKey, JSON.stringify(newCounts));
+        void AsyncStorage.setItem(storageKey + '_words', JSON.stringify(newCounts));
 
         // Удаляем текущую карточку из очереди
         newQueue.splice(qIdx % newQueue.length, 1);
@@ -2751,19 +2704,19 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         }
 
         if (wordJustCompleted) {
-          void bumpStatsDaily('words_learned', 1, studyTarget);
+          void bumpStatsDaily('words_learned', 1);
           // Слово выучено — убираем все оставшиеся карточки этого слова из очереди
-          const finalQ = newQueue.filter(c => c.word.en !== current.word.en);
+          const finalQ = newQueue.filter(c => isTrainingCard(c) && c.word.en !== current.word.en);
           const newLearned = Math.min(learnedCnt + 1, words.length);
-          updateMultipleTaskProgress([{ type: 'words_learned' }], { studyTarget });
+          updateMultipleTaskProgress([{ type: 'words_learned' }]);
           if (finalQ.length === 0) {
             setLearnedCnt(newLearned); setQueue(finalQ); setAllDone(true);
             setChosen(null); locked.current = false;
             // Осколок за завершение раздела слов (единоразово)
-            AsyncStorage.getItem(wordsShardGrantKey).then(done => {
+            AsyncStorage.getItem(`${storageKey}_words_shards_granted`).then(done => {
               if (!done) {
                 addShards('lesson_completed').catch(() => {});
-                AsyncStorage.setItem(wordsShardGrantKey, '1').catch(() => {});
+                AsyncStorage.setItem(`${storageKey}_words_shards_granted`, '1').catch(() => {});
               }
             }).catch(() => {});
             return;
@@ -2783,7 +2736,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           expected: current.word.en,
           rawCategory: current.word.pos,
         };
-        logMistake(current.word.en, lessonId, 'lesson_words', 'wrong_pick', mistakeMeta, studyTarget);
+        logMistake(current.word.en, lessonId, 'lesson_words', 'wrong_pick', mistakeMeta);
         wrongMistakesRef.current.push({ phrase: current.word.en, ...mistakeMeta });
         // Тренер: считаем ошибки; при 2-й — активируем слово в очереди
         const wKey = current.word.en;
@@ -2791,12 +2744,12 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         const newCount = prevCount + 1;
         wordMistakeCountRef.current[wKey] = newCount;
         if (newCount === 2) {
-          void activateWordForTrainer(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos, current.word.es, studyTarget);
+          void activateWordForTrainer(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos, current.word.es);
         } else {
-          void recordWordMistake(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos, current.word.es, studyTarget);
+          void recordWordMistake(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos, current.word.es);
         }
         const resetCard = buildCard(current.word, current.roundIndex, words, lang);
-        newQueue.splice(qIdx % newQueue.length, 1);
+        newQueue.splice(qIdx % Math.max(newQueue.length, 1), 1);
         const rem = newQueue.length;
         // currentNext — индекс следующей карточки после удаления текущей
         const currentNext = rem > 0 ? qIdx % rem : 0;
@@ -2813,11 +2766,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           const energyBefore = currentEnergyRef.current;
           spendOneRef.current().then(success => {
             if (success && energyBefore === 1) {
-              if (noEnergyTimerRef.current) clearTimeout(noEnergyTimerRef.current);
-              noEnergyTimerRef.current = setTimeout(() => {
-                noEnergyTimerRef.current = null;
-                onNoEnergyRef.current();
-              }, 800);
+              setTimeout(() => { onNoEnergyRef.current(); }, 800);
             }
           }).catch(() => {});
         }
@@ -2855,24 +2804,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     </Animated.View>
   ) : null;
 
-  if (!trainingReady) return (
-    <View testID="lesson-words-training-loading" style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 12, padding: 20 }}>
-      <ActivityIndicator color={sx.second} />
-      <Text style={{ color: sx.muted, fontSize: f.body }}>
-        {pickTriLang(lang, {
-          ru: 'Готовим тренировку',
-          uk: 'Готуємо тренування',
-          es: 'Preparando práctica',
-          'pt-BR': 'Preparando treino',
-          vi: 'Đang chuẩn bị luyện tập',
-          id: 'Menyiapkan latihan',
-          tr: 'Alıştırma hazırlanıyor',
-          pl: 'Przygotowujemy trening',
-        })}
-      </Text>
-    </View>
-  );
-
   if (allDone || queue.length === 0) return (
     <View style={{ flex: 1 }}>
       <View testID="lesson-words-complete" style={{ flex:1, justifyContent:'center', alignItems:'center', gap:16, padding:20 }}>
@@ -2890,7 +2821,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         <TouchableOpacity
           testID="lesson-words-complete-back"
           style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
-          onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
+          onPress={() => router.back()}
         >
           <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>{pickTriLang(lang, { ru: '← К уроку', uk: '← До уроку', es: '← A la lección', 'pt-BR': '← Para a lição', vi: '← Về bài học', id: '← Ke pelajaran', tr: '← Derse', pl: '← Do lekcji' })}</Text>
         </TouchableOpacity>
@@ -2985,13 +2916,16 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   return (
     <View testID="lesson-words-training" style={{ flex:1, paddingHorizontal:20, paddingTop:12 }}>
 
-      <View style={{ width:'100%', marginBottom:14, alignItems: 'flex-end' }}>
-        <Text
-          testID="lesson-words-progress-counter"
-          style={{ color: progressMetrics.fullyLearned > 0 ? sx.second : sx.muted, fontSize:f.label, fontWeight:'700' }}
-        >
-          {vocabularyLearnedCounterLabel(lang, progressMetrics.fullyLearned, progressMetrics.totalWords)}
-        </Text>
+      {/* Прогресс: только % и полоска (счёт по верным ответам); без числовых «шагов» и «выучено» в интерфейсе */}
+      <View style={{ width:'100%', marginBottom:14 }}>
+        <View style={{ flexDirection:'row', justifyContent:'flex-end', marginBottom:5, alignItems:'flex-start' }}>
+          <Text style={{ color:progressMetrics.pct>0?sx.second:sx.muted, fontSize:f.label, fontWeight:'600' }}>
+            {progressMetrics.pct}%
+          </Text>
+        </View>
+        <View style={{ height:5, backgroundColor:sx.ghost, borderRadius:3, overflow:'hidden' }}>
+          <View style={{ height:'100%', width:`${progressMetrics.pct}%` as any, backgroundColor:t.correct, borderRadius:3 }}/>
+        </View>
       </View>
 
       {/* Вопрос */}
@@ -3054,8 +2988,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
             <TouchableOpacity key={i}
               testID={isCorrect ? 'lesson-words-option-correct' : `lesson-words-option-${i}`}
               style={{ width:'48%', minHeight:68, paddingVertical:12, paddingHorizontal:10, borderRadius:16, alignItems:'center', justifyContent:'center', borderWidth:bw, backgroundColor:bg, borderColor }}
-              onPressIn={() => { void hapticTap(); }}
-              onPress={() => { handleChoice(opt); }}
+              onPress={() => { hapticTap(); handleChoice(opt); }}
               activeOpacity={0.72}
               disabled={chosen !== null}
             >
@@ -3101,14 +3034,13 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
   const { theme: t, f, ds, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { hPad } = useScreen();
-  const sections = useMemo(() => groupByPOS(words, lang), [lang, words]);
+  const sections = groupByPOS(words, lang);
 
   return (
     <View style={{ flex:1 }}>
       <SectionList
         sections={sections}
         keyExtractor={item => item.en}
-        stickySectionHeadersEnabled={false}
         contentContainerStyle={{ paddingBottom: ds.spacing.xxl }}
         ListFooterComponent={
           <ReportErrorButton
@@ -3124,6 +3056,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
               tr: `Ders ${lessonId ?? ''} kelime listesi`,
               pl: `Słownictwo lekcji ${lessonId ?? ''}`,
             })}
+            style={{ alignSelf: 'flex-end', marginHorizontal: hPad, marginTop: ds.spacing.sm }}
             textColor={sx.muted}
           />
         }
@@ -3139,10 +3072,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
           </TouchableOpacity>
         ) : null}
         renderSectionHeader={({ section }) => (
-          <View
-            testID={`lesson-word-section-${section.key}`}
-            style={{ paddingHorizontal:hPad, paddingTop:ds.spacing.md, paddingBottom:ds.spacing.sm }}
-          >
+          <View style={{ backgroundColor:t.bgPrimary, paddingHorizontal:hPad, paddingTop:ds.spacing.md, paddingBottom:ds.spacing.sm }}>
             <Text style={{ color:sx.muted, fontSize:f.label, fontWeight:'600', textTransform:'uppercase', letterSpacing:1 }}>
               {section.title}
             </Text>
@@ -3153,15 +3083,19 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
           const tr = wordTranslation(item, lang);
           return (
             <View style={{ borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-              <View
-                style={{
-                  minHeight: 48,
+              <ScrollView
+                horizontal
+                nestedScrollEnabled
+                keyboardShouldPersistTaps="handled"
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{
                   flexDirection: 'row',
                   alignItems: 'center',
                   paddingLeft: hPad,
                   paddingRight: hPad,
-                  paddingVertical: ds.spacing.xs,
+                  paddingVertical: ds.spacing.sm,
                 }}
+                contentInset={{ right: hPad }}
               >
                 <View style={{ width: 20, marginRight: ds.spacing.sm, alignItems: 'center', flexShrink: 0 }}>
                   {count >= REQUIRED
@@ -3175,59 +3109,25 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
                   style={{ flexShrink: 0, marginRight: ds.spacing.sm }}
                 >
                   <Text
-                    testID={`lesson-word-text-${item.en}`}
                     maxFontSizeMultiplier={1.35}
                     style={{ color: sx.primary, fontSize: f.bodyLg, fontWeight: '600', flexShrink: 0 }}
                   >
                     {item.en}
                   </Text>
                 </TouchableOpacity>
-                <Text
-                  maxFontSizeMultiplier={1.35}
-                  numberOfLines={1}
-                  ellipsizeMode="tail"
-                  style={{ color: sx.muted, fontSize: f.body, flex: 1, minWidth: 0, marginRight: ds.spacing.sm }}
-                >
-                  {tr}
-                </Text>
-                <View style={{ flexShrink: 0 }}>
+                <View style={{ flexShrink: 0, marginRight: ds.spacing.sm }}>
+                  <Text maxFontSizeMultiplier={1.35} style={{ color: sx.muted, fontSize: f.body, flexShrink: 0 }}>
+                    {tr}
+                  </Text>
+                </View>
+                <View style={{ flexShrink: 0, marginRight: hPad }}>
                   <AddToFlashcard en={item.en} ru={item.ru} uk={item.uk} es={item.es} source="word" />
                 </View>
-              </View>
+              </ScrollView>
             </View>
           );
         }}
       />
-    </View>
-  );
-}
-
-function FrenchVocabularyUnavailable({ lang, onBack }: { lang: Lang; onBack: () => void }) {
-  const { theme: t, f, ds, themeMode } = useTheme();
-  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
-  const copy = frenchVocabularyGateCopy('lesson_words', lang);
-
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24, gap: ds.spacing.md }}>
-      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
-        <Ionicons name="shield-checkmark-outline" size={34} color={sx.second} />
-      </View>
-      <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center' }}>
-        {copy.title}
-      </Text>
-      <Text style={{ color: sx.muted, fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center' }}>
-        {copy.body}
-      </Text>
-      <TouchableOpacity
-        testID="lesson-words-french-source-gate-back"
-        onPress={onBack}
-        activeOpacity={0.82}
-        style={{ marginTop: ds.spacing.sm, alignSelf: 'center', backgroundColor: sx.second, borderRadius: 14, paddingHorizontal: 26, paddingVertical: 13 }}
-      >
-        <Text style={{ color: '#06111f', fontSize: f.bodyLg, fontWeight: '800' }}>
-          {copy.action}
-        </Text>
-      </TouchableOpacity>
     </View>
   );
 }
@@ -3238,31 +3138,24 @@ export default function LessonWords() {
   const { theme:t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { s, lang } = useLang();
-  const { studyTarget } = useStudyTarget();
   const { energy, isUnlimited: energyUnlimited } = useEnergy();
   const canTrain = energyUnlimited || energy > 0;
-  const { id, tab: tabParam, qaFocusWords } = useLocalSearchParams<{ id:string; tab?: string | string[]; qaFocusWords?: string | string[] }>();
+  const { id } = useLocalSearchParams<{ id:string }>();
   const lessonId = parseInt(id || '1', 10);
-  const initialTab = (Array.isArray(tabParam) ? tabParam[0] : tabParam) === 'list' ? 'list' : null;
   useEffect(() => {
     let cancelled = false;
-    void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
+    void shouldBlockLessonAccess(lessonId).then(blocked => {
       if (!cancelled && blocked) openLessonAccessGate(router, lessonId);
     });
     return () => { cancelled = true; };
-  }, [lessonId, router, studyTarget]);
-  const frenchVocabularyBlocked = !vocabularyContentAvailableForTarget(studyTarget, 'lesson_words');
-  const words = useMemo(
-    () => frenchVocabularyBlocked ? [] : prioritizeQaFocusWords(lessonWordBank(lessonId), qaFocusWords),
-    [frenchVocabularyBlocked, lessonId, qaFocusWords],
-  );
-  const storageKey = lessonWordsKey(lessonId, studyTarget);
-  const wordsShardGrantKey = lessonWordsShardsGrantedKey(lessonId, studyTarget);
+  }, [lessonId, router]);
+  const words = useMemo(() => lessonWordBank(lessonId), [lessonId]);
+  const storageKey = `lesson${lessonId}`;
   const ws = s.words;
 
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
   /** null = «авто»: при 0 энергии сразу Словарь, при наличии — Повторение, без кадра с неверной вкладкой */
-  const [userTab, setUserTab] = useState<'train' | 'list' | null>(initialTab);
+  const [userTab, setUserTab] = useState<'train' | 'list' | null>(null);
   const tab = userTab !== null ? userTab : (canTrain ? 'train' : 'list');
   useEffect(() => {
     if (!canTrain) setUserTab(null);
@@ -3271,44 +3164,30 @@ export default function LessonWords() {
     if (energyUnlimited || energy > 0) setNoEnergyModalOpen(false);
   }, [energyUnlimited, energy]);
   useEffect(() => {
-    if (tab !== 'list') return;
-    const flashcardLoadTask = InteractionManager.runAfterInteractions(() => {
-      void loadFlashcards(studyTarget);
-    });
-    return () => flashcardLoadTask.cancel?.();
-  }, [studyTarget, tab]);
+    if (tab === 'list') void loadFlashcards();
+  }, [tab]);
   const [learnedCounts, setLearnedCounts] = useState<Record<string,number>>({});
-  /** +1 после завершения чтения lesson words key (в т.ч. пусто) — тренажёр подмешивает прогресс без спиннера. */
+  /** +1 после завершения чтения lessonN_words (в т.ч. пусто) — тренажёр подмешивает прогресс без спиннера. */
   const [wordProgressVersion, setWordProgressVersion] = useState(0);
-  const wordProgressReady = wordProgressVersion > 0;
   const learnedListForTraining = useMemo(
     () => Object.keys(learnedCounts).filter(k => (learnedCounts[k] ?? 0) >= REQUIRED),
     [learnedCounts],
   );
   const [userName, setUserName] = useState('');
-  const lastProgressScopeRef = useRef<string | null>(null);
 
   useEffect(() => {
     AsyncStorage.getItem('user_name').then(n => { if (n) setUserName(n); });
   }, []);
 
   useLayoutEffect(() => {
-    const progressScope = `${storageKey}:${initialTab ?? 'auto'}`;
-    if (lastProgressScopeRef.current === null) {
-      lastProgressScopeRef.current = progressScope;
-      return;
-    }
-    if (lastProgressScopeRef.current === progressScope) return;
-    lastProgressScopeRef.current = progressScope;
     setLearnedCounts({});
     setWordProgressVersion(0);
-    setUserTab(initialTab);
-  }, [initialTab, storageKey]);
+    setUserTab(null);
+  }, [lessonId, storageKey]);
 
   useEffect(() => {
     let cancelled = false;
-    const loadWordProgress = () => {
-      AsyncStorage.getItem(storageKey)
+    AsyncStorage.getItem(storageKey + '_words')
       .then(v => {
         if (cancelled) return;
         if (v) {
@@ -3325,40 +3204,26 @@ export default function LessonWords() {
             for (const p of pronouns) {
               if (!counts[p] || counts[p] < REQUIRED) { counts[p] = REQUIRED; migrated = true; }
             }
-            if (migrated) AsyncStorage.setItem(storageKey, JSON.stringify(counts));
+            if (migrated) AsyncStorage.setItem(storageKey + '_words', JSON.stringify(counts));
           }
           const pluralMerged = mergeLegacyPluralLessonWordCounts(counts);
           if (pluralMerged.dirty) {
             counts = pluralMerged.counts;
-            AsyncStorage.setItem(storageKey, JSON.stringify(counts)).catch(() => {});
+            AsyncStorage.setItem(storageKey + '_words', JSON.stringify(counts)).catch(() => {});
           }
           setLearnedCounts(counts);
         }
       })
       .finally(() => { if (!cancelled) setWordProgressVersion(ver => ver + 1); });
-    };
-    if (tab === 'list') {
-      const progressLoadTask = InteractionManager.runAfterInteractions(loadWordProgress);
-      return () => {
-        cancelled = true;
-        progressLoadTask.cancel?.();
-      };
-    }
-    loadWordProgress();
     return () => { cancelled = true; };
-  }, [lessonId, storageKey, tab]);
+  }, [lessonId, storageKey]);
 
   return (
     <ScreenGradient>
     <SafeAreaView style={{ flex:1 }}>
       <ContentWrap>
       <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', padding:15, borderBottomWidth:0.5, borderBottomColor:t.border }}>
-        <TouchableOpacity
-          testID="lesson-words-header-back"
-          onPress={() => {
-            safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
-          }}
-        >
+        <TouchableOpacity testID="lesson-words-header-back" onPress={() => router.back()}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TouchableOpacity>
         <Text style={{ color:sx.primary, fontSize:f.h2, fontWeight:'600', flex:1, textAlign:'center', marginHorizontal:8 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.75}>{ws.title(lessonId)}</Text>
@@ -3366,12 +3231,7 @@ export default function LessonWords() {
       </View>
 
       <View style={{ flex:1 }}>
-        {frenchVocabularyBlocked ? (
-          <FrenchVocabularyUnavailable
-            lang={lang}
-            onBack={() => router.replace({ pathname: '/lesson_menu', params: { id: lessonId } } as any)}
-          />
-        ) : tab === 'list' ? (
+        {tab === 'list' ? (
           <WordList
             words={words}
             learnedCounts={learnedCounts}
@@ -3385,28 +3245,11 @@ export default function LessonWords() {
               setUserTab('train');
             }}
           />
-        ) : !wordProgressReady ? (
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 12 }}>
-            <ActivityIndicator color={sx.second} />
-            <Text style={{ color: sx.muted, fontSize: f.body }}>
-              {pickTriLang(lang, {
-                ru: 'Загружаем словарь',
-                uk: 'Завантажуємо словник',
-                es: 'Cargando vocabulario',
-                'pt-BR': 'Carregando vocabulário',
-                vi: 'Đang tải từ vựng',
-                id: 'Memuat kosakata',
-                tr: 'Kelime listesi yükleniyor',
-                pl: 'Ładowanie słownictwa',
-              })}
-            </Text>
-          </View>
         ) : (
           <Training
             key={storageKey}
             words={words}
             storageKey={storageKey}
-            wordsShardGrantKey={wordsShardGrantKey}
             lessonId={lessonId}
             lang={lang}
             userName={userName}
@@ -3415,12 +3258,10 @@ export default function LessonWords() {
             wordProgressVersion={wordProgressVersion}
             onCountUpdate={(word, count) => setLearnedCounts(prev => ({ ...prev, [word]: count }))}
             onNoEnergy={() => setNoEnergyModalOpen(true)}
-            studyTarget={studyTarget}
           />
         )}
       </View>
 
-      {!frenchVocabularyBlocked && (
       <View style={{ flexDirection:'row', borderTopWidth:0.5, borderTopColor:t.border }}>
         {(['train','list'] as const).map(key => {
           const isActive = tab === key;
@@ -3448,7 +3289,6 @@ export default function LessonWords() {
           );
         })}
       </View>
-      )}
       </ContentWrap>
 
       <NoEnergyModal visible={noEnergyModalOpen} onClose={() => setNoEnergyModalOpen(false)} />

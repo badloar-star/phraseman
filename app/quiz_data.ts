@@ -25609,15 +25609,29 @@ export const getQuizPhrases = (
     return [];
   }
 
-  const pool = getRuntimeQuizPoolCandidates(difficulty);
+  const pool = getQuizPool(difficulty);
 
   if (pool.length === 0) return [];
 
   const k = Math.min(count, pool.length);
-  const sampleIndices = sampleUniqueRandomIndices(pool.length, k);
-  const selected = sampleIndices
-    .map((i) => pool[i])
+  const selected = sampleUniqueRandomIndices(pool.length, k)
+    .map((i) => {
+      const entry = pool[i];
+      return entry ? { entry, ordinal: i + 1 } : null;
+    })
     .filter((item): item is { entry: QuizPoolEntry; ordinal: number } => !!item);
+
+  if (selected.length < k) {
+    const seenOrdinals = new Set(selected.map(item => item.ordinal));
+    for (let i = 0; i < pool.length && selected.length < k; i++) {
+      const entry = pool[i];
+      const ordinal = i + 1;
+      if (entry && !seenOrdinals.has(ordinal)) {
+        selected.push({ entry, ordinal });
+        seenOrdinals.add(ordinal);
+      }
+    }
+  }
 
   return selected.map(({ entry, ordinal }) => {
     const rawCorrect = (Array.isArray(entry.correct) ? [...entry.correct] : [entry.correct]).sort((a, b) => a - b);

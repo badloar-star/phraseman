@@ -13,16 +13,13 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { flushMistakeLog, logMistake } from './mistake_log';
-import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
 import { computePhraseAnalytics } from './phrase_analytics';
 import { normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 import { getPosMasterySnapshot } from './pos_workout_engine';
-import { storageStudyTarget, trainerStoreKey, type RuntimeSourceLocale, type RuntimeStudyTarget } from './target_storage_keys';
-import { trainerSessionContentAvailableForTarget } from './trainer_target_gate';
-import type { Lang, PlannedInterfaceLang } from '../constants/i18n';
 
 // ── Константы ────────────────────────────────────────────────────────────────
 
+const STORAGE_KEY = 'trainer_store_v1';
 const MS_PER_DAY  = 24 * 60 * 60 * 1000;
 
 /** Лесенка интервалов в днях. Индекс = кол-во правильных ответов подряд. */
@@ -46,7 +43,6 @@ export interface TrainerItem {
   /** Для слов/глаголов: перевод (uk) */
   translationUk: string;
   translationEs?: string;
-  sourceLocales?: Partial<Record<PlannedInterfaceLang, string>>;
   /** Для фраз: слово на котором была ошибка (для режима fill-the-gap) */
   errorWord?: string;
   /** Для арены: исходный вопрос в формате арены */
@@ -119,37 +115,15 @@ function withTrainerCategory(item: TrainerItem): TrainerItem {
     : item;
 }
 
-const TRAINER_PLANNED_LOCALES = ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const satisfies readonly PlannedInterfaceLang[];
-
-const TRAINER_TRANSLATION_NEEDS_REVIEW: Record<PlannedInterfaceLang, string> = {
-  'pt-BR': 'needs-review: esta tradução do treinador ainda precisa de revisão para português do Brasil.',
-  vi: 'needs-review: bản dịch trong phần luyện tập này vẫn cần được rà soát cho tiếng Việt.',
-  id: 'needs-review: terjemahan latihan ini masih perlu ditinjau untuk bahasa Indonesia.',
-  tr: 'needs-review: bu antrenman çevirisi Türkçe için hâlâ gözden geçirilmeli.',
-  pl: 'needs-review: to tłumaczenie w trenerze nadal wymaga przeglądu po polsku.',
-};
-
-function isTrainerPlannedLocale(lang: Lang): lang is PlannedInterfaceLang {
-  const plannedLocales = TRAINER_PLANNED_LOCALES as readonly string[];
-  return plannedLocales.includes(lang);
-}
-
-export function trainerTranslationForLang(
-  item: Pick<TrainerItem, 'translationRu' | 'translationUk' | 'translationEs' | 'sourceLocales'>,
-  lang: Lang,
-): string {
-  if (isTrainerPlannedLocale(lang)) {
-    const planned = item.sourceLocales?.[lang]?.trim();
-    return planned || TRAINER_TRANSLATION_NEEDS_REVIEW[lang];
-  }
+export function trainerTranslationForLang(item: Pick<TrainerItem, 'translationRu' | 'translationUk' | 'translationEs'>, lang: 'ru' | 'uk' | 'es'): string {
   if (lang === 'uk') return item.translationUk || item.translationRu || item.translationEs || '';
   if (lang === 'es') return item.translationEs || item.translationRu || item.translationUk || '';
   return item.translationRu || item.translationUk || item.translationEs || '';
 }
 
-async function load(studyTarget?: RuntimeStudyTarget): Promise<TrainerItem[]> {
+async function load(): Promise<TrainerItem[]> {
   try {
-    const raw = await AsyncStorage.getItem(trainerStoreKey(studyTarget));
+    const raw = await AsyncStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
     return (JSON.parse(raw) as TrainerItem[]).map(withTrainerCategory);
   } catch {
@@ -157,8 +131,8 @@ async function load(studyTarget?: RuntimeStudyTarget): Promise<TrainerItem[]> {
   }
 }
 
-async function save(items: TrainerItem[], studyTarget?: RuntimeStudyTarget): Promise<void> {
-  await AsyncStorage.setItem(trainerStoreKey(studyTarget), JSON.stringify(items));
+async function save(items: TrainerItem[]): Promise<void> {
+  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(items));
 }
 
 // ── Запись ошибок ─────────────────────────────────────────────────────────────
@@ -175,10 +149,9 @@ export async function recordWordMistake(
   lessonId: number,
   rawCategory?: string,
   translationEs?: string,
-  studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
   const key = wordEn.trim().toLowerCase();
-  const items = await load(studyTarget);
+  const items = await load();
   const existing = items.find(i => i.key === key && i.queue === 'words');
 
   if (existing) {
@@ -198,7 +171,7 @@ export async function recordWordMistake(
         existing.nextDue = tomorrowStart();
       }
     }
-    await save(items, studyTarget);
+    await save(items);
     return;
   }
 
@@ -218,7 +191,7 @@ export async function recordWordMistake(
     archived: false,
   };
   items.push(firstHit);
-  await save(items, studyTarget);
+  await save(items);
 }
 
 /**
@@ -232,10 +205,9 @@ export async function activateWordForTrainer(
   lessonId: number,
   rawCategory?: string,
   translationEs?: string,
-  studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
   const key = wordEn.trim().toLowerCase();
-  const items = await load(studyTarget);
+  const items = await load();
   const existing = items.find(i => i.key === key && i.queue === 'words');
 
   if (existing) {
@@ -248,7 +220,7 @@ export async function activateWordForTrainer(
       // Первый раз достиг порога — активируем
       existing.nextDue = tomorrowStart();
     }
-    await save(items, studyTarget);
+    await save(items);
     return;
   }
 
@@ -267,7 +239,7 @@ export async function activateWordForTrainer(
     archived: false,
   };
   items.push(item);
-  await save(items, studyTarget);
+  await save(items);
 }
 
 /**
@@ -283,10 +255,9 @@ export async function recordPhraseMistake(
   errorWord?: string,
   rawCategory?: string,
   translationEs?: string,
-  studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
   const key = phraseEn.trim();
-  const items = await load(studyTarget);
+  const items = await load();
   const existing = items.find(i => i.key === key && i.queue === 'phrases');
 
   if (existing) {
@@ -303,7 +274,7 @@ export async function recordPhraseMistake(
     } else {
       existing.nextDue = tomorrowStart();
     }
-    await save(items, studyTarget);
+    await save(items);
     return;
   }
 
@@ -323,7 +294,7 @@ export async function recordPhraseMistake(
     archived: false,
   };
   items.push(item);
-  await save(items, studyTarget);
+  await save(items);
 }
 
 /**
@@ -333,10 +304,9 @@ export async function recordPhraseMistake(
 export async function recordArenaMistake(
   question: ArenaQuestion,
   lessonId: number,
-  studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
   const key = question.question.trim();
-  const items = await load(studyTarget);
+  const items = await load();
   const existing = items.find(i => i.key === key && i.queue === 'arena');
 
   if (existing) {
@@ -348,7 +318,7 @@ export async function recordArenaMistake(
       existing.correctStreak = 0;
     }
     existing.nextDue = tomorrowStart();
-    await save(items, studyTarget);
+    await save(items);
     return;
   }
 
@@ -367,7 +337,7 @@ export async function recordArenaMistake(
     archived: false,
   };
   items.push(item);
-  await save(items, studyTarget);
+  await save(items);
 }
 
 // ── Отработка ─────────────────────────────────────────────────────────────────
@@ -381,9 +351,8 @@ export async function markTrainerResult(
   key: string,
   queue: TrainerQueue,
   correct: boolean,
-  studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
-  const items = await load(studyTarget);
+  const items = await load();
   const item = items.find(i => i.key === key && i.queue === queue);
   if (!item) return;
 
@@ -401,17 +370,14 @@ export async function markTrainerResult(
     item.nextDue = tomorrowStart();
   }
 
-  await save(items, studyTarget);
+  await save(items);
 }
 
 // ── Чтение для UI ─────────────────────────────────────────────────────────────
 
 /** Кол-во элементов в каждой очереди которые ждут сегодня. */
-export async function getTrainerCounts(studyTarget?: RuntimeStudyTarget): Promise<Record<TrainerQueue, number>> {
-  if (!trainerSessionContentAvailableForTarget(studyTarget)) {
-    return { words: 0, phrases: 0, arena: 0 };
-  }
-  const items = await load(studyTarget);
+export async function getTrainerCounts(): Promise<Record<TrainerQueue, number>> {
+  const items = await load();
   const end = todayEnd();
   const active = items.filter(i => !i.archived && i.nextDue > 0 && i.nextDue <= end);
   return {
@@ -422,8 +388,8 @@ export async function getTrainerCounts(studyTarget?: RuntimeStudyTarget): Promis
 }
 
 /** Суммарное кол-во элементов ожидающих сегодня (для бейджа). */
-export async function getTrainerTotalDue(studyTarget?: RuntimeStudyTarget): Promise<number> {
-  const counts = await getTrainerCounts(studyTarget);
+export async function getTrainerTotalDue(): Promise<number> {
+  const counts = await getTrainerCounts();
   return counts.words + counts.phrases + counts.arena;
 }
 
@@ -446,19 +412,13 @@ export interface TrainerDashboard {
   nextQueue: TrainerQueue | null;
 }
 
-export async function getTrainerDashboard(
-  studyTarget?: RuntimeStudyTarget,
-  sourceLocale?: RuntimeSourceLocale,
-): Promise<TrainerDashboard> {
-  const items = await load(studyTarget);
-  const posMastery = await getPosMasterySnapshot(studyTarget);
+export async function getTrainerDashboard(): Promise<TrainerDashboard> {
+  const items = await load();
+  const posMastery = await getPosMasterySnapshot();
   const end = todayEnd();
-  const sessionContentEnabled = trainerSessionContentAvailableForTarget(studyTarget);
-  const activeItems = sessionContentEnabled
-    ? items.filter(i => !i.archived && i.nextDue > 0)
-    : [];
+  const activeItems = items.filter(i => !i.archived && i.nextDue > 0);
   const dueItems = activeItems.filter(i => i.nextDue <= end);
-  const archived = sessionContentEnabled ? items.filter(i => i.archived).length : 0;
+  const archived = items.filter(i => i.archived).length;
   const due: Record<TrainerQueue, number> = {
     words: dueItems.filter(i => i.queue === 'words').length,
     phrases: dueItems.filter(i => i.queue === 'phrases').length,
@@ -482,13 +442,8 @@ export async function getTrainerDashboard(
     categoryStats.set(category, (categoryStats.get(category) ?? 0) + item.mistakeCount);
   }
   const fallbackHardestCategory = [...categoryStats.entries()].sort((a, b) => b[1] - a[1])[0];
-  const analyticsStats = sessionContentEnabled
-    ? studyTarget === 'fr'
-      ? await computeFrenchPhraseAnalytics({ sourceLocale })
-      : await computePhraseAnalytics()
-    : undefined;
-  const analyticsHardestCategory = analyticsStats?.categoryStats[0];
-  const fallbackCategoryForTarget = studyTarget === 'fr' ? undefined : fallbackHardestCategory;
+  const analyticsStats = await computePhraseAnalytics();
+  const analyticsHardestCategory = analyticsStats.categoryStats[0];
   const totalTracked = items.length;
   const memoryScore = totalTracked === 0
     ? 100
@@ -503,8 +458,8 @@ export async function getTrainerDashboard(
     archived,
     hardestQueue: hardest && hardest.mistakes > 0 ? hardest.queue : null,
     hardestMistakes: hardest?.mistakes ?? 0,
-    hardestCategory: analyticsHardestCategory?.category ?? fallbackCategoryForTarget?.[0] ?? null,
-    hardestCategoryMistakes: analyticsHardestCategory?.mistakeCount ?? fallbackCategoryForTarget?.[1] ?? 0,
+    hardestCategory: analyticsHardestCategory?.category ?? fallbackHardestCategory?.[0] ?? null,
+    hardestCategoryMistakes: analyticsHardestCategory?.mistakeCount ?? fallbackHardestCategory?.[1] ?? 0,
     hardestCategoryPriority: analyticsHardestCategory?.priorityScore ?? 0,
     hardestCategoryRecovery: analyticsHardestCategory?.recoveryScore ?? 0,
     memoryScore,
@@ -520,13 +475,8 @@ export async function getTrainerDashboard(
 }
 
 /** Элементы конкретной очереди ожидающие сегодня. */
-export async function getDueItems(
-  queue: TrainerQueue,
-  limit = 20,
-  studyTarget?: RuntimeStudyTarget,
-): Promise<TrainerItem[]> {
-  if (!trainerSessionContentAvailableForTarget(studyTarget)) return [];
-  const items = await load(studyTarget);
+export async function getDueItems(queue: TrainerQueue, limit = 20): Promise<TrainerItem[]> {
+  const items = await load();
   const end = todayEnd();
   return items
     .filter(i => i.queue === queue && !i.archived && i.nextDue > 0 && i.nextDue <= end)
@@ -552,8 +502,7 @@ function itemCategoryPriority(item: TrainerItem, categoryPriority: Map<WordCateg
   return categoryPriority.get(category) ?? 0;
 }
 
-async function loadCategoryPriorityScores(studyTarget?: RuntimeStudyTarget): Promise<Map<WordCategory, number>> {
-  if (studyTarget === 'fr') return new Map();
+async function loadCategoryPriorityScores(): Promise<Map<WordCategory, number>> {
   try {
     const analytics = await computePhraseAnalytics();
     return new Map(analytics.categoryStats.map(stat => [stat.category, stat.priorityScore]));
@@ -574,13 +523,11 @@ function trainerPriorityScore(item: TrainerItem, end: number, categoryPriority =
 export async function getTrainerPremiumItems(
   mode: TrainerPremiumMode,
   limit = 12,
-  studyTarget?: RuntimeStudyTarget,
 ): Promise<TrainerItem[]> {
-  if (!trainerSessionContentAvailableForTarget(studyTarget)) return [];
-  const items = (await load(studyTarget)).map(withTrainerCategory);
+  const items = (await load()).map(withTrainerCategory);
   const end = todayEnd();
   const active = items.filter(i => !i.archived && i.nextDue > 0);
-  const categoryPriority = await loadCategoryPriorityScores(studyTarget);
+  const categoryPriority = await loadCategoryPriorityScores();
   const score = (item: TrainerItem) => trainerPriorityScore(item, end, itemCategoryPriority(item, categoryPriority));
   const byPriority = () => [...active].sort((a, b) => score(b) - score(a));
   const due = active
@@ -633,18 +580,18 @@ export async function getTrainerPremiumItems(
 }
 
 /** Все слова в хранилище (включая ещё не активированные) — для подбора ложных переводов. */
-export async function getAllWordKeys(studyTarget?: RuntimeStudyTarget): Promise<TrainerItem[]> {
-  const items = await load(studyTarget);
+export async function getAllWordKeys(): Promise<TrainerItem[]> {
+  const items = await load();
   return items.filter(i => i.queue === 'words');
 }
 
 // ── Сброс / диагностика ───────────────────────────────────────────────────────
 
-export async function clearTrainerStore(studyTarget?: RuntimeStudyTarget): Promise<void> {
-  await AsyncStorage.removeItem(trainerStoreKey(studyTarget));
+export async function clearTrainerStore(): Promise<void> {
+  await AsyncStorage.removeItem(STORAGE_KEY);
 }
 
-export async function getTrainerStoreDebug(studyTarget?: RuntimeStudyTarget): Promise<{
+export async function getTrainerStoreDebug(): Promise<{
   total: number;
   active: number;
   archived: number;
@@ -652,8 +599,8 @@ export async function getTrainerStoreDebug(studyTarget?: RuntimeStudyTarget): Pr
   posMasteryXp: number;
   posMasteryCount: number;
 }> {
-  const items = await load(studyTarget);
-  const posMastery = await getPosMasterySnapshot(studyTarget);
+  const items = await load();
+  const posMastery = await getPosMasterySnapshot();
   const active = items.filter(i => !i.archived && i.nextDue > 0);
   const archived = items.filter(i => i.archived);
   return {
@@ -727,15 +674,7 @@ const DEV_ARENA = [
 
 const DEV_ANALYTICS_PICKED = ['go', 'in', 'the', 'has', 'wait', 'must to', 'call to', 'a', 'never not'];
 
-function canSeedEnglishDevTrainer(studyTarget?: RuntimeStudyTarget): boolean {
-  return storageStudyTarget(studyTarget) !== 'fr';
-}
-
-async function devSeedMistakeAnalytics(
-  now: number,
-  rnd: (min: number, max: number) => number,
-  studyTarget?: RuntimeStudyTarget,
-): Promise<void> {
+async function devSeedMistakeAnalytics(now: number, rnd: (min: number, max: number) => number): Promise<void> {
   const eventCount = rnd(12, 24);
   const phrasePool = [...DEV_PHRASES].sort(() => Math.random() - 0.5);
   const wordPool = [...DEV_WORDS].sort(() => Math.random() - 0.5);
@@ -752,7 +691,7 @@ async function devSeedMistakeAnalytics(
         tokenIndex: 0,
         expected: word.key,
         picked,
-      }, studyTarget);
+      });
       continue;
     }
 
@@ -768,7 +707,7 @@ async function devSeedMistakeAnalytics(
       expected: tokenText,
       picked,
       phraseId: `dev-${now}-${i}`,
-    }, studyTarget);
+    });
   }
 
   await flushMistakeLog();
@@ -778,12 +717,8 @@ async function devSeedMistakeAnalytics(
  * DEV ONLY — заполняет тренер случайным кол-вом элементов в каждый раздел.
  * Nextdue = сегодня (сразу видны в очереди).
  */
-export async function devSeedTrainer(studyTarget?: RuntimeStudyTarget): Promise<boolean> {
-  if (!canSeedEnglishDevTrainer(studyTarget)) {
-    return false;
-  }
-
-  const items = await load(studyTarget);
+export async function devSeedTrainer(): Promise<void> {
+  const items = await load();
   const now = Date.now();
   const todayMs = now; // nextDue в прошлом → сразу в очереди
 
@@ -849,9 +784,8 @@ export async function devSeedTrainer(studyTarget?: RuntimeStudyTarget): Promise<
     }
   }
 
-  await save(items, studyTarget);
-  await devSeedMistakeAnalytics(now, rnd, studyTarget);
-  return true;
+  await save(items);
+  await devSeedMistakeAnalytics(now, rnd);
 }
 
 function devItem(
@@ -867,21 +801,15 @@ function devItem(
 }
 
 /** DEV ONLY — deterministic scenarios for admin/maestro visual QA. */
-export async function devSeedTrainerScenario(
-  scenario: TrainerDevScenario,
-  studyTarget?: RuntimeStudyTarget,
-): Promise<boolean> {
+export async function devSeedTrainerScenario(scenario: TrainerDevScenario): Promise<void> {
   if (scenario === 'empty') {
-    await clearTrainerStore(studyTarget);
-    return true;
-  }
-  if (!canSeedEnglishDevTrainer(studyTarget)) {
-    return false;
+    await clearTrainerStore();
+    return;
   }
   if (scenario === 'random') {
-    await clearTrainerStore(studyTarget);
-    await devSeedTrainer(studyTarget);
-    return true;
+    await clearTrainerStore();
+    await devSeedTrainer();
+    return;
   }
 
   const now = Date.now();
@@ -924,9 +852,10 @@ export async function devSeedTrainerScenario(
     : scenario === 'hard'
       ? base.filter(item => item.mistakeCount >= 3)
       : base;
-  await save(items, studyTarget);
-  return true;
+  await save(items);
 }
 
 /* expo-router route shim */
 export default function __RouteShim() { return null; }
+
+

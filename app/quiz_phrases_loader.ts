@@ -22,7 +22,8 @@ export function getQuizPhrasesLoaded(
   lang: Lang = 'ru',
   studyTarget: QuizStudyTargetLang = 'en',
 ): QuizPhrase[] {
-  return quizData.getQuizPhrases(difficulty, count, lang, studyTarget);
+  if (studyTarget === 'fr') return [];
+  return quizData.getQuizPhrases(difficulty, count, lang);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

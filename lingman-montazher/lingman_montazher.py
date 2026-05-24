@@ -111,14 +111,17 @@ class SfxEvent:
 
 
 _WORD_RE = re.compile(r"[^\W_]+", flags=re.UNICODE)
-ENGLISH_PHRASE_RE = re.compile(r"\b[A-Za-z][A-Za-z' -]{2,62}[A-Za-z]\b")
+QUOTED_PHRASE_RE = re.compile(
+    r"(?:[\"“]([A-Za-z][A-Za-z' -]{2,62}?)[\"”])|"
+    r"(?:['‘]([A-Za-z][A-Za-z -]{2,62}?)['’])"
+)
 CORRECTION_PHRASE_RE = re.compile(
     r"\bnot\s+[A-Za-z][A-Za-z' -]{1,62}?,\s*but\s+"
     r"([A-Za-z][A-Za-z' -]{2,62}?)(?=[.!?,;:]|$)",
     flags=re.IGNORECASE,
 )
 MARKED_PHRASE_RE = re.compile(
-    r"\b(?:the\s+phrase\s+is|phrase\s+is|start\s+with|starts\s+with|with)\s+"
+    r"\b(?:the\s+phrase\s+is|phrase\s+is|start\s+with|starts\s+with)\s+"
     r"([A-Za-z][A-Za-z' -]{2,62}?)(?=[.!?,;:]|$)",
     flags=re.IGNORECASE,
 )
@@ -131,10 +134,10 @@ RULE_PHRASE_RE = re.compile(
     flags=re.IGNORECASE,
 )
 PRONOUN_BE_PHRASE_RE = re.compile(
-    r"\b("
+    r"\b((?:"
     r"I\s+am|I'm|you\s+are|you're|he\s+is|he's|she\s+is|she's|it\s+is|it's|"
     r"we\s+are|we're|they\s+are|they're"
-    r")\s+[A-Za-z][A-Za-z' -]{1,48}?(?=[.!?,;:]|$)",
+    r")\s+[A-Za-z][A-Za-z' -]{1,48}?)(?=[.!?,;:]|$)",
     flags=re.IGNORECASE,
 )
 _CONTENT_STOP_WORDS = frozenset(
@@ -568,16 +571,21 @@ def extract_english_phrases(text: str, preset: DirectorPreset) -> list[str]:
     phrases: list[str] = []
     seen: set[str] = set()
 
-    for pattern in (
-        CORRECTION_PHRASE_RE,
-        MARKED_PHRASE_RE,
-        MEANS_PHRASE_RE,
-        RULE_PHRASE_RE,
-        PRONOUN_BE_PHRASE_RE,
-        ENGLISH_PHRASE_RE,
-    ):
+    phrase_patterns = (
+        (CORRECTION_PHRASE_RE, (1,)),
+        (MARKED_PHRASE_RE, (1,)),
+        (MEANS_PHRASE_RE, (1,)),
+        (RULE_PHRASE_RE, (1,)),
+        (PRONOUN_BE_PHRASE_RE, (1,)),
+        (QUOTED_PHRASE_RE, (1, 2)),
+    )
+
+    for pattern, group_indexes in phrase_patterns:
         for match in pattern.finditer(text):
-            _add_unique_phrase(phrases, match.group(1 if pattern is not ENGLISH_PHRASE_RE else 0), preset, seen)
+            for group_index in group_indexes:
+                phrase = match.group(group_index)
+                if phrase:
+                    _add_unique_phrase(phrases, phrase, preset, seen)
 
     return phrases
 

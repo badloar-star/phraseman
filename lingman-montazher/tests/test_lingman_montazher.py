@@ -310,6 +310,42 @@ class LingmanMontazherTests(unittest.TestCase):
         self.assertTrue(all(event.role in {"phrase", "correction"} for event in events))
         json.dumps([asdict(event) for event in events])
 
+    def test_screen_text_selects_full_standalone_pronoun_be_phrase(self):
+        preset = montazher.load_preset(ROOT / "presets" / "default_director.json")
+        timeline = [
+            montazher.TimelineClip(
+                segment_id="seg_0001",
+                source_start=0.0,
+                source_end=2.0,
+                output_start=0.0,
+                output_end=2.0,
+                text="I am ready.",
+            )
+        ]
+
+        events = montazher.select_screen_text_events(timeline, preset)
+
+        self.assertEqual([event.text for event in events], ["I am ready"])
+        self.assertTrue(all(event.duration >= preset.min_screen_text_duration for event in events))
+        self.assertTrue(all(0.0 <= event.start < event.end <= timeline[-1].output_end for event in events))
+
+    def test_screen_text_ignores_unmarked_explanatory_narration(self):
+        preset = montazher.load_preset(ROOT / "presets" / "default_director.json")
+        timeline = [
+            montazher.TimelineClip(
+                segment_id="seg_0001",
+                source_start=0.0,
+                source_end=5.0,
+                output_start=0.0,
+                output_end=5.0,
+                text="This is a normal explanatory sentence with many words but no quoted phrase.",
+            )
+        ]
+
+        events = montazher.select_screen_text_events(timeline, preset)
+
+        self.assertEqual(events, [])
+
     def test_sfx_events_are_inside_timeline(self):
         preset = montazher.load_preset(ROOT / "presets" / "default_director.json")
         segments = [

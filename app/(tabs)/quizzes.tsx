@@ -128,6 +128,179 @@ type Phrase = QuizPhrase;
 type LegacyQuizThemeMode = 'light' | 'ocean' | 'sakura';
 type QuizVisualThemeMode = ThemeMode | LegacyQuizThemeMode;
 
+const EMERGENCY_QUIZ_PHRASES: Phrase[] = [
+  {
+    ru: 'Она живет в большом городе',
+    uk: 'Вона живе у великому місті',
+    es: 'Ella vive en una ciudad grande',
+    choices: ['She lives in a big city.', 'She live in a big city.', 'She living in a big city.', 'She lives on a big city.'],
+    correct: 0,
+    answer: 'She lives in a big city.',
+    explanations: [
+      'Верно: with he/she/it in Present Simple we add -s to the verb.',
+      'После she нужен глагол lives, не live.',
+      'Living без is не образует обычное предложение.',
+      'Для города используем in, не on.',
+    ],
+    explanationsUK: [
+      'Правильно: з he/she/it у Present Simple додаємо -s до дієслова.',
+      'Після she потрібне lives, не live.',
+      'Living без is не утворює звичайне речення.',
+      'Для міста використовуємо in, не on.',
+    ],
+    explanationsES: [
+      'Correcto: con he/she/it en Present Simple añadimos -s al verbo.',
+      'Después de she hace falta lives, no live.',
+      'Living sin is no forma una oración normal.',
+      'Para una ciudad usamos in, no on.',
+    ],
+    sourceLocale: 'ru',
+    sourceText: 'Она живет в большом городе',
+    lessonNum: 1,
+    level: 'A1',
+    quizItemType: 'emergency_builtin',
+  },
+  {
+    ru: 'Я вчера играл в футбол',
+    uk: 'Я вчора грав у футбол',
+    es: 'Ayer jugué al fútbol',
+    choices: ['Yesterday I played football.', 'Yesterday I play football.', 'Yesterday I am played football.', 'Yesterday I pray football.'],
+    correct: 0,
+    answer: 'Yesterday I played football.',
+    explanations: [
+      'Верно: yesterday требует Past Simple, поэтому played.',
+      'Play в настоящем времени не подходит к yesterday.',
+      'Am played не используется для Past Simple.',
+      'Pray означает молиться, не играть.',
+    ],
+    explanationsUK: [
+      'Правильно: yesterday вимагає Past Simple, тому played.',
+      'Play у теперішньому часі не підходить до yesterday.',
+      'Am played не використовується для Past Simple.',
+      'Pray означає молитися, не грати.',
+    ],
+    explanationsES: [
+      'Correcto: yesterday pide Past Simple, por eso played.',
+      'Play en presente no encaja con yesterday.',
+      'Am played no se usa para Past Simple.',
+      'Pray significa rezar, no jugar.',
+    ],
+    sourceLocale: 'ru',
+    sourceText: 'Я вчера играл в футбол',
+    lessonNum: 2,
+    level: 'A1',
+    quizItemType: 'emergency_builtin',
+  },
+  {
+    ru: 'Мы не пьем кофе вечером',
+    uk: 'Ми не п’ємо каву ввечері',
+    es: 'No bebemos café por la noche',
+    choices: ["We don't drink coffee in the evening.", "We doesn't drink coffee in the evening.", "We not drink coffee in the evening.", "We don't drinks coffee in the evening."],
+    correct: 0,
+    answer: "We don't drink coffee in the evening.",
+    explanations: [
+      'Верно: с we используем do not / don’t и базовую форму drink.',
+      'Doesn’t используется с he/she/it, не с we.',
+      'В отрицании нужен вспомогательный do.',
+      'После don’t глагол остается без -s: drink.',
+    ],
+    explanationsUK: [
+      'Правильно: з we використовуємо do not / don’t і базову форму drink.',
+      'Doesn’t використовується з he/she/it, не з we.',
+      'У запереченні потрібне допоміжне do.',
+      'Після don’t дієслово без -s: drink.',
+    ],
+    explanationsES: [
+      'Correcto: con we usamos do not / don’t y la forma base drink.',
+      'Doesn’t se usa con he/she/it, no con we.',
+      'En la negación hace falta do.',
+      'Después de don’t el verbo va sin -s: drink.',
+    ],
+    sourceLocale: 'ru',
+    sourceText: 'Мы не пьем кофе вечером',
+    lessonNum: 3,
+    level: 'A1',
+    quizItemType: 'emergency_builtin',
+  },
+  {
+    ru: 'Ты можешь помочь мне?',
+    uk: 'Ти можеш допомогти мені?',
+    es: '¿Puedes ayudarme?',
+    choices: ['Can you help me?', 'Can you helps me?', 'Do you can help me?', 'Can you to help me?'],
+    correct: 0,
+    answer: 'Can you help me?',
+    explanations: [
+      'Верно: после can идет базовая форма help.',
+      'После can не добавляем -s.',
+      'Can сам образует вопрос, do не нужен.',
+      'После can не ставим to перед глаголом.',
+    ],
+    explanationsUK: [
+      'Правильно: після can іде базова форма help.',
+      'Після can не додаємо -s.',
+      'Can сам утворює питання, do не потрібен.',
+      'Після can не ставимо to перед дієсловом.',
+    ],
+    explanationsES: [
+      'Correcto: después de can va la forma base help.',
+      'Después de can no añadimos -s.',
+      'Can ya forma la pregunta; do no hace falta.',
+      'Después de can no ponemos to antes del verbo.',
+    ],
+    sourceLocale: 'ru',
+    sourceText: 'Ты можешь помочь мне?',
+    lessonNum: 4,
+    level: 'A1',
+    quizItemType: 'emergency_builtin',
+  },
+  {
+    ru: 'Он сейчас читает книгу',
+    uk: 'Він зараз читає книгу',
+    es: 'Ahora está leyendo un libro',
+    choices: ['He is reading a book now.', 'He reads a book now.', 'He reading a book now.', 'He is read a book now.'],
+    correct: 0,
+    answer: 'He is reading a book now.',
+    explanations: [
+      'Верно: now часто требует Present Continuous: is reading.',
+      'Reads описывает привычку, не действие прямо сейчас.',
+      'Reading нужно с is.',
+      'После is нужна форма -ing: reading.',
+    ],
+    explanationsUK: [
+      'Правильно: now часто вимагає Present Continuous: is reading.',
+      'Reads описує звичку, не дію прямо зараз.',
+      'Reading потрібно з is.',
+      'Після is потрібна форма -ing: reading.',
+    ],
+    explanationsES: [
+      'Correcto: now suele pedir Present Continuous: is reading.',
+      'Reads describe un hábito, no una acción ahora mismo.',
+      'Reading necesita is.',
+      'Después de is va la forma -ing: reading.',
+    ],
+    sourceLocale: 'ru',
+    sourceText: 'Он сейчас читает книгу',
+    lessonNum: 5,
+    level: 'A1',
+    quizItemType: 'emergency_builtin',
+  },
+];
+
+function emergencyQuizPhrases(count = 10): Phrase[] {
+  return Array.from({ length: count }, (_, index) => {
+    const phrase = EMERGENCY_QUIZ_PHRASES[index % EMERGENCY_QUIZ_PHRASES.length]!;
+    return {
+      ...phrase,
+      choices: [...phrase.choices],
+      explanations: [...phrase.explanations],
+      explanationsUK: [...phrase.explanationsUK],
+      explanationsES: [...phrase.explanationsES],
+      sourceExplanations: [...phrase.explanations],
+      questionId: `emergency_builtin_${index + 1}`,
+    };
+  });
+}
+
 function quizExplanationIndexForAnswer(phrase: Phrase, chosen: number | null, typedOk: boolean | null): number {
   if (chosen !== null) return chosen;
   if (typedOk === true) return quizPrimaryCorrectIndex(phrase.correct);
@@ -1208,10 +1381,14 @@ function QuizGame({
 
   const [retryCount, setRetryCount] = useState(0);
 
-  const phrases = useMemo((): Phrase[] => {
+  const loadedPhrases = useMemo((): Phrase[] => {
     if (!quizBankAvailable) {
       return [];
     }
+
+    const nonEmpty = (items: Phrase[]) => items.length > 0 ? items : emergencyQuizPhrases(10);
+    const standardLevelPhrases = () => nonEmpty(getQuizPhrasesLoaded(level, 10, lang, studyTarget));
+
     try {
       if (thematicCategoryId) {
         const result = getThematicQuizPhrases(thematicCategoryId, {
@@ -1219,15 +1396,19 @@ function QuizGame({
           studyTarget,
           level: 'A1',
         });
-        return result.length > 0 ? result : [];
+        return result.length > 0 ? result : standardLevelPhrases();
       }
-      const result = getQuizPhrasesLoaded(level, 10, lang, studyTarget);
-      return result.length > 0 ? result : [];
+      return standardLevelPhrases();
     } catch (e) {
       DebugLogger.error('quizzes.tsx:loadPhrases', e, 'warning');
-      return [];
+      try {
+        return standardLevelPhrases();
+      } catch {
+        return emergencyQuizPhrases(10);
+      }
     }
   }, [lang, level, quizBankAvailable, retryCount, studyTarget, thematicCategoryId]);
+  const phrases = loadedPhrases.length > 0 || !quizBankAvailable ? loadedPhrases : emergencyQuizPhrases(10);
 
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
   const { speak: speakAudio, stop: stopAudio } = useAudio();
@@ -1507,14 +1688,14 @@ function QuizGame({
           <View style={{ flex:1, justifyContent:'center', alignItems:'center', paddingHorizontal:24 }}>
             <Text style={{ color:onGradMuted, fontSize: f.body, lineHeight: f.body * 1.35, textAlign:'center' }}>
               {triLang(lang, {
-  ru: 'Вопросы временно недоступны',
-  uk: 'Питання тимчасово недоступні',
-  es: 'No hay preguntas disponibles por ahora.',
-  "pt-BR": 'As perguntas estão temporariamente indisponíveis.',
-  vi: 'Hiện chưa có câu hỏi.',
-  id: 'Pertanyaan sementara tidak tersedia.',
-  tr: 'Sorular şu anda kullanılamıyor.',
-  pl: 'Pytania są chwilowo niedostępne.',
+  ru: 'Запускаю квиз...',
+  uk: 'Запускаю квіз...',
+  es: 'Iniciando quiz...',
+  "pt-BR": 'Iniciando quiz...',
+  vi: 'Đang mở quiz...',
+  id: 'Memulai kuis...',
+  tr: 'Quiz başlatılıyor...',
+  pl: 'Uruchamiam quiz...',
 })}
             </Text>
           </View>

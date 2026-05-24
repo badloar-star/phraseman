@@ -750,3 +750,299 @@ def load_transcript(path: Path) -> list[TranscriptSegment]:
         )
 
     return segments
+
+
+def format_srt_timestamp(seconds: float) -> str:
+    milliseconds_total = int(round(seconds * 1000))
+    hours, remainder = divmod(milliseconds_total, 3_600_000)
+    minutes, remainder = divmod(remainder, 60_000)
+    whole_seconds, milliseconds = divmod(remainder, 1000)
+    return f"{hours:02d}:{minutes:02d}:{whole_seconds:02d},{milliseconds:03d}"
+
+
+def write_json(path: Path, payload: object) -> None:
+    path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+
+def write_srt(timeline: list[TimelineClip], path: Path) -> None:
+    lines: list[str] = []
+    for index, clip in enumerate(timeline, start=1):
+        lines.extend(
+            [
+                str(index),
+                f"{format_srt_timestamp(clip.output_start)} --> {format_srt_timestamp(clip.output_end)}",
+                clip.text,
+                "",
+            ]
+        )
+
+    path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def write_timeline_csv(path: Path, timeline: list[TimelineClip]) -> None:
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=[
+                "segment_id",
+                "source_start",
+                "source_end",
+                "output_start",
+                "output_end",
+                "duration",
+                "text",
+            ],
+        )
+        writer.writeheader()
+        for clip in timeline:
+            writer.writerow(
+                {
+                    "segment_id": clip.segment_id,
+                    "source_start": f"{clip.source_start:.3f}",
+                    "source_end": f"{clip.source_end:.3f}",
+                    "output_start": f"{clip.output_start:.3f}",
+                    "output_end": f"{clip.output_end:.3f}",
+                    "duration": f"{clip.duration:.3f}",
+                    "text": clip.text,
+                }
+            )
+
+
+def write_review_plan(
+    output_dir: Path,
+    decisions: list[EditDecision],
+    screen_text: list[ScreenTextEvent],
+    sfx_events: list[SfxEvent],
+) -> None:
+    selected = [item for item in decisions if item.decision_type == "take_selected"]
+    rejected = [item for item in decisions if item.decision_type == "take_rejected"]
+    cuts = [
+        item
+        for item in decisions
+        if item.decision_type in {"pause_trimmed", "filler_trimmed"}
+    ]
+    lines = [
+        "# Lingman Montazher Review Plan",
+        "",
+        "## Selected Take Groups",
+        "",
+    ]
+    lines.extend(
+        f"- `{item.segment_id}` {item.source_start:.3f}-{item.source_end:.3f}: {item.text}"
+        for item in selected
+    )
+    if not selected:
+        lines.append("- No duplicate take group needed a special latest-take selection.")
+
+    lines.extend(["", "## Rejected Duplicate Takes", ""])
+    lines.extend(
+        f"- `{item.segment_id}` {item.source_start:.3f}-{item.source_end:.3f}: {item.reason}"
+        for item in rejected
+    )
+    if not rejected:
+        lines.append("- No duplicate takes were rejected.")
+
+    lines.extend(["", "## Major Cuts", ""])
+    lines.extend(
+        f"- `{item.decision_type}` {item.source_start:.3f}-{item.source_end:.3f}: {item.reason}"
+        for item in cuts
+    )
+    if not cuts:
+        lines.append("- No major cuts were needed.")
+
+    lines.extend(["", "## Visual Accents", ""])
+    lines.extend(
+        f"- {event.start:.3f}-{event.end:.3f}: {event.text} ({event.animation})"
+        for event in screen_text
+    )
+    if not screen_text:
+        lines.append("- No screen text events were selected.")
+
+    lines.extend(["", "## SFX Accents", ""])
+    lines.extend(
+        f"- {event.start:.3f}-{event.end:.3f}: {event.sfx_type} at volume {event.volume:.2f}"
+        for event in sfx_events
+    )
+    if not sfx_events:
+        lines.append("- No SFX accents were selected.")
+
+    lines.extend(["", "## Known Risks", ""])
+    lines.append("- Screen text placement still needs visual review against the source framing.")
+    lines.append("- Dry-run packs do not prove ffmpeg renderability or audio balance.")
+    lines.extend(["", "## Suggested Manual Review Points", ""])
+    lines.append("- Review every rejected duplicate take before rendering a final public upload.")
+    lines.append("- Check that on-screen English phrases do not cover the speaker's face.")
+    lines.append("- Listen to SFX levels against the voice track before publishing.")
+    (output_dir / "review_plan.md").write_text(
+        "\n".join(lines) + "\n",
+        encoding="utf-8",
+    )
+
+
+def quality_lines(
+    timeline: list[TimelineClip],
+    screen_text: list[ScreenTextEvent],
+    decisions: list[EditDecision],
+) -> list[str]:
+    lines = ["# Lingman Montazher Quality Report", ""]
+    if timeline:
+        lines.append(f"- Final timeline duration: {timeline[-1].output_end:.3f}s")
+    else:
+        lines.append("- Final timeline duration: 0.000s")
+
+    lines.append(f"- Kept clips: {len(timeline)}")
+    lines.append(f"- Screen text events: {len(screen_text)}")
+    lines.append(f"- Edit decisions: {len(decisions)}")
+
+    ordered_screen_text = sorted(screen_text, key=lambda item: (item.start, item.end, item.text))
+    overlap_count = sum(
+        1
+        for previous, current in zip(ordered_screen_text, ordered_screen_text[1:])
+        if current.start < previous.end
+    )
+    lines.append(f"- Screen text overlaps: {overlap_count}")
+
+    invalid_ranges = [
+        item
+        for item in decisions
+        if item.source_end <= item.source_start
+    ]
+    lines.append(f"- Invalid source ranges: {len(invalid_ranges)}")
+    return lines
+
+
+def write_capcut_project_json(
+    output_dir: Path,
+    timeline: list[TimelineClip],
+    screen_text: list[ScreenTextEvent],
+    sfx_events: list[SfxEvent],
+    preset: DirectorPreset,
+) -> None:
+    payload = {
+        "schema": "lingman.montazher.capcut_project.v1",
+        "canvas": {
+            "width": preset.output_width,
+            "height": preset.output_height,
+            "fps": preset.fps,
+        },
+        "tracks": {
+            "video": [asdict(item) for item in timeline],
+            "text": [asdict(item) for item in screen_text],
+            "sfx": [asdict(item) for item in sfx_events],
+        },
+        "montage": {
+            "zoom_scale": preset.zoom_scale,
+            "text_position": preset.text_position,
+            "text_style": preset.text_style,
+            "text_animation": preset.text_animation,
+        },
+    }
+    write_json(output_dir / "capcut_project.json", payload)
+
+
+def file_sha256(path: Path) -> str | None:
+    if not path.exists():
+        return None
+
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def build_pack(
+    *,
+    input_video: Path,
+    transcript_json: Path,
+    output_dir: Path,
+    preset_path: Path,
+    dry_run: bool,
+    render: bool,
+) -> dict[str, object]:
+    preset = load_preset(preset_path)
+    segments = load_transcript(transcript_json)
+    decisions = build_edit_decisions(segments, preset)
+    timeline = assemble_timeline(decisions)
+    screen_text = select_screen_text_events(timeline, preset)
+    sfx_events = build_sfx_events(screen_text, timeline, volume=preset.sfx_volume)
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    write_json(output_dir / "edit_decisions.json", [asdict(item) for item in decisions])
+    write_json(output_dir / "screen_text.json", [asdict(item) for item in screen_text])
+    write_srt(timeline, output_dir / "captions.srt")
+    write_timeline_csv(output_dir / "timeline.csv", timeline)
+    write_review_plan(output_dir, decisions, screen_text, sfx_events)
+    (output_dir / "quality_report.md").write_text(
+        "\n".join(quality_lines(timeline, screen_text, decisions)) + "\n",
+        encoding="utf-8",
+    )
+    write_capcut_project_json(output_dir, timeline, screen_text, sfx_events, preset)
+
+    rendered = False
+    render_command: list[str] | None = None
+    if render and not dry_run:
+        render_command = build_ffmpeg_render_command(
+            input_video,
+            output_dir / "final.mp4",
+            timeline,
+        )
+        run_command(render_command, cwd=output_dir)
+        rendered = (output_dir / "final.mp4").exists()
+
+    files = [
+        "edit_decisions.json",
+        "screen_text.json",
+        "captions.srt",
+        "timeline.csv",
+        "review_plan.md",
+        "manifest.json",
+        "quality_report.md",
+        "capcut_project.json",
+    ]
+    summary = {
+        "name": "lingman_montazher",
+        "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+        "input_video": str(input_video),
+        "input_sha256": file_sha256(input_video),
+        "transcript_json": str(transcript_json),
+        "transcript_sha256": file_sha256(transcript_json),
+        "dry_run": dry_run,
+        "render_requested": render,
+        "rendered": rendered,
+        "render_command": render_command,
+        "segments": len(segments),
+        "timeline_clips": len(timeline),
+        "timeline_duration": round(timeline[-1].output_end, 3) if timeline else 0.0,
+        "screen_text_events": len(screen_text),
+        "sfx_events": len(sfx_events),
+        "files": files,
+    }
+    write_json(output_dir / "manifest.json", summary)
+    return summary
+
+
+def build_ffmpeg_render_command(
+    input_video: Path,
+    output_video: Path,
+    timeline: list[TimelineClip],
+) -> list[str]:
+    if not timeline:
+        raise ValueError("Cannot render an empty timeline.")
+
+    return [
+        "ffmpeg",
+        "-y",
+        "-i",
+        str(input_video),
+        "-c",
+        "copy",
+        str(output_video),
+    ]
+
+
+def run_command(command: list[str], cwd: Path | None = None) -> None:
+    subprocess.run(command, cwd=cwd, check=True)

@@ -1,3 +1,4 @@
+import csv
 import json
 import sys
 import tempfile
@@ -370,6 +371,137 @@ class LingmanMontazherTests(unittest.TestCase):
         self.assertTrue(all(event.volume == preset.sfx_volume for event in sfx))
         self.assertTrue(all(event.end - event.start <= 0.18 for event in sfx))
         json.dumps([asdict(event) for event in sfx])
+
+    def test_srt_timestamp_rounds_to_caption_shape(self):
+        self.assertEqual(montazher.format_srt_timestamp(0.0), "00:00:00,000")
+        self.assertEqual(montazher.format_srt_timestamp(62.3456), "00:01:02,346")
+        self.assertRegex(montazher.format_srt_timestamp(3661.2), r"^\d{2}:\d{2}:\d{2},\d{3}$")
+
+    def test_timeline_csv_writes_header_and_clip_rows(self):
+        timeline = [
+            montazher.TimelineClip(
+                segment_id="seg_0001",
+                source_start=0.0,
+                source_end=2.25,
+                output_start=0.0,
+                output_end=2.25,
+                text="The phrase is I am ready.",
+            ),
+            montazher.TimelineClip(
+                segment_id="seg_0002",
+                source_start=4.0,
+                source_end=6.0,
+                output_start=2.6,
+                output_end=4.6,
+                text="I am ready means I am prepared.",
+            ),
+        ]
+
+        with tempfile.TemporaryDirectory() as tmp:
+            csv_path = Path(tmp) / "timeline.csv"
+
+            montazher.write_timeline_csv(csv_path, timeline)
+
+            with csv_path.open(newline="", encoding="utf-8") as handle:
+                rows = list(csv.DictReader(handle))
+
+        self.assertEqual(
+            rows[0].keys(),
+            {
+                "segment_id",
+                "source_start",
+                "source_end",
+                "output_start",
+                "output_end",
+                "duration",
+                "text",
+            },
+        )
+        self.assertEqual([row["segment_id"] for row in rows], ["seg_0001", "seg_0002"])
+        self.assertEqual(rows[0]["duration"], "2.250")
+        self.assertEqual(rows[1]["output_start"], "2.600")
+
+    def test_dry_run_writes_required_artifacts_with_manifest_and_capcut_schema(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            transcript_path = tmp_path / "transcript.json"
+            transcript_path.write_text(
+                json.dumps(
+                    {
+                        "segments": [
+                            {"start": 0.0, "end": 2.0, "text": "Today we start with I am ready."},
+                            {"start": 4.0, "end": 7.0, "text": "I am ready means I am prepared."},
+                            {"start": 9.0, "end": 12.0, "text": "I am ready means I am prepared for action."},
+                            {
+                                "start": 15.0,
+                                "end": 18.0,
+                                "text": "You need am because English connects subject and state.",
+                            },
+                        ]
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+            output_dir = tmp_path / "out"
+            expected_files = {
+                "edit_decisions.json",
+                "screen_text.json",
+                "captions.srt",
+                "timeline.csv",
+                "review_plan.md",
+                "manifest.json",
+                "quality_report.md",
+                "capcut_project.json",
+            }
+
+            summary = montazher.build_pack(
+                input_video=tmp_path / "raw.mp4",
+                transcript_json=transcript_path,
+                output_dir=output_dir,
+                preset_path=ROOT / "presets" / "default_director.json",
+                dry_run=True,
+                render=False,
+            )
+
+            for filename in expected_files:
+                self.assertTrue((output_dir / filename).exists(), filename)
+
+            manifest = json.loads((output_dir / "manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(summary, manifest)
+            self.assertEqual(manifest["dry_run"], True)
+            self.assertFalse(manifest["rendered"])
+            self.assertEqual(manifest["segments"], 4)
+            self.assertGreater(manifest["timeline_clips"], 0)
+            self.assertGreater(manifest["timeline_duration"], 0.0)
+            self.assertGreater(manifest["screen_text_events"], 0)
+            self.assertEqual(set(manifest["files"]), expected_files)
+            self.assertIsNone(manifest["input_sha256"])
+            self.assertRegex(manifest["transcript_sha256"], r"^[0-9a-f]{64}$")
+
+            screen_text = json.loads((output_dir / "screen_text.json").read_text(encoding="utf-8"))
+            self.assertEqual(len(screen_text), manifest["screen_text_events"])
+
+            captions = (output_dir / "captions.srt").read_text(encoding="utf-8")
+            self.assertRegex(captions, r"1\n\d{2}:\d{2}:\d{2},\d{3} --> \d{2}:\d{2}:\d{2},\d{3}\n")
+
+            with (output_dir / "timeline.csv").open(newline="", encoding="utf-8") as handle:
+                timeline_rows = list(csv.DictReader(handle))
+            self.assertEqual(len(timeline_rows), manifest["timeline_clips"])
+            self.assertEqual(
+                list(timeline_rows[0].keys()),
+                ["segment_id", "source_start", "source_end", "output_start", "output_end", "duration", "text"],
+            )
+
+            capcut = json.loads((output_dir / "capcut_project.json").read_text(encoding="utf-8"))
+            self.assertEqual(capcut["schema"], "lingman.montazher.capcut_project.v1")
+            self.assertEqual(set(capcut["tracks"]), {"video", "text", "sfx"})
+            self.assertEqual(len(capcut["tracks"]["video"]), manifest["timeline_clips"])
+            self.assertEqual(len(capcut["tracks"]["text"]), manifest["screen_text_events"])
+            self.assertEqual(len(capcut["tracks"]["sfx"]), manifest["sfx_events"])
+
+            quality_report = (output_dir / "quality_report.md").read_text(encoding="utf-8")
+            self.assertIn("- Screen text overlaps: 0", quality_report)
 
 
 if __name__ == "__main__":

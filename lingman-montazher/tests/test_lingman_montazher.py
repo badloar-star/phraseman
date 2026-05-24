@@ -2,6 +2,7 @@ import json
 import sys
 import tempfile
 import unittest
+from dataclasses import asdict
 from pathlib import Path
 
 
@@ -151,6 +152,59 @@ class LingmanMontazherTests(unittest.TestCase):
         self.assertEqual([item.segment_id for item in rejected], ["seg_0001"])
         self.assertIn("latest complete take", selected[0].reason)
 
+        kept = [item.segment_id for item in decisions if item.decision_type == "keep"]
+        self.assertEqual(kept, ["seg_0003"])
+        json.dumps([asdict(item) for item in decisions])
+
+    def test_later_complete_take_rejects_false_start_attempt(self):
+        preset = montazher.load_preset(ROOT / "presets" / "default_director.json")
+        segments = [
+            montazher.TranscriptSegment("seg_0001", 0.0, 0.8, "I am ready means"),
+            montazher.TranscriptSegment("seg_0002", 3.0, 6.0, "I am ready means I am prepared now."),
+        ]
+
+        decisions = montazher.build_edit_decisions(segments, preset)
+
+        self.assertFalse(montazher.is_complete_take(segments[0], preset))
+        self.assertTrue(montazher.is_complete_take(segments[1], preset))
+        self.assertEqual(
+            [item.segment_id for item in decisions if item.decision_type == "take_selected"],
+            ["seg_0002"],
+        )
+        self.assertEqual(
+            [item.segment_id for item in decisions if item.decision_type == "take_rejected"],
+            ["seg_0001"],
+        )
+        self.assertEqual(
+            [item.segment_id for item in decisions if item.decision_type == "keep"],
+            ["seg_0002"],
+        )
+
+    def test_reset_marker_uses_token_boundary_phrase_matching(self):
+        preset = montazher.load_preset(ROOT / "presets" / "default_director.json")
+        segments = [
+            montazher.TranscriptSegment("seg_0001", 0.0, 0.6, "wrong take!"),
+            montazher.TranscriptSegment(
+                "seg_0002",
+                2.0,
+                5.0,
+                "The wrong takeaway is that I am ready means I am prepared.",
+            ),
+        ]
+
+        decisions = montazher.build_edit_decisions(segments, preset)
+
+        self.assertTrue(montazher.is_reset_segment(segments[0], preset))
+        self.assertFalse(montazher.is_reset_segment(segments[1], preset))
+        self.assertEqual(
+            [item.segment_id for item in decisions if item.decision_type == "filler_trimmed"],
+            ["seg_0001"],
+        )
+        self.assertEqual(
+            [item.segment_id for item in decisions if item.decision_type == "keep"],
+            ["seg_0002"],
+        )
+
     def test_reset_marker_and_long_gap_are_cut(self):
         preset = montazher.load_preset(ROOT / "presets" / "default_director.json")
         segments = [
@@ -165,6 +219,29 @@ class LingmanMontazherTests(unittest.TestCase):
         self.assertIn("pause_trimmed", cut_types)
         self.assertIn("filler_trimmed", cut_types)
         self.assertTrue(any(item.segment_id == "seg_0002" for item in decisions if item.decision_type == "filler_trimmed"))
+        self.assertEqual(
+            [item.segment_id for item in decisions if item.decision_type == "keep"],
+            ["seg_0001", "seg_0003"],
+        )
+
+    def test_pause_trim_uses_kept_timeline_after_reset_cut(self):
+        preset = montazher.load_preset(ROOT / "presets" / "default_director.json")
+        segments = [
+            montazher.TranscriptSegment("seg_0001", 0.0, 2.0, "Today we start with I am ready."),
+            montazher.TranscriptSegment("seg_0002", 4.0, 4.8, "заново"),
+            montazher.TranscriptSegment("seg_0003", 7.0, 9.0, "I am ready means Я готов."),
+        ]
+
+        decisions = montazher.build_edit_decisions(segments, preset)
+        pause_trimmed = [item for item in decisions if item.decision_type == "pause_trimmed"]
+
+        self.assertEqual([item.segment_id for item in pause_trimmed], ["seg_0001->seg_0003"])
+        self.assertAlmostEqual(pause_trimmed[0].source_start, 3.6)
+        self.assertAlmostEqual(pause_trimmed[0].source_end, 7.0)
+        self.assertEqual(
+            [item.segment_id for item in decisions if item.decision_type == "keep"],
+            ["seg_0001", "seg_0003"],
+        )
 
 
 if __name__ == "__main__":

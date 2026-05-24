@@ -149,9 +149,23 @@ def take_group_key(segment_or_text: TranscriptSegment | str, preset: DirectorPre
     return " ".join(tokens[:6])
 
 
+def _contains_token_phrase(text_tokens: list[str], marker_tokens: list[str]) -> bool:
+    if not marker_tokens or len(marker_tokens) > len(text_tokens):
+        return False
+
+    marker_length = len(marker_tokens)
+    return any(
+        text_tokens[index : index + marker_length] == marker_tokens
+        for index in range(len(text_tokens) - marker_length + 1)
+    )
+
+
 def is_reset_segment(segment: TranscriptSegment, preset: DirectorPreset) -> bool:
-    text = segment.text.casefold()
-    return any(marker.casefold() in text for marker in preset.reset_markers)
+    text_tokens = _word_tokens(segment.text)
+    return any(
+        _contains_token_phrase(text_tokens, _word_tokens(marker))
+        for marker in preset.reset_markers
+    )
 
 
 def is_complete_take(segment: TranscriptSegment, preset: DirectorPreset) -> bool:
@@ -162,37 +176,84 @@ def is_complete_take(segment: TranscriptSegment, preset: DirectorPreset) -> bool
     )
 
 
+def _take_keys_match(left: str, right: str) -> bool:
+    left_tokens = left.split()
+    right_tokens = right.split()
+    if not left_tokens or not right_tokens:
+        return False
+
+    if len(left_tokens) <= len(right_tokens):
+        return right_tokens[: len(left_tokens)] == left_tokens
+    return left_tokens[: len(right_tokens)] == right_tokens
+
+
+def _merge_take_group_key(left: str, right: str) -> str:
+    if len(right.split()) > len(left.split()):
+        return right
+    return left
+
+
+def _latest_complete_take(
+    group: Iterable[TranscriptSegment], preset: DirectorPreset
+) -> TranscriptSegment | None:
+    complete_takes = [
+        segment
+        for segment in group
+        if is_complete_take(segment, preset)
+    ]
+    if not complete_takes:
+        return None
+
+    return max(complete_takes, key=lambda item: (item.start, item.end, item.segment_id))
+
+
 def group_duplicate_takes(
     segments: Iterable[TranscriptSegment], preset: DirectorPreset
 ) -> list[list[TranscriptSegment]]:
-    candidates_by_key: dict[str, list[TranscriptSegment]] = {}
+    candidate_groups: list[list[TranscriptSegment]] = []
+    group_keys: list[str] = []
+
     for segment in sorted(segments, key=lambda item: (item.start, item.end, item.segment_id)):
-        if not is_complete_take(segment, preset):
+        if is_reset_segment(segment, preset):
             continue
 
         key = take_group_key(segment, preset)
-        if key:
-            candidates_by_key.setdefault(key, []).append(segment)
+        if not key:
+            continue
 
-    duplicate_groups: list[list[TranscriptSegment]] = []
-    for candidates in candidates_by_key.values():
-        current_group: list[TranscriptSegment] = []
-        for segment in candidates:
-            if (
-                not current_group
-                or segment.start - current_group[-1].start <= preset.max_duplicate_gap_seconds
-            ):
-                current_group.append(segment)
+        target_index: int | None = None
+        for index in range(len(candidate_groups) - 1, -1, -1):
+            if segment.start - candidate_groups[index][-1].start > preset.max_duplicate_gap_seconds:
                 continue
+            if _take_keys_match(group_keys[index], key):
+                target_index = index
+                break
 
-            if len(current_group) > 1:
-                duplicate_groups.append(current_group)
-            current_group = [segment]
+        if target_index is None:
+            candidate_groups.append([segment])
+            group_keys.append(key)
+            continue
 
-        if len(current_group) > 1:
-            duplicate_groups.append(current_group)
+        candidate_groups[target_index].append(segment)
+        group_keys[target_index] = _merge_take_group_key(group_keys[target_index], key)
 
-    return duplicate_groups
+    selection_groups: list[list[TranscriptSegment]] = []
+    for group in candidate_groups:
+        latest_complete = _latest_complete_take(group, preset)
+        if latest_complete is None:
+            continue
+
+        latest_key = (latest_complete.start, latest_complete.end, latest_complete.segment_id)
+        selection_group = [
+            segment
+            for segment in group
+            if segment.segment_id == latest_complete.segment_id
+            or (segment.start, segment.end, segment.segment_id) < latest_key
+        ]
+        if len(selection_group) > 1:
+            selection_groups.append(selection_group)
+
+    return selection_groups
 
 
 def _build_output_ranges(
@@ -248,7 +309,7 @@ def build_edit_decisions(
 
     decisions: list[EditDecision] = []
 
-    for previous_segment, segment in zip(ordered_segments, ordered_segments[1:]):
+    for previous_segment, segment in zip(kept_segments, kept_segments[1:]):
         source_gap = segment.start - previous_segment.end
         if source_gap <= preset.pause_cut_seconds:
             continue

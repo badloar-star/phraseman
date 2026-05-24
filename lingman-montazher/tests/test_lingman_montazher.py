@@ -1,8 +1,10 @@
 import csv
+import io
 import json
 import sys
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from dataclasses import asdict
 from pathlib import Path
 
@@ -420,6 +422,73 @@ class LingmanMontazherTests(unittest.TestCase):
         self.assertEqual([row["segment_id"] for row in rows], ["seg_0001", "seg_0002"])
         self.assertEqual(rows[0]["duration"], "2.250")
         self.assertEqual(rows[1]["output_start"], "2.600")
+
+    def test_ffmpeg_command_uses_valid_source_ranges_and_codecs(self):
+        timeline = [
+            montazher.TimelineClip("seg_0001", 0.0, 2.0, 0.0, 2.0, "I am ready."),
+            montazher.TimelineClip("seg_0002", 4.0, 6.5, 2.0, 4.5, "This is the second clip."),
+        ]
+
+        command = montazher.build_ffmpeg_render_command(Path("raw.mp4"), Path("final.mp4"), timeline)
+        command_text = " ".join(command)
+
+        self.assertIn("trim=start=0.000:end=2.000", command_text)
+        self.assertIn("atrim=start=0.000:end=2.000", command_text)
+        self.assertIn("trim=start=4.000:end=6.500", command_text)
+        self.assertIn("atrim=start=4.000:end=6.500", command_text)
+        self.assertIn("concat=n=2:v=1:a=1", command_text)
+        self.assertIn("[outv]", command)
+        self.assertIn("[outa]", command)
+        self.assertIn("libx264", command)
+        self.assertIn("aac", command)
+        self.assertEqual(command[-1], "final.mp4")
+
+    def test_ffmpeg_command_rejects_empty_timeline(self):
+        with self.assertRaisesRegex(ValueError, "empty timeline"):
+            montazher.build_ffmpeg_render_command(Path("raw.mp4"), Path("final.mp4"), [])
+
+    def test_cli_dry_run_prints_json_summary_without_rendering(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            transcript_path = tmp_path / "transcript.json"
+            transcript_path.write_text(
+                json.dumps(
+                    {
+                        "segments": [
+                            {"start": 0.0, "end": 2.0, "text": "Today we start with I am ready."},
+                            {"start": 4.0, "end": 7.0, "text": "I am ready means I am prepared."},
+                        ]
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+            output_dir = tmp_path / "out"
+            stdout = io.StringIO()
+
+            with redirect_stdout(stdout):
+                exit_code = montazher.main(
+                    [
+                        "--input",
+                        str(tmp_path / "raw.mp4"),
+                        "--transcript-json",
+                        str(transcript_path),
+                        "--output-dir",
+                        str(output_dir),
+                        "--dry-run",
+                    ]
+                )
+
+            summary = json.loads(stdout.getvalue())
+            manifest_exists = (output_dir / "manifest.json").exists()
+
+        self.assertEqual(exit_code, 0)
+        self.assertTrue(summary["dry_run"])
+        self.assertFalse(summary["render_requested"])
+        self.assertFalse(summary["rendered"])
+        self.assertIsNone(summary["render_command"])
+        self.assertGreater(summary["timeline_clips"], 0)
+        self.assertTrue(manifest_exists)
 
     def test_dry_run_writes_required_artifacts_with_manifest_and_capcut_schema(self):
         with tempfile.TemporaryDirectory() as tmp:

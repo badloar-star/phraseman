@@ -1033,16 +1033,102 @@ def build_ffmpeg_render_command(
     if not timeline:
         raise ValueError("Cannot render an empty timeline.")
 
+    filters: list[str] = []
+    concat_inputs: list[str] = []
+    for index, clip in enumerate(timeline):
+        video_label = f"v{index}"
+        audio_label = f"a{index}"
+        filters.append(
+            f"[0:v]trim=start={clip.source_start:.3f}:end={clip.source_end:.3f},"
+            f"setpts=PTS-STARTPTS[{video_label}]"
+        )
+        filters.append(
+            f"[0:a]atrim=start={clip.source_start:.3f}:end={clip.source_end:.3f},"
+            f"asetpts=PTS-STARTPTS[{audio_label}]"
+        )
+        concat_inputs.append(f"[{video_label}][{audio_label}]")
+
+    filter_complex = (
+        ";".join(filters)
+        + ";"
+        + "".join(concat_inputs)
+        + f"concat=n={len(timeline)}:v=1:a=1[outv][outa]"
+    )
     return [
         "ffmpeg",
         "-y",
         "-i",
         str(input_video),
-        "-c",
-        "copy",
+        "-filter_complex",
+        filter_complex,
+        "-map",
+        "[outv]",
+        "-map",
+        "[outa]",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "18",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "192k",
         str(output_video),
     ]
 
 
 def run_command(command: list[str], cwd: Path | None = None) -> None:
     subprocess.run(command, cwd=cwd, check=True)
+
+
+def parse_args(argv: list[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Build a director-style Lingman talking-head montage."
+    )
+    parser.add_argument("--input", required=True, help="Raw input video path.")
+    parser.add_argument(
+        "--transcript-json",
+        required=True,
+        help="Timed transcript JSON path.",
+    )
+    parser.add_argument(
+        "--output-dir",
+        required=True,
+        help="Output folder for montage artifacts.",
+    )
+    parser.add_argument(
+        "--preset",
+        default=str(Path(__file__).resolve().parent / "presets" / "default_director.json"),
+        help="Director preset JSON path.",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Write artifacts without rendering final.mp4.",
+    )
+    parser.add_argument(
+        "--render",
+        action="store_true",
+        help="Run ffmpeg and render final.mp4.",
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = parse_args(sys.argv[1:] if argv is None else argv)
+    summary = build_pack(
+        input_video=Path(args.input),
+        transcript_json=Path(args.transcript_json),
+        output_dir=Path(args.output_dir),
+        preset_path=Path(args.preset),
+        dry_run=bool(args.dry_run),
+        render=bool(args.render),
+    )
+    print(json.dumps(summary, ensure_ascii=False, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -44,7 +44,7 @@ const { leagueChestClaim } = require('./league_chest');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { arenaClubWarContribute } = require('./arena_club_wars');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { arenaHillRecordAttempt } = require('./arena_hill');
+const { arenaHillRecordAttempt, arenaHillGetDailyTop } = require('./arena_hill');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { arenaHillDailyRewardCron } = require('./arena_hill_daily_reward');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -59,6 +59,8 @@ const { arenaGhostCreateChallenge, arenaGhostRecordPlay } = require('./arena_gho
 const { cleanupExpiredAppMessages, onAppMessageReactionWritten, onAppMessagePollVoteWritten } = require('./app_messages');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitVipSurvey, recordVipSurveyReviewClick } = require('./vip_survey');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { submitClientReport } = require('./client_reports');
 
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
 exports.leagueChatSendMessage = leagueChatSendMessage;
@@ -77,6 +79,7 @@ exports.nameReleaseMine = nameReleaseMine;
 exports.leagueChestClaim = leagueChestClaim;
 exports.arenaClubWarContribute = arenaClubWarContribute;
 exports.arenaHillRecordAttempt = arenaHillRecordAttempt;
+exports.arenaHillGetDailyTop = arenaHillGetDailyTop;
 exports.arenaHillDailyRewardCron = arenaHillDailyRewardCron;
 exports.friendEnsureMyCode = friendEnsureMyCode;
 exports.friendLikeActivity = friendLikeActivity;
@@ -89,6 +92,7 @@ exports.onAppMessageReactionWritten = onAppMessageReactionWritten;
 exports.onAppMessagePollVoteWritten = onAppMessagePollVoteWritten;
 exports.submitVipSurvey = submitVipSurvey;
 exports.recordVipSurveyReviewClick = recordVipSurveyReviewClick;
+exports.submitClientReport = submitClientReport;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 

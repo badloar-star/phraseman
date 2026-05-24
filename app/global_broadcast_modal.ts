@@ -10,6 +10,7 @@ import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
 import { WAGER_DISCOUNT_KEY } from './level_gift_system';
 import { isPremiumAccessProgressActive } from './premium_progress';
 import type { RuntimeStudyTarget } from './target_storage_keys';
+import { submitClientReport } from './client_reports';
 
 const COLLECTION = 'global_broadcast_modals';
 
@@ -445,9 +446,7 @@ export async function recordReviewPromoClick(payload: GlobalBroadcastModalPayloa
   if (!uid) return;
 
   try {
-    const firestoreModule = await import('@react-native-firebase/firestore');
-    const db = firestoreModule.default();
-    await db.collection('review_promo_claims').add({
+    await submitClientReport('review_promo_claim', {
       uid,
       broadcastId: payload.id,
       platform: Platform.OS,

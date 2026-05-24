@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lingman Montazher Review Desk</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Lingman Montazher</p>
+          <h1>Review Desk</h1>
+        </div>
+        <div class="toolbar" aria-label="Review controls">
+          <label class="file-button">
+            <input id="manifestInput" type="file" accept="application/json">
+            Import JSON
+          </label>
+          <label class="file-button">
+            <input id="videoInput" type="file" accept="video/*">
+            Attach video
+          </label>
+          <button id="exportButton" type="button">Export draft</button>
+        </div>
+      </header>
+
+      <section id="status" class="status" role="status" aria-live="polite">Loading review manifest...</section>
+
+      <section class="workspace" aria-label="Montage review workspace">
+        <section class="preview-panel" aria-label="Video preview">
+          <div class="video-frame">
+            <video id="video" controls preload="metadata"></video>
+            <div id="videoPlaceholder" class="video-placeholder">
+              <strong>No raw video attached</strong>
+              <span>Import a local recording to preview timing against the edit plan.</span>
+            </div>
+            <div id="overlayPreview" class="overlay-preview"></div>
+          </div>
+          <div class="project-strip">
+            <div>
+              <span>Project</span>
+              <strong id="projectTitle">-</strong>
+            </div>
+            <div>
+              <span>Raw duration</span>
+              <strong id="rawDuration">-</strong>
+            </div>
+            <div>
+              <span>Edited duration</span>
+              <strong id="editedDuration">-</strong>
+            </div>
+            <div>
+              <span>Warnings</span>
+              <strong id="warningCount">-</strong>
+            </div>
+            <div>
+              <span>Preview</span>
+              <strong id="previewMode">-</strong>
+            </div>
+          </div>
+        </section>
+
+        <aside class="editor-panel" aria-label="Selected decision editor">
+          <h2>Selected decision</h2>
+          <form id="decisionForm">
+            <label>
+              Clip
+              <input id="clipId" type="text" readonly>
+            </label>
+            <label>
+              Decision
+              <select id="decisionSelect">
+                <option value="keep">keep</option>
+                <option value="cut">cut</option>
+                <option value="take_selected">take_selected</option>
+                <option value="take_rejected">take_rejected</option>
+                <option value="pause_trimmed">pause_trimmed</option>
+                <option value="filler_trimmed">filler_trimmed</option>
+                <option value="visual_added">visual_added</option>
+                <option value="sfx_added">sfx_added</option>
+              </select>
+            </label>
+            <label>
+              Reason
+              <textarea id="reasonInput" rows="4"></textarea>
+            </label>
+            <label>
+              Transcript
+              <textarea id="transcriptInput" rows="5"></textarea>
+            </label>
+          </form>
+          <div class="hint">Changes stay in the browser until you export the draft JSON.</div>
+        </aside>
+      </section>
+
+      <section class="timeline-panel" aria-label="Timeline">
+        <div class="panel-heading">
+          <h2>Edit timeline</h2>
+          <span id="timelineMeta"></span>
+        </div>
+        <div id="timeline" class="timeline"></div>
+      </section>
+
+      <section class="lower-grid">
+        <section class="table-panel" aria-label="Screen text events">
+          <div class="panel-heading">
+            <h2>Screen text</h2>
+            <span>click a row to preview</span>
+          </div>
+          <div id="screenTextList" class="event-list"></div>
+        </section>
+        <section class="table-panel" aria-label="Quality warnings">
+          <div class="panel-heading">
+            <h2>Review notes</h2>
+            <span>human check points</span>
+          </div>
+          <div id="warningsList" class="event-list"></div>
+        </section>
+      </section>
+    </main>
+    <script src="./app.js?v=director-v2"></script>
+  </body>
+</html>

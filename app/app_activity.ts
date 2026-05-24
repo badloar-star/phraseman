@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { AppState, Platform } from 'react-native';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
+import { submitClientReport } from './client_reports';
 
 type ActivityValue = string | number | boolean | null | undefined;
 
@@ -21,16 +21,6 @@ const MAX_TEXT = 220;
 const FIRESTORE_SAMPLE_RATE = 0.01;
 let lastEventKey = '';
 let lastEventAt = 0;
-
-const getFirestore = () => {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    return require('@react-native-firebase/firestore').default();
-  } catch {
-    return null;
-  }
-};
 
 function cleanTags(tags: AppActivityMeta['tags']) {
   if (!tags) return {};
@@ -91,9 +81,7 @@ export async function trackActivity(action: string, meta: AppActivityMeta = {}) 
       || (meta.result === 'error' && Math.random() < FIRESTORE_SAMPLE_RATE);
     if (!shouldWrite) return;
 
-    const db = getFirestore();
-    if (!db) return;
-    await db.collection('app_activity').add(record).catch(() => {});
+    await submitClientReport('app_activity', record).catch(() => {});
   } catch {
     // Activity logging must never affect product behavior.
   }

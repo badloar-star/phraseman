@@ -27,6 +27,29 @@ export type ArenaHillAttemptResult = {
   duplicate?: boolean;
 };
 
+export type ArenaHillTopEntry = {
+  place: number;
+  uid: string;
+  name: string;
+  wins: number;
+  totalXp: number;
+  avatar?: string;
+  frame?: string;
+  aura?: string;
+  isPremium?: boolean;
+  isVip?: boolean;
+  profileCardLevel?: number;
+  profileCardTheme?: string;
+  profileCardMotion?: string;
+  profileCardPublicFocus?: string;
+};
+
+export type ArenaHillDailyTopResult = {
+  dayKey: string;
+  rewardShards: number;
+  entries: ArenaHillTopEntry[];
+};
+
 function pad2(n: number): string {
   return String(n).padStart(2, '0');
 }
@@ -98,4 +121,14 @@ export async function recordArenaHillAttempt(params: {
     isWin: params.isWin,
   });
   return data;
+}
+
+export async function getTodayArenaHillTop(): Promise<ArenaHillDailyTopResult> {
+  const fn = callable<Record<string, never>, ArenaHillDailyTopResult>('arenaHillGetDailyTop');
+  const { data } = await fn({});
+  return {
+    dayKey: String(data?.dayKey ?? arenaHillDayKey()),
+    rewardShards: Math.max(0, Math.trunc(Number(data?.rewardShards) || 0)),
+    entries: Array.isArray(data?.entries) ? data.entries.slice(0, 3) : [],
+  };
 }

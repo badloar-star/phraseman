@@ -897,6 +897,7 @@ function ensureAnonAuthReady(): Promise<void> {
   if (auth.currentUser) return Promise.resolve();
   _anonAuthReady = (async () => {
     try {
+      await initFirebaseAppCheckIfAvailable().catch(() => false);
       await withTimeout(auth.signInAnonymously(), ANON_AUTH_READY_TIMEOUT_MS, 'anon_auth_ready');
     } catch {
       // офлайн / транзиентная ошибка — следующий вызов ensureAnonUser

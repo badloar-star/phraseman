@@ -19,7 +19,6 @@ import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
-import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import { triLang } from '../constants/i18n';
@@ -31,7 +30,6 @@ import {
   trainerTranslationForLang,
   type TrainerItem,
 } from './trainer_store';
-import { safeRouterBack } from './navigation_back';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { checkAchievements } from './achievements';
 import {
@@ -42,8 +40,6 @@ import {
 import { consumeTrainerSessionEntry } from './trainer_session';
 import { logTrainerDirectGateBlocked } from './firebase';
 import TrainerSessionReport from './trainer_session_report';
-import type { RuntimeStudyTarget } from './target_storage_keys';
-import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 
 type SessionMode = 'word_bank' | 'fill_gap';
 
@@ -52,11 +48,11 @@ interface SessionCard {
   mode: SessionMode;
 }
 
-function buildDeck(items: TrainerItem[], studyTarget?: RuntimeStudyTarget): SessionCard[] {
+function buildDeck(items: TrainerItem[]): SessionCard[] {
   const deck: SessionCard[] = [];
   items.forEach((item, i) => {
     // Если есть errorWord — чередуем word_bank и fill_gap; иначе всегда word_bank
-    const hasFillGap = !!item.errorWord && buildFillGapOptions(item.errorWord, item.key, studyTarget).length >= 2;
+    const hasFillGap = !!item.errorWord;
     const mode: SessionMode = hasFillGap && i % 2 === 0 ? 'fill_gap' : 'word_bank';
     deck.push({ item, mode });
   });
@@ -64,14 +60,13 @@ function buildDeck(items: TrainerItem[], studyTarget?: RuntimeStudyTarget): Sess
 }
 
 // Набор заглушек на случай если в фразе мало слов для 3 ложных вариантов
-const ENGLISH_DECOY_FILLERS = ['the', 'a', 'is', 'was', 'have', 'do', 'not', 'in', 'on', 'at'];
+const DECOY_FILLERS = ['the', 'a', 'is', 'was', 'have', 'do', 'not', 'in', 'on', 'at'];
 
-function buildFillGapOptions(errorWord: string, phrase: string, studyTarget?: RuntimeStudyTarget): string[] {
+function buildFillGapOptions(errorWord: string, phrase: string): string[] {
   const words = tokenizeRecallPhrase(phrase).filter(w => w.toLowerCase() !== errorWord.toLowerCase());
   const pool = [...words];
   // Добиваем заглушками если слов мало
-  const fallbackFillers = studyTarget === 'fr' ? [] : ENGLISH_DECOY_FILLERS;
-  for (const f of fallbackFillers) {
+  for (const f of DECOY_FILLERS) {
     if (pool.length >= 3) break;
     if (f.toLowerCase() !== errorWord.toLowerCase() && !pool.includes(f)) pool.push(f);
   }
@@ -230,15 +225,14 @@ function WordBankMode({ item, onResult }: WordBankProps) {
 // ── Fill Gap режим ────────────────────────────────────────────────────────────
 interface FillGapProps {
   item: TrainerItem;
-  studyTarget?: RuntimeStudyTarget;
   onResult: (correct: boolean) => void;
 }
 
-function FillGapMode({ item, studyTarget, onResult }: FillGapProps) {
+function FillGapMode({ item, onResult }: FillGapProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const errorWord = item.errorWord ?? '';
-  const [options] = useState(() => buildFillGapOptions(errorWord, item.key, studyTarget));
+  const [options] = useState(() => buildFillGapOptions(errorWord, item.key));
   const [chosen, setChosen] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
 
@@ -315,8 +309,6 @@ export default function TrainerPhrasesSession() {
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
-  const { studyTarget } = useStudyTarget();
-  const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
 
   const [deck, setDeck] = useState<SessionCard[]>([]);
   const [current, setCurrent] = useState(0);
@@ -329,24 +321,19 @@ export default function TrainerPhrasesSession() {
 
   useEffect(() => {
     void (async () => {
-      if (!trainerGateOpen) {
-        setAccessReady(true);
-        setLoading(false);
-        return;
-      }
-      const allowed = await consumeTrainerSessionEntry('/trainer_phrases_session', studyTarget);
+      const allowed = await consumeTrainerSessionEntry('/trainer_phrases_session');
       if (!allowed) {
         logTrainerDirectGateBlocked('/trainer_phrases_session');
         router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
         return;
       }
       setAccessReady(true);
-      const items = await getDueItems('phrases', 15, studyTarget);
+      const items = await getDueItems('phrases', 15);
       if (items.length === 0) { setDone(true); setLoading(false); return; }
-      setDeck(buildDeck(items, studyTarget));
+      setDeck(buildDeck(items));
       setLoading(false);
     })();
-  }, [router, studyTarget, trainerGateOpen]);
+  }, [router]);
 
   const handleResult = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];
@@ -357,7 +344,7 @@ export default function TrainerPhrasesSession() {
     if (answeredCorrectly) setCorrect(c => c + 1);
     else setWrong(c => c + 1);
 
-    await markTrainerResult(card.item.key, 'phrases', answeredCorrectly, studyTarget);
+    await markTrainerResult(card.item.key, 'phrases', answeredCorrectly);
     const updates: { type: TaskType; increment: number }[] = [];
     if (!dailySessionTracked.current) {
       dailySessionTracked.current = true;
@@ -366,7 +353,7 @@ export default function TrainerPhrasesSession() {
     if (answeredCorrectly) {
       updates.push({ type: 'recall_answers', increment: 1 });
       updates.push({ type: 'trainer_phrases', increment: 1 });
-      checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
+      checkAchievements({ type: 'trainer_correct', correct: 1 }).catch(() => {});
     }
 
     const next = current + 1;
@@ -377,40 +364,19 @@ export default function TrainerPhrasesSession() {
         correct: nextCorrect,
         wrong: nextWrong,
         total: deck.length,
-        studyTarget,
       }).catch(() => {});
       setDone(true);
     } else {
       setCurrent(next);
     }
-    if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
-  }, [deck, current, correct, wrong, studyTarget]);
+    if (updates.length > 0) updateMultipleTaskProgress(updates).catch(() => {});
+  }, [deck, current, correct, wrong]);
 
   if (!accessReady || loading) {
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text style={{ color: '#888' }} />
-        </SafeAreaView>
-      </ScreenGradient>
-    );
-  }
-
-  if (!trainerGateOpen) {
-    const copy = frenchTrainerGateCopy(lang);
-    return (
-      <ScreenGradient>
-        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-          <Ionicons name="lock-closed-outline" size={38} color={sx.muted} />
-          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '900', textAlign: 'center', marginTop: 14 }}>
-            {copy.title}
-          </Text>
-          <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 10, lineHeight: 22 }}>
-            {copy.body}
-          </Text>
-          <TouchableOpacity onPress={() => router.replace('/trainer' as any)} style={{ marginTop: 22, backgroundColor: '#40C080', borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}>
-            <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>{copy.action}</Text>
-          </TouchableOpacity>
         </SafeAreaView>
       </ScreenGradient>
     );
@@ -427,7 +393,7 @@ export default function TrainerPhrasesSession() {
               wrong={wrong}
               total={deck.length || correct + wrong}
               accent="#40C080"
-              onDone={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
+              onDone={() => { hapticTap(); router.back(); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
             />
           </ContentWrap>
@@ -465,7 +431,7 @@ export default function TrainerPhrasesSession() {
         <ContentWrap>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }} style={{ padding: 4 }}>
+            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TouchableOpacity>
             <Text style={[styles.headerTitle, { color: sx.primary, fontSize: f.body }]}>
@@ -502,7 +468,7 @@ export default function TrainerPhrasesSession() {
           >
             {card?.mode === 'word_bank'
               ? <WordBankMode key={card.item.key + '_wb'} item={card.item} onResult={handleResult} />
-              : card && <FillGapMode key={card.item.key + '_fg'} item={card.item} studyTarget={studyTarget} onResult={handleResult} />
+              : card && <FillGapMode key={card.item.key + '_fg'} item={card.item} onResult={handleResult} />
             }
           </ScrollView>
         </ContentWrap>

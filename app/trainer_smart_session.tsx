@@ -5,10 +5,9 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
-import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
-import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
@@ -33,11 +32,6 @@ import {
   type PosDrillType,
   type PosWorkoutProfile,
 } from './pos_workout_engine';
-import { safeRouterBack } from './navigation_back';
-import type { RuntimeStudyTarget } from './target_storage_keys';
-import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
-
-type PlannedCopy = { ru: string; uk: string; es: string } & Partial<Record<PlannedInterfaceLang, string>>;
 
 type AnswerState = 'idle' | 'correct' | 'wrong';
 
@@ -75,75 +69,50 @@ interface SessionAttempt {
   method?: PosDrillMethod;
 }
 
-const MODE_META: Record<TrainerPremiumMode, { icon: keyof typeof Ionicons.glyphMap; accent: string; title: PlannedCopy; sub: PlannedCopy }> = {
+const MODE_META: Record<TrainerPremiumMode, { icon: keyof typeof Ionicons.glyphMap; accent: string; title: Partial<Record<Lang, string>>; sub: Partial<Record<Lang, string>> }> = {
   smart_mix: {
     icon: 'sparkles',
     accent: '#FACC15',
-    title: { ru: 'Smart Mix', uk: 'Smart Mix', es: 'Smart Mix', 'pt-BR': 'Smart Mix', vi: 'Smart Mix', id: 'Smart Mix', tr: 'Smart Mix', pl: 'Smart Mix' },
+    title: { ru: 'Smart Mix', uk: 'Smart Mix', es: 'Smart Mix' },
     sub: {
       ru: 'Короткая тренировка по тому, что стоит повторить сейчас.',
       uk: 'Коротке тренування того, що варто повторити зараз.',
       es: 'Entrenamiento corto con lo que conviene repasar ahora.',
-      'pt-BR': 'Treino curto com o que vale revisar agora.',
-      vi: 'Buổi luyện ngắn với những gì nên ôn ngay bây giờ.',
-      id: 'Latihan singkat untuk hal yang perlu diulang sekarang.',
-      tr: 'Şu anda tekrar etmeye değer şeylerle kısa antrenman.',
-      pl: 'Krótki trening tego, co warto teraz powtórzyć.',
     },
   },
   weak: {
     icon: 'pulse',
     accent: '#A78BFA',
-    title: { ru: 'Слабые места', uk: 'Слабкі місця', es: 'Puntos debiles', 'pt-BR': 'Pontos fracos', vi: 'Điểm yếu', id: 'Titik lemah', tr: 'Zayıf noktalar', pl: 'Słabe miejsca' },
+    title: { ru: 'Слабые места', uk: 'Слабкі місця', es: 'Puntos debiles' },
     sub: {
       ru: 'Карточки, которые еще не стали стабильными.',
       uk: 'Картки, які ще не стали стабільними.',
       es: 'Tarjetas que aun no son estables.',
-      'pt-BR': 'Cartões que ainda não ficaram estáveis.',
-      vi: 'Những thẻ vẫn chưa ổn định.',
-      id: 'Kartu yang belum stabil.',
-      tr: 'Henüz kalıcı hale gelmemiş kartlar.',
-      pl: 'Karty, które nie są jeszcze stabilne.',
     },
   },
   hard: {
     icon: 'flame',
     accent: '#FB7185',
-    title: { ru: 'Тяжелые ошибки', uk: 'Важкі помилки', es: 'Errores duros', 'pt-BR': 'Erros difíceis', vi: 'Lỗi nặng', id: 'Kesalahan berat', tr: 'Zor hatalar', pl: 'Trudne błędy' },
+    title: { ru: 'Тяжелые ошибки', uk: 'Важкі помилки', es: 'Errores duros' },
     sub: {
       ru: 'Самые повторяющиеся ошибки идут первыми.',
       uk: 'Найчастіші помилки йдуть першими.',
       es: 'Los errores repetidos van primero.',
-      'pt-BR': 'Os erros mais repetidos aparecem primeiro.',
-      vi: 'Những lỗi lặp lại nhiều nhất sẽ xuất hiện trước.',
-      id: 'Kesalahan yang paling sering terulang muncul lebih dulu.',
-      tr: 'En çok tekrarlanan hatalar önce gelir.',
-      pl: 'Najczęściej powtarzane błędy idą pierwsze.',
     },
   },
 };
 
-const SESSION_COACH: Record<TrainerPremiumMode, PlannedCopy> = {
-  smart_mix: { ru: '', uk: '', es: '', 'pt-BR': '', vi: '', id: '', tr: '', pl: '' },
+const SESSION_COACH: Record<TrainerPremiumMode, Partial<Record<Lang, string>>> = {
+  smart_mix: { ru: '', uk: '', es: '' },
   weak: {
     ru: 'Сейчас важна не скорость, а честная попытка вспомнить до выбора.',
     uk: 'Зараз важлива не швидкість, а чесна спроба згадати до вибору.',
     es: 'Ahora importa recordar antes de elegir.',
-    'pt-BR': 'Agora o importante não é a velocidade, mas uma tentativa honesta de lembrar antes de escolher.',
-    vi: 'Lúc này tốc độ không quan trọng bằng việc thật sự cố nhớ trước khi chọn.',
-    id: 'Sekarang yang penting bukan kecepatan, tetapi usaha jujur untuk mengingat sebelum memilih.',
-    tr: 'Şu anda hız değil, seçmeden önce dürüstçe hatırlamaya çalışmak önemli.',
-    pl: 'Teraz liczy się nie szybkość, ale uczciwa próba przypomnienia przed wyborem.',
   },
   hard: {
     ru: 'Тяжелые ошибки идут первыми: именно они дают самый заметный рост.',
     uk: 'Важкі помилки йдуть першими: саме вони дають найпомітніший ріст.',
     es: 'Los errores duros van primero: ahi esta el progreso.',
-    'pt-BR': 'Os erros difíceis vêm primeiro: é neles que o progresso fica mais visível.',
-    vi: 'Các lỗi nặng xuất hiện trước: chính chúng tạo ra tiến bộ rõ nhất.',
-    id: 'Kesalahan berat muncul lebih dulu: dari situlah kemajuan paling terlihat.',
-    tr: 'Zor hatalar önce gelir: en görünür gelişim tam oradadır.',
-    pl: 'Trudne błędy idą pierwsze: to one dają najbardziej widoczny postęp.',
   },
 };
 
@@ -206,59 +175,9 @@ function categoryCandidates(all: TrainerItem[], item: TrainerItem, category?: Wo
     .filter(Boolean);
 }
 
-function targetPhraseRecallHelper(lang: Lang, studyTarget?: RuntimeStudyTarget): string {
-  if (studyTarget === 'fr') {
-    return triLang(lang, {
-      ru: 'Попробуй вспомнить французскую фразу целиком.',
-      uk: 'Спробуй згадати французьку фразу повністю.',
-      es: 'Intenta recordar la frase completa en frances.',
-      'pt-BR': 'Tente lembrar a frase em francês inteira.',
-      vi: 'Hãy cố nhớ toàn bộ cụm câu tiếng Pháp.',
-      id: 'Coba ingat seluruh frasa bahasa Prancis.',
-      tr: 'Fransızca ifadeyi tamamen hatırlamaya çalış.',
-      pl: 'Spróbuj przypomnieć sobie całą frazę po francusku.',
-    });
-  }
-  return triLang(lang, {
-    ru: 'Попробуй вспомнить английскую фразу целиком.',
-    uk: 'Спробуй згадати англійську фразу повністю.',
-    es: 'Intenta recordar la frase completa en ingles.',
-    'pt-BR': 'Tente lembrar a frase em inglês inteira.',
-    vi: 'Hãy cố nhớ toàn bộ cụm câu tiếng Anh.',
-    id: 'Coba ingat seluruh frasa bahasa Inggris.',
-    tr: 'İngilizce ifadeyi tamamen hatırlamaya çalış.',
-    pl: 'Spróbuj przypomnieć sobie całą frazę po angielsku.',
-  });
-}
-
-function wordLinkMistakeWhy(picked: string, lang: Lang, studyTarget?: RuntimeStudyTarget): string {
-  if (studyTarget === 'fr') {
-    return triLang(lang, {
-      ru: `Ты выбрал: ${picked}. Сейчас важно связать французское слово именно с точным переводом.`,
-      uk: `Ти обрав: ${picked}. Зараз важливо зв'язати французьке слово саме з точним перекладом.`,
-      es: `Elegiste: ${picked}. Ahora importa unir la palabra francesa con su traduccion exacta.`,
-      'pt-BR': `Você escolheu: ${picked}. Agora o importante é ligar a palavra francesa à tradução exata.`,
-      vi: `Bạn đã chọn: ${picked}. Giờ điều quan trọng là nối từ tiếng Pháp với bản dịch chính xác.`,
-      id: `Kamu memilih: ${picked}. Sekarang yang penting adalah menghubungkan kata Prancis dengan terjemahan yang tepat.`,
-      tr: `Seçimin: ${picked}. Şimdi önemli olan Fransızca kelimeyi tam çeviriyle eşleştirmek.`,
-      pl: `Wybrano: ${picked}. Teraz ważne jest połączenie francuskiego słowa z dokładnym tłumaczeniem.`,
-    });
-  }
-  return triLang(lang, {
-    ru: `Ты выбрал: ${picked}. Сейчас важно связать английское слово именно с точным переводом.`,
-    uk: `Ти обрав: ${picked}. Зараз важливо зв'язати англійське слово саме з точним перекладом.`,
-    es: `Elegiste: ${picked}. Ahora importa unir la palabra inglesa con su traduccion exacta.`,
-    'pt-BR': `Você escolheu: ${picked}. Agora o importante é ligar a palavra inglesa à tradução exata.`,
-    vi: `Bạn đã chọn: ${picked}. Giờ điều quan trọng là nối từ tiếng Anh với bản dịch chính xác.`,
-    id: `Kamu memilih: ${picked}. Sekarang yang penting adalah menghubungkan kata Inggris dengan terjemahan yang tepat.`,
-    tr: `Seçimin: ${picked}. Şimdi önemli olan İngilizce kelimeyi tam çeviriyle eşleştirmek.`,
-    pl: `Wybrano: ${picked}. Teraz ważne jest połączenie angielskiego słowa z dokładnym tłumaczeniem.`,
-  });
-}
-
-function buildCard(item: TrainerItem, all: TrainerItem[], lang: Lang, studyTarget?: RuntimeStudyTarget): SmartCard {
+function buildCard(item: TrainerItem, all: TrainerItem[], lang: Lang): SmartCard {
   const category = resolveTrainerItemPosCategory(item);
-  const profile = studyTarget === 'fr' ? null : getPosWorkoutProfile(category);
+  const profile = getPosWorkoutProfile(category);
 
   if (item.queue === 'arena' && item.arenaQuestion) {
     return {
@@ -336,7 +255,16 @@ function buildCard(item: TrainerItem, all: TrainerItem[], lang: Lang, studyTarge
         pl: "Przypomnij sobie frazę",
       }),
       prompt: trainerTranslationForLang(item, lang),
-      helper: targetPhraseRecallHelper(lang, studyTarget),
+      helper: triLang(lang, {
+        ru: 'Попробуй вспомнить английскую фразу целиком.',
+        uk: 'Спробуй згадати англійську фразу повністю.',
+        es: 'Intenta recordar la frase completa en ingles.',
+        'pt-BR': "Tente lembrar a frase em inglês inteira.",
+        vi: "Hãy cố nhớ toàn bộ cụm câu tiếng Anh.",
+        id: "Coba ingat seluruh frasa bahasa Inggris.",
+        tr: "İngilizce ifadeyi tamamen hatırlamaya çalış.",
+        pl: "Spróbuj przypomnieć sobie całą frazę po angielsku.",
+      }),
       options: shuffle(uniq([item.key, ...decoys]).slice(0, 4)),
       correct: item.key,
       accent: profile?.accent || '#2DD4BF',
@@ -369,7 +297,7 @@ function buildCard(item: TrainerItem, all: TrainerItem[], lang: Lang, studyTarge
   };
 }
 
-function buildMistakeInsight(card: SmartCard, picked: string, lang: Lang, studyTarget?: RuntimeStudyTarget): MistakeInsight {
+function buildMistakeInsight(card: SmartCard, picked: string, lang: Lang): MistakeInsight {
   if (card.profile && card.drillType && card.item.queue !== 'words') {
     return {
       title: card.profile.title[lang],
@@ -412,7 +340,16 @@ function buildMistakeInsight(card: SmartCard, picked: string, lang: Lang, studyT
         pl: "Poprawne tłumaczenie",
       }),
       correctValue: card.correct,
-      why: wordLinkMistakeWhy(picked, lang, studyTarget),
+      why: triLang(lang, {
+        ru: `Ты выбрал: ${picked}. Сейчас важно связать английское слово именно с точным переводом.`,
+        uk: `Ти обрав: ${picked}. Зараз важливо зв'язати англійське слово саме з точним перекладом.`,
+        es: `Elegiste: ${picked}. Ahora importa unir la palabra inglesa con su traduccion exacta.`,
+        'pt-BR': `Você escolheu: ${picked}. Agora o importante é ligar a palavra inglesa à tradução exata.`,
+        vi: `Bạn đã chọn: ${picked}. Giờ điều quan trọng là nối từ tiếng Anh với bản dịch chính xác.`,
+        id: `Kamu memilih: ${picked}. Sekarang yang penting adalah menghubungkan kata Inggris dengan terjemahan yang tepat.`,
+        tr: `Seçimin: ${picked}. Şimdi önemli olan İngilizce kelimeyi tam çeviriyle eşleştirmek.`,
+        pl: `Wybrano: ${picked}. Teraz ważne jest połączenie angielskiego słowa z dokładnym tłumaczeniem.`,
+      }),
       next: triLang(lang, {
         ru: 'Эта карточка вернется раньше, пока ответ не станет уверенным.',
         uk: 'Ця картка повернеться раніше, доки відповідь не стане впевненою.',
@@ -471,7 +408,7 @@ function buildMistakeInsight(card: SmartCard, picked: string, lang: Lang, studyT
   };
 }
 
-function logSmartTrainerMistake(card: SmartCard, picked: string, studyTarget?: RuntimeStudyTarget): void {
+function logSmartTrainerMistake(card: SmartCard, picked: string): void {
   if (!card.item.lessonId || card.item.lessonId <= 0) return;
   const tokenText = card.item.errorWord || (card.item.queue === 'words' ? card.item.key : card.item.arenaQuestion?.correct);
   logMistake(card.item.key, card.item.lessonId, 'trainer', 'wrong_pick', {
@@ -481,7 +418,7 @@ function logSmartTrainerMistake(card: SmartCard, picked: string, studyTarget?: R
     category: card.category,
     rawCategory: card.item.grammarTag,
     grammarTag: card.item.grammarTag,
-  }, studyTarget);
+  });
 }
 
 export default function TrainerSmartSession() {
@@ -489,8 +426,6 @@ export default function TrainerSmartSession() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const { studyTarget } = useStudyTarget();
-  const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
   const mode = modeFromParam(params.mode);
@@ -505,16 +440,6 @@ export default function TrainerSmartSession() {
 
   const loadSession = useCallback(async () => {
     setLoading(true);
-    if (!trainerGateOpen) {
-      setCards([]);
-      setIndex(0);
-      setState('idle');
-      setPicked(null);
-      setAttempts([]);
-      setMistakeInsight(null);
-      setLoading(false);
-      return;
-    }
     const premiumAllowed = params.preview === 'report' || params.preview === 'mistake'
       ? true
       : await getVerifiedPremiumStatus();
@@ -523,15 +448,15 @@ export default function TrainerSmartSession() {
       return;
     }
 
-    const items = await getTrainerPremiumItems(mode, 12, studyTarget);
-    setCards(items.map((item) => buildCard(item, items, lang, studyTarget)));
+    const items = await getTrainerPremiumItems(mode, 12);
+    setCards(items.map((item) => buildCard(item, items, lang)));
     setIndex(0);
     setState('idle');
     setPicked(null);
     setAttempts([]);
     setMistakeInsight(null);
     setLoading(false);
-  }, [lang, mode, params.preview, router, studyTarget, trainerGateOpen]);
+  }, [lang, mode, params.preview, router]);
 
   useEffect(() => {
     void loadSession();
@@ -567,23 +492,23 @@ export default function TrainerSmartSession() {
     if (correct) hapticSuccess();
     else hapticError();
 
-    await markTrainerResult(current.item.key, current.item.queue, correct, studyTarget);
-    if (current.profile && current.category) {
-      await recordPosWorkoutResult(current.category, correct, studyTarget);
+    await markTrainerResult(current.item.key, current.item.queue, correct);
+    if (current.category) {
+      await recordPosWorkoutResult(current.category, correct);
     }
     await updateMultipleTaskProgress([
       { type: 'trainer_session' as TaskType, increment: 1 },
       ...(correct ? [{ type: 'correct_answer' as TaskType, increment: 1 }] : []),
-    ], { studyTarget });
-    if (correct) await checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget });
-    if (!correct) logSmartTrainerMistake(current, option, studyTarget);
+    ]);
+    if (correct) await checkAchievements({ type: 'trainer_correct', correct: 1 });
+    if (!correct) logSmartTrainerMistake(current, option);
 
     const attempt = {
       key: current.item.key,
       queue: current.item.queue,
       label: current.title || current.prompt,
       correct,
-      category: current.profile ? current.category : undefined,
+      category: current.category,
       method: current.method,
     };
     const nextAttempts = [...attempts, attempt];
@@ -595,12 +520,11 @@ export default function TrainerSmartSession() {
         correct: sessionCorrect,
         wrong: nextAttempts.length - sessionCorrect,
         total: cards.length,
-        studyTarget,
       });
     }
 
     if (!correct) {
-      setMistakeInsight(buildMistakeInsight(current, option, lang, studyTarget));
+      setMistakeInsight(buildMistakeInsight(current, option, lang));
       return;
     }
     setTimeout(() => advance(), 350);
@@ -630,26 +554,6 @@ export default function TrainerSmartSession() {
     );
   }
 
-  if (!trainerGateOpen) {
-    const copy = frenchTrainerGateCopy(lang);
-    return (
-      <ScreenGradient>
-        <SafeAreaView style={styles.center}>
-          <Ionicons name="lock-closed-outline" size={38} color={sx.muted} />
-          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '900', textAlign: 'center', marginTop: 14 }}>
-            {copy.title}
-          </Text>
-          <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 10, lineHeight: 22 }}>
-            {copy.body}
-          </Text>
-          <TouchableOpacity onPress={() => router.replace('/trainer' as any)} style={[styles.primaryBtn, { backgroundColor: meta.accent, marginTop: 18 }]}>
-            <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>{copy.action}</Text>
-          </TouchableOpacity>
-        </SafeAreaView>
-      </ScreenGradient>
-    );
-  }
-
   if (cards.length === 0) {
     return (
       <ScreenGradient>
@@ -666,7 +570,7 @@ export default function TrainerSmartSession() {
               pl: "Nie ma jeszcze nic do powtórki",
             })}
           </Text>
-          <TouchableOpacity onPress={() => safeRouterBack(router, '/trainer' as any)} style={[styles.primaryBtn, { backgroundColor: meta.accent, marginTop: 18 }]}>
+          <TouchableOpacity onPress={() => router.back()} style={[styles.primaryBtn, { backgroundColor: meta.accent, marginTop: 18 }]}>
             <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
               {triLang(lang, {
                 ru: 'Готово',
@@ -773,7 +677,7 @@ export default function TrainerSmartSession() {
                     })}
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }} style={[styles.nextBtn, { backgroundColor: meta.accent }]}>
+                <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={[styles.nextBtn, { backgroundColor: meta.accent }]}>
                   <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
                     {triLang(lang, {
                       ru: 'Готово',
@@ -802,7 +706,7 @@ export default function TrainerSmartSession() {
       <SafeAreaView style={{ flex: 1 }} testID="screen-trainer-smart-session">
         <ContentWrap>
           <View style={styles.header}>
-            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }} style={{ padding: 4 }}>
+            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TouchableOpacity>
             <View style={{ flex: 1 }}>

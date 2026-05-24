@@ -1,7 +1,7 @@
 {
   "name": "phraseman",
   "main": "expo-router/entry",
-  "version": "1.5.39",
+  "version": "1.5.41",
   "scripts": {
     "start": "expo start",
     "start:emu": "powershell.exe -ExecutionPolicy Bypass -File ./scripts/dev-android-emulator.ps1",
@@ -41,9 +41,9 @@
     "lint": "expo lint",
     "release:keys": "node scripts/release_keys_gate.mjs",
     "release:keys:strict": "node scripts/release_keys_gate.mjs --strict-env",
-    "test": "npm run release:keys",
-    "test:watch": "npm run release:keys",
-    "test:coverage": "npm run release:keys",
+    "test": "jest --testPathPattern=tests/ --no-cache",
+    "test:watch": "jest --testPathPattern=tests/ --watch --no-cache",
+    "test:coverage": "jest --testPathPattern=tests/ --coverage",
     "maestro:smoke": "powershell.exe -ExecutionPolicy Bypass -File ./scripts/run_maestro.ps1 maestro/flows/smoke",
     "maestro:regression": "powershell.exe -ExecutionPolicy Bypass -File ./scripts/run_maestro.ps1 maestro/flows/regression",
     "maestro:regression:strict": "powershell.exe -ExecutionPolicy Bypass -File ./scripts/run_maestro.ps1 maestro/flows/regression_strict",
@@ -62,7 +62,7 @@
     "audit:lesson-prepositions": "node scripts/audit_lesson_prepositions_full.mjs",
     "audit:lesson-drill-quality": "npx tsx scripts/audit_lesson_drill_quality.ts",
     "audit:lesson-intros": "node scripts/audit_lesson_intro_alignment.mjs",
-    "audit:pos": "npm run release:keys",
+    "audit:pos": "jest --testPathPattern=tests/ --no-cache --runTestsByPath tests/pos_coverage_audit.test.ts",
     "audit:no-visible-loading": "node ./scripts/audit_no_visible_loading.mjs",
     "vq:peaky": "node tools/run_victoria_qa_pack.mjs",
     "vq:marketplace": "node tools/victoria_marketplace_phrase_qa.mjs",
@@ -76,9 +76,11 @@
     "eas:update:production": "eas update --channel production --environment production",
     "eas:submit-ios-wait": "node scripts/wait_ios_build_and_submit.mjs",
     "lesson:qa": "npx tsx -r ./tools/lesson_qa/node_stubs.cjs tools/lesson_qa/run.ts",
+    "training:jesse:check": "jest --runTestsByPath tests/personal_training_agent_room.test.ts tests/diagnosis_training_hygiene.test.ts tests/diagnosis_training_copy.test.ts --no-cache --runInBand",
     "training:personal:sync-admin": "npx tsx scripts/sync_personal_trainings_admin.ts",
     "training:personal:copy-audit": "npx tsx scripts/audit_personal_training_copy_quality.ts",
     "training:personal:copy-audit:strict": "npx tsx scripts/audit_personal_training_copy_quality.ts --strict",
+    "training:personal:check": "jest --runTestsByPath tests/personal_training_agent_room.test.ts tests/diagnosis_training_hygiene.test.ts tests/personal_training_taxonomy.test.ts tests/admin_personal_trainings.test.ts tests/diagnosis_training_copy.test.ts --no-cache --runInBand",
     "skyler:quiz": "node ./scripts/skyler_quiz_pipeline.cjs",
     "skyler:quiz:check": "node ./scripts/skyler_quiz_pipeline.cjs --check-protocol",
     "lesson:words-es-gen": "node ./scripts/generate-lesson-word-es-google.mjs",
@@ -88,7 +90,7 @@
     "audit:bug-report-patterns": "node ./scripts/audit_bug_report_patterns.mjs",
     "audit:lesson-deep-content": "npx tsx -r ./tools/lesson_qa/node_stubs.cjs ./scripts/audit_lesson_deep_content.ts",
     "audit:lessons": "npm run audit:lesson-sections && npm run audit:lesson-words && npm run audit:lesson-prepositions && npm run audit:lesson-drill-quality && npm run audit:lesson-intros && npm run audit:correct-presence && npm run audit:pos",
-    "audit:pre-release": "npm run release:keys",
+    "audit:pre-release": "npx tsc --noEmit --pretty false && npm run audit:no-visible-loading && npm run audit:lessons && npm run audit:translations",
     "audit:translations": "node ./scripts/audit_translations_1_32.mjs",
     "heisenberg": "node ./scripts/heisenberg_pipeline.cjs",
     "heisenberg:batch": "node ./scripts/heisenberg_pipeline.cjs --all-batch",
@@ -161,19 +163,88 @@
     "react-native-worklets": "0.5.1"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.14",
     "@types/react": "~19.1.0",
     "an-array-of-english-words": "^2.0.0",
     "cross-env": "^10.1.0",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
     "firebase-admin": "^13.8.0",
+    "jest": "^29.7.0",
     "patch-package": "^8.0.1",
     "sharp": "^0.34.5",
+    "ts-jest": "^29.4.6",
     "tsx": "^4.20.0",
     "typescript": "~5.9.2"
   },
   "overrides": {
     "postcss": "8.5.14"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.ts"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup_jest_write_guard.js"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/$1",
+      "\\.(png|jpg|jpeg|gif|svg|webp|mp3|wav|m4a|ogg|aac)$": "<rootDir>/tests/__mocks__/fileMock.js",
+      "^expo-constants$": "<rootDir>/tests/__mocks__/expo-constants.js",
+      "^expo-secure-store$": "<rootDir>/tests/__mocks__/expo-secure-store.js",
+      "^expo-crypto$": "<rootDir>/tests/__mocks__/expo-crypto.js",
+      "^@react-native-async-storage/async-storage$": "<rootDir>/tests/__mocks__/async-storage.js",
+      "^react-native$": "<rootDir>/tests/__mocks__/react-native.js",
+      "^@react-native-firebase/firestore$": "<rootDir>/tests/__mocks__/react-native-firebase-firestore.js",
+      "^react-native-purchases$": "<rootDir>/tests/__mocks__/react-native-purchases.js"
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>/.claude/",
+      "<rootDir>/.codex-tmp/",
+      "<rootDir>/tmp/"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/.claude/",
+      "<rootDir>/.codex-tmp/",
+      "<rootDir>/tmp/"
+    ],
+    "watchPathIgnorePatterns": [
+      "<rootDir>/.claude/",
+      "<rootDir>/.codex-tmp/",
+      "<rootDir>/tmp/"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "tsconfig": {
+            "strict": true,
+            "esModuleInterop": true,
+            "paths": {
+              "@/*": [
+                "./*"
+              ]
+            },
+            "jsx": "react"
+          }
+        }
+      ]
+    },
+    "collectCoverageFrom": [
+      "app/feedback_engine.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 80,
+        "branches": 75,
+        "functions": 80,
+        "lines": 80
+      }
+    },
+    "forceExit": true,
+    "maxWorkers": 1
   },
   "private": true,
   "expo": {

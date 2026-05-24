@@ -1,0 +1,387 @@
+export {};
+
+type DocData = Record<string, unknown>;
+
+type FakeRef = {
+  id: string;
+  path: string;
+  collection: (name: string) => FakeCollection;
+  get: () => Promise<FakeSnap>;
+  set: (data: DocData, opts?: { merge?: boolean }) => Promise<void>;
+  update: (data: DocData) => Promise<void>;
+};
+
+type FakeCollection = {
+  path: string;
+  doc: (id?: string) => FakeRef;
+  add: (data: DocData) => Promise<FakeRef>;
+  where: (field: string, op: string, value: unknown) => FakeQuery;
+  limit: (count: number) => FakeQuery;
+  get: () => Promise<FakeQuerySnap>;
+};
+
+type FakeQuery = {
+  where: (field: string, op: string, value: unknown) => FakeQuery;
+  limit: (count: number) => FakeQuery;
+  get: () => Promise<FakeQuerySnap>;
+};
+
+type FakeSnap = {
+  id: string;
+  exists: boolean;
+  ref: FakeRef;
+  data: () => DocData | undefined;
+};
+
+type FakeQuerySnap = {
+  empty: boolean;
+  docs: FakeSnap[];
+};
+
+const mockDocs = new Map<string, DocData>();
+let mockAutoId = 0;
+
+function deepMerge(target: DocData, source: DocData): DocData {
+  const result = { ...target };
+  for (const [key, value] of Object.entries(source)) {
+    const existing = target[key];
+    if (
+      value &&
+      typeof value === 'object' &&
+      !Array.isArray(value) &&
+      existing &&
+      typeof existing === 'object' &&
+      !Array.isArray(existing)
+    ) {
+      result[key] = deepMerge(existing as DocData, value as DocData);
+    } else {
+      result[key] = value;
+    }
+  }
+  return result;
+}
+
+function resolveFieldValue(existing: unknown, value: unknown): unknown {
+  if (value && typeof value === 'object' && (value as { __op?: unknown }).__op === 'increment') {
+    const by = Number((value as { by?: unknown }).by) || 0;
+    return (Number(existing) || 0) + by;
+  }
+  if (value && typeof value === 'object' && (value as { __op?: unknown }).__op === 'serverTimestamp') {
+    return 1_779_000_000_000;
+  }
+  return value;
+}
+
+function applyData(path: string, data: DocData, opts?: { merge?: boolean }) {
+  const base = opts?.merge ? { ...(mockDocs.get(path) ?? {}) } : {};
+  const next = { ...base };
+  for (const [key, value] of Object.entries(data)) {
+    next[key] = resolveFieldValue(next[key], value);
+  }
+  mockDocs.set(path, opts?.merge ? deepMerge(mockDocs.get(path) ?? {}, next) : next);
+}
+
+function snapFor(ref: FakeRef): FakeSnap {
+  const data = mockDocs.get(ref.path);
+  return {
+    id: ref.id,
+    exists: data !== undefined,
+    ref,
+    data: () => data,
+  };
+}
+
+function makeRef(path: string): FakeRef {
+  const id = path.split('/').pop() || path;
+  return {
+    id,
+    path,
+    collection: (name: string) => makeCollection(`${path}/${name}`),
+    get: async () => snapFor(makeRef(path)),
+    set: async (data: DocData, opts?: { merge?: boolean }) => applyData(path, data, opts),
+    update: async (data: DocData) => applyData(path, data, { merge: true }),
+  };
+}
+
+function queryCollection(path: string, filters: Array<[string, unknown]>, limitCount?: number): FakeQuerySnap {
+  const prefix = `${path}/`;
+  const docs = Array.from(mockDocs.entries())
+    .filter(([docPath]) => docPath.startsWith(prefix) && !docPath.slice(prefix.length).includes('/'))
+    .map(([docPath, data]) => ({ ref: makeRef(docPath), data }))
+    .filter(({ data }) => filters.every(([field, value]) => data[field] === value))
+    .slice(0, limitCount ?? Number.MAX_SAFE_INTEGER)
+    .map(({ ref }) => snapFor(ref));
+  return { empty: docs.length === 0, docs };
+}
+
+function makeQuery(path: string, filters: Array<[string, unknown]> = [], limitCount?: number): FakeQuery {
+  return {
+    where: (field: string, op: string, value: unknown) => {
+      if (op !== '==') throw new Error(`Unsupported op ${op}`);
+      return makeQuery(path, [...filters, [field, value]], limitCount);
+    },
+    limit: (count: number) => makeQuery(path, filters, count),
+    get: async () => queryCollection(path, filters, limitCount),
+  };
+}
+
+function makeCollection(path: string): FakeCollection {
+  return {
+    path,
+    doc: (id?: string) => makeRef(`${path}/${id || `auto-${++mockAutoId}`}`),
+    add: async (data: DocData) => {
+      const ref = makeRef(`${path}/auto-${++mockAutoId}`);
+      applyData(ref.path, data);
+      return ref;
+    },
+    where: (field: string, op: string, value: unknown) => makeQuery(path).where(field, op, value),
+    limit: (count: number) => makeQuery(path).limit(count),
+    get: async () => queryCollection(path, []),
+  };
+}
+
+function buildDb() {
+  return {
+    collection: (name: string) => makeCollection(name),
+    batch: () => {
+      const writes: Array<() => void> = [];
+      return {
+        set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => {
+          writes.push(() => applyData(ref.path, data, opts));
+        },
+        commit: async () => {
+          writes.forEach((write) => write());
+        },
+      };
+    },
+    runTransaction: async <T>(fn: (tx: {
+      get: (ref: FakeRef) => Promise<FakeSnap>;
+      set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => void;
+      update: (ref: FakeRef, data: DocData) => void;
+    }) => Promise<T>): Promise<T> => {
+      const writes: Array<() => void> = [];
+      const tx = {
+        get: async (ref: FakeRef) => snapFor(ref),
+        set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => {
+          writes.push(() => applyData(ref.path, data, opts));
+        },
+        update: (ref: FakeRef, data: DocData) => {
+          writes.push(() => applyData(ref.path, data, { merge: true }));
+        },
+      };
+      const result = await fn(tx);
+      writes.forEach((write) => write());
+      return result;
+    },
+  };
+}
+
+class FakeHttpsError extends Error {
+  readonly code: string;
+
+  constructor(code: string, message: string) {
+    super(message);
+    this.code = code;
+  }
+}
+
+jest.mock('firebase-functions/v2/https', () => ({
+  HttpsError: FakeHttpsError,
+  onCall: (optsOrHandler: unknown, maybeHandler?: unknown) =>
+    typeof optsOrHandler === 'function' ? optsOrHandler : maybeHandler,
+}));
+
+jest.mock('firebase-functions/params', () => ({
+  defineString: () => ({ value: () => '' }),
+  defineSecret: () => ({ value: () => '' }),
+}));
+
+jest.mock('firebase-admin', () => {
+  const firestore = jest.fn(() => buildDb());
+  (firestore as unknown as { FieldValue: Record<string, unknown> }).FieldValue = {
+    increment: (by: number) => ({ __op: 'increment', by }),
+    serverTimestamp: () => ({ __op: 'serverTimestamp' }),
+  };
+  return { firestore };
+});
+
+function seedVictimIdentity() {
+  mockDocs.set('users/victim', { firebaseAuthUid: 'auth-victim', shards: 200 });
+  mockDocs.set('users/attacker', { firebaseAuthUid: 'auth-attacker', shards: 200 });
+}
+
+function seedPublishedPack() {
+  mockDocs.set('community_packs/pack-1', {
+    listingStatus: 'published',
+    authorStableId: 'author',
+    studyTarget: 'en',
+    priceShards: 50,
+    salesCount: 0,
+    cards: [{ id: 'c1', en: 'hello', ru: 'privet' }],
+  });
+  mockDocs.set('users/author', { firebaseAuthUid: 'auth-author', shards: 0 });
+}
+
+function submissionPayload() {
+  return {
+    studyTarget: 'en',
+    sourceLang: 'ru',
+    title: 'Starter pack',
+    description: 'Starter pack',
+    cards: Array.from({ length: 10 }, (_, i) => ({
+      id: `card-${i + 1}`,
+      en: `word ${i + 1}`,
+      ru: `slovo ${i + 1}`,
+    })),
+  };
+}
+
+function callCommunity<T>(name: string, data: DocData, authUid = 'auth-attacker'): Promise<T> {
+  const mod = require('./community_packs');
+  return mod[name]({ auth: { uid: authUid }, data });
+}
+
+beforeEach(() => {
+  jest.resetModules();
+  mockDocs.clear();
+  mockAutoId = 0;
+  seedVictimIdentity();
+});
+
+describe('community pack callable ownership', () => {
+  test('rejects submitting a pack with another author stable id', async () => {
+    await expect(callCommunity('communitySubmitPackForReview', {
+      authorStableId: 'victim',
+      payload: submissionPayload(),
+    })).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'stable_id_mismatch',
+    });
+    expect(Array.from(mockDocs.keys()).some((path) => path.startsWith('community_pack_submissions/'))).toBe(false);
+  });
+
+  test('rejects buying a pack with another user stable id', async () => {
+    seedPublishedPack();
+
+    await expect(callCommunity('communityPurchasePack', {
+      buyerStableId: 'victim',
+      packId: 'pack-1',
+      studyTarget: 'en',
+      buyerDisplayName: 'Mallory',
+    })).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'stable_id_mismatch',
+    });
+    expect(mockDocs.get('users/victim')?.shards).toBe(200);
+  });
+
+  test('allows buying a pack with the caller own stable id', async () => {
+    seedPublishedPack();
+
+    const result = await callCommunity<{ alreadyOwned: boolean; buyerBalanceAfter: number }>('communityPurchasePack', {
+      buyerStableId: 'victim',
+      packId: 'pack-1',
+      studyTarget: 'en',
+      buyerDisplayName: 'Alice',
+    }, 'auth-victim');
+
+    expect(result).toMatchObject({ alreadyOwned: false, buyerBalanceAfter: 190 });
+    expect(mockDocs.get('users/victim')?.shards).toBe(190);
+    expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toMatchObject({
+      buyerStableId: 'victim',
+      packId: 'pack-1',
+    });
+  });
+
+  test('rejects reading cards through another user purchase', async () => {
+    seedPublishedPack();
+    mockDocs.set('community_pack_purchases/victim__pack-1', {
+      buyerStableId: 'victim',
+      packId: 'pack-1',
+    });
+
+    await expect(callCommunity('communityFetchPackCardsIfAccessible', {
+      stableId: 'victim',
+      packId: 'pack-1',
+      studyTarget: 'en',
+    })).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'stable_id_mismatch',
+    });
+  });
+
+  test('allows reading cards through the caller own purchase', async () => {
+    seedPublishedPack();
+    mockDocs.set('community_pack_purchases/victim__pack-1', {
+      buyerStableId: 'victim',
+      packId: 'pack-1',
+    });
+
+    const result = await callCommunity<{ cards: unknown[] }>('communityFetchPackCardsIfAccessible', {
+      stableId: 'victim',
+      packId: 'pack-1',
+      studyTarget: 'en',
+    }, 'auth-victim');
+
+    expect(result.cards).toHaveLength(1);
+  });
+
+  test('rejects listing another seller inbox', async () => {
+    mockDocs.set('users/victim/community_seller_inbox/event-1', {
+      seen: false,
+      type: 'pack_sold',
+    });
+
+    await expect(callCommunity('communityListSellerInbox', {
+      authorStableId: 'victim',
+      limit: 20,
+    })).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'stable_id_mismatch',
+    });
+  });
+
+  test('allows listing the caller own seller inbox', async () => {
+    mockDocs.set('users/victim/community_seller_inbox/event-1', {
+      seen: false,
+      type: 'pack_sold',
+    });
+
+    const result = await callCommunity<{ events: Array<{ id: string }> }>('communityListSellerInbox', {
+      authorStableId: 'victim',
+      limit: 20,
+    }, 'auth-victim');
+
+    expect(result.events).toHaveLength(1);
+    expect(result.events[0].id).toBe('event-1');
+  });
+
+  test('rejects marking another seller inbox seen', async () => {
+    mockDocs.set('users/victim/community_seller_inbox/event-1', {
+      seen: false,
+      type: 'pack_sold',
+    });
+
+    await expect(callCommunity('communityMarkSellerInboxSeen', {
+      authorStableId: 'victim',
+      eventIds: ['event-1'],
+    })).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'stable_id_mismatch',
+    });
+    expect(mockDocs.get('users/victim/community_seller_inbox/event-1')?.seen).toBe(false);
+  });
+
+  test('allows marking the caller own seller inbox seen', async () => {
+    mockDocs.set('users/victim/community_seller_inbox/event-1', {
+      seen: false,
+      type: 'pack_sold',
+    });
+
+    await expect(callCommunity('communityMarkSellerInboxSeen', {
+      authorStableId: 'victim',
+      eventIds: ['event-1'],
+    }, 'auth-victim')).resolves.toEqual({ ok: true });
+    expect(mockDocs.get('users/victim/community_seller_inbox/event-1')?.seen).toBe(true);
+  });
+});

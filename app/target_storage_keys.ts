@@ -233,6 +233,10 @@ export function lessonSessionKey(
   return scopedOrLegacyKey(raw, 'lesson_session_local', studyTarget);
 }
 
+export function lessonCycleEndIntroShownKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('lesson_cycle_end_intro_shown', 'lesson_session_local', studyTarget);
+}
+
 export function lastOpenedLessonKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('last_opened_lesson', 'lesson_session_local', studyTarget);
 }

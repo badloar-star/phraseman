@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "title": "Professor Lingman - to be / not to be",
+    "sourceFile": "raw.mp4",
+    "duration": 186.4,
+    "frameRate": 30,
+    "resolution": "1920x1080",
+    "createdAt": "2026-05-24T08:30:00Z"
+  },
+  "editDecisions": [
+    {
+      "id": "clip_001",
+      "sourceStart": 0.0,
+      "sourceEnd": 8.2,
+      "outputStart": 0.0,
+      "outputEnd": 8.2,
+      "decision": "keep",
+      "kind": "hook",
+      "reason": "Strong opening hook with direct viewer pain.",
+      "confidence": 0.94,
+      "transcript": "Если ты говоришь I am agree, английский сразу слышит поломку."
+    },
+    {
+      "id": "clip_002",
+      "sourceStart": 8.2,
+      "sourceEnd": 14.7,
+      "outputStart": 8.2,
+      "outputEnd": 8.2,
+      "decision": "cut",
+      "kind": "pause_trimmed",
+      "reason": "Long thinking pause and restart breath before the useful take.",
+      "confidence": 0.89,
+      "transcript": "Так, давай ещё раз..."
+    },
+    {
+      "id": "clip_003",
+      "sourceStart": 14.7,
+      "sourceEnd": 38.9,
+      "outputStart": 8.2,
+      "outputEnd": 32.4,
+      "decision": "take_selected",
+      "kind": "explanation",
+      "reason": "Latest complete take explains that agree is already a verb.",
+      "confidence": 0.91,
+      "transcript": "Agree уже глагол. Поэтому I agree. Не I am agree."
+    },
+    {
+      "id": "clip_004",
+      "sourceStart": 38.9,
+      "sourceEnd": 45.6,
+      "outputStart": 32.4,
+      "outputEnd": 32.4,
+      "decision": "take_rejected",
+      "kind": "duplicate_take",
+      "reason": "Earlier duplicate take is less clear and repeats the same rule.",
+      "confidence": 0.82,
+      "transcript": "Agree это как бы... нет, не так."
+    },
+    {
+      "id": "clip_005",
+      "sourceStart": 45.6,
+      "sourceEnd": 73.4,
+      "outputStart": 32.4,
+      "outputEnd": 60.2,
+      "decision": "keep",
+      "kind": "examples",
+      "reason": "Useful examples and Russian contrast.",
+      "confidence": 0.88,
+      "transcript": "I agree with you. I don't agree with this idea. Are we agreed?"
+    },
+    {
+      "id": "clip_006",
+      "sourceStart": 73.4,
+      "sourceEnd": 88.4,
+      "outputStart": 60.2,
+      "outputEnd": 75.2,
+      "decision": "visual_added",
+      "kind": "practice_bridge",
+      "reason": "Bridge to Phraseman practice mission.",
+      "confidence": 0.86,
+      "transcript": "Сейчас твоя задача не запомнить правило, а почувствовать конструкцию."
+    }
+  ],
+  "screenText": [
+    {
+      "id": "text_001",
+      "start": 1.4,
+      "end": 5.4,
+      "text": "I agree",
+      "role": "correction",
+      "position": "lower-third",
+      "style": "big-white-red-crossout",
+      "animation": "quick-rise",
+      "reason": "The core correction must be visible during the hook."
+    },
+    {
+      "id": "text_002",
+      "start": 11.6,
+      "end": 17.2,
+      "text": "Agree is already a verb",
+      "role": "rule",
+      "position": "right-safe",
+      "style": "rule-card",
+      "animation": "fade-slide",
+      "reason": "Short rule timed with the explanation."
+    },
+    {
+      "id": "text_003",
+      "start": 36.0,
+      "end": 44.5,
+      "text": "I agree with you",
+      "role": "phrase",
+      "position": "lower-third",
+      "style": "phrase-line",
+      "animation": "type-on",
+      "reason": "Readable example phrase for repetition."
+    },
+    {
+      "id": "text_004",
+      "start": 63.0,
+      "end": 70.0,
+      "text": "Practice: say 3 real opinions",
+      "role": "micro_test",
+      "position": "center-safe",
+      "style": "mission",
+      "animation": "pop-in",
+      "reason": "Turns the lesson into action without clutter."
+    }
+  ],
+  "quality": {
+    "warnings": [
+      {
+        "id": "warn_001",
+        "severity": "medium",
+        "message": "Check whether clip_004 should remain as a funny failed attempt.",
+        "targetId": "clip_004"
+      }
+    ],
+    "checks": {
+      "captionsCoverSpeech": true,
+      "screenTextReadable": true,
+      "noLargeSilentGaps": true,
+      "durationReduced": true
+    }
+  }
+}

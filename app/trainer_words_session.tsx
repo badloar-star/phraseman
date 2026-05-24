@@ -20,6 +20,7 @@ import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import { triLang, type Lang } from '../constants/i18n';
@@ -31,11 +32,13 @@ import {
   trainerTranslationForLang,
   type TrainerItem,
 } from './trainer_store';
+import { safeRouterBack } from './navigation_back';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
 import { checkAchievements } from './achievements';
 import { logTrainerDirectGateBlocked } from './firebase';
 import TrainerSessionReport from './trainer_session_report';
+import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 const SWIPE_THRESHOLD = SCREEN_W * 0.3;
@@ -208,6 +211,8 @@ export default function TrainerWordsSession() {
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
+  const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
 
   const [deck, setDeck] = useState<CardData[]>([]);
   const [current, setCurrent] = useState(0);
@@ -223,14 +228,19 @@ export default function TrainerWordsSession() {
 
   useEffect(() => {
     void (async () => {
-      const allowed = await consumeTrainerSessionEntry('/trainer_words_session');
+      if (!trainerGateOpen) {
+        setAccessReady(true);
+        setLoading(false);
+        return;
+      }
+      const allowed = await consumeTrainerSessionEntry('/trainer_words_session', studyTarget);
       if (!allowed) {
         logTrainerDirectGateBlocked('/trainer_words_session');
         router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
         return;
       }
       setAccessReady(true);
-      const items = await getDueItems('words', 20);
+      const items = await getDueItems('words', 20, studyTarget);
       allItemsRef.current = items;
       if (items.length === 0) { setDone(true); setLoading(false); return; }
 
@@ -252,7 +262,7 @@ export default function TrainerWordsSession() {
       setDeck(cards);
       setLoading(false);
     })();
-  }, [lang, router]);
+  }, [lang, router, studyTarget, trainerGateOpen]);
 
   const handleSwipe = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];
@@ -263,7 +273,7 @@ export default function TrainerWordsSession() {
     if (answeredCorrectly) setCorrect(c => c + 1);
     else setWrong(c => c + 1);
 
-    await markTrainerResult(card.item.key, 'words', answeredCorrectly);
+    await markTrainerResult(card.item.key, 'words', answeredCorrectly, studyTarget);
     const updates: { type: TaskType; increment: number }[] = [];
     if (!dailySessionTracked.current) {
       dailySessionTracked.current = true;
@@ -272,7 +282,7 @@ export default function TrainerWordsSession() {
     if (answeredCorrectly) {
       updates.push({ type: 'recall_answers', increment: 1 });
       updates.push({ type: 'trainer_words', increment: 1 });
-      checkAchievements({ type: 'trainer_correct', correct: 1 }).catch(() => {});
+      checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
     }
 
     const next = current + 1;
@@ -283,13 +293,14 @@ export default function TrainerWordsSession() {
         correct: nextCorrect,
         wrong: nextWrong,
         total: deck.length,
+        studyTarget,
       }).catch(() => {});
       setDone(true);
     } else {
       setCurrent(next);
     }
-    if (updates.length > 0) updateMultipleTaskProgress(updates).catch(() => {});
-  }, [deck, current, correct, wrong]);
+    if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
+  }, [deck, current, correct, wrong, studyTarget]);
 
   const handleButton = useCallback((dir: 'right' | 'left') => {
     hapticTap();
@@ -307,6 +318,26 @@ export default function TrainerWordsSession() {
     );
   }
 
+  if (!trainerGateOpen) {
+    const copy = frenchTrainerGateCopy(lang);
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+          <Ionicons name="lock-closed-outline" size={38} color={sx.muted} />
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '900', textAlign: 'center', marginTop: 14 }}>
+            {copy.title}
+          </Text>
+          <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 10, lineHeight: 22 }}>
+            {copy.body}
+          </Text>
+          <TouchableOpacity onPress={() => router.replace('/trainer' as any)} style={{ marginTop: 22, backgroundColor: '#4A9EFF', borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}>
+            <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>{copy.action}</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
   if (done) {
     return (
       <ScreenGradient>
@@ -318,7 +349,7 @@ export default function TrainerWordsSession() {
               wrong={wrong}
               total={deck.length || correct + wrong}
               accent="#4A9EFF"
-              onDone={() => { hapticTap(); router.back(); }}
+              onDone={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
             />
           </ContentWrap>
@@ -333,7 +364,7 @@ export default function TrainerWordsSession() {
         <ContentWrap>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={{ padding: 4 }}>
+            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TouchableOpacity>
             <Text style={[{ color: sx.muted, fontSize: f.caption }]}>

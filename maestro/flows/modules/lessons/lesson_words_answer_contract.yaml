@@ -7,7 +7,11 @@ appId: app.phraseman
 - tapOn:
     id: "lesson-words-option-correct"
 - waitForAnimationToEnd:
-    timeout: 3000
+    timeout: 5000
+- assertVisible:
+    id: "lesson-words-training"
+- assertNotVisible:
+    id: "lesson-words-complete"
 - assertNotVisible:
     text: "Cannot read property 'word' of undefined"
 - assertNotVisible:

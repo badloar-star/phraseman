@@ -2,15 +2,13 @@ import { IS_EXPO_GO } from './config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
-import { getCanonicalUserId } from './user_id_policy';
+import { submitClientReport } from './client_reports';
 
 // Firebase недоступен в Expo Go — только в production билде
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const getAnalytics = () => IS_EXPO_GO ? null : require('@react-native-firebase/analytics').default();
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const getCrashlytics = () => IS_EXPO_GO ? null : require('@react-native-firebase/crashlytics').default();
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const getFirestore = () => IS_EXPO_GO ? null : require('@react-native-firebase/firestore').default();
 
 // ── Core helpers ─────────────────────────────────────────────────────────────
 
@@ -144,19 +142,15 @@ export function logFlashcardAdded() {
 export function logCancelSurvey(reason: string, reasonText = '', context = 'manage') {
   logEvent('subscription_cancel_survey', { reason });
   void (async () => {
-    const db = getFirestore();
-    if (!db) return;
-    const [uid, userName, lang, plan] = await Promise.all([
-      getCanonicalUserId().catch(() => null),
+    const [userName, lang, plan] = await Promise.all([
       AsyncStorage.getItem('user_name').catch(() => null),
       AsyncStorage.getItem('app_lang').catch(() => null),
       AsyncStorage.getItem('premium_plan').catch(() => null),
     ]);
-    await db.collection('subscription_cancel_surveys').add({
+    await submitClientReport('subscription_cancel_survey', {
       reason: String(reason || 'unknown').slice(0, 80),
       reasonText: String(reasonText || '').trim().slice(0, 1000),
       context: String(context || 'manage').slice(0, 80),
-      uid: uid || 'unknown',
       userName: userName || null,
       lang: lang || null,
       premiumPlan: plan || null,
@@ -164,7 +158,6 @@ export function logCancelSurvey(reason: string, reasonText = '', context = 'mana
       osVersion: String(Platform.Version),
       appVersion: Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown',
       buildNumber: Constants.nativeBuildVersion ?? 'unknown',
-      createdAt: new Date().toISOString(),
     }).catch(() => {});
   })();
 }

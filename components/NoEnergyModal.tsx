@@ -37,67 +37,60 @@ import { shouldRenderNoEnergyModal } from '../app/services/no_energy_modal_visib
 import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 
-type NoEnergyModalArt = {
-  source: any;
+type NoEnergyModalChrome = {
   glow: string;
   borderColor: string;
-  scrimColors: [string, string, string];
+  surfaceColors: [string, string, string];
   cardGlowColors: [string, string, string];
   titleColor: string;
   subtitleColor: string;
 };
 
-const NO_ENERGY_MODAL_ART: Record<ThemeMode, NoEnergyModalArt> = {
+const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
   dark: {
-    source: require('../assets/images/energy/no-energy-modal-dark.webp'),
     glow: '#F59E0B',
     borderColor: 'rgba(245,158,11,0.34)',
-    scrimColors: ['rgba(2,8,6,0.08)', 'rgba(2,8,6,0.46)', 'rgba(2,8,6,0.82)'],
+    surfaceColors: ['rgba(24,36,26,0.88)', 'rgba(10,22,14,0.92)', 'rgba(4,10,7,0.94)'],
     cardGlowColors: ['rgba(245,158,11,0.24)', 'rgba(16,185,129,0.10)', 'transparent'],
     titleColor: '#F4FFF7',
     subtitleColor: '#63E894',
   },
   neon: {
-    source: require('../assets/images/energy/no-energy-modal-neon.webp'),
     glow: '#C8FF00',
     borderColor: 'rgba(200,255,0,0.36)',
-    scrimColors: ['rgba(2,8,4,0.10)', 'rgba(2,8,4,0.50)', 'rgba(2,8,4,0.84)'],
+    surfaceColors: ['rgba(30,36,16,0.88)', 'rgba(16,22,8,0.92)', 'rgba(5,8,3,0.94)'],
     cardGlowColors: ['rgba(200,255,0,0.26)', 'rgba(0,255,170,0.10)', 'transparent'],
     titleColor: '#FAFFE8',
     subtitleColor: '#C8FF00',
   },
   gold: {
-    source: require('../assets/images/energy/no-energy-modal-gold.webp'),
     glow: '#D6B35A',
     borderColor: 'rgba(214,179,90,0.42)',
-    scrimColors: ['rgba(12,8,2,0.08)', 'rgba(12,8,2,0.48)', 'rgba(12,8,2,0.84)'],
+    surfaceColors: ['rgba(38,31,18,0.90)', 'rgba(20,15,8,0.93)', 'rgba(8,6,3,0.95)'],
     cardGlowColors: ['rgba(214,179,90,0.28)', 'rgba(120,82,24,0.14)', 'transparent'],
     titleColor: '#FFF7DE',
     subtitleColor: '#F4D986',
   },
   coral: {
-    source: require('../assets/images/energy/no-energy-modal-coral.webp'),
     glow: '#FF7A66',
     borderColor: 'rgba(255,100,100,0.40)',
-    scrimColors: ['rgba(12,3,5,0.10)', 'rgba(12,3,5,0.50)', 'rgba(12,3,5,0.84)'],
+    surfaceColors: ['rgba(42,20,22,0.90)', 'rgba(22,9,11,0.93)', 'rgba(10,3,5,0.95)'],
     cardGlowColors: ['rgba(255,122,102,0.28)', 'rgba(255,100,100,0.12)', 'transparent'],
     titleColor: '#FFF1EF',
     subtitleColor: '#FF9A8E',
   },
   minimalLight: {
-    source: require('../assets/images/energy/no-energy-modal-minimal-light.webp'),
     glow: '#D8C49C',
     borderColor: 'rgba(106,83,52,0.34)',
-    scrimColors: ['rgba(255,253,246,0.14)', 'rgba(255,253,246,0.58)', 'rgba(255,253,246,0.82)'],
+    surfaceColors: ['rgba(255,253,246,0.92)', 'rgba(243,236,220,0.94)', 'rgba(232,222,203,0.96)'],
     cardGlowColors: ['rgba(255,246,220,0.34)', 'rgba(243,236,220,0.18)', 'transparent'],
     titleColor: '#171615',
     subtitleColor: '#273044',
   },
   minimalDark: {
-    source: require('../assets/images/energy/no-energy-modal-minimal-dark.webp'),
     glow: '#6EA8FF',
     borderColor: 'rgba(110,168,255,0.38)',
-    scrimColors: ['rgba(4,6,12,0.10)', 'rgba(4,6,12,0.52)', 'rgba(4,6,12,0.86)'],
+    surfaceColors: ['rgba(34,38,48,0.90)', 'rgba(20,23,30,0.94)', 'rgba(10,12,16,0.96)'],
     cardGlowColors: ['rgba(110,168,255,0.28)', 'rgba(78,112,160,0.12)', 'transparent'],
     titleColor: '#F5F8FF',
     subtitleColor: '#9FC6FF',
@@ -183,7 +176,7 @@ export default function NoEnergyModal({
 }: Props) {
   const router = useRouter();
   const { theme: t, themeMode, f } = useTheme();
-  const art = NO_ENERGY_MODAL_ART[themeMode] ?? NO_ENERGY_MODAL_ART.dark;
+  const art = NO_ENERGY_MODAL_CHROME[themeMode] ?? NO_ENERGY_MODAL_CHROME.dark;
   const paywallCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
   const { formattedTime, energy, bonusEnergy, maxEnergy, isUnlimited, reload } = useEnergy();
   const { hasPremiumAccess } = usePremium();
@@ -431,14 +424,8 @@ export default function NoEnergyModal({
             },
           ]}
         >
-          <Image
-            source={art.source}
-            style={styles.cardBackdrop}
-            resizeMode="cover"
-            accessible={false}
-          />
           <LinearGradient
-            colors={art.scrimColors}
+            colors={art.surfaceColors}
             locations={[0, 0.5, 1]}
             start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}
             style={StyleSheet.absoluteFill}
@@ -619,10 +606,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     elevation: 20,
     overflow: 'hidden',
-  },
-  cardBackdrop: {
-    ...StyleSheet.absoluteFillObject,
-    opacity: 0.95,
   },
   cardGlow: {
     position: 'absolute',

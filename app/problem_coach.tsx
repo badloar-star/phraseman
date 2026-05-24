@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -33,6 +33,7 @@ import { personalPracticeCoachEnabledForTarget } from './personal_practice_targe
 import { isStudyTargetSourceUiLang } from './study_target_lang_dev';
 import type { DiagnosisTrainingRuntimeState } from './diagnosis_training_types';
 import { safeRouterBack } from './navigation_back';
+import { buildPracticeOptionsByStepId } from './practice_option_shuffle';
 
 type Stage = 'intro' | 'practice' | 'done';
 
@@ -58,6 +59,10 @@ export default function ProblemCoach() {
   const [wrongCount, setWrongCount] = useState(0);
 
   const step = diagnosisTraining?.steps[state.stepIndex];
+  const shuffledOptionsByStepId = useMemo(() => {
+    return buildPracticeOptionsByStepId(diagnosisTraining?.steps ?? []);
+  }, [diagnosisTraining?.id]);
+  const visibleOptions = step ? shuffledOptionsByStepId.get(step.id) ?? step.answerOptions : [];
   const depth = diagnosisTraining && step ? getStepDepth(state, step) : 1;
   const feedback = step && selectedOptionId ? feedbackForAnswer(step, selectedOptionId, depth) : null;
   const mastered = diagnosisTraining ? isDiagnosisTrainingMastered(diagnosisTraining, state) : false;
@@ -95,7 +100,7 @@ export default function ProblemCoach() {
 
   const handleSelect = (idx: number) => {
     if (!diagnosisTraining || !step || selectedIndex !== null) return;
-    const option = step.answerOptions[idx];
+    const option = visibleOptions[idx];
     if (!option) return;
 
     hapticTap();
@@ -400,7 +405,7 @@ export default function ProblemCoach() {
         </View>
 
         <View style={styles.optionsList}>
-          {step.answerOptions.map((option, idx) => {
+          {visibleOptions.map((option, idx) => {
             const isRight = option.id === step.correctAnswerId;
             const isSelected = idx === selectedIndex;
             let optionBg = t.bgSurface;

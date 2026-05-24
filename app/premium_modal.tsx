@@ -33,6 +33,7 @@ import {
 import { storeProductHasTrialIntro } from './premium_trial_signal';
 import { safeRouterBack } from './navigation_back';
 import {
+  inferPremiumPlanFromProductId,
   persistStorePremiumLocally,
   revenueCatPremiumMetadata,
   type RevenueCatPremiumMetadata,
@@ -1994,16 +1995,135 @@ export default function PremiumModal() {
     }
   };
 
-  const handleRestore = async () => {
-    setRestoring(true);
+  const isDevStorePreview = IS_EXPO_GO || DEV_IAP_BYPASS;
+
+  const handleChangePlan = async () => {
+    if (activePlan !== 'monthly' || (isAdminGrantedPremium && !isDevStorePreview)) return;
+    if (purchasingRef.current) return;
+    purchasingRef.current = true;
+    setPurchasing(true);
     try {
-      const info = await Purchases.restorePurchases();
+      if (isDevStorePreview) {
+        await savePremiumLocally('yearly');
+        setActivePlan('yearly');
+        invalidatePremiumCache();
+        emitAppEvent('action_toast', {
+          type: 'success',
+          messageRu: 'DEV: план переключён на годовой локально.',
+          messageUk: 'DEV: план перемкнено на річний локально.',
+          messageEs: 'DEV: plan cambiado a anual localmente.',
+        });
+        return;
+      }
+      if (Platform.OS !== 'android') {
+        openManageWithToast();
+        return;
+      }
+      await initRevenueCat();
+      if (!(await Purchases.isConfigured()) || !(await syncRevenueCatIdentity())) {
+        emitAppEvent('action_toast', {
+          type: 'error',
+          messageRu: 'Платежи ещё готовятся. Подождите пару секунд и попробуйте снова.',
+          messageUk: 'Платежі ще готуються. Зачекайте пару секунд і спробуйте знову.',
+          messageEs: 'Los pagos aún se están preparando. Espera unos segundos e inténtalo de nuevo.',
+        });
+        return;
+      }
+
+      let currentPkg = packages.monthly;
+      let nextPkg = packages.yearly;
+      if (!currentPkg || !nextPkg || !storePriceTrim(nextPkg.product.priceString)) {
+        const nextPackages = await loadPremiumPackages();
+        currentPkg = nextPackages.monthly;
+        nextPkg = nextPackages.yearly;
+      }
+      if (!currentPkg || !nextPkg || !storePriceTrim(nextPkg.product.priceString)) {
+        emitAppEvent('action_toast', {
+          type: 'error',
+          messageRu: 'Годовой план пока недоступен в магазине. Попробуйте позже.',
+          messageUk: 'Річний план поки недоступний у магазині. Спробуйте пізніше.',
+          messageEs: 'El plan anual aún no está disponible en la tienda. Inténtalo más tarde.',
+        });
+        return;
+      }
+
+      const googleProductChangeInfo = {
+        oldProductIdentifier: currentPkg.product.identifier,
+        prorationMode: Purchases.PRORATION_MODE.DEFERRED,
+      };
+      await Purchases.purchasePackage(nextPkg, null, googleProductChangeInfo);
+      const info = await Purchases.getCustomerInfo();
       const isActive =
         Object.keys(info.entitlements.active).length > 0 ||
         info.activeSubscriptions.length > 0;
       if (isActive) {
-        const plan: Plan = info.activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly' : 'monthly';
-        await savePremiumLocally(plan, revenueCatPremiumMetadata(info));
+        const confirmedPlan: Plan =
+          info.activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly' : 'monthly';
+        const metadata = revenueCatPremiumMetadata(info);
+        await savePremiumLocally(confirmedPlan, metadata);
+        setActivePlan(confirmedPlan);
+        setExpiryTs(prev => {
+          const expiry = Number(metadata.expiryMs ?? 0);
+          return expiry > 0 ? expiry : prev;
+        });
+        invalidatePremiumCache();
+      }
+      emitAppEvent('action_toast', {
+        type: 'success',
+        messageRu: 'Смена плана отправлена в Google Play. Годовой план начнётся после текущего периода.',
+        messageUk: 'Зміну плану передано в Google Play. Річний план почнеться після поточного періоду.',
+        messageEs: 'Cambio enviado a Google Play. El plan anual empezará al terminar el periodo actual.',
+      });
+    } catch (e: any) {
+      if (!e?.userCancelled) {
+        emitAppEvent('action_toast', {
+          type: 'error',
+          messageRu: e.message || 'Не удалось сменить план.',
+          messageUk: e.message || 'Не вдалося змінити план.',
+          messageEs: e.message || 'No se pudo cambiar el plan.',
+        });
+      }
+    } finally {
+      setPurchasing(false);
+      purchasingRef.current = false;
+    }
+  };
+
+  const handleRestore = async () => {
+    if (restoring) return;
+    setRestoring(true);
+    try {
+      if (isDevStorePreview) {
+        emitAppEvent('action_toast', {
+          type: 'info',
+          messageRu: 'Восстановление покупок доступно в реальной сборке через магазин.',
+          messageUk: 'Відновлення покупок доступне в реальній збірці через магазин.',
+          messageEs: 'La restauración de compras está disponible en una compilación real con tienda.',
+        });
+        return;
+      }
+      await initRevenueCat();
+      if (!(await Purchases.isConfigured()) || !(await syncRevenueCatIdentity())) {
+        emitAppEvent('action_toast', {
+          type: 'error',
+          messageRu: 'Платежи ещё готовятся. Подождите пару секунд и попробуйте снова.',
+          messageUk: 'Платежі ще готуються. Зачекайте пару секунд і спробуйте знову.',
+          messageEs: 'Los pagos aún se están preparando. Espera unos segundos e inténtalo de nuevo.',
+        });
+        return;
+      }
+      const info = await Purchases.restorePurchases();
+      const activeSubscriptions = info.activeSubscriptions ?? [];
+      const isActive =
+        Object.keys(info.entitlements.active).length > 0 ||
+        activeSubscriptions.length > 0;
+      if (isActive) {
+        const metadata = revenueCatPremiumMetadata(info);
+        const plan: Plan = inferPremiumPlanFromProductId(
+          metadata.productId,
+          activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly' : 'monthly',
+        );
+        await savePremiumLocally(plan, metadata);
         await markSubscriptionOrTrialFlowConsumedNow();
         // Restore = первый раз на этом устройстве (или после reset) — celebration уместна,
         // чтобы юзер видел что premium «активирован» и понимал что разблокировано.
@@ -2161,6 +2281,8 @@ export default function PremiumModal() {
                 pl: 'Cena w sklepie',
               }))
       : `${amount} / ${period}`;
+    const canChangeMonthlyToYearly = activePlan === 'monthly' && !cancelled && (!isAdminGrantedPremium || isDevStorePreview);
+    const yearlyChangePrice = storePriceTrim(packages.yearly?.product.priceString);
     const premiumGold = t.gold;
     const premiumGoldSoft = t.goldBg;
     const premiumBorder = premiumGold + '66';
@@ -2406,31 +2528,52 @@ export default function PremiumModal() {
                 </LinearGradient>
               </View>
 
-              {!cancelled && !isAdminGrantedPremium && (
+              {canChangeMonthlyToYearly && (
                 <TouchableOpacity
-                  onPress={() => { hapticTap(); openManageWithToast(); }}
+                  onPress={() => { hapticTap(); handleChangePlan(); }}
                   activeOpacity={0.86}
-                  style={{ borderRadius: 18, ...premiumShadow }}
+                  disabled={purchasing}
+                  style={{ borderRadius: 18, opacity: purchasing ? 0.62 : 1, ...premiumShadow }}
                 >
                   <LinearGradient
                     colors={[paywallSurfaceBg, paywallCardBg]}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
-                    style={{ padding: 18, borderWidth: 1, borderColor: premiumHairline, borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+                    style={{ padding: 18, borderWidth: 1, borderColor: premiumHairline, borderRadius: 18, gap: 10 }}
                   >
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, flex: 1 }}>
-                      <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: premiumGoldSoft, alignItems: 'center', justifyContent: 'center' }}>
-                        <Ionicons name="swap-horizontal-outline" size={20} color={premiumGold} />
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, flex: 1, minWidth: 0 }}>
+                        <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: premiumGoldSoft, alignItems: 'center', justifyContent: 'center' }}>
+                          <Ionicons name="swap-horizontal-outline" size={20} color={premiumGold} />
+                        </View>
+                        <View style={{ flex: 1, minWidth: 0 }}>
+                          <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={2}>
+                            {LP('Перейти на годовой план', 'Перейти на річний план', 'Cambiar al plan anual', {
+                              'pt-BR': 'Mudar para o plano anual',
+                              vi: 'Chuyển sang gói hằng năm',
+                              id: 'Pindah ke paket tahunan',
+                              tr: 'Yıllık plana geç',
+                              pl: 'Przejdź na plan roczny',
+                            })}
+                          </Text>
+                          {!!yearlyChangePrice && (
+                            <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }} numberOfLines={1}>
+                              {yearlyChangePrice}
+                            </Text>
+                          )}
+                        </View>
                       </View>
-                      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{LP('Сменить план', 'Змінити план', 'Cambiar plan', {
-                        'pt-BR': 'Trocar plano',
-                        vi: 'Đổi gói',
-                        id: 'Ubah paket',
-                        tr: 'Planı değiştir',
-                        pl: 'Zmień plan',
-                      })}</Text>
+                      <Ionicons name="chevron-forward" size={18} color={premiumGold} />
                     </View>
-                    <Ionicons name="chevron-forward" size={18} color={premiumGold} />
+                    <Text style={{ color: t.textMuted, fontSize: 12, lineHeight: 17 }}>
+                      {LP('Изменение применится через магазин. На Google Play годовой план начнётся после текущего периода; на iOS откроется управление подпиской App Store.', 'Зміна застосовується через магазин. У Google Play річний план почнеться після поточного періоду; на iOS відкриється керування підпискою App Store.', 'El cambio se aplica a través de la tienda. En Google Play, el plan anual empezará después del periodo actual; en iOS se abrirá la gestión de App Store.', {
+                        'pt-BR': 'A mudança é aplicada pela loja. No Google Play, o plano anual começa após o período atual; no iOS, abre o gerenciamento da App Store.',
+                        vi: 'Thay đổi được áp dụng qua cửa hàng. Trên Google Play, gói hằng năm bắt đầu sau kỳ hiện tại; trên iOS sẽ mở phần quản lý App Store.',
+                        id: 'Perubahan diterapkan melalui toko. Di Google Play, paket tahunan dimulai setelah periode saat ini; di iOS akan membuka pengelolaan App Store.',
+                        tr: 'Değişiklik mağaza üzerinden uygulanır. Google Play’de yıllık plan mevcut dönemden sonra başlar; iOS’ta App Store abonelik yönetimi açılır.',
+                        pl: 'Zmiana jest stosowana przez sklep. W Google Play plan roczny zacznie się po obecnym okresie; w iOS otworzy się zarządzanie subskrypcją App Store.',
+                      })}
+                    </Text>
                   </LinearGradient>
                 </TouchableOpacity>
               )}

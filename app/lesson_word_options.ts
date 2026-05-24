@@ -34,7 +34,7 @@ export function buildLessonWordOptions(
     .map(toCandidate('crossLesson'));
   const fallbackCandidates = [...lessonWords, ...allWords]
     .filter((word) => notMe(word) && allowed(word))
-    .map(toCandidate('fallback'));
+    .map(toCandidate('reserve'));
 
   return buildSmartVocabularyOptions(
     { value: correct.en, pos: correct.pos, source: 'lesson' },

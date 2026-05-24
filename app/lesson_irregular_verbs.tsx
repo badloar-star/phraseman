@@ -28,6 +28,7 @@ import { updateMultipleTaskProgress } from './daily_tasks';
 import { MOTION_SCALE } from '../constants/motion';
 import { loadSettings } from './settings_edu';
 import { IRREGULAR_VERBS_BY_LESSON, IrregularVerb } from './irregular_verbs_data';
+import { buildIrregularVerbOptions, ensureCompleteIrregularVerbOptions } from './irregular_verb_options';
 import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
@@ -178,78 +179,11 @@ function irregularVerbTranslation(verb: IrregularVerb, lang: Lang): string {
   return verb.ru;
 }
 
-function shuffleArr<T>(arr: T[]): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-// Extra distractors if the lesson pool is too small to build 3 unique wrong answers
-const OPTION_FALLBACK_POOL: readonly string[] = [
-  'went', 'took', 'saw', 'came', 'gave', 'knew', 'found', 'left', 'held', 'bought', 'sold', 'drove', 'wrote', 'spoke', 'ate', 'drank', 'told', 'sent', 'built', 'fought', 'flew', 'drew', 'grew', 'paid', 'shut', 'slept', 'brought', 'caught', 'taught', 'wore', 'won', 'forgot', 'chose', 'broke', 'fell', 'stole', 'swam', 'rose', 'woke', 'began',
-];
-
-// Returns 4 options: correct + 3 distractors.
-// Priority: unique forms of the same verb (V1/V2/V3 excluding correct), then similar-form from other verbs.
-function make4Options(correct: string, verb: IrregularVerb, allVerbs: IrregularVerb[], formKey: FormKey): string[] {
-  const score = (w: string) => {
-    if (!w || !correct) return 0;
-    let s = 0;
-    if (w[0] === correct[0]) s += 2;
-    if (w.slice(-2) === correct.slice(-2)) s += 3;
-    if (w.slice(-3) === correct.slice(-3)) s += 2;
-    return s;
-  };
-
-  const correctLow = (correct || '').toLowerCase();
-
-  // Unique forms of the same verb (excluding the correct answer)
-  const ownForms = [verb.base, verb.past, verb.pp]
-    .filter(f => f.toLowerCase() !== correctLow);
-  const uniqueOwn = [...new Set(ownForms)];
-
-  // External candidates: same form from other verbs, similar to correct
-  const candidates = allVerbs
-    .filter(v => v.base !== verb.base)
-    .map(v => v[formKey])
-    .filter((f): f is string => typeof f === 'string' && f.length > 0)
-    .filter(f => f.toLowerCase() !== correctLow);
-  const deduped = [...new Set(candidates)];
-  const sorted = shuffleArr(deduped).sort((a, b) => score(b) - score(a));
-
-  // Fill up to 3 distractors: own forms first, then external
-  const seen = new Set<string>([correctLow]);
-  const distractors: string[] = [];
-  for (const w of [...shuffleArr(uniqueOwn), ...sorted]) {
-    if (distractors.length >= 3) break;
-    if (!w) continue;
-    const k = w.toLowerCase();
-    if (!seen.has(k)) { seen.add(k); distractors.push(w); }
-  }
-
-  const out: string[] = [correct, ...distractors];
-  for (const w of OPTION_FALLBACK_POOL) {
-    if (out.length >= 4) break;
-    const k = w.toLowerCase();
-    if (!seen.has(k)) { seen.add(k); out.push(w); }
-  }
-  let pad = 0;
-  while (out.length < 4) {
-    const filler = `opt${pad++}`;
-    if (!seen.has(filler)) { seen.add(filler); out.push(filler); }
-  }
-
-  return shuffleArr(out);
-}
-
 function initialOptionsForFirstStep(verbs: IrregularVerb[], allVerbs: IrregularVerb[]): string[] {
   if (verbs.length === 0) return [];
   const v0 = verbs[0];
   const correct = v0.past;
-  return make4Options(correct, v0, allVerbs, 'past');
+  return buildIrregularVerbOptions(correct, v0, allVerbs, 'past');
 }
 
 function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, studyTarget }: {
@@ -342,7 +276,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const buildStep = useCallback((verb: IrregularVerb, stepIdx: number) => {
     const form = FORM_SEQ[stepIdx];
     const correct = form === 'past' ? verb.past : form === 'pp' ? verb.pp : verb.base;
-    setOptions(make4Options(correct, verb, allVerbs, form));
+    setOptions(buildIrregularVerbOptions(correct, verb, allVerbs, form));
     setBtnStates(['idle', 'idle', 'idle', 'idle']);
     setPhase('answering');
     locked.current = false;
@@ -392,9 +326,10 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     const form = FORM_SEQ[step];
     const correct = form === 'past' ? verb.past : form === 'pp' ? verb.pp : verb.base;
     const isCorrect = word === correct;
+    const activeOptions = ensureCompleteIrregularVerbOptions(options, verb, allVerbs, form);
 
     // Show feedback on buttons
-    const newStates: BtnState[] = options.map((opt, i) => {
+    const newStates: BtnState[] = activeOptions.map((opt, i) => {
       if (opt === correct) return 'correct';
       if (i === btnIdx && !isCorrect) return 'wrong';
       return 'idle';
@@ -492,7 +427,21 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         }
       }
     }, isCorrect ? ANSWER_FEEDBACK_MS.correct : ANSWER_FEEDBACK_MS.wrong);
-  }, [phase, queue, pos, step, options, counts, userName, lang, onUpdate, showXpToast, buildStep, goNextVerb, speakAudio, speechRate, voiceOut, irregularStorageKey, studyTarget]);
+  }, [phase, queue, pos, step, options, allVerbs, counts, userName, lang, onUpdate, showXpToast, buildStep, goNextVerb, speakAudio, speechRate, voiceOut, irregularStorageKey, studyTarget]);
+
+  const activeVerb = queue[pos % Math.max(queue.length, 1)];
+  const activeForm = FORM_SEQ[step];
+  const displayOptions = useMemo(
+    () => activeVerb ? ensureCompleteIrregularVerbOptions(options, activeVerb, allVerbs, activeForm) : options,
+    [options, activeVerb, allVerbs, activeForm],
+  );
+
+  useEffect(() => {
+    if (!activeVerb) return;
+    const sameOptions = options.length === displayOptions.length
+      && options.every((option, index) => option === displayOptions[index]);
+    if (!sameOptions) setOptions(displayOptions);
+  }, [activeVerb, displayOptions, options]);
 
   if (allDone) return (
     <>
@@ -541,7 +490,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     </>
   );
 
-  const verb = queue[pos % Math.max(queue.length, 1)];
+  const verb = activeVerb;
   if (!verb) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
@@ -564,7 +513,6 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const form = FORM_SEQ[step];
   const meta = formMeta[form];
   const correctAnswer = form === 'past' ? verb.past : form === 'pp' ? verb.pp : verb.base;
-
   // Context chain — show known forms, blank for current
   const chainForms: { key: FormKey; value: string; isTarget: boolean }[] = [
     { key: 'base', value: verb.base, isTarget: form === 'base' },
@@ -595,12 +543,9 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
       {/* ── Top card area ── */}
       <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 10, justifyContent: 'space-between' }}>
 
-        {/* Progress */}
-        <View style={{ width: '100%', marginBottom: 14, alignItems: 'flex-end' }}>
-          <Text
-            testID="lesson-irregular-verbs-progress-counter"
-            style={{ color: learnedCnt > 0 ? sx.second : sx.muted, fontSize: f.label, fontWeight: '700' }}
-          >
+        {/* Progress counter */}
+        <View style={{ marginBottom: 8 }}>
+          <Text style={{ color: sx.muted, fontSize: f.label }}>
             {triLang(lang, {
               ru: `${learnedCnt} / ${verbs.length} выучено`,
               uk: `${learnedCnt} / ${verbs.length} вивчено`,
@@ -675,8 +620,9 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         paddingHorizontal: 16, paddingBottom: 20, paddingTop: 12,
         gap: 10,
         borderTopWidth: 0.5, borderTopColor: t.border,
+        backgroundColor: t.bgPrimary,
       }}>
-        {[options.slice(0, 2), options.slice(2, 4)].map((row, rowIdx) => (
+        {[displayOptions.slice(0, 2), displayOptions.slice(2, 4)].map((row, rowIdx) => (
           <View key={rowIdx} style={{ flexDirection: 'row', gap: 10 }}>
             {row.map((word, colIdx) => {
               const idx = rowIdx * 2 + colIdx;
@@ -694,8 +640,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
                 <TouchableOpacity
                   key={idx}
                   disabled={phase !== 'answering'}
-                  onPressIn={() => { void hapticTap(); }}
-                  onPress={() => { handleTap(word, idx); }}
+                  onPress={() => { hapticTap(); handleTap(word, idx); }}
                   activeOpacity={0.75}
                   style={{
                     flex: 1, paddingVertical: 16, borderRadius: 16,
@@ -739,14 +684,14 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
               pl: `Forma docelowa: ${form}`,
             }),
             triLang(lang, {
-              ru: `Варианты: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
-              uk: `Варіанти: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
-              es: `Opciones: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
-              'pt-BR': `Opções: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
-              vi: `Lựa chọn: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
-              id: `Pilihan: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
-              tr: `Seçenekler: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
-              pl: `Opcje: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              ru: `Варианты: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              uk: `Варіанти: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              es: `Opciones: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              'pt-BR': `Opções: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              vi: `Lựa chọn: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              id: `Pilihan: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              tr: `Seçenekler: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              pl: `Opcje: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
             }),
           ].join('\n')}
           style={{ alignSelf: 'flex-end', marginTop: 4, marginBottom: 4 }}

@@ -197,6 +197,48 @@ function LeagueIconImageWithFallback({
   );
 }
 
+function LeagueBonusGiftImageWithFallback({
+  source,
+  color,
+  size,
+  opacity,
+  style,
+}: {
+  source?: any;
+  color: string;
+  size: number;
+  opacity: number;
+  style?: any;
+}) {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [source]);
+
+  return (
+    <View pointerEvents="none" style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }, style]}>
+      {!loaded || !source ? (
+        <Ionicons
+          name="gift"
+          size={Math.max(18, Math.round(size * 0.48))}
+          color={color}
+          style={{ position: 'absolute', opacity: Math.max(0.26, opacity) }}
+        />
+      ) : null}
+      {source ? (
+        <Image
+          source={source}
+          resizeMode="contain"
+          style={{ width: '100%', height: '100%', opacity }}
+          onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(false)}
+        />
+      ) : null}
+    </View>
+  );
+}
+
 function LeagueIcon({
   league,
   size = 24,
@@ -1148,13 +1190,17 @@ export default function ClubScreen() {
 
         {leagueRaceVisible && (
         <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x:0, y:0 }} end={{ x:1, y:1 }} style={{ borderRadius:16, borderWidth:0.5, borderColor:leagueBonusPalette.border, padding:14, gap:12, overflow:'hidden' }}>
-          <View pointerEvents="none" style={{ position:'absolute', right:-24, top:-22, width:136, height:136, transform:[{ rotate:'-8deg' }] }}>
-            <Image source={leagueBonusGiftImage} resizeMode="contain" style={{ width:'100%', height:'100%', opacity:leagueChestReady ? 0.20 : 0.12 }} />
-          </View>
+          <LeagueBonusGiftImageWithFallback
+            source={leagueBonusGiftImage}
+            color={leagueChestVisualAccent}
+            size={136}
+            opacity={leagueChestReady ? 0.20 : 0.12}
+            style={{ position:'absolute', right:-24, top:-22, transform:[{ rotate:'-8deg' }] }}
+          />
           <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:12 }}>
             <View style={{ flexDirection:'row', alignItems:'center', gap:8, flex:1, minWidth:0 }}>
               <View style={{ width:56, height:56, borderRadius:28, backgroundColor:leagueBonusPalette.iconBg, borderWidth:0.5, borderColor:leagueBonusPalette.iconBorder, alignItems:'center', justifyContent:'center', shadowColor:leagueChestVisualAccent, shadowOpacity:leagueChestReady ? 0.42 : 0.24, shadowRadius:14, shadowOffset:{ width:0, height:6 }, elevation:7 }}>
-                <Image source={leagueBonusGiftImage} resizeMode="contain" style={{ width:66, height:66, opacity:leagueChestReady ? 1 : 0.94 }} />
+                <LeagueBonusGiftImageWithFallback source={leagueBonusGiftImage} color={leagueChestVisualAccent} size={66} opacity={leagueChestReady ? 1 : 0.94} />
               </View>
               <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900', flex:1 }} numberOfLines={1}>
                 {triLang(lang, {

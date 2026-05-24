@@ -21,19 +21,33 @@ import ContentWrap from '../components/ContentWrap';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import {
+  getCachedDueItems,
   getDueItems,
   markTrainerResult,
   type TrainerItem,
 } from './trainer_store';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
-import { consumeTrainerSessionEntry } from './trainer_session';
+import { consumeTrainerSessionEntry, hasReservedTrainerSessionEntrySync } from './trainer_session';
 import { logTrainerDirectGateBlocked } from './firebase';
 import { safeRouterBack } from './navigation_back';
 import TrainerSessionReport from './trainer_session_report';
 import { checkAchievements } from './achievements';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
+import { shuffle } from './utils_shuffle';
 
 type BtnState = 'idle' | 'correct' | 'wrong';
+
+function shuffleArenaOptions(items: TrainerItem[]): TrainerItem[] {
+  return items.map((item) => item.arenaQuestion
+    ? {
+      ...item,
+      arenaQuestion: {
+        ...item.arenaQuestion,
+        options: shuffle(item.arenaQuestion.options),
+      },
+    }
+    : item);
+}
 
 export default function TrainerArenaSession() {
   const router = useRouter();
@@ -42,16 +56,22 @@ export default function TrainerArenaSession() {
   const { studyTarget } = useStudyTarget();
   const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  const instantItems = useMemo(
+    () => hasReservedTrainerSessionEntrySync('/trainer_arena_session', studyTarget)
+      ? shuffleArenaOptions(getCachedDueItems('arena', 15, studyTarget))
+      : [],
+    [studyTarget],
+  );
 
-  const [items, setItems] = useState<TrainerItem[]>([]);
+  const [items, setItems] = useState<TrainerItem[]>(() => instantItems);
   const [current, setCurrent] = useState(0);
   const [btnStates, setBtnStates] = useState<BtnState[]>(['idle', 'idle', 'idle', 'idle']);
   const [locked, setLocked] = useState(false);
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);
   const [done, setDone] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [accessReady, setAccessReady] = useState(false);
+  const [loading, setLoading] = useState(instantItems.length === 0);
+  const [accessReady, setAccessReady] = useState(instantItems.length > 0);
   const flashAnim = useRef(new Animated.Value(1)).current;
   const dailySessionTracked = useRef(false);
 
@@ -71,7 +91,7 @@ export default function TrainerArenaSession() {
       setAccessReady(true);
       const loaded = await getDueItems('arena', 15, studyTarget);
       if (loaded.length === 0) { setDone(true); setLoading(false); return; }
-      setItems(loaded);
+      setItems(shuffleArenaOptions(loaded));
       setLoading(false);
     })();
   }, [router, studyTarget, trainerGateOpen]);
@@ -147,9 +167,7 @@ export default function TrainerArenaSession() {
   if (!accessReady || loading) {
     return (
       <ScreenGradient>
-        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ color: '#888' }} />
-        </SafeAreaView>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} />
       </ScreenGradient>
     );
   }

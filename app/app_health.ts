@@ -1,9 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { recordError } from './firebase';
-import { getCanonicalUserId } from './user_id_policy';
+import { submitClientReport } from './client_reports';
 
 export type AppHealthSeverity = 'info' | 'warning' | 'critical';
 
@@ -20,16 +19,6 @@ const THROTTLE_PREFIX = 'app_health_last_';
 const DEFAULT_THROTTLE_MS = 30 * 60 * 1000;
 const MAX_MESSAGE_LEN = 500;
 const MAX_STACK_LEN = 4000;
-
-const getFirestore = () => {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    return require('@react-native-firebase/firestore').default();
-  } catch {
-    return null;
-  }
-};
 
 function normalizeError(error: unknown) {
   if (error instanceof Error) {
@@ -100,15 +89,11 @@ export async function logAppError(context: string, error: unknown, meta: AppHeal
   const shouldWrite = meta.writeToFirestore ?? severity === 'critical';
   if (!shouldWrite) return;
 
-  const db = getFirestore();
-  if (!db) return;
-
-  const uid = await getCanonicalUserId().catch(() => null);
   const userName = await AsyncStorage.getItem('user_name').catch(() => null);
   const appVersion = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
   const buildNumber = Constants.nativeBuildVersion ?? 'unknown';
 
-  await db.collection('app_errors').add({
+  await submitClientReport('app_error', {
     context,
     feature,
     screen: meta.screen ?? null,
@@ -118,15 +103,12 @@ export async function logAppError(context: string, error: unknown, meta: AppHeal
     message: normalized.message.slice(0, MAX_MESSAGE_LEN),
     stack: normalized.stack ? normalized.stack.slice(0, MAX_STACK_LEN) : null,
     tags: cleanTags(meta.tags),
-    uid: uid ?? 'unknown',
     userName: userName ?? null,
     appVersion,
     buildNumber,
     platform: Platform.OS,
     osVersion: String(Platform.Version),
     deviceName: Constants.deviceName ?? null,
-    createdAt: new Date().toISOString(),
-    status: 'new',
   }).catch(() => {});
 }
 

@@ -1,22 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import firestore from '@react-native-firebase/firestore';
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
-import { IS_EXPO_GO, CLOUD_SYNC_ENABLED } from './config';
-import { getCanonicalUserId } from './user_id_policy';
+import { submitClientReport as submitClientReportCallable } from './client_reports';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 const THROTTLE_KEY = 'last_user_report_ts';
 const THROTTLE_MS = 30_000;
-
-const getFirestore = () => {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
-  try {
-    return firestore();
-  } catch {
-    return null;
-  }
-};
 
 export type UserReportReason = 'offensive_nickname';
 
@@ -30,28 +19,20 @@ export const submitUserReport = async (params: {
   const lastRaw = await AsyncStorage.getItem(THROTTLE_KEY);
   if (lastRaw && now - parseInt(lastRaw) < THROTTLE_MS) return 'throttled';
 
-  const [canonicalUid, legacyAnonId, reporterName, appVersion] = await Promise.all([
-    getCanonicalUserId().catch(() => null),
-    AsyncStorage.getItem('anon_id'),
+  const [reporterName, appVersion] = await Promise.all([
     AsyncStorage.getItem('user_name'),
     Promise.resolve(Constants.expoConfig?.version ?? 'unknown'),
   ]);
 
-  const db = getFirestore();
-  if (db) {
-    db.collection('user_reports').add({
-      reportedUid:  params.reportedUid,
-      reportedName: params.reportedName,
-      reason:       params.reason,
-      screen:       params.screen,
-      reporterUid:  canonicalUid ?? legacyAnonId ?? 'unknown',
-      reporterName: reporterName ?? 'unknown',
-      platform:     Platform.OS,
-      appVersion,
-      status:       'new',
-      createdAt:    new Date().toISOString(),
-    }).catch(() => {});
-  }
+  void submitClientReportCallable('user_report', {
+    reportedUid: params.reportedUid,
+    reportedName: params.reportedName,
+    reason: params.reason,
+    screen: params.screen,
+    reporterName: reporterName ?? 'unknown',
+    platform: Platform.OS,
+    appVersion,
+  }).catch(() => {});
 
   await AsyncStorage.setItem(THROTTLE_KEY, String(now));
   return 'sent';
@@ -84,30 +65,22 @@ export const submitPackReport = async (params: {
   const lastRaw = await AsyncStorage.getItem(THROTTLE_KEY);
   if (lastRaw && now - parseInt(lastRaw) < THROTTLE_MS) return 'throttled';
 
-  const [canonicalUid, legacyAnonId, reporterName, appVersion] = await Promise.all([
-    getCanonicalUserId().catch(() => null),
-    AsyncStorage.getItem('anon_id'),
+  const [reporterName, appVersion] = await Promise.all([
     AsyncStorage.getItem('user_name'),
     Promise.resolve(Constants.expoConfig?.version ?? 'unknown'),
   ]);
 
-  const db = getFirestore();
-  if (db) {
-    db.collection('community_pack_reports').add({
-      packId:         params.packId,
-      packTitle:      params.packTitle,
-      authorStableId: params.authorStableId ?? null,
-      studyTarget:    storageStudyTarget(params.studyTarget),
-      reason:         params.reason,
-      comment:        (params.comment ?? '').slice(0, 500),
-      reporterUid:    canonicalUid ?? legacyAnonId ?? 'unknown',
-      reporterName:   reporterName ?? 'unknown',
-      platform:       Platform.OS,
-      appVersion,
-      status:         'new',
-      createdAt:      new Date().toISOString(),
-    }).catch(() => {});
-  }
+  void submitClientReportCallable('community_pack_report', {
+    packId: params.packId,
+    packTitle: params.packTitle,
+    authorStableId: params.authorStableId ?? null,
+    studyTarget: storageStudyTarget(params.studyTarget),
+    reason: params.reason,
+    comment: (params.comment ?? '').slice(0, 500),
+    reporterName: reporterName ?? 'unknown',
+    platform: Platform.OS,
+    appVersion,
+  }).catch(() => {});
 
   await AsyncStorage.setItem(THROTTLE_KEY, String(now));
   return 'sent';

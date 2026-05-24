@@ -22,7 +22,7 @@ const SKIP_FILE_RE = [
   /(?:^|[\\/])app[\\/]lesson_data_/,
   /(?:^|[\\/])app[\\/]lesson_intro_screens_/,
   /(?:^|[\\/])app[\\/]lesson_help\.tsx$/,
-  /(?:^|[\\/])app[\\/]lesson_words(?:_.*)?\.tsx?$/,
+  /(?:^|[\\/])app[\\/]lesson_words_(?:es_by_en|source_locales)\.ts$/,
   /(?:^|[\\/])app[\\/]quiz_data(?:_.*)?\.ts$/,
   /(?:^|[\\/])app[\\/]idioms_data\.ts$/,
   /(?:^|[\\/])app[\\/]error_traps[\\/]/,

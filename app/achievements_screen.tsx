@@ -1222,6 +1222,7 @@ function AchievementImageWithFallback({
             source={require('../assets/images/levels/achivement.webp')}
             style={{ width: size, height: bodyHeight, tintColor, opacity: 0.82 }}
             resizeMode="contain"
+            fadeDuration={0}
           />
           <Ionicons
             name={fallbackIconName as any}
@@ -1235,6 +1236,7 @@ function AchievementImageWithFallback({
         source={source}
         style={{ width: size, height: bodyHeight, opacity }}
         resizeMode="contain"
+        fadeDuration={0}
         onLoad={() => setLoaded(true)}
         onError={() => setLoaded(false)}
       />
@@ -1259,7 +1261,7 @@ function CategoryIconImageWithFallback({
 
   return (
     <View style={{ width: 46, height: 46, alignItems: 'center', justifyContent: 'center' }}>
-      {!loaded || !source ? (
+      {(!source || !loaded) ? (
         <View pointerEvents="none" style={{ width: 32, height: 32, borderRadius: 10, backgroundColor: color + '22', alignItems: 'center', justifyContent: 'center', position: 'absolute' }}>
           <Ionicons name={fallbackIconName as any} size={17} color={color} />
         </View>
@@ -1271,6 +1273,7 @@ function CategoryIconImageWithFallback({
           resizeMode="contain"
           accessible={false}
           accessibilityIgnoresInvertColors
+          fadeDuration={0}
           onLoad={() => setLoaded(true)}
           onError={() => setLoaded(false)}
         />

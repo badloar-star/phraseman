@@ -11,6 +11,7 @@ import { spendShards } from './shards_system';
 import { bumpDailyTaskClaimed } from './lifetime_profile_stats';
 import { DAILY_TASK_STRINGS_ES } from './daily_tasks_es_locale';
 import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
+import { countDueItemsToday } from './active_recall';
 import {
   dailyTasksAdminOverrideKey,
   dailyTasksProgressKey,
@@ -2079,6 +2080,59 @@ const PREMIUM_FALLBACKS: Record<string, string> = {
   es4: 'dp3',  // energy_spend 7 → arena_play 5
 };
 
+const RECALL_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
+  'recall_session',
+  'recall_answers',
+  'recall_perfect',
+]);
+
+const RECALL_TASK_FALLBACK_IDS: Record<string, readonly string[]> = {
+  rs1: ['ta1', 'ta8', 'ot1', 'cs1'],
+  rs2: ['ta8', 'ta1', 'ot1', 'cs1'],
+  rs3: ['ot1', 'ta1', 'ta8', 'cs1'],
+  ra1: ['ta2', 'ta1', 'ta8', 'cs1'],
+  ra2: ['ta3', 'ta2', 'ta1', 'cs1'],
+  ra3: ['ta9', 'ta1', 'ot1', 'cs1'],
+  ra4: ['ta4', 'ta3', 'ta2', 'cs1'],
+  ra5: ['ta8', 'ta1', 'ot1', 'cs1'],
+  ra6: ['ta2', 'ta1', 'ta8', 'cs1'],
+  rp1: ['cs1', 'ta1', 'ot1', 'ta8'],
+  rp2: ['cs1', 'ta8', 'ta1', 'ot1'],
+  rp3: ['cs1', 'ta2', 'ta1', 'ot1'],
+};
+
+const pickRecallUnavailableFallback = (
+  task: DailyTask,
+  usedIds: Set<string>,
+  studyTarget?: RuntimeStudyTarget,
+): DailyTask => {
+  const fallbackIds = RECALL_TASK_FALLBACK_IDS[task.id] ?? ['ta1', 'ta8', 'ot1', 'cs1'];
+  for (const id of fallbackIds) {
+    if (usedIds.has(id)) continue;
+    const fallback = ALL_TASKS.find((t) => t.id === id);
+    if (!fallback) continue;
+    if (!dailyTaskAvailableForStudyTarget(fallback, studyTarget)) continue;
+    usedIds.add(fallback.id);
+    return fallback;
+  }
+  return task;
+};
+
+const replaceRecallTasksWhenNoDueItems = async (
+  tasks: DailyTask[],
+  studyTarget?: RuntimeStudyTarget,
+): Promise<DailyTask[]> => {
+  if (!tasks.some((task) => RECALL_DAILY_TASK_TYPES.has(task.type))) return tasks;
+  const dueCount = await countDueItemsToday(studyTarget);
+  if (dueCount > 0) return tasks;
+
+  const usedIds = new Set(tasks.filter((task) => !RECALL_DAILY_TASK_TYPES.has(task.type)).map((task) => task.id));
+  return tasks.map((task) => {
+    if (!RECALL_DAILY_TASK_TYPES.has(task.type)) return task;
+    return pickRecallUnavailableFallback(task, usedIds, studyTarget);
+  });
+};
+
 /** Сколько слотов «про Арену» в тройке после подмены freeOnly для Premium (как в getTodayTasksSafe). */
 const countResolvedArenaSlots = (rawIds: string[], usePremiumResolution: boolean): number => {
   const resolved = rawIds.map(id => {
@@ -2449,11 +2503,17 @@ const pickRerollCandidate = async (
     if (!dailyTaskAvailableForStudyTarget(t, studyTarget)) return false;
     return true;
   });
+  const recallDueCount = candidates.some((t) => RECALL_DAILY_TASK_TYPES.has(t.type))
+    ? await countDueItemsToday(studyTarget)
+    : Number.POSITIVE_INFINITY;
+  const runtimeAvailableCandidates = candidates.filter((t) => (
+    !RECALL_DAILY_TASK_TYPES.has(t.type) || recallDueCount > 0
+  ));
 
-  if (candidates.length === 0) return null;
+  if (runtimeAvailableCandidates.length === 0) return null;
   // Случайный кандидат — лёгкая «лотерея» добавляет ощущение свежести каждой замене.
-  const idx = Math.floor(Math.random() * candidates.length);
-  return candidates[idx] ?? null;
+  const idx = Math.floor(Math.random() * runtimeAvailableCandidates.length);
+  return runtimeAvailableCandidates[idx] ?? null;
 };
 
 /**
@@ -2554,6 +2614,8 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
       return (fallbackId ? ALL_TASKS.find(t => t.id === fallbackId) : undefined) ?? task;
     });
   }
+
+  result = await replaceRecallTasksWhenNoDueItems(result, studyTarget);
 
   // 2. Замена verb_learned если глаголов недостаточно
   const hasVerbTask = result.some(t => t.type === 'verb_learned');

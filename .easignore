@@ -57,6 +57,7 @@ XP_TESTER*.md
 SYSTEM_HINTS_DEMO.md
 
 # Secrets
+.env*
 service-account.json
 service-account*.json
 

@@ -151,7 +151,7 @@ service cloud.firestore {
 
     // â”€â”€ User reports (Ð¶Ð°Ð»Ð¾Ð±Ñ‹ Ð½Ð° Ð´Ñ€ÑƒÐ³Ð¸Ñ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /user_reports/{docId} {
-      allow create: if request.auth != null;
+      allow create: if false;
       allow read, update, delete: if isAdmin();
     }
 
@@ -159,34 +159,42 @@ service cloud.firestore {
     // Ð›ÑŽÐ±Ð¾Ð¹ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ ÑŽÐ·ÐµÑ€ Ð¼Ð¾Ð¶ÐµÑ‚ Ð¿Ð¾Ð¶Ð°Ð»Ð¾Ð²Ð°Ñ‚ÑŒÑÑ Ð½Ð° community-Ð¿Ð°Ðº;
     // Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ/Ð¼Ð¾Ð´ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ â€” Ñ‚Ð¾Ð»ÑŒÐºÐ¾ admin (Ñ‡ÐµÑ€ÐµÐ· admin/index.html â†’ custom claim).
     match /community_pack_reports/{docId} {
-      allow create: if request.auth != null;
+      allow create: if false;
       allow read, update, delete: if isAdmin();
     }
 
     // â”€â”€ Error reports (Ð±Ð°Ð³-Ñ€ÐµÐ¿Ð¾Ñ€Ñ‚Ñ‹) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /error_reports/{docId} {
-      allow create: if request.auth != null;
+      allow create: if false;
       allow read, update, delete: if isAdmin();
     }
 
     match /app_errors/{docId} {
-      allow create: if request.auth != null;
+      allow create: if false;
       allow read, update, delete: if isAdmin();
     }
 
     match /app_activity/{docId} {
-      allow create: if request.auth != null;
+      allow create: if false;
       allow read, update, delete: if isAdmin();
     }
 
     match /subscription_cancel_surveys/{docId} {
-      allow create: if request.auth != null;
+      allow create: if false;
       allow read, update, delete: if isAdmin();
     }
 
     match /website_contact_inbox/{docId} {
       allow create: if false;
       allow read, update, delete: if isAdmin();
+    }
+
+    match /website_contact_rate_limits/{docId} {
+      allow read, create, update, delete: if isAdmin();
+    }
+
+    match /client_report_rate_limits/{docId} {
+      allow read, create, update, delete: if isAdmin();
     }
 
     // â”€â”€ Ð“Ð»Ð¾Ð±Ð°Ð»ÑŒÐ½Ñ‹Ðµ Ð¾Ð´Ð½Ð¾Ñ€Ð°Ð·Ð¾Ð²Ñ‹Ðµ Ð¼Ð¾Ð´Ð°Ð»ÐºÐ¸ (Ð°Ð´Ð¼Ð¸Ð½-Ñ€Ð°ÑÑÑ‹Ð»ÐºÐ° Ð´Ð»Ñ Ð²ÑÐµÑ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹) â”€â”€
@@ -236,7 +244,7 @@ service cloud.firestore {
     }
 
     match /review_promo_claims/{docId} {
-      allow create: if request.auth != null;
+      allow create: if false;
       allow read, update, delete: if isAdmin();
     }
 

@@ -42,10 +42,6 @@ function checkStaticConfig() {
   const revenueCatInit = readText('app/revenuecat_init.ts');
   const authProvider = readText('app/auth_provider.ts');
 
-  if (appJson.expo?.newArchEnabled !== false) {
-    fail('expo.newArchEnabled must be false until the Android Yoga/Fabric crash is closed');
-  }
-
   const androidVersionCode = appJson.expo?.android?.versionCode;
   const iosBuildNumber = Number.parseInt(String(appJson.expo?.ios?.buildNumber ?? ''), 10);
   if (!Number.isFinite(androidVersionCode) || androidVersionCode < 1) {

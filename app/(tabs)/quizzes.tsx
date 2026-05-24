@@ -345,7 +345,7 @@ function QuizCardBackgroundImageWithFallback({
         style={[StyleSheet.absoluteFillObject, { opacity }]}
         contentFit="cover"
         cachePolicy="memory-disk"
-        transition={120}
+        transition={0}
         onLoad={() => setLoaded(true)}
         onError={() => setLoaded(false)}
       />
@@ -391,7 +391,7 @@ function QuizCardLogoImageWithFallback({
         style={StyleSheet.absoluteFillObject}
         contentFit="contain"
         cachePolicy="memory-disk"
-        transition={120}
+        transition={0}
         onLoad={() => setLoaded(true)}
         onError={() => setLoaded(false)}
       />
@@ -982,8 +982,8 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
           const textCol2 = locked ? t.textMuted  : txt.secondary;
           const isSelected = selected === lv;
           const visualSelected = isSelected && !locked;
-          const cardBackground = QUIZ_LEVEL_CARD_BACKGROUNDS[themeMode][lv];
-          const levelLogo = QUIZ_LEVEL_LOGOS[themeMode][lv];
+          const cardBackground = QUIZ_LEVEL_CARD_BACKGROUNDS[themeMode]?.[lv] ?? QUIZ_LEVEL_CARD_BACKGROUNDS.minimalDark[lv];
+          const levelLogo = QUIZ_LEVEL_LOGOS[themeMode]?.[lv] ?? QUIZ_LEVEL_LOGOS.minimalDark[lv];
 
           return (
             <View key={lv} style={{ borderRadius: 20, overflow: 'hidden' }}>

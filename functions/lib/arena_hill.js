@@ -33,13 +33,14 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.arenaHillRecordAttempt = void 0;
+exports.arenaHillGetDailyTop = exports.arenaHillRecordAttempt = void 0;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const REGION = 'us-central1';
 const THRONES = 'arena_hill_thrones';
 const PLAYER_WINS = 'arena_hill_player_wins'; // {dayKey}_{stableUid} → { wins, name, updatedAt }
 const MAX_SESSION_AGE_MS = 2 * 60 * 60 * 1000;
+const THRONE_REWARD_SHARDS = 10;
 function readInt(value, fallback = 0) {
     const n = Math.trunc(Number(value));
     return Number.isFinite(n) ? n : fallback;
@@ -53,6 +54,10 @@ function dayKey(date = new Date()) {
 function cleanName(value) {
     const s = String(value ?? '').replace(/\s+/g, ' ').trim();
     return (s || 'Phraseman').slice(0, 80);
+}
+function cleanString(value, max = 80) {
+    const s = String(value ?? '').replace(/\s+/g, ' ').trim();
+    return s ? s.slice(0, max) : undefined;
 }
 function safeDocId(s) {
     return String(s || 'x').replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 120) || 'x';
@@ -184,5 +189,55 @@ exports.arenaHillRecordAttempt = (0, https_1.onCall)({ region: REGION }, async (
             previousScore: current?.score,
         };
     });
+});
+exports.arenaHillGetDailyTop = (0, https_1.onCall)({ region: REGION }, async (request) => {
+    if (!request.auth?.uid)
+        throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    const db = admin.firestore();
+    const today = dayKey();
+    const snap = await db.collection(PLAYER_WINS).where('dayKey', '==', today).get();
+    const rawRows = snap.docs
+        .map((doc) => {
+        const data = doc.data() || {};
+        return {
+            uid: cleanString(data.stableUid, 120) ?? doc.id.replace(`${today}_`, ''),
+            name: cleanName(data.name),
+            wins: Math.max(0, readInt(data.wins, 0)),
+            updatedAt: readInt(data.updatedAt, 0),
+        };
+    })
+        .filter((row) => row.uid && row.wins > 0)
+        .sort((a, b) => (b.wins - a.wins) || (a.updatedAt - b.updatedAt))
+        .slice(0, 3);
+    const entries = await Promise.all(rawRows.map(async (row, index) => {
+        const [lbSnap, userSnap] = await Promise.all([
+            db.collection('leaderboard').doc(row.uid).get().catch(() => null),
+            db.collection('users').doc(row.uid).get().catch(() => null),
+        ]);
+        const lb = lbSnap?.data() ?? {};
+        const user = userSnap?.data() ?? {};
+        const totalXp = readInt(lb.points ?? lb.totalXp ?? user.totalXp ?? user.user_total_xp, 0);
+        return {
+            place: index + 1,
+            uid: row.uid,
+            name: cleanName(lb.name ?? user.displayName ?? user.name ?? row.name),
+            wins: row.wins,
+            totalXp,
+            avatar: cleanString(lb.avatar ?? user.avatar ?? user.user_avatar, 64),
+            frame: cleanString(lb.frame ?? user.frame ?? user.user_frame, 64),
+            aura: cleanString(lb.aura ?? user.aura ?? user.user_avatar_aura, 64),
+            isPremium: lb.isPremium === true || user.isPremium === true,
+            isVip: lb.isVip === true || user.isVip === true,
+            profileCardLevel: readInt(lb.profileCardLevel ?? user.profileCardLevel, 0),
+            profileCardTheme: cleanString(lb.profileCardTheme ?? user.profileCardTheme, 32),
+            profileCardMotion: cleanString(lb.profileCardMotion ?? user.profileCardMotion, 32),
+            profileCardPublicFocus: cleanString(lb.profileCardPublicFocus ?? user.profileCardPublicFocus, 32),
+        };
+    }));
+    return {
+        dayKey: today,
+        rewardShards: THRONE_REWARD_SHARDS,
+        entries,
+    };
 });
 //# sourceMappingURL=arena_hill.js.map

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, Animated, Easing, ScrollView, } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Animated, Easing, ScrollView, Modal, } from 'react-native';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import Constants from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
@@ -39,6 +39,7 @@ import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AvatarView from '../components/AvatarView';
+import PlayerProfileModal, { type PlayerInfo } from '../components/PlayerProfileModal';
 import GoldBevel from '../components/GoldBevel';
 import {
     backgroundTransitionKey,
@@ -46,9 +47,10 @@ import {
     usePersistentBackgroundLayers,
 } from '../components/backgroundTransition';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
-import { subscribeTodayArenaHillThrone, type ArenaHillThrone } from './services/arena_hill';
+import { getTodayArenaHillTop, subscribeTodayArenaHillThrone, type ArenaHillThrone, type ArenaHillTopEntry } from './services/arena_hill';
 import { subscribeArenaFeatureFlags, type ArenaFeatureFlags, } from './services/arena_feature_flags';
 import { safeRouterBack } from './navigation_back';
+import { USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
 import {
     getOrRefreshIdleQueueHintCount,
     IDLE_QUEUE_HINT_TTL_MS,
@@ -190,6 +192,20 @@ export default function DuelLobbyScreen({ isTab = false }: {
     /** Выбранный друг перед отправкой вызова (кнопка «Бросить вызов»). */
     const [arenaFriendPickUid, setArenaFriendPickUid] = useState<string | null>(null);
     const [hillThrone, setHillThrone] = useState<ArenaHillThrone | null>(null);
+    const [throneTopVisible, setThroneTopVisible] = useState(false);
+    const [throneTopLoading, setThroneTopLoading] = useState(false);
+    const [throneTopEntries, setThroneTopEntries] = useState<ArenaHillTopEntry[]>([]);
+    const [throneRewardShards, setThroneRewardShards] = useState(10);
+    const [throneProfilePlayer, setThroneProfilePlayer] = useState<PlayerInfo | null>(null);
+    const [myProfileInfo, setMyProfileInfo] = useState({
+        name: defaultPlayerName,
+        avatar: '',
+        frame: '',
+        aura: '',
+        totalXP: 0,
+        leagueId: undefined as number | undefined,
+        streak: null as number | null,
+    });
     const [arenaFeatureFlags, setArenaFeatureFlags] = useState<ArenaFeatureFlags>({ rankedWagerEnabled: false });
     const arenaRankedWagerEnabled = ENABLE_ARENA_RANKED_WAGER && arenaFeatureFlags.rankedWagerEnabled === true;
     const [lobbyAcceptDeadlineAt, setLobbyAcceptDeadlineAt] = useState<number | null>(null);
@@ -313,6 +329,83 @@ export default function DuelLobbyScreen({ isTab = false }: {
     }, [bonusEnergy, defaultPlayerName, energy, isUnlimited, myRank.isHydrated, myRank.level, myRank.rankIndex, myRank.tier, size, startSearching, updateQueueWithPushToken, userId]);
     useEffect(() => subscribeTodayArenaHillThrone(setHillThrone), []);
     useEffect(() => subscribeArenaFeatureFlags(setArenaFeatureFlags), []);
+    useEffect(() => {
+        let cancelled = false;
+        (async () => {
+            const map = new Map(await AsyncStorage.multiGet([
+                'user_name',
+                'user_total_xp',
+                'user_avatar',
+                'user_frame',
+                USER_AVATAR_AURA_KEY,
+            ]));
+            if (cancelled)
+                return;
+            setMyProfileInfo({
+                name: (map.get('user_name') || '').trim() || defaultPlayerName,
+                avatar: map.get('user_avatar') || '',
+                frame: map.get('user_frame') || '',
+                aura: map.get(USER_AVATAR_AURA_KEY) || '',
+                totalXP: Math.max(0, parseInt(map.get('user_total_xp') || '0', 10) || 0),
+                leagueId: undefined,
+                streak: null,
+            });
+        })().catch(() => {});
+        return () => {
+            cancelled = true;
+        };
+    }, [defaultPlayerName]);
+    const fallbackThroneTop = useCallback((): ArenaHillTopEntry[] => {
+        if (!hillThrone)
+            return [];
+        return [{
+                place: 1,
+                uid: hillThrone.championUid,
+                name: hillThrone.championName,
+                wins: hillThrone.score,
+                totalXp: 0,
+            }];
+    }, [hillThrone]);
+    const openThroneTop = useCallback(async () => {
+        hapticTap();
+        setThroneTopVisible(true);
+        setThroneTopLoading(true);
+        try {
+            const top = await getTodayArenaHillTop();
+            setThroneRewardShards(top.rewardShards || 10);
+            setThroneTopEntries(top.entries.length > 0 ? top.entries : fallbackThroneTop());
+        }
+        catch {
+            setThroneTopEntries(fallbackThroneTop());
+        }
+        finally {
+            setThroneTopLoading(false);
+        }
+    }, [fallbackThroneTop]);
+    const openThronePlayerProfile = useCallback((entry: ArenaHillTopEntry) => {
+        hapticTap();
+        setThroneTopVisible(false);
+        const level = getLevelFromXP(entry.totalXp || 0);
+        setThroneProfilePlayer({
+            name: entry.name,
+            points: entry.totalXp || 0,
+            totalXp: entry.totalXp || 0,
+            isMe: !!userId && entry.uid === userId,
+            avatar: entry.avatar || String(getBestAvatarForLevel(level)),
+            frame: entry.frame,
+            aura: entry.aura,
+            streak: null,
+            leagueId: undefined,
+            uid: entry.uid,
+            friendUid: entry.uid,
+            isPremium: entry.isPremium,
+            isVip: entry.isVip,
+            profileCardLevel: entry.profileCardLevel,
+            profileCardTheme: entry.profileCardTheme,
+            profileCardMotion: entry.profileCardMotion,
+            profileCardPublicFocus: entry.profileCardPublicFocus,
+        });
+    }, [userId]);
     useEffect(() => {
         if (!arenaRankedWagerEnabled) {
             void clearPendingArenaRankedWager();
@@ -1975,7 +2068,16 @@ export default function DuelLobbyScreen({ isTab = false }: {
                         </View>)}
                     </View>)}
 
-                  <View testID="arena-throne-info" accessible accessibilityRole="text" style={[styles.arenaInfoRow, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
+                  <TouchableOpacity testID="arena-throne-info" accessible accessibilityRole="button" accessibilityLabel={triLang(lang, {
+                ru: 'Трон дня. Открыть топ игроков за день',
+                uk: 'Трон дня. Відкрити топ гравців за день',
+                es: 'Trono del día. Abrir el top de jugadores del día',
+                'pt-BR': 'Trono do dia. Abrir o top de jogadores do dia',
+                vi: 'Ngai vàng hôm nay. Mở top người chơi trong ngày',
+                id: 'Takhta hari ini. Buka pemain terbaik hari ini',
+                tr: 'Günün tahtı. Günün en iyi oyuncularını aç',
+                pl: 'Tron dnia. Otwórz top graczy dnia',
+            })} onPress={openThroneTop} activeOpacity={0.78} style={[styles.arenaInfoRow, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
                     <View style={[styles.arenaCommandIcon, {
                         backgroundColor: 'transparent',
                         borderColor: 'transparent',
@@ -2035,7 +2137,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 })}
                       </Text>
                     </View>
-                  </View>
+                    <Ionicons name="chevron-forward" size={18} color={screenMuted}/>
+                  </TouchableOpacity>
                 </View>
               </LinearGradient>
 
@@ -2061,6 +2164,144 @@ export default function DuelLobbyScreen({ isTab = false }: {
       </ScrollView>
       </SafeAreaView>
 
+      <Modal visible={throneTopVisible} transparent animationType="fade" onRequestClose={() => setThroneTopVisible(false)}>
+        <View style={styles.throneModalOverlay}>
+          <TouchableOpacity style={StyleSheet.absoluteFill} activeOpacity={1} onPress={() => setThroneTopVisible(false)}/>
+          <View style={[
+            styles.throneModalCard,
+            {
+                borderColor: arenaGlass.warmBorder,
+                backgroundColor: themeMode === 'minimalLight' ? 'rgba(255,252,246,0.98)' : 'rgba(13,14,18,0.98)',
+                shadowColor: arenaGlass.warm,
+            },
+        ]}>
+            <View style={styles.throneModalHeader}>
+              <View style={[styles.throneModalIcon, { backgroundColor: arenaGlass.warmBg, borderColor: arenaGlass.warmBorder }]}>
+                <Image source={arenaThroneIconSource} resizeMode="contain" style={styles.throneModalIconImage}/>
+              </View>
+              <View style={styles.throneModalTitleWrap}>
+                <Text style={[styles.throneModalTitle, { color: screenTitleColor, fontSize: f.h2 }]}>
+                  {triLang(lang, {
+                ru: 'Топ дня',
+                uk: 'Топ дня',
+                es: 'Top del día',
+                'pt-BR': 'Top do dia',
+                vi: 'Top trong ngày',
+                id: 'Top hari ini',
+                tr: 'Günün topu',
+                pl: 'Top dnia',
+            })}
+                </Text>
+                <Text style={[styles.throneModalSub, { color: screenMuted, fontSize: f.caption }]}>
+                  {triLang(lang, {
+                ru: 'Три сильнейших игрока за сегодня',
+                uk: 'Три найсильніші гравці за сьогодні',
+                es: 'Los tres jugadores más fuertes de hoy',
+                'pt-BR': 'Os três jogadores mais fortes de hoje',
+                vi: 'Ba người chơi mạnh nhất hôm nay',
+                id: 'Tiga pemain terkuat hari ini',
+                tr: 'Bugünün en güçlü üç oyuncusu',
+                pl: 'Trzech najmocniejszych graczy dzisiaj',
+            })}
+                </Text>
+              </View>
+              <TouchableOpacity accessibilityRole="button" accessibilityLabel="Close" onPress={() => {
+            hapticTap();
+            setThroneTopVisible(false);
+        }} style={styles.throneModalClose} activeOpacity={0.76}>
+                <Ionicons name="close" size={20} color={screenMuted}/>
+              </TouchableOpacity>
+            </View>
+
+            <View style={[styles.throneRewardInfo, { borderColor: arenaGlass.warmBorder, backgroundColor: arenaGlass.warmBg }]}>
+              <Ionicons name="diamond" size={18} color={arenaGlass.warm}/>
+              <Text style={[styles.throneRewardText, { color: screenTitleColor, fontSize: f.caption }]}>
+                {triLang(lang, {
+                ru: `Останешься на троне до полуночи — заберёшь ${throneRewardShards} осколков.`,
+                uk: `Залишишся на троні до півночі — забереш ${throneRewardShards} осколків.`,
+                es: `Quédate en el trono hasta medianoche y llévate ${throneRewardShards} fragmentos.`,
+                'pt-BR': `Fique no trono até meia-noite e leve ${throneRewardShards} fragmentos.`,
+                vi: `Giữ ngai đến nửa đêm để nhận ${throneRewardShards} mảnh.`,
+                id: `Bertahan di takhta sampai tengah malam untuk membawa pulang ${throneRewardShards} pecahan.`,
+                tr: `Gece yarısına kadar tahtta kal, ${throneRewardShards} parça senin olsun.`,
+                pl: `Zostań na tronie do północy i zgarnij ${throneRewardShards} odłamków.`,
+            })}
+              </Text>
+            </View>
+
+            <View style={styles.throneTopList}>
+              {throneTopLoading ? (
+                <View style={[styles.throneTopEmpty, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
+                  <Text style={[styles.throneTopEmptyText, { color: screenMuted, fontSize: f.caption }]}>
+                    {triLang(lang, {
+                ru: 'Загружаем топ...',
+                uk: 'Завантажуємо топ...',
+                es: 'Cargando top...',
+                'pt-BR': 'Carregando top...',
+                vi: 'Đang tải top...',
+                id: 'Memuat top...',
+                tr: 'Top yükleniyor...',
+                pl: 'Wczytywanie topu...',
+            })}
+                  </Text>
+                </View>
+              ) : throneTopEntries.length > 0 ? throneTopEntries.map((entry) => {
+                const level = getLevelFromXP(entry.totalXp || 0);
+                const avatar = entry.avatar || String(getBestAvatarForLevel(level));
+                const medalColor = entry.place === 1 ? '#FACC15' : entry.place === 2 ? '#D6DEE8' : '#D69E65';
+                return (
+                  <TouchableOpacity key={`${entry.place}-${entry.uid}`} accessibilityRole="button" onPress={() => openThronePlayerProfile(entry)} activeOpacity={0.78} style={[styles.throneTopRow, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
+                    <View style={[styles.throneTopPlace, { borderColor: `${medalColor}88`, backgroundColor: `${medalColor}1F` }]}>
+                      <Text style={[styles.throneTopPlaceText, { color: medalColor }]}>{entry.place}</Text>
+                    </View>
+                    <AvatarView avatar={avatar} size={44} auraId={entry.aura}/>
+                    <View style={styles.throneTopCopy}>
+                      <Text style={[styles.throneTopName, { color: screenTitleColor, fontSize: f.sub }]} numberOfLines={1}>
+                        {entry.name}
+                      </Text>
+                      <Text style={[styles.throneTopMeta, { color: screenMuted, fontSize: f.caption }]}>
+                        Lv {level}
+                      </Text>
+                    </View>
+                    <View style={styles.throneTopWins}>
+                      <Text style={[styles.throneTopWinsNum, { color: arenaGlass.warm, fontSize: f.sub }]}>{entry.wins}</Text>
+                      <Text style={[styles.throneTopWinsLabel, { color: screenMuted, fontSize: f.caption - 1 }]}>
+                        {triLang(lang, {
+                    ru: 'побед',
+                    uk: 'пер.',
+                    es: 'victorias',
+                    'pt-BR': 'vitórias',
+                    vi: 'thắng',
+                    id: 'menang',
+                    tr: 'galibiyet',
+                    pl: 'wygr.',
+                })}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                );
+            }) : (
+                <View style={[styles.throneTopEmpty, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
+                  <Ionicons name="flag-outline" size={22} color={arenaGlass.warm}/>
+                  <Text style={[styles.throneTopEmptyText, { color: screenMuted, fontSize: f.caption }]}>
+                    {triLang(lang, {
+                ru: 'Сегодня трон ещё ждёт первого победителя.',
+                uk: 'Сьогодні трон ще чекає першого переможця.',
+                es: 'Hoy el trono todavía espera al primer ganador.',
+                'pt-BR': 'Hoje o trono ainda espera o primeiro vencedor.',
+                vi: 'Hôm nay ngai vàng vẫn chờ người thắng đầu tiên.',
+                id: 'Hari ini takhta masih menunggu pemenang pertama.',
+                tr: 'Bugün taht ilk kazananı bekliyor.',
+                pl: 'Dziś tron nadal czeka na pierwszego zwycięzcę.',
+            })}
+                  </Text>
+                </View>
+              )}
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <PlayerProfileModal player={throneProfilePlayer} myInfo={myProfileInfo} onClose={() => setThroneProfilePlayer(null)}/>
       <ArenaLimitModal visible={arenaLimitModal !== null} mode={arenaLimitModal ?? 'matchmaking'} playsUsed={dailyCount} dailyMax={dailyMax} isUnlimited={isUnlimited} onRefillSuccess={async () => {
             setDailyCount(await getDailyArenaCount());
             setDailyMax(await getDailyArenaMaxToday());
@@ -2829,5 +3070,147 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         gap: 6,
         paddingHorizontal: 10,
+    },
+    throneModalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.68)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 18,
+    },
+    throneModalCard: {
+        width: '100%',
+        maxWidth: 430,
+        borderRadius: 22,
+        borderWidth: 1,
+        padding: 16,
+        shadowOpacity: 0.34,
+        shadowRadius: 22,
+        shadowOffset: { width: 0, height: 12 },
+        elevation: 18,
+    },
+    throneModalHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
+    },
+    throneModalIcon: {
+        width: 58,
+        height: 58,
+        borderRadius: 16,
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+    },
+    throneModalIconImage: {
+        width: 48,
+        height: 48,
+    },
+    throneModalTitleWrap: {
+        flex: 1,
+        minWidth: 0,
+    },
+    throneModalTitle: {
+        fontWeight: '900',
+        letterSpacing: 0,
+    },
+    throneModalSub: {
+        fontWeight: '600',
+        lineHeight: 18,
+        marginTop: 2,
+    },
+    throneModalClose: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(255,255,255,0.08)',
+        flexShrink: 0,
+    },
+    throneRewardInfo: {
+        marginTop: 14,
+        borderRadius: 14,
+        borderWidth: 1,
+        paddingHorizontal: 12,
+        paddingVertical: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 9,
+    },
+    throneRewardText: {
+        flex: 1,
+        fontWeight: '800',
+        lineHeight: 18,
+    },
+    throneTopList: {
+        marginTop: 14,
+        gap: 10,
+    },
+    throneTopRow: {
+        minHeight: 72,
+        borderRadius: 16,
+        borderWidth: 1,
+        paddingHorizontal: 12,
+        paddingVertical: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+    },
+    throneTopPlace: {
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+    },
+    throneTopPlaceText: {
+        fontWeight: '900',
+        fontSize: 14,
+        fontVariant: ['tabular-nums'],
+    },
+    throneTopCopy: {
+        flex: 1,
+        minWidth: 0,
+    },
+    throneTopName: {
+        fontWeight: '900',
+        letterSpacing: 0,
+    },
+    throneTopMeta: {
+        marginTop: 2,
+        fontWeight: '700',
+    },
+    throneTopWins: {
+        minWidth: 78,
+        alignItems: 'flex-end',
+        flexShrink: 0,
+    },
+    throneTopWinsNum: {
+        fontWeight: '900',
+        fontVariant: ['tabular-nums'],
+        letterSpacing: 0,
+    },
+    throneTopWinsLabel: {
+        fontWeight: '700',
+        marginTop: -1,
+    },
+    throneTopEmpty: {
+        minHeight: 86,
+        borderRadius: 16,
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 14,
+        paddingVertical: 14,
+        gap: 8,
+    },
+    throneTopEmptyText: {
+        textAlign: 'center',
+        fontWeight: '700',
+        lineHeight: 18,
     },
 });

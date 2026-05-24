@@ -139,6 +139,32 @@ export default function AddToFlashcard({
     InteractionManager.runAfterInteractions(fn);
   };
 
+  const safeAsyncSideEffect = (fn: () => void | Promise<unknown>) => {
+    try {
+      const result = fn();
+      if (result && typeof result === 'object' && 'catch' in result) {
+        (result as Promise<unknown>).catch(() => {});
+      }
+    } catch {
+      // Saving/removing the flashcard is the primary action; rewards and analytics are best-effort.
+    }
+  };
+
+  const runPostSaveSideEffects = (
+    updates: { type: Parameters<typeof updateMultipleTaskProgress>[0][0]['type']; increment: number }[],
+  ) => {
+    InteractionManager.runAfterInteractions(() => {
+      safeAsyncSideEffect(() => bumpStatsDaily('flashcards_saved', 1, activeStudyTarget));
+      safeAsyncSideEffect(() => logFlashcardAdded());
+      if (source === 'daily_phrase') {
+        safeAsyncSideEffect(() => setDailyPhraseSavedOnServerForTarget(sourceId, true, activeStudyTarget));
+        safeAsyncSideEffect(() => checkAchievements({ type: 'daily_phrase', action: 'save', studyTarget: activeStudyTarget }));
+      }
+      safeAsyncSideEffect(() => checkAchievements({ type: 'flashcard_saved', source, studyTarget: activeStudyTarget }));
+      safeAsyncSideEffect(() => updateMultipleTaskProgress(updates, { studyTarget: activeStudyTarget }));
+    });
+  };
+
   const handlePress = () => {
     if (inFlightRef.current) return;
     inFlightRef.current = true;
@@ -194,20 +220,13 @@ export default function AddToFlashcard({
               register, level,
             }, activeStudyTarget);
             if (result === 'added') {
-              if (source === 'daily_phrase') {
-                void setDailyPhraseSavedOnServerForTarget(sourceId, true, activeStudyTarget);
-              }
-              void bumpStatsDaily('flashcards_saved', 1);
-              logFlashcardAdded();
               const updates: { type: Parameters<typeof updateMultipleTaskProgress>[0][0]['type']; increment: number }[] = [
                 { type: 'flashcard_save', increment: 1 },
               ];
               if (source === 'daily_phrase') {
                 updates.push({ type: 'daily_phrase_save', increment: 1 });
-                checkAchievements({ type: 'daily_phrase', action: 'save', studyTarget: activeStudyTarget }).catch(() => {});
               }
-              checkAchievements({ type: 'flashcard_saved', source, studyTarget: activeStudyTarget }).catch(() => {});
-              updateMultipleTaskProgress(updates, { studyTarget: activeStudyTarget }).catch(() => {});
+              runPostSaveSideEffects(updates);
             } else if (result === 'limit_reached') {
               setSaved(false);
               router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', saved: '20' } } as any);
@@ -232,7 +251,7 @@ export default function AddToFlashcard({
   return (
     <Pressable
       onPress={e => {
-        e.stopPropagation();
+        e.stopPropagation?.();
         handlePress();
       }}
       hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}

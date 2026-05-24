@@ -1,25 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Platform, Dimensions, PixelRatio } from 'react-native';
 import Constants from 'expo-constants';
-import { IS_EXPO_GO, CLOUD_SYNC_ENABLED } from './config';
 import type { Lang } from '../constants/i18n';
 import { registerXP } from './xp_manager';
 import { getCanonicalUserId } from './user_id_policy';
 import { getLevelFromXP } from '../constants/theme';
 import { getVerifiedPremiumStatus } from './premium_guard';
+import { submitClientReport } from './client_reports';
 
 const THROTTLE_KEY = 'last_error_report_ts';
 const THROTTLE_MS = 60_000;
-
-const getFirestore = () => {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    return require('@react-native-firebase/firestore').default();
-  } catch {
-    return null;
-  }
-};
 
 /**
  * Structured bug report.
@@ -167,41 +157,29 @@ export const submitErrorReport = async (
 
   const meta = await collectMetadata(userName, lang);
 
-  const db = getFirestore();
-  if (db) {
-    // fire-and-forget: не блокируем XP-выдачу ожиданием Firestore
-    db.collection('error_reports').add({
-      // Content
-      screen:    payload.screen,
-      category,
-      dataId:    payload.dataId,
-      dataText:  payload.dataText,
-      userAnswer: (payload.userAnswer ?? '').trim(),
-      comment:   commentTrimmed,
-      // Device
-      deviceModel:      meta.deviceModel,
-      deviceOS:         meta.deviceOS,
-      deviceOSVersion:  meta.deviceOSVersion,
-      screenWidth:      meta.screenWidth,
-      screenHeight:     meta.screenHeight,
-      pixelRatio:       meta.pixelRatio,
-      appVersion:       meta.appVersion,
-      // User
-      uid:            meta.uid,
-      userName:       meta.userName,
-      userLevel:      meta.userLevel,
-      userXP:         meta.userXP,
-      userStreak:     meta.userStreak,
-      userPremium:    meta.userPremium,
-      userLanguage:   meta.userLanguage,
-      userDaysInApp:  meta.userDaysInApp,
-      // Meta
-      copyText:  buildCopyText({ ...payload, category, comment: commentTrimmed }, meta),
-      createdAt: new Date().toISOString(),
-      status: 'new',
-    }).catch(() => {/* Firestore недоступен — XP уже выдан */});
-  }
-
+  void submitClientReport('error_report', {
+    screen: payload.screen,
+    category,
+    dataId: payload.dataId,
+    dataText: payload.dataText,
+    userAnswer: (payload.userAnswer ?? '').trim(),
+    comment: commentTrimmed,
+    deviceModel: meta.deviceModel,
+    deviceOS: meta.deviceOS,
+    deviceOSVersion: meta.deviceOSVersion,
+    screenWidth: meta.screenWidth,
+    screenHeight: meta.screenHeight,
+    pixelRatio: meta.pixelRatio,
+    appVersion: meta.appVersion,
+    userName: meta.userName,
+    userLevel: meta.userLevel,
+    userXP: meta.userXP,
+    userStreak: meta.userStreak,
+    userPremium: meta.userPremium,
+    userLanguage: meta.userLanguage,
+    userDaysInApp: meta.userDaysInApp,
+    copyText: buildCopyText({ ...payload, category, comment: commentTrimmed }, meta),
+  }).catch(() => {});
   await AsyncStorage.setItem(THROTTLE_KEY, String(now));
   /** Маленький бонус за отправку — не await: иначе общая очередь registerXP может навсегда держать «Отправка…». */
   void registerXP(10, 'achievement_reward', userName, lang).catch(() => {});

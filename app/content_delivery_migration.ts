@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
+  lessonCycleEndIntroShownKey,
   lessonIntroShownKey,
   lessonSessionKey,
   type RuntimeStudyTarget,
@@ -21,6 +22,7 @@ const LESSON_SESSION_FIELDS = [
 function contentRefreshKeys(): string[] {
   const keys: string[] = [];
   for (const target of STUDY_TARGETS) {
+    keys.push(lessonCycleEndIntroShownKey(target));
     for (const lessonId of LESSON_IDS) {
       keys.push(lessonIntroShownKey(lessonId, target));
       for (const field of LESSON_SESSION_FIELDS) {

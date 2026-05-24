@@ -4,6 +4,7 @@
  */
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { resolveStableUidForAuth } from './auth_identity';
 
 const COMMUNITY_PACKS = 'community_packs';
 const COMMUNITY_SUBMISSIONS = 'community_pack_submissions';
@@ -280,10 +281,10 @@ export const communitySubmitPackForReview = onCall(async (request) => {
     throw new HttpsError('unauthenticated', 'Auth required');
   }
   const callerAuthUid = request.auth.uid;
-  const authorStableId = String(request.data?.authorStableId ?? '').trim();
+  const requestedAuthorStableId = String(request.data?.authorStableId ?? '').trim();
   const rawPayload = request.data?.payload as SubmissionPayload | undefined;
   const updatePackId = String(request.data?.updatePackId ?? '').trim();
-  if (!authorStableId) {
+  if (!requestedAuthorStableId) {
     throw new HttpsError('invalid-argument', 'authorStableId required');
   }
   if (!rawPayload) {
@@ -292,6 +293,9 @@ export const communitySubmitPackForReview = onCall(async (request) => {
   const payload = normalizeSubmissionPayload(rawPayload);
 
   const db = admin.firestore();
+  const authorStableId = await resolveStableUidForAuth(db, callerAuthUid, requestedAuthorStableId, {
+    requireKnownIdentity: true,
+  });
   const subRef = db.collection(COMMUNITY_SUBMISSIONS).doc();
   const now = Date.now();
 
@@ -720,14 +724,17 @@ export const communityFetchPackCardsIfAccessible = onCall({ region: 'us-central1
   if (!request.auth) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }
-  const stableId = String(request.data?.stableId ?? '').trim();
+  const requestedStableId = String(request.data?.stableId ?? '').trim();
   const packId = String(request.data?.packId ?? '').trim();
   const requestedStudyTarget = request.data?.studyTarget;
-  if (!stableId || !packId) {
+  if (!requestedStableId || !packId) {
     throw new HttpsError('invalid-argument', 'stableId and packId required');
   }
 
   const db = admin.firestore();
+  const stableId = await resolveStableUidForAuth(db, request.auth.uid, requestedStableId, {
+    requireKnownIdentity: true,
+  });
   const packRef = db.collection(COMMUNITY_PACKS).doc(packId);
   const packSnap = await packRef.get();
   if (!packSnap.exists) {
@@ -765,15 +772,18 @@ export const communityPurchasePack = onCall(async (request) => {
   if (!request.auth) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }
-  const buyerStableId = String(request.data?.buyerStableId ?? '').trim();
+  const requestedBuyerStableId = String(request.data?.buyerStableId ?? '').trim();
   const packId = String(request.data?.packId ?? '').trim();
   const requestedStudyTarget = request.data?.studyTarget;
   const buyerDisplayName = String(request.data?.buyerDisplayName ?? 'Игрок').trim().slice(0, 80);
-  if (!buyerStableId || !packId) {
+  if (!requestedBuyerStableId || !packId) {
     throw new HttpsError('invalid-argument', 'buyerStableId and packId required');
   }
 
   const db = admin.firestore();
+  const buyerStableId = await resolveStableUidForAuth(db, request.auth.uid, requestedBuyerStableId, {
+    requireKnownIdentity: true,
+  });
   const purchaseId = `${buyerStableId}__${packId}`;
   const purchaseRef = db.collection(COMMUNITY_PURCHASES).doc(purchaseId);
   const packRef = db.collection(COMMUNITY_PACKS).doc(packId);
@@ -913,13 +923,16 @@ export const communityListSellerInbox = onCall(async (request) => {
   if (!request.auth) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }
-  const authorStableId = String(request.data?.authorStableId ?? '').trim();
-  if (!authorStableId) {
+  const requestedAuthorStableId = String(request.data?.authorStableId ?? '').trim();
+  if (!requestedAuthorStableId) {
     throw new HttpsError('invalid-argument', 'authorStableId required');
   }
   const limit = Math.min(50, Math.max(1, Math.floor(Number(request.data?.limit) || 20)));
 
   const db = admin.firestore();
+  const authorStableId = await resolveStableUidForAuth(db, request.auth.uid, requestedAuthorStableId, {
+    requireKnownIdentity: true,
+  });
   const snap = await db
     .collection('users')
     .doc(authorStableId)
@@ -939,13 +952,16 @@ export const communityMarkSellerInboxSeen = onCall(async (request) => {
   if (!request.auth) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }
-  const authorStableId = String(request.data?.authorStableId ?? '').trim();
+  const requestedAuthorStableId = String(request.data?.authorStableId ?? '').trim();
   const eventIds = request.data?.eventIds as unknown;
-  if (!authorStableId || !Array.isArray(eventIds) || eventIds.length === 0) {
+  if (!requestedAuthorStableId || !Array.isArray(eventIds) || eventIds.length === 0) {
     throw new HttpsError('invalid-argument', 'authorStableId and eventIds[] required');
   }
   const ids = eventIds.map((x) => String(x).trim()).filter(Boolean).slice(0, 30);
   const db = admin.firestore();
+  const authorStableId = await resolveStableUidForAuth(db, request.auth.uid, requestedAuthorStableId, {
+    requireKnownIdentity: true,
+  });
   const batch = db.batch();
   const now = Date.now();
   for (const id of ids) {

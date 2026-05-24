@@ -51,6 +51,7 @@ export function parseStoredLessonProgress(raw: string | null, effectiveTotal: nu
 export function isValidStoredLessonOrder(value: unknown, n: number, count: number): value is number[] {
   return Array.isArray(value)
     && value.length === count
+    && new Set(value).size === value.length
     && value.every((i) => Number.isInteger(i) && i >= 0 && i < n);
 }
 
@@ -106,10 +107,6 @@ function applyPrimedFromStorageStrings(
   };
 }
 
-/**
- * One native round-trip: load all saved lesson shuffles + cell + progress into RAM.
- * Call from app bootstrap before the first frame that can open /lesson1 (cold start — no in-lesson loader).
- */
 export const LESSON_ID_MAX = 32;
 
 export async function primeAllLessonsFromStorageOnAppLaunch(studyTarget?: RuntimeStudyTarget): Promise<void> {
@@ -134,10 +131,6 @@ export async function primeAllLessonsFromStorageOnAppLaunch(studyTarget?: Runtim
   }
 }
 
-/**
- * Read cell / phrase order / progress from storage into memory, then open /lesson1 in the same tick.
- * First paint of LessonScreen can use this synchronously (no 1/50 flash before real position).
- */
 export async function primeLessonScreenFromStorage(
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
@@ -155,7 +148,6 @@ export function getLessonScreenPrimed(lessonId: number, studyTarget?: RuntimeStu
   return byLesson[primedKey(lessonId, studyTarget)] ?? null;
 }
 
-/** Update in-memory copy after the user moved within the lesson (keeps return navigation accurate). */
 export function touchLessonScreenPrimed(
   lessonId: number,
   patch: Partial<Pick<Primed, 'cell' | 'order' | 'progress'>>,
@@ -170,11 +162,6 @@ export function touchLessonScreenPrimed(
   };
 }
 
-/**
- * Returns validated initial cell and phrase order. Only uses primed data when a valid saved shuffle exists;
- * otherwise loadData must create the order and apply cellIndex from storage.
- * `n` = LESSON_DATA.length, `effectiveTotal` = min(n, TOTAL).
- */
 export function getInitialOrderAndCell(
   lessonId: number,
   n: number,
@@ -191,9 +178,6 @@ export function getInitialOrderAndCell(
   return { startCell: 0, initialOrder: [] };
 }
 
-/**
- * Build initial progress array: only when primed length matches.
- */
 export function getInitialProgressArray(
   effectiveTotal: number,
   lessonId: number,

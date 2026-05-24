@@ -397,12 +397,6 @@ const FADE_DURATION_MS = 1400; // длинный плавный фейд
 const SLIDE_DURATION_MS = 1500; // длинный «дрейф» снизу
 const SLIDE_DISTANCE_PX = 44; // путь slide-up — больше воздуха
 const AUTO_SCROLL_DELAY_MS = 520; // даём блоку доехать до конца, потом скроллим
-/** Нижний отступ кнопки «Начать урок» (совпадает с инлайн `bottom` у CTA). */
-const INTRO_CTA_BOTTOM_OFFSET = 22;
-/** Примерная высота CTA + зазор: звёзды не должны заезжать на эту зону во время анимации кнопки. */
-const INTRO_CTA_ZONE_PX = 88;
-/** Звёзды показываем только после всех карточек — и сразу над полосой кнопки. */
-const INTRO_STARS_ABOVE_CTA_PX = INTRO_CTA_BOTTOM_OFFSET + INTRO_CTA_ZONE_PX;
 const KIND_BY_INDEX: LessonIntroBlockKind[] = ['why', 'how', 'tip'];
 
 /**
@@ -657,6 +651,7 @@ interface IntroBlockCardProps {
   f: any;
   onLayout: (index: number, y: number) => void;
   onRevealComplete?: (index: number) => void;
+  footer?: React.ReactNode;
 }
 
 function IntroBlockCard({
@@ -671,6 +666,7 @@ function IntroBlockCard({
   f,
   onLayout,
   onRevealComplete,
+  footer,
 }: IntroBlockCardProps) {
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(SLIDE_DISTANCE_PX)).current;
@@ -915,6 +911,8 @@ function IntroBlockCard({
               })}
             </View>
           )}
+
+          {footer}
         </View>
       </View>
     </Animated.View>
@@ -936,9 +934,8 @@ export default function LessonIntroScreens({
 
   const totalBlocks = introScreens.length;
   const [revealedCount, setRevealedCount] = useState(1); // первый блок виден сразу
-  const [settledRevealCount, setSettledRevealCount] = useState(0);
   const allRevealed = revealedCount >= totalBlocks;
-  const ctaReady = allRevealed && settledRevealCount >= totalBlocks;
+  const ctaReady = allRevealed;
 
   const fadeBtn = useRef(new Animated.Value(0)).current;
   const btnScale = useRef(new Animated.Value(0.85)).current;
@@ -956,9 +953,6 @@ export default function LessonIntroScreens({
 
   const handleBlockLayout = useCallback((index: number, y: number) => {
     blockYRef.current[index] = y;
-  }, []);
-  const handleBlockRevealComplete = useCallback((index: number) => {
-    setSettledRevealCount((current) => Math.max(current, index + 1));
   }, []);
 
   // Появление header + лёгкое «оживление» контейнера на mount — медленный, дорогой фейд
@@ -1144,6 +1138,43 @@ export default function LessonIntroScreens({
     pl: 'Dotknij, aby kontynuować',
   });
 
+  const startCta = (
+    <Animated.View
+      pointerEvents="auto"
+      style={[
+        styles.ctaInlineWrap,
+        {
+          opacity: fadeBtn,
+          transform: [{ scale: btnScale }],
+        },
+      ]}
+    >
+      <Animated.View style={{ transform: [{ scale: btnPulse }] }}>
+        <TouchableOpacity testID="lesson-intro-start" accessibilityRole="button" accessibilityLabel={startLabel} activeOpacity={0.88} onPress={handleStart}>
+          <LinearGradient
+            colors={[`${t.accent}`, `${t.correct}`]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={[
+              styles.ctaBtn,
+              {
+                borderColor: t.borderHighlight,
+                shadowColor: t.accent,
+              },
+            ]}
+          >
+            <Text style={[styles.ctaText, { color: t.correctText, fontSize: f.bodyLg }]}>
+              {startLabel}
+            </Text>
+            <View style={styles.ctaIconWrap}>
+              <Ionicons name="arrow-forward" size={18} color={t.correctText} />
+            </View>
+          </LinearGradient>
+        </TouchableOpacity>
+      </Animated.View>
+    </Animated.View>
+  );
+
   return (
     <ScreenGradient>
       <LessonArtBackdrop variant="intro" />
@@ -1222,22 +1253,25 @@ export default function LessonIntroScreens({
               android_disableSound
               style={styles.tapMat}
             >
-              {introScreens.slice(0, totalBlocks).map((block, i) => (
-                <IntroBlockCard
-                  key={`${lessonId}-${i}`}
-                  index={i}
-                  total={totalBlocks}
-                  data={block}
-                  visible={i < revealedCount}
-                  lang={lang}
-                  studyTarget={studyTarget}
-                  t={t}
-                  themeMode={themeMode}
-                  f={f}
-                  onLayout={handleBlockLayout}
-                  onRevealComplete={handleBlockRevealComplete}
-                />
-              ))}
+              {introScreens.slice(0, totalBlocks).map((block, i) => {
+                const isLastBlock = i === totalBlocks - 1;
+                return (
+                  <IntroBlockCard
+                    key={`${lessonId}-${i}`}
+                    index={i}
+                    total={totalBlocks}
+                    data={block}
+                    visible={i < revealedCount}
+                    lang={lang}
+                    studyTarget={studyTarget}
+                    t={t}
+                    themeMode={themeMode}
+                    f={f}
+                    onLayout={handleBlockLayout}
+                    footer={isLastBlock && ctaReady ? startCta : null}
+                  />
+                );
+              })}
 
               {/* Подсказка-плашка: визуальная только. Тап обрабатывает родительский Pressable. */}
               {!allRevealed && (
@@ -1267,67 +1301,11 @@ export default function LessonIntroScreens({
                 </Animated.View>
               )}
 
-              {/* Доп. отступ снизу, чтобы под кнопкой CTA не упирался последний блок.
-                  Растёт вместе с safe-area inset, чтобы на Android с 3-кнопочной навигацией
-                  последняя карточка не оказывалась под CTA. */}
-              <View style={{ height: (ctaReady ? 175 : 130) + insets.bottom }} />
+              <View style={{ height: 28 + insets.bottom }} />
             </Pressable>
           </ScrollView>
         </Animated.View>
 
-        {ctaReady ? (
-          <View
-            pointerEvents="box-none"
-            style={{
-              position: 'absolute',
-              alignSelf: 'center',
-              bottom: INTRO_STARS_ABOVE_CTA_PX + insets.bottom,
-              zIndex: 10,
-            }}
-          >
-          </View>
-        ) : null}
-
-        {/* CTA «Начать урок» — фиксирован снизу, появляется когда все блоки раскрыты.
-            bottom учитывает safe-area inset, иначе кнопка налезает на Android-навигацию
-            (position:absolute в RN отсчитывается от padding-edge SafeAreaView). */}
-        <Animated.View
-          pointerEvents={ctaReady ? 'auto' : 'none'}
-          style={[
-            styles.ctaWrap,
-            {
-              bottom: INTRO_CTA_BOTTOM_OFFSET + insets.bottom,
-              opacity: fadeBtn,
-              transform: [{ scale: btnScale }],
-              zIndex: 20,
-              elevation: 14,
-            },
-          ]}
-        >
-          <Animated.View style={{ transform: [{ scale: btnPulse }] }}>
-            <TouchableOpacity testID="lesson-intro-start" accessibilityRole="button" accessibilityLabel={startLabel} activeOpacity={0.88} onPress={handleStart}>
-              <LinearGradient
-                colors={[`${t.accent}`, `${t.correct}`]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={[
-                  styles.ctaBtn,
-                  {
-                    borderColor: t.borderHighlight,
-                    shadowColor: t.accent,
-                  },
-                ]}
-              >
-                <Text style={[styles.ctaText, { color: t.correctText, fontSize: f.bodyLg }]}>
-                  {startLabel}
-                </Text>
-                <View style={styles.ctaIconWrap}>
-                  <Ionicons name="arrow-forward" size={18} color={t.correctText} />
-                </View>
-              </LinearGradient>
-            </TouchableOpacity>
-          </Animated.View>
-        </Animated.View>
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -1480,11 +1458,9 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     fontWeight: '500',
   },
-  ctaWrap: {
-    position: 'absolute',
-    left: 18,
-    right: 18,
-    // bottom выставляется инлайн с учётом safe-area inset
+  ctaInlineWrap: {
+    marginTop: 18,
+    width: '100%',
   },
   ctaBtn: {
     flexDirection: 'row',

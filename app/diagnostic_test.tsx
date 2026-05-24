@@ -4,7 +4,6 @@ import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
-  Image,
   KeyboardAvoidingView,
   ScrollView,
   Text,
@@ -12,6 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
@@ -1417,7 +1417,7 @@ export default function DiagnosticTest() {
           onPress={() => { hapticTap(); router.push('/exam'); }}
           activeOpacity={0.85}
         >
-          <Image source={examMenuImage(themeMode)} style={{ width: 56, height: 56 }} resizeMode="contain" />
+          <Image source={examMenuImage(themeMode)} style={{ width: 56, height: 56, flexShrink: 0 }} contentFit="contain" cachePolicy="memory-disk" />
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>{s.home.examBtn}</Text>
             <Text style={{ color: t.textSecond, fontSize: f.label, marginTop: 4 }}>

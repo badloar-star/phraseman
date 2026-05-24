@@ -952,10 +952,10 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    if (!ready || effectiveShowOnboarding || isBanned || firstContentReady || isRootIndexRoute) return;
+    if (!ready || effectiveShowOnboarding || isBanned || firstContentReady) return;
     const timer = setTimeout(() => setFirstContentReady(true), FIRST_CONTENT_READY_FALLBACK_MS);
     return () => clearTimeout(timer);
-  }, [effectiveShowOnboarding, firstContentReady, isBanned, isRootIndexRoute, ready]);
+  }, [effectiveShowOnboarding, firstContentReady, isBanned, ready]);
 
   useEffect(() => {
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady || heavyInitStartedRef.current) return;
@@ -1161,6 +1161,8 @@ function AppContent() {
           const m = await import('./lesson_menu');
           await m.prefetchLessonMenuCache(id, studyTarget);
         }
+        const wordsCache = await import('./lesson_words');
+        await wordsCache.primeAllLessonWordsFromStorageOnAppLaunch(studyTarget);
         const tab = await import('./lessons_tab_state');
         await tab.loadLessonsTabStateFromStorage(studyTarget);
       } catch { /* */ }
@@ -1526,12 +1528,14 @@ function AppContent() {
       firstContentReadyTimerRef.current = null;
     }
     setFirstContentReady(true);
+    router.replace('/(tabs)/home' as any);
+    setTimeout(() => router.replace('/(tabs)/home' as any), 120);
     setShow(false);
     // Не показываем тутор энергии на «Главной» одновременно с этим листом (ждём «Позже» или возврат с урока)
     setDeferEnergyOnboardingForPostOnboardingFirstLesson(true);
     // Небольшая задержка чтобы анимация закрытия онбординга успела завершиться
     setTimeout(() => setShowFirstLessonSheet(true), 400);
-  }, [armPostOnboardingGoldBridge]);
+  }, [armPostOnboardingGoldBridge, router]);
 
   // После закрытия онбординга и монтирования Stack — переходим на нужный экран
   useEffect(() => {
@@ -1652,14 +1656,6 @@ function AppContent() {
             <Text style={{ color: '#fff', fontWeight: '700' }}>Проверить снова</Text>
           </TouchableOpacity>
         </View>
-      </View>
-    );
-  }
-
-  if (effectiveShowOnboarding) {
-    return (
-      <View style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>
-        <Onboarding onDone={handleOnboardingDone} onLangSelect={handleLangSelect} />
       </View>
     );
   }

@@ -1643,24 +1643,24 @@ export default function FlashcardsScreen() {
         )}
 
         {filteredCards.length > 0 && (
+          <View style={{ flexDirection: 'row', gap: 10, marginHorizontal: 16, marginTop: 10, marginBottom: 4 }}>
           <TouchableOpacity
             onPress={openSwipeGame}
-            activeOpacity={0.88}
+            activeOpacity={0.82}
+            hitSlop={{ top: 6, bottom: 6, left: 4, right: 4 }}
             style={{
-              marginHorizontal: 16,
-              marginTop: 10,
-              marginBottom: 4,
-              minHeight: 58,
+              flex: 1,
+              minHeight: 48,
               paddingVertical: 10,
-              paddingHorizontal: 14,
-              borderRadius: 16,
+              paddingHorizontal: 12,
+              borderRadius: 15,
               borderWidth: 1,
               borderColor: t.accent,
-              backgroundColor: `${t.accent}18`,
+              backgroundColor: t.bgCard,
               flexDirection: 'row',
               alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: 12,
+              justifyContent: 'center',
+              gap: 8,
             }}
             accessibilityLabel={triLang(lang, {
               ru: 'Тренироваться с карточками',
@@ -1676,59 +1676,55 @@ export default function FlashcardsScreen() {
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, flex: 1, minWidth: 0 }}>
               <View
                 style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: 13,
-                  backgroundColor: t.accent,
+                  width: 20,
+                  height: 20,
+                  borderRadius: 10,
+                  backgroundColor: 'transparent',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
-                <Ionicons name="sparkles-outline" size={20} color={t.correctText} />
+                <Ionicons name="sparkles-outline" size={18} color={t.textSecond} />
               </View>
               <View style={{ flex: 1, minWidth: 0 }}>
                 <Text
                   numberOfLines={1}
                   adjustsFontSizeToFit
-                  minimumFontScale={0.78}
-                  style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}
+                  minimumFontScale={0.82}
+                  style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }}
                 >
                   {triLang(lang, {
-                    ru: 'Тренироваться с этими карточками',
-                    uk: 'Тренуватися з цими картками',
-                    es: 'Practicar con estas tarjetas',
-                    'pt-BR': 'Praticar com estes cartões',
-                    vi: 'Luyện tập với các thẻ này',
-                    id: 'Berlatih dengan kartu ini',
-                    tr: 'Bu kartlarla pratik yap',
-                    pl: 'Ćwicz z tymi fiszkami',
+                    ru: 'Тренировать',
+                    uk: 'Тренувати',
+                    es: 'Practicar',
+                    'pt-BR': 'Praticar',
+                    vi: 'Luyện tập',
+                    id: 'Berlatih',
+                    tr: 'Pratik',
+                    pl: 'Ćwicz',
                   })}
                 </Text>
               </View>
             </View>
-            <Ionicons name="chevron-forward" size={20} color={t.textSecond} />
           </TouchableOpacity>
-        )}
 
-        {filteredCards.length > 0 && (
           <TouchableOpacity
             onPress={openAudioMode}
-            activeOpacity={0.88}
+            activeOpacity={0.82}
+            hitSlop={{ top: 6, bottom: 6, left: 4, right: 4 }}
             style={{
-              marginHorizontal: 16,
-              marginTop: 6,
-              marginBottom: 4,
-              minHeight: 54,
+              flex: 1,
+              minHeight: 48,
               paddingVertical: 10,
-              paddingHorizontal: 14,
-              borderRadius: 16,
+              paddingHorizontal: 12,
+              borderRadius: 15,
               borderWidth: 1,
               borderColor: t.border,
               backgroundColor: t.bgCard,
               flexDirection: 'row',
               alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: 12,
+              justifyContent: 'center',
+              gap: 8,
             }}
             accessibilityLabel={triLang(lang, {
               ru: 'Слушать карточки автоматически',
@@ -1744,40 +1740,40 @@ export default function FlashcardsScreen() {
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, flex: 1, minWidth: 0 }}>
               <View
                 style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: 13,
-                  backgroundColor: t.bgSurface,
-                  borderWidth: 1,
-                  borderColor: t.border,
+                  width: 20,
+                  height: 20,
+                  borderRadius: 10,
+                  backgroundColor: 'transparent',
+                  borderWidth: 0,
+                  borderColor: 'transparent',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
-                <Ionicons name="headset-outline" size={20} color={t.textSecond} />
+                <Ionicons name="headset-outline" size={18} color={t.textMuted} />
               </View>
               <View style={{ flex: 1, minWidth: 0 }}>
                 <Text
                   numberOfLines={1}
                   adjustsFontSizeToFit
-                  minimumFontScale={0.78}
-                  style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}
+                  minimumFontScale={0.82}
+                  style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }}
                 >
                   {triLang(lang, {
-                    ru: 'Слушать эти карточки',
-                    uk: 'Слухати ці картки',
-                    es: 'Escuchar estas tarjetas',
-                    'pt-BR': 'Ouvir estes cartões',
-                    vi: 'Nghe các thẻ này',
-                    id: 'Dengarkan kartu ini',
-                    tr: 'Bu kartları dinle',
-                    pl: 'Słuchaj tych fiszek',
+                    ru: 'Слушать',
+                    uk: 'Слухати',
+                    es: 'Escuchar',
+                    'pt-BR': 'Ouvir',
+                    vi: 'Nghe',
+                    id: 'Dengar',
+                    tr: 'Dinle',
+                    pl: 'Słuchaj',
                   })}
                 </Text>
               </View>
             </View>
-            <Ionicons name="chevron-forward" size={20} color={t.textSecond} />
           </TouchableOpacity>
+          </View>
         )}
 
         {/* Flip all — у режимі купленого паку: спокійна друкарська кнопка, без "кислотного" лайму */}

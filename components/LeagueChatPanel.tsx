@@ -955,28 +955,6 @@ export default function LeagueChatPanel({
               <Ionicons name="send" size={18} color={connectionUi.canSendDraft ? t.correctText : t.textMuted} />
             </TouchableOpacity>
           </View>
-          <Text
-            testID="league-chat-safety-note"
-            style={{
-              color: t.textGhost,
-              fontSize: Math.max(4, Math.round(f.caption / 3)),
-              lineHeight: Math.max(6, Math.round((f.caption / 3) * 1.45)),
-              opacity: 0.34,
-              paddingHorizontal: 4,
-              marginTop: 5,
-            }}
-          >
-            {triLang(lang, {
-  ru: 'Пиши по делу и поддерживай участников. Спам, ссылки и оскорбления могут привести к блокировке аккаунта.',
-  uk: 'Пиши по суті й підтримуй учасників. Спам, посилання та образи можуть призвести до блокування акаунта.',
-  es: 'Escribe con respeto. El spam, los enlaces y los insultos pueden provocar el bloqueo de la cuenta.',
-  "pt-BR": 'Escreva com respeito e ajude os participantes. Spam, links e insultos podem levar ao bloqueio da conta.',
-  vi: 'Hãy viết đúng trọng tâm và hỗ trợ người khác. Spam, liên kết và lời xúc phạm có thể khiến tài khoản bị chặn.',
-  id: 'Tulis yang relevan dan dukung peserta lain. Spam, tautan, dan hinaan bisa membuat akun diblokir.',
-  tr: 'Konuya uygun yaz ve katılımcıları destekle. Spam, bağlantılar ve hakaretler hesabın engellenmesine yol açabilir.',
-  pl: 'Pisz na temat i wspieraj uczestników. Spam, linki i obrazy mogą skończyć się blokadą konta.',
-})}
-          </Text>
         </View>
       </View>
     </KeyboardAvoidingView>

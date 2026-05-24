@@ -238,7 +238,11 @@ export function themedQuizAsset<T>(
       : themeMode;
   const themedAsset = assets[alias];
   if (themedAsset) return themedAsset;
-  return assets.dark;
+  return assets.dark
+    ?? assets.forest
+    ?? assets.neonGreen
+    ?? assets.minimalDark
+    ?? Object.values(assets)[0]!;
 }
 
 export function thematicQuizCategoryHasAllActiveLocaleCopy(category: ThematicQuizCategory): boolean {

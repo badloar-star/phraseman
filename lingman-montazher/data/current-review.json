@@ -1,0 +1,1053 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "title": "ПЕРВОЕ ВИДЕО АЛГОРИТМА",
+    "sourceFile": "ПЕРВОЕ ВИДЕО АЛГОРИТМА .mp4",
+    "duration": 1631.251,
+    "frameRate": 60.0,
+    "resolution": "3840x2160",
+    "createdAt": "2026-05-24T08:29:52.718980+00:00",
+    "directorPass": "director-v5",
+    "editedDuration": 823.38,
+    "visualLayout": "right-of-head-plaque",
+    "previewFile": "runs/20260524-0915-concrete-video/director-pass-v5-1080p.mp4"
+  },
+  "editDecisions": [
+    {
+      "id": "clip_v4_001",
+      "sourceStart": 0.0,
+      "sourceEnd": 38.6,
+      "outputStart": 0.0,
+      "outputEnd": 38.6,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Strong opening: missing be in 'she ready'.",
+      "confidence": 0.92,
+      "transcript": "Есть ошибка, которая выглядит слишком маленькой целого урока, и именно поэтому она так долго порт ит первые английские фразы. Например, вы знаете слово \" си\" и знаете слово \"ready\", и понимаете смысл, она готова. И вроде бы все нужные дет али уже на столе. \"Shi\", \"ready\", два слова, а не понятные, мысль понят ная, но английская фраза все равно не закончена, потому что между человеком и состоянием здесь должно сто ять маленькое переходное слово \"is\". Поэтому нормальная фраза получается \"she is ready\". Сегодня оставим огромную т аблицу \"to be\" в стороне и разберем одно простое место в фразе, где английский почти всегда просит эту связку.",
+      "directorBlock": "hook"
+    },
+    {
+      "id": "clip_v4_002",
+      "sourceStart": 38.6,
+      "sourceEnd": 56.96,
+      "outputStart": 38.6,
+      "outputEnd": 56.96,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Clarifies that the problem is the missing middle word.",
+      "confidence": 0.92,
+      "transcript": "Сразу важная мысль. Чтобы урок не превратился в зубрешку трех странных слов, ошибка \"she ready\" появляется не потому что слово \"си плохой\" или слово \"ready плохой\", оба слова выбраны нормально, проблемы в пуст ом месте между ними.",
+      "directorBlock": "problem"
+    },
+    {
+      "id": "clip_v4_003",
+      "sourceStart": 56.96,
+      "sourceEnd": 73.64,
+      "outputStart": 56.96,
+      "outputEnd": 73.64,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Russian examples and bridge idea.",
+      "confidence": 0.92,
+      "transcript": "В родном языке мы спокойно говорим \"она готова\", \"он занят\", \"это важно\", \"мы вместе\". И никакое отдельное слово между первой частью и описанием нам чаще всего не нужно. Английский в таких фразах любит ставить маленький мостик.",
+      "directorBlock": "bridge_ru_examples"
+    },
+    {
+      "id": "clip_v4_004",
+      "sourceStart": 73.64,
+      "sourceEnd": 103.64,
+      "outputStart": 73.64,
+      "outputEnd": 103.64,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Explains am/is/are as the bridge; stops before the abandoned example run.",
+      "confidence": 0.92,
+      "transcript": "В английских таких фразах любит ставить маленький мостик. Сначала вы называете \"аком\" или о чем речь, потом став ите \"m\", \"is\" или \"are\", потом добавляете место, состояние качество, роль или оценку. Вот почему \"to be\" на стар те лучше понимать проще. Иногда перевод помогает, но в первых коротких фразах важнее увидеть короткую связку внутри самой фраза.",
+      "directorBlock": "bridge_system"
+    },
+    {
+      "id": "cut_v4_001",
+      "sourceStart": 103.64,
+      "sourceEnd": 173.56,
+      "outputStart": 103.64,
+      "outputEnd": 103.64,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_005",
+      "sourceStart": 173.56,
+      "sourceEnd": 213.04,
+      "outputStart": 103.64,
+      "outputEnd": 143.12,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Clean final take for I am here / I am ok.",
+      "confidence": 0.92,
+      "transcript": "Давайте начнем с самого пон ятного случая. Вы хотите сказать \"я здесь Первая часть уже есть, это \"I\". Дальше вы добавляете место. Here, между \"I\" и \"here\" мы ставим \"m\", потому что с \"I \" в настоящее времени идет именно \"m\". Получается \"I am here\". Теперь слегка меняем послед ний часть и она уже говорит о состоянии. Я в порядке, первая часть остается \"I\", связка ост ается \"m\", меняется только то, что вы говорите о себе. I am ok. Вот это полезнее, чем выуч ить две фразы отдельно, потому что вы видите один и тот же переход. I, потом \"m\" и потом место или состояние.",
+      "directorBlock": "i_am_case"
+    },
+    {
+      "id": "cut_v4_002",
+      "sourceStart": 213.04,
+      "sourceEnd": 221.64,
+      "outputStart": 143.12,
+      "outputEnd": 143.12,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_006",
+      "sourceStart": 221.64,
+      "sourceEnd": 269.68,
+      "outputStart": 143.12,
+      "outputEnd": 191.16,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Clean final take for he/she and stable pairs.",
+      "confidence": 0.92,
+      "transcript": "Когда фраза начинается с \"I \" и дальше вы хотите добав ить где я, какой я, в каком я состоянии или кем я являюсь , сначала проверьте \"m\". Не переводите каждое слово отдельно, спросите себя проще. Я сейчас называю действие или я описываю состояние, место или роль или качество . Если это описание, место или состояние, очень часто рядом с словом \"I\" появится \"m\". I am here. I am ok. Две фразы разные по смыслу, но внутри они работают совершенно одинаково. Теперь перенесем тот же принцип на \"he\" и \"she\". С \"he\" идет \"is\", поэтому \" he is busy\", с \"she\" тоже идет \"is\", поэтому \"she is ready\".",
+      "directorBlock": "he_she_case"
+    },
+    {
+      "id": "cut_v4_003",
+      "sourceStart": 269.68,
+      "sourceEnd": 293.4,
+      "outputStart": 191.16,
+      "outputEnd": 191.16,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_007",
+      "sourceStart": 293.4,
+      "sourceEnd": 304.08,
+      "outputStart": 191.16,
+      "outputEnd": 201.84,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Short listener expectation summary.",
+      "confidence": 0.92,
+      "transcript": "Английский слушатель ждет, что после \"he\" или \"she\" появится переход к описанию \"he is busy\" или \"she is ready\".",
+      "directorBlock": "listener_waits"
+    },
+    {
+      "id": "cut_v4_004",
+      "sourceStart": 304.08,
+      "sourceEnd": 307.6,
+      "outputStart": 201.84,
+      "outputEnd": 201.84,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_008",
+      "sourceStart": 307.6,
+      "sourceEnd": 371.24,
+      "outputStart": 201.84,
+      "outputEnd": 265.48,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Good self-check and it is important block.",
+      "confidence": 0.92,
+      "transcript": "хороший вопрос для самопров ерки. Я сейчас говорю, что человек делает, или я говорю, какой он, где он и кем он является, в каком он состоянии. \"He is busy\" не рассказыв ает действия, это описание состояния. \"She is ready\" тоже не действие, это состояние, значит между человеком и описанием нужна связка. Такой вопрос спасает от мех анической ошибки, когда все равно выходит неполной. Теперь добавим \"it\". У слова \"ит\" есть одна очень полезная особенность, оно часто начинает фразу про ситуацию в целах. Даже когда конкретный пред мет не называется, например \"it is important\" это может относиться к встрече, реш ению, сообщению, цене, идеи, разговору и много чему еще. Необязательно искать в голове отдельное \"anough\". \"It\" занимает первое место в фразе. \"Is\" делает переход. \"Important\" делает оценку. Получается короткая фраза про ситуацию, это важно. \"It is important\".",
+      "directorBlock": "it_important"
+    },
+    {
+      "id": "cut_v4_005",
+      "sourceStart": 371.24,
+      "sourceEnd": 407.84,
+      "outputStart": 265.48,
+      "outputEnd": 265.48,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_009",
+      "sourceStart": 407.84,
+      "sourceEnd": 436.16,
+      "outputStart": 265.48,
+      "outputEnd": 293.8,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Final usable it is cheap take; stops before the side historical tangent.",
+      "confidence": 0.92,
+      "transcript": "Чтобы почувствовать это немного живее, давайте, к примеру, возьмем \"it is cheap\". Здесь уже речь может идти о цене, билете, товаре, варианте или услуги. Первая часть та же \"it\", связка та же \"is\" и послед няя часть меняется на \"cheap\". Если убрать \"is\" получится \"it important\" или \"it cheap\". Понять все еще можно, но английская конструкция остается без середины и в таких коротких фразах \"is\" это не украшение и никакой-нибудь лишний звук. Это слово, которое соедин яет тему и оценку.",
+      "directorBlock": "it_cheap_final"
+    },
+    {
+      "id": "cut_v4_006",
+      "sourceStart": 436.16,
+      "sourceEnd": 469.32,
+      "outputStart": 293.8,
+      "outputEnd": 293.8,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_010",
+      "sourceStart": 469.32,
+      "sourceEnd": 584.76,
+      "outputStart": 293.8,
+      "outputEnd": 409.24,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Stable pairs and are agreement, using the final coherent run.",
+      "confidence": 0.92,
+      "transcript": "Для нас практически вывод простой. Не пытайтесь вывести \"m\", \" is\" и \"r\" по внешнему виду. Учите устойчивые пары. Например \"I am\", \"he is\", \" she is\", \"it is\", \"you are\", \"we are\", \"they are\". И вот здесь сухая таблица превращается в нормальный разговорный инструмент. Если вы держите в голове только три отдельной формы, \"m\" и \"is\", \"r\", каждый раз приходится выбирать заново. Если вы держите короткие пары, выбор становится быстрее. Например, после \"I\" есте ственно вспоминать \"I am\", а после \"he\" и \"she\" естественно вспоминать \"he is\" и \"she is\". После \"we\" и \"they\" всп оминать \"we are\" или \"they are\". И это не какая-то, я не знаю, магия, память. Это просто удобная упаковка для маленькой и правильной грамматики. Теперь переходим к \"are\", потому что здесь часто появ ляется ошибка другого типа. Человек уже понял, что связ ка нужна, но ставит привыч ное \"is\" почти везде. Получается \"we is\" - \"t ogether\" или \"they is happy \". Это очень даже хороший знак , если смотреть спокойно. Место для связки уже найд ено. Осталось выбрать форму под главное слово. С \"we\" идет \"are\", поэтому \"we are\" - \"together\". С \"they\" тоже идет \"are\", поэтому \"they are happy\". Очень полезно различать две ошибки. \"She ready\" означает, что связку пропустили. \"We is together\" означает, что связку поставили, но форма не совпала с первым словом. Исправляются они по-разному В первом случае надо увидеть пустое место между человеком и описанием, а во втором случае надо проверить пару. \"I am\", \"he is\", \"she is\", \"it is\", \"you are\", \"we are \", \"they are\". Это такой короткий список, но зато он закрывает огром ную часть первых фраз.",
+      "directorBlock": "stable_pairs_are"
+    },
+    {
+      "id": "cut_v4_007",
+      "sourceStart": 584.76,
+      "sourceEnd": 591.36,
+      "outputStart": 409.24,
+      "outputEnd": 409.24,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_011",
+      "sourceStart": 591.36,
+      "sourceEnd": 653.72,
+      "outputStart": 409.24,
+      "outputEnd": 471.6,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Roles/professions with I am a teacher / We are students.",
+      "confidence": 0.92,
+      "transcript": "Теперь важный переход к рол ям людей. До этого мы говорили о месте, состоянии и оценке. \"I am here\", \"she is ready \", \"it is important\". Но \"to be\" нужен и когда вы говорите, кто человек по роли или профессии. Например, \"I am a teacher\". Здесь \"m\" снова соединяет \" I\" и \"teacher\", а маленькое слово \"ay\" показывает, что речь идет об одном человеке . В живой речи это очень част ая конструкция. \"I am a teacher\", \"I am a student\". Для этого урока нам достаточно двух примеров, чтобы понять сам прийтсед. Если людей несколько, кон струкция меняется очень акку ратно. \"We are students\". Первое слово \"we\" требует \" are\", а \"students\" стоит во множественном числе. Слово \"ay\" сюда уже не под ходит, потому что мы говорим про одного человека, а про группу людей, \"students\". Получается сразу две на стройки в одной короткой ф разе. Связка \"are\" соединяет \"we\" и \"students\", а форма \"stud ents\" показывает, что людей несколько. Это хороший пример того, как маленькие слова работ ают вместе.",
+      "directorBlock": "roles"
+    },
+    {
+      "id": "cut_v4_008",
+      "sourceStart": 653.72,
+      "sourceEnd": 747.84,
+      "outputStart": 471.6,
+      "outputEnd": 471.6,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_012",
+      "sourceStart": 747.84,
+      "sourceEnd": 817.28,
+      "outputStart": 471.6,
+      "outputEnd": 541.04,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Final complete very block; earlier attempts removed.",
+      "confidence": 0.92,
+      "transcript": "Теперь добавим \"very\", потому что в живой речи без усилителей быстро становится скучно. \"Very\" не ломает конструк цию, оно просто становится перед описанием и усиливает его. \"She is very smart\". \"We are very tired\". Главное слово остается перв ое, потом идет связка, потом \"very\" и описание. Если убрать \"is\" или \"are\", \"very\" не спасет фразу. \"She very smart\" все равно не полная. \"We very tired\" тоже. \"Very\" усиливает описание, но связку не заменяет. Вот один, вот вам один разг оворный лайфхак, который реально может помочь. Если в голове первым всплы ло \"very\", не начинаете стро фразу с него. Сначала назовите \"а ком р ечь\", потом постарьте связку потом добавьте \"very\" перед описанием. Например \"She is very smart \". \"We are very tired\". Таким образом \"very\" попад ает туда, где оно работает лучше всего. Оно усиливает \"smart\" или \" tired\", а вся фраза держится нормальном переходе от перв ого слова к описанию.",
+      "directorBlock": "very_final"
+    },
+    {
+      "id": "cut_v4_009",
+      "sourceStart": 817.28,
+      "sourceEnd": 839.04,
+      "outputStart": 541.04,
+      "outputEnd": 541.04,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_013",
+      "sourceStart": 839.04,
+      "sourceEnd": 881.72,
+      "outputStart": 541.04,
+      "outputEnd": 583.72,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Compact lesson summary with core examples.",
+      "confidence": 0.92,
+      "transcript": "В этом видео мы не охотимся за десятком готовых фраз. Мы учимся видеть место, где английская фраза нужна связка. Кто или что, потом \"m\". Мы учимся видеть место, где английская фраза нужна связка. состояние, качество, роль или оценка. \"I am here\", \"he is busy\", \"it is important\", \"we are together\". В каждой фразе маленькое слово помогает в второй части нормально присоединиться к",
+      "directorBlock": "summary_examples"
+    },
+    {
+      "id": "cut_v4_010",
+      "sourceStart": 881.72,
+      "sourceEnd": 883.96,
+      "outputStart": 583.72,
+      "outputEnd": 583.72,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_014",
+      "sourceStart": 883.96,
+      "sourceEnd": 913.6,
+      "outputStart": 583.72,
+      "outputEnd": 613.36,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Conceptual explanation of why the middle word matters.",
+      "confidence": 0.92,
+      "transcript": "Именно поэтому тема окаж ется легкой на бумаге и почему-то ломается в речи. Когда человек знает все отдельные слова, ему кажется, что осталось просто постав ить их рядом. Английская короткая фраза часто работает как понятная конструкция, хотя на первый взгляд может казаться рос и фьюслол. Первый кусок задает тему. Связка открывает путь ко второй части и последний кусок дает место, состояние , качество, роль или оценку. Если убрать середину, смысл еще можно угадать, но фраза теряет нормальную форму.",
+      "directorBlock": "concept_summary"
+    },
+    {
+      "id": "cut_v4_011",
+      "sourceStart": 913.6,
+      "sourceEnd": 1009.08,
+      "outputStart": 613.36,
+      "outputEnd": 613.36,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_015",
+      "sourceStart": 1009.08,
+      "sourceEnd": 1020.7,
+      "outputStart": 613.36,
+      "outputEnd": 624.98,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Practice pair: I am here / I am ok.",
+      "confidence": 0.92,
+      "transcript": "Возьмите две короткие пары и проговорите их медленно, например, I am here и I am okay. В первой фразе после I идет место, во второй - состояни е, но m остается тем же, потом",
+      "directorBlock": "practice_pair_1"
+    },
+    {
+      "id": "cut_v4_012",
+      "sourceStart": 1020.7,
+      "sourceEnd": 1023.76,
+      "outputStart": 624.98,
+      "outputEnd": 624.98,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_016",
+      "sourceStart": 1023.76,
+      "sourceEnd": 1073.68,
+      "outputStart": 624.98,
+      "outputEnd": 674.9,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Practice pair: we are together / we are safe and contractions.",
+      "confidence": 0.92,
+      "transcript": "we are together и we are safe. Первый фразе together говорит об отношении между людьми, а во второй фразе safe говорит о состоянии, но we are остается тем же. В этом и есть смысл хорошей тренировки, вы меняете последнюю часть, а начало конструкции остается устойчивым. Теперь пару слов про сокращ ение, потому что без них разговорный английский звучит слишком учебно. I am часто превращается в I am. She is превращается в she is. We are превращается в we are. Это нормально, но на старте лучше несколько раз прог оворить именно полную форму. I am here, she is ready, we are together. Полная форма помогает услыш ать связку, но когда связка станет привычной, сокращ ения будут восприниматься намного спокойнее.",
+      "directorBlock": "practice_pair_2"
+    },
+    {
+      "id": "cut_v4_013",
+      "sourceStart": 1073.68,
+      "sourceEnd": 1076.56,
+      "outputStart": 674.9,
+      "outputEnd": 674.9,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_017",
+      "sourceStart": 1076.56,
+      "sourceEnd": 1103.08,
+      "outputStart": 674.9,
+      "outputEnd": 701.42,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Boundary: am/is/are are not for every sentence.",
+      "confidence": 0.92,
+      "transcript": "Есть еще одна граница, которую важно не перепутать . I am, is и are нужны не во всех английских фразах под ряд. Сейчас мы говорим о фразах, где после главного слова идет место, состояние, опис ание, оценка или роль. I am here, she is ready, it is important. We are together. Если вы говорите обычное действие, дальше начнутся другие правила, потому поэтому.",
+      "directorBlock": "boundary"
+    },
+    {
+      "id": "cut_v4_014",
+      "sourceStart": 1103.08,
+      "sourceEnd": 1106.56,
+      "outputStart": 701.42,
+      "outputEnd": 701.42,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_018",
+      "sourceStart": 1106.56,
+      "sourceEnd": 1167.0,
+      "outputStart": 701.42,
+      "outputEnd": 761.86,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Simple final recipe.",
+      "confidence": 0.92,
+      "transcript": "А теперь давайте проверим это совсем простыми словами . Хотите сказать, я здесь, кто главный? I какая связка? I am, что добавляем? Here получается I am here. Хотите сказать, она готова, кто главный? She какая связка? Is что добавляем? Ready получается she is ready. Хотите сказать, мы вместе, кто главный? We связка are, добавляем together, получается we are together. Теперь To be перестает быть тремя случайными словами и стаблицией. Это способ построить норм альную английскую фразу без угадывания. Вы называете человека, вещь или ситуацию, ставите подходящую связку, добавляете место, состояние, качество, роль или оценку. На этом держится тысячи кор отких фраз, именно поэтому маленькие m, is и are засл уживает отдельного внимания.",
+      "directorBlock": "simple_recipe"
+    },
+    {
+      "id": "cut_v4_015",
+      "sourceStart": 1167.0,
+      "sourceEnd": 1187.44,
+      "outputStart": 761.86,
+      "outputEnd": 761.86,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_019",
+      "sourceStart": 1187.44,
+      "sourceEnd": 1208.2,
+      "outputStart": 761.86,
+      "outputEnd": 782.62,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Comment task; final clean take.",
+      "confidence": 0.92,
+      "transcript": "В комментариях вы можете написать две фразы по одной конструкции, например she is ready, и she is calm, или we are together, и we are safe. Можно рядом написать вариант, который раньше хотелось сказать, например she ready , или we are together, это не стыдно,",
+      "directorBlock": "comment_task"
+    },
+    {
+      "id": "cut_v4_016",
+      "sourceStart": 1208.2,
+      "sourceEnd": 1217.96,
+      "outputStart": 782.62,
+      "outputEnd": 782.62,
+      "decision": "cut",
+      "kind": "director_rejected",
+      "reason": "Rejected by full-lesson director pass: pause, repeated take, throat clear, or earlier failed variant.",
+      "confidence": 0.9,
+      "transcript": "Rejected in final director pass."
+    },
+    {
+      "id": "clip_v4_020",
+      "sourceStart": 1217.96,
+      "sourceEnd": 1258.72,
+      "outputStart": 782.62,
+      "outputEnd": 823.38,
+      "decision": "take_selected",
+      "kind": "director_selected_take",
+      "reason": "Final app CTA take.",
+      "confidence": 0.92,
+      "transcript": "Ну, если хотите довести это до автоматизма, эти же темы можно отрабатывать в мобиль ном приложении phraseman после видео. QR-код вы видите на экране, а ссылки на скачивание будут в описании. Смысл очень простой, здесь вы понимаете зачем вам нужна связка, а потом на практике снова и снова встречаете похожие фразы, пока выбор m is или r не станет быстрым. И тогда следующая аргнилий ская фраза начинается с пон ятного порядка, без паники и никаких таблиц вам никто поднос ссовать не будет. Кто главный, какая связка, и что я говорю дальше.",
+      "directorBlock": "app_cta"
+    },
+    {
+      "id": "cut_v4_017",
+      "sourceStart": 1258.72,
+      "sourceEnd": 1631.251,
+      "outputStart": 823.38,
+      "outputEnd": 823.38,
+      "decision": "cut",
+      "kind": "director_rejected_tail",
+      "reason": "Rejected tail after final usable take.",
+      "confidence": 0.9,
+      "transcript": "Rejected tail."
+    }
+  ],
+  "screenText": [
+    {
+      "id": "text_001",
+      "start": 25.92,
+      "end": 28.22,
+      "text": "she is ready",
+      "lines": [
+        "she is ready"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 0,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_002",
+      "start": 48.04,
+      "end": 50.74,
+      "text": "she ready\n-> she is ready",
+      "lines": [
+        "she ready",
+        "-> she is ready"
+      ],
+      "role": "correction",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 1,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_003",
+      "start": 82.08,
+      "end": 84.48,
+      "text": "am / is / are",
+      "lines": [
+        "am / is / are"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 2,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_004",
+      "start": 119.48,
+      "end": 121.68,
+      "text": "I am here",
+      "lines": [
+        "I am here"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 3,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_005",
+      "start": 133.4,
+      "end": 135.6,
+      "text": "I am ok",
+      "lines": [
+        "I am ok"
+      ],
+      "role": "phrase",
+      "slot": 1,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 0,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_006",
+      "start": 180.36,
+      "end": 183.36,
+      "text": "he is busy\nshe is ready",
+      "lines": [
+        "he is busy",
+        "she is ready"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 1,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_007",
+      "start": 240.84,
+      "end": 243.24,
+      "text": "it is important",
+      "lines": [
+        "it is important"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 2,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_008",
+      "start": 265.48,
+      "end": 267.78,
+      "text": "it is cheap",
+      "lines": [
+        "it is cheap"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 3,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_009",
+      "start": 313.12,
+      "end": 316.52,
+      "text": "I am / he is / she is / it is\nyou are / we are / they are",
+      "lines": [
+        "I am / he is / she is / it is",
+        "you are / we are / they are"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 0,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_010",
+      "start": 359.6,
+      "end": 362.3,
+      "text": "we is together\n-> we are together",
+      "lines": [
+        "we is together",
+        "-> we are together"
+      ],
+      "role": "correction",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 1,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_011",
+      "start": 361.17,
+      "end": 363.87,
+      "text": "they is happy\n-> they are happy",
+      "lines": [
+        "they is happy",
+        "-> they are happy"
+      ],
+      "role": "correction",
+      "slot": 1,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 2,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_012",
+      "start": 370.24,
+      "end": 372.64,
+      "text": "we are together",
+      "lines": [
+        "we are together"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 3,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_013",
+      "start": 376.57,
+      "end": 378.97,
+      "text": "they are happy",
+      "lines": [
+        "they are happy"
+      ],
+      "role": "phrase",
+      "slot": 1,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 0,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_014",
+      "start": 421.64,
+      "end": 424.04,
+      "text": "I am a teacher",
+      "lines": [
+        "I am a teacher"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 1,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_015",
+      "start": 443.2,
+      "end": 445.6,
+      "text": "We are students",
+      "lines": [
+        "We are students"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 2,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_016",
+      "start": 484.12,
+      "end": 487.32,
+      "text": "She is very smart\nWe are very tired",
+      "lines": [
+        "She is very smart",
+        "We are very tired"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 3,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_017",
+      "start": 500.48,
+      "end": 503.28,
+      "text": "She very smart\n-> She is very smart",
+      "lines": [
+        "She very smart",
+        "-> She is very smart"
+      ],
+      "role": "correction",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 0,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_018",
+      "start": 502.48,
+      "end": 505.28,
+      "text": "We very tired\n-> We are very tired",
+      "lines": [
+        "We very tired",
+        "-> We are very tired"
+      ],
+      "role": "correction",
+      "slot": 1,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 1,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_019",
+      "start": 715.1,
+      "end": 717.4,
+      "text": "I am here",
+      "lines": [
+        "I am here"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 2,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_020",
+      "start": 726.1,
+      "end": 728.4,
+      "text": "she is ready",
+      "lines": [
+        "she is ready"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 3,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_021",
+      "start": 734.43,
+      "end": 736.73,
+      "text": "we are together",
+      "lines": [
+        "we are together"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 0,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_022",
+      "start": 771.5,
+      "end": 774.5,
+      "text": "she is ready\nshe is calm",
+      "lines": [
+        "she is ready",
+        "she is calm"
+      ],
+      "role": "phrase",
+      "slot": 0,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 1,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    },
+    {
+      "id": "text_023",
+      "start": 773.36,
+      "end": 776.36,
+      "text": "we are together\nwe are safe",
+      "lines": [
+        "we are together",
+        "we are safe"
+      ],
+      "role": "phrase",
+      "slot": 1,
+      "position": "right-of-head",
+      "style": "lingman-right-plaque",
+      "animation": "soft-slide-pop",
+      "sfxVariant": 2,
+      "reason": "Curated director overlay: key English phrase, timed to the exact spoken source moment."
+    }
+  ],
+  "motionEffects": [
+    {
+      "id": "motion_001",
+      "targetId": "clip_v4_001",
+      "start": 0.0,
+      "end": 38.6,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.0,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_002",
+      "targetId": "clip_v4_002",
+      "start": 38.6,
+      "end": 56.96,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.025,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_003",
+      "targetId": "clip_v4_003",
+      "start": 56.96,
+      "end": 73.64,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.055,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_004",
+      "targetId": "clip_v4_004",
+      "start": 73.64,
+      "end": 103.64,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.015,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_005",
+      "targetId": "clip_v4_005",
+      "start": 103.64,
+      "end": 143.12,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.0,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_006",
+      "targetId": "clip_v4_006",
+      "start": 143.12,
+      "end": 191.16,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.025,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_007",
+      "targetId": "clip_v4_007",
+      "start": 191.16,
+      "end": 201.84,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.055,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_008",
+      "targetId": "clip_v4_008",
+      "start": 201.84,
+      "end": 265.48,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.015,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_009",
+      "targetId": "clip_v4_009",
+      "start": 265.48,
+      "end": 293.8,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.0,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_010",
+      "targetId": "clip_v4_010",
+      "start": 293.8,
+      "end": 409.24,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.025,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_011",
+      "targetId": "clip_v4_011",
+      "start": 409.24,
+      "end": 471.6,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.055,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_012",
+      "targetId": "clip_v4_012",
+      "start": 471.6,
+      "end": 541.04,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.015,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_013",
+      "targetId": "clip_v4_013",
+      "start": 541.04,
+      "end": 583.72,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.0,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_014",
+      "targetId": "clip_v4_014",
+      "start": 583.72,
+      "end": 613.36,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.025,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_015",
+      "targetId": "clip_v4_015",
+      "start": 613.36,
+      "end": 624.98,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.055,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_016",
+      "targetId": "clip_v4_016",
+      "start": 624.98,
+      "end": 674.9,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.015,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_017",
+      "targetId": "clip_v4_017",
+      "start": 674.9,
+      "end": 701.42,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.0,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_018",
+      "targetId": "clip_v4_018",
+      "start": 701.42,
+      "end": 761.86,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.025,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_019",
+      "targetId": "clip_v4_019",
+      "start": 761.86,
+      "end": 782.62,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.055,
+      "reason": "Subtle full-frame reframing after director cut."
+    },
+    {
+      "id": "motion_020",
+      "targetId": "clip_v4_020",
+      "start": 782.62,
+      "end": 823.38,
+      "type": "subtle_jumpcut_reframe",
+      "zoom": 1.015,
+      "reason": "Subtle full-frame reframing after director cut."
+    }
+  ],
+  "quality": {
+    "warnings": [],
+    "checks": {
+      "fullLessonDirectorPass": true,
+      "repeatedTakesRejected": true,
+      "fullFrameNoBlackSidePanel": true,
+      "rightOfHeadPlaques": true,
+      "screenTextTimedToSpeech": 23
+    }
+  }
+}

@@ -625,6 +625,50 @@ class LingmanMontazherTests(unittest.TestCase):
             quality_report = (output_dir / "quality_report.md").read_text(encoding="utf-8")
             self.assertIn("- Screen text overlaps: 0", quality_report)
 
+    def test_quality_report_flags_overlapping_screen_text(self):
+        timeline = [
+            montazher.TimelineClip("seg_0001", 0.0, 4.0, 0.0, 4.0, "I am ready.")
+        ]
+        screen_text = [
+            montazher.ScreenTextEvent(
+                0.0,
+                2.0,
+                "I am ready",
+                "phrase",
+                "lower_third",
+                "style",
+                "anim",
+                "reason",
+            ),
+            montazher.ScreenTextEvent(
+                1.5,
+                3.0,
+                "I am prepared",
+                "phrase",
+                "lower_third",
+                "style",
+                "anim",
+                "reason",
+            ),
+        ]
+        decisions = [
+            montazher.EditDecision(
+                "seg_0001",
+                "keep",
+                0.0,
+                4.0,
+                0.0,
+                4.0,
+                "Kept",
+                0.8,
+                "I am ready.",
+            )
+        ]
+
+        lines = montazher.quality_lines(timeline, screen_text, decisions)
+
+        self.assertIn("- Screen text overlaps: 1", lines)
+
 
 if __name__ == "__main__":
     unittest.main()

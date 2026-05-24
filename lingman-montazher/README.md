@@ -45,3 +45,13 @@ Render mode requires ffmpeg and a real input file with video and audio streams.
 - `manifest.json`
 - `quality_report.md`
 - `capcut_project.json`
+
+## Verification
+
+```powershell
+python -m unittest lingman-montazher/tests/test_lingman_montazher.py -v
+python -m unittest lingman-scenarist-pipeline/tests/test_capcut_phrase_factory.py -v
+python -m py_compile lingman-montazher/lingman_montazher.py
+```
+
+The Montazher tests verify transcript loading, latest-take selection, pause trimming, screen text timing, SFX timing, dry-run outputs, ffmpeg command planning, and quality report overlap detection.

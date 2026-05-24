@@ -40,6 +40,23 @@ class DirectorPreset:
     fps: int
 
 
+@dataclass(frozen=True)
+class TranscriptSegment:
+    segment_id: str
+    start: float
+    end: float
+    text: str
+    speaker: str = "lingman"
+
+    @property
+    def duration(self) -> float:
+        return self.end - self.start
+
+    @property
+    def word_count(self) -> int:
+        return len(re.findall(r"[\w']+", self.text, flags=re.UNICODE))
+
+
 def load_preset(path: Path) -> DirectorPreset:
     data = json.loads(path.read_text(encoding="utf-8"))
     return DirectorPreset(
@@ -64,3 +81,42 @@ def load_preset(path: Path) -> DirectorPreset:
         output_height=int(data["output_height"]),
         fps=int(data["fps"]),
     )
+
+
+def load_transcript(path: Path) -> list[TranscriptSegment]:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    segment_data = data.get("segments") if isinstance(data, dict) else None
+    if not isinstance(segment_data, list):
+        raise ValueError("segments must be a list")
+
+    segments: list[TranscriptSegment] = []
+    for index, item in enumerate(segment_data, start=1):
+        if not isinstance(item, dict):
+            raise ValueError(f"segment {index} must be an object")
+
+        missing_fields = [field for field in ("start", "end", "text") if field not in item]
+        if missing_fields:
+            fields = ", ".join(missing_fields)
+            raise ValueError(f"segment {index} missing required field(s): {fields}")
+
+        start = float(item["start"])
+        end = float(item["end"])
+        if end <= start:
+            raise ValueError(f"segment {index} end must be greater than start")
+
+        text = str(item["text"])
+        if not text.strip():
+            raise ValueError(f"segment {index} text must not be empty")
+
+        speaker = str(item.get("speaker", "")).strip() or "lingman"
+        segments.append(
+            TranscriptSegment(
+                segment_id=f"seg_{index:04d}",
+                start=start,
+                end=end,
+                text=text,
+                speaker=speaker,
+            )
+        )
+
+    return segments

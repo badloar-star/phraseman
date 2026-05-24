@@ -1,6 +1,7 @@
 import csv
 import io
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -489,6 +490,58 @@ class LingmanMontazherTests(unittest.TestCase):
         self.assertIsNone(summary["render_command"])
         self.assertGreater(summary["timeline_clips"], 0)
         self.assertTrue(manifest_exists)
+
+    def test_render_with_relative_paths_uses_absolute_ffmpeg_paths_without_cwd(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            (tmp_path / "raw.mp4").write_bytes(b"placeholder video")
+            (tmp_path / "transcript.json").write_text(
+                json.dumps(
+                    {
+                        "segments": [
+                            {"start": 0.0, "end": 2.0, "text": "Today we start with I am ready."},
+                            {"start": 4.0, "end": 7.0, "text": "I am ready means I am prepared."},
+                        ]
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+            calls = []
+
+            def fake_run_command(command, cwd=None):
+                calls.append((command, cwd))
+                Path(command[-1]).write_bytes(b"rendered video")
+
+            original_cwd = Path.cwd()
+            original_run_command = montazher.run_command
+            try:
+                os.chdir(tmp_path)
+                montazher.run_command = fake_run_command
+
+                summary = montazher.build_pack(
+                    input_video=Path("raw.mp4"),
+                    transcript_json=Path("transcript.json"),
+                    output_dir=Path("out"),
+                    preset_path=ROOT / "presets" / "default_director.json",
+                    dry_run=False,
+                    render=True,
+                )
+            finally:
+                montazher.run_command = original_run_command
+                os.chdir(original_cwd)
+
+        self.assertEqual(len(calls), 1)
+        command, cwd = calls[0]
+        input_index = command.index("-i") + 1
+        self.assertIsNone(cwd)
+        self.assertTrue(Path(command[input_index]).is_absolute())
+        self.assertTrue(Path(command[-1]).is_absolute())
+        self.assertEqual(Path(command[input_index]), tmp_path / "raw.mp4")
+        self.assertEqual(Path(command[-1]), tmp_path / "out" / "final.mp4")
+        self.assertTrue(summary["rendered"])
+        self.assertEqual(summary["input_video"], str(tmp_path / "raw.mp4"))
+        self.assertEqual(summary["transcript_json"], str(tmp_path / "transcript.json"))
 
     def test_dry_run_writes_required_artifacts_with_manifest_and_capcut_schema(self):
         with tempfile.TemporaryDirectory() as tmp:

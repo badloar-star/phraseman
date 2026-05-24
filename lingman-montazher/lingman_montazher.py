@@ -963,6 +963,11 @@ def build_pack(
     dry_run: bool,
     render: bool,
 ) -> dict[str, object]:
+    input_video = input_video.expanduser().resolve()
+    transcript_json = transcript_json.expanduser().resolve()
+    output_dir = output_dir.expanduser().resolve()
+    preset_path = preset_path.expanduser().resolve()
+
     preset = load_preset(preset_path)
     segments = load_transcript(transcript_json)
     decisions = build_edit_decisions(segments, preset)
@@ -990,7 +995,7 @@ def build_pack(
             output_dir / "final.mp4",
             timeline,
         )
-        run_command(render_command, cwd=output_dir)
+        run_command(render_command)
         rendered = (output_dir / "final.mp4").exists()
 
     files = [

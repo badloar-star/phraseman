@@ -71,7 +71,72 @@ class EditDecision:
     text: str
 
 
+@dataclass(frozen=True)
+class TimelineClip:
+    segment_id: str
+    source_start: float
+    source_end: float
+    output_start: float
+    output_end: float
+    text: str
+
+    @property
+    def duration(self) -> float:
+        return self.output_end - self.output_start
+
+
+@dataclass(frozen=True)
+class ScreenTextEvent:
+    start: float
+    end: float
+    text: str
+    role: str
+    position: str
+    style: str
+    animation: str
+    reason: str
+
+    @property
+    def duration(self) -> float:
+        return self.end - self.start
+
+
+@dataclass(frozen=True)
+class SfxEvent:
+    start: float
+    end: float
+    sfx_type: str
+    volume: float
+    reason: str
+
+
 _WORD_RE = re.compile(r"[^\W_]+", flags=re.UNICODE)
+ENGLISH_PHRASE_RE = re.compile(r"\b[A-Za-z][A-Za-z' -]{2,62}[A-Za-z]\b")
+CORRECTION_PHRASE_RE = re.compile(
+    r"\bnot\s+[A-Za-z][A-Za-z' -]{1,62}?,\s*but\s+"
+    r"([A-Za-z][A-Za-z' -]{2,62}?)(?=[.!?,;:]|$)",
+    flags=re.IGNORECASE,
+)
+MARKED_PHRASE_RE = re.compile(
+    r"\b(?:the\s+phrase\s+is|phrase\s+is|start\s+with|starts\s+with|with)\s+"
+    r"([A-Za-z][A-Za-z' -]{2,62}?)(?=[.!?,;:]|$)",
+    flags=re.IGNORECASE,
+)
+MEANS_PHRASE_RE = re.compile(
+    r"\b([A-Za-z][A-Za-z' -]{2,62}?)\s+means\b",
+    flags=re.IGNORECASE,
+)
+RULE_PHRASE_RE = re.compile(
+    r"\b(you\s+need\s+[A-Za-z][A-Za-z' -]{1,48}?)(?=\s+because\b|[.!?,;:]|$)",
+    flags=re.IGNORECASE,
+)
+PRONOUN_BE_PHRASE_RE = re.compile(
+    r"\b("
+    r"I\s+am|I'm|you\s+are|you're|he\s+is|he's|she\s+is|she's|it\s+is|it's|"
+    r"we\s+are|we're|they\s+are|they're"
+    r")\s+[A-Za-z][A-Za-z' -]{1,48}?(?=[.!?,;:]|$)",
+    flags=re.IGNORECASE,
+)
 _CONTENT_STOP_WORDS = frozenset(
     {
         "a",
@@ -108,6 +173,15 @@ _CONTENT_STOP_WORDS = frozenset(
     }
 )
 _EXPLANATION_MARKERS = frozenset({"mean", "meaning", "means"})
+_GENERIC_SCREEN_TEXT_PHRASES = frozenset(
+    {
+        "but",
+        "not",
+        "the phrase",
+        "the phrase is",
+        "today we start",
+    }
+)
 
 
 def _text_from_segment(segment_or_text: TranscriptSegment | str) -> str:
@@ -407,6 +481,191 @@ def build_edit_decisions(
         decisions,
         key=lambda item: (item.source_start, item.decision_type, item.source_end, item.segment_id),
     )
+
+
+def assemble_timeline(decisions: Iterable[EditDecision]) -> list[TimelineClip]:
+    clips: list[TimelineClip] = []
+
+    for decision in decisions:
+        if decision.decision_type != "keep":
+            continue
+        if decision.output_start is None or decision.output_end is None:
+            continue
+        clips.append(
+            TimelineClip(
+                segment_id=decision.segment_id,
+                source_start=decision.source_start,
+                source_end=decision.source_end,
+                output_start=decision.output_start,
+                output_end=decision.output_end,
+                text=decision.text,
+            )
+        )
+
+    return sorted(clips, key=lambda item: (item.output_start, item.output_end, item.segment_id))
+
+
+def clean_english_phrase(text: str) -> str:
+    phrase = re.sub(r"\s+", " ", text).strip(" .,:;!?\"'")
+    lowered = phrase.casefold()
+
+    for prefix in (
+        "the phrase is ",
+        "phrase is ",
+        "start with ",
+        "starts with ",
+        "with ",
+        "not ",
+        "but ",
+    ):
+        if lowered.startswith(prefix):
+            return phrase[len(prefix) :].strip(" .,:;!?\"'")
+
+    return phrase
+
+
+def _english_phrase_tokens(phrase: str) -> list[str]:
+    return re.findall(r"[A-Za-z']+", phrase.casefold())
+
+
+def _looks_like_wrong_correction_fragment(tokens: list[str]) -> bool:
+    return len(tokens) == 2 and tokens[0] == "i" and tokens[1] not in {"am", "'m"}
+
+
+def _is_useful_english_phrase(phrase: str, preset: DirectorPreset) -> bool:
+    if not (preset.english_phrase_min_chars <= len(phrase) <= preset.english_phrase_max_chars):
+        return False
+
+    tokens = _english_phrase_tokens(phrase)
+    if len(tokens) < 2:
+        return False
+
+    lowered = " ".join(tokens)
+    if lowered in _GENERIC_SCREEN_TEXT_PHRASES:
+        return False
+    if lowered.startswith("not ") or _looks_like_wrong_correction_fragment(tokens):
+        return False
+
+    return True
+
+
+def _add_unique_phrase(
+    phrases: list[str], phrase: str, preset: DirectorPreset, seen: set[str]
+) -> None:
+    cleaned = clean_english_phrase(phrase)
+    if not _is_useful_english_phrase(cleaned, preset):
+        return
+
+    key = " ".join(_english_phrase_tokens(cleaned))
+    if key in seen:
+        return
+
+    seen.add(key)
+    phrases.append(cleaned)
+
+
+def extract_english_phrases(text: str, preset: DirectorPreset) -> list[str]:
+    phrases: list[str] = []
+    seen: set[str] = set()
+
+    for pattern in (
+        CORRECTION_PHRASE_RE,
+        MARKED_PHRASE_RE,
+        MEANS_PHRASE_RE,
+        RULE_PHRASE_RE,
+        PRONOUN_BE_PHRASE_RE,
+        ENGLISH_PHRASE_RE,
+    ):
+        for match in pattern.finditer(text):
+            _add_unique_phrase(phrases, match.group(1 if pattern is not ENGLISH_PHRASE_RE else 0), preset, seen)
+
+    return phrases
+
+
+def _screen_text_role(clip_text: str) -> str:
+    lowered = clip_text.casefold()
+    if "not " in lowered and " but " in lowered:
+        return "correction"
+    if " because " in lowered or lowered.startswith("you need "):
+        return "rule"
+    if " or " in lowered:
+        return "contrast"
+    return "phrase"
+
+
+def select_screen_text_events(
+    timeline: list[TimelineClip],
+    preset: DirectorPreset,
+) -> list[ScreenTextEvent]:
+    if not timeline:
+        return []
+
+    final_end = max(clip.output_end for clip in timeline)
+    events: list[ScreenTextEvent] = []
+    last_end = 0.0
+
+    for clip in sorted(timeline, key=lambda item: (item.output_start, item.output_end, item.segment_id)):
+        phrases = extract_english_phrases(clip.text, preset)
+        if not phrases:
+            continue
+
+        start = max(clip.output_start, last_end)
+        clip_end = min(clip.output_end, final_end)
+        available = clip_end - start
+        if available < preset.min_screen_text_duration:
+            continue
+
+        duration = min(available, preset.max_screen_text_duration)
+        end = min(start + duration, final_end)
+        if end - start < preset.min_screen_text_duration:
+            continue
+
+        phrase = phrases[0]
+        events.append(
+            ScreenTextEvent(
+                start=round(start, 3),
+                end=round(end, 3),
+                text=phrase,
+                role=_screen_text_role(clip.text),
+                position=preset.text_position,
+                style=preset.text_style,
+                animation=preset.text_animation,
+                reason="Selected because the kept clip contains a useful English learning phrase.",
+            )
+        )
+        last_end = end
+
+    return events
+
+
+def build_sfx_events(
+    screen_text_events: Iterable[ScreenTextEvent],
+    timeline: list[TimelineClip],
+    volume: float = 0.18,
+) -> list[SfxEvent]:
+    if not timeline:
+        return []
+
+    final_end = max(clip.output_end for clip in timeline)
+    events: list[SfxEvent] = []
+
+    for text_event in screen_text_events:
+        start = min(max(0.0, text_event.start), final_end)
+        end = min(start + 0.18, text_event.end, final_end)
+        if end <= start:
+            continue
+
+        events.append(
+            SfxEvent(
+                start=round(start, 3),
+                end=round(end, 3),
+                sfx_type="soft_pop",
+                volume=volume,
+                reason=f"Accent for screen text: {text_event.text}",
+            )
+        )
+
+    return events
 
 
 def load_preset(path: Path) -> DirectorPreset:

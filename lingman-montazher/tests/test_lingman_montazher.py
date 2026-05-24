@@ -243,6 +243,98 @@ class LingmanMontazherTests(unittest.TestCase):
             ["seg_0001", "seg_0003"],
         )
 
+    def test_assemble_timeline_uses_only_keep_decisions_sorted_by_output(self):
+        decisions = [
+            montazher.EditDecision(
+                segment_id="seg_rejected",
+                decision_type="take_rejected",
+                source_start=0.0,
+                source_end=1.0,
+                output_start=None,
+                output_end=None,
+                reason="earlier duplicate",
+                confidence=0.9,
+                text="Not this one.",
+            ),
+            montazher.EditDecision(
+                segment_id="seg_0002",
+                decision_type="keep",
+                source_start=5.0,
+                source_end=7.0,
+                output_start=2.0,
+                output_end=4.0,
+                reason="kept clip",
+                confidence=1.0,
+                text="Second kept clip.",
+            ),
+            montazher.EditDecision(
+                segment_id="seg_0001",
+                decision_type="keep",
+                source_start=1.0,
+                source_end=2.5,
+                output_start=0.0,
+                output_end=1.5,
+                reason="kept clip",
+                confidence=1.0,
+                text="First kept clip.",
+            ),
+        ]
+
+        timeline = montazher.assemble_timeline(decisions)
+
+        self.assertEqual([clip.segment_id for clip in timeline], ["seg_0001", "seg_0002"])
+        self.assertEqual([(clip.output_start, clip.output_end) for clip in timeline], [(0.0, 1.5), (2.0, 4.0)])
+        self.assertAlmostEqual(timeline[0].duration, 1.5)
+        self.assertEqual(timeline[1].source_start, 5.0)
+        json.dumps([asdict(clip) for clip in timeline])
+
+    def test_screen_text_selects_english_phrases_with_readable_duration(self):
+        preset = montazher.load_preset(ROOT / "presets" / "default_director.json")
+        segments = [
+            montazher.TranscriptSegment("seg_0001", 0.0, 2.5, "The phrase is I am ready."),
+            montazher.TranscriptSegment("seg_0002", 3.0, 5.0, "Not I ready, but I am ready."),
+        ]
+
+        timeline = montazher.assemble_timeline(montazher.build_edit_decisions(segments, preset))
+        events = montazher.select_screen_text_events(timeline, preset)
+
+        self.assertGreaterEqual(len(events), 2)
+        self.assertEqual([event.text for event in events[:2]], ["I am ready", "I am ready"])
+        self.assertTrue(all(event.duration >= preset.min_screen_text_duration for event in events))
+        self.assertTrue(all(event.start >= 0.0 for event in events))
+        self.assertTrue(all(event.end <= timeline[-1].output_end for event in events))
+        self.assertTrue(all(current.start >= previous.end for previous, current in zip(events, events[1:])))
+        self.assertTrue(all(event.position == preset.text_position for event in events))
+        self.assertTrue(all(event.style == preset.text_style for event in events))
+        self.assertTrue(all(event.animation == preset.text_animation for event in events))
+        self.assertTrue(all(event.role in {"phrase", "correction"} for event in events))
+        json.dumps([asdict(event) for event in events])
+
+    def test_sfx_events_are_inside_timeline(self):
+        preset = montazher.load_preset(ROOT / "presets" / "default_director.json")
+        segments = [
+            montazher.TranscriptSegment("seg_0001", 0.0, 2.0, "I am ready means I am prepared."),
+            montazher.TranscriptSegment(
+                "seg_0002",
+                4.0,
+                6.0,
+                "You need am because English connects subject and state.",
+            ),
+        ]
+
+        timeline = montazher.assemble_timeline(montazher.build_edit_decisions(segments, preset))
+        screen_text = montazher.select_screen_text_events(timeline, preset)
+        sfx = montazher.build_sfx_events(screen_text, timeline, volume=preset.sfx_volume)
+
+        self.assertTrue(sfx)
+        final_end = timeline[-1].output_end
+        self.assertEqual(len(sfx), len(screen_text))
+        self.assertTrue(all(0 <= event.start < event.end <= final_end for event in sfx))
+        self.assertTrue(all(event.sfx_type == "soft_pop" for event in sfx))
+        self.assertTrue(all(event.volume == preset.sfx_volume for event in sfx))
+        self.assertTrue(all(event.end - event.start <= 0.18 for event in sfx))
+        json.dumps([asdict(event) for event in sfx])
+
 
 if __name__ == "__main__":
     unittest.main()

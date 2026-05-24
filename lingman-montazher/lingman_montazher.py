@@ -898,11 +898,13 @@ def quality_lines(
     lines.append(f"- Edit decisions: {len(decisions)}")
 
     ordered_screen_text = sorted(screen_text, key=lambda item: (item.start, item.end, item.text))
-    overlap_count = sum(
-        1
-        for previous, current in zip(ordered_screen_text, ordered_screen_text[1:])
-        if current.start < previous.end
-    )
+    overlap_count = 0
+    for index, previous in enumerate(ordered_screen_text):
+        for current in ordered_screen_text[index + 1 :]:
+            if current.start >= previous.end:
+                break
+            if previous.start < current.end:
+                overlap_count += 1
     lines.append(f"- Screen text overlaps: {overlap_count}")
 
     invalid_ranges = [

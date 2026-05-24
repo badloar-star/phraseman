@@ -60,6 +60,7 @@ graphify-out/
 .firebase/
 __pycache__/
 *.pyc
+/lingman-montazher/outputs/
 
 # Lesson pipeline staging (prepare → apply)
 

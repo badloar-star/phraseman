@@ -89,6 +89,52 @@ class LingmanMontazherTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "text must not be empty"):
                 montazher.load_transcript(transcript_path)
 
+    def test_transcript_loader_rejects_non_finite_timestamps(self):
+        bad_segments = [
+            {"start": float("nan"), "end": 2.0, "text": "Broken"},
+            {"start": 1.0, "end": float("inf"), "text": "Broken"},
+        ]
+
+        for bad_segment in bad_segments:
+            with self.subTest(bad_segment=bad_segment):
+                with tempfile.TemporaryDirectory() as tmp:
+                    transcript_path = Path(tmp) / "bad_transcript.json"
+                    transcript_path.write_text(
+                        json.dumps({"segments": [bad_segment]}),
+                        encoding="utf-8",
+                    )
+
+                    with self.assertRaisesRegex(ValueError, "finite"):
+                        montazher.load_transcript(transcript_path)
+
+    def test_transcript_loader_rejects_non_string_text(self):
+        for bad_text in (["Broken"], None):
+            with self.subTest(bad_text=bad_text):
+                with tempfile.TemporaryDirectory() as tmp:
+                    transcript_path = Path(tmp) / "bad_transcript.json"
+                    transcript_path.write_text(
+                        json.dumps({"segments": [{"start": 1.0, "end": 2.0, "text": bad_text}]}),
+                        encoding="utf-8",
+                    )
+
+                    with self.assertRaisesRegex(ValueError, "text must be a string"):
+                        montazher.load_transcript(transcript_path)
+
+    def test_transcript_loader_rejects_non_string_speaker(self):
+        for bad_speaker in ({}, [], 123):
+            with self.subTest(bad_speaker=bad_speaker):
+                with tempfile.TemporaryDirectory() as tmp:
+                    transcript_path = Path(tmp) / "bad_transcript.json"
+                    transcript_path.write_text(
+                        json.dumps(
+                            {"segments": [{"start": 1.0, "end": 2.0, "text": "Broken", "speaker": bad_speaker}]}
+                        ),
+                        encoding="utf-8",
+                    )
+
+                    with self.assertRaisesRegex(ValueError, "speaker must be a string"):
+                        montazher.load_transcript(transcript_path)
+
 
 if __name__ == "__main__":
     unittest.main()

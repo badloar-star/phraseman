@@ -7,6 +7,7 @@ import argparse
 import csv
 import hashlib
 import json
+import math
 import re
 import subprocess
 import sys
@@ -94,21 +95,32 @@ def load_transcript(path: Path) -> list[TranscriptSegment]:
         if not isinstance(item, dict):
             raise ValueError(f"segment {index} must be an object")
 
-        missing_fields = [field for field in ("start", "end", "text") if field not in item]
+        missing_fields = [field for field in ("start", "end") if field not in item]
         if missing_fields:
             fields = ", ".join(missing_fields)
             raise ValueError(f"segment {index} missing required field(s): {fields}")
 
         start = float(item["start"])
         end = float(item["end"])
+        if not math.isfinite(start) or not math.isfinite(end):
+            raise ValueError(f"segment {index} timestamps must be finite")
+
         if end <= start:
             raise ValueError(f"segment {index} end must be greater than start")
 
-        text = str(item["text"])
+        if not isinstance(item.get("text"), str):
+            raise ValueError(f"segment {index} text must be a string")
+
+        text = item["text"]
         if not text.strip():
             raise ValueError(f"segment {index} text must not be empty")
 
-        speaker = str(item.get("speaker", "")).strip() or "lingman"
+        speaker_value = item.get("speaker")
+        if speaker_value is not None and not isinstance(speaker_value, str):
+            raise ValueError(f"segment {index} speaker must be a string")
+
+        speaker = speaker_value.strip() if speaker_value is not None else ""
+        speaker = speaker or "lingman"
         segments.append(
             TranscriptSegment(
                 segment_id=f"seg_{index:04d}",

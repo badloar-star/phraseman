@@ -30,7 +30,7 @@ class LingmanMontazherTests(unittest.TestCase):
                     {
                         "segments": [
                             {"start": 0.0, "end": 2.0, "text": "Hello, today we start.", "speaker": "lingman"},
-                            {"start": 2.4, "end": 5.0, "text": "I am ready means Я готов.", "speaker": "lingman"},
+                            {"start": 2.4, "end": 5.0, "text": "I am ready means Я готов.", "speaker": "student"},
                         ]
                     },
                     ensure_ascii=False,
@@ -42,8 +42,9 @@ class LingmanMontazherTests(unittest.TestCase):
 
         self.assertEqual(len(segments), 2)
         self.assertEqual(segments[0].segment_id, "seg_0001")
+        self.assertEqual(segments[1].segment_id, "seg_0002")
         self.assertAlmostEqual(segments[1].duration, 2.6)
-        self.assertEqual(segments[1].speaker, "lingman")
+        self.assertEqual(segments[1].speaker, "student")
 
     def test_transcript_loader_rejects_invalid_ranges(self):
         with tempfile.TemporaryDirectory() as tmp:

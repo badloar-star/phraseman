@@ -1,10 +1,20 @@
 param(
   [switch]$DryRun,
   [switch]$IncludeCodexLogs,
-  [int]$StaleProcessMinutes = 90
+  [int]$StaleProcessMinutes = 10,
+  [switch]$Loop,
+  [int]$LoopMinutes = 15
 )
 
 $ErrorActionPreference = 'Continue'
+
+if ($Loop) {
+  while ($true) {
+    & $PSCommandPath -StaleProcessMinutes $StaleProcessMinutes
+    Start-Sleep -Seconds ([Math]::Max(60, $LoopMinutes * 60))
+  }
+  exit 0
+}
 
 $ProjectRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
 $UserCodex = Join-Path $env:USERPROFILE '.codex'

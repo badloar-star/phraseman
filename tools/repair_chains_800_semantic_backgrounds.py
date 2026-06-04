@@ -34,6 +34,7 @@ OUT = PACK / "capcut_repair" / "semantic_backgrounds"
 QUERY_CACHE = OUT / "query_cache"
 SOURCE_CACHE = OUT / "source_videos"
 REPORT = OUT / "chains_800_semantic_background_report.json"
+PARTIAL_REPORT = REPORT.with_suffix(".partial.json")
 MAX_SOURCE_REUSE = 8
 MIN_WIDTH = 1920
 MIN_HEIGHT = 1080
@@ -374,6 +375,11 @@ def main() -> int:
     session = requests.Session()
     assignments: dict[int, dict[str, Any]] = {}
     used_counts: dict[str, int] = {}
+    if PARTIAL_REPORT.exists():
+        partial = load_json(PARTIAL_REPORT)
+        assignments = {int(k): v for k, v in (partial.get("assignments") or {}).items()}
+        used_counts = {str(k): int(v) for k, v in (partial.get("used_counts") or {}).items()}
+        print(f"[semantic-bg] resume assignments={len(assignments)} sources={len(used_counts)}", flush=True)
     # Use max slot per row across both halves/projects. This keeps sources long
     # enough when background is extended through CTA gaps.
     row_slot_sec: dict[int, float] = {}
@@ -392,7 +398,7 @@ def main() -> int:
         print(f"[semantic-bg] {row_index:03d} {row.get('background_must_show')}", flush=True)
         assignments[row_index] = discover_for_row(session, row, pexels_key, pixabay_key, used_counts, row_slot_sec[row_index])
         if index % 25 == 0:
-            write_pretty(REPORT.with_suffix(".partial.json"), {"assignments": assignments, "used_counts": used_counts})
+            write_pretty(PARTIAL_REPORT, {"assignments": assignments, "used_counts": used_counts})
     project_reports = []
     for name, start, end in PROJECTS:
         project = capcut_root() / name

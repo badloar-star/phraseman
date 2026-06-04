@@ -453,9 +453,29 @@ export default function SettingsMain() {
       testID={testID}
       accessibilityLabel={testID ? `qa-${testID}` : undefined}
       accessible={!!testID}
-      style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: screenBorder }}
+      style={[
+        {
+          flexDirection: 'row',
+          alignItems: 'center',
+          paddingHorizontal: 20,
+          paddingVertical: 16,
+          borderBottomWidth: isCompassTheme ? 0 : 0.5,
+          borderBottomColor: screenBorder,
+        },
+        isCompassTheme && {
+          marginHorizontal: 20,
+          marginVertical: 4,
+          borderRadius: 8,
+          borderWidth: 0.5,
+          borderColor: COMPASS_RICH.hairlineQuiet,
+          backgroundColor: COMPASS_RICH.charcoalRaised,
+          overflow: 'hidden',
+        },
+        isCompassTheme && compassShadow(1),
+      ]}
       onPress={() => { doHaptic(); onPress(); }} activeOpacity={0.7}
     >
+      {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
       <Ionicons name={icon as any} size={22} color={danger ? t.wrong : screenSecond} style={{ marginRight: 14 }} />
       <View style={{ flex: 1 }}>
         <Text style={{ color: danger ? t.wrong : screenPrimary, fontSize: f.bodyLg }}>{label}</Text>
@@ -484,16 +504,19 @@ export default function SettingsMain() {
             style={{
               width: 36,
               height: 36,
-              borderRadius: 18,
-              backgroundColor: t.bgCard,
+              borderRadius: isCompassTheme ? 8 : 18,
+              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
               borderWidth: 0.5,
-              borderColor: screenBorder,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : screenBorder,
               justifyContent: 'center',
               alignItems: 'center',
               marginRight: 12,
               flexShrink: 0,
+              overflow: 'hidden',
+              ...(isCompassTheme ? compassShadow(1) : {}),
             }}
           >
+            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
             <Ionicons name="chevron-back" size={20} color={chipTextOff} />
           </TouchableOpacity>
           <Text style={{ color: screenPrimary, fontSize: f.h2 + 6, fontWeight: 'bold', flex:1 }}>
@@ -532,13 +555,16 @@ export default function SettingsMain() {
                     style={{
                       paddingHorizontal: 14,
                       paddingVertical: 10,
-                      borderRadius: 12,
-                      borderWidth: active ? 2 : 0.5,
-                      borderColor: active ? (isGradientLight ? chipSurfaceOn : t.accent) : chipBorderOff,
-                      backgroundColor: active ? chipSurfaceOn : chipSurfaceOff,
+                      borderRadius: isCompassTheme ? 8 : 12,
+                      borderWidth: active ? (isCompassTheme ? 1 : 2) : 0.5,
+                      borderColor: isCompassTheme ? (active ? COMPASS_RICH.hairlineCream : COMPASS_RICH.hairlineQuiet) : active ? (isGradientLight ? chipSurfaceOn : t.accent) : chipBorderOff,
+                      backgroundColor: isCompassTheme ? (active ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalRaised) : active ? chipSurfaceOn : chipSurfaceOff,
+                      overflow: 'hidden',
+                      ...(isCompassTheme ? compassShadow(active ? 1 : 0) : {}),
                     }}
                   >
-                    <Text style={{ color: active ? chipTextOn : chipTextOff, fontSize: f.body, fontWeight: active ? '800' : '600' }}>
+                    {isCompassTheme ? <CompassDepthSurface radius={8} quiet={!active} cream={active} /> : null}
+                    <Text style={{ color: isCompassTheme ? (active ? COMPASS_RICH.textDark : screenPrimary) : active ? chipTextOn : chipTextOff, fontSize: f.body, fontWeight: active ? '800' : '600' }}>
                       {label}
                     </Text>
                   </TouchableOpacity>
@@ -611,11 +637,14 @@ export default function SettingsMain() {
             style={{
               marginHorizontal: 20, marginTop: 8, marginBottom: 4,
               flexDirection: 'row', alignItems: 'center', gap: 10,
-              backgroundColor: t.bgSurface,
-              borderRadius: 12, padding: 12,
-              borderWidth: 1, borderColor: t.accent + '55',
+              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface,
+              borderRadius: isCompassTheme ? 8 : 12, padding: 12,
+              borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineCream : t.accent + '55',
+              overflow: 'hidden',
+              ...(isCompassTheme ? compassShadow(1) : {}),
             }}
           >
+            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
             <Ionicons name="information-circle-outline" size={20} color={t.accent} />
             <Text style={{ flex: 1, color: t.textSecond, fontSize: f.caption, lineHeight: 18 }}>
               {L(
@@ -788,21 +817,24 @@ export default function SettingsMain() {
               flexDirection: 'row',
               alignItems: 'center',
               margin: 20,
-              backgroundColor: premiumActiveSurface,
-              borderRadius: 14,
+              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : premiumActiveSurface,
+              borderRadius: isCompassTheme ? 8 : 14,
               padding: 16,
               borderWidth: 1,
-              borderColor: t.correct,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairlineCream : t.correct,
+              overflow: 'hidden',
+              ...(isCompassTheme ? compassShadow(2) : {}),
             }}
             onPress={() => router.push({ pathname: '/premium_modal', params: { manage: '1' } } as any)}
             activeOpacity={0.85}
           >
-            <Ionicons name="diamond" size={26} color={premiumActiveIcon} style={{ marginRight: 14 }} />
+            {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
+            <Ionicons name="diamond" size={26} color={isCompassTheme ? COMPASS_RICH.champagne : premiumActiveIcon} style={{ marginRight: 14 }} />
             <View style={{ flex: 1 }}>
-              <Text style={{ color: premiumActiveTitle, fontSize: f.bodyLg, fontWeight: '800' }}>
+              <Text style={{ color: isCompassTheme ? COMPASS_RICH.text : premiumActiveTitle, fontSize: f.bodyLg, fontWeight: '800' }}>
                 Premium {L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓
               </Text>
-              <Text style={{ color: premiumActiveSub, fontSize: f.caption, marginTop: 2 }}>
+              <Text style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : premiumActiveSub, fontSize: f.caption, marginTop: 2 }}>
                 {isVip && !isPremium
                   ? `${L('VIP доступ активен', 'VIP доступ активний', 'VIP access active', 'Acesso VIP ativo', 'Quyền VIP đang hoạt động', 'Akses VIP aktif', 'VIP erişim aktif', 'Dostęp VIP aktywny')} · ${vipExpiryText}`
                   : premiumPlan === 'yearly'
@@ -812,14 +844,28 @@ export default function SettingsMain() {
                     : L('Подписка активна', 'Підписка активна', 'Suscripción activa', 'Assinatura ativa', 'Gói đăng ký đang hoạt động', 'Langganan aktif', 'Abonelik aktif', 'Subskrypcja aktywna')}
               </Text>
             </View>
-            <Ionicons name="chevron-forward" size={18} color={premiumActiveIcon} />
+            <Ionicons name="chevron-forward" size={18} color={isCompassTheme ? COMPASS_RICH.champagne : premiumActiveIcon} />
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
-            style={{ flexDirection: 'row', alignItems: 'center', margin: 20, backgroundColor: t.bgCard, borderRadius: 14, padding: 16, borderWidth: 0.5, borderColor: t.border }}
+            style={[
+              {
+                flexDirection: 'row',
+                alignItems: 'center',
+                margin: 20,
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderRadius: isCompassTheme ? 8 : 14,
+                padding: 16,
+                borderWidth: 0.5,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                overflow: 'hidden',
+              },
+              isCompassTheme && compassShadow(1),
+            ]}
             onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'settings_premium' } } as any)}
             activeOpacity={0.85}
           >
+            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
             <Ionicons name="diamond-outline" size={26} color={t.textSecond} style={{ marginRight: 14 }} />
             <View style={{ flex: 1 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>

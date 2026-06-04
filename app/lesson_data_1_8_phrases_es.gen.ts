@@ -1553,7 +1553,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'Is', correct: 'Is', distractors: ['am', 'are', 'it', 'if', 'in'], category: 'to-be' },
       { text: 'it', correct: 'it', distractors: ['its', 'eat', 'at', 'this', 'that'], category: 'pronoun' },
-      { text: 'true', correct: 'true', distractors: ['tree', 'blue', 'clue', 'glue', 'crew'], category: 'adjective' }
+      { text: 'true', correct: 'true', distractors: ['truth', 'tree', 'blue', 'clue', 'glue'], category: 'adjective' }
     ],
   },
   {
@@ -7213,6 +7213,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson8_phrase_20',
     english: 'Do we meet on Monday?',
+    alternatives: ['Are we meeting on Monday?', 'Will we meet on Monday?'],
     russian: 'Мы встречаемся в понедельник?',
     ukrainian: 'Ми зустрічаємось у понеділок?',
     spanish: '¿Nos reunimos el lunes?',

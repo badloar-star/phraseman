@@ -512,15 +512,6 @@ export default function TabLayout() {
     const placeholder = (k: string) => (
       <View key={k} style={{ width: tabPaneWidth, flex: 1, backgroundColor: 'transparent' }} collapsable={false} />
     );
-    if (!currentRouteIsTab) {
-      return [
-        placeholder('ph-home-hidden'),
-        placeholder('ph-index-hidden'),
-        placeholder('ph-arena-hidden'),
-        placeholder('ph-friends-hidden'),
-        placeholder('ph-settings-hidden'),
-      ];
-    }
 
     const show = (i: number) => i === 0 || i === activeIdx || visitedTabs.has(i);
     const shouldLoad = (i: number) => i === activeIdx || visitedTabs.has(i);
@@ -531,11 +522,7 @@ export default function TabLayout() {
       show(3) ? <DeferredTabScreen key="friends" shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /> : placeholder('ph-friends'),
       show(4) ? <DeferredTabScreen key="settings" shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /> : placeholder('ph-settings'),
     ];
-  }, [activeIdx, currentRouteIsTab, visitedTabs, tabPaneWidth]);
-
-  if (!currentRouteIsTab) {
-    return <View style={s.hiddenStackUnderlay} collapsable={false} />;
-  }
+  }, [activeIdx, visitedTabs, tabPaneWidth]);
 
   return (
     <TabProvider activeIdx={activeIdx} onTabChange={handleTabChange} onSwipeStart={handleSwipeStart} onSwipeComplete={handleSwipeComplete} focusTick={focusTick}>
@@ -545,7 +532,6 @@ export default function TabLayout() {
 }
 
 const s = StyleSheet.create({
-  hiddenStackUnderlay: { flex: 1, backgroundColor: 'transparent' },
   deferredTabPlaceholder: {
     flex: 1,
     backgroundColor: 'transparent',

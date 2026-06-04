@@ -8,6 +8,7 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 }));
 
 const getCustomerInfo = jest.fn();
+const restoreFromCloud = jest.fn<Promise<boolean>, []>(async () => false);
 
 jest.mock('react-native-purchases', () => ({
   __esModule: true,
@@ -18,6 +19,10 @@ jest.mock('react-native-purchases', () => ({
 
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false }));
 
+jest.mock('../app/cloud_sync', () => ({
+  restoreFromCloud,
+}));
+
 function resetStore() {
   Object.keys(asyncStore).forEach((k) => delete asyncStore[k]);
 }
@@ -25,6 +30,7 @@ function resetStore() {
 beforeEach(() => {
   jest.resetModules();
   jest.clearAllMocks();
+  restoreFromCloud.mockImplementation(async () => false);
   resetStore();
   (globalThis as any).__DEV__ = false;
 });
@@ -130,6 +136,27 @@ test('admin_grant ignored when admin explicitly revoked (override false)', async
   const { getVerifiedPremiumStatus } = require('../app/premium_guard');
   const result = await getVerifiedPremiumStatus();
   expect(result).toBe(false);
+});
+
+test('restores VIP from cloud before denying Premium access', async () => {
+  restoreFromCloud.mockImplementation(async () => {
+    asyncStore.vip_active = 'true';
+    asyncStore.vip_plan = 'telegram_tester';
+    asyncStore.vip_from = String(Date.now());
+    asyncStore.vip_until = String(Date.now() + 30 * 24 * 60 * 60 * 1000);
+    asyncStore.vip_admin_override = 'true';
+    return true;
+  });
+  getCustomerInfo.mockResolvedValue({
+    entitlements: { active: {} },
+    activeSubscriptions: [],
+  });
+
+  const { getVerifiedPremiumStatus, getVerifiedVipStatus } = require('../app/premium_guard');
+
+  await expect(getVerifiedPremiumStatus()).resolves.toBe(true);
+  await expect(getVerifiedVipStatus()).resolves.toBe(true);
+  expect(restoreFromCloud).toHaveBeenCalledTimes(1);
 });
 
 test('admin_grant with stale local premium flag is not real Premium when RC is unavailable', async () => {

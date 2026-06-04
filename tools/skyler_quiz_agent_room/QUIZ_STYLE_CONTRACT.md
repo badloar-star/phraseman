@@ -4,12 +4,53 @@ Skyler language quiz packs must match the existing quiz surface before they can
 ship. This contract is based on sampled pool copy in `app/quiz_data.ts` and
 `app/quiz_source_locale_payloads.ts`; it is a gate input, not optional advice.
 
+## Visual Asset Style Baseline
+
+All thematic quiz plaques and topic icons must use the approved DALL-E raster
+style baseline from the May 26, 2026 level-card/thematic-card refresh. The
+visual reference is the `Легко / Средне / Сложно` quiz level plaque style and
+the dark glossy thematic cards with rounded-square topic icons.
+
+Required visual direction:
+
+- Generate bitmap art with DALL-E or an equivalent AI image-generation pass.
+  Do not create the plaque or icon artwork as SVG/vector/code-drawn shapes.
+- Use premium mobile-game illustration: dark glossy rounded plaque, soft
+  enamel/glass material, smooth silver bevels, gentle inner green/olive glow,
+  and readable object art.
+- Keep the plaque left half quiet and low-detail so app-rendered title,
+  subtitle, and badge text remain legible. Put the topic object cluster on the
+  right half.
+- Keep compact icons centered, readable at small size, and visually paired with
+  the matching plaque.
+- Preserve the same composition, proportions, card quiet zone, icon placement,
+  and dark polished material across all app visual families. Do not create a
+  separate cyber/neon/flat style per family for thematic quiz plaques.
+- Never include bitmap text, letters, numbers, currency signs, random symbols,
+  UI labels, watermarks, or generated pseudo-writing in plaques or icons.
+- Avoid the rejected cyberpunk direction: no city backdrops, hacker/circuit
+  grids, harsh neon tubes, magenta/cyan noise, wires, robots, weapons, skulls,
+  or busy tech panels.
+- Preferred mood: clean, calm, dark premium learning-game asset, like the
+  existing level cards and the approved thematic cards in the app screenshot.
+
+Canonical prompt anchor:
+
+`premium mobile game illustration, DALL-E generated raster art, same style as
+the app quiz level cards, dark glossy rounded enamel/glass plaque, silver bevel,
+muted green/olive glow, left half reserved for app text, topic object on right,
+matching compact dark rounded-square icon, no text, no letters, no numbers, no
+symbols, no watermark, not cyberpunk`.
+
 ## Source Pools To Sample
 
 - `app/quiz_data.ts`: current easy/medium/hard prompts, English choices, RU/UK
   explanations, and Spanish explanations.
 - `app/quiz_source_locale_payloads.ts`: Heisenberg-owned explanations for
   `pt-BR`, `vi`, `id`, `tr`, and `pl`.
+- `app/quiz_thematic_kitchen_and_cooking.ts`: canonical Skyler thematic pack.
+  New thematic packs must match its prompt shape, English-choice rule,
+  per-choice explanation rhythm, source/claim structure, and distractor quality.
 
 Every language pack must include a `styleProfile` proving that these files were
 sampled before writing:
@@ -19,6 +60,59 @@ sampled before writing:
 - `promptPattern`, `explanationPattern`, `readerRewardPattern`, and
   `distractorPattern` describe the observed product style and how the pack
   follows it.
+
+## Canonical Thematic Pack Rules
+
+Use `kitchen-and-cooking` as the strict baseline for all new thematic English
+packs. If a new pack does not feel like a sibling of Kitchen and cooking, stop
+and rewrite before adding tests or app integration.
+
+Hard structure:
+
+- Target is `en`; choices are always English words or English phrases.
+- `prompt` is the author prompt; `localizedPrompts` are required for `ru`, `uk`,
+  `es`, `pt-BR`, `vi`, `id`, `tr`, and `pl`.
+- The learner sees the interface-locale prompt and chooses from four English
+  choices. Do not translate choices into the interface locale.
+- Every item is `type: "mcq"` with exactly four unique choices and exactly one
+  `correctIndex`.
+- Item IDs are stable kebab-case: `<category-id>-001`, `<category-id>-002`, etc.
+- `skillTag` is a lowercase machine tag, not prose.
+- Every item has `learningGoal`, `sourceIds`, `claimIds`, `choiceRationales`,
+  `qualityChecks`, and `explanations` for all active interface locales.
+- Every item cites at least two Tier A/B sources. Social/forum evidence can
+  justify demand only; it cannot prove answers.
+- Every item has a verified content claim plus a verified `answer_key` claim
+  whose `itemId` and `answerIndex` match the item exactly.
+
+Content shape:
+
+- Prefer concrete everyday clues: objects, room/scene use, visible function,
+  recipe-style action, or near-miss contrast.
+- The prompt must match the answer granularity. If choices are one-word nouns,
+  ask for one word. If choices are verbs, ask for the verb. If choices are full
+  phrases, ask for a full phrase.
+- Good prompt families:
+  - `Как по-английски «нож»?`
+  - `Какой английский глагол нужен для «мариновать мясо»?`
+  - `Какая английская фраза подходит для ...?`
+  - `Что означает ...?`
+- Bad prompt families:
+  - taxonomy labels like `Home - furniture`
+  - generic shells like `Which word fits?`
+  - meta wording like `The clue asks for...`
+  - prompts that require a sentence while choices are single words.
+
+First-10 rule:
+
+- Before generating or expanding a full pack, show the user the first 10 items
+  in chat: item id, prompt, four choices, answer, and per-choice explanations.
+- Do not proceed to the remaining items until those first 10 are reviewed or
+  the user explicitly says to continue.
+- If the user rejects the style, rewrite the rules/examples first, then generate
+  again. Do not patch around one item while leaving the pattern broken.
+- A preview without explanations is incomplete. Explanations are part of the
+  item design, not a later decoration.
 
 ## Prompt Style
 

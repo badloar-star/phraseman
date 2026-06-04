@@ -64,7 +64,7 @@ import { getShardsBalance, spendShards } from './shards_system';
 import { oskolokImageForPackShards } from './oskolok';
 import { emitAppEvent } from './events';
 import { syncToCloud } from './cloud_sync';
-import { pushMyScoreImmediate } from './firestore_leaderboard';
+import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { updateMyGroupPoints } from './firestore_leagues';
 import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
 import { parseWeekPointsForWeek } from './hall_of_fame_utils';
@@ -293,19 +293,20 @@ const writeProfileAvatarSnapshot = async (avatar: string, level: number, aura?: 
       getVerifiedRealPremiumStatus().catch(() => false),
       getVerifiedVipStatus().catch(() => false),
     ]);
-    await pushMyScoreImmediate(
+    await syncPublicProfileSnapshot({
+      reason: 'display_change',
       name,
       totalXp,
       weekPoints,
-      langRaw || 'ru',
+      lang: langRaw || 'ru',
       avatar,
       streak,
       leagueId,
-      frameRaw || undefined,
-      realPremium,
-      aura || undefined,
-      vip,
-    );
+      frame: frameRaw || undefined,
+      aura: aura || undefined,
+      isPremium: realPremium,
+      isVip: vip,
+    });
     await updateMyGroupPoints(weekPoints);
   } catch {}
 };
@@ -1256,7 +1257,7 @@ export default function AvatarSelect() {
                         }}
                       >
                         <Text style={{ color: color === 'black' ? '#FFFFFF' : '#111827', fontSize: f.body, fontWeight: '900' }}>
-                          {color === 'black' ? 'Черное лого' : 'Белое лого'}
+                          {color === 'black' ? 'Темное' : 'Светлое'}
                         </Text>
                       </TouchableOpacity>
                     );

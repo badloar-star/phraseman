@@ -1,4 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from 'expo-constants';
+import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { emitAppEvent, onAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
@@ -80,6 +82,7 @@ export type AppMessage = {
   expiresAt: string;
   expiresAtMs: number;
   priority: number;
+  targetAppVersions: string[];
   poll: AppMessagePoll | null;
   vipSurvey: AppMessageVipSurvey | null;
 };
@@ -151,6 +154,23 @@ function cleanPollCounts(value: unknown): Record<string, number> {
     out[optionId] = Number.isFinite(n) && n > 0 ? n : 0;
   });
   return out;
+}
+
+function currentAppVersion(): string {
+  return String(Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? '').trim();
+}
+
+function cleanAppVersion(value: unknown): string {
+  return String(value ?? '').trim().slice(0, 40).replace(/[^0-9A-Za-z._+-]/g, '');
+}
+
+function cleanAppVersionList(value: unknown): string[] {
+  const raw = Array.isArray(value) ? value : value ? [value] : [];
+  const versions = raw
+    .flatMap((row) => (typeof row === 'string' ? row.split(',') : [row]))
+    .map(cleanAppVersion)
+    .filter(Boolean);
+  return [...new Set(versions)].slice(0, 20);
 }
 
 function normalizeAppMessageVipSurvey(data: Record<string, unknown>): AppMessageVipSurvey {
@@ -246,6 +266,9 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
   const kind: AppMessageKind =
     kindRaw === 'poll' && poll ? 'poll' : kindRaw === 'vip_survey' ? 'vip_survey' : 'message';
   const vipSurvey = kind === 'vip_survey' ? normalizeAppMessageVipSurvey(data) : null;
+  const targetAppVersions = cleanAppVersionList(
+    data.targetAppVersions ?? data.appVersions ?? data.appVersion,
+  );
 
   return {
     id,
@@ -275,6 +298,7 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
     expiresAt,
     expiresAtMs,
     priority: Math.max(0, Math.floor(Number(data.priority ?? 0) || 0)),
+    targetAppVersions,
     poll,
     vipSurvey,
   };
@@ -305,6 +329,15 @@ export function isAppMessageAllowedForAudience(
   if (message.audience === 'premium') return hasPremiumAccess;
   if (message.audience === 'free') return !hasPremiumAccess;
   return true;
+}
+
+export function isAppMessageAllowedForVersion(
+  message: Pick<AppMessage, 'targetAppVersions'>,
+  appVersion = currentAppVersion(),
+): boolean {
+  if (!message.targetAppVersions.length) return true;
+  const current = cleanAppVersion(appVersion);
+  return current ? message.targetAppVersions.includes(current) : false;
 }
 
 export function pickAppMessageText(
@@ -399,8 +432,12 @@ export function mergeAppMessagesWithStates(
 export function filterAppMessagesSnapshotForAudience(
   snapshot: AppMessagesSnapshot,
   hasPremiumAccess: boolean,
+  appVersion = currentAppVersion(),
 ): AppMessagesSnapshot {
-  const messages = snapshot.messages.filter((message) => isAppMessageAllowedForAudience(message, hasPremiumAccess));
+  const messages = snapshot.messages.filter((message) =>
+    isAppMessageAllowedForAudience(message, hasPremiumAccess) &&
+    isAppMessageAllowedForVersion(message, appVersion)
+  );
   return {
     messages,
     unreadCount: messages.reduce((n, message) => n + (message.unread ? 1 : 0), 0),
@@ -535,7 +572,7 @@ export async function seedLocalVipSurveyTestMessage(nowMs = Date.now()): Promise
 }
 
 async function getFirestoreModule(): Promise<FirestoreFactory | null> {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  if (Platform.OS === 'web' || IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   try {
     const mod = await import('@react-native-firebase/firestore');
     return mod.default as unknown as FirestoreFactory;

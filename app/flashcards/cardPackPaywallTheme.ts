@@ -163,6 +163,30 @@ function shellGold(): CardPackPaywallTheme {
   };
 }
 
+/** COMPASS: default free shell, simple graphite plates with warm onboarding CTA. */
+function shellOnboardingGraphite(): CardPackPaywallTheme {
+  return {
+    backdropBase: 'rgba(2,3,4,0.90)',
+    outerGlow: [
+      'rgba(242,196,141,0.22)',
+      'rgba(242,196,141,0.08)',
+      'rgba(5,5,4,0.56)',
+    ],
+    borderAccent: 'rgba(242,196,141,0.22)',
+    handleColorLight: 'rgba(242,196,141,0.16)',
+    handleColorDark: 'rgba(242,196,141,0.28)',
+    iconBg: ['#1F1F21', '#171719'],
+    iconBorder: 'rgba(242,196,141,0.24)',
+    priceBorder: 'rgba(242,196,141,0.18)',
+    priceGradient: ['rgba(242,196,141,0.10)', 'rgba(0,0,0,0)'],
+    ctaColors: ['#FFD58A', '#E7B13F'],
+    ctaForeground: '#151008',
+    ctaGlowTop: 'rgba(255,213,138,0.24)',
+    goShopCta: ['#FFD58A', '#E7B13F'],
+    goShopForeground: '#151008',
+  };
+}
+
 /** CORAL: warm cocoa shell matching the standalone Coral theme surfaces. */
 function shellCoral(): CardPackPaywallTheme {
   return {
@@ -241,6 +265,7 @@ const SHELL: Record<ThemeMode, CardPackPaywallTheme> = {
   coral: shellCoral(),
   minimalLight: shellGold(),
   minimalDark: shellDark(),
+  compass: shellOnboardingGraphite(),
 };
 
 // ─── Легкі «смаки» категорії (набір) поверх оболонки теми ────────────────────

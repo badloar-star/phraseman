@@ -4,6 +4,7 @@
 import { initializeApp, cert } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import { readFileSync } from 'fs';
+import { getLevelFromXP } from './lib/xp_levels.mjs';
 
 const serviceAccount = JSON.parse(readFileSync('./service-account.json', 'utf8'));
 initializeApp({ credential: cert(serviceAccount) });
@@ -36,7 +37,7 @@ async function main() {
     const name = (progress['user_name'] ?? '').trim();
     const lang = progress['lang'] ?? 'ru';
     // Аватар вычисляется по уровню (системный, не выбирается пользователем)
-    const level = Math.min(50, Math.floor(Math.sqrt(xp / 50)) + 1);
+    const level = getLevelFromXP(xp);
     const avatar = String(level);
     const streak = parseInt(progress['streak_count'] ?? '0') || null;
 

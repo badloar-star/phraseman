@@ -50,6 +50,21 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       heroMap: require('../assets/images/levels/her man fog.webp'),
     };
   }
+  if (themeMode === 'compass') {
+    return {
+      lesson: require('../assets/images/home_menu/compass-premium/home-compass-premium-lessons.webp'),
+      quizes: require('../assets/images/home_menu/compass-premium/home-compass-premium-quizzes.webp'),
+      cards: require('../assets/images/home_menu/compass-premium/home-compass-premium-cards.webp'),
+      dayTasks: require('../assets/images/home_menu/compass-premium/home-compass-premium-daily-tasks.webp'),
+      league: require('../assets/images/home_menu/compass-premium/home-compass-premium-league.webp'),
+      test: require('../assets/images/home_menu/compass-premium/home-compass-premium-diagnostic-test.webp'),
+      practice: require('../assets/images/home_menu/compass-premium/home-compass-premium-practice.webp'),
+      exam: require('../assets/images/home_menu/compass-premium/home-compass-premium-exam.webp'),
+      shop: require('../assets/images/home_menu/compass-premium/home-compass-premium-shop.webp'),
+      arena: require('../assets/images/home_menu/compass-premium/home-compass-premium-arena.webp'),
+      heroMap: require('../assets/images/home_menu/compass-premium/home-compass-premium-hero-map.webp'),
+    };
+  }
   if (themeMode === 'gold') {
     return {
       lesson: require('../assets/images/home_menu/home-gold-lessons.webp'),

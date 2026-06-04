@@ -41,6 +41,7 @@ import {
   ARENA_REMOTE_REFRESH_AT_KEY,
   fetchMyArenaRank,
   getCachedMyArenaRank,
+  withOptimisticArenaSelf,
 } from './arena_leaderboard_fetch';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO, DEV_MODE } from './config';
 import { computeAllPercentiles } from './leaderboard_stats';
@@ -223,6 +224,25 @@ export default function ArenaLeaderboardScreen() {
     trackFeatureOpened('arena_leaderboard').catch(() => {});
   }, [reloadBoard]);
 
+  const displayRows = useMemo(
+    () => withOptimisticArenaSelf(rows, {
+      uid: myUid,
+      friendUid: myStableUid,
+      displayName: myName,
+      arenaXp: myArena?.xp ?? 0,
+      tier: myArena?.tier ?? 'bronze',
+      levelRoman: myArena?.level ?? 'I',
+      totalXp: myTotalXp,
+      isPremium: myIsPremium,
+      isVip: myIsVip,
+      frame: myFrame,
+      aura: myAura,
+      avatarEmoji: myAvatar,
+      games: myArena?.games ?? 0,
+    }),
+    [myArena, myAura, myAvatar, myFrame, myIsPremium, myIsVip, myName, myStableUid, myTotalXp, myUid, rows],
+  );
+
   // Подтягиваем актуальное место игрока в общем рейтинге арены, как только знаем,
   // что он не в топ-100. Делаем это после загрузки списка, чтобы не дублировать
   // запросы для тех, кто и так попал в видимую сотню.
@@ -231,8 +251,8 @@ export default function ArenaLeaderboardScreen() {
     if (!myArena || (myArena.games ?? 0) < 1) {
       return;
     }
-    if (myUid && rows.some((r) => r.uid === myUid)) {
-      const me = rows.find((r) => r.uid === myUid);
+    if (myUid && displayRows.some((r) => r.uid === myUid)) {
+      const me = displayRows.find((r) => r.uid === myUid);
       if (me) setMyArenaPlace(me.place);
       return;
     }
@@ -245,7 +265,7 @@ export default function ArenaLeaderboardScreen() {
     return () => {
       cancelled = true;
     };
-  }, [loading, myArena, myUid, rows]);
+  }, [displayRows, loading, myArena, myUid]);
 
   useEffect(() => {
     // В dev-режиме используем mock-xp если реального нет
@@ -331,15 +351,15 @@ export default function ArenaLeaderboardScreen() {
   // Нижняя плашка «ты вне топ-100»: показываем, если игрок отыграл хотя бы один матч
   // (есть профиль арены) и его uid отсутствует в видимой сотне.
   const isMeInBoard = useMemo(
-    () => !!myUid && rows.some((r) => r.uid === myUid),
-    [myUid, rows],
+    () => !!myUid && displayRows.some((r) => r.uid === myUid),
+    [displayRows, myUid],
   );
   const myBoardIndex = useMemo(
-    () => rows.findIndex((r) =>
+    () => displayRows.findIndex((r) =>
       (!!myUid && r.uid === myUid) ||
       (!!myStableUid && r.friendUid === myStableUid)
     ),
-    [myStableUid, myUid, rows],
+    [displayRows, myStableUid, myUid],
   );
   const showMyRankFooter = useMemo(
     () => !disabledCloud && !loading && !!myArena && (myArena.games ?? 0) >= 1 && !isMeInBoard,
@@ -353,7 +373,7 @@ export default function ArenaLeaderboardScreen() {
 
   useEffect(() => {
     if (loading || myBoardIndex < 0) return;
-    const scrollKey = `${rows.length}-${rows[myBoardIndex]?.uid ?? ''}-${myBoardIndex}`;
+    const scrollKey = `${displayRows.length}-${displayRows[myBoardIndex]?.uid ?? ''}-${myBoardIndex}`;
     if (didAutoScrollToMeRef.current === scrollKey) return;
     didAutoScrollToMeRef.current = scrollKey;
     const id = setTimeout(() => {
@@ -364,7 +384,7 @@ export default function ArenaLeaderboardScreen() {
       });
     }, 80);
     return () => clearTimeout(id);
-  }, [loading, myBoardIndex, rows]);
+  }, [displayRows, loading, myBoardIndex]);
 
   return (
     <ScreenGradient>
@@ -449,8 +469,9 @@ export default function ArenaLeaderboardScreen() {
             ) : (
               <FlatList
                 ref={listRef}
-                data={rows}
+                data={displayRows}
                 keyExtractor={(item) => item.uid}
+                removeClippedSubviews={false}
                 extraData={`${myUid ?? ''}|${myStableUid ?? ''}|${myArenaPlace ?? ''}|${myAvatar}|${myAura}|${myIsPremium ? 1 : 0}|${myIsVip ? 1 : 0}`}
                 getItemLayout={(_, index) => ({
                   length: ARENA_ROW_HEIGHT,
@@ -488,7 +509,7 @@ export default function ArenaLeaderboardScreen() {
                   </View>
                 }
                 ListHeaderComponent={
-                  rows.length > 0 ? (
+                  displayRows.length > 0 ? (
                     <View
                       style={{
                         flexDirection: 'row',

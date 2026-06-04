@@ -1,5 +1,7 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 
+const FEATURE_FLAGS_POLL_MS = 30 * 60 * 1000;
+
 export type ArenaFeatureFlags = {
   rankedWagerEnabled: boolean;
   updatedAt?: number;
@@ -30,10 +32,21 @@ export function subscribeArenaFeatureFlags(
     cb({ rankedWagerEnabled: false });
     return () => {};
   }
-  return db.collection('app_meta').doc('arena_feature_flags').onSnapshot(
-    (snap: any) => cb(snap?.exists ? normalizeArenaFeatureFlags(snap.data()) : { rankedWagerEnabled: false }),
-    () => cb({ rankedWagerEnabled: false }),
-  );
+  let active = true;
+  const readFlags = async () => {
+    try {
+      const snap = await db.collection('app_meta').doc('arena_feature_flags').get();
+      if (active) cb(snap?.exists ? normalizeArenaFeatureFlags(snap.data()) : { rankedWagerEnabled: false });
+    } catch {
+      if (active) cb({ rankedWagerEnabled: false });
+    }
+  };
+  void readFlags();
+  const id = setInterval(readFlags, FEATURE_FLAGS_POLL_MS);
+  return () => {
+    active = false;
+    clearInterval(id);
+  };
 }
 
 export async function getArenaFeatureFlagsOnce(): Promise<ArenaFeatureFlags> {

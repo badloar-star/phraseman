@@ -922,6 +922,7 @@ function PlayerProfileModalBody({
                       pl: " (ty)",
                     }) : ''}`}
                     fontSize={f.h2}
+                    iconScale={1.8}
                   />
                 </View>
               )}
@@ -1262,6 +1263,40 @@ function PlayerProfileModalBody({
                       tr: "Dönüş",
                       pl: "Powrót",
                     })} ×{multipliers.comebackM.toFixed(1)}
+                  </Text>
+                </View>
+              )}
+              {multipliers.leagueBoostM > 1 && (
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
+                  <Text style={{ fontSize: 13 }}>XP</Text>
+                  <Text style={{ color: t.textSecond, fontSize: f.sub }}>
+                    {triLang(lang as Lang, {
+                      ru: 'Буст лиги',
+                      uk: 'Буст ліги',
+                      es: 'Impulso de liga',
+                      'pt-BR': "Impulso de liga",
+                      vi: "Tăng lực giải đấu",
+                      id: "Dorongan liga",
+                      tr: "Lig güçlendirmesi",
+                      pl: "Wzmocnienie ligi",
+                    })} ×{multipliers.leagueBoostM.toFixed(1)}
+                  </Text>
+                </View>
+              )}
+              {multipliers.leagueGroupBoostM > 1 && (
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
+                  <Text style={{ fontSize: 13 }}>XP</Text>
+                  <Text style={{ color: t.textSecond, fontSize: f.sub }}>
+                    {triLang(lang as Lang, {
+                      ru: 'Общий буст лиги',
+                      uk: 'Спільний буст ліги',
+                      es: 'Impulso común de liga',
+                      'pt-BR': "Impulso comum de liga",
+                      vi: "Tăng lực chung giải đấu",
+                      id: "Dorongan liga bersama",
+                      tr: "Ortak lig güçlendirmesi",
+                      pl: "Wspólne wzmocnienie ligi",
+                    })} ×{multipliers.leagueGroupBoostM.toFixed(1)}
                   </Text>
                 </View>
               )}

@@ -34,6 +34,11 @@ yarn-error.*
 .env
 .env*.local
 
+# Telegram Premium bot local secrets/state
+/tools/telegram-premium-bot/config.json
+/tools/telegram-premium-bot/state.json
+/tools/telegram-premium-bot/orders.jsonl
+
 # typescript
 *.tsbuildinfo
 
@@ -209,8 +214,33 @@ functions/scripts/diag_*
 /docs/heisenberg/
 /docs/skyler/
 /docs/pipelines/
+/lingman-montazher/input/
+/lingman-montazher/models/
+/lingman-montazher/runs/
+/lingman-montazher/__pycache__/
 /lingman-scenarist-pipeline/
+/public/sfx/
+/remotion/
+/exports/
 /exports/youtube-video-factory/
 /tools/skyler_quiz_agent_room/
 /tools/personal_training_agent_room/
 /qa-artifacts/skyler-thematic-assets/
+
+# Local mobile QA screenshots and UI dumps at repository root.
+/codex*.png
+/codex*.xml
+/phraseman*.png
+/phraseman*.xml
+/admin*.png
+/admin*.xml
+/fold*.png
+/fold*.xml
+/profile_card*.png
+/profile_card*.xml
+
+# Maestro is not used in this project workspace anymore.
+/maestro/
+/.maestro-tmp/
+/maestro-tmp/
+/maestro*.xml

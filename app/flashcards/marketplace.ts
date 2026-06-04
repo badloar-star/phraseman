@@ -25,6 +25,8 @@ import {
   OFFICIAL_PREP_AT_EN_ID,
   OFFICIAL_PREP_TO_EN_ID,
   OFFICIAL_PREP_BY_EN_ID,
+  OFFICIAL_PHRASAL_VERBS_EN_ID,
+  OFFICIAL_MOVIE_SERIES_EN_ID,
 } from './bundles/packIds';
 export type FlashcardPackCategory = 'business' | 'travel' | 'daily' | 'exam' | 'slang' | 'verbs';
 
@@ -230,6 +232,7 @@ export function packHubCodeName(pack: FlashcardMarketPack): string {
 
 type MarketplaceInterfaceLocale = 'ru' | 'uk' | 'es' | PlannedInterfaceLang;
 type PlannedMarketCopy = Record<PlannedInterfaceLang, { title: string; description: string }>;
+type PackHubLabelCopy = Record<MarketplaceInterfaceLocale, string>;
 
 const PACK_TITLE_FIELD_BY_LANG = {
   ru: 'titleRu',
@@ -252,6 +255,129 @@ const PACK_DESCRIPTION_FIELD_BY_LANG = {
   tr: 'descriptionTr',
   pl: 'descriptionPl',
 } as const satisfies Record<MarketplaceInterfaceLocale, keyof FlashcardMarketPack>;
+
+const OFFICIAL_PACK_HUB_LABELS: Partial<Record<string, PackHubLabelCopy>> = {
+  [OFFICIAL_NEGOTIATOR_EN_ID]: {
+    ru: 'Переговорщик',
+    uk: 'Перемовник',
+    es: 'Negociador',
+    'pt-BR': 'Negociador',
+    vi: 'Dam phan',
+    id: 'Negosiator',
+    tr: 'Muzakereci',
+    pl: 'Negocjator',
+  },
+  [OFFICIAL_DARK_LOGIC_EN_ID]: {
+    ru: 'Темная логика',
+    uk: 'Темна логика',
+    es: 'Logica oscura',
+    'pt-BR': 'Logica sombria',
+    vi: 'Logic den toi',
+    id: 'Logika gelap',
+    tr: 'Karanlik mantik',
+    pl: 'Mroczna logika',
+  },
+  [OFFICIAL_WILD_WEST_EN_ID]: {
+    ru: 'Дикий Запад',
+    uk: 'Дикий Захид',
+    es: 'Salvaje Oeste',
+    'pt-BR': 'Velho Oeste',
+    vi: 'Mien Tay',
+    id: 'Wild West',
+    tr: 'Vahsi Bati',
+    pl: 'Dziki Zachod',
+  },
+  [OFFICIAL_ROYAL_TEA_EN_ID]: {
+    ru: 'Королевский чай',
+    uk: 'Короливський чай',
+    es: 'Te real',
+    'pt-BR': 'Cha real',
+    vi: 'Tra hoang gia',
+    id: 'Teh kerajaan',
+    tr: 'Kraliyet cayi',
+    pl: 'Krolewska herbata',
+  },
+  [OFFICIAL_PEAKY_BLINDERS_EN_ID]: {
+    ru: 'Острые козырьки',
+    uk: 'Гостри козирки',
+    es: 'Peaky Blinders',
+    'pt-BR': 'Peaky Blinders',
+    vi: 'Peaky Blinders',
+    id: 'Peaky Blinders',
+    tr: 'Peaky Blinders',
+    pl: 'Peaky Blinders',
+  },
+  [OFFICIAL_PREP_IN_EN_ID]: {
+    ru: 'Предлог IN',
+    uk: 'Прийменник IN',
+    es: 'Preposicion IN',
+    'pt-BR': 'Preposicao IN',
+    vi: 'Gioi tu IN',
+    id: 'Preposisi IN',
+    tr: 'IN edati',
+    pl: 'Przyimek IN',
+  },
+  [OFFICIAL_PREP_ON_EN_ID]: {
+    ru: 'Предлог ON',
+    uk: 'Прийменник ON',
+    es: 'Preposicion ON',
+    'pt-BR': 'Preposicao ON',
+    vi: 'Gioi tu ON',
+    id: 'Preposisi ON',
+    tr: 'ON edati',
+    pl: 'Przyimek ON',
+  },
+  [OFFICIAL_PREP_AT_EN_ID]: {
+    ru: 'Предлог AT',
+    uk: 'Прийменник AT',
+    es: 'Preposicion AT',
+    'pt-BR': 'Preposicao AT',
+    vi: 'Gioi tu AT',
+    id: 'Preposisi AT',
+    tr: 'AT edati',
+    pl: 'Przyimek AT',
+  },
+  [OFFICIAL_PREP_TO_EN_ID]: {
+    ru: 'Предлог TO',
+    uk: 'Прийменник TO',
+    es: 'Preposicion TO',
+    'pt-BR': 'Preposicao TO',
+    vi: 'Gioi tu TO',
+    id: 'Preposisi TO',
+    tr: 'TO edati',
+    pl: 'Przyimek TO',
+  },
+  [OFFICIAL_PREP_BY_EN_ID]: {
+    ru: 'Предлог BY',
+    uk: 'Прийменник BY',
+    es: 'Preposicion BY',
+    'pt-BR': 'Preposicao BY',
+    vi: 'Gioi tu BY',
+    id: 'Preposisi BY',
+    tr: 'BY edati',
+    pl: 'Przyimek BY',
+  },
+  [OFFICIAL_PHRASAL_VERBS_EN_ID]: {
+    ru: 'Фразовые глаголы',
+    uk: 'Фразові дієслова',
+    es: 'Phrasal verbs',
+    'pt-BR': 'Phrasal verbs',
+    vi: 'Phrasal verbs',
+    id: 'Phrasal verbs',
+    tr: 'Phrasal verbs',
+    pl: 'Phrasal verbs',
+  },
+  [OFFICIAL_MOVIE_SERIES_EN_ID]: {
+    ru: 'Кино и сериалы',
+    uk: 'Кіно і серіали',
+    es: 'Cine y series',
+    'pt-BR': 'Filmes e series',
+    vi: 'Phim va series',
+    id: 'Film dan serial',
+    tr: 'Film ve diziler',
+    pl: 'Filmy i seriale',
+  },
+};
 
 const OFFICIAL_MARKETPLACE_PLANNED_COPY: Partial<Record<string, PlannedMarketCopy>> = {
   [OFFICIAL_NEGOTIATOR_EN_ID]: {
@@ -506,6 +632,17 @@ export function packTitleForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'u
   return packHubCodeName(pack);
 }
 
+/** Короткая подпись под плиткой хаба: локализованная, но компактная. */
+export function packHubLabelForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'uk' | 'es' | PlannedInterfaceLang): string {
+  const localizedHubLabel = trimmedMarketString(OFFICIAL_PACK_HUB_LABELS[pack.id]?.[lang]);
+  if (localizedHubLabel) return localizedHubLabel;
+  if (pack.isCommunityUgc) {
+    const localizedTitle = packTitleForInterface(pack, lang).trim();
+    if (localizedTitle) return localizedTitle;
+  }
+  return packHubCodeName(pack);
+}
+
 /** Опис набору для модалки / деталей; planned-локалі не читають RU/UK/ES. */
 export function packDescriptionForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'uk' | 'es' | PlannedInterfaceLang): string {
   const descriptionField = PACK_DESCRIPTION_FIELD_BY_LANG[lang];
@@ -755,6 +892,14 @@ export function buildMarketplaceOwnedCards(ownedPacks: FlashcardMarketPack[]): C
     if (pack.id === OFFICIAL_PREP_BY_EN_ID) {
       // eslint-disable-next-line @typescript-eslint/no-require-imports
       return (require('./bundles/prepByBundle') as typeof import('./bundles/prepByBundle')).getPrepByBundleCards();
+    }
+    if (pack.id === OFFICIAL_PHRASAL_VERBS_EN_ID) {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./bundles/phrasalVerbsBundle') as typeof import('./bundles/phrasalVerbsBundle')).getPhrasalVerbsBundleCards();
+    }
+    if (pack.id === OFFICIAL_MOVIE_SERIES_EN_ID) {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./bundles/movieSeriesBundle') as typeof import('./bundles/movieSeriesBundle')).getMovieSeriesBundleCards();
     }
     if (pack.id === OFFICIAL_PEAKY_BLINDERS_EN_ID) {
       // eslint-disable-next-line @typescript-eslint/no-require-imports

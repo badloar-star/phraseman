@@ -60,4 +60,15 @@ describe('web and admin runtime locale fallback audit', () => {
     expect(forcedTokenRefresh).toBeGreaterThan(cachedTokenCheck);
     expect(unexpectedSignOut).toBeGreaterThan(forcedTokenRefresh);
   });
+
+  it('does not label Firebase-authenticated users as anonymous when provider metadata is missing', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'admin', 'index.html'), 'utf8');
+
+    expect(source).toContain('firebaseAuthUid: snap.data().firebaseAuthUid || null');
+    expect(source).toContain('firebaseAuthUid: doc.data().firebaseAuthUid || null');
+    expect(source).toContain('function hasAnyAuth(u)');
+    expect(source).toContain("if(fAuth==='any')   us=us.filter(u=>hasAnyAuth(u));");
+    expect(source).toContain("if(fAuth==='anon')  us=us.filter(u=>!hasAnyAuth(u));");
+    expect(source).toContain('Firebase auth есть, provider-link отсутствует');
+  });
 });

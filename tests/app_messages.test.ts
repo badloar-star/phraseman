@@ -132,6 +132,42 @@ describe('app_messages', () => {
     expect(filterAppMessagesSnapshotForAudience(snapshot, true).unreadCount).toBe(0);
   });
 
+  it('filters messages by exact target app versions when provided', () => {
+    const current = normalizeAppMessage('current', {
+      active: true,
+      audience: 'free',
+      createdAtMs: now,
+      messageRu: 'Current version only',
+      targetAppVersions: ['1.5.41'],
+    }, now);
+    const other = normalizeAppMessage('other', {
+      active: true,
+      audience: 'free',
+      createdAtMs: now - 1,
+      messageRu: 'Other version only',
+      targetAppVersions: ['1.5.40'],
+    }, now);
+    const allVersions = normalizeAppMessage('all-versions', {
+      active: true,
+      audience: 'free',
+      createdAtMs: now - 2,
+      messageRu: 'No version gate',
+    }, now);
+    const snapshot = mergeAppMessagesWithStates([current, other, allVersions], [], now);
+
+    expect(filterAppMessagesSnapshotForAudience(snapshot, false, '1.5.41').messages.map((m) => m.id)).toEqual([
+      'current',
+      'all-versions',
+    ]);
+    expect(filterAppMessagesSnapshotForAudience(snapshot, false, '1.5.40').messages.map((m) => m.id)).toEqual([
+      'other',
+      'all-versions',
+    ]);
+    expect(filterAppMessagesSnapshotForAudience(snapshot, false, '1.5.42').messages.map((m) => m.id)).toEqual([
+      'all-versions',
+    ]);
+  });
+
   it('normalizes polls and carries the selected option from user state', () => {
     const message = normalizeAppMessage('poll1', {
       active: true,

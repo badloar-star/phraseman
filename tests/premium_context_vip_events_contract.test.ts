@@ -12,7 +12,7 @@ describe('PremiumContext VIP event contract', () => {
     expect(body).toContain('setIsVip(true)');
     expect(body).toContain('setHasPremiumAccess(true)');
     expect(body).toContain('invalidatePremiumCache()');
-    expect(body).toContain('updateMyVipInLeaderboard(true)');
+    expect(body).toContain("syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true })");
   });
 
   it('keeps real Premium access when VIP is revoked', () => {
@@ -22,6 +22,6 @@ describe('PremiumContext VIP event contract', () => {
 
     expect(body).toContain('setIsVip(false)');
     expect(body).toContain('setHasPremiumAccess(isPremium)');
-    expect(body).toContain('updateMyVipInLeaderboard(false)');
+    expect(body).toContain("syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium })");
   });
 });

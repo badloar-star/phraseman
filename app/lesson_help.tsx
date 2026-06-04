@@ -6780,7 +6780,7 @@ const THEORY: Record<number, TheoryContent> = {
 
     <Table key="t11" t={t} f={f} rows={[
       [isUK ? 'Блок' : 'Блок', isUK ? 'Приклад з уроку' : 'Пример из урока', isUK ? 'Переклад' : 'Перевод'],
-      ['a better plan', 'We need a better plan', isUK ? 'Нам потрібен кращий план' : 'Нам нужен лучший план'],
+      ['a better plan', 'We need a better plan', isUK ? 'Нам потрібен кращий план' : 'Нам нужен план получше'],
       ['an easier question', 'You need an easier question', isUK ? 'Тобі потрібне простіше питання' : 'Тебе нужен вопрос проще'],
       ['a newer phone', 'She bought a newer phone', isUK ? 'Вона купила новіший телефон' : 'Она купила более новый телефон'],
       ['a better job', 'He got a better job', isUK ? 'Він отримав кращу роботу' : 'Он получил работу лучше'],
@@ -6860,7 +6860,7 @@ const THEORY: Record<number, TheoryContent> = {
       [isUK ? 'Англійська' : 'Английский', isUK ? 'Природний переклад' : 'Естественный перевод'],
       ['It is better now', isUK ? 'Зараз краще' : 'Сейчас лучше'],
       ['It is worse now', isUK ? 'Зараз гірше' : 'Сейчас хуже'],
-      ['We need a better plan', isUK ? 'Нам потрібен кращий план' : 'Нам нужен лучший план'],
+      ['We need a better plan', isUK ? 'Нам потрібен кращий план' : 'Нам нужен план получше'],
       ['You need an easier question', isUK ? 'Тобі потрібне простіше питання' : 'Тебе нужен вопрос проще'],
       ['He got a better job', isUK ? 'Він отримав кращу роботу' : 'Он получил работу лучше'],
       ['They work more slowly now', isUK ? 'Вони зараз працюють повільніше' : 'Они сейчас работают медленнее'],
@@ -10567,7 +10567,7 @@ const THEORY: Record<number, TheoryContent> = {
       f={f}
       rows={[
         [isUK ? 'Фраза з уроку' : 'Фраза из урока', isUK ? 'Що важливо' : 'Что важно'],
-        ['Everyone is ready', isUK ? 'is, не are' : 'is, не are'],
+        ['Everyone is ready', isUK ? 'потрібне is' : 'нужно is'],
         ['Everybody understands me', isUK ? 'understands з -s' : 'understands с -s'],
         ['Everyone needs help', isUK ? 'needs з -s' : 'needs с -s'],
         ['Everyone helped us', isUK ? 'Past Simple, форма helped однакова' : 'Past Simple, форма helped одинаковая'],
@@ -10709,6 +10709,16 @@ const THEORY: Record<number, TheoryContent> = {
       text={isUK
         ? 'У Past Simple питаннях з anyone, anybody або someone використовується Did. Після Did основна дія стоїть у базовій формі: call, see, take, find, bring.'
         : 'В Past Simple вопросах с anyone, anybody или someone используется Did. После Did основное действие стоит в базовой форме: call, see, take, find, bring.'
+      }
+    />,
+
+    <Tip
+      key="tip8"
+      t={t}
+      f={f}
+      text={isUK
+        ? 'Anyone/anybody частіше звучить як нейтральне питання: хто-небудь взагалі? Someone/somebody можна використовувати, коли ситуація підказує, що хтось, імовірно, зробив дію. Did someone take my phone? = мовець бачить ситуацію і підозрює, що телефон хтось узяв.'
+        : 'Anyone/anybody чаще звучит как нейтральный вопрос: кто-нибудь вообще? Someone/somebody можно использовать, когда ситуация подсказывает, что кто-то, вероятно, сделал действие. Did someone take my phone? = говорящий видит ситуацию и подозревает, что телефон кто-то взял.'
       }
     />,
 

@@ -39,7 +39,7 @@ export interface ErrorReportPayload {
   comment: string;
 }
 
-export type ErrorReportResult = 'sent' | 'throttled' | 'invalid_comment';
+export type ErrorReportResult = 'sent' | 'throttled' | 'invalid_comment' | 'failed';
 
 /**
  * Стабильный `dataId` для упражнения «собери фразу» в уроке (`lesson_N_phrase_K`).
@@ -157,29 +157,33 @@ export const submitErrorReport = async (
 
   const meta = await collectMetadata(userName, lang);
 
-  void submitClientReport('error_report', {
-    screen: payload.screen,
-    category,
-    dataId: payload.dataId,
-    dataText: payload.dataText,
-    userAnswer: (payload.userAnswer ?? '').trim(),
-    comment: commentTrimmed,
-    deviceModel: meta.deviceModel,
-    deviceOS: meta.deviceOS,
-    deviceOSVersion: meta.deviceOSVersion,
-    screenWidth: meta.screenWidth,
-    screenHeight: meta.screenHeight,
-    pixelRatio: meta.pixelRatio,
-    appVersion: meta.appVersion,
-    userName: meta.userName,
-    userLevel: meta.userLevel,
-    userXP: meta.userXP,
-    userStreak: meta.userStreak,
-    userPremium: meta.userPremium,
-    userLanguage: meta.userLanguage,
-    userDaysInApp: meta.userDaysInApp,
-    copyText: buildCopyText({ ...payload, category, comment: commentTrimmed }, meta),
-  }).catch(() => {});
+  try {
+    await submitClientReport('error_report', {
+      screen: payload.screen,
+      category,
+      dataId: payload.dataId,
+      dataText: payload.dataText,
+      userAnswer: (payload.userAnswer ?? '').trim(),
+      comment: commentTrimmed,
+      deviceModel: meta.deviceModel,
+      deviceOS: meta.deviceOS,
+      deviceOSVersion: meta.deviceOSVersion,
+      screenWidth: meta.screenWidth,
+      screenHeight: meta.screenHeight,
+      pixelRatio: meta.pixelRatio,
+      appVersion: meta.appVersion,
+      userName: meta.userName,
+      userLevel: meta.userLevel,
+      userXP: meta.userXP,
+      userStreak: meta.userStreak,
+      userPremium: meta.userPremium,
+      userLanguage: meta.userLanguage,
+      userDaysInApp: meta.userDaysInApp,
+      copyText: buildCopyText({ ...payload, category, comment: commentTrimmed }, meta),
+    });
+  } catch {
+    return 'failed';
+  }
   await AsyncStorage.setItem(THROTTLE_KEY, String(now));
   /** Маленький бонус за отправку — не await: иначе общая очередь registerXP может навсегда держать «Отправка…». */
   void registerXP(10, 'achievement_reward', userName, lang).catch(() => {});

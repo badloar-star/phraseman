@@ -1,14 +1,16 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
-import { DARK, NEON, GOLD, CORAL, MINIMAL_DARK, MINIMAL_LIGHT, Theme, ThemeMode } from '../constants/theme';
+import { DARK, NEON, GOLD, CORAL, MINIMAL_DARK, MINIMAL_LIGHT, COMPASS, Theme, ThemeMode } from '../constants/theme';
 import { goldShadow } from '../constants/goldTheme';
+import { compassShadow } from '../constants/compassTheme';
 import { computeUiScale } from '../constants/layout-scale';
 import { DEV_MODE, ENABLE_DEV_TOOLS } from '../app/config';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
 import { onAppEvent } from '../app/events';
 import { hasLeagueGoldThemeReward } from '../app/services/league_chest_rewards';
 import { setOskolokThemeMode } from '../app/oskolok';
+import { APP_FONT_FAMILY } from '../app/typography';
 
 // ─── ШКАЛА ШРИФТОВ ──────────────────────────────────────────────────────────
 // Duolingo использует ~16px для основного текста, ~14px для вторичного
@@ -112,6 +114,7 @@ export const getVolumetricShadow = (
   level: 1 | 2 | 3 = 2,
 ) => {
   if (themeMode === 'gold') return goldShadow(level);
+  if (themeMode === 'compass') return compassShadow(level);
   return {
     shadowColor:   '#000000',
     shadowOffset:  { width: 0, height: level === 1 ? 2 : level === 2 ? 3 : 5 },
@@ -177,7 +180,7 @@ const ThemeContext = createContext<ThemeCtx>({
     radius: { md: 12, lg: 16, xl: 20, xxl: 24 },
     inputHeight: 52,
     buttonHeight: 52,
-    fontFamily: 'System',
+    fontFamily: APP_FONT_FAMILY,
     shadow: {
       soft: { shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 8, elevation: 2 },
       medium: { shadowColor: '#000', shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.14, shadowRadius: 16, elevation: 6 },
@@ -192,9 +195,10 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   coral: CORAL,
   minimalLight: MINIMAL_LIGHT,
   minimalDark: MINIMAL_DARK,
+  compass: COMPASS,
 };
-const CYCLE: ThemeMode[] = ['minimalLight', 'minimalDark', 'dark', 'neon', 'coral', 'gold'];
-/** Темы только с Premium; бесплатные: `minimalDark` и `minimalLight`. */
+const CYCLE: ThemeMode[] = ['minimalLight', 'minimalDark', 'compass', 'dark', 'neon', 'coral', 'gold'];
+/** Темы только с Premium; бесплатные: `minimalDark`, `minimalLight` и `compass`. */
 const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'neon', 'coral'];
 const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
 
@@ -231,7 +235,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         void AsyncStorage.setItem('app_theme', 'coral');
       }
       const valid =
-        migrated === 'neon' || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || migrated === 'minimalLight' || migrated === 'minimalDark';
+        migrated === 'neon' || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || migrated === 'minimalLight' || migrated === 'minimalDark' || migrated === 'compass';
       if (valid) {
         const t = migrated as ThemeMode;
         const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;
@@ -291,12 +295,13 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     [fontSize, uiScale],
   );
   const theme = useMemo(() => THEME_MAP[themeMode], [themeMode]);
-  const isDark = themeMode === 'dark' || themeMode === 'neon' || themeMode === 'gold' || themeMode === 'coral' || themeMode === 'minimalDark';
+  const isDark = themeMode === 'dark' || themeMode === 'neon' || themeMode === 'gold' || themeMode === 'coral' || themeMode === 'minimalDark' || themeMode === 'compass';
   const statusBarLight = isDark;
   const ds = useMemo(() => {
     const px = (n: number) => Math.max(2, Math.round(n * uiScale));
     const isLuxuryTheme = themeMode === 'gold';
-    const radiusBase = isLuxuryTheme
+    const isCompassTheme = themeMode === 'compass';
+    const radiusBase = isLuxuryTheme || isCompassTheme
       ? { md: 10, lg: 12, xl: 14, xxl: 18 }
       : { md: 12, lg: 16, xl: 20, xxl: 24 };
     return {
@@ -304,21 +309,21 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       radius: { md: px(radiusBase.md), lg: px(radiusBase.lg), xl: px(radiusBase.xl), xxl: px(radiusBase.xxl) },
       inputHeight: Math.max(44, px(52)),
       buttonHeight: Math.max(44, px(52)),
-      fontFamily: 'System',
+      fontFamily: APP_FONT_FAMILY,
       shadow: {
         soft: {
           shadowColor: '#000',
-          shadowOffset: { width: 0, height: Math.max(1, px(isLuxuryTheme ? 4 : 2)) },
-          shadowOpacity: isLuxuryTheme ? 0.42 : isDark ? 0.22 : 0.1,
-          shadowRadius: isLuxuryTheme ? Math.max(8, px(12)) : Math.max(4, px(8)),
-          elevation: Math.max(1, px(isLuxuryTheme ? 5 : 2)),
+          shadowOffset: { width: 0, height: Math.max(1, px(isLuxuryTheme ? 4 : isCompassTheme ? 3 : 2)) },
+          shadowOpacity: isLuxuryTheme ? 0.42 : isCompassTheme ? 0.30 : isDark ? 0.22 : 0.1,
+          shadowRadius: isLuxuryTheme ? Math.max(8, px(12)) : isCompassTheme ? Math.max(6, px(9)) : Math.max(4, px(8)),
+          elevation: Math.max(1, px(isLuxuryTheme ? 5 : isCompassTheme ? 3 : 2)),
         },
         medium: {
           shadowColor: '#000',
           shadowOffset: { width: 0, height: Math.max(2, px(isLuxuryTheme ? 8 : 6)) },
-          shadowOpacity: isLuxuryTheme ? 0.56 : isDark ? 0.28 : 0.14,
-          shadowRadius: isLuxuryTheme ? Math.max(14, px(22)) : Math.max(8, px(16)),
-          elevation: Math.max(2, px(isLuxuryTheme ? 10 : 6)),
+          shadowOpacity: isLuxuryTheme ? 0.56 : isCompassTheme ? 0.36 : isDark ? 0.28 : 0.14,
+          shadowRadius: isLuxuryTheme ? Math.max(14, px(22)) : isCompassTheme ? Math.max(10, px(16)) : Math.max(8, px(16)),
+          elevation: Math.max(2, px(isLuxuryTheme ? 10 : isCompassTheme ? 7 : 6)),
         },
       },
     };

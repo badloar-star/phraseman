@@ -127,6 +127,15 @@ describe('DailyPhraseCard runtime locale wiring', () => {
     expect(source).toContain('vi: phrase.sourceLocales?.vi?.meaning');
     expect(source).toContain('sourceLocales={flashcardSourceLocales}');
   });
+
+  it('shows the phrase meaning on the compact home plaque instead of generic save copy', () => {
+    const componentPath = path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx');
+    const source = fs.readFileSync(componentPath, 'utf8');
+
+    expect(source).toContain('const homeAdditionalMeaning = phraseCopy.meaning || phrase.meaning;');
+    expect(source).toContain('{homeAdditionalMeaning}');
+    expect(source).not.toContain('rememberLabel');
+  });
 });
 
 describe('Spanish Daily Phrase content coverage', () => {

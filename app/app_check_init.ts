@@ -29,6 +29,16 @@ function tokenStringFromResult(value: unknown): string | null {
   return typeof token === 'string' ? token : null;
 }
 
+function setAppCheckAutoRefreshEnabled(enabled: boolean): void {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const appCheck = require('@react-native-firebase/app-check').default;
+    appCheck().setTokenAutoRefreshEnabled(enabled);
+  } catch {
+    // Native module may be unavailable before prebuild / pod install.
+  }
+}
+
 async function verifyAppCheckCanMintJwt(appCheck: any): Promise<boolean> {
   try {
     const first = await withTimeout(appCheck().getToken(false), APP_CHECK_TOKEN_TIMEOUT_MS);
@@ -42,16 +52,23 @@ async function verifyAppCheckCanMintJwt(appCheck: any): Promise<boolean> {
 
 export async function initFirebaseAppCheckIfAvailable(): Promise<boolean> {
   if (appCheckInitPromise) return appCheckInitPromise;
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return false;
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    setAppCheckAutoRefreshEnabled(false);
+    return false;
+  }
 
   const debugToken = String(process.env.EXPO_PUBLIC_APP_CHECK_DEBUG_TOKEN || '').trim();
   const useDebugProvider =
-    process.env.EXPO_PUBLIC_ENABLE_APP_CHECK_DEBUG === '1' || debugToken.length > 0;
+    !IS_STORE_RELEASE &&
+    (process.env.EXPO_PUBLIC_ENABLE_APP_CHECK_DEBUG === '1' || debugToken.length > 0);
 
   // Internal/preview release builds are not installed from the stores, so real
   // attestation can produce invalid tokens. Use debug explicitly there; store
   // builds use Play Integrity / App Attest.
-  if (!IS_STORE_RELEASE && !useDebugProvider) return false;
+  if (!IS_STORE_RELEASE && !useDebugProvider) {
+    setAppCheckAutoRefreshEnabled(false);
+    return false;
+  }
 
   appCheckInitPromise = (async () => {
     try {
@@ -71,16 +88,19 @@ export async function initFirebaseAppCheckIfAvailable(): Promise<boolean> {
       }
       await appCheck().initializeAppCheck({
         provider,
-        isTokenAutoRefreshEnabled: true,
+        isTokenAutoRefreshEnabled: false,
       });
       const hasJwt = await verifyAppCheckCanMintJwt(appCheck);
       if (!hasJwt) {
         appCheckInitPromise = null;
+        setAppCheckAutoRefreshEnabled(false);
         return false;
       }
+      setAppCheckAutoRefreshEnabled(true);
       return true;
     } catch {
       appCheckInitPromise = null;
+      setAppCheckAutoRefreshEnabled(false);
       // Native module may be unavailable before prebuild / pod install.
       return false;
     }

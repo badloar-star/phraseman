@@ -103,6 +103,8 @@ exports.friendLikeActivity = (0, https_1.onCall)({ region: REGION, enforceAppChe
         const eventData = eventSnap.data() ?? {};
         const eventLikeCount = parseCount(eventData.activityLikeCount) + 1;
         const totalLikeCount = parseCount(statsSnap.data()?.total) + 1;
+        const eventType = cleanId(eventData.type);
+        const leagueGroupId = cleanDocId(eventData.groupId);
         const senderProgress = (senderData.progress && typeof senderData.progress === 'object')
             ? senderData.progress
             : {};
@@ -139,6 +141,14 @@ exports.friendLikeActivity = (0, https_1.onCall)({ region: REGION, enforceAppChe
             ts: now,
             tsIso: nowIso,
         });
+        if (eventType === 'league_group_boost' && leagueGroupId && eventId.startsWith('league_group_boost_')) {
+            tx.set(db.collection('league_groups').doc(leagueGroupId), {
+                groupBoost: {
+                    likeCount: eventLikeCount,
+                },
+                updatedAt: now,
+            }, { merge: true });
+        }
         return {
             ok: true,
             date: today,

@@ -1,11 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Animated, View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { useTheme } from './ThemeContext';
-import { useLang } from './LangContext';
-import { triLang } from '../constants/i18n';
+import React, { useEffect, useState } from 'react';
+import {
+  Image,
+  Modal,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { updateMultipleTaskProgress } from '../app/daily_tasks';
+import { triLang } from '../constants/i18n';
 import { checkAchievements } from '../app/achievements';
+import { updateMultipleTaskProgress } from '../app/daily_tasks';
 import {
   dailyPhraseCopyForLang,
   getTodayPhraseForTarget,
@@ -15,11 +21,14 @@ import {
   type DailyPhraseInterfaceLang,
 } from '../app/daily_phrase_system';
 import AddToFlashcard from './AddToFlashcard';
+import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
+import { useTheme } from './ThemeContext';
 
 const DAILY_PHRASE_IMAGES: Record<string, any> = {
   dark: require('../assets/images/home_menu/home-forest-daily-phrase.webp'),
   minimalDark: require('../assets/images/home_menu/home-minimal-dark-daily-phrase.webp'),
+  compass: require('../assets/images/home_menu/compass-premium/home-compass-premium-daily-phrase.webp'),
   minimalLight: require('../assets/images/home_menu/home-minimal-light-daily-phrase.webp'),
   neon: require('../assets/images/home_menu/home-neon-daily-phrase.webp'),
   gold: require('../assets/images/home_menu/home-gold-daily-phrase.webp'),
@@ -30,26 +39,24 @@ const DAILY_PHRASE_IMAGES: Record<string, any> = {
 
 const DAILY_PHRASE_FALLBACK_IMAGE = DAILY_PHRASE_IMAGES.dark;
 
-const USE_EDITORIAL_DAILY_PHRASE = true;
-
 interface Props {
   userLevel?: number;
+  variant?: 'default' | 'homeAdditional';
 }
 
-export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
+export default function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const [phrase, setPhrase] = useState<DailyPhrase | null>(() => (
     getTodayPhraseSyncForTarget(studyTarget)
   ));
-  const [expanded, setExpanded] = useState(false);
-  const revealAnim = useRef(new Animated.Value(0)).current;
+  const [detailsVisible, setDetailsVisible] = useState(false);
 
   useEffect(() => {
     if (studyTarget === 'fr') {
       setPhrase(null);
-      setExpanded(false);
+      setDetailsVisible(false);
       return;
     }
     setPhrase(getTodayPhraseSyncForTarget(studyTarget));
@@ -58,22 +65,12 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
     return unsubscribe;
   }, [studyTarget]);
 
-  useEffect(() => {
-    if (!USE_EDITORIAL_DAILY_PHRASE) return;
-    revealAnim.setValue(0);
-    Animated.timing(revealAnim, {
-      toValue: 1,
-      duration: 360,
-      useNativeDriver: true,
-    }).start();
-  }, [expanded, phrase?.date, revealAnim]);
-
   if (studyTarget === 'fr') {
     return null;
   }
 
   if (!phrase) {
-    return <View style={[styles.container, { backgroundColor: t.bgCard }]} />;
+    return <View style={[styles.placeholder, { backgroundColor: t.bgCard }]} />;
   }
 
   const labelLiteral = triLang(lang, {
@@ -96,11 +93,18 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
     tr: 'Anlamı',
     pl: 'Znaczenie',
   });
+  const title = triLang(lang, {
+    uk: 'Вислів дня',
+    ru: 'Фраза дня',
+    es: 'Frase del día',
+    'pt-BR': 'Frase do dia',
+    vi: 'Cụm từ hôm nay',
+    id: 'Frasa hari ini',
+    tr: 'Günün ifadesi',
+    pl: 'Fraza dnia',
+  });
   const phraseLang: DailyPhraseInterfaceLang = lang;
   const phraseCopy = dailyPhraseCopyForLang(phrase, phraseLang);
-  const phraseLiteral = phraseCopy.literal;
-  const phraseMeaning = phraseCopy.meaning;
-  const phraseText = phraseCopy.text;
   const flashcardSourceLocales = {
     'pt-BR': phrase.sourceLocales?.['pt-BR']?.meaning,
     vi: phrase.sourceLocales?.vi?.meaning,
@@ -109,88 +113,137 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
     pl: phrase.sourceLocales?.pl?.meaning,
   };
   const dailyPhraseImage = DAILY_PHRASE_IMAGES[themeMode] ?? DAILY_PHRASE_FALLBACK_IMAGE;
-  const revealStyle = {
-    opacity: revealAnim,
-    transform: [{ translateY: revealAnim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
+  const homeAdditional = variant === 'homeAdditional';
+  const homeAdditionalMeaning = phraseCopy.meaning || phrase.meaning;
+
+  const openDetails = () => {
+    setDetailsVisible(true);
+    updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }], { studyTarget }).catch(() => {});
+    checkAchievements({ type: 'daily_phrase', action: 'read', studyTarget }).catch(() => {});
   };
 
-  if (USE_EDITORIAL_DAILY_PHRASE) {
-    return (
-      <TouchableOpacity onPress={() => {
-        const opening = !expanded;
-        setExpanded(opening);
-        if (opening) {
-          updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }], { studyTarget }).catch(() => {});
-          checkAchievements({ type: 'daily_phrase', action: 'read', studyTarget }).catch(() => {});
-        }
-      }} activeOpacity={0.9}>
-        <View style={[
-          styles.editorialContainer,
+  const closeDetails = () => setDetailsVisible(false);
+
+  return (
+    <>
+      <Pressable
+        onPress={openDetails}
+        accessibilityRole="button"
+        accessibilityLabel={title}
+        style={({ pressed }) => [
+          homeAdditional ? styles.homeAdditionalPlaque : styles.plaque,
           {
             backgroundColor: t.bgCard,
             borderColor: t.border,
+            shadowColor: t.accent,
           },
-        ]}>
-          <View style={styles.editorialHeader}>
-            <View style={[styles.editorialIconBox, { backgroundColor: t.bgSurface2 }]}>
-              {dailyPhraseImage ? (
-                <Image source={dailyPhraseImage} style={{ width: 52, height: 52 }} resizeMode="contain" />
-              ) : (
-                <Ionicons name="chatbubble-ellipses" size={24} color={t.textMuted} />
-              )}
-            </View>
-            <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={[styles.editorialKicker, { color: t.textMuted, fontSize: f.caption }]}>
-                {triLang(lang, {
-                  uk: 'Вислів дня',
-                  ru: 'Фраза дня',
-                  es: 'Frase del día',
-                  'pt-BR': 'Frase do dia',
-                  vi: 'Cụm từ hôm nay',
-                  id: 'Frasa hari ini',
-                  tr: 'Günün ifadesi',
-                  pl: 'Fraza dnia',
-                })}
-              </Text>
-            </View>
-            <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={19} color={t.textMuted} />
+          pressed && styles.pressed,
+        ]}
+      >
+        {!homeAdditional && (
+          <View style={[styles.plaqueIcon, { backgroundColor: t.bgSurface2 }]}>
+            {dailyPhraseImage ? (
+              <Image source={dailyPhraseImage} style={styles.iconImage} resizeMode="contain" />
+            ) : (
+              <Ionicons name="chatbubble-ellipses-outline" size={22} color={t.textMuted} />
+            )}
           </View>
-
-          <Animated.View style={[styles.editorialPhraseWrap, revealStyle]}>
-            <Text style={[styles.editorialPhrase, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
-              {phrase.english}
+        )}
+        <View style={styles.plaqueCopy}>
+          <Text style={[homeAdditional ? styles.homeAdditionalTitle : styles.plaqueTitle, { color: homeAdditional ? t.textPrimary : t.textMuted, fontSize: homeAdditional ? Math.max(20, f.bodyLg) : f.caption }]} numberOfLines={1}>
+            {title}
+          </Text>
+          <Text style={[homeAdditional ? styles.homeAdditionalPhrase : styles.plaquePhrase, { color: t.textPrimary, fontSize: homeAdditional ? Math.max(25, f.h2) : f.body }]} numberOfLines={homeAdditional ? 1 : 2} adjustsFontSizeToFit={homeAdditional} minimumFontScale={0.82}>
+            {phrase.english}
+          </Text>
+          {homeAdditional && (
+            <Text style={[styles.homeAdditionalSub, { color: t.textMuted, fontSize: Math.max(14, f.label) }]} numberOfLines={1}>
+              {homeAdditionalMeaning}
             </Text>
-          </Animated.View>
+          )}
+        </View>
+      </Pressable>
 
-          {expanded && (
-            <Animated.View style={[styles.editorialExpanded, revealStyle]}>
-              <View style={[styles.editorialDivider, { backgroundColor: t.border }]} />
+      <Modal
+        visible={detailsVisible}
+        transparent
+        animationType="none"
+        statusBarTranslucent
+        onRequestClose={closeDetails}
+      >
+        <View style={styles.modalRoot}>
+          <Pressable style={styles.backdrop} onPress={closeDetails} />
+          <View
+            style={[
+              styles.sheet,
+              {
+                backgroundColor: t.bgCard,
+                borderColor: t.border,
+                shadowColor: t.accent,
+              },
+            ]}
+          >
+            <View style={styles.sheetHeader}>
+              <View style={[styles.sheetIcon, { backgroundColor: t.bgSurface2 }]}>
+                {dailyPhraseImage ? (
+                  <Image source={dailyPhraseImage} style={styles.sheetIconImage} resizeMode="contain" />
+                ) : (
+                  <Ionicons name="chatbubble-ellipses-outline" size={24} color={t.textMuted} />
+                )}
+              </View>
+              <View style={styles.sheetTitleWrap}>
+                <Text style={[styles.sheetKicker, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
+                  {title}
+                </Text>
+                <Text style={[styles.sheetPhrase, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
+                  {phrase.english}
+                </Text>
+              </View>
+              <Pressable
+                onPress={closeDetails}
+                hitSlop={8}
+                accessibilityRole="button"
+                accessibilityLabel="Close"
+                style={({ pressed }) => [
+                  styles.closeButton,
+                  { backgroundColor: t.bgSurface2 },
+                  pressed && styles.pressed,
+                ]}
+              >
+                <Ionicons name="close" size={20} color={t.textMuted} />
+              </Pressable>
+            </View>
 
-              <View style={styles.editorialSection}>
-                <Text style={[styles.editorialLabel, { color: t.textMuted, fontSize: f.caption }]}>
+            <ScrollView
+              style={styles.sheetScroll}
+              contentContainerStyle={styles.sheetScrollContent}
+              showsVerticalScrollIndicator={false}
+            >
+              <View style={[styles.detailBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
+                <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                   {labelLiteral}
                 </Text>
-                <Text style={[styles.editorialBody, { color: t.textPrimary, fontSize: f.body }]}>
-                  {phraseLiteral}
+                <Text style={[styles.detailText, { color: t.textPrimary, fontSize: f.body }]}>
+                  {phraseCopy.literal}
                 </Text>
               </View>
 
-              <View style={styles.editorialSection}>
-                <Text style={[styles.editorialLabel, { color: t.textMuted, fontSize: f.caption }]}>
+              <View style={[styles.detailBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
+                <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                   {labelMeaning}
                 </Text>
-                <Text style={[styles.editorialBody, { color: t.textPrimary, fontSize: f.body }]}>
-                  {phraseMeaning}
+                <Text style={[styles.detailText, { color: t.textPrimary, fontSize: f.body }]}>
+                  {phraseCopy.meaning}
                 </Text>
               </View>
 
-              <View style={[styles.editorialDivider, { backgroundColor: t.border, marginTop: 2 }]} />
-              <Text style={[styles.editorialStory, { color: t.textSecond, fontSize: f.body }]}>
-                {phraseText}
+              <Text style={[styles.storyText, { color: t.textSecond, fontSize: f.body }]}>
+                {phraseCopy.text}
               </Text>
+            </ScrollView>
 
-              {phrase.allowSave !== false && (
-              <View style={{ marginTop: 14, alignItems: 'flex-end' }}>
+            {phrase.allowSave !== false && (
+              <View style={[styles.saveRow, { borderTopColor: t.border }]}>
                 <AddToFlashcard
                   en={phrase.english}
                   ru={phrase.meaning}
@@ -200,7 +253,7 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
                   source="daily_phrase"
                   sourceId={phrase.id || phrase.date}
                   studyTarget={studyTarget}
-                  size={22}
+                  size={24}
                   literalRu={phrase.literal}
                   literalUk={phrase.literal_uk}
                   literalEs={phrase.literal_es}
@@ -212,224 +265,182 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
                   exampleEs={phrase.text_es}
                 />
               </View>
-              )}
-            </Animated.View>
-          )}
-        </View>
-      </TouchableOpacity>
-    );
-  }
-
-  return (
-    <TouchableOpacity onPress={() => {
-      const opening = !expanded;
-      setExpanded(opening);
-      if (opening) {
-        updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }], { studyTarget }).catch(() => {});
-        checkAchievements({ type: 'daily_phrase', action: 'read', studyTarget }).catch(() => {});
-      }
-    }} activeOpacity={0.9}>
-      <View style={[styles.container, { backgroundColor: t.bgCard, borderColor: t.accent }]}>
-        {/* Decorative background dots */}
-        <View style={[styles.decorDot, { backgroundColor: t.accent + '15', top: -20, right: -20 }]} />
-        <View style={[styles.decorDot, { backgroundColor: t.accent + '08', bottom: -15, left: -15 }]} />
-
-        {/* Header */}
-        <View style={styles.header}>
-          <View style={{ alignItems: 'center', justifyContent: 'center', width: 52, height: 52, borderRadius: 14, backgroundColor: 'transparent' }}>
-            {dailyPhraseImage ? (
-              <Image source={dailyPhraseImage} style={{ width: 52, height: 52 }} resizeMode="contain" />
-            ) : (
-              <Ionicons name="chatbubble-ellipses" size={24} color={t.accent} />
             )}
           </View>
-          <View style={{ flex: 1, marginLeft: 12 }}>
-            <Text style={[styles.title, { color: t.accent, fontSize: f.sub }]}>{triLang(lang, {
-              uk: 'ВИСЛІВ ДНЯ',
-              ru: 'ФРАЗА ДНЯ',
-              es: 'FRASE DEL DÍA',
-              'pt-BR': 'FRASE DO DIA',
-              vi: 'CỤM TỪ HÔM NAY',
-              id: 'FRASA HARI INI',
-              tr: 'GÜNÜN İFADESİ',
-              pl: 'FRAZA DNIA',
-            })}</Text>
-          </View>
-          <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={20} color={t.accent} />
         </View>
-
-        {/* Divider */}
-        <View style={{ height: 1, backgroundColor: t.accent + '20', marginVertical: 12 }} />
-
-        {/* English phrase */}
-        <Text style={[styles.englishText, { color: t.textPrimary, fontSize: f.body }]}>
-          {`"${phrase.english}"`}
-        </Text>
-
-        {/* Expanded content */}
-        {expanded && (
-          <View style={{ marginTop: 14 }}>
-            <View style={{ height: 1, backgroundColor: t.accent + '20', marginBottom: 14 }} />
-
-            {/* Literal */}
-            <View style={{ marginBottom: 10 }}>
-              <Text style={[styles.label, { color: t.accent, fontSize: f.sub }]}>
-                {labelLiteral}:
-              </Text>
-              <Text style={[styles.bodyText, { color: t.textPrimary, opacity: 0.7, fontSize: f.body }]}>
-                {phraseLiteral}
-              </Text>
-            </View>
-
-            {/* Meaning */}
-            <View style={{ marginBottom: 14 }}>
-              <Text style={[styles.label, { color: t.accent, fontSize: f.sub }]}>
-                {labelMeaning}:
-              </Text>
-              <Text style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}>
-                {phraseMeaning}
-              </Text>
-            </View>
-
-            {/* Divider */}
-            <View style={{ height: 1, backgroundColor: t.accent + '15', marginBottom: 14 }} />
-
-            {/* Story text */}
-            <Text style={[styles.storyText, { color: t.textPrimary, opacity: 0.75, fontSize: f.body }]}>
-              {phraseText}
-            </Text>
-
-            {/* Save button */}
-            {phrase.allowSave !== false && (
-            <View style={{ marginTop: 12, alignItems: 'flex-end' }}>
-              <AddToFlashcard
-                en={phrase.english}
-                ru={phrase.meaning}
-                uk={phrase.meaning_uk}
-                es={phrase.meaning_es}
-                sourceLocales={flashcardSourceLocales}
-                source="daily_phrase"
-                sourceId={phrase.id || phrase.date}
-                size={22}
-                literalRu={phrase.literal}
-                literalUk={phrase.literal_uk}
-                literalEs={phrase.literal_es}
-                explanationRu={phrase.meaning}
-                explanationUk={phrase.meaning_uk}
-                explanationEs={phrase.meaning_es}
-                exampleRu={phrase.text}
-                exampleUk={phrase.text_uk}
-                exampleEs={phrase.text_es}
-              />
-            </View>
-            )}
-          </View>
-        )}
-      </View>
-    </TouchableOpacity>
+      </Modal>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  editorialContainer: {
-    borderRadius: 18,
-    padding: 16,
+  placeholder: {
+    minHeight: 88,
     marginHorizontal: 16,
     marginVertical: 12,
-    borderWidth: 1,
-    overflow: 'hidden',
+    borderRadius: 18,
   },
-  editorialHeader: {
+  plaque: {
+    minHeight: 86,
+    marginHorizontal: 16,
+    marginVertical: 12,
+    borderRadius: 18,
+    borderWidth: 1,
+    padding: 14,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
+    shadowOpacity: 0.08,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 2,
   },
-  editorialIconBox: {
-    width: 58,
-    height: 58,
+  homeAdditionalPlaque: {
+    minHeight: 134,
+    marginHorizontal: 8,
+    marginTop: 10,
+    marginBottom: 16,
+    borderRadius: 24,
+    borderWidth: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 17,
+    shadowOpacity: 0.08,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 2,
+  },
+  pressed: {
+    opacity: 0.78,
+  },
+  plaqueIcon: {
+    width: 54,
+    height: 54,
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  editorialKicker: {
-    fontWeight: '800',
-    letterSpacing: 0.7,
-    textTransform: 'uppercase',
+  iconImage: {
+    width: 48,
+    height: 48,
   },
-  editorialPhraseWrap: {
-    paddingTop: 16,
-  },
-  editorialPhrase: {
-    fontWeight: '800',
-    lineHeight: 27,
-  },
-  editorialExpanded: {
-    marginTop: 14,
-  },
-  editorialDivider: {
-    height: 1,
-    opacity: 0.7,
-    marginBottom: 14,
-  },
-  editorialSection: {
-    marginBottom: 13,
-  },
-  editorialLabel: {
-    fontWeight: '800',
-    letterSpacing: 0.5,
-    textTransform: 'uppercase',
-    marginBottom: 5,
-  },
-  editorialBody: {
-    fontWeight: '500',
-    lineHeight: 22,
-  },
-  editorialStory: {
-    fontWeight: '400',
-    lineHeight: 22,
-    marginTop: 13,
-  },
-  container: {
-    borderRadius: 20,
-    padding: 16,
-    marginHorizontal: 16,
-    marginVertical: 12,
-    borderWidth: 1.5,
-    overflow: 'hidden',
-  },
-  decorDot: {
-    position: 'absolute',
-    borderRadius: 50,
-    width: 80,
-    height: 80,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  title: {
-    fontWeight: '700',
-    letterSpacing: 1,
+  plaqueCopy: {
     flex: 1,
+    minWidth: 0,
   },
-  englishText: {
+  plaqueTitle: {
+    fontWeight: '800',
+    letterSpacing: 0.6,
+    marginBottom: 5,
+    textTransform: 'uppercase',
+  },
+  plaquePhrase: {
+    fontWeight: '800',
+    lineHeight: 22,
+  },
+  homeAdditionalTitle: {
+    fontWeight: '900',
+    lineHeight: 26,
+    marginBottom: 8,
+  },
+  homeAdditionalPhrase: {
+    fontWeight: '900',
+    lineHeight: 34,
+  },
+  homeAdditionalSub: {
+    fontWeight: '800',
+    lineHeight: 19,
+    marginTop: 5,
+  },
+  modalRoot: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 18,
+  },
+  backdrop: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.58)',
+  },
+  sheet: {
+    width: '100%',
+    maxHeight: '84%',
+    borderRadius: 22,
+    borderWidth: 1,
+    overflow: 'hidden',
+    shadowOpacity: 0.22,
+    shadowRadius: 24,
+    shadowOffset: { width: 0, height: 12 },
+    elevation: 16,
+  },
+  sheetHeader: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+    padding: 16,
+    paddingBottom: 12,
+  },
+  sheetIcon: {
+    width: 56,
+    height: 56,
+    borderRadius: 17,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  sheetIconImage: {
+    width: 50,
+    height: 50,
+  },
+  sheetTitleWrap: {
+    flex: 1,
+    minWidth: 0,
+  },
+  sheetKicker: {
+    fontWeight: '900',
+    letterSpacing: 0.7,
+    marginBottom: 7,
+    textTransform: 'uppercase',
+  },
+  sheetPhrase: {
+    fontWeight: '900',
+    lineHeight: 28,
+  },
+  closeButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  sheetScroll: {
+    maxHeight: 390,
+  },
+  sheetScrollContent: {
+    paddingHorizontal: 16,
+    paddingBottom: 16,
+    gap: 12,
+  },
+  detailBlock: {
+    borderRadius: 16,
+    borderWidth: 1,
+    padding: 13,
+  },
+  detailLabel: {
+    fontWeight: '900',
+    letterSpacing: 0.5,
+    marginBottom: 5,
+    textTransform: 'uppercase',
+  },
+  detailText: {
     fontWeight: '600',
     lineHeight: 22,
-    marginTop: 8,
-  },
-  label: {
-    fontWeight: '700',
-    marginBottom: 3,
-    letterSpacing: 0.3,
-  },
-  bodyText: {
-    fontWeight: '500',
-    lineHeight: 21,
   },
   storyText: {
-    fontWeight: '400',
-    lineHeight: 22,
-    fontStyle: 'italic',
+    fontWeight: '500',
+    lineHeight: 23,
+  },
+  saveRow: {
+    borderTopWidth: 1,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    alignItems: 'flex-end',
   },
 });

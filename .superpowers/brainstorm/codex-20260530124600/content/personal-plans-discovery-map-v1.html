@@ -1,0 +1,81 @@
+<h2>Personal Plans: production map</h2>
+<p class="subtitle">What already exists in the real app, and where the plan pipeline can connect without deleting old flows.</p>
+
+<div class="section">
+  <div class="mockup">
+    <div class="mockup-header">Existing app foundations</div>
+    <div class="mockup-body">
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+        <div class="placeholder">
+          <strong>Onboarding</strong><br>
+          components/onboarding.tsx<br>
+          current flow: beta/welcome/demo/name/streak/auth
+        </div>
+        <div class="placeholder">
+          <strong>Premium</strong><br>
+          premium_modal + RevenueCat<br>
+          monthly/yearly/trial already supported
+        </div>
+        <div class="placeholder">
+          <strong>Daily tasks</strong><br>
+          app/daily_tasks.ts<br>
+          dynamic visible tasks + progress rows
+        </div>
+        <div class="placeholder">
+          <strong>Mistakes</strong><br>
+          mistake_log + phrase_analytics<br>
+          weak categories, lessons, phrases
+        </div>
+        <div class="placeholder">
+          <strong>Trainer</strong><br>
+          trainer_store + diagnosis trainings<br>
+          weak/hard/smart selection already exists
+        </div>
+        <div class="placeholder">
+          <strong>Flashcards</strong><br>
+          saved cards + swipe memory<br>
+          due/weak/fresh signals exist
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="mockup">
+    <div class="mockup-header">Proposed Personal Plans spine</div>
+    <div class="mockup-body">
+      <div style="display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr;gap:10px;align-items:center">
+        <div class="placeholder"><strong>Plan profile</strong><br>goal, level, minutes, first phrase</div>
+        <div style="text-align:center;font-size:28px">-></div>
+        <div class="placeholder"><strong>Signal collector</strong><br>lessons, quiz, mistakes, cards, trainer, daily activity</div>
+        <div style="text-align:center;font-size:28px">-></div>
+        <div class="placeholder"><strong>Daily generator</strong><br>main task, reinforcement, weak spot, optional extra</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="options">
+  <div class="option" data-choice="mvp-core" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Core Pipeline First</h3>
+      <p>Design storage, plan types, signal collection, generator, and tests before adding production screens.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="onboarding-first" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Onboarding Flow First</h3>
+      <p>Build the production onboarding branch and paywall handoff, then fill in the dynamic generator.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="vertical-slice" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Thin Vertical Slice</h3>
+      <p>One real plan type from onboarding to a locked plan screen with a minimal but working generator.</p>
+    </div>
+  </div>
+</div>

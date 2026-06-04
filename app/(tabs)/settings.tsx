@@ -17,6 +17,7 @@ import ReportErrorButton from '../../components/ReportErrorButton';
 import RegistrationPromptModal from '../../components/RegistrationPromptModal';
 import ScreenGradient from '../../components/ScreenGradient';
 import DeleteAccountConfirmModal from '../../components/DeleteAccountConfirmModal';
+import CompassDepthSurface from '../../components/CompassDepthSurface';
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
 import { DebugLogger } from '../debug-logger';
 import { useLang } from '../../components/LangContext';
@@ -45,6 +46,7 @@ import {
 } from '../study_target';
 import { triLang, type Lang } from '../../constants/i18n';
 import { SETTINGS_TESTERS_ROUTE } from '../../constants/devRoutes';
+import { COMPASS_RICH, compassShadow } from '../../constants/compassTheme';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
 import { reserveName } from '../firestore_leaderboard';
 import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
@@ -52,10 +54,27 @@ import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 
+function parseStoredExpiryMs(value: string | null | undefined): number {
+  const n = Number(value || 0);
+  return Number.isFinite(n) ? Math.max(0, Math.floor(n)) : 0;
+}
+
+function formatDateTimeShort(ms: number): string {
+  if (!ms) return '';
+  const d = new Date(ms);
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const year = String(d.getFullYear());
+  const hour = String(d.getHours()).padStart(2, '0');
+  const minute = String(d.getMinutes()).padStart(2, '0');
+  return `${day}.${month}.${year}, ${hour}:${minute}`;
+}
+
 export default function SettingsMain() {
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const { theme: t, isDark, themeMode, fontSize, setFontSize, f } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
   /**
    * Ocean / Sakura — это «светлые карточки на тёмном цветном фоне». Темы
    * рассчитаны на отрисовку контента ВНУТРИ светлой карточки (`t.bgCard`),
@@ -170,8 +189,9 @@ export default function SettingsMain() {
   const [nameReady, setNameReady] = useState(false);
   const [nameModal, setNameModal] = useState(false);
   const [newName, setNewName]     = useState('');
-  const { isPremium, isVip } = usePremium();
+  const { isPremium, isVip, hasPremiumAccess } = usePremium();
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
+  const [vipUntilMs, setVipUntilMs] = useState(0);
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
   /** Пока false — getLinkedAuthInfo ещё не завершился (избегаем кадра «Не привязан»). */
   const [authReady, setAuthReady] = useState(false);
@@ -217,6 +237,7 @@ export default function SettingsMain() {
       coral: { ru: 'Корал', uk: 'Корал', es: 'Coral', 'pt-BR': 'Coral', vi: 'San hô', id: 'Koral', tr: 'Mercan', pl: 'Koral' },
       minimalLight: { ru: 'Скетч', uk: 'Скетч', es: 'Boceto', 'pt-BR': 'Esboço', vi: 'Phác thảo', id: 'Sketsa', tr: 'Eskiz', pl: 'Szkic' },
       minimalDark: { ru: 'Графит', uk: 'Графіт', es: 'Grafito', 'pt-BR': 'Grafite', vi: 'Than chì', id: 'Grafit', tr: 'Grafit', pl: 'Grafit' },
+      compass: { ru: 'Компас', uk: 'Компас', es: 'Brújula', 'pt-BR': 'Bússola', vi: 'La bàn', id: 'Kompas', tr: 'Pusula', pl: 'Kompas' },
     };
     const entry = names[themeMode] ?? names.minimalDark;
     return entry[lang];
@@ -224,14 +245,15 @@ export default function SettingsMain() {
 
   useEffect(() => {
     let cancelled = false;
-    AsyncStorage.multiGet(['user_name', 'premium_plan', 'haptics_tap', 'user_total_xp'])
+    AsyncStorage.multiGet(['user_name', 'premium_plan', 'vip_until', 'vip_expiry', 'haptics_tap', 'user_total_xp'])
       .then(pairs => {
         if (cancelled) return;
         if (pairs[0][1]) {
           setUserName(pairs[0][1]);
         }
         setPremiumPlan(pairs[1][1]);
-        if (pairs[2][1] !== null) setHapticTap(pairs[2][1] !== 'false');
+        setVipUntilMs(parseStoredExpiryMs(pairs[2][1] ?? pairs[3][1]));
+        if (pairs[4][1] !== null) setHapticTap(pairs[4][1] !== 'false');
         setNameReady(true);
       })
       .catch(() => {
@@ -239,6 +261,20 @@ export default function SettingsMain() {
       });
     return () => { cancelled = true; };
   }, [activeIdx]); // обновляем при переключении на этот таб
+
+  useEffect(() => {
+    const refreshVipUntil = () => {
+      AsyncStorage.multiGet(['vip_until', 'vip_expiry'])
+        .then(pairs => setVipUntilMs(parseStoredExpiryMs(pairs[0][1] ?? pairs[1][1])))
+        .catch(() => {});
+    };
+    const onVipActivated = DeviceEventEmitter.addListener('vip_activated', refreshVipUntil);
+    const onAccessChanged = DeviceEventEmitter.addListener('premium_access_changed', refreshVipUntil);
+    return () => {
+      onVipActivated.remove();
+      onAccessChanged.remove();
+    };
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -404,6 +440,10 @@ export default function SettingsMain() {
       }
     })();
   };
+
+  const vipExpiryText = vipUntilMs > 0
+    ? `${L('Действует до', 'Діє до', 'Active until', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(vipUntilMs)}`
+    : L('VIP без срока окончания', 'VIP без дати завершення', 'VIP has no end date', 'VIP sem data de término', 'VIP không có ngày kết thúc', 'VIP tanpa tanggal akhir', 'VIP bitiş tarihi yok', 'VIP bez daty zakończenia');
 
   const Row = ({ icon, label, sub, onPress, right, danger, testID }: {
     icon: string; label: string; sub?: string;
@@ -732,11 +772,17 @@ export default function SettingsMain() {
               <Text testID="settings-vip-subtitle" style={{ color: vipActiveSub, fontSize: f.caption, marginTop: 2 }}>
                 {L('VIP аккаунт', 'VIP акаунт', 'Cuenta VIP', 'Conta VIP', 'Tài khoản VIP', 'Akun VIP', 'VIP hesap', 'Konto VIP')}
               </Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 6 }}>
+                <Ionicons name="time-outline" size={13} color={vipActiveSub} />
+                <Text testID="settings-vip-expiry" style={{ color: vipActiveSub, fontSize: f.caption, fontWeight: '800', flex: 1 }}>
+                  {vipExpiryText}
+                </Text>
+              </View>
             </View>
           </View>
         )}
-        {/* Premium — одна плашка: контекст уже учитывает DEV / FORCE_PREMIUM / RevenueCat */}
-        {isPremium ? (
+        {/* Premium — одна плашка: контекст уже учитывает DEV / FORCE_PREMIUM / RevenueCat / VIP */}
+        {hasPremiumAccess ? (
           <TouchableOpacity
             style={{
               flexDirection: 'row',
@@ -757,7 +803,9 @@ export default function SettingsMain() {
                 Premium {L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓
               </Text>
               <Text style={{ color: premiumActiveSub, fontSize: f.caption, marginTop: 2 }}>
-                {premiumPlan === 'yearly'
+                {isVip && !isPremium
+                  ? `${L('VIP доступ активен', 'VIP доступ активний', 'VIP access active', 'Acesso VIP ativo', 'Quyền VIP đang hoạt động', 'Akses VIP aktif', 'VIP erişim aktif', 'Dostęp VIP aktywny')} · ${vipExpiryText}`
+                  : premiumPlan === 'yearly'
                   ? L('Годовая подписка', 'Річна підписка', 'Suscripción anual', 'Assinatura anual', 'Gói hằng năm', 'Langganan tahunan', 'Yıllık abonelik', 'Subskrypcja roczna')
                   : premiumPlan === 'monthly'
                     ? L('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual', 'Assinatura mensal', 'Gói hằng tháng', 'Langganan bulanan', 'Aylık abonelik', 'Subskrypcja miesięczna')

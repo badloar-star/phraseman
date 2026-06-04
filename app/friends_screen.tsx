@@ -305,11 +305,6 @@ export default function FriendsScreen() {
         showFeedback(randomSelfFriendCodeMessage(L));
         return;
       }
-      if (lookup.source === 'referral_code') {
-        void import('./referral_bootstrap')
-          .then((m) => m.captureReferralCodeFromManualInput(codeNorm))
-          .catch(() => {});
-      }
       const result = await sendFriendRequest(lookup.uid);
       await trackActivity('friends:add_by_code_result', {
         feature: 'friends',

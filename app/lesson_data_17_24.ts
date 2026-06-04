@@ -1413,6 +1413,7 @@ export const LESSON_18_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson18_phrase_20',
     english: "Clean your room",
+    alternatives: ["Clean up your room"],
     russian: "Убери свою комнату",
     ukrainian: "Приберись у своїй кімнаті",
     spanish: "Limpia tu habitación.",
@@ -2615,6 +2616,7 @@ export const LESSON_19_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson19_phrase_25',
     english: "Put the documents inside the bag",
+    alternatives: ["Put the documents into the bag"],
     russian: "Положи документы внутрь сумки",
     ukrainian: "Поклади документи всередину сумки",
     spanish: "Pon los documentos dentro de la bolsa.",
@@ -6216,6 +6218,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_2',
     english: "Somebody knocked on the door",
+    alternatives: ["Someone knocked on the door"],
     russian: "Кто-то постучал в дверь",
     ukrainian: "Хтось постукав у двері",
     spanish: "Alguien llamó a la puerta.",
@@ -6237,6 +6240,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_3',
     english: "No one knows it",
+    alternatives: ["Nobody knows it", "No one knows this", "Nobody knows this"],
     russian: "Никто этого не знает",
     ukrainian: "Ніхто цього не знає",
     spanish: "Nadie lo sabe.",
@@ -6353,6 +6357,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_10',
     english: "Did anyone call you?",
+    alternatives: ["Did anybody call you?"],
     russian: "Кто-нибудь звонил тебе?",
     ukrainian: "Хтось дзвонив тобі?",
     spanish: "¿Te llamó alguien?",
@@ -6371,6 +6376,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_11',
     english: "Did anybody see him?",
+    alternatives: ["Did anyone see him?"],
     russian: "Кто-нибудь видел его?",
     ukrainian: "Хтось бачив його?",
     spanish: "¿Alguien lo vio?",
@@ -6533,6 +6539,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_20',
     english: "No one needs help",
+    alternatives: ["Nobody needs help"],
     russian: "Никому не нужна помощь",
     ukrainian: "Нікому не потрібна допомога",
     spanish: "Nadie necesita ayuda.",
@@ -6689,6 +6696,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_29',
     english: "Did someone take my phone?",
+    alternatives: ["Did somebody take my phone?"],
     russian: "Кто-то взял мой телефон?",
     ukrainian: "Хтось взяв мій телефон?",
     spanish: "¿Alguien tomó mi teléfono?",
@@ -6748,6 +6756,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_32',
     english: "Someone found your keys",
+    alternatives: ["Somebody found your keys", "Someone found your keys"],
     russian: "Кто-то нашел твои ключи",
     ukrainian: "Хтось знайшов твої ключі",
     spanish: "Alguien encontró tus llaves.",
@@ -6877,6 +6886,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_39',
     english: "Somebody told me a story",
+    alternatives: ["Someone told me a story"],
     russian: "Кто-то рассказал мне историю",
     ukrainian: "Хтось розповів мені історію",
     spanish: "Alguien me contó una historia.",
@@ -6898,6 +6908,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_40',
     english: "No one told me anything",
+    alternatives: ["Nobody told me anything"],
     russian: "Никто мне ничего не сказал",
     ukrainian: "Ніхто мені нічого не сказав",
     spanish: "Nadie me dijo nada.",
@@ -6917,6 +6928,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_41',
     english: "Did anybody bring documents?",
+    alternatives: ["Did anyone bring documents?"],
     russian: "Кто-нибудь принес документы?",
     ukrainian: "Хтось приніс документи?",
     spanish: "¿Alguien trajo documentos?",
@@ -6935,6 +6947,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_42',
     english: "Somebody brought documents",
+    alternatives: ["Someone brought documents"],
     russian: "Кто-то принес документы",
     ukrainian: "Хтось приніс документи",
     spanish: "Alguien trajo documentos.",

@@ -102,6 +102,13 @@ describe('isCorrectAnswer — punctuation and unicode confusables', () => {
       'I seldom get out of this old building at night',
     )).toBe(true);
   });
+
+  it('accepts common indefinite pronoun pairs as equivalent answers', () => {
+    expect(isCorrectAnswer('somebody called me', 'someone called me')).toBe(true);
+    expect(isCorrectAnswer('did anybody call you', 'did anyone call you')).toBe(true);
+    expect(isCorrectAnswer('everybody helped us', 'everyone helped us')).toBe(true);
+    expect(isCorrectAnswer('no one is outside', 'nobody is outside')).toBe(true);
+  });
 });
 
 describe('toAmE — direct BrE → AmE', () => {

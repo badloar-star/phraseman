@@ -9,6 +9,7 @@ type Props = {
   fontSize: number;
   active?: boolean;
   fontWeight?: '700' | '800' | '900';
+  iconScale?: number;
 };
 
 const LEAGUE_CROWN_ICON = require('../assets/images/league/league_crown.webp');
@@ -18,6 +19,7 @@ export default function LeagueCrownName({
   fontSize,
   active = true,
   fontWeight = '900',
+  iconScale = 1.25,
 }: Props) {
   const { themeMode } = useTheme();
   const crownColor = themeMode === 'gold'
@@ -32,14 +34,16 @@ export default function LeagueCrownName({
     );
   }
 
+  const iconSize = Math.max(18, Math.round(fontSize * iconScale));
+
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, minWidth: 0 }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
       <Image
         source={LEAGUE_CROWN_ICON}
         resizeMode="contain"
         style={{
-          width: Math.max(15, Math.round(fontSize * 1.05)),
-          height: Math.max(15, Math.round(fontSize * 1.05)),
+          width: iconSize,
+          height: iconSize,
         }}
       />
       <Text

@@ -31,6 +31,22 @@ describe('premium modal VIP separation purchase guard', () => {
     expect(source).toContain('!legacyAdminGrant');
   });
 
+  it('treats admin VIP storage as active Premium management state', () => {
+    const resolverStart = source.indexOf('const resolveCurrentPremiumState = useCallback');
+    expect(resolverStart).toBeGreaterThan(-1);
+    const resolver = source.slice(resolverStart, source.indexOf('const loadPremiumPackages = useCallback', resolverStart));
+
+    expect(source).toContain('getVerifiedVipStatus');
+    expect(resolver).toContain("'vip_active'");
+    expect(resolver).toContain("'vip_plan'");
+    expect(resolver).toContain("'vip_until'");
+    expect(resolver).toContain("'vip_admin_override'");
+    expect(resolver).toContain('const isAdmin = verifiedVip || vipStorageActive || legacyAdminActive');
+    expect(resolver).toContain('verifiedReal || hasLocalActive || isAdmin');
+    expect(resolver).toContain('plan: isAdmin ? adminPlan : plan');
+    expect(resolver).toContain('expiry: isAdmin ? adminExpiry : expiry');
+  });
+
   it('loads store prices through RevenueCat init and keeps the CTA retryable while prices are missing', () => {
     const loaderStart = source.indexOf('const loadPremiumPackages = useCallback');
     expect(loaderStart).toBeGreaterThan(-1);

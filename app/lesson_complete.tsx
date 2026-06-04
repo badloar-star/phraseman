@@ -679,6 +679,9 @@ export default function LessonComplete() {
 
         // Build notification queue
         const queue: Notif[] = [];
+        if (params.unlocked === '1' && lessonId < 32) {
+          queue.push({ kind: 'lesson_unlock', unlockedLessonId: lessonId + 1 });
+        }
         if (medalUpgraded) {
           queue.push({ kind: 'medal', medalTier: newTier });
         }
@@ -718,7 +721,7 @@ export default function LessonComplete() {
       clearLessonCompleteNotifTimer();
       bounce.stop();
     };
-  }, [bounceAnim, canApplyCompletionRewards, clearLessonCompleteNotifTimer, fadeAnim, grantBonus, lessonId, router, scaleAnim, scheduleActiveNotif, studyTarget]);
+  }, [bounceAnim, canApplyCompletionRewards, clearLessonCompleteNotifTimer, fadeAnim, grantBonus, lessonId, params.unlocked, router, scaleAnim, scheduleActiveNotif, studyTarget]);
 
   // ── Триггер регистрационной модалки после первого урока ────────────────────
   // Показывается ровно один раз: только для урока 1, только если юзер ещё не залогинен

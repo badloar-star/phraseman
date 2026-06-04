@@ -3,14 +3,9 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 
-const MAX_POINTS = 1_000_000_000;
-const MAX_WEEK_POINTS = 50_000_000;
-const MAX_SINGLE_SCORE_JUMP = 50_000;
-const MAX_INITIAL_POINTS = 250_000;
 const MAX_DAILY7_XP = 500_000;
 const MAX_DAILY7_TIME_MS = 7 * 24 * 60 * 60 * 1000;
 const NAME_INDEX = 'name_index';
-const MAX_PROFILE_CARD_LEVEL = 5;
 
 function sanitizeString(value: unknown, max: number): string {
   return String(value ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim().slice(0, max);
@@ -26,11 +21,6 @@ function normalizeName(value: unknown): { name: string; nameLower: string } {
   return { name, nameLower: name.toLowerCase() };
 }
 
-function fallbackNameForUid(stableUid: string): { name: string; nameLower: string } {
-  const suffix = stableUid.replace(/[^A-Za-z0-9]/g, '').slice(0, 8) || 'user';
-  return normalizeName(`Player_${suffix}`);
-}
-
 function assertValidName(name: string): void {
   if (name.length < 2 || name.length > 32) {
     throw new HttpsError('invalid-argument', 'name_length');
@@ -38,15 +28,6 @@ function assertValidName(name: string): void {
   if (/[\r\n\t]/.test(name) || /https?:\/\//i.test(name) || /www\./i.test(name) || /[@#]/.test(name)) {
     throw new HttpsError('invalid-argument', 'name_invalid');
   }
-}
-
-function getWeekKey(date = new Date()): string {
-  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-  const day = d.getUTCDay() || 7;
-  d.setUTCDate(d.getUTCDate() + 4 - day);
-  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-  const week = Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
-  return `${d.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
 }
 
 async function resolveStableUid(
@@ -98,133 +79,6 @@ async function txNameOwnerIsActive(
   if (userSnap.exists && userSnap.data()?.identityHidden !== true) return true;
   return false;
 }
-
-export const leaderboardPushMyScore = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
-  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
-
-  const db = admin.firestore();
-  const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid, request.data?.stableId);
-  await assertNotBanned(db, stableUid);
-
-  const requestedName = normalizeName(request.data?.name);
-  if (!requestedName.name) throw new HttpsError('invalid-argument', 'name_required');
-
-  const requestedPoints = Math.max(0, Math.min(MAX_POINTS, readInt(request.data?.points, 0)));
-  const requestedWeekPoints = Math.max(0, Math.min(MAX_WEEK_POINTS, readInt(request.data?.weekPoints, 0)));
-  const weekKey = getWeekKey();
-  const ref = db.collection('leaderboard').doc(stableUid);
-  const now = Date.now();
-  const sameName = await db.collection('leaderboard').where('nameLower', '==', requestedName.nameLower).limit(8).get();
-  const requestedNameTakenByOther = sameName.docs.some((d) => d.id !== stableUid && leaderboardDocIsVisible(d));
-
-  let written: Record<string, unknown> = {};
-  await db.runTransaction(async (tx) => {
-    const nameRef = db.collection(NAME_INDEX).doc(requestedName.nameLower);
-    const [snap, nameSnap] = await Promise.all([
-      tx.get(ref),
-      tx.get(nameRef),
-    ]);
-    const cur = snap.data() || {};
-    let safeName = requestedName;
-    const indexOwner = sanitizeString(nameSnap.data()?.uid, 180);
-    const requestedNameTaken =
-      requestedNameTakenByOther ||
-      (nameSnap.exists && indexOwner !== stableUid && await txNameOwnerIsActive(tx, db, indexOwner));
-    if (requestedNameTaken) {
-      const currentName = normalizeName(cur.name);
-      safeName = currentName.name && currentName.nameLower !== requestedName.nameLower
-        ? currentName
-        : fallbackNameForUid(stableUid);
-    }
-    const safeNameRef = safeName.nameLower === requestedName.nameLower
-      ? nameRef
-      : db.collection(NAME_INDEX).doc(safeName.nameLower);
-    if (safeName.nameLower !== requestedName.nameLower) {
-      const safeNameSnap = await tx.get(safeNameRef);
-      const safeIndexOwner = sanitizeString(safeNameSnap.data()?.uid, 180);
-      if (safeNameSnap.exists && safeIndexOwner !== stableUid && await txNameOwnerIsActive(tx, db, safeIndexOwner)) {
-        safeName = fallbackNameForUid(`${stableUid}${now}`);
-      }
-    }
-    const oldPoints = Math.max(0, readInt(cur.points, 0));
-    const oldWeekPoints = cur.weekKey === weekKey ? Math.max(0, readInt(cur.weekPoints, 0)) : 0;
-    const points = snap.exists
-      ? Math.max(oldPoints, Math.min(requestedPoints, oldPoints + MAX_SINGLE_SCORE_JUMP))
-      : Math.min(requestedPoints, MAX_INITIAL_POINTS);
-    const weekPoints = Math.max(oldWeekPoints, Math.min(requestedWeekPoints, oldWeekPoints + MAX_SINGLE_SCORE_JUMP));
-
-    written = {
-      name: safeName.name,
-      nameLower: safeName.nameLower,
-      points,
-      weekPoints,
-      weekKey,
-      lang: sanitizeString(request.data?.lang, 12) || 'ru',
-      avatar: sanitizeString(request.data?.avatar, 64) || null,
-      frame: sanitizeString(request.data?.frame, 64) || null,
-      aura: sanitizeString(request.data?.aura, 64) || null,
-      streak: Math.max(0, Math.min(100_000, readInt(request.data?.streak, 0))),
-      leagueId: Math.max(0, Math.min(50, readInt(request.data?.leagueId, 0))),
-      isPremium: request.data?.isPremium === true,
-      isVip: request.data?.isVip === true,
-      profileCardLevel: Math.max(0, Math.min(MAX_PROFILE_CARD_LEVEL, readInt(request.data?.profileCardLevel, 0))),
-      profileCardTheme: sanitizeString(request.data?.profileCardTheme, 32) || 'classic',
-      profileCardMotion: sanitizeString(request.data?.profileCardMotion, 32) || 'none',
-      profileCardPublicFocus: sanitizeString(request.data?.profileCardPublicFocus, 32) || 'balanced',
-      firebaseAuthUid: authUid,
-      updatedAt: now,
-    };
-    tx.set(db.collection(NAME_INDEX).doc(safeName.nameLower), {
-      uid: stableUid,
-      authUid,
-      name: safeName.name,
-      nameLower: safeName.nameLower,
-      updatedAt: now,
-    }, { merge: true });
-    tx.set(ref, written, { merge: true });
-  });
-
-  await db.collection('arena_profiles').doc(authUid).set({
-    courseTotalXp: written.points,
-    courseAvatar: written.avatar,
-    courseFrame: written.frame,
-    courseAura: written.aura,
-    courseIsPremium: written.isPremium,
-    courseIsVip: written.isVip,
-    courseProfileCardLevel: written.profileCardLevel,
-    courseProfileCardTheme: written.profileCardTheme,
-    courseProfileCardMotion: written.profileCardMotion,
-    courseProfileCardPublicFocus: written.profileCardPublicFocus,
-    courseDisplayAt: now,
-    mirrorStableId: stableUid,
-  }, { merge: true }).catch(() => {});
-
-  return { ok: true, points: written.points, weekPoints: written.weekPoints };
-});
-
-export const leaderboardUpdatePremium = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
-  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
-  const db = admin.firestore();
-  const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid, request.data?.stableId);
-  await assertNotBanned(db, stableUid);
-  const updates: Record<string, unknown> = { firebaseAuthUid: authUid, updatedAt: Date.now() };
-  const arenaUpdates: Record<string, unknown> = { courseDisplayAt: Date.now() };
-  if (Object.prototype.hasOwnProperty.call(request.data ?? {}, 'isPremium')) {
-    updates.isPremium = request.data?.isPremium === true;
-    arenaUpdates.courseIsPremium = updates.isPremium;
-  }
-  if (Object.prototype.hasOwnProperty.call(request.data ?? {}, 'isVip')) {
-    updates.isVip = request.data?.isVip === true;
-    arenaUpdates.courseIsVip = updates.isVip;
-  }
-  await Promise.all([
-    db.collection('leaderboard').doc(stableUid).set(updates, { merge: true }),
-    db.collection('arena_profiles').doc(authUid).set(arenaUpdates, { merge: true }),
-  ]);
-  return { ok: true };
-});
 
 export const leaderboardUpdateDailyAnalytics = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');

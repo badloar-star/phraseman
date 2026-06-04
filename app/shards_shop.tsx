@@ -38,6 +38,8 @@ import ContentWrap from '../components/ContentWrap';
 import PressableScale from '../components/PressableScale';
 import GoldBevel from '../components/GoldBevel';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
+import CompassBevel from '../components/CompassBevel';
+import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import { addShardsRaw, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { SHARDS_PACKS, totalShardsFromPack, type ShardsPack } from './shards_shop_catalog';
 import {
@@ -407,6 +409,15 @@ export default function ShardsShopScreen() {
   const router = useRouter();
   const { theme: t, f, isDark, themeMode, statusBarLight } = useTheme();
   const isGoldTheme = themeMode === 'gold';
+  const isCompassTheme = themeMode === 'compass';
+  const shopRadius = isCompassTheme ? 10 : 16;
+  const shopSmallRadius = isCompassTheme ? 7 : 12;
+  const shopIconRadius = isCompassTheme ? 9 : 14;
+  const shopAccent = isCompassTheme ? COMPASS_RICH.champagne : t.accent;
+  const shopAccentSoft = isCompassTheme ? COMPASS_RICH.cream : t.accent;
+  const shopAccentBorder = isCompassTheme ? COMPASS_RICH.hairlineStrong : `${t.accent}40`;
+  const shopCardBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard;
+  const shopSurfaceBg = isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface;
   const { width: winW, contentMaxW, insets } = useScreen();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -525,7 +536,7 @@ export default function ShardsShopScreen() {
       }),
     };
   }, [effectiveOs, lang]);
-  const params = useLocalSearchParams<{ need?: string; source?: string; tab?: string }>();
+  const params = useLocalSearchParams<{ need?: string; source?: string; tab?: string; returnTo?: string }>();
   /** Снимок нехватки из маршрута; сам по себе не обновляется после покупки. */
   const needFromRoute = useMemo(() => {
     const n = Number(params.need || 0);
@@ -567,7 +578,7 @@ export default function ShardsShopScreen() {
     }, [router]),
   );
 
-  const cardShadow = useMemo(() => getVolumetricShadow(themeMode, t, 2), [themeMode, t]);
+  const cardShadow = useMemo(() => isCompassTheme ? compassShadow(2) : getVolumetricShadow(themeMode, t, 2), [isCompassTheme, themeMode, t]);
 
   /** Явная ширина: в ScrollView на Android «100%»/stretch иногда даёт разную ширину строк по контенту. */
   const packCardWidth = useMemo(() => {
@@ -833,6 +844,15 @@ export default function ShardsShopScreen() {
     return Math.max(0, needFromRoute - gainedSinceOpen);
   }, [needFromRoute, balance]);
 
+  const returnedToReviveRef = useRef(false);
+  useEffect(() => {
+    if (params.source !== 'streak_revive') return;
+    if (needFromRoute <= 0 || remainingNeed > 0) return;
+    if (shopEntryBalanceRef.current === null || returnedToReviveRef.current) return;
+    returnedToReviveRef.current = true;
+    router.replace((params.returnTo === 'streak_stats' ? '/streak_stats' : '/(tabs)/home') as any);
+  }, [needFromRoute, params.returnTo, params.source, remainingNeed, router]);
+
   const needLine = useMemo(() => {
     if (remainingNeed <= 0) return null;
     return triLang(lang, {
@@ -1038,13 +1058,14 @@ export default function ShardsShopScreen() {
     const hasSubtitle = subtitle.trim().length > 0;
 
     const paywallMood = isPaywallAtmosphereMode(themeMode);
+    const shardVisualAccent = isCompassTheme ? COMPASS_RICH.champagne : paywallMood ? SHARD_TEAL : t.accent;
     const borderColor = isBest
-      ? (isGoldTheme ? GOLD_RICH.hairlineStrong : `${t.gold}55`)
+      ? (isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.hairlineStrong : `${t.gold}55`)
       : isPopular
-        ? (isGoldTheme ? GOLD_RICH.hairline : `${t.accent}50`)
+        ? (isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairline : `${t.accent}50`)
         : paywallMood
           ? (isGoldTheme ? GOLD_RICH.hairlineQuiet : `${t.accent}22`)
-          : t.border;
+          : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border;
 
     const hasRevenuePackage = !!pkg;
     const hasStorePrice = !!(pkg?.product?.priceString || priceHint?.priceString);
@@ -1081,9 +1102,9 @@ export default function ShardsShopScreen() {
             pl: 'Niedostępne',
           });
 
-    const ctaOnAccent = t.correctText;
+    const ctaOnAccent = isCompassTheme ? COMPASS_RICH.textDark : t.correctText;
     const accentSoft =
-      themeMode === 'neon' ? '#DFFF4A' : themeMode === 'dark' ? '#5DDC80' : `${t.accent}EB`;
+      isCompassTheme ? COMPASS_RICH.cream : themeMode === 'neon' ? '#DFFF4A' : themeMode === 'dark' ? '#5DDC80' : `${t.accent}EB`;
     const useLockIcon = isDevStoreBypass && !hasStorePrice;
 
     return (
@@ -1104,11 +1125,11 @@ export default function ShardsShopScreen() {
           <View
             style={{
               width: cardW,
-              borderRadius: 16,
+              borderRadius: shopRadius,
               borderWidth: 1,
               borderColor,
               overflow: 'hidden',
-              backgroundColor: isGoldTheme ? 'transparent' : t.bgCard,
+              backgroundColor: isGoldTheme || isCompassTheme ? 'transparent' : t.bgCard,
               ...(isGoldTheme ? goldShadow(isBest ? 2 : 1) : cardShadow),
             }}
           >
@@ -1125,17 +1146,30 @@ export default function ShardsShopScreen() {
                 <GoldBevel radius={16} intensity={isBest ? 'strong' : 'normal'} />
               </>
             )}
+            {isCompassTheme && (
+              <>
+                <LinearGradient
+                  pointerEvents="none"
+                  colors={isBest ? COMPASS_GRADIENTS.selectedTile : COMPASS_GRADIENTS.raisedTile}
+                  locations={COMPASS_SURFACE_LOCATIONS}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={StyleSheet.absoluteFill}
+                />
+                <CompassBevel radius={shopRadius} intensity={isBest ? 'strong' : 'normal'} />
+              </>
+            )}
             {(isPopular || isBest) && (
               <View style={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}>
                 <HitBadgeShell
                   style={{
-                    borderRadius: 999,
+                    borderRadius: isCompassTheme ? 7 : 999,
                     paddingHorizontal: 9,
                     paddingVertical: 3,
-                    backgroundColor: isBest ? (isGoldTheme ? GOLD_RICH.champagne : t.gold) : t.accent,
+                    backgroundColor: isBest ? (isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.gold) : shopAccent,
                   }}
                 >
-                  <Text style={{ color: isBest ? '#1a1208' : ctaOnAccent, fontSize: 9, fontWeight: '900', letterSpacing: 0.4 }}>
+                  <Text style={{ color: isBest || isCompassTheme ? COMPASS_RICH.textDark : ctaOnAccent, fontSize: 9, fontWeight: '900', letterSpacing: 0.4 }}>
                     {isBest
                       ? triLang(lang, {
                         ru: 'ВЫГОДНО',
@@ -1176,10 +1210,10 @@ export default function ShardsShopScreen() {
                     style={{
                       width: iconBox,
                       height: iconBox,
-                      borderRadius: iconRadius,
-                      backgroundColor: paywallMood ? `${SHARD_TEAL}18` : `${t.accent}14`,
+                      borderRadius: isCompassTheme ? shopIconRadius : iconRadius,
+                      backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : paywallMood ? `${SHARD_TEAL}18` : `${t.accent}14`,
                       borderWidth: 1,
-                      borderColor: paywallMood ? `${SHARD_TEAL}40` : `${t.accent}35`,
+                      borderColor: isCompassTheme ? COMPASS_RICH.hairline : paywallMood ? `${SHARD_TEAL}40` : `${t.accent}35`,
                       alignItems: 'center',
                       justifyContent: 'center',
                     }}
@@ -1189,7 +1223,7 @@ export default function ShardsShopScreen() {
                       source={packShardImg}
                       size={packPileDisplay}
                       fallbackName="diamond"
-                      fallbackColor={paywallMood ? SHARD_TEAL : t.accent}
+                      fallbackColor={shardVisualAccent}
                     />
                   </View>
                 </PulsingShardFrame>
@@ -1205,7 +1239,7 @@ export default function ShardsShopScreen() {
                   {pack.bonusShards > 0 ? (
                     <Text
                       style={{
-                        color: paywallMood ? SHARD_TEAL : t.accent,
+                        color: shardVisualAccent,
                         fontSize: f.caption,
                         fontWeight: '800',
                         marginTop: 2,
@@ -1263,13 +1297,13 @@ export default function ShardsShopScreen() {
 
               <View style={{ marginTop: 8, alignSelf: 'stretch', width: '100%' }}>
                 <ShopNeonCta
-                  accent={t.accent}
+                  accent={isCompassTheme ? COMPASS_RICH.champagne : t.accent}
                   accentSoft={accentSoft}
                   correctText={ctaOnAccent}
                   busy={busy}
                   label={ctaLabel}
                   useLockIcon={useLockIcon}
-                  shadow={getVolumetricShadow(themeMode, t, 1)}
+                  shadow={isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1)}
                   fontSize={f.body}
                   dense
                 />
@@ -1304,13 +1338,13 @@ export default function ShardsShopScreen() {
                 style={{
                   width: 46,
                   height: 46,
-                  borderRadius: 23,
+                  borderRadius: isCompassTheme ? 9 : 23,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundColor: t.bgSurface,
+                  backgroundColor: shopSurfaceBg,
                   borderWidth: 1,
-                  borderColor: t.border,
-                  ...getVolumetricShadow(themeMode, t, 1),
+                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                  ...(isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1)),
                 }}
               >
                 <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
@@ -1331,11 +1365,11 @@ export default function ShardsShopScreen() {
               </Text>
             </View>
             <LinearGradient
-              colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : [`${t.accent}35`, `${t.accent}10`]}
-              locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+              colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : isCompassTheme ? COMPASS_GRADIENTS.raisedTile : [`${t.accent}35`, `${t.accent}10`]}
+              locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
-              style={{ borderRadius: 18, padding: 1 }}
+              style={{ borderRadius: isCompassTheme ? 10 : 18, padding: 1 }}
             >
               <View
                 style={{
@@ -1344,15 +1378,16 @@ export default function ShardsShopScreen() {
                   gap: 6,
                   paddingHorizontal: 12,
                   paddingVertical: 8,
-                  borderRadius: 17,
-                  backgroundColor: isGoldTheme ? 'transparent' : t.bgCard,
+                  borderRadius: isCompassTheme ? 9 : 17,
+                  backgroundColor: isGoldTheme || isCompassTheme ? 'transparent' : t.bgCard,
                   borderWidth: 1,
-                  borderColor: isGoldTheme ? GOLD_RICH.hairline : `${t.accent}30`,
+                  borderColor: isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairlineQuiet : `${t.accent}30`,
                   minWidth: 96,
                   justifyContent: 'center',
                 }}
               >
                 {isGoldTheme && <GoldBevel radius={17} intensity="normal" />}
+                {isCompassTheme && <CompassBevel radius={9} intensity="normal" />}
                 <Image source={oskolokImageForPackShards(balance)} style={{ width: 24, height: 24 }} contentFit="contain" />
                 <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }}>{balance}</Text>
                 {/* Бейдж активного 48-год подарунка — лише на вкладці «Картки», бо тільки там його можна обміняти. */}
@@ -1416,15 +1451,18 @@ export default function ShardsShopScreen() {
                         minHeight: 46,
                         paddingVertical: 12,
                         paddingHorizontal: 12,
-                        borderRadius: 999,
+                        borderRadius: isCompassTheme ? 9 : 999,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        backgroundColor: active ? `${t.accent}1C` : t.bgSurface,
+                        backgroundColor: isCompassTheme
+                          ? active ? COMPASS_RICH.washStrong : COMPASS_RICH.charcoalRaised
+                          : active ? `${t.accent}1C` : t.bgSurface,
                         borderWidth: 1,
-                        borderColor: active ? `${t.accent}55` : t.border,
-                        ...(active ? getVolumetricShadow(themeMode, t, 1) : {}),
+                        borderColor: isCompassTheme ? (active ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : active ? `${t.accent}55` : t.border,
+                        ...(active ? (isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1)) : {}),
                       }}
                     >
+                      {isCompassTheme ? <CompassBevel radius={9} intensity={active ? 'strong' : 'normal'} /> : null}
                       <Text
                         style={{
                           fontSize: typeof f.caption === 'number' && f.caption > 0 ? f.caption : 13,
@@ -1519,23 +1557,25 @@ export default function ShardsShopScreen() {
                           width: packCardWidth,
                           alignSelf: 'center',
                           marginBottom: 12,
-                          borderRadius: 16,
+                          borderRadius: shopRadius,
                           borderWidth: 1,
-                          borderColor: owned ? `${t.correct}55` : isPaywallAtmosphereMode(themeMode) ? `${t.accent}1F` : t.border,
-                          backgroundColor: t.bgCard,
+                          borderColor: owned ? `${t.correct}55` : isCompassTheme ? COMPASS_RICH.hairlineQuiet : isPaywallAtmosphereMode(themeMode) ? `${t.accent}1F` : t.border,
+                          backgroundColor: shopCardBg,
                           padding: 14,
+                          overflow: 'hidden',
                           ...cardShadow,
                         }}
                       >
+                        {isCompassTheme ? <CompassBevel radius={shopRadius} /> : null}
                         <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
                           <View
                             style={{
                               width: 60,
                               height: 60,
-                              borderRadius: 16,
+                              borderRadius: isCompassTheme ? 9 : 16,
                               borderWidth: 1,
-                              borderColor: t.border,
-                              backgroundColor: t.bgSurface,
+                              borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border,
+                              backgroundColor: shopSurfaceBg,
                               alignItems: 'center',
                               justifyContent: 'center',
                               overflow: 'hidden',
@@ -1559,12 +1599,12 @@ export default function ShardsShopScreen() {
                                   flexDirection: 'row',
                                   alignItems: 'center',
                                   gap: 6,
-                                  borderRadius: 10,
+                                  borderRadius: isCompassTheme ? 7 : 10,
                                   paddingHorizontal: 10,
                                   paddingVertical: 5,
-                                  backgroundColor: voucherEligible ? `${t.gold}22` : `${t.accent}22`,
+                                  backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : voucherEligible ? `${t.gold}22` : `${t.accent}22`,
                                   borderWidth: 1,
-                                  borderColor: voucherEligible ? `${t.gold}66` : `${t.accent}44`,
+                                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : voucherEligible ? `${t.gold}66` : `${t.accent}44`,
                                 }}
                               >
                                 {voucherEligible ? (
@@ -1572,7 +1612,7 @@ export default function ShardsShopScreen() {
                                 ) : (
                                   <Image source={oskolokImageForPackShards(pack.priceShards)} style={{ width: 22, height: 22 }} contentFit="contain" />
                                 )}
-                                <Text style={{ color: voucherEligible ? t.gold : t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>
+                                <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : voucherEligible ? t.gold : t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>
                                   {voucherEligible
                                     ? triLang(lang, {
                                       ru: 'беспл.',
@@ -1609,7 +1649,7 @@ export default function ShardsShopScreen() {
                           <View
                             style={{
                               marginTop: 12,
-                              borderRadius: 12,
+                              borderRadius: shopSmallRadius,
                               paddingVertical: 12,
                               alignItems: 'center',
                               backgroundColor: `${t.correct}22`,
@@ -1637,9 +1677,11 @@ export default function ShardsShopScreen() {
                               scaleTo={0.97}
                             >
                               <ShopNeonCta
-                                accent={voucherEligible ? t.gold : t.accent}
+                                accent={isCompassTheme ? COMPASS_RICH.champagne : voucherEligible ? t.gold : t.accent}
                                 accentSoft={
-                                  voucherEligible
+                                  isCompassTheme
+                                    ? COMPASS_RICH.cream
+                                    : voucherEligible
                                     ? `${t.gold}EB`
                                     : themeMode === 'neon'
                                     ? '#DFFF4A'
@@ -1647,7 +1689,7 @@ export default function ShardsShopScreen() {
                                     ? '#5DDC80'
                                     : `${t.accent}EB`
                                 }
-                                correctText={voucherEligible ? t.bgPrimary : t.correctText}
+                                correctText={isCompassTheme ? COMPASS_RICH.textDark : voucherEligible ? t.bgPrimary : t.correctText}
                                 busy={busy}
                                 label={
                                   voucherEligible
@@ -1673,7 +1715,7 @@ export default function ShardsShopScreen() {
                                     })
                                 }
                                 useLockIcon={false}
-                                shadow={getVolumetricShadow(themeMode, t, 1)}
+                                shadow={isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1)}
                                 fontSize={f.body}
                               />
                             </PressableScale>
@@ -1706,27 +1748,28 @@ export default function ShardsShopScreen() {
             <RNAnim.View
               style={{
                 marginBottom: 16,
-                borderRadius: 25,
-                borderWidth: isPaywallAtmosphereMode(themeMode) ? 1 : 0,
-                borderColor: isPaywallAtmosphereMode(themeMode) ? `${t.accent}28` : 'transparent',
+                borderRadius: isCompassTheme ? 11 : 25,
+                borderWidth: isPaywallAtmosphereMode(themeMode) || isCompassTheme ? 1 : 0,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : isPaywallAtmosphereMode(themeMode) ? `${t.accent}28` : 'transparent',
                 opacity: heroEnt,
                 transform: [{ translateY: heroY }],
               }}
             >
-              <View style={{ position: 'relative', borderRadius: 24, overflow: 'hidden', ...cardShadow }}>
-                <LinearGradient colors={t.cardGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ padding: 20 }}>
-                  <View style={{ position: 'absolute', top: -40, right: -30, width: 140, height: 140, borderRadius: 70, backgroundColor: `${t.accent}12` }} />
-                  <View style={{ position: 'absolute', bottom: -50, left: -20, width: 120, height: 120, borderRadius: 60, backgroundColor: `${t.gold}10` }} />
+              <View style={{ position: 'relative', borderRadius: isCompassTheme ? 10 : 24, overflow: 'hidden', ...cardShadow }}>
+                <LinearGradient colors={(isCompassTheme ? COMPASS_GRADIENTS.premiumPanel : t.cardGradient) as any} locations={isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ padding: 20 }}>
+                  {isCompassTheme ? <CompassBevel radius={10} intensity="strong" /> : null}
+                  <View style={{ position: 'absolute', top: -40, right: -30, width: 140, height: 140, borderRadius: 70, backgroundColor: isCompassTheme ? COMPASS_RICH.wash : `${t.accent}12` }} />
+                  <View style={{ position: 'absolute', bottom: -50, left: -20, width: 120, height: 120, borderRadius: 60, backgroundColor: isCompassTheme ? COMPASS_RICH.copperWash : `${t.gold}10` }} />
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
                     <PulsingShardFrame width={72} height={72} borderRadius={22} big>
                       <View
                         style={{
                           width: 72,
                           height: 72,
-                          borderRadius: 22,
-                          backgroundColor: isPaywallAtmosphereMode(themeMode) ? `${SHARD_TEAL}15` : `${t.bgSurface}cc`,
+                          borderRadius: isCompassTheme ? 10 : 22,
+                          backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : isPaywallAtmosphereMode(themeMode) ? `${SHARD_TEAL}15` : `${t.bgSurface}cc`,
                           borderWidth: 1,
-                          borderColor: isPaywallAtmosphereMode(themeMode) ? `${SHARD_TEAL}45` : `${t.accent}40`,
+                          borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : isPaywallAtmosphereMode(themeMode) ? `${SHARD_TEAL}45` : `${t.accent}40`,
                           alignItems: 'center',
                           justifyContent: 'center',
                         }}

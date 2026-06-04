@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   computeReviveCost,
+  getReviveCostPerLostStreakDay,
   markStreakLost,
   getReviveOffer,
   reviveStreak,
@@ -39,15 +40,30 @@ beforeEach(() => {
 });
 
 describe('streak_revive — cost ladder', () => {
-  it('returns base cost 5 for short streaks', () => {
-    expect(computeReviveCost(0)).toBe(5);
-    expect(computeReviveCost(1)).toBe(5);
-    expect(computeReviveCost(6)).toBe(5);
+  it('starts at 15 total shards and reaches 100 total shards at 100 lost streak days', () => {
+    expect(computeReviveCost(0)).toBe(15);
+    expect(computeReviveCost(1)).toBe(15);
+    expect(computeReviveCost(10)).toBe(23);
+    expect(computeReviveCost(25)).toBe(36);
+    expect(computeReviveCost(50)).toBe(57);
+    expect(computeReviveCost(75)).toBe(79);
+    expect(computeReviveCost(100)).toBe(100);
+    expect(computeReviveCost(150)).toBe(100);
   });
 
-  it('grows monotonically with streak length', () => {
-    const points = [7, 14, 30, 60, 100, 200, 365];
-    let prev = computeReviveCost(0);
+  it('makes the average per-day price cheaper as the lost streak gets closer to 100 days', () => {
+    expect(getReviveCostPerLostStreakDay(0)).toBe(15);
+    expect(getReviveCostPerLostStreakDay(1)).toBe(15);
+    expect(getReviveCostPerLostStreakDay(10)).toBe(2.3);
+    expect(getReviveCostPerLostStreakDay(25)).toBe(1.4);
+    expect(getReviveCostPerLostStreakDay(50)).toBe(1.1);
+    expect(getReviveCostPerLostStreakDay(75)).toBe(1.1);
+    expect(getReviveCostPerLostStreakDay(100)).toBe(1);
+  });
+
+  it('grows total price monotonically until the 100-shard ceiling', () => {
+    const points = [1, 10, 25, 50, 75, 100, 150];
+    let prev = 0;
     for (const s of points) {
       const c = computeReviveCost(s);
       expect(c).toBeGreaterThanOrEqual(prev);
@@ -55,17 +71,20 @@ describe('streak_revive — cost ladder', () => {
     }
   });
 
-  it('caps at 150 for very long streaks', () => {
-    expect(computeReviveCost(200)).toBe(150);
-    expect(computeReviveCost(365)).toBe(150);
-    expect(computeReviveCost(10_000)).toBe(150);
+  it('keeps 100+ day streaks at 100 total shards', () => {
+    expect(computeReviveCost(100)).toBe(100);
+    expect(computeReviveCost(200)).toBe(100);
+    expect(computeReviveCost(365)).toBe(100);
+    expect(computeReviveCost(10_000)).toBe(100);
   });
 
   it('matches known ladder values', () => {
-    expect(computeReviveCost(7)).toBe(10);
-    expect(computeReviveCost(14)).toBe(20);
-    expect(computeReviveCost(30)).toBe(35);
-    expect(computeReviveCost(60)).toBe(60);
+    expect(computeReviveCost(1)).toBe(15);
+    expect(computeReviveCost(10)).toBe(23);
+    expect(computeReviveCost(25)).toBe(36);
+    expect(computeReviveCost(40)).toBe(48);
+    expect(computeReviveCost(50)).toBe(57);
+    expect(computeReviveCost(60)).toBe(66);
     expect(computeReviveCost(100)).toBe(100);
   });
 });
@@ -82,7 +101,7 @@ describe('streak_revive — offer lifecycle', () => {
     const o = await getReviveOffer();
     expect(o).not.toBeNull();
     expect(o?.lostStreak).toBe(47);
-    expect(o?.costShards).toBe(35);
+    expect(o?.costShards).toBe(54);
   });
 
   it('expires after REVIVE_WINDOW_MS', async () => {
@@ -120,7 +139,7 @@ describe('streak_revive — reviveStreak', () => {
 
   it('fails with insufficient_shards when balance < cost', async () => {
     mockStorage.shards_balance = '2';
-    await markStreakLost(30); // cost = 35
+    await markStreakLost(30); // cost = 40
     const r = await reviveStreak();
     expect(r.ok).toBe(false);
     expect((r as { reason: string }).reason).toBe('insufficient_shards');
@@ -128,12 +147,12 @@ describe('streak_revive — reviveStreak', () => {
 
   it('on success: spends shards, restores streak_count, sets last_active to yesterday', async () => {
     mockStorage.shards_balance = '50';
-    await markStreakLost(30); // cost = 35
+    await markStreakLost(30); // cost = 40
     const r = await reviveStreak();
     expect(r.ok).toBe(true);
     expect((r as { restoredStreak: number }).restoredStreak).toBe(30);
-    expect((r as { spent: number }).spent).toBe(35);
-    expect(mockStorage.shards_balance).toBe('15');
+    expect((r as { spent: number }).spent).toBe(40);
+    expect(mockStorage.shards_balance).toBe('10');
     expect(mockStorage.streak_count).toBe('30');
 
     const yesterday = new Date();

@@ -2,7 +2,7 @@
  * Система блокировки уроков
  *
  * Правила разблокировки:
- * - Free: первые 3 урока доступны; дальше нужен Premium.
+ * - Free: A1 (уроки 1-8) доступен по последовательной бронзовой цепочке; дальше нужен Premium.
  * - Premium: все уроки текущего уровня доступны сразу, следующий уровень открывает зачёт.
  * - Следующий урок внутри уже заработанной free-цепочки: score >= 2.5 (бронза)
  * - Зачёт уровня: все уроки этого уровня >= 4.5; для Premium UI открывает зачёт текущего уровня сразу.
@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { storageGet, storageSet, storageGetString, storageSetString } from '../lib/storage';
 import { effectiveLessonStarScore } from './lesson_star_score';
+import { BRONZE_UNLOCK_SCORE, FREE_LESSON_LIMIT } from './monetization_policy';
 import {
   COURSE_LEVEL_RANGES,
   COURSE_LEVELS,
@@ -72,7 +73,7 @@ export const tryUnlockNextLesson = async (
   studyTarget?: RuntimeStudyTarget,
 ): Promise<boolean> => {
   if (isLastLessonInLevel(currentLessonId)) return false;
-  if (score >= 2.5 && currentLessonId < 32) {
+  if (score >= BRONZE_UNLOCK_SCORE && currentLessonId < 32) {
     const nextLessonId = currentLessonId + 1;
     const alreadyUnlocked = await isLessonUnlocked(nextLessonId, studyTarget);
     if (!alreadyUnlocked) {
@@ -81,6 +82,33 @@ export const tryUnlockNextLesson = async (
     }
   }
   return false;
+};
+
+export const isLessonUnlockedByEarnedProgress = async (
+  lessonId: number,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<boolean> => {
+  if (lessonId === 1) return true;
+  if (lessonId < 1 || lessonId > 32) return false;
+
+  if (lessonId > FREE_LESSON_LIMIT) {
+    return isLessonUnlocked(lessonId, studyTarget);
+  }
+
+  const unlocked = await isLessonUnlocked(lessonId, studyTarget);
+
+  const prevLessonId = lessonId - 1;
+  const [prevBestRaw, prevProgressRaw] = await AsyncStorage.multiGet([
+    lessonBestScoreKey(prevLessonId, studyTarget),
+    lessonProgressKey(prevLessonId, studyTarget),
+  ]);
+  const { score } = effectiveLessonStarScore(prevBestRaw[1], prevProgressRaw[1]);
+  if (score < BRONZE_UNLOCK_SCORE) return false;
+
+  if (!unlocked) {
+    await unlockLesson(lessonId, studyTarget);
+  }
+  return true;
 };
 
 function areScoresReady(scores: number[], from: number, to: number, required: number): boolean {

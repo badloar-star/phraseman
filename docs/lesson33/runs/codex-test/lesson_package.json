@@ -1,0 +1,40 @@
+{
+  "lessonId": 33,
+  "status": "draft_package_shell",
+  "cefrTarget": "B2",
+  "title": {
+    "ru": "Causative: сделать так, чтобы что-то сделали",
+    "uk": "Causative: зробити так, щоб щось зробили",
+    "es": "Causative: hacer que algo sea hecho"
+  },
+  "topic": {
+    "primary": "have/get something done",
+    "contrastWith": [
+      "do something yourself",
+      "need/want something done",
+      "passive result"
+    ],
+    "prerequisites": [
+      "Lesson 23 Passive Voice",
+      "Lesson 31 Complex Object",
+      "Lesson 32 final mixed review"
+    ]
+  },
+  "phraseTargets": {
+    "count": 50,
+    "progression": [
+      "1-10: have/get + object + V3 in everyday service situations",
+      "11-20: need/want + object + V3, controlled result focus",
+      "21-30: questions and negatives",
+      "31-40: time/place/object expansion without overloading",
+      "41-50: mixed review with Lesson 32 anchors"
+    ]
+  },
+  "outputsToFill": {
+    "phrases": [],
+    "introScreens": [],
+    "theoryBlocks": [],
+    "personalTraining": null,
+    "qaNotes": []
+  }
+}

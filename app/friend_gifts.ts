@@ -1,10 +1,10 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { bumpLifetimeShardsSpent } from './lifetime_profile_stats';
 import { replaceShardsBalanceLocal } from './shards_system';
-import { getCanonicalUserId } from './user_id_policy';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -122,10 +122,11 @@ export async function sendFriendGiftWithShards(data: {
   if (!isFriendGiftsCloudEnabled()) {
     throw new Error('friend_gifts_unavailable');
   }
-  const senderStableId = await getCanonicalUserId();
+  const senderStableId = await ensureAnonUser();
   if (!senderStableId) {
     throw new Error('sender_unavailable');
   }
+  await ensureStableAuthLinkForStableId(senderStableId).catch(() => false);
   await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<
     { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string },

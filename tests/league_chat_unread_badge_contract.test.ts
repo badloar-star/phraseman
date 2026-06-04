@@ -26,6 +26,15 @@ describe('league chat unread badge wiring', () => {
     expect(source).toContain('formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)');
   });
 
+  it('keeps unread badges snapshot-only so home and club do not authorize or subscribe to live chat', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', 'use_league_chat_unread.ts'), 'utf8');
+
+    expect(source).not.toContain('authorizeLeagueChatRoom');
+    expect(source).not.toContain('subscribeLeagueChatMessages');
+    expect(source).not.toContain('resolveMyLeagueChatRoom');
+    expect(source).not.toContain('ensureStableAuthLink');
+  });
+
   it('keeps club chat room seeding out of runtime locale audit noise', () => {
     const combined = CLUB_CHAT_SOURCES
       .map((file) => fs.readFileSync(file, 'utf8'))

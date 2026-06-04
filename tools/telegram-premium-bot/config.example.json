@@ -1,0 +1,10 @@
+{
+  "botToken": "",
+  "adminChatId": 123456789,
+  "adminSetupCode": "change-this-admin-code",
+  "monthlyStars": 300,
+  "yearlyStars": 1800,
+  "pollTimeoutSeconds": 20,
+  "statePath": ".codex-tmp/telegram-premium-bot/state.json",
+  "ordersPath": ".codex-tmp/telegram-premium-bot/orders.jsonl"
+}

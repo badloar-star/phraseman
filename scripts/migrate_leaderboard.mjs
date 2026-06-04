@@ -3,6 +3,7 @@
 import { initializeApp, cert } from 'firebase-admin/app';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 import { readFileSync } from 'fs';
+import { getLevelFromXP } from './lib/xp_levels.mjs';
 
 const sa = JSON.parse(readFileSync('./service-account.json', 'utf8'));
 initializeApp({ credential: cert(sa) });
@@ -44,7 +45,9 @@ while (true) {
     // Пропускаем без имени или без XP
     if (!name || xp <= 0) { skipped++; continue; }
 
-    const levelFromXP = Math.min(50, Math.floor(Math.sqrt(xp / 50)) + 1);
+    const levelFromXP = getLevelFromXP(xp);
+    const avatarRaw = typeof p.user_avatar === 'string' ? p.user_avatar.trim() : '';
+    const avatar = avatarRaw && !/^\d+$/.test(avatarRaw) ? avatarRaw : String(levelFromXP);
 
     const weekLb = p.week_leaderboard || {};
     const weekPoints = (weekLb.weekKey === weekKey ? weekLb.points : 0) ?? 0;
@@ -57,7 +60,7 @@ while (true) {
       weekPoints,
       weekKey,
       lang: p.lang ?? 'ru',
-      avatar: p.user_avatar ?? String(levelFromXP),
+      avatar,
       frame: p.user_avatar_frame ?? null,
       streak: p.streak_count ?? null,
       leagueId: p.league_state_v3?.leagueId ?? null,

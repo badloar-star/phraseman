@@ -33,7 +33,8 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mirrorFriendActivityOnUserWrite = void 0;
+exports.syncFriendActivityMirrorCron = void 0;
+exports.syncFriendActivityMirrorBatch = syncFriendActivityMirrorBatch;
 /**
  * Дублирует «ленту для друзей» при любых правках users/{uid}.progress в Firestore:
  * админка, синк приложения, скрипты — всё даёт те же события, что клиент пишет в my_events.
@@ -45,6 +46,8 @@ const functions = __importStar(require("firebase-functions/v2"));
 const xp_levels_1 = require("./xp_levels");
 const REGION = 'us-central1';
 const MAX_EVENTS_PER_FRIEND = 15;
+const USERS_PAGE_SIZE = 500;
+const MIRROR_FIELD = 'friendActivityMirror';
 function parseProgressInt(v) {
     if (typeof v === 'number' && Number.isFinite(v))
         return Math.max(0, Math.trunc(v));
@@ -87,31 +90,85 @@ async function appendFriendEvent(db, userId, type, payload) {
 }
 /** Порог для streak_milestone — как «заметная серия», без спама на 1–2 дня. */
 const STREAK_FEED_MIN_DAYS = 7;
-exports.mirrorFriendActivityOnUserWrite = functions.firestore.onDocumentWritten({ document: 'users/{userId}', region: REGION }, async (event) => {
-    const userId = event.params.userId;
-    const afterSnap = event.data?.after;
-    if (!afterSnap?.exists)
-        return;
-    const beforeProg = event.data?.before.exists
-        ? event.data.before.data()?.progress
-        : undefined;
-    const afterProg = afterSnap.data()?.progress;
-    const oldXp = parseProgressInt(beforeProg?.user_total_xp);
-    const newXp = parseProgressInt(afterProg?.user_total_xp);
-    const oldStreak = parseProgressInt(beforeProg?.streak_count);
-    const newStreak = parseProgressInt(afterProg?.streak_count);
-    if (oldXp === newXp && oldStreak === newStreak)
-        return;
+function readMirrorState(data) {
+    const raw = data[MIRROR_FIELD];
+    if (!raw || typeof raw !== 'object')
+        return null;
+    const rec = raw;
+    return {
+        xp: parseProgressInt(rec.xp),
+        streak: parseProgressInt(rec.streak),
+    };
+}
+function queueMirrorStateUpdate(batch, ref, xp, streak, now) {
+    batch.set(ref, {
+        [MIRROR_FIELD]: {
+            xp,
+            streak,
+            checkedAt: now,
+        },
+    }, { merge: true });
+}
+async function syncFriendActivityMirrorBatch() {
     const db = admin.firestore();
-    if (newXp !== oldXp) {
-        const oldLvl = (0, xp_levels_1.getLevelFromXP)(oldXp);
-        const newLvl = (0, xp_levels_1.getLevelFromXP)(newXp);
-        if (newLvl > oldLvl) {
-            await appendFriendEvent(db, userId, 'level_up', { level: newLvl });
+    const now = Date.now();
+    let scanned = 0;
+    let updated = 0;
+    let events = 0;
+    let lastDoc = null;
+    let batch = db.batch();
+    let pendingWrites = 0;
+    while (true) {
+        let query = db.collection('users').orderBy('__name__').limit(USERS_PAGE_SIZE);
+        if (lastDoc)
+            query = query.startAfter(lastDoc);
+        const snap = await query.get();
+        if (snap.empty)
+            break;
+        for (const doc of snap.docs) {
+            scanned += 1;
+            const data = doc.data() || {};
+            const progress = data.progress;
+            const newXp = parseProgressInt(progress?.user_total_xp);
+            const newStreak = parseProgressInt(progress?.streak_count);
+            const state = readMirrorState(data);
+            if (!state) {
+                queueMirrorStateUpdate(batch, doc.ref, newXp, newStreak, now);
+                pendingWrites += 1;
+            }
+            else if (state.xp !== newXp || state.streak !== newStreak) {
+                if (newXp !== state.xp) {
+                    const oldLvl = (0, xp_levels_1.getLevelFromXP)(state.xp);
+                    const newLvl = (0, xp_levels_1.getLevelFromXP)(newXp);
+                    if (newLvl > oldLvl) {
+                        await appendFriendEvent(db, doc.id, 'level_up', { level: newLvl });
+                        events += 1;
+                    }
+                }
+                if (newStreak > state.streak && newStreak >= STREAK_FEED_MIN_DAYS) {
+                    await appendFriendEvent(db, doc.id, 'streak_milestone', { days: newStreak });
+                    events += 1;
+                }
+                queueMirrorStateUpdate(batch, doc.ref, newXp, newStreak, now);
+                pendingWrites += 1;
+                updated += 1;
+            }
+            if (pendingWrites >= 400) {
+                await batch.commit();
+                batch = db.batch();
+                pendingWrites = 0;
+            }
         }
+        lastDoc = snap.docs[snap.docs.length - 1] ?? null;
+        if (snap.size < USERS_PAGE_SIZE)
+            break;
     }
-    if (newStreak > oldStreak && newStreak >= STREAK_FEED_MIN_DAYS) {
-        await appendFriendEvent(db, userId, 'streak_milestone', { days: newStreak });
-    }
+    if (pendingWrites > 0)
+        await batch.commit();
+    console.log(JSON.stringify({ event: 'friend_activity_mirror_sync_done', scanned, updated, events }));
+    return { scanned, updated, events };
+}
+exports.syncFriendActivityMirrorCron = functions.scheduler.onSchedule({ schedule: 'every 6 hours', timeZone: 'UTC', region: REGION }, async () => {
+    await syncFriendActivityMirrorBatch();
 });
 //# sourceMappingURL=friend_activity_mirror.js.map

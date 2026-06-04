@@ -3,7 +3,12 @@
  * Unit tests for matchmaking logic.
  * Tests pure matching logic — no Firebase needed.
  */
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const fs_1 = require("fs");
+const path_1 = __importDefault(require("path"));
 // ─── Pure helpers mirroring matchmaking.ts ────────────────────────────────────
 const STALE_ENTRY_MS = 15 * 60 * 1000;
 function makeEntry(overrides) {
@@ -138,6 +143,19 @@ describe('client subscription: fires when sessionId appears', () => {
         const data = { userId: 'uid_A', size: 2, joinedAt: Date.now(), sessionId: 'sess_123' };
         const sessionId = data.sessionId;
         expect(sessionId).toBe('sess_123'); // клиент навигирует в игру
+    });
+});
+describe('matchmaking cost controls', () => {
+    test('cron is a fallback, not a every-minute primary matcher', () => {
+        const indexSource = (0, fs_1.readFileSync)(path_1.default.join(process.cwd(), 'src', 'index.ts'), 'utf8');
+        expect(indexSource).toContain("schedule: 'every 5 minutes'");
+        expect(indexSource).toContain('await runMatchmaking()');
+    });
+    test('searching aggregate skips no-op writes when count is unchanged on a warm instance', () => {
+        const source = (0, fs_1.readFileSync)(path_1.default.join(process.cwd(), 'src', 'matchmaking.ts'), 'utf8');
+        expect(source).toContain('let lastPublishedSearchingCount: number | null = null;');
+        expect(source).toContain('if (lastPublishedSearchingCount === n) return;');
+        expect(source).toContain('lastPublishedSearchingCount = n;');
     });
 });
 //# sourceMappingURL=matchmaking.test.js.map

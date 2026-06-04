@@ -1,0 +1,119 @@
+import type { LessonTeachingNote } from './lesson_data_types';
+import {
+  validatePlanAudioAsset,
+  type PlanAudioAsset,
+} from './personal_plan_audio_asset_readiness';
+import { getPlanAudioAssetsForRuntime } from './personal_plan_audio_asset_registry';
+import { getPersonalPlanPhraseLesson } from './personal_plan_phrase_lessons';
+
+export type PersonalPlanListenChooseBlockedReason =
+  | 'missing_approved_audio'
+  | 'missing_phrase';
+
+export type PersonalPlanListenChooseItem = {
+  id: string;
+  promptRu: string;
+  promptUk: string;
+  correctAnswer: string;
+  options: string[];
+  grammarTags: string[];
+  vocabularyTags: string[];
+  explanation: LessonTeachingNote;
+  audioReady: boolean;
+  audioAssetId?: string;
+  audioUri?: string;
+  blockedReason?: PersonalPlanListenChooseBlockedReason;
+};
+
+export type GetPersonalPlanListenChooseItemsInput = {
+  lessonId: string;
+  contentUnitIds: string[];
+};
+
+let testAudioAssets: PlanAudioAsset[] | null = null;
+
+export function registerPlanListenChooseAudioAssetsForTest(assets: PlanAudioAsset[] | null): void {
+  testAudioAssets = assets;
+}
+
+function compactUnique(values: string[]): string[] {
+  return [...new Set(values.map((value) => value.trim()).filter(Boolean))];
+}
+
+function fallbackExplanation(correctAnswer: string): LessonTeachingNote {
+  return {
+    id: `listen_choose_${correctAnswer.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
+    titleRu: 'Сначала звук, потом смысл',
+    correctRu: `${correctAnswer} звучит коротко и цельно. В задании на слух важно узнать всю фразу, а не собирать её по отдельным словам.`,
+    wrongRu: 'Послушай ещё раз и поймай общий смысл фразы. Здесь не нужно угадывать по знакомому слову: выбирай вариант, который передаёт всю услышанную реплику.',
+  };
+}
+
+function chooseExplanationForPhrase(correctAnswer: string, note?: LessonTeachingNote): LessonTeachingNote {
+  if (!note) return fallbackExplanation(correctAnswer);
+  return {
+    ...note,
+    titleRu: 'Слышим фразу целиком',
+    wrongRu: 'Послушай ещё раз и сравни смысл целиком. Ошибка здесь обычно не в одном слове: похожая фраза может звучать знакомо, но говорить другое.',
+  };
+}
+
+function approvedAudioForContentUnit(contentUnitId: string, assets: PlanAudioAsset[]): PlanAudioAsset | undefined {
+  return assets.find((asset) => {
+    const readiness = validatePlanAudioAsset(asset);
+    return (
+      readiness.productionReady
+      && asset.contentUnitIds.includes(contentUnitId)
+      && typeof asset.uri === 'string'
+      && asset.uri.trim().length > 0
+    );
+  });
+}
+
+function getPlanListenChooseAudioAssets(): PlanAudioAsset[] {
+  return testAudioAssets ?? getPlanAudioAssetsForRuntime();
+}
+
+function optionDistractors(allAnswers: string[], correctAnswer: string): string[] {
+  const distractors = allAnswers.filter((answer) => answer !== correctAnswer);
+  if (distractors.length <= 3) return distractors;
+  return compactUnique([
+    distractors[0],
+    distractors[1],
+    distractors[distractors.length - 1],
+  ]);
+}
+
+export function getPersonalPlanListenChooseItems(
+  input: GetPersonalPlanListenChooseItemsInput,
+): PersonalPlanListenChooseItem[] {
+  const lesson = getPersonalPlanPhraseLesson(input.lessonId);
+  if (!lesson) return [];
+
+  const requestedIds = new Set(input.contentUnitIds);
+  const allAnswers = lesson.phrases.map((phrase) => phrase.english);
+  const audioAssets = getPlanListenChooseAudioAssets();
+
+  return lesson.phrases
+    .filter((phrase) => requestedIds.has(String(phrase.id)))
+    .map((phrase) => {
+      const id = String(phrase.id);
+      const audioAsset = approvedAudioForContentUnit(id, audioAssets);
+      const meaningNote = [...phrase.words].reverse().find((word) => word.teachingNote)?.teachingNote;
+
+      return {
+        id,
+        promptRu: phrase.russian,
+        promptUk: phrase.ukrainian,
+        correctAnswer: phrase.english,
+        options: compactUnique([phrase.english, ...optionDistractors(allAnswers, phrase.english)]).slice(0, 4),
+        grammarTags: phrase.words.map((word) => word.category).filter(Boolean) as string[],
+        vocabularyTags: [],
+        explanation: chooseExplanationForPhrase(phrase.english, meaningNote),
+        audioReady: Boolean(audioAsset),
+        audioAssetId: audioAsset?.assetId,
+        audioUri: audioAsset?.uri,
+        blockedReason: audioAsset ? undefined : 'missing_approved_audio',
+      };
+    });
+}

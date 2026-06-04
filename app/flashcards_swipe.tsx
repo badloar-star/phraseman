@@ -53,6 +53,7 @@ import { safeRouterBack } from './navigation_back';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getCanonicalUserId } from './user_id_policy';
 import { flashcardsSwipeMemoryKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import {
   flashcardsCommunityPacksAvailableForTarget,
   flashcardsOfficialPacksAvailableForTarget,
@@ -769,6 +770,12 @@ export default function FlashcardsSwipeScreen() {
     source?: string | string[];
     filter?: string | string[];
     owned?: string | string[];
+    planFlashcardsTask?: string | string[];
+    requiredCards?: string | string[];
+    planTaskId?: string | string[];
+    planInstanceId?: string | string[];
+    planId?: string | string[];
+    planDayIndex?: string | string[];
   }>();
   const insets = useSafeAreaInsets();
   const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
@@ -829,12 +836,16 @@ export default function FlashcardsSwipeScreen() {
   const progressRef = useRef<Record<string, CardProgress>>({});
   const memoryRef = useRef<SwipeMemory>({});
   const settlingRef = useRef(false);
+  const planFlashcardsCompletionTracked = useRef(false);
   const quickStartDoneRef = useRef(false);
   const draftRestoreAttemptedRef = useRef(false);
   const hasVisibleSourcesRef = useRef(initialSources.length > 0);
   const position = useRef(new Animated.ValueXY()).current;
-  // Training always lands on the setup screen; legacy quick routes are ignored.
-  const quickStart = false;
+  const planFlashcardsTaskId = routeParamString(params.planFlashcardsTask) === '1' ? routeParamString(params.planTaskId) : '';
+  const planFlashcardsRequiredCards = Math.max(1, Math.min(50, parseInt(routeParamString(params.requiredCards) || '3', 10) || 3));
+  const planFlashcardsDayIndex = Math.max(1, parseInt(routeParamString(params.planDayIndex) || '1', 10) || 1);
+  // Normal training lands on setup; a plan task starts directly from the plan-selected source.
+  const quickStart = Boolean(planFlashcardsTaskId);
 
   const selectedSourceIdsForDraft = useMemo(() => [...selectedIds].sort(), [selectedIds]);
   const sessionDraftScope = useMemo<FlashcardsSwipeSessionScope>(
@@ -1612,11 +1623,11 @@ export default function FlashcardsSwipeScreen() {
       const byKey = new Map<string, TrainingCard>();
       for (const card of chunks.flat()) byKey.set(card.trainingKey, card);
       const now = Date.now();
-      const ranked = smartSortCards([...byKey.values()], memory, now);
+      const ranked = smartSortCards([...byKey.values()], memory, now).slice(0, planFlashcardsTaskId ? planFlashcardsRequiredCards : undefined);
       const info = sessionInfoFor(ranked, now);
       return { cards: ranked, info };
     },
-    [answerFor],
+    [answerFor, planFlashcardsRequiredCards, planFlashcardsTaskId],
   );
 
   const startSession = useCallback(async () => {
@@ -1775,6 +1786,17 @@ export default function FlashcardsSwipeScreen() {
     });
     void saveFlashcardsSwipeSessionDraft(draft, studyTarget).catch(() => {});
   }, [done, feedback, phase, queue, sessionDraftScope, stats, studyTarget, trainingCards]);
+
+  useEffect(() => {
+    if (!done || !planFlashcardsTaskId || planFlashcardsCompletionTracked.current) return;
+    planFlashcardsCompletionTracked.current = true;
+    void markPersonalPlanTaskCompleted({
+      taskId: planFlashcardsTaskId,
+      planId: routeParamString(params.planId),
+      planInstanceId: routeParamString(params.planInstanceId),
+      dayIndex: planFlashcardsDayIndex,
+    });
+  }, [done, params.planId, params.planInstanceId, planFlashcardsDayIndex, planFlashcardsTaskId]);
 
   useEffect(() => {
     if (!currentPrompt?.id) return;

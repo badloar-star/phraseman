@@ -13,6 +13,8 @@ import { moderateLeagueChatMessage, sanitizeLeagueChatText } from './league_chat
 const CHAT_COLLECTION = 'league_chat_messages';
 const BLOCKS_KEY = 'league_chat_blocked_users_v1';
 const ROOM_CACHE_KEY = 'league_chat_room_cache_v1';
+const ROOM_AUTH_CACHE_PREFIX = 'league_chat_room_auth_v1:';
+const ROOM_AUTH_TTL_MS = 6 * 60 * 60 * 1000;
 const MESSAGES_CACHE_PREFIX = 'league_chat_messages_cache_v1:';
 const SEND_THROTTLE_MS = 12_000;
 const MAX_VISIBLE_MESSAGES = 80;
@@ -72,6 +74,10 @@ function normalizeRoom(value: unknown): LeagueChatRoom | null {
 
 function roomMessagesCacheKey(room: LeagueChatRoom): string {
   return `${MESSAGES_CACHE_PREFIX}${room.weekId}:${room.groupId}`;
+}
+
+function roomAuthorizationCacheKey(room: LeagueChatRoom): string {
+  return `${ROOM_AUTH_CACHE_PREFIX}${room.weekId}:${room.leagueId}:${room.groupId}`;
 }
 
 function normalizeMessages(value: unknown, room: LeagueChatRoom): LeagueChatMessage[] {
@@ -156,6 +162,37 @@ async function cacheLeagueChatMessages(room: LeagueChatRoom, messages: LeagueCha
   await AsyncStorage.setItem(key, JSON.stringify(rows)).catch(() => {});
 }
 
+async function loadCachedLeagueChatAuthorization(room: LeagueChatRoom, stableId: string): Promise<boolean> {
+  const raw = await AsyncStorage.getItem(roomAuthorizationCacheKey(room)).catch(() => null);
+  if (!raw) return false;
+  let authorizedAt = 0;
+  let cachedStableId = '';
+  try {
+    const parsed = JSON.parse(raw);
+    authorizedAt = Number(parsed?.authorizedAt || 0);
+    cachedStableId = String(parsed?.stableId || '');
+  } catch {
+    authorizedAt = Number(raw);
+  }
+  if (!Number.isFinite(authorizedAt) || Date.now() - authorizedAt > ROOM_AUTH_TTL_MS) {
+    await forgetCachedLeagueChatAuthorization(room);
+    return false;
+  }
+  if (cachedStableId && cachedStableId !== stableId) return false;
+  return true;
+}
+
+async function cacheLeagueChatAuthorization(room: LeagueChatRoom, stableId: string): Promise<void> {
+  await AsyncStorage.setItem(
+    roomAuthorizationCacheKey(room),
+    JSON.stringify({ authorizedAt: Date.now(), stableId }),
+  ).catch(() => {});
+}
+
+export async function forgetCachedLeagueChatAuthorization(room: LeagueChatRoom): Promise<void> {
+  await AsyncStorage.removeItem(roomAuthorizationCacheKey(room)).catch(() => {});
+}
+
 export async function authorizeLeagueChatRoom(room: LeagueChatRoom): Promise<'authorized' | 'forbidden' | 'unavailable'> {
   if (!getFirestore()) return 'unavailable';
   const normalized = normalizeRoom(room);
@@ -163,11 +200,16 @@ export async function authorizeLeagueChatRoom(room: LeagueChatRoom): Promise<'au
   try {
     const stableId = await ensureAnonUser();
     if (!stableId) return 'unavailable';
+    if (await loadCachedLeagueChatAuthorization(normalized, stableId)) {
+      await cacheLeagueChatRoom(normalized);
+      return 'authorized';
+    }
     await ensureStableAuthLink().catch(() => false);
     await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = callable<LeagueChatRoom & { stableId?: string }, { ok: boolean }>('leagueChatAuthorizeRoom');
     await fn({ ...normalized, stableId });
     await cacheLeagueChatRoom(normalized);
+    await cacheLeagueChatAuthorization(normalized, stableId);
     return 'authorized';
   } catch (e: any) {
     const code = String(e?.code || e?.message || '');
@@ -176,6 +218,7 @@ export async function authorizeLeagueChatRoom(room: LeagueChatRoom): Promise<'au
       code.includes('not-found') ||
       code.includes('invalid-argument')
     ) {
+      await forgetCachedLeagueChatAuthorization(normalized);
       return 'forbidden';
     }
     return 'unavailable';

@@ -1,0 +1,92 @@
+import {
+  buildLingmanEmbedHtml,
+  getLingmanYoutubeUnreadCount,
+  getLingmanYoutubeWatchUrl,
+  getTrustedLingmanYoutubeUrl,
+  LINGMAN_YOUTUBE_EMBED_BASE_URL,
+  parseLingmanYoutubeFeed,
+} from '../app/lingman_youtube';
+
+describe('lingman_youtube', () => {
+  it('parses the YouTube RSS feed entries used by the catalog', () => {
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+      <feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+        <entry>
+          <yt:videoId>X7L3Xg3qITo</yt:videoId>
+          <title>200 phrases</title>
+          <published>2026-05-31T13:21:06+00:00</published>
+          <updated>2026-05-31T14:37:55+00:00</updated>
+          <media:group>
+            <media:title>200 phrases</media:title>
+            <media:thumbnail url="https://i1.ytimg.com/vi/X7L3Xg3qITo/hqdefault.jpg" width="480" height="360"/>
+            <media:description>Practice phrases after the video.</media:description>
+            <media:community>
+              <media:statistics views="179"/>
+            </media:community>
+          </media:group>
+        </entry>
+      </feed>`;
+
+    const videos = parseLingmanYoutubeFeed(xml);
+
+    expect(videos).toEqual([
+      {
+        id: 'X7L3Xg3qITo',
+        title: '200 phrases',
+        description: 'Practice phrases after the video.',
+        thumbnailUrl: 'https://i1.ytimg.com/vi/X7L3Xg3qITo/hqdefault.jpg',
+        publishedAt: '2026-05-31T13:21:06+00:00',
+        updatedAt: '2026-05-31T14:37:55+00:00',
+        watchUrl: 'https://www.youtube.com/watch?v=X7L3Xg3qITo',
+        viewCount: 179,
+      },
+    ]);
+  });
+
+  it('builds an official YouTube embed without autoplay', () => {
+    const html = buildLingmanEmbedHtml('X7L3Xg3qITo');
+
+    expect(html).toContain('https://www.youtube.com/embed/X7L3Xg3qITo');
+    expect(html).toContain('playsinline=1');
+    expect(html).toContain(`origin=${encodeURIComponent(LINGMAN_YOUTUBE_EMBED_BASE_URL.replace(/\/$/, ''))}`);
+    expect(html).toContain(`widget_referrer=${encodeURIComponent(LINGMAN_YOUTUBE_EMBED_BASE_URL)}`);
+    expect(html).toContain('<meta name="referrer" content="strict-origin-when-cross-origin">');
+    expect(html).not.toContain('autoplay=1');
+    expect(html).not.toContain('modestbranding=1');
+    expect(html).not.toContain(' autoplay;');
+  });
+
+  it('counts unread videos relative to the last opened latest video', () => {
+    const videos = [
+      { id: 'latest' },
+      { id: 'middle' },
+      { id: 'seen' },
+    ].map((video) => ({
+      ...video,
+      title: video.id,
+      description: '',
+      thumbnailUrl: `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`,
+      publishedAt: '2026-05-31T13:21:06+00:00',
+      updatedAt: '2026-05-31T13:21:06+00:00',
+      watchUrl: getLingmanYoutubeWatchUrl(video.id),
+    }));
+
+    expect(getLingmanYoutubeUnreadCount([], null)).toBe(0);
+    expect(getLingmanYoutubeUnreadCount(videos, null)).toBe(1);
+    expect(getLingmanYoutubeUnreadCount(videos, 'latest')).toBe(0);
+    expect(getLingmanYoutubeUnreadCount(videos, 'middle')).toBe(1);
+    expect(getLingmanYoutubeUnreadCount(videos, 'seen')).toBe(2);
+    expect(getLingmanYoutubeUnreadCount(videos, 'missing')).toBe(1);
+  });
+
+  it('only returns trusted YouTube URLs for external fallbacks', () => {
+    expect(getLingmanYoutubeWatchUrl('X7L3Xg3qITo')).toBe('https://www.youtube.com/watch?v=X7L3Xg3qITo');
+    expect(getTrustedLingmanYoutubeUrl('https://www.youtube.com/watch?v=X7L3Xg3qITo')).toBe('https://www.youtube.com/watch?v=X7L3Xg3qITo');
+    expect(getTrustedLingmanYoutubeUrl('https://m.youtube.com/watch?v=X7L3Xg3qITo')).toBe('https://m.youtube.com/watch?v=X7L3Xg3qITo');
+    expect(getTrustedLingmanYoutubeUrl('https://youtu.be/X7L3Xg3qITo')).toBe('https://youtu.be/X7L3Xg3qITo');
+    expect(getTrustedLingmanYoutubeUrl('https://www.youtube.com/@professorlingman/videos')).toBe('https://www.youtube.com/@professorlingman/videos');
+    expect(getTrustedLingmanYoutubeUrl('https://evil.example/watch?v=X7L3Xg3qITo', 'X7L3Xg3qITo')).toBe('https://www.youtube.com/watch?v=X7L3Xg3qITo');
+    expect(getTrustedLingmanYoutubeUrl('javascript:alert(1)', 'X7L3Xg3qITo')).toBe('https://www.youtube.com/watch?v=X7L3Xg3qITo');
+    expect(getTrustedLingmanYoutubeUrl('https://evil.example/watch?v=X7L3Xg3qITo')).toBeNull();
+  });
+});

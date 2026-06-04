@@ -1,10 +1,13 @@
 import * as admin from 'firebase-admin';
-import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { HttpsError, onCall, onRequest } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 
 const GROUP_SIZE = 30;
 const BROAD_GROUP_QUERY_LIMIT = 500;
+const LEAGUE_GROUP_BOOST_COST_SHARDS = 50;
+const LEAGUE_GROUP_BOOST_MULTIPLIER = 2;
+const LEAGUE_GROUP_BOOST_DURATION_MS = 3 * 60 * 60 * 1000;
 
 type MemberData = {
   name: string;
@@ -372,3 +375,149 @@ export const leagueSyncMyBoost = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
   }, { merge: true });
   return { ok: true, groupId, status: 'active' };
 });
+
+async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firestore, stableUid: string) {
+  await assertCanUseLeague(db, stableUid);
+
+  const lbSnap = await db.collection('leaderboard').doc(stableUid).get();
+  const groupId = String(lbSnap.data()?.groupId || '');
+  const groupWeekId = String(lbSnap.data()?.groupWeekId || '');
+  const leagueId = readInt(lbSnap.data()?.leagueId, 0);
+  if (!groupId || groupWeekId !== getWeekId()) throw new HttpsError('failed-precondition', 'no-current-group');
+
+  const groupRef = db.collection('league_groups').doc(groupId);
+  const userRef = db.collection('users').doc(stableUid);
+  const logRef = userRef.collection('shard_log').doc();
+  const now = Date.now();
+  let createdBoost: Record<string, unknown> | null = null;
+  let shardsBalance = 0;
+
+  await db.runTransaction(async (tx) => {
+    const [groupSnap, userSnap] = await Promise.all([tx.get(groupRef), tx.get(userRef)]);
+    if (!groupSnap.exists) throw new HttpsError('not-found', 'league-group-not-found');
+    const groupData = groupSnap.data() || {};
+    if (groupData.weekId !== groupWeekId || readInt(groupData.leagueId, 0) !== leagueId) {
+      throw new HttpsError('permission-denied', 'room-mismatch');
+    }
+    const members = groupData.members && typeof groupData.members === 'object'
+      ? groupData.members as Record<string, Record<string, unknown>>
+      : {};
+    const buyer = members[stableUid];
+    if (!buyer || buyer.identityHidden === true) throw new HttpsError('permission-denied', 'not-group-member');
+
+    const active = groupData.groupBoost && typeof groupData.groupBoost === 'object'
+      ? groupData.groupBoost as Record<string, unknown>
+      : null;
+    if (active && readInt(active.expiresAt, 0) > now) {
+      throw new HttpsError('failed-precondition', 'already-active');
+    }
+
+    const before = Math.max(0, readInt(userSnap.data()?.shards, 0));
+    if (before < LEAGUE_GROUP_BOOST_COST_SHARDS) {
+      throw new HttpsError('failed-precondition', 'insufficient-shards');
+    }
+    const after = before - LEAGUE_GROUP_BOOST_COST_SHARDS;
+    const startedAt = now;
+    const expiresAt = now + LEAGUE_GROUP_BOOST_DURATION_MS;
+    const likeEventId = `league_group_boost_${groupWeekId}_${groupId}_${startedAt}`;
+    createdBoost = {
+      groupId,
+      weekId: groupWeekId,
+      leagueId,
+      multiplier: LEAGUE_GROUP_BOOST_MULTIPLIER,
+      startedAt,
+      expiresAt,
+      buyerUid: stableUid,
+      buyerName: sanitizeString(buyer.name, 48) || 'Player',
+      buyerAvatar: sanitizeString(buyer.avatar, 64) || null,
+      buyerFrame: sanitizeString(buyer.frame, 64) || null,
+      buyerAura: sanitizeString(buyer.aura, 64) || null,
+      buyerTotalXp: Math.max(0, readInt(buyer.totalXp, 0)),
+      buyerProfileCardLevel: Math.max(0, Math.min(5, readInt(buyer.profileCardLevel, 0))),
+      buyerProfileCardTheme: sanitizeString(buyer.profileCardTheme, 32) || 'classic',
+      buyerProfileCardMotion: sanitizeString(buyer.profileCardMotion, 32) || 'none',
+      buyerProfileCardPublicFocus: sanitizeString(buyer.profileCardPublicFocus, 32) || 'balanced',
+      likeEventId,
+      likeCount: 0,
+    };
+    shardsBalance = after;
+
+    tx.set(userRef, {
+      shards: after,
+      shards_updated_at_ms: now,
+      shards_updated_op: 'spend',
+      shards_updated_reason: 'league_group_boost',
+    }, { merge: true });
+    tx.create(logRef, {
+      type: 'spend',
+      amount: LEAGUE_GROUP_BOOST_COST_SHARDS,
+      reason: 'league_group_boost',
+      balanceBefore: before,
+      balanceAfter: after,
+      ts: new Date(now).toISOString(),
+    });
+    tx.set(userRef.collection('my_events').doc(likeEventId), {
+      uid: stableUid,
+      type: 'league_group_boost',
+      title: 'League XP boost',
+      activityLikeCount: 0,
+      createdAt: now,
+      createdAtIso: new Date(now).toISOString(),
+      groupId,
+      weekId: groupWeekId,
+      leagueId,
+      multiplier: LEAGUE_GROUP_BOOST_MULTIPLIER,
+      expiresAt,
+    }, { merge: true });
+    tx.set(groupRef, {
+      groupBoost: createdBoost,
+      updatedAt: now,
+    }, { merge: true });
+  });
+
+  return { ok: true, groupId, boost: createdBoost, shardsBalance };
+}
+
+function callableErrorStatus(code: string): string {
+  switch (code) {
+    case 'failed-precondition':
+      return 'FAILED_PRECONDITION';
+    case 'permission-denied':
+      return 'PERMISSION_DENIED';
+    case 'not-found':
+      return 'NOT_FOUND';
+    case 'unauthenticated':
+      return 'UNAUTHENTICATED';
+    default:
+      return 'INTERNAL';
+  }
+}
+
+export const leagueActivateGroupBoost = onRequest(
+  { region: 'us-central1', timeoutSeconds: 15, memory: '256MiB', maxInstances: 80, invoker: 'public' },
+  async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, Firebase-Instance-ID-Token, X-Firebase-AppCheck');
+    if (req.method === 'OPTIONS') {
+      res.status(204).send('');
+      return;
+    }
+    if (req.method !== 'POST') {
+      res.status(405).json({ error: { status: 'INVALID_ARGUMENT', message: 'method-not-allowed' } });
+      return;
+    }
+    try {
+      const db = admin.firestore();
+      const data = req.body?.data && typeof req.body.data === 'object' ? req.body.data : req.body || {};
+      const stableUid = sanitizeString(data?.stableId, 128);
+      if (!stableUid) throw new HttpsError('failed-precondition', 'missing-stable-id');
+      const result = await activateLeagueGroupBoostForStableUid(db, stableUid);
+      res.status(200).json({ result });
+    } catch (e: any) {
+      const code = typeof e?.code === 'string' ? e.code : 'internal';
+      const message = sanitizeString(e?.message || code, 160) || 'internal';
+      res.status(200).json({ error: { status: callableErrorStatus(code), message } });
+    }
+  },
+);

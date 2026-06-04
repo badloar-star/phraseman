@@ -17,14 +17,15 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useEnergy } from '../components/EnergyContext';
 import EnergyIcon from '../components/EnergyIcon';
+import CompassBevel from '../components/CompassBevel';
 import ContentWrap from '../components/ContentWrap';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { paywallGlassColor } from '../components/paywallGlass';
 import MatchFoundToast from '../components/MatchFoundToast';
-import { DEV_IAP_BYPASS, IS_EXPO_GO, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from './config';
+import { DEV_IAP_BYPASS, IS_EXPO_GO, IS_STORE_RELEASE, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from './config';
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
-import { getVerifiedRealPremiumStatus, invalidatePremiumCache } from './premium_guard';
+import { getVerifiedRealPremiumStatus, getVerifiedVipStatus, invalidatePremiumCache } from './premium_guard';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import {
   getTrialReofferBlockedByCooldown,
@@ -65,7 +66,12 @@ import { MOTION_SPRING } from '../constants/motion';
 import { triLang, type Lang } from '../constants/i18n';
 import { getPremiumCourseLevel } from './lesson_lock_system';
 import type { ThemeMode } from '../constants/theme';
+import { COMPASS_GRADIENTS, COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { oskolokImageForPackShards } from './oskolok';
+import {
+  activatePendingPersonalPlanAfterPremium,
+  PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY,
+} from './personal_plan_activation';
 
 type PremiumPlannedCopy = {
   'pt-BR': string;
@@ -92,6 +98,14 @@ function PremiumScreenShell({ children }: { children: React.ReactNode }) {
 function storePriceTrim(raw: string | undefined | null): string {
   if (typeof raw !== 'string') return '';
   return raw.trim();
+}
+
+function storePricePerMonthTrim(product: PurchasesPackage['product'] | undefined): string {
+  return storePriceTrim((product as { pricePerMonthString?: string | null } | undefined)?.pricePerMonthString);
+}
+
+function routeParamString(raw: string | string[] | undefined): string {
+  return storePriceTrim(Array.isArray(raw) ? raw[0] : raw);
 }
 
 const isEnergyGlyph = (value: string) => value.codePointAt(0) === 0x26A1;
@@ -124,6 +138,7 @@ type PremiumContext =
   | 'heatmap'
   | 'patterns'
   | 'percentiles'
+  | 'personal_plan'
   | 'generic';
 
 const PREMIUM_CONTEXT_VALUES = [
@@ -147,6 +162,7 @@ const PREMIUM_CONTEXT_VALUES = [
   'heatmap',
   'patterns',
   'percentiles',
+  'personal_plan',
   'generic',
 ] as const satisfies readonly PremiumContext[];
 const PREMIUM_CONTEXT_SET = new Set<string>(PREMIUM_CONTEXT_VALUES);
@@ -158,6 +174,7 @@ const PREMIUM_HERO_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
   coral: require('../assets/images/paywalls/premium_hero/premium-hero-coral.webp'),
   minimalLight: require('../assets/images/paywalls/premium_hero/premium-hero-minimal-light.webp'),
   minimalDark: require('../assets/images/paywalls/premium_hero/premium-hero-minimal-dark.webp'),
+  compass: require('../assets/images/paywalls/premium_hero/premium-hero-compass-premium.webp'),
 };
 
 type PremiumHeroArt = {
@@ -187,6 +204,7 @@ const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   heatmap: { accent: '#34D399', accent2: '#A3E635', shardAmount: 180 },
   patterns: { accent: '#F87171', accent2: '#C084FC', shardAmount: 180 },
   percentiles: { accent: '#FACC15', accent2: '#38BDF8', shardAmount: 420 },
+  personal_plan: { accent: '#72E6A9', accent2: '#66A8FF', shardAmount: 420 },
   generic: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
 };
 
@@ -224,9 +242,9 @@ const COURSE_AFTER_LESSON3_COPY: PaywallCopy = {
   titleRu: 'Открой весь текущий уровень',
   titleUk: 'Відкрий весь поточний рівень',
   titleEs: 'Abre todo tu nivel actual',
-  subtitleRu: 'Первые 3 урока открыты бесплатно. Premium открывает весь текущий уровень: все уроки доступны сразу, без блокировок по результату. Следующие уровни открываются через экзамены.',
-  subtitleUk: 'Перші 3 уроки відкриті безкоштовно. Premium відкриває весь поточний рівень: усі уроки доступні одразу, без блокувань за результатом. Наступні рівні відкриваються через екзамени.',
-  subtitleEs: 'Las primeras 3 lecciones son gratis. Premium abre todo tu nivel actual: todas las lecciones disponibles al instante, sin bloqueos por resultado. Los siguientes niveles se abren con exámenes.',
+  subtitleRu: 'A1 открыт бесплатно и проходится последовательно. Premium открывает весь текущий уровень: все уроки доступны сразу, без блокировок по результату. Следующие уровни открываются через экзамены.',
+  subtitleUk: 'A1 відкритий безкоштовно й проходиться послідовно. Premium відкриває весь поточний рівень: усі уроки доступні одразу, без блокувань за результатом. Наступні рівні відкриваються через екзамени.',
+  subtitleEs: 'A1 es gratis y se avanza paso a paso. Premium abre todo tu nivel actual: todas las lecciones disponibles al instante, sin bloqueos por resultado. Los siguientes niveles se abren con exámenes.',
 };
 const COURSE_AFTER_LESSON3_PLANNED_COPY: PremiumPlannedHeroCopy = {
   title: {
@@ -237,11 +255,11 @@ const COURSE_AFTER_LESSON3_PLANNED_COPY: PremiumPlannedHeroCopy = {
     pl: 'Otwórz cały obecny poziom',
   },
   subtitle: {
-    'pt-BR': 'As 3 primeiras lições são grátis. Premium abre todo o nível atual: todas as lições disponíveis na hora, sem bloqueios por resultado. Os próximos níveis abrem por exames.',
-    vi: '3 bài đầu tiên miễn phí. Premium mở toàn bộ cấp hiện tại: mọi bài học có ngay, không bị khóa theo kết quả. Các cấp tiếp theo mở qua bài kiểm tra.',
-    id: '3 pelajaran pertama gratis. Premium membuka seluruh level saat ini: semua pelajaran langsung tersedia, tanpa kunci dari hasil. Level berikutnya dibuka lewat ujian.',
-    tr: 'İlk 3 ders ücretsiz. Premium mevcut seviyenin tamamını açar: tüm dersler hemen erişilir, sonuç engeli yoktur. Sonraki seviyeler sınavlarla açılır.',
-    pl: 'Pierwsze 3 lekcje są darmowe. Premium otwiera cały obecny poziom: wszystkie lekcje od razu, bez blokad za wynik. Kolejne poziomy otwierają się przez egzaminy.',
+    'pt-BR': 'O A1 é grátis e avança passo a passo. Premium abre todo o nível atual: todas as lições disponíveis na hora, sem bloqueios por resultado. Os próximos níveis abrem por exames.',
+    vi: 'A1 miễn phí và mở từng bài theo tiến độ. Premium mở toàn bộ cấp hiện tại: mọi bài học có ngay, không bị khóa theo kết quả. Các cấp tiếp theo mở qua bài kiểm tra.',
+    id: 'A1 gratis dan dibuka bertahap. Premium membuka seluruh level saat ini: semua pelajaran langsung tersedia, tanpa kunci dari hasil. Level berikutnya dibuka lewat ujian.',
+    tr: 'A1 ücretsizdir ve adım adım açılır. Premium mevcut seviyenin tamamını açar: tüm dersler hemen erişilir, sonuç engeli yoktur. Sonraki seviyeler sınavlarla açılır.',
+    pl: 'A1 jest darmowy i odblokowuje się krok po kroku. Premium otwiera cały obecny poziom: wszystkie lekcje od razu, bez blokad za wynik. Kolejne poziomy otwierają się przez egzaminy.',
   },
 };
 
@@ -255,7 +273,7 @@ function normalizePremiumContext(raw: string | string[] | undefined): PremiumCon
   return PREMIUM_CONTEXT_SET.has(value) ? (value as PremiumContext) : 'generic';
 }
 
-const PAYWALL_COPY: Record<PremiumContext, PaywallCopy> = {
+const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { generic: PaywallCopy } = {
   arena: {
     titleRu: 'Больше дуэлей на Арене каждый день',
     titleUk: 'Більше дуелей на Арені щодня',
@@ -422,7 +440,16 @@ PAYWALL_COPY.quiz_limit = {
   subtitleEs: 'La versión gratis incluye 3 cuestionarios al día. Premium quita el límite diario para que puedas practicar sin pausas.',
 };
 
-const PAYWALL_PLANNED_COPY: Record<PremiumContext, PremiumPlannedHeroCopy> = {
+PAYWALL_COPY.personal_plan = {
+  titleRu: 'Получить персональный план',
+  titleUk: 'Отримати персональний план',
+  titleEs: 'Activar tu plan personal',
+  subtitleRu: 'Premium включает задания на каждый день: уроки, живые фразы, повторение и проверки под твою цель. План держит темп, а материалы открываются без лишних остановок.',
+  subtitleUk: 'Premium вмикає завдання на кожен день: уроки, живі фрази, повторення й перевірки під твою ціль. План тримає темп, а матеріали відкриваються без зайвих пауз.',
+  subtitleEs: 'Premium activa tareas diarias: lecciones, frases reales, repaso y pruebas según tu meta. El plan mantiene el ritmo y los materiales se abren sin pausas extra.',
+};
+
+const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlannedHeroCopy>> & { generic: PremiumPlannedHeroCopy } = {
   arena: {
     title: { 'pt-BR': 'Mais duelos na Arena todos os dias', vi: 'Thêm trận đấu Arena mỗi ngày', id: 'Lebih banyak duel Arena setiap hari', tr: 'Her gün daha fazla Arena düellosu', pl: 'Więcej pojedynków na Arenie każdego dnia' },
     subtitle: {
@@ -614,6 +641,23 @@ const PAYWALL_PLANNED_COPY: Record<PremiumContext, PremiumPlannedHeroCopy> = {
       tr: 'Daha çok pratik, daha az sınır ve her gün istikrarlı ilerleme.',
       pl: 'Więcej praktyki, mniej ograniczeń i stabilny postęp każdego dnia.',
     },
+  },
+};
+
+PAYWALL_PLANNED_COPY.personal_plan = {
+  title: {
+    'pt-BR': 'Ative seu plano pessoal',
+    vi: 'Kích hoạt kế hoạch cá nhân',
+    id: 'Aktifkan rencana personalmu',
+    tr: 'Kişisel planını aç',
+    pl: 'Włącz swój plan osobisty',
+  },
+  subtitle: {
+    'pt-BR': 'Premium libera tarefas diárias: lições, frases reais, revisão e quizzes alinhados ao seu objetivo.',
+    vi: 'Premium mở nhiệm vụ hằng ngày: bài học, câu thật, ôn tập và quiz theo mục tiêu của bạn.',
+    id: 'Premium membuka tugas harian: pelajaran, frasa nyata, pengulangan, dan kuis sesuai tujuanmu.',
+    tr: 'Premium günlük görevleri açar: dersler, gerçek ifadeler, tekrar ve hedefe uygun quizler.',
+    pl: 'Premium otwiera codzienne zadania: lekcje, żywe frazy, powtórki i quizy pod twój cel.',
   },
 };
 
@@ -847,7 +891,7 @@ function getHero(
   }
 }
 
-const CONTEXT_BENEFITS: Record<PremiumContext, ({ ru: string; uk: string; es: string } & PremiumPlannedCopy)[]> = {
+const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk: string; es: string } & PremiumPlannedCopy)[]>> & { generic: ({ ru: string; uk: string; es: string } & PremiumPlannedCopy)[] } = {
   arena: [
     { ru: 'Дневной потолок матчей снимается', uk: 'Денну межу матчів знято', es: 'Se quita el techo diario de partidas', 'pt-BR': 'O teto diário de partidas é removido', vi: 'Gỡ giới hạn trận hằng ngày', id: 'Batas pertandingan harian dihapus', tr: 'Günlük maç tavanı kalkar', pl: 'Dzienny limit meczów znika' },
     { ru: 'Дуэли без ощущения «на сегодня всё»', uk: 'Дуелі без «на сьогодні вже досить»', es: 'Duelos sin el «ya basta por hoy»', 'pt-BR': 'Duelos sem “por hoje chega”', vi: 'Đấu mà không bị “hôm nay đủ rồi”', id: 'Duel tanpa rasa “cukup hari ini”', tr: '“Bugünlük yeter” hissi olmadan düello', pl: 'Pojedynki bez “na dziś wystarczy”' },
@@ -1213,7 +1257,13 @@ CONTEXT_BENEFITS.quiz_limit = [
   { ru: 'Больше практики и XP каждый день', uk: 'Більше практики та XP щодня', es: 'Más práctica y XP cada día', 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
 ];
 
-const CONTEXT_BENEFITS_PLANNED: Record<PremiumContext, PremiumPlannedCopy[]> = {
+CONTEXT_BENEFITS.personal_plan = [
+  { ru: 'Персональный план с заданиями на каждый день', uk: 'Персональний план із завданнями на кожен день', es: 'Plan personal con tareas diarias', 'pt-BR': 'Plano pessoal com tarefas diárias', vi: 'Kế hoạch cá nhân với nhiệm vụ hằng ngày', id: 'Rencana personal dengan tugas harian', tr: 'Günlük görevli kişisel plan', pl: 'Plan osobisty z codziennymi zadaniami' },
+  { ru: 'Уроки, фразы, повторение и отдельные квизы плана', uk: 'Уроки, фрази, повторення й окремі квізи плану', es: 'Lecciones, frases, repaso y quizzes del plan', 'pt-BR': 'Lições, frases, revisão e quizzes do plano', vi: 'Bài học, câu, ôn tập và quiz của kế hoạch', id: 'Pelajaran, frasa, pengulangan, dan kuis rencana', tr: 'Dersler, ifadeler, tekrar ve plan quizleri', pl: 'Lekcje, frazy, powtórki i quizy planu' },
+  { ru: 'Все нужные материалы открываются без лишних пауз', uk: 'Усі потрібні матеріали відкриваються без зайвих пауз', es: 'Materiales necesarios sin pausas extra', 'pt-BR': 'Materiais necessários sem pausas extras', vi: 'Tài liệu cần thiết không bị dừng thêm', id: 'Materi yang dibutuhkan tanpa jeda ekstra', tr: 'Gerekli materyaller ekstra duraklama olmadan', pl: 'Potrzebne materiały bez dodatkowych przerw' },
+];
+
+const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPlannedCopy[]>> & { generic: PremiumPlannedCopy[] } = {
   arena: [
     { 'pt-BR': 'O teto diário de partidas é removido', vi: 'Gỡ giới hạn trận hằng ngày', id: 'Batas pertandingan harian dihapus', tr: 'Günlük maç tavanı kalkar', pl: 'Dzienny limit meczów znika' },
     { 'pt-BR': 'Duelos sem “por hoje chega”', vi: 'Đấu mà không bị “hôm nay đủ rồi”', id: 'Duel tanpa rasa “cukup hari ini”', tr: '“Bugünlük yeter” hissi olmadan düello', pl: 'Pojedynki bez “na dziś wystarczy”' },
@@ -1321,6 +1371,12 @@ const CONTEXT_BENEFITS_PLANNED: Record<PremiumContext, PremiumPlannedCopy[]> = {
     { 'pt-BR': 'Você sabe onde se destaca e onde crescer', vi: 'Biết bạn mạnh ở đâu và nên phát triển gì', id: 'Tahu di mana kamu unggul dan perlu berkembang', tr: 'Nerede güçlü olduğunu ve nereye büyüyeceğini bilirsin', pl: 'Wiesz, gdzie jesteś mocny i gdzie rosnąć dalej' },
   ],
 };
+
+CONTEXT_BENEFITS_PLANNED.personal_plan = [
+  { 'pt-BR': 'Plano pessoal com tarefas diárias', vi: 'Kế hoạch cá nhân với nhiệm vụ hằng ngày', id: 'Rencana personal dengan tugas harian', tr: 'Günlük görevli kişisel plan', pl: 'Plan osobisty z codziennymi zadaniami' },
+  { 'pt-BR': 'Lições, frases, revisão e quizzes do plano', vi: 'Bài học, câu, ôn tập và quiz của kế hoạch', id: 'Pelajaran, frasa, pengulangan, dan kuis rencana', tr: 'Dersler, ifadeler, tekrar ve plan quizleri', pl: 'Lekcje, frazy, powtórki i quizy planu' },
+  { 'pt-BR': 'Materiais necessários sem pausas extras', vi: 'Tài liệu cần thiết không bị dừng thêm', id: 'Materi yang dibutuhkan tanpa jeda ekstra', tr: 'Gerekli materyaller ekstra duraklama olmadan', pl: 'Potrzebne materiały bez dodatkowych przerw' },
+];
 
 function getContextBenefitPlanned(ctx: PremiumContext, index: number): PremiumPlannedCopy {
   const rows = CONTEXT_BENEFITS_PLANNED[ctx] ?? CONTEXT_BENEFITS_PLANNED.generic;
@@ -1430,6 +1486,9 @@ export default function PremiumModal() {
     manage?: string;
     source?: string;
     _force_trial_ui?: string;
+    _mock_yearly_price?: string;
+    _mock_yearly_monthly?: string;
+    _mock_monthly_price?: string;
   }>();
   const manageRaw = params.manage;
   /** Стабильный флаг без зависимости от нового объекта params на каждом ререндере */
@@ -1439,6 +1498,10 @@ export default function PremiumModal() {
       даже когда магазин не вернул intro phase. Проставляется ТОЛЬКО из admin-панели,
       пользователь без deep-link доступа сам его не передаст. */
   const forceTrialUI = params._force_trial_ui === '1';
+  const allowMockStorePricePreview = __DEV__ && !IS_STORE_RELEASE;
+  const mockYearlyPrice = allowMockStorePricePreview ? routeParamString(params._mock_yearly_price) : '';
+  const mockYearlyMonthlyEquivalent = allowMockStorePricePreview ? routeParamString(params._mock_yearly_monthly) : '';
+  const mockMonthlyPrice = allowMockStorePricePreview ? routeParamString(params._mock_monthly_price) : '';
 
   const ctx = normalizePremiumContext(params.context);
   const streakDays   = parseInt(params.streak       ?? '0') || 0;
@@ -1466,6 +1529,24 @@ export default function PremiumModal() {
   const paywallSurface2Bg = paywallGlassColor(t.bgSurface2, themeMode, 'soft');
   const paywallPrimaryBg = paywallGlassColor(t.bgPrimary, themeMode, 'primary');
   const paywallChromeBg = paywallGlassColor(t.bgCard, themeMode, 'chrome');
+  const isCompassPaywall = themeMode === 'compass';
+  const compassRadius = isCompassPaywall ? 9 : 16;
+  const compassPanelRadius = isCompassPaywall ? 10 : 22;
+  const compassIconRadius = isCompassPaywall ? 8 : 18;
+  const compassSmallRadius = isCompassPaywall ? 7 : 12;
+  const compassAccent = isCompassPaywall ? COMPASS_RICH.champagne : t.gold;
+  const compassAccentSoft = isCompassPaywall ? COMPASS_RICH.washStrong : t.goldBg;
+  const compassAccentBorder = isCompassPaywall ? COMPASS_RICH.hairlineStrong : t.gold + '66';
+  const compassHairline = isCompassPaywall ? COMPASS_RICH.hairlineQuiet : t.gold + '2E';
+  const compassPanelColors = isCompassPaywall
+    ? COMPASS_GRADIENTS.premiumPanel
+    : [paywallSurfaceBg, paywallCardBg, paywallSurface2Bg];
+  const compassCardColors = isCompassPaywall
+    ? COMPASS_GRADIENTS.recessedPanel
+    : [paywallCardBg, paywallSurfaceBg, paywallCardBg];
+  const compassButtonColors = isCompassPaywall
+    ? COMPASS_GRADIENTS.primaryButton
+    : [t.textSecond, t.gold];
   const { lang } = useLang();
   const { reload: reloadEnergy } = useEnergy();
   const LP = (ru: string, uk: string, es: string, planned: PremiumPlannedCopy) => triLang(lang as Lang, {
@@ -1518,6 +1599,7 @@ export default function PremiumModal() {
   const [cancelled]  = useState(false);
   const [cancelSurveyVisible, setCancelSurveyVisible] = useState(false);
   const [cancelSurveyOtherText, setCancelSurveyOtherText] = useState('');
+  const [changePlanConfirmVisible, setChangePlanConfirmVisible] = useState(false);
   const [exitTrialOfferVisible, setExitTrialOfferVisible] = useState(false);
   const exitTrialOfferSeenRef = useRef(false);
   const purchasingRef  = useRef(false);
@@ -1531,13 +1613,20 @@ export default function PremiumModal() {
   const entranceScale      = useRef(new Animated.Value(0.97)).current;
 
   const resolveCurrentPremiumState = useCallback(async () => {
-    const verified = await getVerifiedRealPremiumStatus().catch(() => false);
+    const [verifiedReal, verifiedVip] = await Promise.all([
+      getVerifiedRealPremiumStatus().catch(() => false),
+      getVerifiedVipStatus().catch(() => false),
+    ]);
     const res = await AsyncStorage.multiGet([
       'premium_active',
       'premium_plan',
       'premium_expiry',
       'tester_no_premium',
       'admin_premium_override',
+      'vip_active',
+      'vip_plan',
+      'vip_until',
+      'vip_admin_override',
     ]);
     const active = res.find(r => r[0] === 'premium_active')?.[1];
     const rawPlan = String(res.find(r => r[0] === 'premium_plan')?.[1] ?? '').trim();
@@ -1545,18 +1634,44 @@ export default function PremiumModal() {
     const expiry = parseInt(res.find(r => r[0] === 'premium_expiry')?.[1] || '0');
     const noPremium = res.find(r => r[0] === 'tester_no_premium')?.[1];
     const adminOverride = res.find(r => r[0] === 'admin_premium_override')?.[1];
+    const vipActive = res.find(r => r[0] === 'vip_active')?.[1];
+    const vipPlanRaw = String(res.find(r => r[0] === 'vip_plan')?.[1] ?? '').trim();
+    const vipUntil = parseInt(res.find(r => r[0] === 'vip_until')?.[1] || '0');
+    const vipOverride = res.find(r => r[0] === 'vip_admin_override')?.[1];
     const legacyAdminGrant =
       adminOverride === 'true' ||
       (rawPlan.toLowerCase() === 'admin_grant' && adminOverride !== 'false');
-    const isAdmin = false;
+    const legacyAdminActive =
+      noPremium !== 'true' &&
+      legacyAdminGrant &&
+      (expiry === 0 || expiry > Date.now());
+    const vipStorageActive =
+      noPremium !== 'true' &&
+      vipActive === 'true' &&
+      vipOverride !== 'false' &&
+      (vipUntil === 0 || vipUntil > Date.now());
+    const isAdmin = verifiedVip || vipStorageActive || legacyAdminActive;
+    const adminExpiry = vipUntil > 0 ? vipUntil : expiry;
+    const adminPlan = (() => {
+      const normalizedVipPlan = normalizePlan(vipPlanRaw);
+      if (normalizedVipPlan) return normalizedVipPlan;
+      if (plan) return plan;
+      if (adminExpiry > 0 && adminExpiry - Date.now() <= 45 * 24 * 60 * 60 * 1000) return 'monthly';
+      return 'yearly';
+    })();
     const hasLocalActive =
       noPremium !== 'true' &&
       active === 'true' &&
       !legacyAdminGrant &&
       !!plan &&
       (expiry === 0 || expiry > Date.now());
-    const isPremium = noPremium === 'true' ? false : (verified || hasLocalActive);
-    return { isPremium, plan, expiry, isAdmin };
+    const isPremium = noPremium === 'true' ? false : (verifiedReal || hasLocalActive || isAdmin);
+    return {
+      isPremium,
+      plan: isAdmin ? adminPlan : plan,
+      expiry: isAdmin ? adminExpiry : expiry,
+      isAdmin,
+    };
   }, []);
 
   const loadPremiumPackages = useCallback(async (): Promise<PremiumPackages> => {
@@ -1701,6 +1816,8 @@ export default function PremiumModal() {
   const heroBackdrop = PREMIUM_HERO_BACKDROPS[themeMode];
   const heroArt = PREMIUM_HERO_ART[ctx];
   const heroScrim = premiumHeroScrim(themeMode);
+  const paywallComparisonPremiumColor =
+    themeMode === 'compass' ? '#F2C48D' : PAYWALL_COMPARISON_PREMIUM_COLOR;
   const personalValueLine = getPersonalValueLine(ctx, streakDays, lessonsDone, savedCards, lang as Lang);
   const yearlyStoreHasTrial = !trialReofferBlocked && storeProductHasTrialIntro(packages.yearly?.product);
   const monthlyStoreHasTrial = !trialReofferBlocked && storeProductHasTrialIntro(packages.monthly?.product);
@@ -1714,8 +1831,28 @@ export default function PremiumModal() {
   const primaryHasTrialOffer = primaryYearlyHasTrial || primaryMonthlyHasTrial;
   const exitTrialPlan: Plan = yearlyStoreHasTrial ? 'yearly' : 'monthly';
   const storePricesRequired = !IS_EXPO_GO && !DEV_IAP_BYPASS;
-  const yearlyPrice = storePriceTrim(packages.yearly?.product.priceString);
-  const monthlyPrice = storePriceTrim(packages.monthly?.product.priceString);
+  const yearlyPrice = storePriceTrim(packages.yearly?.product.priceString) || mockYearlyPrice;
+  const monthlyPrice = storePriceTrim(packages.monthly?.product.priceString) || mockMonthlyPrice;
+  const yearlyMonthlyEquivalent = storePricePerMonthTrim(packages.yearly?.product) || mockYearlyMonthlyEquivalent;
+  const selectedMonthlyEquivalent = selected === 'yearly' ? yearlyMonthlyEquivalent : '';
+  const monthlyEquivalentLabel = yearlyMonthlyEquivalent
+    ? LP(`≈ ${yearlyMonthlyEquivalent} / месяц`, `≈ ${yearlyMonthlyEquivalent} / місяць`, `≈ ${yearlyMonthlyEquivalent} / mes`, {
+        'pt-BR': `≈ ${yearlyMonthlyEquivalent} /mês`,
+        vi: `≈ ${yearlyMonthlyEquivalent} /tháng`,
+        id: `≈ ${yearlyMonthlyEquivalent} /bulan`,
+        tr: `≈ ${yearlyMonthlyEquivalent} /ay`,
+        pl: `≈ ${yearlyMonthlyEquivalent} /mies.`,
+      })
+    : '';
+  const yearlyBillingNote = yearlyMonthlyEquivalent
+    ? LP('оплата за год', 'оплата за рік', 'facturado anual', {
+        'pt-BR': 'cobrado anualmente',
+        vi: 'thanh toán hằng năm',
+        id: 'ditagih tahunan',
+        tr: 'yıllık faturalandırılır',
+        pl: 'rozliczenie roczne',
+      })
+    : '';
   const missingStorePriceLabel = loadingPackages || !packagesLoadAttempted
     ? LP('Цена скоро появится', 'Ціна скоро зʼявиться', 'Price pending', {
         'pt-BR': 'Preço pendente',
@@ -1788,12 +1925,17 @@ export default function PremiumModal() {
     if (openManageFromSettings) return;
 
     resolveCurrentPremiumState()
-      .then(({ isPremium, plan, expiry, isAdmin }) => {
+      .then(async ({ isPremium, plan, expiry, isAdmin }) => {
         if (isPremium) {
           const effectivePlan = plan ?? 'yearly';
           setIsAdminGrantedPremium(isAdmin);
           setActivePlan(effectivePlan);
           setExpiryTs(prev => (expiry > 0 ? expiry : prev));
+          if (ctx === 'personal_plan') {
+            await activatePendingPersonalPlanAfterPremium();
+            finishPersonalPlanActivationFlow();
+            return;
+          }
           setViewMode('manage');
         }
       })
@@ -1815,7 +1957,47 @@ export default function PremiumModal() {
     }
   };
 
+  const activatePersonalPlanAfterPremiumIfNeeded = async () => {
+    if (ctx !== 'personal_plan') return;
+    await activatePendingPersonalPlanAfterPremium();
+  };
+
+  const markPremiumCelebrationIfNeeded = async () => {
+    if (ctx === 'personal_plan') return;
+    await markCelebrationPending();
+  };
+
+  const finishPersonalPlanActivationFlow = () => {
+    invalidatePremiumCache();
+    AsyncStorage.setItem('had_premium_ever', '1').catch(() => {});
+    void getPremiumCourseLevel().catch(() => {});
+    emitAppEvent('premium_activated');
+    reloadEnergy();
+    AsyncStorage.getItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY)
+      .then((pendingNickname) => {
+        if (pendingNickname === '1') {
+          return AsyncStorage.multiSet([
+            ['onboarding_step', 'name'],
+            [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
+          ])
+            .then(() => AsyncStorage.removeItem('onboarding_done'))
+            .then(() => {
+              emitAppEvent('personal_plan_onboarding_nickname_ready');
+              router.replace('/(tabs)/home' as any);
+            });
+        }
+        router.replace('/personal_plan_thank_you' as any);
+      })
+      .catch(() => {
+        router.replace('/personal_plan_thank_you' as any);
+      });
+  };
+
   const finishPremiumActivationAndReturn = () => {
+    if (ctx === 'personal_plan') {
+      finishPersonalPlanActivationFlow();
+      return;
+    }
     invalidatePremiumCache();
     AsyncStorage.setItem('had_premium_ever', '1').catch(() => {});
     void getPremiumCourseLevel().catch(() => {});
@@ -1827,6 +2009,11 @@ export default function PremiumModal() {
   const handlePurchase = async (plan: Plan) => {
     // Defensive guard: if premium is already active locally, don\'t start a second flow.
     if (activePlan) {
+      if (ctx === 'personal_plan') {
+        await activatePersonalPlanAfterPremiumIfNeeded();
+        finishPersonalPlanActivationFlow();
+        return;
+      }
       setViewMode('manage');
       return;
     }
@@ -1846,6 +2033,11 @@ export default function PremiumModal() {
       setIsAdminGrantedPremium(latestPremiumState.isAdmin);
       setActivePlan(effectivePlan);
       setExpiryTs(prev => (latestPremiumState?.expiry && latestPremiumState.expiry > 0 ? latestPremiumState.expiry : prev));
+      if (ctx === 'personal_plan') {
+        await activatePersonalPlanAfterPremiumIfNeeded();
+        finishPersonalPlanActivationFlow();
+        return;
+      }
       setViewMode('manage');
       return;
     }
@@ -1856,8 +2048,9 @@ export default function PremiumModal() {
       await savePremiumLocally(plan);
       await markSubscriptionOrTrialFlowConsumedNow();
       await activateFreezeIfNeeded();
+      await activatePersonalPlanAfterPremiumIfNeeded();
       purchasingRef.current = false;
-      await markCelebrationPending();
+      await markPremiumCelebrationIfNeeded();
       finishPremiumActivationAndReturn();
       return;
     }
@@ -1946,9 +2139,10 @@ export default function PremiumModal() {
       // Локальная отметка: 90 д. без копии «3 дня» (магазин отдельно решает про intro).
       await markSubscriptionOrTrialFlowConsumedNow();
       await activateFreezeIfNeeded();
+      await activatePersonalPlanAfterPremiumIfNeeded();
       // Подняли pending для PremiumCelebrationModal — на следующем mount home.tsx
       // юзер увидит celebration с замочками и короной.
-      await markCelebrationPending();
+      await markPremiumCelebrationIfNeeded();
       returnedAfterActivation = true;
       finishPremiumActivationAndReturn();
       return;
@@ -1971,7 +2165,8 @@ export default function PremiumModal() {
             await savePremiumLocally(restoredPlan, revenueCatPremiumMetadata(info));
             await markSubscriptionOrTrialFlowConsumedNow();
             await activateFreezeIfNeeded();
-            await markCelebrationPending();
+            await activatePersonalPlanAfterPremiumIfNeeded();
+            await markPremiumCelebrationIfNeeded();
             returnedAfterActivation = true;
             finishPremiumActivationAndReturn();
             return;
@@ -2015,10 +2210,6 @@ export default function PremiumModal() {
         });
         return;
       }
-      if (Platform.OS !== 'android') {
-        openManageWithToast();
-        return;
-      }
       await initRevenueCat();
       if (!(await Purchases.isConfigured()) || !(await syncRevenueCatIdentity())) {
         emitAppEvent('action_toast', {
@@ -2051,8 +2242,10 @@ export default function PremiumModal() {
         oldProductIdentifier: currentPkg.product.identifier,
         prorationMode: Purchases.PRORATION_MODE.DEFERRED,
       };
-      await Purchases.purchasePackage(nextPkg, null, googleProductChangeInfo);
-      const info = await Purchases.getCustomerInfo();
+      const purchaseResult = Platform.OS === 'android'
+        ? await Purchases.purchasePackage(nextPkg, null, googleProductChangeInfo)
+        : await Purchases.purchasePackage(nextPkg);
+      const info = purchaseResult.customerInfo ?? await Purchases.getCustomerInfo();
       const isActive =
         Object.keys(info.entitlements.active).length > 0 ||
         info.activeSubscriptions.length > 0;
@@ -2070,9 +2263,9 @@ export default function PremiumModal() {
       }
       emitAppEvent('action_toast', {
         type: 'success',
-        messageRu: 'Смена плана отправлена в Google Play. Годовой план начнётся после текущего периода.',
-        messageUk: 'Зміну плану передано в Google Play. Річний план почнеться після поточного періоду.',
-        messageEs: 'Cambio enviado a Google Play. El plan anual empezará al terminar el periodo actual.',
+        messageRu: 'Смена плана отправлена в магазин. Годовой план будет подтверждён в окне оплаты.',
+        messageUk: 'Зміну плану передано в магазин. Річний план буде підтверджено у вікні оплати.',
+        messageEs: 'Cambio enviado a la tienda. El plan anual se confirmará en la ventana de pago.',
       });
     } catch (e: any) {
       if (!e?.userCancelled) {
@@ -2127,7 +2320,12 @@ export default function PremiumModal() {
         await markSubscriptionOrTrialFlowConsumedNow();
         // Restore = первый раз на этом устройстве (или после reset) — celebration уместна,
         // чтобы юзер видел что premium «активирован» и понимал что разблокировано.
-        await markCelebrationPending();
+        await activatePersonalPlanAfterPremiumIfNeeded();
+        await markPremiumCelebrationIfNeeded();
+        if (ctx === 'personal_plan') {
+          finishPersonalPlanActivationFlow();
+          return;
+        }
         emitAppEvent('premium_activated');
         reloadEnergy();
         emitAppEvent('action_toast', {
@@ -2176,7 +2374,7 @@ export default function PremiumModal() {
             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 18, paddingTop: 12, paddingBottom: 14 }}>
               <TouchableOpacity
                 onPress={() => { hapticTap(); goBack(); }}
-                style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: paywallChromeBg, borderWidth: 1, borderColor: t.border }}
+                style={{ width: 40, height: 40, borderRadius: isCompassPaywall ? 8 : 20, alignItems: 'center', justifyContent: 'center', backgroundColor: paywallChromeBg, borderWidth: 1, borderColor: t.border }}
                 activeOpacity={0.82}
               >
                 <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
@@ -2283,23 +2481,32 @@ export default function PremiumModal() {
       : `${amount} / ${period}`;
     const canChangeMonthlyToYearly = activePlan === 'monthly' && !cancelled && (!isAdminGrantedPremium || isDevStorePreview);
     const yearlyChangePrice = storePriceTrim(packages.yearly?.product.priceString);
-    const premiumGold = t.gold;
-    const premiumGoldSoft = t.goldBg;
-    const premiumBorder = premiumGold + '66';
-    const premiumHairline = premiumGold + '2E';
+    const changePlanCurrentEndLabel = expiryTs > 0 ? formatDate(expiryTs, lang) : noExpiryLabel;
+    const changePlanStoreName = effectiveOs === 'ios' ? 'App Store' : 'Google Play';
+    const changePlanYearlyAmount = yearlyChangePrice || LP('Цена годового плана появится в окне оплаты', 'Ціна річного плану зʼявиться у вікні оплати', 'El precio anual aparecerá en la ventana de pago', {
+      'pt-BR': 'O preço anual aparecerá na janela de pagamento',
+      vi: 'Giá gói năm sẽ xuất hiện trong cửa sổ thanh toán',
+      id: 'Harga tahunan akan muncul di jendela pembayaran',
+      tr: 'Yıllık fiyat ödeme penceresinde görünür',
+      pl: 'Cena roczna pojawi się w oknie płatności',
+    });
+    const premiumGold = compassAccent;
+    const premiumGoldSoft = compassAccentSoft;
+    const premiumBorder = compassAccentBorder;
+    const premiumHairline = compassHairline;
     const premiumShadow = {
       shadowColor: '#000000',
-      shadowOffset: { width: 0, height: 10 },
-      shadowOpacity: 0.24,
-      shadowRadius: 24,
-      elevation: 10,
+      shadowOffset: { width: 0, height: isCompassPaywall ? 8 : 10 },
+      shadowOpacity: isCompassPaywall ? 0.34 : 0.24,
+      shadowRadius: isCompassPaywall ? 18 : 24,
+      elevation: isCompassPaywall ? 12 : 10,
     };
     const refinedCard = {
-      borderRadius: 22,
-      ...premiumShadow,
+      borderRadius: compassPanelRadius,
+      ...(isCompassPaywall ? compassShadow(2) : premiumShadow),
     };
     const refinedCardInner = {
-      borderRadius: 22,
+      borderRadius: compassPanelRadius,
       borderWidth: 1,
       borderColor: premiumHairline,
       overflow: 'hidden' as const,
@@ -2332,7 +2539,7 @@ export default function PremiumModal() {
             <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 28, gap: 16 }}>
               <View style={refinedCard}>
                 <LinearGradient
-                  colors={[paywallSurfaceBg, paywallCardBg, paywallSurface2Bg]}
+                  colors={compassPanelColors as any}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={[refinedCardInner, { padding: 20, gap: 16 }]}
@@ -2344,13 +2551,14 @@ export default function PremiumModal() {
                     end={{ x: 1, y: 1 }}
                     style={StyleSheet.absoluteFill}
                   />
+                  {isCompassPaywall ? <CompassBevel radius={compassPanelRadius} intensity="strong" /> : null}
                   <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 18, right: 18, height: 1, backgroundColor: premiumGold + '88' }} />
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
                     <LinearGradient
                       colors={[premiumGold, '#FFF1A8', premiumGold]}
                       start={{ x: 0, y: 0 }}
                       end={{ x: 1, y: 1 }}
-                      style={{ width: 52, height: 52, borderRadius: 18, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#FFF7C8' }}
+                      style={{ width: 52, height: 52, borderRadius: compassIconRadius, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: isCompassPaywall ? COMPASS_RICH.edgeLight : '#FFF7C8' }}
                     >
                       {renderPremiumShardGlyph(36)}
                     </LinearGradient>
@@ -2500,7 +2708,7 @@ export default function PremiumModal() {
                     style={StyleSheet.absoluteFill}
                   />
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                    <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: premiumGoldSoft, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: premiumBorder }}>
+                    <View style={{ width: 34, height: 34, borderRadius: isCompassPaywall ? 7 : 17, backgroundColor: premiumGoldSoft, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: premiumBorder }}>
                       <Ionicons name="sparkles" size={18} color={premiumGold} />
                     </View>
                     <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>
@@ -2516,7 +2724,7 @@ export default function PremiumModal() {
                   <View style={{ gap: 13 }}>
                     {MANAGE_VIEW_PREMIUM_BENEFITS.map((row, idx) => (
                       <View key={idx} style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
-                        <View style={{ width: 24, height: 24, borderRadius: 12, backgroundColor: premiumGoldSoft, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: premiumBorder, marginTop: 1 }}>
+                        <View style={{ width: 24, height: 24, borderRadius: isCompassPaywall ? 5 : 12, backgroundColor: premiumGoldSoft, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: premiumBorder, marginTop: 1 }}>
                           <Ionicons name="checkmark" size={15} color={premiumGold} />
                         </View>
                         <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, lineHeight: 22, fontWeight: '500' }}>
@@ -2530,20 +2738,21 @@ export default function PremiumModal() {
 
               {canChangeMonthlyToYearly && (
                 <TouchableOpacity
-                  onPress={() => { hapticTap(); handleChangePlan(); }}
+                  onPress={() => { hapticTap(); setChangePlanConfirmVisible(true); }}
                   activeOpacity={0.86}
                   disabled={purchasing}
-                  style={{ borderRadius: 18, opacity: purchasing ? 0.62 : 1, ...premiumShadow }}
+                  style={{ borderRadius: compassPanelRadius, opacity: purchasing ? 0.62 : 1, ...(isCompassPaywall ? compassShadow(2) : premiumShadow) }}
                 >
                   <LinearGradient
-                    colors={[paywallSurfaceBg, paywallCardBg]}
+                    colors={(isCompassPaywall ? COMPASS_GRADIENTS.raisedTile : [paywallSurfaceBg, paywallCardBg]) as any}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
-                    style={{ padding: 18, borderWidth: 1, borderColor: premiumHairline, borderRadius: 18, gap: 10 }}
+                    style={{ padding: 18, borderWidth: 1, borderColor: premiumHairline, borderRadius: compassPanelRadius, gap: 10, overflow: 'hidden' }}
                   >
+                    {isCompassPaywall ? <CompassBevel radius={compassPanelRadius} /> : null}
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, flex: 1, minWidth: 0 }}>
-                        <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: premiumGoldSoft, alignItems: 'center', justifyContent: 'center' }}>
+                        <View style={{ width: 34, height: 34, borderRadius: isCompassPaywall ? 7 : 17, backgroundColor: premiumGoldSoft, alignItems: 'center', justifyContent: 'center' }}>
                           <Ionicons name="swap-horizontal-outline" size={20} color={premiumGold} />
                         </View>
                         <View style={{ flex: 1, minWidth: 0 }}>
@@ -2582,15 +2791,15 @@ export default function PremiumModal() {
                 <TouchableOpacity
                   onPress={() => { hapticTap(); setCancelSurveyVisible(true); }}
                   activeOpacity={0.86}
-                  style={{ borderRadius: 18 }}
+                  style={{ borderRadius: compassPanelRadius }}
                 >
                   <LinearGradient
-                    colors={[paywallCardBg, paywallSurfaceBg]}
+                    colors={(isCompassPaywall ? COMPASS_GRADIENTS.recessedPanel : [paywallCardBg, paywallSurfaceBg]) as any}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
-                    style={{ padding: 18, borderWidth: 1, borderColor: t.wrong + '55', borderRadius: 18, flexDirection: 'row', alignItems: 'center', gap: 12 }}
+                    style={{ padding: 18, borderWidth: 1, borderColor: t.wrong + '55', borderRadius: compassPanelRadius, flexDirection: 'row', alignItems: 'center', gap: 12 }}
                   >
-                    <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: t.wrongBg, alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={{ width: 34, height: 34, borderRadius: isCompassPaywall ? 7 : 17, backgroundColor: t.wrongBg, alignItems: 'center', justifyContent: 'center' }}>
                       <Ionicons name="close-circle-outline" size={21} color={t.wrong} />
                     </View>
                     <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '800' }}>{LP('Отменить подписку', 'Скасувати підписку', 'Cancelar suscripción', {
@@ -2608,15 +2817,15 @@ export default function PremiumModal() {
                 <TouchableOpacity
                   onPress={() => { hapticTap(); openManageWithToast(); }}
                   activeOpacity={0.86}
-                  style={{ borderRadius: 18 }}
+                  style={{ borderRadius: compassPanelRadius }}
                 >
                   <LinearGradient
-                    colors={[paywallCardBg, paywallSurfaceBg]}
+                    colors={(isCompassPaywall ? COMPASS_GRADIENTS.recessedPanel : [paywallCardBg, paywallSurfaceBg]) as any}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
-                    style={{ padding: 18, borderWidth: 1, borderColor: premiumHairline, borderRadius: 18, flexDirection: 'row', alignItems: 'center', gap: 12 }}
+                    style={{ padding: 18, borderWidth: 1, borderColor: premiumHairline, borderRadius: compassPanelRadius, flexDirection: 'row', alignItems: 'center', gap: 12 }}
                   >
-                    <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: premiumGoldSoft, alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={{ width: 34, height: 34, borderRadius: isCompassPaywall ? 7 : 17, backgroundColor: premiumGoldSoft, alignItems: 'center', justifyContent: 'center' }}>
                       <Ionicons name="open-outline" size={20} color={premiumGold} />
                     </View>
                     <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
@@ -2688,6 +2897,158 @@ export default function PremiumModal() {
             </ScrollView>
           </ContentWrap>
         </SafeAreaView>
+
+        <Modal
+          visible={changePlanConfirmVisible}
+          transparent
+          animationType="fade"
+          onRequestClose={() => {
+            if (!purchasing) setChangePlanConfirmVisible(false);
+          }}
+        >
+          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.72)', justifyContent: 'flex-end' }}>
+            <View style={{ backgroundColor: paywallCardBg, borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: 22, paddingBottom: Math.max(34, insets.bottom + 16), borderTopWidth: 1, borderColor: premiumHairline }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 14 }}>
+                <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: premiumGoldSoft, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: premiumBorder }}>
+                  <Ionicons name="shield-checkmark-outline" size={22} color={premiumGold} />
+                </View>
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }} numberOfLines={2} adjustsFontSizeToFit>
+                    {LP('Подтвердить годовой план', 'Підтвердити річний план', 'Confirmar plan anual', {
+                      'pt-BR': 'Confirmar plano anual',
+                      vi: 'Xác nhận gói năm',
+                      id: 'Konfirmasi paket tahunan',
+                      tr: 'Yıllık planı onayla',
+                      pl: 'Potwierdź plan roczny',
+                    })}
+                  </Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }} numberOfLines={2}>
+                    {changePlanStoreName}
+                  </Text>
+                </View>
+              </View>
+
+              <View style={{ borderRadius: 16, borderWidth: 1, borderColor: premiumHairline, backgroundColor: paywallSurfaceBg, overflow: 'hidden' }}>
+                {[
+                  [
+                    LP('Текущий месячный план', 'Поточний місячний план', 'Plan mensual actual', {
+                      'pt-BR': 'Plano mensal atual',
+                      vi: 'Gói tháng hiện tại',
+                      id: 'Paket bulanan saat ini',
+                      tr: 'Mevcut aylık plan',
+                      pl: 'Obecny plan miesięczny',
+                    }),
+                    LP(`Активен до ${changePlanCurrentEndLabel}`, `Активний до ${changePlanCurrentEndLabel}`, `Activo hasta ${changePlanCurrentEndLabel}`, {
+                      'pt-BR': `Ativo até ${changePlanCurrentEndLabel}`,
+                      vi: `Có hiệu lực đến ${changePlanCurrentEndLabel}`,
+                      id: `Aktif sampai ${changePlanCurrentEndLabel}`,
+                      tr: `${changePlanCurrentEndLabel} tarihine kadar aktif`,
+                      pl: `Aktywny do ${changePlanCurrentEndLabel}`,
+                    }),
+                  ],
+                  [
+                    LP('Новый годовой план', 'Новий річний план', 'Nuevo plan anual', {
+                      'pt-BR': 'Novo plano anual',
+                      vi: 'Gói năm mới',
+                      id: 'Paket tahunan baru',
+                      tr: 'Yeni yıllık plan',
+                      pl: 'Nowy plan roczny',
+                    }),
+                    changePlanYearlyAmount,
+                  ],
+                  [
+                    LP('Дата применения', 'Дата застосування', 'Fecha de aplicación', {
+                      'pt-BR': 'Data de aplicação',
+                      vi: 'Ngày áp dụng',
+                      id: 'Tanggal berlaku',
+                      tr: 'Uygulama tarihi',
+                      pl: 'Data zastosowania',
+                    }),
+                    effectiveOs === 'android'
+                      ? LP(`После текущего периода: ${changePlanCurrentEndLabel}`, `Після поточного періоду: ${changePlanCurrentEndLabel}`, `Después del periodo actual: ${changePlanCurrentEndLabel}`, {
+                          'pt-BR': `Após o período atual: ${changePlanCurrentEndLabel}`,
+                          vi: `Sau kỳ hiện tại: ${changePlanCurrentEndLabel}`,
+                          id: `Setelah periode saat ini: ${changePlanCurrentEndLabel}`,
+                          tr: `Mevcut dönemden sonra: ${changePlanCurrentEndLabel}`,
+                          pl: `Po obecnym okresie: ${changePlanCurrentEndLabel}`,
+                        })
+                      : LP('Точную дату и списание подтвердит Apple в окне оплаты', 'Точну дату і списання підтвердить Apple у вікні оплати', 'Apple confirmará la fecha y el cargo en la ventana de pago', {
+                          'pt-BR': 'A Apple confirmará a data e a cobrança na janela de pagamento',
+                          vi: 'Apple sẽ xác nhận ngày và khoản phí trong cửa sổ thanh toán',
+                          id: 'Apple akan mengonfirmasi tanggal dan tagihan di jendela pembayaran',
+                          tr: 'Apple tarih ve ücreti ödeme penceresinde onaylar',
+                          pl: 'Apple potwierdzi datę i opłatę w oknie płatności',
+                        }),
+                  ],
+                ].map(([label, value], index) => (
+                  <View key={label} style={{ padding: 14, borderTopWidth: index === 0 ? 0 : StyleSheet.hairlineWidth, borderTopColor: premiumHairline }}>
+                    <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', marginBottom: 4 }}>{label}</Text>
+                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', lineHeight: 21 }}>{value}</Text>
+                  </View>
+                ))}
+              </View>
+
+              <Text style={{ color: t.textMuted, fontSize: f.label, lineHeight: 18, marginTop: 14 }}>
+                {LP('После нажатия откроется стандартное окно оплаты магазина. Без подтверждения в нём деньги не списываются.', 'Після натискання відкриється стандартне вікно оплати магазину. Без підтвердження в ньому кошти не списуються.', 'Después se abrirá la ventana de pago de la tienda. Sin confirmarla, no se cobrará nada.', {
+                  'pt-BR': 'Depois será aberta a janela padrão de pagamento da loja. Sem confirmar nela, nada será cobrado.',
+                  vi: 'Sau đó cửa sổ thanh toán tiêu chuẩn của cửa hàng sẽ mở. Nếu không xác nhận ở đó, bạn sẽ không bị tính phí.',
+                  id: 'Setelah itu jendela pembayaran standar toko akan terbuka. Tanpa konfirmasi di sana, tidak ada biaya.',
+                  tr: 'Ardından mağazanın standart ödeme penceresi açılır. Orada onaylamadan ücret alınmaz.',
+                  pl: 'Następnie otworzy się standardowe okno płatności sklepu. Bez potwierdzenia nic nie zostanie pobrane.',
+                })}
+              </Text>
+
+              <View style={{ flexDirection: 'row', gap: 10, marginTop: 18 }}>
+                <TouchableOpacity
+                  onPress={() => { hapticTap(); setChangePlanConfirmVisible(false); }}
+                  disabled={purchasing}
+                  activeOpacity={0.86}
+                  style={{ flex: 1, minHeight: 50, borderRadius: 16, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: premiumHairline, backgroundColor: paywallSurfaceBg, opacity: purchasing ? 0.6 : 1 }}
+                >
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
+                    {LP('Назад', 'Назад', 'Atrás', {
+                      'pt-BR': 'Voltar',
+                      vi: 'Quay lại',
+                      id: 'Kembali',
+                      tr: 'Geri',
+                      pl: 'Wstecz',
+                    })}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    hapticTap();
+                    setChangePlanConfirmVisible(false);
+                    void handleChangePlan();
+                  }}
+                  disabled={purchasing}
+                  activeOpacity={0.86}
+                  style={{ flex: 1.35, minHeight: 50, borderRadius: 16, overflow: 'hidden', opacity: purchasing ? 0.6 : 1 }}
+                >
+                  <LinearGradient colors={[premiumGold, '#FFF1A8']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 }}>
+                    <Text style={{ color: '#17130A', fontSize: f.body, fontWeight: '900', textAlign: 'center' }} numberOfLines={2} adjustsFontSizeToFit>
+                      {purchasing
+                        ? LP('Открываем оплату...', 'Відкриваємо оплату...', 'Abriendo pago...', {
+                            'pt-BR': 'Abrindo pagamento...',
+                            vi: 'Đang mở thanh toán...',
+                            id: 'Membuka pembayaran...',
+                            tr: 'Ödeme açılıyor...',
+                            pl: 'Otwieranie płatności...',
+                          })
+                        : LP('Подтвердить', 'Підтвердити', 'Confirmar', {
+                            'pt-BR': 'Confirmar',
+                            vi: 'Xác nhận',
+                            id: 'Konfirmasi',
+                            tr: 'Onayla',
+                            pl: 'Potwierdź',
+                          })}
+                    </Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
 
         {/* Опрос при отмене подписки */}
         <Modal visible={cancelSurveyVisible} transparent animationType="slide">
@@ -3256,7 +3617,7 @@ export default function PremiumModal() {
             {/* БЛОК 1: Герой */}
             <Animated.View style={{ width: '100%', alignSelf: 'stretch', alignItems: 'center', marginBottom: 24, transform: [{ translateY: heroFloat }] }}>
               <View
-                style={{ width: '100%', alignSelf: 'stretch', borderRadius: 22, backgroundColor: paywallCardBg, borderWidth: 1, borderColor: heroArt.accent + '66', paddingVertical: 20, paddingHorizontal: 16, alignItems: 'center', overflow: 'hidden' }}
+                style={{ width: '100%', alignSelf: 'stretch', borderRadius: isCompassPaywall ? 10 : 22, backgroundColor: paywallCardBg, borderWidth: 1, borderColor: isCompassPaywall ? COMPASS_RICH.hairlineStrong : heroArt.accent + '66', paddingVertical: 20, paddingHorizontal: 16, alignItems: 'center', overflow: 'hidden', ...(isCompassPaywall ? compassShadow(2) : null) }}
               >
                 <Image
                   source={heroBackdrop}
@@ -3270,6 +3631,7 @@ export default function PremiumModal() {
                   end={{ x: 0.5, y: 1 }}
                   style={StyleSheet.absoluteFill}
                 />
+                {isCompassPaywall ? <CompassBevel radius={10} intensity="strong" /> : null}
                 <Animated.View
                   pointerEvents="none"
                   style={{
@@ -3298,7 +3660,7 @@ export default function PremiumModal() {
                     transform: [{ translateX: -120 }],
                   }}
                 />
-                <View style={{ backgroundColor: paywallSurfaceBg, borderRadius: 24, paddingHorizontal: 14, paddingVertical: 8, marginBottom: 12, borderWidth: 1, borderColor: heroArt.accent + '33' }}>
+                <View style={{ backgroundColor: isCompassPaywall ? COMPASS_RICH.charcoalRaised : paywallSurfaceBg, borderRadius: isCompassPaywall ? 9 : 24, paddingHorizontal: 14, paddingVertical: 8, marginBottom: 12, borderWidth: 1, borderColor: isCompassPaywall ? COMPASS_RICH.hairlineQuiet : heroArt.accent + '33' }}>
                   {shouldUseShardHeroIcon(ctx)
                     ? renderPremiumShardGlyph(56, 56, heroArt.shardAmount)
                     : isEnergyGlyph(hero.emoji)
@@ -3329,10 +3691,10 @@ export default function PremiumModal() {
                 <View
                   key={i}
                   style={{
-                    backgroundColor: paywallCardBg,
-                    borderRadius: 12,
+                    backgroundColor: isCompassPaywall ? COMPASS_RICH.charcoalRaised : paywallCardBg,
+                    borderRadius: compassSmallRadius,
                     borderWidth: 1,
-                    borderColor: i === 0 ? t.correct + '66' : t.border,
+                    borderColor: i === 0 ? (isCompassPaywall ? COMPASS_RICH.hairlineStrong : t.correct + '66') : t.border,
                     paddingVertical: 10,
                     paddingHorizontal: 12,
                     flexDirection: 'row',
@@ -3354,7 +3716,8 @@ export default function PremiumModal() {
             </View>
 
             {/* БЛОК 3: Персональная ценность */}
-            <View style={{ marginBottom: 16, backgroundColor: paywallCardBg, borderRadius: 14, borderWidth: 1, borderColor: t.textSecond + '55', padding: 14 }}>
+            <View style={{ marginBottom: 16, backgroundColor: isCompassPaywall ? COMPASS_RICH.charcoalRaised : paywallCardBg, borderRadius: isCompassPaywall ? 9 : 14, borderWidth: 1, borderColor: t.textSecond + '55', padding: 14, overflow: 'hidden', ...(isCompassPaywall ? compassShadow(1) : null) }}>
+              {isCompassPaywall ? <CompassBevel radius={9} /> : null}
               <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
                 {LP('Для тебя сейчас', 'Для тебе зараз', 'Para ti ahora', {
                   'pt-BR': 'Para você agora',
@@ -3373,8 +3736,8 @@ export default function PremiumModal() {
             <View
               style={{
                 marginBottom: 18,
-                backgroundColor: paywallSurfaceBg,
-                borderRadius: 16,
+                backgroundColor: isCompassPaywall ? COMPASS_RICH.charcoalSoft : paywallSurfaceBg,
+                borderRadius: isCompassPaywall ? 10 : 16,
                 borderWidth: 1,
                 borderColor: t.textSecond + '2a',
                 paddingHorizontal: 12,
@@ -3406,7 +3769,7 @@ export default function PremiumModal() {
                 const hasPrem2 = row.premRu2 != null && row.premUk2 != null && row.premEs2 != null;
                 const prem2 = hasPrem2 && row.premPlanned2 ? LP(row.premRu2!, row.premUk2!, row.premEs2!, row.premPlanned2) : '';
                 const premTextStyle = {
-                  color: PAYWALL_COMPARISON_PREMIUM_COLOR,
+                  color: paywallComparisonPremiumColor,
                   fontSize: 10,
                   lineHeight: 13,
                   fontWeight: '800' as const,
@@ -3484,15 +3847,15 @@ export default function PremiumModal() {
             {/* Годовой */}
             <TouchableOpacity
               style={{
-                borderRadius: 16, padding: 18, marginBottom: 10,
+                borderRadius: compassRadius, padding: 18, marginBottom: 10,
                 borderWidth: selected === 'yearly' ? 2 : 1,
                 borderColor: selected === 'yearly' ? t.textSecond : t.border,
-                backgroundColor: selected === 'yearly' ? paywallSurfaceBg : paywallCardBg,
+                backgroundColor: isCompassPaywall ? (selected === 'yearly' ? COMPASS_RICH.washStrong : COMPASS_RICH.charcoalRaised) : (selected === 'yearly' ? paywallSurfaceBg : paywallCardBg),
                 opacity: purchasing && selected !== 'yearly' ? 0.5 : 1,
                 shadowColor: selected === 'yearly' ? t.textSecond : '#000',
                 shadowOffset: { width: 0, height: 4 },
-                shadowOpacity: selected === 'yearly' ? 0.32 : 0.08,
-                shadowRadius: selected === 'yearly' ? 10 : 4,
+                shadowOpacity: selected === 'yearly' ? (isCompassPaywall ? 0.38 : 0.32) : 0.08,
+                shadowRadius: selected === 'yearly' ? (isCompassPaywall ? 14 : 10) : 4,
                 elevation: selected === 'yearly' ? 8 : 1,
               }}
               onPress={() => {
@@ -3503,6 +3866,7 @@ export default function PremiumModal() {
               activeOpacity={0.85}
               disabled={purchasing}
             >
+              {isCompassPaywall ? <CompassBevel radius={compassRadius} /> : null}
               {(() => {
                 const priceStr = yearlyPrice;
                 const trialReady = primaryYearlyHasTrial && !!priceStr;
@@ -3572,6 +3936,16 @@ export default function PremiumModal() {
                               pl: `potem ${priceStr} ${periodLabel}`,
                             })}
                           </Text>
+                          {!!monthlyEquivalentLabel && (
+                            <>
+                              <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '800', marginTop: 4, textAlign: 'right' }} numberOfLines={1}>
+                                {monthlyEquivalentLabel}
+                              </Text>
+                              <Text style={{ color: t.textGhost, fontSize: f.label, marginTop: 1, textAlign: 'right' }} numberOfLines={1}>
+                                {yearlyBillingNote}
+                              </Text>
+                            </>
+                          )}
                         </>
                       ) : priceStr ? (
                         <>
@@ -3581,6 +3955,16 @@ export default function PremiumModal() {
                           <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'right' }} numberOfLines={1}>
                             {periodLabel}
                           </Text>
+                          {!!monthlyEquivalentLabel && (
+                            <>
+                              <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '800', marginTop: 4, textAlign: 'right' }} numberOfLines={1}>
+                                {monthlyEquivalentLabel}
+                              </Text>
+                              <Text style={{ color: t.textGhost, fontSize: f.label, marginTop: 1, textAlign: 'right' }} numberOfLines={1}>
+                                {yearlyBillingNote}
+                              </Text>
+                            </>
+                          )}
                         </>
                       ) : (
                         <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', textAlign: 'right' }} numberOfLines={2}>
@@ -3610,15 +3994,15 @@ export default function PremiumModal() {
             {/* Месячный */}
             <TouchableOpacity
               style={{
-                borderRadius: 16, padding: 18, marginBottom: 20,
+                borderRadius: compassRadius, padding: 18, marginBottom: 20,
                 borderWidth: selected === 'monthly' ? 2 : 1,
                 borderColor: selected === 'monthly' ? t.textSecond : t.border,
-                backgroundColor: selected === 'monthly' ? paywallSurfaceBg : paywallCardBg,
+                backgroundColor: isCompassPaywall ? (selected === 'monthly' ? COMPASS_RICH.washStrong : COMPASS_RICH.charcoalRaised) : (selected === 'monthly' ? paywallSurfaceBg : paywallCardBg),
                 opacity: purchasing && selected !== 'monthly' ? 0.5 : 1,
                 shadowColor: selected === 'monthly' ? t.textSecond : '#000',
                 shadowOffset: { width: 0, height: 4 },
-                shadowOpacity: selected === 'monthly' ? 0.24 : 0.06,
-                shadowRadius: selected === 'monthly' ? 8 : 4,
+                shadowOpacity: selected === 'monthly' ? (isCompassPaywall ? 0.30 : 0.24) : 0.06,
+                shadowRadius: selected === 'monthly' ? (isCompassPaywall ? 12 : 8) : 4,
                 elevation: selected === 'monthly' ? 6 : 1,
               }}
               onPress={() => {
@@ -3629,6 +4013,7 @@ export default function PremiumModal() {
               activeOpacity={0.85}
               disabled={purchasing}
             >
+              {isCompassPaywall ? <CompassBevel radius={compassRadius} /> : null}
               {(() => {
                 const priceStr = monthlyPrice;
                 const trialReady = primaryMonthlyHasTrial && !!priceStr;
@@ -3798,14 +4183,17 @@ export default function PremiumModal() {
                 <Animated.View style={{ transform: [{ scale: purchasing ? 1 : ctaPulse }] }}>
                 <TouchableOpacity
                   style={{
-                    backgroundColor: t.textSecond, borderRadius: 16, padding: 18,
+                    backgroundColor: isCompassPaywall ? COMPASS_RICH.champagne : t.textSecond, borderRadius: isCompassPaywall ? 10 : 16, padding: 18,
                     alignItems: 'center', marginBottom: 10,
+                    borderWidth: isCompassPaywall ? 1 : 0,
+                    borderColor: isCompassPaywall ? COMPASS_RICH.edgeLight : 'transparent',
+                    overflow: 'hidden',
                     opacity: purchasing || loadingPackages ? 0.7 : 1,
-                    shadowColor: t.textSecond,
-                    shadowOffset: { width: 0, height: 4 },
-                    shadowOpacity: 0.5,
-                    shadowRadius: 12,
-                    elevation: 8,
+                    shadowColor: isCompassPaywall ? COMPASS_RICH.copper : t.textSecond,
+                    shadowOffset: { width: 0, height: isCompassPaywall ? 7 : 4 },
+                    shadowOpacity: isCompassPaywall ? 0.32 : 0.5,
+                    shadowRadius: isCompassPaywall ? 16 : 12,
+                    elevation: isCompassPaywall ? 12 : 8,
                   }}
                   onPress={() => {
                     hapticTap();
@@ -3830,7 +4218,8 @@ export default function PremiumModal() {
                   activeOpacity={0.85}
                   disabled={purchasing || loadingPackages}
                 >
-                  <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '800' }} adjustsFontSizeToFit numberOfLines={1}>
+                  {isCompassPaywall ? <CompassBevel radius={10} intensity="strong" /> : null}
+                  <Text style={{ color: isCompassPaywall ? COMPASS_RICH.textDark : t.correctText, fontSize: f.h2, fontWeight: '800' }} adjustsFontSizeToFit numberOfLines={1}>
                     {ctaLabel}
                   </Text>
                 </TouchableOpacity>
@@ -3994,6 +4383,22 @@ export default function PremiumModal() {
                   <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', lineHeight: 18 }}>
                     {LP(legalRu, legalUk, legalEs, legalPlanned)}
                   </Text>
+                  {!!selectedMonthlyEquivalent && (
+                    <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', lineHeight: 17, marginTop: 8 }}>
+                      {LP(
+                        `Эквивалент ${selectedMonthlyEquivalent} / месяц указан только для сравнения; списание идет за год.`,
+                        `Еквівалент ${selectedMonthlyEquivalent} / місяць наведено лише для порівняння; списання йде за рік.`,
+                        `El equivalente de ${selectedMonthlyEquivalent} / mes es solo comparativo; el cobro es anual.`,
+                        {
+                          'pt-BR': `O equivalente de ${selectedMonthlyEquivalent} /mês é apenas comparativo; a cobrança é anual.`,
+                          vi: `Mức tương đương ${selectedMonthlyEquivalent} /tháng chỉ để so sánh; phí được tính hằng năm.`,
+                          id: `Setara ${selectedMonthlyEquivalent} /bulan hanya untuk perbandingan; tagihan tahunan.`,
+                          tr: `${selectedMonthlyEquivalent} /ay eşdeğeri yalnızca karşılaştırma içindir; ödeme yıllıktır.`,
+                          pl: `Ekwiwalent ${selectedMonthlyEquivalent} /mies. służy tylko do porównania; opłata jest roczna.`,
+                        },
+                      )}
+                    </Text>
+                  )}
                   {footerHasTrial ? (
                     <Text
                       style={{

@@ -28,7 +28,7 @@ import { triLang } from '../../constants/i18n';
 import type { Lang } from '../../constants/i18n';
 import type { Theme, ThemeMode } from '../../constants/theme';
 import { categoriesForFlashcardsHub } from './constants';
-import { packHubCodeName, packTitleForInterface, packCategoryIonIcon, type FlashcardMarketPack } from './marketplace';
+import { packHubCodeName, packHubLabelForInterface, packTitleForInterface, packCategoryIonIcon, type FlashcardMarketPack } from './marketplace';
 import { useCardPackShardPaywall } from './useCardPackShardPaywall';
 
 import { oskolokImageForPackShards } from '../oskolok';
@@ -593,8 +593,7 @@ export default function FlashcardsCategoryHub({
       const displayTitle = packTitleForInterface(pack, lang);
       const hubCode = packHubCodeName(pack);
       /** UGC: під плиткою показуємо назву набору, а не id / похідний codeName. */
-      const packTileLabel =
-        pack.isCommunityUgc && displayTitle.trim().length > 0 ? displayTitle.trim() : hubCode;
+      const packTileLabel = packHubLabelForInterface(pack, lang);
       const ion = packCategoryIonIcon(pack.category) as any;
       const packPng = packTileImageForPack(pack);
       const dimWhileOtherBuying = !owned && buyingPackId && buyingPackId !== pack.id;

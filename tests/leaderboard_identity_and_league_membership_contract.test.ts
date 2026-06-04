@@ -5,14 +5,13 @@ const root = process.cwd();
 const read = (file: string) => readFileSync(path.join(root, file), 'utf8');
 
 describe('leaderboard identity and weekly league membership contract', () => {
-  test('client leaderboard writes link auth to stable id and send stableId to callables', () => {
+  test('client nickname writes link auth to stable id and send stableId to callables', () => {
     const source = read('app/firestore_leaderboard.ts');
 
     expect(source).toContain("import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';");
     expect(source).toMatch(/const stableId = await ensureAnonUser\(\);[\s\S]*?ensureStableAuthLinkForStableId\(stableId\)/);
-    expect(source).toMatch(/>\('leaderboardPushMyScore'\);[\s\S]*?await fn\(\{[\s\S]*?stableId,/);
-    expect(source).toMatch(/>\('leaderboardUpdatePremium'\);[\s\S]*?await fn\(\{ stableId, isPremium \}\)/);
-    expect(source).toMatch(/>\('leaderboardUpdatePremium'\);[\s\S]*?await fn\(\{ stableId, isVip \}\)/);
+    expect(source).not.toContain('leaderboardPushMyScore');
+    expect(source).not.toContain('leaderboardUpdatePremium');
     expect(source).toMatch(/>\('nameReserve'\);[\s\S]*?await fn\(\{ stableId, name:/);
     expect(source).toMatch(/>\('nameCheckAvailability'\);[\s\S]*?await fn\(\{ stableId, name:/);
     expect(source).toMatch(/>\('nameReleaseMine'\);[\s\S]*?await fn\(\{ stableId: canonicalUid, names:/);
@@ -33,8 +32,6 @@ describe('leaderboard identity and weekly league membership contract', () => {
     expect(source).toContain("return resolveStableUidForAuth(db, authUid, requestedStableId, { requireKnownIdentity: true });");
 
     [
-      'leaderboardPushMyScore',
-      'leaderboardUpdatePremium',
       'leaderboardUpdateDailyAnalytics',
       'nameCheckAvailability',
       'nameReserve',
@@ -86,9 +83,8 @@ describe('leaderboard identity and weekly league membership contract', () => {
     expect(cleanup).toContain("const CURSOR_DOC = 'app_meta/identity_cleanup_cursor';");
     expect(cleanup).toContain("reason: 'identity_cleanup_cron'");
     expect(cleanup).toContain('leaderboardHidden');
-    expect(index).toContain('cleanupLegacyIdentityDuplicatesCron');
-    expect(index).toContain('every 2 hours');
-    expect(functionsPkg.scripts['deploy:safe']).toContain('functions:cleanupLegacyIdentityDuplicatesCron');
+    expect(index).not.toContain('cleanupLegacyIdentityDuplicatesCron');
+    expect(functionsPkg.scripts['deploy:safe']).not.toContain('functions:cleanupLegacyIdentityDuplicatesCron');
   });
 
   test('server nickname uniqueness is enforced by name_index transaction and leaderboard backstop', () => {
@@ -100,8 +96,6 @@ describe('leaderboard identity and weekly league membership contract', () => {
     expect(source).toContain("const NAME_INDEX = 'name_index';");
     expect(source).toContain(".normalize('NFKC')");
     expect(source).toContain('return { name, nameLower: name.toLowerCase() };');
-    expect(source).toContain('function fallbackNameForUid');
-    expect(source).toContain('requestedNameTakenByOther');
     expect(source).toContain('function leaderboardDocIsVisible');
     expect(source).toContain('async function nameOwnerIsActive');
     expect(source).toContain('async function txNameOwnerIsActive');
@@ -136,6 +130,19 @@ describe('leaderboard identity and weekly league membership contract', () => {
     expect(leagues).toContain("['user_name', LEAGUE_STATE_V3_KEY]");
     expect(leagues).toContain('export async function syncMyLeagueMemberProfileNow()');
     expect(leagues).toContain('name: memberName || undefined');
+  });
+
+  test('weekly league client caches no-op member syncs without bypassing server ownership', () => {
+    const leagues = read('app/firestore_leagues.ts');
+
+    expect(leagues).toContain("const LEAGUE_MEMBER_SYNC_CACHE_KEY = 'league_member_sync_cache_v1';");
+    expect(leagues).toContain('LEAGUE_POINTS_SYNC_MIN_DELTA');
+    expect(leagues).toContain('function shouldSkipLeagueMemberCallable');
+    expect(leagues).toContain('profileHash !== cache.profileHash');
+    expect(leagues).toContain("await ensureStableAuthLink().catch(() => false);");
+    expect(leagues).toMatch(/shouldSkipLeagueMemberCallable\([\s\S]*?\)[\s\S]*?return;/);
+    expect(leagues).toMatch(/>\('leagueUpdateMyMember'\);[\s\S]*?await fn\(\{[\s\S]*?stableId: uid,/);
+    expect(leagues).toMatch(/>\('leagueJoinOrUpdateGroup'\);[\s\S]*?await fn\(\{[\s\S]*?stableId: uid,/);
   });
 
   test('server league join hides duplicate membership for same stable uid in other weekly groups', () => {

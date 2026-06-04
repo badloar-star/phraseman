@@ -1,4 +1,5 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -30,6 +31,7 @@ export async function submitClientReport(
   payload: Record<string, unknown>,
 ): Promise<SubmitClientReportResult | null> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<{ kind: ClientReportKind; payload: Record<string, unknown> }, SubmitClientReportResult>(
     'submitClientReport',
   );

@@ -9,6 +9,8 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import ReportErrorButton from '../components/ReportErrorButton';
+import CompassBevel from '../components/CompassBevel';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
@@ -26,6 +28,7 @@ import { choosePersonalTrainingCandidate } from './personal_training_taxonomy';
 import { lessonNameForStudyTarget } from './lesson_titles_for_study_target';
 import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_lang_dev';
 import { GOLD_RICH } from '../constants/goldTheme';
+import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import { trainerThemeIconSource, type TrainerThemeIconKind } from '../constants/trainerThemeIcons';
 import type { ThemeMode } from '../constants/theme';
 import { safeRouterBack } from './navigation_back';
@@ -64,6 +67,49 @@ function TrainerThemeIcon({
         source={trainerThemeIconSource(themeMode, kind)}
         style={{ width: size, height: size }}
       />
+    );
+}
+
+function CompassTrainerSurface({
+    radius,
+    selected = false,
+    quiet = false,
+    physical = false,
+}: {
+    radius: number;
+    selected?: boolean;
+    quiet?: boolean;
+    physical?: boolean;
+}) {
+    return (
+      <>
+        <LinearGradient
+          colors={selected ? COMPASS_GRADIENTS.selectedTile : quiet ? COMPASS_GRADIENTS.recessedPanel : COMPASS_GRADIENTS.raisedTile}
+          locations={COMPASS_SURFACE_LOCATIONS}
+          style={StyleSheet.absoluteFillObject}
+        />
+        {physical ? (
+          <>
+            <LinearGradient
+              colors={['rgba(255,245,222,0.34)', 'rgba(255,230,181,0.10)', 'rgba(255,255,255,0)']}
+              locations={[0, 0.34, 1]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+              style={[styles.compassTopShelf, { borderTopLeftRadius: radius, borderTopRightRadius: radius }]}
+            />
+            <View style={[styles.compassLeftRail, { backgroundColor: 'rgba(255,230,181,0.22)' }]} />
+            <View style={[styles.compassRightRail, { backgroundColor: 'rgba(0,0,0,0.50)' }]} />
+            <LinearGradient
+              colors={['rgba(0,0,0,0.05)', 'rgba(0,0,0,0.62)']}
+              locations={[0, 1]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+              style={[styles.compassBottomShelf, { borderBottomLeftRadius: radius, borderBottomRightRadius: radius }]}
+            />
+          </>
+        ) : null}
+        <CompassBevel radius={radius} intensity={selected ? 'strong' : quiet ? 'quiet' : 'normal'} />
+      </>
     );
 }
 const SECTIONS: SectionInfo[] = [
@@ -423,7 +469,7 @@ function chooseInlineDiagnosis(stat: WordCategoryStat, resolved: ResolvedPersona
     const routedId = choosePersonalTrainingCandidate(candidates[stat.category] ?? [], resolvedDiagnosisIdSet(resolved));
     return routedId && getDiagnosisTraining(routedId) ? routedId : null;
 }
-function InlineCategoryRow({ stat, lang, t, f, router, resolvedPersonalTrainings, personalTrainingEnabled = true, isGoldTheme = false }: {
+function InlineCategoryRow({ stat, lang, t, f, router, resolvedPersonalTrainings, personalTrainingEnabled = true, isGoldTheme = false, isCompassTheme = false }: {
     stat: WordCategoryStat;
     lang: string;
     t: ReturnType<typeof useTheme>['theme'];
@@ -432,6 +478,7 @@ function InlineCategoryRow({ stat, lang, t, f, router, resolvedPersonalTrainings
     resolvedPersonalTrainings: ResolvedPersonalTrainingsState | null;
     personalTrainingEnabled?: boolean;
     isGoldTheme?: boolean;
+    isCompassTheme?: boolean;
 }) {
     const categoryCopy = CATEGORY_LABELS_INLINE[stat.category];
     const label = categoryCopy
@@ -459,18 +506,21 @@ function InlineCategoryRow({ stat, lang, t, f, router, resolvedPersonalTrainings
     const recoveryScore = stat.recoveryScore ?? 0;
     const isWeak = priorityScore >= 55 || (stat.pct >= 15 && recoveryScore < 25);
     const diagnosisId = isWeak && personalTrainingEnabled ? chooseInlineDiagnosis(stat, resolvedPersonalTrainings) : null;
-    const accent = isGoldTheme ? GOLD_RICH.metalGold : t.accent;
-    const rowBg = isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface;
-    const rowBorder = isGoldTheme
+    const accent = isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.metalGold : t.accent;
+    const rowBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface;
+    const rowBorder = isCompassTheme
+        ? (isWeak ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet)
+        : isGoldTheme
         ? (isWeak ? GOLD_RICH.hairline : GOLD_RICH.hairlineQuiet)
         :
             isWeak ? t.accent + '55' : t.border;
-    const inner = (<View style={[styles.analyticsRow, { backgroundColor: rowBg, borderColor: rowBorder }]}>
+    const inner = (<View style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: rowBg, borderColor: rowBorder, borderRadius: isCompassTheme ? 8 : 12 }]}>
+      {isCompassTheme ? <CompassTrainerSurface radius={8} quiet={!isWeak} selected={isWeak} physical /> : null}
       <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]}>{stat.pct}%</Text>
       <View style={{ flex: 1 }}>
         <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '600' }} numberOfLines={1}>{label}</Text>
         <View style={styles.miniProgressBg}>
-          <View style={[styles.miniProgressFill, { width: `${Math.min(stat.pct, 100)}%`, backgroundColor: isWeak ? accent : isGoldTheme ? GOLD_RICH.agedGold : 'rgba(255,255,255,0.45)' }]}/>
+          <View style={[styles.miniProgressFill, { width: `${Math.min(stat.pct, 100)}%`, backgroundColor: isWeak ? accent : isCompassTheme ? COMPASS_RICH.peach : isGoldTheme ? GOLD_RICH.agedGold : 'rgba(255,255,255,0.45)' }]}/>
         </View>
       </View>
       {diagnosisId && <Ionicons name="chevron-forward" size={14} color={accent}/>}
@@ -491,6 +541,7 @@ export default function TrainerScreen() {
     const router = useRouter();
     const { theme: t, f, themeMode } = useTheme();
     const isGoldTheme = themeMode === 'gold';
+    const isCompassTheme = themeMode === 'compass';
     const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
     const { lang } = useLang();
     const { studyTarget } = useStudyTarget();
@@ -529,8 +580,15 @@ export default function TrainerScreen() {
     useFocusEffect(useCallback(() => { void loadData(); }, [loadData]));
     const total = dashboard?.totalDue ?? 0;
     const nextOption = useMemo(() => (dashboard.nextQueue === 'words' ? PRACTICE_OPTIONS[1] : PRACTICE_OPTIONS[0]), [dashboard]);
-    const primaryAccent = isGoldTheme ? GOLD_RICH.metalGold : hasPremium ? '#FACC15' : nextOption.accent;
-    const primaryTextColor = isGoldTheme || (hasPremium) ? '#17130A' : '#fff';
+    const trainerRadius = isCompassTheme ? 10 : 18;
+    const trainerSmallRadius = isCompassTheme ? 7 : 14;
+    const trainerPillRadius = isCompassTheme ? 8 : 999;
+    const trainerCardBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.92)' : t.bgCard;
+    const trainerRowBg = isCompassTheme ? COMPASS_RICH.charcoalSoft : isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface;
+    const trainerBorder = isCompassTheme ? COMPASS_RICH.hairlineQuiet : isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border;
+    const trainerAccent = isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.metalGold : hasPremium ? '#FACC15' : nextOption.accent;
+    const primaryAccent = trainerAccent;
+    const primaryTextColor = isCompassTheme || isGoldTheme || (hasPremium) ? '#17130A' : '#fff';
     const shownAnalytics: PhraseAnalyticsResult = analytics ?? {
         categoryStats: [],
         lessonStats: [],
@@ -620,7 +678,10 @@ export default function TrainerScreen() {
               })}
               variant="icon-flag"
               accessibilityLabel="Сообщить о баге на экране практики"
-              style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border }}
+              style={[
+                { width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border },
+                isCompassTheme && { borderRadius: 9, backgroundColor: COMPASS_RICH.charcoalRaised, borderColor: COMPASS_RICH.hairline, ...compassShadow(1) },
+              ]}
             />
           </View>
 
@@ -629,9 +690,10 @@ export default function TrainerScreen() {
 
             {null}
 
-            {!trainerSessionEnabled && (<View style={[styles.card, { backgroundColor: isGoldTheme ? 'rgba(8,8,6,0.92)' : t.bgCard, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}>
+            {!trainerSessionEnabled && (<View style={[styles.card, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerCardBg, borderColor: trainerBorder, borderRadius: trainerRadius }]}>
+                {isCompassTheme ? <CompassTrainerSurface radius={trainerRadius} quiet physical /> : null}
                 <View style={styles.cardIcon}>
-                  <Ionicons name="lock-closed-outline" size={30} color={isGoldTheme ? GOLD_RICH.metalGold : t.textMuted}/>
+                  <Ionicons name="lock-closed-outline" size={30} color={isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.metalGold : t.textMuted}/>
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>
@@ -647,25 +709,35 @@ export default function TrainerScreen() {
             const count = option.queues.reduce((sum, queue) => sum + (dashboard.due[queue] ?? 0), 0);
             const empty = count === 0 || !trainerSessionEnabled;
             const isNext = option.queues.includes(dashboard.nextQueue as TrainerQueue);
-            const optionAccent = isGoldTheme
+            const optionAccent = isCompassTheme
+                ? (option.id === 'context' ? COMPASS_RICH.champagne : COMPASS_RICH.peach)
+                : isGoldTheme
                 ? option.id === 'context' ? GOLD_RICH.metalGold : GOLD_RICH.champagne
                 :
                     option.accent;
-            const optionAccentBorder = isGoldTheme
+            const optionAccentBorder = isCompassTheme
+                ? (isNext ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet)
+                : isGoldTheme
                 ? (isNext ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet)
                 :
                     optionAccent + '55';
             return (<TouchableOpacity key={option.id} accessibilityRole="button" accessibilityLabel={optionTitle(option, lang)} onPress={() => { if (trainerSessionEnabled) void startPracticeOption(option); }} activeOpacity={empty ? 1 : 0.86} style={[
                     styles.card,
+                    isCompassTheme && styles.compassClip,
+                    isCompassTheme && compassShadow(isNext ? 2 : 1),
                     {
-                        backgroundColor: isGoldTheme ? 'rgba(8,8,6,0.92)' : t.bgCard,
-                        borderColor: isGoldTheme
+                        backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.92)' : t.bgCard,
+                        borderColor: isCompassTheme
+                            ? (isNext ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet)
+                            : isGoldTheme
                             ? (isNext ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet)
                             :
                                 isNext ? option.accent : t.border,
+                        borderRadius: trainerRadius,
                         opacity: empty ? 0.62 : 1,
                     },
                 ]}>
+                  {isCompassTheme ? <CompassTrainerSurface radius={trainerRadius} selected={isNext} quiet={!isNext} physical /> : null}
                   <View style={styles.cardIcon}>
                     <TrainerThemeIcon kind={option.iconKind} themeMode={themeMode}/>
                   </View>
@@ -674,7 +746,7 @@ export default function TrainerScreen() {
                       <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>
                         {optionTitle(option, lang)}
                       </Text>
-                      {isNext ? (<View style={[styles.nextBadge, { backgroundColor: isGoldTheme ? GOLD_RICH.washStrong : option.accent + '22' }]}>
+                      {isNext ? (<View style={[styles.nextBadge, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : isGoldTheme ? GOLD_RICH.washStrong : option.accent + '22', borderRadius: trainerPillRadius, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : 'transparent' }]}>
                           <Text style={{ color: optionAccent, fontSize: f.label, fontWeight: '900' }}>
                             {triLang(lang, {
                         ru: 'лучший старт',
@@ -704,7 +776,7 @@ export default function TrainerScreen() {
                     : optionSubtitle(option, lang)}
                     </Text>
                   </View>
-                  <View style={[styles.countBadge, { backgroundColor: empty ? (isGoldTheme ? 'rgba(14,12,8,0.90)' : t.bgSurface) : isGoldTheme ? GOLD_RICH.wash : option.accent + '22', borderColor: empty ? (isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border) : optionAccentBorder }]}>
+                  <View style={[styles.countBadge, { backgroundColor: empty ? trainerRowBg : isCompassTheme ? COMPASS_RICH.washStrong : isGoldTheme ? GOLD_RICH.wash : option.accent + '22', borderColor: empty ? trainerBorder : optionAccentBorder, borderRadius: isCompassTheme ? 9 : 23 }]}>
                     <Text style={[styles.countNum, { color: empty ? t.textMuted : optionAccent, fontSize: f.numMd }]}>
                       {count}
                     </Text>
@@ -713,7 +785,8 @@ export default function TrainerScreen() {
         })}
 
             {/* ── Аналитика ошибок inline ── */}
-            {hasPremium ? (<View style={[styles.analyticsBlock, { backgroundColor: isGoldTheme ? 'rgba(8,8,6,0.94)' : t.bgCard, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : '#FACC1533' }]}>
+            {hasPremium ? (<View style={[styles.analyticsBlock, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#FACC1533', borderRadius: trainerRadius }]}>
+                {isCompassTheme ? <CompassTrainerSurface radius={trainerRadius} quiet physical /> : null}
                 <View style={styles.analyticsHeader}>
                   <View style={styles.cardIcon}>
                     <TrainerThemeIcon kind="analytics" themeMode={themeMode}/>
@@ -750,8 +823,8 @@ export default function TrainerScreen() {
                 </View>
 
                 {/* Вкладки */}
-                <View style={[styles.analyticsTabs, { backgroundColor: isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface }]}>
-                  {(['categories', 'lessons', 'phrases'] as const).map(key => (<TouchableOpacity key={key} onPress={() => { hapticTap(); setAnalyticsTab(key); }} style={[styles.analyticsTabItem, analyticsTab === key && { backgroundColor: isGoldTheme ? 'rgba(214,179,90,0.10)' : t.bgCard }]} activeOpacity={0.75}>
+                <View style={[styles.analyticsTabs, { backgroundColor: isCompassTheme ? COMPASS_RICH.void : isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface, borderRadius: isCompassTheme ? 8 : 10, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent' }]}>
+                  {(['categories', 'lessons', 'phrases'] as const).map(key => (<TouchableOpacity key={key} onPress={() => { hapticTap(); setAnalyticsTab(key); }} style={[styles.analyticsTabItem, { borderRadius: isCompassTheme ? 6 : 8 }, analyticsTab === key && { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : isGoldTheme ? 'rgba(214,179,90,0.10)' : t.bgCard }]} activeOpacity={0.75}>
                       <Text style={[
                     styles.analyticsTabText,
                     { fontSize: f.caption },
@@ -793,8 +866,9 @@ export default function TrainerScreen() {
                     </TouchableOpacity>))}
                 </View>
 
-                {!hasAnalyticsMistakes && (<TouchableOpacity accessibilityRole="button" accessibilityLabel="Open mistake analytics" onPress={() => { hapticTap(); router.push('/phrase_analytics_screen' as any); }} activeOpacity={0.86} style={[styles.analyticsRow, { backgroundColor: isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}>
-                    <Ionicons name="sparkles-outline" size={18} color={isGoldTheme ? GOLD_RICH.metalGold : t.textMuted}/>
+                {!hasAnalyticsMistakes && (<TouchableOpacity accessibilityRole="button" accessibilityLabel="Open mistake analytics" onPress={() => { hapticTap(); router.push('/phrase_analytics_screen' as any); }} activeOpacity={0.86} style={[styles.analyticsRow, isCompassTheme && styles.compassClip, { backgroundColor: trainerRowBg, borderColor: trainerBorder, borderRadius: isCompassTheme ? 8 : 12 }]}>
+                    {isCompassTheme ? <CompassTrainerSurface radius={8} quiet physical /> : null}
+                    <Ionicons name="sparkles-outline" size={18} color={isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.metalGold : t.textMuted}/>
                     <Text style={{ flex: 1, color: t.textMuted, fontSize: f.caption, lineHeight: f.caption * 1.35 }}>
                       {triLang(lang, {
                     ru: 'Сделай квиз или тренировку с ошибками - здесь появятся темы и фразы для разбора.',
@@ -812,10 +886,11 @@ export default function TrainerScreen() {
 
                 {/* Контент вкладок */}
                 {hasAnalyticsMistakes && analyticsTab === 'categories' && (<View style={{ gap: 6 }}>
-                    {shownAnalytics.categoryStats.slice(0, 4).map(stat => (<InlineCategoryRow key={stat.category} stat={stat} lang={lang} t={t} f={f} router={router} resolvedPersonalTrainings={resolvedPersonalTrainings} personalTrainingEnabled={personalPracticeCoachEnabled} isGoldTheme={isGoldTheme}/>))}
+                    {shownAnalytics.categoryStats.slice(0, 4).map(stat => (<InlineCategoryRow key={stat.category} stat={stat} lang={lang} t={t} f={f} router={router} resolvedPersonalTrainings={resolvedPersonalTrainings} personalTrainingEnabled={personalPracticeCoachEnabled} isGoldTheme={isGoldTheme} isCompassTheme={isCompassTheme}/>))}
                   </View>)}
                 {hasAnalyticsMistakes && analyticsTab === 'lessons' && (<View style={{ gap: 6 }}>
-                    {shownAnalytics.lessonStats.slice(0, 4).map(stat => (<View key={stat.lessonId} style={[styles.analyticsRow, { backgroundColor: isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}>
+                    {shownAnalytics.lessonStats.slice(0, 4).map(stat => (<View key={stat.lessonId} style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerRowBg, borderColor: trainerBorder, borderRadius: isCompassTheme ? 8 : 12 }]}>
+                        {isCompassTheme ? <CompassTrainerSurface radius={8} quiet physical /> : null}
                         <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]}>{stat.pct}%</Text>
                         <View style={{ flex: 1 }}>
                           <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
@@ -834,14 +909,15 @@ export default function TrainerScreen() {
                             {trainerAnalyticsLessonTitle(stat, lang, studyTarget)}
                           </Text>
                           <View style={styles.miniProgressBg}>
-                            <View style={[styles.miniProgressFill, { width: `${Math.min(stat.pct, 100)}%`, backgroundColor: isGoldTheme ? GOLD_RICH.metalGold : 'rgba(255,255,255,0.45)' }]}/>
+                            <View style={[styles.miniProgressFill, { width: `${Math.min(stat.pct, 100)}%`, backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.metalGold : 'rgba(255,255,255,0.45)' }]}/>
                           </View>
                         </View>
                       </View>))}
                   </View>)}
                 {hasAnalyticsMistakes && analyticsTab === 'phrases' && (<View style={{ gap: 6 }}>
-                    {shownAnalytics.topMistakePhrases.slice(0, 5).map(({ phrase, lessonId, count }, i) => (<View key={i} style={[styles.analyticsRow, { backgroundColor: isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}>
-                        <View style={[styles.phraseMinibadge, { backgroundColor: isGoldTheme ? GOLD_RICH.wash : t.bgCard }]}>
+                    {shownAnalytics.topMistakePhrases.slice(0, 5).map(({ phrase, lessonId, count }, i) => (<View key={i} style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerRowBg, borderColor: trainerBorder, borderRadius: isCompassTheme ? 8 : 12 }]}>
+                        {isCompassTheme ? <CompassTrainerSurface radius={8} quiet physical /> : null}
+                        <View style={[styles.phraseMinibadge, { backgroundColor: isCompassTheme ? COMPASS_RICH.wash : isGoldTheme ? GOLD_RICH.wash : t.bgCard, borderRadius: isCompassTheme ? 7 : 8, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent' }]}>
                           <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>×{count}</Text>
                         </View>
                         <View style={{ flex: 1 }}>
@@ -861,7 +937,8 @@ export default function TrainerScreen() {
                         </View>
                       </View>))}
                   </View>)}
-              </View>) : !hasPremium ? (<TouchableOpacity accessibilityRole="button" accessibilityLabel="Mistake analytics" onPress={() => { hapticTap(); router.push('/phrase_analytics_screen' as any); }} activeOpacity={0.86} style={[styles.card, { backgroundColor: isGoldTheme ? 'rgba(8,8,6,0.92)' : t.bgCard, borderColor: isGoldTheme ? GOLD_RICH.hairline : '#FACC1566' }]}>
+              </View>) : !hasPremium ? (<TouchableOpacity accessibilityRole="button" accessibilityLabel="Mistake analytics" onPress={() => { hapticTap(); router.push('/phrase_analytics_screen' as any); }} activeOpacity={0.86} style={[styles.card, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerCardBg, borderColor: isCompassTheme ? COMPASS_RICH.hairline : isGoldTheme ? GOLD_RICH.hairline : '#FACC1566', borderRadius: trainerRadius }]}>
+                {isCompassTheme ? <CompassTrainerSurface radius={trainerRadius} selected physical /> : null}
                 <View style={styles.cardIcon}>
                   <TrainerThemeIcon kind="analytics" themeMode={themeMode}/>
                 </View>
@@ -894,8 +971,9 @@ export default function TrainerScreen() {
                 <Ionicons name="chevron-forward" size={20} color={t.textMuted}/>
               </TouchableOpacity>) : null}
 
-            {ENABLE_DEV_TOOLS && (<View style={[styles.devPanel, { backgroundColor: isGoldTheme ? 'rgba(8,8,6,0.94)' : '#1a1a2e', borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : '#4A9EFF44' }]}>
-                <Text style={{ color: isGoldTheme ? GOLD_RICH.metalGold : '#4A9EFF', fontSize: 11, fontWeight: '800', marginBottom: 8, letterSpacing: 1 }}>
+            {ENABLE_DEV_TOOLS && (<View style={[styles.devPanel, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : '#1a1a2e', borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#4A9EFF44', borderRadius: isCompassTheme ? 9 : 14 }]}>
+                {isCompassTheme ? <CompassTrainerSurface radius={9} quiet physical /> : null}
+                <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.metalGold : '#4A9EFF', fontSize: 11, fontWeight: '800', marginBottom: 8, letterSpacing: 1 }}>
                   DEV TOOLS
                 </Text>
                 <View style={{ flexDirection: 'row', gap: 8 }}>
@@ -904,16 +982,16 @@ export default function TrainerScreen() {
                 await devSeedTrainer(studyTarget);
                 await loadData();
                 setSeeding(false);
-            }} testID="trainer-dev-seed" style={[styles.devBtn, { backgroundColor: isGoldTheme ? GOLD_RICH.wash : '#4A9EFF22', borderColor: isGoldTheme ? GOLD_RICH.hairline : '#4A9EFF66', flex: 1 }]}>
-                    <Text style={{ color: isGoldTheme ? GOLD_RICH.metalGold : '#4A9EFF', fontSize: 12, fontWeight: '700', textAlign: 'center' }}>
+            }} testID="trainer-dev-seed" style={[styles.devBtn, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : isGoldTheme ? GOLD_RICH.wash : '#4A9EFF22', borderColor: isCompassTheme ? COMPASS_RICH.hairline : isGoldTheme ? GOLD_RICH.hairline : '#4A9EFF66', borderRadius: trainerSmallRadius, flex: 1 }]}>
+                    <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.metalGold : '#4A9EFF', fontSize: 12, fontWeight: '700', textAlign: 'center' }}>
                       {seeding ? 'Seeding...' : 'Random seed'}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={async () => {
                 await clearTrainerStore(studyTarget);
                 await loadData();
-            }} testID="trainer-dev-clear" style={[styles.devBtn, { backgroundColor: isGoldTheme ? 'rgba(110,75,20,0.14)' : '#E0505022', borderColor: isGoldTheme ? GOLD_RICH.hairlineDark : '#E0505066' }]}>
-                    <Ionicons name="trash" size={16} color={isGoldTheme ? GOLD_RICH.agedGold : '#E05050'}/>
+            }} testID="trainer-dev-clear" style={[styles.devBtn, { backgroundColor: isCompassTheme ? COMPASS_RICH.copperWash : isGoldTheme ? 'rgba(110,75,20,0.14)' : '#E0505022', borderColor: isCompassTheme ? COMPASS_RICH.hairline : isGoldTheme ? GOLD_RICH.hairlineDark : '#E0505066', borderRadius: trainerSmallRadius }]}>
+                    <Ionicons name="trash" size={16} color={isCompassTheme ? COMPASS_RICH.peach : isGoldTheme ? GOLD_RICH.agedGold : '#E05050'}/>
                   </TouchableOpacity>
                 </View>
               </View>)}
@@ -956,6 +1034,37 @@ const styles = StyleSheet.create({
         paddingVertical: 14,
         paddingHorizontal: 14,
         gap: 12,
+    },
+    compassClip: {
+        overflow: 'hidden',
+    },
+    compassTopShelf: {
+        position: 'absolute',
+        left: 2,
+        right: 2,
+        top: 2,
+        height: 12,
+    },
+    compassBottomShelf: {
+        position: 'absolute',
+        left: 2,
+        right: 2,
+        bottom: 2,
+        height: 14,
+    },
+    compassLeftRail: {
+        position: 'absolute',
+        left: 1,
+        top: 5,
+        bottom: 8,
+        width: 2,
+    },
+    compassRightRail: {
+        position: 'absolute',
+        right: 1,
+        top: 6,
+        bottom: 4,
+        width: 2,
     },
     cardIcon: {
         width: 56,

@@ -1081,6 +1081,7 @@ export default function ArenaRoomScreen() {
             ref={chatListRef}
             data={chatMessages}
             keyExtractor={item => item.id}
+            removeClippedSubviews={false}
             contentContainerStyle={{ padding: 16, paddingBottom: 8 }}
             ListEmptyComponent={
               <View style={{ alignItems: 'center', marginTop: 40 }}>

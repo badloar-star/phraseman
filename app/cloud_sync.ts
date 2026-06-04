@@ -20,6 +20,10 @@ import { normalizeDevSeededStreakValue, repairDevSeededStreakInStorage } from '.
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS } from './account_delete_timeout';
 import { DIAGNOSIS_TRAINING_IDS } from './personal_practice_training_ids';
+import { XP_LEVEL_RESTORE_250_TO_400_KEY } from './xp_level_restore';
+import { PERSONAL_PLAN_PENDING_ACTIVATION_KEY } from './personal_plan_activation';
+import { COMPLETED_PLAN_TASKS_KEY } from './personal_plan_progress';
+import { PERSONAL_PLAN_STATE_KEY } from './personal_plan_state';
 import {
   activeRecallItemsKey,
   achievementStateKey,
@@ -315,6 +319,7 @@ export const SYNC_KEYS = [
   'achievement_trainer_correct_streak_v1',
   'achievement_trainer_perfect_session_count',
   'achievement_all_daily_streak_v1',
+  'helpful_error_reports_confirmed_v1',
   'achievement_quiz_total_count',
   'quiz_hard_count',
   'achievement_quiz_hard_perfect_count',
@@ -357,6 +362,8 @@ export const SYNC_KEYS = [
   'login_bonus_v1',
   /** Опыт по дням (график статистики) — без синка теряется на новом устройстве. */
   'daily_stats',
+  PERSONAL_PLAN_STATE_KEY,
+  COMPLETED_PLAN_TASKS_KEY,
 
   // ── Премиум и его плюшки (без них юзер теряет купленные/активные бенефиты) ─
   'premium_plan',
@@ -441,6 +448,7 @@ export const SYNC_KEYS = [
   'app_version',
   'user_stats_v1',
   'xp_migration_v2',
+  XP_LEVEL_RESTORE_250_TO_400_KEY,
   'week_points_migrated_v1',
 
   // ── Время в приложении (foreground) — график «Время в приложении» ─────────
@@ -515,6 +523,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     // Bookkeeping синка (новый stable_id = новая история синка)
     LAST_SYNC_SNAPSHOT_KEY,
     CREATED_AT_SYNC_KEY,
+    STABLE_AUTH_LINK_CACHE_KEY,
     'cloud_migration_v1',
     // Кэши лидербордов (содержат предыдущего юзера)
     'global_lb_cache',
@@ -534,11 +543,14 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     'install_date',
     'login_bonus_v1',
     'last_opened_lesson',
+    PERSONAL_PLAN_PENDING_ACTIVATION_KEY,
     ...localOnlyTargetKeys,
   ]));
 }
 const CREATED_AT_SYNC_KEY = 'cloud_created_at_synced_v1';
 const LAST_SYNC_SNAPSHOT_KEY = 'cloud_last_sync_snapshot_v1';
+const STABLE_AUTH_LINK_CACHE_KEY = 'stable_auth_link_cache_v1';
+const STABLE_AUTH_LINK_CACHE_TTL_MS = 24 * 60 * 60_000;
 /** Ожидание чужого syncInFlight без лимита оставляло «Сменить аккаунт» на вечном спиннере при «зависшем» Firestore. */
 const FORCE_SYNC_WAIT_INFLIGHT_MS = 25_000;
 const FORCE_SYNC_FIRESTORE_WRITE_MS = 35_000;
@@ -555,6 +567,22 @@ let lastSuccessfulSyncAt = 0;
 let lastActivityStampAt = 0;
 let stableAuthLinkPromise: Promise<boolean> | null = null;
 let stableAuthLinkKey = '';
+
+async function readStableAuthLinkCache(key: string): Promise<boolean> {
+  try {
+    const raw = await AsyncStorage.getItem(STABLE_AUTH_LINK_CACHE_KEY);
+    if (!raw) return false;
+    const parsed = JSON.parse(raw) as { key?: unknown; linkedAt?: unknown };
+    const linkedAt = typeof parsed.linkedAt === 'number' ? parsed.linkedAt : 0;
+    return parsed.key === key && linkedAt > 0 && Date.now() - linkedAt < STABLE_AUTH_LINK_CACHE_TTL_MS;
+  } catch {
+    return false;
+  }
+}
+
+async function writeStableAuthLinkCache(key: string): Promise<void> {
+  await AsyncStorage.setItem(STABLE_AUTH_LINK_CACHE_KEY, JSON.stringify({ key, linkedAt: Date.now() }));
+}
 
 function isJestRuntime(): boolean {
   return typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
@@ -949,6 +977,7 @@ export async function ensureStableAuthLinkForStableId(stableIdRaw: string): Prom
   if (!stableId || !authUid) return false;
 
   const key = `${stableId}:${authUid}`;
+  if (await readStableAuthLinkCache(key)) return true;
   if (stableAuthLinkPromise && stableAuthLinkKey === key) return stableAuthLinkPromise;
 
   stableAuthLinkKey = key;
@@ -957,6 +986,7 @@ export async function ensureStableAuthLinkForStableId(stableIdRaw: string): Prom
       await initFirebaseAppCheckIfAvailable().catch(() => {});
       const fn = callable<{ stableId: string }, { ok: boolean; stableUid: string; authUid: string }>('authEnsureStableLink');
       await withTimeout(fn({ stableId }), STABLE_AUTH_LINK_TIMEOUT_MS, 'auth_link_callable');
+      writeStableAuthLinkCache(key).catch(() => {});
       return true;
     } catch {
       const db = getFirestore();
@@ -967,6 +997,7 @@ export async function ensureStableAuthLinkForStableId(stableIdRaw: string): Prom
           STABLE_AUTH_LINK_TIMEOUT_MS,
           'auth_link_firestore',
         );
+        writeStableAuthLinkCache(key).catch(() => {});
         return true;
       } catch {
         return false;
@@ -998,6 +1029,7 @@ export function resetAnonAuthCacheForSignOut(): void {
   _anonAuthReady = null;
   stableAuthLinkPromise = null;
   stableAuthLinkKey = '';
+  AsyncStorage.removeItem(STABLE_AUTH_LINK_CACHE_KEY).catch(() => {});
   clearArenaAuthUidCache();
 }
 
@@ -1206,10 +1238,16 @@ async function doSyncToCloud(): Promise<void> {
     const now = Date.now();
     const needHeartbeat = now - lastSuccessfulSyncAt >= SYNC_HEARTBEAT_MS;
     const needActivityStamp = now - lastActivityStampAt >= ACTIVITY_STAMP_INTERVAL_MS;
-    if (!needHeartbeat && !needActivityStamp && Object.keys(progressPatch).length === 0) return;
+    const hasProgressPatch = Object.keys(progressPatch).length > 0;
+    if (!needHeartbeat && !needActivityStamp && !hasProgressPatch) return;
     const docRef = db.collection('users').doc(uid);
     const createdAtSynced = await AsyncStorage.getItem(CREATED_AT_SYNC_KEY);
     const shouldSendCreatedAt = !createdAtSynced;
+    if (!hasProgressPatch && !shouldSendCreatedAt) {
+      lastSuccessfulSyncAt = now;
+      if (needActivityStamp || needHeartbeat) lastActivityStampAt = now;
+      return;
+    }
     // Дружба / friend_requests rules: ключ в пути users/{stableId}/… но senderUid должен доказать
     // связь с текущей Firebase-сессией — см. firestore.rules canonicalUserMatchesAuth + firebaseAuthUid.
     const firebaseAuthUidRow = getAuthUserId();
@@ -1218,7 +1256,7 @@ async function doSyncToCloud(): Promise<void> {
         ...(firebaseAuthUidRow ? { firebaseAuthUid: firebaseAuthUidRow } : {}),
         ...(data['user_avatar'] ? { user_avatar: data['user_avatar'] } : {}),
         ...(data['user_avatar_frame'] ? { user_avatar_frame: data['user_avatar_frame'] } : {}),
-        ...(Object.keys(progressPatch).length > 0 ? { progress: progressPatch } : {}),
+        ...(hasProgressPatch ? { progress: progressPatch } : {}),
         ...(needActivityStamp || needHeartbeat || shouldSendCreatedAt ? { updatedAt: now, last_active_at: now } : {}),
         ...(shouldSendCreatedAt ? { created_at: now } : {}),
       },

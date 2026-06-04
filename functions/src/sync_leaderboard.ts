@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { getLevelFromXP } from './xp_levels';
 
 const db = admin.firestore();
 
@@ -36,7 +37,7 @@ export async function syncLeaderboardFromUsers(): Promise<void> {
       if (!name || xp < 50) { skipped++; continue; }
 
       const lang = progress['lang'] ?? progress['app_lang'] ?? 'ru';
-      const levelFromXP = Math.min(50, Math.floor(Math.pow(xp / 250, 1 / 1.82)) + 1);
+      const levelFromXP = getLevelFromXP(xp);
       const avatarRaw = typeof progress['user_avatar'] === 'string' ? progress['user_avatar'].trim() : '';
       // Numeric legacy avatars are still derived from XP, but custom avatars must survive leaderboard syncs.
       const avatar = avatarRaw && !/^\d+$/.test(avatarRaw) ? avatarRaw : String(levelFromXP);

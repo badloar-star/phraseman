@@ -1615,7 +1615,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'writing', ru: 'Писал', uk: 'Писав', es: 'escribiendo', pos: 'verbs' },
     { en: 'waiting', ru: 'Ждал', uk: 'Чекав', es: 'esperando', pos: 'verbs' },
     { en: 'watching', ru: 'Смотрел', uk: 'Дивився', es: 'viendo', pos: 'verbs' },
-    { en: 'looking for', ru: 'Искал', uk: 'Шукав', es: 'buscando', pos: 'verbs' },
+    { en: 'looking for', ru: 'Искать', uk: 'Шукати', es: 'buscando', pos: 'verbs' },
     { en: 'talking', ru: 'Разговаривал', uk: 'Розмовляв', es: 'hablando', pos: 'verbs' },
     { en: 'driving', ru: 'Ехал / вёл машину', uk: 'Їхав / вів машину', es: 'conduciendo', pos: 'verbs' },
     { en: 'cleaning', ru: 'Убирал', uk: 'Прибирав', es: 'limpiando', pos: 'verbs' },
@@ -3171,6 +3171,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
       <SectionList
         sections={sections}
         keyExtractor={item => item.en}
+        removeClippedSubviews={false}
         contentContainerStyle={{ paddingBottom: ds.spacing.xxl }}
         ListFooterComponent={
           <ReportErrorButton

@@ -21,10 +21,13 @@ graphify-out/
 .claude/
 .expo/
 .codex-tmp/
+.codex-logs/
+.ruflo/
 .agents/
 .planning/
 dist/
 maestro-results/
+lingman-montazher/
 lingman-scenarist-pipeline/
 tools/
 docs/gustav/

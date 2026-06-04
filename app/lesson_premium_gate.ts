@@ -1,10 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
-import { isLessonUnlockedByPremiumCourse } from './lesson_lock_system';
+import { isLessonUnlockedByEarnedProgress, isLessonUnlockedByPremiumCourse } from './lesson_lock_system';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 
-export type LessonRuntimeGate = 'available' | 'premium_required' | 'level_required';
+export type LessonRuntimeGate = 'available' | 'premium_required' | 'level_required' | 'progress_required';
 
 export async function resolveLessonRuntimeGate(
   lessonId: number,
@@ -16,6 +16,7 @@ export async function resolveLessonRuntimeGate(
   const premium = await getVerifiedPremiumStatus().catch(() => false);
   if (!premium && requiresPremiumForLesson(lessonId)) return 'premium_required';
   if (premium && !(await isLessonUnlockedByPremiumCourse(lessonId, studyTarget))) return 'level_required';
+  if (!premium && !(await isLessonUnlockedByEarnedProgress(lessonId, studyTarget))) return 'progress_required';
   return 'available';
 }
 

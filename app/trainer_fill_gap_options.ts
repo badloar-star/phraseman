@@ -11,6 +11,7 @@ type FillGapOptionInput = {
   phrase: string;
   category?: WordCategory;
   grammarTag?: string;
+  sourceDistractors?: readonly string[];
   studyTarget?: RuntimeStudyTarget;
   optionCount?: number;
   shuffle?: boolean;
@@ -121,6 +122,7 @@ export function buildTrainerFillGapOptions({
   phrase,
   category,
   grammarTag,
+  sourceDistractors,
   optionCount = FILL_GAP_OPTION_COUNT,
   shuffle = true,
 }: FillGapOptionInput): string[] {
@@ -134,7 +136,7 @@ export function buildTrainerFillGapOptions({
   const blockedKeys = phraseWordKeys(phrase);
   const distractorCount = Math.max(1, optionCount - 1);
   const distractors = uniqueCandidates(
-    [primaryPool, fallbackPool],
+    [sourceDistractors ?? [], primaryPool, fallbackPool],
     correctKey,
     blockedKeys,
     distractorCount,

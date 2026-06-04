@@ -20,6 +20,31 @@ type IdentityCleanupStats = {
   skipped: boolean;
 };
 
+function readHeaderValue(value: unknown): string {
+  if (Array.isArray(value)) return String(value[0] ?? '');
+  return typeof value === 'string' ? value : '';
+}
+
+function describeAppCheckHeader(value: unknown): Record<string, unknown> {
+  const token = readHeaderValue(value).trim();
+  const dotCount = token ? token.split('.').length - 1 : 0;
+  let kind = 'missing';
+  if (token) {
+    const lower = token.toLowerCase();
+    if (lower === 'null' || lower === 'undefined') kind = lower;
+    else if (lower.startsWith('bearer ')) kind = 'bearer_prefixed';
+    else if (dotCount === 2 && token.length > 80) kind = 'jwt_like';
+    else if (token.length < 80) kind = 'short_non_jwt';
+    else kind = 'long_non_jwt';
+  }
+  return {
+    kind,
+    present: token.length > 0,
+    length: token.length,
+    dotCount,
+  };
+}
+
 function normalizeStableId(value: unknown): string {
   return String(value ?? '').trim();
 }
@@ -28,6 +53,7 @@ async function assertStableOwner(
   db: admin.firestore.Firestore,
   authUid: string,
   stableId: string,
+  options?: { allowProviderRelink?: boolean },
 ): Promise<void> {
   if (!stableId || stableId.length > 160) {
     throw new HttpsError('invalid-argument', 'stable_id_required');
@@ -55,6 +81,12 @@ async function assertStableOwner(
     ? String((linkedAuth as { providerUid?: unknown }).providerUid ?? '').trim()
     : '';
   if (linkedAuthUid === authUid) return;
+
+  if (options?.allowProviderRelink === true && !linkedStableId && !linkedAuthUid) {
+    const existingByAuth = await db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(1).get().catch(() => null);
+    const existingStableId = String(existingByAuth?.docs?.[0]?.id ?? '').trim();
+    if (!existingStableId || existingStableId === stableId) return;
+  }
 
   throw new HttpsError('permission-denied', 'stable_id_mismatch');
 }
@@ -473,7 +505,7 @@ export async function resolveStableUidForAuth(
   db: admin.firestore.Firestore,
   authUid: string,
   requestedStableId?: unknown,
-  options?: { requireKnownIdentity?: boolean },
+  options?: { requireKnownIdentity?: boolean; allowProviderRelink?: boolean },
 ): Promise<string> {
   const stableId = normalizeStableId(requestedStableId);
   if (stableId) {
@@ -481,11 +513,11 @@ export async function resolveStableUidForAuth(
     const requestedUserData = requestedUserSnap?.data() || {};
     const canonicalStableId = normalizeStableId(requestedUserData.canonicalStableId);
     if (requestedUserData.identityHidden === true && canonicalStableId && canonicalStableId !== stableId) {
-      await assertStableOwner(db, authUid, canonicalStableId);
+      await assertStableOwner(db, authUid, canonicalStableId, options);
       await linkStableAuthUid(db, canonicalStableId, authUid);
       return canonicalStableId;
     }
-    await assertStableOwner(db, authUid, stableId);
+    await assertStableOwner(db, authUid, stableId, options);
     await linkStableAuthUid(db, stableId, authUid);
     return stableId;
   }
@@ -502,9 +534,18 @@ export async function resolveStableUidForAuth(
 
 export const authEnsureStableLink = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+  if (!request.app) {
+    console.warn(JSON.stringify({
+      event: 'app_check_header_shape',
+      function: 'authEnsureStableLink',
+      header: describeAppCheckHeader(request.rawRequest.headers['x-firebase-appcheck']),
+    }));
+  }
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableId = normalizeStableId(request.data?.stableId);
-  const stableUid = await resolveStableUidForAuth(db, authUid, stableId);
+  const signInProvider = String(request.auth.token?.firebase?.sign_in_provider ?? '').trim();
+  const allowProviderRelink = signInProvider.length > 0 && signInProvider !== 'anonymous';
+  const stableUid = await resolveStableUidForAuth(db, authUid, stableId, { allowProviderRelink });
   return { ok: true, stableUid, authUid };
 });

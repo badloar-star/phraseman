@@ -86,7 +86,8 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
       hapticTap();
       setLoading(true);
       if (!previewOnly) {
-        await submitUserReport({ reportedUid, reportedName, reason: 'offensive_nickname', screen });
+        const result = await submitUserReport({ reportedUid, reportedName, reason: 'offensive_nickname', screen });
+        if (result === 'failed') throw new Error('report_failed');
       }
       setLoading(false);
       setDone(true);

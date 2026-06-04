@@ -4,15 +4,20 @@ import path from 'path';
 const ROOT = path.join(__dirname, '..');
 
 describe('Gustav quiz target isolation', () => {
-  it.each([
-    ['standalone quiz route', 'app/quizzes.tsx'],
-    ['tabs quiz route', 'app/(tabs)/quizzes.tsx'],
-  ])('keeps %s SRS and mistake logs scoped to the active study target', (_label, relativePath) => {
-    const source = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  it('keeps standalone quiz route delegated to the shared tabs quiz implementation', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app/quizzes.tsx'), 'utf8');
+
+    expect(source).toContain("import QuizzesScreen from './(tabs)/quizzes'");
+    expect(source).toContain('<QuizzesScreen />');
+  });
+
+  it('keeps tabs quiz route SRS and mistake logs scoped to the active study target', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app/(tabs)/quizzes.tsx'), 'utf8');
 
     expect(source).toContain('const { studyTarget } = useStudyTarget()');
-    expect(source).toMatch(/recordMistake\([\s\S]*?tokenMeta,\s*studyTarget,\s*\)/);
-    expect(source).toMatch(/logMistake\([\s\S]*?'quiz',\s*'wrong_pick',\s*tokenMeta,\s*studyTarget,\s*\)/);
+    expect(source).toContain('buildPersonalPlanQuizMistakeMeta');
+    expect(source).toMatch(/recordMistake\([\s\S]*?mistakeMeta,\s*studyTarget,\s*\)/);
+    expect(source).toMatch(/logMistake\([\s\S]*?'quiz',\s*'wrong_pick',\s*mistakeMeta,\s*studyTarget,\s*\)/);
     expect(source).toContain('updateMultipleTaskProgress(updates, { studyTarget })');
     expect(source).toContain("('achievement_quiz_total_count', studyTarget)");
     expect(source).toContain("type: 'quiz_session_count', count: next, studyTarget");

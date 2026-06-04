@@ -566,14 +566,14 @@ export default function LevelExam() {
         if (!cancelled) {
           setAccessBlockKind('premium');
           setBlockedText(triLang(lang, {
-            ru: 'Premium откроет уроки уровня и доступ к зачёту. Без Premium доступны только первые 3 урока.',
-            uk: 'Premium відкриє уроки рівня і доступ до заліку. Без Premium доступні лише перші 3 уроки.',
-            es: 'Premium abre las lecciones del nivel y el acceso al examen. Sin Premium solo están disponibles las 3 primeras lecciones.',
-            'pt-BR': "O Premium abre as aulas do nível e o acesso ao teste. Sem Premium, só as 3 primeiras aulas ficam disponíveis.",
-            vi: "Premium mở các bài học của cấp độ và quyền truy cập vào bài kiểm tra. Không có Premium, chỉ 3 bài học đầu tiên khả dụng.",
-            id: "Premium membuka pelajaran level ini dan akses ke ujian. Tanpa Premium, hanya 3 pelajaran pertama yang tersedia.",
-            tr: "Premium, seviyenin derslerini ve sınava erişimi açar. Premium olmadan yalnızca ilk 3 ders kullanılabilir.",
-            pl: "Premium odblokowuje lekcje poziomu i dostęp do testu. Bez Premium dostępne są tylko pierwsze 3 lekcje.",
+            ru: 'Premium откроет уроки уровня и доступ к зачёту. Без Premium доступен A1, уроки открываются последовательно.',
+            uk: 'Premium відкриє уроки рівня і доступ до заліку. Без Premium доступний A1, уроки відкриваються послідовно.',
+            es: 'Premium abre las lecciones del nivel y el acceso al examen. Sin Premium, A1 está disponible paso a paso.',
+            'pt-BR': "O Premium abre as aulas do nível e o acesso ao teste. Sem Premium, o A1 fica disponível passo a passo.",
+            vi: "Premium mở các bài học của cấp độ và quyền truy cập vào bài kiểm tra. Không có Premium, A1 mở từng bài theo tiến độ.",
+            id: "Premium membuka pelajaran level ini dan akses ke ujian. Tanpa Premium, A1 tersedia bertahap.",
+            tr: "Premium, seviyenin derslerini ve sınava erişimi açar. Premium olmadan A1 adım adım kullanılabilir.",
+            pl: "Premium odblokowuje lekcje poziomu i dostęp do testu. Bez Premium A1 jest dostępny krok po kroku.",
           }));
           setAccessState('blocked');
         }

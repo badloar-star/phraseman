@@ -6,6 +6,8 @@ import {
 import { isArenaDuelReactionEmoji } from '../../constants/arena_duel_reaction_emojis';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 
+const MATCHMAKING_META_POLL_MS = 30 * 1000;
+
 // ─── Коллекции ────────────────────────────────────────────────────────────────
 //
 //  arena_profiles/{userId}         — профиль, ранг, статистика
@@ -298,17 +300,26 @@ export function subscribeMatchmakingQueueOthersCount(
     onOthersCount(0);
     return () => {};
   }
-  return col.matchmakingMeta().onSnapshot(
-    (snap: any) => {
+  let active = true;
+  const readTotal = async () => {
+    try {
+      const snap = await col.matchmakingMeta().get();
       const { inSearchFlow } = getPresence();
       const total = snap?.exists
         ? (snap.data() as { searchingCount?: number })?.searchingCount
         : 0;
       const n = typeof total === 'number' && total > 0 ? total : 0;
-      onOthersCount(Math.max(0, n - (inSearchFlow ? 1 : 0)));
-    },
-    () => onOthersCount(0),
-  );
+      if (active) onOthersCount(Math.max(0, n - (inSearchFlow ? 1 : 0)));
+    } catch {
+      if (active) onOthersCount(0);
+    }
+  };
+  void readTotal();
+  const id = setInterval(readTotal, MATCHMAKING_META_POLL_MS);
+  return () => {
+    active = false;
+    clearInterval(id);
+  };
 }
 
 /**
@@ -322,17 +333,26 @@ export function subscribeMatchmakingSearchingTotal(
     onTotal(0);
     return () => {};
   }
-  return col.matchmakingMeta().onSnapshot(
-    (snap: any) => {
+  let active = true;
+  const readTotal = async () => {
+    try {
+      const snap = await col.matchmakingMeta().get();
       if (!snap || !snap.exists) {
-        onTotal(0);
+        if (active) onTotal(0);
         return;
       }
       const n = (snap.data() as { searchingCount?: number })?.searchingCount;
-      onTotal(typeof n === 'number' && n >= 0 ? n : 0);
-    },
-    () => onTotal(0),
-  );
+      if (active) onTotal(typeof n === 'number' && n >= 0 ? n : 0);
+    } catch {
+      if (active) onTotal(0);
+    }
+  };
+  void readTotal();
+  const id = setInterval(readTotal, MATCHMAKING_META_POLL_MS);
+  return () => {
+    active = false;
+    clearInterval(id);
+  };
 }
 
 // ─── Приватные комнаты ────────────────────────────────────────────────────────

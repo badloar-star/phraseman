@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
 import Constants from 'expo-constants';
+import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, AppState, Easing, Image, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -21,6 +22,7 @@ import LevelBadge from '../components/LevelBadge';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
 import Onboarding from '../components/onboarding';
+import { PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY } from './personal_plan_activation';
 import { PremiumProvider } from '../components/PremiumContext';
 import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import UpdateModal from '../components/UpdateModal';
@@ -46,7 +48,7 @@ import {
 import { initRevenueCat } from './revenuecat_init';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
 import { prefetchArenaRatingCache } from './arena_rating_cache';
-import { updateMyPremiumInLeaderboard, updateMyVipInLeaderboard } from './firestore_leaderboard';
+import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
 import { tryGrantPremiumMonthlyWagerFromLevelUp } from './streak_wager';
 import { incrementSessionCount } from './review_utils';
@@ -99,10 +101,42 @@ import {
 import { FIRST_LESSON_SHEET_BACKGROUNDS } from '../components/firstLessonSheetAssets';
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS } from '../constants/devRoutes';
+import { APP_FONT_ASSETS, APP_FONT_FAMILY } from './typography';
 
 LogBox.ignoreLogs([
   '[expo-notifications] Error reading persisted server registration info',
+  '[Reanimated] Reduced motion setting is enabled on this device.',
+  'This method is deprecated (as well as all React Native Firebase namespaced API)',
 ]);
+
+const DEV_RUNTIME_LOG_DROP_PATTERNS = [
+  'This method is deprecated (as well as all React Native Firebase namespaced API)',
+  '[expo-image]: Prop "resizeMode" is deprecated',
+] as const;
+
+function shouldDropDevRuntimeLog(args: unknown[]): boolean {
+  const message = args.map((arg) => {
+    if (typeof arg === 'string') return arg;
+    try {
+      return JSON.stringify(arg);
+    } catch {
+      return String(arg);
+    }
+  }).join(' ');
+  return DEV_RUNTIME_LOG_DROP_PATTERNS.some((pattern) => message.includes(pattern));
+}
+
+function installDevRuntimePerformanceGuards(): void {
+  if (!__DEV__) return;
+
+  const originalWarn = console.warn.bind(console);
+  console.warn = (...args: unknown[]) => {
+    if (shouldDropDevRuntimeLog(args)) return;
+    originalWarn(...args);
+  };
+}
+
+installDevRuntimePerformanceGuards();
 
 /** Список друзей с диска в память до открытия вкладки — чтобы первый кадр вкладки мог сразу показать строки. */
 // Нативный сплэш из app.json — скрываем только когда AppContent сообщает ready (см. hideAsync в useEffect).
@@ -113,6 +147,7 @@ DefaultText.defaultProps = {
   ...DefaultText.defaultProps,
   android_hyphenationFrequency: 'none',
   textBreakStrategy: 'simple',
+  style: [{ fontFamily: APP_FONT_FAMILY }, DefaultText.defaultProps?.style],
 };
 
 const STARTUP_SPLASH_BG = '#101214';
@@ -132,7 +167,8 @@ const FIRST_LESSON_SHEET_PANEL_SCRIMS: Record<ThemeMode, string> = {
   gold: 'rgba(5,5,5,0.52)',
   coral: 'rgba(28,8,5,0.50)',
   minimalLight: 'rgba(255,250,237,0.86)',
-  minimalDark: 'rgba(5,7,9,0.48)',
+  minimalDark: 'rgba(8,12,20,0.54)',
+  compass: 'rgba(12,10,7,0.54)',
 };
 const FIRST_LESSON_SHEET_TITLE_COLORS: Record<ThemeMode, string> = {
   dark: '#F7FFF4',
@@ -140,7 +176,8 @@ const FIRST_LESSON_SHEET_TITLE_COLORS: Record<ThemeMode, string> = {
   gold: '#FFF7DF',
   coral: '#FFF7F2',
   minimalLight: '#1B1712',
-  minimalDark: '#FFFFFF',
+  minimalDark: '#F5F7FB',
+  compass: '#FFF8E8',
 };
 const FIRST_LESSON_SHEET_SUBTITLE_COLORS: Record<ThemeMode, string> = {
   dark: '#CFE7CF',
@@ -148,7 +185,8 @@ const FIRST_LESSON_SHEET_SUBTITLE_COLORS: Record<ThemeMode, string> = {
   gold: '#EBD7A5',
   coral: '#FFD8CF',
   minimalLight: '#635845',
-  minimalDark: '#C5CAD0',
+  minimalDark: '#A7ABB3',
+  compass: '#D8D2C8',
 };
 const FIRST_LESSON_SHEET_LATER_COLORS: Record<ThemeMode, string> = {
   dark: '#A8BFA6',
@@ -156,7 +194,8 @@ const FIRST_LESSON_SHEET_LATER_COLORS: Record<ThemeMode, string> = {
   gold: '#BDAA7A',
   coral: '#D5A59B',
   minimalLight: '#766B58',
-  minimalDark: '#9298A1',
+  minimalDark: '#8FA2C2',
+  compass: '#F2C48D',
 };
 const FIRST_LESSON_SHEET_BORDER_COLORS: Record<ThemeMode, string> = {
   dark: 'rgba(189,255,143,0.26)',
@@ -164,7 +203,8 @@ const FIRST_LESSON_SHEET_BORDER_COLORS: Record<ThemeMode, string> = {
   gold: 'rgba(255,210,99,0.34)',
   coral: 'rgba(255,133,112,0.34)',
   minimalLight: 'rgba(120,91,42,0.22)',
-  minimalDark: 'rgba(255,255,255,0.16)',
+  minimalDark: 'rgba(110,168,255,0.28)',
+  compass: 'rgba(242,196,141,0.28)',
 };
 const FIRST_LESSON_SHEET_CTA_TEXT_COLORS: Record<ThemeMode, string> = {
   dark: '#F6FFF2',
@@ -172,7 +212,8 @@ const FIRST_LESSON_SHEET_CTA_TEXT_COLORS: Record<ThemeMode, string> = {
   gold: '#FFE9A8',
   coral: '#350D08',
   minimalLight: '#3F2C08',
-  minimalDark: '#FFFFFF',
+  minimalDark: '#07101F',
+  compass: '#151008',
 };
 const FIRST_LESSON_SHEET_CTA_GRADIENTS: Record<ThemeMode, readonly [string, string]> = {
   dark: ['#2F8A42', '#155A2B'],
@@ -180,7 +221,8 @@ const FIRST_LESSON_SHEET_CTA_GRADIENTS: Record<ThemeMode, readonly [string, stri
   gold: ['#1D1910', '#4D3A16'],
   coral: ['#FF7A66', '#EF4F3D'],
   minimalLight: ['#FFF2BF', '#E7B84E'],
-  minimalDark: ['#2B3035', '#15181B'],
+  minimalDark: ['#D7E7FF', '#6EA8FF'],
+  compass: ['#FFD58A', '#E7B13F'],
 };
 const FIRST_LESSON_SHEET_CTA_SHADOW_COLORS: Record<ThemeMode, string> = {
   dark: '#7CF05C',
@@ -188,7 +230,8 @@ const FIRST_LESSON_SHEET_CTA_SHADOW_COLORS: Record<ThemeMode, string> = {
   gold: '#D5A63D',
   coral: '#FF715F',
   minimalLight: '#B78328',
-  minimalDark: '#FFFFFF',
+  minimalDark: '#6EA8FF',
+  compass: '#F2C48D',
 };
 const DAILY_LOGIN_BONUS_XP_BY_DAY = [
   20, 25, 30, 40, 50, 75, 120,
@@ -1317,8 +1360,11 @@ function AppContent() {
             active: isPrem || isVip,
             source: isPrem ? 'premium' : isVip ? 'vip' : 'none',
           });
-          updateMyPremiumInLeaderboard(isPrem);
-          updateMyVipInLeaderboard(isVip);
+          syncPublicProfileSnapshot({
+            reason: 'entitlement_change',
+            isPremium: isPrem,
+            isVip,
+          }).catch(() => {});
         }).catch(() => {});
         void import('./community_packs/communityModerationAlerts')
           .then((m) => m.flushCommunityModerationAlertsFromInbox())
@@ -1537,7 +1583,39 @@ function AppContent() {
     setTimeout(() => setShowFirstLessonSheet(true), 400);
   }, [armPostOnboardingGoldBridge, router]);
 
+  const handleOnboardingPersonalPlanPaywall = useCallback(async () => {
+    await AsyncStorage.setItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1');
+    await AsyncStorage.setItem('onboarding_step', 'name');
+    await AsyncStorage.removeItem('onboarding_done');
+    await AsyncStorage.setItem('xp_migration_v2', '1');
+    if (firstContentReadyTimerRef.current) {
+      clearTimeout(firstContentReadyTimerRef.current);
+      firstContentReadyTimerRef.current = null;
+    }
+    setFirstContentReady(true);
+    setShowFirstLessonSheet(false);
+    setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
+    setShow(false);
+    router.replace('/(tabs)/home' as any);
+    setTimeout(() => {
+      router.push({ pathname: '/premium_modal', params: { context: 'personal_plan', source: 'onboarding_plan' } } as any);
+    }, 120);
+  }, [router]);
+
   // После закрытия онбординга и монтирования Stack — переходим на нужный экран
+  useEffect(() => {
+    const sub = onAppEvent('personal_plan_onboarding_nickname_ready', async () => {
+      onboardingDoneHandledRef.current = false;
+      await AsyncStorage.setItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1');
+      await AsyncStorage.setItem('onboarding_step', 'name');
+      await AsyncStorage.removeItem('onboarding_done');
+      setShowFirstLessonSheet(false);
+      setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
+      setShow(true);
+    });
+    return () => sub.remove();
+  }, []);
+
   useEffect(() => {
     if (ready && rootNavigationReady && !isBanned && !showOnboarding && pendingRoute) {
       const t = setTimeout(() => {
@@ -1702,6 +1780,10 @@ function AppContent() {
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" />
       <Stack.Screen name="daily_tasks_screen" />
+      <Stack.Screen name="personal_plan" options={{ headerShown: false }} />
+      <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
+      <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
+      <Stack.Screen name="personal_plan_thank_you" options={{ headerShown: false }} />
       <Stack.Screen name="premium_modal" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="flashcards" />
@@ -1721,6 +1803,8 @@ function AppContent() {
       <Stack.Screen name="beta_testers" />
       <Stack.Screen name="privacy_screen" />
       <Stack.Screen name="terms_screen" />
+      <Stack.Screen name="lingman_videos" />
+      <Stack.Screen name="lingman_video_player" />
       <Stack.Screen name="arena_game" options={{ animation: 'none' }} />
       <Stack.Screen name="arena_lobby" options={{ animation: 'none' }} />
       <Stack.Screen name="arena_results" />
@@ -2012,7 +2096,11 @@ function AppContent() {
 
     {ready && effectiveShowOnboarding && (
       <View style={styles.appFullScreenOverlay}>
-        <Onboarding onDone={handleOnboardingDone} onLangSelect={handleLangSelect} />
+        <Onboarding
+          onDone={handleOnboardingDone}
+          onLangSelect={handleLangSelect}
+          onPersonalPlanPaywallStart={handleOnboardingPersonalPlanPaywall}
+        />
       </View>
     )}
 
@@ -2154,6 +2242,12 @@ const styles = StyleSheet.create({
 });
 
 export default function RootLayout() {
+  const [fontsLoaded, fontsError] = useFonts(APP_FONT_ASSETS);
+
+  if (!fontsLoaded && !fontsError) {
+    return null;
+  }
+
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>
     <ErrorBoundary>

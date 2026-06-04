@@ -1,32 +1,11 @@
 import type { ImageSourcePropType } from 'react-native';
 
 import { AT_THE_DOCTOR_SKYLER_PACK } from './quiz_thematic_at_the_doctor';
-import { HOME_AND_ROOMS_SKYLER_PACK } from './quiz_thematic_home_and_rooms';
+import { BODY_AND_HEALTH_SKYLER_PACK } from './quiz_thematic_body_and_health';
+import { SHOPPING_AND_MONEY_SKYLER_PACK } from './quiz_thematic_shopping_and_money';
 import type { ThematicQuizCategory } from './quiz_thematic_registry';
 
 type ThemeAssetMap = Record<string, ImageSourcePropType>;
-
-const homeCardBackgrounds: ThemeAssetMap = {
-  forest: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-forest.webp'),
-  dark: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-dark.webp'),
-  neon: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-neon.webp'),
-  neonGreen: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-neon-green.webp'),
-  gold: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-gold.webp'),
-  coral: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-coral.webp'),
-  minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-minimal-light.webp'),
-  minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-minimal-dark.webp'),
-};
-
-const homeLogos: ThemeAssetMap = {
-  forest: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-forest.webp'),
-  dark: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-dark.webp'),
-  neon: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-neon.webp'),
-  neonGreen: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-neon-green.webp'),
-  gold: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-gold.webp'),
-  coral: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-coral.webp'),
-  minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-minimal-light.webp'),
-  minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-minimal-dark.webp'),
-};
 
 const doctorCardBackgrounds: ThemeAssetMap = {
   forest: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-forest.webp'),
@@ -50,34 +29,48 @@ const doctorLogos: ThemeAssetMap = {
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-minimal-dark.webp'),
 };
 
-const HOME_AND_ROOMS_CATEGORY: ThematicQuizCategory = {
-  id: 'home-and-rooms',
-  target: 'en',
-  title: {
-    ru: 'Дом и комнаты',
-    uk: 'Дім і кімнати',
-    es: 'Casa y habitaciones',
-    'pt-BR': 'Casa e cômodos',
-    vi: 'Nhà và phòng',
-    id: 'Rumah dan ruangan',
-    tr: 'Ev ve odalar',
-    pl: 'Dom i pokoje',
-  },
-  subtitle: {
-    ru: 'Комнаты, мебель и домашние слова',
-    uk: 'Кімнати, меблі й домашні слова',
-    es: 'Habitaciones, muebles y palabras de casa',
-    'pt-BR': 'Cômodos, móveis e palavras da casa',
-    vi: 'Phòng, đồ nội thất và từ vựng trong nhà',
-    id: 'Ruangan, perabot, dan kata-kata rumah',
-    tr: 'Odalar, mobilyalar ve ev sözcükleri',
-    pl: 'Pokoje, meble i domowe słowa',
-  },
-  badge: 'A1 HOME',
-  accent: '#93C5FD',
-  pack: HOME_AND_ROOMS_SKYLER_PACK,
-  cardBackgrounds: homeCardBackgrounds,
-  logos: homeLogos,
+const bodyCardBackgrounds: ThemeAssetMap = {
+  forest: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-forest.webp'),
+  dark: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-dark.webp'),
+  neon: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-neon.webp'),
+  neonGreen: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-neon-green.webp'),
+  gold: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-gold.webp'),
+  coral: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-coral.webp'),
+  minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-minimal-light.webp'),
+  minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-minimal-dark.webp'),
+};
+
+const bodyLogos: ThemeAssetMap = {
+  forest: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-forest.webp'),
+  dark: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-dark.webp'),
+  neon: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-neon.webp'),
+  neonGreen: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-neon-green.webp'),
+  gold: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-gold.webp'),
+  coral: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-coral.webp'),
+  minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-minimal-light.webp'),
+  minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-minimal-dark.webp'),
+};
+
+const shoppingCardBackgrounds: ThemeAssetMap = {
+  forest: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-forest.webp'),
+  dark: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-dark.webp'),
+  neon: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-neon.webp'),
+  neonGreen: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-neon-green.webp'),
+  gold: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-gold.webp'),
+  coral: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-coral.webp'),
+  minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-minimal-light.webp'),
+  minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-minimal-dark.webp'),
+};
+
+const shoppingLogos: ThemeAssetMap = {
+  forest: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-forest.webp'),
+  dark: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-dark.webp'),
+  neon: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-neon.webp'),
+  neonGreen: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-neon-green.webp'),
+  gold: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-gold.webp'),
+  coral: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-coral.webp'),
+  minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-minimal-light.webp'),
+  minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-minimal-dark.webp'),
 };
 
 const AT_THE_DOCTOR_CATEGORY: ThematicQuizCategory = {
@@ -86,31 +79,92 @@ const AT_THE_DOCTOR_CATEGORY: ThematicQuizCategory = {
   title: {
     ru: 'У врача',
     uk: 'У лікаря',
-    es: 'En el médico',
-    'pt-BR': 'No médico',
-    vi: 'Ở phòng khám',
+    es: 'En el medico',
+    'pt-BR': 'No medico',
+    vi: 'O phong kham',
     id: 'Di dokter',
     tr: 'Doktorda',
     pl: 'U lekarza',
   },
   subtitle: {
-    ru: 'Приём, симптомы и простые слова',
+    ru: 'Прием, симптомы и простые слова',
     uk: 'Прийом, симптоми й прості слова',
-    es: 'Citas, síntomas y palabras sencillas',
+    es: 'Citas, sintomas y palabras sencillas',
     'pt-BR': 'Consultas, sintomas e palavras simples',
-    vi: 'Lịch hẹn, triệu chứng và từ đơn giản',
+    vi: 'Lich hen, trieu chung va tu don gian',
     id: 'Janji, gejala, dan kata sederhana',
     tr: 'Randevu, belirtiler ve basit kelimeler',
-    pl: 'Wizyta, objawy i proste słowa',
+    pl: 'Wizyta, objawy i proste slowa',
   },
-  badge: 'A1 HEALTH',
+  badge: 'DEV HEALTH',
   accent: '#38BDF8',
   pack: AT_THE_DOCTOR_SKYLER_PACK,
   cardBackgrounds: doctorCardBackgrounds,
   logos: doctorLogos,
 };
 
+const BODY_AND_HEALTH_CATEGORY: ThematicQuizCategory = {
+  id: 'body-and-health',
+  target: 'en',
+  title: {
+    ru: 'Тело и здоровье',
+    uk: 'Тіло і здоров’я',
+    es: 'Cuerpo y salud',
+    'pt-BR': 'Corpo e saúde',
+    vi: 'Cơ thể và sức khỏe',
+    id: 'Tubuh dan kesehatan',
+    tr: 'Vücut ve sağlık',
+    pl: 'Ciało i zdrowie',
+  },
+  subtitle: {
+    ru: 'Части тела и простые слова о самочувствии',
+    uk: 'Частини тіла й прості слова про самопочуття',
+    es: 'Partes del cuerpo y palabras sencillas de salud',
+    'pt-BR': 'Partes do corpo e palavras simples de saúde',
+    vi: 'Bộ phận cơ thể và từ sức khỏe đơn giản',
+    id: 'Bagian tubuh dan kata kesehatan sederhana',
+    tr: 'Vücut bölümleri ve basit sağlık kelimeleri',
+    pl: 'Części ciała i proste słowa o zdrowiu',
+  },
+  badge: 'DEV BODY',
+  accent: '#22D3EE',
+  pack: BODY_AND_HEALTH_SKYLER_PACK,
+  cardBackgrounds: bodyCardBackgrounds,
+  logos: bodyLogos,
+};
+
+const SHOPPING_AND_MONEY_CATEGORY: ThematicQuizCategory = {
+  id: 'shopping-and-money',
+  target: 'en',
+  title: {
+    ru: 'Покупки и деньги',
+    uk: 'Покупки й гроші',
+    es: 'Compras y dinero',
+    'pt-BR': 'Compras e dinheiro',
+    vi: 'Mua sắm và tiền',
+    id: 'Belanja dan uang',
+    tr: 'Alışveriş ve para',
+    pl: 'Zakupy i pieniądze',
+  },
+  subtitle: {
+    ru: 'Магазин, оплата и базовые слова',
+    uk: 'Магазин, оплата й базові слова',
+    es: 'Tienda, pagos y palabras básicas',
+    'pt-BR': 'Loja, pagamento e palavras básicas',
+    vi: 'Cửa hàng, thanh toán và từ cơ bản',
+    id: 'Toko, pembayaran, dan kata dasar',
+    tr: 'Mağaza, ödeme ve temel kelimeler',
+    pl: 'Sklep, płatność i podstawowe słowa',
+  },
+  badge: 'DEV SHOP',
+  accent: '#FACC15',
+  pack: SHOPPING_AND_MONEY_SKYLER_PACK,
+  cardBackgrounds: shoppingCardBackgrounds,
+  logos: shoppingLogos,
+};
+
 export const DEV_THEMATIC_QUIZ_CATEGORIES = [
-  HOME_AND_ROOMS_CATEGORY,
   AT_THE_DOCTOR_CATEGORY,
+  BODY_AND_HEALTH_CATEGORY,
+  SHOPPING_AND_MONEY_CATEGORY,
 ] as const satisfies readonly ThematicQuizCategory[];

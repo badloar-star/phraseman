@@ -138,9 +138,12 @@ export default function ActionToast() {
     if (rafIn.current != null) cancelAnimationFrame(rafIn.current);
     if (rafOut.current != null) cancelAnimationFrame(rafOut.current);
     showingKeyRef.current = toastKey(payload);
-    setToast(payload);
+    // Reset animated values before mounting the Animated.View. On Fabric, doing
+    // setValue immediately after setToast can trip the React insertion-effect
+    // update warning while native animated props are being attached.
     y.setValue(120);
     opacity.setValue(0);
+    setToast(payload);
     /** Откладываем старт на следующий кадр: даём Fabric закоммитить
      *  Animated.View, иначе connectAnimatedNodeToView падает. */
     rafIn.current = requestAnimationFrame(() => {

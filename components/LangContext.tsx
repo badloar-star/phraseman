@@ -135,12 +135,12 @@ const RU = {
     nameError: 'Введите имя чтобы продолжить',
   },
   premium: {
-    locked: 'Premium открывает уроки после первых 3\nи снимает дневные лимиты',
+    locked: 'Premium открывает уроки после A1\nи снимает дневные лимиты',
     freeCont: 'Продолжить бесплатно (Урок 1)',
     cta: 'Получить Premium',
     ctaSub: 'Оформить подписку',
     legal: 'Отмена в любое время в настройках App Store / Google Play.',
-    features: ['Уроки после первых 3','Квизы без дневного лимита','Голосовой ввод','Подробная статистика'],
+    features: ['Уроки после A1','Квизы без дневного лимита','Голосовой ввод','Подробная статистика'],
   },
 };
 
@@ -554,12 +554,12 @@ const PT_BR: typeof RU = {
     nameError: 'Digite um nome para continuar',
   },
   premium: {
-    locked: 'Premium abre as lições depois das 3 primeiras\ne remove limites diários',
+    locked: 'Premium abre as lições depois do A1\ne remove limites diários',
     freeCont: 'Continuar grátis (Lição 1)',
     cta: 'Obter Premium',
     ctaSub: 'Assinar',
     legal: 'Cancele quando quiser nas configurações da App Store / Google Play.',
-    features: ['Lições depois das 3 primeiras','Quizzes sem limite diário','Entrada por voz','Estatísticas detalhadas'],
+    features: ['Lições depois do A1','Quizzes sem limite diário','Entrada por voz','Estatísticas detalhadas'],
   },
 };
 
@@ -692,12 +692,12 @@ const VI: typeof RU = {
     nameError: 'Nhập tên để tiếp tục',
   },
   premium: {
-    locked: 'Premium mở các bài sau 3 bài đầu\nvà bỏ giới hạn hằng ngày',
+    locked: 'Premium mở các bài sau A1\nvà bỏ giới hạn hằng ngày',
     freeCont: 'Tiếp tục miễn phí (Bài 1)',
     cta: 'Nhận Premium',
     ctaSub: 'Đăng ký',
     legal: 'Có thể hủy bất cứ lúc nào trong cài đặt App Store / Google Play.',
-    features: ['Bài học sau 3 bài đầu','Quiz không giới hạn mỗi ngày','Nhập bằng giọng nói','Thống kê chi tiết'],
+    features: ['Bài học sau A1','Quiz không giới hạn mỗi ngày','Nhập bằng giọng nói','Thống kê chi tiết'],
   },
 };
 
@@ -830,12 +830,12 @@ const ID: typeof RU = {
     nameError: 'Masukkan nama untuk melanjutkan',
   },
   premium: {
-    locked: 'Premium membuka pelajaran setelah 3 pertama\ndan menghapus batas harian',
+    locked: 'Premium membuka pelajaran setelah A1\ndan menghapus batas harian',
     freeCont: 'Lanjut gratis (Pelajaran 1)',
     cta: 'Dapatkan Premium',
     ctaSub: 'Ambil langganan',
     legal: 'Batalkan kapan saja di pengaturan App Store / Google Play.',
-    features: ['Pelajaran setelah 3 pertama','Kuis tanpa batas harian','Input suara','Statistik detail'],
+    features: ['Pelajaran setelah A1','Kuis tanpa batas harian','Input suara','Statistik detail'],
   },
 };
 
@@ -968,12 +968,12 @@ const TR: typeof RU = {
     nameError: 'Devam etmek için ad gir',
   },
   premium: {
-    locked: 'Premium ilk 3 dersten sonrasını açar\nve günlük limitleri kaldırır',
+    locked: 'Premium A1 sonrasındaki dersleri açar\nve günlük limitleri kaldırır',
     freeCont: 'Ücretsiz devam et (Ders 1)',
     cta: 'Premium al',
     ctaSub: 'Abonelik başlat',
     legal: 'App Store / Google Play ayarlarından istediğin zaman iptal edebilirsin.',
-    features: ['İlk 3 dersten sonraki dersler','Günlük limitsiz quizler','Sesli giriş','Detaylı istatistikler'],
+    features: ['A1 sonrası dersler','Günlük limitsiz quizler','Sesli giriş','Detaylı istatistikler'],
   },
 };
 
@@ -1106,12 +1106,12 @@ const PL: typeof RU = {
     nameError: 'Wpisz imię, aby kontynuować',
   },
   premium: {
-    locked: 'Premium otwiera lekcje po pierwszych 3\ni usuwa dzienne limity',
+    locked: 'Premium otwiera lekcje po A1\ni usuwa dzienne limity',
     freeCont: 'Kontynuuj za darmo (Lekcja 1)',
     cta: 'Pobierz Premium',
     ctaSub: 'Wykup subskrypcję',
     legal: 'Anuluj w dowolnym momencie w ustawieniach App Store / Google Play.',
-    features: ['Lekcje po pierwszych 3','Quizy bez dziennego limitu','Wprowadzanie głosowe','Szczegółowe statystyki'],
+    features: ['Lekcje po A1','Quizy bez dziennego limitu','Wprowadzanie głosowe','Szczegółowe statystyki'],
   },
 };
 

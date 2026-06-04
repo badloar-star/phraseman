@@ -60,12 +60,7 @@ function readExpoExtraString(key: string): string | undefined {
 }
 
 function scheduleReferralApplyAfterLink(): void {
-  if (!CLOUD_SYNC_ENABLED) return;
-  void import('./referral_bootstrap')
-    .then((m) => m.tryApplyPendingReferral())
-    .then(() => import('./referral_system'))
-    .then((m) => m.generateReferralCode('User'))
-    .catch(() => {});
+  // Referral rewards are retired; keep auth/linking flows from touching the old cloud callables.
 }
 
 async function syncRevenueCatAfterAuthLink(): Promise<void> {

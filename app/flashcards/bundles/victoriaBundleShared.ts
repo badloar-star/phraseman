@@ -23,6 +23,8 @@ export function derivePackCodeName(packId: string): string {
     official_prep_at_en: 'Preposition AT',
     official_prep_to_en: 'Preposition TO',
     official_prep_by_en: 'Preposition BY',
+    official_phrasal_verbs_en: 'Phrasal Verbs',
+    official_movie_series_en: 'Movie & Series English',
   };
   if (known[packId]) return known[packId];
   const stripped = packId

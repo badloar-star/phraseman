@@ -9,8 +9,10 @@ describe('quiz level tab asset wiring', () => {
 
     expect(source).toContain('QUIZ_LEVEL_CARD_BACKGROUNDS');
     expect(source).toContain('QUIZ_LEVEL_LOGOS');
+    expect(source).toContain('getQuizCompletionMedalSource');
     expect(source).toContain('cardBackground');
     expect(source).toContain('levelLogo');
+    expect(source).toContain('completionMedalSource');
     expect(source).toContain('transition={0}');
     expect(source).toMatch(
       /QUIZ_LEVEL_CARD_BACKGROUNDS\[themeMode\]\?\.\[lv\]\s*\?\?\s*QUIZ_LEVEL_CARD_BACKGROUNDS\.minimalDark\[lv\]/,
@@ -22,5 +24,6 @@ describe('quiz level tab asset wiring', () => {
     expect(source).not.toContain("assets/images/levels/easy.webp");
     expect(source).not.toContain("assets/images/levels/medium.webp");
     expect(source).not.toContain("assets/images/levels/hard.webp");
+    expect(source).not.toContain('{rankInfo.icon}</Text>');
   });
 });

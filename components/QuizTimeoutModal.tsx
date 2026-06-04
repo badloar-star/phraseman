@@ -1,8 +1,10 @@
 import React from 'react';
 import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { triLang } from '../constants/i18n';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import CompassDepthSurface from './CompassDepthSurface';
 
 interface Props {
   visible: boolean;
@@ -13,6 +15,9 @@ interface Props {
 export default function QuizTimeoutModal({ visible, hardMode, onClose }: Props) {
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();
+  const isCompassTheme = themeMode === 'compass';
+  const modalRadius = isCompassTheme ? 10 : 24;
+  const buttonRadius = isCompassTheme ? 9 : 14;
 
   return (
     <Modal transparent animationType="fade" visible={visible} onRequestClose={onClose}>
@@ -27,7 +32,23 @@ export default function QuizTimeoutModal({ visible, hardMode, onClose }: Props) 
         onPress={onClose}
       >
         <Pressable onPress={(e) => e.stopPropagation()}>
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, alignItems: 'center', borderWidth: 1, borderColor: t.borderHighlight, maxWidth: 320, width: '100%' }}>
+          <View
+            style={[
+              {
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderRadius: modalRadius,
+                padding: 28,
+                alignItems: 'center',
+                borderWidth: 1,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.borderHighlight,
+                maxWidth: 320,
+                width: '100%',
+                overflow: 'hidden',
+              },
+              isCompassTheme && compassShadow(3),
+            ]}
+          >
+            {isCompassTheme ? <CompassDepthSurface radius={modalRadius} selected /> : null}
             <Text style={{ fontSize: 52, marginBottom: 12 }}>⏰</Text>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
               {triLang(lang, {
@@ -68,10 +89,24 @@ export default function QuizTimeoutModal({ visible, hardMode, onClose }: Props) 
               </Text>
             )}
             <TouchableOpacity
-              style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 32, width: '100%', alignItems: 'center' }}
+              style={[
+                {
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent,
+                  borderRadius: buttonRadius,
+                  paddingVertical: 14,
+                  paddingHorizontal: 32,
+                  width: '100%',
+                  alignItems: 'center',
+                  overflow: 'hidden',
+                  borderWidth: isCompassTheme ? 1 : 0,
+                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
+                },
+                isCompassTheme && compassShadow(1),
+              ]}
               onPress={onClose}
             >
-              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
+              {isCompassTheme ? <CompassDepthSurface radius={buttonRadius} cream /> : null}
+              <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: f.body, fontWeight: '700' }}>
                 {triLang(lang, {
                   ru: 'Понятно',
                   uk: 'Зрозуміло',

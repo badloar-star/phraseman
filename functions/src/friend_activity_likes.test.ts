@@ -213,6 +213,45 @@ describe('friendLikeActivity', () => {
     expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 1 });
   });
 
+  test('mirrors league group boost event likes into the league group document', async () => {
+    const boostEventId = 'league_group_boost_2026-20_group-1_1000';
+    docs.set(`users/target/my_events/${boostEventId}`, {
+      uid: 'target',
+      type: 'league_group_boost',
+      groupId: 'group-1',
+      activityLikeCount: 2,
+      ts: Date.now() - 1000,
+    });
+    docs.set('league_groups/group-1', {
+      weekId: '2026-20',
+      groupBoost: {
+        buyerUid: 'target',
+        likeEventId: boostEventId,
+        likeCount: 2,
+        multiplier: 2,
+      },
+    });
+
+    const result = await callLike({ eventId: boostEventId });
+
+    expect(result).toMatchObject({
+      ok: true,
+      eventId: boostEventId,
+      activityLikeCount: 3,
+    });
+    expect(docs.get(`users/target/my_events/${boostEventId}`)).toMatchObject({
+      activityLikeCount: 3,
+    });
+    expect(docs.get('league_groups/group-1')).toMatchObject({
+      groupBoost: {
+        buyerUid: 'target',
+        likeEventId: boostEventId,
+        likeCount: 3,
+        multiplier: 2,
+      },
+    });
+  });
+
   test('rejects self likes before any writes', async () => {
     docs.set('users/sender/my_events/event-1', { uid: 'sender', type: 'level_up', ts: Date.now(), payload: {} });
 

@@ -15,6 +15,7 @@
 
 const path = require('path');
 const fs = require('fs');
+const { spawnSync } = require('child_process');
 
 const helpersDir = __dirname;
 
@@ -235,6 +236,25 @@ const handlers = {
       } catch (e) { /* non-fatal */ }
     }
     console.log('[OK] Task completed');
+  },
+
+  'notify': () => {
+    const projectRoot = path.join(helpersDir, '..', '..');
+    const hookPath = path.join(projectRoot, 'tools', 'telegram-bridge', 'hook.cjs');
+    if (!fs.existsSync(hookPath)) {
+      console.log('[telegram-bridge] Hook script is not installed');
+      return;
+    }
+    const result = spawnSync(process.execPath, [hookPath], {
+      cwd: projectRoot,
+      input: JSON.stringify(hookInput),
+      encoding: 'utf8',
+      windowsHide: true,
+      env: process.env,
+      timeout: 8000,
+    });
+    if (result.stdout) process.stdout.write(result.stdout);
+    if (result.stderr) process.stderr.write(result.stderr);
   },
 
   'stats': () => {

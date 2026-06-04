@@ -24,6 +24,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import StatsPremiumBlur from '../components/StatsPremiumBlur';
 import ActivityHeatmap365 from '../components/ActivityHeatmap365';
 import { StreakChainIcon } from '../components/StreakChainIcon';
+import StreakReviveModal from '../components/StreakReviveModal';
 import { hapticTap } from '../hooks/use-haptics';
 import { getShardsBalance, spendShards } from './shards_system';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
@@ -31,6 +32,7 @@ import { getStatsCache, hydrateStatsCacheFromStorage, refreshStatsCache, type St
 import { emitAppEvent, onAppEvent } from './events';
 import { oskolokImageForPackShards } from './oskolok';
 import { loadActiveLeagueBoost } from './league_personal_boosts';
+import { formatLeagueGroupBoostTimeLeft, getActiveLeagueGroupBoost } from './league_group_boosts';
 import { syncDailyAnalyticsIfNeeded, loadPercentileData } from './daily_analytics_sync';
 import { type AllPercentiles } from './leaderboard_stats';
 import { loadLifetimeProfileStats, readLifetimeProfileStatsCache, type LifetimeProfileStats } from './lifetime_profile_stats';
@@ -48,6 +50,7 @@ import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './lev
 import { shouldUsePracticeWarmup } from './streak_stats_practice_balance';
 import { safeRouterBack } from './navigation_back';
 import { visiblePercentile } from './stats_percentile_display';
+import { getReviveOffer, type StreakReviveOffer } from './streak_revive';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 function debugStatsRoute(stage: string, extra?: unknown) {
@@ -77,6 +80,9 @@ function statsCardGradient(t: {
     if (cg)
         return [cg[0], cg[0], cg[1]];
     return [t.bgCard, t.bgCard, t.bgPrimary];
+}
+function statsSurfaceRadius(themeMode: ThemeMode, fallback: number): number {
+    return themeMode === 'compass' ? Math.min(fallback, 10) : fallback;
 }
 function pluralRu(n: number, one: string, few: string, many: string): string {
     const mod10 = Math.abs(n) % 10;
@@ -1864,7 +1870,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
     </>);
 }
 /** Цепочка дней, неделя, заморозка, перцентиль цепочки — вынесено для порядка блоков на экране. */
-function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days, freezeActive, chainShieldDays, purpleColor, isGoldTheme, isPremium, premiumFreezeUsed, freezeShardCost, shardsBalance, onFreezePress, percentilesStreak }: {
+function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days, freezeActive, chainShieldDays, purpleColor, isGoldTheme, isPremium, premiumFreezeUsed, freezeShardCost, shardsBalance, onFreezePress, reviveOffer, onRevivePress, percentilesStreak }: {
     t: any;
     f: any;
     lang: Lang;
@@ -1881,6 +1887,8 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
     freezeShardCost: number;
     shardsBalance: number;
     onFreezePress: () => void;
+    reviveOffer: StreakReviveOffer | null;
+    onRevivePress: () => void;
     percentilesStreak: number | null;
 }) {
     const goldAccent = GOLD_RICH.metalGold;
@@ -1890,6 +1898,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
     const streakAccent = isGoldTheme ? goldAccent : statsThemeAccent(themeMode);
     const streakDotSoftBg = isGoldTheme ? GOLD_RICH.bronzeWash : statsThemeSoftBg(themeMode, 'quiet');
     const freezeAccent = isGoldTheme ? goldBright : statsAccent(themeMode, 'freeze');
+    const reviveAccent = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'streak');
     const shieldAccent = isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'percentiles');
     const heroTone = freezeActive ? 'freeze' : 'streak';
     const luxuryStats = isGoldTheme;
@@ -1928,7 +1937,8 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
             elevation: 4,
         };
     const visibleStreakPercentile = visiblePercentile(percentilesStreak, totalStreak > 0);
-    return (<StatsCardArtSurface name="streak" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={luxuryLocations} radius={luxuryStats ? 16 : 22} scrim={freezeActive ? 'strong' : 'medium'} style={[{ borderRadius: luxuryStats ? 16 : 22, padding: 16, borderWidth: 1, borderColor: isGoldTheme ? (freezeActive ? GOLD_RICH.hairlineStrong : goldHairline) : statsBorder(themeMode, heroTone, 'medium'), overflow: 'hidden' }, luxuryShadow ?? statsGlowStyle(themeMode, heroTone)]}>
+    const cardRadius = statsSurfaceRadius(themeMode, luxuryStats ? 16 : 22);
+    return (<StatsCardArtSurface name="streak" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={luxuryLocations} radius={cardRadius} scrim={freezeActive ? 'strong' : 'medium'} style={[{ borderRadius: cardRadius, padding: 16, borderWidth: 1, borderColor: isGoldTheme ? (freezeActive ? GOLD_RICH.hairlineStrong : goldHairline) : statsBorder(themeMode, heroTone, 'medium'), overflow: 'hidden' }, luxuryShadow ?? statsGlowStyle(themeMode, heroTone)]}>
       {isGoldTheme && <GoldBevel radius={16} intensity="strong"/>}
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 14 }}>
         <View style={[{
@@ -2081,6 +2091,40 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
             })}
             </Text>
           </View>)}
+        {reviveOffer && (<TouchableOpacity onPress={onRevivePress} activeOpacity={0.86} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 12, borderWidth: 1, borderColor: reviveAccent, paddingVertical: 11, paddingHorizontal: 16, marginBottom: 8, backgroundColor: isGoldTheme ? GOLD_RICH.wash : statsSoftBg(themeMode, 'streak', 'quiet') }}>
+            <View style={[freezeActionIconFrameStyle, { backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.16)' : statsSoftBg(themeMode, 'streak', 'normal'), borderColor: reviveAccent }]}>
+              <Ionicons name="refresh-circle-outline" size={freezeActionIconSize} color={reviveAccent}/>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={{ color: reviveAccent, fontSize: f.body, fontWeight: '700' }}>
+                {triLang(lang, {
+                ru: 'Восстановить цепочку',
+                uk: 'Відновити ланцюжок',
+                es: 'Recuperar la racha',
+                'pt-BR': "Restaurar sequência",
+                vi: "Khôi phục chuỗi",
+                id: "Pulihkan rangkaian",
+                tr: "Seriyi yenile",
+                pl: "Odnów serię",
+            })}
+              </Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 1 }}>
+                <Text style={{ color: t.textGhost, fontSize: f.label }}>
+                  {triLang(lang, {
+                ru: `${reviveOffer.lostStreak} дн. доступны сегодня`,
+                uk: `${reviveOffer.lostStreak} дн. доступні сьогодні`,
+                es: `${reviveOffer.lostStreak} días disponible hoy`,
+                'pt-BR': `${reviveOffer.lostStreak} dias disponível hoje`,
+                vi: `${reviveOffer.lostStreak} ngày khả dụng hôm nay`,
+                id: `${reviveOffer.lostStreak} hari tersedia hari ini`,
+                tr: `${reviveOffer.lostStreak} gün bugün kullanılabilir`,
+                pl: `${reviveOffer.lostStreak} dni dostępne dziś`,
+            })}
+                </Text>
+                <ShardsInline n={reviveOffer.costShards} size={f.label} textColor={t.textGhost}/>
+              </View>
+            </View>
+          </TouchableOpacity>)}
         {freezeActive ? (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: isGoldTheme ? goldSoftBg : statsSoftBg(themeMode, 'freeze', 'quiet'), borderRadius: 12, padding: 12 }}>
             <View style={freezeActionIconFrameStyle}>
               <StreakChainIcon themeMode={themeMode} frozen streakDays={totalStreak} size={freezeActionIconSize}/>
@@ -2409,7 +2453,8 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
                 }),
         },
     ];
-    return (<StatsCardArtSurface name="practiceBalance" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={isGoldTheme ? 16 : 22} testID="stats-learning-health-card" style={[{ borderRadius: isGoldTheme ? 16 : 22, padding: 16, borderWidth: 1, borderColor: scoreBorder, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'practiceBalance')]}>
+    const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
+    return (<StatsCardArtSurface name="practiceBalance" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={cardRadius} testID="stats-learning-health-card" style={[{ borderRadius: cardRadius, padding: 16, borderWidth: 1, borderColor: scoreBorder, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'practiceBalance')]}>
       {isGoldTheme && <GoldBevel radius={16} intensity="normal"/>}
       <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 14 }}>
         <View style={{ width: 92, height: 92, borderRadius: 46, borderWidth: isGoldTheme ? 6 : 8, borderColor: scoreAccent, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'practiceBalance', 'quiet') }}>
@@ -2546,7 +2591,8 @@ function RhythmWeekCard({ t, f, lang, metrics, isGoldTheme, themeMode, }: {
             hint: streakWeeklyExperienceHint(lang),
         },
     ];
-    return (<StatsCardArtSurface name="weekRhythm" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={isGoldTheme ? 16 : 22} testID="stats-rhythm-week-card" style={[{ borderRadius: isGoldTheme ? 16 : 22, padding: 16, borderWidth: 1, borderColor: scoreBorder, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'weekRhythm')]}>
+    const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
+    return (<StatsCardArtSurface name="weekRhythm" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={cardRadius} testID="stats-rhythm-week-card" style={[{ borderRadius: cardRadius, padding: 16, borderWidth: 1, borderColor: scoreBorder, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'weekRhythm')]}>
       {isGoldTheme && <GoldBevel radius={16} intensity="normal"/>}
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 14 }}>
         <View style={{ flex: 1, minWidth: 0 }}>
@@ -2652,6 +2698,9 @@ export default function StreakStats() {
     const [leagueBoostMultiplier, setLeagueBoostMultiplier] = useState(1);
     const [leagueBoostExpiresAt, setLeagueBoostExpiresAt] = useState(0);
     const [leagueBoostTimeLeft, setLeagueBoostTimeLeft] = useState('');
+    const [leagueGroupBoostMultiplier, setLeagueGroupBoostMultiplier] = useState(1);
+    const [leagueGroupBoostExpiresAt, setLeagueGroupBoostExpiresAt] = useState(0);
+    const [leagueGroupBoostTimeLeft, setLeagueGroupBoostTimeLeft] = useState('');
     const [giftMultiplier, setGiftMultiplier] = useState(_sc.giftMultiplier);
     const [giftExpiresAt, setGiftExpiresAt] = useState(_sc.giftExpiresAt);
     const [giftXpBankRemaining, setGiftXpBankRemaining] = useState(_sc.giftXpBankRemaining);
@@ -2664,8 +2713,39 @@ export default function StreakStats() {
     const [pendingGiftCount, setPendingGiftCount] = useState(_sc.pendingGiftCount);
     const [freezeConfirmVisible, setFreezeConfirmVisible] = useState(false);
     const [freezeNeedShardsModal, setFreezeNeedShardsModal] = useState(false);
+    const [reviveOffer, setReviveOffer] = useState<StreakReviveOffer | null>(null);
+    const [reviveModalVisible, setReviveModalVisible] = useState(false);
     const [bonusOpen, setBonusOpen] = useState(true);
     const FREEZE_COST_SHARDS = 10;
+    const refreshReviveOffer = useCallback(async () => {
+        const offer = await getReviveOffer();
+        setReviveOffer(offer);
+        return offer;
+    }, []);
+    useFocusEffect(useCallback(() => {
+        let cancelled = false;
+        void getReviveOffer().then((offer) => {
+            if (!cancelled)
+                setReviveOffer(offer);
+        }).catch(() => {
+            if (!cancelled)
+                setReviveOffer(null);
+        });
+        return () => { cancelled = true; };
+    }, []));
+    useEffect(() => {
+        const sub = onAppEvent('streak_revive_offer', () => {
+            void refreshReviveOffer();
+        });
+        const revivedSub = onAppEvent('streak_revived', () => {
+            setReviveOffer(null);
+            setReviveModalVisible(false);
+        });
+        return () => {
+            sub.remove();
+            revivedSub.remove();
+        };
+    }, [refreshReviveOffer]);
     useFocusEffect(useCallback(() => {
         let cancelled = false;
         void loadAchievementStates()
@@ -2828,6 +2908,10 @@ export default function StreakStats() {
         debugStatsRoute('loadAll:leagueBoost', { ok: !!activeLeagueBoost });
         setLeagueBoostMultiplier(activeLeagueBoost?.multiplier ?? 1);
         setLeagueBoostExpiresAt(activeLeagueBoost?.expiresAt ?? 0);
+        const activeLeagueGroupBoost = await getActiveLeagueGroupBoost().catch(() => null);
+        debugStatsRoute('loadAll:leagueGroupBoost', { ok: !!activeLeagueGroupBoost });
+        setLeagueGroupBoostMultiplier(activeLeagueGroupBoost?.multiplier ?? 1);
+        setLeagueGroupBoostExpiresAt(activeLeagueGroupBoost?.expiresAt ?? 0);
         await lifetimeRefresh;
         // Синк аналитики + перцентиль (не блокирует рендер — запускаем после основной загрузки)
         void syncDailyAnalyticsIfNeeded();
@@ -2940,6 +3024,25 @@ export default function StreakStats() {
         const timer = setInterval(fmt, 1000);
         return () => clearInterval(timer);
     }, [leagueBoostExpiresAt, leagueBoostMultiplier]);
+    // Timer for the shared league boost shown in active multipliers.
+    useEffect(() => {
+        if (!leagueGroupBoostExpiresAt || leagueGroupBoostMultiplier <= 1) {
+            setLeagueGroupBoostTimeLeft('');
+            return;
+        }
+        const fmt = () => {
+            const ms = leagueGroupBoostExpiresAt - Date.now();
+            if (ms <= 0) {
+                setLeagueGroupBoostTimeLeft('');
+                setLeagueGroupBoostMultiplier(1);
+                return;
+            }
+            setLeagueGroupBoostTimeLeft(formatLeagueGroupBoostTimeLeft(leagueGroupBoostExpiresAt));
+        };
+        fmt();
+        const timer = setInterval(fmt, 1000);
+        return () => clearInterval(timer);
+    }, [leagueGroupBoostExpiresAt, leagueGroupBoostMultiplier]);
     // Таймер обратного отсчёта для подарочного множителя XP
     useEffect(() => {
         if (!giftExpiresAt || giftMultiplier <= 1) {
@@ -2974,6 +3077,25 @@ export default function StreakStats() {
         else {
             doFreezeStreak(true);
         }
+    };
+    const handleReviveStreak = async () => {
+        hapticTap();
+        const offer = await refreshReviveOffer();
+        if (offer) {
+            setReviveModalVisible(true);
+            return;
+        }
+        emitAppEvent('action_toast', {
+            type: 'info',
+            messageRu: 'Восстановление уже недоступно.',
+            messageUk: 'Відновлення вже недоступне.',
+            messageEs: 'La recuperación ya no está disponible.',
+            messagePtBr: 'A restauração já não está disponível.',
+            messageVi: 'Khôi phục không còn khả dụng.',
+            messageId: 'Pemulihan tidak tersedia lagi.',
+            messageTr: 'Yenileme artık kullanılamıyor.',
+            messagePl: 'Odnowienie nie jest już dostępne.',
+        });
     };
     const doFreezeStreak = async (free: boolean) => {
         const today = toDateStr(new Date());
@@ -3165,7 +3287,7 @@ export default function StreakStats() {
 
       <ScrollView ref={scrollRef} pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false}>
         <View style={{ gap: 12 }}>
-        <StreakStatsHero t={t} f={f} lang={lang} themeMode={themeMode} totalStreak={totalStreak} bestStreak={bestStreak} days={days} freezeActive={freezeActive} chainShieldDays={chainShieldDays} purpleColor={purpleColor} isGoldTheme={isGoldTheme} isPremium={isPremium} premiumFreezeUsed={premiumFreezeUsed} freezeShardCost={FREEZE_COST_SHARDS} shardsBalance={shardsBalance} onFreezePress={handleFreezeStreak} percentilesStreak={percentiles.streak}/>
+        <StreakStatsHero t={t} f={f} lang={lang} themeMode={themeMode} totalStreak={totalStreak} bestStreak={bestStreak} days={days} freezeActive={freezeActive} chainShieldDays={chainShieldDays} purpleColor={purpleColor} isGoldTheme={isGoldTheme} isPremium={isPremium} premiumFreezeUsed={premiumFreezeUsed} freezeShardCost={FREEZE_COST_SHARDS} shardsBalance={shardsBalance} onFreezePress={handleFreezeStreak} reviveOffer={reviveOffer} onRevivePress={handleReviveStreak} percentilesStreak={percentiles.streak}/>
 
         {/* XP MULTIPLIERS BLOCK */}
         {(() => {
@@ -3173,7 +3295,7 @@ export default function StreakStats() {
             const clubWeekTierM = 1 + engineLeague.id * 0.1;
             const clubCombinedM = clubBoostMultiplier + clubWeekTierM + stationaryClubMultiplier - 2;
             const comebackM = comebackActive ? 2 : 1;
-            const total = 1 + (streakM - 1) + (clubCombinedM - 1) + (leagueBoostMultiplier - 1) + (comebackM - 1) + (giftMultiplier - 1);
+            const total = 1 + (streakM - 1) + (clubCombinedM - 1) + (leagueBoostMultiplier - 1) + (leagueGroupBoostMultiplier - 1) + (comebackM - 1) + (giftMultiplier - 1);
             const hasBonus = total > 1;
             const pct = (m: number) => `+${Math.round((m - 1) * 100)}%`;
             const bonusAccentColor = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers');
@@ -3216,6 +3338,16 @@ export default function StreakStats() {
                         tr: "Lig güçlendirmesi",
                         pl: "Wzmocnienie ligi",
                     }), value: pct(leagueBoostMultiplier), color: isGoldTheme ? bonusMutedGold : statsAccent(themeMode, 'percentiles'), active: leagueBoostMultiplier > 1 },
+                { key: 'league_group_boost', label: triLang(lang, {
+                        ru: 'Общий буст лиги',
+                        uk: 'Спільний буст ліги',
+                        es: 'Impulso común de liga',
+                        'pt-BR': "Impulso comum de liga",
+                        vi: "Tăng lực chung giải đấu",
+                        id: "Dorongan liga bersama",
+                        tr: "Ortak lig güçlendirmesi",
+                        pl: "Wspólne wzmocnienie ligi",
+                    }), value: pct(leagueGroupBoostMultiplier), color: isGoldTheme ? bonusMutedGold : statsAccent(themeMode, 'multipliers'), active: leagueGroupBoostMultiplier > 1 },
                 { key: 'comeback', label: triLang(lang, {
                         ru: 'Возврат',
                         uk: 'Повернення',
@@ -3247,7 +3379,7 @@ export default function StreakStats() {
                         hapticTap();
                         setBonusOpen(true);
                     }}>
-                <StatsCardArtSurface name="multipliers" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={22} style={[{ borderRadius: 22, padding: 14, borderWidth: 1, borderColor: bonusAccent, flexDirection: 'row', alignItems: 'center', gap: 12, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'multipliers') : null]}>
+                <StatsCardArtSurface name="multipliers" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 1, borderColor: bonusAccent, flexDirection: 'row', alignItems: 'center', gap: 12, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'multipliers') : null]}>
                   <View style={{ width: 42, height: 42, borderRadius: 14, backgroundColor: isGoldTheme ? (hasBonus ? GOLD_RICH.washStrong : GOLD_RICH.bronzeWash) : statsSoftBg(themeMode, 'multipliers', hasBonus ? 'strong' : 'normal'), alignItems: 'center', justifyContent: 'center' }}>
                     <Ionicons name="sparkles-outline" size={22} color={isGoldTheme ? (hasBonus ? GOLD_RICH.champagne : GOLD_RICH.agedGold) : bonusAccentColor}/>
                   </View>
@@ -3292,7 +3424,7 @@ export default function StreakStats() {
                 </StatsCardArtSurface>
               </TouchableOpacity>);
             }
-            return (<StatsCardArtSurface name="multipliers" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={22} testID="stats-bonus-expanded" style={[{ borderRadius: 22, padding: 14, borderWidth: 1, borderColor: bonusAccent, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'multipliers') : null]}>
+            return (<StatsCardArtSurface name="multipliers" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} testID="stats-bonus-expanded" style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 1, borderColor: bonusAccent, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'multipliers') : null]}>
               <TouchableOpacity activeOpacity={0.84} onPress={() => {
                     hapticTap();
                     setBonusOpen(true);
@@ -3329,6 +3461,7 @@ export default function StreakStats() {
                         const isGiftItem = item.key === 'gift';
                         const isClubRow = item.key === 'club';
                         const isLeagueBoostRow = item.key === 'league_boost';
+                        const isLeagueGroupBoostRow = item.key === 'league_group_boost';
                         const giftMeta = giftXpBankRemaining > 0
                             ? triLang(lang, {
                                 ru: `×2 ещё на ${giftXpBankRemaining} XP`,
@@ -3351,6 +3484,7 @@ export default function StreakStats() {
                           {isGiftItem && !!giftMeta && (<Text style={{ color: t.textGhost, fontSize: f.caption - 1, fontWeight: '500' }}>{giftMeta}</Text>)}
                           {isClubRow && clubBoostMultiplier > 1 && !!clubBoostTimeLeft && (<Text style={{ color: t.textGhost, fontSize: f.caption - 1, fontWeight: '500' }}>{clubBoostTimeLeft}</Text>)}
                           {isLeagueBoostRow && leagueBoostMultiplier > 1 && !!leagueBoostTimeLeft && (<Text style={{ color: t.textGhost, fontSize: f.caption - 1, fontWeight: '500' }}>{leagueBoostTimeLeft}</Text>)}
+                          {isLeagueGroupBoostRow && leagueGroupBoostMultiplier > 1 && !!leagueGroupBoostTimeLeft && (<Text style={{ color: t.textGhost, fontSize: f.caption - 1, fontWeight: '500' }}>{leagueGroupBoostTimeLeft}</Text>)}
                         </View>
                       </View>);
                     })}
@@ -3437,7 +3571,7 @@ export default function StreakStats() {
             if (pItems.length === 0)
                 return null;
             return (<StatsPremiumBlur isPremium={isPremium} context="percentiles" devUnlock={statsDevUnlock}>
-              <StatsCardArtSurface name="percentiles" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={22} style={[{ borderRadius: 22, padding: 16, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'percentiles', 'medium'), overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'percentiles') : null]}>
+              <StatsCardArtSurface name="percentiles" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 16, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'percentiles', 'medium'), overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'percentiles') : null]}>
                 <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textTransform: 'uppercase', marginBottom: 10 }}>
                   {triLang(lang, {
                     ru: 'Ваш результат среди других',
@@ -3469,7 +3603,7 @@ export default function StreakStats() {
             hapticTap();
             setDetailsOpen((v) => !v);
         }}>
-          <StatsCardArtSurface name="archiveMap" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={22} style={[{ borderRadius: 22, padding: 14, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'archiveMap', 'medium'), flexDirection: 'row', alignItems: 'center', gap: 12, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'archiveMap') : null]}>
+          <StatsCardArtSurface name="archiveMap" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'archiveMap', 'medium'), flexDirection: 'row', alignItems: 'center', gap: 12, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'archiveMap') : null]}>
             <View style={{ width: 42, height: 42, borderRadius: 14, backgroundColor: isGoldTheme ? GOLD_RICH.wash : statsSoftBg(themeMode, 'archiveMap'), alignItems: 'center', justifyContent: 'center' }}>
               <Ionicons name="bar-chart-outline" size={22} color={isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'archiveMap')}/>
             </View>
@@ -3886,6 +4020,21 @@ export default function StreakStats() {
                 },
             } as any));
         }}/>
+
+      <StreakReviveModal
+        visible={reviveModalVisible && reviveOffer !== null}
+        offer={reviveOffer}
+        shopReturnTo="streak_stats"
+        onClose={() => setReviveModalVisible(false)}
+        onRevived={(restored) => {
+            setTotalStreak(restored);
+            setBestStreak(prev => Math.max(prev, restored));
+            setReviveOffer(null);
+            setReviveModalVisible(false);
+            void getShardsBalance().then(setShardsBalance).catch(() => { });
+            void loadAll();
+        }}
+      />
 
     </SafeAreaView>
     </ScreenGradient>);

@@ -9,7 +9,10 @@ import { markStreakLost } from './streak_revive';
 import { incrementStreakLostCount } from './paywall_personalization';
 import { repairDevSeededStreakInStorage } from './streak_safety';
 import { isStreakFreezeActiveToday } from './streak_freeze';
+import { STREAK_WEEK_MARKERS_KEY, addDaysToDateKey, recordStreakWeekMarker } from './streak_week_markers';
 import type { Lang } from '../constants/i18n';
+import { getBestAvatarForLevel } from '../constants/avatars';
+import { getLevelFromXP } from '../constants/theme';
 
 export const LEVEL_BASE: Record<string, number> = { easy: 5, medium: 7, hard: 10 };
 
@@ -189,6 +192,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
       // 1. Заморозка активна и пропущен ровно 1 день
       if (isStreakFreezeActiveToday(freeze, today) && lastActive && lastActive >= dayBeforeStr) {
         await AsyncStorage.setItem('streak_freeze', JSON.stringify({ ...freeze, active: false }));
+        await recordStreakWeekMarker(addDaysToDateKey(lastActive, 1), 'freeze').catch(() => {});
         // streak не меняем — заморозка спасла
       }
       // 2. Цепочка починена сегодня (2 урока выполнено)
@@ -298,7 +302,9 @@ export const addOrUpdateScore = async (
   // DEV-ONLY: трейс источника XP. Помогает отлаживать "12 опыта на этой неделе"
   // в начале новой недели — ловим какой кодпуть начислил и со стэком вызовов.
   const isJestRuntime = typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
-  if (__DEV__ && !isJestRuntime) {
+  const debugXpTraceEnabled =
+    typeof process !== 'undefined' && process.env.EXPO_PUBLIC_DEBUG_XP_TRACE === '1';
+  if (__DEV__ && !isJestRuntime && debugXpTraceEnabled) {
     try {
       const stack = (new Error().stack || '').split('\n').slice(2, 7).join('\n');
       console.log(
@@ -308,13 +314,16 @@ export const addOrUpdateScore = async (
   }
 
   // ── 1. Leaderboard (накопительный) ──────────────────────────────────────
-  let resolvedAvatar = avatar?.trim() || undefined;
+  const storedTotalXp = parseInt((await AsyncStorage.getItem('user_total_xp')) || '0', 10) || 0;
+  const computedLevelAvatar = String(getBestAvatarForLevel(getLevelFromXP(Math.max(0, storedTotalXp + delta))));
+  let resolvedAvatar = avatar?.trim() || computedLevelAvatar;
   try {
     const storedAvatar = (await AsyncStorage.getItem('user_avatar'))?.trim();
-    if (storedAvatar && (!resolvedAvatar || /^\d+$/.test(resolvedAvatar))) {
+    if (storedAvatar && !/^\d+$/.test(storedAvatar) && (!resolvedAvatar || /^\d+$/.test(resolvedAvatar))) {
       resolvedAvatar = storedAvatar;
     }
   } catch {}
+  if (!resolvedAvatar || /^\d+$/.test(resolvedAvatar)) resolvedAvatar = computedLevelAvatar;
 
   const canonicalName = name.trim();
   const board = await loadLeaderboard();
@@ -472,7 +481,7 @@ export const resetAllStats = async () => {
     'week_points', 'week_points_v2',
     'daily_stats',
     'streak_count', 'last_active_date',
-    'week_days_done', 'week_days_week_key',
+    'week_days_done', 'week_days_week_key', STREAK_WEEK_MARKERS_KEY,
   ];
   for (const key of keys) {
     try { await AsyncStorage.removeItem(key); } catch {}

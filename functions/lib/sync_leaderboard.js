@@ -35,6 +35,7 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.syncLeaderboardFromUsers = syncLeaderboardFromUsers;
 const admin = __importStar(require("firebase-admin"));
+const xp_levels_1 = require("./xp_levels");
 const db = admin.firestore();
 function getWeekKey(date = new Date()) {
     const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
@@ -69,7 +70,7 @@ async function syncLeaderboardFromUsers() {
                 continue;
             }
             const lang = progress['lang'] ?? progress['app_lang'] ?? 'ru';
-            const levelFromXP = Math.min(50, Math.floor(Math.pow(xp / 250, 1 / 1.82)) + 1);
+            const levelFromXP = (0, xp_levels_1.getLevelFromXP)(xp);
             const avatarRaw = typeof progress['user_avatar'] === 'string' ? progress['user_avatar'].trim() : '';
             // Numeric legacy avatars are still derived from XP, but custom avatars must survive leaderboard syncs.
             const avatar = avatarRaw && !/^\d+$/.test(avatarRaw) ? avatarRaw : String(levelFromXP);

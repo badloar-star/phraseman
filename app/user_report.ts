@@ -14,7 +14,7 @@ export const submitUserReport = async (params: {
   reportedName: string;
   reason: UserReportReason;
   screen: 'leaderboard' | 'arena';
-}): Promise<'sent' | 'throttled'> => {
+}): Promise<'sent' | 'throttled' | 'failed'> => {
   const now = Date.now();
   const lastRaw = await AsyncStorage.getItem(THROTTLE_KEY);
   if (lastRaw && now - parseInt(lastRaw) < THROTTLE_MS) return 'throttled';
@@ -24,15 +24,19 @@ export const submitUserReport = async (params: {
     Promise.resolve(Constants.expoConfig?.version ?? 'unknown'),
   ]);
 
-  void submitClientReportCallable('user_report', {
-    reportedUid: params.reportedUid,
-    reportedName: params.reportedName,
-    reason: params.reason,
-    screen: params.screen,
-    reporterName: reporterName ?? 'unknown',
-    platform: Platform.OS,
-    appVersion,
-  }).catch(() => {});
+  try {
+    await submitClientReportCallable('user_report', {
+      reportedUid: params.reportedUid,
+      reportedName: params.reportedName,
+      reason: params.reason,
+      screen: params.screen,
+      reporterName: reporterName ?? 'unknown',
+      platform: Platform.OS,
+      appVersion,
+    });
+  } catch {
+    return 'failed';
+  }
 
   await AsyncStorage.setItem(THROTTLE_KEY, String(now));
   return 'sent';
@@ -60,7 +64,7 @@ export const submitPackReport = async (params: {
   studyTarget?: RuntimeStudyTarget;
   reason: PackReportReason;
   comment?: string;
-}): Promise<'sent' | 'throttled'> => {
+}): Promise<'sent' | 'throttled' | 'failed'> => {
   const now = Date.now();
   const lastRaw = await AsyncStorage.getItem(THROTTLE_KEY);
   if (lastRaw && now - parseInt(lastRaw) < THROTTLE_MS) return 'throttled';
@@ -70,17 +74,21 @@ export const submitPackReport = async (params: {
     Promise.resolve(Constants.expoConfig?.version ?? 'unknown'),
   ]);
 
-  void submitClientReportCallable('community_pack_report', {
-    packId: params.packId,
-    packTitle: params.packTitle,
-    authorStableId: params.authorStableId ?? null,
-    studyTarget: storageStudyTarget(params.studyTarget),
-    reason: params.reason,
-    comment: (params.comment ?? '').slice(0, 500),
-    reporterName: reporterName ?? 'unknown',
-    platform: Platform.OS,
-    appVersion,
-  }).catch(() => {});
+  try {
+    await submitClientReportCallable('community_pack_report', {
+      packId: params.packId,
+      packTitle: params.packTitle,
+      authorStableId: params.authorStableId ?? null,
+      studyTarget: storageStudyTarget(params.studyTarget),
+      reason: params.reason,
+      comment: (params.comment ?? '').slice(0, 500),
+      reporterName: reporterName ?? 'unknown',
+      platform: Platform.OS,
+      appVersion,
+    });
+  } catch {
+    return 'failed';
+  }
 
   await AsyncStorage.setItem(THROTTLE_KEY, String(now));
   return 'sent';

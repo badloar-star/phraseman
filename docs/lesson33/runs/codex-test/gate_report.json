@@ -1,0 +1,23 @@
+{
+  "ok": false,
+  "errors": [
+    "status must be ready_for_review or final_candidate",
+    "phrases must be an array",
+    "introScreens must contain at least 3 items",
+    "theoryBlocks must contain at least 3 items",
+    "personalTraining is required"
+  ],
+  "warnings": [],
+  "summary": {
+    "phraseCount": 0,
+    "causativePatternCount": 0,
+    "needWantPatternCount": 0,
+    "questionCount": 0,
+    "negativeCount": 0,
+    "introCount": 0,
+    "theoryBlockCount": 0,
+    "personalTrainingSteps": 0
+  },
+  "packagePath": "docs/lesson33/runs/codex-test/lesson_package.json",
+  "generatedAt": "2026-05-26T11:26:22.973Z"
+}

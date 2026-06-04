@@ -338,6 +338,8 @@ const STREAK_WARNING_NOTIF_ID_KEY = 'streak_warning_notif_id';
 const PHRASE_OF_DAY_NOTIF_ID_KEY = 'phrase_of_day_notif_id';
 const WEEKLY_RECAP_NOTIF_ID_KEY = 'weekly_recap_notif_id';
 const MONTHLY_RECAP_NOTIF_ID_KEY = 'monthly_recap_notif_id';
+const IMMEDIATE_NOTIFICATION_LAST_AT_KEY = 'notification_immediate_last_at';
+const IMMEDIATE_NOTIFICATION_TYPE_LAST_AT_PREFIX = 'notification_immediate_type_last_at:';
 
 type LocalNotificationType =
   | 'reminder'
@@ -349,6 +351,12 @@ type LocalNotificationType =
   | 'arena_match'
   | 'd1_reminder'
   | 'premium';
+
+const IMMEDIATE_NOTIFICATION_MIN_GAP_MS = 45 * 60 * 1000;
+const IMMEDIATE_NOTIFICATION_TYPE_COOLDOWN_MS: Partial<Record<LocalNotificationType, number>> = {
+  streak_warning: 23 * 60 * 60 * 1000,
+  league_overtake: 6 * 60 * 60 * 1000,
+};
 
 function parseStoredNumber(raw: string | null | undefined): number {
   const n = parseInt(raw || '0', 10);
@@ -417,6 +425,33 @@ async function cancelScheduledNotificationsByType(
   } catch {}
 }
 
+async function claimImmediateNotificationSlot(
+  type: LocalNotificationType,
+  nowMs: number = Date.now(),
+): Promise<boolean> {
+  try {
+    const typeKey = `${IMMEDIATE_NOTIFICATION_TYPE_LAST_AT_PREFIX}${type}`;
+    const [[, lastAnyRaw], [, lastTypeRaw]] = await AsyncStorage.multiGet([
+      IMMEDIATE_NOTIFICATION_LAST_AT_KEY,
+      typeKey,
+    ]);
+    const lastAny = parseStoredNumber(lastAnyRaw);
+    const lastType = parseStoredNumber(lastTypeRaw);
+    const typeCooldown = IMMEDIATE_NOTIFICATION_TYPE_COOLDOWN_MS[type] ?? IMMEDIATE_NOTIFICATION_MIN_GAP_MS;
+
+    if (lastAny > 0 && nowMs - lastAny < IMMEDIATE_NOTIFICATION_MIN_GAP_MS) return false;
+    if (lastType > 0 && nowMs - lastType < typeCooldown) return false;
+
+    await AsyncStorage.multiSet([
+      [IMMEDIATE_NOTIFICATION_LAST_AT_KEY, String(nowMs)],
+      [typeKey, String(nowMs)],
+    ]);
+    return true;
+  } catch {
+    return true;
+  }
+}
+
 // ── Запланировать ежедневное уведомление ─────────────────────────────────────
 export const scheduleDailyReminder = async (
   hour: number = 19,
@@ -476,6 +511,9 @@ const NOTIFICATION_SCHEDULE_STORAGE_KEYS = [
   PHRASE_OF_DAY_NOTIF_ID_KEY,
   WEEKLY_RECAP_NOTIF_ID_KEY,
   MONTHLY_RECAP_NOTIF_ID_KEY,
+  IMMEDIATE_NOTIFICATION_LAST_AT_KEY,
+  `${IMMEDIATE_NOTIFICATION_TYPE_LAST_AT_PREFIX}streak_warning`,
+  `${IMMEDIATE_NOTIFICATION_TYPE_LAST_AT_PREFIX}league_overtake`,
   'streak_warning_scheduled',
   'phrase_notif_scheduled',
   'weekly_recap_scheduled',
@@ -507,8 +545,12 @@ export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Prom
     // НЕ запрашиваем разрешение здесь: streak warning не должен поднимать
     // системный диалог push в произвольный момент (потеря цепочки).
     // Запрос разрешения идёт только через NotificationPermissionModal по условиям из _layout.tsx.
+    const notifEnabled = await AsyncStorage.getItem('notifications_enabled');
+    if (notifEnabled !== 'true') return;
     const hasPermission = await canUseNotifications(false);
     if (!hasPermission) return;
+    const canShowNow = await claimImmediateNotificationSlot('streak_warning');
+    if (!canShowNow) return;
 
     const _p = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
     const ruTitle = [`🔥 Цепочка ${streak} дней под угрозой!`, `⚠️ Твоя цепочка ${streak} дней может исчезнуть сегодня!`, `😱 ${streak} дней подряд в опасности — зайди сейчас!`, `🚨 Не сломай серию из ${streak} дней!`];
@@ -1439,6 +1481,8 @@ export const checkLeagueOvertakeNotification = async (
 
     const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
     if (!hasPermission) return;
+    const canShowNow = await claimImmediateNotificationSlot('league_overtake');
+    if (!canShowNow) return;
 
     const _po = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
     const ruT = [`😤 ${leaderName} обогнал тебя в клубе!`, `⚔️ ${leaderName} вырвался вперёд! Твой ход!`, `🔥 ${leaderName} наступает — не сдавай позиции!`, `😱 Тебя обошли! ${leaderName} теперь впереди.`];

@@ -24,6 +24,9 @@ type SkylerStyleProfile = {
   explanationPattern?: string;
   readerRewardPattern?: string;
   distractorPattern?: string;
+  itemCount?: number;
+  generationRulesVersion?: string;
+  notes?: string;
 };
 
 type SkylerSocialListening = {

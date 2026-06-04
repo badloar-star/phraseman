@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -7,20 +7,25 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
+import CompassBevel from '../components/CompassBevel';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
+import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { checkAchievements } from './achievements';
 import { logMistake } from './mistake_log';
 import {
   getTrainerPremiumItems,
+  getTrainerPremiumItemsForPlan,
   markTrainerResult,
   trainerTranslationForLang,
   type TrainerItem,
   type TrainerPremiumMode,
   type TrainerQueue,
 } from './trainer_store';
+import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { type WordCategory } from './pos_taxonomy';
 import {
@@ -67,6 +72,57 @@ interface SessionAttempt {
   correct: boolean;
   category?: WordCategory;
   method?: PosDrillMethod;
+}
+
+function CompassSmartSurface({
+  radius,
+  selected = false,
+  quiet = false,
+  physical = false,
+}: {
+  radius: number;
+  selected?: boolean;
+  quiet?: boolean;
+  physical?: boolean;
+}) {
+  return (
+    <>
+      <LinearGradient
+        colors={selected ? COMPASS_GRADIENTS.selectedTile : quiet ? COMPASS_GRADIENTS.recessedPanel : COMPASS_GRADIENTS.raisedTile}
+        locations={COMPASS_SURFACE_LOCATIONS}
+        style={StyleSheet.absoluteFillObject}
+      />
+      {physical ? (
+        <>
+          <LinearGradient
+            colors={['rgba(255,245,222,0.34)', 'rgba(255,230,181,0.10)', 'rgba(255,255,255,0)']}
+            locations={[0, 0.34, 1]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            style={[styles.compassTopShelf, { borderTopLeftRadius: radius, borderTopRightRadius: radius }]}
+          />
+          <View style={[styles.compassLeftRail, { backgroundColor: 'rgba(255,230,181,0.22)' }]} />
+          <View style={[styles.compassRightRail, { backgroundColor: 'rgba(0,0,0,0.50)' }]} />
+          <LinearGradient
+            colors={['rgba(0,0,0,0.05)', 'rgba(0,0,0,0.62)']}
+            locations={[0, 1]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            style={[styles.compassBottomShelf, { borderBottomLeftRadius: radius, borderBottomRightRadius: radius }]}
+          />
+        </>
+      ) : null}
+      <CompassBevel radius={radius} intensity={selected ? 'strong' : quiet ? 'quiet' : 'normal'} />
+    </>
+  );
+}
+
+function compassSmartAccent(seed?: string): string {
+  if (!seed) return COMPASS_RICH.champagne;
+  const normalized = seed.toLowerCase();
+  if (normalized.includes('word') || normalized.includes('сл')) return COMPASS_RICH.peach;
+  if (normalized.includes('hard') || normalized.includes('arena') || normalized.includes('ош')) return COMPASS_RICH.copper;
+  return COMPASS_RICH.champagne;
 }
 
 const MODE_META: Record<TrainerPremiumMode, { icon: keyof typeof Ionicons.glyphMap; accent: string; title: Partial<Record<Lang, string>>; sub: Partial<Record<Lang, string>> }> = {
@@ -422,14 +478,34 @@ function logSmartTrainerMistake(card: SmartCard, picked: string): void {
 }
 
 export default function TrainerSmartSession() {
-  const params = useLocalSearchParams<{ mode?: string; preview?: string }>();
+  const params = useLocalSearchParams<{
+    mode?: string;
+    preview?: string;
+    planTrainerTask?: string;
+    requiredItems?: string;
+    planTaskId?: string;
+    planInstanceId?: string;
+    planId?: string;
+    planDayIndex?: string;
+  }>();
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
   const { lang } = useLang();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
   const mode = modeFromParam(params.mode);
   const meta = MODE_META[mode];
+  const modeAccent = isCompassTheme ? compassSmartAccent(mode) : meta.accent;
+  const smartRadius = isCompassTheme ? 10 : 20;
+  const smartSmallRadius = isCompassTheme ? 7 : 14;
+  const smartSurface = isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard;
+  const smartRecessed = isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface;
+  const smartBorder = isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border;
+  const planTrainerTaskId = params.planTrainerTask === '1' ? params.planTaskId : undefined;
+  const planTrainerDayIndex = parseInt(params.planDayIndex ?? '1', 10) || 1;
+  const planTrainerRequiredItems = Math.max(1, Math.min(12, parseInt(params.requiredItems ?? '3', 10) || 3));
+  const planTrainerCompletionTracked = useRef(false);
   const [loading, setLoading] = useState(true);
   const [cards, setCards] = useState<SmartCard[]>([]);
   const [index, setIndex] = useState(0);
@@ -448,7 +524,9 @@ export default function TrainerSmartSession() {
       return;
     }
 
-    const items = await getTrainerPremiumItems(mode, 12);
+    const items = planTrainerTaskId
+      ? await getTrainerPremiumItemsForPlan(params.planInstanceId, mode, planTrainerRequiredItems)
+      : await getTrainerPremiumItems(mode, 12);
     setCards(items.map((item) => buildCard(item, items, lang)));
     setIndex(0);
     setState('idle');
@@ -456,18 +534,32 @@ export default function TrainerSmartSession() {
     setAttempts([]);
     setMistakeInsight(null);
     setLoading(false);
-  }, [lang, mode, params.preview, router]);
+  }, [lang, mode, params.planInstanceId, params.preview, planTrainerRequiredItems, planTrainerTaskId, router]);
 
   useEffect(() => {
     void loadSession();
   }, [loadSession]);
 
   const current = cards[index];
+  const currentAccent = current
+    ? (isCompassTheme ? compassSmartAccent(`${current.item.queue}-${current.category ?? ''}-${current.drillType ?? ''}`) : current.accent)
+    : modeAccent;
   const done = !loading && cards.length > 0 && index >= cards.length;
   const correctCount = attempts.filter((attempt) => attempt.correct).length;
   const wrongCount = attempts.length - correctCount;
   const accuracy = attempts.length ? Math.round((correctCount / attempts.length) * 100) : 0;
   const sessionCoachText = SESSION_COACH[mode][lang];
+
+  useEffect(() => {
+    if (!done || !planTrainerTaskId || planTrainerCompletionTracked.current) return;
+    planTrainerCompletionTracked.current = true;
+    void markPersonalPlanTaskCompleted({
+      taskId: planTrainerTaskId,
+      planInstanceId: params.planInstanceId,
+      planId: params.planId,
+      dayIndex: planTrainerDayIndex,
+    });
+  }, [done, params.planId, params.planInstanceId, planTrainerDayIndex, planTrainerTaskId]);
 
   const posStats = useMemo(() => {
     const stats = new Map<WordCategory, { correct: number; total: number; profile: PosWorkoutProfile }>();
@@ -570,7 +662,7 @@ export default function TrainerSmartSession() {
               pl: "Nie ma jeszcze nic do powtórki",
             })}
           </Text>
-          <TouchableOpacity onPress={() => router.back()} style={[styles.primaryBtn, { backgroundColor: meta.accent, marginTop: 18 }]}>
+          <TouchableOpacity onPress={() => router.back()} style={[styles.primaryBtn, { backgroundColor: modeAccent, marginTop: 18 }]}>
             <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
               {triLang(lang, {
                 ru: 'Готово',
@@ -595,9 +687,10 @@ export default function TrainerSmartSession() {
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
             <View style={styles.report}>
-              <View style={[styles.reportHero, { backgroundColor: t.bgCard, borderColor: meta.accent + '55' }]}>
-                <View style={[styles.doneIcon, { backgroundColor: meta.accent + '18', borderColor: meta.accent + '66' }]}>
-                  <Ionicons name="checkmark-circle" size={34} color={meta.accent} />
+              <View style={[styles.reportHero, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? smartSurface : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : modeAccent + '55', borderRadius: isCompassTheme ? 10 : 22 }]}>
+                {isCompassTheme ? <CompassSmartSurface radius={10} selected /> : null}
+                <View style={[styles.doneIcon, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : modeAccent + '18', borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : modeAccent + '66', borderRadius: isCompassTheme ? 14 : 20 }]}>
+                  <Ionicons name="checkmark-circle" size={34} color={modeAccent} />
                 </View>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
                   {triLang(lang, {
@@ -623,7 +716,7 @@ export default function TrainerSmartSession() {
                   id: "akurasi",
                   tr: "doğruluk",
                   pl: "dokładność",
-                })} value={`${accuracy}%`} color={meta.accent} t={t} f={f} />
+                })} value={`${accuracy}%`} color={modeAccent} t={t} f={f} />
                 <ReportMetric label={triLang(lang, {
                   ru: 'верно',
                   uk: 'вірно',
@@ -647,7 +740,8 @@ export default function TrainerSmartSession() {
               </View>
 
               {posStats.length > 0 && (
-                <View style={[styles.reportPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+                <View style={[styles.reportPanel, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? smartSurface : t.bgCard, borderColor: smartBorder, borderRadius: isCompassTheme ? 9 : 18 }]}>
+                  {isCompassTheme ? <CompassSmartSurface radius={9} quiet /> : null}
                   {posStats.map(([category, row]) => (
                     <View key={category} style={styles.attentionRow}>
                       <View style={[styles.attentionDot, { backgroundColor: row.profile.accent }]} />
@@ -663,8 +757,8 @@ export default function TrainerSmartSession() {
               )}
 
               <View style={styles.reportActions}>
-                <TouchableOpacity onPress={() => { hapticTap(); void loadSession(); }} style={[styles.secondaryBtn, { borderColor: meta.accent + '66', backgroundColor: meta.accent + '14' }]}>
-                  <Text style={{ color: meta.accent, fontSize: f.sub, fontWeight: '900' }}>
+                <TouchableOpacity onPress={() => { hapticTap(); void loadSession(); }} style={[styles.secondaryBtn, { borderColor: modeAccent + '66', backgroundColor: modeAccent + '14' }]}>
+                  <Text style={{ color: modeAccent, fontSize: f.sub, fontWeight: '900' }}>
                     {triLang(lang, {
                       ru: 'Еще раз',
                       uk: 'Ще раз',
@@ -677,7 +771,7 @@ export default function TrainerSmartSession() {
                     })}
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={[styles.nextBtn, { backgroundColor: meta.accent }]}>
+                <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={[styles.nextBtn, { backgroundColor: modeAccent }]}>
                   <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
                     {triLang(lang, {
                       ru: 'Готово',
@@ -716,39 +810,40 @@ export default function TrainerSmartSession() {
             <Text style={{ color: sx.muted, fontSize: f.caption, fontWeight: '800' }}>{index + 1}/{cards.length}</Text>
           </View>
 
-          <View style={[styles.progress, { backgroundColor: t.bgSurface }]}>
-            <View style={[styles.progressFill, { backgroundColor: meta.accent, width: `${(index / cards.length) * 100}%` }]} />
+          <View style={[styles.progress, { backgroundColor: isCompassTheme ? COMPASS_RICH.void : t.bgSurface, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent' }]}>
+            <View style={[styles.progressFill, { backgroundColor: modeAccent, width: `${(index / cards.length) * 100}%` }]} />
           </View>
 
           <View style={styles.body}>
             {!!sessionCoachText && (
-              <View style={[styles.coachStrip, { backgroundColor: meta.accent + '17', borderColor: meta.accent + '44' }]}>
-                <Ionicons name={meta.icon} size={17} color={meta.accent} />
+              <View style={[styles.coachStrip, { backgroundColor: modeAccent + '17', borderColor: modeAccent + '44' }]}>
+                <Ionicons name={meta.icon} size={17} color={modeAccent} />
                 <Text style={{ color: sx.second, fontSize: f.caption, fontWeight: '700', flex: 1, lineHeight: f.caption * 1.35 }}>
                   {sessionCoachText}
                 </Text>
               </View>
             )}
 
-            <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: state === 'correct' ? '#40C080' : state === 'wrong' ? '#FB7185' : t.border }]}>
+            <View style={[styles.card, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? smartSurface : t.bgCard, borderColor: isCompassTheme ? (state === 'correct' ? COMPASS_RICH.hairlineStrong : state === 'wrong' ? COMPASS_RICH.copper : COMPASS_RICH.hairline) : state === 'correct' ? '#40C080' : state === 'wrong' ? '#FB7185' : t.border, borderRadius: smartRadius, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+              {isCompassTheme ? <CompassSmartSurface radius={smartRadius} selected={state !== 'idle'} quiet={state === 'idle'} physical /> : null}
               <View style={styles.cardTop}>
                 <View style={styles.cardMetaLeft}>
                   {current.item.queue !== 'words' && (
-                    <View style={[styles.typeBadge, { backgroundColor: current.accent + '22', borderColor: current.accent + '66' }]}>
-                      <Text style={{ color: current.accent, fontSize: f.label, fontWeight: '900' }}>{queueLabel(current.item.queue, lang)}</Text>
+                    <View style={[styles.typeBadge, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : current.accent + '22', borderColor: isCompassTheme ? COMPASS_RICH.hairline : current.accent + '66', borderRadius: isCompassTheme ? 7 : 999 }]}>
+                      <Text style={{ color: currentAccent, fontSize: f.label, fontWeight: '900' }}>{queueLabel(current.item.queue, lang)}</Text>
                     </View>
                   )}
                   {current.profile && (
-                    <View style={[styles.posBadge, { backgroundColor: current.profile.accent + '14', borderColor: current.profile.accent + '44' }]}>
-                      <Ionicons name={current.profile.icon as keyof typeof Ionicons.glyphMap} size={12} color={current.profile.accent} />
-                      <Text style={{ color: current.profile.accent, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>
+                    <View style={[styles.posBadge, { backgroundColor: isCompassTheme ? COMPASS_RICH.copperWash : current.profile.accent + '14', borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : current.profile.accent + '44', borderRadius: isCompassTheme ? 7 : 999 }]}>
+                      <Ionicons name={current.profile.icon as keyof typeof Ionicons.glyphMap} size={12} color={currentAccent} />
+                      <Text style={{ color: currentAccent, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>
                         {current.profile.title[lang]}
                       </Text>
                     </View>
                   )}
                 </View>
                 {current.item.mistakeCount > 0 ? (
-                  <View style={[styles.mistakeBadge, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+                  <View style={[styles.mistakeBadge, { backgroundColor: smartRecessed, borderColor: smartBorder, borderRadius: isCompassTheme ? 7 : 999 }]}>
                     <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900' }}>
                       {triLang(lang, {
                         ru: `${current.item.mistakeCount} ош.`,
@@ -766,12 +861,13 @@ export default function TrainerSmartSession() {
               </View>
 
               {!!current.title && current.title !== current.profile?.title[lang] && (
-                <Text style={{ color: current.accent, fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
+                <Text style={{ color: currentAccent, fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
                   {current.title}
                 </Text>
               )}
-              <View style={[styles.helperBox, { backgroundColor: current.accent + '10', borderColor: current.accent + '35' }]}>
-                <Ionicons name="navigate" size={15} color={current.accent} />
+              <View style={[styles.helperBox, isCompassTheme && styles.compassClip, { backgroundColor: isCompassTheme ? smartRecessed : current.accent + '10', borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : current.accent + '35', borderRadius: smartSmallRadius }]}>
+                {isCompassTheme ? <CompassSmartSurface radius={smartSmallRadius} quiet /> : null}
+                <Ionicons name="navigate" size={15} color={currentAccent} />
                 <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '800', flex: 1, lineHeight: f.caption * 1.35 }}>
                   {current.helper}
                 </Text>
@@ -787,8 +883,8 @@ export default function TrainerSmartSession() {
               {current.focusChips && current.focusChips.length > 0 && (
                 <View style={styles.drillChipRow}>
                   {current.focusChips.slice(0, 3).map((chip) => (
-                    <View key={chip} style={[styles.drillChip, { backgroundColor: current.accent + '14', borderColor: current.accent + '44' }]}>
-                      <Text style={{ color: current.accent, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>
+                    <View key={chip} style={[styles.drillChip, { backgroundColor: isCompassTheme ? COMPASS_RICH.wash : current.accent + '14', borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : current.accent + '44', borderRadius: isCompassTheme ? 7 : 999 }]}>
+                      <Text style={{ color: currentAccent, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>
                         {chip}
                       </Text>
                     </View>
@@ -806,20 +902,22 @@ export default function TrainerSmartSession() {
               {current.options.map((option) => {
                 const isPicked = picked === option;
                 const isCorrect = option === current.correct;
-                let bg = t.bgCard;
-                let border = t.border;
+                let bg = isCompassTheme ? smartSurface : t.bgCard;
+                let border = isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border;
                 let color = t.textPrimary;
-                if (state !== 'idle' && isCorrect) { bg = '#40C08022'; border = '#40C080'; color = '#40C080'; }
-                if (state === 'wrong' && isPicked) { bg = '#FB718522'; border = '#FB7185'; color = '#FB7185'; }
+                let selected = false;
+                if (state !== 'idle' && isCorrect) { bg = isCompassTheme ? COMPASS_RICH.washStrong : '#40C08022'; border = isCompassTheme ? COMPASS_RICH.hairlineStrong : '#40C080'; color = isCompassTheme ? COMPASS_RICH.champagne : '#40C080'; selected = true; }
+                if (state === 'wrong' && isPicked) { bg = isCompassTheme ? COMPASS_RICH.copperWash : '#FB718522'; border = isCompassTheme ? COMPASS_RICH.copper : '#FB7185'; color = isCompassTheme ? COMPASS_RICH.peach : '#FB7185'; selected = true; }
                 return (
                   <TouchableOpacity
                     key={option}
                     disabled={state !== 'idle'}
                     onPress={() => { void answer(option); }}
                     testID="trainer-smart-option"
-                    style={[styles.option, { backgroundColor: bg, borderColor: border }]}
+                    style={[styles.option, isCompassTheme && compassShadow(selected ? 2 : 1), { backgroundColor: bg, borderColor: border, borderRadius: isCompassTheme ? 9 : 15, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
                     activeOpacity={0.86}
                   >
+                    {isCompassTheme ? <CompassSmartSurface radius={9} selected={selected} quiet={!selected} physical /> : null}
                     <Text style={{ color, fontSize: f.body, fontWeight: '800', lineHeight: f.body * 1.25 }}>{option}</Text>
                   </TouchableOpacity>
                 );
@@ -829,13 +927,14 @@ export default function TrainerSmartSession() {
 
           <MistakeInsightModal
             insight={mistakeInsight}
-            accent={current.accent}
+            accent={currentAccent}
             profile={current.profile}
             onRetry={retryCurrent}
             onNext={() => { hapticTap(); advance(); }}
             lang={lang}
             t={t}
             f={f}
+            isCompassTheme={isCompassTheme}
           />
         </ContentWrap>
       </SafeAreaView>
@@ -852,6 +951,7 @@ function MistakeInsightModal({
   lang,
   t,
   f,
+  isCompassTheme = false,
 }: {
   insight: MistakeInsight | null;
   accent: string;
@@ -861,29 +961,34 @@ function MistakeInsightModal({
   lang: Lang;
   t: any;
   f: any;
+  isCompassTheme?: boolean;
 }) {
+  const modalAccent = isCompassTheme ? COMPASS_RICH.champagne : accent;
+  const modalRadius = isCompassTheme ? 10 : 22;
   return (
     <Modal visible={!!insight} transparent animationType="fade" onRequestClose={onNext}>
       <View style={styles.modalRoot} testID="trainer-mistake-insight-modal">
         <Pressable style={StyleSheet.absoluteFill} onPress={onNext} />
         {insight ? (
-          <View testID="trainer-mistake-insight-sheet" style={[styles.insightSheet, { backgroundColor: t.bgCard, borderColor: accent + '66' }]}>
-            <View style={[styles.insightIcon, { backgroundColor: accent + '22', borderColor: accent + '66' }]}>
-              <Ionicons name="analytics" size={22} color={accent} />
+          <View testID="trainer-mistake-insight-sheet" style={[styles.insightSheet, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(3), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : accent + '66', borderRadius: modalRadius }]}>
+            {isCompassTheme ? <CompassSmartSurface radius={modalRadius} selected /> : null}
+            <View style={[styles.insightIcon, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : accent + '22', borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : accent + '66', borderRadius: isCompassTheme ? 10 : 16 }]}>
+              <Ionicons name="analytics" size={22} color={modalAccent} />
             </View>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
               {insight.title}
             </Text>
             {profile && (
-              <View style={[styles.posInsight, { backgroundColor: profile.accent + '12', borderColor: profile.accent + '35' }]}>
-                <Ionicons name={profile.icon as keyof typeof Ionicons.glyphMap} size={16} color={profile.accent} />
+              <View style={[styles.posInsight, isCompassTheme && styles.compassClip, { backgroundColor: isCompassTheme ? COMPASS_RICH.copperWash : profile.accent + '12', borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : profile.accent + '35', borderRadius: isCompassTheme ? 8 : 14 }]}>
+                {isCompassTheme ? <CompassSmartSurface radius={8} quiet /> : null}
+                <Ionicons name={profile.icon as keyof typeof Ionicons.glyphMap} size={16} color={modalAccent} />
                 <Text style={{ color: t.textSecond, fontSize: f.caption, flex: 1, lineHeight: f.caption * 1.4 }}>
                   {profile.title[lang]} - {profile.mistakeWhy[lang]}
                 </Text>
               </View>
             )}
-            <View style={[styles.correctBox, { backgroundColor: '#40C08018', borderColor: '#40C08055' }]}>
-              <Text style={{ color: '#40C080', fontSize: f.label, fontWeight: '900', textTransform: 'uppercase' }}>
+            <View style={[styles.correctBox, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : '#40C08018', borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : '#40C08055', borderRadius: isCompassTheme ? 8 : 15 }]}>
+              <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : '#40C080', fontSize: f.label, fontWeight: '900', textTransform: 'uppercase' }}>
                 {insight.correctLabel}
               </Text>
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginTop: 4, lineHeight: f.bodyLg * 1.25 }}>
@@ -893,15 +998,16 @@ function MistakeInsightModal({
             <Text style={{ color: t.textSecond, fontSize: f.sub, lineHeight: f.sub * 1.45 }}>
               {insight.why}
             </Text>
-            <View style={[styles.nextHint, { backgroundColor: accent + '12', borderColor: accent + '35' }]}>
-              <Ionicons name="refresh" size={16} color={accent} />
+            <View style={[styles.nextHint, isCompassTheme && styles.compassClip, { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : accent + '12', borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : accent + '35', borderRadius: isCompassTheme ? 8 : 14 }]}>
+              {isCompassTheme ? <CompassSmartSurface radius={8} quiet /> : null}
+              <Ionicons name="refresh" size={16} color={modalAccent} />
               <Text style={{ color: t.textMuted, fontSize: f.caption, flex: 1, lineHeight: f.caption * 1.4 }}>
                 {insight.next}
               </Text>
             </View>
             <View style={styles.modalActions}>
-              <TouchableOpacity onPress={onRetry} activeOpacity={0.86} style={[styles.secondaryBtn, { borderColor: accent + '66', backgroundColor: accent + '14' }]}>
-                <Text style={{ color: accent, fontSize: f.sub, fontWeight: '900' }}>
+              <TouchableOpacity onPress={onRetry} activeOpacity={0.86} style={[styles.secondaryBtn, { borderColor: isCompassTheme ? COMPASS_RICH.hairline : accent + '66', backgroundColor: isCompassTheme ? COMPASS_RICH.wash : accent + '14', borderRadius: isCompassTheme ? 9 : 16 }]}>
+                <Text style={{ color: modalAccent, fontSize: f.sub, fontWeight: '900' }}>
                   {triLang(lang, {
                     ru: 'Повторить',
                     uk: 'Повторити',
@@ -914,8 +1020,28 @@ function MistakeInsightModal({
                   })}
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={onNext} activeOpacity={0.86} style={[styles.nextBtn, { backgroundColor: accent }]}>
-                <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
+              <TouchableOpacity onPress={onNext} activeOpacity={0.86} style={[styles.nextBtn, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: accent, borderRadius: isCompassTheme ? 9 : 16 }]}>
+                {isCompassTheme ? <LinearGradient colors={COMPASS_GRADIENTS.primaryButton} locations={COMPASS_SURFACE_LOCATIONS} style={StyleSheet.absoluteFillObject} /> : null}
+                {isCompassTheme ? (
+                  <>
+                    <LinearGradient
+                      colors={['rgba(255,255,255,0.40)', 'rgba(255,230,181,0.08)', 'rgba(255,255,255,0)']}
+                      locations={[0, 0.42, 1]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 0, y: 1 }}
+                      style={[styles.compassTopShelf, { borderTopLeftRadius: 9, borderTopRightRadius: 9 }]}
+                    />
+                    <LinearGradient
+                      colors={['rgba(111,63,37,0.04)', 'rgba(111,63,37,0.50)']}
+                      locations={[0, 1]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 0, y: 1 }}
+                      style={[styles.compassBottomShelf, { borderBottomLeftRadius: 9, borderBottomRightRadius: 9 }]}
+                    />
+                    <CompassBevel radius={9} intensity="strong" />
+                  </>
+                ) : null}
+                <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : '#fff', fontSize: f.sub, fontWeight: '900' }}>
                   {triLang(lang, {
                     ru: 'Дальше',
                     uk: 'Далі',
@@ -961,6 +1087,35 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   card: { borderRadius: 20, borderWidth: 1, padding: 18, gap: 13, minHeight: 248, justifyContent: 'center' },
+  compassClip: { overflow: 'hidden' },
+  compassTopShelf: {
+    position: 'absolute',
+    left: 2,
+    right: 2,
+    top: 2,
+    height: 12,
+  },
+  compassBottomShelf: {
+    position: 'absolute',
+    left: 2,
+    right: 2,
+    bottom: 2,
+    height: 14,
+  },
+  compassLeftRail: {
+    position: 'absolute',
+    left: 1,
+    top: 5,
+    bottom: 8,
+    width: 2,
+  },
+  compassRightRail: {
+    position: 'absolute',
+    right: 1,
+    top: 6,
+    bottom: 4,
+    width: 2,
+  },
   cardTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 8 },
   cardMetaLeft: { flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 8 },
   typeBadge: { borderRadius: 999, borderWidth: 1, paddingHorizontal: 10, paddingVertical: 5 },

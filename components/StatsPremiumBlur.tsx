@@ -23,7 +23,7 @@ export interface StatsPremiumBlurProps {
 /**
  * Обёртка для premium-only блоков статистики.
  * - premium или devUnlock → children без изменений.
- * - иначе → лёгкое затемнение + BlurView поверх контента + замок/CTA (на Android — experimental blur).
+ * - иначе → затемнение + blur/frost overlay поверх контента + замок/CTA.
  */
 export default function StatsPremiumBlur({
   children,
@@ -144,8 +144,9 @@ export default function StatsPremiumBlur({
     </Pressable>
   );
 
-  /** Одно значение на iOS и Android: форма графов чуть заметнее, мелкий текст и цифры за blur + dim остаются нечитаемыми. */
+  /** Форма графов чуть заметнее, мелкий текст и цифры за blur + dim остаются нечитаемыми. */
   const blurIntensity = 14;
+  const renderNativeBlur = Platform.OS !== 'android';
 
   return (
     <View style={styles.root} collapsable={false}>
@@ -161,14 +162,25 @@ export default function StatsPremiumBlur({
           { backgroundColor: isLight ? 'rgba(255,255,255,0.11)' : 'rgba(0,0,0,0.21)' },
         ]}
       />
-      <BlurView
-        tint={isLight ? 'light' : 'dark'}
-        intensity={blurIntensity}
-        style={[StyleSheet.absoluteFillObject, styles.blurLayer]}
-        {...(Platform.OS === 'android'
-          ? { experimentalBlurMethod: 'dimezisBlurView' as const, blurReductionFactor: 4.85 }
-          : {})}
-      />
+      {renderNativeBlur ? (
+        <BlurView
+          tint={isLight ? 'light' : 'dark'}
+          intensity={blurIntensity}
+          style={[StyleSheet.absoluteFillObject, styles.blurLayer]}
+        />
+      ) : (
+        <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, styles.androidStaticBlurLayer]}>
+          <LinearGradient
+            pointerEvents="none"
+            colors={['rgba(255,255,255,0.13)', 'rgba(255,255,255,0.04)', 'rgba(0,0,0,0.28)']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={StyleSheet.absoluteFillObject}
+          />
+          <View pointerEvents="none" style={[styles.androidSoftFocusBand, styles.androidSoftFocusBandTop]} />
+          <View pointerEvents="none" style={[styles.androidSoftFocusBand, styles.androidSoftFocusBandBottom]} />
+        </View>
+      )}
       <View style={styles.overlayAboveBlur} pointerEvents="box-none">
         {overlayContent}
       </View>
@@ -196,6 +208,28 @@ const styles = StyleSheet.create({
     zIndex: 2,
     overflow: 'hidden',
     borderRadius: 16,
+  },
+  androidStaticBlurLayer: {
+    zIndex: 2,
+    overflow: 'hidden',
+    borderRadius: 16,
+    backgroundColor: 'rgba(10,10,12,0.56)',
+  },
+  androidSoftFocusBand: {
+    position: 'absolute',
+    left: -40,
+    right: -40,
+    height: 72,
+    borderRadius: 36,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    transform: [{ rotate: '-10deg' }],
+  },
+  androidSoftFocusBandTop: {
+    top: '18%',
+  },
+  androidSoftFocusBandBottom: {
+    bottom: '12%',
+    opacity: 0.7,
   },
   overlayAboveBlur: {
     ...StyleSheet.absoluteFillObject,

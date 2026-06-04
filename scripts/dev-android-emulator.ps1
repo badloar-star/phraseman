@@ -4,7 +4,9 @@
 param(
   [switch]$Clear,
   [string]$Avd = "",
-  [switch]$Headless
+  [switch]$Headless,
+  [switch]$Fast,
+  [string]$Gpu = ""
 )
 # adb prints "daemon..." on stderr; Stop turns native stderr into a terminating error.
 $ErrorActionPreference = "Continue"
@@ -77,7 +79,7 @@ if (-not (Test-AdbDeviceOnline)) {
   } else {
     $names = @( & $emuExe -list-avds 2>$null )
     $availableAvds = @($names | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne '' })
-    $preferredAvds = @("Pixel_Fold", "Pixel_8_Pro", "Small_Phone", "Pixel_8")
+    $preferredAvds = if ($Fast) { @("Small_Phone", "Pixel_8", "Pixel_8_Pro", "Pixel_Fold") } else { @("Pixel_Fold", "Pixel_8_Pro", "Small_Phone", "Pixel_8") }
     $picked = ($preferredAvds | Where-Object { $availableAvds -contains $_ } | Select-Object -First 1)
     if (-not $picked) { $picked = $availableAvds[0] }
     if ($Avd.Trim()) { $picked = $Avd.Trim() }
@@ -85,7 +87,8 @@ if (-not (Test-AdbDeviceOnline)) {
       Write-Host "No AVD. Create one: Android Studio - Device Manager."
       exit 1
     }
-    $emuArgs = @("-avd", $picked, "-gpu", "swiftshader_indirect", "-no-snapshot-load", "-no-boot-anim", "-no-audio")
+    $gpuMode = if ($Gpu.Trim()) { $Gpu.Trim() } elseif ($Fast) { "host" } else { "swiftshader_indirect" }
+    $emuArgs = @("-avd", $picked, "-gpu", $gpuMode, "-no-snapshot-load", "-no-boot-anim", "-no-audio")
     if ($Headless) { $emuArgs += "-no-window" }
     $windowStyle = if ($Headless) { "Hidden" } else { "Normal" }
     Start-Process -FilePath $emuExe -ArgumentList $emuArgs -WindowStyle $windowStyle
@@ -132,6 +135,20 @@ Set-Location $proj
 Remove-Item Env:CI -ErrorAction SilentlyContinue
 
 Invoke-AdbReverse8081All
+
+if ($Fast) {
+  foreach ($ln in @( & $adb devices 2>&1 | ForEach-Object { "$_" } )) {
+    if ($ln -match "^(\S+)\s+device\s*$") {
+      $serial = $Matches[1]
+      Write-Host "Fast mode: applying wm size 900x1600 and density 320 to $serial."
+      try { & $adb -s $serial shell wm size 900x1600 2>$null | Out-Null } catch { }
+      try { & $adb -s $serial shell wm density 320 2>$null | Out-Null } catch { }
+      try { & $adb -s $serial shell settings put global window_animation_scale 0 2>$null | Out-Null } catch { }
+      try { & $adb -s $serial shell settings put global transition_animation_scale 0 2>$null | Out-Null } catch { }
+      try { & $adb -s $serial shell settings put global animator_duration_scale 0 2>$null | Out-Null } catch { }
+    }
+  }
+}
 
 try {
   npx --yes kill-port 8081 2>$null | Out-Null
@@ -197,7 +214,11 @@ Remove-Item Env:REACT_NATIVE_PACKAGER_HOSTNAME -ErrorAction SilentlyContinue
 # Совпадает с npm run android / dev — при следующем native prebuild без «подмены из облака» в конфиге.
 $env:EXPO_PUBLIC_DISABLE_EXPO_UPDATES = '1'
 
-$expoArgs = @('start', '--dev-client', '--lan', '--port', '8081')
+$expoArgs = if ($Fast) {
+  @('start', '--dev-client', '--localhost', '--port', '8081', '--no-dev', '--minify')
+} else {
+  @('start', '--dev-client', '--lan', '--port', '8081')
+}
 if ($Clear) { $expoArgs += '--clear' }
 npx expo @expoArgs
 

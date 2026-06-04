@@ -15,32 +15,36 @@ categories or a source-checked thematic quiz pack.
 1. Read `tools/skyler_quiz_agent_room/README.md`.
 2. Read `tools/skyler_quiz_agent_room/ROOM.md`.
 3. Read `tools/skyler_quiz_agent_room/QUIZ_STYLE_CONTRACT.md`.
-4. Run `npm run skyler:quiz:check`.
-5. Start discovery with `npm run skyler:quiz -- --mode discover --target <en|fr|smartest>`.
-6. If social-listening evidence is available, pass it with `--social-input <file>`.
-7. Present exactly three category candidates to the user.
-8. After the user chooses one category, run:
+4. Read `tools/skyler_quiz_agent_room/THEMATIC_GENERATION_CHECKLIST.md`.
+5. Run `npm run skyler:quiz:check`.
+6. Start discovery with `npm run skyler:quiz -- --mode discover --target <en|fr|smartest>`.
+7. If social-listening evidence is available, pass it with `--social-input <file>`.
+8. Present exactly three category candidates to the user.
+9. After the user chooses one category, run:
 
 ```bash
 npm run skyler:quiz -- --mode brief --target <en|fr|smartest> --category <category-id>
 ```
 
-9. Run the visual asset kickoff / AI visual asset pass as the first creation
+10. Run the visual asset kickoff / AI visual asset pass as the first creation
    step before quiz drafting: inspect the existing thematic asset style,
    generate DALL-E/imagegen theme card backgrounds and theme logos (the topic
    plaque and topic icon) for every active app visual family / all active app
    theme modes (`forest`, `dark`, `neon`, `neonGreen`, `gold`, `coral`,
    `minimalLight`, `minimalDark`), save the source images, final WebP assets,
    and `generated_assets/manifest.json`, then visually check the results.
-10. Build the first quiz draft only after the source matrix, style contract,
-   visual asset plan, and QA checklist are created.
-11. Gate any draft with:
+11. Build the first quiz draft only after the source matrix, style contract,
+   thematic generation checklist, visual asset plan, and QA checklist are
+   created. Before expanding a full thematic pack, show the first 10 items to
+   the user in chat: item id, prompt, four English choices, answer, and
+   per-choice explanations.
+12. Gate any draft with:
 
 ```bash
 npm run skyler:quiz -- --mode gate --draft <path-to-skyler-pack.json>
 ```
 
-12. Report done only when the gate decision is `GO`.
+13. Report done only when the gate decision is `GO`.
 
 ## Non-Negotiable Rules
 
@@ -51,6 +55,10 @@ npm run skyler:quiz -- --mode gate --draft <path-to-skyler-pack.json>
 - Every factual claim needs an official or institution-backed source.
 - Every language-learning item needs a target-language reference, not an
   English-bank copy.
+- For thematic English packs, `app/quiz_thematic_kitchen_and_cooking.ts` is the
+  canonical style baseline: localized prompts, four English choices, per-choice
+  localized explanations, concrete distractors, and source/claim metadata must
+  follow that shape.
 - Every language-learning pack needs a `styleProfile` from current quiz-pool
   analysis; generic prompts like `Which word fits`, taxonomy labels like
   `Kitchen — object`, and flat `Correct/Wrong` explanation labels are blocked.

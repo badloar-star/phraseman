@@ -104,7 +104,12 @@ Trust beats conversion pressure.
 One strong idea beats five medium ideas.
 Useful humor beats random jokes.
 Phraseman must continue the lesson, not interrupt it.
+New language version means new background footage.
 ```
+
+## Multilingual Background Rule
+
+When rebuilding the same lesson for another target language, keep the pedagogical structure if requested, but do not reuse the same background videos. The new language version must have a fresh set of background footage with different source IDs/rendered assets from the previous language version, even when the phrase list is identical.
 
 ## YouTube First, App Second
 
@@ -1223,10 +1228,18 @@ short viewer-pain context;
 3-5 things the viewer will learn;
 Phraseman bridge if enabled;
 specific comment prompt;
-natural search-friendly paragraph.
+natural search-friendly paragraph;
+large diverse keyword list at the end for package metadata.
 ```
 
-Do not use keyword stuffing.
+Keyword list rule:
+
+```text
+Every package description file must end with a clear keyword block.
+The keyword block should be large and strongly varied: search phrases, learner pains, topic variants, listening/practice intents, level words, Russian queries, English-learning query forms, app/practice terms, and adjacent long-tail phrases.
+Keep the human description above the keyword block clean and natural.
+Do not hide keywords inside awkward prose.
+```
 
 The description must belong only to this video.
 

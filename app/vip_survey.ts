@@ -5,7 +5,7 @@ import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, ENABLE_DEV_TOOLS, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLinkForStableId, resetAnonAuthCacheForSignOut } from './cloud_sync';
 import { emitAppEvent } from './events';
-import { updateMyVipInLeaderboard } from './firestore_leaderboard';
+import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { getVerifiedPremiumAccessStatus, invalidatePremiumCache } from './premium_guard';
 import { markVipCelebrationPending } from './vip_celebration_state';
@@ -165,7 +165,11 @@ async function persistVipResult(result: SubmitVipSurveyResponse): Promise<void> 
     emitAppEvent('vip_deactivated');
   }
   emitAppEvent('premium_access_changed', { active, source: active ? 'vip' : 'none' });
-  void updateMyVipInLeaderboard(active);
+  void syncPublicProfileSnapshot({
+    reason: 'entitlement_change',
+    isVip: active,
+    isPremium: active,
+  });
 }
 
 export async function submitVipSurveyFromApp(params: {

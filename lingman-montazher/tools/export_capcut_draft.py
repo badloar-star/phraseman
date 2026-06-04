@@ -32,10 +32,10 @@ CANVAS_WIDTH = 1920
 CANVAS_HEIGHT = 1080
 SOURCE_WIDTH = 3840
 SOURCE_HEIGHT = 2160
-TEXT_FADE_IN_US = 180_000
-TEXT_FADE_OUT_US = 120_000
-TEXT_VISUAL_PREROLL_US = 120_000
-TEXT_POP_SYNC_US = 120_000
+TEXT_VISUAL_PREROLL_US = 0
+TEXT_POP_SYNC_US = 0
+REFERENCE_PHRASE_X = 0.42
+REFERENCE_PHRASE_Y = -0.19
 
 
 def capcut_us(seconds: float) -> int:
@@ -84,6 +84,114 @@ def capcut_resource_path(prefix: str, name: str) -> str:
 
 def deep_clone(value: Any) -> Any:
     return json.loads(json.dumps(value, ensure_ascii=False))
+
+
+def resolve_draft_dir(name_or_path: str) -> Path:
+    path = Path(name_or_path)
+    if path.exists():
+        return path
+    candidate = CAPCUT_DRAFTS_DIR / name_or_path
+    if candidate.exists():
+        return candidate
+    lowered = name_or_path.casefold()
+    for child in CAPCUT_DRAFTS_DIR.iterdir():
+        if child.is_dir() and child.name.casefold() == lowered:
+            return child
+    raise FileNotFoundError(f"CapCut draft was not found: {name_or_path}")
+
+
+def text_from_material(material: dict[str, Any]) -> str:
+    content = material.get("content")
+    if isinstance(content, str):
+        try:
+            parsed = json.loads(content)
+            text = parsed.get("text")
+            if isinstance(text, str):
+                return text
+        except json.JSONDecodeError:
+            pass
+    return str(material.get("base_content", ""))
+
+
+def material_has_latin_text(material: dict[str, Any]) -> bool:
+    return any("A" <= char <= "Z" or "a" <= char <= "z" for char in text_from_material(material))
+
+
+def reference_animation_material(
+    segment: dict[str, Any],
+    reference_content: dict[str, Any],
+) -> dict[str, Any] | None:
+    animations = {
+        item.get("id"): item
+        for item in reference_content.get("materials", {}).get("material_animations", [])
+        if isinstance(item, dict)
+    }
+    for ref_id in segment.get("extra_material_refs") or []:
+        material = animations.get(ref_id)
+        if material:
+            return material
+    return None
+
+
+def load_reference_text_style(draft_name_or_path: str | None) -> dict[str, Any] | None:
+    if not draft_name_or_path:
+        return None
+    draft_dir = resolve_draft_dir(draft_name_or_path)
+    reference_content = load_json(draft_dir / "draft_content.json")
+    text_materials = {
+        item.get("id"): item
+        for item in reference_content.get("materials", {}).get("texts", [])
+        if isinstance(item, dict)
+    }
+    rows: list[dict[str, Any]] = []
+    for track_index, track in enumerate(reference_content.get("tracks", [])):
+        if track.get("type") != "text":
+            continue
+        for segment in track.get("segments", []):
+            material = text_materials.get(segment.get("material_id"))
+            if not material:
+                continue
+            rows.append(
+                {
+                    "trackIndex": track_index,
+                    "segment": segment,
+                    "material": material,
+                    "text": text_from_material(material),
+                    "animation": reference_animation_material(segment, reference_content),
+                }
+            )
+    if not rows:
+        return None
+    phrase = next(
+        (
+            row
+            for row in rows
+            if material_has_latin_text(row["material"])
+            and str(row["material"].get("text_color", "")).casefold() == "#ffffff"
+            and float(row["material"].get("font_size", 99)) <= 6
+        ),
+        rows[0],
+    )
+    accent = next(
+        (
+            row
+            for row in rows
+            if material_has_latin_text(row["material"])
+            and str(row["material"].get("text_color", "")).casefold() in {"#cbff45", "#ffd396"}
+        ),
+        phrase,
+    )
+    title = next(
+        (row for row in rows if material_has_latin_text(row["material"]) and float(row["material"].get("font_size", 0)) >= 9),
+        phrase,
+    )
+    return {
+        "draftDir": draft_dir,
+        "phraseMaterial": phrase["material"],
+        "accentMaterial": accent["material"],
+        "titleMaterial": title["material"],
+        "animationMaterial": phrase.get("animation"),
+    }
 
 
 def hardlink_or_copy(source: Path, target: Path) -> None:
@@ -152,7 +260,7 @@ def set_timerange(
     source_start_us: int | None = None,
 ) -> None:
     segment["target_timerange"] = {"start": target_start_us, "duration": duration_us}
-    segment["render_timerange"] = {"start": target_start_us, "duration": duration_us}
+    segment["render_timerange"] = {"start": 0, "duration": 0}
     if source_start_us is not None:
         segment["source_timerange"] = {"start": source_start_us, "duration": duration_us}
 
@@ -165,36 +273,27 @@ def clear_manual_segment_animation(segment: dict[str, Any]) -> None:
     segment["lyric_keyframes"] = None
 
 
-def alpha_keyframe(time_offset: int, value: float) -> dict[str, Any]:
-    return {
-        "id": new_capcut_id(),
-        "curveType": "Line",
-        "time_offset": max(0, int(time_offset)),
-        "left_control": {"x": 0.0, "y": 0.0},
-        "right_control": {"x": 0.0, "y": 0.0},
-        "values": [max(0.0, min(1.0, value))],
-        "string_value": "",
-        "graphID": "",
-    }
-
-
-def apply_segment_fade(segment: dict[str, Any], duration_us: int, peak_alpha: float = 1.0) -> None:
-    fade_in = min(TEXT_FADE_IN_US, max(0, duration_us // 3))
-    fade_out = min(TEXT_FADE_OUT_US, max(0, duration_us // 3))
-    hold_until = max(fade_in, duration_us - fade_out)
-    segment["common_keyframes"] = [
-        {
-            "id": new_capcut_id(),
-            "material_id": "",
-            "property_type": "KFTypeGlobalAlpha",
-            "keyframe_list": [
-                alpha_keyframe(0, 0.0),
-                alpha_keyframe(fade_in, peak_alpha),
-                alpha_keyframe(hold_until, peak_alpha),
-                alpha_keyframe(duration_us, 0.0),
-            ],
-        }
+def remove_template_animation_refs(segment: dict[str, Any], animation_ids: set[str]) -> None:
+    if not animation_ids:
+        return
+    segment["extra_material_refs"] = [
+        material_id
+        for material_id in segment.get("extra_material_refs", []) or []
+        if material_id not in animation_ids
     ]
+
+
+def add_reference_native_animation(
+    segment: dict[str, Any],
+    materials: dict[str, Any],
+    reference_style: dict[str, Any] | None,
+) -> None:
+    if not reference_style or not reference_style.get("animationMaterial"):
+        return
+    animation_material = deep_clone(reference_style["animationMaterial"])
+    animation_material["id"] = new_capcut_id()
+    materials.setdefault("material_animations", []).append(animation_material)
+    segment["extra_material_refs"] = [animation_material["id"]]
 
 
 def capcut_text_content(
@@ -220,28 +319,32 @@ def capcut_text_content(
 def update_text_material(material: dict[str, Any], text: str, role: str) -> None:
     line_count = max(1, text.count("\n") + 1)
     longest_line = max(len(line) for line in text.splitlines() or [text])
-    font_size = 7.2 if longest_line > 30 else 8.2
-    color = (1.0, 0.84, 0.12) if role == "correction" else (1.0, 1.0, 1.0)
+    reference_sized = float(material.get("font_size", 0.0)) <= 6.0 and material.get("font_path")
+    if reference_sized:
+        font_size = 4.5 if longest_line > 30 else 5.0
+    else:
+        font_size = 7.2 if longest_line > 30 else 8.2
+    color = (0.80, 1.0, 0.27) if role == "correction" else (1.0, 1.0, 1.0)
     material["id"] = new_capcut_id()
     material["unique_id"] = new_capcut_id()
     material["base_content"] = text
     material["content"] = capcut_text_content(str(material.get("content", "")), text, font_size, color)
     material["font_size"] = font_size
-    material["text_color"] = "#FFD63D" if role == "correction" else "#FFFFFF"
+    material["text_color"] = "#CBFF45" if role == "correction" else "#FFFFFF"
     material["text_alpha"] = 1.0
     material["alignment"] = 1
     material["has_shadow"] = True
     material["shadow_color"] = "#000000"
     material["shadow_alpha"] = 0.9
-    material["shadow_smoothing"] = 0.35
-    material["shadow_distance"] = 3.0
+    material["shadow_smoothing"] = 0.45 if reference_sized else 0.35
+    material["shadow_distance"] = 5.0 if reference_sized else 3.0
     material["border_color"] = "#000000"
     material["border_alpha"] = 1.0
-    material["border_width"] = 0.035
+    material["border_width"] = 0.08 if reference_sized else 0.035
     material["background_alpha"] = 0.0
     material["background_width"] = 0.0
     material["background_height"] = 0.0
-    material["line_max_width"] = 0.42 if longest_line > 30 else 0.34
+    material["line_max_width"] = 0.50 if reference_sized and longest_line > 30 else 0.42 if longest_line > 30 else 0.34
     material["fixed_width"] = -1.0
     material["fixed_height"] = -1.0
 
@@ -391,6 +494,78 @@ def update_timeline_files(draft_dir: Path, draft_content: dict[str, Any], now_us
             write_json(backup_path, project)
 
 
+def register_root_meta_info(
+    *,
+    draft_dir: Path,
+    draft_id: str,
+    draft_name: str,
+    duration_us: int,
+    now_us: int,
+    timeline_materials_size: int,
+) -> None:
+    root_meta_path = CAPCUT_DRAFTS_DIR / "root_meta_info.json"
+    if root_meta_path.exists():
+        root_meta = load_json(root_meta_path)
+    else:
+        root_meta = {"all_draft_store": [], "draft_ids": 0, "root_path": CAPCUT_DRAFTS_DIR.as_posix()}
+
+    entries = root_meta.setdefault("all_draft_store", [])
+    draft_path = draft_dir.as_posix()
+    kept_entries = [
+        entry
+        for entry in entries
+        if entry.get("draft_name") != draft_name and Path(str(entry.get("draft_fold_path", ""))).as_posix() != draft_path
+    ]
+    existing = next(
+        (
+            entry
+            for entry in entries
+            if entry.get("draft_name") == draft_name or Path(str(entry.get("draft_fold_path", ""))).as_posix() == draft_path
+        ),
+        {},
+    )
+    entry = {
+        "cloud_draft_cover": False,
+        "cloud_draft_sync": False,
+        "draft_cloud_last_action_download": False,
+        "draft_cloud_purchase_info": "",
+        "draft_cloud_template_id": "",
+        "draft_cloud_tutorial_info": "",
+        "draft_cloud_videocut_purchase_info": "",
+        "draft_cover": (draft_dir / "draft_cover.jpg").as_posix(),
+        "draft_fold_path": draft_path,
+        "draft_id": draft_id,
+        "draft_is_ai_shorts": False,
+        "draft_is_cloud_temp_draft": False,
+        "draft_is_invisible": False,
+        "draft_is_web_article_video": False,
+        "draft_json_file": (draft_dir / "draft_content.json").as_posix(),
+        "draft_name": draft_name,
+        "draft_new_version": existing.get("draft_new_version", "164.0.0"),
+        "draft_root_path": CAPCUT_DRAFTS_DIR.as_posix(),
+        "draft_timeline_materials_size": timeline_materials_size,
+        "draft_type": "",
+        "draft_web_article_video_enter_from": "",
+        "streaming_edit_draft_ready": True,
+        "tm_draft_cloud_completed": "",
+        "tm_draft_cloud_entry_id": -1,
+        "tm_draft_cloud_modified": 0,
+        "tm_draft_cloud_parent_entry_id": -1,
+        "tm_draft_cloud_space_id": -1,
+        "tm_draft_cloud_user_id": -1,
+        "tm_draft_create": existing.get("tm_draft_create", now_us),
+        "tm_draft_modified": now_us,
+        "tm_draft_removed": 0,
+        "tm_duration": duration_us,
+    }
+    kept_entries.append(entry)
+    kept_entries.sort(key=lambda item: int(item.get("tm_draft_modified") or 0), reverse=True)
+    root_meta["all_draft_store"] = kept_entries
+    root_meta["draft_ids"] = max(int(root_meta.get("draft_ids", 0) or 0), len(kept_entries))
+    root_meta["root_path"] = CAPCUT_DRAFTS_DIR.as_posix()
+    write_json(root_meta_path, root_meta)
+
+
 def export_draft(
     *,
     manifest_path: Path,
@@ -398,11 +573,14 @@ def export_draft(
     out_dir: Path,
     template_name: str,
     draft_name: str,
+    reference_draft_name: str | None = None,
+    reference_text_style: str = "off",
 ) -> Path:
     manifest = load_json(manifest_path)
     decisions = selected_decisions(manifest)
     screen_text = manifest.get("screenText", [])
-    motion_by_id = {effect.get("targetId"): float(effect.get("zoom", 1.0)) for effect in manifest.get("motionEffects", [])}
+    motion_by_id = {effect.get("targetId"): effect for effect in manifest.get("motionEffects", [])}
+    reference_style = load_reference_text_style(reference_draft_name) if reference_text_style != "off" else None
 
     template = CAPCUT_DRAFTS_DIR / template_name
     if not (template / "draft_content.json").exists():
@@ -442,6 +620,13 @@ def export_draft(
     }
 
     materials = draft_content["materials"]
+    template_animation_ids = {
+        str(item.get("id"))
+        for item in materials.get("material_animations", []) or []
+        if isinstance(item, dict) and item.get("id")
+    }
+    materials["material_animations"] = []
+
     video_material = deep_clone(materials["videos"][0])
     video_material["id"] = new_capcut_id()
     set_media_material(
@@ -478,7 +663,15 @@ def export_draft(
         plaque_material = deep_clone(base_plaque_material)
         update_plaque_material(plaque_material, str(event["text"]))
         plaque_materials.append(plaque_material)
-        material = deep_clone(base_text_material)
+        if reference_style:
+            reference_material = (
+                reference_style["accentMaterial"]
+                if str(event.get("role", "phrase")) == "correction"
+                else reference_style["phraseMaterial"]
+            )
+            material = deep_clone(reference_material)
+        else:
+            material = deep_clone(base_text_material)
         update_text_material(material, str(event["text"]), str(event.get("role", "phrase")))
         text_materials.append(material)
     materials["texts"] = plaque_materials + text_materials
@@ -503,10 +696,16 @@ def export_draft(
         )
         segment["volume"] = 1.0
         segment["last_nonzero_volume"] = 1.0
-        zoom = max(1.0, min(1.12, motion_by_id.get(decision["id"], 1.0)))
+        motion = motion_by_id.get(decision["id"], {})
+        zoom = max(1.0, min(1.18, float(motion.get("zoom", 1.0)) if isinstance(motion, dict) else 1.0))
         segment.setdefault("clip", {}).setdefault("scale", {})
         segment["clip"]["scale"] = {"x": zoom, "y": zoom}
+        transform = segment.setdefault("clip", {}).setdefault("transform", {"x": 0.0, "y": 0.0})
+        if isinstance(motion, dict):
+            transform["x"] = float(motion.get("x", motion.get("reframeX", transform.get("x", 0.0))))
+            transform["y"] = float(motion.get("y", motion.get("reframeY", transform.get("y", 0.0))))
         segment["uniform_scale"] = {"on": True, "value": zoom}
+        remove_template_animation_refs(segment, template_animation_ids)
         video_track["segments"].append(segment)
 
     text_tracks = [track for track in draft_content["tracks"] if track.get("type") == "text"]
@@ -542,11 +741,14 @@ def export_draft(
         )
         plaque_segment.setdefault("clip", {}).setdefault("transform", {})
         slot = int(event.get("slot", 0))
-        plaque_segment["clip"]["transform"] = {"x": 0.23, "y": -0.19 - slot * 0.10}
+        text_x = REFERENCE_PHRASE_X if reference_style else 0.23
+        text_y = REFERENCE_PHRASE_Y - slot * 0.10
+        plaque_segment["clip"]["transform"] = {"x": text_x, "y": text_y}
         plaque_segment.setdefault("clip", {}).setdefault("scale", {})
         plaque_segment["clip"]["scale"] = {"x": 1.0, "y": 1.0}
         clear_manual_segment_animation(plaque_segment)
-        apply_segment_fade(plaque_segment, duration_us, peak_alpha=1.0)
+        if reference_text_style == "native":
+            add_reference_native_animation(plaque_segment, materials, reference_style)
         plaque_track["segments"].append(plaque_segment)
 
         segment = deep_clone(text_template_segment)
@@ -559,11 +761,12 @@ def export_draft(
             duration_us=duration_us,
         )
         segment.setdefault("clip", {}).setdefault("transform", {})
-        segment["clip"]["transform"] = {"x": 0.23, "y": -0.19 - slot * 0.10}
+        segment["clip"]["transform"] = {"x": text_x, "y": text_y}
         segment.setdefault("clip", {}).setdefault("scale", {})
         segment["clip"]["scale"] = {"x": 1.0, "y": 1.0}
         clear_manual_segment_animation(segment)
-        apply_segment_fade(segment, duration_us, peak_alpha=1.0)
+        if reference_text_style == "native":
+            add_reference_native_animation(segment, materials, reference_style)
         text_track["segments"].append(segment)
 
     audio_template_track = max(
@@ -618,6 +821,18 @@ def export_draft(
         meta["tm_draft_modified"] = now_us
         meta["tm_duration"] = total_us
         write_json(meta_path, meta)
+        timeline_materials_size = int(meta["draft_timeline_materials_size_"])
+    else:
+        timeline_materials_size = source_resource.stat().st_size + sum(path.stat().st_size for path in pop_resources)
+
+    register_root_meta_info(
+        draft_dir=draft_dir,
+        draft_id=draft_id,
+        draft_name=draft_dir.name,
+        duration_us=total_us,
+        now_us=now_us,
+        timeline_materials_size=timeline_materials_size,
+    )
 
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "capcut_native_draft_path.txt").write_text(str(draft_dir) + "\n", encoding="utf-8")
@@ -657,6 +872,8 @@ def main() -> None:
     parser.add_argument("--out-dir", required=True, type=Path)
     parser.add_argument("--template-name", default=DEFAULT_TEMPLATE_NAME)
     parser.add_argument("--draft-name", default=DEFAULT_DRAFT_NAME)
+    parser.add_argument("--reference-draft-name", default="")
+    parser.add_argument("--reference-text-style", choices=("off", "static", "native"), default="off")
     args = parser.parse_args()
     draft_dir = export_draft(
         manifest_path=args.manifest,
@@ -664,6 +881,8 @@ def main() -> None:
         out_dir=args.out_dir,
         template_name=args.template_name,
         draft_name=args.draft_name,
+        reference_draft_name=args.reference_draft_name or None,
+        reference_text_style=args.reference_text_style,
     )
     print(draft_dir)
 

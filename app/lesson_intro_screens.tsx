@@ -397,6 +397,8 @@ const FADE_DURATION_MS = 1400; // длинный плавный фейд
 const SLIDE_DURATION_MS = 1500; // длинный «дрейф» снизу
 const SLIDE_DISTANCE_PX = 44; // путь slide-up — больше воздуха
 const AUTO_SCROLL_DELAY_MS = 520; // даём блоку доехать до конца, потом скроллим
+const INTRO_HEADER_TOP_GAP = 8;
+const INTRO_HEADER_SCROLL_OFFSET = 70;
 const KIND_BY_INDEX: LessonIntroBlockKind[] = ['why', 'how', 'tip'];
 
 /**
@@ -1117,6 +1119,7 @@ export default function LessonIntroScreens({
   const headerLabel = `${lessonWord} ${lessonId}`;
   const lvlLabel = lessonLevelLabel(lessonId);
   const lvlColor = levelColor(lessonId, isLight);
+  const introHeaderTop = insets.top + INTRO_HEADER_TOP_GAP;
   const startLabel = triLang(lang, {
     ru: 'Начать урок',
     uk: 'Почати урок',
@@ -1178,33 +1181,18 @@ export default function LessonIntroScreens({
   return (
     <ScreenGradient>
       <LessonArtBackdrop variant="intro" />
-      <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
-        {/* Шапка: pill «Урок N · A1» + Skip */}
+      <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>
+        {/* Шапка: Back + pill «Урок N · A1» */}
         <Animated.View
           style={[
             styles.header,
-            { opacity: headerFade, transform: [{ translateY: headerFade.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] }) }] },
+            {
+              top: introHeaderTop,
+              opacity: headerFade,
+              transform: [{ translateY: headerFade.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] }) }],
+            },
           ]}
         >
-          <View
-            style={[
-              styles.headerPill,
-              {
-                backgroundColor: t.bgCard,
-                borderColor: t.borderHighlight,
-                ...getVolumetricShadow(themeMode, t, 1),
-              },
-            ]}
-          >
-            <Text style={[styles.headerText, { color: t.textPrimary, fontSize: f.caption }]}>
-              {headerLabel}
-            </Text>
-            <View style={[styles.headerDot, { backgroundColor: t.textMuted }]} />
-            <Text style={[styles.headerText, { color: lvlColor, fontSize: f.caption }]}>
-              {lvlLabel}
-            </Text>
-          </View>
-
           <TouchableOpacity
             testID="lesson-intro-back"
             accessibilityRole="button"
@@ -1224,6 +1212,25 @@ export default function LessonIntroScreens({
           >
             <Ionicons name="chevron-back" size={20} color={t.textMuted} />
           </TouchableOpacity>
+
+          <View
+            style={[
+              styles.headerPill,
+              {
+                backgroundColor: t.bgCard,
+                borderColor: t.borderHighlight,
+                ...getVolumetricShadow(themeMode, t, 1),
+              },
+            ]}
+          >
+            <Text style={[styles.headerText, { color: t.textPrimary, fontSize: f.caption }]} numberOfLines={1}>
+              {headerLabel}
+            </Text>
+            <View style={[styles.headerDot, { backgroundColor: t.textMuted }]} />
+            <Text style={[styles.headerText, { color: lvlColor, fontSize: f.caption }]} numberOfLines={1}>
+              {lvlLabel}
+            </Text>
+          </View>
         </Animated.View>
 
         {/* Скроллируемый список карточек.
@@ -1237,7 +1244,7 @@ export default function LessonIntroScreens({
         >
           <ScrollView
             ref={scrollRef}
-            contentContainerStyle={styles.scrollContent}
+            contentContainerStyle={[styles.scrollContent, { paddingTop: introHeaderTop + INTRO_HEADER_SCROLL_OFFSET }]}
             showsVerticalScrollIndicator
             keyboardShouldPersistTaps="handled"
             nestedScrollEnabled
@@ -1313,6 +1320,12 @@ export default function LessonIntroScreens({
 
 const styles = StyleSheet.create({
   header: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+    elevation: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -1324,6 +1337,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    maxWidth: '78%',
     paddingHorizontal: 14,
     paddingVertical: 7,
     borderRadius: 20,
@@ -1350,7 +1364,6 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: 18,
-    paddingTop: 14,
     paddingBottom: 28,
     flexGrow: 1,
   },

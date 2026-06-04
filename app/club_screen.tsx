@@ -19,6 +19,7 @@ import LeagueCrownName from '../components/LeagueCrownName';
 import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
+import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import {
   LEAGUES,
   clubDescForLang,
@@ -71,6 +72,20 @@ import { useLeagueChatUnread } from './use_league_chat_unread';
 import { checkAchievements } from './achievements';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { safeRouterBack } from './navigation_back';
+import { oskolokImageForPackShards } from './oskolok';
+import { getShardsBalance, replaceShardsBalanceLocal } from './shards_system';
+import {
+  LEAGUE_GROUP_BOOST_COST_SHARDS,
+  LEAGUE_GROUP_BOOST_DURATION_MS,
+  LEAGUE_GROUP_BOOST_MULTIPLIER,
+  buyLeagueGroupBoost,
+  cacheLeagueGroupBoost,
+  fetchLeagueGroupBoostLikedToday,
+  formatLeagueGroupBoostTimeLeft,
+  likeLeagueGroupBoostBuyer,
+  subscribeToActiveLeagueGroupBoost,
+  type LeagueGroupBoostState,
+} from './league_group_boosts';
 
 // v2 — bumped после фикса race на signInAnonymously + остановки резервной записи
 // в league_state_v3. Старый таймер мог хранить «не обновлять» с момента, когда
@@ -361,6 +376,14 @@ export default function ClubScreen() {
   const [leagueChestClaimed, setLeagueChestClaimed] = useState(false);
   const [leagueChestClaiming, setLeagueChestClaiming] = useState(false);
   const [leagueBonusAdminPreview, setLeagueBonusAdminPreview] = useState<LeagueBonusAdminPreview | null>(null);
+  const [activeGroupBoost, setActiveGroupBoost] = useState<LeagueGroupBoostState | null>(null);
+  const [groupBoostTimeLeft, setGroupBoostTimeLeft] = useState('');
+  const [groupBoostConfirmVisible, setGroupBoostConfirmVisible] = useState(false);
+  const [groupBoostBuying, setGroupBoostBuying] = useState(false);
+  const [groupBoostLikeBusy, setGroupBoostLikeBusy] = useState(false);
+  const [groupBoostLikedToday, setGroupBoostLikedToday] = useState(false);
+  const [groupBoostLikeTotal, setGroupBoostLikeTotal] = useState(0);
+  const activeGroupBoostRef = useRef<LeagueGroupBoostState | null>(null);
   const [leagueCrownsByUid, setLeagueCrownsByUid] = useState<Record<string, { expiresAt: number }>>({});
   const [leagueChestOpenModal, setLeagueChestOpenModal] = useState<{
     crownName?: string;
@@ -633,6 +656,50 @@ export default function ClubScreen() {
   }, [loadData]);
 
   useEffect(() => {
+    activeGroupBoostRef.current = activeGroupBoost;
+  }, [activeGroupBoost]);
+
+  useEffect(() => subscribeToActiveLeagueGroupBoost((boost) => {
+    if (!isMountedRef.current) return;
+    if (!boost && activeGroupBoostRef.current && activeGroupBoostRef.current.expiresAt > Date.now()) return;
+    setActiveGroupBoost(boost);
+    setGroupBoostLikeTotal(boost?.likeCount ?? 0);
+  }), []);
+
+  useEffect(() => {
+    let cancelled = false;
+    void fetchLeagueGroupBoostLikedToday(activeGroupBoost)
+      .then((liked) => {
+        if (!cancelled && isMountedRef.current) setGroupBoostLikedToday(liked);
+      })
+      .catch(() => {
+        if (!cancelled && isMountedRef.current) setGroupBoostLikedToday(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [activeGroupBoost?.buyerUid, activeGroupBoost?.likeEventId]);
+
+  useEffect(() => {
+    if (!activeGroupBoost) {
+      setGroupBoostTimeLeft('');
+      return;
+    }
+    const update = () => {
+      const live = activeGroupBoost.expiresAt > Date.now();
+      if (!live) {
+        setActiveGroupBoost(null);
+        setGroupBoostTimeLeft('');
+        return;
+      }
+      setGroupBoostTimeLeft(formatLeagueGroupBoostTimeLeft(activeGroupBoost.expiresAt));
+    };
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
+  }, [activeGroupBoost?.expiresAt]);
+
+  useEffect(() => {
     if (clubTab !== 'chat') return;
     const now = Date.now();
     if (now - chatMetaRefreshAtRef.current < 15_000) return;
@@ -853,6 +920,118 @@ export default function ClubScreen() {
       messageEs: message,
     });
   }, []);
+
+  const handleBuyGroupBoost = useCallback(() => {
+    if (activeGroupBoost || groupBoostBuying) return;
+    setGroupBoostConfirmVisible(true);
+  }, [activeGroupBoost, groupBoostBuying]);
+
+  const makeOptimisticGroupBoost = useCallback((): LeagueGroupBoostState => {
+    const now = Date.now();
+    const me = sortedGroup.find((p) => p.isMe);
+    const buyerUid = arenaClubStableUid || me?.uid || `local_${now}`;
+    const groupId = leagueGroupMeta?.groupId || '';
+    const weekId = leagueGroupMeta?.weekId || getWeekId();
+    return {
+      groupId,
+      weekId,
+      leagueId: leagueGroupMeta?.leagueId ?? myLeagueId,
+      multiplier: LEAGUE_GROUP_BOOST_MULTIPLIER,
+      startedAt: now,
+      expiresAt: now + LEAGUE_GROUP_BOOST_DURATION_MS,
+      buyerUid,
+      buyerName: (userName || me?.name || 'Player').trim() || 'Player',
+      buyerAvatar: myAvatarEmoji || me?.avatar || null,
+      buyerFrame: myFrameId || me?.frame || null,
+      buyerAura: myAuraId || me?.aura || null,
+      buyerTotalXp: Math.max(0, Math.floor(Number(playerXP || me?.totalXp || me?.points || 0))),
+      buyerProfileCardLevel: Math.max(0, Math.floor(Number(me?.profileCardLevel || 0))),
+      buyerProfileCardTheme: me?.profileCardTheme,
+      buyerProfileCardMotion: me?.profileCardMotion,
+      buyerProfileCardPublicFocus: me?.profileCardPublicFocus,
+      likeEventId: `league_group_boost_${weekId}_${groupId || buyerUid}_${now}`,
+      likeCount: 0,
+    };
+  }, [arenaClubStableUid, leagueGroupMeta?.groupId, leagueGroupMeta?.leagueId, leagueGroupMeta?.weekId, myAuraId, myAvatarEmoji, myFrameId, myLeagueId, playerXP, sortedGroup, userName]);
+
+  const performBuyGroupBoost = useCallback(async () => {
+    if (activeGroupBoost || groupBoostBuying) return;
+    const previousBoost: LeagueGroupBoostState | null = null;
+    const previousBalance = await getShardsBalance().catch(() => null);
+    if (previousBalance !== null && previousBalance < LEAGUE_GROUP_BOOST_COST_SHARDS) {
+      showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} осколков`, 'error');
+      return;
+    }
+    const optimisticBoost = makeOptimisticGroupBoost();
+    setActiveGroupBoost(optimisticBoost);
+    setGroupBoostLikeTotal(0);
+    setGroupBoostLikedToday(false);
+    setGroupBoostConfirmVisible(false);
+    void cacheLeagueGroupBoost(optimisticBoost);
+    if (previousBalance !== null) {
+      void replaceShardsBalanceLocal(Math.max(0, previousBalance - LEAGUE_GROUP_BOOST_COST_SHARDS));
+    }
+    setGroupBoostBuying(true);
+    try {
+      const res = await buyLeagueGroupBoost();
+      if (res.ok) {
+        setActiveGroupBoost(res.boost);
+        setGroupBoostLikeTotal(res.boost.likeCount);
+        showLeagueToast(`Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} включен для всей лиги на 3 часа`, 'success');
+        return;
+      }
+      const shouldRollback = res.reason === 'active' || res.reason === 'not_enough_shards' || res.reason === 'no_current_group';
+      if (shouldRollback) {
+        setActiveGroupBoost(previousBoost);
+        setGroupBoostLikeTotal(0);
+        void cacheLeagueGroupBoost(previousBoost);
+        if (previousBalance !== null) void replaceShardsBalanceLocal(previousBalance);
+      }
+      if (res.reason === 'active') {
+        showLeagueToast('Буст уже активен. Новый можно купить после таймера.', 'info');
+      } else if (res.reason === 'not_enough_shards') {
+        showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} осколков`, 'error');
+      } else if (res.reason === 'no_current_group') {
+        showLeagueToast('Сначала обнови лигу недели и попробуй снова.', 'info');
+      } else {
+        showLeagueToast('Буст включен. Сервер обновит лигу в фоне.', 'info');
+      }
+    } finally {
+      if (isMountedRef.current) setGroupBoostBuying(false);
+    }
+  }, [activeGroupBoost, groupBoostBuying, makeOptimisticGroupBoost, showLeagueToast]);
+
+  const handleLikeGroupBoostBuyer = useCallback(async () => {
+    if (!activeGroupBoost || groupBoostLikedToday || groupBoostLikeBusy) return;
+    if (activeGroupBoost.buyerUid === arenaClubStableUid) {
+      showLeagueToast('Это твой буст. Лайки оставим другим игрокам.', 'info');
+      return;
+    }
+    const previousBoost = activeGroupBoost;
+    const previousTotal = groupBoostLikeTotal;
+    const optimisticTotal = Math.max(groupBoostLikeTotal, activeGroupBoost.likeCount) + 1;
+    const optimisticBoost = { ...activeGroupBoost, likeCount: optimisticTotal };
+    setGroupBoostLikedToday(true);
+    setGroupBoostLikeTotal(optimisticTotal);
+    setActiveGroupBoost(optimisticBoost);
+    void cacheLeagueGroupBoost(optimisticBoost);
+    setGroupBoostLikeBusy(true);
+    try {
+      const total = await likeLeagueGroupBoostBuyer(activeGroupBoost, userName);
+      setGroupBoostLikeTotal(total);
+      const confirmedBoost = { ...activeGroupBoost, likeCount: total };
+      setActiveGroupBoost(confirmedBoost);
+      void cacheLeagueGroupBoost(confirmedBoost);
+    } catch {
+      setGroupBoostLikedToday(false);
+      setGroupBoostLikeTotal(previousTotal);
+      setActiveGroupBoost(previousBoost);
+      void cacheLeagueGroupBoost(previousBoost);
+      showLeagueToast('Сегодня лайк уже использован или связь недоступна', 'info');
+    } finally {
+      if (isMountedRef.current) setGroupBoostLikeBusy(false);
+    }
+  }, [activeGroupBoost, arenaClubStableUid, groupBoostLikeBusy, groupBoostLikeTotal, groupBoostLikedToday, showLeagueToast, userName]);
 
   const onSnapToLeague = useCallback((x: number) => {
     const raw = Math.round(x / LEAGUE_ITEM_FULL);
@@ -1227,6 +1406,125 @@ export default function ClubScreen() {
               {leagueChestProgress.toLocaleString()} / {leagueChestGoal.toLocaleString()} XP
             </Text>
           </View>
+          <LinearGradient
+            testID="league-group-boost-card"
+            colors={activeGroupBoost ? ['rgba(255,91,108,0.24)', 'rgba(255,212,59,0.12)'] : ['rgba(255,255,255,0.055)', 'rgba(255,255,255,0.025)']}
+            start={{ x:0, y:0 }}
+            end={{ x:1, y:1 }}
+            style={{ borderRadius:13, borderWidth:0.5, borderColor:activeGroupBoost ? 'rgba(255,212,59,0.34)' : leagueBonusPalette.innerBorder, padding:10, gap:10 }}
+          >
+            <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
+              <View style={{ width:36, height:36, borderRadius:18, backgroundColor:'rgba(255,91,108,0.18)', borderWidth:0.5, borderColor:'rgba(255,91,108,0.34)', alignItems:'center', justifyContent:'center' }}>
+                <Ionicons name={activeGroupBoost ? 'flash' : 'flash-outline'} size={19} color={activeGroupBoost ? '#FFD43B' : leagueBonusPalette.accent} />
+              </View>
+              <View style={{ flex:1, minWidth:0 }}>
+                <Text style={{ color:t.textPrimary, fontSize:f.caption, lineHeight:Math.max(15, f.caption + 3), fontWeight:'900' }} numberOfLines={2}>
+                  {activeGroupBoost ? 'Общий буст лиги ×2' : '×2 XP для всей лиги'}
+                </Text>
+                <Text style={{ color:t.textMuted, fontSize:Math.max(10, f.caption - 1), lineHeight:Math.max(13, f.caption + 1), fontWeight:'700', marginTop:2 }} numberOfLines={2}>
+                  {activeGroupBoost ? `Осталось ${groupBoostTimeLeft || '...'}` : '3 часа для всех участников'}
+                </Text>
+              </View>
+            </View>
+            <TouchableOpacity
+              testID="league-group-boost-buy"
+              activeOpacity={activeGroupBoost ? 1 : 0.86}
+              disabled={!!activeGroupBoost || groupBoostBuying}
+              onPress={() => { handleBuyGroupBoost(); }}
+              style={{
+                minHeight: 44,
+                width: '100%',
+                borderRadius: 12,
+                paddingHorizontal: 12,
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'row',
+                gap: 7,
+                backgroundColor: activeGroupBoost ? 'rgba(255,255,255,0.08)' : t.accent,
+                borderWidth: 0.5,
+                borderColor: activeGroupBoost ? 'rgba(255,255,255,0.16)' : t.accent,
+                opacity: groupBoostBuying ? 0.7 : 1,
+              }}
+            >
+              <Text adjustsFontSizeToFit numberOfLines={1} style={{ color:activeGroupBoost ? t.textMuted : t.correctText, fontSize:f.caption, fontWeight:'900' }}>
+                {activeGroupBoost ? 'Активен' : (groupBoostBuying ? 'Включаем...' : 'Купить')}
+              </Text>
+              {!activeGroupBoost && (
+                <View style={{ flexDirection:'row', alignItems:'center', gap:4 }}>
+                  <Text style={{ color:t.correctText, fontSize:f.caption, fontWeight:'900' }}>
+                    {LEAGUE_GROUP_BOOST_COST_SHARDS}
+                  </Text>
+                  <Image
+                    source={oskolokImageForPackShards(LEAGUE_GROUP_BOOST_COST_SHARDS, themeMode)}
+                    style={{ width:16, height:16 }}
+                    resizeMode="contain"
+                  />
+                </View>
+              )}
+            </TouchableOpacity>
+            {!!activeGroupBoost && (
+              <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
+                <TouchableOpacity
+                  testID="league-group-boost-buyer"
+                  activeOpacity={0.76}
+                  onPress={() => setProfile({
+                    name: activeGroupBoost.buyerName,
+                    points: activeGroupBoost.buyerTotalXp ?? 0,
+                    totalXp: activeGroupBoost.buyerTotalXp ?? undefined,
+                    isMe: activeGroupBoost.buyerUid === arenaClubStableUid,
+                    leagueId: activeGroupBoost.leagueId || myLeague.id,
+                    uid: activeGroupBoost.buyerUid,
+                    avatar: activeGroupBoost.buyerAvatar ?? undefined,
+                    frame: activeGroupBoost.buyerFrame ?? undefined,
+                    aura: activeGroupBoost.buyerAura ?? undefined,
+                    profileCardLevel: activeGroupBoost.buyerProfileCardLevel,
+                    profileCardTheme: activeGroupBoost.buyerProfileCardTheme,
+                    profileCardMotion: activeGroupBoost.buyerProfileCardMotion,
+                    profileCardPublicFocus: activeGroupBoost.buyerProfileCardPublicFocus,
+                  })}
+                  style={{ flexDirection:'row', alignItems:'center', gap:8, flex:1, minWidth:0 }}
+                >
+                  <AvatarView
+                    avatar={activeGroupBoost.buyerAvatar || String(getBestAvatarForLevel(getLevelFromXP(activeGroupBoost.buyerTotalXp ?? 0)))}
+                    totalXP={activeGroupBoost.buyerTotalXp ?? 0}
+                    size={34}
+                    auraId={activeGroupBoost.buyerAura ?? undefined}
+                  />
+                  <View style={{ flex:1, minWidth:0 }}>
+                    <Text style={{ color:t.textPrimary, fontSize:f.caption, fontWeight:'900' }} numberOfLines={1}>
+                      {activeGroupBoost.buyerName}
+                    </Text>
+                    <Text style={{ color:t.textMuted, fontSize:Math.max(10, f.caption - 1), fontWeight:'700' }} numberOfLines={1}>
+                      Купил буст для лиги
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  testID="league-group-boost-like"
+                  activeOpacity={0.82}
+                  disabled={groupBoostLikeBusy || groupBoostLikedToday || activeGroupBoost.buyerUid === arenaClubStableUid}
+                  onPress={() => { void handleLikeGroupBoostBuyer(); }}
+                  style={{
+                    minHeight: 40,
+                    borderRadius: 12,
+                    paddingHorizontal: 10,
+                    flexDirection:'row',
+                    alignItems:'center',
+                    gap:6,
+                    backgroundColor: groupBoostLikedToday ? 'rgba(255,45,85,0.11)' : 'rgba(255,45,85,0.18)',
+                    borderWidth: 0.5,
+                    borderColor: groupBoostLikedToday ? 'rgba(255,45,85,0.20)' : 'rgba(255,45,85,0.38)',
+                    opacity: activeGroupBoost.buyerUid === arenaClubStableUid ? 0.55 : 1,
+                  }}
+                >
+                  <Ionicons name={groupBoostLikedToday ? 'heart' : 'heart-outline'} size={17} color="#FF5B7C" />
+                  <Text style={{ color:'#FF8FA3', fontSize:f.caption, fontWeight:'900' }}>
+                    {Math.max(groupBoostLikeTotal, activeGroupBoost.likeCount)}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          </LinearGradient>
           {!!leagueCrownWinnerName && (
             <View style={{ flexDirection:'row', alignItems:'center', gap:6, paddingTop:2 }}>
               <Ionicons name="trophy-outline" size={15} color={leagueCrownAccent} />
@@ -1427,6 +1725,7 @@ export default function ClubScreen() {
                 style={{
                   flexDirection:'row', alignItems:'center',
                   paddingHorizontal:16, paddingVertical:11,
+                  minHeight: ROW_HEIGHT_CLUB,
                   borderBottomWidth: i < sortedGroup.length - 1 ? 0.5 : 0,
                   borderBottomColor: t.border,
                   backgroundColor: rowFinalBg,
@@ -1445,18 +1744,27 @@ export default function ClubScreen() {
                   shadowRadius: hasLeagueCrown ? 8 : 0,
                   shadowOffset: { width: 0, height: 0 },
                 }}>
-                  <PremiumAvatarHalo
-                    enabled={rowUsesPremiumAura}
-                    avatarSize={CLUB_LEADERBOARD_AVATAR_SIZE}
-                    maskColor={rowMask}
+                  <View
+                    style={{
+                      width: CLUB_LEADERBOARD_AVATAR_SIZE,
+                      height: CLUB_LEADERBOARD_AVATAR_SIZE,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
                   >
-                    <AvatarView
-                      avatar={rowAvatar}
-                      totalXP={rowXp}
-                      size={CLUB_LEADERBOARD_AVATAR_SIZE}
-                      auraId={rowUsesPremiumAura ? undefined : rowEffectiveAura}
-                    />
-                  </PremiumAvatarHalo>
+                    <PremiumAvatarHalo
+                      enabled={rowUsesPremiumAura}
+                      avatarSize={CLUB_LEADERBOARD_AVATAR_SIZE}
+                      maskColor={rowMask}
+                    >
+                      <AvatarView
+                        avatar={rowAvatar}
+                        totalXP={rowXp}
+                        size={CLUB_LEADERBOARD_AVATAR_SIZE}
+                        auraId={rowUsesPremiumAura ? undefined : rowEffectiveAura}
+                      />
+                    </PremiumAvatarHalo>
+                  </View>
                 </View>
                 <View style={{ flex:1, minWidth: 0 }}>
                   {hasLeagueCrown ? (
@@ -1589,6 +1897,39 @@ export default function ClubScreen() {
           </Pressable>
         </Pressable>
       </Modal>
+
+      <ThemedConfirmModal
+        visible={groupBoostConfirmVisible}
+        title="Включить буст лиги?"
+        messageNode={(
+          <View style={{ gap:10 }}>
+            <Text style={{ color:t.textMuted, fontSize:f.body, lineHeight:f.body * 1.45, fontWeight:'700' }}>
+              Все участники лиги будут получать ×2 XP в течение 3 часов.
+            </Text>
+            <View style={{ flexDirection:'row', alignItems:'center', gap:7 }}>
+              <Text style={{ color:t.textMuted, fontSize:f.body, fontWeight:'800' }}>
+                Стоимость:
+              </Text>
+              <Image
+                source={oskolokImageForPackShards(LEAGUE_GROUP_BOOST_COST_SHARDS, themeMode)}
+                style={{ width:20, height:20 }}
+                resizeMode="contain"
+              />
+              <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900' }}>
+                {LEAGUE_GROUP_BOOST_COST_SHARDS}
+              </Text>
+            </View>
+          </View>
+        )}
+        cancelLabel="Отмена"
+        confirmLabel={groupBoostBuying ? 'Включаем...' : `Включить за ${LEAGUE_GROUP_BOOST_COST_SHARDS}`}
+        confirmVariant="accent"
+        testIDPrefix="league-group-boost-confirm"
+        onCancel={() => {
+          if (!groupBoostBuying) setGroupBoostConfirmVisible(false);
+        }}
+        onConfirm={() => { void performBuyGroupBoost(); }}
+      />
 
       <LeagueChestOpenModal
         visible={leagueRaceVisible && leagueChestOpenModal !== null}

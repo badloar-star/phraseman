@@ -3,18 +3,11 @@
 import { initializeApp, cert } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import { readFileSync } from 'fs';
+import { getLevelFromXP } from './lib/xp_levels.mjs';
 
 const sa = JSON.parse(readFileSync('./service-account.json', 'utf8'));
 initializeApp({ credential: cert(sa) });
 const db = getFirestore();
-
-const TOTAL_XP_FOR_LEVEL = (l) => Math.max(0, (l - 1) ** 2 * 50);
-const getLevelFromXP = (xp) => {
-  let level = Math.floor(Math.sqrt(xp / 50)) + 1;
-  while (TOTAL_XP_FOR_LEVEL(level + 1) <= xp) level++;
-  while (level > 1 && TOTAL_XP_FOR_LEVEL(level) > xp) level--;
-  return Math.min(level, 50);
-};
 
 let fixed = 0;
 let lastDoc = null;

@@ -108,6 +108,12 @@ service cloud.firestore {
       allow delete: if userDocOwnerMatchesAuth(userId);
     }
 
+    match /public_profiles/{userId} {
+      allow read: if request.auth != null;
+      allow create, update: if canonicalUserMatchesAuth(userId);
+      allow delete: if userDocOwnerMatchesAuth(userId);
+    }
+
     // Public aggregate percentile thresholds written by Cloud Functions.
     match /leaderboard_stats/{docId} {
       allow read: if true;
@@ -505,6 +511,17 @@ service cloud.firestore {
     match /admin_log/{docId} {
       allow read, create: if isAdmin();
       allow update, delete: if false;
+    }
+
+    match /telegram_premium_orders/{orderId} {
+      allow read: if isAdmin();
+      allow update: if isAdmin();
+      allow create, delete: if false;
+    }
+
+    match /telegram_premium_bot/{docId} {
+      allow read: if isAdmin();
+      allow create, update, delete: if false;
     }
 
     // â”€â”€ Community (UGC) packs â€” Ð·Ð°Ð¿Ð¸ÑÑŒ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ‡ÐµÑ€ÐµÐ· Cloud Functions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€

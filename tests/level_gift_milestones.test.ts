@@ -9,7 +9,9 @@ import {
 import {
   CUSTOM_AVATAR_GIFT_POOL,
   CUSTOM_AVATAR_SHOP,
+  getCustomAvatarGiftWeight,
   isCustomAvatarGiftOnly,
+  isCustomAvatarShardShop,
 } from '../constants/custom_avatars';
 
 jest.mock('@react-native-async-storage/async-storage');
@@ -148,7 +150,7 @@ describe('level gift milestone rewards', () => {
     const result = await applyGift(gift, 'TestUser', 3, 5, jest.fn());
 
     const unlocked = result.cosmeticUnlocked;
-    expect(CUSTOM_AVATAR_GIFT_POOL).toHaveLength(30);
+    expect(CUSTOM_AVATAR_GIFT_POOL).toHaveLength(40);
     expect(unlocked).toMatchObject({ kind: 'avatar' });
     expect(CUSTOM_AVATAR_GIFT_POOL.some((avatar) => avatar.id === unlocked?.id)).toBe(true);
     expect(unlocked?.gradientId).toBeTruthy();
@@ -161,8 +163,16 @@ describe('level gift milestone rewards', () => {
   });
 
   it('keeps people and animal avatars out of the shard shop', () => {
-    expect(CUSTOM_AVATAR_SHOP).toHaveLength(10);
+    expect(CUSTOM_AVATAR_SHOP).toHaveLength(22);
     expect(CUSTOM_AVATAR_SHOP.every((avatar) => !isCustomAvatarGiftOnly(avatar.id))).toBe(true);
+    expect(CUSTOM_AVATAR_SHOP.every((avatar) => isCustomAvatarShardShop(avatar.id))).toBe(true);
+    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-21')).toBe(false);
+    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-41')).toBe(true);
+    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-62')).toBe(true);
     expect(CUSTOM_AVATAR_GIFT_POOL.some((avatar) => isCustomAvatarGiftOnly(avatar.id))).toBe(true);
+    expect(CUSTOM_AVATAR_GIFT_POOL.some((avatar) => avatar.id === 'custom-gen-41')).toBe(false);
+    expect(CUSTOM_AVATAR_GIFT_POOL.some((avatar) => avatar.id === 'custom-gen-62')).toBe(false);
+    expect(isCustomAvatarGiftOnly('custom-gen-31')).toBe(true);
+    expect(getCustomAvatarGiftWeight('custom-gen-31')).toBeLessThan(getCustomAvatarGiftWeight('custom-gen-21'));
   });
 });

@@ -269,6 +269,13 @@ describe('lesson phrases regression', () => {
         phraseAnswerAlternatives(lesson8Phrase26!, 'en'),
       ),
     ).toBe(true);
+    expect(
+      isCorrectAnswer(
+        'We have class on Tuesday',
+        phraseCanonicalAnswer(lesson8Phrase26!, 'en'),
+        phraseAnswerAlternatives(lesson8Phrase26!, 'en'),
+      ),
+    ).toBe(false);
 
     const lesson9Phrase45 = LESSON_DATA[9].phrases.find((phrase) => phrase.id === 'lesson9_phrase_45');
     expect(lesson9Phrase45).toMatchObject({

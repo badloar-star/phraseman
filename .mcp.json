@@ -1,5 +1,6 @@
 {
-  "mcpServers": {
+  "mcpServers": {},
+  "disabledMcpServers": {
     "n8n-mcp": {
       "command": "npx",
       "args": ["n8n-mcp"],

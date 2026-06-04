@@ -25,7 +25,7 @@ export interface FriendEvent {
 
 const CACHE_KEY = 'friends_activity_feed_v2';
 const LEGACY_CACHE_KEYS = ['friends_activity_feed_v1'];
-const CACHE_TTL_MS = 30 * 60 * 1000; // 30 минут — не фетчим чаще
+const CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 const MAX_EVENTS_PER_FRIEND = 15;
 
 /** Стабильный id для level_up — клиент и Cloud Function пишут один документ, без дублей в ленте. */

@@ -54,6 +54,7 @@ const CLEANUP_WINDOW_LIMIT = 500;
 const MATCHED_QUEUE_TTL_MS = 2 * 60 * 1000;
 /** Документ с sessionId, но без matchedAt (legacy / сбой) — удаляем строку очереди по давности joinedAt */
 const MATCHED_QUEUE_NO_MATCHED_AT_MS = 10 * 60 * 1000;
+let lastPublishedSearchingCount = null;
 function queueUserId(e) {
     const u = e.userId;
     if (typeof u === 'string' && u.length > 0)
@@ -134,6 +135,9 @@ async function publishMatchmakingSearchingCount() {
     catch {
         n = (await readQueueWindow()).filter(e => !e.sessionId).length;
     }
+    if (lastPublishedSearchingCount === n)
+        return;
+    lastPublishedSearchingCount = n;
     await db.doc(APP_META_MATCHMAKING).set({ searchingCount: n, updatedAt: Date.now() }, { merge: true });
 }
 /** Документы с sessionId не попадают в stale-чистку по joinedAt; убираем по matchedAt или legacy без timestamp. */

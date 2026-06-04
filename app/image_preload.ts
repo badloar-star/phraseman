@@ -76,9 +76,9 @@ const ARENA_ACTION_IMAGES = [
   require('../assets/images/arena_actions/arena-action-match-minimalLight.webp'),
   require('../assets/images/arena_actions/arena-action-friend-minimalLight.webp'),
   require('../assets/images/arena_actions/arena-action-throne-minimalLight.webp'),
-  require('../assets/images/arena_actions/arena-action-match-minimalDark.webp'),
-  require('../assets/images/arena_actions/arena-action-friend-minimalDark.webp'),
-  require('../assets/images/arena_actions/arena-action-throne-minimalDark.webp'),
+  require('../assets/images/arena_actions/arena-action-match-compass-premium.webp'),
+  require('../assets/images/arena_actions/arena-action-friend-compass-premium.webp'),
+  require('../assets/images/arena_actions/arena-action-throne-compass-premium.webp'),
 ];
 
 const LESSON_INTRO_CTA_IMAGES = [

@@ -3,6 +3,7 @@ import { triLang, type Lang } from '../../constants/i18n';
 import type { FlashcardMarketPack } from './marketplace';
 import {
   OFFICIAL_DARK_LOGIC_EN_ID,
+  OFFICIAL_MOVIE_SERIES_EN_ID,
   OFFICIAL_NEGOTIATOR_EN_ID,
   OFFICIAL_PEAKY_BLINDERS_EN_ID,
   OFFICIAL_PREP_AT_EN_ID,
@@ -10,6 +11,7 @@ import {
   OFFICIAL_PREP_IN_EN_ID,
   OFFICIAL_PREP_ON_EN_ID,
   OFFICIAL_PREP_TO_EN_ID,
+  OFFICIAL_PHRASAL_VERBS_EN_ID,
   OFFICIAL_ROYAL_TEA_EN_ID,
   OFFICIAL_WILD_WEST_EN_ID,
 } from './bundles/packIds';
@@ -57,6 +59,8 @@ export type FlashcardBackId =
   | typeof OFFICIAL_PREP_AT_EN_ID
   | typeof OFFICIAL_PREP_TO_EN_ID
   | typeof OFFICIAL_PREP_BY_EN_ID
+  | typeof OFFICIAL_PHRASAL_VERBS_EN_ID
+  | typeof OFFICIAL_MOVIE_SERIES_EN_ID
   | typeof OFFICIAL_NEGOTIATOR_EN_ID
   | typeof OFFICIAL_DARK_LOGIC_EN_ID
   | typeof OFFICIAL_WILD_WEST_EN_ID
@@ -69,6 +73,8 @@ const CARD_BACK_IMAGE: Record<string, ImageSourcePropType> = {
   [OFFICIAL_PREP_AT_EN_ID]: require('../../assets/images/flashcard_backs/official_prep_at_en.webp'),
   [OFFICIAL_PREP_TO_EN_ID]: require('../../assets/images/flashcard_backs/official_prep_to_en.webp'),
   [OFFICIAL_PREP_BY_EN_ID]: require('../../assets/images/flashcard_backs/official_prep_by_en.webp'),
+  [OFFICIAL_PHRASAL_VERBS_EN_ID]: require('../../assets/images/flashcard_backs/official_phrasal_verbs_en.webp'),
+  [OFFICIAL_MOVIE_SERIES_EN_ID]: require('../../assets/images/flashcard_backs/official_movie_series_en.webp'),
   [OFFICIAL_NEGOTIATOR_EN_ID]: require('../../assets/images/flashcard_backs/official_negotiator_en.webp'),
   [OFFICIAL_DARK_LOGIC_EN_ID]: require('../../assets/images/flashcard_backs/official_dark_logic_en.webp'),
   [OFFICIAL_WILD_WEST_EN_ID]: require('../../assets/images/flashcard_backs/official_wild_west_en.webp'),
@@ -112,6 +118,8 @@ const CARD_BACK_FAN_IMAGE: Record<string, ImageSourcePropType> = {
   [OFFICIAL_PREP_AT_EN_ID]: require('../../assets/images/flashcard_backs/official_prep_at_en_fan.webp'),
   [OFFICIAL_PREP_TO_EN_ID]: require('../../assets/images/flashcard_backs/official_prep_to_en_fan.webp'),
   [OFFICIAL_PREP_BY_EN_ID]: require('../../assets/images/flashcard_backs/official_prep_by_en_fan.webp'),
+  [OFFICIAL_PHRASAL_VERBS_EN_ID]: require('../../assets/images/flashcard_backs/official_phrasal_verbs_en_fan.webp'),
+  [OFFICIAL_MOVIE_SERIES_EN_ID]: require('../../assets/images/flashcard_backs/official_movie_series_en_fan.webp'),
   [OFFICIAL_NEGOTIATOR_EN_ID]: require('../../assets/images/flashcard_backs/official_negotiator_en_fan.webp'),
   [OFFICIAL_DARK_LOGIC_EN_ID]: require('../../assets/images/flashcard_backs/official_dark_logic_en_fan.webp'),
   [OFFICIAL_WILD_WEST_EN_ID]: require('../../assets/images/flashcard_backs/official_wild_west_en_fan.webp'),

@@ -8,6 +8,7 @@ const ENERGY_IMAGES: Record<ThemeMode, any> = {
   gold: require('../assets/images/energy/energy-gold.webp'),
   coral: require('../assets/images/energy/energy-coral.webp'),
   minimalDark: require('../assets/images/energy/energy-graphite.webp'),
+  compass: require('../assets/images/energy/compass-premium/energy-compass-premium.webp'),
   minimalLight: require('../assets/images/energy/energy-sketch.webp'),
 };
 

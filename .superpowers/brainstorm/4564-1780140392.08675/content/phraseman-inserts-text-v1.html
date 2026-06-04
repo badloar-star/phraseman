@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phraseman Video Inserts</title>
+  <style>
+    :root {
+      --ink: #111827;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --accent: #16a34a;
+      --accent-soft: #dcfce7;
+      --blue: #2563eb;
+      --blue-soft: #dbeafe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #f8fafc;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    main {
+      width: min(1180px, calc(100vw - 40px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .top {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 54px);
+      line-height: 1.02;
+      letter-spacing: 0;
+      max-width: 780px;
+    }
+
+    .sub {
+      margin: 10px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 8px;
+      min-height: 44px;
+      padding: 0 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+
+    button:hover {
+      border-color: #94a3b8;
+      background: #f1f5f9;
+    }
+
+    .primary {
+      border-color: #bbf7d0;
+      background: var(--accent-soft);
+      color: #14532d;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.06);
+      min-width: 0;
+    }
+
+    .screen {
+      aspect-ratio: 16 / 9;
+      background: #fff;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7%;
+      isolation: isolate;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(22, 163, 74, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.65;
+      z-index: -1;
+    }
+
+    .marker {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+
+    .qr {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      width: 54px;
+      height: 54px;
+      border: 6px solid #0f172a;
+      background:
+        linear-gradient(90deg, #0f172a 8px, transparent 8px 16px, #0f172a 16px 24px, transparent 24px),
+        linear-gradient(#0f172a 8px, transparent 8px 16px, #0f172a 16px 24px, transparent 24px);
+      background-size: 24px 24px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 300ms ease, transform 300ms ease;
+    }
+
+    .card.qr-on .qr {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .copy {
+      text-align: center;
+      width: min(92%, 720px);
+    }
+
+    .kicker {
+      margin: 0 0 14px;
+      color: var(--blue);
+      font-size: clamp(12px, 1.3vw, 16px);
+      line-height: 1.3;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      min-height: 1.3em;
+    }
+
+    .headline {
+      margin: 0;
+      font-size: clamp(28px, 4.3vw, 56px);
+      line-height: 1.04;
+      letter-spacing: 0;
+      font-weight: 850;
+      min-height: 2.1em;
+    }
+
+    .body {
+      margin: 18px auto 0;
+      color: #334155;
+      font-size: clamp(15px, 1.7vw, 21px);
+      line-height: 1.35;
+      max-width: 520px;
+      min-height: 2.7em;
+    }
+
+    .typed::after {
+      content: "";
+      display: inline-block;
+      width: 0.08em;
+      height: 0.9em;
+      margin-left: 0.08em;
+      background: var(--accent);
+      vertical-align: -0.08em;
+      animation: caret 740ms steps(1) infinite;
+    }
+
+    @keyframes caret {
+      50% { opacity: 0; }
+    }
+
+    .meta {
+      padding: 16px;
+    }
+
+    .meta h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .meta p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .script {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      font-size: 14px;
+      line-height: 1.5;
+      color: #1f2937;
+    }
+
+    .script strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+
+    .approaches {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .approach {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .approach h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .approach p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .top { align-items: start; flex-direction: column; }
+      .controls { justify-content: flex-start; }
+      .grid, .approaches { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="top">
+      <div>
+        <h1>Три рекламные вставки Phraseman</h1>
+        <p class="sub">Белый фон, короткий текст, озвучка красивым голосом, футуристичный набор символов. Смысл: сначала интрига, потом раскрытие, затем жесткие преимущества.</p>
+      </div>
+      <div class="controls">
+        <button onclick="replayAll()">Повторить набор</button>
+        <button class="primary" onclick="toggleSound()">Звук: выкл</button>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card" id="card1">
+        <div class="screen">
+          <div class="marker">insert 01 / intrigue</div>
+          <div class="copy">
+            <p class="kicker typed" data-text="между фразами"></p>
+            <h2 class="headline typed" data-text="Можно не просто слушать. Можно тренировать."></h2>
+            <p class="body typed" data-text="Пара свободных минут вместо ленты. И фраза уже не просто звучит, а вспоминается."></p>
+          </div>
+        </div>
+        <div class="meta">
+          <h2>1. Намек без бренда</h2>
+          <p>Сохраняем интригу: зритель еще не понимает, что это реклама приложения, но получает сильную мысль про практику вместо скроллинга.</p>
+          <div class="script">
+            <strong>Озвучка</strong>
+            Эти фразы можно не только слушать. Их можно тренировать. Даже когда есть две свободные минуты. Вместо того чтобы открыть ленту.
+          </div>
+        </div>
+      </article>
+
+      <article class="card qr-on" id="card2">
+        <div class="screen">
+          <div class="marker">insert 02 / reveal</div>
+          <div class="copy">
+            <p class="kicker typed" data-text="phraseman"></p>
+            <h2 class="headline typed" data-text="Открыл. Собрал фразу. Проверил себя."></h2>
+            <p class="body typed" data-text="Phraseman превращает английские фразы в короткую практику, которую реально делать каждый день."></p>
+          </div>
+          <div class="qr" aria-hidden="true"></div>
+        </div>
+        <div class="meta">
+          <h2>2. Раскрытие и QR</h2>
+          <p>Продолжаем первую мысль, но уже называем Phraseman. QR заметный, но не кричащий: он появляется как естественный следующий шаг.</p>
+          <div class="script">
+            <strong>Озвучка</strong>
+            Это Phraseman. Здесь ты не просто узнаешь фразу, а собираешь ее сам, проверяешь себя и возвращаешь ее в память.
+          </div>
+        </div>
+      </article>
+
+      <article class="card qr-on" id="card3">
+        <div class="screen">
+          <div class="marker">insert 03 / proof</div>
+          <div class="copy">
+            <p class="kicker typed" data-text="главное преимущество"></p>
+            <h2 class="headline typed" data-text="Английский запоминается, когда ты действуешь."></h2>
+            <p class="body typed" data-text="Фразы, квизы, повторение, прогресс, голос. Меньше пассивного просмотра. Больше реального навыка."></p>
+          </div>
+          <div class="qr" aria-hidden="true"></div>
+        </div>
+        <div class="meta">
+          <h2>3. Жесткие преимущества</h2>
+          <p>Финальная вставка уже продает прямо: практика, активное вспоминание, повторение и видимый прогресс.</p>
+          <div class="script">
+            <strong>Озвучка</strong>
+            В Phraseman ты учишься активнее: собираешь фразы, проходишь квизы, повторяешь сложное и видишь прогресс. Так английский перестает быть фоном.
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="approaches">
+      <div class="approach">
+        <h3>Вариант A: интрига</h3>
+        <p>Самый сильный для удержания. Первая вставка почти не выглядит рекламой, а звучит как полезная мысль внутри урока.</p>
+      </div>
+      <div class="approach">
+        <h3>Вариант B: прямее</h3>
+        <p>Можно раньше показать Phraseman, но тогда меньше эффект “что это было?”. Подойдет, если важнее QR-переходы.</p>
+      </div>
+      <div class="approach">
+        <h3>Рекомендация</h3>
+        <p>Оставить A: в часовом видео лучше мягко внедриться в внимание, а не обрывать обучение резкой рекламой.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const synth = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+    let soundOn = false;
+
+    function toggleSound() {
+      soundOn = !soundOn;
+      const button = document.querySelector('.primary');
+      button.textContent = soundOn ? 'Звук: вкл' : 'Звук: выкл';
+      if (soundOn && synth && !audioCtx) audioCtx = new synth();
+    }
+
+    function tick(index) {
+      if (!soundOn || !audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      const now = audioCtx.currentTime;
+      osc.type = index % 3 === 0 ? 'triangle' : 'sine';
+      osc.frequency.value = 780 + (index % 9) * 28;
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.025, now + 0.006);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.045);
+      osc.connect(gain).connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.05);
+    }
+
+    function typeElement(el, delay) {
+      const text = el.dataset.text || '';
+      el.textContent = '';
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          let i = 0;
+          const timer = setInterval(() => {
+            el.textContent = text.slice(0, i + 1);
+            tick(i);
+            i += 1;
+            if (i >= text.length) {
+              clearInterval(timer);
+              setTimeout(resolve, 180);
+            }
+          }, 23);
+        }, delay);
+      });
+    }
+
+    async function replayAll() {
+      const groups = [...document.querySelectorAll('.card')];
+      for (const group of groups) {
+        const items = [...group.querySelectorAll('.typed')];
+        items.forEach((el) => { el.textContent = ''; });
+      }
+      let delay = 0;
+      for (const group of groups) {
+        const items = [...group.querySelectorAll('.typed')];
+        for (const item of items) {
+          await typeElement(item, delay);
+          delay = 40;
+        }
+        await new Promise((resolve) => setTimeout(resolve, 360));
+      }
+    }
+
+    replayAll();
+  </script>
+</body>
+</html>

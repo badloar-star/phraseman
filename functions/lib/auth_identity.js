@@ -46,10 +46,39 @@ const LEADERBOARD = 'leaderboard';
 const LEAGUE_GROUPS = 'league_groups';
 const CLEANUP_CANDIDATES = 'identity_cleanup_candidates';
 const IDENTITY_CLEANUP_THROTTLE_MS = 6 * 60 * 60 * 1000;
+function readHeaderValue(value) {
+    if (Array.isArray(value))
+        return String(value[0] ?? '');
+    return typeof value === 'string' ? value : '';
+}
+function describeAppCheckHeader(value) {
+    const token = readHeaderValue(value).trim();
+    const dotCount = token ? token.split('.').length - 1 : 0;
+    let kind = 'missing';
+    if (token) {
+        const lower = token.toLowerCase();
+        if (lower === 'null' || lower === 'undefined')
+            kind = lower;
+        else if (lower.startsWith('bearer '))
+            kind = 'bearer_prefixed';
+        else if (dotCount === 2 && token.length > 80)
+            kind = 'jwt_like';
+        else if (token.length < 80)
+            kind = 'short_non_jwt';
+        else
+            kind = 'long_non_jwt';
+    }
+    return {
+        kind,
+        present: token.length > 0,
+        length: token.length,
+        dotCount,
+    };
+}
 function normalizeStableId(value) {
     return String(value ?? '').trim();
 }
-async function assertStableOwner(db, authUid, stableId) {
+async function assertStableOwner(db, authUid, stableId, options) {
     if (!stableId || stableId.length > 160) {
         throw new https_1.HttpsError('invalid-argument', 'stable_id_required');
     }
@@ -76,6 +105,12 @@ async function assertStableOwner(db, authUid, stableId) {
         : '';
     if (linkedAuthUid === authUid)
         return;
+    if (options?.allowProviderRelink === true && !linkedStableId && !linkedAuthUid) {
+        const existingByAuth = await db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(1).get().catch(() => null);
+        const existingStableId = String(existingByAuth?.docs?.[0]?.id ?? '').trim();
+        if (!existingStableId || existingStableId === stableId)
+            return;
+    }
     throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
 }
 async function linkStableAuthUid(db, stableId, authUid) {
@@ -427,11 +462,11 @@ async function resolveStableUidForAuth(db, authUid, requestedStableId, options) 
         const requestedUserData = requestedUserSnap?.data() || {};
         const canonicalStableId = normalizeStableId(requestedUserData.canonicalStableId);
         if (requestedUserData.identityHidden === true && canonicalStableId && canonicalStableId !== stableId) {
-            await assertStableOwner(db, authUid, canonicalStableId);
+            await assertStableOwner(db, authUid, canonicalStableId, options);
             await linkStableAuthUid(db, canonicalStableId, authUid);
             return canonicalStableId;
         }
-        await assertStableOwner(db, authUid, stableId);
+        await assertStableOwner(db, authUid, stableId, options);
         await linkStableAuthUid(db, stableId, authUid);
         return stableId;
     }
@@ -449,10 +484,19 @@ async function resolveStableUidForAuth(db, authUid, requestedStableId, options) 
 exports.authEnsureStableLink = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    if (!request.app) {
+        console.warn(JSON.stringify({
+            event: 'app_check_header_shape',
+            function: 'authEnsureStableLink',
+            header: describeAppCheckHeader(request.rawRequest.headers['x-firebase-appcheck']),
+        }));
+    }
     const db = admin.firestore();
     const authUid = request.auth.uid;
     const stableId = normalizeStableId(request.data?.stableId);
-    const stableUid = await resolveStableUidForAuth(db, authUid, stableId);
+    const signInProvider = String(request.auth.token?.firebase?.sign_in_provider ?? '').trim();
+    const allowProviderRelink = signInProvider.length > 0 && signInProvider !== 'anonymous';
+    const stableUid = await resolveStableUidForAuth(db, authUid, stableId, { allowProviderRelink });
     return { ok: true, stableUid, authUid };
 });
 //# sourceMappingURL=auth_identity.js.map

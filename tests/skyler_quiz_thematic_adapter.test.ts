@@ -33,7 +33,7 @@ describe('Skyler thematic quiz adapter', () => {
     for (const locale of ACTIVE_INTERFACE_SOURCE_LOCALES) {
       const phrases = skylerThematicPackToQuizPhrases(pack, { sourceLocale: locale });
 
-      expect(phrases).toHaveLength(30);
+      expect(phrases).toHaveLength(100);
       expect(phrases.every(phrase => phrase.sourceLocale === locale)).toBe(true);
       expect(phrases.every(phrase => phrase.sourceText && phrase.sourceExplanations?.length === 4)).toBe(true);
       expect(phrases[0]!.sourceText).toBe(pack.items[0]!.localizedPrompts[locale]);

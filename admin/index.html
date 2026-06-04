@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta name="google" content="notranslate" />
-  <meta name="phraseman-admin-build" content="2026-05-22-admin-persistent-login" />
+  <meta name="phraseman-admin-build" content="2026-06-03-onboarding-admin-theme-v2" />
   <title data-i18n-es="PhraseMan Admin">PhraseMan Admin</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -728,15 +728,601 @@
     input[type="text"]:focus, input[type="search"]:focus, select:focus, textarea:focus {
       border-color: var(--acc) !important; box-shadow: 0 0 8px rgba(var(--acc-rgb), 0.4) !important; outline: none !important;
     }
+
+    /* === Phraseman onboarding admin skin (additive, matrix remains available) === */
+    body[data-admin-skin="onboarding"] {
+      --admin-bg: #071015;
+      --admin-bg-2: #0D171E;
+      --admin-surface: rgba(16, 26, 34, 0.94);
+      --admin-surface-2: rgba(22, 36, 46, 0.96);
+      --admin-card: rgba(18, 29, 38, 0.92);
+      --admin-card-soft: rgba(244, 184, 95, 0.08);
+      --admin-border: rgba(180, 205, 203, 0.18);
+      --admin-border-strong: rgba(244, 184, 95, 0.34);
+      --admin-text: #F5FAF6;
+      --admin-muted: #9AAEA9;
+      --admin-faint: #60746F;
+      --admin-accent: #F4B85F;
+      --admin-accent-rgb: 244, 184, 95;
+      --admin-accent-2: #43D6C4;
+      --admin-accent-2-rgb: 67, 214, 196;
+      --admin-success: #41D886;
+      --admin-danger: #FF6B6B;
+      --admin-warning: #FFD166;
+      --panel-bg: var(--admin-surface);
+      --panel-border: var(--admin-border);
+      color: var(--admin-text);
+      background:
+        radial-gradient(circle at 18% 6%, rgba(var(--admin-accent-rgb), 0.18), rgba(var(--admin-accent-rgb), 0) 28%),
+        radial-gradient(circle at 86% 12%, rgba(var(--admin-accent-2-rgb), 0.13), rgba(var(--admin-accent-2-rgb), 0) 30%),
+        linear-gradient(135deg, rgba(7, 16, 21, 0.84) 0%, rgba(13, 23, 30, 0.78) 48%, rgba(16, 20, 26, 0.88) 100%),
+        url('assets/theme-onboarding/admin-onboarding-bg.png') center center / cover no-repeat fixed,
+        linear-gradient(135deg, #071015 0%, #0E171E 46%, #10141A 100%) fixed;
+    }
+    body[data-admin-skin="onboarding"]::before {
+      background:
+        linear-gradient(180deg, rgba(7, 16, 21, 0.18) 0%, rgba(7, 16, 21, 0.82) 100%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 72px);
+    }
+    body[data-admin-skin="onboarding"] #matrix-rain {
+      opacity: 0.04;
+      filter: none;
+    }
+    body[data-admin-skin="onboarding"] header,
+    body[data-admin-skin="onboarding"] .tabs {
+      background: rgba(12, 20, 27, 0.94);
+      border-color: var(--admin-border);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+      backdrop-filter: blur(14px);
+    }
+    body[data-admin-skin="onboarding"] header h1 {
+      color: var(--admin-text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      letter-spacing: 0;
+      text-shadow: none;
+      text-transform: none;
+    }
+    body[data-admin-skin="onboarding"] #status-text,
+    body[data-admin-skin="onboarding"] .theme-switcher .label {
+      color: var(--admin-muted);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      letter-spacing: 0;
+      text-shadow: none;
+    }
+    .admin-skin-switcher {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--panel-border);
+      background: rgba(0,0,0,0.35);
+    }
+    .admin-skin-btn {
+      min-height: 28px;
+      padding: 5px 10px;
+      border-radius: 7px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: #aaa;
+      box-shadow: none;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+      cursor: pointer;
+    }
+    .admin-skin-btn:hover { background: rgba(var(--acc-rgb), 0.14); box-shadow: none; }
+    .admin-skin-btn.active {
+      background: rgba(var(--acc-rgb), 0.22);
+      border-color: var(--panel-border);
+      color: var(--acc-soft);
+    }
+    body[data-admin-skin="onboarding"] .admin-skin-switcher {
+      border-color: var(--admin-border);
+      background: rgba(255,255,255,0.04);
+    }
+    body[data-admin-skin="onboarding"] .admin-skin-btn {
+      color: var(--admin-muted);
+    }
+    body[data-admin-skin="onboarding"] .admin-skin-btn:hover {
+      background: rgba(var(--admin-accent-2-rgb), 0.12);
+    }
+    body[data-admin-skin="onboarding"] .admin-skin-btn.active {
+      background: linear-gradient(180deg, rgba(var(--admin-accent-rgb), 0.22), rgba(var(--admin-accent-2-rgb), 0.12));
+      border-color: var(--admin-border-strong);
+      color: var(--admin-text);
+    }
+    .admin-skin-version {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--panel-border);
+      color: var(--acc-soft);
+      background: rgba(0,0,0,0.28);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+    body[data-admin-skin="onboarding"] .admin-skin-version {
+      border-color: rgba(var(--admin-accent-rgb), 0.32);
+      color: var(--admin-accent);
+      background: rgba(var(--admin-accent-rgb), 0.10);
+      box-shadow: 0 0 0 1px rgba(var(--admin-accent-rgb), 0.08);
+    }
+    body[data-admin-skin="onboarding"] button {
+      background: rgba(var(--admin-accent-2-rgb), 0.10);
+      color: var(--admin-text);
+      border-color: rgba(var(--admin-accent-2-rgb), 0.26);
+      box-shadow: none;
+      border-radius: 8px;
+    }
+    body[data-admin-skin="onboarding"] button:hover {
+      background: rgba(var(--admin-accent-2-rgb), 0.18);
+      box-shadow: 0 0 0 1px rgba(var(--admin-accent-2-rgb), 0.10);
+    }
+    body[data-admin-skin="onboarding"] .theme-switcher {
+      background: rgba(255,255,255,0.035);
+      border-color: var(--admin-border);
+      box-shadow: none;
+    }
+    body[data-admin-skin="onboarding"] .theme-dot {
+      box-shadow: none;
+      border-color: rgba(255,255,255,0.25);
+    }
+    body[data-admin-skin="onboarding"] .theme-dot.active {
+      border-color: var(--admin-accent);
+      box-shadow: 0 0 0 3px rgba(var(--admin-accent-rgb), 0.14);
+    }
+    body[data-admin-skin="onboarding"] .tab {
+      color: var(--admin-muted);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      opacity: 1;
+      text-shadow: none;
+      border-radius: 8px;
+      border-bottom: 0;
+      padding: 10px 14px;
+    }
+    body[data-admin-skin="onboarding"] .tab:hover {
+      color: var(--admin-text);
+      background: rgba(255,255,255,0.045);
+    }
+    body[data-admin-skin="onboarding"] .tab.active {
+      color: #18130A;
+      background: linear-gradient(180deg, #FFD47D 0%, var(--admin-accent) 100%);
+      border-bottom-color: transparent;
+      box-shadow: 0 8px 24px rgba(var(--admin-accent-rgb), 0.18);
+      text-shadow: none;
+    }
+    body[data-admin-skin="onboarding"] .users-tab.active,
+    body[data-admin-skin="onboarding"] .analytics.active,
+    body[data-admin-skin="onboarding"] .reports-tab.active {
+      background: linear-gradient(180deg, rgba(7,16,21,0.28) 0%, rgba(7,16,21,0.68) 100%);
+    }
+    body[data-admin-skin="onboarding"] .stat-card,
+    body[data-admin-skin="onboarding"] .report-card,
+    body[data-admin-skin="onboarding"] .pt-card,
+    body[data-admin-skin="onboarding"] .pt-summary-card,
+    body[data-admin-skin="onboarding"] .lc-kpi,
+    body[data-admin-skin="onboarding"] .lc-modebar,
+    body[data-admin-skin="onboarding"] .lc-table-card,
+    body[data-admin-skin="onboarding"] .broadcast-panel,
+    body[data-admin-skin="onboarding"] .admin-login-form {
+      background: var(--admin-card) !important;
+      border-color: var(--admin-border) !important;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.20) !important;
+      backdrop-filter: blur(14px);
+    }
+    body[data-admin-skin="onboarding"] .stat-card .label,
+    body[data-admin-skin="onboarding"] .lc-kpi .label,
+    body[data-admin-skin="onboarding"] .pt-summary-card .label,
+    body[data-admin-skin="onboarding"] th {
+      color: var(--admin-muted) !important;
+      opacity: 1;
+      text-shadow: none;
+    }
+    body[data-admin-skin="onboarding"] .stat-card .value,
+    body[data-admin-skin="onboarding"] .lc-kpi .value,
+    body[data-admin-skin="onboarding"] .pt-summary-card .value,
+    body[data-admin-skin="onboarding"] .name,
+    body[data-admin-skin="onboarding"] .pt-title,
+    body[data-admin-skin="onboarding"] .lc-title {
+      color: var(--admin-text) !important;
+      text-shadow: none;
+    }
+    body[data-admin-skin="onboarding"] thead {
+      background: rgba(14, 24, 32, 0.98) !important;
+      backdrop-filter: blur(10px);
+    }
+    body[data-admin-skin="onboarding"] td {
+      border-bottom-color: rgba(180,205,203,0.10) !important;
+      color: #DDE8E4;
+    }
+    body[data-admin-skin="onboarding"] tr:hover td {
+      background: rgba(var(--admin-accent-2-rgb), 0.075) !important;
+    }
+    body[data-admin-skin="onboarding"] input[type="text"],
+    body[data-admin-skin="onboarding"] input[type="search"],
+    body[data-admin-skin="onboarding"] input[type="number"],
+    body[data-admin-skin="onboarding"] select,
+    body[data-admin-skin="onboarding"] textarea {
+      background: rgba(4, 10, 14, 0.62) !important;
+      border-color: var(--admin-border) !important;
+      color: var(--admin-text) !important;
+      box-shadow: none !important;
+    }
+    body[data-admin-skin="onboarding"] input[type="text"]:focus,
+    body[data-admin-skin="onboarding"] input[type="search"]:focus,
+    body[data-admin-skin="onboarding"] input[type="number"]:focus,
+    body[data-admin-skin="onboarding"] select:focus,
+    body[data-admin-skin="onboarding"] textarea:focus {
+      border-color: var(--admin-accent) !important;
+      box-shadow: 0 0 0 3px rgba(var(--admin-accent-rgb), 0.16) !important;
+      outline: none !important;
+    }
+    body[data-admin-skin="onboarding"] .level-badge,
+    body[data-admin-skin="onboarding"] .tab-n-badge {
+      background: rgba(var(--admin-accent-rgb), 0.14);
+      color: var(--admin-accent);
+      border: 1px solid rgba(var(--admin-accent-rgb), 0.26);
+    }
+    body[data-admin-skin="onboarding"] .xp-bar {
+      background: rgba(255,255,255,0.08);
+    }
+    body[data-admin-skin="onboarding"] .xp-bar-fill {
+      background: linear-gradient(90deg, var(--admin-accent-2), var(--admin-accent));
+    }
+    body[data-admin-skin="onboarding"] .admin-login-form h2 {
+      color: var(--admin-text) !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      letter-spacing: 0;
+      text-shadow: none;
+      text-transform: none;
+    }
+    body[data-admin-skin="onboarding"] .admin-login-form h2::before,
+    body[data-admin-skin="onboarding"] .admin-login-form h2::after {
+      content: '';
+    }
+    body[data-admin-skin="onboarding"] .admin-login-form p {
+      color: var(--admin-muted) !important;
+      background: rgba(255,255,255,0.035);
+      border-color: var(--admin-border);
+      text-shadow: none;
+    }
+    body[data-admin-skin="onboarding"] .admin-login-form strong {
+      color: var(--admin-accent) !important;
+    }
+    body[data-admin-skin="onboarding"] code,
+    body[data-admin-skin="onboarding"] .admin-login-form code {
+      color: var(--admin-accent-2) !important;
+      background: rgba(var(--admin-accent-2-rgb), 0.10) !important;
+      border: 1px solid rgba(var(--admin-accent-2-rgb), 0.20) !important;
+      border-radius: 5px !important;
+      padding: 1px 5px !important;
+    }
+    body[data-admin-skin="onboarding"] .admin-login-err {
+      color: var(--admin-danger) !important;
+      background: rgba(255,107,107,0.10) !important;
+      border-color: rgba(255,107,107,0.28) !important;
+      text-shadow: none !important;
+    }
+    body[data-admin-skin="onboarding"] .admin-login-err::before {
+      color: var(--admin-danger);
+      text-shadow: none;
+    }
+    body[data-admin-skin="onboarding"] .admin-login-google {
+      background: linear-gradient(180deg, #FFE0A0 0%, var(--admin-accent) 100%) !important;
+      color: #18130A !important;
+      border-color: rgba(var(--admin-accent-rgb), 0.55) !important;
+      box-shadow: 0 12px 30px rgba(var(--admin-accent-rgb), 0.22) !important;
+    }
+    body[data-admin-skin="onboarding"] .admin-login-google:hover {
+      box-shadow: 0 16px 36px rgba(var(--admin-accent-rgb), 0.30) !important;
+    }
+    body[data-admin-skin="onboarding"] a {
+      color: var(--admin-accent-2);
+    }
+    body[data-admin-skin="onboarding"] #admin-app > #detail-overlay,
+    body[data-admin-skin="onboarding"] #admin-app > .umodal-overlay:not(.visible),
+    body[data-admin-skin="onboarding"] #admin-app > .pg-overlay:not(.visible),
+    body[data-admin-skin="onboarding"] #admin-app > #cp-pack-preview-overlay:not(.cp-pack-preview-open) {
+      display: none !important;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body[data-admin-skin="onboarding"] *,
+      body[data-admin-skin="onboarding"] *::before,
+      body[data-admin-skin="onboarding"] *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    /* Onboarding skin: logged-in admin shell polish */
+    body[data-admin-skin="onboarding"] header {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      min-height: 58px;
+      padding: 12px 18px;
+    }
+    body[data-admin-skin="onboarding"] header > div:first-child {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(var(--admin-accent-rgb), 0.22), rgba(var(--admin-accent-2-rgb), 0.10));
+      border: 1px solid var(--admin-border-strong);
+      font-size: 18px !important;
+    }
+    body[data-admin-skin="onboarding"] .header-right {
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    body[data-admin-skin="onboarding"] #uid-lookup {
+      min-height: 32px;
+      width: min(260px, 32vw) !important;
+      border-radius: 9px !important;
+      padding: 7px 11px !important;
+    }
+    body[data-admin-skin="onboarding"] #uid-lookup-dropdown {
+      background: var(--admin-surface-2) !important;
+      border-color: var(--admin-border) !important;
+      box-shadow: 0 18px 46px rgba(0,0,0,0.36) !important;
+    }
+    body[data-admin-skin="onboarding"] .tabs {
+      position: sticky;
+      top: 58px;
+      z-index: 55;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 6px;
+      padding: 8px 18px 10px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(var(--admin-accent-2-rgb), 0.45) transparent;
+    }
+    body[data-admin-skin="onboarding"] .tabs::-webkit-scrollbar { height: 8px; }
+    body[data-admin-skin="onboarding"] .tabs::-webkit-scrollbar-track { background: transparent; }
+    body[data-admin-skin="onboarding"] .tabs::-webkit-scrollbar-thumb {
+      background: rgba(var(--admin-accent-2-rgb), 0.32);
+      border-radius: 999px;
+    }
+    body[data-admin-skin="onboarding"] .tab {
+      flex: 0 0 auto;
+      min-height: 34px;
+      max-width: 230px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      border: 1px solid rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.025);
+    }
+    body[data-admin-skin="onboarding"] .tab[data-admin-group="core"] { border-color: rgba(var(--admin-accent-rgb), 0.16); }
+    body[data-admin-skin="onboarding"] .tab[data-admin-group="users"] { border-color: rgba(65, 216, 134, 0.16); }
+    body[data-admin-skin="onboarding"] .tab[data-admin-group="revenue"] { border-color: rgba(255, 209, 102, 0.18); }
+    body[data-admin-skin="onboarding"] .tab[data-admin-group="community"] { border-color: rgba(var(--admin-accent-2-rgb), 0.16); }
+    body[data-admin-skin="onboarding"] .tab[data-admin-group="arena"] { border-color: rgba(129, 140, 248, 0.18); }
+    body[data-admin-skin="onboarding"] .tab[data-admin-group="system"] { border-color: rgba(154, 174, 169, 0.18); }
+    body[data-admin-skin="onboarding"] .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      padding: 14px 18px;
+    }
+    body[data-admin-skin="onboarding"] .stat-card,
+    body[data-admin-skin="onboarding"] .app-msg-kpi,
+    body[data-admin-skin="onboarding"] .pt-summary-card {
+      min-height: 72px;
+      border-radius: 10px !important;
+      padding: 12px 14px !important;
+    }
+    body[data-admin-skin="onboarding"] .toolbar,
+    body[data-admin-skin="onboarding"] .reports-toolbar,
+    body[data-admin-skin="onboarding"] .lc-modebar {
+      margin: 0 18px 12px;
+      padding: 10px;
+      border: 1px solid var(--admin-border);
+      border-radius: 10px;
+      background: rgba(8, 16, 21, 0.54);
+      backdrop-filter: blur(12px);
+    }
+    body[data-admin-skin="onboarding"] .toolbar {
+      align-items: center;
+    }
+    body[data-admin-skin="onboarding"] .toolbar input[type="text"],
+    body[data-admin-skin="onboarding"] .toolbar select,
+    body[data-admin-skin="onboarding"] .reports-toolbar input[type="text"],
+    body[data-admin-skin="onboarding"] .reports-toolbar select {
+      min-height: 34px;
+    }
+    body[data-admin-skin="onboarding"] .table-wrap {
+      margin: 0 18px 18px;
+      padding: 0 0 12px;
+      border: 1px solid var(--admin-border);
+      border-radius: 10px;
+      background: rgba(7, 14, 18, 0.58);
+      overflow: auto;
+    }
+    body[data-admin-skin="onboarding"] .table-wrap table {
+      min-width: 920px;
+    }
+    body[data-admin-skin="onboarding"] th {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(13, 23, 30, 0.98) !important;
+      padding: 10px 12px;
+      letter-spacing: 0.04em;
+    }
+    body[data-admin-skin="onboarding"] td {
+      padding: 10px 12px;
+    }
+    body[data-admin-skin="onboarding"] .reports-tab,
+    body[data-admin-skin="onboarding"] .analytics {
+      padding: 18px;
+    }
+    body[data-admin-skin="onboarding"] .reports-tab > div[style*="padding:20px 24px 0"],
+    body[data-admin-skin="onboarding"] .reports-tab > div[style*="padding:20px 24px"],
+    body[data-admin-skin="onboarding"] .analytics > div[style*="padding"] {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    body[data-admin-skin="onboarding"] .tab-title,
+    body[data-admin-skin="onboarding"] .reports-tab h2,
+    body[data-admin-skin="onboarding"] .analytics h2 {
+      color: var(--admin-text) !important;
+      font-size: 18px !important;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+    body[data-admin-skin="onboarding"] .tab-desc,
+    body[data-admin-skin="onboarding"] .reports-count,
+    body[data-admin-skin="onboarding"] .reports-empty,
+    body[data-admin-skin="onboarding"] .lc-subtitle,
+    body[data-admin-skin="onboarding"] .broadcast-muted {
+      color: var(--admin-muted) !important;
+    }
+    body[data-admin-skin="onboarding"] .report-card,
+    body[data-admin-skin="onboarding"] .app-msg-panel,
+    body[data-admin-skin="onboarding"] .app-msg-card,
+    body[data-admin-skin="onboarding"] .broadcast-panel {
+      border-radius: 10px !important;
+      background: var(--admin-card) !important;
+      border-color: var(--admin-border) !important;
+    }
+    body[data-admin-skin="onboarding"] .app-msg-card {
+      border-left-color: var(--admin-accent-2) !important;
+    }
+    body[data-admin-skin="onboarding"] .report-card:hover,
+    body[data-admin-skin="onboarding"] .app-msg-card:hover {
+      border-color: rgba(var(--admin-accent-2-rgb), 0.38) !important;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.18) !important;
+    }
+    body[data-admin-skin="onboarding"] button:not(.theme-dot):not(.admin-skin-btn):not(.admin-login-google) {
+      min-height: 32px;
+      border-radius: 8px !important;
+      border-color: rgba(var(--admin-accent-2-rgb), 0.24) !important;
+      background: rgba(var(--admin-accent-2-rgb), 0.10) !important;
+      color: var(--admin-text) !important;
+      box-shadow: none !important;
+    }
+    body[data-admin-skin="onboarding"] button:not(.theme-dot):not(.admin-skin-btn):not(.admin-login-google):hover {
+      background: rgba(var(--admin-accent-2-rgb), 0.18) !important;
+      border-color: rgba(var(--admin-accent-2-rgb), 0.42) !important;
+    }
+    body[data-admin-skin="onboarding"] button[style*="#7f1d1d"],
+    body[data-admin-skin="onboarding"] button[style*="#3a1a1a"],
+    body[data-admin-skin="onboarding"] button[style*="f87171"] {
+      border-color: rgba(255,107,107,0.36) !important;
+      background: rgba(255,107,107,0.12) !important;
+      color: #FFD6D6 !important;
+    }
+    body[data-admin-skin="onboarding"] .loading,
+    body[data-admin-skin="onboarding"] .error {
+      color: var(--admin-muted);
+    }
+    @media (max-width: 900px) {
+      body[data-admin-skin="onboarding"] #admin-app {
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+      body[data-admin-skin="onboarding"] header {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        max-width: 100vw;
+        padding: 10px 12px;
+      }
+      body[data-admin-skin="onboarding"] header h1 {
+        flex: 1 1 180px;
+        min-width: 0;
+        line-height: 1.15;
+      }
+      body[data-admin-skin="onboarding"] .header-right {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        justify-content: flex-start;
+        gap: 8px;
+        overflow: visible;
+      }
+      body[data-admin-skin="onboarding"] .header-right > * {
+        max-width: 100%;
+      }
+      body[data-admin-skin="onboarding"] .header-right > div[style*="position:relative"] {
+        width: min(100%, 320px);
+      }
+      body[data-admin-skin="onboarding"] .admin-skin-switcher,
+      body[data-admin-skin="onboarding"] .theme-switcher {
+        flex: 0 1 auto;
+      }
+      body[data-admin-skin="onboarding"] .theme-switcher {
+        flex-basis: 100%;
+        width: max-content;
+      }
+      body[data-admin-skin="onboarding"] #uid-lookup {
+        width: min(100%, 320px) !important;
+      }
+      body[data-admin-skin="onboarding"] .tabs {
+        top: 142px;
+        max-width: 100vw;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      body[data-admin-skin="onboarding"] .reports-tab,
+      body[data-admin-skin="onboarding"] .analytics {
+        max-width: 100vw;
+        overflow-x: hidden;
+        padding: 12px;
+      }
+      body[data-admin-skin="onboarding"] .review-promo-panel {
+        min-width: 0;
+      }
+      body[data-admin-skin="onboarding"] .review-promo-panel .broadcast-row[style*="justify-content:space-between"] {
+        flex-direction: column;
+        align-items: flex-start !important;
+      }
+      body[data-admin-skin="onboarding"] .review-promo-panel .broadcast-row[style*="justify-content:space-between"] > div {
+        width: 100%;
+        min-width: 0 !important;
+      }
+      body[data-admin-skin="onboarding"] #vs-count {
+        white-space: normal !important;
+      }
+      body[data-admin-skin="onboarding"] .review-promo-help,
+      body[data-admin-skin="onboarding"] .broadcast-muted {
+        overflow-wrap: anywhere;
+      }
+      body[data-admin-skin="onboarding"] .stats,
+      body[data-admin-skin="onboarding"] .toolbar {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      body[data-admin-skin="onboarding"] .table-wrap {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
   </style>
 </head>
-<body>
+<body data-admin-skin="onboarding">
 
 <canvas id="matrix-rain" aria-hidden="true"></canvas>
 
 <div id="admin-login" class="admin-login-screen">
   <div class="admin-login-form" id="admin-login-card">
     <h2>PhraseMan Admin</h2>
+    <div class="admin-skin-version" style="margin:0 auto 14px" title="Новая тема админки активна" data-i18n-es-title="Nuevo tema admin activo">ONBOARDING THEME v2</div>
     <p data-i18n-es="Inicio de sesión solo con Google. Concede admin: true una vez al primer account: node scripts/set_admin_claim.mjs (email o --uid). Abre el admin desde localhost o *.web.app, no desde file://.">Вход <strong>только через Google</strong>. Первому аккаунту выдай <code>admin: true</code> один раз: <code>node scripts/set_admin_claim.mjs</code> (email или <code>--uid</code>). Открывайте админку с хоста (<strong>localhost</strong> или <code>*.web.app</code>), не через <code>file://</code>.</p>
     <p style="font-size:12px;color:#fca5a5;margin-top:-6px" data-i18n-es="Importante: abre https://phraseman-ea0b3.web.app; son las letras e y a (ea). La dirección con aa es otro sitio y el login con nuestro Firebase no funcionará."><strong>Обязательно</strong> откройте <code style="color:#fecaca">https://phraseman-ea0b3.web.app</code> — это буквы <strong>e</strong> и <strong>a</strong> (<code>ea</code>). Адрес с <code>aa</code> — другой сайт: вход с нашим Firebase не сработает.</p>
     <p id="admin-login-err" class="admin-login-err" style="display:none"></p>
@@ -745,6 +1331,10 @@
       <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6C44.21 38.18 48 31.75 48 24c0-0.19-.01-0.37-0.02-0.55z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
       <span data-i18n-es="Entrar con Google">Войти с Google</span>
     </button>
+    <div class="admin-skin-switcher" style="margin-top:14px;justify-content:center;width:fit-content;margin-left:auto;margin-right:auto" title="Визуальная тема админки" data-i18n-es-title="Tema visual del admin">
+      <button type="button" class="admin-skin-btn" data-admin-skin-choice="onboarding" aria-label="Phraseman admin skin" title="Phraseman Admin" data-i18n-es-aria="Tema admin Phraseman" data-i18n-es-title="Admin Phraseman">ADMIN</button>
+      <button type="button" class="admin-skin-btn" data-admin-skin-choice="matrix" aria-label="Matrix legacy skin" title="Matrix legacy" data-i18n-es-aria="Tema matrix anterior" data-i18n-es-title="Matrix anterior">MATRIX</button>
+    </div>
     <div class="theme-switcher" style="margin-top:18px;justify-content:center;width:fit-content;margin-left:auto;margin-right:auto" title="Цвет матрицы" data-i18n-es-title="Color de la matriz">
       <span class="label" data-i18n-es="MATRIX">MATRIX</span>
       <button type="button" class="theme-dot" data-theme="red"    aria-label="Red"   title="Red" data-i18n-es-aria="Red" data-i18n-es-title="Red"></button>
@@ -5135,6 +5725,82 @@
     });
   })();
 
+  // ===== Admin skin switcher (new onboarding skin + legacy matrix) =====
+  (function setupAdminSkinSwitcher() {
+    const STORAGE_KEY = 'phraseman_admin_skin';
+    const VERSION_KEY = 'phraseman_admin_skin_version';
+    const CURRENT_VERSION = '2026-06-03-onboarding-admin-v2';
+    const VALID = new Set(['onboarding', 'matrix']);
+    function getSkin() {
+      let skin;
+      try { skin = localStorage.getItem(STORAGE_KEY); } catch { skin = null; }
+      let version;
+      try { version = localStorage.getItem(VERSION_KEY); } catch { version = null; }
+      if (version !== CURRENT_VERSION) return 'onboarding';
+      return VALID.has(skin) ? skin : 'onboarding';
+    }
+    function applySkin(name) {
+      const skin = VALID.has(name) ? name : 'onboarding';
+      document.body.dataset.adminSkin = skin;
+      try {
+        localStorage.setItem(STORAGE_KEY, skin);
+        localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+      } catch {}
+      document.querySelectorAll('.admin-skin-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.adminSkinChoice === skin);
+      });
+    }
+    function assignAdminTabGroups() {
+      const groups = {
+        users: 'users',
+        analytics: 'core',
+        'app-health': 'core',
+        reports: 'users',
+        'website-inbox': 'users',
+        'user-reports': 'users',
+        'ban-list': 'users',
+        premium: 'revenue',
+        vip: 'revenue',
+        'cancel-surveys': 'revenue',
+        'review-promo': 'revenue',
+        'app-messages': 'community',
+        'ugc-purchases': 'community',
+        archive: 'system',
+        audit: 'system',
+        'ops-log': 'system',
+        'community-packs': 'community',
+        'card-packs': 'community',
+        'daily-phrases': 'core',
+        'personal-training': 'core',
+        clubs: 'arena',
+        'league-chat': 'arena',
+        'arena-ranks': 'arena',
+        'arena-live': 'arena',
+        'arena-bets': 'arena',
+        'arena-rooms': 'arena',
+        referrals: 'revenue',
+        'push-notify': 'community',
+      };
+      document.querySelectorAll('.tab').forEach(tab => {
+        const tabId = tab.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
+        if (tabId && groups[tabId]) tab.dataset.adminGroup = groups[tabId];
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', assignAdminTabGroups, { once: true });
+    } else {
+      assignAdminTabGroups();
+    }
+    applySkin(getSkin());
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest && e.target.closest('.admin-skin-btn');
+      if (!btn) return;
+      e.preventDefault();
+      applySkin(btn.dataset.adminSkinChoice);
+    });
+    window.setAdminSkin = applySkin;
+  })();
+
   // ===== Theme switcher (matrix color) =====
   (function setupThemeSwitcher() {
     const STORAGE_KEY = 'phraseman_admin_matrix_theme';
@@ -5399,6 +6065,11 @@
   <div style="font-size:22px">📚</div>
   <h1>PhraseMan Admin</h1>
   <div class="header-right">
+    <span class="admin-skin-version" title="Новая тема админки активна" data-i18n-es-title="Nuevo tema admin activo">THEME v2</span>
+    <div class="admin-skin-switcher" title="Визуальная тема админки" data-i18n-es-title="Tema visual del admin">
+      <button type="button" class="admin-skin-btn" data-admin-skin-choice="onboarding" aria-label="Phraseman admin skin" title="Phraseman Admin" data-i18n-es-aria="Tema admin Phraseman" data-i18n-es-title="Admin Phraseman">ADMIN</button>
+      <button type="button" class="admin-skin-btn" data-admin-skin-choice="matrix" aria-label="Matrix legacy skin" title="Matrix legacy" data-i18n-es-aria="Tema matrix anterior" data-i18n-es-title="Matrix anterior">MATRIX</button>
+    </div>
     <div class="theme-switcher" title="Цвет матрицы" data-i18n-es-title="Color de la matriz">
       <span class="label" data-i18n-es="MX">MX</span>
       <button type="button" class="theme-dot" data-theme="red"    aria-label="Red matrix"   title="Red" data-i18n-es-aria="Red matrix" data-i18n-es-title="Red"></button>
@@ -5412,14 +6083,13 @@
       <input type="text" id="uid-lookup" placeholder="🔍 UID / имя → Enter" data-i18n-es="🔍 UID / nombre → Enter" autocomplete="off" style="width:200px;font-size:12px;padding:5px 10px" title="UID, имя или часть имени → Enter" data-i18n-es-title="UID, nombre o parte del nombre → Enter" />
       <div id="uid-lookup-dropdown" style="display:none;position:absolute;top:100%;left:0;width:320px;background:#1a1a2e;border:1px solid #3a3a5a;border-radius:8px;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,.7);max-height:280px;overflow-y:auto;margin-top:4px"></div>
     </div>
-    <button onclick="loadUsersLite()" data-i18n-es="↻ Ligero">↻ Легко</button>
-    <button onclick="loadUsersFull()" style="background:#2a1a3a;border:1px solid #4a2a6a;color:#c084fc" data-i18n-es="📦 Completo">📦 Полная</button>
     <button type="button" onclick="adminSignOut()" style="background:#2a2a3a;color:#888" data-i18n-es="Salir">Выйти</button>
   </div>
 </header>
 
 <div class="tabs">
   <div class="tab" onclick="switchTab('users')" data-i18n-es="👥 Usuarios">👥 Пользователи</div>
+  <div class="tab" onclick="location.href='testers.html'" data-i18n-es="🧪 Testers">🧪 Тестеры</div>
   <div class="tab" onclick="switchTab('analytics')" data-i18n-es="📊 Analítica">📊 Аналитика</div>
   <div class="tab" onclick="switchTab('reports')" data-i18n-es="🚩 Reportes">🚩 Репорты</div>
   <div class="tab" onclick="switchTab('website-inbox')" data-i18n-es="💬 Soporte (sitio)">💬 Суппорт (сайт)</div>
@@ -6011,7 +6681,11 @@
         </div>
         <div class="review-promo-field">
           <label for="vs-ttl-days">Срок уведомления, дней</label>
-          <input id="vs-ttl-days" type="number" min="1" max="90" value="30" />
+          <input id="vs-ttl-days" type="number" min="1" max="90" value="7" />
+        </div>
+        <div class="review-promo-field">
+          <label for="vs-target-version">Версия приложения</label>
+          <input id="vs-target-version" type="text" value="1.5.41" disabled style="opacity:.82" />
         </div>
       </div>
 
@@ -6957,7 +7631,7 @@
 
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-  import { getFirestore, collection, collectionGroup, getDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+  import { getFirestore, collection, collectionGroup, getDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
   import { getAuth, onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
   import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
@@ -7057,6 +7731,7 @@
   function startAdminApp(preferredTab) {
     if (_adminAppStarted) return;
     _adminAppStarted = true;
+    try { window.scrollTo({ top: 0, left: 0, behavior: 'auto' }); } catch (_) { window.scrollTo(0, 0); }
     const initTab = adminTabFromHash(preferredTab || ADMIN_DEFAULT_TAB);
     if (typeof window.switchTab === 'function') {
       window.switchTab(initTab, { replaceHash: true, markSeen: false });
@@ -7064,9 +7739,6 @@
       window.history.replaceState(null, '', '#' + initTab);
     }
     if (!isLocalAdminVisualTestMode()) void updateTabBadges(true);
-    if (!isLocalAdminVisualTestMode() && !window._adminBadgeTicker) {
-      window._adminBadgeTicker = setInterval(() => { void updateTabBadges(true); }, 600000);
-    }
   }
 
   const _googleProvider = new GoogleAuthProvider();
@@ -7144,10 +7816,6 @@
       }
       setAdminSignInBusy(false);
       _adminAppStarted = false;
-      if (window._adminBadgeTicker) {
-        clearInterval(window._adminBadgeTicker);
-        window._adminBadgeTicker = null;
-      }
       adminLoginEl && (adminLoginEl.style.display = 'flex');
       adminAppEl && (adminAppEl.style.display = 'none');
       return;
@@ -7187,6 +7855,11 @@
     const st = document.getElementById('status-text');
     if (st) st.textContent = user.email || user.uid;
     startAdminApp();
+    setTimeout(() => {
+      if (typeof window.openAdminUserFromQuery === 'function') {
+        void window.openAdminUserFromQuery();
+      }
+    }, 250);
   });
 
   window._users = [];
@@ -7253,7 +7926,7 @@
   function avatarImg(avatarIndexOrName, size) {
     const sz = size||32;
     const raw = String(avatarIndexOrName || '');
-    const custom = raw.match(/^custom:(custom-\d{2}):([a-z0-9_-]+)(?::(black|white))?$/i);
+    const custom = raw.match(/^custom:((?:custom-\d{2})|(?:custom-gen-\d{2})):([a-z0-9_-]+)(?::(black|white))?$/i);
     if (custom) {
       const gradients = {
         aurora: ['#02E4C0', '#0EA5E9', '#7C3AED'],
@@ -7271,14 +7944,19 @@
         sakura: ['#F9A8D4', '#F472B6', '#FB7185'],
       };
       const colors = gradients[custom[2]] || gradients.aurora;
+      const avatarId = custom[1].toLowerCase();
+      const logoColor = custom[3] === 'white' ? 'white' : 'black';
       const pad = Math.max(2, Math.round(sz * 0.08));
       const inner = Math.max(1, sz - pad * 2);
-      const inkFilter = custom[3] === 'white' ? 'filter:brightness(0) invert(1);' : 'filter:brightness(0);';
-      return `<span style="width:${sz}px;height:${sz}px;display:inline-flex;align-items:center;justify-content:center;clip-path:polygon(50% 3%,93% 26%,93% 74%,50% 97%,7% 74%,7% 26%);background:linear-gradient(135deg,${colors[0]},${colors[1]} 52%,${colors[2]});"><img src="avatars/${custom[1]}-logo.webp" width="${Math.round(inner * 0.9)}" height="${Math.round(inner * 0.9)}" style="object-fit:contain;${inkFilter}"></span>`;
+      const customGen = avatarId.match(/^custom-gen-(\d{2})$/);
+      const src = customGen ? `avatars/custom-idea-${customGen[1]}-${logoColor}.webp` : `avatars/${avatarId}-logo.webp`;
+      const inkFilter = customGen ? '' : (logoColor === 'white' ? 'filter:brightness(0) invert(1);' : 'filter:brightness(0);');
+      const imgSize = customGen ? Math.round(sz * 1.1) : Math.round(inner * 0.9);
+      return `<span style="width:${sz}px;height:${sz}px;display:inline-flex;align-items:center;justify-content:center;clip-path:polygon(50% 3%,93% 26%,93% 74%,50% 97%,7% 74%,7% 26%);background:linear-gradient(135deg,${colors[0]},${colors[1]} 52%,${colors[2]});overflow:hidden;"><img src="${src}" width="${imgSize}" height="${imgSize}" style="object-fit:contain;${inkFilter}"></span>`;
     }
-    // If it's a numeric string or number (1-50), use the real avatar PNG
+    // If it's a numeric string or number (1-60), use the same level avatar assets as the app.
     const idx = parseInt(avatarIndexOrName, 10);
-    if (!isNaN(idx) && idx >= 1 && idx <= 50) {
+    if (!isNaN(idx) && idx >= 1 && idx <= 60) {
       return `<img src="avatars/${idx}.webp" width="${sz}" height="${sz}" style="border-radius:50%;object-fit:cover;background:#6c47ff33">`;
     }
     // Default: show level 1 avatar for unknown values
@@ -7367,6 +8045,51 @@
     if (!info.active) return '<span class="pill pill-gray">free</span>' + (info.expired ? premiumDatesHtml(info, true) : '');
     const trial = info.isTrial ? '<span style="background:#123154;color:#60a5fa;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:800">trial</span>' : '';
     return `<div style="min-width:150px"><div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap"><span class="pill pill-yellow">⭐ ${escapeHtml(info.plan || 'premium')}</span>${premiumSourceBadge(info)}${trial}</div>${premiumDatesHtml(info, true)}</div>`;
+  }
+  function hasProviderAuth(u) {
+    return !!(u && u.linkedAuth && u.linkedAuth.provider);
+  }
+  function hasAnyAuth(u) {
+    return hasProviderAuth(u) || !!(u && typeof u.firebaseAuthUid === 'string' && u.firebaseAuthUid.trim());
+  }
+  function authCellHtml(u) {
+    const la = u.linkedAuth;
+    if (la && la.provider) {
+      const icon = la.provider === 'apple' ? '🍎' : '🔵';
+      const email = la.email ? escapeHtml(la.email) : (la.displayName ? escapeHtml(la.displayName) : '<span style="color:#888">(no email)</span>');
+      const bg = la.provider === 'apple' ? '#1a1a1a' : '#1a2540';
+      const bd = la.provider === 'apple' ? '#3a3a3a' : '#3a5a8a';
+      return '<span style="background:'+bg+';border:1px solid '+bd+';color:#cfd8e3;padding:3px 8px;border-radius:6px;font-size:11px;font-family:monospace;display:inline-flex;align-items:center;gap:4px">'+icon+' '+email+'</span>';
+    }
+    if (typeof u.firebaseAuthUid === 'string' && u.firebaseAuthUid.trim()) {
+      return '<span title="Firebase Auth UID exists, but users/{uid}.linkedAuth and auth_links provider link are missing" style="background:#172033;border:1px solid #334155;color:#cbd5e1;padding:3px 8px;border-radius:6px;font-size:11px;font-family:monospace;display:inline-flex;align-items:center;gap:4px">auth uid</span>';
+    }
+    return '<span style="color:#555;font-size:11px">—</span>';
+  }
+  function authDetailHtml(u) {
+    const la = u.linkedAuth;
+    if (la && la.provider) {
+      const icon = la.provider === 'apple' ? '🍎 Apple' : '🔵 Google';
+      const linkedAt = la.linkedAt ? fdate(la.linkedAt) : '—';
+      const lastSignIn = la.lastSignInAt ? fdate(la.lastSignInAt) : '—';
+      return `
+        <div class="drow"><span class="k">Провайдер</span><span class="v">${icon}</span></div>
+        <div class="drow"><span class="k">Email</span><span class="v" style="font-family:monospace;font-size:13px">${la.email ? escapeHtml(la.email) : '<span style="color:#888">—</span>'}</span></div>
+        <div class="drow"><span class="k">Display name</span><span class="v">${la.displayName ? escapeHtml(la.displayName) : '<span style="color:#888">—</span>'}</span></div>
+        <div class="drow"><span class="k">Provider UID</span><span class="v" style="font-family:monospace;font-size:11px;word-break:break-all">${la.providerUid ? escapeHtml(la.providerUid) : '—'}</span></div>
+        <div class="drow"><span class="k">Привязан</span><span class="v">${linkedAt}</span></div>
+        <div class="drow"><span class="k">Последний вход</span><span class="v">${lastSignIn}</span></div>
+        <div class="drow"><span class="k">Платформа привязки</span><span class="v">${la.devicePlatform || '—'}</span></div>
+      `;
+    }
+    if (typeof u.firebaseAuthUid === 'string' && u.firebaseAuthUid.trim()) {
+      return `
+        <div class="drow"><span class="k">Статус</span><span class="v" style="color:#cbd5e1">Firebase auth есть, provider-link отсутствует</span></div>
+        <div class="drow"><span class="k">Firebase Auth UID</span><span class="v" style="font-family:monospace;font-size:11px;word-break:break-all">${escapeHtml(u.firebaseAuthUid)}</span></div>
+        <div class="drow"><span class="k">Пояснение</span><span class="v" style="color:#93a4b8">Для правил Firestore это не анонимный аккаунт, но Google/Apple metadata не записана в users.linkedAuth/auth_links.</span></div>
+      `;
+    }
+    return '<div class="drow"><span class="k">Статус</span><span class="v" style="color:#888">Анонимный / нет provider-link</span></div>';
   }
   function tryJson(s,def) { try { const v=typeof s==='string'?JSON.parse(s||'null'):s; return v??def; } catch { return def; } }
   function toSafeNumber(v, defaultValue = 0) {
@@ -7533,6 +8256,7 @@
         shards: toSafeNumber(snap.data().shards, 0), banned: snap.data().banned ?? false,
         userStats: tryJson(p.user_stats_v1, null),
         linkedAuth: snap.data().linkedAuth || null,
+        firebaseAuthUid: snap.data().firebaseAuthUid || null,
         raw: p,
       };
       if (!window._users) window._users = [];
@@ -8557,7 +9281,7 @@
     }
     const u = window._users.find(x => x.uid === uid);
     if (!u) {
-      alert('Пользователь не найден в текущей выборке. Попробуйте «📦 Полная загрузка» на вкладке «Пользователи».');
+      alert('Пользователь не найден в снимке текущей страницы. Обновите страницу, чтобы загрузить свежие данные.');
       return;
     }
     window.openDetail(u.uid);
@@ -8580,26 +9304,20 @@
     return '<span class="plat plat-none">—</span>';
   }
 
-  const LITE_USERS_LIMIT = 400;
-
   function isUserPremiumActive(u) {
     return premiumInfo(u).active;
   }
 
   window.loadUsers = async function(options = {}) {
-    const full = options.full === true;
+    void options;
     document.getElementById('loading').style.display='block';
     document.getElementById('users-table').style.display='none';
     document.getElementById('error-msg').style.display='none';
     document.getElementById('stats-bar').style.display='none';
-    document.getElementById('status-text').textContent = full
-      ? 'Загрузка (полная)...'
-      : `Загрузка (лёгкая, до ${LITE_USERS_LIMIT})...`;
+    document.getElementById('status-text').textContent = 'Загрузка пользователей...';
     try {
-      const usersQuery = full
-        ? collection(db, 'users')
-        : query(collection(db, 'users'), limit(LITE_USERS_LIMIT));
-      // arena_profiles всегда подгружаем: метрики Арены (ранги, WR) иначе пусты в лёгком режиме
+      const usersQuery = collection(db, 'users');
+      // arena_profiles всегда подгружаем: метрики Арены (ранги, WR) иначе пусты
       const [snap, arenaSnap, bannedSnap] = await Promise.all([
         getDocs(usersQuery),
         getDocs(collection(db, 'arena_profiles')),
@@ -8649,17 +9367,14 @@
           banned: _bannedUids.has(doc.id) || (doc.data().banned ?? false),
           userStats: tryJson(p.user_stats_v1, null),
           linkedAuth: doc.data().linkedAuth || null,
+          firebaseAuthUid: doc.data().firebaseAuthUid || null,
           raw: p,
         });
       });
       window._users = users;
-      window._usersLiteSample = !full;
       updateStats(users);
       renderTable();
       renderAnalytics(users);
-      if (!full && users.length >= LITE_USERS_LIMIT) {
-        showToast(`Лёгкий режим: загружено ${LITE_USERS_LIMIT}. Нажми "Полная" для всех пользователей.`, 'warn');
-      }
     } catch(e) {
       document.getElementById('loading').style.display='none';
       const errEl = document.getElementById('error-msg');
@@ -8680,12 +9395,8 @@
     }
   };
 
-  window.loadUsersLite = function() {
-    return loadUsers({ full: false });
-  };
-
   window.loadUsersFull = function() {
-    return loadUsers({ full: true });
+    return loadUsers();
   };
 
   function updateStats(users) {
@@ -8752,10 +9463,10 @@
     if(ft) us=us.filter(u=>(u.theme||'minimalDark')===ft);
     if(fpl) us=us.filter(u=>u.platform===fpl);
     if(fver) us=us.filter(u=>(u.appVersion||'—')===fver);
-    if(fAuth==='any')   us=us.filter(u=>u.linkedAuth && u.linkedAuth.provider);
+    if(fAuth==='any')   us=us.filter(u=>hasAnyAuth(u));
     if(fAuth==='google')us=us.filter(u=>u.linkedAuth && u.linkedAuth.provider==='google');
     if(fAuth==='apple') us=us.filter(u=>u.linkedAuth && u.linkedAuth.provider==='apple');
-    if(fAuth==='anon')  us=us.filter(u=>!u.linkedAuth || !u.linkedAuth.provider);
+    if(fAuth==='anon')  us=us.filter(u=>!hasAnyAuth(u));
     const d=window._sortDir;
     us.sort((a,b)=>{
       if(sb==='name') return d*a.name.localeCompare(b.name,'ru');
@@ -8846,7 +9557,7 @@
         <td>${premiumCellHtml(u)}</td>
         <td>${(()=>{
           const la = u.linkedAuth;
-          if (!la || !la.provider) return '<span style="color:#555;font-size:11px">—</span>';
+          if (!la || !la.provider) return authCellHtml(u);
           const icon = la.provider === 'apple' ? '🍎' : '🔵';
           const email = la.email ? escapeHtml(la.email) : (la.displayName ? escapeHtml(la.displayName) : '<span style="color:#888">(без email)</span>');
           const bg = la.provider === 'apple' ? '#1a1a1a' : '#1a2540';
@@ -8874,7 +9585,7 @@
     const rows = users.map(u => [
       u.uid, u.name,
       u.linkedAuth?.email || '',
-      u.linkedAuth?.provider || '',
+      u.linkedAuth?.provider || (u.firebaseAuthUid ? 'firebase_auth_uid' : ''),
       u.xp, lvl(u.xp), u.streak, u.lessons.length,
       u.lang, u.platform||'', u.appVersion||'',
       (() => { const p = premiumInfo(u); return p.active ? (p.plan || 'premium') : 'free'; })(),
@@ -9556,7 +10267,7 @@
         ${(()=>{
           const la = u.linkedAuth;
           if (!la || !la.provider) {
-            return '<div class="drow"><span class="k">Статус</span><span class="v" style="color:#888">👤 Анонимный (не связан с провайдером)</span></div>';
+            return authDetailHtml(u);
           }
           const icon = la.provider === 'apple' ? '🍎 Apple' : '🔵 Google';
           const linkedAt = la.linkedAt ? fdate(la.linkedAt) : '—';
@@ -9687,6 +10398,21 @@
   window.closeDetail = function() {
     document.getElementById('detail').classList.remove('open');
     document.getElementById('detail-overlay').style.display = 'none';
+  };
+
+  window.openAdminUserFromQuery = async function openAdminUserFromQuery() {
+    if (window._openAdminUserFromQueryHandled) return;
+    const params = new URLSearchParams(window.location.search || '');
+    const uid = params.get('openUser') || params.get('uid');
+    if (!uid) return;
+    window._openAdminUserFromQueryHandled = true;
+    if (typeof window.switchTab === 'function') window.switchTab('users', { replaceHash: true });
+    if ((!window._users || !window._users.length) && typeof window.loadUsers === 'function') {
+      await window.loadUsers({ full: true }).catch(() => {});
+    }
+    setTimeout(() => {
+      if (typeof window.openDetail === 'function') window.openDetail(uid);
+    }, 80);
   };
 
   window.switchTab = function(tab, opts) {
@@ -9834,7 +10560,6 @@
     try {
       if (options.markSeen !== false && typeof markAdminTabSeenForBadges === 'function') markAdminTabSeenForBadges(tab);
     } catch (_) { /* noop */ }
-    void updateTabBadges();
   };
 
   window._arenaBetsLoaded = false;
@@ -10911,6 +11636,7 @@
     audio: 'Аудио',
     other: 'Другое',
   };
+  const HELPFUL_REPORTS_CONFIRMED_KEY = 'helpful_error_reports_confirmed_v1';
 
   function extractCategory(context) {
     if (!context) return 'free_text';
@@ -11231,6 +11957,9 @@
         try {
           // updateDoc падает, если users/{uid} ещё нет (часто anon/stable id в репорте). setDoc+merge+increment создаёт/обновляет.
           await setDoc(userRef, { shards: increment(1) }, { merge: true });
+          await setDoc(userRef, {
+            progress: { [HELPFUL_REPORTS_CONFIRMED_KEY]: increment(1) },
+          }, { merge: true });
           await addDoc(collection(db, 'users', uid, 'shard_rewards'), {
             reason: 'bug_fixed',
             dataId: report.dataId ?? '',
@@ -11241,10 +11970,12 @@
           });
           await updateDoc(doc(db, 'error_reports', id), {
             shardRewardApplied: true,
+            helpfulReportCountApplied: true,
             rewardError: deleteField(),
             rewardErrorAt: deleteField(),
           }).catch(() => {});
           report.shardRewardApplied = true;
+          report.helpfulReportCountApplied = true;
           rewardApplied = true;
         } catch (e) {
           if (!silent) showToast('⚠️ Статус «пофикшено», но награда не записана: ' + (e.message || e) + (e.code ? ' [' + e.code + ']' : ''), 'warn');
@@ -11265,8 +11996,17 @@
         const userRef = doc(db, 'users', uid);
         try {
           await setDoc(userRef, { shards: increment(-1) }, { merge: true });
-          await updateDoc(doc(db, 'error_reports', id), { shardRewardApplied: false }).catch(() => {});
+          if (report.helpfulReportCountApplied) {
+            await setDoc(userRef, {
+              progress: { [HELPFUL_REPORTS_CONFIRMED_KEY]: increment(-1) },
+            }, { merge: true });
+          }
+          await updateDoc(doc(db, 'error_reports', id), {
+            shardRewardApplied: false,
+            helpfulReportCountApplied: false,
+          }).catch(() => {});
           report.shardRewardApplied = false;
+          report.helpfulReportCountApplied = false;
           rewardApplied = true;
         } catch (e) {
           if (!silent) showToast('⚠️ Открыт повторно, но осколок не списан (ошибка users/{uid})', 'warn');
@@ -11567,6 +12307,7 @@
 
   const VIP_SURVEY_ID = 'vip_feedback_v2';
   const VIP_SURVEY_REWARD_DAYS = 30;
+  const VIP_SURVEY_TARGET_APP_VERSION = '1.5.41';
   const VIP_SURVEY_QUESTIONS_ADMIN = [
     { id: 'most_useful', label: 'Что помогает учиться лучше всего', options: { lessons: 'Уроки', quizzes: 'Квизы', flashcards: 'Карточки', nothing_yet: 'Пока ничего' } },
     { id: 'linger_screen', label: 'Где хочется задержаться подольше', options: { lessons: 'Уроки', quizzes: 'Квизы', flashcards: 'Карточки', mistake_practice: 'Отработка ошибок' } },
@@ -11638,7 +12379,8 @@
         shards: toSafeNumber(data.shards, 0),
         banned: data.banned ?? false,
         userStats: tryJson(p.user_stats_v1, null),
-        linkedAuth: data.linkedAuth || null,
+          linkedAuth: data.linkedAuth || null,
+          firebaseAuthUid: data.firebaseAuthUid || null,
         raw: p,
       };
       if (!window._users) window._users = [];
@@ -11723,11 +12465,12 @@
     const messagePl = vipSurveyVal('vs-message-pl') || 'Wypełnij krótką ankietę w aplikacji i aktywuj 30 dni VIP.';
     const audience = 'free';
     const priority = vipSurveyNum('vs-priority', 30, 0, 100);
-    const ttlDays = vipSurveyNum('vs-ttl-days', 30, 1, 90);
+    const ttlDays = vipSurveyNum('vs-ttl-days', 7, 1, 90);
+    const targetAppVersions = [VIP_SURVEY_TARGET_APP_VERSION];
     if (!messageRu) { showToast('Введите RU текст уведомления', 'err'); return; }
     const ok = await showConfirmModal({
       title: 'Отправить VIP survey?',
-      desc: 'Будет создано inbox-уведомление только для full free tier. Premium и VIP пользователи не увидят его и не смогут получить награду.',
+      desc: `Будет создано inbox-уведомление только для full free tier на версии ${VIP_SURVEY_TARGET_APP_VERSION}. Premium и VIP пользователи не увидят его и не смогут получить награду. Срок: ${ttlDays} дней.`,
       confirmLabel: 'Отправить',
       danger: false,
     });
@@ -11743,6 +12486,7 @@
         active: true,
         kind: 'vip_survey',
         audience,
+        targetAppVersions,
         priority,
         titleRu,
         titleUk,
@@ -11772,7 +12516,7 @@
         expiresAtMs,
         createdBy: auth.currentUser?.email || 'unknown',
       });
-      logAction('vip_survey_campaign_send', 'all', { messageId: ref.id, audience, ttlDays, priority });
+      logAction('vip_survey_campaign_send', 'all', { messageId: ref.id, audience, ttlDays, priority, targetAppVersions });
       const status = document.getElementById('vs-status');
       if (status) status.textContent = `Активное VIP survey создано: ${ref.id} · ${createdAt.replace('T', ' ').slice(0, 19)}`;
       showToast('✅ VIP survey отправлен в inbox');
@@ -11786,26 +12530,19 @@
     const list = document.getElementById('vs-list');
     const count = document.getElementById('vs-count');
     if (!list) return;
-    if (window._vipSurveyLoaded && window._vipSurveyUnsub && !force) { window.renderVipSurveyResponses(); return; }
-    if (window._vipSurveyUnsub && force) {
-      try { window._vipSurveyUnsub(); } catch (_) {}
-      window._vipSurveyUnsub = null;
-    }
+    if (window._vipSurveyLoaded && !force) { window.renderVipSurveyResponses(); return; }
     list.innerHTML = '<div class="reports-empty">Загрузка ответов...</div>';
     try {
       if ((!window._users || !window._users.length) && typeof window.loadUsers === 'function') {
         await window.loadUsers({ full: true }).catch(() => {});
       }
       const q = query(collection(db, 'vip_survey_responses'), orderBy('updatedAtMs', 'desc'), limit(500));
-      window._vipSurveyUnsub = onSnapshot(q, (snap) => {
-        window._vipSurveyResponses = snap.docs.map(d => ({ id: d.id, ...(d.data() || {}) }));
-        window._vipSurveyLoaded = true;
-        if (count) count.textContent = `Ответов: ${window._vipSurveyResponses.length}`;
-        void refreshVipSurveyUsers(window._vipSurveyResponses).then(() => window.renderVipSurveyResponses());
-      }, (e) => {
-        if (count) count.textContent = 'Ответов: ошибка';
-        list.innerHTML = `<div class="reports-empty" style="color:#f87171">Ошибка realtime: ${escapeHtml(e.message || String(e))}</div>`;
-      });
+      const snap = await getDocs(q);
+      window._vipSurveyResponses = snap.docs.map(d => ({ id: d.id, ...(d.data() || {}) }));
+      window._vipSurveyLoaded = true;
+      if (count) count.textContent = `Ответов: ${window._vipSurveyResponses.length}`;
+      await refreshVipSurveyUsers(window._vipSurveyResponses);
+      window.renderVipSurveyResponses();
     } catch (e) {
       if (count) count.textContent = 'Ответов: ошибка';
       list.innerHTML = `<div class="reports-empty" style="color:#f87171">Ошибка: ${escapeHtml(e.message || String(e))}</div>`;
@@ -12809,11 +13546,10 @@
       card.style.display = isCore ? '' : 'none';
     });
     const note = document.getElementById('analytics-note');
-    const isLite = !!window._usersLiteSample;
     if (note) {
       note.textContent = mode === 'all'
-        ? (isLite ? '⚠️ Все графики на выборке (лёгкий режим загрузки)' : 'Показаны все графики')
-        : (isLite ? 'Core режим на выборке: меньше шума и быстрее' : 'Core режим: скрыты второстепенные графики');
+        ? 'Показаны все графики'
+        : 'Core режим: скрыты второстепенные графики';
     }
   }
 
@@ -14957,7 +15693,7 @@
     } catch (e) { showToast('Ошибка чтения target: ' + e.message, 'err'); return; }
 
     const source = (window._users || []).find(x => x.uid === sourceUid);
-    if (!source) { showToast('Source не в кэше — нажми «📦 Полная»', 'err'); return; }
+    if (!source) { showToast('Source не в снимке страницы — обнови страницу', 'err'); return; }
 
     const sourceXp = Number(source.xp) || 0;
     const sourceShards = Number(source.shards) || 0;
@@ -15122,7 +15858,7 @@
       window.switchTab('users');
       setTimeout(() => openDetail(uid), 80);
     } else {
-      showToast('Юзер не загружен в кэше — нажми «↻ Легко» / «📦 Полная»', 'err');
+      showToast('Юзер не загружен в снимке страницы — обнови страницу', 'err');
     }
   };
 
@@ -16954,6 +17690,7 @@
     if (!isLocalAdminVisualTestMode()) return;
     adminLoginEl && (adminLoginEl.style.display = 'none');
     adminAppEl && (adminAppEl.style.display = 'block');
+    try { window.scrollTo({ top: 0, left: 0, behavior: 'auto' }); } catch (_) { window.scrollTo(0, 0); }
     const st = document.getElementById('status-text');
     if (st) st.textContent = 'local visual test';
     window._vipSurveyLoaded = true;

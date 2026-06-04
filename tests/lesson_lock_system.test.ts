@@ -14,6 +14,7 @@ import {
   getLessonLockInfo,
   getLockMessageText,
   getPremiumCourseLevel,
+  isLessonUnlockedByEarnedProgress,
   isLessonUnlockedByPremiumCourse,
   markPremiumCourseLevelReached,
 } from '../app/lesson_lock_system';
@@ -124,6 +125,19 @@ describe('tryUnlockNextLesson', () => {
     await repairLessonUnlocksAfterRestore();
 
     expect(await isLessonUnlocked(9)).toBe(true);
+  });
+});
+
+describe('isLessonUnlockedByEarnedProgress', () => {
+  it('free A1 ignores stale persisted unlocks until the previous lesson has bronze', async () => {
+    await unlockLesson(2);
+
+    expect(await isLessonUnlocked(2)).toBe(true);
+    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(false);
+
+    store.lesson1_best_score = '2.5';
+
+    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(true);
   });
 });
 

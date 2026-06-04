@@ -335,22 +335,30 @@ def add_transcripts(decisions: list[dict[str, Any]], transcript: list[Any], bdp:
 
 
 def build_motion_effects(decisions: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    zoom_cycle = (1.0, 1.025, 1.055, 1.015)
+    reframe_cycle = (
+        (1.0, 0.0, 0.0),
+        (1.10, 0.0, 0.0),
+        (1.15, -0.018, 0.0),
+        (1.0, 0.0, 0.0),
+        (1.08, 0.016, 0.0),
+    )
     effects: list[dict[str, Any]] = []
     index = 0
     for decision in decisions:
         if decision.get("decision") != "take_selected":
             continue
-        zoom = zoom_cycle[index % len(zoom_cycle)]
+        zoom, x, y = reframe_cycle[index % len(reframe_cycle)]
         effects.append(
             {
                 "id": f"motion_{index + 1:03d}",
                 "targetId": decision["id"],
                 "start": decision["outputStart"],
                 "end": decision["outputEnd"],
-                "type": "subtle_jumpcut_reframe",
+                "type": "reference_inspired_jumpcut_reframe",
                 "zoom": zoom,
-                "reason": "Subtle full-frame reframing after director cut.",
+                "x": x,
+                "y": y,
+                "reason": "Reference-inspired per-clip reframing after director cut; transform resets on every segment.",
             }
         )
         index += 1

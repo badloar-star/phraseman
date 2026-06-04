@@ -36,6 +36,8 @@ import { paywallGlassColor } from './paywallGlass';
 import { shouldRenderNoEnergyModal } from '../app/services/no_energy_modal_visibility';
 import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
+import CompassDepthSurface from './CompassDepthSurface';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
 type NoEnergyModalChrome = {
   glow: string;
@@ -89,11 +91,19 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
   },
   minimalDark: {
     glow: '#6EA8FF',
-    borderColor: 'rgba(110,168,255,0.38)',
-    surfaceColors: ['rgba(34,38,48,0.90)', 'rgba(20,23,30,0.94)', 'rgba(10,12,16,0.96)'],
-    cardGlowColors: ['rgba(110,168,255,0.28)', 'rgba(78,112,160,0.12)', 'transparent'],
-    titleColor: '#F5F8FF',
-    subtitleColor: '#9FC6FF',
+    borderColor: 'rgba(110,168,255,0.32)',
+    surfaceColors: ['rgba(19,24,33,0.90)', 'rgba(12,15,22,0.94)', 'rgba(5,6,9,0.96)'],
+    cardGlowColors: ['rgba(110,168,255,0.20)', 'rgba(167,139,250,0.08)', 'transparent'],
+    titleColor: '#F5F7FB',
+    subtitleColor: '#A7C7FF',
+  },
+  compass: {
+    glow: '#F2C48D',
+    borderColor: 'rgba(242,196,141,0.34)',
+    surfaceColors: ['rgba(23,20,16,0.90)', 'rgba(12,10,7,0.94)', 'rgba(2,3,4,0.96)'],
+    cardGlowColors: ['rgba(242,196,141,0.22)', 'rgba(242,196,141,0.08)', 'transparent'],
+    titleColor: '#FFF8E8',
+    subtitleColor: '#D8D2C8',
   },
 };
 
@@ -177,6 +187,10 @@ export default function NoEnergyModal({
   const router = useRouter();
   const { theme: t, themeMode, f } = useTheme();
   const art = NO_ENERGY_MODAL_CHROME[themeMode] ?? NO_ENERGY_MODAL_CHROME.dark;
+  const graphiteRadius = themeMode === 'minimalDark';
+  const isCompassTheme = themeMode === 'compass';
+  const modalRadius = isCompassTheme ? 10 : graphiteRadius ? 8 : 22;
+  const buttonRadius = isCompassTheme ? 9 : graphiteRadius ? 6 : 14;
   const paywallCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
   const { formattedTime, energy, bonusEnergy, maxEnergy, isUnlimited, reload } = useEnergy();
   const { hasPremiumAccess } = usePremium();
@@ -414,14 +428,16 @@ export default function NoEnergyModal({
           style={[
             styles.card,
             {
-              backgroundColor: paywallCardBg,
+              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : paywallCardBg,
               opacity: cardOp,
               transform: [{ scale: cardScale }],
-              shadowColor: art.glow,
-              shadowOpacity: 0.45,
-              shadowRadius: 24,
-              borderColor: art.borderColor,
+              shadowColor: isCompassTheme ? '#000' : art.glow,
+              shadowOpacity: isCompassTheme ? 0.52 : 0.45,
+              shadowRadius: isCompassTheme ? 18 : 24,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : art.borderColor,
+              borderRadius: modalRadius,
             },
+            isCompassTheme && compassShadow(3),
           ]}
         >
           <LinearGradient
@@ -438,6 +454,7 @@ export default function NoEnergyModal({
             style={styles.cardGlow}
             pointerEvents="none"
           />
+          {isCompassTheme ? <CompassDepthSurface radius={modalRadius} selected /> : null}
 
           {/* Hero icon: молния со свечением */}
           <View style={styles.boltWrap}>
@@ -508,15 +525,25 @@ export default function NoEnergyModal({
               }}
               activeOpacity={0.88}
               disabled={shardBusy}
-              style={[styles.shardBtn, { borderColor: '#7C3AED88', backgroundColor: '#7C3AED22' }]}
+              style={[
+                styles.shardBtn,
+                {
+                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : '#7C3AED88',
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : '#7C3AED22',
+                  borderRadius: buttonRadius,
+                  overflow: 'hidden',
+                },
+                isCompassTheme && compassShadow(1),
+              ]}
             >
+              {isCompassTheme ? <CompassDepthSurface radius={buttonRadius} cream /> : null}
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <Image
                   source={oskolokImageForPackShards(shardCost)}
                   style={{ width: 30, height: 30 }}
                   resizeMode="contain"
                 />
-                <Text style={{ color: t.textPrimary, fontWeight: '800', fontSize: f.body, flex: 1 }}>
+                <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.textPrimary, fontWeight: '800', fontSize: f.body, flex: 1 }}>
                   {triLang(lang, {
                     ru: 'Восстановить энергию',
                     uk: 'Відновити енергію',
@@ -547,14 +574,15 @@ export default function NoEnergyModal({
               (onBackHome ?? onClose)();
             }}
             activeOpacity={0.88}
-            style={styles.closeBtnWrap}
+            style={[styles.closeBtnWrap, { borderRadius: buttonRadius }, isCompassTheme && compassShadow(1)]}
           >
+            {isCompassTheme ? <CompassDepthSurface radius={buttonRadius} cream /> : null}
             <LinearGradient
-              colors={[t.accent, t.accent + 'BB']}
+              colors={isCompassTheme ? [COMPASS_RICH.cream, COMPASS_RICH.champagne] : [t.accent, t.accent + 'BB']}
               start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-              style={styles.closeBtn}
+              style={[styles.closeBtn, { borderRadius: buttonRadius }]}
             >
-              <Text style={[styles.closeBtnText, { fontSize: f.body, color: t.correctText }]}>
+              <Text style={[styles.closeBtnText, { fontSize: f.body, color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText }]}>
                 {onBackHome
                   ? triLang(lang, {
                       ru: 'На главную',

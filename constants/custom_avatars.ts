@@ -98,6 +98,38 @@ const CUSTOM_AVATAR_LABELS: Record<string, CustomAvatarLocalizedLabel> = {
   'custom-33': { ru: 'Хранительница', uk: 'Хранителька', es: 'Guardiana', 'pt-BR': 'Guardiana', vi: 'Nữ hộ vệ', id: 'Penjaga', tr: 'Koruyucu', pl: 'Strażniczka' },
   'custom-34': { ru: 'Читательница', uk: 'Читачка', es: 'Lectora', 'pt-BR': 'Leitora', vi: 'Nữ độc giả', id: 'Pembaca', tr: 'Okur', pl: 'Czytelniczka' },
   'custom-35': { ru: 'Ученица звезд', uk: 'Учениця зірок', es: 'Alumna estelar', 'pt-BR': 'Aluna estelar', vi: 'Nữ học viên ngôi sao', id: 'Murid Bintang', tr: 'Yıldız Öğrenci', pl: 'Gwiezdna uczennica' },
+  'custom-gen-31': { ru: 'Мягкий наставник', uk: 'М’який наставник', es: 'Tutor sereno', 'pt-BR': 'Tutor sereno', vi: 'Gia sư dịu dàng', id: 'Tutor Lembut', tr: 'Sakin Mentor', pl: 'Łagodny mentor' },
+  'custom-gen-32': { ru: 'Учёный в очках', uk: 'Учений в окулярах', es: 'Erudito amable', 'pt-BR': 'Erudito gentil', vi: 'Học giả hiền hòa', id: 'Cendekia Ramah', tr: 'Nazik Bilgin', pl: 'Łagodny uczony' },
+  'custom-gen-33': { ru: 'Спокойная маска', uk: 'Спокійна маска', es: 'Máscara serena', 'pt-BR': 'Máscara serena', vi: 'Mặt nạ điềm tĩnh', id: 'Topeng Tenang', tr: 'Sakin Maske', pl: 'Spokojna maska' },
+  'custom-gen-34': { ru: 'Ясный наставник', uk: 'Ясний наставник', es: 'Mentor claro', 'pt-BR': 'Mentor claro', vi: 'Người dẫn rõ ràng', id: 'Mentor Jelas', tr: 'Açık Mentor', pl: 'Jasny mentor' },
+  'custom-gen-35': { ru: 'Серебряная маска', uk: 'Срібна маска', es: 'Máscara plateada', 'pt-BR': 'Máscara prateada', vi: 'Mặt nạ bạc', id: 'Topeng Perak', tr: 'Gümüş Maske', pl: 'Srebrna maska' },
+  'custom-gen-36': { ru: 'Внимательная наставница', uk: 'Уважна наставниця', es: 'Mentora atenta', 'pt-BR': 'Mentora atenta', vi: 'Cố vấn chăm chú', id: 'Mentor Penuh Perhatian', tr: 'Dikkatli Mentor', pl: 'Uważna mentorka' },
+  'custom-gen-37': { ru: 'Наставник фраз', uk: 'Наставник фраз', es: 'Mentor de frases', 'pt-BR': 'Mentor de frases', vi: 'Cố vấn cụm từ', id: 'Mentor Frasa', tr: 'Cümle Mentoru', pl: 'Mentor fraz' },
+  'custom-gen-38': { ru: 'Добрый профессор', uk: 'Добрий професор', es: 'Profesor amable', 'pt-BR': 'Professor gentil', vi: 'Giáo sư hiền hậu', id: 'Profesor Ramah', tr: 'Nazik Profesör', pl: 'Dobry profesor' },
+  'custom-gen-39': { ru: 'Маска практики', uk: 'Маска практики', es: 'Máscara de práctica', 'pt-BR': 'Máscara de prática', vi: 'Mặt nạ luyện tập', id: 'Topeng Latihan', tr: 'Pratik Maskesi', pl: 'Maska ćwiczeń' },
+  'custom-gen-40': { ru: 'Мудрец диалога', uk: 'Мудрець діалогу', es: 'Sabio del diálogo', 'pt-BR': 'Sábio do diálogo', vi: 'Hiền giả đối thoại', id: 'Resi Dialog', tr: 'Diyalog Bilgesi', pl: 'Mędrzec dialogu' },
+  'custom-gen-41': { ru: 'Магический дневник', uk: 'Магічний щоденник', es: 'Cuaderno mágico', 'pt-BR': 'Caderno mágico', vi: 'Sổ tay ma thuật', id: 'Buku Ajaib', tr: 'Büyülü Defter', pl: 'Magiczny notes' },
+  'custom-gen-42': { ru: 'Огонь практики', uk: 'Вогонь практики', es: 'Llama de práctica', 'pt-BR': 'Chama de prática', vi: 'Ngọn lửa luyện tập', id: 'Api Latihan', tr: 'Pratik Alevi', pl: 'Płomień ćwiczeń' },
+  'custom-gen-43': { ru: 'Ледяной фокус', uk: 'Крижаний фокус', es: 'Cristal de enfoque', 'pt-BR': 'Cristal de foco', vi: 'Pha lê tập trung', id: 'Kristal Fokus', tr: 'Odak Kristali', pl: 'Kryształ skupienia' },
+  'custom-gen-44': { ru: 'Лист знания', uk: 'Лист знань', es: 'Hoja de saber', 'pt-BR': 'Folha do saber', vi: 'Lá tri thức', id: 'Daun Ilmu', tr: 'Bilgi Yaprağı', pl: 'Liść wiedzy' },
+  'custom-gen-45': { ru: 'Солнечная медаль', uk: 'Сонячна медаль', es: 'Medalla solar', 'pt-BR': 'Medalha solar', vi: 'Huy chương mặt trời', id: 'Medali Surya', tr: 'Güneş Madalyası', pl: 'Słoneczny medal' },
+  'custom-gen-46': { ru: 'Лунная капля', uk: 'Місячна крапля', es: 'Gota lunar', 'pt-BR': 'Gota lunar', vi: 'Giọt trăng', id: 'Tetes Bulan', tr: 'Ay Damlası', pl: 'Księżycowa kropla' },
+  'custom-gen-47': { ru: 'Штормовой орб', uk: 'Штормова сфера', es: 'Orbe tormenta', 'pt-BR': 'Orbe de tempestade', vi: 'Quả cầu bão', id: 'Orb Badai', tr: 'Fırtına Küresi', pl: 'Burzowa kula' },
+  'custom-gen-48': { ru: 'Водная жемчужина', uk: 'Водяна перлина', es: 'Perla de agua', 'pt-BR': 'Pérola d’água', vi: 'Ngọc nước', id: 'Mutiara Air', tr: 'Su İncisi', pl: 'Wodna perła' },
+  'custom-gen-49': { ru: 'Кристальный кубок', uk: 'Кришталевий кубок', es: 'Copa cristalina', 'pt-BR': 'Taça cristalina', vi: 'Cúp pha lê', id: 'Piala Kristal', tr: 'Kristal Kupa', pl: 'Kryształowy puchar' },
+  'custom-gen-50': { ru: 'Коралловый самоцвет', uk: 'Кораловий самоцвіт', es: 'Gema coral', 'pt-BR': 'Gema coral', vi: 'Đá quý san hô', id: 'Permata Koral', tr: 'Mercan Mücevheri', pl: 'Koralowy klejnot' },
+  'custom-gen-51': { ru: 'Семя роста', uk: 'Насіння росту', es: 'Semilla de progreso', 'pt-BR': 'Semente de progresso', vi: 'Hạt giống tiến bộ', id: 'Benih Kemajuan', tr: 'Gelişim Tohumu', pl: 'Ziarno postępu' },
+  'custom-gen-52': { ru: 'Звёздный значок', uk: 'Зоряний значок', es: 'Insignia estelar', 'pt-BR': 'Insígnia estelar', vi: 'Huy hiệu ngôi sao', id: 'Lencana Bintang', tr: 'Yıldız Rozeti', pl: 'Gwiezdna odznaka' },
+  'custom-gen-53': { ru: 'Кристальные часы', uk: 'Кришталевий годинник', es: 'Reloj cristalino', 'pt-BR': 'Ampulheta cristalina', vi: 'Đồng hồ pha lê', id: 'Jam Kristal', tr: 'Kristal Kum Saati', pl: 'Kryształowa klepsydra' },
+  'custom-gen-54': { ru: 'Перо сияния', uk: 'Перо сяйва', es: 'Pluma radiante', 'pt-BR': 'Pena radiante', vi: 'Lông vũ rạng sáng', id: 'Bulu Bercahaya', tr: 'Işıltılı Tüy', pl: 'Promienne pióro' },
+  'custom-gen-55': { ru: 'Фонарь учёбы', uk: 'Ліхтар навчання', es: 'Farol de estudio', 'pt-BR': 'Lanterna de estudo', vi: 'Đèn học tập', id: 'Lentera Belajar', tr: 'Çalışma Feneri', pl: 'Latarnia nauki' },
+  'custom-gen-56': { ru: 'Колокол голоса', uk: 'Дзвін голосу', es: 'Campana de voz', 'pt-BR': 'Sino da voz', vi: 'Chuông giọng nói', id: 'Lonceng Suara', tr: 'Ses Çanı', pl: 'Dzwon głosu' },
+  'custom-gen-57': { ru: 'Жемчужная спираль', uk: 'Перлова спіраль', es: 'Espiral perlada', 'pt-BR': 'Espiral perolada', vi: 'Vòng xoắn ngọc trai', id: 'Spiral Mutiara', tr: 'İnci Sarmalı', pl: 'Perłowa spirala' },
+  'custom-gen-58': { ru: 'Монеты жара', uk: 'Монети жару', es: 'Monedas de brasa', 'pt-BR': 'Moedas de brasa', vi: 'Đồng xu than hồng', id: 'Koin Bara', tr: 'Kor Para', pl: 'Monety żaru' },
+  'custom-gen-59': { ru: 'Флакон чернил', uk: 'Флакон чорнила', es: 'Frasco de tinta', 'pt-BR': 'Frasco de tinta', vi: 'Lọ mực', id: 'Botol Tinta', tr: 'Mürekkep Şişesi', pl: 'Flakon atramentu' },
+  'custom-gen-60': { ru: 'Серебряный ключ', uk: 'Срібний ключ', es: 'Llave plateada', 'pt-BR': 'Chave prateada', vi: 'Chìa khóa bạc', id: 'Kunci Perak', tr: 'Gümüş Anahtar', pl: 'Srebrny klucz' },
+  'custom-gen-61': { ru: 'Кристальный цветок', uk: 'Кришталевий цвіт', es: 'Flor cristalina', 'pt-BR': 'Flor cristalina', vi: 'Hoa pha lê', id: 'Bunga Kristal', tr: 'Kristal Çiçek', pl: 'Kryształowy kwiat' },
+  'custom-gen-62': { ru: 'Щит самоцвета', uk: 'Щит самоцвіту', es: 'Escudo gema', 'pt-BR': 'Escudo gema', vi: 'Khiên đá quý', id: 'Perisai Permata', tr: 'Mücevher Kalkanı', pl: 'Tarcza klejnotu' },
 };
 
 const CUSTOM_AVATAR_GRADIENT_LABELS: Record<string, CustomAvatarLocalizedLabel> = {
@@ -307,6 +339,198 @@ export const CUSTOM_AVATARS: CustomAvatarDef[] = [
     imageBlack: require('../assets/images/avatars/custom-idea-30-black.webp'),
     imageWhite: require('../assets/images/avatars/custom-idea-30-white.webp'),
   },
+  {
+    id: 'custom-gen-31',
+    name: 'Soft Hooded Tutor',
+    imageBlack: require('../assets/images/avatars/custom-idea-31-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-31-white.webp'),
+  },
+  {
+    id: 'custom-gen-32',
+    name: 'Gentle Scholar Visage',
+    imageBlack: require('../assets/images/avatars/custom-idea-32-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-32-white.webp'),
+  },
+  {
+    id: 'custom-gen-33',
+    name: 'Calm Study Mask',
+    imageBlack: require('../assets/images/avatars/custom-idea-33-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-33-white.webp'),
+  },
+  {
+    id: 'custom-gen-34',
+    name: 'Clear Voice Mentor',
+    imageBlack: require('../assets/images/avatars/custom-idea-34-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-34-white.webp'),
+  },
+  {
+    id: 'custom-gen-35',
+    name: 'Silver Focus Mask',
+    imageBlack: require('../assets/images/avatars/custom-idea-35-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-35-white.webp'),
+  },
+  {
+    id: 'custom-gen-36',
+    name: 'Crowned Listener',
+    imageBlack: require('../assets/images/avatars/custom-idea-36-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-36-white.webp'),
+  },
+  {
+    id: 'custom-gen-37',
+    name: 'Kindly Phrase Mentor',
+    imageBlack: require('../assets/images/avatars/custom-idea-37-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-37-white.webp'),
+  },
+  {
+    id: 'custom-gen-38',
+    name: 'Gentle Professor',
+    imageBlack: require('../assets/images/avatars/custom-idea-38-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-38-white.webp'),
+  },
+  {
+    id: 'custom-gen-39',
+    name: 'Quiet Practice Mask',
+    imageBlack: require('../assets/images/avatars/custom-idea-39-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-39-white.webp'),
+  },
+  {
+    id: 'custom-gen-40',
+    name: 'Dialogue Sage',
+    imageBlack: require('../assets/images/avatars/custom-idea-40-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-40-white.webp'),
+  },
+  {
+    id: 'custom-gen-41',
+    name: 'Magic Notebook',
+    imageBlack: require('../assets/images/avatars/custom-idea-41-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-41-white.webp'),
+  },
+  {
+    id: 'custom-gen-42',
+    name: 'Practice Flame',
+    imageBlack: require('../assets/images/avatars/custom-idea-42-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-42-white.webp'),
+  },
+  {
+    id: 'custom-gen-43',
+    name: 'Ice Focus Shard',
+    imageBlack: require('../assets/images/avatars/custom-idea-43-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-43-white.webp'),
+  },
+  {
+    id: 'custom-gen-44',
+    name: 'Knowledge Leaf',
+    imageBlack: require('../assets/images/avatars/custom-idea-44-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-44-white.webp'),
+  },
+  {
+    id: 'custom-gen-45',
+    name: 'Sun Medal',
+    imageBlack: require('../assets/images/avatars/custom-idea-45-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-45-white.webp'),
+  },
+  {
+    id: 'custom-gen-46',
+    name: 'Moon Drop',
+    imageBlack: require('../assets/images/avatars/custom-idea-46-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-46-white.webp'),
+  },
+  {
+    id: 'custom-gen-47',
+    name: 'Storm Orb',
+    imageBlack: require('../assets/images/avatars/custom-idea-47-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-47-white.webp'),
+  },
+  {
+    id: 'custom-gen-48',
+    name: 'Water Pearl',
+    imageBlack: require('../assets/images/avatars/custom-idea-48-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-48-white.webp'),
+  },
+  {
+    id: 'custom-gen-49',
+    name: 'Crystal Cup',
+    imageBlack: require('../assets/images/avatars/custom-idea-49-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-49-white.webp'),
+  },
+  {
+    id: 'custom-gen-50',
+    name: 'Coral Gem',
+    imageBlack: require('../assets/images/avatars/custom-idea-50-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-50-white.webp'),
+  },
+  {
+    id: 'custom-gen-51',
+    name: 'Growth Seed',
+    imageBlack: require('../assets/images/avatars/custom-idea-51-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-51-white.webp'),
+  },
+  {
+    id: 'custom-gen-52',
+    name: 'Star Pin Badge',
+    imageBlack: require('../assets/images/avatars/custom-idea-52-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-52-white.webp'),
+  },
+  {
+    id: 'custom-gen-53',
+    name: 'Crystal Hourglass',
+    imageBlack: require('../assets/images/avatars/custom-idea-53-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-53-white.webp'),
+  },
+  {
+    id: 'custom-gen-54',
+    name: 'Aurora Feather Charm',
+    imageBlack: require('../assets/images/avatars/custom-idea-54-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-54-white.webp'),
+  },
+  {
+    id: 'custom-gen-55',
+    name: 'Rune Lantern',
+    imageBlack: require('../assets/images/avatars/custom-idea-55-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-55-white.webp'),
+  },
+  {
+    id: 'custom-gen-56',
+    name: 'Sapphire Bell',
+    imageBlack: require('../assets/images/avatars/custom-idea-56-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-56-white.webp'),
+  },
+  {
+    id: 'custom-gen-57',
+    name: 'Pearl Spiral',
+    imageBlack: require('../assets/images/avatars/custom-idea-57-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-57-white.webp'),
+  },
+  {
+    id: 'custom-gen-58',
+    name: 'Ember Coin Stack',
+    imageBlack: require('../assets/images/avatars/custom-idea-58-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-58-white.webp'),
+  },
+  {
+    id: 'custom-gen-59',
+    name: 'Mystic Ink Bottle',
+    imageBlack: require('../assets/images/avatars/custom-idea-59-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-59-white.webp'),
+  },
+  {
+    id: 'custom-gen-60',
+    name: 'Silver Key Relic',
+    imageBlack: require('../assets/images/avatars/custom-idea-60-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-60-white.webp'),
+  },
+  {
+    id: 'custom-gen-61',
+    name: 'Crystal Flower',
+    imageBlack: require('../assets/images/avatars/custom-idea-61-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-61-white.webp'),
+  },
+  {
+    id: 'custom-gen-62',
+    name: 'Gem Shield',
+    imageBlack: require('../assets/images/avatars/custom-idea-62-black.webp'),
+    imageWhite: require('../assets/images/avatars/custom-idea-62-white.webp'),
+  },
   { id: 'custom-01', name: 'Chronicler', image: require('../assets/images/avatars/custom-01-logo.webp') },
   { id: 'custom-02', name: 'Translator', image: require('../assets/images/avatars/custom-02-logo.webp') },
   { id: 'custom-03', name: 'Codex', image: require('../assets/images/avatars/custom-03-logo.webp') },
@@ -345,19 +569,27 @@ export const CUSTOM_AVATARS: CustomAvatarDef[] = [
 ];
 
 export function isCustomAvatarGiftOnly(id: string): boolean {
-  return /^custom-gen-(0[1-9]|1[0-9]|20)$/.test(id);
+  return /^custom-gen-(0[1-9]|1[0-9]|20|3[1-9]|40)$/.test(id);
+}
+
+export function getCustomAvatarGiftWeight(id: string): number {
+  return /^custom-gen-(3[1-9]|40)$/.test(id) ? 0.35 : 1;
+}
+
+export function isCustomAvatarShardShop(id: string): boolean {
+  return /^custom-gen-(4[1-9]|5[0-9]|6[0-2])$/.test(id);
 }
 
 export const CUSTOM_AVATAR_GIFT_POOL: CustomAvatarDef[] = CUSTOM_AVATARS.filter((avatar) =>
-  avatar.id.startsWith('custom-gen-'),
+  avatar.id.startsWith('custom-gen-') && !isCustomAvatarShardShop(avatar.id),
 );
 
 export const CUSTOM_AVATAR_GIFT_ONLY: CustomAvatarDef[] = CUSTOM_AVATAR_GIFT_POOL.filter((avatar) =>
   isCustomAvatarGiftOnly(avatar.id),
 );
 
-export const CUSTOM_AVATAR_SHOP: CustomAvatarDef[] = CUSTOM_AVATAR_GIFT_POOL.filter((avatar) =>
-  !isCustomAvatarGiftOnly(avatar.id),
+export const CUSTOM_AVATAR_SHOP: CustomAvatarDef[] = CUSTOM_AVATARS.filter((avatar) =>
+  isCustomAvatarShardShop(avatar.id),
 );
 
 export type CustomAvatarValue = {

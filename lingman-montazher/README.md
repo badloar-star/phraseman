@@ -36,6 +36,63 @@ Run the guard:
 python -m unittest discover -s lingman-montazher/tests
 ```
 
+## Maximum Pipeline Shape
+
+The high-quality path is now:
+
+1. `ffprobe` / ffmpeg logs describe media facts, loudness, pauses, and clap-like spikes.
+2. Whisper-like transcript artifacts describe speech context and exact English phrase candidates.
+3. OpenCV vision sampling is supported when `opencv-python` is installed; without it the analysis records a clear `vision.status` instead of guessing.
+4. `build_multimodal_edl.py` combines audio, transcript, optional vision, retake groups, energy shifts, selected cuts, screen text, SFX, music policy, and B-roll policy into a canonical EDL JSON.
+5. CapCut export consumes that plan as editable tracks. Remotion should consume the same EDL later as a deterministic renderer, not as the editor that decides what to cut.
+
+Reference CapCut projects can be inspected and used as style sources. For example, `УРОК 3` provides compact white/green lesson text, native `Slide Left` / `Slide Right` text animations, section SFX/music cues, and jump-cut reframing patterns.
+
+Generate analysis and EDL for the current concrete video without MP4 rendering:
+
+```powershell
+ffmpeg -hide_banner -nostats `
+  -i lingman-montazher/input/current-video.mp4 `
+  -vn `
+  -af "astats=metadata=1:reset=10,ametadata=print:file=lingman-montazher/runs/20260524-0915-concrete-video/source-energy-astats-025.log" `
+  -f null NUL
+
+python lingman-montazher/tools/build_multimodal_edl.py `
+  --manifest lingman-montazher/runs/20260524-0915-concrete-video/director-pass-v6-manifest.json `
+  --transcript lingman-montazher/runs/20260524-0915-concrete-video/transcript-full-ggml-small-max28.ndjson `
+  --source-video lingman-montazher/input/current-video.mp4 `
+  --silence-log lingman-montazher/runs/20260524-0915-concrete-video/source-silencedetect-n35d025.log `
+  --energy-log lingman-montazher/runs/20260524-0915-concrete-video/source-energy-astats-025.log `
+  --out-analysis lingman-montazher/runs/20260524-0915-concrete-video/multimodal-analysis-v1.json `
+  --out-edl lingman-montazher/runs/20260524-0915-concrete-video/multimodal-edl-v1.json
+```
+
+Extract a compact style profile from a CapCut draft:
+
+```powershell
+python lingman-montazher/tools/extract_capcut_reference_style.py `
+  --draft "УРОК 3" `
+  --out lingman-montazher/runs/20260524-0915-concrete-video/reference-style-urok-3.json
+```
+
+Export an editable CapCut draft using the reference text style and native CapCut text animation:
+
+```powershell
+python lingman-montazher/tools/export_capcut_draft.py `
+  --manifest lingman-montazher/runs/20260524-0915-concrete-video/director-pass-v8-reference-style-manifest.json `
+  --source-video lingman-montazher/input/current-video.mp4 `
+  --out-dir lingman-montazher/runs/20260524-0915-concrete-video `
+  --draft-name LINGMAN_MONTAZHER_UROK3_STYLE_NATIVE_0525 `
+  --reference-draft-name "УРОК 3" `
+  --reference-text-style native
+```
+
+If CapCut is already open and does not refresh the Projects list, close CapCut completely and register the draft at the top of `root_meta_info.json`:
+
+```powershell
+python lingman-montazher/tools/register_capcut_draft.py --draft LINGMAN_OPEN_THIS_0525
+```
+
 ## Why This Shape
 
-The first version is deliberately dependency-light. The browser is the shared visual surface, while VS Code remains the workshop for the automation logic. Remotion and ffmpeg can be added after the review manifest proves comfortable to inspect and edit.
+The browser is the shared visual surface, while VS Code remains the workshop for the automation logic. The important boundary is that analysis and editorial decisions live in JSON first; CapCut and Remotion are exporters of that plan.

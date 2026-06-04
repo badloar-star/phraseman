@@ -23,7 +23,7 @@ import { getLessonPrepositionPack, hasLessonPrepositionDrillForTarget } from './
 import CircularProgress from '../components/CircularProgress';
 import { getMedalTier, loadMedalInfo, getEarnedDots } from './medal_utils';
 import {
-  isLessonUnlocked,
+  isLessonUnlockedByEarnedProgress,
   getLessonLockInfo,
   getLockMessageText,
   isLessonUnlockedByPremiumCourse,
@@ -36,7 +36,7 @@ import { isLessonFinishedOnce, getMasteryReplayPriceShards, MASTERY_REPLAY_BASE_
 import MasteryReplayModal from '../components/MasteryReplayModal';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { oskolokImageForPackShards } from './oskolok';
-import { isFreeLesson, lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
+import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { getCourseLevelForLesson, getPreviousCourseLevel } from './course_levels';
 import { getLessonScreenPrimed, primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
@@ -214,8 +214,53 @@ export default function LessonMenu() {
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { energy, bonusEnergy, isUnlimited: menuEnergyUnlimited, energyReady: menuEnergyReady } = useEnergy();
-  const { id: idParam } = useLocalSearchParams<{ id?: string | string[] }>();
+  const {
+    id: idParam,
+    planTask: planTaskParam,
+    lessonShellMode: lessonShellModeParam,
+    planPracticeMode: planPracticeModeParam,
+    requiredPhrases: requiredPhrasesParam,
+    requiredPhraseIds: requiredPhraseIdsParam,
+    planTaskId: planTaskIdParam,
+    planInstanceId: planInstanceIdParam,
+    planId: planIdParam,
+    planDayIndex: planDayIndexParam,
+  } = useLocalSearchParams<{
+    id?: string | string[];
+    planTask?: string | string[];
+    lessonShellMode?: string | string[];
+    planPracticeMode?: string | string[];
+    requiredPhrases?: string | string[];
+    requiredPhraseIds?: string | string[];
+    planTaskId?: string | string[];
+    planInstanceId?: string | string[];
+    planId?: string | string[];
+    planDayIndex?: string | string[];
+  }>();
   const id = (Array.isArray(idParam) ? idParam[0] : idParam) || '1';
+  const planTask = (Array.isArray(planTaskParam) ? planTaskParam[0] : planTaskParam) === '1';
+  const lessonShellMode = Array.isArray(lessonShellModeParam) ? lessonShellModeParam[0] : lessonShellModeParam;
+  const planPracticeMode = Array.isArray(planPracticeModeParam) ? planPracticeModeParam[0] : planPracticeModeParam;
+  const requiredPhrasesRaw = Array.isArray(requiredPhrasesParam) ? requiredPhrasesParam[0] : requiredPhrasesParam;
+  const requiredPhraseIdsRaw = Array.isArray(requiredPhraseIdsParam) ? requiredPhraseIdsParam[0] : requiredPhraseIdsParam;
+  const planTaskId = Array.isArray(planTaskIdParam) ? planTaskIdParam[0] : planTaskIdParam;
+  const planInstanceId = Array.isArray(planInstanceIdParam) ? planInstanceIdParam[0] : planInstanceIdParam;
+  const planId = Array.isArray(planIdParam) ? planIdParam[0] : planIdParam;
+  const planDayIndex = Array.isArray(planDayIndexParam) ? planDayIndexParam[0] : planDayIndexParam;
+  const requiredPhrases = Math.max(1, Math.min(50, parseInt(requiredPhrasesRaw ?? '0', 10) || 0));
+  const planLessonParams = planTask && requiredPhrases > 0
+    ? {
+        planTask: '1',
+        ...(lessonShellMode ? { lessonShellMode } : {}),
+        ...(planPracticeMode ? { planPracticeMode } : {}),
+        requiredPhrases: String(requiredPhrases),
+        ...(requiredPhraseIdsRaw ? { requiredPhraseIds: requiredPhraseIdsRaw } : {}),
+        ...(planTaskId ? { planTaskId } : {}),
+        ...(planInstanceId ? { planInstanceId } : {}),
+        ...(planId ? { planId } : {}),
+        ...(planDayIndex ? { planDayIndex } : {}),
+      }
+    : {};
   const lessonId = parseInt(id, 10) || 1;
 
   const lessonNames = lessonNamesForStudyTarget(lang, studyTarget);
@@ -370,14 +415,7 @@ export default function LessonMenu() {
           return;
         }
 
-        if (isFreeLesson(lessonId)) {
-          setIsLessonLocked(false);
-          setLockReason('progress');
-          setLockInfo(null);
-          return;
-        }
-
-        let unlocked = await isLessonUnlocked(lessonId, studyTarget);
+        let unlocked = await isLessonUnlockedByEarnedProgress(lessonId, studyTarget);
         // Fallback: если урок не в persisted unlock list, проверяем предыдущий урок
         // через best_score или динамически через прогресс (как в index.tsx)
         if (!unlocked && lessonId > 1) {
@@ -509,7 +547,7 @@ export default function LessonMenu() {
     }
     void (async () => {
       await primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
-      router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu' } });
+      router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
     })();
   }, [frenchLessonSourceGated, lessonId, router, studyTarget]);
 
@@ -520,7 +558,7 @@ export default function LessonMenu() {
     }
     void (async () => {
       await primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
-      router.replace({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu' } });
+      router.replace({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
     })();
   }, [frenchLessonSourceGated, lessonId, router, studyTarget]);
 

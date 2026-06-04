@@ -124,6 +124,7 @@ export default function ReportPackModal({
         hapticError();
         return;
       }
+      if (r === 'failed') throw new Error('pack_report_failed');
       setDone(true);
       hapticSuccess();
     } catch {

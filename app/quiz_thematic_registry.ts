@@ -1,5 +1,6 @@
 import type { ImageSourcePropType } from 'react-native';
 
+import { HOME_AND_ROOMS_SKYLER_PACK } from './quiz_thematic_home_and_rooms';
 import { KITCHEN_AND_COOKING_SKYLER_PACK } from './quiz_thematic_kitchen_and_cooking';
 import {
   skylerThematicPackToQuizPhrases,
@@ -12,7 +13,12 @@ import { ACTIVE_INTERFACE_SOURCE_LOCALES, type SourceLocale } from './source_loc
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { sampleUniqueRandomIndices, shuffle } from './utils_shuffle';
 
-export type ThematicQuizCategoryId = 'kitchen-and-cooking' | 'home-and-rooms' | 'at-the-doctor';
+export type ThematicQuizCategoryId =
+  | 'kitchen-and-cooking'
+  | 'home-and-rooms'
+  | 'at-the-doctor'
+  | 'body-and-health'
+  | 'shopping-and-money';
 
 type ThemeAssetMap = Record<string, ImageSourcePropType>;
 type LocalizedCategoryCopy = Record<SourceLocale, string>;
@@ -57,6 +63,28 @@ const kitchenLogos: ThemeAssetMap = {
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-minimal-dark.webp'),
 };
 
+const homeCardBackgrounds: ThemeAssetMap = {
+  forest: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-forest.webp'),
+  dark: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-dark.webp'),
+  neon: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-neon.webp'),
+  neonGreen: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-neon-green.webp'),
+  gold: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-gold.webp'),
+  coral: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-coral.webp'),
+  minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-minimal-light.webp'),
+  minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-minimal-dark.webp'),
+};
+
+const homeLogos: ThemeAssetMap = {
+  forest: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-forest.webp'),
+  dark: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-dark.webp'),
+  neon: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-neon.webp'),
+  neonGreen: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-neon-green.webp'),
+  gold: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-gold.webp'),
+  coral: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-coral.webp'),
+  minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-minimal-light.webp'),
+  minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-minimal-dark.webp'),
+};
+
 const KITCHEN_AND_COOKING_CATEGORY: ThematicQuizCategory = {
   id: 'kitchen-and-cooking',
   target: 'en',
@@ -87,10 +115,41 @@ const KITCHEN_AND_COOKING_CATEGORY: ThematicQuizCategory = {
   logos: kitchenLogos,
 };
 
+const HOME_AND_ROOMS_CATEGORY: ThematicQuizCategory = {
+  id: 'home-and-rooms',
+  target: 'en',
+  title: {
+    ru: 'Дом и комнаты',
+    uk: 'Дім і кімнати',
+    es: 'Casa y habitaciones',
+    'pt-BR': 'Casa e cômodos',
+    vi: 'Nhà và phòng',
+    id: 'Rumah dan ruangan',
+    tr: 'Ev ve odalar',
+    pl: 'Dom i pokoje',
+  },
+  subtitle: {
+    ru: 'Комнаты, мебель и домашние слова',
+    uk: 'Кімнати, меблі й домашні слова',
+    es: 'Habitaciones, muebles y palabras de casa',
+    'pt-BR': 'Cômodos, móveis e palavras da casa',
+    vi: 'Phòng, đồ nội thất và từ vựng trong nhà',
+    id: 'Ruangan, perabot, dan kata-kata rumah',
+    tr: 'Odalar, mobilyalar ve ev sözcükleri',
+    pl: 'Pokoje, meble i domowe słowa',
+  },
+  badge: 'A1 HOME',
+  accent: '#93C5FD',
+  pack: HOME_AND_ROOMS_SKYLER_PACK,
+  cardBackgrounds: homeCardBackgrounds,
+  logos: homeLogos,
+};
+
 export const IN_PROGRESS_THEMATIC_QUIZZES_DEV_ONLY = true;
 export const SKYLER_THEMATIC_QUIZZES_DEV_ONLY = IN_PROGRESS_THEMATIC_QUIZZES_DEV_ONLY;
 export const THEMATIC_QUIZ_CATEGORIES = [
   KITCHEN_AND_COOKING_CATEGORY,
+  HOME_AND_ROOMS_CATEGORY,
 ] as const satisfies readonly ThematicQuizCategory[];
 
 export function skylerThematicQuizzesEnabledForRuntime(): boolean {

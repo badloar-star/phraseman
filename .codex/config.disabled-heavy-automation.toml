@@ -1,0 +1,28 @@
+# Disabled locally because these npx-backed MCP servers were repeatedly
+# respawning and blocking Codex prompt submission in VS Code.
+# Re-enable only for a session that specifically needs them.
+#
+# [mcp_servers.n8n-mcp]
+# args = ["n8n-mcp"]
+# command = "npx"
+#
+# [mcp_servers.n8n-mcp.env]
+# DISABLE_CONSOLE_OUTPUT = "true"
+# LOG_LEVEL = "error"
+# MCP_MODE = "stdio"
+#
+# [mcp_servers.ruflo]
+# args = [
+#     "ruflo@latest",
+#     "mcp",
+#     "start",
+# ]
+# command = "npx"
+
+[shell_environment_policy]
+inherit = "core"
+
+[shell_environment_policy.set]
+CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1"
+CLAUDE_FLOW_HOOKS_ENABLED = "true"
+CLAUDE_FLOW_V3_ENABLED = "true"

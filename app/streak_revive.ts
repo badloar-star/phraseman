@@ -9,18 +9,22 @@
 //  3. Юзер тратит осколки → reviveStreak(): восстанавливает streak_count,
 //     гасит оффер, эмитит 'streak_revived'.
 //
-// Цена: каждый пропущенный день стоит REVIVE_COST_PER_MISSED_DAY_SHARDS.
+// Цена зависит от длины потерянного стрика:
+// 1 день стоит 15 осколков, а 100+ дней стоят 100 осколков всего.
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { spendShards } from './shards_system';
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
 import { withStorageLock } from './storage_mutex';
+import { recordMissedStreakWeekMarkersEndingYesterday } from './streak_week_markers';
 
 const STORAGE_KEY = 'streak_revive_v1';
 /** Окно показа модалки после потери цепочки. После — оффер сгорает. */
 export const REVIVE_WINDOW_MS = 24 * 60 * 60 * 1000;
-export const REVIVE_COST_PER_MISSED_DAY_SHARDS: number = 15;
+export const REVIVE_COST_MIN_TOTAL_SHARDS: number = 15;
+export const REVIVE_COST_MAX_TOTAL_SHARDS: number = 100;
+export const REVIVE_COST_MAX_TOTAL_STREAK_DAYS: number = 100;
 /** Минимальная длина потерянной цепочки — один день подряд восстанавливать не предлагаем. */
 const MIN_REVIVABLE_STREAK = 2;
 
@@ -42,11 +46,23 @@ export interface StreakReviveOffer {
 }
 
 /**
- * Цена восстановления считается по пропущенным дням: каждый пропущенный день стоит 15 осколков.
+ * Цена восстановления считается по длине потерянного стрика, а не по пропущенным дням.
+ * Чем длиннее потерянный стрик, тем ниже средняя цена за день; с 100 дней итог = 100.
  */
-export function computeReviveCost(missedDays: number): number {
-  const days = Math.max(1, Math.floor(Number(missedDays) || 0));
-  return days * REVIVE_COST_PER_MISSED_DAY_SHARDS;
+export function computeReviveCost(lostStreakDays: number): number {
+  const days = Math.max(1, Math.floor(Number(lostStreakDays) || 0));
+  if (days >= REVIVE_COST_MAX_TOTAL_STREAK_DAYS) {
+    return REVIVE_COST_MAX_TOTAL_SHARDS;
+  }
+  const progress = (days - 1) / (REVIVE_COST_MAX_TOTAL_STREAK_DAYS - 1);
+  const cost = REVIVE_COST_MIN_TOTAL_SHARDS
+    + (REVIVE_COST_MAX_TOTAL_SHARDS - REVIVE_COST_MIN_TOTAL_SHARDS) * progress;
+  return Math.round(cost);
+}
+
+export function getReviveCostPerLostStreakDay(lostStreakDays: number): number {
+  const days = Math.max(1, Math.floor(Number(lostStreakDays) || 0));
+  return Math.max(1, Math.round((computeReviveCost(days) / days) * 10) / 10);
 }
 
 const todayKey = (): string => new Date().toISOString().split('T')[0];
@@ -128,7 +144,7 @@ export async function getReviveOffer(): Promise<StreakReviveOffer | null> {
     lostAt: raw.lostAt,
     expiresAt,
     missedDays,
-    costShards: computeReviveCost(missedDays),
+    costShards: computeReviveCost(raw.lostStreak),
   };
 }
 
@@ -170,6 +186,7 @@ export async function reviveStreak(): Promise<ReviveResult> {
           await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify({ ...raw, used: true }));
         }
       });
+      await recordMissedStreakWeekMarkersEndingYesterday('revive', offer.missedDays).catch(() => {});
     } catch (persistErr) {
       DebugLogger.error('streak_revive:reviveStreak:persist', persistErr, 'critical');
       return { ok: false, reason: 'persist_failed' };

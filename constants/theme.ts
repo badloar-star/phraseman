@@ -3,6 +3,7 @@
 
 import { Platform } from 'react-native';
 import { GOLD_GRADIENTS, GOLD_RICH } from './goldTheme';
+import { COMPASS_GRADIENTS, COMPASS_RICH } from './compassTheme';
 
 export const DARK = {
   // Фоны — глубокий контраст фон vs карточка
@@ -341,7 +342,43 @@ export const MINIMAL_DARK = {
   bgGradient: ['#1A1A1A', '#121212'] as [string, string],
 };
 
-export type ThemeMode = 'dark' | 'neon' | 'gold' | 'coral' | 'minimalLight' | 'minimalDark';
+export const COMPASS = {
+  bgPrimary:   '#020304',
+  bgCard:      COMPASS_RICH.charcoalSoft,
+  bgSurface:   COMPASS_RICH.charcoalRaised,
+  bgSurface2:  COMPASS_RICH.charcoalWarm,
+  textPrimary: '#FFF8E8',
+  textOnCard:  '#FFF8E8',
+  textSecond:  COMPASS_RICH.champagne,
+  textMuted:   COMPASS_RICH.textMuted,
+  textGhost:   '#B8A895',
+  heroTextPrimary: '#FFF8E8',
+  heroTextMuted:   COMPASS_RICH.textMuted,
+  border:      COMPASS_RICH.hairlineQuiet,
+  borderLight: COMPASS_RICH.copperDark,
+  correct:     COMPASS_RICH.champagne,
+  correctBg:   COMPASS_RICH.wash,
+  wrong:       '#F26D6D',
+  wrongBg:     'rgba(242,109,109,0.16)',
+  gold:        COMPASS_RICH.champagne,
+  goldBg:      COMPASS_RICH.wash,
+  textOnGold:  COMPASS_RICH.textDark,
+  accent:      COMPASS_RICH.champagne,
+  accentBg:    COMPASS_RICH.washStrong,
+  correctText: COMPASS_RICH.textDark,
+  shadowDark:       'rgba(0,0,0,0.58)',
+  shadowLight:      COMPASS_RICH.mist,
+  borderHighlight:  COMPASS_RICH.edgeLight,
+  isGlowEnabled:    false,
+  isGlossEnabled:   false,
+  btnShadow:   COMPASS_RICH.copperWash,
+  cardShadow:  'rgba(0,0,0,0.54)',
+  glow:        COMPASS_RICH.washStrong,
+  cardGradient: [COMPASS_GRADIENTS.premiumPanel[0], COMPASS_GRADIENTS.premiumPanel[2]] as [string, string],
+  bgGradient: [COMPASS_GRADIENTS.appBackground[0], COMPASS_GRADIENTS.appBackground[2]] as [string, string],
+};
+
+export type ThemeMode = 'dark' | 'neon' | 'gold' | 'coral' | 'minimalLight' | 'minimalDark' | 'compass';
 export type Theme = typeof DARK;
 
 export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
@@ -364,6 +401,7 @@ const _checkGOLD:   Theme = GOLD         as any;
 const _checkCORAL:  Theme = CORAL        as any;
 const _checkMINL:   Theme = MINIMAL_LIGHT as any;
 const _checkMIND:   Theme = MINIMAL_DARK  as any;
+const _checkCOMPASS: Theme = COMPASS       as any;
 
 // ─── COLOURS ALIAS (for Expo template components) ────────────────────────────
 export const Colors = {
@@ -457,11 +495,11 @@ export const STRINGS = {
     price:    'Месячная или годовая — точная сумма в App Store / Google Play',
     cta:      'Начать 3 дня бесплатно',
     ctaSub:   'Оформить годовую подписку',
-    locked:   'Premium открывает уроки после первых 3\nи снимает дневные лимиты',
+    locked:   'Premium открывает уроки после A1\nи снимает дневные лимиты',
     legal:    'Отмена в любое время в настройках App Store / Google Play.',
     freeCont: 'Продолжить бесплатно (Урок 1)',
     features: [
-      'Уроки после первых 3',
+      'Уроки после A1',
       'Квизы без дневного лимита',
       'Голосовой ввод',
       'Подробная статистика',

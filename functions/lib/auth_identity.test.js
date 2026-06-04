@@ -25,9 +25,14 @@ function makeDbStub(initial = {}) {
                     store[name][id] = { ...(store[name][id] ?? {}), ...data };
                 },
             }),
-            where: () => ({
+            where: (field, op, value) => ({
                 limit: () => ({
-                    get: async () => ({ empty: true, docs: [] }),
+                    get: async () => {
+                        const docs = Object.entries(store[name] ?? {})
+                            .filter(([, data]) => data && op === '==' && data[field] === value)
+                            .map(([id, data]) => snapFor(id, data));
+                        return { empty: docs.length === 0, docs };
+                    },
                 }),
             }),
         }),
@@ -112,6 +117,52 @@ describe('linkStableAuthUid', () => {
         await (0, auth_identity_1.linkStableAuthUid)(missing.db, 'stable-2', 'auth-2');
         expect(missing.sets).toEqual([]);
         expect(missing.store.leaderboard['stable-2']).toBeUndefined();
+    });
+});
+describe('resolveStableUidForAuth', () => {
+    beforeEach(() => {
+        jest.spyOn(Date, 'now').mockReturnValue(1777000000000);
+    });
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+    it('allows provider sign-in to repair a stable id still linked to the old anonymous auth uid', async () => {
+        const { db, store } = makeDbStub({
+            users: {
+                'stable-1': { firebaseAuthUid: 'old-anon-auth', updatedAt: 111 },
+            },
+        });
+        const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, 'google-auth-1', 'stable-1', {
+            allowProviderRelink: true,
+        });
+        expect(stableUid).toBe('stable-1');
+        expect(store.users['stable-1']).toMatchObject({
+            firebaseAuthUid: 'google-auth-1',
+            updatedAt: 1777000000000,
+        });
+    });
+    it('does not let an anonymous auth session take over a stable id linked to a different auth uid', async () => {
+        const { db } = makeDbStub({
+            users: {
+                'stable-1': { firebaseAuthUid: 'old-anon-auth', updatedAt: 111 },
+            },
+        });
+        await expect((0, auth_identity_1.resolveStableUidForAuth)(db, 'new-anon-auth', 'stable-1')).rejects.toMatchObject({
+            code: 'permission-denied',
+            message: 'stable_id_mismatch',
+        });
+    });
+    it('does not let a provider auth uid already linked to another user take over this stable id', async () => {
+        const { db } = makeDbStub({
+            users: {
+                'stable-1': { firebaseAuthUid: 'old-anon-auth', updatedAt: 111 },
+                'stable-2': { firebaseAuthUid: 'google-auth-1', updatedAt: 222 },
+            },
+        });
+        await expect((0, auth_identity_1.resolveStableUidForAuth)(db, 'google-auth-1', 'stable-1', { allowProviderRelink: true })).rejects.toMatchObject({
+            code: 'permission-denied',
+            message: 'stable_id_mismatch',
+        });
     });
 });
 //# sourceMappingURL=auth_identity.test.js.map

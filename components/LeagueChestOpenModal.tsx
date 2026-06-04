@@ -1,6 +1,6 @@
 import { LinearGradient } from './SafeLinearGradient';
 import React, { useEffect, useMemo, useRef } from 'react';
-import { Animated, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Image, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import type { ImageSourcePropType } from 'react-native';
 import type { LeagueChestRewardDrop } from '../app/services/league_chest_rewards';
 import { getAvatarAuraById } from '../constants/avatar_auras';
@@ -446,6 +446,12 @@ export default function LeagueChestOpenModal({
                   ]}
                 />
 
+                <ScrollView
+                  bounces={false}
+                  showsVerticalScrollIndicator={false}
+                  style={styles.scroll}
+                  contentContainerStyle={styles.scrollContent}
+                >
                 <Text style={[styles.eyebrow, { color: modalTheme.eyebrow }]} numberOfLines={1}>
                   {triLang(lang, { ru: 'Бонус лиги открыт', uk: 'Бонус ліги відкрито', es: 'Bono de liga abierto', 'pt-BR': 'Bônus da liga aberto', vi: 'Đã mở thưởng giải đấu', id: 'Bonus liga terbuka', tr: 'Lig bonusu açıldı', pl: 'Bonus ligi otwarty' })}
                 </Text>
@@ -513,6 +519,7 @@ export default function LeagueChestOpenModal({
                     <Text style={[styles.primaryText, { color: modalTheme.primaryText }]}>{triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Recoger', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })}</Text>
                   </TouchableOpacity>
                 </View>
+                </ScrollView>
               </View>
             </LinearGradient>
           </Animated.View>
@@ -530,10 +537,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 18,
   },
-  shell: { width: '100%', maxWidth: 378 },
+  shell: { width: '100%', maxWidth: 378, maxHeight: '100%' },
   frame: {
     borderRadius: 24,
     padding: 2,
+    maxHeight: '100%',
     shadowColor: '#000',
     shadowOpacity: 0.32,
     shadowRadius: 22,
@@ -544,8 +552,15 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     borderWidth: 0.5,
     overflow: 'hidden',
+    maxHeight: '100%',
+  },
+  scroll: {
+    width: '100%',
+  },
+  scrollContent: {
     padding: 18,
     alignItems: 'center',
+    paddingBottom: 22,
   },
   topRail: {
     position: 'absolute',

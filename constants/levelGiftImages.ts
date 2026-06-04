@@ -5,6 +5,7 @@ export const LEVEL_GIFT_IMAGE_THEMES = [
   'dark',
   'gold',
   'minimalDark',
+  'compass',
   'minimalLight',
   'neon',
 ] as const;
@@ -49,6 +50,12 @@ const LEVEL_GIFT_IMAGES: Record<
     rare: require('../assets/images/level_gifts_v2/minimalDark-rare.webp'),
     epic: require('../assets/images/level_gifts_v2/minimalDark-epic.webp'),
     premium: require('../assets/images/level_gifts_v2/minimalDark-premium.webp'),
+  },
+  compass: {
+    common: require('../assets/images/level_gifts_v2/compass-premium-common.webp'),
+    rare: require('../assets/images/level_gifts_v2/compass-premium-rare.webp'),
+    epic: require('../assets/images/level_gifts_v2/compass-premium-epic.webp'),
+    premium: require('../assets/images/level_gifts_v2/compass-premium-premium.webp'),
   },
   minimalLight: {
     common: require('../assets/images/level_gifts_v2/minimalLight-common.webp'),

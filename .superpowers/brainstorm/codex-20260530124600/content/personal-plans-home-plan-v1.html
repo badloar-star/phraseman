@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phraseman Personal Plans: Home + Plan Screen</title>
+  <style>
+    :root {
+      --bg: #0f1420;
+      --panel: #182131;
+      --panel2: #202b3d;
+      --line: rgba(255,255,255,.12);
+      --text: #f7f2e8;
+      --muted: #aeb8c7;
+      --gold: #f2c66d;
+      --green: #62d889;
+      --blue: #77a8ff;
+      --coral: #ff8368;
+      --violet: #aa91ff;
+      --shadow: 0 18px 46px rgba(0,0,0,.35);
+      --r: 22px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(119,168,255,.16), transparent 32%),
+        radial-gradient(circle at 90% 10%, rgba(242,198,109,.12), transparent 30%),
+        linear-gradient(180deg, #0f1420, #111827 42%, #0d1119);
+    }
+    .page { max-width: 1240px; margin: 0 auto; padding: 28px 18px 42px; }
+    .top { display: grid; grid-template-columns: 1.05fr .95fr; gap: 22px; align-items: start; }
+    h1 { margin: 0 0 10px; font-size: clamp(28px, 4vw, 52px); line-height: 1.02; letter-spacing: 0; }
+    h2 { margin: 0 0 12px; font-size: 22px; letter-spacing: 0; }
+    h3 { margin: 0 0 8px; font-size: 16px; letter-spacing: 0; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+    .lead { font-size: 18px; max-width: 760px; }
+    .audit {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      border-radius: 14px;
+      padding: 12px 13px;
+      color: var(--muted);
+      min-height: 64px;
+    }
+    .pill b { color: var(--text); display: block; margin-bottom: 2px; }
+    .phone-wrap { display: grid; grid-template-columns: repeat(2, minmax(280px, 1fr)); gap: 18px; }
+    .phone {
+      width: 100%;
+      max-width: 372px;
+      min-height: 720px;
+      margin: 0 auto;
+      padding: 14px;
+      border-radius: 34px;
+      background: #070a10;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+    .screen {
+      min-height: 692px;
+      border-radius: 26px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #172033, #101724);
+      padding: 18px 14px 20px;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .status { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+    .hello small { color: var(--muted); display: block; margin-bottom: 2px; }
+    .hello strong { font-size: 25px; }
+    .coins { display: flex; gap: 8px; color: var(--gold); font-weight: 800; }
+    .card {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--r);
+      background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+    .stats-card { padding: 16px; margin-bottom: 10px; min-height: 156px; }
+    .stats-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .avatar { width: 58px; height: 58px; border-radius: 20px; background: linear-gradient(135deg, #6ea3ff, #f2c66d); display: grid; place-items: center; font-weight: 900; color: #111827; }
+    .xp { flex: 1; min-width: 0; }
+    .xp .label { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+    .xp .name { font-size: 18px; font-weight: 900; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .streak { text-align: right; min-width: 70px; }
+    .streak .num { font-size: 36px; font-weight: 900; line-height: 1; }
+    .bar { height: 10px; border-radius: 999px; background: rgba(255,255,255,.11); overflow: hidden; margin-top: 16px; }
+    .fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--gold), #fff0a4, var(--green)); }
+    .week { display: flex; justify-content: space-between; margin-top: 16px; }
+    .dot { width: 27px; height: 27px; border-radius: 999px; background: rgba(255,255,255,.12); display: grid; place-items: center; color: #111827; font-weight: 900; }
+    .dot.done { background: var(--gold); }
+    .plan-card { padding: 14px; margin-bottom: 12px; position: relative; overflow: hidden; }
+    .plan-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+    .plan-title { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .badge {
+      width: 42px; height: 42px; border-radius: 15px; display: grid; place-items: center;
+      background: linear-gradient(145deg, rgba(242,198,109,.28), rgba(98,216,137,.16));
+      border: 1px solid rgba(242,198,109,.35);
+      font-weight: 900;
+    }
+    .plan-title strong { display: block; font-size: 19px; }
+    .plan-title span { display: block; color: var(--muted); font-size: 12px; margin-top: 1px; }
+    .pct { color: var(--gold); font-weight: 900; font-size: 18px; }
+    .route-scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 8px 0 12px; }
+    .seg { height: 8px; border-radius: 999px; background: rgba(255,255,255,.12); overflow: hidden; }
+    .seg.on { background: linear-gradient(90deg, var(--blue), var(--green)); }
+    .seg.half::before { content: ""; display: block; width: 54%; height: 100%; background: linear-gradient(90deg, var(--blue), var(--green)); border-radius: 999px; }
+    .today-preview { display: grid; grid-template-columns: 1fr; gap: 7px; }
+    .mini-task { min-height: 38px; display: flex; align-items: center; justify-content: space-between; gap: 10px; border-radius: 13px; padding: 8px 10px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); }
+    .mini-task span { font-size: 13px; color: var(--muted); }
+    .mini-task b { font-size: 13px; }
+    .quick-title { margin: 8px 2px 8px; color: var(--text); font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+    .tile { min-height: 96px; border-radius: 18px; padding: 10px; background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.1); display: grid; align-content: center; justify-items: center; text-align: center; gap: 7px; }
+    .tile .ico { width: 36px; height: 36px; border-radius: 12px; background: rgba(255,255,255,.12); display: grid; place-items: center; color: var(--gold); font-weight: 900; }
+    .tile b { font-size: 13px; }
+    .plan-screen .screen { background: linear-gradient(180deg, #142033, #0f1723); }
+    .backrow { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .back { width: 42px; height: 42px; border-radius: 15px; border: 1px solid var(--line); display: grid; place-items: center; color: var(--muted); }
+    .plan-hero { padding: 16px; margin-bottom: 12px; }
+    .goal { color: var(--muted); font-size: 13px; margin-top: 4px; }
+    .milestones { display: flex; justify-content: space-between; color: var(--muted); font-size: 10px; margin-top: 5px; }
+    .section-label { display: flex; justify-content: space-between; align-items: end; margin: 16px 2px 9px; }
+    .section-label b { font-size: 14px; }
+    .section-label span { color: var(--muted); font-size: 12px; }
+    .task-card { padding: 12px; margin-bottom: 9px; display: grid; grid-template-columns: 42px 1fr auto; gap: 10px; align-items: center; }
+    .task-ico { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; background: rgba(119,168,255,.15); color: var(--blue); font-weight: 900; }
+    .task-card:nth-of-type(2n) .task-ico { background: rgba(242,198,109,.14); color: var(--gold); }
+    .task-card:nth-of-type(3n) .task-ico { background: rgba(98,216,137,.12); color: var(--green); }
+    .task-copy b { display: block; font-size: 14px; margin-bottom: 2px; }
+    .task-copy span { color: var(--muted); font-size: 12px; display: block; line-height: 1.35; }
+    .go { width: 32px; height: 32px; border-radius: 12px; display: grid; place-items: center; background: rgba(255,255,255,.08); color: var(--gold); }
+    .why { padding: 12px; margin-top: 12px; }
+    .why p { font-size: 12px; }
+    .matrix { margin-top: 22px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    .plan-mini { padding: 14px; border-radius: 18px; background: rgba(255,255,255,.045); border: 1px solid var(--line); }
+    .plan-mini strong { display: block; margin-bottom: 7px; }
+    .plan-mini p { font-size: 13px; }
+    .pipeline { margin-top: 22px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .pipe { padding: 16px; min-height: 150px; border-radius: 18px; background: rgba(255,255,255,.05); border: 1px solid var(--line); }
+    .pipe .num { color: var(--gold); font-size: 12px; font-weight: 900; margin-bottom: 8px; }
+    .pipe p { font-size: 13px; }
+    @media (max-width: 920px) {
+      .top { grid-template-columns: 1fr; }
+      .phone-wrap { grid-template-columns: 1fr; }
+      .matrix, .pipeline, .audit { grid-template-columns: 1fr; }
+      .phone { max-width: 390px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="top">
+      <div>
+        <h1>Персональные планы: не экран, а учебный маршрут</h1>
+        <p class="lead">Я бы встраивал план в Home как постоянную шкалу “Мой маршрут” под блоком статистики. Она показывает не абстрактный Premium-бонус, а живое обещание на сегодня: что сделать, почему именно это, и куда пользователь попадет при нажатии.</p>
+        <div class="audit">
+          <div class="pill"><b>В приложении уже есть сигналы</b>Уроки, квизы, ошибки, тренер, карточки, дневные задания, XP и стрик уже дают материал для генератора.</div>
+          <div class="pill"><b>Daily tasks не трогаем</b>Они остаются игровыми заданиями дня. План должен быть отдельным слоем с собственным прогрессом.</div>
+          <div class="pill"><b>Новые занятия нужны</b>Часть задач ведет в существующие уроки/квизы, но план держится на уникальных сценариях: диалог, реакция, фразы под цель.</div>
+          <div class="pill"><b>Название в Home</b>Лучше “Мой маршрут”, а внутри показывать название плана: “Гавань”, “Эхо”, “Импульс”. Это звучит продуктово и не как черновой “план”.</div>
+        </div>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="screen">
+            <div class="status">
+              <div class="hello"><small>Добро пожаловать</small><strong>Phraseman</strong></div>
+              <div class="coins"><span>◆ 420</span></div>
+            </div>
+            <div class="card stats-card">
+              <div class="stats-row">
+                <div class="avatar">A2</div>
+                <div class="xp">
+                  <div class="label">Уровень 8</div>
+                  <div class="name">Уверенный старт</div>
+                </div>
+                <div class="streak"><div class="num">12</div><p>дней</p></div>
+              </div>
+              <div class="bar"><div class="fill" style="width:62%"></div></div>
+              <div class="week">
+                <div class="dot done">✓</div><div class="dot done">✓</div><div class="dot done">✓</div><div class="dot">4</div><div class="dot">5</div><div class="dot">6</div><div class="dot">7</div>
+              </div>
+            </div>
+
+            <div class="card plan-card">
+              <div class="plan-head">
+                <div class="plan-title">
+                  <div class="badge">Г</div>
+                  <div><strong>Мой маршрут: Гавань</strong><span>Неделя 2 · сегодня 3 шага</span></div>
+                </div>
+                <div class="pct">14%</div>
+              </div>
+              <div class="route-scale"><div class="seg on"></div><div class="seg half"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
+              <div class="today-preview">
+                <div class="mini-task"><b>Документы и адрес</b><span>урок · 7 мин</span></div>
+                <div class="mini-task"><b>Запись к врачу</b><span>сценарий · 5 мин</span></div>
+                <div class="mini-task"><b>Просьбы и время</b><span>повтор · 3 мин</span></div>
+              </div>
+            </div>
+
+            <div class="quick-title">Быстрый старт</div>
+            <div class="quick-grid">
+              <div class="tile"><div class="ico">L</div><b>Уроки</b></div>
+              <div class="tile"><div class="ico">Q</div><b>Квизы</b></div>
+              <div class="tile"><div class="ico">C</div><b>Карточки</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone plan-screen">
+          <div class="screen">
+            <div class="backrow"><div class="back">‹</div><div class="coins">Premium</div></div>
+            <div class="card plan-hero">
+              <div class="plan-head">
+                <div class="plan-title">
+                  <div class="badge">Г</div>
+                  <div><strong>Гавань</strong><span>ориентир до заметного прогресса: около 18 недель</span></div>
+                </div>
+                <div class="pct">14%</div>
+              </div>
+              <p class="goal">Цель: закрывать бытовые ситуации при переезде.</p>
+              <div class="route-scale"><div class="seg on"></div><div class="seg half"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
+              <div class="milestones"><span>Старт</span><span>База</span><span>Ситуации</span><span>Уверенно</span><span>Свободнее</span></div>
+            </div>
+
+            <div class="section-label"><b>Сегодня</b><span>15 минут</span></div>
+            <div class="card task-card"><div class="task-ico">1</div><div class="task-copy"><b>Документы и адрес</b><span>Открывает обычный урок или подборку фраз</span></div><div class="go">›</div></div>
+            <div class="card task-card"><div class="task-ico">2</div><div class="task-copy"><b>Запись к врачу</b><span>Новый сценарий: короткий диалог и фразы под ситуацию</span></div><div class="go">›</div></div>
+            <div class="card task-card"><div class="task-ico">3</div><div class="task-copy"><b>Повтор: вопросы и время</b><span>Берет слабые места из ошибок и “Моей практики”</span></div><div class="go">›</div></div>
+            <div class="card why"><h3>Почему эти задания</h3><p>План видит цель “переезд”, текущий A1 → A2, последние ошибки в вопросах и выбирает один новый сценарий, одну базовую опору и короткий повтор.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Пять маршрутов и уникальные занятия</h2>
+      <div class="matrix">
+        <div class="plan-mini"><strong>Вояж</strong><p>Аэропорт, отель, кафе, транспорт, потерянная вещь, помощь, срочная просьба. Новые сценарии: “check-in”, “lost bag”, “hotel problem”.</p></div>
+        <div class="plan-mini"><strong>Митап</strong><p>Standup, deadline, blocker, уточнить задачу, meeting response, short email, polite disagreement. Новые сценарии: “30-second update”, “clarify task”.</p></div>
+        <div class="plan-mini"><strong>Гавань</strong><p>Аренда, документы, врач, банк, школа, адрес, запись. Новые сценарии: “doctor appointment”, “rental viewing”, “bank card issue”.</p></div>
+        <div class="plan-mini"><strong>Импульс</strong><p>Быстрые ответы, мнение, связки, восстановление после ступора. Новые занятия: timed reply, connector chain, answer repair.</p></div>
+        <div class="plan-mini"><strong>Эхо</strong><p>Короткие listening-фрагменты, смысл, переспрос, мгновенная реакция. Новые занятия: listen-and-answer, shadow reply, reduction recognition.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Как должен работать генератор</h2>
+      <div class="pipeline">
+        <div class="pipe"><div class="num">01 · Профиль</div><p>План, уровень, минуты, первая мини-задача, Premium-статус и выбранный язык обучения.</p></div>
+        <div class="pipe"><div class="num">02 · Сигналы</div><p>Прогресс уроков, квизы, ошибки, повторные ошибки, карточки, тренер, практика, стрик и активность.</p></div>
+        <div class="pipe"><div class="num">03 · Выбор дня</div><p>1 основное задание, 1 закрепление, 1 слабое место; четвертое задание только при 20+ минутах.</p></div>
+        <div class="pipe"><div class="num">04 · Маршрут</div><p>Каждая задача имеет destination: lesson, quiz, plan_scenario, trainer, flashcards или practice.</p></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

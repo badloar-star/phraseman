@@ -18,7 +18,9 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
+import CompassDepthSurface from '../components/CompassDepthSurface';
 import { screenTextOnGradient } from '../constants/theme';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import {
   getCachedDueItems,
@@ -52,6 +54,7 @@ function shuffleArenaOptions(items: TrainerItem[]): TrainerItem[] {
 export default function TrainerArenaSession() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
@@ -233,7 +236,7 @@ export default function TrainerArenaSession() {
           {/* Прогресс */}
           <View style={[styles.progressBar, { backgroundColor: t.bgSurface }]}>
             <View style={[styles.progressFill, {
-              backgroundColor: '#E05050',
+              backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : '#E05050',
               width: `${(current / items.length) * 100}%`,
             }]} />
           </View>
@@ -249,8 +252,16 @@ export default function TrainerArenaSession() {
             {/* Вопрос */}
             <Animated.View style={[
               styles.questionBox,
-              { backgroundColor: t.bgCard, borderColor: t.border, opacity: flashAnim },
+              isCompassTheme && compassShadow(2),
+              {
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                borderRadius: isCompassTheme ? 10 : 18,
+                opacity: flashAnim,
+                overflow: isCompassTheme ? 'hidden' : 'visible',
+              },
             ]}>
+              {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
               <Text style={[styles.questionText, { color: t.textPrimary, fontSize: f.bodyLg }]}>
                 {q.question}
               </Text>
@@ -260,18 +271,19 @@ export default function TrainerArenaSession() {
             <View style={{ gap: 10 }}>
               {q.options.map((opt, i) => {
                 const state = btnStates[i];
-                let bg = t.bgCard;
-                let bc = t.border;
+                let bg = isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard;
+                let bc = isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border;
                 let tc = t.textPrimary;
-                if (state === 'correct') { bg = '#40C080' + '22'; bc = '#40C080'; tc = '#40C080'; }
-                if (state === 'wrong')   { bg = '#E05050' + '22'; bc = '#E05050'; tc = '#E05050'; }
+                if (state === 'correct') { bg = isCompassTheme ? COMPASS_RICH.washStrong : '#40C080' + '22'; bc = isCompassTheme ? COMPASS_RICH.hairlineStrong : '#40C080'; tc = isCompassTheme ? COMPASS_RICH.champagne : '#40C080'; }
+                if (state === 'wrong')   { bg = isCompassTheme ? COMPASS_RICH.copperWash : '#E05050' + '22'; bc = isCompassTheme ? COMPASS_RICH.copper : '#E05050'; tc = isCompassTheme ? COMPASS_RICH.peach : '#E05050'; }
                 return (
                   <TouchableOpacity
                     key={i}
                     onPress={() => void pick(i)}
                     disabled={locked}
-                    style={[styles.optionBtn, { backgroundColor: bg, borderColor: bc }]}
+                    style={[styles.optionBtn, isCompassTheme && compassShadow(state === 'idle' ? 1 : 2), { backgroundColor: bg, borderColor: bc, borderRadius: isCompassTheme ? 9 : 18, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
                   >
+                    {isCompassTheme ? <CompassDepthSurface radius={9} selected={state !== 'idle'} quiet={state === 'idle'} /> : null}
                     <Text style={[styles.optionText, { color: tc, fontSize: f.body }]}>{opt}</Text>
                   </TouchableOpacity>
                 );

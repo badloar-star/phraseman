@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loadActiveLevelGiftInventory } from '../app/level_gift_active_inventory';
+import { FRIEND_GIFT_INVENTORY_KEY } from '../app/friend_gift_inventory';
 import { flashcardsPackTrialGiftKey } from '../app/target_storage_keys';
 
 jest.mock('@react-native-async-storage/async-storage');
@@ -103,5 +104,28 @@ describe('active level gift inventory', () => {
     });
 
     await expect(loadActiveLevelGiftInventory('uk', nowMs, 'fr')).resolves.toEqual([]);
+  });
+
+  it('lists saved friend gifts in the gifts inventory section', async () => {
+    mockStorage[FRIEND_GIFT_INVENTORY_KEY] = JSON.stringify([
+      {
+        id: 'friend-gift-1',
+        giftId: 'xp_boost_2x_24h',
+        giftLabelRu: 'x2 XP на 24 часа',
+        fromUid: 'friend-1',
+        fromName: 'Adi',
+        ts: nowMs,
+        savedAt: nowMs,
+      },
+    ]);
+
+    await expect(loadActiveLevelGiftInventory('ru', nowMs, 'en')).resolves.toEqual([
+      expect.objectContaining({
+        key: 'friend_gift_friend-gift-1',
+        iconGiftId: 'xp_2x_24h',
+        title: 'Подарок от Adi',
+        desc: 'x2 XP на 24 часа',
+      }),
+    ]);
   });
 });

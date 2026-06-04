@@ -27,6 +27,7 @@ import {
   checkAchievements,
 } from './achievements';
 import { triLang, type Lang } from '../constants/i18n';
+import { getLevelFromXP } from '../constants/theme';
 import { hapticSuccess } from '../hooks/use-haptics';
 import { STORE_URL, DEV_MODE, ENABLE_DEV_TOOLS } from './config';
 import { usePremium } from '../components/PremiumContext';
@@ -308,7 +309,7 @@ async function loadAchievementStats(): Promise<AchievementStats> {
     ]);
     const streak = parseInt(streakRaw || '0') || 0;
     const xp = parseInt(xpRaw || '0') || 0;
-    const level = Math.min(100, xp <= 0 ? 1 : Math.floor(Math.pow(xp / 250, 1 / 1.82)) + 1);
+    const level = getLevelFromXP(xp);
     const weeklyXP = Math.max(parseInt(weeklyRaw || '0') || 0, parseInt(weeklyPeakRaw || '0') || 0);
     const recallCorrect = Math.max(parseInt(recallRaw || '0') || 0, parseInt(trainerRaw || '0') || 0);
     const arenaWins = parseInt(arenaWinsRaw || '0') || 0;
@@ -920,8 +921,10 @@ const CAT_ICON_IMAGE: Record<string, any> = {
   streak:  require('../assets/images/achievement_categories/achievement-category-streak.webp'),
   lessons: require('../assets/images/achievement_categories/achievement-category-lessons.webp'),
   xp:      require('../assets/images/achievement_categories/achievement-category-xp.webp'),
+  quiz:    require('../assets/images/achievements/quiz_all_levels.webp'),
   combo:   require('../assets/images/achievement_categories/achievement-category-combo.webp'),
   special: require('../assets/images/achievement_categories/achievement-category-special.webp'),
+  medal:   require('../assets/images/achievements/gem_all_complete.webp'),
 };
 const CAT_LABEL_RU: Record<string, string> = {
   streak: 'Цепочка', lessons: 'Уроки', xp: 'Опыт',
@@ -1869,6 +1872,7 @@ export default function AchievementsScreen() {
         <SectionList<AchievementListSection, { key: string; data: AchievementListSection[] }>
           sections={[{ key: 'cats', data: achievementSections }]}
           keyExtractor={item => item.key}
+          removeClippedSubviews={false}
           renderItem={({ item }) => (
             <AccordionSection
               section={item}

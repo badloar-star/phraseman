@@ -19,7 +19,6 @@ import { useTheme } from './ThemeContext';
 import { PAYWALL_MODAL } from './paywallModalPalette';
 import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
 import {
-  REVIVE_COST_PER_MISSED_DAY_SHARDS,
   reviveStreak,
   dismissReviveOffer,
   type StreakReviveOffer,
@@ -42,6 +41,7 @@ interface StreakReviveModalProps {
   offer: StreakReviveOffer | null;
   onClose: () => void;
   onRevived?: (restoredStreak: number) => void;
+  shopReturnTo?: 'home' | 'streak_stats';
 }
 
 function formatStreakDays(count: number, lang: Lang): string {
@@ -61,7 +61,7 @@ function formatStreakDays(count: number, lang: Lang): string {
   });
 }
 
-export default function StreakReviveModal({ visible, offer, onClose, onRevived }: StreakReviveModalProps) {
+export default function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 'home' }: StreakReviveModalProps) {
   const router = useRouter();
   const { lang } = useLang();
   const { f, theme: t, themeMode } = useTheme();
@@ -106,7 +106,6 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
 
   const cost = offer?.costShards ?? 0;
   const lostStreak = offer?.lostStreak ?? 0;
-  const missedDays = offer?.missedDays ?? 1;
   const lostStreakText = formatStreakDays(lostStreak, lang);
 
   // ── Копирайт: пользовательское слово «цепочка» ─────────────────────────
@@ -143,35 +142,15 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
     pl: 'dni z rzędu',
   });
 
-  const priceTitle = triLang(lang, {
-    ru: 'Цена восстановления',
-    uk: 'Ціна відновлення',
-    es: 'Precio de recuperación',
-    'pt-BR': 'Preço da restauração',
-    vi: 'Giá khôi phục',
-    id: 'Harga pemulihan',
-    tr: 'Yenileme ücreti',
-    pl: 'Cena odnowienia',
-  });
-  const unitPriceLabel = triLang(lang, {
-    ru: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} за 1 день`,
-    uk: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} за 1 день`,
-    es: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} por 1 día`,
-    'pt-BR': `${REVIVE_COST_PER_MISSED_DAY_SHARDS} por 1 dia`,
-    vi: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} cho 1 ngày`,
-    id: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} untuk 1 hari`,
-    tr: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} / 1 gün`,
-    pl: `${REVIVE_COST_PER_MISSED_DAY_SHARDS} za 1 dzień`,
-  });
-  const totalPriceLabel = triLang(lang, {
-    ru: `Итого: ${cost} за ${missedDays} ${missedDays === 1 ? 'день' : 'дн.'}`,
-    uk: `Разом: ${cost} за ${missedDays} ${missedDays === 1 ? 'день' : 'дн.'}`,
-    es: `Total: ${cost} por ${missedDays} día${missedDays === 1 ? '' : 's'}`,
-    'pt-BR': `Total: ${cost} por ${missedDays} dia${missedDays === 1 ? '' : 's'}`,
-    vi: `Tổng: ${cost} cho ${missedDays} ngày`,
-    id: `Total: ${cost} untuk ${missedDays} hari`,
-    tr: `Toplam: ${cost} / ${missedDays} gün`,
-    pl: `Razem: ${cost} za ${missedDays} ${missedDays === 1 ? 'dzień' : 'dni'}`,
+  const priceAccessibilityLabel = triLang(lang, {
+    ru: `Цена восстановления: ${cost}`,
+    uk: `Ціна відновлення: ${cost}`,
+    es: `Precio de recuperación: ${cost}`,
+    'pt-BR': `Preço da restauração: ${cost}`,
+    vi: `Giá khôi phục: ${cost}`,
+    id: `Harga pemulihan: ${cost}`,
+    tr: `Yenileme ücreti: ${cost}`,
+    pl: `Cena odnowienia: ${cost}`,
   });
 
   const ctaLabel = triLang(lang, {
@@ -185,14 +164,14 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
     pl: 'Odnów rekord',
   });
   const dismissLabel = triLang(lang, {
-    ru: 'Начать заново',
-    uk: 'Почати заново',
-    es: 'Empezar de nuevo',
-    'pt-BR': 'Começar de novo',
-    vi: 'Bắt đầu lại',
-    id: 'Mulai lagi',
-    tr: 'Yeniden başla',
-    pl: 'Zacznij od nowa',
+    ru: 'Начать новую цепочку',
+    uk: 'Почати новий ланцюжок',
+    es: 'Empezar una nueva racha',
+    'pt-BR': 'Começar uma nova sequência',
+    vi: 'Bắt đầu chuỗi mới',
+    id: 'Mulai rangkaian baru',
+    tr: 'Yeni seri başlat',
+    pl: 'Zacznij nową serię',
   });
 
   const onConfirm = useCallback(async () => {
@@ -205,7 +184,7 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
         navigateAfterModalClose(onClose, () => {
           router.push({
             pathname: '/shards_shop',
-            params: { need: String(need), source: 'streak_revive' },
+            params: { need: String(need), source: 'streak_revive', returnTo: shopReturnTo },
           } as any);
         });
         return;
@@ -234,7 +213,7 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
         navigateAfterModalClose(onClose, () => {
           router.push({
             pathname: '/shards_shop',
-            params: { need: String(need), source: 'streak_revive' },
+            params: { need: String(need), source: 'streak_revive', returnTo: shopReturnTo },
           } as any);
         });
         return;
@@ -373,18 +352,16 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
                   borderColor: rewardModalPanelBorder(themeMode, t),
                 },
               ]}
+              accessible
+              accessibilityLabel={priceAccessibilityLabel}
             >
               <Image
-                source={oskolokImageForPackShards(REVIVE_COST_PER_MISSED_DAY_SHARDS)}
+                source={oskolokImageForPackShards(cost)}
                 style={styles.priceIcon}
                 resizeMode="contain"
               />
               <View style={styles.priceTextWrap}>
-                <Text style={[styles.priceLabel, { color: PAYWALL_MODAL.subtitle }]}>{priceTitle}</Text>
-                <Text style={[styles.priceValue, { color: modalAccent }]}>{unitPriceLabel}</Text>
-                {missedDays > 1 && (
-                  <Text style={[styles.priceTotal, { color: PAYWALL_MODAL.subtitle }]}>{totalPriceLabel}</Text>
-                )}
+                <Text style={[styles.priceValue, { color: modalAccent }]}>{cost}</Text>
               </View>
             </View>
 
@@ -529,19 +506,9 @@ const styles = StyleSheet.create({
     flex: 1,
     minWidth: 0,
   },
-  priceLabel: {
-    fontSize: 12,
-    fontWeight: '700',
-  },
   priceValue: {
     fontSize: 15,
     fontWeight: '900',
-    marginTop: 2,
-  },
-  priceTotal: {
-    fontSize: 12,
-    fontWeight: '700',
-    marginTop: 2,
   },
   shardBtnIconSlot: {
     position: 'absolute',

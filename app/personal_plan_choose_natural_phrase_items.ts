@@ -1,0 +1,79 @@
+import type { LessonTeachingNote } from './lesson_data_types';
+import { getPersonalPlanPhraseLesson } from './personal_plan_phrase_lessons';
+
+export type PersonalPlanChooseNaturalPhraseItem = {
+  id: string;
+  promptRu: string;
+  promptUk: string;
+  correctAnswer: string;
+  options: string[];
+  grammarTags: string[];
+  vocabularyTags: string[];
+  explanation: LessonTeachingNote;
+};
+
+export type GetPersonalPlanChooseNaturalPhraseItemsInput = {
+  lessonId: string;
+  contentUnitIds: string[];
+};
+
+function compactUnique(values: string[]): string[] {
+  return [...new Set(values.map((value) => value.trim()).filter(Boolean))];
+}
+
+function fallbackExplanation(correctAnswer: string): LessonTeachingNote {
+  return {
+    id: `choose_natural_${correctAnswer.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
+    titleRu: 'Почему этот вариант',
+    correctRu: `${correctAnswer} подходит по смыслу и звучит как обычная короткая фраза. Здесь важно выбрать не красивость, а точное спокойное значение.`,
+    wrongRu: 'Смотри на русский смысл целиком. Нужна фраза, которая передает именно эту мысль, а не просто похожие знакомые слова.',
+  };
+}
+
+function choiceExplanationForPhrase(phraseEnglish: string, note?: LessonTeachingNote): LessonTeachingNote {
+  if (!note) return fallbackExplanation(phraseEnglish);
+  return {
+    ...note,
+    titleRu: note.titleRu ?? 'Почему этот вариант',
+    correctRu: note.correctRu,
+    wrongRu: note.wrongRu,
+  };
+}
+
+function optionDistractors(allAnswers: string[], correctAnswer: string): string[] {
+  const distractors = allAnswers.filter((answer) => answer !== correctAnswer);
+  if (distractors.length <= 3) return distractors;
+  return compactUnique([
+    distractors[0],
+    distractors[1],
+    distractors[distractors.length - 1],
+  ]);
+}
+
+export function getPersonalPlanChooseNaturalPhraseItems(
+  input: GetPersonalPlanChooseNaturalPhraseItemsInput,
+): PersonalPlanChooseNaturalPhraseItem[] {
+  const lesson = getPersonalPlanPhraseLesson(input.lessonId);
+  if (!lesson) return [];
+
+  const requestedIds = new Set(input.contentUnitIds);
+  const allAnswers = lesson.phrases.map((phrase) => phrase.english);
+
+  return lesson.phrases
+    .filter((phrase) => requestedIds.has(String(phrase.id)))
+    .map((phrase) => {
+      const meaningNote = [...phrase.words].reverse().find((word) => word.teachingNote)?.teachingNote;
+      const options = compactUnique([phrase.english, ...optionDistractors(allAnswers, phrase.english)]).slice(0, 4);
+
+      return {
+        id: String(phrase.id),
+        promptRu: phrase.russian,
+        promptUk: phrase.ukrainian,
+        correctAnswer: phrase.english,
+        options,
+        grammarTags: phrase.words.map((word) => word.category).filter(Boolean) as string[],
+        vocabularyTags: [],
+        explanation: choiceExplanationForPhrase(phrase.english, meaningNote),
+      };
+    });
+}

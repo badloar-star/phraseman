@@ -3,7 +3,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import CompassDepthSurface from '../components/CompassDepthSurface';
 import { triLang } from '../constants/i18n';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
 type TrainerReportQueue = 'words' | 'phrases' | 'arena';
 
@@ -25,7 +27,9 @@ export default function TrainerSessionReport({
   onDone,
   onPracticeMore,
 }: TrainerSessionReportProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
+  const reportAccent = isCompassTheme ? COMPASS_RICH.champagne : accent;
   const { lang } = useLang();
   const attempted = Math.max(total, correct + wrong);
   const isEmpty = attempted === 0;
@@ -65,12 +69,13 @@ export default function TrainerSessionReport({
       });
   return (
     <View style={styles.root}>
-      <View style={[styles.hero, { backgroundColor: t.bgCard, borderColor: accent + '55' }]}>
-        <View style={[styles.iconWrap, { backgroundColor: accent + '22', borderColor: accent + '66' }]}>
+      <View style={[styles.hero, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : accent + '55', borderRadius: isCompassTheme ? 10 : 20, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+        {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
+        <View style={[styles.iconWrap, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : accent + '22', borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : accent + '66', borderRadius: isCompassTheme ? 12 : 20 }]}>
           <Ionicons
             name={isEmpty ? 'checkmark-done' : perfect ? 'shield-checkmark' : 'analytics'}
             size={30}
-            color={accent}
+            color={reportAccent}
           />
         </View>
         <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
@@ -91,7 +96,7 @@ export default function TrainerSessionReport({
             pl: 'dokładność',
           })}
           value={isEmpty ? '-' : `${accuracy}%`}
-          color={accent}
+          color={reportAccent}
         />
         <Metric
           label={triLang(lang, {
@@ -105,7 +110,7 @@ export default function TrainerSessionReport({
             pl: 'utrwalone',
           })}
           value={String(correct)}
-          color="#40C080"
+          color={isCompassTheme ? COMPASS_RICH.champagne : '#40C080'}
         />
         <Metric
           label={triLang(lang, {
@@ -119,14 +124,15 @@ export default function TrainerSessionReport({
             pl: 'wróci',
           })}
           value={String(wrong)}
-          color="#FB7185"
+          color={isCompassTheme ? COMPASS_RICH.peach : '#FB7185'}
         />
       </View>
 
       <View style={styles.actions}>
         {onPracticeMore && !isEmpty ? (
-          <TouchableOpacity onPress={onPracticeMore} style={[styles.secondaryBtn, { borderColor: accent + '66', backgroundColor: accent + '14' }]}>
-            <Text style={{ color: accent, fontSize: f.sub, fontWeight: '900' }}>
+          <TouchableOpacity onPress={onPracticeMore} style={[styles.secondaryBtn, isCompassTheme && compassShadow(1), { borderColor: isCompassTheme ? COMPASS_RICH.hairline : accent + '66', backgroundColor: isCompassTheme ? COMPASS_RICH.wash : accent + '14', borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+            {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
+            <Text style={{ color: reportAccent, fontSize: f.sub, fontWeight: '900' }}>
               {triLang(lang, {
                 ru: 'Ещё слабые',
                 uk: 'Ще слабкі',
@@ -140,8 +146,9 @@ export default function TrainerSessionReport({
             </Text>
           </TouchableOpacity>
         ) : null}
-        <TouchableOpacity onPress={onDone} style={[styles.primaryBtn, { backgroundColor: accent }]}>
-          <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
+        <TouchableOpacity onPress={onDone} style={[styles.primaryBtn, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : accent, borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+          {isCompassTheme ? <CompassDepthSurface radius={9} cream /> : null}
+          <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : '#fff', fontSize: f.sub, fontWeight: '900' }}>
             {triLang(lang, {
               ru: 'Готово',
               uk: 'Готово',
@@ -160,9 +167,11 @@ export default function TrainerSessionReport({
 }
 
 function Metric({ label, value, color }: { label: string; value: string; color: string }) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
   return (
-    <View style={[styles.metric, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+    <View style={[styles.metric, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 9 : 14, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+      {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
       <Text style={{ color, fontSize: f.numMd, fontWeight: '900' }}>{value}</Text>
       <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800' }} numberOfLines={1}>
         {label}

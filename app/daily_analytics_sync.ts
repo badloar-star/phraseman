@@ -13,6 +13,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
 import { computeAllPercentiles, type AllPercentiles } from './leaderboard_stats';
+import { getMyWeekPoints } from './hall_of_fame_utils';
 
 const SYNCED_DATE_KEY = 'daily_analytics_synced_v1';
 
@@ -126,24 +127,16 @@ export async function loadPercentileData(myArenaXp = 0): Promise<{
   myTime7ms: number;
   percentiles: AllPercentiles;
 }> {
-  const [myXp7, myTime7ms, streakRaw, xpRaw, weekRaw] = await Promise.all([
+  const [myXp7, myTime7ms, streakRaw, xpRaw, myWeekXp] = await Promise.all([
     getLast7DaysXp(),
     getLast7DaysTimeMs(),
     AsyncStorage.getItem('streak_count'),
     AsyncStorage.getItem('user_total_xp'),
-    AsyncStorage.getItem('week_points_v2'),
+    getMyWeekPoints(),
   ]);
 
   const myStreak = parseInt(streakRaw ?? '0', 10) || 0;
   const myXp = parseInt(xpRaw ?? '0', 10) || 0;
-
-  let myWeekXp = 0;
-  try {
-    if (weekRaw) {
-      const wp = JSON.parse(weekRaw);
-      myWeekXp = typeof wp.points === 'number' ? wp.points : 0;
-    }
-  } catch { /* */ }
 
   const percentiles = await computeAllPercentiles({
     myXp,

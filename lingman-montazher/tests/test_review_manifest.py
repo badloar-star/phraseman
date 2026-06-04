@@ -13,6 +13,8 @@ validator = load_validator(ROOT / "tools" / "validate_review_manifest.py")
 builder = load_validator(ROOT / "tools" / "build_silence_review_manifest.py")
 director = load_validator(ROOT / "tools" / "build_director_pass.py")
 renderer = load_validator(ROOT / "tools" / "render_director_pass.py")
+multimodal = load_validator(ROOT / "tools" / "build_multimodal_edl.py")
+style_extractor = load_validator(ROOT / "tools" / "extract_capcut_reference_style.py")
 
 
 class ReviewManifestTest(unittest.TestCase):
@@ -220,6 +222,113 @@ class ReviewManifestTest(unittest.TestCase):
 
         self.assertEqual(1, len(filtered))
         self.assertEqual("I am here", filtered[0]["text"])
+
+    def test_astats_metadata_parser_builds_energy_windows_and_spikes(self) -> None:
+        astats_log = "\n".join(
+            [
+                "frame:0    pts:0       pts_time:0.000",
+                "lavfi.astats.Overall.RMS_level=-24.0",
+                "lavfi.astats.Overall.Peak_level=-3.0",
+                "lavfi.astats.Overall.Max_difference=0.16",
+                "frame:1    pts:12000   pts_time:0.250",
+                "lavfi.astats.Overall.RMS_level=-31.0",
+                "lavfi.astats.Overall.Peak_level=-12.0",
+                "lavfi.astats.Overall.Max_difference=0.02",
+            ]
+        )
+
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "astats.log"
+            path.write_text(astats_log, encoding="utf-8")
+
+            windows = multimodal.parse_astats_metadata(path)
+            spikes = multimodal.detect_sync_spikes(windows)
+
+        self.assertEqual(2, len(windows))
+        self.assertEqual(-24.0, windows[0]["rmsLevel"])
+        self.assertEqual(-3.0, windows[0]["peakLevel"])
+        self.assertEqual(0.25, windows[0]["duration"])
+        self.assertEqual(1, len(spikes))
+
+    def test_multimodal_take_groups_mark_latest_variant(self) -> None:
+        chunks = [
+            multimodal.SpeechChunk(
+                start=10.0,
+                end=16.0,
+                text="She ready is wrong. The correct phrase is she is ready.",
+                transcript_ids=[0],
+            ),
+            multimodal.SpeechChunk(
+                start=25.0,
+                end=31.0,
+                text="She ready is wrong. The correct phrase is she is ready.",
+                transcript_ids=[1],
+            ),
+        ]
+
+        groups = multimodal.build_take_groups(chunks, director)
+
+        self.assertEqual(1, len(groups))
+        self.assertEqual("reject_earlier_variant", groups[0]["members"][0]["role"])
+        self.assertEqual("keep_latest_variant", groups[0]["members"][1]["role"])
+
+    def test_multimodal_edl_keeps_capcut_editable_and_remotion_render_only(self) -> None:
+        manifest = {
+            "project": {
+                "title": "Professor Lingman",
+                "sourceFile": "input/current-video.mp4",
+                "duration": 20.0,
+                "editedDuration": 4.0,
+            },
+            "editDecisions": [
+                {
+                    "id": "clip_001",
+                    "sourceStart": 10.0,
+                    "sourceEnd": 14.0,
+                    "outputStart": 0.0,
+                    "outputEnd": 4.0,
+                    "decision": "take_selected",
+                    "transcript": "She is ready.",
+                }
+            ],
+            "screenText": [
+                {
+                    "id": "text_001",
+                    "start": 1.0,
+                    "end": 2.6,
+                    "text": "She is ready",
+                    "role": "phrase",
+                    "sfxVariant": 0,
+                }
+            ],
+            "motionEffects": [],
+        }
+        analysis = {
+            "audio": {"silenceRanges": []},
+            "speech": {"takeGroups": []},
+            "emotionEnergy": {"segments": [{"sourceStart": 10.0, "sourceEnd": 14.0, "score": 0.7}]},
+            "artifacts": {},
+        }
+
+        edl = multimodal.build_edl(manifest, analysis)
+
+        self.assertTrue(edl["exporters"]["capcut"]["editableProject"])
+        self.assertTrue(edl["exporters"]["capcut"]["default"])
+        self.assertFalse(edl["exporters"]["remotion"]["finalMp4Export"])
+        self.assertFalse(edl["timeline"]["screenText"][0]["capcutPolicy"]["manualKeyframes"])
+
+    def test_reference_style_extractor_reads_text_content_json(self) -> None:
+        material = {
+            "content": json.dumps({"text": "She is ready", "styles": []}),
+            "font_size": 5.0,
+            "text_color": "#FFFFFF",
+            "line_max_width": 0.82,
+        }
+
+        summary = style_extractor.material_summary(material)
+
+        self.assertEqual("She is ready", summary["text"])
+        self.assertEqual(5.0, summary["fontSize"])
 
 
 if __name__ == "__main__":

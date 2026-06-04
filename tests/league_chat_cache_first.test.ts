@@ -1,8 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {
+  createOptimisticLeagueChatMessage,
   getLeagueChatConnectionUi,
   getLeagueChatKeyboardAvoidingBehavior,
+  getLeagueChatKeyboardOverlapInset,
+  getLeagueChatKeyboardTopY,
+  mergeLeagueChatOptimisticMessages,
 } from '../components/leagueChatPanelBehavior';
 
 const ROOT = path.resolve(__dirname, '..');
@@ -79,6 +83,83 @@ describe('league chat cache-first behavior', () => {
     expect(getLeagueChatKeyboardAvoidingBehavior('android')).toBe('height');
   });
 
+  it('computes only the real keyboard overlap for the nested league panel', () => {
+    expect(getLeagueChatKeyboardOverlapInset(760, 520)).toBe(240);
+    expect(getLeagueChatKeyboardOverlapInset(520, 520)).toBe(0);
+    expect(getLeagueChatKeyboardOverlapInset(480, 520)).toBe(0);
+    expect(getLeagueChatKeyboardTopY({ screenY: 520, height: 280 }, 800)).toBe(520);
+    expect(getLeagueChatKeyboardTopY({ height: 280 }, 800)).toBe(520);
+  });
+
+  it('shows my sent message immediately as an optimistic league chat row', () => {
+    const row = createOptimisticLeagueChatMessage(
+      { groupId: 'group-a', weekId: '2026-W22', leagueId: 3 },
+      {
+        clientId: 'local-1',
+        authorUid: 'me',
+        authorAvatar: 'avatar-1',
+        authorAura: 'aura-1',
+        text: 'hello now',
+        now: 1234,
+      },
+    );
+
+    expect(row).toMatchObject({
+      id: 'optimistic:local-1',
+      groupId: 'group-a',
+      weekId: '2026-W22',
+      leagueId: 3,
+      authorUid: 'me',
+      authorAvatar: 'avatar-1',
+      authorAura: 'aura-1',
+      text: 'hello now',
+      status: 'visible',
+      createdAt: 1234,
+      localStatus: 'sending',
+    });
+  });
+
+  it('keeps optimistic messages visible until the server snapshot catches up', () => {
+    const optimistic = createOptimisticLeagueChatMessage(
+      { groupId: 'group-a', weekId: '2026-W22', leagueId: 3 },
+      { clientId: 'local-1', authorUid: 'me', text: 'hello now', now: 1000 },
+    );
+
+    expect(mergeLeagueChatOptimisticMessages([], [optimistic]).map((m) => m.id)).toEqual([
+      'optimistic:local-1',
+    ]);
+
+    const serverMessage = {
+      ...optimistic,
+      id: 'server-1',
+      createdAt: 1600,
+    };
+
+    expect(mergeLeagueChatOptimisticMessages([serverMessage], [optimistic]).map((m) => m.id)).toEqual([
+      'server-1',
+    ]);
+  });
+
+  it('measures keyboard overlap and pads the composer above the keyboard', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatPanel.tsx'), 'utf8');
+
+    expect(source).toContain('measureInWindow');
+    expect(source).toContain('paddingBottom: keyboardBottomInset');
+    expect(source).toContain('onFocus={handleComposerFocus}');
+    expect(source).toContain('Keyboard.metrics()');
+    expect(source).toContain('testID="league-chat-composer"');
+  });
+
+  it('adds optimistic chat rows before awaiting Firestore send', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatPanel.tsx'), 'utf8');
+
+    expect(source).toContain('setOptimisticMessages((cur) =>');
+    expect(source.indexOf('setOptimisticMessages((cur) =>')).toBeLessThan(
+      source.indexOf('await sendLeagueChatMessage(room, text)'),
+    );
+    expect(source).not.toContain('Сообщение отправлено');
+  });
+
   it('routes the blocking fallback through the cache-first connection helper', () => {
     const source = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatPanel.tsx'), 'utf8');
 
@@ -91,5 +172,24 @@ describe('league chat cache-first behavior', () => {
     const resolveBody = source.match(/export async function resolveMyLeagueChatRoom\(\)[\s\S]*?\n}/)?.[0] ?? '';
 
     expect(resolveBody).not.toContain('await authorizeLeagueChatRoom(room)');
+  });
+
+  it('caches successful room authorization and exposes an invalidation path for reconnect errors', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', 'firestore_league_chat.ts'), 'utf8');
+
+    expect(source).toContain('ROOM_AUTH_CACHE_PREFIX');
+    expect(source).toContain('ROOM_AUTH_TTL_MS');
+    expect(source).toContain('loadCachedLeagueChatAuthorization');
+    expect(source).toContain('forgetCachedLeagueChatAuthorization');
+    expect(source).toContain('cachedStableId !== stableId');
+    expect(source.indexOf('await loadCachedLeagueChatAuthorization(normalized, stableId)')).toBeLessThan(
+      source.indexOf("const fn = callable<LeagueChatRoom & { stableId?: string }, { ok: boolean }>('leagueChatAuthorizeRoom')"),
+    );
+  });
+
+  it('invalidates cached authorization before retrying after a live subscription error', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatPanel.tsx'), 'utf8');
+
+    expect(source).toContain('forgetCachedLeagueChatAuthorization(room)');
   });
 });

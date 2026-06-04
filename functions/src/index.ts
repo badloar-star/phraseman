@@ -9,8 +9,6 @@ admin.initializeApp();
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { runMatchmaking, tryMatchForUser } = require('./matchmaking');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { syncLeaderboardFromUsers } = require('./sync_leaderboard');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { resetWeeklyXp } = require('./reset_weekly_xp');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { computeLeaderboardStats } = require('./compute_leaderboard_stats');
@@ -23,17 +21,13 @@ const { processLobbyAfterChoice } = require('./arena_pregame') as {
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage } = require('./league_chat');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost } = require('./league_groups');
+const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, leagueActivateGroupBoost } = require('./league_groups');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authEnsureStableLink } = require('./auth_identity');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { cleanupLegacyIdentityDuplicatesPage } = require('./identity_cleanup');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { accountDeleteMine } = require('./account_delete');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
-  leaderboardPushMyScore,
-  leaderboardUpdatePremium,
   leaderboardUpdateDailyAnalytics,
   nameCheckAvailability,
   nameReserve,
@@ -61,6 +55,8 @@ const { cleanupExpiredAppMessages, onAppMessageReactionWritten, onAppMessagePoll
 const { submitVipSurvey, recordVipSurveyReviewClick } = require('./vip_survey');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitClientReport } = require('./client_reports');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { telegramPremiumWebhook, telegramPremiumActivationNotifier } = require('./telegram_premium_bot');
 
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
 exports.leagueChatSendMessage = leagueChatSendMessage;
@@ -68,10 +64,9 @@ exports.leagueChatReportMessage = leagueChatReportMessage;
 exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;
 exports.leagueUpdateMyMember = leagueUpdateMyMember;
 exports.leagueSyncMyBoost = leagueSyncMyBoost;
+exports.leagueActivateGroupBoost = leagueActivateGroupBoost;
 exports.authEnsureStableLink = authEnsureStableLink;
 exports.accountDeleteMine = accountDeleteMine;
-exports.leaderboardPushMyScore = leaderboardPushMyScore;
-exports.leaderboardUpdatePremium = leaderboardUpdatePremium;
 exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;
 exports.nameCheckAvailability = nameCheckAvailability;
 exports.nameReserve = nameReserve;
@@ -93,6 +88,8 @@ exports.onAppMessagePollVoteWritten = onAppMessagePollVoteWritten;
 exports.submitVipSurvey = submitVipSurvey;
 exports.recordVipSurveyReviewClick = recordVipSurveyReviewClick;
 exports.submitClientReport = submitClientReport;
+exports.telegramPremiumWebhook = telegramPremiumWebhook;
+exports.telegramPremiumActivationNotifier = telegramPremiumActivationNotifier;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 
@@ -279,24 +276,12 @@ async function pickArenaQuestions(count: number): Promise<string[]> {
   }
   return out;
 }
-// ─── Leaderboard sync ────────────────────────────────────────────────────────
-
-export const syncLeaderboardCron = functions.scheduler.onSchedule(
-  { schedule: 'every 2 hours', timeZone: 'UTC' },
-  async () => { await syncLeaderboardFromUsers(); }
-);
-
 // ─── Leaderboard percentile stats cron ──────────────────────────────────────
-// Runs every hour. Computes p1-p99 thresholds for XP/streak/time/arena
+// Runs daily. Computes p1-p99 thresholds for XP/streak/time/arena
 // and writes them to leaderboard_stats/global for all clients to read.
 export const computeLeaderboardStatsCron = functions.scheduler.onSchedule(
-  { schedule: 'every 1 hours', timeZone: 'UTC' },
+  { schedule: '0 3 * * *', timeZone: 'UTC' },
   async () => { await computeLeaderboardStats(); }
-);
-
-export const cleanupLegacyIdentityDuplicatesCron = functions.scheduler.onSchedule(
-  { schedule: 'every 2 hours', timeZone: 'UTC' },
-  async () => { await cleanupLegacyIdentityDuplicatesPage(); }
 );
 
 // ─── Weekly XP reset cron (XP-02) ────────────────────────────────────────────
@@ -356,7 +341,7 @@ export const onMatchmakingWrite = functions.firestore.onDocumentWritten(
 // ─── Matchmaking: 1-min cron fallback for players who didn\'t trigger onWrite ──
 
 export const matchmakingCron = functions.scheduler.onSchedule(
-  { schedule: 'every 1 minutes', timeZone: 'UTC' },
+  { schedule: 'every 5 minutes', timeZone: 'UTC' },
   async () => { await runMatchmaking(); }
 );
 
@@ -1038,11 +1023,9 @@ export {
   communityMarkSellerInboxSeen,
 } from './community_packs';
 
-export { mirrorFriendActivityOnUserWrite } from './friend_activity_mirror';
+export { syncFriendActivityMirrorCron } from './friend_activity_mirror';
 
 export { friendSendGift } from './friend_gifts';
-
-export { referralEnsureMyCode, referralApply, referralOnUserProgressUpdated } from './referral';
 
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 export { adminGrantReward } from './admin_grant';

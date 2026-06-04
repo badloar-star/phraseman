@@ -10,6 +10,7 @@ const REWARD_MODAL_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
   coral: require('../assets/images/reward_modals/reward-modal-coral.webp'),
   minimalLight: require('../assets/images/reward_modals/reward-modal-sketch.webp'),
   minimalDark: require('../assets/images/reward_modals/reward-modal-graphite.webp'),
+  compass: require('../assets/images/reward_modals/reward-modal-compass-premium.webp'),
 };
 
 type RewardModalBackdropProps = {
@@ -77,8 +78,10 @@ export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string
       return ['rgba(54,30,34,0.94)', 'rgba(36,22,25,0.95)', 'rgba(15,8,10,0.97)'];
     case 'minimalLight':
       return ['rgba(255,253,246,0.96)', 'rgba(246,238,222,0.95)', 'rgba(232,219,198,0.94)'];
+    case 'compass':
+      return ['rgba(23,20,16,0.94)', 'rgba(12,10,7,0.96)', 'rgba(2,3,4,0.98)'];
     case 'minimalDark':
-      return ['rgba(35,39,46,0.94)', 'rgba(20,23,29,0.96)', 'rgba(8,10,14,0.98)'];
+      return ['rgba(15,20,28,0.94)', 'rgba(10,13,19,0.96)', 'rgba(3,5,8,0.98)'];
     case 'dark':
     default:
       return ['rgba(21,35,26,0.94)', 'rgba(10,18,14,0.96)', 'rgba(4,9,6,0.98)'];
@@ -95,8 +98,10 @@ export function rewardModalAccentColor(themeMode: ThemeMode, t: Theme): string {
       return '#FF8A78';
     case 'minimalLight':
       return '#7A5520';
+    case 'compass':
+      return '#F2C48D';
     case 'minimalDark':
-      return '#88B8FF';
+      return '#6EA8FF';
     case 'dark':
     default:
       return t.gold;
@@ -114,8 +119,10 @@ export function rewardModalPanelBorder(themeMode: ThemeMode, _t: Theme, priority
       return 'rgba(255,138,120,0.36)';
     case 'minimalLight':
       return 'rgba(45,39,30,0.26)';
+    case 'compass':
+      return 'rgba(242,196,141,0.34)';
     case 'minimalDark':
-      return 'rgba(136,184,255,0.28)';
+      return 'rgba(110,168,255,0.30)';
     case 'dark':
     default:
       return 'rgba(88,204,137,0.30)';
@@ -132,8 +139,10 @@ export function rewardModalSoftSurface(themeMode: ThemeMode, _t: Theme): string 
       return 'rgba(216,255,62,0.08)';
     case 'coral':
       return 'rgba(255,138,120,0.09)';
+    case 'compass':
+      return 'rgba(242,196,141,0.08)';
     case 'minimalDark':
-      return 'rgba(136,184,255,0.08)';
+      return 'rgba(110,168,255,0.08)';
     case 'dark':
     default:
       return 'rgba(255,255,255,0.055)';
@@ -150,8 +159,10 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
       return ['#FFE1D7', '#FF8A78'];
     case 'minimalLight':
       return ['#343842', '#171615'];
+    case 'compass':
+      return ['#FFD58A', '#E7B13F'];
     case 'minimalDark':
-      return ['#FFFFFF', '#BFD6FF'];
+      return ['#D7E7FF', '#6EA8FF'];
     case 'dark':
     default:
       return ['#F0F7F2', '#8FE5AD'];
@@ -159,6 +170,7 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
 }
 
 export function rewardModalPrimaryButtonText(themeMode: ThemeMode): string {
+  if (themeMode === 'compass') return '#151008';
   return themeMode === 'minimalLight' ? '#FFFDF6' : '#101214';
 }
 
@@ -215,10 +227,14 @@ function rewardModalPanelScrimColors(themeMode: ThemeMode, intensity: 'regular' 
       return strong
         ? ['rgba(48,14,18,0.22)', 'rgba(30,8,11,0.48)', 'rgba(0,0,0,0.72)']
         : ['rgba(48,14,18,0.14)', 'rgba(30,8,11,0.36)', 'rgba(0,0,0,0.62)'];
+    case 'compass':
+      return strong
+        ? ['rgba(20,15,8,0.18)', 'rgba(8,7,5,0.48)', 'rgba(0,0,0,0.78)']
+        : ['rgba(20,15,8,0.12)', 'rgba(8,7,5,0.38)', 'rgba(0,0,0,0.66)'];
     case 'minimalDark':
       return strong
-        ? ['rgba(6,10,18,0.18)', 'rgba(4,7,12,0.48)', 'rgba(0,0,0,0.78)']
-        : ['rgba(6,10,18,0.12)', 'rgba(4,7,12,0.38)', 'rgba(0,0,0,0.66)'];
+        ? ['rgba(8,12,20,0.20)', 'rgba(5,8,13,0.48)', 'rgba(0,0,0,0.76)']
+        : ['rgba(8,12,20,0.12)', 'rgba(5,8,13,0.38)', 'rgba(0,0,0,0.64)'];
     case 'dark':
     default:
       return strong

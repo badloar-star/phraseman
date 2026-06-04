@@ -59,9 +59,12 @@ const ARENA_TOP100_LEGACY_CACHE_KEYS = [
 /** Время последнего успешного запроса к Firestore (для правила 6 ч при заходе). */
 export const ARENA_REMOTE_REFRESH_AT_KEY = 'arena_top100_remote_at_v1';
 export const ARENA_REMOTE_REFRESH_MS = 6 * 60 * 60 * 1000;
+const ARENA_TOP100_REMOTE_ENABLED = false;
 
 /** Кэш моего места в общем рейтинге арены (для нижней плашки). */
 export const ARENA_MY_RANK_CACHE_KEY = 'arena_my_rank_snapshot_v1';
+const ARENA_PUBLIC_SNAPSHOTS_COL = 'arena_public_snapshots';
+const ARENA_TOP100_SNAPSHOT_DOC = 'arena_top100';
 
 function chunk<T>(arr: T[], size: number): T[][] {
   const out: T[][] = [];
@@ -379,6 +382,57 @@ function parseRank(raw: { tier?: string; level?: string } | undefined): { tier: 
   return { tier, levelRoman: lv };
 }
 
+function coerceSnapshotRow(raw: unknown, index: number): ArenaLbRow | null {
+  const d = (raw ?? {}) as Record<string, unknown>;
+  const uid = typeof d.uid === 'string' && d.uid.trim() ? d.uid.trim() : '';
+  const displayName = typeof d.displayName === 'string' ? d.displayName.trim() : '';
+  if (!uid || isPlaceholderName(displayName)) return null;
+  const rank = parseRank({
+    tier: typeof d.tier === 'string' ? d.tier : undefined,
+    level: typeof d.levelRoman === 'string' ? d.levelRoman : undefined,
+  });
+  const leagueCrownRaw = d.leagueCrown as LeagueCrown | undefined;
+  const leagueCrown = leagueCrownRaw && Number(leagueCrownRaw.expiresAt) > Date.now()
+    ? leagueCrownRaw
+    : undefined;
+  return {
+    uid,
+    ...(typeof d.friendUid === 'string' && d.friendUid.trim() ? { friendUid: d.friendUid.trim() } : {}),
+    place: index + 1,
+    displayName,
+    arenaXp: typeof d.arenaXp === 'number' ? d.arenaXp : 0,
+    tier: rank.tier,
+    levelRoman: rank.levelRoman,
+    totalXp: typeof d.totalXp === 'number' ? d.totalXp : 0,
+    isPremium: d.isPremium === true,
+    isVip: d.isVip === true,
+    ...(typeof d.frame === 'string' && d.frame.trim() ? { frame: d.frame.trim() } : {}),
+    ...(typeof d.aura === 'string' && d.aura.trim() ? { aura: normalizeAvatarAuraId(d.aura) ?? undefined } : {}),
+    ...(typeof d.avatarEmoji === 'string' && d.avatarEmoji.trim() ? { avatarEmoji: d.avatarEmoji.trim() } : {}),
+    profileCardLevel: normalizeProfileCardLevel(d.profileCardLevel),
+    profileCardTheme: normalizeProfileCardTheme(d.profileCardTheme),
+    profileCardMotion: normalizeProfileCardMotion(d.profileCardMotion),
+    profileCardPublicFocus: normalizeProfileCardPublicFocus(d.profileCardPublicFocus),
+    ...(leagueCrown ? { leagueCrown } : {}),
+  };
+}
+
+async function fetchArenaTop100Snapshot(): Promise<ArenaLbRow[]> {
+  const db = getFirestore();
+  if (!db) return [];
+  try {
+    const snap = await db.collection(ARENA_PUBLIC_SNAPSHOTS_COL).doc(ARENA_TOP100_SNAPSHOT_DOC).get();
+    if (!snap?.exists) return [];
+    const data = snap.data() as { rows?: unknown[] } | undefined;
+    const rows = Array.isArray(data?.rows)
+      ? data.rows.map(coerceSnapshotRow).filter((row): row is ArenaLbRow => !!row)
+      : [];
+    return stripPlaceholdersAndReplace(rows).slice(0, 100);
+  } catch {
+    return [];
+  }
+}
+
 /** Имена-плейсхолдеры от старых билдов / из CF резервных ответов — НЕ показываем в лидерборде.
  *  Используется для фильтра как при свежем fetch из Firestore, так и при чтении кеша. */
 const PLACEHOLDER_NAMES = new Set([
@@ -549,6 +603,15 @@ async function fetchAndCacheArenaTop100(): Promise<ArenaLbRow[]> {
   await ensureArenaAuthUid().catch(() => null);
 
   try {
+    const snapshotRows = await fetchArenaTop100Snapshot();
+    if (snapshotRows.length > 0) {
+      await AsyncStorage.multiSet([
+        [ARENA_TOP100_CACHE_KEY, JSON.stringify({ data: snapshotRows, timestamp: Date.now() })],
+        [ARENA_REMOTE_REFRESH_AT_KEY, String(Date.now())],
+      ]).catch(() => {});
+      return snapshotRows;
+    }
+
     const fetched = await queryArenaProfilesTop100();
     // Двойная защита — теоретически queryArenaProfilesTop100 уже отфильтровал,
     // но если в будущем добавится новая placeholder-вариация — здесь подстрахуем.
@@ -565,6 +628,72 @@ async function fetchAndCacheArenaTop100(): Promise<ArenaLbRow[]> {
   }
 }
 
+export type ArenaOptimisticSelf = {
+  uid?: string | null;
+  friendUid?: string | null;
+  displayName?: string | null;
+  arenaXp?: number | null;
+  tier?: RankTier | null;
+  levelRoman?: RankLevel | string | null;
+  totalXp?: number | null;
+  isPremium?: boolean;
+  isVip?: boolean;
+  frame?: string | null;
+  aura?: string | null;
+  avatarEmoji?: string | null;
+  profileCardLevel?: number;
+  profileCardTheme?: string;
+  profileCardMotion?: string;
+  profileCardPublicFocus?: string;
+  games?: number | null;
+};
+
+export function withOptimisticArenaSelf(rows: ArenaLbRow[], me: ArenaOptimisticSelf | null | undefined): ArenaLbRow[] {
+  const uid = typeof me?.uid === 'string' && me.uid.trim() ? me.uid.trim() : '';
+  const friendUid = typeof me?.friendUid === 'string' && me.friendUid.trim() ? me.friendUid.trim() : '';
+  const displayName = typeof me?.displayName === 'string' && me.displayName.trim() ? me.displayName.trim() : '';
+  const arenaXp = Math.max(0, Math.trunc(Number(me?.arenaXp) || 0));
+  const games = Math.max(0, Math.trunc(Number(me?.games) || 0));
+  if (!uid || !displayName || games < 1 || arenaXp <= 0 || isPlaceholderName(displayName)) {
+    return rows;
+  }
+
+  const existing = rows.find((row) => row.uid === uid || (!!friendUid && row.friendUid === friendUid));
+  const minTopXp = rows.length > 0 ? rows[rows.length - 1].arenaXp : 0;
+  if (!existing && rows.length >= 100 && arenaXp <= minTopXp) return rows;
+
+  const rank = parseRank({
+    tier: typeof me?.tier === 'string' ? me.tier : undefined,
+    level: typeof me?.levelRoman === 'string' ? me.levelRoman : undefined,
+  });
+  const optimistic: ArenaLbRow = {
+    ...(existing ?? {}),
+    uid,
+    ...(friendUid ? { friendUid } : {}),
+    place: existing?.place ?? rows.length + 1,
+    displayName,
+    arenaXp,
+    tier: rank.tier,
+    levelRoman: rank.levelRoman,
+    totalXp: Math.max(0, Math.trunc(Number(me?.totalXp ?? existing?.totalXp) || 0)),
+    isPremium: me?.isPremium === true,
+    isVip: me?.isVip === true,
+    ...(typeof me?.frame === 'string' && me.frame.trim() ? { frame: me.frame.trim() } : {}),
+    ...(typeof me?.aura === 'string' && me.aura.trim() ? { aura: normalizeAvatarAuraId(me.aura) ?? undefined } : {}),
+    ...(typeof me?.avatarEmoji === 'string' && me.avatarEmoji.trim() ? { avatarEmoji: me.avatarEmoji.trim() } : {}),
+    profileCardLevel: me?.profileCardLevel ?? existing?.profileCardLevel,
+    profileCardTheme: me?.profileCardTheme ?? existing?.profileCardTheme,
+    profileCardMotion: me?.profileCardMotion ?? existing?.profileCardMotion,
+    profileCardPublicFocus: me?.profileCardPublicFocus ?? existing?.profileCardPublicFocus,
+    leagueCrown: existing?.leagueCrown,
+  };
+
+  return [...rows.filter((row) => row.uid !== uid && (!friendUid || row.friendUid !== friendUid)), optimistic]
+    .sort((a, b) => b.arenaXp - a.arenaXp || a.uid.localeCompare(b.uid))
+    .slice(0, 100)
+    .map((row, index) => ({ ...row, place: index + 1 }));
+}
+
 /**
  * Загрузка топ-100: cache-first. Если кеш есть, он возвращается сразу, а устаревшее
  * remote-обновление идёт фоном через onBackgroundRefresh без пустого экрана.
@@ -576,6 +705,7 @@ export async function loadArenaTop100(opts?: {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return [];
 
   const cachedRows = await loadCachedArenaTop100();
+  if (!ARENA_TOP100_REMOTE_ENABLED) return cachedRows;
 
   const lastRemoteAtRaw = await AsyncStorage.getItem(ARENA_REMOTE_REFRESH_AT_KEY);
   const lastRemoteAt = parseInt(lastRemoteAtRaw || '0', 10) || 0;
@@ -599,82 +729,9 @@ export async function loadArenaTop100(opts?: {
   return fetchedRows.length > 0 ? fetchedRows : cachedRows;
 }
 
-/**
- * Аналог fetchMyGlobalRank: считает место текущего пользователя в общем рейтинге арены
- * (по полю xp в коллекции arena_profiles). Возвращает null, если профиля ещё нет.
- *
- * Подход:
- *   1. Берём всех с xp > myXp (limit 1000 — достаточно даже для очень больших баз).
- *   2. Фильтруем placeholder-имена и профили без сыгранных матчей в коде —
- *      это документы которые НЕ показываются в Top-100 (см. queryArenaProfilesTop100),
- *      и не должны учитываться в моём ранге, иначе юзер видит «6 место» когда
- *      Top-100 пустой (как в скриншоте 2026-04-29).
- *   3. Место = filtered.length + 1.
- *
- * Раньше использовался Firestore count() — он быстрее, но не позволяет применить
- * client-side фильтр. После cleanup placeholders разница в стоимости минимальна.
- */
+/** Старый экран рейтинга арены отключён в продукте; точный ранг не читаем из Firestore. */
 export async function fetchMyArenaRank(): Promise<number | null> {
-  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return null;
-  const db = getFirestore();
-  if (!db) return null;
-  try {
-    const uid = await ensureArenaAuthUid();
-    if (!uid) return null;
-
-    const myDoc = await db.collection('arena_profiles').doc(uid).get();
-    if (!myDoc.exists) return null;
-    const data = myDoc.data() as { xp?: number; stats?: { matchesPlayed?: number } } | undefined;
-    const myXp = typeof data?.xp === 'number' ? data.xp : 0;
-    const matchesPlayed = data?.stats?.matchesPlayed ?? 0;
-    if (matchesPlayed < 1 && myXp <= 0) return null;
-
-    try {
-      const snap = await db
-        .collection('arena_profiles')
-        .where('xp', '>', myXp)
-        .limit(1000)
-        .get();
-      // Считаем только тех кто реально показывается в Top-100:
-      // имя — не placeholder И есть сыгранные матчи.
-      let above = 0;
-      snap.docs.forEach((doc: any) => {
-        const d = doc.data() as { displayName?: string; stats?: { matchesPlayed?: number } };
-        const dn = String(d.displayName ?? '').trim();
-        const mp = Number(d.stats?.matchesPlayed ?? 0);
-        if (isPlaceholderName(dn)) return;
-        if (mp <= 0) return;
-        above += 1;
-      });
-      const place = above + 1;
-      try {
-        await AsyncStorage.setItem(
-          ARENA_MY_RANK_CACHE_KEY,
-          JSON.stringify({ place, ts: Date.now() }),
-        );
-      } catch { /* ignore */ }
-      return place;
-    } catch {
-      // Если query упал — отдаём кеш, не ломаем UI.
-      const raw = await AsyncStorage.getItem(ARENA_MY_RANK_CACHE_KEY).catch(() => null);
-      if (raw) {
-        try {
-          const parsed = JSON.parse(raw) as { place?: number };
-          if (typeof parsed?.place === 'number') return parsed.place;
-        } catch { /* ignore */ }
-      }
-      return null;
-    }
-  } catch {
-    try {
-      const raw = await AsyncStorage.getItem(ARENA_MY_RANK_CACHE_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw) as { place?: number };
-        if (typeof parsed?.place === 'number') return parsed.place;
-      }
-    } catch { /* ignore */ }
-    return null;
-  }
+  return getCachedMyArenaRank();
 }
 
 /** Last-known место «меня» в топе арены — без запроса в Firestore. */

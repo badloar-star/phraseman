@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { Image } from 'expo-image';
 import React, { useMemo } from 'react';
 import { Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from '../../components/SafeLinearGradient';
@@ -16,6 +17,7 @@ import { getQuizRankInfo, getQuizShareRank } from './results';
 import { XpCounter } from './ui';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
 import GoldBevel from '../../components/GoldBevel';
+import { getQuizCompletionMedalSource } from './medal_assets';
 
 type Props = {
   phrases: QuizPhrase[];
@@ -73,6 +75,7 @@ export default function QuizResultView({
   const right = results.filter(Boolean).length;
   const pct = Math.round((right / Math.max(1, total)) * 100);
   const rankInfo = getQuizRankInfo(pct, t.textSecond, t.textMuted);
+  const completionMedalSource = useMemo(() => getQuizCompletionMedalSource(themeMode), [themeMode]);
   const rankLabel = triLang(effectiveLang, {
     ru: rankInfo.labelRU,
     uk: rankInfo.labelUK,
@@ -91,7 +94,13 @@ export default function QuizResultView({
       <View style={{ flex: 1 }}>
         <ContentWrap>
           <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
-            <Text style={{ fontSize: f.numLg + 28, marginBottom: 10 }} adjustsFontSizeToFit numberOfLines={1}>{rankInfo.icon}</Text>
+            <Image
+              source={completionMedalSource}
+              contentFit="contain"
+              transition={0}
+              accessibilityIgnoresInvertColors
+              style={{ width: 118, height: 118, marginBottom: 10 }}
+            />
             <LinearGradient
               colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : [`${rankInfo.color}22`, `${rankInfo.color}22`, `${rankInfo.color}22`]}
               locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}

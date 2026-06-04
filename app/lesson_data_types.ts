@@ -5,6 +5,20 @@ export interface LessonWord {
   correct: string;        // Same as text (for validation)
   distractors: string[];  // 5 specific distractors
   category?: string;      // 'pronoun', 'to-be', 'article', etc.
+  teachingNote?: LessonTeachingNote;
+}
+
+export interface LessonTeachingNote {
+  id: string;
+  titleRu?: string;
+  titleUk?: string;
+  titleEs?: string;
+  correctRu: string;
+  correctUk?: string;
+  correctEs?: string;
+  wrongRu: string;
+  wrongUk?: string;
+  wrongEs?: string;
 }
 
 export interface LessonPhrase {

@@ -65,6 +65,9 @@ Every video must give the viewer one of these feelings:
 14. No final script ships without pedagogy, retention, promise, research/fact-check, flow, and teleprompter QA.
 15. No description ships with timecodes.
 16. No title wins only because it is loud. It must attract the right viewer and preserve trust.
+17. For multilingual versions of the same lesson, background videos must be unique per language. If the phrases stay the same but the target language changes, do not reuse the previous language's background footage, source IDs, or rendered background assets. Generate or select a new non-repeating background set and verify the source IDs differ before delivery.
+18. Thumbnail packages require a visible gate before completion: inspect the contact sheet, reject cropped/broken text, extra Latin/French/English words, local-overlay artifacts, and any non-DALL-E final thumbnail. Do not say "готово" until the gate report passes.
+19. For every future thumbnail pack, the mandatory inspiration source is `C:\Users\badlo\OneDrive\Desktop\preview examples`, mirrored into `lingman-scenarist-pipeline\thumbnail_reference_bank\every_pack_9_styles_20260531\source_screenshots`. Inspect those examples before generation and make the 9 variants cover the five reference families 1-2 times each. Do not copy English text from references into Russian-channel thumbnails.
 
 ## 3. Required User Intake
 
@@ -1854,6 +1857,7 @@ Description structure:
 4. Phraseman block if ad is enabled.
 5. CTA for app/link/subscription/comment.
 6. Natural SEO phrases.
+7. Large diverse keyword block at the end for package metadata.
 ```
 
 Rules:
@@ -1862,6 +1866,8 @@ Rules:
 - No timecodes.
 - Match the title, thumbnail, and script.
 - Include keywords naturally.
+- Always include a separate keyword block in the package description file.
+- Make the keyword block large and strongly varied: search phrases, learner pains, level terms, topic variants, practice intents, Russian query forms, English-learning query forms, app/practice phrases, and long-tail combinations.
 - End with a comment hook.
 - If Phraseman is included, make it the next step after the lesson.
 
@@ -2130,6 +2136,7 @@ Rules:
 
 - SEO must be invisible to the viewer.
 - Do not turn the description into a keyword landfill.
+- Exception: package `description.txt` must include a clearly separated keyword block at the end, because the user wants a large keyword inventory in every pack. Keep the main description human before that block.
 - Prioritize human click and retention over mechanical keyword density.
 - For browse-led videos, emotion can beat exact search terms.
 - For search-led videos, include the actual grammar term clearly.

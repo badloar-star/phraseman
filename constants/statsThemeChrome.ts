@@ -1,4 +1,5 @@
 import { GOLD_RICH } from './goldTheme';
+import { COMPASS_RICH } from './compassTheme';
 import type { ThemeMode } from './theme';
 
 export type StatsChromeTone =
@@ -21,6 +22,7 @@ const STATS_CHROME_ACCENT_BY_THEME: Record<ThemeMode, string> = {
   coral: '#FF7A7A',
   minimalLight: '#33466F',
   minimalDark: '#6EA8FF',
+  compass: COMPASS_RICH.champagne,
 };
 
 const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {
@@ -80,15 +82,26 @@ const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {
     wager: '#A65A22',
   },
   minimalDark: {
-    streak: '#FF7A45',
-    freeze: '#4DD6FF',
+    streak: '#6EA8FF',
+    freeze: '#9CA3AF',
     multipliers: '#E9B949',
-    practiceBalance: '#41D98A',
-    weekRhythm: '#35D4C8',
+    practiceBalance: '#7DD3FC',
+    weekRhythm: '#93C5FD',
     activity: '#6EA8FF',
-    percentiles: '#B993FF',
-    archiveMap: '#6EA8FF',
-    wager: '#FFA64D',
+    percentiles: '#A78BFA',
+    archiveMap: '#9CA3AF',
+    wager: '#E9B949',
+  },
+  compass: {
+    streak: COMPASS_RICH.champagne,
+    freeze: COMPASS_RICH.creamSoft,
+    multipliers: COMPASS_RICH.cream,
+    practiceBalance: COMPASS_RICH.peach,
+    weekRhythm: COMPASS_RICH.champagne,
+    activity: COMPASS_RICH.creamSoft,
+    percentiles: COMPASS_RICH.peach,
+    archiveMap: COMPASS_RICH.champagne,
+    wager: COMPASS_RICH.copper,
   },
 };
 
@@ -110,11 +123,19 @@ export function statsThemeSoftBg(themeMode: ThemeMode, strength: 'quiet' | 'norm
 }
 
 export function statsBorder(themeMode: ThemeMode, _tone: StatsChromeTone, strength: 'soft' | 'medium' | 'strong' = 'medium'): string {
+  if (themeMode === 'compass') {
+    return strength === 'strong'
+      ? COMPASS_RICH.hairlineStrong
+      : strength === 'soft'
+        ? COMPASS_RICH.hairlineQuiet
+        : COMPASS_RICH.hairline;
+  }
   const alpha = strength === 'strong' ? 'B8' : strength === 'soft' ? '59' : '7A';
   return alphaColor(statsThemeAccent(themeMode), alpha);
 }
 
 export function statsHairline(themeMode: ThemeMode, _tone: StatsChromeTone): string {
+  if (themeMode === 'compass') return COMPASS_RICH.hairlineQuiet;
   return alphaColor(statsThemeAccent(themeMode), '3D');
 }
 
@@ -124,6 +145,15 @@ export function statsSoftBg(themeMode: ThemeMode, tone: StatsChromeTone, strengt
 }
 
 export function statsGlowStyle(themeMode: ThemeMode, _tone: StatsChromeTone, strength: 'soft' | 'medium' = 'soft') {
+  if (themeMode === 'compass') {
+    return {
+      shadowColor: '#000000',
+      shadowOpacity: strength === 'medium' ? 0.46 : 0.34,
+      shadowRadius: strength === 'medium' ? 18 : 12,
+      shadowOffset: { width: 0, height: strength === 'medium' ? 7 : 5 },
+      elevation: strength === 'medium' ? 9 : 6,
+    };
+  }
   return {
     shadowColor: statsThemeAccent(themeMode),
     shadowOpacity: strength === 'medium' ? 0.22 : 0.14,

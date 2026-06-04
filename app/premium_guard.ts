@@ -15,6 +15,8 @@ let _cachedVipResult: boolean | null = null;
 let _vipCacheTime = 0;
 let _cachedAccessResult: boolean | null = null;
 let _accessCacheTime = 0;
+let _lastCloudAccessRefreshTime = 0;
+let _cloudAccessRefreshInFlight: Promise<boolean> | null = null;
 
 /** Invalidate the in-memory cache (call after purchase/restore). */
 export function invalidatePremiumCache(): void {
@@ -221,7 +223,19 @@ export async function getVerifiedPremiumAccessStatus(): Promise<boolean> {
     getVerifiedRealPremiumStatus().catch(() => false),
     getVerifiedVipStatus().catch(() => false),
   ]);
-  return cacheAccess(realPremium || vip);
+  if (realPremium || vip) return cacheAccess(true);
+
+  const cloudRefreshed = await refreshPremiumAccessFromCloudIfNeeded();
+  if (cloudRefreshed) {
+    invalidatePremiumCache();
+    const [realAfterCloud, vipAfterCloud] = await Promise.all([
+      getVerifiedRealPremiumStatus().catch(() => false),
+      getVerifiedVipStatus().catch(() => false),
+    ]);
+    return cacheAccess(realAfterCloud || vipAfterCloud);
+  }
+
+  return cacheAccess(false);
 }
 
 /** Backwards-compatible name used by feature gates: means Premium-level access, including VIP. */
@@ -245,6 +259,26 @@ function cacheAccess(result: boolean): boolean {
   _cachedAccessResult = result;
   _accessCacheTime = Date.now();
   return result;
+}
+
+async function refreshPremiumAccessFromCloudIfNeeded(): Promise<boolean> {
+  const now = Date.now();
+  if (now - _lastCloudAccessRefreshTime < CACHE_TTL_MS) return false;
+  if (_cloudAccessRefreshInFlight) return _cloudAccessRefreshInFlight;
+
+  _lastCloudAccessRefreshTime = now;
+  _cloudAccessRefreshInFlight = (async () => {
+    try {
+      const cloudSync = await import('./cloud_sync');
+      await cloudSync.restoreFromCloud();
+      return true;
+    } catch {
+      return false;
+    } finally {
+      _cloudAccessRefreshInFlight = null;
+    }
+  })();
+  return _cloudAccessRefreshInFlight;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

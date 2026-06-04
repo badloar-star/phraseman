@@ -2,6 +2,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 
 const COL = 'arena_hill_thrones';
 const FUNCTIONS_REGION = 'us-central1';
+const THRONE_POLL_MS = 5 * 60 * 1000;
 
 export type ArenaHillThrone = {
   id: string;
@@ -89,10 +90,21 @@ export function subscribeTodayArenaHillThrone(cb: (throne: ArenaHillThrone | nul
     return () => {};
   }
   const dayKey = arenaHillDayKey();
-  return db.collection(COL).doc(dayKey).onSnapshot(
-    (snap: any) => cb(snap.exists ? { ...(snap.data() as ArenaHillThrone), id: snap.id } : null),
-    () => cb(null),
-  );
+  let active = true;
+  const readThrone = async () => {
+    try {
+      const snap = await db.collection(COL).doc(dayKey).get();
+      if (active) cb(snap.exists ? { ...(snap.data() as ArenaHillThrone), id: snap.id } : null);
+    } catch {
+      if (active) cb(null);
+    }
+  };
+  void readThrone();
+  const id = setInterval(readThrone, THRONE_POLL_MS);
+  return () => {
+    active = false;
+    clearInterval(id);
+  };
 }
 
 function callable<TReq, TRes>(name: string) {
@@ -129,6 +141,6 @@ export async function getTodayArenaHillTop(): Promise<ArenaHillDailyTopResult> {
   return {
     dayKey: String(data?.dayKey ?? arenaHillDayKey()),
     rewardShards: Math.max(0, Math.trunc(Number(data?.rewardShards) || 0)),
-    entries: Array.isArray(data?.entries) ? data.entries.slice(0, 3) : [],
+    entries: Array.isArray(data?.entries) ? data.entries.slice(0, 1) : [],
   };
 }

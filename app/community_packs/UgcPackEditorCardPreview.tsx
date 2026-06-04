@@ -5,13 +5,10 @@ import {
   Animated,
   Easing,
   Keyboard,
-  LayoutAnimation,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  UIManager,
   View,
   useWindowDimensions,
 } from 'react-native';
@@ -19,6 +16,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { Theme } from '../../constants/theme';
 import type { Lang } from '../../constants/i18n';
 import { triLang } from '../../constants/i18n';
+import { configureAccordionLayout } from '../../constants/layoutAnimation';
 
 type GradPair = readonly [string, string];
 
@@ -47,10 +45,6 @@ type Props = {
   onEdit?: () => void;
   editing?: boolean;
 };
-
-if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
 
 function usePackCardPreviewHeight(): number {
   const { height: screenH } = useWindowDimensions();
@@ -140,7 +134,7 @@ export default function UgcPackEditorCardPreview({
   const toggleDetails = useCallback(() => {
     if (!hasDescription) return;
     Keyboard.dismiss();
-    LayoutAnimation.configureNext(LayoutAnimation.create(220, 'easeInEaseOut', 'opacity'));
+    configureAccordionLayout();
     setDetailsExpanded((v) => !v);
   }, [hasDescription]);
   const cardFaceStyle = useMemo(

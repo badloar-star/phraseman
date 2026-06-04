@@ -24,6 +24,7 @@ import { configureAccordionLayout } from '../constants/layoutAnimation';
 import { AVATARS, unlockAllFrames } from '../constants/avatars';
 import AvatarView from '../components/AvatarView';
 import AvatarAura from '../components/AvatarAura';
+import CustomAvatarBadge from '../components/CustomAvatarBadge';
 import AccordionChevronIonicons from '../components/AccordionChevronIonicons';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { unlockAllAchievements, ALL_ACHIEVEMENTS, devSeedAchievementsSmoke } from './achievements';
@@ -32,6 +33,7 @@ import { calculateResult, LeagueResult, loadLeagueState, savePendingResult, getW
 import {
   clearDailyTasksAdminOverride,
   getDailyTaskAdminPacks,
+  getTodayKey,
   seedDailyTasksAdminPack,
   type DailyTaskAdminPack,
   type DailyTaskSeedMode,
@@ -55,7 +57,13 @@ import {
   isAppleSignInAvailable,
   isGoogleSignInAvailable,
 } from './auth_provider';
-import { addShards, replaceShardsBalanceLocal } from './shards_system';
+import { addShards, dailyTasksAllShardsRewardStorageKey, replaceShardsBalanceLocal } from './shards_system';
+import { FRIEND_GIFT_CATALOG } from './friend_gifts';
+import { invalidateFriendsActivityCache } from './firestore_friend_activity';
+import {
+  FRIENDS_TAB_SWR_CACHE_KEY,
+  FRIEND_PROFILES_CACHE_KEY,
+} from './friends_tab_swr_warm';
 import {
   PROFILE_CARD_LEVEL_KEY,
   PROFILE_CARD_MOTION_KEY,
@@ -114,6 +122,11 @@ import CoachToast from '../components/CoachToast';
 import { injectMockLeaderboardStats, clearMockLeaderboardStats } from './leaderboard_stats';
 import ThroneRewardModal from '../components/ThroneRewardModal';
 import { AVATAR_AURAS, USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
+import {
+  CUSTOM_AVATAR_GIFT_ONLY,
+  CUSTOM_AVATAR_SHOP,
+  customAvatarNameForLang,
+} from '../constants/custom_avatars';
 import { getCanonicalUserId } from './user_id_policy';
 import { accountLocalDataKeysForToday, ensureAnonUser, ensureStableAuthLinkForStableId, FRENCH_TARGET_SYNC_KEYS } from './cloud_sync';
 import {
@@ -129,7 +142,8 @@ import {
   quizAchievementCounterKey,
   unlockedLessonsKey,
 } from './target_storage_keys';
-import { updateMyVipInLeaderboard } from './firestore_leaderboard';
+import { touchLessonScreenPrimed } from './lesson_screen_bootstrap';
+import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import {
   LEAGUE_BONUS_ADMIN_PREVIEW_KEY,
   LEAGUE_CHEST_BASE_GOAL,
@@ -256,6 +270,8 @@ const ADMIN_RESET_SHARED_SYSTEM_KEYS = ['user_total_xp', 'current_energy', 'last
 const ADMIN_RESET_SHARED_STATS_KEYS = ['streak_count', 'login_bonus_v1', 'daily_stats', 'streak_freeze'];
 const ADMIN_RESET_LEAGUE_KEYS = ['league_state_v3', 'league_result_pending', 'week_leaderboard', 'my_week_points'];
 const ADMIN_RESET_TESTER_KEYS = ['tester_no_limits', 'tester_energy_disabled', 'tester_no_premium'];
+const ADMIN_QA_FRIEND_UID = 'admin_qa_friend_buddy';
+const ADMIN_QA_FRIEND_NAME = 'QA Friend Buddy';
 
 function buildAdminResetEnglishLessonKeys(): string[] {
   return ADMIN_RESET_LESSON_IDS.flatMap((id) => [
@@ -490,8 +506,55 @@ const ButtonRow = ({ icon, label, sub, onPress, danger, testID, t, f, doHaptic, 
 );
 
 function AdminCosmeticsPreview({ f }: { f: any }) {
+  const renderCustomAvatarPreview = (
+    avatar: (typeof CUSTOM_AVATAR_SHOP)[number],
+    tag: string,
+    badge: string,
+  ) => (
+    <View
+      key={`admin-custom-avatar-${tag}-${avatar.id}`}
+      style={{
+        width: 112,
+        minHeight: 136,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: RED_BORDER_SOFT,
+        backgroundColor: ADMIN_SURFACE_ELEVATED,
+        paddingVertical: 9,
+        paddingHorizontal: 6,
+      }}
+    >
+      <View style={{ flexDirection: 'row', gap: 4, alignItems: 'center', justifyContent: 'center' }}>
+        <CustomAvatarBadge avatarId={avatar.id} gradientId="aurora" logoColor="white" size={48} />
+        <CustomAvatarBadge avatarId={avatar.id} gradientId="sakura" logoColor="black" size={48} />
+      </View>
+      <Text style={{ color: ADMIN_TEXT, fontSize: 10, fontWeight: '900', marginTop: 7, textAlign: 'center' }} numberOfLines={1}>
+        {customAvatarNameForLang(avatar, 'ru')}
+      </Text>
+      <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, fontWeight: '800', marginTop: 2 }} numberOfLines={1}>
+        {badge}
+      </Text>
+    </View>
+  );
+
   return (
     <View style={{ paddingHorizontal: 16, paddingTop: 14, paddingBottom: 18 }}>
+      <Text style={{ color: ADMIN_TEXT, fontSize: 15, fontWeight: '900', marginBottom: 10 }}>
+        Новые аватары за осколки
+      </Text>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 18 }}>
+        {CUSTOM_AVATAR_SHOP.map((avatar) => renderCustomAvatarPreview(avatar, 'shop', 'Осколки'))}
+      </View>
+
+      <Text style={{ color: ADMIN_TEXT, fontSize: 15, fontWeight: '900', marginBottom: 10 }}>
+        Подарочные бюсты
+      </Text>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 18 }}>
+        {CUSTOM_AVATAR_GIFT_ONLY.map((avatar) => renderCustomAvatarPreview(avatar, 'gift', 'Gift-only'))}
+      </View>
+
       <Text style={{ color: ADMIN_TEXT, fontSize: 15, fontWeight: '900', marginBottom: 10 }}>
         Аватары уровней
       </Text>
@@ -782,6 +845,53 @@ export default function SettingsTestersFunctions() {
     void seedProfileCardUpgradeQa();
   }, [params.qa, params.qaRun, seedProfileCardUpgradeQa]);
 
+  const dailyTasksAutoSeedKey = useRef<string | null>(null);
+  useEffect(() => {
+    const qa = Array.isArray(params.qa) ? params.qa[0] : params.qa;
+    const qaRun = Array.isArray(params.qaRun) ? params.qaRun[0] : params.qaRun;
+    const key = `${qa}:${qaRun || ''}:${studyTarget}`;
+    if (dailyTasksAutoSeedKey.current === key || qa !== 'daily_tasks_ready') return;
+    dailyTasksAutoSeedKey.current = key;
+    void (async () => {
+      const pack = getDailyTaskAdminPacks(3)[0];
+      if (!pack) return;
+      await AsyncStorage.removeItem(dailyTasksAllShardsRewardStorageKey(getTodayKey()));
+      const seeded = await seedDailyTasksAdminPack(pack.taskIds, 'ready', studyTarget);
+      if (seeded.length) {
+        router.replace('/daily_tasks_screen' as any);
+      }
+    })();
+  }, [params.qa, params.qaRun, router, studyTarget]);
+
+  const lessonFinish49AutoSeedKey = useRef<string | null>(null);
+  useEffect(() => {
+    const qa = Array.isArray(params.qa) ? params.qa[0] : params.qa;
+    const qaRun = Array.isArray(params.qaRun) ? params.qaRun[0] : params.qaRun;
+    const key = `${qa}:${qaRun || ''}:${studyTarget}`;
+    if (lessonFinish49AutoSeedKey.current === key || qa !== 'lesson_finish_49') return;
+    lessonFinish49AutoSeedKey.current = key;
+    void (async () => {
+      const progress = [...new Array(49).fill('correct'), 'empty'];
+      const order = Array.from({ length: 50 }, (_, i) => i);
+      await AsyncStorage.multiSet([
+        [lessonProgressKey(1, studyTarget), JSON.stringify(progress)],
+        [lessonSessionKey(1, 'cellIndex', studyTarget), '49'],
+        [lessonSessionKey(1, 'phraseOrder', studyTarget), JSON.stringify(order)],
+        [lessonSessionKey(1, 'errorReplayQueue', studyTarget), JSON.stringify([])],
+        [lessonSessionKey(1, 'errorReplaySince', studyTarget), '0'],
+        [lessonSessionKey(1, 'errorReplayOverride', studyTarget), 'null'],
+        [lessonIntroShownKey(1, studyTarget), 'true'],
+        [lastOpenedLessonKey(studyTarget), '1'],
+        [unlockedLessonsKey(studyTarget), JSON.stringify([1])],
+        ['tester_no_limits', 'true'],
+        ['tester_energy_disabled', 'true'],
+      ]);
+      await seedDailyTasksAdminPack(['lc1'], 'empty', studyTarget);
+      touchLessonScreenPrimed(1, { cell: 49, order, progress, override: null }, studyTarget);
+      router.replace({ pathname: '/lesson1', params: { id: '1', from: 'qa_lesson_finish_49' } } as any);
+    })();
+  }, [params.qa, params.qaRun, router, studyTarget]);
+
   // ── Превью премиальных тостов медалей (Bronze / Silver / Gold × up/down)
   const [medalPreview, setMedalPreview] = useState<{ tier: MedalTier; promoted: boolean } | null>(null);
   const medalPreviewAnim = useRef(new Animated.Value(0)).current;
@@ -994,7 +1104,7 @@ export default function SettingsTestersFunctions() {
       await markVipCelebrationPending(grantAt);
       emitAppEvent('vip_activated');
       emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
-      void updateMyVipInLeaderboard(true);
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true });
 
       const uid = await ensureAnonUser().catch(() => null);
       if (uid) {
@@ -1471,6 +1581,232 @@ export default function SettingsTestersFunctions() {
     }
   };
 
+  // ── Friends QA: seed repeatable social data without touching unrelated user flows.
+  const showAdminFriendsToast = (kind: 'success' | 'error' | 'info', text: string) => {
+    emitAppEvent(
+      'action_toast',
+      actionToastTri(kind, {
+        ru: text,
+        uk: text,
+        es: text,
+        'pt-BR': text,
+        vi: text,
+        id: text,
+        tr: text,
+        pl: text,
+      }),
+    );
+  };
+
+  const getAdminCurrentUid = async (): Promise<string> => {
+    const stableUid = await getCanonicalUserId().catch(() => null);
+    const authUid = await ensureAnonUser().catch(() => null);
+    const uid = stableUid || authUid;
+    if (!uid) throw new Error('admin_friends_no_uid');
+    await ensureStableAuthLinkForStableId(uid).catch(() => false);
+    return uid;
+  };
+
+  const writeAdminFriendWarmCache = async (uid: string, friendName = ADMIN_QA_FRIEND_NAME) => {
+    const now = Date.now();
+    const profile = {
+      uid: ADMIN_QA_FRIEND_UID,
+      name: friendName,
+      totalXp: 2450,
+      weeklyXp: 380,
+      streak: 9,
+      isPremium: true,
+      avatar: '13',
+      frame: 'sprout',
+      aura: 'aura-violet',
+      profileCardLevel: 2,
+      profileCardTheme: 'classic',
+      profileCardMotion: 'none',
+      profileCardPublicFocus: 'balanced',
+    };
+    await AsyncStorage.multiSet([
+      [
+        FRIENDS_TAB_SWR_CACHE_KEY,
+        JSON.stringify({
+          canonicalUid: uid,
+          friends: [{ uid: ADMIN_QA_FRIEND_UID, createdAt: now }],
+          requests: [],
+        }),
+      ],
+      [
+        FRIEND_PROFILES_CACHE_KEY,
+        JSON.stringify({ [ADMIN_QA_FRIEND_UID]: { profile, fetchedAt: now } }),
+      ],
+    ]);
+  };
+
+  const seedAdminFriendsBuddy = async (opts: { openFriends?: boolean } = {}) => {
+    try {
+      const uid = await getAdminCurrentUid();
+      const db = getAdminFirestoreDb();
+      const now = Date.now();
+
+      if (db) {
+        const batch = db.batch();
+        const friendRef = db.collection('users').doc(ADMIN_QA_FRIEND_UID);
+        const myFriendRef = db.collection('users').doc(uid).collection('friends').doc(ADMIN_QA_FRIEND_UID);
+        batch.set(friendRef, {
+          displayName: ADMIN_QA_FRIEND_NAME,
+          name: ADMIN_QA_FRIEND_NAME,
+          firebaseAuthUid: ADMIN_QA_FRIEND_UID,
+          updatedAt: now,
+          progress: {
+            user_name: ADMIN_QA_FRIEND_NAME,
+            user_total_xp: '2450',
+            user_avatar: '13',
+            user_avatar_frame: 'sprout',
+            user_avatar_aura: 'aura-violet',
+          },
+        }, { merge: true });
+        batch.set(myFriendRef, { createdAt: now, qaSeed: 'admin_friends' }, { merge: true });
+        batch.set(db.collection('leaderboard').doc(ADMIN_QA_FRIEND_UID), {
+          name: ADMIN_QA_FRIEND_NAME,
+          points: 2450,
+          weekPoints: 380,
+          streak: 9,
+          avatar: '13',
+          frame: 'sprout',
+          aura: 'aura-violet',
+          isPremium: true,
+          updatedAt: now,
+        }, { merge: true });
+        await batch.commit();
+        await db.collection('users').doc(ADMIN_QA_FRIEND_UID).collection('friends').doc(uid)
+          .set({ createdAt: now, qaSeed: 'admin_friends_reverse' }, { merge: true })
+          .catch(() => {});
+      }
+
+      await writeAdminFriendWarmCache(uid);
+      await invalidateFriendsActivityCache();
+      showAdminFriendsToast('success', 'Admin friends QA buddy seeded');
+      if (opts.openFriends) router.push('/(tabs)/friends' as any);
+    } catch (e) {
+      showAdminFriendsToast('error', `Admin friends seed failed: ${String(e)}`);
+    }
+  };
+
+  const seedAdminFriendShards = async () => {
+    try {
+      const uid = await getAdminCurrentUid();
+      await replaceShardsBalanceLocal(120);
+      const db = getAdminFirestoreDb();
+      if (db) {
+        await db.collection('users').doc(uid).set({
+          shards: 120,
+          shards_updated_at_ms: Date.now(),
+          shards_updated_op: 'replace',
+          shards_updated_reason: 'admin_friends_qa',
+          updatedAt: Date.now(),
+        }, { merge: true });
+      }
+      emitAppEvent('shards_balance_updated', { balance: 120, reason: 'admin_friends_qa' });
+      showAdminFriendsToast('success', 'Friend gift shards set to 120');
+    } catch (e) {
+      showAdminFriendsToast('error', `Shards seed failed: ${String(e)}`);
+    }
+  };
+
+  const seedAdminIncomingFriendGift = async () => {
+    try {
+      await seedAdminFriendsBuddy();
+      const uid = await getAdminCurrentUid();
+      const db = getAdminFirestoreDb();
+      if (!db) throw new Error('firestore_unavailable');
+      const now = Date.now();
+      const gift = FRIEND_GIFT_CATALOG[0];
+      const docId = `admin_friend_gift_${now}`;
+      await db.collection('users').doc(uid).collection('shard_rewards').doc(docId).set({
+        ts: new Date(now).toISOString(),
+        reason: 'friend_gift',
+        rewardType: gift.id,
+        giftId: gift.id,
+        giftLabel: gift.labelRu,
+        giftLabelRu: gift.labelRu,
+        giftLabelUk: gift.labelUk,
+        giftLabelEs: gift.labelEs,
+        giftLabelPtBr: gift.labelPtBr,
+        giftLabelVi: gift.labelVi,
+        giftLabelId: gift.labelId,
+        giftLabelTr: gift.labelTr,
+        giftLabelPl: gift.labelPl,
+        fromUid: ADMIN_QA_FRIEND_UID,
+        fromName: ADMIN_QA_FRIEND_NAME,
+        seen: false,
+      }, { merge: true });
+      await db.collection('users').doc(uid).collection('friend_gifts_received').doc(docId).set({
+        ts: new Date(now).toISOString(),
+        giftId: gift.id,
+        costShards: gift.costShards,
+        fromUid: ADMIN_QA_FRIEND_UID,
+        fromName: ADMIN_QA_FRIEND_NAME,
+        seen: false,
+      }, { merge: true });
+      showAdminFriendsToast('success', 'Incoming friend gift seeded');
+      router.push('/(tabs)/friends' as any);
+    } catch (e) {
+      showAdminFriendsToast('error', `Incoming gift seed failed: ${String(e)}`);
+    }
+  };
+
+  const seedAdminFriendActivity = async () => {
+    try {
+      await seedAdminFriendsBuddy();
+      const db = getAdminFirestoreDb();
+      if (!db) throw new Error('firestore_unavailable');
+      const now = Date.now();
+      const friendRef = db.collection('users').doc(ADMIN_QA_FRIEND_UID);
+      const batch = db.batch();
+      batch.set(friendRef.collection('my_events').doc(`admin_level_up_${now}`), {
+        type: 'level_up',
+        uid: ADMIN_QA_FRIEND_UID,
+        ts: now,
+        payload: { level: 13 },
+      }, { merge: true });
+      batch.set(friendRef.collection('my_events').doc(`admin_gift_sent_${now}`), {
+        type: 'friend_gift_sent',
+        uid: ADMIN_QA_FRIEND_UID,
+        ts: now - 1000,
+        payload: {
+          giftId: FRIEND_GIFT_CATALOG[0].id,
+          giftLabel: FRIEND_GIFT_CATALOG[0].labelRu,
+          targetUid: 'admin_preview_friend',
+        },
+      }, { merge: true });
+      batch.set(friendRef.collection('my_events').doc(`admin_achievement_${now}`), {
+        type: 'achievement',
+        uid: ADMIN_QA_FRIEND_UID,
+        ts: now - 2000,
+        payload: { achievementId: 'social_gift_send', title: 'QA social gift' },
+      }, { merge: true });
+      await batch.commit();
+      await invalidateFriendsActivityCache();
+      showAdminFriendsToast('success', 'Friend activity feed seeded');
+      router.push('/(tabs)/friends' as any);
+    } catch (e) {
+      showAdminFriendsToast('error', `Friend activity seed failed: ${String(e)}`);
+    }
+  };
+
+  const clearAdminFriendsQaState = async () => {
+    try {
+      await AsyncStorage.multiRemove([
+        FRIENDS_TAB_SWR_CACHE_KEY,
+        FRIEND_PROFILES_CACHE_KEY,
+        'friends_activity_feed_v2',
+        'friends_activity_feed_v1',
+      ]);
+      await invalidateFriendsActivityCache();
+      showAdminFriendsToast('success', 'Friend QA caches cleared');
+    } catch (e) {
+      showAdminFriendsToast('error', `Friend QA clear failed: ${String(e)}`);
+    }
+  };
+
   // ── Тест rank-change анимации в изолированном модальном окне ─────────────
   // Никаких записей в AsyncStorage, ничего на реальные клубы и зал славы не влияет.
   // Просто открывает Modal с фейковым списком и проигрывает анимацию + баннер.
@@ -1612,6 +1948,9 @@ export default function SettingsTestersFunctions() {
 
   const seedDailyTaskPackForQa = async (pack: DailyTaskAdminPack) => {
     doHaptic();
+    if (dailyTaskSeedMode === 'ready') {
+      await AsyncStorage.removeItem(dailyTasksAllShardsRewardStorageKey(getTodayKey()));
+    }
     const seeded = await seedDailyTasksAdminPack(pack.taskIds, dailyTaskSeedMode, studyTarget);
     emitAppEvent(
       'action_toast',
@@ -1764,6 +2103,91 @@ export default function SettingsTestersFunctions() {
       );
     }
   };
+
+  const seedFirestoreWeeklyRolloverAndOpenLeague = async () => {
+    try {
+      const authUid = await ensureAnonUser();
+      const stableUid = await getCanonicalUserId().catch(() => null);
+      const uid = authUid || stableUid;
+      if (!uid) throw new Error('no_uid');
+
+      const previousWeekId = getPreviousWeekIdForAdmin();
+      const leagueId = 0;
+      const groupId = `qa_weekly_rollover_${String(uid).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 18)}_${Date.now()}`;
+      const name = (await AsyncStorage.getItem('user_name')) || 'QA Weekly';
+      const botNames = ['Ada', 'Berta', 'Ciro', 'Dana', 'Eli', 'Fia', 'Gio', 'Hana', 'Ivan'];
+      const members: Record<string, Record<string, unknown>> = {
+        [uid]: { name, points: 9200, isPremium: true, totalXp: 100000, streak: 7 },
+      };
+      botNames.forEach((bot, i) => {
+        members[`qa_bot_${i + 1}`] = {
+          name: `QA ${bot}`,
+          points: Math.max(120, 7000 - i * 650),
+          isPremium: i % 2 === 0,
+          totalXp: 50000 - i * 1000,
+          streak: Math.max(1, 9 - i),
+        };
+      });
+
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const firestore = require('@react-native-firebase/firestore').default;
+        const db = firestore();
+        await db.collection('league_groups').doc(groupId).set({
+          weekId: previousWeekId,
+          leagueId,
+          memberCount: Object.keys(members).length,
+          createdAt: Date.now(),
+          qaScenario: 'weekly_rollover_result_modal_direct',
+          members,
+        });
+        await db.collection('leaderboard').doc(uid).set({
+          name,
+          leagueId,
+          groupId,
+          groupWeekId: previousWeekId,
+          weekKey: previousWeekId,
+          weekPoints: 9200,
+          points: 100000,
+          qaScenario: 'weekly_rollover_result_modal_direct',
+        }, { merge: true });
+      } catch (error) {
+        console.warn('[QA] weekly rollover Firestore seed unavailable, using local league state fallback', error);
+      }
+
+      const group = Object.entries(members)
+        .map(([memberUid, member]) => ({
+          uid: memberUid,
+          name: String(member.name || memberUid),
+          points: Number(member.points) || 0,
+          isMe: memberUid === uid,
+          isPremium: Boolean(member.isPremium),
+          streak: Number(member.streak) || undefined,
+          totalXp: Number(member.totalXp) || undefined,
+        }))
+        .sort((a, b) => b.points - a.points);
+
+      await AsyncStorage.multiSet([
+        ['user_name', name],
+        ['week_points_v2', JSON.stringify({ weekKey: previousWeekId, points: 9200 })],
+        ['league_state_v3', JSON.stringify({ leagueId, weekId: previousWeekId, group })],
+      ]);
+      await AsyncStorage.multiRemove(['league_result_pending', 'league_result_consumed_sig', 'club_remote_refresh_at_v2']);
+      router.replace('/club_screen' as any);
+    } catch (error) {
+      console.warn('[QA] weekly rollover direct seed failed', error);
+    }
+  };
+
+  const leagueRolloverAutoSeedKey = useRef<string | null>(null);
+  useEffect(() => {
+    const qa = Array.isArray(params.qa) ? params.qa[0] : params.qa;
+    const qaRun = Array.isArray(params.qaRun) ? params.qaRun[0] : params.qaRun;
+    const key = `${qa}:${qaRun || ''}`;
+    if (qa !== 'league_weekly_rollover' || leagueRolloverAutoSeedKey.current === key) return;
+    leagueRolloverAutoSeedKey.current = key;
+    void seedFirestoreWeeklyRolloverAndOpenLeague();
+  }, [params.qa, params.qaRun]);
 
   const performStripPremium = async () => {
     try {
@@ -2243,6 +2667,74 @@ export default function SettingsTestersFunctions() {
             />
           </AccordionSection>
 
+          <AccordionSection id="friends_admin" icon="people-outline" title="Друзья — QA и подарки" badge={7}
+            open={openSection === 'friends_admin'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
+            <View style={{ paddingHorizontal: 18, paddingVertical: 12, borderBottomWidth: 0.5, borderBottomColor: RED_BORDER_SOFT, backgroundColor: ADMIN_SURFACE }}>
+              <Text style={{ color: ADMIN_TEXT, fontSize: f.bodyLg, fontWeight: '900' }}>Social QA hub</Text>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, marginTop: 4, lineHeight: 17 }}>
+                Подготовка friend list, gifts, входящей модалки, activity feed и кешей для Maestro/dev-проверок.
+              </Text>
+            </View>
+            <ButtonRow
+              testID="admin-friends-open"
+              icon="people-circle-outline"
+              label="Открыть экран друзей"
+              sub="Переход на production-вкладку Friends без seed"
+              onPress={() => router.push('/(tabs)/friends' as any)}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-friends-seed-buddy"
+              icon="person-add-outline"
+              label="Seed QA-друга"
+              sub="Добавляет QA Friend Buddy в friends, leaderboard и SWR-профиль"
+              onPress={() => { void seedAdminFriendsBuddy({ openFriends: true }); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-friends-seed-shards"
+              icon="diamond-outline"
+              label="Дать 120 осколков для подарков"
+              sub="Синхронизирует локальный баланс и users/{uid}.shards"
+              onPress={() => { void seedAdminFriendShards(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-friends-seed-incoming-gift"
+              icon="gift-outline"
+              label="Seed входящего подарка"
+              sub="Создаёт unseen friend_gift и открывает Friends для модалки «Подарок получен»"
+              onPress={() => { void seedAdminIncomingFriendGift(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-friends-seed-activity"
+              icon="pulse-outline"
+              label="Seed активности друга"
+              sub="Level-up, gift_sent и achievement в ленту активности"
+              onPress={() => { void seedAdminFriendActivity(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-friends-open-arena"
+              icon="flash-outline"
+              label="Открыть Arena после seed-друга"
+              sub="Проверка friend card в вызове друга на арене"
+              onPress={() => {
+                void seedAdminFriendsBuddy().then(() => router.push('/(tabs)/arena' as any));
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-friends-clear-cache"
+              icon="refresh-circle-outline"
+              label="Сбросить friends/activity кеши"
+              sub="Чистит SWR и activity cache, не удаляя реальные Firestore-документы"
+              onPress={() => { void clearAdminFriendsQaState(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+          </AccordionSection>
+
           {/* ── 1.5 AUTH (Google / Apple) ── */}
           <AccordionSection id="auth_dev" icon="key-outline" title="🔐 Auth (Google/Apple)" badge={6}
             open={openSection === 'auth_dev'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
@@ -2374,7 +2866,7 @@ export default function SettingsTestersFunctions() {
               sub="Показать результат лиги"
               onPress={triggerEndOfWeek}
               t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="cloud-done-outline" label="League weekly rollover — Firestore scenario"
+            <ButtonRow testID="testers-league-weekly-rollover-firestore" icon="cloud-done-outline" label="League weekly rollover — Firestore scenario"
               sub="Writes previous-week league_groups/leaderboard, then opens the real result modal"
               onPress={seedFirestoreWeeklyRolloverScenario}
               t={t} f={f} doHaptic={doHaptic} />
@@ -3805,6 +4297,7 @@ export default function SettingsTestersFunctions() {
               label="Seed mode: ready"
               sub="Conditions are completed: test XP claim and all-3 shards"
               onPress={() => setDailyTaskSeedMode('ready')}
+              testID="testers-daily-tasks-seed-ready"
               t={t} f={f} doHaptic={doHaptic}
             />
             <ButtonRow
@@ -3828,6 +4321,7 @@ export default function SettingsTestersFunctions() {
                 label={`Pack ${pack.label}`}
                 sub={pack.types.join(' / ')}
                 onPress={() => void seedDailyTaskPackForQa(pack)}
+                testID={`testers-daily-tasks-pack-${pack.id}`}
                 t={t}
                 f={f}
                 doHaptic={doHaptic}

@@ -2,9 +2,11 @@ import { readFileSync } from 'fs';
 import path from 'path';
 
 const authProviderPath = path.join(process.cwd(), 'app', 'auth_provider.ts');
+const cloudSyncPath = path.join(process.cwd(), 'app', 'cloud_sync.ts');
 
 describe('auth provider stable-id linking', () => {
   const source = readFileSync(authProviderPath, 'utf8');
+  const cloudSyncSource = readFileSync(cloudSyncPath, 'utf8');
   const legacyRuntimePattern =
     /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
   const signInStart = source.indexOf('export async function signInWithProvider');
@@ -53,6 +55,23 @@ describe('auth provider stable-id linking', () => {
     expect(mergeSwapSource.indexOf('await copyLocalRealPremiumToStableId(db, outcome.remoteStableId)')).toBeLessThan(
       mergeSwapSource.indexOf('await wipeLocalAccountData();'),
     );
+  });
+
+  test('stable auth link cache survives boot but is cleared on account changes', () => {
+    const ensureStart = cloudSyncSource.indexOf('export async function ensureStableAuthLinkForStableId');
+    const ensureEnd = cloudSyncSource.indexOf('export async function ensureStableAuthLink()', ensureStart);
+    const ensureSource = cloudSyncSource.slice(ensureStart, ensureEnd);
+    const resetStart = cloudSyncSource.indexOf('export function resetAnonAuthCacheForSignOut');
+    const resetEnd = cloudSyncSource.indexOf('export function getCurrentUid', resetStart);
+    const resetSource = cloudSyncSource.slice(resetStart, resetEnd);
+
+    expect(cloudSyncSource).toContain("const STABLE_AUTH_LINK_CACHE_KEY = 'stable_auth_link_cache_v1';");
+    expect(cloudSyncSource).toContain('STABLE_AUTH_LINK_CACHE_TTL_MS');
+    expect(cloudSyncSource).toContain('STABLE_AUTH_LINK_CACHE_KEY,');
+    expect(ensureSource.indexOf('readStableAuthLinkCache(key)')).toBeGreaterThanOrEqual(0);
+    expect(ensureSource.indexOf('readStableAuthLinkCache(key)')).toBeLessThan(ensureSource.indexOf("callable<{ stableId: string }"));
+    expect(ensureSource).toContain('writeStableAuthLinkCache(key).catch(() => {})');
+    expect(resetSource).toContain('AsyncStorage.removeItem(STABLE_AUTH_LINK_CACHE_KEY)');
   });
 
   test('keeps auth provider runtime free of legacy locale fallback markers', () => {

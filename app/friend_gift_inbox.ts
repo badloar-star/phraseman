@@ -1,5 +1,6 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser } from './cloud_sync';
+import { saveFriendGiftsToInventory } from './friend_gift_inventory';
 
 export type IncomingFriendGift = {
   id: string;
@@ -78,7 +79,9 @@ export async function claimUnseenFriendGifts(limit = 5): Promise<IncomingFriendG
   }
 
   await batch.commit().catch(() => {});
-  return gifts.sort((a, b) => b.ts - a.ts);
+  const sorted = gifts.sort((a, b) => b.ts - a.ts);
+  await saveFriendGiftsToInventory(sorted.map(gift => ({ ...gift, savedAt: Date.now() }))).catch(() => {});
+  return sorted;
 }
 
 /* expo-router route shim */

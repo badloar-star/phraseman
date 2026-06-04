@@ -1,3 +1,29 @@
+diff --git a/node_modules/react-native/Libraries/Text/Text.js b/node_modules/react-native/Libraries/Text/Text.js
+index b08b8f3..3a4c674 100644
+--- a/node_modules/react-native/Libraries/Text/Text.js
++++ b/node_modules/react-native/Libraries/Text/Text.js
+@@ -26,6 +26,8 @@ import {useContext, useMemo, useState} from 'react';
+ 
+ export type {TextProps} from './TextProps';
+ 
++const phrasemanDefaultTextStyle = {fontFamily: 'Inter'};
++
+ type TextForwardRef = React.ElementRef<
+   typeof NativeText | typeof NativeVirtualText,
+ >;
+@@ -167,6 +169,12 @@ const TextImpl: component(
+     }
+   }
+ 
++  // PHRASEMAN PATCH (RN 0.81 text family lock):
++  // Make every React Native Text instance opt into the bundled app font while
++  // still letting explicit local fontFamily styles, such as monospace crash
++  // diagnostics, win because the caller style is later in the array.
++  _style = [phrasemanDefaultTextStyle, _style];
++
+   const _nativeID = id ?? nativeID;
+ 
+   const hasTextAncestor = useContext(TextAncestorContext);
 diff --git a/node_modules/react-native/src/private/animated/createAnimatedPropsHook.js b/node_modules/react-native/src/private/animated/createAnimatedPropsHook.js
 index 90772e8..96b7295 100644
 --- a/node_modules/react-native/src/private/animated/createAnimatedPropsHook.js

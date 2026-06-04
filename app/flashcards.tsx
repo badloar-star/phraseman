@@ -71,10 +71,20 @@ export default function FlashcardsHubScreen() {
   const commFpRef = useRef<string>('');
   const commOwnedFpRef = useRef<string>('');
 
-  const computeMarketFp = (packs: FlashcardMarketPack[]): string =>
+  const computeMarketFp = useCallback((packs: FlashcardMarketPack[]): string =>
     packs
       .map((p) => `${p.id}:${p.priceShards}:${p.cardCount}:${p.updatedAt}:${p.listingStatus ?? ''}`)
-      .join('|');
+      .join('|'), []);
+
+  useEffect(() => {
+    if (!officialPacksEnabled) return;
+    const bundledReserve = reserveBundledMarketPacks();
+    if (bundledReserve.length <= marketPacks.length) return;
+    const nextMarketFp = computeMarketFp(bundledReserve);
+    if (nextMarketFp === computeMarketFp(marketPacks)) return;
+    marketFpRef.current = nextMarketFp;
+    setMarketPacks(bundledReserve);
+  }, [computeMarketFp, officialPacksEnabled, marketPacks]);
 
   const loadHubMarket = useCallback(async (opts?: { force?: boolean }) => {
     if (!officialPacksEnabled) {
@@ -159,7 +169,7 @@ export default function FlashcardsHubScreen() {
       setOwnedCommunityPackIds([]);
       setHubAuthorStableId(null);
     }
-  }, [cloudCommunityEnabled, communityPacksEnabled, officialPacksEnabled, studyTarget]);
+  }, [cloudCommunityEnabled, communityPacksEnabled, computeMarketFp, officialPacksEnabled, studyTarget]);
 
   /** Принудительное обновление после покупки (через `onMarketRefresh` в Hub). */
   const refreshHubMarketForce = useCallback(() => {

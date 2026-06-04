@@ -24,7 +24,8 @@ const MOTION_OVERLAY_OPACITY: Record<ThemeMode, number> = {
   gold: 0.88,
   coral: 0.66,
   minimalLight: 0.34,
-  minimalDark: 0.62,
+  minimalDark: 0.48,
+  compass: 0.48,
 };
 
 type OrbSpec = { x: number; y: number; r: number; color: string; opacity: number };
@@ -69,12 +70,19 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
     { x: W * 0.58, y: H * 0.80, r: 145, color: '#8A7B65', opacity: 0.14 },
     { x: W * 0.28, y: H * 0.20, r:  84, color: '#B8AA92', opacity: 0.13 },
   ],
-  // Graphite (minimalDark): monochrome cool-dark shading.
+  // Graphite (minimalDark): monochrome cool-dark shading with blue accents.
   minimalDark: [
     { x: W * 0.82, y: 84,       r: 205, color: '#6B7280', opacity: 0.16 },
     { x: W * 0.08, y: H * 0.46, r: 160, color: '#4B5563', opacity: 0.14 },
     { x: W * 0.58, y: H * 0.80, r: 140, color: '#374151', opacity: 0.12 },
     { x: W * 0.28, y: H * 0.20, r:  80, color: '#9CA3AF', opacity: 0.08 },
+  ],
+  // Compass: dark dimensional plates with olive icon glow; warm amber is reserved for CTA buttons.
+  compass: [
+    { x: W * 0.82, y: 84,       r: 205, color: '#F2C48D', opacity: 0.085 },
+    { x: W * 0.08, y: H * 0.46, r: 160, color: '#B4774E', opacity: 0.070 },
+    { x: W * 0.58, y: H * 0.80, r: 140, color: '#E4A872', opacity: 0.040 },
+    { x: W * 0.28, y: H * 0.20, r:  80, color: '#F2C48D', opacity: 0.045 },
   ],
 };
 
@@ -107,6 +115,7 @@ const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
   minimalLight: ['#F1E8D7', '#E0D0B7', '#CDB99C'],
   // Graphite dark neutral tone
   minimalDark: ['#191B1F', '#121316', '#0C0D0F'],
+  compass: ['#020304', '#2F2F31', '#2F2F31'],
 };
 
 const LEGACY_UNSUPPORTED_BG_GRADIENTS: Record<'ocean' | 'sakura', string[]> = {

@@ -8,6 +8,7 @@ export const FIRST_LESSON_SHEET_BACKGROUNDS: Record<ThemeMode, ImageSourcePropTy
   coral: require('../assets/images/first_lesson_sheet/sheet-bg-coral.webp'),
   minimalLight: require('../assets/images/first_lesson_sheet/sheet-bg-minimal-light.webp'),
   minimalDark: require('../assets/images/first_lesson_sheet/sheet-bg-minimal-dark.webp'),
+  compass: require('../assets/images/first_lesson_sheet/sheet-bg-compass-premium.webp'),
 };
 
 export const FIRST_LESSON_SHEET_IMAGES: readonly ImageSourcePropType[] = [

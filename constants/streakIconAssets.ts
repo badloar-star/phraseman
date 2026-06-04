@@ -93,6 +93,18 @@ const STREAK_FIRE_ICON_ASSET_PATHS: ThemeTierMap<string> = {
     90: 'assets/images/streak_icons/minimalDark/streak-fire-minimalDark-090.webp',
     100: 'assets/images/streak_icons/minimalDark/streak-fire-minimalDark-100.webp',
   },
+  compass: {
+    10: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-010.webp',
+    20: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-020.webp',
+    30: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-030.webp',
+    40: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-040.webp',
+    50: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-050.webp',
+    60: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-060.webp',
+    70: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-070.webp',
+    80: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-080.webp',
+    90: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-090.webp',
+    100: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-100.webp',
+  },
 };
 
 const STREAK_FIRE_ICON_SOURCES: ThemeTierMap<ImageSourcePropType> = {
@@ -168,6 +180,18 @@ const STREAK_FIRE_ICON_SOURCES: ThemeTierMap<ImageSourcePropType> = {
     90: require('../assets/images/streak_icons/minimalDark/streak-fire-minimalDark-090.webp'),
     100: require('../assets/images/streak_icons/minimalDark/streak-fire-minimalDark-100.webp'),
   },
+  compass: {
+    10: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-010.webp'),
+    20: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-020.webp'),
+    30: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-030.webp'),
+    40: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-040.webp'),
+    50: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-050.webp'),
+    60: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-060.webp'),
+    70: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-070.webp'),
+    80: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-080.webp'),
+    90: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-090.webp'),
+    100: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-100.webp'),
+  },
 };
 
 const FIRE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number]; accent: string }> = {
@@ -177,6 +201,7 @@ const FIRE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number]; a
   coral: { rgb: [255, 100, 100], accent: '#FF6464' },
   minimalLight: { rgb: [162, 79, 24], accent: '#A24F18' },
   minimalDark: { rgb: [110, 168, 255], accent: '#6EA8FF' },
+  compass: { rgb: [242, 196, 141], accent: '#F2C48D' },
 };
 
 const FREEZE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number]; accent: string }> = {
@@ -185,7 +210,8 @@ const FREEZE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number];
   gold: { rgb: [246, 227, 161], accent: '#F6E3A1' },
   coral: { rgb: [111, 231, 220], accent: '#6FE7DC' },
   minimalLight: { rgb: [31, 110, 165], accent: '#1F6EA5' },
-  minimalDark: { rgb: [110, 168, 255], accent: '#6EA8FF' },
+  minimalDark: { rgb: [156, 163, 175], accent: '#9CA3AF' },
+  compass: { rgb: [242, 196, 141], accent: '#F2C48D' },
 };
 
 const STREAK_FREEZE_ICON_ASSET_PATH = 'assets/images/streak_icons/streak-freeze.webp';
@@ -198,6 +224,7 @@ const STREAK_FREEZE_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
   coral: 'assets/images/streak_icons/coral/streak-freeze-coral.webp',
   minimalLight: 'assets/images/streak_icons/minimalLight/streak-freeze-minimalLight.webp',
   minimalDark: 'assets/images/streak_icons/minimalDark/streak-freeze-minimalDark.webp',
+  compass: 'assets/images/streak_icons/compass-premium/streak-freeze-compass-premium.webp',
 };
 
 const STREAK_FREEZE_ICON_SOURCES: Record<ThemeMode, ImageSourcePropType> = {
@@ -207,6 +234,7 @@ const STREAK_FREEZE_ICON_SOURCES: Record<ThemeMode, ImageSourcePropType> = {
   coral: require('../assets/images/streak_icons/coral/streak-freeze-coral.webp'),
   minimalLight: require('../assets/images/streak_icons/minimalLight/streak-freeze-minimalLight.webp'),
   minimalDark: require('../assets/images/streak_icons/minimalDark/streak-freeze-minimalDark.webp'),
+  compass: require('../assets/images/streak_icons/compass-premium/streak-freeze-compass-premium.webp'),
 };
 
 const STREAK_FREEZE_ICON_SOURCE_PROMPTS: Record<ThemeMode, string> = {
@@ -216,6 +244,7 @@ const STREAK_FREEZE_ICON_SOURCE_PROMPTS: Record<ThemeMode, string> = {
   coral: 'assets/images/streak_icons/sources/streak-freeze-coral-dalle-source.png',
   minimalLight: 'assets/images/streak_icons/sources/streak-freeze-minimalLight-dalle-source.png',
   minimalDark: 'assets/images/streak_icons/sources/streak-freeze-minimalDark-dalle-source.png',
+  compass: 'assets/images/theme_compass_premium/sources/streak-icons/streak-icons-compass-premium-dalle-source.png',
 };
 
 function rgba(rgb: readonly [number, number, number], alpha: number): string {

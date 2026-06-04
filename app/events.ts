@@ -56,6 +56,8 @@ export type AppEventMap = {
   /** Ваучер «згорів» — використано для покупки набору або вийшов час; UI має повернути іконки осколків */
   pack_trial_gift_consumed: undefined;
   daily_task_completed: { taskId: string; studyTarget?: RuntimeStudyTarget };
+  personal_plan_updated: { planId?: string; taskId?: string } | undefined;
+  personal_plan_onboarding_nickname_ready: undefined;
   /** Тост или экран забрал награду — обновить список на daily_tasks / главной. */
   daily_task_reward_claimed: { taskId: string; studyTarget?: RuntimeStudyTarget };
   /** Dev/admin preview only: показать reward-toast без storage/XP claim. */

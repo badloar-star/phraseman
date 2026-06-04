@@ -83,6 +83,8 @@ import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './c
 import type { PhraseMistakeInput } from './phrase_analytics';
 import CoachToast from '../components/CoachToast';
 import { frenchTrainerGateCopy, srsReviewContentAvailableForTarget } from './trainer_target_gate';
+import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
+import { resolvePersonalPracticeSeededDuePhrases } from './personal_plan_practice_seeded_gate';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 
@@ -621,10 +623,28 @@ export default function ReviewScreen() {
   const { studyTarget } = useStudyTarget();
   const srsReviewGateOpen = srsReviewContentAvailableForTarget(studyTarget);
   // trainerMode и lessonId передаются из trainer.tsx при старте режимной сессии.
-  const params = useLocalSearchParams<{ trainerMode?: string; lessonId?: string; category?: string }>();
+  const params = useLocalSearchParams<{
+    trainerMode?: string;
+    lessonId?: string;
+    category?: string;
+    planPracticeTask?: string;
+    trainingId?: string;
+    requiredPhrases?: string;
+    requiredWords?: string;
+    planTaskId?: string;
+    planInstanceId?: string;
+    planId?: string;
+    planDayIndex?: string;
+  }>();
   const trainerMode = (params.trainerMode ?? 'due') as TrainerMode;
   const trainerLessonId = params.lessonId ? parseInt(params.lessonId, 10) : undefined;
   const trainerCategory = params.category;
+  const planPracticeTaskId = params.planPracticeTask === '1' ? params.planTaskId : undefined;
+  const planPracticeDayIndex = parseInt(params.planDayIndex ?? '1', 10) || 1;
+  const planPracticeRequiredPhrases = Math.max(
+    1,
+    parseInt(params.requiredPhrases ?? '3', 10) || 3,
+  );
 
   // Данные сессии
   const [items,   setItems]   = useState<RecallItem[]>([]);
@@ -636,6 +656,7 @@ export default function ReviewScreen() {
   const [totalXP,   setTotalXP]   = useState(0);
   const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
   const wrongPhrasesRef = useRef<PhraseMistakeInput[]>([]);
+  const planPracticeCompletionTracked = useRef(false);
 
   // Состояние текущей карточки (без плиточной сборки)
   const [mode, setMode]           = useState<ReviewMode>('word_bank');
@@ -732,7 +753,12 @@ export default function ReviewScreen() {
     // Стандартный /review без params грузит «due» с commitSessionOverflow.
     const itemsPromise = params.trainerMode
       ? getTrainerItems(trainerMode, SESSION_LIMIT, trainerLessonId, trainerCategory, studyTarget)
-      : getDueItems(SESSION_LIMIT, { commitSessionOverflow: true }, studyTarget);
+      : planPracticeTaskId
+        ? resolvePersonalPracticeSeededDuePhrases({
+            studyTarget,
+            requiredPhraseCount: planPracticeRequiredPhrases,
+          })
+        : getDueItems(SESSION_LIMIT, { commitSessionOverflow: true }, studyTarget);
     itemsPromise.then(due => {
       setItems(due);
       setLoading(false);
@@ -743,7 +769,7 @@ export default function ReviewScreen() {
       const timer = timerRef.current;
       if (timer) clearTimeout(timer);
     };
-  }, [loadCard, params.trainerMode, trainerLessonId, trainerCategory, trainerMode, studyTarget]);
+  }, [loadCard, params.trainerMode, planPracticeRequiredPhrases, planPracticeTaskId, trainerLessonId, trainerCategory, trainerMode, studyTarget]);
 
   const shouldShowBurnHint = status === 'result' && canBurn && !burnHintSeen;
 
@@ -1018,6 +1044,15 @@ export default function ReviewScreen() {
   // ВАЖНО: этот хук должен быть до любых условных return!
   useEffect(() => {
     if (!done) return;
+    if (planPracticeTaskId && !planPracticeCompletionTracked.current) {
+      planPracticeCompletionTracked.current = true;
+      void markPersonalPlanTaskCompleted({
+        taskId: planPracticeTaskId,
+        planInstanceId: params.planInstanceId,
+        planId: params.planId,
+        dayIndex: planPracticeDayIndex,
+      });
+    }
     if (wrong === 0 && correct >= 5) {
       updateMultipleTaskProgress(
         [{ type: 'recall_perfect', increment: 1 }],
@@ -1031,7 +1066,7 @@ export default function ReviewScreen() {
     });
     return () => { cancelled = true; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [done, lang, studyTarget]);
+  }, [done, lang, params.planId, params.planInstanceId, planPracticeDayIndex, planPracticeTaskId, studyTarget]);
 
   // ─── Нечего повторять ─────────────────────────────────────────────────────
   if (items.length === 0) {

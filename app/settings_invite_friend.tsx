@@ -14,12 +14,8 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { hapticTap } from '../hooks/use-haptics';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { STORE_URL } from './config';
-import { isReferralCloudEnabled } from './referral_cloud';
-import { buildCloudReferralInviteShare } from './referral_invite_share';
 import { updateMultipleTaskProgress } from './daily_tasks';
-import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import type { Lang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
@@ -295,29 +291,9 @@ export default function SettingsInviteFriend() {
     hapticTap();
     setBusy(true);
     try {
-      if (!isReferralCloudEnabled()) {
-        const pool = OFFLINE_SHARE_BODIES_BY_LANG[copyLang] ?? OFFLINE_SHARE_BODIES_BY_LANG.ru;
-        const msg = pool[Math.floor(Math.random() * pool.length)];
-        const r = await Share.share({ message: msg });
-        if (shouldCountInviteShare(r)) {
-          void updateMultipleTaskProgress(
-            [{ type: 'invite_friend', increment: 1 }],
-            { studyTarget },
-          ).catch(() => {});
-        }
-        return;
-      }
-      const userName = (await AsyncStorage.getItem('user_name')) || 'User';
-      const share = await buildCloudReferralInviteShare({ lang, userName });
-      if (!share) {
-        await enqueueThemedBlockingInfoAlert(tx.needAuthTitle, tx.needAuth, 'OK');
-        return;
-      }
-      const message =
-        share.url && !share.message.includes(share.url)
-          ? `${share.message}\n${share.url}`
-          : share.message;
-      const r = await Share.share({ message, url: share.url });
+      const pool = OFFLINE_SHARE_BODIES_BY_LANG[copyLang] ?? OFFLINE_SHARE_BODIES_BY_LANG.ru;
+      const msg = pool[Math.floor(Math.random() * pool.length)];
+      const r = await Share.share({ message: msg });
       if (shouldCountInviteShare(r)) {
         void updateMultipleTaskProgress(
           [{ type: 'invite_friend', increment: 1 }],
@@ -328,7 +304,7 @@ export default function SettingsInviteFriend() {
     } finally {
       setBusy(false);
     }
-  }, [busy, lang, studyTarget, tx.needAuth, tx.needAuthTitle]);
+  }, [busy, copyLang, studyTarget]);
 
   const isIos = effectiveOs === 'ios';
   const scrollBottomPad = 100 + Math.max(insets.bottom, 16);

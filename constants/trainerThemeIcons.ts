@@ -48,11 +48,18 @@ const THEME_ICON_PALETTES: Record<ThemeMode, TrainerThemeIconPalette> = {
     muted: '#8B9692',
   },
   minimalDark: {
-    primary: '#78B7FF',
-    secondary: '#2E5F97',
-    tertiary: '#BBD9FF',
-    stroke: '#D9ECFF',
-    muted: '#294563',
+    primary: '#6EA8FF',
+    secondary: '#4B5563',
+    tertiary: '#D1D5DB',
+    stroke: '#E5E7EB',
+    muted: '#374151',
+  },
+  compass: {
+    primary: '#F2C48D',
+    secondary: '#F2C48D',
+    tertiary: '#FFE4B8',
+    stroke: '#FFF0D2',
+    muted: '#6F5038',
   },
 };
 
@@ -87,6 +94,11 @@ export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThe
     words: 'assets/images/trainer_theme_icons/minimalDark/words.webp',
     analytics: 'assets/images/trainer_theme_icons/minimalDark/analytics.webp',
   },
+  compass: {
+    phrases: 'assets/images/trainer_theme_icons/compass-premium/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/compass-premium/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/compass-premium/analytics.webp',
+  },
 };
 
 const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind, ImageSourcePropType>> = {
@@ -119,6 +131,11 @@ const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind,
     phrases: require('../assets/images/trainer_theme_icons/minimalDark/phrases.webp'),
     words: require('../assets/images/trainer_theme_icons/minimalDark/words.webp'),
     analytics: require('../assets/images/trainer_theme_icons/minimalDark/analytics.webp'),
+  },
+  compass: {
+    phrases: require('../assets/images/trainer_theme_icons/compass-premium/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/compass-premium/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/compass-premium/analytics.webp'),
   },
 };
 

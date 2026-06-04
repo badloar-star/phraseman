@@ -14,6 +14,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { flushMistakeLog, logMistake } from './mistake_log';
 import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
+import { compactPlanMistakeContext, type PersonalPlanMistakeContext } from './personal_plan_mistake_context';
 import { computePhraseAnalytics } from './phrase_analytics';
 import { normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 import { getPosMasterySnapshot } from './pos_workout_engine';
@@ -56,6 +57,11 @@ export interface TrainerItem {
   lessonId: number;
   category?: WordCategory;
   grammarTag?: string;
+  planId?: string;
+  planInstanceId?: string;
+  planTaskId?: string;
+  planDayIndex?: number;
+  planPhraseLessonId?: string;
   /** Суммарное кол-во ошибок при записи (не при отработке) */
   mistakeCount: number;
   /** Кол-во правильных ответов подряд при отработке */
@@ -159,6 +165,15 @@ async function load(studyTarget?: RuntimeStudyTarget): Promise<TrainerItem[]> {
     trainerStoreCache.set(key, []);
     return [];
   }
+}
+
+function applyPlanMistakeContext(item: TrainerItem, context?: PersonalPlanMistakeContext): void {
+  const compact = compactPlanMistakeContext(context);
+  if (compact.planId) item.planId = compact.planId;
+  if (compact.planInstanceId) item.planInstanceId = compact.planInstanceId;
+  if (compact.planTaskId) item.planTaskId = compact.planTaskId;
+  if (compact.planDayIndex) item.planDayIndex = compact.planDayIndex;
+  if (compact.planPhraseLessonId) item.planPhraseLessonId = compact.planPhraseLessonId;
 }
 
 async function save(items: TrainerItem[], studyTarget?: RuntimeStudyTarget): Promise<void> {
@@ -290,6 +305,7 @@ export async function recordPhraseMistake(
   rawCategory?: string,
   translationEs?: string,
   studyTarget?: RuntimeStudyTarget,
+  planContext?: PersonalPlanMistakeContext,
 ): Promise<void> {
   const key = phraseEn.trim();
   const items = await load(studyTarget);
@@ -302,6 +318,7 @@ export async function recordPhraseMistake(
     if (translationEs) existing.translationEs = translationEs;
     if (errorWord) existing.errorWord = errorWord;
     Object.assign(existing, trainerCategory(errorWord, rawCategory));
+    applyPlanMistakeContext(existing, planContext);
     if (existing.archived) {
       existing.archived = false;
       existing.correctStreak = 0;
@@ -328,6 +345,7 @@ export async function recordPhraseMistake(
     createdAt: Date.now(),
     archived: false,
   };
+  applyPlanMistakeContext(item, planContext);
   items.push(item);
   await save(items, studyTarget);
 }
@@ -649,6 +667,29 @@ export async function getTrainerPremiumItems(
     ...byPriority(),
   ]);
   return mixed.slice(0, limit);
+}
+
+export async function getTrainerPremiumItemsForPlan(
+  planInstanceId: string | null | undefined,
+  mode: TrainerPremiumMode,
+  limit = 12,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<TrainerItem[]> {
+  const instanceId = planInstanceId?.trim();
+  if (!instanceId) return [];
+  const items = await getTrainerPremiumItems(mode, Math.max(limit, 48), studyTarget);
+  return items.filter((item) => item.planInstanceId === instanceId).slice(0, limit);
+}
+
+export async function getTrainerPlanWeakSpotDueCount(
+  planInstanceId: string | null | undefined,
+  mode: TrainerPremiumMode = 'weak',
+  studyTarget?: RuntimeStudyTarget,
+): Promise<number> {
+  const end = todayEnd();
+  return (await getTrainerPremiumItemsForPlan(planInstanceId, mode, 48, studyTarget))
+    .filter((item) => !item.archived && item.nextDue > 0 && item.nextDue <= end)
+    .length;
 }
 
 /** Все слова в хранилище (включая ещё не активированные) — для подбора ложных переводов. */

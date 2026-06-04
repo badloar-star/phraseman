@@ -34,6 +34,7 @@ import { ARENA_RANKED_WAGER_STAKES, clearPendingArenaRankedWager, getPendingAren
 import { getShardsBalance } from './shards_system';
 import { oskolokImageForPackShards } from './oskolok';
 import { subscribeToFriends, type FriendEntry } from './firestore_friend_requests';
+import { peekProfilesCache, startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { sendArenaInvite, subscribeArenaInviteStatus } from './services/arena_invites';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
@@ -68,6 +69,7 @@ const ARENA_STAGE_BACKDROPS = {
     coral: require('../assets/images/arena/knowledge-arena-coral.webp'),
     minimalLight: require('../assets/images/arena/knowledge-arena-minimal-light.webp'),
     minimalDark: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
+    compass: require('../assets/images/arena/knowledge-arena-compass-premium.webp'),
 } as const;
 const ARENA_TICKET_ICONS = {
     dark: require('../assets/images/arena_tickets/ticket-dark.webp'),
@@ -76,6 +78,7 @@ const ARENA_TICKET_ICONS = {
     coral: require('../assets/images/arena_tickets/ticket-coral.webp'),
     minimalLight: require('../assets/images/arena_tickets/ticket-minimal-light.webp'),
     minimalDark: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
+    compass: require('../assets/images/arena_tickets/ticket-compass-premium.webp'),
 } as const;
 function alphaColor(color: string, alpha: number, defaultRgb = '255,255,255'): string {
     if (/^#[0-9a-f]{6}$/i.test(color)) {
@@ -1272,22 +1275,55 @@ export default function DuelLobbyScreen({ isTab = false }: {
         if (!db)
             return;
         let cancelled = false;
-        void Promise.all(arenaFriends.map(async (f) => {
+        void (async () => {
+            await startFriendsTabSwrPrime();
+            const results = await Promise.all(arenaFriends.map(async (f) => {
             try {
+                const cachedProfile = peekProfilesCache()[f.uid]?.profile;
+                if (cachedProfile) {
+                    return {
+                        uid: f.uid,
+                        name: cachedProfile.name,
+                        totalXp: cachedProfile.totalXp,
+                        avatar: cachedProfile.avatar,
+                        aura: cachedProfile.aura,
+                    };
+                }
                 const snap = await db.collection('users').doc(f.uid).get();
-                if (!snap.exists)
-                    return null;
-                const data = snap.data() ?? {};
-                const avatarRaw = typeof data.progress?.user_avatar === 'string'
-                    ? data.progress.user_avatar.trim()
-                    : '';
-                const auraRaw = typeof data.progress?.user_avatar_aura === 'string'
-                    ? data.progress.user_avatar_aura.trim()
-                    : '';
+                let data = snap.exists ? (snap.data() ?? {}) : {};
+                const readNum = (value: unknown): number => typeof value === 'number'
+                    ? Math.max(0, Math.floor(value))
+                    : parseInt(String(value ?? '0'), 10) || 0;
+                const readStr = (value: unknown): string => typeof value === 'string' ? value.trim() : '';
+                let totalXp = readNum(data.progress?.user_total_xp ?? data.progress?.totalXp ?? data.totalXp);
+                let avatarRaw = readStr(data.progress?.user_avatar ?? data.avatar);
+                let auraRaw = readStr(data.progress?.user_avatar_aura ?? data.aura);
+                let name = readStr(data.displayName) || readStr(data.name) || readStr(data.progress?.displayName) || readStr(data.progress?.user_name);
+                if (!name && totalXp <= 0 && !avatarRaw && !auraRaw) {
+                    const leaderboardSnap = await db.collection('leaderboard').doc(f.uid).get();
+                    if (leaderboardSnap.exists) {
+                        data = leaderboardSnap.data() ?? {};
+                        totalXp = readNum(data.points);
+                        avatarRaw = readStr(data.avatar);
+                        auraRaw = readStr(data.aura);
+                        name = readStr(data.name) || readStr(data.displayName);
+                    }
+                }
+                if (!name && totalXp <= 0 && !avatarRaw && !auraRaw) {
+                    const arenaByStableSnap = await db.collection('arena_profiles').where('mirrorStableId', '==', f.uid).limit(1).get();
+                    const arenaDoc = arenaByStableSnap.docs?.[0];
+                    if (arenaDoc) {
+                        data = arenaDoc.data() ?? {};
+                        totalXp = readNum(data.courseTotalXp);
+                        avatarRaw = readStr(data.courseAvatar);
+                        auraRaw = readStr(data.courseAura);
+                        name = readStr(data.displayName) || readStr(data.name);
+                    }
+                }
                 return {
                     uid: f.uid,
                     name: (data.displayName as string) || (data.name as string) || (data.progress?.displayName as string) || (data.progress?.user_name as string) || 'Игрок',
-                    totalXp: parseInt((data.progress?.user_total_xp as string) ?? '0') || 0,
+                    totalXp,
                     avatar: avatarRaw || undefined,
                     aura: auraRaw || undefined,
                 };
@@ -1295,7 +1331,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             catch {
                 return null;
             }
-        })).then(results => {
+            }));
             if (cancelled)
                 return;
             const map: Record<string, {
@@ -1308,7 +1344,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 if (r)
                     map[r.uid] = r;
             setArenaFriendProfiles(map);
-        });
+        })();
         return () => { cancelled = true; };
     }, [arenaFriends]);
     const othersInQueueBadge = queueOthersCount > 0 ? (<View style={[
@@ -1386,7 +1422,12 @@ export default function DuelLobbyScreen({ isTab = false }: {
             friend: { bg: 'rgba(16,18,25,0.86)', border: 'rgba(133,151,196,0.42)', shadow: '#8597C4' },
             throne: { bg: 'rgba(20,19,17,0.88)', border: 'rgba(179,149,91,0.44)', shadow: '#B3955B' },
         };
-        const byTheme = { dark, neon, gold, coral, minimalLight, minimalDark } as const;
+        const compass = {
+            match: { bg: 'rgba(10,30,28,0.86)', border: 'rgba(242,196,141,0.44)', shadow: '#F2C48D' },
+            friend: { bg: 'rgba(8,24,23,0.86)', border: 'rgba(242,196,141,0.34)', shadow: '#8FEFE1' },
+            throne: { bg: 'rgba(18,16,10,0.88)', border: 'rgba(242,196,141,0.32)', shadow: '#F2C48D' },
+        };
+        const byTheme = { dark, neon, gold, coral, minimalLight, minimalDark, compass } as const;
         return byTheme[themeMode] ?? dark;
     }, [themeMode]);
     const arenaGlass = useMemo(() => {
@@ -2182,26 +2223,26 @@ export default function DuelLobbyScreen({ isTab = false }: {
               <View style={styles.throneModalTitleWrap}>
                 <Text style={[styles.throneModalTitle, { color: screenTitleColor, fontSize: f.h2 }]}>
                   {triLang(lang, {
-                ru: 'Топ дня',
-                uk: 'Топ дня',
-                es: 'Top del día',
-                'pt-BR': 'Top do dia',
-                vi: 'Top trong ngày',
-                id: 'Top hari ini',
-                tr: 'Günün topu',
-                pl: 'Top dnia',
+                ru: 'Трон дня',
+                uk: 'Трон дня',
+                es: 'Trono del día',
+                'pt-BR': 'Trono do dia',
+                vi: 'Ngai vàng hôm nay',
+                id: 'Takhta hari ini',
+                tr: 'Günün tahtı',
+                pl: 'Tron dnia',
             })}
                 </Text>
                 <Text style={[styles.throneModalSub, { color: screenMuted, fontSize: f.caption }]}>
                   {triLang(lang, {
-                ru: 'Три сильнейших игрока за сегодня',
-                uk: 'Три найсильніші гравці за сьогодні',
-                es: 'Los tres jugadores más fuertes de hoy',
-                'pt-BR': 'Os três jogadores mais fortes de hoje',
-                vi: 'Ba người chơi mạnh nhất hôm nay',
-                id: 'Tiga pemain terkuat hari ini',
-                tr: 'Bugünün en güçlü üç oyuncusu',
-                pl: 'Trzech najmocniejszych graczy dzisiaj',
+                ru: 'Текущий чемпион за сегодня',
+                uk: 'Поточний чемпіон за сьогодні',
+                es: 'El campeón actual de hoy',
+                'pt-BR': 'O campeão atual de hoje',
+                vi: 'Nhà vô địch hiện tại hôm nay',
+                id: 'Juara saat ini hari ini',
+                tr: 'Bugünün mevcut şampiyonu',
+                pl: 'Aktualny mistrz dnia',
             })}
                 </Text>
               </View>
@@ -3185,7 +3226,8 @@ const styles = StyleSheet.create({
         fontWeight: '700',
     },
     throneTopWins: {
-        minWidth: 78,
+        minWidth: 88,
+        marginRight: 4,
         alignItems: 'flex-end',
         flexShrink: 0,
     },

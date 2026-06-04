@@ -66,8 +66,22 @@ function callable<TReq, TRes>(name: string) {
 const COL_LB = 'leaderboard';
 const GROUP_SIZE = 30;
 const LEAGUE_STATE_V3_KEY = 'league_state_v3';
+const LEAGUE_MEMBER_SYNC_CACHE_KEY = 'league_member_sync_cache_v1';
+const LEAGUE_MEMBER_SYNC_CACHE_TTL_MS = 6 * 60 * 60_000;
+const LEAGUE_POINTS_SYNC_MIN_DELTA = 10;
+const LEAGUE_POINTS_SYNC_MAX_DELAY_MS = 5 * 60_000;
 /** Сколько league_groups максимум читаем на неделю+клуб, чтобы не создавать сольные группы из-за .limit(100) */
 const BROAD_GROUP_QUERY_LIMIT = 500;
+
+type LeagueMemberSyncCache = {
+  weekId: string;
+  leagueId: number;
+  groupId: string;
+  memberHash: string;
+  profileHash: string;
+  points: number;
+  updatedAt: number;
+};
 
 function countMembersInData(data: any): number {
   const m = data?.members;
@@ -88,6 +102,61 @@ function withoutUndefinedFields<T extends Record<string, unknown>>(obj: T): Reco
     if (value !== undefined) out[key] = value;
   });
   return out;
+}
+
+function stableStringify(value: unknown): string {
+  if (value === null || typeof value !== 'object') return JSON.stringify(value);
+  if (Array.isArray(value)) return `[${value.map(stableStringify).join(',')}]`;
+  const obj = value as Record<string, unknown>;
+  return `{${Object.keys(obj).sort().map((key) => `${JSON.stringify(key)}:${stableStringify(obj[key])}`).join(',')}}`;
+}
+
+function leagueMemberHash(member: Record<string, unknown>, includePoints = true): string {
+  const normalized = { ...member };
+  if (!includePoints) delete normalized.points;
+  return stableStringify(normalized);
+}
+
+async function readLeagueMemberSyncCache(): Promise<LeagueMemberSyncCache | null> {
+  try {
+    const raw = await AsyncStorage.getItem(LEAGUE_MEMBER_SYNC_CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<LeagueMemberSyncCache>;
+    if (!parsed || typeof parsed.groupId !== 'string') return null;
+    return {
+      weekId: String(parsed.weekId || ''),
+      leagueId: normLeagueIdData(parsed.leagueId, 0),
+      groupId: parsed.groupId,
+      memberHash: String(parsed.memberHash || ''),
+      profileHash: String(parsed.profileHash || ''),
+      points: Math.max(0, Number(parsed.points) || 0),
+      updatedAt: Math.max(0, Number(parsed.updatedAt) || 0),
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function writeLeagueMemberSyncCache(
+  cache: Omit<LeagueMemberSyncCache, 'updatedAt'>,
+): Promise<void> {
+  await AsyncStorage.setItem(LEAGUE_MEMBER_SYNC_CACHE_KEY, JSON.stringify({ ...cache, updatedAt: Date.now() }));
+}
+
+function shouldSkipLeagueMemberCallable(
+  cache: LeagueMemberSyncCache | null,
+  weekId: string,
+  leagueId: number,
+  profileHash: string,
+  points: number,
+): boolean {
+  if (!cache?.groupId) return false;
+  const now = Date.now();
+  if (cache.weekId !== weekId || normLeagueIdData(cache.leagueId, 0) !== normLeagueIdData(leagueId, 0)) return false;
+  if (now - cache.updatedAt > LEAGUE_MEMBER_SYNC_CACHE_TTL_MS) return false;
+  if (profileHash !== cache.profileHash) return false;
+  if (Math.abs(points - cache.points) >= LEAGUE_POINTS_SYNC_MIN_DELTA) return false;
+  return now - cache.updatedAt < LEAGUE_POINTS_SYNC_MAX_DELAY_MS;
 }
 
 function makeLeagueGroupDocId(weekId: string, leagueId: number, uid: string): string {
@@ -454,6 +523,13 @@ export async function getOrCreateLeagueGroup(
     totalXp:   memberTotalXp,
     ...boostFields,
   });
+  const memberHash = leagueMemberHash(memberData);
+  const profileHash = leagueMemberHash(memberData, false);
+  const cachedSync = await readLeagueMemberSyncCache();
+  if (cachedSync && shouldSkipLeagueMemberCallable(cachedSync, weekId, leagueId, profileHash, myWeekPoints)) {
+    const cachedMembers = await fetchGroupMembers(db, cachedSync.groupId, uid, myName, myWeekPoints).catch(() => []);
+    if (cachedMembers.length > 0) return cachedMembers;
+  }
 
   try {
     const fn = callable<
@@ -463,6 +539,14 @@ export async function getOrCreateLeagueGroup(
     const res = await fn({ weekId, leagueId: normLeagueIdData(leagueId, 0), stableId: uid, member: memberData });
     const groupId = res.data?.groupId;
     if (groupId) {
+      writeLeagueMemberSyncCache({
+        weekId,
+        leagueId: normLeagueIdData(leagueId, 0),
+        groupId,
+        memberHash,
+        profileHash,
+        points: myWeekPoints,
+      }).catch(() => {});
       return await fetchGroupMembers(db, groupId, uid, myName, myWeekPoints);
     }
   } catch (e) {
@@ -505,6 +589,14 @@ export async function getOrCreateLeagueGroup(
       await db.collection('league_groups').doc(effective).update({
         [`members.${uid}`]: memberData,
       }).catch(() => {});
+      writeLeagueMemberSyncCache({
+        weekId,
+        leagueId: effectiveLeagueId,
+        groupId: effective,
+        memberHash,
+        profileHash,
+        points: myWeekPoints,
+      }).catch(() => {});
       return await fetchGroupMembers(db, effective, uid, myName, myWeekPoints);
     }
 
@@ -541,6 +633,14 @@ export async function getOrCreateLeagueGroup(
           }).catch((e: unknown) => {
             if (__DEV__) console.warn('[firestore_leagues] update members[uid] failed', e);
           });
+          writeLeagueMemberSyncCache({
+            weekId,
+            leagueId: leagueIdForGroup,
+            groupId: effective,
+            memberHash,
+            profileHash,
+            points: myWeekPoints,
+          }).catch(() => {});
           return await fetchGroupMembers(db, effective, uid, myName, myWeekPoints);
         }
       } else if (savedData && iAmInSaved && !savedLeagueMatches) {
@@ -588,6 +688,14 @@ export async function getOrCreateLeagueGroup(
       { merge: true }
     );
 
+    writeLeagueMemberSyncCache({
+      weekId,
+      leagueId: leagueIdForGroup,
+      groupId,
+      memberHash,
+      profileHash,
+      points: myWeekPoints,
+    }).catch(() => {});
     return await fetchGroupMembers(db, groupId, uid, myName, myWeekPoints);
   } catch (e) {
     if (__DEV__) console.warn('[firestore_leagues] getOrCreateLeagueGroup failed', e);
@@ -792,26 +900,51 @@ async function _doUpdateGroupPoints(weekPoints: number): Promise<void> {
     ]);
     const memberTotalXp = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
     const memberName = (nameRaw ?? '').trim();
-    const fn = callable<{ stableId?: string; member: Record<string, unknown> }, { ok: boolean }>('leagueUpdateMyMember');
+    let leagueId = 0;
+    try {
+      const leagueRaw = await AsyncStorage.getItem(LEAGUE_STATE_V3_KEY);
+      const leagueState = leagueRaw ? JSON.parse(leagueRaw) : null;
+      leagueId = normLeagueIdData(leagueState?.leagueId, 0);
+    } catch {
+      leagueId = 0;
+    }
+    const member = withoutUndefinedFields({
+      name: memberName || undefined,
+      points: weekPoints,
+      uid,
+      avatar: avatarRaw ?? null,
+      frame: frameRaw ?? null,
+      aura: normalizeAvatarAuraId(auraRaw) ?? null,
+      profileCardLevel: normalizeProfileCardLevel(cardLevelRaw),
+      profileCardTheme: normalizeProfileCardTheme(cardThemeRaw),
+      profileCardMotion: normalizeProfileCardMotion(cardMotionRaw),
+      profileCardPublicFocus: normalizeProfileCardPublicFocus(cardFocusRaw),
+      isPremium: memberPremium,
+      isVip: memberVip,
+      streak: streakRaw ? parseInt(streakRaw, 10) : 0,
+      totalXp: memberTotalXp,
+    });
+    const weekId = getWeekId();
+    const memberHash = leagueMemberHash(member);
+    const profileHash = leagueMemberHash(member, false);
+    const cachedSync = await readLeagueMemberSyncCache();
+    if (shouldSkipLeagueMemberCallable(cachedSync, weekId, leagueId, profileHash, weekPoints)) return;
+
+    const fn = callable<{ stableId?: string; member: Record<string, unknown> }, { ok: boolean; groupId?: string }>('leagueUpdateMyMember');
     await fn({
       stableId: uid,
-      member: withoutUndefinedFields({
-        name: memberName || undefined,
-        points: weekPoints,
-        uid,
-        avatar: avatarRaw ?? null,
-        frame: frameRaw ?? null,
-        aura: normalizeAvatarAuraId(auraRaw) ?? null,
-        profileCardLevel: normalizeProfileCardLevel(cardLevelRaw),
-        profileCardTheme: normalizeProfileCardTheme(cardThemeRaw),
-        profileCardMotion: normalizeProfileCardMotion(cardMotionRaw),
-        profileCardPublicFocus: normalizeProfileCardPublicFocus(cardFocusRaw),
-        isPremium: memberPremium,
-        isVip: memberVip,
-        streak: streakRaw ? parseInt(streakRaw, 10) : 0,
-        totalXp: memberTotalXp,
-      }),
+      member,
     });
+    if (cachedSync?.groupId && cachedSync.weekId === weekId) {
+      writeLeagueMemberSyncCache({
+        weekId,
+        leagueId,
+        groupId: cachedSync.groupId,
+        memberHash,
+        profileHash,
+        points: weekPoints,
+      }).catch(() => {});
+    }
   } catch {}
 }
 

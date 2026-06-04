@@ -14,4 +14,14 @@ describe('settings dev admin gate', () => {
     expect(guardIndex).toBeLessThan(adminLabelIndex);
     expect(settingsSource.slice(guardIndex, nextVipCardIndex)).toContain('router.push(SETTINGS_TESTERS_ROUTE as any)');
   });
+
+  it('uses Premium access, not store-only Premium, for the active settings card', () => {
+    const settingsSource = fs.readFileSync(path.join(process.cwd(), 'app', '(tabs)', 'settings.tsx'), 'utf8');
+
+    expect(settingsSource).toContain('const { isPremium, isVip, hasPremiumAccess } = usePremium()');
+    expect(settingsSource).toContain('{hasPremiumAccess ? (');
+    expect(settingsSource).toContain('VIP доступ активен');
+    expect(settingsSource).toContain('VIP access active');
+    expect(settingsSource).not.toContain('{isPremium ? (\n          <TouchableOpacity');
+  });
 });

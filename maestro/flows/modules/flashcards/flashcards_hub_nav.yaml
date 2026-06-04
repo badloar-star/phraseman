@@ -1,4 +1,0 @@
-# Карточки: главная → хаб → назад (полный сценарий в smoke).
-appId: app.phraseman
----
-- runFlow: ../../smoke/nav_flashcards_open_and_back.yaml

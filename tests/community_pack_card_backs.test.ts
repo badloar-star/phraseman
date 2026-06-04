@@ -8,6 +8,11 @@ import {
   cardBackImage,
   normalizeUgcCardBackKey,
 } from '../app/flashcards/cardBackCatalog';
+import {
+  OFFICIAL_MOVIE_SERIES_EN_ID,
+  OFFICIAL_PHRASAL_VERBS_EN_ID,
+} from '../app/flashcards/bundles/packIds';
+import { BUNDLED_MARKETPLACE_PACKS } from '../app/flashcards/marketplace';
 import { packTileImageForPack } from '../app/flashcards/packMarketplaceIcons';
 import {
   COMMUNITY_PACK_PRICE_SHARDS,
@@ -70,6 +75,17 @@ describe('community pack card backs', () => {
     expect(pack?.ugcCardBackKey).toBe('community_29_rainbow_foil');
     expect(packTileImageForPack(pack!)).toBeDefined();
     expect(normalizeUgcCardBackKey('missing')).toBe(UGC_CARD_BACK_DEFAULT_ID);
+  });
+
+  it('keeps the newest official pack backs wired for marketplace tiles', () => {
+    for (const packId of [OFFICIAL_PHRASAL_VERBS_EN_ID, OFFICIAL_MOVIE_SERIES_EN_ID]) {
+      const pack = BUNDLED_MARKETPLACE_PACKS.find((item) => item.id === packId);
+
+      expect(pack).toBeDefined();
+      expect(cardBackImage(packId)).toBeDefined();
+      expect(cardBackFanImage(packId)).toBeDefined();
+      expect(packTileImageForPack(pack!)).toBeDefined();
+    }
   });
 
   it('keeps generated card back assets on strict canvases with consistent visible bounds', async () => {

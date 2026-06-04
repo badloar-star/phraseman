@@ -1,0 +1,142 @@
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { AccessibilityInfo, Animated, ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
+import { useIsFocused } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
+import { useLang } from './LangContext';
+import { useTheme } from './ThemeContext';
+import { hapticTap } from '../hooks/use-haptics';
+import { triLang } from '../constants/i18n';
+import { getLingmanYoutubeSnapshot } from '../app/lingman_youtube';
+import { getLingmanYoutubeChrome } from '../app/lingman_youtube_chrome';
+import type { ThemeMode } from '../constants/theme';
+
+const YOUTUBE_ICON_IMAGES: Record<ThemeMode, ImageSourcePropType> = {
+  dark: require('../assets/images/header_glyphs/youtube-glyph-forest-dalle-v1.png'),
+  neon: require('../assets/images/header_glyphs/youtube-glyph-neon-dalle-v1.png'),
+  gold: require('../assets/images/header_glyphs/youtube-glyph-gold-dalle-v1.png'),
+  coral: require('../assets/images/header_glyphs/youtube-glyph-coral-dalle-v1.png'),
+  minimalLight: require('../assets/images/header_glyphs/youtube-glyph-minimal-light-dalle-v1.png'),
+  minimalDark: require('../assets/images/header_glyphs/youtube-glyph-minimal-dark-dalle-v1.png'),
+  compass: require('../assets/images/header_glyphs/compass-premium/youtube-glyph-compass-premium.webp'),
+};
+
+export default function LingmanVideosButton() {
+  const router = useRouter();
+  const isFocused = useIsFocused();
+  const { lang } = useLang();
+  const { theme: t, themeMode, isDark } = useTheme();
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const badgePulse = useRef(new Animated.Value(1)).current;
+  const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
+
+  const label = triLang(lang, {
+    ru: 'Видео Professor Lingman',
+    uk: 'Видео Professor Lingman',
+    es: 'Professor Lingman videos',
+    'pt-BR': 'Professor Lingman videos',
+    vi: 'Professor Lingman videos',
+    id: 'Professor Lingman videos',
+    tr: 'Professor Lingman videos',
+    pl: 'Professor Lingman videos',
+  });
+
+  const refresh = useCallback(() => {
+    let alive = true;
+    void getLingmanYoutubeSnapshot().then((snapshot) => {
+      if (alive) setUnreadCount(snapshot.unreadCount);
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isFocused) return;
+    return refresh();
+  }, [isFocused, refresh]);
+
+  useEffect(() => {
+    void AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion);
+    const subscription = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
+    return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    if (unreadCount <= 0 || reduceMotion) {
+      badgePulse.setValue(1);
+      return;
+    }
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(badgePulse, { toValue: 1.08, duration: 650, useNativeDriver: true }),
+        Animated.timing(badgePulse, { toValue: 1, duration: 650, useNativeDriver: true }),
+      ]),
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [badgePulse, reduceMotion, unreadCount]);
+
+  return (
+    <TouchableOpacity
+      testID="home-lingman-youtube-button"
+      activeOpacity={0.8}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      onPress={() => {
+        hapticTap();
+        router.push('/lingman_videos' as any);
+      }}
+      style={styles.button}
+    >
+      <Image source={YOUTUBE_ICON_IMAGES[themeMode] ?? YOUTUBE_ICON_IMAGES.minimalDark} style={styles.image} contentFit="contain" />
+      {unreadCount > 0 && (
+        <Animated.View style={[styles.badge, { backgroundColor: chrome.accent, borderColor: t.bgCard, transform: [{ scale: badgePulse }] }]}>
+          <Text style={styles.badgeText}>{unreadCount > 99 ? '99+' : String(unreadCount)}</Text>
+        </Animated.View>
+      )}
+      {unreadCount > 0 && <View style={[styles.glow, { backgroundColor: chrome.accent }]} pointerEvents="none" />}
+    </TouchableOpacity>
+  );
+}
+
+const styles = StyleSheet.create({
+  button: {
+    width: 56,
+    height: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    width: 52,
+    height: 36,
+  },
+  badge: {
+    position: 'absolute',
+    top: -3,
+    right: -4,
+    minWidth: 18,
+    height: 18,
+    paddingHorizontal: 4,
+    borderRadius: 9,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    zIndex: 3,
+  },
+  badgeText: {
+    color: '#FFFFFF',
+    fontSize: 10,
+    fontWeight: '900',
+  },
+  glow: {
+    position: 'absolute',
+    top: 2,
+    right: 1,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    opacity: 0.58,
+  },
+});

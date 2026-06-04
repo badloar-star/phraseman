@@ -6,6 +6,7 @@ import { readBonusEnergy, BONUS_ENERGY_KEY } from '../app/level_gift_system';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
 import { formatTimeUntilRecovery, getRecoveryIntervalMs } from '../app/energy_system';
 import { readLeagueChestEnergyOverrideMs } from '../app/services/league_chest_rewards';
+import { createCoalescedAsyncRunner } from '../app/app_resume_policy';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
@@ -136,9 +137,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const lastRecoveryRef = useRef(Date.now());
   const isUnlimitedRef = useRef(false);
   const restoreTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const loadRunnerRef = useRef<(() => Promise<void>) | null>(null);
 
   // ── Load and apply recovery ────────────────────────────────────────────────
-  const load = useCallback(async () => {
+  const runLoad = useCallback(async () => {
     try {
       const [unlimited, dynMax, recoveryMs, bonusState] = await Promise.all([readUnlimited(), readDynMax(), readRecoveryIntervalMs(), readBonusEnergy()]);
       const bonus = bonusState?.amount ?? 0;
@@ -214,6 +216,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       setEnergyReady(true);
     }
   }, []);
+  const load = useCallback(async () => {
+    loadRunnerRef.current ??= createCoalescedAsyncRunner(runLoad);
+    await loadRunnerRef.current();
+  }, [runLoad]);
 
   // Load on mount
   useEffect(() => { load(); }, [load]);

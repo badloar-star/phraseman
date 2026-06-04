@@ -4,6 +4,19 @@ const path = require('path');
 const { expo: appJsonExpo } = require('./app.json');
 
 const GLOB_SPECIAL_CHARS = new Set(['?', '+', '.', '^', '$', '(', ')', '{', '}', '|', '[', ']']);
+const MINIMAL_OTA_ASSET_PATTERNS = [
+  'assets/images/avatars/*',
+  'assets/images/flashcard_backs/*',
+  'assets/images/quizzes/level_cards/*',
+  'assets/images/quizzes/level_logos/*',
+  'assets/images/quizzes/theme_cards/*',
+  'assets/images/quizzes/theme_logos/*',
+];
+const STORE_RELEASE_DEV_ONLY_QUIZ_THEME_SLUGS = new Set([
+  'at-the-doctor',
+  'body-and-health',
+  'shopping-and-money',
+]);
 
 function toPosixPath(value) {
   return String(value).replace(/\\/g, '/');
@@ -103,8 +116,20 @@ function expandAssetPatternsToExactFiles(projectRoot, patterns) {
   return [...exactFiles].sort();
 }
 
+function filterStoreReleaseAssets(assetPaths) {
+  return assetPaths.filter((assetPath) => {
+    const match = assetPath.match(
+      /^assets\/images\/quizzes\/theme_(?:cards|logos)\/quiz-theme-(at-the-doctor|body-and-health|shopping-and-money)-/,
+    );
+
+    return !match || !STORE_RELEASE_DEV_ONLY_QUIZ_THEME_SLUGS.has(match[1]);
+  });
+}
+
 module.exports = function buildExpoConfig({ config } = {}) {
   const disableExpoUpdates = process.env.EXPO_PUBLIC_DISABLE_EXPO_UPDATES === '1';
+  const minimalOtaAssets = process.env.PHRASEMAN_MINIMAL_OTA_ASSETS === '1';
+  const storeRelease = process.env.EXPO_PUBLIC_STORE_RELEASE === '1';
   const updates = appJsonExpo.updates
     ? {
         ...appJsonExpo.updates,
@@ -118,15 +143,23 @@ module.exports = function buildExpoConfig({ config } = {}) {
     ...appJsonExpo,
     ...(updates ? { updates } : {}),
   };
+  expoConfig.plugins = [...new Set([...(expoConfig.plugins || []), 'expo-audio'])];
 
   if (expoConfig.updates) {
-    expoConfig.updates.assetPatternsToBeBundled = expandAssetPatternsToExactFiles(
-      __dirname,
-      appJsonExpo.updates?.assetPatternsToBeBundled || [],
-    );
+    const assetPatternsToBeBundled = minimalOtaAssets
+      ? expandAssetPatternsToExactFiles(__dirname, MINIMAL_OTA_ASSET_PATTERNS)
+      : expandAssetPatternsToExactFiles(
+          __dirname,
+          appJsonExpo.updates?.assetPatternsToBeBundled || [],
+        );
+
+    expoConfig.updates.assetPatternsToBeBundled = storeRelease
+      ? filterStoreReleaseAssets(assetPatternsToBeBundled)
+      : assetPatternsToBeBundled;
   }
 
   return expoConfig;
 };
 
 module.exports.expandAssetPatternsToExactFiles = expandAssetPatternsToExactFiles;
+module.exports.filterStoreReleaseAssets = filterStoreReleaseAssets;

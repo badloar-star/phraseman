@@ -43,6 +43,12 @@ const THEMED_OSKOLOK_IMAGES: Record<OskolokThemeMode, Record<OskolokTier, ImageS
     '180': require('../assets/images/shards/minimalDark-180.webp'),
     '420': require('../assets/images/shards/minimalDark-420.webp'),
   },
+  compass: {
+    single: require('../assets/images/shards/compass-premium-single.webp'),
+    '80': require('../assets/images/shards/compass-premium-80.webp'),
+    '180': require('../assets/images/shards/compass-premium-180.webp'),
+    '420': require('../assets/images/shards/compass-premium-420.webp'),
+  },
 };
 
 export const OSKOLOK_IMAGE_SOURCES: readonly ImageSourcePropType[] = Object.values(THEMED_OSKOLOK_IMAGES)

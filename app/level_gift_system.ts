@@ -36,6 +36,7 @@ import {
   CUSTOM_AVATAR_GIFT_POOL,
   CUSTOM_AVATAR_OWNED_KEY,
   customAvatarGiftLabelForLang,
+  getCustomAvatarGiftWeight,
   type CustomAvatarLogoColor,
 } from '../constants/custom_avatars';
 import {
@@ -1076,7 +1077,12 @@ export const unlockRandomCustomAvatarGift = async (): Promise<GiftCosmeticUnlock
     const owned: Record<string, string> = raw ? JSON.parse(raw) : {};
     const candidates = CUSTOM_AVATAR_GIFT_POOL.filter(a => !owned[a.id]);
     if (candidates.length === 0) return null;
-    const avatar = candidates[Math.floor(Math.random() * candidates.length)]!;
+    const totalWeight = candidates.reduce((sum, candidate) => sum + getCustomAvatarGiftWeight(candidate.id), 0);
+    let roll = Math.random() * (totalWeight || 1);
+    const avatar = candidates.find((candidate) => {
+      roll -= getCustomAvatarGiftWeight(candidate.id);
+      return roll <= 0;
+    }) ?? candidates[candidates.length - 1]!;
     const gradient = CUSTOM_AVATAR_GRADIENTS[Math.floor(Math.random() * CUSTOM_AVATAR_GRADIENTS.length)]!;
     const logoColor: CustomAvatarLogoColor = Math.random() < 0.5 ? 'black' : 'white';
     const next = { ...owned, [avatar.id]: encodeOwnedStyle(gradient.id, logoColor) };

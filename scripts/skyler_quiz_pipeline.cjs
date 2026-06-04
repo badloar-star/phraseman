@@ -86,6 +86,7 @@ const REQUIRED_PROTOCOL_FILES = [
   'README.md',
   'ROOM.md',
   'QUIZ_STYLE_CONTRACT.md',
+  'THEMATIC_GENERATION_CHECKLIST.md',
   'templates/category_brief.md',
   'templates/visual_asset_plan.md',
   'templates/quiz_pack.schema.md',

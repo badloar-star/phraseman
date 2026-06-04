@@ -3,6 +3,8 @@ import {
   OFFICIAL_DARK_LOGIC_EN_ID,
   OFFICIAL_NEGOTIATOR_EN_ID,
   OFFICIAL_PEAKY_BLINDERS_EN_ID,
+  OFFICIAL_MOVIE_SERIES_EN_ID,
+  OFFICIAL_PHRASAL_VERBS_EN_ID,
   OFFICIAL_PREP_AT_EN_ID,
   OFFICIAL_PREP_BY_EN_ID,
   OFFICIAL_PREP_IN_EN_ID,
@@ -26,13 +28,15 @@ describe('marketplace: bundled', () => {
       OFFICIAL_PREP_AT_EN_ID,
       OFFICIAL_PREP_TO_EN_ID,
       OFFICIAL_PREP_BY_EN_ID,
+      OFFICIAL_PHRASAL_VERBS_EN_ID,
+      OFFICIAL_MOVIE_SERIES_EN_ID,
     ]);
   });
 
   it('loadMarketplacePacks (без Firestore) повертає бандл', async () => {
     const packs = await loadMarketplacePacks();
-    expect(packs.length).toBe(10);
-    expect(packs[0].id).toBe(OFFICIAL_PREP_IN_EN_ID);
+    expect(packs.length).toBe(12);
+    expect(packs[0].id).toBe(OFFICIAL_MOVIE_SERIES_EN_ID);
   });
 
   it('Negotiator: 30 карток з бандла', () => {
@@ -83,6 +87,34 @@ describe('marketplace: bundled', () => {
     expect(built).toHaveLength(40);
     expect(built[0].sourceId).toBe(`DEV:${OFFICIAL_DARK_LOGIC_EN_ID}`);
     expect(built[0].en).toBe('A straw man argument');
+  });
+
+  it('Everyday Phrasal Verbs: 60 cards from bundled pack for 30 shards', () => {
+    const pack = BUNDLED_MARKETPLACE_PACKS.find((p) => p.id === OFFICIAL_PHRASAL_VERBS_EN_ID);
+    expect(pack).toBeDefined();
+    expect(pack?.cardCount).toBe(60);
+    expect(pack?.priceShards).toBe(30);
+    const built = buildMarketplaceOwnedCards([pack!]);
+    expect(built).toHaveLength(60);
+    expect(built[0].sourceId).toBe(`DEV:${OFFICIAL_PHRASAL_VERBS_EN_ID}`);
+    expect(built[0].en).toBe('wake up');
+    expect(built[0].explanationRu).toContain('wake up = проснуться');
+  });
+
+  it('Movie & Series English: 60 cards from bundled pack for 30 shards', () => {
+    const pack = BUNDLED_MARKETPLACE_PACKS.find((p) => p.id === OFFICIAL_MOVIE_SERIES_EN_ID);
+    expect(pack).toBeDefined();
+    expect(pack?.cardCount).toBe(60);
+    expect(pack?.priceShards).toBe(30);
+    expect(pack?.titleRu).toContain('фраз из фильмов');
+    expect(pack?.descriptionRu).toContain('живых экранных фраз');
+    expect(pack?.titleRu).not.toContain('????');
+    expect(pack?.descriptionRu).not.toContain('????');
+    const built = buildMarketplaceOwnedCards([pack!]);
+    expect(built).toHaveLength(60);
+    expect(built[0].sourceId).toBe(`DEV:${OFFICIAL_MOVIE_SERIES_EN_ID}`);
+    expect(built[0].en).toBe("What's going on?");
+    expect(built[0].explanationRu).toContain("What's going on? = что происходит");
   });
 
   it('картки для невідомого id — шаблони (DEV:pack)', () => {

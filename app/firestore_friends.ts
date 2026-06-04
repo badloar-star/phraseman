@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser } from './cloud_sync';
 import { generateRandomCode, isValidFriendCode, isValidInviteCodeLookup, normalizeInviteCodeInput } from './friend_code';
-import { isReferralCloudEnabled } from './referral_flags';
 import { getCanonicalUserId } from './user_id_policy';
 import { getStableId } from './stable_id';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
@@ -68,7 +67,7 @@ export function peekMemoryInviteCodeForFriends(): string | null {
 /** Firestore collection name for code → uid reverse index. Indexed by code (doc id). */
 export const FRIEND_CODE_INDEX_COLLECTION = 'friend_code_index';
 
-export type InviteCodeLookupSource = 'friend_code_index' | 'referral_code' | 'legacy_friend_code';
+export type InviteCodeLookupSource = 'friend_code_index' | 'legacy_friend_code';
 export type InviteCodeLookupResult = { uid: string; source: InviteCodeLookupSource };
 
 /** Maximum collision retries before throwing. With 31^6 codespace this is astronomically safe. */
@@ -148,16 +147,6 @@ export async function readCachedMyInviteCodeForFriends(): Promise<string | null>
   } catch {
     /* ignore */
   }
-  if (isReferralCloudEnabled()) {
-    try {
-      const { getReferralCode } = await import('./referral_system');
-      const ref = await getReferralCode();
-      const t = (ref ?? '').trim().toUpperCase();
-      if (t.length === 6 && isValidInviteCodeLookup(t)) return t;
-    } catch {
-      /* ignore */
-    }
-  }
   return null;
 }
 
@@ -167,21 +156,7 @@ export async function readCachedMyInviteCodeForFriends(): Promise<string | null>
  *
  * referral_system подгружается лениво, чтобы тесты без Firebase могли импортировать этот файл.
  */
-export async function ensureMyInviteCodeForFriends(displayNameForReferralDefault: string): Promise<string | null> {
-  const owner = await resolveOwnerForFriendCodeCache();
-  if (isReferralCloudEnabled()) {
-    try {
-      const { generateReferralCode } = await import('./referral_system');
-      const ref = await generateReferralCode(displayNameForReferralDefault || 'Player');
-      const t = (ref ?? '').trim().toUpperCase();
-      if (t.length > 0 && isValidInviteCodeLookup(t)) {
-        await saveOwnerScopedStoredCode(owner, t);
-        return t;
-      }
-    } catch {
-      /* нет auth_links / сеть */
-    }
-  }
+export async function ensureMyInviteCodeForFriends(_displayNameForReferralDefault: string): Promise<string | null> {
   return ensureMyFriendCode();
 }
 
@@ -289,7 +264,7 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
   const db = getFirestore();
   if (!db) return null;
 
-  // friend_code_index/referral_codes are readable only to authenticated clients.
+  // friend_code_index is readable only to authenticated clients.
   // Wait for anonymous auth here so every caller has the same cold-start behavior.
   const authUid = await ensureAnonUser();
   if (!authUid) return null;
@@ -299,14 +274,6 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
     const uid = indexSnap.data?.()?.uid as string | undefined;
     if (uid) {
       if (!(await isUidBannedBestEffort(db, uid))) return { uid, source: 'friend_code_index' };
-    }
-  }
-
-  const refSnap = await db.collection('referral_codes').doc(normalized).get();
-  if (refSnap.exists) {
-    const uid = refSnap.data?.()?.ownerStableId as string | undefined;
-    if (typeof uid === 'string' && uid.length > 0) {
-      if (!(await isUidBannedBestEffort(db, uid))) return { uid, source: 'referral_code' };
     }
   }
 

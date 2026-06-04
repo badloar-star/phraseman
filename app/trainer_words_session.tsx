@@ -23,8 +23,11 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
+import CompassDepthSurface from '../components/CompassDepthSurface';
 import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import type { ThemeMode } from '../constants/theme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import {
   getDueItems,
@@ -77,11 +80,13 @@ interface SwipeCardProps {
   onSwipe: (correct: boolean) => void;
   isTop: boolean;
   swipeOutRef: React.MutableRefObject<((dir: 'right' | 'left') => void) | null>;
+  themeMode: ThemeMode;
 }
 
-function SwipeCard({ card, onSwipe, isTop, swipeOutRef }: SwipeCardProps) {
+function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode }: SwipeCardProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const isCompassTheme = themeMode === 'compass';
   const position = useRef(new Animated.ValueXY()).current;
 
   const rotate = position.x.interpolate({
@@ -157,9 +162,20 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef }: SwipeCardProps) {
 
   return (
     <Animated.View
-      style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.border }, cardStyle]}
+      style={[
+        styles.card,
+        isCompassTheme && compassShadow(3),
+        {
+          backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+          borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+          borderRadius: isCompassTheme ? 12 : 24,
+          overflow: isCompassTheme ? 'hidden' : 'visible',
+        },
+        cardStyle,
+      ]}
       {...(isTop ? panResponder.panHandlers : {})}
     >
+      {isCompassTheme ? <CompassDepthSurface radius={12} selected /> : null}
       {/* Верно оверлей */}
       <Animated.View style={[styles.decisionLabel, styles.correctLabel, { opacity: correctOpacity }]}>
         <Text style={styles.decisionText}>✓ {triLang(lang, {
@@ -209,6 +225,7 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef }: SwipeCardProps) {
 export default function TrainerWordsSession() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -374,14 +391,16 @@ export default function TrainerWordsSession() {
 
           {/* Прогресс-бар */}
           <View style={[styles.progressBar, { backgroundColor: t.bgSurface }]}>
-            <View style={[styles.progressFill, { backgroundColor: '#4A9EFF', width: `${((current) / deck.length) * 100}%` }]} />
+            <View style={[styles.progressFill, { backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : '#4A9EFF', width: `${((current) / deck.length) * 100}%` }]} />
           </View>
 
           {/* Стек карточек */}
           <View style={styles.deckContainer}>
             {/* Показываем следующую карточку под текущей */}
             {deck[current + 1] && (
-              <View style={[styles.card, styles.cardBack, { backgroundColor: t.bgCard, borderColor: t.border }]} />
+              <View style={[styles.card, styles.cardBack, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 12 : 24, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+                {isCompassTheme ? <CompassDepthSurface radius={12} quiet /> : null}
+              </View>
             )}
             {deck[current] && (
               <SwipeCard
@@ -390,6 +409,7 @@ export default function TrainerWordsSession() {
                 onSwipe={handleSwipe}
                 isTop
                 swipeOutRef={swipeOutRef}
+                themeMode={themeMode}
               />
             )}
           </View>
@@ -398,10 +418,21 @@ export default function TrainerWordsSession() {
           <View style={styles.buttons}>
             <TouchableOpacity
               onPress={() => handleButton('left')}
-              style={[styles.btn, styles.btnWrong, { borderColor: '#E05050' + '66' }]}
+              style={[
+                styles.btn,
+                !isCompassTheme && styles.btnWrong,
+                isCompassTheme && compassShadow(1),
+                {
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.copperWash : '#E05050' + '11',
+                  borderColor: isCompassTheme ? COMPASS_RICH.copper : '#E05050' + '66',
+                  borderRadius: isCompassTheme ? 9 : 18,
+                  overflow: isCompassTheme ? 'hidden' : 'visible',
+                },
+              ]}
             >
-              <Ionicons name="close" size={32} color="#E05050" />
-              <Text style={[styles.btnLabel, { color: '#E05050', fontSize: f.caption }]}>
+              {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
+              <Ionicons name="close" size={32} color={isCompassTheme ? COMPASS_RICH.peach : '#E05050'} />
+              <Text style={[styles.btnLabel, { color: isCompassTheme ? COMPASS_RICH.peach : '#E05050', fontSize: f.caption }]}>
                 {triLang(lang, {
                   ru: 'Неверно',
                   uk: 'Невірно',
@@ -417,10 +448,21 @@ export default function TrainerWordsSession() {
 
             <TouchableOpacity
               onPress={() => handleButton('right')}
-              style={[styles.btn, styles.btnCorrect, { borderColor: '#40C080' + '66' }]}
+              style={[
+                styles.btn,
+                !isCompassTheme && styles.btnCorrect,
+                isCompassTheme && compassShadow(1),
+                {
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : '#40C080' + '11',
+                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : '#40C080' + '66',
+                  borderRadius: isCompassTheme ? 9 : 18,
+                  overflow: isCompassTheme ? 'hidden' : 'visible',
+                },
+              ]}
             >
-              <Ionicons name="checkmark" size={32} color="#40C080" />
-              <Text style={[styles.btnLabel, { color: '#40C080', fontSize: f.caption }]}>
+              {isCompassTheme ? <CompassDepthSurface radius={9} selected /> : null}
+              <Ionicons name="checkmark" size={32} color={isCompassTheme ? COMPASS_RICH.champagne : '#40C080'} />
+              <Text style={[styles.btnLabel, { color: isCompassTheme ? COMPASS_RICH.champagne : '#40C080', fontSize: f.caption }]}>
                 {triLang(lang, {
                   ru: 'Верно',
                   uk: 'Вірно',

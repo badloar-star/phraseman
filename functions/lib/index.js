@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.revenueCatShardsWebhook = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.adminGrantReward = exports.referralOnUserProgressUpdated = exports.referralApply = exports.referralEnsureMyCode = exports.friendSendGift = exports.mirrorFriendActivityOnUserWrite = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.cleanupLegacyIdentityDuplicatesCron = exports.computeLeaderboardStatsCron = exports.syncLeaderboardCron = void 0;
+exports.revenueCatShardsWebhook = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.adminGrantReward = exports.friendSendGift = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const arena_scoring_1 = require("./arena_scoring");
@@ -42,8 +42,6 @@ admin.initializeApp();
 // These imports must come AFTER initializeApp() — use require to control order
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { runMatchmaking, tryMatchForUser } = require('./matchmaking');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { syncLeaderboardFromUsers } = require('./sync_leaderboard');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { resetWeeklyXp } = require('./reset_weekly_xp');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -55,15 +53,13 @@ const { processLobbyAfterChoice } = require('./arena_pregame');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage } = require('./league_chat');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost } = require('./league_groups');
+const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, leagueActivateGroupBoost } = require('./league_groups');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authEnsureStableLink } = require('./auth_identity');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { cleanupLegacyIdentityDuplicatesPage } = require('./identity_cleanup');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { accountDeleteMine } = require('./account_delete');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leaderboardPushMyScore, leaderboardUpdatePremium, leaderboardUpdateDailyAnalytics, nameCheckAvailability, nameReserve, nameReleaseMine, } = require('./leaderboard');
+const { leaderboardUpdateDailyAnalytics, nameCheckAvailability, nameReserve, nameReleaseMine, } = require('./leaderboard');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueChestClaim } = require('./league_chest');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -86,16 +82,17 @@ const { cleanupExpiredAppMessages, onAppMessageReactionWritten, onAppMessagePoll
 const { submitVipSurvey, recordVipSurveyReviewClick } = require('./vip_survey');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitClientReport } = require('./client_reports');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { telegramPremiumWebhook, telegramPremiumActivationNotifier } = require('./telegram_premium_bot');
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
 exports.leagueChatSendMessage = leagueChatSendMessage;
 exports.leagueChatReportMessage = leagueChatReportMessage;
 exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;
 exports.leagueUpdateMyMember = leagueUpdateMyMember;
 exports.leagueSyncMyBoost = leagueSyncMyBoost;
+exports.leagueActivateGroupBoost = leagueActivateGroupBoost;
 exports.authEnsureStableLink = authEnsureStableLink;
 exports.accountDeleteMine = accountDeleteMine;
-exports.leaderboardPushMyScore = leaderboardPushMyScore;
-exports.leaderboardUpdatePremium = leaderboardUpdatePremium;
 exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;
 exports.nameCheckAvailability = nameCheckAvailability;
 exports.nameReserve = nameReserve;
@@ -117,6 +114,8 @@ exports.onAppMessagePollVoteWritten = onAppMessagePollVoteWritten;
 exports.submitVipSurvey = submitVipSurvey;
 exports.recordVipSurveyReviewClick = recordVipSurveyReviewClick;
 exports.submitClientReport = submitClientReport;
+exports.telegramPremiumWebhook = telegramPremiumWebhook;
+exports.telegramPremiumActivationNotifier = telegramPremiumActivationNotifier;
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 const LEVELS = ['I', 'II', 'III'];
 const TIERS = ['bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'grandmaster', 'legend'];
@@ -282,13 +281,10 @@ async function pickArenaQuestions(count) {
     }
     return out;
 }
-// ─── Leaderboard sync ────────────────────────────────────────────────────────
-exports.syncLeaderboardCron = functions.scheduler.onSchedule({ schedule: 'every 2 hours', timeZone: 'UTC' }, async () => { await syncLeaderboardFromUsers(); });
 // ─── Leaderboard percentile stats cron ──────────────────────────────────────
-// Runs every hour. Computes p1-p99 thresholds for XP/streak/time/arena
+// Runs daily. Computes p1-p99 thresholds for XP/streak/time/arena
 // and writes them to leaderboard_stats/global for all clients to read.
-exports.computeLeaderboardStatsCron = functions.scheduler.onSchedule({ schedule: 'every 1 hours', timeZone: 'UTC' }, async () => { await computeLeaderboardStats(); });
-exports.cleanupLegacyIdentityDuplicatesCron = functions.scheduler.onSchedule({ schedule: 'every 2 hours', timeZone: 'UTC' }, async () => { await cleanupLegacyIdentityDuplicatesPage(); });
+exports.computeLeaderboardStatsCron = functions.scheduler.onSchedule({ schedule: '0 3 * * *', timeZone: 'UTC' }, async () => { await computeLeaderboardStats(); });
 // ─── Weekly XP reset cron (XP-02) ────────────────────────────────────────────
 // Runs every Monday 00:00 UTC. Zeroes progress.weekly_xp for ALL users without
 // touching progress.user_total_xp. Cron expression '0 0 * * 1' = at 00:00 on Monday.
@@ -329,7 +325,7 @@ exports.onMatchmakingWrite = functions.firestore.onDocumentWritten('matchmaking_
     }
 });
 // ─── Matchmaking: 1-min cron fallback for players who didn\'t trigger onWrite ──
-exports.matchmakingCron = functions.scheduler.onSchedule({ schedule: 'every 1 minutes', timeZone: 'UTC' }, async () => { await runMatchmaking(); });
+exports.matchmakingCron = functions.scheduler.onSchedule({ schedule: 'every 5 minutes', timeZone: 'UTC' }, async () => { await runMatchmaking(); });
 // ─── Arena room accept flow (server-authoritative session creation) ───────────
 exports.onArenaRoomMatched = functions.firestore.onDocumentUpdated('arena_rooms/{roomId}', async (event) => {
     const before = event.data?.before.data();
@@ -930,13 +926,9 @@ Object.defineProperty(exports, "communityPurchasePack", { enumerable: true, get:
 Object.defineProperty(exports, "communityListSellerInbox", { enumerable: true, get: function () { return community_packs_1.communityListSellerInbox; } });
 Object.defineProperty(exports, "communityMarkSellerInboxSeen", { enumerable: true, get: function () { return community_packs_1.communityMarkSellerInboxSeen; } });
 var friend_activity_mirror_1 = require("./friend_activity_mirror");
-Object.defineProperty(exports, "mirrorFriendActivityOnUserWrite", { enumerable: true, get: function () { return friend_activity_mirror_1.mirrorFriendActivityOnUserWrite; } });
+Object.defineProperty(exports, "syncFriendActivityMirrorCron", { enumerable: true, get: function () { return friend_activity_mirror_1.syncFriendActivityMirrorCron; } });
 var friend_gifts_1 = require("./friend_gifts");
 Object.defineProperty(exports, "friendSendGift", { enumerable: true, get: function () { return friend_gifts_1.friendSendGift; } });
-var referral_1 = require("./referral");
-Object.defineProperty(exports, "referralEnsureMyCode", { enumerable: true, get: function () { return referral_1.referralEnsureMyCode; } });
-Object.defineProperty(exports, "referralApply", { enumerable: true, get: function () { return referral_1.referralApply; } });
-Object.defineProperty(exports, "referralOnUserProgressUpdated", { enumerable: true, get: function () { return referral_1.referralOnUserProgressUpdated; } });
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 var admin_grant_1 = require("./admin_grant");
 Object.defineProperty(exports, "adminGrantReward", { enumerable: true, get: function () { return admin_grant_1.adminGrantReward; } });

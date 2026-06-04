@@ -10,6 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import AvatarView from '../../components/AvatarView';
 import PremiumAvatarHalo from '../../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
@@ -18,6 +19,7 @@ import LeagueCrownName from '../../components/LeagueCrownName';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
+import { getLevelGiftRewardIcon } from '../../constants/levelGiftRewardIcons';
 import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
 import { getLevelFromXP, getXPProgress, type ThemeMode } from '../../constants/theme';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -66,12 +68,18 @@ import {
   fetchTodayActivityLikeState,
   fetchActivityLikeTotal,
   sendFriendActivityLike,
+  todayActivityLikeDateKeyUtc,
   type FriendActivityLikeTodayState,
 } from '../friend_activity_likes';
+import {
+  bumpActivityLikeCount,
+  rollbackActivityLikeCount,
+  setActivityLikeCount,
+} from '../friend_activity_like_optimistic';
 import { trackActivity } from '../app_activity';
 import { getShardsBalance } from '../shards_system';
 import { oskolokImageForPackShards } from '../oskolok';
-import { claimUnseenFriendGifts } from '../friend_gift_inbox';
+import { claimUnseenFriendGifts, type IncomingFriendGift } from '../friend_gift_inbox';
 import { emitAppEvent } from '../events';
 import {
   FRIEND_GIFT_CATALOG,
@@ -439,6 +447,7 @@ function FriendRow({
   return (
     <TouchableOpacity
       testID={`friend-row-${profile.uid}`}
+      accessible={false}
       activeOpacity={0.75}
       onPress={onPress}
       style={{
@@ -475,8 +484,10 @@ function FriendRow({
         )}
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
           <TouchableOpacity
-            testID={`friend-gift-${profile.uid}`}
-            accessibilityLabel={triLang(lang as any, {
+            testID={`friend-gift-rank-${rank}`}
+            accessible
+            accessibilityRole="button"
+            accessibilityLabel={`${triLang(lang as any, {
               ru: 'Подарить',
               uk: 'Подарувати',
               es: 'Regalar',
@@ -485,7 +496,7 @@ function FriendRow({
               id: 'Beri hadiah',
               tr: 'Hediye gönder',
               pl: 'Podaruj',
-            })}
+            })} friend-gift-rank-${rank} friend-gift-${profile.uid}`}
             onPress={onGift}
             hitSlop={{ top: 8, bottom: 8, left: 10, right: 10 }}
           >
@@ -1028,7 +1039,7 @@ function ActivityTab({
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [todayLike, setTodayLike] = useState<FriendActivityLikeTodayState | null>(null);
-  const [likeBusyEventId, setLikeBusyEventId] = useState<string | null>(null);
+  const likeInFlightRef = useRef<string | null>(null);
   const L = (
     ru: string,
     uk: string,
@@ -1039,10 +1050,6 @@ function ActivityTab({
     tr: string,
     pl: string,
   ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
-
-  const showActivityLikeToast = useCallback((type: 'success' | 'error' | 'info', ru: string, uk: string, es: string) => {
-    emitAppEvent('action_toast', { type, messageRu: ru, messageUk: uk, messageEs: es });
-  }, []);
 
   const load = useCallback(async (force = false) => {
     if (friendUids.length === 0) { setEvents([]); setTodayLike(null); return; }
@@ -1068,48 +1075,57 @@ function ActivityTab({
     })();
   }, [friendUids]);
 
-  const handleActivityLike = useCallback(async (event: FriendEvent) => {
+  const handleActivityLike = useCallback((event: FriendEvent) => {
     const sameLike = todayLike?.targetUid === event.uid && todayLike?.eventId === event.id;
-    if (sameLike) {
-      showActivityLikeToast('info', 'Лайк за активность уже здесь', 'Лайк за активність уже тут', 'Tu like de actividad ya está aquí');
-      return;
-    }
-    if (todayLike) {
-      showActivityLikeToast('info', 'Сегодня лайк за активность уже использован', 'Сьогодні лайк за активність уже використано', 'Ya usaste tu like de actividad de hoy');
-      return;
-    }
-    if (likeBusyEventId) return;
+    if (sameLike || todayLike || likeInFlightRef.current) return;
     hapticTap();
-    setLikeBusyEventId(`${event.uid}:${event.id}`);
-    try {
-      const res = await sendFriendActivityLike({ targetUid: event.uid, eventId: event.id });
-      setTodayLike({ date: res.date, targetUid: res.targetUid, eventId: res.eventId, createdAt: Date.now() });
-      setEvents(prev => prev.map(row =>
-        row.uid === event.uid && row.id === event.id
-          ? { ...row, activityLikeCount: res.activityLikeCount }
-          : row,
-      ));
+    const eventKey = `${event.uid}:${event.id}`;
+    const optimisticCreatedAt = Date.now();
+    likeInFlightRef.current = eventKey;
+    setTodayLike({
+      date: todayActivityLikeDateKeyUtc(),
+      targetUid: event.uid,
+      eventId: event.id,
+      createdAt: optimisticCreatedAt,
+    });
+    setEvents(prev => bumpActivityLikeCount(prev, event.uid, event.id));
+
+    void sendFriendActivityLike({ targetUid: event.uid, eventId: event.id }).then(res => {
+      setTodayLike({
+        date: res.date,
+        targetUid: res.targetUid,
+        eventId: res.eventId,
+        createdAt: Date.now(),
+      });
+      setEvents(prev => setActivityLikeCount(prev, event.uid, event.id, res.activityLikeCount));
       void invalidateFriendsActivityCache();
-      showActivityLikeToast('success', 'Лайк за активность!', 'Лайк за активність!', 'Like de actividad');
-    } catch (e) {
-      const code = String((e as any)?.code ?? '');
-      const msg = String((e as any)?.message ?? e);
-      const freshState = await fetchTodayActivityLikeState();
-      if (freshState) setTodayLike(freshState);
-      if (code.includes('resource-exhausted') || msg.includes('resource-exhausted') || msg.includes('Daily activity like limit')) {
-        showActivityLikeToast('info', 'Сегодня лайк за активность уже использован', 'Сьогодні лайк за активність уже використано', 'Ya usaste tu like de actividad de hoy');
-      } else if (msg.includes('Self activity likes')) {
-        showActivityLikeToast('info', 'Лайки считаются от других пользователей', 'Лайки рахуються від інших користувачів', 'Los likes cuentan cuando vienen de otros usuarios');
-      } else {
-        showActivityLikeToast('error', 'Не удалось поставить лайк', 'Не вдалося поставити лайк', 'No se pudo dar like');
+    }).catch(async () => {
+      const freshState = await fetchTodayActivityLikeState().catch(() => null);
+      const freshMatchesEvent = freshState?.targetUid === event.uid && freshState?.eventId === event.id;
+      setTodayLike(current => {
+        if (freshState) return freshState;
+        if (
+          current?.targetUid === event.uid
+          && current?.eventId === event.id
+          && current?.createdAt === optimisticCreatedAt
+        ) {
+          return null;
+        }
+        return current;
+      });
+      if (!freshMatchesEvent) {
+        setEvents(prev => rollbackActivityLikeCount(prev, event.uid, event.id));
       }
-    } finally {
-      setLikeBusyEventId(null);
-    }
-  }, [likeBusyEventId, showActivityLikeToast, todayLike]);
+      void invalidateFriendsActivityCache();
+    }).finally(() => {
+      if (likeInFlightRef.current === eventKey) {
+        likeInFlightRef.current = null;
+      }
+    });
+  }, [todayLike]);
 
   // Без force кэш ленты (30 мин) долго показывает пустоту после событий у друзей.
-  useEffect(() => { void load(true); }, [load]);
+  useEffect(() => { void load(false); }, [load]);
 
   if (friendUids.length === 0) {
     return (
@@ -1156,7 +1172,6 @@ function ActivityTab({
         const likeColor = '#FF2D55';
         const likeCount = Math.max(0, Math.floor(Number(event.activityLikeCount ?? 0) || 0));
         const likedToday = todayLike?.targetUid === event.uid && todayLike?.eventId === event.id;
-        const busy = likeBusyEventId === `${event.uid}:${event.id}`;
         return (
           <View
             key={`${event.uid}:${event.id}`}
@@ -1199,7 +1214,6 @@ function ActivityTab({
                 backgroundColor: likedToday ? 'rgba(255,45,85,0.16)' : chrome.button,
                 borderWidth: 0.5,
                 borderColor: likedToday ? 'rgba(255,45,85,0.55)' : chrome.border,
-                opacity: busy ? 0.55 : 1,
               }}
             >
               <Ionicons name={likedToday ? 'heart' : 'heart-outline'} size={19} color={likedToday ? likeColor : t.textMuted} />
@@ -1344,6 +1358,45 @@ export default function FriendsTabScreen() {
   const router = useRouter();
   const { goHome } = useTabNav();
   const chrome = useMemo(() => makeFriendsChrome(themeMode, t), [themeMode, t]);
+  const sentGiftChrome = themeMode === 'compass'
+    ? {
+        shellColors: ['rgba(21,24,18,0.98)', 'rgba(13,16,12,0.98)', 'rgba(2,3,4,0.98)'] as const,
+        shellRadius: 8,
+        innerRadius: 7,
+        iconRadius: 8,
+        shadowColor: '#F2C48D',
+        innerBg: '#0D100C',
+        innerBorder: 'rgba(242,196,141,0.24)',
+        washColors: ['rgba(242,196,141,0.14)', 'rgba(255,255,255,0)', 'rgba(242,196,141,0.08)'] as const,
+        haloBg: 'rgba(242,196,141,0.12)',
+        iconColors: ['#FFF0D2', '#F2C48D', '#B4774E'] as const,
+        labelColor: '#F2C48D',
+        titleColor: '#FFF8E8',
+        bodyColor: '#D9DEC9',
+        mutedColor: '#8D9870',
+        infoColor: '#F2C48D',
+        buttonBg: '#F4B978',
+        buttonText: '#151008',
+      }
+    : {
+        shellColors: ['rgba(40,47,62,0.98)', 'rgba(28,31,42,0.98)', 'rgba(18,20,29,0.98)'] as const,
+        shellRadius: 28,
+        innerRadius: 27,
+        iconRadius: 24,
+        shadowColor: '#6EA8FF',
+        innerBg: '#1D202B',
+        innerBorder: 'rgba(129,174,255,0.24)',
+        washColors: ['rgba(111,165,255,0.16)', 'rgba(255,255,255,0)', 'rgba(219,178,91,0.13)'] as const,
+        haloBg: 'rgba(108,164,255,0.14)',
+        iconColors: ['#9FC4FF', '#6EA8FF', '#D8AC4D'] as const,
+        labelColor: '#9FC4FF',
+        titleColor: '#F8FAFF',
+        bodyColor: '#D8E5FF',
+        mutedColor: '#9FB0CC',
+        infoColor: '#9FC4FF',
+        buttonBg: '#6EA8FF',
+        buttonText: '#101724',
+      };
   const L = (
     ru: string,
     uk: string,
@@ -1396,6 +1449,14 @@ export default function FriendsTabScreen() {
   const [giftBalance, setGiftBalance] = useState(0);
   const [giftBusyId, setGiftBusyId] = useState<FriendGiftId | null>(null);
   const [giftConfirm, setGiftConfirm] = useState<{ target: FriendProfile; giftId: FriendGiftId } | null>(null);
+  const [sentGiftReceipt, setSentGiftReceipt] = useState<{
+    targetName: string;
+    giftName: string;
+    costShards: number;
+    balanceAfter: number;
+    dailyRemaining?: number;
+  } | null>(null);
+  const [incomingGiftModal, setIncomingGiftModal] = useState<{ gifts: IncomingFriendGift[] } | null>(null);
 
   const mountedRef = useRef(true);
   /** Был непустой список в SWR-кеше для текущего uid — блокируем пустой локальный onSnapshot Firestore. */
@@ -1461,6 +1522,7 @@ export default function FriendsTabScreen() {
       const first = gifts[0];
       const from = first.fromName || L('друг', 'друг', 'amigo', 'amigo', 'bạn bè', 'teman', 'arkadaş', 'znajomy');
       const gift = giftEventLabel(first as unknown as Record<string, string | number>, lang);
+      setIncomingGiftModal({ gifts });
       showFeedback(
         gifts.length === 1
           ? L(`${from} подарил: ${gift}`, `${from} подарував: ${gift}`, `${from} te regaló: ${gift}`, `${from} deu um presente: ${gift}`, `${from} đã tặng: ${gift}`, `${from} memberi hadiah: ${gift}`, `${from} hediye verdi: ${gift}`, `${from} podarował: ${gift}`)
@@ -1660,11 +1722,6 @@ export default function FriendsTabScreen() {
         setSearchError(randomSelfFriendCodeMessage(L));
         return;
       }
-      if (result.source === 'referral_code') {
-        void import('../referral_bootstrap')
-          .then((m) => m.captureReferralCodeFromManualInput(codeUpper))
-          .catch(() => {});
-      }
       const fetched = await fetchFriendProfileFromFirestore(result.uid);
       if (!fetched) {
         await trackActivity('friends:search_result', {
@@ -1825,8 +1882,8 @@ export default function FriendsTabScreen() {
       pl: gift.descPl,
     });
 
-  const handleSendGift = async (giftId: FriendGiftId) => {
-    if (!giftTarget || giftBusyId) return;
+  const handleSendGift = async (giftId: FriendGiftId, explicitTarget: FriendProfile | null = giftTarget) => {
+    if (!explicitTarget || giftBusyId) return;
     const gift = FRIEND_GIFT_CATALOG.find(x => x.id === giftId);
     if (!gift) return;
     if (!isFriendGiftsCloudEnabled()) {
@@ -1839,16 +1896,35 @@ export default function FriendsTabScreen() {
     }
     hapticTap();
     setGiftBusyId(giftId);
+    const target = explicitTarget;
     try {
-      const target = giftTarget;
       const res = await sendFriendGiftWithShards({
         friendStableId: target.uid,
         giftId,
         senderDisplayName: myProfile?.name ?? '',
       });
+      const sentGiftName = giftLabel(gift);
       setGiftBalance(res.senderBalanceAfter);
       setGiftTarget(null);
+      setSentGiftReceipt({
+        targetName: target.name,
+        giftName: sentGiftName,
+        costShards: gift.costShards,
+        balanceAfter: res.senderBalanceAfter,
+        dailyRemaining: res.dailyRemaining,
+      });
       showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
+      emitAppEvent('action_toast', {
+        type: 'success',
+        messageRu: `Подарок отправлен: ${sentGiftName}`,
+        messageUk: `Подарунок надіслано: ${sentGiftName}`,
+        messageEs: `Regalo enviado: ${sentGiftName}`,
+        messagePtBr: `Presente enviado: ${sentGiftName}`,
+        messageVi: `Đã gửi quà: ${sentGiftName}`,
+        messageId: `Hadiah terkirim: ${sentGiftName}`,
+        messageTr: `Hediye gönderildi: ${sentGiftName}`,
+        messagePl: `Prezent wysłany: ${sentGiftName}`,
+      });
       await trackActivity('friends:send_gift', {
         feature: 'friends',
         screen: 'friends',
@@ -1863,7 +1939,7 @@ export default function FriendsTabScreen() {
           feature: 'friends',
           screen: 'friends',
           result: 'error',
-          tags: { giftId, targetUid: giftTarget.uid, error: msg },
+          tags: { giftId, targetUid: target.uid, error: msg },
         });
         return;
       }
@@ -1876,7 +1952,7 @@ export default function FriendsTabScreen() {
         feature: 'friends',
         screen: 'friends',
         result: 'error',
-        tags: { giftId, targetUid: giftTarget.uid, error: msg },
+        tags: { giftId, targetUid: target.uid, error: msg },
       });
     } finally {
       setGiftBusyId(null);
@@ -2083,6 +2159,13 @@ export default function FriendsTabScreen() {
           />
         )}
 
+        {addFeedback && !addModalOpen && (
+          <View testID="friends-feedback" style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 4, marginBottom: 10, paddingHorizontal: 10 }}>
+            <Ionicons name="checkmark-circle-outline" size={16} color={t.correct} />
+            <Text style={{ color: t.correct, fontSize: f.sub, fontWeight: '700', flex: 1 }}>{addFeedback}</Text>
+          </View>
+        )}
+
         <View style={{ alignItems: 'center', paddingVertical: 16 }}>
           <ReportErrorButton
             screen="friends_tab"
@@ -2188,6 +2271,28 @@ export default function FriendsTabScreen() {
               <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{giftBalance}</Text>
             </View>
 
+            {addFeedback && giftTarget && (
+              <View
+                testID="friend-gift-feedback"
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 8,
+                  paddingHorizontal: 12,
+                  paddingVertical: 10,
+                  borderRadius: 12,
+                  backgroundColor: chrome.surface,
+                  borderWidth: 0.5,
+                  borderColor: chrome.border,
+                }}
+              >
+                <Ionicons name="information-circle-outline" size={18} color={t.accent} />
+                <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
+                  {addFeedback}
+                </Text>
+              </View>
+            )}
+
             {FRIEND_GIFT_CATALOG.map(gift => {
               const cannotAfford = giftBalance < gift.costShards;
               const disabled = giftBusyId !== null;
@@ -2247,6 +2352,218 @@ export default function FriendsTabScreen() {
         </View>
       </Modal>
 
+      <Modal
+        visible={sentGiftReceipt !== null}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setSentGiftReceipt(null)}
+      >
+        <View testID="friend-gift-sent-modal" style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: 'rgba(7, 8, 13, 0.72)' }}>
+          <LinearGradient
+            testID="friend-gift-sent-card"
+            colors={sentGiftChrome.shellColors}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{
+              width: '100%',
+              maxWidth: 372,
+              borderRadius: sentGiftChrome.shellRadius,
+              padding: 1,
+              shadowColor: sentGiftChrome.shadowColor,
+              shadowOpacity: 0.34,
+              shadowRadius: 30,
+              shadowOffset: { width: 0, height: 16 },
+              elevation: 18,
+            }}
+          >
+            <View style={{ borderRadius: sentGiftChrome.innerRadius, overflow: 'hidden', backgroundColor: sentGiftChrome.innerBg, borderWidth: 1, borderColor: sentGiftChrome.innerBorder }}>
+              <LinearGradient
+                colors={sentGiftChrome.washColors}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
+              <View style={{ padding: 22, gap: 14 }}>
+                <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 94, height: 94 }}>
+                  <View style={{ position: 'absolute', width: 94, height: 94, borderRadius: 47, backgroundColor: sentGiftChrome.haloBg }} />
+                  <LinearGradient
+                    colors={sentGiftChrome.iconColors}
+                    start={{ x: 0.1, y: 0 }}
+                    end={{ x: 0.95, y: 1 }}
+                    style={{ width: 72, height: 72, borderRadius: sentGiftChrome.iconRadius, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.22)' }}
+                  >
+                    <Ionicons name="checkmark" size={38} color={sentGiftChrome.buttonText} />
+                  </LinearGradient>
+                </View>
+                <Text style={{ color: sentGiftChrome.labelColor, fontSize: 11, fontWeight: '900', textTransform: 'uppercase', textAlign: 'center', letterSpacing: 0 }}>
+                  {L('Подарок другу', 'Подарунок другу', 'Friend gift', 'Presente para amigo', 'Quà cho bạn bè', 'Hadiah untuk teman', 'Arkadaşına hediye', 'Prezent dla znajomego')}
+                </Text>
+                <Text style={{ color: sentGiftChrome.titleColor, fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
+                  {L('Подарок отправлен', 'Подарунок надіслано', 'Gift sent', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany')}
+                </Text>
+                {sentGiftReceipt ? (
+                  <View style={{ borderRadius: 18, padding: 14, gap: 10, backgroundColor: 'rgba(255,255,255,0.08)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.12)' }}>
+                    <Text style={{ color: sentGiftChrome.bodyColor, fontSize: f.sub, lineHeight: f.sub + 4, textAlign: 'center' }}>
+                      {L(
+                        `${sentGiftReceipt.targetName} получит: ${sentGiftReceipt.giftName}`,
+                        `${sentGiftReceipt.targetName} отримає: ${sentGiftReceipt.giftName}`,
+                        `${sentGiftReceipt.targetName} recibirá: ${sentGiftReceipt.giftName}`,
+                        `${sentGiftReceipt.targetName} receberá: ${sentGiftReceipt.giftName}`,
+                        `${sentGiftReceipt.targetName} sẽ nhận: ${sentGiftReceipt.giftName}`,
+                        `${sentGiftReceipt.targetName} akan menerima: ${sentGiftReceipt.giftName}`,
+                        `${sentGiftReceipt.targetName} alacak: ${sentGiftReceipt.giftName}`,
+                        `${sentGiftReceipt.targetName} otrzyma: ${sentGiftReceipt.giftName}`,
+                      )}
+                    </Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, flexWrap: 'wrap' }}>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                        <Text style={{ color: sentGiftChrome.mutedColor, fontSize: f.sub, fontWeight: '800' }}>
+                          {L('Списано', 'Списано', 'Spent', 'Gasto', 'Đã trừ', 'Terpakai', 'Harcanan', 'Pobrano')}
+                        </Text>
+                        <Text style={{ color: '#F3C45E', fontSize: f.sub, fontWeight: '900' }}>{sentGiftReceipt.costShards}</Text>
+                        <Image source={oskolokImageForPackShards(sentGiftReceipt.costShards)} style={{ width: 18, height: 18 }} resizeMode="contain" />
+                      </View>
+                      <View style={{ width: 1, height: 14, backgroundColor: 'rgba(255,255,255,0.16)' }} />
+                      <Text style={{ color: sentGiftChrome.mutedColor, fontSize: f.sub, fontWeight: '800' }}>
+                        {L(`Осталось ${sentGiftReceipt.balanceAfter}`, `Залишилось ${sentGiftReceipt.balanceAfter}`, `${sentGiftReceipt.balanceAfter} left`, `Restam ${sentGiftReceipt.balanceAfter}`, `Còn ${sentGiftReceipt.balanceAfter}`, `Sisa ${sentGiftReceipt.balanceAfter}`, `${sentGiftReceipt.balanceAfter} kaldı`, `Zostało ${sentGiftReceipt.balanceAfter}`)}
+                      </Text>
+                    </View>
+                    {sentGiftReceipt.dailyRemaining === 0 && (
+                      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+                        <Ionicons name="information-circle-outline" size={15} color={sentGiftChrome.infoColor} />
+                        <Text style={{ color: sentGiftChrome.infoColor, fontSize: f.sub, fontWeight: '800', textAlign: 'center', flexShrink: 1 }}>
+                          {L('Лимит подарков на сегодня исчерпан', 'Ліміт подарунків на сьогодні вичерпано', 'Gift limit reached for today', 'Limite de presentes de hoje atingido', 'Đã hết lượt tặng quà hôm nay', 'Batas hadiah hari ini tercapai', 'Bugünkü hediye sınırı doldu', 'Dzisiejszy limit prezentów wykorzystany')}
+                        </Text>
+                      </View>
+                    )}
+                  </View>
+                ) : null}
+                <TouchableOpacity
+                  testID="friend-gift-sent-ok"
+                  onPress={() => setSentGiftReceipt(null)}
+                  activeOpacity={0.86}
+                  style={{ minHeight: 48, borderRadius: sentGiftChrome.iconRadius, alignItems: 'center', justifyContent: 'center', backgroundColor: sentGiftChrome.buttonBg, borderWidth: 1, borderColor: 'rgba(255,255,255,0.18)' }}
+                >
+                  <Text style={{ color: sentGiftChrome.buttonText, fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                    {L('Понятно', 'Зрозуміло', 'Done', 'Entendi', 'Đã hiểu', 'Mengerti', 'Tamam', 'Rozumiem')}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </LinearGradient>
+        </View>
+      </Modal>
+
+      <Modal
+        visible={incomingGiftModal !== null}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setIncomingGiftModal(null)}
+      >
+        <View testID="friend-gift-received-modal" style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: 'rgba(9, 8, 12, 0.72)' }}>
+          <LinearGradient
+            testID="friend-gift-received-card"
+            colors={['rgba(255,247,222,0.98)', 'rgba(250,238,210,0.97)', 'rgba(232,213,176,0.96)']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{
+              width: '100%',
+              maxWidth: 372,
+              borderRadius: 28,
+              padding: 1,
+              shadowColor: '#D9A441',
+              shadowOpacity: 0.32,
+              shadowRadius: 28,
+              shadowOffset: { width: 0, height: 16 },
+              elevation: 18,
+            }}
+          >
+          <View style={{ borderRadius: 27, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 1, borderColor: 'rgba(156,115,45,0.32)' }}>
+            <LinearGradient
+              colors={['rgba(68,48,20,0.06)', 'rgba(255,255,255,0)', 'rgba(184,132,38,0.12)']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={StyleSheet.absoluteFill}
+            />
+            <View style={{ padding: 22, gap: 14 }}>
+            {incomingGiftModal ? (() => {
+              const first = incomingGiftModal.gifts[0];
+              const from = first?.fromName || L('друг', 'друг', 'amigo', 'amigo', 'bạn bè', 'teman', 'arkadaş', 'znajomy');
+              const gift = first ? giftEventLabel(first as unknown as Record<string, string | number>, lang) : '';
+              const multi = incomingGiftModal.gifts.length > 1;
+              const iconGiftId = first?.giftId === 'xp_boost_2x_24h' ? 'xp_2x_24h' : first?.giftId;
+              return (
+                <>
+                  <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 98, height: 98 }}>
+                    <View style={{ position: 'absolute', width: 98, height: 98, borderRadius: 49, backgroundColor: 'rgba(214,157,44,0.14)' }} />
+                    <LinearGradient
+                      colors={['#FFF8DD', '#E8C36A', '#B78628']}
+                      start={{ x: 0.15, y: 0 }}
+                      end={{ x: 0.9, y: 1 }}
+                      style={{ width: 76, height: 76, borderRadius: 26, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(109,76,24,0.24)' }}
+                    >
+                      {iconGiftId ? (
+                        <Image source={getLevelGiftRewardIcon(iconGiftId, themeMode)} style={{ width: 56, height: 56 }} resizeMode="contain" />
+                      ) : (
+                        <Ionicons name="gift-outline" size={34} color="#4C3412" />
+                      )}
+                    </LinearGradient>
+                  </View>
+                  <Text style={{ color: '#7A5518', fontSize: 11, fontWeight: '900', textTransform: 'uppercase', textAlign: 'center', letterSpacing: 0 }}>
+                    {L('Подарок от друга', 'Подарунок від друга', 'Friend gift', 'Presente de amigo', 'Quà từ bạn bè', 'Hadiah teman', 'Arkadaş hediyesi', 'Prezent od znajomego')}
+                  </Text>
+                  <Text style={{ color: '#21170B', fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
+                    {multi
+                      ? L('Новые подарки', 'Нові подарунки', 'Regalos nuevos', 'Novos presentes', 'Quà mới', 'Hadiah baru', 'Yeni hediyeler', 'Nowe prezenty')
+                      : L('Подарок получен', 'Подарунок отримано', 'Regalo recibido', 'Presente recebido', 'Đã nhận quà', 'Hadiah diterima', 'Hediye alındı', 'Prezent otrzymany')}
+                  </Text>
+                  <View style={{ borderRadius: 18, padding: 14, gap: 8, backgroundColor: 'rgba(255,255,255,0.54)', borderWidth: 1, borderColor: 'rgba(126,88,27,0.14)' }}>
+                    <Text style={{ color: '#4E3B1D', fontSize: f.sub, lineHeight: f.sub + 4, textAlign: 'center' }}>
+                      {multi
+                        ? L(`У тебя ${incomingGiftModal.gifts.length} новых подарка от друзей`, `У тебе ${incomingGiftModal.gifts.length} нових подарунки від друзів`, `Tienes ${incomingGiftModal.gifts.length} regalos nuevos de amigos`, `Você tem ${incomingGiftModal.gifts.length} presentes novos de amigos`, `Bạn có ${incomingGiftModal.gifts.length} quà mới từ bạn bè`, `Kamu punya ${incomingGiftModal.gifts.length} hadiah baru dari teman`, `Arkadaşlarından ${incomingGiftModal.gifts.length} yeni hediye var`, `Masz ${incomingGiftModal.gifts.length} nowe prezenty od znajomych`)
+                        : L(`${from} подарил: ${gift}`, `${from} подарував: ${gift}`, `${from} te regaló: ${gift}`, `${from} deu um presente: ${gift}`, `${from} đã tặng: ${gift}`, `${from} memberi hadiah: ${gift}`, `${from} hediye verdi: ${gift}`, `${from} podarował: ${gift}`)}
+                    </Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+                      <Ionicons name="albums-outline" size={15} color="#8A641D" />
+                      <Text style={{ color: '#8A641D', fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}>
+                        {L('Сохранено в разделе «Подарки»', 'Збережено в розділі «Подарунки»', 'Saved in Gifts', 'Salvo em Presentes', 'Đã lưu trong Quà', 'Disimpan di Hadiah', 'Hediyeler bölümüne kaydedildi', 'Zapisano w Prezentach')}
+                      </Text>
+                    </View>
+                  </View>
+                </>
+              );
+            })() : null}
+              <View style={{ flexDirection: 'row', gap: 10 }}>
+                <TouchableOpacity
+                  testID="friend-gift-received-open-inventory"
+                  onPress={() => {
+                    setIncomingGiftModal(null);
+                    router.push('/level_gifts_inventory' as any);
+                  }}
+                  activeOpacity={0.86}
+                  style={{ flex: 1, minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: '#272015', borderWidth: 1, borderColor: 'rgba(255,255,255,0.16)' }}
+                >
+                  <Text style={{ color: '#FFF7DF', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                    {L('В подарки', 'До подарунків', 'Gifts', 'Presentes', 'Quà', 'Hadiah', 'Hediyeler', 'Prezenty')}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  testID="friend-gift-received-ok"
+                  onPress={() => setIncomingGiftModal(null)}
+                  activeOpacity={0.86}
+                  style={{ flex: 1, minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: '#D7A83B' }}
+                >
+                  <Text style={{ color: '#241905', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                    {L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Tamam', 'Rozumiem')}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+          </LinearGradient>
+        </View>
+      </Modal>
+
       <UnifiedPlayerModal
         player={selectedPlayer}
         myInfo={{
@@ -2284,7 +2601,7 @@ export default function FriendsTabScreen() {
         onConfirm={() => {
           const pending = giftConfirm;
           setGiftConfirm(null);
-          if (pending) void handleSendGift(pending.giftId);
+          if (pending) void handleSendGift(pending.giftId, pending.target);
         }}
       />
       <ThemedConfirmModal

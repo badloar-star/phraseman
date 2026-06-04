@@ -13,6 +13,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isStreakFreezeActiveToday } from './streak_freeze';
+import { recordMissedStreakWeekMarkersEndingYesterday } from './streak_week_markers';
 
 export interface RepairState {
   eligibleDate:  string | null;   // YYYY-MM-DD когда стала доступна починка
@@ -110,6 +111,7 @@ export const recordLessonForRepair = async (): Promise<{ nowRepaired: boolean }>
     if (updated.lessonsToday >= 1) {
       updated.repaired = true;
       await save(updated);
+      await recordMissedStreakWeekMarkersEndingYesterday('repair').catch(() => {});
       return { nowRepaired: true };
     }
 

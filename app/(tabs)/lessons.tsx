@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { View, Text, TouchableOpacity, Animated, useWindowDimensions, Image, } from 'react-native';
 import { useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
-import { lessonPaywallContext, requiresPremiumForLesson, resolveLessonAccess } from '../monetization_policy';
+import { buildSequentialFreeLessonUnlocks, lessonPaywallContext, requiresPremiumForLesson, resolveLessonAccess } from '../monetization_policy';
 import { useTabNav } from '../TabContext';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
@@ -31,6 +31,7 @@ import {
     loadLessonsTabStateFromStorage,
     type LessonsTabSnapshot,
 } from '../lessons_tab_state';
+import { getHomeMenuImages } from '../home_menu_icons';
 /** Снимок UI списку уроків: survives remount між сесіями таба (див. `_layout.tsx` lazy tabs). */
 let lessonsUiSessionCacheByTarget: Partial<Record<string, LessonsTabSnapshot>> = {};
 /**
@@ -75,10 +76,16 @@ const LESSON_LEVEL_PALETTES: Record<string, Record<string, string>> = {
     coral: PALETTE_CORAL,
     minimalLight: PALETTE_SKETCH,
     minimalDark: {
-        A1: '#A9B8D0',
-        A2: '#94A8C2',
-        B1: '#838F9F',
-        B2: '#B5B0A4',
+        A1: '#D7E7FF',
+        A2: '#6EA8FF',
+        B1: '#9CA3AF',
+        B2: '#A78BFA',
+    },
+    compass: {
+        A1: '#F2C48D',
+        A2: '#F2C48D',
+        B1: '#8FEFE1',
+        B2: '#B4774E',
     },
 };
 const EXAM_META_SKETCH: Record<string, {
@@ -104,10 +111,16 @@ const EXAM_META_CORAL: Record<string, {
 const EXAM_META_BY_THEME: Record<string, typeof EXAM_META_SKETCH> = {
     minimalLight: EXAM_META_SKETCH,
     minimalDark: {
-        A1: { bg: '#263040', accent: '#DFE8F7', icon: 'school-outline' },
-        A2: { bg: '#232D3D', accent: '#D5E1F2', icon: 'school-outline' },
-        B1: { bg: '#252B35', accent: '#D3DAE5', icon: 'school-outline' },
-        B2: { bg: '#302E2A', accent: '#EFE8DC', icon: 'trophy' },
+        A1: { bg: '#1D2636', accent: '#D7E7FF', icon: 'school-outline' },
+        A2: { bg: '#161F2E', accent: '#6EA8FF', icon: 'school-outline' },
+        B1: { bg: '#171B24', accent: '#9CA3AF', icon: 'school-outline' },
+        B2: { bg: '#151827', accent: '#A78BFA', icon: 'trophy' },
+    },
+    compass: {
+        A1: { bg: '#1F1F21', accent: '#F2C48D', icon: 'school-outline' },
+        A2: { bg: '#172523', accent: '#F2C48D', icon: 'school-outline' },
+        B1: { bg: '#101817', accent: '#8FEFE1', icon: 'school-outline' },
+        B2: { bg: '#2A2521', accent: '#B4774E', icon: 'trophy' },
     },
     dark: {
         A1: { bg: '#344637', accent: '#E2F4E3', icon: 'school-outline' },
@@ -187,6 +200,7 @@ const CEFR_H = 52; // CEFR divider item
 const BOOK_H = 72; // высота книги
 const LESSON_H = BOOK_H + 5; // marginTop:5 + BOOK_H
 const EXAM_H = 78 + 8; // examH + marginTop:8
+const ATTESTATION_H = 126 + 12; // attestation card + marginTop
 // ── Главный компонент ─────────────────────────────────────────────────────────
 export default function LessonsTab() {
     const router = useRouter();
@@ -198,6 +212,7 @@ export default function LessonsTab() {
     const goldAntique = GOLD_RICH.agedGold;
     const goldHairline = GOLD_RICH.hairline;
     const goldSurface = GOLD_RICH.blackPiano;
+    const menuImages = getHomeMenuImages(themeMode);
     const screenTitleColor = t.textPrimary;
     const { lang, s } = useLang();
     const { studyTarget } = useStudyTarget();
@@ -334,11 +349,12 @@ export default function LessonsTab() {
             }
             return u;
         }
-        // Free sample: lessons 1-3 are available, everything after that is a Premium gate.
-        for (let i = 0; i < Math.min(3, u.length); i++)
-            u[i] = true;
-        return u;
-    }, [noLimits, isPremium, premiumReachableLevelIndex]);
+        return buildSequentialFreeLessonUnlocks({
+            scores,
+            persistedUnlocked,
+            lessonCount: u.length,
+        });
+    }, [noLimits, isPremium, persistedUnlocked, premiumReachableLevelIndex, scores]);
     type ListItem = {
         kind: 'header';
         label: string;
@@ -350,6 +366,8 @@ export default function LessonsTab() {
     } | {
         kind: 'exam';
         level: string;
+    } | {
+        kind: 'attestation';
     };
     const listData: ListItem[] = useMemo(() => {
         const data: ListItem[] = [];
@@ -369,9 +387,12 @@ export default function LessonsTab() {
             if (hdr)
                 data.push({ kind: 'header', label: hdr[1], color: hdr[2] });
             data.push({ kind: 'lesson', index: idx, name });
-            if (num === 8 || num === 18 || num === 28 || num === 32) {
+            if (num === 8 || num === 18 || num === 28) {
                 const lvl = num <= 8 ? 'A1' : num <= 18 ? 'A2' : num <= 28 ? 'B1' : 'B2';
                 data.push({ kind: 'exam', level: lvl });
+            }
+            if (num === 32) {
+                data.push({ kind: 'attestation' });
             }
         });
         return data;
@@ -390,8 +411,10 @@ export default function LessonsTab() {
                 h = CEFR_H;
             else if (item.kind === 'lesson')
                 h = LESSON_H;
-            else
+            else if (item.kind === 'exam')
                 h = EXAM_H;
+            else
+                h = ATTESTATION_H;
             y += h;
             if (item.kind === 'header')
                 return null;
@@ -627,6 +650,76 @@ export default function LessonsTab() {
                 </TouchableOpacity>
               </Animated.View>);
             }
+            if (item.kind === 'attestation') {
+                const attestationAccent = isGoldTheme
+                    ? goldBright
+                    : themeMode === 'neon'
+                        ? '#B7FF00'
+                        : isCoralTheme
+                            ? '#FFB2A1'
+                            : themeMode === 'minimalLight'
+                                ? '#DDE8F0'
+                                : '#80B8FF';
+                const attestationColors = isGoldTheme
+                    ? goldCardGradient('selected')
+                    : isCoralTheme
+                        ? ['#2A1519', '#3A2025', '#1B0F12']
+                        : themeMode === 'neon'
+                            ? ['#101608', '#17200B', '#080B06']
+                            : themeMode === 'minimalLight'
+                                ? ['#29313A', '#3A4652', '#20262E']
+                                : ['#101722', '#1B2636', '#0B1018'];
+                const attestationBorder = isGoldTheme
+                    ? GOLD_RICH.hairlineStrong
+                    : themeMode === 'neon'
+                        ? 'rgba(183,255,0,0.36)'
+                        : isCoralTheme
+                            ? 'rgba(255,178,161,0.36)'
+                            : 'rgba(128,184,255,0.34)';
+                return (<Animated.View key="attestation-after-32" style={{ marginTop: 12, marginHorizontal: 14, borderRadius: 24, transform: [{ scale: scaleAnim ?? 1 }], ...(isGoldTheme ? goldShadow(2) : {}) }}>
+                <TouchableOpacity activeOpacity={0.82} onPress={() => {
+                        hapticTap();
+                        router.push('/diagnostic_test');
+                    }} style={{
+                        height: 126,
+                        borderRadius: 24,
+                        borderWidth: 1,
+                        borderColor: attestationBorder,
+                        overflow: 'hidden',
+                        backgroundColor: isGoldTheme ? goldSurface : '#111820',
+                    }}>
+                  <LinearGradient colors={attestationColors as any} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}/>
+                  <Image source={menuImages.test} style={{ position: 'absolute', right: -8, top: 8, width: 128, height: 128, opacity: isGoldTheme ? 0.18 : 0.16 }} resizeMode="contain"/>
+                  <View style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 1.5, backgroundColor: attestationAccent, opacity: 0.42 }}/>
+                  {isGoldTheme && <GoldBevel radius={24} intensity="normal"/>}
+                  <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 18, gap: 16 }}>
+                    <View style={{
+                        width: 82,
+                        height: 82,
+                        borderRadius: 24,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: isGoldTheme ? 'rgba(255,235,180,0.10)' : 'rgba(255,255,255,0.075)',
+                        borderWidth: 1,
+                        borderColor: attestationBorder,
+                    }}>
+                      <Image source={menuImages.test} style={{ width: 70, height: 70 }} resizeMode="contain"/>
+                    </View>
+                    <View style={{ flex: 1, minWidth: 0, justifyContent: 'center' }}>
+                      <Text style={{ color: attestationAccent, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase', opacity: 0.82 }} numberOfLines={1}>
+                        B2
+                      </Text>
+                      <Text style={{ color: isGoldTheme ? t.textPrimary : '#FFFFFF', fontSize: Math.max(28, f.h1), lineHeight: Math.max(33, f.h1 + 5), fontWeight: '900', letterSpacing: 0 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.76}>
+                        {s.home.attestTile}
+                      </Text>
+                    </View>
+                    <View style={{ width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(255,235,180,0.12)' : 'rgba(255,255,255,0.09)' }}>
+                      <Ionicons name="chevron-forward" size={30} color={attestationAccent}/>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </Animated.View>);
+            }
             // ── Lesson book ──────────────────────────────────────────────
             const { index, name } = item;
             const num = index + 1;
@@ -818,9 +911,7 @@ export default function LessonsTab() {
                     {/* Right side: percentage / lock */}
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                       {!isUnlocked
-                    ? premiumRequired
-                        ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHex(lessonAccent, 0.64) : isCoralTheme ? rgbaHex(lessonAccent, 0.60) : lockedCardHasLightFill ? darkenHex(bg, 0.40) : rgbaHex(lessonAccent, 0.46)}/>
-                        : null
+                    ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHex(lessonAccent, 0.64) : isCoralTheme ? rgbaHex(lessonAccent, 0.60) : lockedCardHasLightFill ? darkenHex(bg, 0.40) : rgbaHex(lessonAccent, 0.46)}/>
                     : USE_ELITE_LESSONS_MAP && isComplete
                         ? <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? lessonAccent : isCoralTheme ? 'rgba(255,236,230,0.86)' : useSketchLessonVisual ? lessonOnAccentColor : 'rgba(255,255,255,0.86)'}/>
                         : progPct > 0

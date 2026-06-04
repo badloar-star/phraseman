@@ -9,6 +9,7 @@ const { expo } = require('../app.json');
 
 const CRITICAL_VISUAL_DIRS = [
   'assets/images/app_backdrops',
+  'assets/images/flashcard_backs',
   'assets/images/quizzes/level_cards',
   'assets/images/quizzes/level_logos',
   'assets/images/quizzes/theme_cards',

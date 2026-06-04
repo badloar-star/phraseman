@@ -12,18 +12,27 @@ type Primed = {
   cell: number;
   order: number[] | null;
   progress: string[] | null;
+  override: number | null;
 };
 
 const byLesson: Record<string, Primed> = {};
 const VALID_PROGRESS_STATES = new Set(['empty', 'correct', 'wrong', 'replay_correct']);
 
-function primedKey(lessonId: number, studyTarget?: RuntimeStudyTarget): string {
+type LessonStorageId = string | number;
+
+function primedKey(lessonId: LessonStorageId, studyTarget?: RuntimeStudyTarget): string {
   return `${storageStudyTarget(studyTarget)}:${lessonId}`;
 }
 
 function parseIntCell(raw: string | null): number {
   if (raw == null || raw === '') return 0;
   return Math.max(0, parseInt(raw, 10) || 0);
+}
+
+function parseOptionalCell(raw: string | null): number | null {
+  if (raw == null || raw === '' || raw === 'null') return null;
+  const parsed = parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
 }
 
 export function clampStoredLessonCell(raw: string | null, effectiveTotal: number): number {
@@ -66,7 +75,7 @@ export function parseStoredLessonOrder(raw: string | null, n: number, count: num
 }
 
 export function buildLessonContentSignature(
-  lessonId: number,
+  lessonId: LessonStorageId,
   studyTarget: RuntimeStudyTarget,
   phraseDescriptors: readonly string[],
 ): string {
@@ -80,10 +89,11 @@ export function buildLessonContentSignature(
 }
 
 function applyPrimedFromStorageStrings(
-  lessonId: number,
+  lessonId: LessonStorageId,
   ci: string | null,
   order: string | null,
   prog: string | null,
+  override: string | null,
   studyTarget?: RuntimeStudyTarget,
 ): void {
   let orderArr: number[] | null = null;
@@ -104,6 +114,7 @@ function applyPrimedFromStorageStrings(
     cell: parseIntCell(ci),
     order: orderArr,
     progress: progressArr,
+    override: parseOptionalCell(override),
   };
 }
 
@@ -116,6 +127,7 @@ export async function primeAllLessonsFromStorageOnAppLaunch(studyTarget?: Runtim
       lessonSessionKey(i, 'cellIndex', studyTarget),
       lessonSessionKey(i, 'phraseOrder', studyTarget),
       lessonProgressKey(i, studyTarget),
+      lessonSessionKey(i, 'errorReplayOverride', studyTarget),
     );
   }
   const entries = await AsyncStorage.multiGet(keys);
@@ -126,6 +138,7 @@ export async function primeAllLessonsFromStorageOnAppLaunch(studyTarget?: Runtim
       map[lessonSessionKey(i, 'cellIndex', studyTarget)] ?? null,
       map[lessonSessionKey(i, 'phraseOrder', studyTarget)] ?? null,
       map[lessonProgressKey(i, studyTarget)] ?? null,
+      map[lessonSessionKey(i, 'errorReplayOverride', studyTarget)] ?? null,
       studyTarget,
     );
   }
@@ -136,34 +149,36 @@ export async function primeLessonScreenFromStorage(
   studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
   if (lessonId < 1) return;
-  const [[, ci], [, order], [, prog]] = await AsyncStorage.multiGet([
+  const [[, ci], [, order], [, prog], [, override]] = await AsyncStorage.multiGet([
     lessonSessionKey(lessonId, 'cellIndex', studyTarget),
     lessonSessionKey(lessonId, 'phraseOrder', studyTarget),
     lessonProgressKey(lessonId, studyTarget),
+    lessonSessionKey(lessonId, 'errorReplayOverride', studyTarget),
   ]);
-  applyPrimedFromStorageStrings(lessonId, ci, order, prog, studyTarget);
+  applyPrimedFromStorageStrings(lessonId, ci, order, prog, override, studyTarget);
 }
 
-export function getLessonScreenPrimed(lessonId: number, studyTarget?: RuntimeStudyTarget): Primed | null {
+export function getLessonScreenPrimed(lessonId: LessonStorageId, studyTarget?: RuntimeStudyTarget): Primed | null {
   return byLesson[primedKey(lessonId, studyTarget)] ?? null;
 }
 
 export function touchLessonScreenPrimed(
-  lessonId: number,
-  patch: Partial<Pick<Primed, 'cell' | 'order' | 'progress'>>,
+  lessonId: LessonStorageId,
+  patch: Partial<Pick<Primed, 'cell' | 'order' | 'progress' | 'override'>>,
   studyTarget?: RuntimeStudyTarget,
 ): void {
   const key = primedKey(lessonId, studyTarget);
-  const cur = byLesson[key] ?? { cell: 0, order: null, progress: null };
+  const cur = byLesson[key] ?? { cell: 0, order: null, progress: null, override: null };
   byLesson[key] = {
     cell: patch.cell !== undefined ? patch.cell : cur.cell,
     order: patch.order !== undefined ? patch.order : cur.order,
     progress: patch.progress !== undefined ? patch.progress : cur.progress,
+    override: patch.override !== undefined ? patch.override : cur.override,
   };
 }
 
 export function getInitialOrderAndCell(
-  lessonId: number,
+  lessonId: LessonStorageId,
   n: number,
   effectiveTotal: number,
   studyTarget?: RuntimeStudyTarget,
@@ -180,7 +195,7 @@ export function getInitialOrderAndCell(
 
 export function getInitialProgressArray(
   effectiveTotal: number,
-  lessonId: number,
+  lessonId: LessonStorageId,
   studyTarget?: RuntimeStudyTarget,
 ): string[] {
   const primed = getLessonScreenPrimed(lessonId, studyTarget);
@@ -189,8 +204,22 @@ export function getInitialProgressArray(
   return new Array(effectiveTotal).fill('empty');
 }
 
+export function getInitialOverridePhraseCell(
+  lessonId: LessonStorageId,
+  effectiveTotal: number,
+  studyTarget?: RuntimeStudyTarget,
+): number | null {
+  if (effectiveTotal <= 0) return null;
+  const primed = getLessonScreenPrimed(lessonId, studyTarget);
+  const override = primed?.override;
+  if (override == null || override < 0 || override >= effectiveTotal) return null;
+  const progress = primed?.progress;
+  if (progress && progress[override] !== 'wrong') return null;
+  return override;
+}
+
 export function isLessonScreenPrimedThisSession(
-  lessonId: number,
+  lessonId: LessonStorageId,
   n: number,
   effectiveTotal: number,
   studyTarget?: RuntimeStudyTarget,

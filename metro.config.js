@@ -82,6 +82,7 @@ config.server = {
 
 const defaultResolveRequest = config.resolver.resolveRequest;
 const routerContextPath = path.join(__dirname, 'router.ctx.js');
+const firebaseFunctionsWebShimPath = path.join(__dirname, 'web_shims', 'firebase-functions-web-shim.js');
 const storeReleaseDevModuleStubPath = path.join(__dirname, 'app', '_store_release_dev_module_stub.tsx');
 const storeReleaseVipSurveyDevAuthStubPath = path.join(
   __dirname,
@@ -102,6 +103,17 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
     return {
       type: 'sourceFile',
       filePath: routerContextPath,
+    };
+  }
+
+  if (
+    platform === 'web' &&
+    (moduleName === '@react-native-firebase/functions' ||
+      moduleName.startsWith('@react-native-firebase/functions/'))
+  ) {
+    return {
+      type: 'sourceFile',
+      filePath: firebaseFunctionsWebShimPath,
     };
   }
 

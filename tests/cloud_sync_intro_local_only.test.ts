@@ -22,4 +22,11 @@ describe('lesson intro visibility sync policy', () => {
   it('still wipes local intro flags when account data is cleared', () => {
     expect(wipeKeysSource).toContain('lessonIntroShownKey(lessonId, target)');
   });
+
+  it('does not write users documents for heartbeat-only syncs', () => {
+    expect(source).toContain('const hasProgressPatch = Object.keys(progressPatch).length > 0;');
+    expect(source).toContain('if (!hasProgressPatch && !shouldSendCreatedAt)');
+    expect(source).toContain('lastActivityStampAt = now;');
+    expect(source).toMatch(/if \(!hasProgressPatch && !shouldSendCreatedAt\)[\s\S]*?return;/);
+  });
 });

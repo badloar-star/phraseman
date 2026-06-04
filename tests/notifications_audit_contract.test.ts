@@ -32,6 +32,17 @@ test('D+1 reminder is tracked, cleaned, and keeps Spanish locale', () => {
   expect(lessonCompleteSrc).toContain("langRaw === 'es' ? 'es'");
 });
 
+test('immediate notifications are deduped so app launch cannot show a pile at once', () => {
+  const src = appSource('app/notifications.ts');
+  expect(src).toContain('IMMEDIATE_NOTIFICATION_MIN_GAP_MS');
+  expect(src).toContain('IMMEDIATE_NOTIFICATION_TYPE_COOLDOWN_MS');
+  expect(src).toContain("claimImmediateNotificationSlot('streak_warning')");
+  expect(src).toContain("claimImmediateNotificationSlot('league_overtake')");
+  expect(src).toContain("AsyncStorage.getItem('notifications_enabled')");
+  expect(src).toContain("`${IMMEDIATE_NOTIFICATION_TYPE_LAST_AT_PREFIX}streak_warning`");
+  expect(src).toContain("`${IMMEDIATE_NOTIFICATION_TYPE_LAST_AT_PREFIX}league_overtake`");
+});
+
 test('notification runtime copy has planned locale branches', () => {
   const src = appSource('app/notifications.ts');
   for (const marker of ['MESSAGES_PT_BR', 'MESSAGES_VI', 'MESSAGES_ID', 'MESSAGES_TR', 'MESSAGES_PL']) {

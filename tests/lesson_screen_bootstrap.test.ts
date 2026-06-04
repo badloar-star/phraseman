@@ -1,6 +1,8 @@
 import {
   buildLessonContentSignature,
   clampStoredLessonCell,
+  getInitialOverridePhraseCell,
+  touchLessonScreenPrimed,
   parseStoredLessonOrder,
   parseStoredLessonProgress,
 } from '../app/lesson_screen_bootstrap';
@@ -45,6 +47,27 @@ describe('lesson screen bootstrap storage recovery', () => {
   it('does not render a fallback first phrase before hydration completes', () => {
     const source = readFileSync(join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
 
-    expect(source).toContain('phrase={lessonHydrated ? phrase : null}');
+    expect(source).toContain('phrase={lessonHydrated && planPhraseContentReady ? phrase : null}');
+  });
+
+  it('does not cap the lesson prompt text so the full assignment remains visible', () => {
+    const source = readFileSync(join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
+    const promptStart = source.indexOf('testID="lesson1-source-prompt"');
+    const promptEnd = source.indexOf('<View style={{ minHeight: 60', promptStart);
+    const promptBlock = source.slice(promptStart, promptEnd);
+
+    expect(promptStart).toBeGreaterThanOrEqual(0);
+    expect(promptBlock).not.toContain('numberOfLines');
+  });
+
+  it('primes the active replay override so the first lesson frame is stable', () => {
+    touchLessonScreenPrimed(7, {
+      cell: 4,
+      order: [4, 3, 2, 1, 0],
+      progress: ['empty', 'wrong', 'empty', 'correct', 'empty'],
+      override: 1,
+    }, 'en');
+
+    expect(getInitialOverridePhraseCell(7, 5, 'en')).toBe(1);
   });
 });

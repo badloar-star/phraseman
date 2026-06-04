@@ -141,6 +141,7 @@ export default function ReportErrorButton({
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [throttled, setThrottled] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [commentRequiredError, setCommentRequiredError] = useState(false);
 
   const handleOpen = () => {
@@ -148,6 +149,7 @@ export default function ReportErrorButton({
     setCommentRequiredError(false);
     setSent(false);
     setThrottled(false);
+    setFailed(false);
     setVisible(true);
   };
 
@@ -161,6 +163,7 @@ export default function ReportErrorButton({
       return;
     }
     setCommentRequiredError(false);
+    setFailed(false);
     setSending(true);
     const nameRaw = await AsyncStorage.getItem('user_name') ?? '';
     const storedLang = (
@@ -188,6 +191,10 @@ export default function ReportErrorButton({
     }
     if (result === 'throttled') {
       setThrottled(true);
+      return;
+    }
+    if (result === 'failed') {
+      setFailed(true);
       return;
     }
     setSent(true);
@@ -271,7 +278,45 @@ export default function ReportErrorButton({
               ]}
               onPress={e => e.stopPropagation()}
             >
-              {throttled ? (
+              {failed ? (
+                <View style={styles.successBox}>
+                  <Text style={[styles.successTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
+                    {triLang(lang, {
+                      ru: 'Не удалось отправить',
+                      uk: 'Не вдалося надіслати',
+                      es: 'No se pudo enviar',
+                      'pt-BR': 'Não foi possível enviar',
+                      vi: 'Không gửi được',
+                      id: 'Gagal terkirim',
+                      tr: 'Gönderilemedi',
+                      pl: 'Nie udało się wysłać',
+                    })}
+                  </Text>
+                  <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>
+                    {triLang(lang, {
+                      ru: 'Проверь интернет и попробуй еще раз.',
+                      uk: 'Перевір інтернет і спробуй ще раз.',
+                      es: 'Revisa internet e inténtalo de nuevo.',
+                      'pt-BR': 'Verifique a internet e tente de novo.',
+                      vi: 'Hãy kiểm tra mạng rồi thử lại.',
+                      id: 'Periksa internet lalu coba lagi.',
+                      tr: 'İnterneti kontrol edip tekrar dene.',
+                      pl: 'Sprawdź internet i spróbuj ponownie.',
+                    })}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setFailed(false);
+                      setSending(false);
+                    }}
+                    style={[styles.btnSend, { backgroundColor: t.accent, marginTop: 8, alignSelf: 'stretch' }]}
+                  >
+                    <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>
+                      {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              ) : throttled ? (
                 <View style={styles.successBox}>
                   <Text style={[styles.successTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
                     {triLang(lang, {

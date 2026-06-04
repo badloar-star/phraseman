@@ -12,6 +12,12 @@
         "**/.*",
         "**/node_modules/**"
       ],
+      "redirects": [
+        { "source": "/admin", "destination": "/", "type": 302 },
+        { "source": "/admin/", "destination": "/", "type": 302 },
+        { "source": "/admin/index.html", "destination": "/index.html", "type": 302 },
+        { "source": "/admin/**", "destination": "/", "type": 302 }
+      ],
       "headers": [
         {
           "source": "**",
@@ -53,6 +59,9 @@
   "functions": {
     "source": "functions",
     "runtime": "nodejs22"
+  },
+  "react-native": {
+    "app_check_token_auto_refresh": false
   },
   "emulators": {
     "functions": { "port": 5001 },

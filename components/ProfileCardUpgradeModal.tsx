@@ -7,6 +7,7 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { emitAppEvent } from '../app/events';
 import { syncToCloud } from '../app/cloud_sync';
+import { ENABLE_DEV_TOOLS } from '../app/config';
 import { getShardsBalance } from '../app/shards_system';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import {
@@ -227,6 +228,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
   const [shards, setShards] = useState(0);
   const [busy, setBusy] = useState(false);
   const [currentSnapshot, setCurrentSnapshot] = useState<ProfileCardSnapshot>(() => snapshot ?? { ...FALLBACK_SNAPSHOT, level });
+  const effectiveVisible = ENABLE_DEV_TOOLS && visible;
 
   const currentLevel = currentSnapshot.level;
   const nextLevel = useMemo(() => getNextProfileCardLevel(currentLevel), [currentLevel]);
@@ -235,7 +237,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
   const progress = Math.max(0, Math.min(1, currentLevel / PROFILE_CARD_MAX_LEVEL));
 
   useEffect(() => {
-    if (!visible) return;
+    if (!effectiveVisible) return;
     let cancelled = false;
     setCurrentSnapshot(snapshot ?? { ...FALLBACK_SNAPSHOT, level });
     getShardsBalance().then((balance) => {
@@ -249,7 +251,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
     return () => {
       cancelled = true;
     };
-  }, [visible, level, snapshot]);
+  }, [effectiveVisible, level, snapshot]);
 
   const notify = useCallback((type: 'success' | 'error' | 'info', messageRu: string) => {
     emitAppEvent('action_toast', {
@@ -261,7 +263,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
   }, []);
 
   const handleUpgrade = useCallback(async () => {
-    if (busy || !nextDef) return;
+    if (!ENABLE_DEV_TOOLS || busy || !nextDef) return;
     setBusy(true);
     try {
       const result = await upgradeProfileCardLevel();
@@ -293,7 +295,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
   }, [busy, nextDef, notify, onChanged, onClose, onUpgraded, router, shards]);
 
   const applyTheme = useCallback(async (theme: ProfileCardTheme) => {
-    if (busy || !canUseProfileCardTheme(currentLevel, theme) || currentSnapshot.theme === theme) return;
+    if (!ENABLE_DEV_TOOLS || busy || !canUseProfileCardTheme(currentLevel, theme) || currentSnapshot.theme === theme) return;
     setBusy(true);
     try {
       const next = await setProfileCardTheme(theme);
@@ -309,7 +311,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
   }, [busy, currentLevel, currentSnapshot.theme, notify, onChanged]);
 
   const applyMotion = useCallback(async (motion: ProfileCardMotion) => {
-    if (busy || !canUseProfileCardMotion(currentLevel, motion) || currentSnapshot.motion === motion) return;
+    if (!ENABLE_DEV_TOOLS || busy || !canUseProfileCardMotion(currentLevel, motion) || currentSnapshot.motion === motion) return;
     setBusy(true);
     try {
       const next = await setProfileCardMotion(motion);
@@ -325,7 +327,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
   }, [busy, currentLevel, currentSnapshot.motion, notify, onChanged]);
 
   const applyPublicFocus = useCallback(async (focus: ProfileCardPublicFocus) => {
-    if (busy || !canUseProfileCardPublicFocus(currentLevel, focus) || currentSnapshot.publicFocus === focus) return;
+    if (!ENABLE_DEV_TOOLS || busy || !canUseProfileCardPublicFocus(currentLevel, focus) || currentSnapshot.publicFocus === focus) return;
     setBusy(true);
     try {
       const next = await setProfileCardPublicFocus(focus);
@@ -375,7 +377,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
   });
 
   return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose} statusBarTranslucent>
+    <Modal visible={effectiveVisible} transparent animationType="fade" onRequestClose={onClose} statusBarTranslucent>
       <Pressable
         style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', justifyContent: 'flex-end' }}
         onPress={onClose}

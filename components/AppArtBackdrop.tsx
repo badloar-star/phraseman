@@ -20,7 +20,8 @@ const IMAGE_OPACITY: Record<ThemeMode, number> = {
   gold: 0.46,
   coral: 0.46,
   minimalLight: 0.62,
-  minimalDark: 0.50,
+  minimalDark: 0.52,
+  compass: 0.48,
 };
 
 const VERTICAL_SCRIMS: Record<ThemeMode, ThreeStop> = {
@@ -29,7 +30,8 @@ const VERTICAL_SCRIMS: Record<ThemeMode, ThreeStop> = {
   gold: ['rgba(0,0,0,0.46)', 'rgba(0,0,0,0.30)', 'rgba(0,0,0,0.78)'],
   coral: ['rgba(0,0,0,0.38)', 'rgba(0,0,0,0.24)', 'rgba(0,0,0,0.68)'],
   minimalLight: ['rgba(34,28,18,0.16)', 'rgba(34,28,18,0.06)', 'rgba(34,28,18,0.28)'],
-  minimalDark: ['rgba(0,0,0,0.40)', 'rgba(0,0,0,0.22)', 'rgba(0,0,0,0.70)'],
+  minimalDark: ['rgba(8,10,14,0.30)', 'rgba(12,14,20,0.16)', 'rgba(6,7,10,0.56)'],
+  compass: ['rgba(2,3,4,0.42)', 'rgba(17,16,12,0.22)', 'rgba(2,3,4,0.70)'],
 };
 
 const EDGE_SCRIMS: Record<ThemeMode, FourStop> = {
@@ -38,7 +40,8 @@ const EDGE_SCRIMS: Record<ThemeMode, FourStop> = {
   gold: ['rgba(0,0,0,0.50)', 'rgba(0,0,0,0.16)', 'rgba(0,0,0,0.16)', 'rgba(0,0,0,0.42)'],
   coral: ['rgba(0,0,0,0.40)', 'rgba(0,0,0,0.12)', 'rgba(0,0,0,0.12)', 'rgba(0,0,0,0.34)'],
   minimalLight: ['rgba(34,28,18,0.18)', 'rgba(34,28,18,0.04)', 'rgba(34,28,18,0.04)', 'rgba(34,28,18,0.16)'],
-  minimalDark: ['rgba(0,0,0,0.42)', 'rgba(0,0,0,0.12)', 'rgba(0,0,0,0.12)', 'rgba(0,0,0,0.36)'],
+  minimalDark: ['rgba(8,10,14,0.36)', 'rgba(110,168,255,0.04)', 'rgba(110,168,255,0.03)', 'rgba(6,7,10,0.34)'],
+  compass: ['rgba(2,3,4,0.48)', 'rgba(242,196,141,0.06)', 'rgba(242,196,141,0.025)', 'rgba(2,3,4,0.42)'],
 };
 
 function AppArtBackdrop({ name }: { name: AppArtBackdropName }) {

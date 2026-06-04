@@ -42,6 +42,11 @@ export const QUIZ_LEVEL_CARD_BACKGROUNDS: Record<ThemeMode, Record<Level, number
     medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-minimal-dark.webp'),
     hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-minimal-dark.webp'),
   },
+  compass: {
+    easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-compass-premium.webp'),
+    medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-compass-premium.webp'),
+    hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-compass-premium.webp'),
+  },
 };
 
 export const QUIZ_LEVEL_LOGOS: Record<ThemeMode, Record<Level, number>> = {
@@ -75,6 +80,11 @@ export const QUIZ_LEVEL_LOGOS: Record<ThemeMode, Record<Level, number>> = {
     medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-minimal-dark.webp'),
     hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-minimal-dark.webp'),
   },
+  compass: {
+    easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-compass-premium.webp'),
+    medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-compass-premium.webp'),
+    hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-compass-premium.webp'),
+  },
 };
 
 // Card palette by theme and level.
@@ -90,9 +100,9 @@ export const THEME_PALETTES: Record<QuizVisualThemeMode, Record<Level, { gradA: 
     hard: { gradA: '#E9D5FF', gradB: '#F5F3FF', accent: '#6D28D9' },
   },
   neon: {
-    easy: { gradA: '#003D3D', gradB: '#000D0D', accent: '#00F5FF' },
-    medium: { gradA: '#3D0025', gradB: '#0D000A', accent: '#FF006E' },
-    hard: { gradA: '#1E2D00', gradB: '#080A00', accent: '#BFFF00' },
+    easy: { gradA: '#082D1A', gradB: '#06140D', accent: '#73F7A2' },
+    medium: { gradA: '#0A3320', gradB: '#06150D', accent: '#45E889' },
+    hard: { gradA: '#123019', gradB: '#07140D', accent: '#B8FF6A' },
   },
   gold: {
     easy: { gradA: '#2A210F', gradB: '#080705', accent: '#F1CC72' },
@@ -110,9 +120,14 @@ export const THEME_PALETTES: Record<QuizVisualThemeMode, Record<Level, { gradA: 
     hard: { gradA: '#EFEAF7', gradB: '#D5C6EA', accent: '#6D5EBA' },
   },
   minimalDark: {
-    easy: { gradA: '#182624', gradB: '#090F12', accent: '#6EA8FF' },
-    medium: { gradA: '#281C1D', gradB: '#10090A', accent: '#F26D6D' },
-    hard: { gradA: '#1F1B2E', gradB: '#0B0914', accent: '#A78BFA' },
+    easy: { gradA: '#1D2636', gradB: '#10141C', accent: '#6EA8FF' },
+    medium: { gradA: '#242A35', gradB: '#11151C', accent: '#9CA3AF' },
+    hard: { gradA: '#161B2A', gradB: '#0C0E14', accent: '#A78BFA' },
+  },
+  compass: {
+    easy: { gradA: '#1F1F21', gradB: '#171719', accent: '#F2C48D' },
+    medium: { gradA: '#24211D', gradB: '#100D0A', accent: '#F4B978' },
+    hard: { gradA: '#2C211B', gradB: '#0B0806', accent: '#FFE6B5' },
   },
   ocean: {
     easy: { gradA: '#0C2840', gradB: '#1A6FA0', accent: '#30C0FF' },
@@ -134,7 +149,8 @@ export const THEME_TEXT: Record<QuizVisualThemeMode, { primary: string; secondar
   gold: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   coral: { primary: '#FFFFFF', secondary: '#D8C2C5' },
   minimalLight: { primary: '#2E261B', secondary: 'rgba(46,38,27,0.66)' },
-  minimalDark: { primary: '#F5F5F5', secondary: 'rgba(245,245,245,0.64)' },
+  minimalDark: { primary: '#F5F5F5', secondary: '#A7ABB3' },
+  compass: { primary: '#FFF8E8', secondary: '#D8D2C8' },
   ocean: { primary: 'rgba(240,252,255,0.96)', secondary: 'rgba(200,230,255,0.78)' },
   sakura: { primary: 'rgba(255,248,252,0.96)', secondary: 'rgba(255,210,230,0.78)' },
 };

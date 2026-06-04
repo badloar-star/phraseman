@@ -4,15 +4,14 @@ import { storageGetString, storageGetNumber, storageSetString } from '../lib/sto
 import { ensureAnonUser, syncToCloud } from './cloud_sync';
 import { checkAchievements } from './achievements';
 import { getXPMultiplier } from './club_boosts';
+import { getLeagueGroupBoostMultiplier } from './league_group_boosts';
 import { DebugLogger } from './debug-logger';
-import { addOrUpdateScore, getMyWeekPoints, streakMultiplier } from './hall_of_fame_utils';
-import { pushMyScore } from './firestore_leaderboard';
+import { addOrUpdateScore, streakMultiplier } from './hall_of_fame_utils';
 import { loadLeagueState } from './league_engine';
 import { consumeGiftXpBank, readGiftMultiplier, readGiftMultiplierForBaseXp } from './level_gift_system';
 import { getLeagueBoostMultiplier } from './league_personal_boosts';
-import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
 import { recordActivityForRepair } from './streak_repair';
-import { getLevelFromXP, TOTAL_XP_FOR_LEVEL } from '../constants/theme';
+import { getLevelFromXP } from '../constants/theme';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
 import { isCustomAvatarValue } from '../constants/custom_avatars';
 import { writeFriendEvent } from './firestore_friend_activity';
@@ -23,6 +22,11 @@ import { getCanonicalUserId } from './user_id_policy';
 import { addWeeklyXp } from './weekly_xp';
 import { consumeLeagueChestXpOverrideMultiplier } from './services/league_chest_rewards';
 import { refreshWeeklyRecapNotificationAfterXpChange } from './notifications';
+import { syncPublicProfileSnapshot } from './public_profile_snapshot';
+import {
+  restoredXPForOld250VisibleLevel,
+  XP_LEVEL_RESTORE_250_TO_400_KEY,
+} from './xp_level_restore';
 // stationary_clubs feature удалён — мультипликатор фиксирован 1.
 
 /** Уровень клуба недели (очки группы): +0.1 к множителю за каждый шаг от базового. */
@@ -57,6 +61,8 @@ export function normalizeArenaMultipliersFirestore(raw: unknown): MultiplierBrea
     streakM: typeof m.streakM === 'number' ? m.streakM : 1,
     comebackM: typeof m.comebackM === 'number' ? m.comebackM : 1,
     giftM: typeof m.giftM === 'number' ? m.giftM : 1,
+    leagueBoostM: typeof m.leagueBoostM === 'number' ? m.leagueBoostM : 1,
+    leagueGroupBoostM: typeof m.leagueGroupBoostM === 'number' ? m.leagueGroupBoostM : 1,
     total: typeof m.total === 'number' ? m.total : 1,
   };
 }
@@ -165,9 +171,10 @@ export const registerXP = async (
       const giftM = giftState.multiplier;
       // Е) Персональный буст лиги (x2/x3 на ограниченное время)
       const leagueBoostM = await getLeagueBoostMultiplier();
+      const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
       const leagueChestM = await consumeLeagueChestXpOverrideMultiplier();
 
-      totalMultiplier = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueChestM - 1);
+      totalMultiplier = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1);
       finalDelta = Math.round(amount * totalMultiplier);
       if (giftState.consumeBank) {
         await consumeGiftXpBank(amount).catch(() => 0);
@@ -179,7 +186,7 @@ export const registerXP = async (
         ensureAnonUser().then((uid: string | null) => {
           if (!uid) return;
           db.collection('arena_profiles').doc(uid).set({
-            multipliers: { clubM, streakM, comebackM, giftM: giftM + leagueBoostM - 1, total: totalMultiplier, updatedAt: Date.now() },
+            multipliers: { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, total: totalMultiplier, updatedAt: Date.now() },
           }, { merge: true }).catch(() => {});
         }).catch(() => {});
       } catch {}
@@ -263,31 +270,23 @@ export const registerXP = async (
     // Синхронизируем прогресс в облако (fire-and-forget)
     syncToCloud({ deferMs: XP_CLOUD_SYNC_DEFER_MS }).catch(() => {});
 
-    // Обновляем leaderboard/{uid} напрямую — не ждём Cloud Function
+    // Public profile is local-first: user sees XP immediately, server snapshot refreshes rarely.
     if (finalDelta > 0) {
-      const weekPoints = await getMyWeekPoints();
       const streakVal = (await storageGetNumber('streak_count', 0)) || undefined;
       const frameId = await storageGetString('user_frame');
       const lsRaw = await storageGetString('league_state_v3');
       let leagueId: number | undefined;
       try { if (lsRaw) leagueId = JSON.parse(lsRaw).leagueId; } catch {}
-      const [premiumStatus, vipStatus] = await Promise.all([
-        getVerifiedRealPremiumStatus().catch(() => false),
-        getVerifiedVipStatus().catch(() => false),
-      ]);
-      pushMyScore(
-        resolvedName,
-        newTotal,
-        weekPoints,
+      syncPublicProfileSnapshot({
+        reason: 'daily_xp',
+        name: resolvedName,
+        totalXp: newTotal,
         lang,
-        String((await storageGetString('user_avatar')) || getLevelFromXP(newTotal)),
-        streakVal,
+        avatar: String((await storageGetString('user_avatar')) || getLevelFromXP(newTotal)),
+        streak: streakVal,
         leagueId,
-        frameId ?? undefined,
-        premiumStatus,
-        undefined,
-        vipStatus,
-      ).catch(() => {});
+        frame: frameId ?? undefined,
+      }).catch(() => {});
     }
 
     return {
@@ -309,11 +308,6 @@ export const registerXP = async (
 const XP_MIGRATION_KEY = 'xp_formula_v2_migrated';
 
 // Старая формула: (L-1)^2 * 50
-const oldLevelFromXP = (xp: number): number => {
-  if (xp <= 0) return 1;
-  return Math.min(50, Math.floor(Math.sqrt(xp / 50)) + 1);
-};
-
 /**
  * Миграция XP при смене формулы уровней.
  * Сохраняет уровень пользователя, пересчитывает XP под новый порог.
@@ -321,39 +315,43 @@ const oldLevelFromXP = (xp: number): number => {
  */
 export const migrateXPFormulaV2 = async (): Promise<void> => {
   try {
-    const done = await storageGetString(XP_MIGRATION_KEY);
-    if (done) return;
-
     // Если пользователь уже прошёл миграцию xp_migration_v2 (home.tsx) — он уже на новой формуле.
     // Просто помечаем как мигрированного, не трогаем XP.
-    const newFormulaDone = await storageGetString('xp_migration_v2');
-    if (newFormulaDone) {
-      await storageSetString(XP_MIGRATION_KEY, '1');
-      return;
-    }
-
+    // Do not trust legacy markers here; they may have been set before the
+    // 250-to-400 restore actually lifted XP on every account.
     const currentXP = await storageGetNumber('user_total_xp', 0);
     if (currentXP <= 0) {
+      await storageSetString(XP_LEVEL_RESTORE_250_TO_400_KEY, '1');
       await storageSetString(XP_MIGRATION_KEY, '1');
       return;
     }
 
-    const oldLevel = oldLevelFromXP(currentXP);
-    const newXP = TOTAL_XP_FOR_LEVEL(oldLevel);
+    const restored = restoredXPForOld250VisibleLevel(currentXP);
+    const newXP = restored.targetXP;
 
     // Никогда не уменьшаем XP — только увеличиваем или оставляем как есть
     if (newXP <= currentXP) {
+      await storageSetString(XP_LEVEL_RESTORE_250_TO_400_KEY, '1');
       await storageSetString(XP_MIGRATION_KEY, '1');
       return;
     }
 
+    const currentAvatar = await storageGetString('user_avatar');
+    const nextLevel = getLevelFromXP(newXP);
+    const nextAvatar = isCustomAvatarValue(currentAvatar) ? currentAvatar! : getBestAvatarForLevel(nextLevel);
+    const nextFrame = getBestFrameForLevel(nextLevel);
     await AsyncStorage.multiSet([
       ['user_total_xp', String(newXP)],
       ['user_prev_xp', String(newXP)],
+      ['user_avatar', nextAvatar],
+      ['user_frame', nextFrame.id],
+      [XP_LEVEL_RESTORE_250_TO_400_KEY, '1'],
       [XP_MIGRATION_KEY, '1'],
     ]);
 
+    emitAppEvent('xp_changed');
     emitAppEvent('xp_updated', { total: newXP, delta: 0 });
+    syncToCloud({ forceNow: true }).catch(() => {});
   } catch {}
 };
 
@@ -371,8 +369,9 @@ export const getCurrentMultiplier = async (): Promise<number> => {
     const comebackM = (comebackRaw === todayStr) ? 2 : 1;
     const giftM = await readGiftMultiplier();
     const leagueBoostM = await getLeagueBoostMultiplier();
+    const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
 
-    return 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1);
+    return 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1);
   } catch {
     return 1;
   }
@@ -383,6 +382,8 @@ export interface MultiplierBreakdown {
   streakM: number;
   comebackM: number;
   giftM: number;
+  leagueBoostM: number;
+  leagueGroupBoostM: number;
   total: number;
 }
 
@@ -396,11 +397,11 @@ export const getCurrentMultiplierBreakdown = async (): Promise<MultiplierBreakdo
     const comebackM = (comebackRaw === todayStr) ? 2 : 1;
     const giftM = await readGiftMultiplier();
     const leagueBoostM = await getLeagueBoostMultiplier();
-    const combinedGiftM = giftM + leagueBoostM - 1;
-    const total = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (combinedGiftM - 1);
-    return { clubM, streakM, comebackM, giftM: combinedGiftM, total };
+    const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
+    const total = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1);
+    return { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, total };
   } catch {
-    return { clubM: 1, streakM: 1, comebackM: 1, giftM: 1, total: 1 };
+    return { clubM: 1, streakM: 1, comebackM: 1, giftM: 1, leagueBoostM: 1, leagueGroupBoostM: 1, total: 1 };
   }
 };
 

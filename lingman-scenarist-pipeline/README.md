@@ -43,3 +43,22 @@ git push -u origin main
 git status
 git log --oneline -5
 ```
+
+## CapCut Wednesday Assembler
+
+- `capcut_wednesday_assembler/` - reference capture and editable native CapCut
+  clone builder for the `WEDNESDAY( c подписей1)` timeline.
+- The captured reference profile keeps the timeline map, text styles, audio
+  layout, effects, animation refs, and background-track detection.
+- The builder creates a new CapCut project with the same editable structure while
+  leaving detected direct background tracks empty for manual background insert.
+
+### Wednesday Word Contract
+
+- `capcut_wednesday_assembler/WEDNESDAY_PIPELINE_CONTRACT.md` is the source of
+  truth for Wednesday word projects.
+- It overrides older notes and failed draft variants.
+- Final audio must be one `ru_then_en` MP3 per word: Russian first, English
+  delayed to the English text/IPA timing.
+- Validate every delivered Wednesday word draft with
+  `capcut_wednesday_assembler/validate_wednesday_contract.py`.

@@ -6632,8 +6632,8 @@ export const LESSON_WORD_SOURCE_LOCALES_BY_EN: Record<string, LessonWordSourceLo
     'pt-BR': 'procurando / buscando',
     vi: 'đang tìm kiếm',
     id: 'sedang mencari',
-    tr: 'arıyordu / aramakta',
-    pl: 'szukał / szukając',
+    tr: 'arıyor / aramak',
+    pl: 'szukać / szukając',
   },
   talking: {
     es: 'hablando / conversando',

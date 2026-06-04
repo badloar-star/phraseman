@@ -1,14 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ensureAnonUser } from './cloud_sync';
+import { getCanonicalUserId } from './user_id_policy';
 import { emitAppEvent, onAppEvent } from './events';
 import {
-  authorizeLeagueChatRoom,
   getCachedLeagueChatMessagesSync,
   getCachedLeagueChatRoomSync,
   loadCachedLeagueChatMessages,
   loadCachedLeagueChatRoom,
-  resolveMyLeagueChatRoom,
-  subscribeLeagueChatMessages,
 } from './firestore_league_chat';
 import type { LeagueChatMessage, LeagueChatRoom } from './firestore_league_chat';
 import {
@@ -42,7 +39,6 @@ export function useLeagueChatUnread({
   const [room, setRoom] = useState<LeagueChatRoom | null>(initialRoomRef.current ?? null);
   const [myUid, setMyUid] = useState(() => String(providedMyUid ?? '').trim());
   const [unreadCount, setUnreadCount] = useState(0);
-  const [authorizedRoomKey, setAuthorizedRoomKey] = useState('');
   const roomKey = room ? leagueChatRoomKey(room) : '';
 
   useEffect(() => {
@@ -53,7 +49,7 @@ export function useLeagueChatUnread({
   useEffect(() => {
     if (myUid) return;
     let cancelled = false;
-    void ensureAnonUser()
+    void getCanonicalUserId()
       .then((uid) => {
         if (!cancelled && uid) setMyUid(uid);
       })
@@ -74,33 +70,11 @@ export function useLeagueChatUnread({
       if (!cancelled && cached) {
         setRoom((cur) => (sameLeagueChatRoom(cur, cached) ? cur : cur ?? cached));
       }
-      const resolved = await resolveMyLeagueChatRoom();
-      if (!cancelled && resolved) {
-        setRoom((cur) => (sameLeagueChatRoom(cur, resolved) ? cur : resolved));
-      }
     })();
     return () => {
       cancelled = true;
     };
   }, [enabled, initialRoom]);
-
-  useEffect(() => {
-    if (!enabled || !room) {
-      setAuthorizedRoomKey('');
-      return;
-    }
-    let cancelled = false;
-    const key = roomKey;
-    setAuthorizedRoomKey((cur) => (cur === key ? cur : ''));
-    void authorizeLeagueChatRoom(room)
-      .then((status) => {
-        if (!cancelled && status === 'authorized') setAuthorizedRoomKey(key);
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, [enabled, roomKey]);
 
   const applyMessages = useCallback(async (
     targetRoom: LeagueChatRoom,
@@ -136,23 +110,6 @@ export function useLeagueChatUnread({
       cancelledRef.current = true;
     };
   }, [enabled, roomKey, active, applyMessages]);
-
-  useEffect(() => {
-    if (!enabled || !room || authorizedRoomKey !== roomKey) return;
-    const cancelledRef = { current: false };
-    const unsubscribe = subscribeLeagueChatMessages(
-      room,
-      (rows) => {
-        const cached = rows.length > 0 ? rows : getCachedLeagueChatMessagesSync(room);
-        void applyMessages(room, cached, active, cancelledRef);
-      },
-      () => {},
-    );
-    return () => {
-      cancelledRef.current = true;
-      unsubscribe();
-    };
-  }, [enabled, roomKey, authorizedRoomKey, active, applyMessages]);
 
   useEffect(() => {
     const sub = onAppEvent('league_chat_unread_changed', (payload) => {

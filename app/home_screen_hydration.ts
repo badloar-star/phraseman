@@ -7,6 +7,7 @@ import type { Lang } from '../constants/i18n';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { storageStudyTarget } from './target_storage_keys';
+import type { StreakWeekDayMarkerKind } from './streak_week_markers';
 
 export type HomeScreenHydration = {
   userName: string;
@@ -14,6 +15,7 @@ export type HomeScreenHydration = {
   streak: number;
   displayStreak: number;
   weekDone: boolean[];
+  weekMarkers?: Array<StreakWeekDayMarkerKind | null>;
   weekPoints: number;
   shardsBalance: number;
   lessonsCompleted: number;

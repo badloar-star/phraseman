@@ -1042,7 +1042,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
     words: [
       { text: 'Is', correct: 'Is', distractors: ['am', 'are', 'be', 'been', 'being'], category: 'to-be' },
       { text: 'it', correct: 'it', distractors: ['its', 'eat', 'at', 'this', 'that'], category: 'pronoun' },
-      { text: 'true', correct: 'true', distractors: ['tree', 'blue', 'clue', 'glue', 'crew'], category: 'adjective' },
+      { text: 'true', correct: 'true', distractors: ['truth', 'tree', 'blue', 'clue', 'glue'], category: 'adjective' },
     ],
   },
   {

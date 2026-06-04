@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, TouchableOpacity, View, type KeyboardEvent } from 'react-native';
 import { moderateLeagueChatMessage } from '../app/league_chat_moderation';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from './ThemeContext';
@@ -11,6 +11,7 @@ import {
   authorizeLeagueChatRoom,
   blockLeagueChatUser,
   cacheLeagueChatRoom,
+  forgetCachedLeagueChatAuthorization,
   forgetCachedLeagueChatRoom,
   getCachedLeagueChatMessagesSync,
   getCachedLeagueChatRoomSync,
@@ -24,10 +25,18 @@ import {
   sendLeagueChatMessage,
   subscribeLeagueChatMessages,
 } from '../app/firestore_league_chat';
+import { emitAppEvent } from '../app/events';
+import { leagueChatRoomKey, markLeagueChatRoomRead } from '../app/league_chat_unread';
 import { hapticTap } from '../hooks/use-haptics';
 import {
+  createOptimisticLeagueChatMessage,
   getLeagueChatConnectionUi,
   getLeagueChatKeyboardAvoidingBehavior,
+  getLeagueChatKeyboardOverlapInset,
+  getLeagueChatKeyboardTopY,
+  isOptimisticLeagueChatMessage,
+  mergeLeagueChatOptimisticMessages,
+  type OptimisticLeagueChatMessage,
 } from './leagueChatPanelBehavior';
 
 const HIDE_UNDO_MS = 10_000;
@@ -73,6 +82,7 @@ export default function LeagueChatPanel({
     const seedRoom = initialRoomRef.current;
     return seedRoom ? getCachedLeagueChatMessagesSync(seedRoom) : [];
   });
+  const [optimisticMessages, setOptimisticMessages] = useState<OptimisticLeagueChatMessage[]>([]);
   const [blockedUsers, setBlockedUsers] = useState<Record<string, boolean>>({});
   const [pendingHideUntilByUid, setPendingHideUntilByUid] = useState<Record<string, number>>({});
   const [hideTimerNow, setHideTimerNow] = useState(Date.now());
@@ -89,26 +99,82 @@ export default function LeagueChatPanel({
   const [reportReason, setReportReason] = useState(REPORT_REASONS[0].id);
   const [reportDetails, setReportDetails] = useState('');
   const [reportSubmitting, setReportSubmitting] = useState(false);
+  const [keyboardBottomInset, setKeyboardBottomInset] = useState(0);
+  const panelRef = useRef<View | null>(null);
   const scrollRef = useRef<ScrollView | null>(null);
+  const keyboardMeasureTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const hideTimersRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
   const forbiddenRoomKeyRef = useRef('');
+  const optimisticMessageSeqRef = useRef(0);
+
+  const scrollToLatestMessage = useCallback(() => {
+    requestAnimationFrame(() => scrollRef.current?.scrollToEnd({ animated: true }));
+  }, []);
+  const markVisibleMessagesRead = useCallback((targetRoom: LeagueChatRoom, rows: LeagueChatMessage[]) => {
+    void markLeagueChatRoomRead(targetRoom, rows).then(() => {
+      emitAppEvent('league_chat_unread_changed', {
+        roomKey: leagueChatRoomKey(targetRoom),
+        unreadCount: 0,
+      });
+    }).catch(() => {});
+  }, []);
+
+  const clearKeyboardMeasureTimers = useCallback(() => {
+    keyboardMeasureTimersRef.current.forEach((timer) => clearTimeout(timer));
+    keyboardMeasureTimersRef.current = [];
+  }, []);
+
+  const measureKeyboardInset = useCallback((keyboardTopY: number) => {
+    requestAnimationFrame(() => {
+      panelRef.current?.measureInWindow((_x, y, _width, height) => {
+        const panelBottomY = y + height;
+        setKeyboardBottomInset(getLeagueChatKeyboardOverlapInset(panelBottomY, keyboardTopY));
+        scrollToLatestMessage();
+      });
+    });
+  }, [scrollToLatestMessage]);
+
+  const scheduleKeyboardInsetMeasure = useCallback((event?: KeyboardEvent | null) => {
+    const resolveKeyboardTopY = () => getLeagueChatKeyboardTopY(
+      event?.endCoordinates ?? Keyboard.metrics(),
+      Dimensions.get('screen').height,
+    );
+    clearKeyboardMeasureTimers();
+    [0, 60, 180, 320].forEach((delay) => {
+      if (delay === 0) {
+        measureKeyboardInset(resolveKeyboardTopY());
+        return;
+      }
+      const timer = setTimeout(() => measureKeyboardInset(resolveKeyboardTopY()), delay);
+      keyboardMeasureTimersRef.current.push(timer);
+    });
+  }, [clearKeyboardMeasureTimers, measureKeyboardInset]);
+
+  const handleComposerFocus = useCallback(() => {
+    scheduleKeyboardInsetMeasure(null);
+  }, [scheduleKeyboardInsetMeasure]);
 
   useEffect(() => {
     const showSub = Keyboard.addListener(
       Platform.OS === 'ios' ? 'keyboardWillChangeFrame' : 'keyboardDidShow',
-      () => {
-        requestAnimationFrame(() => scrollRef.current?.scrollToEnd({ animated: true }));
+      (event) => {
+        scheduleKeyboardInsetMeasure(event);
       },
     );
     const hideSub = Keyboard.addListener(
       Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide',
-      () => requestAnimationFrame(() => scrollRef.current?.scrollToEnd({ animated: true })),
+      () => {
+        clearKeyboardMeasureTimers();
+        setKeyboardBottomInset(0);
+        scrollToLatestMessage();
+      },
     );
     return () => {
+      clearKeyboardMeasureTimers();
       showSub.remove();
       hideSub.remove();
     };
-  }, []);
+  }, [clearKeyboardMeasureTimers, scheduleKeyboardInsetMeasure, scrollToLatestMessage]);
 
   useEffect(() => {
     let cancelled = false;
@@ -200,20 +266,24 @@ export default function LeagueChatPanel({
   useEffect(() => {
     if (!room) {
       setMessages([]);
+      setOptimisticMessages([]);
       return;
     }
     let cancelled = false;
     const memoryMessages = getCachedLeagueChatMessagesSync(room);
     setMessages(memoryMessages);
+    setOptimisticMessages((cur) => mergeLeagueChatOptimisticMessages(memoryMessages, cur).filter(isOptimisticLeagueChatMessage));
     void loadCachedLeagueChatMessages(room).then((cached) => {
       if (cancelled) return;
       setMessages(cached);
+      setOptimisticMessages((cur) => mergeLeagueChatOptimisticMessages(cached, cur).filter(isOptimisticLeagueChatMessage));
+      markVisibleMessagesRead(room, cached);
       requestAnimationFrame(() => scrollRef.current?.scrollToEnd({ animated: false }));
     });
     return () => {
       cancelled = true;
     };
-  }, [room]);
+  }, [room, markVisibleMessagesRead]);
 
   useEffect(() => {
     if (!room || !connectionUi.shouldSubscribe) return;
@@ -226,10 +296,13 @@ export default function LeagueChatPanel({
         if (cancelled) return;
         setSubscriptionError(false);
         setMessages(rows);
+        setOptimisticMessages((cur) => mergeLeagueChatOptimisticMessages(rows, cur).filter(isOptimisticLeagueChatMessage));
+        markVisibleMessagesRead(room, rows);
         requestAnimationFrame(() => scrollRef.current?.scrollToEnd({ animated: true }));
       },
       () => {
         if (cancelled) return;
+        void forgetCachedLeagueChatAuthorization(room);
         setSubscriptionError(true);
         setAuthorizedRoomKey((cur) => (cur === key ? '' : cur));
       },
@@ -238,11 +311,12 @@ export default function LeagueChatPanel({
       cancelled = true;
       unsub();
     };
-  }, [room, currentRoomKey, connectionUi.shouldSubscribe, subscriptionNonce]);
+  }, [room, currentRoomKey, connectionUi.shouldSubscribe, subscriptionNonce, markVisibleMessagesRead]);
 
   const visibleMessages = useMemo(
-    () => messages.filter((m) => m.authorUid === myUid || !blockedUsers[m.authorUid]),
-    [messages, blockedUsers, myUid],
+    () => mergeLeagueChatOptimisticMessages(messages, optimisticMessages)
+      .filter((m) => isOptimisticLeagueChatMessage(m) || m.authorUid === myUid || !blockedUsers[m.authorUid]),
+    [messages, optimisticMessages, blockedUsers, myUid],
   );
 
   useEffect(() => {
@@ -288,34 +362,30 @@ export default function LeagueChatPanel({
 }), 'error');
       return;
     }
+    const optimisticMessage = createOptimisticLeagueChatMessage(room, {
+      clientId: `${Date.now()}-${optimisticMessageSeqRef.current += 1}`,
+      authorUid: myUid || 'local-league-chat-user',
+      authorAvatar: myAvatar,
+      authorAura: myAuraId,
+      text,
+      now: Date.now(),
+    });
+    setOptimisticMessages((cur) => [...cur, optimisticMessage]);
+    scrollToLatestMessage();
     setSending(true);
     setDraft('');
     setDraftBlocked(false);
     try {
       const result = await sendLeagueChatMessage(room, text);
       if (result === 'sent') {
-        showToast(triLang(lang, {
-  ru: 'Сообщение отправлено',
-  uk: 'Повідомлення надіслано',
-  es: 'Mensaje enviado',
-  "pt-BR": 'Mensagem enviada',
-  vi: 'Đã gửi tin nhắn',
-  id: 'Pesan terkirim',
-  tr: 'Mesaj gönderildi',
-  pl: 'Wiadomość wysłana',
-}), 'success');
+        return;
       } else if (result === 'review') {
-        showToast(triLang(lang, {
-  ru: 'Сообщение ушло на проверку',
-  uk: 'Повідомлення на перевірці',
-  es: 'Mensaje en revisión',
-  "pt-BR": 'Mensagem enviada para revisão',
-  vi: 'Tin nhắn đã được gửi để kiểm tra',
-  id: 'Pesan masuk peninjauan',
-  tr: 'Mesaj incelemeye gönderildi',
-  pl: 'Wiadomość trafiła do sprawdzenia',
-}));
+        setOptimisticMessages((cur) => cur.map((message) => (
+          message.id === optimisticMessage.id ? { ...message, localStatus: 'review' } : message
+        )));
+        return;
       } else if (result === 'throttled') {
+        setOptimisticMessages((cur) => cur.filter((message) => message.id !== optimisticMessage.id));
         setDraft(text);
         showToast(triLang(lang, {
   ru: 'Слишком часто. Подожди немного.',
@@ -328,6 +398,9 @@ export default function LeagueChatPanel({
   pl: 'Za często. Poczekaj chwilę.',
 }), 'error');
       } else if (result === 'offline') {
+        setOptimisticMessages((cur) => cur.map((message) => (
+          message.id === optimisticMessage.id ? { ...message, localStatus: 'failed' } : message
+        )));
         setDraft(text);
         showToast(triLang(lang, {
   ru: 'Нет соединения. Сообщение не отправлено.',
@@ -340,6 +413,7 @@ export default function LeagueChatPanel({
   pl: 'Brak połączenia. Wiadomość nie została wysłana.',
 }), 'error');
       } else {
+        setOptimisticMessages((cur) => cur.filter((message) => message.id !== optimisticMessage.id));
         setDraft(text);
         setDraftBlocked(true);
         showToast(triLang(lang, {
@@ -356,7 +430,7 @@ export default function LeagueChatPanel({
     } finally {
       setSending(false);
     }
-  }, [draft, draftBlocked, lang, room, sending, showToast]);
+  }, [draft, draftBlocked, lang, myAuraId, myAvatar, myUid, room, scrollToLatestMessage, sending, showToast]);
 
   const openReportModal = useCallback((message: LeagueChatMessage) => {
     hapticTap();
@@ -696,12 +770,16 @@ export default function LeagueChatPanel({
         </ScrollView>
       </KeyboardAvoidingView>
     </Modal>
-    <KeyboardAvoidingView
-      behavior={getLeagueChatKeyboardAvoidingBehavior(Platform.OS)}
-      keyboardVerticalOffset={0}
-      style={{ flex: 1 }}
-    >
-      <View testID="league-chat-panel" style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
+      <View
+        ref={panelRef}
+        collapsable={false}
+        testID="league-chat-panel"
+        style={{
+          flex: 1,
+          paddingBottom: keyboardBottomInset,
+        }}
+      >
         <ScrollView
           ref={scrollRef}
           style={{ flex: 1 }}
@@ -734,7 +812,8 @@ export default function LeagueChatPanel({
               </Text>
             </View>
           ) : visibleMessages.map((m) => {
-            const isMine = !!myUid && m.authorUid === myUid;
+            const localMessage = isOptimisticLeagueChatMessage(m);
+            const isMine = localMessage || (!!myUid && m.authorUid === myUid);
             const pendingHideUntil = pendingHideUntilByUid[m.authorUid] ?? 0;
             const hideCountdown = Math.max(0, Math.ceil((pendingHideUntil - hideTimerNow) / 1000));
             const avatar = isMine
@@ -886,7 +965,10 @@ export default function LeagueChatPanel({
           })}
         </ScrollView>
 
-        <View style={{ paddingHorizontal: 12, paddingTop: 8, paddingBottom: 8, borderTopWidth: 0.5, borderTopColor: t.border, backgroundColor: 'rgba(0,0,0,0.10)' }}>
+        <View
+          testID="league-chat-composer"
+          style={{ paddingHorizontal: 12, paddingTop: 8, paddingBottom: 8, borderTopWidth: 0.5, borderTopColor: t.border, backgroundColor: 'rgba(0,0,0,0.10)' }}
+        >
           {draftBlocked && (
             <Text style={{ color: '#E05252', fontSize: Math.max(10, f.caption - 1), marginBottom: 5, paddingHorizontal: 4 }}>
               {triLang(lang, {
@@ -907,7 +989,7 @@ export default function LeagueChatPanel({
               value={draft}
               onChangeText={handleDraftChange}
               editable={connectionUi.canEditDraft}
-              onFocus={() => requestAnimationFrame(() => scrollRef.current?.scrollToEnd({ animated: true }))}
+              onFocus={handleComposerFocus}
               placeholder={triLang(lang, {
   ru: 'Сообщение...',
   uk: 'Повідомлення...',
@@ -957,7 +1039,7 @@ export default function LeagueChatPanel({
           </View>
         </View>
       </View>
-    </KeyboardAvoidingView>
+    </View>
     </>
   );
 }

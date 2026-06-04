@@ -5,8 +5,9 @@ import Purchases from 'react-native-purchases';
 import { getVerifiedRealPremiumStatus, getVerifiedVipStatus, invalidatePremiumCache } from '../app/premium_guard';
 import { CLOUD_SYNC_ENABLED, DEV_IAP_BYPASS, FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from '../app/config';
 import { emitAppEvent, onAppEvent } from '../app/events';
-import { updateMyPremiumInLeaderboard, updateMyVipInLeaderboard } from '../app/firestore_leaderboard';
+import { syncPublicProfileSnapshot } from '../app/public_profile_snapshot';
 import {
+  createCoalescedAsyncRunner,
   FOREGROUND_CLOUD_REFRESH_DELAY_MS,
   FOREGROUND_LIGHT_REFRESH_DELAY_MS,
   getForegroundRefreshKind,
@@ -76,6 +77,8 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const [trialEligible, setTrialEligible] = useState(false);
   const backgroundedAtRef = useRef<number | null>(null);
   const vipSnapshotStateRef = useRef<boolean | null>(null);
+  const reloadRunnerRef = useRef<(() => Promise<void>) | null>(null);
+  const cloudRefreshRunnerRef = useRef<(() => Promise<void>) | null>(null);
   const [premiumListenerRevision, setPremiumListenerRevision] = useState(0);
 
   const reloadTrialEligible = useCallback(async () => {
@@ -83,7 +86,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     setTrialEligible(prev => (prev === v ? prev : v));
   }, []);
 
-  const reload = useCallback(async () => {
+  const runReload = useCallback(async () => {
     if (FORCE_PREMIUM) {
       setIsPremium(true);
       setIsVip(false);
@@ -105,8 +108,12 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       void reloadTrialEligible();
     }
   }, [reloadTrialEligible]);
+  const reload = useCallback(async () => {
+    reloadRunnerRef.current ??= createCoalescedAsyncRunner(runReload);
+    await reloadRunnerRef.current();
+  }, [runReload]);
 
-  const reloadAfterCloudRefresh = useCallback(async () => {
+  const runReloadAfterCloudRefresh = useCallback(async () => {
     if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
       await reload();
       return;
@@ -119,6 +126,10 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     invalidatePremiumCache();
     await reload();
   }, [reload]);
+  const reloadAfterCloudRefresh = useCallback(async () => {
+    cloudRefreshRunnerRef.current ??= createCoalescedAsyncRunner(runReloadAfterCloudRefresh);
+    await cloudRefreshRunnerRef.current();
+  }, [runReloadAfterCloudRefresh]);
 
   // Login/merge can swap the canonical stable_id; restart the admin-grant listener on the new users/{stable_id}.
   useEffect(() => {
@@ -219,14 +230,14 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
                 setHasPremiumAccess(true);
                 emitAppEvent('vip_activated');
                 emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
-                void updateMyVipInLeaderboard(true);
+                void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true });
               } else {
                 setIsVip(false);
                 setHasPremiumAccess(isPremium);
                 void reloadTrialEligible();
                 emitAppEvent('vip_deactivated');
                 emitAppEvent('premium_access_changed', { active: isPremium, source: isPremium ? 'premium' : 'none' });
-                void updateMyVipInLeaderboard(false);
+                void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium });
               }
             })();
           },
@@ -312,7 +323,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       // (RC sandbox can have propagation delay, grace period in premium_guard handles it)
       void reload();
       emitAppEvent('premium_access_changed', { active: true, source: 'premium' });
-      void updateMyPremiumInLeaderboard(true);
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isPremium: true, isVip });
     });
     return () => sub.remove();
   }, [reload]);
@@ -326,7 +337,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       setTrialEligible(false);
       invalidatePremiumCache();
       void reload();
-      void updateMyVipInLeaderboard(true);
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true });
     });
     const onDeactivated = onAppEvent('vip_deactivated', () => {
       setIsVip(false);
@@ -334,7 +345,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       invalidatePremiumCache();
       void reloadTrialEligible();
       void reload();
-      void updateMyVipInLeaderboard(false);
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium });
     });
     return () => {
       onActivated.remove();
@@ -353,7 +364,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         .catch(() => {});
       void reload();
       emitAppEvent('premium_access_changed', { active: isVip, source: isVip ? 'vip' : 'none' });
-      void updateMyPremiumInLeaderboard(false);
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isPremium: false, isVip });
     });
     return () => sub.remove();
   }, [isVip, reload]);

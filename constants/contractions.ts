@@ -202,6 +202,10 @@ export const toAmE = (lowercased: string): string => {
 
 const ANSWER_EQUIVALENTS: [RegExp, string][] = [
   [/\bseldom\b/g, 'rarely'],
+  [/\bsomebody\b/g, 'someone'],
+  [/\banybody\b/g, 'anyone'],
+  [/\beverybody\b/g, 'everyone'],
+  [/\bno one\b/g, 'nobody'],
 ];
 
 export const toCanonicalAnswerLexis = (lowercased: string): string => {

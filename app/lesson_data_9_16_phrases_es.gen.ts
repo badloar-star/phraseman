@@ -6082,7 +6082,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson14_phrase_45',
     english: 'We need a better plan',
-    russian: 'Нам нужен лучший план',
+    russian: 'Нам нужен план получше',
     ukrainian: 'Нам потрібен кращий план',
     spanish: 'Necesitamos un plan mejor.',
     words: [

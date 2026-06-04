@@ -1,0 +1,219 @@
+{
+  "pipeline": "lesson-33",
+  "version": 1,
+  "lessonId": 33,
+  "runId": "codex-smoke",
+  "generatedAt": "2026-05-26T09:18:53.175Z",
+  "outputDir": "docs/lesson33/runs/codex-smoke",
+  "cefrTarget": "B2",
+  "primaryTopic": "Causative/result object: have/get something done",
+  "sourceOfTruth": [
+    "app/lesson_data_all.ts",
+    "app/lesson_data_25_32.ts",
+    "app/lesson_help.tsx",
+    "app/lesson_intros_17_32.ts",
+    "app/diagnosis_trainings.ts",
+    "tools/lesson_qa/prompts/00_rules.md"
+  ],
+  "continuationAnchor": [
+    "Lesson 31 trains complex object after made/let/heard/saw/felt/helped.",
+    "Lesson 32 mixes be used to + V-ing, relative clauses, reported speech, passive, and need/want + object + V3.",
+    "Lesson 33 narrows that bridge into have/get something done with controlled B2 phrase progression."
+  ],
+  "requiredOutputs": [
+    "manifest.json",
+    "lesson_package.json",
+    "curriculum_brief.md",
+    "curriculum_roadmap_33_60.md",
+    "phrase_blueprint.md",
+    "intro_theory_plan.md",
+    "personal_training_plan.md",
+    "qa_report.md"
+  ],
+  "requiredChecks": [
+    "npm run lesson:qa",
+    "npm run audit:lesson-intros",
+    "npm run audit:lesson-deep-content",
+    "npm run audit:translations",
+    "npx tsc --noEmit --pretty false"
+  ],
+  "prohibitedWriteTargets": [
+    "app/lesson_data_25_32.ts",
+    "app/lesson_data_all.ts",
+    "app/lesson_help.tsx",
+    "app/lesson_intros_17_32.ts",
+    "constants/lessons.ts",
+    "tests/"
+  ],
+  "curriculumRoadmap": [
+    {
+      "lessonId": 33,
+      "cefr": "B2",
+      "topic": "have/get something done",
+      "role": "Focused continuation after Lesson 32 object-result patterns."
+    },
+    {
+      "lessonId": 34,
+      "cefr": "B2",
+      "topic": "wish / if only",
+      "role": "Unreal present and regret without broad C1 overload."
+    },
+    {
+      "lessonId": 35,
+      "cefr": "B2",
+      "topic": "third conditional basics",
+      "role": "Past unreal cause and result."
+    },
+    {
+      "lessonId": 36,
+      "cefr": "B2",
+      "topic": "mixed conditionals basics",
+      "role": "Controlled present result from past condition."
+    },
+    {
+      "lessonId": 37,
+      "cefr": "B2",
+      "topic": "present perfect continuous",
+      "role": "Duration and visible result."
+    },
+    {
+      "lessonId": 38,
+      "cefr": "B2",
+      "topic": "past perfect continuous",
+      "role": "Background duration before a past event."
+    },
+    {
+      "lessonId": 39,
+      "cefr": "B2",
+      "topic": "future continuous and future perfect",
+      "role": "Future process and completion."
+    },
+    {
+      "lessonId": 40,
+      "cefr": "B2",
+      "topic": "advanced modal deduction",
+      "role": "must have, might have, cannot have."
+    },
+    {
+      "lessonId": 41,
+      "cefr": "B2+",
+      "topic": "permission, obligation, and necessity nuance",
+      "role": "have to, need to, be supposed to, be allowed to."
+    },
+    {
+      "lessonId": 42,
+      "cefr": "B2+",
+      "topic": "concession clauses",
+      "role": "although, even though, despite, in spite of."
+    },
+    {
+      "lessonId": 43,
+      "cefr": "B2+",
+      "topic": "purpose and result clauses",
+      "role": "so that, in order to, such that, so/such."
+    },
+    {
+      "lessonId": 44,
+      "cefr": "B2+",
+      "topic": "reason and contrast connectors",
+      "role": "therefore, however, nevertheless, whereas."
+    },
+    {
+      "lessonId": 45,
+      "cefr": "B2+",
+      "topic": "noun clauses",
+      "role": "what I need, where we met, whether it works."
+    },
+    {
+      "lessonId": 46,
+      "cefr": "B2+",
+      "topic": "reported questions advanced",
+      "role": "embedded questions and reporting verbs."
+    },
+    {
+      "lessonId": 47,
+      "cefr": "B2+",
+      "topic": "reporting verbs with patterns",
+      "role": "admit, deny, suggest, warn, promise."
+    },
+    {
+      "lessonId": 48,
+      "cefr": "B2+",
+      "topic": "passive reporting structures",
+      "role": "It is said that, he is believed to."
+    },
+    {
+      "lessonId": 49,
+      "cefr": "B2+",
+      "topic": "participle clauses basics",
+      "role": "Walking home, having finished, seen from here."
+    },
+    {
+      "lessonId": 50,
+      "cefr": "B2+",
+      "topic": "reduced relative clauses",
+      "role": "people living here, documents checked yesterday."
+    },
+    {
+      "lessonId": 51,
+      "cefr": "C1",
+      "topic": "inversion basics",
+      "role": "Never have I, only then did I."
+    },
+    {
+      "lessonId": 52,
+      "cefr": "C1",
+      "topic": "cleft sentences",
+      "role": "What I need is, It was John who."
+    },
+    {
+      "lessonId": 53,
+      "cefr": "C1",
+      "topic": "emphasis with do and auxiliaries",
+      "role": "I do understand, he did call."
+    },
+    {
+      "lessonId": 54,
+      "cefr": "C1",
+      "topic": "hedging and cautious claims",
+      "role": "seems to, appears to, is likely to."
+    },
+    {
+      "lessonId": 55,
+      "cefr": "C1",
+      "topic": "advanced adjective and noun complements",
+      "role": "aware of, responsible for, the fact that."
+    },
+    {
+      "lessonId": 56,
+      "cefr": "C1",
+      "topic": "advanced preposition patterns",
+      "role": "dependent on, associated with, involved in."
+    },
+    {
+      "lessonId": 57,
+      "cefr": "C1",
+      "topic": "formal cause and consequence",
+      "role": "thereby, hence, consequently, due to."
+    },
+    {
+      "lessonId": 58,
+      "cefr": "C1",
+      "topic": "stance and evaluation",
+      "role": "arguably, admittedly, presumably, supposedly."
+    },
+    {
+      "lessonId": 59,
+      "cefr": "C1",
+      "topic": "advanced mixed review 33-58",
+      "role": "Integrated production with controlled complexity."
+    },
+    {
+      "lessonId": 60,
+      "cefr": "C1",
+      "topic": "final C1 bridge review",
+      "role": "Course capstone and readiness for future C1 modules."
+    }
+  ],
+  "integrationPolicy": "This pipeline creates review artifacts only. App source integration requires a separate explicit approval step."
+}

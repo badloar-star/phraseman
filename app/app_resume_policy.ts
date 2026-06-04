@@ -11,3 +11,32 @@ export function getForegroundRefreshKind(backgroundDurationMs: number): Foregrou
   return 'local';
 }
 
+export function shouldRunDeepForegroundRefresh(backgroundDurationMs: number | null | undefined): boolean {
+  if (backgroundDurationMs == null) return false;
+  return getForegroundRefreshKind(backgroundDurationMs) === 'cloud';
+}
+
+export function createCoalescedAsyncRunner(run: () => Promise<void>): () => Promise<void> {
+  let inFlight: Promise<void> | null = null;
+  let queued = false;
+
+  return () => {
+    if (inFlight) {
+      queued = true;
+      return inFlight;
+    }
+
+    inFlight = (async () => {
+      try {
+        do {
+          queued = false;
+          await run();
+        } while (queued);
+      } finally {
+        inFlight = null;
+      }
+    })();
+
+    return inFlight;
+  };
+}

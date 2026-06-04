@@ -5,11 +5,12 @@ import {
   Animated, BackHandler, Keyboard, Easing,
   Platform,
   StatusBar,
+  Image as RNImage,
+  type ImageStyle,
   type ImageSourcePropType,
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
-import { Image as ExpoImage } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -44,6 +45,13 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 import { GoogleSignInButton, AppleSignInButton } from './AuthProviderButtons';
+import {
+  activatePendingPersonalPlanAfterPremium,
+  queuePendingPersonalPlanActivation,
+  PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY,
+} from '../app/personal_plan_activation';
+import { type PersonalPlanId, type PlanMinutesChoice } from '../app/personal_plan_catalog';
+import { usePremium } from './PremiumContext';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -54,12 +62,17 @@ const AppInfoDialog = {
 interface Props {
   onDone: () => void;
   onLangSelect?: (lang: Lang) => void;
+  onPersonalPlanPaywallStart?: () => Promise<void> | void;
 }
 
 
 const TARGET_LEVELS = ['a1', 'a2', 'b1', 'b2', 'c1'] as const;
 const PROGRESS_STEPS = ['welcome', 'name', 'streak', 'auth'] as const;
-type OnboardingStepKey = 'beta' | 'welcome' | 'demo2' | 'demo' | 'name' | 'streak' | 'auth';
+type OnboardingStepKey = 'beta' | 'planEntry' | 'planGoal' | 'planLevel' | 'planMinutes' | 'planPhrase' | 'planLoading' | 'planResult' | 'planPaywall' | 'planPicker' | 'planDetails' | 'welcome' | 'demo2' | 'demo' | 'name' | 'streak' | 'auth';
+type OnboardingPlanGoal = 'travel' | 'work' | 'move' | 'self';
+type OnboardingPlanLevel = 'a0' | 'a1' | 'a2' | 'b1';
+type OnboardingBillingChoice = 'monthly' | 'annual';
+type OnboardingNicknameMode = 'regular' | 'personal_plan';
 type StreakMilestoneIconKind = 'flame' | 'bolt' | 'gem' | 'crown';
 type OnboardingParticleSpec = {
   left: `${number}%`;
@@ -73,6 +86,8 @@ type OnboardingParticleSpec = {
 };
 const USE_ELITE_ONBOARDING_WELCOME = true;
 const ONBOARDING_ACCENT = '#F2B84B';
+const ONBOARDING_GOLD_2 = '#FFD472';
+const ONBOARDING_TEAL = '#63E6D2';
 const ONBOARDING_ACCENT_BG = 'rgba(242,184,75,0.16)';
 const ONBOARDING_TEXT_MUTED = '#D8CCB5';
 const ONBOARDING_BG_WELCOME = require('../assets/images/onboarding/onboarding-bg-welcome-wide.webp');
@@ -90,10 +105,119 @@ const ONBOARDING_STREAK_ICONS: Record<StreakMilestoneIconKind, ImageSourcePropTy
   gem: require('../assets/images/onboarding/streak-gem-medallion.webp'),
   crown: require('../assets/images/onboarding/streak-crown-medallion.webp'),
 };
+const ONBOARDING_PLAN_ICONS = {
+  travel: require('../assets/images/onboarding/plan-icons/icon-travel.png'),
+  work: require('../assets/images/onboarding/plan-icons/icon-work.png'),
+  home: require('../assets/images/onboarding/plan-icons/icon-home.png'),
+  study: require('../assets/images/onboarding/plan-icons/icon-study.png'),
+  beginner: require('../assets/images/onboarding/plan-icons/icon-beginner.png'),
+  basic: require('../assets/images/onboarding/plan-icons/icon-basic.png'),
+  speaking: require('../assets/images/onboarding/plan-icons/icon-speaking.png'),
+  confidence: require('../assets/images/onboarding/plan-icons/icon-confidence.png'),
+  time: require('../assets/images/onboarding/plan-icons/icon-time.png'),
+  phrase: require('../assets/images/onboarding/plan-icons/icon-phrase.png'),
+  path: require('../assets/images/onboarding/plan-icons/icon-path.png'),
+} as const satisfies Record<string, ImageSourcePropType>;
+const ONBOARDING_PAYWALL_ICONS = {
+  plan: require('../assets/images/onboarding/plan-icons/paywall-plan.png'),
+  lessons: require('../assets/images/onboarding/plan-icons/paywall-lessons.png'),
+  quizzes: require('../assets/images/onboarding/plan-icons/paywall-quizzes.png'),
+  cards: require('../assets/images/onboarding/plan-icons/paywall-cards.png'),
+  energy: require('../assets/images/onboarding/plan-icons/paywall-energy.png'),
+  arena: require('../assets/images/onboarding/plan-icons/paywall-arena.png'),
+  errors: require('../assets/images/onboarding/plan-icons/paywall-errors.png'),
+  trainer: require('../assets/images/onboarding/plan-icons/paywall-trainer.png'),
+  analytics: require('../assets/images/onboarding/plan-icons/paywall-analytics.png'),
+  themes: require('../assets/images/onboarding/plan-icons/paywall-themes.png'),
+  frame: require('../assets/images/onboarding/plan-icons/paywall-frame.png'),
+} as const satisfies Record<string, ImageSourcePropType>;
+const ONBOARDING_PRELOADED_ICON_ASSETS = [
+  ONBOARDING_LINGMAN_ICON,
+  ONBOARDING_AUTH_ICON,
+  ...Object.values(ONBOARDING_STREAK_ICONS),
+  ...Object.values(ONBOARDING_PLAN_ICONS),
+  ...Object.values(ONBOARDING_PAYWALL_ICONS),
+] as const;
+type PlanIconSource = (typeof ONBOARDING_PLAN_ICONS)[keyof typeof ONBOARDING_PLAN_ICONS];
+type PaywallIconSource = (typeof ONBOARDING_PAYWALL_ICONS)[keyof typeof ONBOARDING_PAYWALL_ICONS];
+const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
+const PLAN_LOADING_METER_KEYFRAMES = {
+  inputRange: [0, 0.35, 0.7, 1],
+  outputRange: [0.06, 0.42, 0.76, 1],
+};
+const PLAN_LOADING_BUTTON_REVEAL = { delay: 3350, duration: 350 };
+const PLAN_DAYS_COUNT_DURATION_MS = 2800;
+const PLAN_LOADING_BUILD_ITEMS: Array<{
+  title: string;
+  iconAsset: PlanIconSource;
+  delay: number;
+}> = [
+  { title: 'Определяем стартовый уровень', iconAsset: ONBOARDING_PLAN_ICONS.study, delay: 450 },
+  { title: 'Учитываем цель и темп', iconAsset: ONBOARDING_PLAN_ICONS.time, delay: 1100 },
+  { title: 'Собираем маршрут', iconAsset: ONBOARDING_PLAN_ICONS.path, delay: 1750 },
+];
+const PLAN_PHRASE_TOKENS = ['need', 'I', 'more', 'time'] as const;
+const PLAN_PHRASE_TARGET = ['I', 'need', 'more', 'time'] as const;
+
+function warmOnboardingBundledImages() {
+  ONBOARDING_PRELOADED_ICON_ASSETS.forEach((source) => {
+    RNImage.resolveAssetSource(source);
+  });
+}
+
+function OnboardingBundledImage({
+  source,
+  style,
+  resizeMode = 'contain',
+  accessible,
+}: {
+  source: ImageSourcePropType;
+  style: StyleProp<ImageStyle>;
+  resizeMode?: 'cover' | 'contain' | 'stretch' | 'repeat' | 'center';
+  accessible?: boolean;
+}) {
+  return (
+    <RNImage
+      source={source}
+      style={style}
+      resizeMode={resizeMode}
+      fadeDuration={0}
+      accessible={accessible}
+    />
+  );
+}
+
+function PlanFlowIcon({
+  source,
+  small = false,
+}: {
+  source: ImageSourcePropType;
+  small?: boolean;
+}) {
+  return (
+    <View style={[styles.planFlowIconSlot, small && styles.planFlowIconSlotSmall]}>
+      <OnboardingBundledImage
+        source={source}
+        style={[styles.planFlowBitmapIcon, small && styles.planFlowBitmapIconSmall]}
+      />
+    </View>
+  );
+}
+const PLAN_PROGRESS_STEPS: OnboardingStepKey[] = ['planGoal', 'planLevel', 'planMinutes', 'planPhrase', 'planLoading', 'planResult'];
 const PREV_STEP: Partial<Record<OnboardingStepKey, OnboardingStepKey>> = {
+  planGoal: 'planEntry',
+  planLevel: 'planGoal',
+  planMinutes: 'planLevel',
+  planPhrase: 'planMinutes',
+  planLoading: 'planPhrase',
+  planResult: 'planLoading',
+  planPaywall: 'planResult',
+  planPicker: 'planResult',
+  planDetails: 'planPicker',
+  welcome: 'planEntry',
   demo2: 'welcome',
   demo: 'demo2',
-  name: 'welcome',
+  name: 'planEntry',
   streak: 'name',
   auth: 'streak',
 };
@@ -120,9 +244,234 @@ const ONBOARDING_BACKGROUND_PARTICLES: OnboardingParticleSpec[] = [
   { left: '76%', top: '66%', size: 2, delay: 4700, duration: 8900,  rise: 138, drift: -10, opacity: 0.32 },
 ];
 
+const PERSONAL_PLAN_ONBOARDING_PLANS: Record<PersonalPlanId, {
+  name: string;
+  goal: string;
+  pitch: string;
+  horizon: string;
+  days: number;
+  recommendedLevel: string;
+  minutesDefault: PlanMinutesChoice;
+  iconAsset: PlanIconSource;
+  todayIconAsset?: PlanIconSource;
+  short: string;
+  levelSub: string;
+  outcome: string;
+}> = {
+  voyazh: {
+    name: 'Вояж',
+    goal: 'спокойно проходить поездку без переводчика на каждом шаге',
+    pitch: 'Представь поездку, где ты не ищешь каждую фразу в переводчике: можешь спросить дорогу, уточнить бронь, заказать еду, заселиться и объяснить проблему простыми словами.',
+    horizon: 'около 12 недель',
+    days: 84,
+    recommendedLevel: 'A2',
+    minutesDefault: 15,
+    iconAsset: ONBOARDING_PLAN_ICONS.travel,
+    todayIconAsset: ONBOARDING_PLAN_ICONS.phrase,
+    short: 'Поездки, отель, кафе, аэропорт и вопросы на месте.',
+    levelSub: 'Рекомендуем A2, потому что план сразу ведёт в реальные сценарии поездки: аэропорт, стойка регистрации, кафе, отель, просьбы и уточнения.',
+    outcome: 'Уже к середине этого срока ты сможешь не просто учить слова, а действовать: спросить, понять ответ, переспросить и не теряться в типичных ситуациях поездки.',
+  },
+  mitap: {
+    name: 'Митап',
+    goal: 'не выпадать из рабочих разговоров и переписки',
+    pitch: 'План для рабочих моментов, где важно звучать понятно: ты учишься отвечать на созвоне, уточнять задачу, объяснять срок, просить детали и писать коротко без паники.',
+    horizon: 'около 16 недель',
+    days: 112,
+    recommendedLevel: 'A2 → B1',
+    minutesDefault: 20,
+    iconAsset: ONBOARDING_PLAN_ICONS.work,
+    todayIconAsset: ONBOARDING_PLAN_ICONS.phrase,
+    short: 'Рабочие созвоны, переписка, сроки и короткие объяснения.',
+    levelSub: 'A2 даёт быстрый вход в рабочие фразы, а движение к B1 добавляет связки для объяснений, уточнений, вежливых просьб и короткой переписки.',
+    outcome: 'Уже к середине этого срока ты сможешь держаться в простых рабочих ситуациях: ответить по задаче, назвать срок, попросить уточнение и обозначить следующий шаг.',
+  },
+  gavan: {
+    name: 'Гавань',
+    goal: 'решать бытовые вопросы в новой стране увереннее',
+    pitch: 'План для первых месяцев после переезда: чтобы не зависеть от переводчика в каждом вопросе и спокойно говорить про жильё, документы, врача, школу и обычные дела.',
+    horizon: 'около 18 недель',
+    days: 126,
+    recommendedLevel: 'A1 → A2',
+    minutesDefault: 15,
+    iconAsset: ONBOARDING_PLAN_ICONS.home,
+    todayIconAsset: ONBOARDING_PLAN_ICONS.phrase,
+    short: 'Переезд, жильё, документы, врачи, школа и бытовые дела.',
+    levelSub: 'A1 закрывает бытовую базу, затем A2 добавляет самостоятельность: объяснить ситуацию, спросить детали, записаться, уточнить условия и договориться.',
+    outcome: 'Уже к середине этого срока ты сможешь увереннее решать городские задачи: спросить, записаться, описать проблему, заполнить простые данные и понять следующий шаг.',
+  },
+  impuls: {
+    name: 'Импульс',
+    goal: 'начинать говорить быстрее, даже если ответ не идеальный',
+    pitch: 'План для момента, когда ты понимаешь мысль, но зависаешь перед ответом. Здесь тренируются готовые связки, реакции и короткие конструкции, чтобы речь начиналась быстрее.',
+    horizon: 'около 20 недель',
+    days: 140,
+    recommendedLevel: 'A2 → B1',
+    minutesDefault: 20,
+    iconAsset: ONBOARDING_PLAN_ICONS.confidence,
+    todayIconAsset: ONBOARDING_PLAN_ICONS.speaking,
+    short: 'Быстрее отвечать и меньше зависать в живом разговоре.',
+    levelSub: 'A2 собирает каркас ответа, B1 добавляет гибкость: уточнить, согласиться, отказаться, попросить время и продолжить разговор.',
+    outcome: 'Уже к середине этого срока ты сможешь отвечать быстрее, меньше зависать на каждой фразе и собирать уверенные ответы из знакомых конструкций.',
+  },
+  echo: {
+    name: 'Эхо',
+    goal: 'поддерживать короткий разговор без ощущения экзамена',
+    pitch: 'План для живых диалогов, где нужно не идеально говорить, а быстро понять смысл, переспросить, уточнить и ответить так, чтобы разговор продолжался.',
+    horizon: 'около 12 недель',
+    days: 84,
+    recommendedLevel: 'A2',
+    minutesDefault: 10,
+    iconAsset: ONBOARDING_PLAN_ICONS.speaking,
+    todayIconAsset: ONBOARDING_PLAN_ICONS.phrase,
+    short: 'Короткие диалоги, уточнения, переспросы и быстрые ответы.',
+    levelSub: 'A2 достаточно, чтобы тренировать короткие реплики, реакции, уточнения и готовые ответы без отдельного режима и без перегруза теорией.',
+    outcome: 'Уже к середине этого срока ты сможешь быстрее подбирать ответ, переспрашивать без неловкости, уточнять смысл и поддерживать короткий обычный диалог.',
+  },
+};
 
-export default function Onboarding({ onDone, onLangSelect }: Props) {
+function resolveOnboardingPlanId(
+  goal: OnboardingPlanGoal,
+  level: OnboardingPlanLevel,
+  minutes: PlanMinutesChoice,
+  explicitPlanId?: PersonalPlanId | null,
+): PersonalPlanId {
+  if (explicitPlanId) return explicitPlanId;
+  if (goal === 'travel') return 'voyazh';
+  if (goal === 'work') return 'mitap';
+  if (goal === 'move') return 'gavan';
+  if (level === 'b1') return 'impuls';
+  if (level === 'a2' && (minutes === 15 || minutes === 20)) return 'impuls';
+  return 'echo';
+}
+
+function dayWord(n: number) {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return 'день';
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'дня';
+  return 'дней';
+}
+
+const ONBOARDING_PLAN_MOCKUP_SOURCE = '.codex-tmp/onboarding-plan-theme-mockup-v3.html';
+
+const PLAN_GOAL_CHOICES: Array<{
+  id: OnboardingPlanGoal;
+  iconAsset: PlanIconSource;
+  title: string;
+  subtitle: string;
+}> = [
+  { id: 'travel', iconAsset: ONBOARDING_PLAN_ICONS.travel, title: 'Для поездок', subtitle: 'Аэропорт, отель, кафе, вопросы на месте' },
+  { id: 'work', iconAsset: ONBOARDING_PLAN_ICONS.work, title: 'Для работы', subtitle: 'Созвоны, переписка, короткие объяснения' },
+  { id: 'move', iconAsset: ONBOARDING_PLAN_ICONS.home, title: 'Для переезда', subtitle: 'Быт, документы, врачи, школа, жильё' },
+  { id: 'self', iconAsset: ONBOARDING_PLAN_ICONS.study, title: 'Для себя', subtitle: 'Спокойно прокачивать понимание и речь' },
+];
+
+const PLAN_LEVEL_CHOICES: Array<{
+  id: OnboardingPlanLevel;
+  iconAsset: PlanIconSource;
+  title: string;
+  subtitle: string;
+}> = [
+  { id: 'a0', iconAsset: ONBOARDING_PLAN_ICONS.beginner, title: 'A0: почти с нуля', subtitle: 'Нужны самые базовые фразы' },
+  { id: 'a1', iconAsset: ONBOARDING_PLAN_ICONS.basic, title: 'A1: знаю базовые слова', subtitle: 'Хочу быстрее собирать фразы' },
+  { id: 'a2', iconAsset: ONBOARDING_PLAN_ICONS.speaking, title: 'A2: понимаю, но не говорю', subtitle: 'Нужна практика ответов' },
+  { id: 'b1', iconAsset: ONBOARDING_PLAN_ICONS.confidence, title: 'B1: хочу говорить увереннее', subtitle: 'Нужен ритм и сложнее задания' },
+];
+
+const PLAN_MINUTES_CHOICES: PlanMinutesChoice[] = [5, 10, 15, 20];
+
+const PLAN_ENTRIES: Array<{
+  key: PersonalPlanId;
+  minutes: PlanMinutesChoice;
+  short: string;
+  todayIconAsset?: PlanIconSource;
+}> = [
+  { key: 'voyazh', minutes: 15, short: 'Поездки, отель, кафе, аэропорт и вопросы на месте.' },
+  { key: 'mitap', minutes: 20, short: 'Рабочие созвоны, переписка, сроки и короткие объяснения.' },
+  { key: 'gavan', minutes: 15, short: 'Переезд, жильё, документы, врачи, школа и бытовые дела.' },
+  { key: 'impuls', minutes: 20, short: 'Быстрее отвечать и меньше зависать в живом разговоре.', todayIconAsset: ONBOARDING_PLAN_ICONS.speaking },
+  { key: 'echo', minutes: 10, short: 'Короткие диалоги, уточнения, переспросы и быстрые ответы.' },
+];
+const PLAN_PAYWALL_BENEFITS: Array<{
+  key: string;
+  iconAsset: PaywallIconSource;
+  title: string;
+  subtitle: string;
+  featured?: boolean;
+}> = [
+  {
+    key: 'plan',
+    iconAsset: ONBOARDING_PAYWALL_ICONS.plan,
+    title: 'Персональный план',
+    subtitle: 'ежедневный маршрут под цель и ошибки',
+    featured: true,
+  },
+  {
+    key: 'lessons',
+    iconAsset: ONBOARDING_PAYWALL_ICONS.lessons,
+    title: 'Все уроки разблокированы',
+    subtitle: 'полный доступ ко всем урокам курса',
+  },
+  {
+    key: 'quizzes',
+    iconAsset: ONBOARDING_PAYWALL_ICONS.quizzes,
+    title: 'Все уровни квизов',
+    subtitle: 'без дневного лимита на практику',
+  },
+  {
+    key: 'cards',
+    iconAsset: ONBOARDING_PAYWALL_ICONS.cards,
+    title: 'Карточки без ограничений',
+    subtitle: 'сохраняй неограниченное количество фраз',
+  },
+  {
+    key: 'energy',
+    iconAsset: ONBOARDING_PAYWALL_ICONS.energy,
+    title: 'Безлимит энергии',
+    subtitle: 'уроки, квизы и экзамены без ожидания',
+  },
+  {
+    key: 'arena',
+    iconAsset: ONBOARDING_PAYWALL_ICONS.arena,
+    title: 'Арена без лимита',
+    subtitle: 'больше матчей и без затрат энергии',
+  },
+  {
+    key: 'errors',
+    iconAsset: ONBOARDING_PAYWALL_ICONS.errors,
+    title: 'Разборы твоих ошибок',
+    subtitle: 'персональные занятия по слабым местам',
+  },
+  {
+    key: 'trainer',
+    iconAsset: ONBOARDING_PAYWALL_ICONS.trainer,
+    title: 'Тренер без дневного лимита',
+    subtitle: 'повторы и слабые места без остановки',
+  },
+  {
+    key: 'analytics',
+    iconAsset: ONBOARDING_PAYWALL_ICONS.analytics,
+    title: 'Аналитика прогресса',
+    subtitle: 'активность, ошибки и сравнение с другими',
+  },
+  {
+    key: 'themes',
+    iconAsset: ONBOARDING_PAYWALL_ICONS.themes,
+    title: 'Premium-стиль',
+    subtitle: 'все темы приложения',
+  },
+  {
+    key: 'frame',
+    iconAsset: ONBOARDING_PAYWALL_ICONS.frame,
+    title: 'Золотой ник и рамка',
+    subtitle: 'отдельное оформление профиля и рейтингов',
+  },
+];
+
+export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart }: Props) {
   const insets = useSafeAreaInsets();
+  const { hasPremiumAccess } = usePremium();
   const { width: viewportW, height: viewportH, uiScale } = useScreen();
   const progressTopPadding = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0) + 8;
   const narrowViewport = Math.min(viewportW, viewportH);
@@ -164,6 +513,10 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     showsVerticalScrollIndicator: true,
     nestedScrollEnabled: true,
   };
+
+  useEffect(() => {
+    warmOnboardingBundledImages();
+  }, []);
   const streakHeroIconSize = scaleOnboarding(compactOnboarding ? 52 : 76, 44);
   const streakMilestoneIconSize = scaleOnboarding(compactOnboarding ? 38 : 52, 34);
 
@@ -185,7 +538,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   };
 
   type OnboardingStep = OnboardingStepKey;
-  const [step, setStepRaw]    = useState<OnboardingStep>(IS_BETA_TESTER ? 'beta' : 'welcome');
+  const [step, setStepRaw]    = useState<OnboardingStep>(IS_BETA_TESTER ? 'beta' : 'planEntry');
   const stepRef = useRef(step);
   const setStep = useCallback((next: OnboardingStep) => {
     stepRef.current = next;
@@ -217,6 +570,23 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   const [nameBusy, setNameBusy] = useState(false);
   const [nameFieldError, setNameFieldError] = useState<string | null>(null);
   const [keyboardPad, setKeyboardPad] = useState(0);
+  const [selectedPlanGoal, setSelectedPlanGoal] = useState<OnboardingPlanGoal>('travel');
+  const [selectedPlanLevel, setSelectedPlanLevel] = useState<OnboardingPlanLevel>('a1');
+  const [selectedPlanMinutes, setSelectedPlanMinutes] = useState<PlanMinutesChoice>(15);
+  const [selectedPlanOverride, setSelectedPlanOverride] = useState<PersonalPlanId | null>(null);
+  const [selectedPlanPhraseTokens, setSelectedPlanPhraseTokens] = useState<string[]>([]);
+  const [selectedPlanBilling, setSelectedPlanBilling] = useState<OnboardingBillingChoice>('annual');
+  const [nicknameMode, setNicknameMode] = useState<OnboardingNicknameMode>('regular');
+  const [planPhraseWasCorrect, setPlanPhraseWasCorrect] = useState(true);
+  const [showPlanFreeConfirm, setShowPlanFreeConfirm] = useState(false);
+  const [planLoadingCtaReady, setPlanLoadingCtaReady] = useState(false);
+  const [animatedPlanDays, setAnimatedPlanDays] = useState(0);
+  const [planLoadingRailWidth, setPlanLoadingRailWidth] = useState(0);
+  const [planDaysRailWidth, setPlanDaysRailWidth] = useState(0);
+  const planLoadingMeter = useRef(new Animated.Value(0)).current;
+  const planLoadingBuildAnims = useRef(PLAN_LOADING_BUILD_ITEMS.map(() => new Animated.Value(0))).current;
+  const planLoadingButtonAnim = useRef(new Animated.Value(0)).current;
+  const planDaysProgress = useRef(new Animated.Value(0)).current;
   // Дефолтные значения — экраны выбора удалены, профиль сохраняется с базовыми настройками
   const goal: LearningGoal       = 'hobby';
   const minutesPerDay: MinutesPerDay = 15;
@@ -228,9 +598,12 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     lang === 'es' ? es : isUK ? uk : ru;
   const triOb = (ru: string, uk: string, es: string) =>
     lang === 'es' ? es : isUK ? uk : ru;
+  const selectedPlanId = resolveOnboardingPlanId(selectedPlanGoal, selectedPlanLevel, selectedPlanMinutes, selectedPlanOverride);
+  const selectedPlan = PERSONAL_PLAN_ONBOARDING_PLANS[selectedPlanId];
 
   // Плавный переход между экранами
   const goToStep = useCallback((next: typeof step) => {
+    setShowPlanFreeConfirm(false);
     Animated.timing(screenFade, { toValue: 0, duration: 220, useNativeDriver: true }).start(() => {
       setStep(next);
     });
@@ -297,6 +670,80 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   }, [step, screenFade]);
 
   useEffect(() => {
+    if (step !== 'planLoading') return;
+    setPlanLoadingCtaReady(false);
+    planLoadingMeter.setValue(0);
+    planLoadingBuildAnims.forEach((value) => value.setValue(0));
+    planLoadingButtonAnim.setValue(0);
+    const animations = [
+      Animated.timing(planLoadingMeter, {
+        toValue: 1,
+        duration: 3200,
+        easing: Easing.inOut(Easing.ease),
+        useNativeDriver: true,
+      }),
+      ...planLoadingBuildAnims.map((value, index) => Animated.sequence([
+        Animated.delay(PLAN_LOADING_BUILD_ITEMS[index].delay),
+        Animated.timing(value, {
+          toValue: 1,
+          duration: 450,
+          easing: Easing.out(Easing.ease),
+          useNativeDriver: true,
+        }),
+      ])),
+      Animated.sequence([
+        Animated.delay(PLAN_LOADING_BUTTON_REVEAL.delay),
+        Animated.timing(planLoadingButtonAnim, {
+          toValue: 1,
+          duration: PLAN_LOADING_BUTTON_REVEAL.duration,
+          easing: Easing.out(Easing.ease),
+          useNativeDriver: true,
+        }),
+      ]),
+    ];
+    const timeout = setTimeout(() => setPlanLoadingCtaReady(true), PLAN_LOADING_BUTTON_REVEAL.delay);
+    Animated.parallel(animations).start();
+    return () => {
+      clearTimeout(timeout);
+      planLoadingMeter.stopAnimation();
+      planLoadingBuildAnims.forEach((value) => value.stopAnimation());
+      planLoadingButtonAnim.stopAnimation();
+    };
+  }, [planLoadingBuildAnims, planLoadingButtonAnim, planLoadingMeter, step]);
+
+  useEffect(() => {
+    if (step !== 'planPhrase') return;
+    setSelectedPlanPhraseTokens([]);
+    setPlanPhraseWasCorrect(false);
+  }, [step]);
+
+  useEffect(() => {
+    if (step !== 'planResult' && step !== 'planDetails') return;
+    const total = selectedPlan.days;
+    let visibleDays = 0;
+    setAnimatedPlanDays(0);
+    planDaysProgress.setValue(0);
+    const dayTickMs = Math.max(16, Math.floor(PLAN_DAYS_COUNT_DURATION_MS / total));
+    const dayCounter = setInterval(() => {
+      visibleDays += 1;
+      setAnimatedPlanDays(visibleDays);
+      if (visibleDays >= total) clearInterval(dayCounter);
+    }, dayTickMs);
+    Animated.timing(planDaysProgress, {
+      toValue: 1,
+      duration: PLAN_DAYS_COUNT_DURATION_MS,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start(({ finished }) => {
+      if (finished) setAnimatedPlanDays(total);
+    });
+    return () => {
+      clearInterval(dayCounter);
+      planDaysProgress.stopAnimation();
+    };
+  }, [planDaysProgress, selectedPlan.days, selectedPlanId, step]);
+
+  useEffect(() => {
     if (step !== 'welcome' || !USE_ELITE_ONBOARDING_WELCOME) return;
     welcomeIntro.setValue(0);
     Animated.spring(welcomeIntro, {
@@ -328,13 +775,21 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       setKeyboardPad(0);
       return;
     }
+    let active = true;
+    AsyncStorage.getItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY)
+      .then((pending) => {
+        if (active) setNicknameMode(pending === '1' ? 'personal_plan' : 'regular');
+      })
+      .catch(() => {
+        if (active) setNicknameMode('regular');
+      });
     const evShow = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
     const evHide = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
     const show = Keyboard.addListener(evShow, (e) => {
       setKeyboardPad(e.endCoordinates?.height ?? 0);
     });
     const hide = Keyboard.addListener(evHide, () => setKeyboardPad(0));
-    return () => { show.remove(); hide.remove(); };
+    return () => { active = false; show.remove(); hide.remove(); };
   }, [step]);
 
   useEffect(() => {
@@ -449,15 +904,20 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
 
     try {
       Keyboard.dismiss();
-      goToStep('streak');
       await AsyncStorage.multiSet([
         ['app_lang', lang],
         ['user_name', trimmed],
       ]);
-      await reserveName(trimmed, '').catch(() => {});
-      await import('../app/firestore_leagues')
+      void reserveName(trimmed, '').catch(() => {});
+      void import('../app/firestore_leagues')
         .then((m) => m.registerInLeagueGroupSilently())
         .catch(() => {});
+      if (nicknameMode === 'personal_plan') {
+        await AsyncStorage.removeItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY);
+        await handleFinishOnboarding();
+        return;
+      }
+      goToStep('streak');
     } finally {
       setNameBusy(false);
     }
@@ -570,24 +1030,741 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     }
   };
 
+  const handleStartPersonalPlanFromOnboarding = async () => {
+    if (finishingRef.current || closingRef.current) return;
+    finishingRef.current = true;
+    Keyboard.dismiss();
+    try {
+      await AsyncStorage.multiSet([
+        ['app_lang', lang],
+        [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
+        ['onboarding_step', 'name'],
+      ]);
+      await queuePendingPersonalPlanActivation({
+        planId: selectedPlanId,
+        minutesPerDay: selectedPlanMinutes,
+        source: 'onboarding',
+      });
+      if (hasPremiumAccess) {
+        await activatePendingPersonalPlanAfterPremium();
+        setNicknameMode('personal_plan');
+        finishingRef.current = false;
+        goToStep('name');
+        return;
+      }
+      await onPersonalPlanPaywallStart?.();
+    } catch {
+      finishingRef.current = false;
+      AppInfoDialog.alert(
+        pick('Не удалось открыть план', 'Не вдалося відкрити план', 'No se pudo abrir el plan'),
+        pick(
+          'Проверь интернет и попробуй ещё раз.',
+          'Перевір інтернет і спробуй ще раз.',
+          'Revisa Internet e inténtalo otra vez.',
+        ),
+      );
+    }
+  };
+
   const renderScreen = (
     testID: string | undefined,
     source: ImageSourcePropType,
     children: React.ReactNode,
     contentStyle?: StyleProp<ViewStyle>,
+    hideClose = false,
   ) => (
     <OnboardingScreenShell
       testID={testID}
       source={source}
       screenFade={screenFade}
       contentStyle={contentStyle}
+      hideClose={hideClose}
       onClose={handleCloseOnboarding}
     >
       {children}
     </OnboardingScreenShell>
   );
 
+  const renderPlanSegmentProgress = () => {
+    const activeIndex = Math.max(0, PLAN_PROGRESS_STEPS.indexOf(step));
+    return (
+      <View style={styles.planFlowProgressSegments} pointerEvents="none">
+        {PLAN_PROGRESS_STEPS.map((progressStep, index) => (
+          <View
+            key={progressStep}
+            style={[
+              styles.planFlowProgressSegment,
+              index <= activeIndex && styles.planFlowProgressSegmentActive,
+            ]}
+          />
+        ))}
+      </View>
+    );
+  };
+
+  const renderPlanFlowScreen = (
+    testID: string,
+    _eyebrow: string,
+    title: string,
+    lead: string,
+    children: React.ReactNode,
+  ) => renderScreen(
+    testID,
+    ONBOARDING_BG_WELCOME,
+    (
+      <View style={styles.planFlowShell}>
+        <View style={styles.planFlowTop}>
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel="Назад"
+            onPress={() => goToStep(PREV_STEP[step] ?? 'planEntry')}
+            activeOpacity={0.82}
+            style={styles.planFlowBack}
+          >
+            <Text style={styles.planFlowBackGlyph}>‹</Text>
+          </TouchableOpacity>
+          {renderPlanSegmentProgress()}
+        </View>
+        <ScrollView
+          style={styles.onboardingScroll}
+          contentContainerStyle={styles.planFlowScroll}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.planFlowQuestionBlock}>
+            <Text style={styles.planFlowTitle}>{title}</Text>
+            {lead ? <Text style={styles.planFlowLead}>{lead}</Text> : null}
+          </View>
+          {children}
+        </ScrollView>
+      </View>
+    ),
+    undefined,
+    true,
+  );
+
+  const renderMockupPlanTop = (brand?: string) => (
+    <View style={styles.planMockupTop}>
+      <TouchableOpacity
+        accessibilityRole="button"
+        accessibilityLabel="Назад"
+        onPress={() => goToStep(PREV_STEP[step] ?? 'planEntry')}
+        activeOpacity={0.82}
+        style={styles.planFlowBack}
+      >
+        <Text style={styles.planFlowBackGlyph}>‹</Text>
+      </TouchableOpacity>
+      {brand ? <Text style={styles.planMockupBrand}>{brand}</Text> : <View />}
+    </View>
+  );
+
+  const renderPlanDaysProgressBlock = (days: number) => {
+    const visibleDays = Math.max(0, Math.min(days, animatedPlanDays));
+    const daysFillTranslateX = planDaysProgress.interpolate({
+      inputRange: [0, 1],
+      outputRange: [-(planDaysRailWidth || 1), 0],
+    });
+    return (
+      <View style={styles.planMockupDaysCard}>
+        <View style={styles.planMockupDaysTop}>
+          <Text style={styles.planMockupDaysLabel}>Дней занятий</Text>
+          <Text style={styles.planMockupDaysValue}>
+            {visibleDays}
+            {' '}
+            <Text style={styles.planMockupDaysWord}>{dayWord(visibleDays || days)}</Text>
+          </Text>
+        </View>
+        <View
+          style={styles.planMockupDaysTrack}
+          onLayout={(event) => setPlanDaysRailWidth(event.nativeEvent.layout.width)}
+        >
+          <AnimatedLinearGradient
+            colors={['#FFD66B', '#FFF1B6', '#F2B84B']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={[styles.planMockupDaysFill, { transform: [{ translateX: daysFillTranslateX }] }]}
+          />
+        </View>
+      </View>
+    );
+  };
+
+  const renderPlanRows = (plan: typeof selectedPlan, todayIconAsset = plan.todayIconAsset ?? ONBOARDING_PLAN_ICONS.phrase) => (
+    <View style={styles.planMockupRowsPanel}>
+      <View style={styles.planMockupRow}>
+        <OnboardingBundledImage
+          source={plan.iconAsset}
+          style={styles.planMockupRowIcon}
+        />
+        <View style={styles.planFlowOptionCopy}>
+          <Text style={styles.planMockupRowTitle}>Рекомендуемый старт: {plan.recommendedLevel}</Text>
+          <Text style={styles.planMockupRowSub}>{plan.levelSub}</Text>
+        </View>
+      </View>
+      <View style={styles.planMockupRow}>
+        <OnboardingBundledImage
+          source={todayIconAsset}
+          style={styles.planMockupRowIcon}
+        />
+        <View style={styles.planFlowOptionCopy}>
+          <Text style={styles.planMockupRowTitle}>Уже к середине срока</Text>
+          <Text style={styles.planMockupRowSub}>{plan.outcome}</Text>
+        </View>
+      </View>
+    </View>
+  );
+
+  const renderPlanResultLikeScreen = ({
+    testID,
+    brand,
+    plan,
+    minutes,
+    todayIconAsset,
+    actions,
+  }: {
+    testID: string;
+    brand?: string;
+    plan: typeof selectedPlan;
+    minutes: PlanMinutesChoice;
+    todayIconAsset?: PlanIconSource;
+    actions: React.ReactNode;
+  }) => renderScreen(
+    testID,
+    ONBOARDING_BG_WELCOME,
+    (
+      <ScrollView
+        style={styles.onboardingScroll}
+        contentContainerStyle={styles.planMockupResultScroll}
+        showsVerticalScrollIndicator={false}
+      >
+        {renderMockupPlanTop(brand)}
+        <View style={styles.planMockupResultBody}>
+          <Text style={styles.planMockupResultTitle}>{plan.name}</Text>
+          <View style={styles.planMockupPitchCard}>
+            <Text style={styles.planMockupPitchText}>{plan.pitch}</Text>
+          </View>
+          {renderPlanDaysProgressBlock(plan.days)}
+          <View style={styles.planMockupResultHero}>
+            <Text style={styles.planMockupBigNum}>{plan.horizon}</Text>
+            <Text style={styles.planMockupHeroSub}>ориентир до заметного прогресса при {minutes === 20 ? '20' : minutes} минутах в день</Text>
+          </View>
+          {renderPlanRows(plan, todayIconAsset)}
+          <View style={styles.planMockupCtaStack}>{actions}</View>
+        </View>
+      </ScrollView>
+    ),
+    undefined,
+    true,
+  );
+
   // ── Шаг 0: Добро пожаловать в бета ─────────────────────────────────────────
+  if (step === 'planEntry') {
+    return renderScreen(
+      'onboarding-plan-entry-screen',
+      ONBOARDING_BG_WELCOME,
+      (
+        <View style={[styles.planEntryRoot, { paddingTop: Math.max(22, progressTopPadding) }]}>
+          <Text style={styles.planEntryBrand}>PHRASEMAN</Text>
+          <View style={styles.planEntryMain}>
+            <Animated.View style={styles.planEntryMark}>
+              <LinearGradient
+                colors={['rgba(255,255,255,0.24)', 'rgba(255,255,255,0.075)', 'rgba(242,184,75,0.11)']}
+                locations={[0, 0.46, 1]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={[styles.eliteWelcomeMarkGlass, styles.planEntryMarkGlass]}
+              >
+                <View pointerEvents="none" style={styles.eliteWelcomeGlassShine} />
+                <OnboardingBundledImage
+                  source={ONBOARDING_LINGMAN_ICON}
+                  style={[styles.eliteWelcomeMarkLogo, styles.planEntryMarkLogo]}
+                />
+              </LinearGradient>
+            </Animated.View>
+            <Text
+              style={[styles.eliteWelcomeTitle, styles.planEntryTitle]}
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.82}
+            >
+              {triOb('Как хочешь начать?', 'Як хочеш почати?', '¿Cómo quieres empezar?')}
+            </Text>
+            <Text style={[styles.eliteWelcomeSub, styles.planEntrySub]}>
+              {triOb(
+                'Соберём короткий план под твою цель или сразу начнем знакомиться с приложением?',
+                'Зберемо короткий план під твою ціль або одразу почнемо знайомитися з застосунком?',
+                'Creamos un plan corto para tu objetivo o empezamos a conocer la app.',
+              )}
+            </Text>
+            <View style={styles.planEntryCtas}>
+            <TouchableOpacity
+              testID="onboarding-create-personal-plan"
+              style={[styles.eliteWelcomeCta, styles.planEntryCta]}
+              onPress={() => goToStep('planGoal')}
+              activeOpacity={0.88}
+            >
+              <Text style={[styles.eliteWelcomeCtaText, styles.planEntryCtaText]}>
+                {triOb('Составить мой план', 'Скласти мій план', 'Crear mi plan')}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              testID="onboarding-continue-independently"
+              style={[styles.eliteWelcomeSecondaryCta, styles.planEntrySecondaryCta]}
+              onPress={async () => {
+                setNicknameMode('regular');
+                await AsyncStorage.removeItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY).catch(() => {});
+                goToStep('name');
+              }}
+              activeOpacity={0.82}
+            >
+              <Text style={[styles.eliteWelcomeSecondaryCtaText, styles.planEntrySecondaryCtaText]}>
+                {triOb('Продолжить самостоятельно', 'Продовжити самостійно', 'Continuar por mi cuenta')}
+              </Text>
+            </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      ),
+      undefined,
+      true,
+    );
+  }
+
+  if (step === 'planGoal') {
+    return renderPlanFlowScreen(
+      'onboarding-plan-goal-screen',
+      '',
+      'Зачем тебе английский?',
+      'План подстроится под ситуации и фразы, которые пригодятся первыми.',
+      <View style={styles.planFlowStack}>
+        {PLAN_GOAL_CHOICES.map((choice) => {
+          const selected = selectedPlanGoal === choice.id;
+          return (
+            <TouchableOpacity
+              key={choice.id}
+              style={[styles.planFlowOption, selected && styles.planFlowOptionSelected]}
+              activeOpacity={0.84}
+              onPress={() => {
+                setSelectedPlanGoal(choice.id);
+                setSelectedPlanOverride(null);
+                goToStep('planLevel');
+              }}
+            >
+              <PlanFlowIcon source={choice.iconAsset} />
+              <View style={styles.planFlowOptionCopy}>
+                <Text style={styles.planFlowOptionTitle}>{choice.title}</Text>
+                <Text style={styles.planFlowOptionSub}>{choice.subtitle}</Text>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </View>,
+    );
+  }
+
+  if (step === 'planLevel') {
+    return renderPlanFlowScreen(
+      'onboarding-plan-level-screen',
+      '',
+      'Какой старт ближе?',
+      '',
+      <View style={styles.planFlowStack}>
+        {PLAN_LEVEL_CHOICES.map((choice) => {
+          const selected = selectedPlanLevel === choice.id;
+          return (
+            <TouchableOpacity
+              key={choice.id}
+              style={[styles.planFlowOption, selected && styles.planFlowOptionSelected]}
+              activeOpacity={0.84}
+              onPress={() => {
+                setSelectedPlanLevel(choice.id);
+                setSelectedPlanOverride(null);
+                goToStep('planMinutes');
+              }}
+            >
+              <PlanFlowIcon source={choice.iconAsset} />
+              <View style={styles.planFlowOptionCopy}>
+                <Text style={styles.planFlowOptionTitle}>{choice.title}</Text>
+                <Text style={styles.planFlowOptionSub}>{choice.subtitle}</Text>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </View>,
+    );
+  }
+
+  if (step === 'planMinutes') {
+    return renderPlanFlowScreen(
+      'onboarding-plan-minutes-screen',
+      '',
+      'Сколько времени удобно?',
+      'Выбери ритм, который реально получится держать каждый день.',
+      <View style={styles.planFlowStack}>
+        {PLAN_MINUTES_CHOICES.map((choice) => {
+          const selected = selectedPlanMinutes === choice;
+          return (
+            <TouchableOpacity
+              key={choice}
+              style={[styles.planFlowOption, selected && styles.planFlowOptionSelected]}
+              activeOpacity={0.84}
+              onPress={() => {
+                setSelectedPlanMinutes(choice);
+                setSelectedPlanOverride(null);
+                scheduleDailyReminder(20, 0, lang, { requestPermission: true }).catch(() => {});
+                goToStep('planPhrase');
+              }}
+            >
+              <PlanFlowIcon source={ONBOARDING_PLAN_ICONS.time} />
+              <View style={styles.planFlowOptionCopy}>
+                <Text style={styles.planFlowOptionTitle}>{choice === 20 ? '20+ минут в день' : `${choice} минут в день`}</Text>
+                <Text style={styles.planFlowOptionSub}>
+                  {choice <= 5
+                    ? 'Минимум, чтобы не выпадать'
+                    : choice <= 10
+                      ? 'Хороший лёгкий ритм'
+                      : choice <= 15
+                        ? 'Рекомендованный темп для прогресса'
+                        : 'Быстрее идти по плану'}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </View>,
+    );
+  }
+
+  if (step === 'planPhrase') {
+    const phraseAnswer = selectedPlanPhraseTokens.join(' ');
+    const canContinuePlanPhrase = selectedPlanPhraseTokens.length > 0;
+    const planPhraseHasError = phraseAnswer.length > 0 && phraseAnswer !== PLAN_PHRASE_TARGET.join(' ');
+    return renderPlanFlowScreen(
+      'onboarding-plan-phrase-screen',
+      '',
+      'Соберём первую фразу',
+      '',
+      <View style={styles.planPhraseCard}>
+        <Text style={styles.planPhraseRu}>Мне нужно больше времени.</Text>
+        <View style={[styles.planPhraseLine, planPhraseHasError && styles.planPhraseLineError]}>
+          <Text style={[styles.planPhraseAnswer, !phraseAnswer && styles.planPhraseAnswerEmpty]}>
+            {phraseAnswer || ' '}
+          </Text>
+        </View>
+        <View style={styles.planPhraseTokens}>
+          {PLAN_PHRASE_TOKENS.map((token) => {
+            const selected = selectedPlanPhraseTokens.includes(token);
+            return (
+            <TouchableOpacity
+              key={token}
+              style={[styles.planPhraseToken, selected && styles.planPhraseTokenSelected]}
+              activeOpacity={0.8}
+              onPress={() => {
+                setSelectedPlanPhraseTokens((current) => (
+                  current.includes(token)
+                    ? current.filter((item) => item !== token)
+                    : [...current, token]
+                ));
+              }}
+            >
+              <Text style={styles.planPhraseTokenText}>{token}</Text>
+            </TouchableOpacity>
+            );
+          })}
+        </View>
+        {canContinuePlanPhrase ? (
+        <TouchableOpacity
+          style={[
+            styles.eliteWelcomeCta,
+            styles.planMockupPrimaryButton,
+          ]}
+          activeOpacity={0.88}
+          onPress={() => {
+            setPlanPhraseWasCorrect(!planPhraseHasError);
+            goToStep('planLoading');
+          }}
+        >
+          <Text style={styles.planMockupPrimaryButtonText}>Продолжить</Text>
+        </TouchableOpacity>
+        ) : null}
+      </View>,
+    );
+  }
+
+  if (step === 'planLoading') {
+    const meterTranslateX = planLoadingMeter.interpolate({
+      inputRange: PLAN_LOADING_METER_KEYFRAMES.inputRange,
+      outputRange: PLAN_LOADING_METER_KEYFRAMES.outputRange.map((value) => -((1 - value) * (planLoadingRailWidth || 1))),
+    });
+    return renderPlanFlowScreen(
+      'onboarding-plan-loading-screen',
+      '',
+      'Собираем твой план',
+      '',
+      <View style={styles.planFlowStack}>
+        <View
+          style={styles.planProgressRail}
+          onLayout={(event) => setPlanLoadingRailWidth(event.nativeEvent.layout.width)}
+        >
+          <AnimatedLinearGradient
+            colors={['#F2B84B', '#63E6D2']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={[styles.planProgressFill, { transform: [{ translateX: meterTranslateX }] }]}
+          />
+        </View>
+        {PLAN_LOADING_BUILD_ITEMS.map((item, index) => (
+          <Animated.View
+            key={item.title}
+            style={[
+              styles.planFlowChecklistRow,
+              {
+                opacity: planLoadingBuildAnims[index].interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0.28, 1],
+                }),
+                transform: [{
+                  translateY: planLoadingBuildAnims[index].interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [6, 0],
+                  }),
+                }],
+              },
+            ]}
+          >
+            <OnboardingBundledImage
+              source={item.iconAsset}
+              style={styles.planLoadingBuildIcon}
+            />
+            <Text style={styles.planFlowChecklistText}>{item.title}</Text>
+          </Animated.View>
+        ))}
+        <Animated.View
+          pointerEvents={planLoadingCtaReady ? 'auto' : 'none'}
+          style={{ opacity: planLoadingButtonAnim }}
+        >
+          <TouchableOpacity style={[styles.eliteWelcomeCta, styles.planMockupPrimaryButton]} activeOpacity={0.88} onPress={() => goToStep('planResult')}>
+            <Text style={styles.planMockupPrimaryButtonText}>План готов</Text>
+          </TouchableOpacity>
+        </Animated.View>
+      </View>,
+    );
+  }
+
+  if (step === 'planResult') {
+    return renderPlanResultLikeScreen({
+      testID: 'onboarding-plan-result-screen',
+      brand: 'Результат',
+      plan: selectedPlan,
+      minutes: selectedPlanMinutes,
+      todayIconAsset: selectedPlan.todayIconAsset,
+      actions: (
+        <>
+        <TouchableOpacity
+          testID="data-plan-result-cta"
+          style={[styles.eliteWelcomeCta, styles.planMockupPrimaryButton]}
+          activeOpacity={0.88}
+          onPress={() => goToStep('planPaywall')}
+        >
+          <Text style={styles.planMockupPrimaryButtonText}>Получить мой план</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.eliteWelcomeSecondaryCta, styles.planMockupSecondaryButton]} activeOpacity={0.82} onPress={() => goToStep('planPicker')}>
+          <Text style={styles.planMockupSecondaryButtonText}>Посмотреть другие планы</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.freeBtn, styles.planMockupGhostButton]} activeOpacity={0.72} onPress={() => goToStep('welcome')}>
+          <Text style={styles.freeBtnText}>Продолжить без плана</Text>
+        </TouchableOpacity>
+        </>
+      ),
+    });
+  }
+
+  if (step === 'planPaywall') {
+    return renderScreen(
+      'onboarding-plan-paywall-screen',
+      ONBOARDING_BG_WELCOME,
+      (
+        <>
+          <ScrollView
+            style={styles.onboardingScroll}
+            contentContainerStyle={styles.planPaywallScroll}
+            showsVerticalScrollIndicator={false}
+            nestedScrollEnabled
+          >
+            <View style={styles.planPaywallTop}>
+              <TouchableOpacity
+                accessibilityRole="button"
+                accessibilityLabel="Назад"
+                style={styles.planFlowBack}
+                onPress={() => goToStep('planResult')}
+                activeOpacity={0.76}
+              >
+                <Text style={styles.planFlowBackGlyph}>‹</Text>
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.planPaywallTitle}>Получить {selectedPlan.name}</Text>
+            <Text style={styles.planPaywallLead}>Открой личный маршрут под цель: {selectedPlan.goal}.</Text>
+
+            <View style={styles.planPaywallPanel}>
+              <View style={styles.planPaywallStartRow}>
+                <PlanFlowIcon source={selectedPlan.iconAsset} small />
+                <View style={styles.planFlowOptionCopy}>
+                  <Text style={styles.planFlowOptionTitle}>Старт с {selectedPlan.recommendedLevel} открыт</Text>
+                  <Text style={styles.planFlowOptionSub}>Сразу переходишь к подходящим урокам</Text>
+                </View>
+              </View>
+
+              <View style={styles.planPaywallBenefitGrid}>
+                {PLAN_PAYWALL_BENEFITS.map((benefit) => (
+                  <View
+                    key={benefit.key}
+                    style={[styles.planPaywallBenefit, benefit.featured && styles.planPaywallBenefitFeatured]}
+                  >
+                    <OnboardingBundledImage
+                      source={benefit.iconAsset}
+                      style={styles.planPaywallBenefitIcon}
+                    />
+                    <View style={styles.planFlowOptionCopy}>
+                      <Text style={styles.planPaywallBenefitTitle}>{benefit.title}</Text>
+                      <Text style={styles.planPaywallBenefitSub}>{benefit.subtitle}</Text>
+                    </View>
+                  </View>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.planPaywallOptions}>
+              <TouchableOpacity
+                style={[
+                  styles.planPaywallBuyCard,
+                  selectedPlanBilling === 'monthly' && styles.planPaywallBuyCardSelected,
+                ]}
+                activeOpacity={0.84}
+                onPress={() => setSelectedPlanBilling('monthly')}
+              >
+                <Text style={styles.planPaywallBuyTitle}>Месячный план</Text>
+                <Text style={styles.planPaywallBuyPrice}>$4.99 / месяц</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.planPaywallBuyCard,
+                  selectedPlanBilling === 'annual' && styles.planPaywallBuyCardSelected,
+                ]}
+                activeOpacity={0.84}
+                onPress={() => setSelectedPlanBilling('annual')}
+              >
+                <Text style={styles.planPaywallBuyTitle}>Годовой план</Text>
+                <Text style={styles.planPaywallBuyPrice}>$39.99 / год</Text>
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity
+              testID="data-plan-paywall-trial-cta"
+              style={styles.eliteWelcomeCta}
+              activeOpacity={0.88}
+              onPress={handleStartPersonalPlanFromOnboarding}
+            >
+              <Text style={styles.eliteWelcomeCtaText}>Попробовать 3 дня бесплатно</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.eliteWelcomeSecondaryCta}
+              activeOpacity={0.82}
+              onPress={() => setShowPlanFreeConfirm(true)}
+            >
+              <Text style={styles.eliteWelcomeSecondaryCtaText}>Продолжить без плана</Text>
+            </TouchableOpacity>
+            <Text style={styles.legal}>
+              Trial, цена после trial и период подписки берутся из App Store или Google Play. После trial подписка продлевается автоматически. Отменить можно в настройках подписок магазина не позднее чем за 24 часа до продления. Terms of Use и Privacy Policy доступны до покупки.
+            </Text>
+          </ScrollView>
+
+          {showPlanFreeConfirm ? (
+            <View style={styles.planFreeConfirmOverlay}>
+              <View style={styles.planFreeConfirmBox}>
+                <Text style={styles.planFreeConfirmTitle}>Продолжить без плана?</Text>
+                <Text style={styles.planFreeConfirmText}>
+                  План персонального сопровождения не доступен в бесплатной версии приложения. Ты всё ещё получишь много доступных функций, но персональная аналитика ошибок и прогресса доступна только в Premium.
+                </Text>
+                <View style={styles.planFreeConfirmActions}>
+                  <TouchableOpacity style={styles.eliteWelcomeCta} activeOpacity={0.88} onPress={() => setShowPlanFreeConfirm(false)}>
+                    <Text style={styles.eliteWelcomeCtaText}>Остаться с планом</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.eliteWelcomeSecondaryCta} activeOpacity={0.82} onPress={() => goToStep('welcome')}>
+                    <Text style={styles.eliteWelcomeSecondaryCtaText}>Да, продолжить без плана</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          ) : null}
+        </>
+      ),
+      styles.eliteWelcomeRoot,
+      true,
+    );
+  }
+
+  if (step === 'planPicker') {
+    return renderPlanFlowScreen(
+      'onboarding-plan-picker-screen',
+      'Планы',
+      'Выбери план',
+      'Можно оставить рекомендованный маршрут или посмотреть другой сценарий под ближайшую цель.',
+      <View style={styles.planFlowStack}>
+        {PLAN_ENTRIES.map((entry) => {
+          const plan = PERSONAL_PLAN_ONBOARDING_PLANS[entry.key];
+          return (
+            <TouchableOpacity
+              key={entry.key}
+              style={[styles.planMockupPickerCard, selectedPlanId === entry.key && styles.planMockupPickerCardRecommended]}
+              activeOpacity={0.84}
+              onPress={() => {
+                setSelectedPlanOverride(entry.key);
+                goToStep('planDetails');
+              }}
+            >
+              <OnboardingBundledImage
+                source={plan.iconAsset}
+                style={styles.planMockupPickerIcon}
+              />
+              <View style={styles.planFlowOptionCopy}>
+                <Text style={styles.planMockupPickerTitle}>{plan.name}</Text>
+                <Text style={styles.planMockupPickerSub}>{entry.short}</Text>
+                <Text style={styles.planMockupPickerMeta}>{plan.horizon} · старт {plan.recommendedLevel}</Text>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </View>,
+    );
+  }
+
+  if (step === 'planDetails') {
+    const entry = PLAN_ENTRIES.find((item) => item.key === selectedPlanId);
+    return renderPlanResultLikeScreen({
+      testID: 'onboarding-plan-details-screen',
+      plan: selectedPlan,
+      minutes: entry?.minutes ?? selectedPlan.minutesDefault,
+      todayIconAsset: entry?.todayIconAsset ?? selectedPlan.todayIconAsset,
+      actions: (
+        <>
+        <TouchableOpacity
+          style={[styles.eliteWelcomeCta, styles.planMockupPrimaryButton]}
+          activeOpacity={0.88}
+          onPress={() => goToStep('planResult')}
+        >
+          <Text style={styles.planMockupPrimaryButtonText}>Выбрать этот план</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.eliteWelcomeSecondaryCta, styles.planMockupSecondaryButton]}
+          activeOpacity={0.82}
+          onPress={() => goToStep('planPicker')}
+        >
+          <Text style={styles.planMockupSecondaryButtonText}>Другие планы</Text>
+        </TouchableOpacity>
+        </>
+      ),
+    });
+  }
+
   if (step === 'beta') {
     const betaItems =
       lang === 'es'
@@ -712,11 +1889,9 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
                   style={styles.eliteWelcomeMarkGlass}
                 >
                   <View pointerEvents="none" style={styles.eliteWelcomeGlassShine} />
-                  <ExpoImage
+                  <OnboardingBundledImage
                     source={ONBOARDING_LINGMAN_ICON}
                     style={styles.eliteWelcomeMarkLogo}
-                    contentFit="contain"
-                    cachePolicy="memory-disk"
                   />
                 </LinearGradient>
               </Animated.View>
@@ -1122,6 +2297,115 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   // ── Шаг 3: Имя ──────────────────────────────────────────────────────────────
   if (step === 'name') {
     const keyboardVisible = keyboardPad > 0;
+    const nameBranchSubtitle = nicknameMode === 'personal_plan'
+      ? pick(
+          'Личный план подключён. Осталось подписать профиль.',
+          'Особистий план підключено. Залишилось підписати профіль.',
+          'Tu plan personal está listo. Solo falta nombrar el perfil.',
+        )
+      : ''; /*
+          'Текущая ветка onboarding приложения без личного плана.',
+          'Поточна гілка onboarding застосунку без особистого плану.',
+
+*/
+    return renderScreen(
+      'onboarding-name-screen',
+      ONBOARDING_BG_NAME,
+      (
+        <KeyboardAvoidingView
+          style={styles.regularNameRoot}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 8 : 0}
+        >
+          <View style={styles.regularNameTop}>
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel="Назад"
+              onPress={() => goToStep(PREV_STEP[step] ?? 'planEntry')}
+              activeOpacity={0.82}
+              style={styles.regularNameBack}
+            >
+              <Text style={styles.planFlowBackGlyph}>‹</Text>
+            </TouchableOpacity>
+          </View>
+          <ScrollView
+            style={styles.onboardingScroll}
+            contentContainerStyle={[
+              styles.regularNameScroll,
+              {
+                justifyContent: keyboardVisible ? 'flex-start' : 'center',
+                paddingTop: keyboardVisible ? 16 : 34,
+                paddingBottom: (keyboardVisible ? 34 : 70) + keyboardPad + insets.bottom,
+              },
+            ]}
+            keyboardShouldPersistTaps="handled"
+            keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
+            nestedScrollEnabled
+            showsVerticalScrollIndicator={false}
+          >
+            <View style={styles.regularNameMark}>
+              <LinearGradient
+                colors={['rgba(255,255,255,0.24)', 'rgba(255,255,255,0.075)', 'rgba(242,184,75,0.11)']}
+                locations={[0, 0.46, 1]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.regularNameMarkGlass}
+              >
+                <View pointerEvents="none" style={styles.eliteWelcomeGlassShine} />
+                <OnboardingBundledImage
+                  source={ONBOARDING_LINGMAN_ICON}
+                  style={styles.regularNameMarkLogo}
+                />
+              </LinearGradient>
+            </View>
+            <Text style={styles.regularNameTitle} maxFontSizeMultiplier={1.08}>
+              {pick('Как тебя зовут?', 'Як тебе звати?', '¿Cómo te llamas?')}
+            </Text>
+            {nameFieldError ? (
+              <Text style={styles.regularNameError} maxFontSizeMultiplier={1.08}>
+                {nameFieldError}
+              </Text>
+            ) : null}
+            <View style={styles.regularNameInputFrame}>
+              <TextInput
+                testID="onboarding-name-input"
+                style={styles.regularNameInput}
+                value={name}
+                onChangeText={(t) => {
+                  setName(t);
+                  if (nameFieldError) setNameFieldError(null);
+                }}
+                placeholder=""
+                placeholderTextColor={ONBOARDING_GOLD_2}
+                autoFocus={false}
+                maxLength={20}
+                editable={!nameBusy}
+                returnKeyType="done"
+                onSubmitEditing={handleNameDone}
+                maxFontSizeMultiplier={1.08}
+              />
+            </View>
+            <TouchableOpacity
+              testID="onboarding-name-continue"
+              style={[styles.eliteWelcomeCta, styles.regularNameCta, nameBusy && { opacity: 0.75 }]}
+              onPress={handleNameDone}
+              activeOpacity={0.88}
+              disabled={nameBusy}
+            >
+              <Text style={styles.eliteWelcomeCtaText} maxFontSizeMultiplier={1.05}>
+                {pick('Продолжить', 'Продовжити', 'Continuar')}
+              </Text>
+            </TouchableOpacity>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      ),
+      undefined,
+      true,
+    );
+  }
+
+  if (false) {
+    const keyboardVisible = keyboardPad > 0;
     return renderScreen(
       undefined,
       ONBOARDING_BG_NAME,
@@ -1523,7 +2807,7 @@ function AuthOnboardingStep({
             },
           ]}
         >
-          <ExpoImage
+          <OnboardingBundledImage
             source={ONBOARDING_AUTH_ICON}
             style={[
               styles.authQuickStartIcon,
@@ -1533,8 +2817,6 @@ function AuthOnboardingStep({
                 marginBottom: compactOnboarding ? 8 : 12,
               },
             ]}
-            contentFit="contain"
-            cachePolicy="memory-disk"
             accessible={false}
           />
           <Text
@@ -1633,6 +2915,7 @@ function OnboardingScreenShell({
   source,
   screenFade,
   contentStyle,
+  hideClose = false,
   onClose,
   children,
 }: {
@@ -1640,6 +2923,7 @@ function OnboardingScreenShell({
   source: ImageSourcePropType;
   screenFade: Animated.Value;
   contentStyle?: StyleProp<ViewStyle>;
+  hideClose?: boolean;
   onClose: () => void | Promise<void>;
   children: React.ReactNode;
 }) {
@@ -1651,17 +2935,19 @@ function OnboardingScreenShell({
       <Animated.View style={[styles.onboardingContentLayer, contentStyle, { opacity: screenFade }]}>
         {children}
       </Animated.View>
-      <TouchableOpacity
-        testID="onboarding-close"
-        accessibilityRole="button"
-        accessibilityLabel="Закрыть онбординг"
-        onPress={onClose}
-        activeOpacity={0.76}
-        hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
-        style={[styles.onboardingCloseButton, { top: closeTop }]}
-      >
-        <Ionicons name="close" size={18} color="#9A9A9A" />
-      </TouchableOpacity>
+      {!hideClose ? (
+        <TouchableOpacity
+          testID="onboarding-close"
+          accessibilityRole="button"
+          accessibilityLabel="Закрыть онбординг"
+          onPress={onClose}
+          activeOpacity={0.76}
+          hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
+          style={[styles.onboardingCloseButton, { top: closeTop }]}
+        >
+          <Ionicons name="close" size={18} color="#9A9A9A" />
+        </TouchableOpacity>
+      ) : null}
     </SafeAreaView>
   );
 }
@@ -1683,11 +2969,9 @@ function OnboardingStreakIcon({
         { width: size, height: size },
       ]}
     >
-      <ExpoImage
+      <OnboardingBundledImage
         source={ONBOARDING_STREAK_ICONS[kind]}
         style={{ width: size, height: size }}
-        contentFit="contain"
-        cachePolicy="memory-disk"
       />
     </View>
   );
@@ -1839,12 +3123,212 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     elevation: 8,
   },
+  regularNameRoot: {
+    flex: 1,
+    paddingHorizontal: 21,
+    paddingTop: 54,
+    paddingBottom: 0,
+  },
+  regularNameTop: {
+    width: '100%',
+    minHeight: 44,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  regularNameBack: {
+    width: 44,
+    height: 44,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+  },
+  regularNameBrand: {
+    color: ONBOARDING_GOLD_2,
+    fontSize: 12,
+    lineHeight: 14,
+    fontWeight: '900',
+    letterSpacing: 1.9,
+    textTransform: 'uppercase',
+  },
+  regularNameScroll: {
+    flexGrow: 1,
+    alignItems: 'center',
+  },
+  regularNameMark: {
+    width: 112,
+    height: 112,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 29,
+    shadowColor: ONBOARDING_ACCENT,
+    shadowOpacity: 0.2,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 6,
+  },
+  regularNameMarkGlass: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.22)',
+    backgroundColor: 'rgba(255,255,255,0.10)',
+  },
+  regularNameMarkLogo: {
+    width: 86,
+    height: 66,
+  },
+  regularNameTitle: {
+    width: '100%',
+    color: '#FFF7E5',
+    fontSize: 29,
+    lineHeight: 35,
+    fontWeight: '900',
+    textAlign: 'center',
+    marginBottom: 17,
+  },
+  regularNameSub: {
+    width: '100%',
+    maxWidth: 338,
+    color: '#FFF0D7',
+    fontSize: 15,
+    lineHeight: 22,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: 18,
+  },
+  regularNameError: {
+    width: '100%',
+    color: '#FF8A8A',
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  regularNameInputFrame: {
+    width: '100%',
+    minHeight: 80,
+    padding: 15,
+    borderRadius: 8,
+    backgroundColor: 'rgba(15,19,27,0.82)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.20)',
+    marginBottom: 16,
+  },
+  regularNameInput: {
+    width: '100%',
+    minHeight: 48,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(242,184,75,0.64)',
+    borderStyle: 'dashed',
+    backgroundColor: 'rgba(242,184,75,0.08)',
+    color: ONBOARDING_GOLD_2,
+    fontSize: 16,
+    lineHeight: 20,
+    fontWeight: '900',
+    textAlign: 'center',
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+  },
+  regularNameCta: {
+    minHeight: 56,
+    borderRadius: 8,
+  },
+  planEntryRoot: {
+    flex: 1,
+    paddingHorizontal: 22,
+    paddingBottom: 44,
+    justifyContent: 'flex-start',
+    overflow: 'hidden',
+  },
+  planEntryBrand: {
+    height: 42,
+    color: ONBOARDING_GOLD_2,
+    fontSize: 12,
+    lineHeight: 14,
+    fontWeight: '900',
+    letterSpacing: 1.9,
+    textTransform: 'uppercase',
+    textAlignVertical: 'center',
+  },
+  planEntryMain: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+  },
+  planEntryMark: {
+    width: 112,
+    height: 112,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: 18,
+    marginBottom: 10,
+    shadowColor: ONBOARDING_ACCENT,
+    shadowOpacity: 0.2,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 6,
+  },
+  planEntryMarkGlass: {
+    borderColor: 'rgba(255,255,255,0.17)',
+  },
+  planEntryMarkLogo: {
+    width: 86,
+    height: 86,
+  },
+  planEntryTitle: {
+    fontSize: 31,
+    lineHeight: 35,
+    textAlign: 'center',
+    marginBottom: 16,
+  },
+  planEntrySub: {
+    alignSelf: 'center',
+    fontSize: 15,
+    lineHeight: 22,
+    textAlign: 'center',
+    maxWidth: 360,
+  },
+  planEntryCtas: {
+    width: '100%',
+    maxWidth: 360,
+    alignSelf: 'center',
+    gap: 10,
+    marginTop: 30,
+  },
+  planEntryCta: {
+    minHeight: 54,
+    paddingVertical: 13,
+    shadowOpacity: 0.23,
+  },
+  planEntryCtaText: {
+    fontSize: 16,
+    lineHeight: 20,
+  },
+  planEntrySecondaryCta: {
+    minHeight: 54,
+    paddingVertical: 13,
+    backgroundColor: 'rgba(255,255,255,0.10)',
+    borderColor: 'rgba(255,255,255,0.16)',
+  },
+  planEntrySecondaryCtaText: {
+    color: '#FFF7E8',
+    fontSize: 16,
+    lineHeight: 20,
+  },
   eliteWelcomeRoot: {
     flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: 12,
-    paddingBottom: 24,
-    justifyContent: 'space-between',
+    paddingHorizontal: 35,
+    paddingTop: 70,
+    paddingBottom: 36,
+    justifyContent: 'flex-start',
     overflow: 'hidden',
   },
   eliteWelcomeHeader: {
@@ -1859,35 +3343,38 @@ const styles = StyleSheet.create({
     height: 34,
   },
   eliteWelcomeBrand: {
-    color: DARK.textPrimary,
+    color: ONBOARDING_GOLD_2,
     fontSize: 14,
     fontWeight: '900',
     letterSpacing: 1.4,
     textTransform: 'uppercase',
   },
   eliteWelcomeMain: {
-    flex: 1,
-    alignItems: 'center',
+    width: '100%',
+    alignSelf: 'stretch',
+    alignItems: 'flex-start',
     justifyContent: 'center',
-    paddingHorizontal: 2,
-    paddingBottom: 18,
+    flex: 1,
+    marginTop: 0,
+    paddingHorizontal: 0,
   },
   eliteWelcomeMark: {
-    width: 188,
-    height: 154,
+    width: 114,
+    height: 114,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 26,
+    alignSelf: 'center',
+    marginBottom: 30,
     shadowColor: ONBOARDING_ACCENT,
-    shadowOpacity: 0.34,
-    shadowRadius: 30,
-    shadowOffset: { width: 0, height: 16 },
-    elevation: 12,
+    shadowOpacity: 0.2,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 6,
   },
   eliteWelcomeMarkGlass: {
     width: '100%',
     height: '100%',
-    borderRadius: 34,
+    borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
@@ -1906,8 +3393,8 @@ const styles = StyleSheet.create({
     opacity: 0.62,
   },
   eliteWelcomeMarkLogo: {
-    width: 138,
-    height: 106,
+    width: 88,
+    height: 68,
   },
   eliteHeroPreview: {
     width: '100%',
@@ -1986,35 +3473,40 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   eliteWelcomeCopy: {
-    alignItems: 'center',
-    paddingHorizontal: 2,
+    alignItems: 'flex-start',
+    paddingHorizontal: 0,
   },
   eliteWelcomeTitle: {
+    width: '100%',
     color: '#FFF7E5',
-    fontSize: 34,
-    lineHeight: 41,
+    fontSize: 31,
+    lineHeight: 36,
     fontWeight: '900',
-    textAlign: 'center',
+    textAlign: 'left',
     marginBottom: 16,
   },
   eliteWelcomeSub: {
+    width: '100%',
     color: ONBOARDING_TEXT_MUTED,
     fontSize: 16,
     lineHeight: 24,
     fontWeight: '700',
-    textAlign: 'center',
-    maxWidth: 310,
+    textAlign: 'left',
+    maxWidth: 330,
   },
   eliteWelcomeBottom: {
     width: '100%',
     gap: 12,
+  },
+  eliteWelcomeButtonGap: {
+    height: 10,
   },
   eliteWelcomeCta: {
     width: '100%',
     minHeight: 56,
     backgroundColor: ONBOARDING_ACCENT,
     paddingVertical: 17,
-    borderRadius: 18,
+    borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -2029,6 +3521,23 @@ const styles = StyleSheet.create({
     color: '#1D1202',
     fontSize: 18,
     fontWeight: '900',
+  },
+  eliteWelcomeSecondaryCta: {
+    width: '100%',
+    minHeight: 54,
+    paddingVertical: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,244,205,0.22)',
+    backgroundColor: 'rgba(255,255,255,0.055)',
+  },
+  eliteWelcomeSecondaryCtaText: {
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 16,
+    fontWeight: '900',
+    textAlign: 'center',
   },
   eliteWelcomeFootnote: {
     color: DARK.textGhost,
@@ -2164,6 +3673,712 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     borderWidth: 1,
     borderColor: DARK.border,
+  },
+  planFlowShell: {
+    flex: 1,
+    paddingHorizontal: 26,
+    paddingTop: 54,
+    paddingBottom: 34,
+  },
+  planFlowScroll: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    paddingTop: 28,
+  },
+  planFlowTop: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 44,
+    marginBottom: 0,
+  },
+  planMockupTop: {
+    width: '100%',
+    minHeight: 70,
+    paddingTop: 28,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  planMockupBrand: {
+    marginLeft: 'auto',
+    color: ONBOARDING_GOLD_2,
+    fontSize: 12,
+    lineHeight: 14,
+    fontWeight: '900',
+    letterSpacing: 1.9,
+    textTransform: 'uppercase',
+  },
+  planFlowBack: {
+    position: 'absolute',
+    left: 0,
+    width: 44,
+    height: 44,
+    borderRadius: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+  },
+  planFlowBackGlyph: {
+    color: '#FFD264',
+    fontSize: 42,
+    lineHeight: 44,
+    fontWeight: '900',
+  },
+  planFlowProgressSegments: {
+    width: 236,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
+  },
+  planFlowProgressSegment: {
+    flex: 1,
+    height: 5,
+    maxWidth: 34,
+    borderRadius: 999,
+    backgroundColor: 'rgba(255,248,232,0.18)',
+  },
+  planFlowProgressSegmentActive: {
+    backgroundColor: ONBOARDING_ACCENT,
+  },
+  planFlowQuestionBlock: {
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: 28,
+  },
+  planFlowTitle: {
+    color: '#FFF8E8',
+    fontSize: 38,
+    lineHeight: 45,
+    fontWeight: '900',
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  planFlowLead: {
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 18,
+    lineHeight: 27,
+    fontWeight: '700',
+    textAlign: 'center',
+    maxWidth: 340,
+  },
+  planFlowStack: {
+    width: '100%',
+    gap: 14,
+  },
+  planMockupResultScroll: {
+    flexGrow: 1,
+    paddingHorizontal: 22,
+    paddingTop: 22,
+    paddingBottom: 44,
+  },
+  planMockupResultBody: {
+    zIndex: 1,
+    flexGrow: 1,
+    justifyContent: 'flex-start',
+    paddingTop: 42,
+    gap: 8,
+  },
+  planMockupResultTitle: {
+    margin: 0,
+    color: '#FFF7E8',
+    fontSize: 29,
+    lineHeight: 33,
+    fontWeight: '900',
+    textAlign: 'center',
+  },
+  planMockupPitchCard: {
+    borderRadius: 8,
+    padding: 12,
+    backgroundColor: 'rgba(242,184,75,0.10)',
+    borderWidth: 1,
+    borderColor: 'rgba(242,184,75,0.42)',
+  },
+  planMockupPitchText: {
+    color: '#FFF7E8',
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '800',
+  },
+  planMockupDaysCard: {
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    backgroundColor: 'rgba(12,15,21,0.68)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.12)',
+    shadowColor: ONBOARDING_ACCENT,
+    shadowOpacity: 0.08,
+    shadowRadius: 22,
+    shadowOffset: { width: 0, height: 0 },
+    elevation: 2,
+  },
+  planMockupDaysTop: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    gap: 12,
+    marginBottom: 8,
+  },
+  planMockupDaysLabel: {
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 11,
+    lineHeight: 14,
+    fontWeight: '800',
+    textTransform: 'uppercase',
+    letterSpacing: 0.8,
+  },
+  planMockupDaysValue: {
+    width: 108,
+    textAlign: 'right',
+    color: ONBOARDING_GOLD_2,
+    fontSize: 24,
+    lineHeight: 24,
+    fontWeight: '900',
+    textShadowColor: 'rgba(255,212,114,0.42)',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 18,
+  },
+  planMockupDaysWord: {
+    color: '#FFE4A3',
+    fontSize: 11,
+    lineHeight: 12,
+    fontWeight: '800',
+    letterSpacing: 0.3,
+  },
+  planMockupDaysTrack: {
+    height: 9,
+    borderRadius: 999,
+    backgroundColor: 'rgba(255,255,255,0.13)',
+    overflow: 'hidden',
+  },
+  planMockupDaysFill: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 999,
+    shadowColor: ONBOARDING_ACCENT,
+    shadowOpacity: 0.52,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 0 },
+  },
+  planFlowBottomStack: {
+    width: '100%',
+    gap: 12,
+    marginTop: 'auto',
+  },
+  planFlowOption: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+    minHeight: 88,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    backgroundColor: 'rgba(12,16,22,0.72)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,244,205,0.15)',
+  },
+  planFlowOptionSelected: {
+    borderColor: 'rgba(242,184,75,0.72)',
+    backgroundColor: 'rgba(242,184,75,0.18)',
+  },
+  planMockupPickerCard: {
+    width: '100%',
+    minHeight: 82,
+    borderRadius: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    padding: 10,
+    backgroundColor: 'rgba(14,18,25,0.74)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.13)',
+  },
+  planMockupPickerCardRecommended: {
+    backgroundColor: 'rgba(242,184,75,0.14)',
+    borderColor: 'rgba(242,184,75,0.42)',
+  },
+  planMockupPickerIcon: {
+    width: 42,
+    height: 42,
+    flexShrink: 0,
+  },
+  planMockupPickerTitle: {
+    color: '#FFF7E8',
+    fontSize: 15,
+    lineHeight: 17,
+    fontWeight: '900',
+  },
+  planMockupPickerSub: {
+    marginTop: 4,
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 11,
+    lineHeight: 14,
+    fontWeight: '700',
+  },
+  planMockupPickerMeta: {
+    marginTop: 5,
+    color: ONBOARDING_GOLD_2,
+    fontSize: 10,
+    lineHeight: 11,
+    fontWeight: '900',
+    textTransform: 'uppercase',
+    letterSpacing: 0.6,
+  },
+  planFlowIconSlot: {
+    width: 68,
+    height: 68,
+    flexShrink: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  planFlowIconSlotSmall: {
+    width: 58,
+    height: 58,
+  },
+  planFlowBitmapIcon: {
+    width: 66,
+    height: 66,
+  },
+  planFlowBitmapIconSmall: {
+    width: 56,
+    height: 56,
+  },
+  planFlowIconBubble: {
+    width: 48,
+    height: 48,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: ONBOARDING_ACCENT_BG,
+    borderWidth: 1,
+    borderColor: 'rgba(242,184,75,0.38)',
+  },
+  planFlowLevelBadge: {
+    width: 48,
+    height: 48,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: ONBOARDING_ACCENT_BG,
+    borderWidth: 1,
+    borderColor: 'rgba(242,184,75,0.38)',
+  },
+  planFlowLevelBadgeText: {
+    color: ONBOARDING_ACCENT,
+    fontSize: 16,
+    fontWeight: '900',
+  },
+  planFlowOptionCopy: {
+    flex: 1,
+    minWidth: 0,
+  },
+  planFlowOptionTitle: {
+    color: '#FFF8E8',
+    fontSize: 18,
+    lineHeight: 23,
+    fontWeight: '900',
+    marginBottom: 4,
+  },
+  planFlowOptionSub: {
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '700',
+  },
+  planFlowCheckmark: {
+    width: 22,
+    color: ONBOARDING_ACCENT,
+    fontSize: 20,
+    lineHeight: 22,
+    fontWeight: '900',
+    textAlign: 'center',
+  },
+  planMockupRowsPanel: {
+    width: '100%',
+    borderRadius: 8,
+    padding: 15,
+    gap: 9,
+    backgroundColor: 'rgba(16,20,28,0.76)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.14)',
+  },
+  planMockupRow: {
+    minHeight: 60,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    padding: 9,
+    borderRadius: 8,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.11)',
+  },
+  planMockupRowIcon: {
+    width: 52,
+    height: 52,
+    flexShrink: 0,
+    borderRadius: 8,
+  },
+  planMockupRowTitle: {
+    margin: 0,
+    color: '#FFF7E8',
+    fontSize: 14,
+    lineHeight: 17,
+    fontWeight: '900',
+  },
+  planMockupRowSub: {
+    marginTop: 3,
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 12,
+    lineHeight: 15,
+    fontWeight: '700',
+  },
+  planMockupResultHero: {
+    width: '100%',
+    borderRadius: 8,
+    padding: 16,
+    backgroundColor: 'rgba(242,184,75,0.16)',
+    borderWidth: 1,
+    borderColor: 'rgba(242,184,75,0.42)',
+  },
+  planMockupBigNum: {
+    color: ONBOARDING_GOLD_2,
+    fontSize: 36,
+    lineHeight: 38,
+    fontWeight: '900',
+  },
+  planMockupHeroSub: {
+    marginTop: 4,
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 12,
+    lineHeight: 15,
+    fontWeight: '700',
+  },
+  planMockupCtaStack: {
+    width: '100%',
+    gap: 10,
+    marginTop: 2,
+  },
+  planMockupPrimaryButton: {
+    minHeight: 54,
+    borderRadius: 8,
+    paddingVertical: 13,
+    paddingHorizontal: 16,
+    backgroundColor: ONBOARDING_ACCENT,
+  },
+  planMockupPrimaryButtonText: {
+    color: '#12100A',
+    fontSize: 16,
+    lineHeight: 20,
+    fontWeight: '900',
+    textAlign: 'center',
+  },
+  planMockupSecondaryButton: {
+    minHeight: 54,
+    borderRadius: 8,
+    paddingVertical: 13,
+    paddingHorizontal: 16,
+    backgroundColor: 'rgba(255,255,255,0.10)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.16)',
+  },
+  planMockupSecondaryButtonText: {
+    color: '#FFF7E8',
+    fontSize: 16,
+    lineHeight: 20,
+    fontWeight: '900',
+    textAlign: 'center',
+  },
+  planMockupGhostButton: {
+    minHeight: 54,
+    borderRadius: 8,
+    paddingVertical: 13,
+    paddingHorizontal: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  planPaywallScroll: {
+    flexGrow: 1,
+    paddingTop: 12,
+    paddingBottom: 24,
+    gap: 8,
+  },
+  planPaywallTop: {
+    width: '100%',
+    minHeight: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 2,
+  },
+  planPaywallBrand: {
+    color: ONBOARDING_ACCENT,
+    fontSize: 12,
+    fontWeight: '900',
+    letterSpacing: 1.4,
+    textTransform: 'uppercase',
+  },
+  planPaywallTitle: {
+    color: '#FFF8E8',
+    fontSize: 28,
+    lineHeight: 31,
+    fontWeight: '900',
+    textAlign: 'center',
+  },
+  planPaywallLead: {
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: 2,
+  },
+  planPaywallPanel: {
+    width: '100%',
+    gap: 5,
+    padding: 8,
+    borderRadius: 8,
+    backgroundColor: 'rgba(12,16,22,0.72)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,244,205,0.15)',
+  },
+  planPaywallStartRow: {
+    width: '100%',
+    minHeight: 48,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    borderRadius: 8,
+    backgroundColor: 'rgba(255,255,255,0.07)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.10)',
+  },
+  planPaywallBenefitGrid: {
+    width: '100%',
+    gap: 5,
+  },
+  planPaywallBenefit: {
+    width: '100%',
+    minHeight: 48,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    borderRadius: 8,
+    backgroundColor: 'rgba(255,255,255,0.07)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.10)',
+  },
+  planPaywallBenefitFeatured: {
+    minHeight: 52,
+  },
+  planPaywallBenefitIcon: {
+    width: 54,
+    height: 54,
+    flexShrink: 0,
+  },
+  planPaywallBenefitTitle: {
+    color: '#FFF8E8',
+    fontSize: 13,
+    lineHeight: 15,
+    fontWeight: '900',
+  },
+  planPaywallBenefitSub: {
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 10,
+    lineHeight: 12,
+    fontWeight: '700',
+    marginTop: 2,
+  },
+  planPaywallOptions: {
+    width: '100%',
+    flexDirection: 'row',
+    gap: 8,
+    marginTop: 4,
+  },
+  planPaywallBuyCard: {
+    flex: 1,
+    minHeight: 88,
+    padding: 12,
+    borderRadius: 8,
+    justifyContent: 'center',
+    backgroundColor: 'rgba(14,18,25,0.78)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.15)',
+  },
+  planPaywallBuyCardSelected: {
+    backgroundColor: 'rgba(242,184,75,0.18)',
+    borderColor: 'rgba(242,184,75,0.72)',
+  },
+  planPaywallBuyTitle: {
+    color: '#FFF8E8',
+    fontSize: 14,
+    lineHeight: 18,
+    fontWeight: '900',
+  },
+  planPaywallBuyPrice: {
+    color: '#FFD66B',
+    fontSize: 22,
+    lineHeight: 24,
+    fontWeight: '900',
+    marginTop: 6,
+  },
+  planFreeConfirmOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 22,
+    backgroundColor: 'rgba(0,0,0,0.58)',
+  },
+  planFreeConfirmBox: {
+    width: '100%',
+    borderRadius: 14,
+    padding: 18,
+    backgroundColor: 'rgba(18,20,25,0.96)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.18)',
+    shadowColor: '#000',
+    shadowOpacity: 0.55,
+    shadowRadius: 34,
+    shadowOffset: { width: 0, height: 18 },
+    elevation: 18,
+  },
+  planFreeConfirmTitle: {
+    color: '#FFF8E8',
+    fontSize: 20,
+    lineHeight: 24,
+    fontWeight: '900',
+    textAlign: 'center',
+    marginBottom: 9,
+  },
+  planFreeConfirmText: {
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 13,
+    lineHeight: 19,
+    fontWeight: '700',
+    textAlign: 'center',
+  },
+  planFreeConfirmActions: {
+    width: '100%',
+    gap: 8,
+    marginTop: 16,
+  },
+  planPhraseCard: {
+    width: '100%',
+    gap: 18,
+  },
+  planPhraseRu: {
+    color: '#FFF8E8',
+    fontSize: 28,
+    lineHeight: 36,
+    fontWeight: '900',
+    textAlign: 'center',
+    marginTop: 18,
+  },
+  planPhraseLine: {
+    minHeight: 64,
+    borderBottomWidth: 1,
+    borderColor: 'rgba(255,244,205,0.24)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  planPhraseLineError: {
+    borderColor: '#FF5A5F',
+  },
+  planPhraseAnswer: {
+    color: ONBOARDING_ACCENT,
+    fontSize: 24,
+    fontWeight: '900',
+  },
+  planPhraseAnswerEmpty: {
+    opacity: 0,
+  },
+  planPhraseTokens: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+    marginBottom: 10,
+  },
+  planPhraseToken: {
+    flexGrow: 1,
+    minWidth: '45%',
+    minHeight: 54,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 8,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,244,205,0.16)',
+  },
+  planPhraseTokenSelected: {
+    opacity: 0.42,
+    borderColor: 'rgba(242,184,75,0.36)',
+  },
+  planPhraseTokenText: {
+    color: '#FFF8E8',
+    fontSize: 18,
+    fontWeight: '900',
+  },
+  planProgressRail: {
+    width: '100%',
+    height: 12,
+    borderRadius: 999,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(255,255,255,0.14)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.12)',
+    marginBottom: 4,
+  },
+  planProgressFill: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 999,
+  },
+  planLoadingBuildIcon: {
+    width: 38,
+    height: 38,
+    borderRadius: 8,
+    flexShrink: 0,
+  },
+  planFlowChecklistRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingVertical: 4,
+  },
+  planFlowChecklistText: {
+    color: '#FFF8E8',
+    fontSize: 16,
+    fontWeight: '800',
+  },
+  planResultHero: {
+    width: '100%',
+    padding: 18,
+    borderRadius: 8,
+    backgroundColor: ONBOARDING_ACCENT_BG,
+    borderWidth: 1,
+    borderColor: 'rgba(242,184,75,0.34)',
+  },
+  planResultNumber: {
+    color: '#FFF8E8',
+    fontSize: 26,
+    lineHeight: 32,
+    fontWeight: '900',
+    marginBottom: 6,
+  },
+  planResultSub: {
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '800',
   },
 });
 

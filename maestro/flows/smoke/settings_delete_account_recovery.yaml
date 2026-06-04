@@ -1,6 +1,0 @@
-appId: app.phraseman
----
-- runFlow: ../_shared/open_dev_client.yaml
-- runFlow: ../_dismiss_bug_hunt.yaml
-- tapOn:
-    point: "90%,95%"

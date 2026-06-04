@@ -3,6 +3,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import type { LevelGiftRewardIconId } from '../constants/levelGiftRewardIcons';
 import { flashcardsPackTrialGiftKey, lessonBonusHintsKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_gate';
+import { loadStoredFriendGiftInventory, type StoredFriendGiftInventoryItem } from './friend_gift_inventory';
 
 export interface ActiveLevelGiftInventoryItem {
   key: string;
@@ -104,6 +105,24 @@ const energyRewardIconForAmount = (amount: number): LevelGiftRewardIconId => {
   return 'energy_plus1';
 };
 
+const friendGiftIconForGiftId = (giftId: string): LevelGiftRewardIconId => {
+  if (giftId === 'arena_extra_5') return 'arena_extra_5';
+  if (giftId === 'chain_shield_1') return 'chain_shield_1';
+  if (giftId === 'xp_boost_2x_24h') return 'xp_2x_24h';
+  return 'choice_3_level';
+};
+
+const friendGiftLabel = (gift: StoredFriendGiftInventoryItem, lang: Lang): string => {
+  if (lang === 'uk' && gift.giftLabelUk) return gift.giftLabelUk;
+  if (lang === 'es' && gift.giftLabelEs) return gift.giftLabelEs;
+  if (lang === 'pt-BR' && gift.giftLabelPtBr) return gift.giftLabelPtBr;
+  if (lang === 'vi' && gift.giftLabelVi) return gift.giftLabelVi;
+  if (lang === 'id' && gift.giftLabelId) return gift.giftLabelId;
+  if (lang === 'tr' && gift.giftLabelTr) return gift.giftLabelTr;
+  if (lang === 'pl' && gift.giftLabelPl) return gift.giftLabelPl;
+  return gift.giftLabelRu || gift.giftLabel || gift.giftId;
+};
+
 export const loadActiveLevelGiftInventory = async (
   lang: Lang,
   nowMs: number = Date.now(),
@@ -119,6 +138,7 @@ export const loadActiveLevelGiftInventory = async (
     chainShieldRaw,
     wagerDiscountRaw,
     clubGiftBoost,
+    friendGifts,
   ] = await Promise.all([
     AsyncStorage.getItem(GIFT_XP_BANK_KEY),
     AsyncStorage.getItem(GIFT_MULTIPLIER_KEY),
@@ -129,6 +149,7 @@ export const loadActiveLevelGiftInventory = async (
     AsyncStorage.getItem(CHAIN_SHIELD_KEY),
     AsyncStorage.getItem(WAGER_DISCOUNT_KEY),
     AsyncStorage.getItem(CLUB_GIFT_BOOST_KEY),
+    loadStoredFriendGiftInventory(),
   ]);
 
   const active: ActiveLevelGiftInventoryItem[] = [];
@@ -344,6 +365,35 @@ export const loadActiveLevelGiftInventory = async (
     pl: '1 darmowa aktywacja',
   }),
       accent: '#2DD4BF',
+    });
+  }
+
+  for (const gift of friendGifts.slice(0, 5)) {
+    const fromName = gift.fromName || triLang(lang, {
+      ru: 'друга',
+      uk: 'друга',
+      es: 'un amigo',
+      'pt-BR': 'um amigo',
+      vi: 'bạn bè',
+      id: 'teman',
+      tr: 'arkadaş',
+      pl: 'znajomy',
+    });
+    active.push({
+      key: `friend_gift_${gift.id}`,
+      iconGiftId: friendGiftIconForGiftId(gift.giftId),
+      title: triLang(lang, {
+        ru: `Подарок от ${fromName}`,
+        uk: `Подарунок від ${fromName}`,
+        es: `Regalo de ${fromName}`,
+        'pt-BR': `Presente de ${fromName}`,
+        vi: `Quà từ ${fromName}`,
+        id: `Hadiah dari ${fromName}`,
+        tr: `${fromName} hediyesi`,
+        pl: `Prezent od ${fromName}`,
+      }),
+      desc: friendGiftLabel(gift, lang),
+      accent: '#EAB308',
     });
   }
 
